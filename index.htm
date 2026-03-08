@@ -6,8 +6,9 @@
     <title>Yihang (Sam) Wu | Data & Code</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 平滑滚动 */
+        /* 开启平滑滚动，使导航跳转更自然 */
         html { scroll-behavior: smooth; }
+        /* 让固定导航栏跳转时留出顶部空间 */
         section { scroll-margin-top: 5rem; }
 
         /* 高级感核心：首屏背景缓慢放大动画 */
@@ -98,7 +99,14 @@
             <div class="w-full md:w-5/12 flex justify-center reveal">
                 <div class="relative group">
                     <div class="absolute inset-0 bg-blue-600 rounded-2xl transform translate-x-5 translate-y-5 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3"></div>
-                    <img src="9ef55c160274a97fa22086e46b24e84e.jpg" alt="Sam Wu profile" class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl shadow-2xl z-10 relative grayscale hover:grayscale-0 transition-all duration-700" />
+                    
+                    <img src="9ef55c160274a97fa22086e46b24e84e.jpg" alt="Sam Wu profile" 
+                         class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl z-10 relative
+                                shadow-lg
+                                transition-all duration-700 ease-out
+                                saturate-[0.9] brightness-95
+                                group-hover:scale-105 group-hover:saturate-110 group-hover:brightness-105 
+                                group-hover:shadow-[0_20px_40px_rgba(37,99,235,0.25)]" />
                 </div>
             </div>
             <div class="w-full md:w-7/12 reveal delay-100">
@@ -237,7 +245,6 @@
                             Volunteer & Leadership
                         </h3>
                         <ul class="space-y-5 text-gray-300 font-light leading-relaxed">
-                            
                             <li class="flex items-start">
                                 <span class="text-green-400 mr-3 mt-1.5">▹</span>
                                 <div class="flex-1">
@@ -248,7 +255,6 @@
                                     <p class="text-sm text-gray-400">Served at The Church of Jesus Christ of Latter-day Saints, supporting the local community and participating in faith-based outreach programs.</p>
                                 </div>
                             </li>
-
                             <li class="flex items-start">
                                 <span class="text-green-400 mr-3 mt-1">▹</span>
                                 <p class="text-sm">Spearheaded disability support campaigns, drawing up service rosters to safeguard travel and campus life.</p>
