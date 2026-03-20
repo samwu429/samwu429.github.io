@@ -8,42 +8,16 @@
     <style>
         html { scroll-behavior: smooth; }
         section { scroll-margin-top: 5rem; }
-
-        @keyframes slowZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-        .animate-zoom {
-            animation: slowZoom 25s ease-in-out infinite alternate;
-        }
-
-        @keyframes bounce-soft {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
-        .animate-bounce-soft {
-            animation: bounce-soft 2s infinite ease-in-out;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        .animate-zoom { animation: slowZoom 25s ease-in-out infinite alternate; }
+        @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        .animate-bounce-soft { animation: bounce-soft 2s infinite ease-in-out; }
+        .reveal { opacity: 0; transform: translateY(50px) scale(0.95); transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
-
-        .text-metallic-green {
-            background: linear-gradient(to right, #10b981, #047857);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
+        .text-metallic-green { background: linear-gradient(to right, #10b981, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; border-radius: 10px; }
@@ -198,7 +172,7 @@
                             </span>
                             <h3 class="text-lg font-bold text-white tracking-wide">Ask AI About Sam</h3>
                         </div>
-                        <span class="text-xs text-emerald-400 font-mono bg-emerald-900/30 px-2 py-1 rounded border border-emerald-500/30">Gemini 1.5 Powered</span>
+                        <span class="text-xs text-emerald-400 font-mono bg-emerald-900/30 px-2 py-1 rounded border border-emerald-500/30">Diagnostic Mode</span>
                     </div>
                     
                     <div id="chat-window" class="p-6 h-64 overflow-y-auto flex flex-col space-y-4 custom-scrollbar">
@@ -210,8 +184,6 @@
                                 Hello! I am Sam's dedicated AI Assistant. 
                                 <br><br>
                                 Paste a <strong>job description</strong> to see if he's a fit, or ask me specific questions about his background (e.g., <em>"Does Sam have experience with Python?"</em>). 
-                                <br><br>
-                                <span class="text-xs text-emerald-500 font-mono">*Note: I am strictly programmed to only answer questions related to Sam's professional profile.</span>
                             </div>
                         </div>
                     </div>
@@ -390,28 +362,20 @@
         }, revealOptions);
         revealElements.forEach(el => revealOnScroll.observe(el));
 
-
-        // ================= 修复后的防弹版 Gemini API 调用 =================
+        // ================= 诊断模式 AI 调用 =================
         const chatForm = document.getElementById('ai-chat-form');
         const chatInput = document.getElementById('ai-input');
         const chatWindow = document.getElementById('chat-window');
 
         const API_KEY = 'AIzaSyCSM76q8MJDn5eO38qLH--RZkhzTAEgtV4';
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
-        // 提示词保持不变
         const SYSTEM_PROMPT = `You are an exclusive, professional AI assistant for Yihang (Sam) Wu. Your ONLY purpose is to answer questions from recruiters or employers based on Sam's resume, and to evaluate if he is a good fit for job descriptions provided by the user.
-
 Here is Sam's resume data:
 - Education: Candidate Bachelor's in Mathematics, Statistics and Computer Science at University of Toronto (Sep 2025-Jun 2029). Kelowna Christian School (Dec 2020-Jul 2025).
 - Skills: JavaScript, Python, R Studio, Excel, Workflow Optimization, Data Analytics. Fluent in English, Native Mandarin.
 - Experience: Logistics & Data Intern at Haicheng Hongshengda. Analyzed logistics-cost data, updated ERP systems, coordinated transport.
-- Extracurricular: Ward Missionary. Figure Skating Champion. Volunteered for disability support and homeless aid.
-
-CRITICAL RULES:
-1. If the user asks about Sam's qualifications, answer concisely, confidently, and professionally. Always map his skills to their questions.
-2. If the user pastes a job description, analyze it and explain exactly why Sam's skills (like Python, JS, Data analysis) make him a strong candidate.
-3. If the user asks ANY question NOT related to Sam, his resume, or evaluating him for a job, you MUST politely refuse and state: "I am strictly programmed to only answer questions regarding Sam Wu's professional profile. How can I help you evaluate his qualifications?"`;
+- Extracurricular: Ward Missionary. Figure Skating Champion. Volunteered for disability support and homeless aid.`;
 
         function createUserMessage(text) {
             return `<div class="flex items-start justify-end mt-4"><div class="bg-gray-700/50 border border-gray-600 rounded-2xl rounded-tr-sm p-3 text-sm text-white shadow-md max-w-[85%]">${text}</div></div>`;
@@ -421,9 +385,14 @@ CRITICAL RULES:
             return `<div id="ai-loading" class="flex items-start mt-4"><div class="w-8 h-8 rounded-full bg-emerald-900/50 border border-emerald-500/50 flex items-center justify-center text-emerald-400 mr-3 flex-shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.2)]"><svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></div><div class="bg-[#0f172a]/80 border border-gray-700 rounded-2xl rounded-tl-sm p-4 text-sm text-gray-400 italic shadow-md">Analyzing Sam's profile...</div></div>`;
         }
 
-        function createAIMessage(text) {
+        function createAIMessage(text, isError = false) {
             const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-400">$1</strong>').replace(/\n/g, '<br>');
-            return `<div class="flex items-start mt-4"><div class="w-8 h-8 rounded-full bg-emerald-900/50 border border-emerald-500/50 flex items-center justify-center text-emerald-400 mr-3 flex-shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.2)]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><div class="bg-[#0f172a]/80 border border-emerald-900/50 rounded-2xl rounded-tl-sm p-4 text-sm text-gray-200 shadow-md max-w-[85%] leading-relaxed border-l-2 border-l-emerald-500">${formattedText}</div></div>`;
+            const borderColor = isError ? 'border-red-500' : 'border-emerald-500';
+            const iconColor = isError ? 'text-red-400' : 'text-emerald-400';
+            const bgColor = isError ? 'bg-red-900/50 border-red-500/50' : 'bg-emerald-900/50 border-emerald-500/50';
+            const shadowColor = isError ? 'shadow-[0_0_10px_rgba(239,68,68,0.2)]' : 'shadow-[0_0_10px_rgba(16,185,129,0.2)]';
+            
+            return `<div class="flex items-start mt-4"><div class="w-8 h-8 rounded-full ${bgColor} flex items-center justify-center ${iconColor} mr-3 flex-shrink-0 ${shadowColor}"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><div class="bg-[#0f172a]/80 border border-gray-700 rounded-2xl rounded-tl-sm p-4 text-sm text-gray-200 shadow-md max-w-[85%] leading-relaxed border-l-2 ${borderColor}">${formattedText}</div></div>`;
         }
 
         chatForm.addEventListener('submit', async (e) => {
@@ -439,15 +408,8 @@ CRITICAL RULES:
             chatWindow.scrollTop = chatWindow.scrollHeight;
 
             try {
-                // 【核心修改点】：放弃使用不稳定的 systemInstruction 字段
-                // 直接把“系统护栏”和“用户问题”打包塞进常规文本里，这种格式 Google 是 100% 接受的。
                 const safePayloadText = "System Rules:\n" + SYSTEM_PROMPT + "\n\nUser Question:\n" + userText;
-
-                const requestBody = {
-                    contents: [{
-                        parts: [{ text: safePayloadText }]
-                    }]
-                };
+                const requestBody = { contents: [{ parts: [{ text: safePayloadText }] }] };
 
                 const response = await fetch(API_URL, {
                     method: 'POST',
@@ -462,13 +424,16 @@ CRITICAL RULES:
                     const aiReply = data.candidates[0].content.parts[0].text;
                     chatWindow.insertAdjacentHTML('beforeend', createAIMessage(aiReply));
                 } else {
-                    console.error("API 报错内容:", data);
-                    chatWindow.insertAdjacentHTML('beforeend', createAIMessage("Sorry, there was an issue connecting to the AI brain. Check console for details."));
+                    // 如果 API 拒绝，直接打印出 Google 给出的错误原因
+                    let errorMsg = "未知错误";
+                    if (data.error && data.error.message) {
+                        errorMsg = data.error.message;
+                    }
+                    chatWindow.insertAdjacentHTML('beforeend', createAIMessage(`🔴 API 被 Google 拒绝了。<br><br><b>错误详情:</b> ${errorMsg}<br><br>导师提示：请把这段红色文字截图或者复制发给我！`, true));
                 }
             } catch (error) {
-                console.error("Fetch 请求失败:", error);
                 document.getElementById('ai-loading').remove();
-                chatWindow.insertAdjacentHTML('beforeend', createAIMessage("Network error. Please check your internet connection."));
+                chatWindow.insertAdjacentHTML('beforeend', createAIMessage(`🔴 网络请求根本没发出去。<br><br><b>错误详情:</b> ${error.message}<br><br>导师提示：如果你在国内，这可能是因为墙（需要开代理）。把这个报错截图给我！`, true));
             }
             
             chatWindow.scrollTop = chatWindow.scrollHeight;
