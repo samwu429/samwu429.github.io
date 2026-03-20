@@ -5,54 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yihang (Sam) Wu | Data & Code</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
     <style>
         html { scroll-behavior: smooth; }
         section { scroll-margin-top: 5rem; }
 
-        /* --- 1. 分区专属动态系统 (全部支持反复触发) --- */
+        /* --- 核心：分区专属动态系统 (全部支持反复触发) --- */
 
-        /* 首页：缩放浮现 */
+        /* 1. 首页：缩放浮现 (Zoom-in Reveal) */
         .reveal-hero {
             opacity: 0;
-            transform: scale(0.9) translateY(40px);
+            transform: scale(0.9) translateY(30px);
             filter: blur(10px);
             transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .reveal-hero.active { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        .reveal-hero.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+        }
 
-        /* 关于：左右对撞 */
-        .reveal-left { opacity: 0; transform: translateX(-100px); transition: all 1s ease-out; }
-        .reveal-right { opacity: 0; transform: translateX(100px); transition: all 1s ease-out; }
-        .reveal-left.active, .reveal-right.active { opacity: 1; transform: translateX(0); }
+        /* 2. 关于：水平推入 (Horizontal Slide) */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 1s ease-out;
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 1s ease-out;
+        }
+        .reveal-left.active, .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-        /* 卡片：波浪弹起 */
+        /* 3. 卡片：波浪弹起 (Staggered Pop) */
         .reveal-card {
             opacity: 0;
             transform: translateY(80px);
             transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .reveal-card.active { opacity: 1; transform: translateY(0); }
+        .reveal-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        /* 简历：卷轴展开 */
+        /* 4. 简历/PDF：卷轴展开 (Height Reveal) */
         .reveal-frame {
             opacity: 0;
-            transform: translateY(40px) scaleY(0.9);
+            transform: translateY(40px) scaleY(0.95);
             transform-origin: top;
-            transition: all 1.2s ease-in-out;
+            transition: all 1s ease-in-out;
         }
-        .reveal-frame.active { opacity: 1; transform: translateY(0) scaleY(1); }
+        .reveal-frame.active {
+            opacity: 1;
+            transform: translateY(0) scaleY(1);
+        }
 
-        /* 兴趣：对焦聚焦 */
+        /* 5. 兴趣：对焦聚焦 (Focus Scale) */
         .reveal-focus {
             opacity: 0;
-            transform: scale(0.85);
+            transform: scale(0.8);
             filter: saturate(0);
             transition: all 0.8s ease-out;
         }
-        .reveal-focus.active { opacity: 1; transform: scale(1); filter: saturate(1); }
+        .reveal-focus.active {
+            opacity: 1;
+            transform: scale(1);
+            filter: saturate(1);
+        }
 
-        /* --- 2. 视觉装饰细节 --- */
+        /* --- 极客细节装饰 --- */
         .text-metallic-green {
             background: linear-gradient(to right, #10b981, #34d399, #059669);
             -webkit-background-clip: text;
@@ -70,7 +94,11 @@
             animation: borderFlow 6s infinite linear;
         }
 
-        /* 隐藏原生滚动条，为右侧进度条留出视觉空间 */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+        /* 【新增】隐藏原生滚动条并为进度条留白 */
         ::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
@@ -83,9 +111,9 @@
     <div class="fixed top-[-10%] left-[-5%] w-[40%] h-[40%] bg-emerald-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
     <div class="fixed bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-teal-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
-    <nav id="navbar" class="fixed w-full z-40 transition-all duration-500 py-6">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center relative z-10">
-            <a href="#home" class="text-xl font-bold text-white tracking-widest uppercase" id="nav-logo">Sam Wu</a>
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold text-white tracking-widest uppercase">Sam Wu</a>
             <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
                 <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
                 <a href="#portfolio" class="hover:text-emerald-400 transition-colors">Data Lab</a>
@@ -97,7 +125,7 @@
 
     <header id="home" class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="1fb2deff3073e3283c81605365fc199d.jpg" alt="Sam" class="w-full h-full object-cover opacity-60 scale-105" />
+            <img src="1fb2deff3073e3283c81605365fc199d.jpg" alt="Sam" class="w-full h-full object-cover opacity-60 scale-105" id="hero-img" />
             <div class="absolute inset-0 bg-gradient-to-b from-[#0a0f18]/20 via-[#0a0f18]/60 to-[#0a0f18]"></div>
         </div>
         <div class="relative z-10 px-4 reveal-hero">
@@ -117,7 +145,7 @@
 
     <section id="about" class="py-32 px-6 max-w-6xl mx-auto relative z-10 overflow-hidden">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            <div class="reveal-left" data-tilt data-tilt-max="10">
+            <div class="reveal-left">
                 <div class="relative group">
                     <div class="absolute -inset-2 bg-emerald-600/20 rounded-3xl blur-lg"></div>
                     <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" class="rounded-3xl border border-gray-800 shadow-2xl relative z-10 group-hover:grayscale-0 transition-all duration-700 grayscale-[0.3]" />
@@ -128,7 +156,10 @@
                     The Profile <span class="block w-12 h-1 bg-emerald-500 mt-2"></span>
                 </h2>
                 <p class="text-lg text-gray-400 leading-relaxed mb-8">
-                    Based in Mississauga, I am navigating the intersection of **Mathematics, Statistics, and Computer Science at the University of Toronto**. 
+                    Based in Mississauga, I am currently navigating the intersection of **Mathematics, Statistics, and Computer Science at the University of Toronto**. 
+                </p>
+                <p class="text-lg text-gray-400 leading-relaxed mb-8">
+                    My technical arsenal includes Python for data automation, JavaScript for interface engineering, and R Studio for statistical modeling. I am focused on building systems that don't just process data, but drive decisions.
                 </p>
                 <div class="flex gap-4">
                     <div class="px-4 py-2 bg-[#1e293b] rounded-lg border border-gray-700 text-xs font-bold text-emerald-400 uppercase tracking-widest">Data Eng</div>
@@ -145,20 +176,20 @@
                 <p class="text-gray-500 mt-4 font-mono text-sm">/ projects_and_execution /</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 border-t-emerald-500 shadow-xl group hover:border-emerald-400 transition-all duration-300" data-tilt data-tilt-max="10">
+                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 border-t-emerald-500 shadow-xl group hover:border-emerald-400 transition-all duration-300">
                     <h3 class="text-xl font-bold text-white mb-4">AI Boss - Resume Screener</h3>
                     <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">Built a Python FastAPI & Gemini LLM backend to automate candidate evaluation for recruiters.</p>
                     <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="text-emerald-400 text-xs font-black uppercase tracking-widest">Live System &rarr;</a>
                 </div>
-                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 shadow-xl group hover:border-teal-400 transition-all duration-300" data-tilt data-tilt-max="10" style="transition-delay: 100ms;">
+                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 shadow-xl group hover:border-teal-400 transition-all duration-300">
                     <h3 class="text-xl font-bold text-white mb-4">Logistics Automation</h3>
                     <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">Custom Python scripts for automating monthly logistics cost data at Haicheng Hongshengda.</p>
-                    <span class="text-gray-600 text-xs font-bold uppercase">Python / ERP</span>
+                    <span class="text-gray-600 text-xs font-bold uppercase">Python / ERP / Intern</span>
                 </div>
-                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 shadow-xl group hover:border-blue-400 transition-all duration-300" data-tilt data-tilt-max="10" style="transition-delay: 200ms;">
+                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 shadow-xl group hover:border-blue-400 transition-all duration-300">
                     <h3 class="text-xl font-bold text-white mb-4">Statistical Modeling</h3>
                     <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">Applying advanced R Studio techniques for quantitative research at the University of Toronto.</p>
-                    <span class="text-gray-600 text-xs font-bold uppercase">R Studio / Stats</span>
+                    <span class="text-gray-600 text-xs font-bold uppercase">R Studio / MSCS</span>
                 </div>
             </div>
         </div>
@@ -172,42 +203,41 @@
                 <div class="relative bg-[#0f172a] rounded-3xl overflow-hidden shadow-2xl">
                     <div class="px-8 py-5 border-b border-gray-800 bg-[#0f172a] flex justify-between items-center">
                         <div class="flex items-center gap-3">
-                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]"></div>
+                            <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
                             <span class="text-sm font-bold text-white uppercase tracking-tighter">Sam's AI Agent</span>
                         </div>
-                        <span class="text-[10px] text-emerald-400 font-mono tracking-widest bg-emerald-900/30 px-2 py-1 rounded">Gemini 2.5 Active</span>
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-gray-800"></div>
+                            <div class="w-3 h-3 rounded-full bg-gray-800"></div>
+                        </div>
                     </div>
 
                     <div class="bg-amber-900/20 border-b border-amber-900/50 px-6 py-3 flex items-start gap-3">
                         <span class="text-amber-500 mt-0.5">⏱️</span>
                         <p class="text-xs text-amber-200/80 leading-relaxed font-mono">
-                            <strong class="text-amber-400">NOTICE:</strong> This system uses a free API tier. The <strong>FIRST</strong> response requires ~50 seconds to wake up. Subsequent chats will be instant.
+                            <strong class="text-amber-400">NOTICE:</strong> This system uses a free cloud tier. The <strong>FIRST</strong> response requires ~50 seconds to wake up. Subsequent queries will be instant.
                         </p>
                     </div>
 
                     <div id="chat-window" class="h-80 p-8 overflow-y-auto custom-scrollbar flex flex-col gap-6 text-sm">
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-full bg-emerald-900 border border-emerald-500 flex items-center justify-center text-emerald-400 flex-shrink-0">AI</div>
-                            <span class="bg-[#1e293b] text-gray-300 px-4 py-3 rounded-2xl rounded-tl-none border border-gray-700 max-w-[85%] leading-relaxed shadow-lg">Hi there! Ask me about Sam's professional skills, internships, or education at UofT!</span>
-                        </div>
+                        <div class="flex"><span class="bg-[#1e293b] text-gray-300 px-4 py-3 rounded-2xl rounded-tl-none border border-gray-700 max-w-[85%]">Hi there! Ask me about Sam's professional background or skills.</span></div>
                     </div>
                     <form id="ai-chat-form" class="p-6 bg-[#0f172a] border-t border-gray-800 flex gap-4">
-                        <input type="text" id="ai-input" placeholder="Type a question..." class="flex-1 bg-[#0a0f18] border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition-all">
-                        <button type="submit" class="bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-emerald-500 transition-all shadow-lg">Ask</button>
+                        <input type="text" id="ai-input" placeholder="Type here..." class="flex-1 bg-[#0a0f18] border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition-all">
+                        <button type="submit" class="bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-emerald-500 transition-all">Ask</button>
                     </form>
                 </div>
             </div>
 
-            <div class="reveal-frame bg-white rounded-xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden border border-gray-800" data-tilt data-tilt-max="2">
-                <div class="bg-[#0f172a] px-4 py-2 flex items-center gap-2 border-b border-gray-800">
+            <div class="reveal-frame bg-white rounded-xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden">
+                <div class="bg-gray-200 px-4 py-2 flex items-center gap-2 border-b border-gray-300">
                     <div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-yellow-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div>
-                    <div class="flex-1 text-center text-xs text-gray-500 font-mono tracking-widest font-bold pr-10">YIHANG_WU.PDF</div>
                 </div>
-                <iframe src="Yihang.Wu.pdf" class="w-full h-[700px] border-none"></iframe>
+                <iframe src="Yihang.Wu.pdf" class="w-full h-[700px]"></iframe>
             </div>
             
             <div class="text-center mt-12">
-                <a href="Yihang.Wu.pdf" download class="reveal-hero inline-block px-10 py-4 border-2 border-emerald-500 text-emerald-400 rounded-full font-black uppercase tracking-widest hover:bg-emerald-500 hover:text-white transition-all shadow-xl">Download PDF</a>
+                <a href="Yihang.Wu.pdf" download class="reveal-hero inline-block px-10 py-4 border-2 border-emerald-500 text-emerald-400 rounded-full font-black uppercase tracking-widest hover:bg-emerald-500 hover:text-white transition-all">Download PDF</a>
             </div>
         </div>
     </section>
@@ -219,28 +249,35 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div class="reveal-left space-y-12">
-                    <div class="flex items-start gap-6 bg-[#1e293b]/30 p-6 rounded-2xl border border-gray-800" data-tilt data-tilt-max="5">
+                    <div class="flex items-start gap-6">
                         <img src="6558fa4ecffc7a7d45c10e5eb66e142d.png" class="w-16 h-auto bg-white/5 p-2 rounded-xl" />
                         <div>
                             <h4 class="text-emerald-400 font-bold text-lg mb-2">Ward Missionary</h4>
                             <p class="text-gray-500 text-sm font-light">Leadership and community service at The Church of Jesus Christ of Latter-day Saints.</p>
                         </div>
                     </div>
+                    <div class="p-6 border border-gray-800 rounded-2xl bg-[#0f172a]/50">
+                        <p class="text-xs font-mono text-emerald-500 mb-2">// awards_list</p>
+                        <ul class="text-sm space-y-2">
+                            <li>🏆 Shenyang Men's Figure Skating Champion</li>
+                            <li>📜 Microsoft Technology Associate: JavaScript</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 gap-8">
-                    <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="reveal-focus rounded-2xl border border-gray-800 shadow-2xl" data-tilt data-tilt-max="5" />
-                    <img src="547ca3549526611a20df5305e23ee22b.jpg" class="reveal-focus rounded-2xl border border-gray-800 shadow-2xl" data-tilt data-tilt-max="5" style="transition-delay: 200ms;" />
+                <div class="grid grid-cols-1 gap-6">
+                    <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="reveal-focus rounded-2xl border border-gray-800 shadow-2xl" />
+                    <img src="547ca3549526611a20df5305e23ee22b.jpg" class="reveal-focus rounded-2xl border border-gray-800 shadow-2xl" />
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-black py-16 text-center text-gray-700 text-xs uppercase tracking-[0.4em] font-bold border-t border-gray-950">
-        <p>© 2026 Yihang (Sam) Wu. Mississauga, ON.</p>
+        <p>© 2026 Yihang (Sam) Wu. Built with data & determination.</p>
     </footer>
 
     <script>
-        // ================= 1. 右侧滚动进度条 =================
+        // ================= 【新增】全局滚动进度条逻辑 =================
         const scrollProgress = document.getElementById('scroll-progress');
         window.addEventListener('scroll', () => {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -249,36 +286,34 @@
             scrollProgress.style.height = scrolled + '%';
         });
 
-        // ================= 2. 导航栏交互 =================
+        // 导航栏滚动逻辑
         const navbar = document.getElementById('navbar');
-        const navLogo = document.getElementById('nav-logo');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) { 
                 navbar.classList.add('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-900', 'shadow-2xl'); 
                 navbar.classList.remove('py-6');
-                navLogo.classList.add('text-emerald-400');
             } else { 
                 navbar.classList.remove('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-900', 'shadow-2xl'); 
                 navbar.classList.add('py-6');
-                navLogo.classList.remove('text-emerald-400');
             }
         });
 
-        /* ================= 3. 分区观测器 (核心：反复触发) ================= */
+        /* ================= 核心：分区观测器 (反复触发逻辑) ================= */
         const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        
         const revealOnScroll = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add('active'); } 
-                else { entry.target.classList.remove('active'); } // 移出视口后删掉，滑回来再重新播
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
             });
         }, revealOptions);
 
         document.querySelectorAll('[class*="reveal-"]').forEach(el => revealOnScroll.observe(el));
 
-        // ================= 4. 初始化 3D 视差 =================
-        VanillaTilt.init(document.querySelectorAll("[data-tilt]"));
-
-        // ================= 5. AI 对接逻辑 =================
+        // ================= AI 后端对接 =================
         const chatForm = document.getElementById('ai-chat-form');
         const chatInput = document.getElementById('ai-input');
         const chatWindow = document.getElementById('chat-window');
@@ -286,11 +321,10 @@
 
         function addBubble(text, isUser = true) {
             const container = document.createElement('div');
-            container.className = isUser ? 'flex justify-end' : 'flex items-start gap-3 mt-4 animate-fade-in';
+            container.className = isUser ? 'flex justify-end' : 'flex items-start animate-fade-in';
             const inner = isUser 
-                ? `<span class="bg-emerald-700/60 text-white px-4 py-2 rounded-2xl rounded-tr-none border border-emerald-500/30 font-medium shadow-md">${text}</span>`
-                : `<div class="w-8 h-8 rounded-full bg-emerald-900 border border-emerald-500 flex items-center justify-center text-emerald-400 flex-shrink-0 shadow-lg shadow-emerald-500/20">AI</div>
-                   <div class="bg-[#1e293b] text-gray-200 px-4 py-3 rounded-2xl rounded-tl-none border border-gray-700 border-l-4 border-l-emerald-500 leading-relaxed shadow-lg">${text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>')}</div>`;
+                ? `<span class="bg-emerald-700/50 text-white px-4 py-2 rounded-2xl rounded-tr-none border border-emerald-500/30 font-medium">${text}</span>`
+                : `<div class="bg-[#1e293b] text-gray-200 px-4 py-3 rounded-2xl rounded-tl-none border border-gray-700 border-l-4 border-l-emerald-500 leading-relaxed shadow-lg">${text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>')}</div>`;
             container.innerHTML = inner;
             chatWindow.appendChild(container);
             chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -310,7 +344,7 @@
                 const data = await response.json();
                 if(data.reply) addBubble(data.reply, false);
             } catch (err) {
-                addBubble(`🟡 Server is waking up (this ~50s wait only happens on the first question). Please wait and try again!`, false);
+                addBubble(`🟡 后端正在唤醒 (约需50秒)，请稍后重试。`, false);
             }
         });
     </script>
