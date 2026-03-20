@@ -11,243 +11,327 @@
         section { scroll-margin-top: 5rem; }
 
         /* --- 1. 分区专属动态系统 (支持反复触发) --- */
-        .reveal-hero { opacity: 0; transform: scale(0.9) translateY(30px); filter: blur(10px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal-hero { opacity: 0; transform: scale(0.9) translateY(40px); filter: blur(10px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal-hero.active { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
 
-        .reveal-left { opacity: 0; transform: translateX(-100px); transition: all 1s ease-out; }
-        .reveal-right { opacity: 0; transform: translateX(100px); transition: all 1s ease-out; }
+        .reveal-left { opacity: 0; transform: translateX(-80px); transition: all 1s ease-out; }
+        .reveal-right { opacity: 0; transform: translateX(80px); transition: all 1s ease-out; }
         .reveal-left.active, .reveal-right.active { opacity: 1; transform: translateX(0); }
 
-        .reveal-card { opacity: 0; transform: translateY(80px); transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .reveal-card { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .reveal-card.active { opacity: 1; transform: translateY(0); }
+        
+        .reveal-frame { opacity: 0; transform: translateY(40px) scaleY(0.95); transform-origin: top; transition: all 1s ease-in-out; }
+        .reveal-frame.active { opacity: 1; transform: translateY(0) scaleY(1); }
 
-        .reveal-focus { opacity: 0; transform: scale(0.8); filter: saturate(0); transition: all 0.8s ease-out; }
+        .reveal-focus { opacity: 0; transform: scale(0.85); filter: saturate(0); transition: all 0.8s ease-out; }
         .reveal-focus.active { opacity: 1; transform: scale(1); filter: saturate(1); }
 
-        /* --- 2. 极客视觉特效 --- */
-        .text-metallic-green { background: linear-gradient(to right, #10b981, #34d399, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* --- 2. 满血视觉特效还原 --- */
         @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
         .animate-zoom { animation: slowZoom 30s ease-in-out infinite alternate; }
+
+        @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(15px); } }
+        .animate-bounce-soft { animation: bounce-soft 2s infinite ease-in-out; }
+
+        .text-metallic-green { background: linear-gradient(to right, #10b981, #34d399, #059669, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 5px rgba(16,185,129,0.3)); }
+
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #10b981; transition: width 0.3s ease; box-shadow: 0 0 10px #10b981; }
+        .nav-link:hover::after { width: 100%; }
+
+        .js-tilt-glare { border-radius: 1.5rem; }
+
+        .btn-glow { position: relative; overflow: hidden; transition: all 0.3s ease; }
+        .btn-glow:hover { box-shadow: 0 0 25px rgba(16,185,129,0.6); transform: translateY(-2px); }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #1e293b, #10b981, #1e293b); border-radius: 10px; border: 2px solid #0a0f18; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #34d399; }
         
-        /* 隐藏原生滚动条，用我们的炫酷进度条代替 */
-        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        /* 隐藏原生滚动条，给侧边进度条让路 */
+        body::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
-<body class="bg-[#0a0f18] text-gray-300 font-sans antialiased selection:bg-emerald-600 selection:text-white overflow-x-hidden">
+<body class="bg-[#0a0f18] text-gray-300 font-sans antialiased selection:bg-emerald-600 selection:text-white overflow-x-hidden custom-scrollbar">
 
     <div class="fixed top-0 right-0 w-1.5 h-full bg-[#0a0f18]/80 z-50 border-l border-gray-800">
-        <div id="scroll-progress" class="w-full bg-gradient-to-b from-emerald-400 via-teal-500 to-emerald-600 h-0 transition-all duration-100 ease-out shadow-[0_0_10px_#10b981]"></div>
+        <div id="scroll-progress" class="w-full bg-gradient-to-b from-emerald-400 via-teal-500 to-emerald-700 h-0 transition-all duration-150 ease-out shadow-[0_0_12px_#10b981]"></div>
     </div>
 
-    <div class="fixed top-[-10%] left-[-5%] w-[40%] h-[40%] bg-emerald-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-    <div class="fixed bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-teal-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed top-[-10%] left-[-5%] w-[50%] h-[50%] bg-emerald-900/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-5%] w-[50%] h-[50%] bg-teal-900/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
 
-    <nav id="navbar" class="fixed w-full z-40 transition-all duration-500 py-6">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold text-white tracking-widest uppercase" id="nav-logo">Sam Wu</a>
-            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
-                <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
-                <a href="#portfolio" class="hover:text-emerald-400 transition-colors">Data Lab</a>
-                <a href="#resume" class="hover:text-emerald-400 transition-colors">Resume</a>
-                <a href="#beyond" class="hover:text-emerald-400 transition-colors">Beyond Code</a>
+    <nav id="navbar" class="fixed w-full z-40 transition-all duration-500 bg-transparent py-6 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative z-10">
+            <a href="#home" class="text-2xl font-bold text-white tracking-[0.3em] hover:text-metallic-green transition-all" id="nav-logo">SAM WU</a>
+            <div class="hidden md:flex space-x-12 font-medium">
+                <a href="#about" class="text-gray-300 hover:text-emerald-300 transition-all nav-link text-sm uppercase tracking-widest font-bold">About</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-emerald-300 transition-all nav-link text-sm uppercase tracking-widest font-bold">Data Lab</a>
+                <a href="#resume" class="text-gray-300 hover:text-emerald-300 transition-all nav-link text-sm uppercase tracking-widest font-bold">Resume</a>
+                <a href="#beyond" class="text-gray-300 hover:text-emerald-300 transition-all nav-link text-sm uppercase tracking-widest font-bold">Beyond Code</a>
             </div>
         </div>
     </nav>
 
     <header id="home" class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="1fb2deff3073e3283c81605365fc199d.jpg" alt="Sam" class="w-full h-full object-cover opacity-60 scale-105 animate-zoom" />
-            <div class="absolute inset-0 bg-gradient-to-b from-[#0a0f18]/20 via-[#0a0f18]/60 to-[#0a0f18]"></div>
+            <img src="1fb2deff3073e3283c81605365fc199d.jpg" alt="Sam Wu speaking" class="w-full h-full object-cover animate-zoom opacity-70" />
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0a0f18]/30 via-[#0a0f18]/70 to-[#0a0f18]"></div>
         </div>
-        <div class="relative z-10 px-4 reveal-hero" data-tilt data-tilt-max="3" data-tilt-speed="1000">
-            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-white drop-shadow-2xl">
-                Yihang <span class="text-metallic-green">Sam</span> Wu
+        
+        <div class="relative z-10 px-4 text-white w-full max-w-5xl mx-auto pt-20 tilt-text reveal-hero" data-tilt data-tilt-max="5" data-tilt-speed="1000" data-tilt-perspective="2000">
+            <h1 class="text-7xl md:text-9xl font-extrabold mb-6 tracking-tighter text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                Yihang <span class="text-metallic-green drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">(Sam)</span> Wu
             </h1>
-            <p class="text-xl md:text-2xl font-light mb-12 text-gray-300 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
-                Mathematics, Statistics & CS @ UofT. <br>
-                Bridging pure logic with industrial data engineering.
+            <p class="text-2xl md:text-3xl font-light mb-16 text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-xl">
+                UofT Math, Stats & CS Student. Developer. <br>
+                Bridging Data Engineering & Applied AI.
             </p>
-            <div class="flex justify-center gap-6">
-                <a href="#about" class="px-10 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)] hover:scale-105">Explore</a>
-                <a href="mailto:wuyihang429@gmail.com" class="px-10 py-4 bg-[#1e293b]/60 backdrop-blur-md border border-gray-600 hover:border-emerald-500 text-white rounded-full font-bold transition-all">Connect</a>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#about" class="px-12 py-5 bg-gradient-to-r from-emerald-700 to-teal-800 border border-emerald-500/40 hover:from-emerald-600 hover:to-teal-700 text-white rounded-full font-bold transition-all shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95 btn-glow tracking-widest text-sm uppercase">
+                    Discover My Journey
+                </a>
+                <a href="mailto:wuyihang429@gmail.com" class="px-10 py-5 bg-[#1e293b]/50 backdrop-blur-md border border-gray-600 text-white rounded-full font-bold transition-all hover:border-emerald-500 shadow-lg tracking-widest text-sm uppercase">
+                    Contact Me
+                </a>
             </div>
+        </div>
+
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 text-emerald-500 animate-bounce-soft reveal-hero">
+            <a href="#about">
+                <svg class="w-10 h-10 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </a>
         </div>
     </header>
 
-    <section id="about" class="py-32 px-6 max-w-6xl mx-auto relative z-10 overflow-hidden">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            <div class="reveal-left" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.3">
-                <div class="relative group">
-                    <div class="absolute -inset-2 bg-emerald-600/20 rounded-3xl blur-lg transition-all group-hover:bg-emerald-500/40"></div>
-                    <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" class="w-[450px] h-[450px] object-cover rounded-3xl border border-gray-800 shadow-2xl relative z-10 group-hover:grayscale-0 transition-all duration-700 grayscale-[0.2]" />
+    <section id="about" class="py-36 px-6 max-w-7xl mx-auto overflow-hidden relative z-10">
+        <div class="flex flex-col md:flex-row items-center gap-24">
+            <div class="w-full md:w-5/12 flex justify-center reveal-left">
+                <div class="relative group tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.5">
+                    <div class="absolute -inset-4 bg-emerald-600 rounded-3xl opacity-30 blur-xl group-hover:opacity-50 group-hover:blur-2xl transition-all duration-500"></div>
+                    <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu profile" 
+                         class="w-80 h-80 md:w-[480px] md:h-[480px] object-cover rounded-3xl z-10 relative border-2 border-gray-700 saturate-90 group-hover:saturate-110 transition-all duration-700 group-hover:border-emerald-500/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)]" />
                 </div>
             </div>
-            <div class="reveal-right text-left">
-                <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-tight italic">
-                    The Profile <span class="block w-12 h-1 bg-emerald-500 mt-2 shadow-[0_0_10px_#10b981]"></span>
+            <div class="w-full md:w-7/12 text-left reveal-right">
+                <h2 class="text-6xl font-extrabold text-white mb-12 relative inline-block tracking-tight">
+                    About Me
+                    <span class="absolute -bottom-4 left-0 w-32 h-2 bg-emerald-600 rounded-full shadow-[0_0_20px_#10b981]"></span>
                 </h2>
-                <p class="text-lg text-gray-400 leading-relaxed mb-6 font-light">
-                    Currently navigating the intersection of **Mathematics, Statistics, and Computer Science at the University of Toronto**. 
+                <p class="text-2xl text-gray-300 leading-relaxed mb-10 font-light italic drop-shadow-md">
+                    "I am a meticulous learner with a profound enthusiasm for mathematics and computer science."
                 </p>
-                <p class="text-lg text-gray-400 leading-relaxed mb-8 font-light">
-                    My technical arsenal includes Python for data automation, JavaScript for interfaces, and R Studio for statistical modeling. I build systems that don't just process data, but drive decisions.
+                <p class="text-xl text-gray-400 leading-relaxed mb-12 font-light">
+                    Currently pursuing a degree in **Mathematics, Statistics and Computer Science at the University of Toronto (UofT)**. 
+                    My mission is to leverage Python, JavaScript, and R Studio to analyze complex data, optimize engineering workflows, and drive practical **Applied AI** solutions.
                 </p>
-                <div class="flex gap-4">
-                    <div class="px-4 py-2 bg-[#1e293b] rounded-lg border border-gray-700 text-xs font-bold text-emerald-400 uppercase tracking-widest shadow-inner">Data Eng</div>
-                    <div class="px-4 py-2 bg-[#1e293b] rounded-lg border border-gray-700 text-xs font-bold text-emerald-400 uppercase tracking-widest shadow-inner">UofT MSCS</div>
+                <div class="flex flex-wrap gap-5">
+                    <span class="px-6 py-3 bg-[#1e293b] border-2 border-gray-700 text-emerald-300 rounded-xl text-sm font-bold shadow-[0_5px_15px_rgba(0,0,0,0.3)]">UofT Math/Stats/CS</span>
+                    <span class="px-6 py-3 bg-[#1e293b] border-2 border-gray-700 text-emerald-300 rounded-xl text-sm font-bold shadow-[0_5px_15px_rgba(0,0,0,0.3)]">Data Engineering</span>
+                    <span class="px-6 py-3 bg-[#1e293b] border-2 border-gray-700 text-emerald-300 rounded-xl text-sm font-bold shadow-[0_5px_15px_rgba(0,0,0,0.3)]">Applied AI</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-32 px-6 bg-[#0d131f] border-y border-gray-800 relative z-10">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20 reveal-hero">
-                <h2 class="text-4xl font-black text-white uppercase tracking-widest">The Data Lab</h2>
-                <p class="text-gray-500 mt-4 font-mono text-sm">/ projects_and_execution /</p>
+    <section id="portfolio" class="py-36 px-6 bg-[#0d131f] border-y border-gray-800 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-28 reveal-hero">
+                <h2 class="text-6xl font-extrabold text-white mb-8 tracking-tight">The Data Lab</h2>
+                <p class="text-gray-500 max-w-3xl mx-auto text-2xl font-light">Showcasing high-impact projects combining code, data, and statistical rigor.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 border-t-emerald-500 shadow-xl group hover:shadow-[0_10px_30px_rgba(16,185,129,0.2)] transition-all" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2">
-                    <h3 class="text-2xl font-bold text-white mb-4">AI Boss - Resume Screener</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-8 font-light">Built a Python FastAPI & Gemini LLM backend to automate candidate evaluation for recruiters.</p>
-                    <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live System &rarr;</a>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="bg-[#151e2e] rounded-3xl p-10 hover:shadow-[0_20px_60px_rgba(16,185,129,0.25)] transition-all duration-300 border-2 border-gray-800 border-t-emerald-400 group relative overflow-hidden tilt-card reveal-card" 
+                     data-tilt data-tilt-max="15" data-tilt-speed="500" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.4">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+                    <div class="text-emerald-500 mb-10 transform origin-left group-hover:scale-125 group-hover:text-emerald-300 transition-all duration-500">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-5 tracking-tight">AI Boss - Resume Screener</h3>
+                    <p class="text-gray-400 mb-10 text-base leading-relaxed font-light">Architected a full-stack **Python FastAPI** system using **Gemini LLM**. Automates candidate evaluation against employer criteria with interactive visualization.</p>
+                    <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="text-emerald-400 font-bold flex items-center hover:text-emerald-200 hover:underline tracking-wider text-sm">
+                        View Live Demo <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
                 </div>
-                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 border-t-teal-500 shadow-xl group transition-all" data-tilt data-tilt-max="10" style="transition-delay: 100ms;">
-                    <h3 class="text-2xl font-bold text-white mb-4">Logistics Automation</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-8 font-light">Custom Python scripts for automating monthly logistics cost data and ERP updates at Haicheng Hongshengda.</p>
-                    <span class="text-gray-600 text-xs font-bold uppercase">Python / ERP</span>
+
+                <div class="bg-[#151e2e] rounded-3xl p-10 border-2 border-gray-800 border-t-teal-500 hover:shadow-[0_20px_60px_rgba(4,120,87,0.2)] transition-all duration-300 tilt-card reveal-card"
+                     data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="1200" data-tilt-glare="true" data-tilt-max-glare="0.3" style="transition-delay: 100ms;">
+                    <div class="text-teal-500 mb-10 group-hover:scale-110 transition-transform">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-5 tracking-tight">Logistics Automation</h3>
+                    <p class="text-gray-400 text-base leading-relaxed font-light mb-10">Developed Python scripts during my internship to process monthly logistics-cost data and update ERP systems.</p>
+                    <span class="text-emerald-400 font-mono text-xs uppercase tracking-widest bg-emerald-950 px-3 py-1 rounded border border-emerald-800">Python / ERP</span>
                 </div>
-                <div class="reveal-card bg-[#151e2e] p-8 rounded-2xl border-2 border-gray-800 border-t-blue-500 shadow-xl group transition-all" data-tilt data-tilt-max="10" style="transition-delay: 200ms;">
-                    <h3 class="text-2xl font-bold text-white mb-4">Statistical Modeling</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-8 font-light">Applying advanced R Studio techniques for quantitative research at the University of Toronto.</p>
-                    <span class="text-gray-600 text-xs font-bold uppercase">R Studio / Stats</span>
+                
+                <div class="bg-[#151e2e] rounded-3xl p-10 border-2 border-gray-800 border-t-blue-500 hover:shadow-[0_20px_60px_rgba(29,78,216,0.2)] transition-all duration-300 tilt-card reveal-card"
+                     data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="1200" data-tilt-glare="true" data-tilt-max-glare="0.3" style="transition-delay: 200ms;">
+                    <div class="text-blue-500 mb-10 group-hover:scale-110 transition-transform">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-5 tracking-tight">Statistical Modeling</h3>
+                    <p class="text-gray-400 text-base leading-relaxed font-light mb-10">Applying advanced R Studio techniques for quantitative research and predictive modeling at University of Toronto.</p>
+                    <span class="text-blue-400 font-mono text-xs uppercase tracking-widest bg-blue-950 px-3 py-1 rounded border border-blue-800">R Studio / Stats</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="resume" class="py-32 px-6 relative z-10 bg-[#0a0f18]">
-        <div class="max-w-4xl mx-auto pr-4"> <div class="text-center mb-16 reveal-hero">
-                <h2 class="text-4xl font-black text-white uppercase tracking-widest mb-6">Experience & Capabilities</h2>
-                <a href="Yihang.Wu.pdf" download class="inline-block px-8 py-3 bg-[#1e293b]/50 backdrop-blur-md border border-gray-600 text-white rounded-full font-bold transition-all hover:bg-emerald-600 shadow-lg text-sm uppercase tracking-widest">Download PDF</a>
+    <section id="resume" class="py-36 px-6 relative z-10 bg-gradient-to-b from-[#0a0f18] via-[#152033] to-[#06090e] border-t border-gray-800/50">
+        <div class="max-w-7xl mx-auto pr-4 relative z-10 text-center">
+            
+            <div class="mb-20 reveal-hero">
+                <h2 class="text-6xl font-extrabold text-white mb-10 tracking-tight">Experience & Education</h2>
+                <a href="Yihang.Wu.pdf" download class="inline-flex items-center px-12 py-5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full shadow-2xl transition-all font-bold group btn-glow tracking-widest text-sm uppercase">
+                    Download PDF Resume
+                </a>
             </div>
 
-            <div class="reveal-card mb-20 relative transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]" data-tilt data-tilt-max="2" data-tilt-glare="true" data-tilt-max-glare="0.1">
-                <div class="relative bg-[#0f172a] rounded-3xl overflow-hidden border border-gray-700">
-                    <div class="px-8 py-5 border-b border-gray-800 bg-[#0f172a]/95 flex justify-between items-center backdrop-blur-xl">
-                        <div class="flex items-center gap-3">
-                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]"></div>
-                            <span class="text-sm font-bold text-white uppercase tracking-tighter">Sam's AI Agent</span>
+            <div class="w-full max-w-5xl mx-auto mb-28 reveal-card tilt-card" 
+                 data-tilt data-tilt-max="3" data-tilt-speed="1000" data-tilt-perspective="2000" data-tilt-glare="true" data-tilt-max-glare="0.1">
+                <div class="rounded-3xl border-2 border-gray-700/60 shadow-[0_30px_70px_rgba(0,0,0,0.5)] bg-[#1e293b]/40 backdrop-blur-2xl overflow-hidden flex flex-col transition-all group-hover:shadow-[0_40px_80px_rgba(16,185,129,0.1)]">
+                    <div class="px-8 py-5 border-b-2 border-gray-700/60 bg-[#0f172a]/95 flex items-center justify-between text-white font-bold relative overflow-hidden">
+                        <div class="absolute -inset-2 bg-gradient-to-r from-transparent via-emerald-600/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        <div class="flex items-center relative z-10">
+                            <span class="relative flex h-3 w-3 mr-4">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 shadow-[0_0_15px_#10b981]"></span>
+                            </span>
+                            <h3 class="text-2xl font-bold text-white tracking-wide">Ask AI About Sam</h3>
                         </div>
-                        <span class="text-[10px] text-emerald-500 font-mono tracking-widest bg-emerald-900/30 px-2 py-1 rounded">Gemini 2.5 Active</span>
+                        <span class="text-[10px] text-emerald-400 font-mono tracking-[0.3em] uppercase bg-emerald-950 px-3 py-1.5 rounded-lg border border-emerald-500/30 font-bold relative z-10">Gemini 2.5 Active</span>
                     </div>
 
-                    <div class="bg-amber-900/20 border-b border-amber-900/50 px-6 py-3 flex items-start gap-3">
-                        <span class="text-amber-500 text-lg mt-0.5">⏱️</span>
-                        <p class="text-xs text-amber-200/70 leading-relaxed font-light font-mono">
-                            <strong class="text-amber-400">System Notice:</strong> Due to free cloud tier deployment, the <strong>FIRST</strong> interaction requires a 50-second wake-up time. Subsequent queries will run normally in real-time. Thank you for your patience.
+                    <div class="bg-amber-900/20 border-b-2 border-gray-700/60 px-8 py-3 flex items-center gap-4 relative z-10 backdrop-blur-md">
+                        <span class="text-amber-500 text-xl">⏱️</span>
+                        <p class="text-xs text-amber-200/80 leading-relaxed font-light font-mono text-left">
+                            <strong class="text-amber-400 font-bold tracking-wider">SYSTEM NOTICE:</strong> As this uses a free cloud backend, the <strong>FIRST</strong> interaction requires a ~50s wake-up time. Subsequent chats run in real-time. Thank you for your patience!
                         </p>
                     </div>
-
-                    <div id="chat-window" class="h-[350px] p-8 overflow-y-auto flex flex-col gap-6 text-sm">
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-full bg-emerald-900 border border-emerald-500 flex items-center justify-center text-emerald-400 flex-shrink-0">AI</div>
-                            <span class="bg-[#1e293b] text-gray-300 px-5 py-3 rounded-2xl rounded-tl-none border border-gray-700 max-w-[85%] leading-relaxed shadow-md">Hi there! I'm ready. Ask me anything about Sam's professional background or skills.</span>
+                    
+                    <div id="chat-window" class="p-8 md:p-10 h-96 overflow-y-auto flex flex-col space-y-7 custom-scrollbar text-left font-light">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-emerald-900/50 border-2 border-emerald-500 flex items-center justify-center text-emerald-400 mr-5 flex-shrink-0 shadow-lg shadow-emerald-500/20">AI</div>
+                            <div class="bg-[#0f172a]/80 border-2 border-gray-700 rounded-3xl rounded-tl-sm p-6 text-base text-gray-200 shadow-2xl max-w-[85%] leading-relaxed drop-shadow-md">
+                                Hello! I am Sam's **Gemini 2.5** powered AI Assistant, running on a secure Render backend. Ask me anything about his Python automation internship, his UofT Math/CS studies, or his championships!
+                            </div>
                         </div>
                     </div>
-                    <form id="ai-chat-form" class="p-6 bg-[#0f172a] border-t border-gray-800 flex gap-4">
-                        <input type="text" id="ai-input" placeholder="e.g. Can Sam do Python automation?" class="flex-1 bg-[#0a0f18] border border-gray-700 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-emerald-500 transition-all shadow-inner">
-                        <button type="submit" class="bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-emerald-500 transition-all shadow-lg hover:-translate-y-1">Ask</button>
-                    </form>
+                    
+                    <div class="p-7 border-t-2 border-gray-700/60 bg-[#0f172a]/95">
+                        <form id="ai-chat-form" class="flex flex-col md:flex-row gap-5">
+                            <input type="text" id="ai-input" placeholder="e.g. Can Sam clean logistics data with Python?" class="flex-1 bg-[#1e293b] border-2 border-gray-600 rounded-2xl px-6 py-4 text-base text-white focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all shadow-inner" required autocomplete="off">
+                            <button type="submit" class="px-10 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl text-base font-bold shadow-2xl transition-all transform hover:scale-105 active:scale-95 btn-glow tracking-wider">
+                                Ask Sam AI
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <div class="reveal-card bg-white rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden border border-gray-700" data-tilt data-tilt-max="2">
-                <div class="bg-[#0f172a] px-5 py-3 flex items-center gap-2 border-b border-gray-800">
-                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div><div class="w-3 h-3 rounded-full bg-yellow-500/80"></div><div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                    <div class="flex-1 text-center text-xs text-gray-500 font-mono tracking-widest font-bold pr-10">YIHANG_WU.PDF</div>
+            <div class="w-full max-w-5xl mx-auto mb-28 border-2 border-gray-700 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.6)] hover:border-emerald-500/40 tilt-card reveal-frame"
+                 data-tilt data-tilt-max="2" data-tilt-speed="1000" data-tilt-perspective="2000">
+                <div class="px-6 py-4 flex items-center border-b-2 border-gray-800 bg-[#0f172a]">
+                    <div class="flex space-x-3">
+                        <div class="w-4 h-4 rounded-full bg-red-500/80 shadow-inner"></div>
+                        <div class="w-4 h-4 rounded-full bg-yellow-500/80 shadow-inner"></div>
+                        <div class="w-4 h-4 rounded-full bg-green-500/80 shadow-inner"></div>
+                    </div>
+                    <div class="text-[11px] text-gray-500 font-mono ml-6 flex-1 text-center pr-16 tracking-widest font-bold uppercase drop-shadow-sm">YIHANG_WU_RESUME.PDF [Secure Viewer]</div>
                 </div>
-                <iframe src="Yihang.Wu.pdf" class="w-full h-[700px] border-none"></iframe>
+                <iframe src="Yihang.Wu.pdf" type="application/pdf" class="w-full h-[650px] md:h-[800px] bg-white border-none saturate-[0.98]"></iframe>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="beyond" class="py-36 px-6 bg-[#06090e] text-white relative z-10 border-t border-gray-900 overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-emerald-900/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+        <div class="max-w-7xl mx-auto pr-4 grid grid-cols-1 md:grid-cols-2 gap-24 items-center relative z-10">
+            <div class="space-y-12 text-left reveal-left">
+                <h2 class="text-6xl font-extrabold mb-10 tracking-tight">Beyond the Code</h2>
+                
+                <div class="bg-[#1e293b]/40 p-8 rounded-3xl border-2 border-gray-800 flex gap-6 items-start shadow-2xl hover:bg-[#1e293b]/60 transition-all tilt-card" data-tilt data-tilt-max="8">
+                    <img src="6558fa4ecffc7a7d45c10e5eb66e142d.png" alt="Church Logo" class="h-16 w-auto object-contain bg-white/10 p-2 rounded-xl border border-white/20 shadow-xl backdrop-blur-sm" />
+                    <div>
+                        <h4 class="text-xl font-bold text-emerald-300 mb-2">Ward Missionary</h4>
+                        <p class="text-base text-gray-400 font-light leading-relaxed">Ward Missionary at The Church of Jesus Christ of Latter-day Saints. Dedicated to leadership, service, and community support.</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 border-2 border-gray-800 rounded-2xl bg-[#0f172a]/70 text-center shadow-inner group hover:border-emerald-500/50 transition-all tilt-card" data-tilt data-tilt-max="15">
+                        <span class="text-4xl group-hover:scale-125 transition-transform inline-block mb-3 drop-shadow-md">🏆</span>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest drop-shadow-sm">Skating Champion</p>
+                    </div>
+                    <div class="p-6 border-2 border-gray-800 rounded-2xl bg-[#0f172a]/70 text-center shadow-inner group hover:border-blue-500/50 transition-all tilt-card" data-tilt data-tilt-max="15">
+                        <span class="text-4xl group-hover:scale-125 transition-transform inline-block mb-3 drop-shadow-md">📜</span>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest drop-shadow-sm">MTA JS Certified</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-10 items-center">
+                <div class="relative group tilt-card reveal-focus" data-tilt data-tilt-max="15" data-tilt-glare="true" data-tilt-max-glare="0.3">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-emerald-600/30 to-blue-600/30 rounded-2xl blur-lg opacity-40 group-hover:opacity-70 transition-all duration-700"></div>
+                    <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="relative rounded-2xl border-2 border-gray-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:border-emerald-500/50 transition-all duration-500 max-w-sm" />
+                </div>
+                <div class="relative group tilt-card reveal-focus" data-tilt data-tilt-max="15" data-tilt-glare="true" data-tilt-max-glare="0.3" style="transition-delay: 150ms;">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-blue-600/30 to-emerald-600/30 rounded-2xl blur-lg opacity-40 group-hover:opacity-70 transition-all duration-700"></div>
+                    <img src="547ca3549526611a20df5305e23ee22b.jpg" class="relative rounded-2xl border-2 border-gray-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:border-blue-500/50 transition-all duration-500 saturate-[0.85] hover:saturate-100 max-w-sm" />
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="beyond" class="py-32 px-6 bg-[#06090e] text-white relative z-10 border-t border-gray-900">
-        <div class="max-w-6xl mx-auto pr-4">
-            <div class="text-center mb-20 reveal-hero">
-                <h2 class="text-4xl font-black uppercase italic tracking-tighter">Beyond the Code</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-                <div class="reveal-left space-y-10">
-                    <div class="flex items-start gap-6 bg-[#1e293b]/30 p-6 rounded-2xl border border-gray-800" data-tilt data-tilt-max="5">
-                        <img src="6558fa4ecffc7a7d45c10e5eb66e142d.png" class="w-16 h-auto bg-white/5 p-2 rounded-xl" />
-                        <div>
-                            <h4 class="text-emerald-400 font-bold text-lg mb-2">Ward Missionary</h4>
-                            <p class="text-gray-400 text-sm font-light leading-relaxed">Leadership and community service at The Church of Jesus Christ of Latter-day Saints.</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-5 border border-gray-800 rounded-xl bg-[#0f172a]/50 text-center" data-tilt data-tilt-max="10">
-                            <span class="text-3xl block mb-2">🏆</span><span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Skating Champion</span>
-                        </div>
-                        <div class="p-5 border border-gray-800 rounded-xl bg-[#0f172a]/50 text-center" data-tilt data-tilt-max="10">
-                            <span class="text-3xl block mb-2">📜</span><span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">MTA JS Certified</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 gap-8">
-                    <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="reveal-focus rounded-2xl border border-gray-800 shadow-[0_20px_40px_rgba(0,0,0,0.5)]" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.3" />
-                    <img src="547ca3549526611a20df5305e23ee22b.jpg" class="reveal-focus rounded-2xl border border-gray-800 shadow-[0_20px_40px_rgba(0,0,0,0.5)] saturate-[0.85]" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.3" style="transition-delay: 150ms;" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-black py-12 text-center text-gray-700 text-[10px] uppercase tracking-[0.4em] font-bold border-t border-gray-950 pr-4">
-        <p>© 2026 YIHANG (SAM) WU. BUILT WITH DATA & DETERMINATION.</p>
+    <footer class="bg-black py-16 text-center text-xs border-t border-gray-900 relative z-10 text-gray-600 font-bold tracking-[0.4em] uppercase pr-4">
+        <p>&copy; 2026 YIHANG (SAM) WU. BUILT WITH CODE & DATA.</p>
     </footer>
 
     <script>
         // ================= 1. 全局滚动进度条逻辑 =================
         const scrollProgress = document.getElementById('scroll-progress');
         window.addEventListener('scroll', () => {
-            // 计算当前滚动的百分比
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (scrollTop / scrollHeight) * 100;
-            // 将百分比应用到进度条的高度上
             scrollProgress.style.height = scrolled + '%';
         });
 
-        // ================= 2. 导航栏变色逻辑 =================
+        // ================= 2. 导航栏动态变色 =================
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) { 
-                navbar.classList.add('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-900', 'shadow-2xl'); 
-                navbar.classList.remove('py-6');
-                navLogo.classList.add('text-emerald-400');
+                navbar.classList.add('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-800', 'shadow-2xl');
+                navbar.classList.remove('py-6', 'border-transparent');
+                navLogo.classList.add('text-metallic-green');
             } else { 
-                navbar.classList.remove('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-900', 'shadow-2xl'); 
-                navbar.classList.add('py-6');
-                navLogo.classList.remove('text-emerald-400');
+                navbar.classList.remove('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-800', 'shadow-2xl');
+                navbar.classList.add('py-6', 'border-transparent');
+                navLogo.classList.remove('text-metallic-green');
             }
         });
 
-        // ================= 3. 核心：分区专属反复触发动态 =================
-        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        // ================= 3. 分区专属：无限反复滚动动画 =================
+        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -60px 0px" };
         const revealOnScroll = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                // 进入视口加 active，离开视口删 active -> 实现 100% 来回滑动重复触发
+            entries.forEach(entry => { 
+                // 进入视口触发动画，离开视口重置动画（实现100%来回反复）
                 if (entry.isIntersecting) { entry.target.classList.add('active'); } 
                 else { entry.target.classList.remove('active'); }
             });
         }, revealOptions);
         
-        // 绑定所有我们设定的特殊类名
-        document.querySelectorAll('.reveal-hero, .reveal-left, .reveal-right, .reveal-card, .reveal-focus').forEach(el => revealOnScroll.observe(el));
+        // 绑定所有带揭示特效的独立类名
+        document.querySelectorAll('.reveal-hero, .reveal-left, .reveal-right, .reveal-card, .reveal-frame, .reveal-focus').forEach(el => revealOnScroll.observe(el));
 
-        // ================= 4. 初始化 Vanilla Tilt 3D 特效 =================
+        // ================= 4. 初始化 3D 视差倾斜特效 =================
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"));
 
         // ================= 5. AI 后端对接逻辑 =================
@@ -257,16 +341,12 @@
         const RENDER_URL = 'https://sam-api-backend.onrender.com/chat';
 
         function addBubble(text, isUser = true) {
-            const container = document.createElement('div');
-            container.className = isUser ? 'flex justify-end mb-2 animate-fade-in' : 'flex items-start gap-3 mt-4 mb-2 animate-fade-in';
+            const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-400 font-bold">$1</strong>').replace(/\n/g, '<br>');
+            const html = isUser 
+                ? `<div class="flex justify-end animate-fade-in mb-3"><span class="bg-emerald-700/60 text-white px-5 py-3 rounded-2xl rounded-tr-sm text-sm max-w-[85%] border-2 border-emerald-500/40 shadow-xl font-medium tracking-wide">${formatted}</span></div>`
+                : `<div class="flex items-start mt-4 mb-3 animate-fade-in"><div class="w-12 h-12 rounded-full bg-emerald-900 border-2 border-emerald-500 flex items-center justify-center text-emerald-400 mr-5 flex-shrink-0 shadow-lg shadow-emerald-500/30 font-bold tracking-widest text-[10px]">AI</div><div class="bg-[#0f172a]/90 border-2 border-gray-700 rounded-3xl p-6 text-sm text-gray-200 shadow-2xl max-w-[85%] border-l-4 border-emerald-500 leading-relaxed drop-shadow-md">${formatted}</div></div>`;
             
-            const inner = isUser 
-                ? `<span class="bg-emerald-700/60 text-white px-5 py-3 rounded-2xl rounded-tr-none border border-emerald-500/30 font-medium shadow-md">${text}</span>`
-                : `<div class="w-8 h-8 rounded-full bg-emerald-900 border border-emerald-500 flex items-center justify-center text-emerald-400 flex-shrink-0 mt-1 shadow-[0_0_10px_rgba(16,185,129,0.2)]">AI</div>
-                   <div class="bg-[#1e293b] text-gray-200 px-5 py-4 rounded-2xl rounded-tl-none border border-gray-700 max-w-[85%] leading-relaxed shadow-lg">${text.replace(/\*\*(.*?)\*\*/g, '<b class="text-emerald-400">$1</b>').replace(/\n/g, '<br>')}</div>`;
-            
-            container.innerHTML = inner;
-            chatWindow.appendChild(container);
+            chatWindow.insertAdjacentHTML('beforeend', html);
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
 
@@ -285,9 +365,10 @@
                 });
                 const data = await response.json();
                 if(data.reply) addBubble(data.reply, false);
+                else addBubble(`🔴 ERROR: ${data.error || "Backend logic issue."}`, false);
             } catch (err) {
-                // 如果刚好遇到冷启动，显示在气泡里安抚用户
-                addBubble(`🟡 Server is waking up (this only happens on the first query). Please wait ~40 seconds...`, false);
+                // 如果恰好遇到冷启动超时，气泡也会友好提示
+                addBubble(`🟡 I am waking up my server... (This ~50s wait only happens on the first question). I will be right with you!`, false);
             }
         });
     </script>
