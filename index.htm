@@ -8,276 +8,242 @@
     <style>
         html { scroll-behavior: smooth; }
         section { scroll-margin-top: 5rem; }
-        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        .animate-zoom { animation: slowZoom 25s ease-in-out infinite alternate; }
-        @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+        /* 背景 Ken Burns 缩放动画 */
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+        .animate-zoom { animation: slowZoom 30s ease-in-out infinite alternate; }
+
+        /* 跳动指示器 */
+        @keyframes bounce-soft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
         .animate-bounce-soft { animation: bounce-soft 2s infinite ease-in-out; }
-        .reveal { opacity: 0; transform: translateY(40px) scale(0.98); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
-        .text-metallic-green { background: linear-gradient(to right, #10b981, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+
+        /* 核心动画：可重复触发的滚动浮现 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* 墨绿金属渐变文字 */
+        .text-metallic-green {
+            background: linear-gradient(to right, #10b981, #059669, #047857);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #1e293b; border-radius: 10px; }
     </style>
 </head>
 <body class="bg-[#0a0f18] text-gray-300 font-sans antialiased selection:bg-emerald-600 selection:text-white overflow-x-hidden">
 
-    <div class="fixed top-[-10%] left-[-5%] w-[40%] h-[40%] bg-emerald-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-    <div class="fixed bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-teal-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed top-[-10%] left-[-5%] w-[45%] h-[45%] bg-emerald-900/15 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-5%] w-[45%] h-[45%] bg-teal-900/15 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-6 border-b border-transparent">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center relative z-10">
-            <a href="#home" class="text-xl font-bold text-white tracking-widest transition-colors duration-300 drop-shadow-md" id="nav-logo">SAM WU</a>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#about" class="text-gray-200 hover:text-emerald-400 transition-colors duration-300 nav-link drop-shadow-md">About</a>
-                <a href="#portfolio" class="text-gray-200 hover:text-emerald-400 transition-colors duration-300 nav-link drop-shadow-md">Data Lab</a>
-                <a href="#resume" class="text-gray-200 hover:text-emerald-400 transition-colors duration-300 nav-link drop-shadow-md">Resume</a>
-                <a href="#beyond" class="text-gray-200 hover:text-emerald-400 transition-colors duration-300 nav-link drop-shadow-md">Beyond Code</a>
+            <a href="#home" class="text-xl font-bold text-white tracking-[0.2em] transition-colors" id="nav-logo">SAM WU</a>
+            <div class="hidden md:flex space-x-10 font-medium">
+                <a href="#about" class="text-gray-400 hover:text-emerald-400 transition-all nav-link">About</a>
+                <a href="#portfolio" class="text-gray-400 hover:text-emerald-400 transition-all nav-link">Data Lab</a>
+                <a href="#resume" class="text-gray-400 hover:text-emerald-400 transition-all nav-link">Resume</a>
+                <a href="#beyond" class="text-gray-400 hover:text-emerald-400 transition-all nav-link">Beyond Code</a>
             </div>
         </div>
     </nav>
 
     <header id="home" class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="1fb2deff3073e3283c81605365fc199d.jpg" alt="Sam Wu speaking" class="w-full h-full object-cover animate-zoom opacity-80" />
-            <div class="absolute inset-0 bg-gradient-to-b from-[#0a0f18]/30 via-[#0a0f18]/50 to-[#0a0f18]"></div>
+            <img src="1fb2deff3073e3283c81605365fc199d.jpg" alt="Sam Wu" class="w-full h-full object-cover animate-zoom opacity-70" />
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0a0f18]/30 via-[#0a0f18]/60 to-[#0a0f18]"></div>
         </div>
-        <div class="relative z-10 px-4 text-white w-full max-w-4xl mx-auto pt-20">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight reveal active text-white drop-shadow-2xl">
+        <div class="relative z-10 px-4 text-white w-full max-w-4xl pt-20">
+            <h1 class="text-6xl md:text-8xl font-extrabold mb-6 tracking-tighter reveal active text-white drop-shadow-2xl">
                 Yihang <span class="text-metallic-green drop-shadow-lg">(Sam)</span> Wu
             </h1>
-            <p class="text-xl md:text-2xl font-light mb-12 text-gray-200 max-w-2xl mx-auto reveal active delay-100 leading-relaxed drop-shadow-xl">
-                Math, Stats & CS Student @ UofT. <br>
-                Bridging Data Science, Code, and Meaningful Impact.
+            <p class="text-xl md:text-2xl font-light mb-12 text-gray-300 max-w-2xl mx-auto reveal active leading-relaxed">
+                UofT Math, Stats & CS. Developer. <br>
+                Bridging Data Engineering & Applied AI.
             </p>
-            <div class="flex flex-wrap justify-center gap-5 reveal active delay-200">
-                <a href="#about" class="px-8 py-3.5 bg-gradient-to-r from-emerald-700 to-teal-800 border border-emerald-500/50 hover:from-emerald-600 hover:to-teal-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:scale-105 flex items-center">
-                    Discover My Journey
-                </a>
-                <a href="mailto:wuyihang429@gmail.com" class="px-6 py-3.5 bg-[#1e293b]/60 hover:bg-[#1e293b] backdrop-blur-md border border-gray-500 hover:border-emerald-500 text-white rounded-full font-medium transition-all duration-300 flex items-center group shadow-lg">
-                    <svg class="w-5 h-5 mr-2 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    Email Me
-                </a>
+            <div class="flex flex-wrap justify-center gap-6 reveal active">
+                <a href="#about" class="px-10 py-4 bg-gradient-to-r from-emerald-700 to-teal-800 border border-emerald-500/30 hover:from-emerald-600 hover:to-teal-700 text-white rounded-full font-bold transition-all shadow-lg hover:scale-105">Discover My Journey</a>
+                <a href="mailto:wuyihang429@gmail.com" class="px-8 py-4 bg-[#1e293b]/60 backdrop-blur-md border border-gray-600 text-white rounded-full font-bold transition-all hover:bg-[#1e293b] shadow-lg">Contact Me</a>
             </div>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 text-emerald-500/80 animate-bounce-soft hover:text-emerald-400 cursor-pointer">
-            <a href="#about"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a>
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 text-emerald-500 animate-bounce-soft reveal active">
+            <a href="#about"><svg class="w-8 h-8 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a>
         </div>
     </header>
 
-    <section id="about" class="py-24 px-6 max-w-6xl mx-auto overflow-hidden relative z-10">
-        <div class="flex flex-col md:flex-row items-center gap-16">
+    <section id="about" class="py-32 px-6 max-w-6xl mx-auto overflow-hidden relative z-10">
+        <div class="flex flex-col md:flex-row items-center gap-20">
             <div class="w-full md:w-5/12 flex justify-center reveal">
                 <div class="relative group">
-                    <div class="absolute inset-0 bg-emerald-600 rounded-2xl transform translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2 opacity-80 blur-sm"></div>
-                    <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu profile" 
-                         class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl z-10 relative border border-gray-700 transition-all duration-700 ease-out saturate-[0.95] brightness-95 group-hover:scale-[1.03] group-hover:saturate-110 group-hover:brightness-105 group-hover:border-emerald-500/50 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.3)]" />
+                    <div class="absolute inset-0 bg-emerald-600 rounded-3xl transform translate-x-4 translate-y-4 opacity-40 blur-md group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
+                    <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam profile" class="w-80 h-80 md:w-[450px] md:h-[450px] object-cover rounded-3xl z-10 relative border border-gray-700 transition-all duration-700 group-hover:border-emerald-500/50" />
                 </div>
             </div>
-            <div class="w-full md:w-7/12 reveal delay-100">
-                <h2 class="text-4xl font-extrabold text-white mb-8 relative inline-block">
-                    About Me
-                    <span class="absolute -bottom-2 left-0 w-1/3 h-1 bg-emerald-600 rounded-full shadow-[0_0_10px_#059669]"></span>
-                </h2>
-                <p class="text-lg text-gray-400 leading-relaxed mb-6 font-light">
-                    Hello! I am a student in the Department of Mathematics, Statistics and Computer Science at the University of Toronto. I am a meticulous learner with a profound enthusiasm for mathematics and computer science.
-                </p>
-                <div class="flex flex-wrap gap-3">
-                    <span class="px-5 py-2.5 bg-[#1e293b]/60 backdrop-blur text-emerald-400 rounded-full text-sm font-semibold border border-gray-700 hover:border-emerald-500 hover:bg-[#1e293b] transition-colors cursor-default">Math, Stats & CS</span>
-                    <span class="px-5 py-2.5 bg-[#1e293b]/60 backdrop-blur text-emerald-400 rounded-full text-sm font-semibold border border-gray-700 hover:border-emerald-500 hover:bg-[#1e293b] transition-colors cursor-default">Python & R</span>
-                    <span class="px-5 py-2.5 bg-[#1e293b]/60 backdrop-blur text-emerald-400 rounded-full text-sm font-semibold border border-gray-700 hover:border-emerald-500 hover:bg-[#1e293b] transition-colors cursor-default">JavaScript</span>
+            <div class="w-full md:w-7/12 reveal text-left">
+                <h2 class="text-5xl font-extrabold text-white mb-10 relative inline-block">About Me <span class="absolute -bottom-3 left-0 w-24 h-1.5 bg-emerald-600 rounded-full shadow-[0_0_15px_#10b981]"></span></h2>
+                <p class="text-xl text-gray-400 leading-relaxed mb-8 font-light italic">"I am a meticulous learner with a profound enthusiasm for mathematics and computer science."</p>
+                <p class="text-lg text-gray-400 leading-relaxed mb-10">Currently pursuing a degree in **Mathematics, Statistics and Computer Science at the University of Toronto**. I specialize in Python, JavaScript, and R Studio.</p>
+                <div class="flex flex-wrap gap-4">
+                    <span class="px-5 py-2 bg-[#1e293b] border border-gray-700 text-emerald-400 rounded-lg text-sm font-bold shadow-inner">UofT Math/CS</span>
+                    <span class="px-5 py-2 bg-[#1e293b] border border-gray-700 text-emerald-400 rounded-lg text-sm font-bold shadow-inner">Applied AI</span>
+                    <span class="px-5 py-2 bg-[#1e293b] border border-gray-700 text-emerald-400 rounded-lg text-sm font-bold shadow-inner">MTA Certified</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-24 px-6 bg-[#0d131f] border-y border-gray-800 relative z-10">
+    <section id="portfolio" class="py-32 px-6 bg-[#0d131f] border-y border-gray-800 relative z-10">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-extrabold text-white mb-4">The Data Lab</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto text-lg font-light">Showcasing academic projects and applied technical skills.</p>
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-5xl font-extrabold text-white mb-6">The Data Lab</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto text-xl font-light">Combining code and statistical rigor.</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-[#151e2e] rounded-2xl p-8 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(4,120,87,0.15)] transition-all duration-500 reveal border border-gray-800 border-t-emerald-400 group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-colors"></div>
-                    <div class="w-12 h-12 bg-[#1e293b] rounded-lg flex items-center justify-center mb-6 text-emerald-400 border border-gray-700 group-hover:scale-110 group-hover:border-emerald-400 transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">AI Boss - Resume Screener</h3>
-                    <p class="text-gray-400 mb-6 text-sm leading-relaxed font-light relative z-10">Architected an Intelligent Resume Screening System using Python FastAPI and Gemini LLM. Evaluates candidate fit based on employer criteria.</p>
-                    <div class="flex flex-wrap gap-2 relative z-10">
-                        <span class="text-xs font-bold text-emerald-400 bg-emerald-900/30 px-2 py-1 rounded">Python / FastAPI</span>
-                        <span class="text-xs font-bold text-teal-400 bg-teal-900/30 px-2 py-1 rounded">Gemini AI</span>
-                    </div>
-                    <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="mt-5 inline-flex items-center text-sm font-medium text-gray-300 hover:text-emerald-400 transition-colors relative z-10">
-                        View Live Demo <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-[#151e2e] rounded-3xl p-10 hover:-translate-y-4 transition-all duration-500 reveal border border-gray-800 border-t-emerald-400 group relative overflow-hidden">
+                    <div class="text-emerald-500 mb-8 scale-125"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">AI Boss - Resume Screener</h3>
+                    <p class="text-gray-400 mb-8 text-sm leading-relaxed">Full-stack system using Python FastAPI and Gemini LLM. Evaluates candidates automatically with high precision.</p>
+                    <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="text-emerald-400 text-sm font-bold flex items-center hover:underline">View Live Demo &rarr;</a>
                 </div>
-
-                <div class="bg-[#151e2e] rounded-2xl p-8 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(4,120,87,0.15)] transition-all duration-500 reveal delay-100 border border-gray-800 border-t-emerald-500 group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-600/5 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-colors"></div>
-                    <div class="w-12 h-12 bg-[#1e293b] rounded-lg flex items-center justify-center mb-6 text-emerald-400 border border-gray-700 group-hover:scale-110 group-hover:border-emerald-400 transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Logistics Automation</h3>
-                    <p class="text-gray-400 mb-6 text-sm leading-relaxed font-light relative z-10">Developed Python scripts to process monthly logistics-cost data and update ERP systems in real-time.</p>
-                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest relative z-10">Python / Data Eng</span>
+                <div class="bg-[#151e2e] rounded-3xl p-10 reveal border border-gray-800 border-t-teal-500 hover:-translate-y-4 transition-all duration-500">
+                    <div class="text-teal-500 mb-8"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Logistics Automation</h3>
+                    <p class="text-gray-400 text-sm">Automated logistics-cost reports and ERP synchronization via custom Python scripts for Haicheng Hongshengda.</p>
                 </div>
-                
-                <div class="bg-[#151e2e] rounded-2xl p-8 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(4,120,87,0.15)] transition-all duration-500 reveal delay-200 border border-gray-800 border-t-teal-500 group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-teal-600/5 rounded-full blur-3xl group-hover:bg-teal-500/20 transition-colors"></div>
-                    <div class="w-12 h-12 bg-[#1e293b] rounded-lg flex items-center justify-center mb-6 text-teal-400 border border-gray-700 group-hover:scale-110 group-hover:border-teal-400 transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Statistical Modeling</h3>
-                    <p class="text-gray-400 mb-6 text-sm leading-relaxed font-light relative z-10">Focusing on advanced statistical modeling and quantitative research methodologies at UofT.</p>
-                    <span class="text-xs font-bold text-teal-400 uppercase tracking-widest relative z-10">R Studio / Stats</span>
+                <div class="bg-[#151e2e] rounded-3xl p-10 reveal border border-gray-800 border-t-blue-500 hover:-translate-y-4 transition-all duration-500">
+                    <div class="text-blue-500 mb-8"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Statistical Modeling</h3>
+                    <p class="text-gray-400 text-sm">Applying advanced R Studio techniques for quantitative research at the University of Toronto.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="resume" class="py-24 px-6 relative z-10 bg-gradient-to-b from-[#0a0f18] via-[#152033] to-[#06090e] border-t border-gray-800/50">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-emerald-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-
+    <section id="resume" class="py-32 px-6 relative z-10 bg-gradient-to-b from-[#0a0f18] via-[#152033] to-[#06090e] border-t border-gray-800/50">
         <div class="max-w-6xl mx-auto relative z-10 text-center">
-            
-            <div class="mb-10 reveal">
-                <h2 class="text-4xl font-extrabold text-white mb-6">Experience & Education</h2>
-                <a href="Yihang.Wu.pdf" target="_blank" download class="inline-flex items-center px-7 py-3 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full shadow-lg transition-all duration-300 backdrop-blur-sm font-bold">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    Download PDF Resume
-                </a>
+            <div class="mb-16 reveal">
+                <h2 class="text-5xl font-extrabold text-white mb-8">Experience & Education</h2>
+                <a href="Yihang.Wu.pdf" target="_blank" download class="inline-flex items-center px-10 py-4 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full shadow-2xl transition-all font-bold">Download PDF Resume</a>
             </div>
 
-            <div class="w-full max-w-4xl mx-auto mb-16 reveal delay-100">
-                <div class="rounded-2xl border border-gray-700/60 shadow-[0_0_30px_rgba(16,185,129,0.1)] bg-[#1e293b]/40 backdrop-blur-md overflow-hidden flex flex-col shadow-2xl">
-                    <div class="px-6 py-4 border-b border-gray-700/60 bg-[#0f172a]/80 flex items-center justify-between">
-                        <div class="flex items-center">
-                            <span class="relative flex h-3 w-3 mr-3">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 shadow-[0_0_10px_#10b981]"></span>
-                            </span>
-                            <h3 class="text-lg font-bold text-white tracking-wide">Ask AI About Sam</h3>
-                        </div>
-                        <span class="text-[10px] text-emerald-400 font-mono bg-emerald-900/30 px-2 py-1 rounded border border-emerald-500/30 uppercase tracking-widest">Render Backend</span>
+            <div class="w-full max-w-4xl mx-auto mb-20 reveal">
+                <div class="rounded-3xl border border-gray-700/60 shadow-2xl bg-[#1e293b]/50 backdrop-blur-xl overflow-hidden flex flex-col">
+                    <div class="px-8 py-5 border-b border-gray-700/60 bg-[#0f172a]/90 flex items-center justify-between text-white font-bold">
+                        <div class="flex items-center"><span class="h-3 w-3 bg-emerald-500 rounded-full mr-4 animate-pulse"></span>Ask AI About Sam</div>
+                        <span class="text-[10px] text-emerald-400 font-mono tracking-[0.2em] uppercase">Gemini 2.5 Active</span>
                     </div>
-                    
-                    <div id="chat-window" class="p-6 h-72 overflow-y-auto flex flex-col space-y-4 custom-scrollbar text-left">
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full bg-emerald-900/50 border border-emerald-500/50 flex items-center justify-center text-emerald-400 mr-3 flex-shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            </div>
-                            <div class="bg-[#0f172a]/80 border border-gray-700 rounded-2xl rounded-tl-sm p-4 text-sm text-gray-300 shadow-md max-w-[85%] leading-relaxed">
-                                Hello! I am Sam's AI agent. Ask me about his experience, skills, or projects!
-                            </div>
-                        </div>
+                    <div id="chat-window" class="p-8 h-80 overflow-y-auto flex flex-col space-y-6 custom-scrollbar text-left">
+                        <div class="bg-[#0f172a]/80 border border-gray-700 rounded-2xl p-5 text-sm text-gray-200 shadow-2xl max-w-[85%]">Hello! I am Sam's Gemini 2.5 powered AI Assistant. Ask me anything!</div>
                     </div>
-                    
-                    <div class="p-4 border-t border-gray-700/60 bg-[#0f172a]/90">
-                        <form id="ai-chat-form" class="flex gap-3">
-                            <input type="text" id="ai-input" placeholder="Ask a question..." class="flex-1 bg-[#1e293b] border border-gray-600 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors shadow-inner" required autocomplete="off">
-                            <button type="submit" class="px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white rounded-xl text-sm font-medium transition-all shadow-lg hover:scale-105 flex items-center group">
-                                <span>Send</span>
-                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                            </button>
-                        </form>
-                    </div>
+                    <form id="ai-chat-form" class="p-6 bg-[#0f172a]/95 flex gap-4 border-t border-gray-700/60">
+                        <input type="text" id="ai-input" placeholder="Ask a question about Sam..." class="flex-1 bg-[#1e293b] border border-gray-600 rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-emerald-500 transition-all shadow-inner">
+                        <button type="submit" class="px-10 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl text-sm font-bold shadow-2xl">Send</button>
+                    </form>
                 </div>
             </div>
 
-            <div class="w-full max-w-4xl mx-auto mb-20 reveal delay-200 border border-gray-700 rounded-xl overflow-hidden shadow-2xl group transition-all hover:border-emerald-500/30">
-                <div class="bg-[#0f172a] px-4 py-2 flex items-center gap-2 border-b border-gray-800">
-                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div><div class="w-3 h-3 rounded-full bg-yellow-500/80"></div><div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                    <div class="text-[10px] text-gray-500 font-mono flex-1 text-center pr-12">yihang_wu_resume.pdf</div>
+            <div class="w-full max-w-4xl mx-auto mb-20 reveal border border-gray-700 rounded-2xl overflow-hidden shadow-2xl group transition-all hover:border-emerald-500/30">
+                <div class="px-6 py-4 flex items-center border-b border-gray-800 bg-[#0f172a]">
+                    <div class="flex space-x-2.5">
+                        <div class="w-3.5 h-3.5 rounded-full bg-red-500/80"></div>
+                        <div class="w-3.5 h-3.5 rounded-full bg-yellow-500/80"></div>
+                        <div class="w-3.5 h-3.5 rounded-full bg-green-500/80"></div>
+                    </div>
+                    <div class="text-xs text-gray-500 font-mono ml-6 flex-1 text-center pr-16 tracking-widest font-bold uppercase">YIHANG_WU_RESUME.PDF</div>
                 </div>
-                <iframe src="Yihang.Wu.pdf" type="application/pdf" class="w-full h-[600px] bg-white border-none"></iframe>
+                <iframe src="Yihang.Wu.pdf" class="w-full h-[650px] md:h-[800px] bg-white border-none"></iframe>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
-                <div class="reveal delay-200 bg-[#1e293b]/50 backdrop-blur-md p-8 rounded-2xl border border-gray-700/60 shadow-xl">
-                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center border-b border-gray-700 pb-4">
-                        <span class="w-8 h-8 rounded-lg bg-emerald-900/50 border border-emerald-500/50 text-emerald-300 flex items-center justify-center mr-3 text-sm">01</span> Experience
-                    </h3>
-                    <div class="relative border-l-2 border-emerald-500/30 pl-8 ml-2">
-                        <div class="absolute w-3 h-3 bg-emerald-500 rounded-full -left-[7px] top-1.5 shadow-[0_0_10px_#10b981]"></div>
-                        <h4 class="text-xl font-bold text-white">Logistics & Data Intern</h4>
-                        <p class="text-emerald-400 font-medium text-sm mb-4 mt-1">Haicheng Hongshengda | 2024</p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                <div class="reveal bg-[#1e293b]/40 backdrop-blur-lg p-10 rounded-3xl border border-gray-700/60 shadow-2xl">
+                    <h3 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-5">Experience</h3>
+                    <p class="text-emerald-400 font-bold">Logistics & Data Intern | 2024</p>
+                    <p class="text-gray-400 mt-4 leading-relaxed">Built Python automation tools for logistics cost analysis and ERP synchronization at Haicheng Hongshengda.</p>
                 </div>
-                <div class="reveal delay-100 bg-[#1e293b]/50 backdrop-blur-md p-8 rounded-2xl border border-gray-700/60 shadow-xl">
-                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center border-b border-gray-700 pb-4">
-                        <span class="w-8 h-8 rounded-lg bg-emerald-900/50 border border-emerald-500/50 text-emerald-300 flex items-center justify-center mr-3 text-sm">02</span> Education
-                    </h3>
-                    <div class="relative border-l-2 border-emerald-500/30 pl-8 ml-2">
-                        <div class="absolute w-3 h-3 bg-emerald-500 rounded-full -left-[7px] top-1.5"></div>
-                        <h4 class="text-xl font-bold text-white">University of Toronto</h4>
-                        <p class="text-emerald-400 font-medium text-sm mb-3">Math, Stats & CS Candidate</p>
-                    </div>
+                <div class="reveal delay-100 bg-[#1e293b]/40 backdrop-blur-lg p-10 rounded-3xl border border-gray-700/60 shadow-2xl">
+                    <h3 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-5">Education</h3>
+                    <p class="text-emerald-400 font-bold">University of Toronto</p>
+                    <p class="text-gray-400 mt-4 leading-relaxed">Mathematics, Statistics and Computer Science Candidate (2025-2029).</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="beyond" class="py-24 px-6 bg-[#06090e] text-white overflow-hidden relative z-10 border-t border-gray-900">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div class="space-y-10 reveal text-left">
-                <h2 class="text-4xl font-extrabold mb-8">Beyond the Code</h2>
-                <div class="bg-[#1e293b]/30 p-6 rounded-2xl border border-gray-800 flex gap-4 items-start shadow-xl">
-                    <img src="6558fa4ecffc7a7d45c10e5eb66e142d.png" class="h-12 w-auto bg-white/10 p-1 rounded" />
-                    <div>
-                        <h4 class="font-bold text-emerald-400">Ward Missionary</h4>
-                        <p class="text-sm text-gray-400 font-light leading-relaxed">Dedicated service at The Church of Jesus Christ of Latter-day Saints.</p>
-                    </div>
+    <section id="beyond" class="py-32 px-6 bg-[#06090e] text-white overflow-hidden relative z-10 border-t border-gray-900">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div class="space-y-12 reveal text-left">
+                <h2 class="text-5xl font-extrabold mb-10 tracking-tight">Beyond the Code</h2>
+                <div class="bg-[#1e293b]/30 p-8 rounded-3xl border border-gray-800 flex gap-6 items-start">
+                    <img src="6558fa4ecffc7a7d45c10e5eb66e142d.png" class="h-16 w-auto bg-white/10 p-2 rounded-xl" />
+                    <div><h4 class="font-bold text-emerald-400 mb-2">Ward Missionary</h4><p class="text-sm text-gray-400 leading-relaxed">Dedicated service at The Church of Jesus Christ of Latter-day Saints.</p></div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="p-4 border border-gray-800 rounded-xl shadow-inner bg-[#0f172a]/50"><span class="text-2xl">🏆</span><p class="text-xs mt-2 text-gray-500 font-bold uppercase tracking-wider">Figure Skating Champion</p></div>
-                    <div class="p-4 border border-gray-800 rounded-xl shadow-inner bg-[#0f172a]/50"><span class="text-2xl">📜</span><p class="text-xs mt-2 text-gray-500 font-bold uppercase tracking-wider">Microsoft JS Certified</p></div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 border border-gray-800 rounded-2xl bg-[#0f172a]/50 text-center uppercase tracking-widest text-[10px] font-bold text-gray-500 shadow-inner hover:border-emerald-500/50 transition-all">🏆 Skating Champion</div>
+                    <div class="p-6 border border-gray-800 rounded-2xl bg-[#0f172a]/50 text-center uppercase tracking-widest text-[10px] font-bold text-gray-500 shadow-inner hover:border-emerald-500/50 transition-all">📜 MTA JS Certified</div>
                 </div>
             </div>
-            <div class="flex flex-col gap-8 reveal delay-200 items-center">
-                <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="rounded-2xl border border-gray-800 shadow-2xl hover:border-emerald-500/50 transition-all duration-500" />
-                <img src="547ca3549526611a20df5305e23ee22b.jpg" class="rounded-2xl border border-gray-800 shadow-2xl hover:border-emerald-500/50 transition-all duration-500 saturate-[0.8]" />
+            <div class="flex flex-col gap-10 reveal items-center">
+                <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="rounded-2xl border border-gray-800 shadow-2xl hover:scale-105 transition-all max-w-sm" />
+                <img src="547ca3549526611a20df5305e23ee22b.jpg" class="rounded-2xl border border-gray-800 shadow-2xl hover:scale-105 transition-all saturate-[0.85] max-w-sm" />
             </div>
         </div>
     </section>
 
-    <footer class="bg-black text-gray-600 py-12 text-center text-xs border-t border-gray-900 relative z-10 tracking-widest uppercase">
-        <p>&copy; 2026 Yihang (Sam) Wu. Built for impact.</p>
+    <footer class="bg-black text-gray-600 py-16 text-center text-xs border-t border-gray-900 tracking-[0.3em] uppercase relative z-10">
+        <p>&copy; 2026 YIHANG (SAM) WU. FULL-STACK ENGINEERING.</p>
     </footer>
 
     <script>
-        // 导航栏交互
         const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('nav-logo');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { navbar.classList.add('bg-[#0a0f18]/90', 'backdrop-blur-xl', 'py-4', 'border-gray-800'); }
-            else { navbar.classList.remove('bg-[#0a0f18]/90', 'backdrop-blur-xl', 'py-4', 'border-gray-800'); }
+            if (window.scrollY > 50) { 
+                navbar.classList.add('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-800', 'shadow-2xl');
+                navbar.classList.remove('py-6', 'border-transparent');
+                navLogo.classList.add('text-emerald-400');
+            } else { 
+                navbar.classList.remove('bg-[#0a0f18]/95', 'backdrop-blur-xl', 'py-4', 'border-gray-800', 'shadow-2xl');
+                navbar.classList.add('py-6', 'border-transparent');
+                navLogo.classList.remove('text-emerald-400');
+            }
         });
 
-        // 滚动浮现
+        // 可重复触发的滚动逻辑
         const revealElements = document.querySelectorAll('.reveal');
         const revealOnScroll = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) { entry.target.classList.add('active'); } 
+                else { entry.target.classList.remove('active'); } // 移出视口后重置，滑回去再触发
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
         revealElements.forEach(el => revealOnScroll.observe(el));
 
-        // ================= 后端连接逻辑 (Render 后端调试版) =================
+        // 后端连接逻辑
         const chatForm = document.getElementById('ai-chat-form');
         const chatInput = document.getElementById('ai-input');
         const chatWindow = document.getElementById('chat-window');
-
-        // 你的真实后端地址
         const RENDER_URL = 'https://sam-api-backend.onrender.com/chat';
 
         function addMsg(text, isUser = true) {
-            const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-400">$1</strong>').replace(/\n/g, '<br>');
             const html = isUser 
-                ? `<div class="flex justify-end"><span class="bg-emerald-700/50 text-white px-4 py-2 rounded-2xl rounded-tr-sm text-sm max-w-[85%] border border-emerald-500/30 shadow-md font-medium">${text}</span></div>`
-                : `<div class="flex items-start mt-4"><div class="w-8 h-8 rounded-full bg-emerald-900 border border-emerald-500 flex items-center justify-center text-emerald-400 mr-3 flex-shrink-0 shadow-lg"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><div class="bg-[#0f172a]/80 border border-gray-700 rounded-2xl p-4 text-sm text-gray-200 max-w-[85%] border-l-2 border-emerald-500 shadow-xl leading-relaxed">${formatted}</div></div>`;
+                ? `<div class="flex justify-end"><span class="bg-emerald-700/50 text-white px-5 py-3 rounded-2xl rounded-tr-sm text-sm max-w-[85%] border border-emerald-500/40 shadow-xl font-medium">${text}</span></div>`
+                : `<div class="flex items-start mt-6"><div class="w-10 h-10 rounded-full bg-emerald-900 border border-emerald-500 flex items-center justify-center text-emerald-400 mr-4 flex-shrink-0 shadow-lg"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><div class="bg-[#0f172a]/90 border border-gray-700 rounded-2xl p-6 text-sm text-gray-200 max-w-[85%] border-l-2 border-emerald-500 shadow-2xl leading-relaxed">${formatted}</div></div>`;
             chatWindow.insertAdjacentHTML('beforeend', html);
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
@@ -287,26 +253,12 @@
             const text = chatInput.value.trim();
             if(!text) return;
             addMsg(text); chatInput.value = '';
-            
             try {
-                const response = await fetch(RENDER_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text }) 
-                });
+                const response = await fetch(RENDER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text }) });
                 const data = await response.json();
-                
-                // 如果后端返回了 reply，显示它；如果后端返回了 error，显示报错原因
-                if(data.reply) { 
-                    addMsg(data.reply, false); 
-                } else if (data.error) {
-                    addMsg(`🔴 后端报错: ${data.error}`, false);
-                } else {
-                    addMsg("🔴 后端响应异常，请检查 Render Logs。", false);
-                }
-            } catch (err) {
-                addMsg(`🔴 连接 Render 后端失败。请稍候 (免费版正在冷启动) 或检查 URL。`, false);
-            }
+                if(data.reply) addMsg(data.reply, false);
+                else addMsg(`🔴 Error: ${data.error || 'Empty'}`, false);
+            } catch (err) { addMsg(`🔴 Backend waking up... (needs ~50s). Please wait.`, false); }
         });
     </script>
 </body>
