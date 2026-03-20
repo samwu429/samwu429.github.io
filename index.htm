@@ -172,7 +172,7 @@
                             </span>
                             <h3 class="text-lg font-bold text-white tracking-wide">Ask AI About Sam</h3>
                         </div>
-                        <span class="text-xs text-emerald-400 font-mono bg-emerald-900/30 px-2 py-1 rounded border border-emerald-500/30">Diagnostic Mode</span>
+                        <span class="text-xs text-emerald-400 font-mono bg-emerald-900/30 px-2 py-1 rounded border border-emerald-500/30">Gemini 1.5 Flash</span>
                     </div>
                     
                     <div id="chat-window" class="p-6 h-64 overflow-y-auto flex flex-col space-y-4 custom-scrollbar">
@@ -362,13 +362,14 @@
         }, revealOptions);
         revealElements.forEach(el => revealOnScroll.observe(el));
 
-        // ================= 诊断模式 AI 调用 =================
+        // ================= 彻底防弹版 AI 调用 (修正模型名为标准版) =================
         const chatForm = document.getElementById('ai-chat-form');
         const chatInput = document.getElementById('ai-input');
         const chatWindow = document.getElementById('chat-window');
 
         const API_KEY = 'AIzaSyCSM76q8MJDn5eO38qLH--RZkhzTAEgtV4';
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+        // 改为最标准的稳定版模型，彻底避免 404
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
         const SYSTEM_PROMPT = `You are an exclusive, professional AI assistant for Yihang (Sam) Wu. Your ONLY purpose is to answer questions from recruiters or employers based on Sam's resume, and to evaluate if he is a good fit for job descriptions provided by the user.
 Here is Sam's resume data:
@@ -424,16 +425,19 @@ Here is Sam's resume data:
                     const aiReply = data.candidates[0].content.parts[0].text;
                     chatWindow.insertAdjacentHTML('beforeend', createAIMessage(aiReply));
                 } else {
-                    // 如果 API 拒绝，直接打印出 Google 给出的错误原因
                     let errorMsg = "未知错误";
                     if (data.error && data.error.message) {
                         errorMsg = data.error.message;
+                        // 如果包含 403 地区错误，直接给出提示
+                        if(errorMsg.includes("location") || errorMsg.includes("User location")) {
+                            errorMsg = "Google API 限制了你的当前 IP（检测为国内/香港）。请务必开启梯子的【全局代理模式】再试一次！";
+                        }
                     }
-                    chatWindow.insertAdjacentHTML('beforeend', createAIMessage(`🔴 API 被 Google 拒绝了。<br><br><b>错误详情:</b> ${errorMsg}<br><br>导师提示：请把这段红色文字截图或者复制发给我！`, true));
+                    chatWindow.insertAdjacentHTML('beforeend', createAIMessage(`🔴 <b>API 报错:</b><br>${errorMsg}`, true));
                 }
             } catch (error) {
                 document.getElementById('ai-loading').remove();
-                chatWindow.insertAdjacentHTML('beforeend', createAIMessage(`🔴 网络请求根本没发出去。<br><br><b>错误详情:</b> ${error.message}<br><br>导师提示：如果你在国内，这可能是因为墙（需要开代理）。把这个报错截图给我！`, true));
+                chatWindow.insertAdjacentHTML('beforeend', createAIMessage(`🔴 <b>网络请求失败:</b><br>请检查是否开启了全局代理！详细错误：${error.message}`, true));
             }
             
             chatWindow.scrollTop = chatWindow.scrollHeight;
