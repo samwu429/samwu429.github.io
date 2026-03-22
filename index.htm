@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="wbjCbBbtTAWoyD7v3D2YIJEw5uK0dgN91-QdqdQWNjo" />
     <title>Yihang (Sam) Wu | Data & Code</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -97,8 +98,8 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #10b981; }
-
-        /* 【新增】隐藏原生滚动条并为进度条留白 */
+        
+        /* 【新增】为右侧进度条隐藏原生滚动条 */
         ::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
@@ -283,7 +284,7 @@
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (scrollTop / scrollHeight) * 100;
-            scrollProgress.style.height = scrolled + '%';
+            if(scrollProgress) scrollProgress.style.height = scrolled + '%';
         });
 
         // 导航栏滚动逻辑
@@ -303,6 +304,7 @@
         
         const revealOnScroll = new IntersectionObserver(entries => {
             entries.forEach(entry => {
+                // 如果在视口内，加 class；如果不在，删 class。这样就能实现“来回滑都有动态”。
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 } else {
@@ -311,7 +313,9 @@
             });
         }, revealOptions);
 
+        // 批量绑定所有带 reveal- 前缀的元素
         document.querySelectorAll('[class*="reveal-"]').forEach(el => revealOnScroll.observe(el));
+
 
         // ================= AI 后端对接 =================
         const chatForm = document.getElementById('ai-chat-form');
@@ -322,9 +326,11 @@
         function addBubble(text, isUser = true) {
             const container = document.createElement('div');
             container.className = isUser ? 'flex justify-end' : 'flex items-start animate-fade-in';
+            
             const inner = isUser 
                 ? `<span class="bg-emerald-700/50 text-white px-4 py-2 rounded-2xl rounded-tr-none border border-emerald-500/30 font-medium">${text}</span>`
                 : `<div class="bg-[#1e293b] text-gray-200 px-4 py-3 rounded-2xl rounded-tl-none border border-gray-700 border-l-4 border-l-emerald-500 leading-relaxed shadow-lg">${text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>')}</div>`;
+            
             container.innerHTML = inner;
             chatWindow.appendChild(container);
             chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -335,6 +341,7 @@
             const text = chatInput.value.trim();
             if(!text) return;
             addBubble(text, true); chatInput.value = '';
+            
             try {
                 const response = await fetch(RENDER_URL, {
                     method: 'POST',
@@ -344,7 +351,7 @@
                 const data = await response.json();
                 if(data.reply) addBubble(data.reply, false);
             } catch (err) {
-                addBubble(`🟡 后端正在唤醒 (约需50秒)，请稍后重试。`, false);
+                addBubble(`🔴 后端正在唤醒 (约需50秒)，请稍后重试。`, false);
             }
         });
     </script>
