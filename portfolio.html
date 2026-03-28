@@ -3,54 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Lab | Sam Wu (Light)</title>
+    <title>Data Lab | Sam Wu</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="p-6 md:p-12 min-h-screen flex flex-col animate-fade-in">
 
     <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center">
-        <a href="index.html" class="nm-button px-6 py-3 text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-700 flex items-center gap-2">
-            &larr; Back to Hub
+        <a href="index.html" class="nm-button px-6 py-3 text-xs uppercase tracking-widest text-slate-600">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> Back
         </a>
-        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold">Module: Data_Lab</span>
+        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold">DataLab.sys</span>
     </div>
 
-    <main class="max-w-6xl mx-auto w-full flex-1">
-        <div class="text-center mb-16 nm-pressed p-8 border border-gray-100 rounded-3xl">
-            <h2 class="text-4xl font-black text-slate-950 uppercase tracking-widest mb-2">Projects & Execution</h2>
-            <p class="text-sm font-mono text-slate-600">Systemizing raw data into actionable intelligence.</p>
+    <main class="max-w-5xl mx-auto w-full flex-1 flex flex-col gap-10">
+        
+        <div class="nm-panel p-8 flex flex-col md:flex-row items-center gap-8 border-l-8 border-emerald-500">
+            <div class="nm-icon-slot flex-shrink-0"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-black text-slate-800 mb-2">AI Boss - Resume Screener</h3>
+                <p class="text-slate-600 font-medium">Full-stack system using Python FastAPI and Google Gemini LLM for recruiter automation.</p>
+            </div>
+            <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="nm-button px-8 py-4 text-emerald-600 text-xs tracking-widest uppercase">Live Demo</a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="nm-raised p-8 border-t-4 border-emerald-500 flex flex-col nm-interactive" data-tilt data-tilt-max="5">
-                <div class="text-4xl mb-6">🤖</div>
-                <h3 class="text-2xl font-bold text-slate-950 mb-4 tracking-tight">AI Boss<br>Resume Screener</h3>
-                <p class="text-sm text-slate-700 leading-relaxed mb-8 flex-1 font-normal">
-                    Architected a full-stack system using <strong>Python FastAPI</strong> and the <strong>Google Gemini LLM</strong>. Automates candidate evaluation.
-                </p>
-                <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="nm-button px-4 py-3 text-emerald-700 text-xs font-black uppercase tracking-widest text-center w-full">View Live System</a>
+        <div class="nm-panel p-8 flex flex-col md:flex-row items-center gap-8 border-l-8 border-teal-500">
+            <div class="nm-icon-slot flex-shrink-0"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg></div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-black text-slate-800 mb-2">Logistics Automation</h3>
+                <p class="text-slate-600 font-medium">Custom Python scripts to process logistics-cost data and ERP synchronization.</p>
             </div>
-
-            <div class="nm-raised p-8 border-t-4 border-teal-500 flex flex-col nm-interactive" data-tilt data-tilt-max="5" style="transition-delay: 100ms;">
-                <div class="text-4xl mb-6">📦</div>
-                <h3 class="text-2xl font-bold text-slate-950 mb-4 tracking-tight">Logistics<br>Automation</h3>
-                <p class="text-sm text-slate-700 leading-relaxed mb-8 flex-1 font-normal">
-                    Developed custom <strong>Python scripts</strong> to process and automate complex monthly logistics-cost data and ERP synchronization.
-                </p>
-                <span class="nm-pressed px-4 py-3 text-teal-800 text-xs font-black uppercase tracking-widest text-center w-full block">Python / ERP</span>
-            </div>
-
-            <div class="nm-raised p-8 border-t-4 border-blue-500 flex flex-col nm-interactive" data-tilt data-tilt-max="5" style="transition-delay: 200ms;">
-                <div class="text-4xl mb-6">📈</div>
-                <h3 class="text-2xl font-bold text-slate-950 mb-4 tracking-tight">Statistical<br>Modeling</h3>
-                <p class="text-sm text-slate-700 leading-relaxed mb-8 flex-1 font-normal">
-                    Applying advanced <strong>R Studio</strong> techniques for quantitative research, predictive modeling, and visualization at UofT.
-                </p>
-                <span class="nm-pressed px-4 py-3 text-blue-800 text-xs font-black uppercase tracking-widest text-center w-full block">R Studio / Stats</span>
-            </div>
+            <div class="nm-inset px-6 py-3 text-slate-500 text-xs tracking-widest uppercase font-bold">Python / ERP</div>
         </div>
+
+        <div class="nm-panel p-8 flex flex-col md:flex-row items-center gap-8 border-l-8 border-blue-500">
+            <div class="nm-icon-slot flex-shrink-0"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg></div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-black text-slate-800 mb-2">Statistical Modeling</h3>
+                <p class="text-slate-600 font-medium">Advanced R Studio techniques for quantitative research at UofT.</p>
+            </div>
+            <div class="nm-inset px-6 py-3 text-slate-500 text-xs tracking-widest uppercase font-bold">R Studio</div>
+        </div>
+
     </main>
 
     <script src="app.js"></script>
