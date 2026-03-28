@@ -1,114 +1,92 @@
 /* =========================================================
- * Yihang (Sam) Wu - Advanced Industrial Neumorphism
- * Core: Convex Surfaces, Bevel Highlights, Premium Typography
+ * Yihang (Sam) Wu - Neo-Brutalism / Retro Tech System
+ * Core: Right Angles, Hard Shadows, Thick Borders, High Contrast
  * ========================================================= */
 
 :root {
-    --nm-bg: #e0e5ec;
-    --nm-dark: #a3b1c6;
-    --nm-light: #ffffff;
-    --nm-accent: #059669; /* Premium Emerald */
-    --text-main: #1e293b; /* Deep Slate for High Legibility */
-    --text-muted: #64748b; /* Professional Muted Gray */
+    /* 复古色板：老式打印纸背景，纯黑边框，复古绿点缀 */
+    --retro-bg: #f4f0e6; 
+    --retro-dark: #111827; 
+    --retro-light: #ffffff;
+    --retro-accent: #059669; 
 }
 
 body {
-    background-color: var(--nm-bg);
-    color: var(--text-main);
+    background-color: var(--retro-bg);
+    color: var(--retro-dark);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* 主体使用清晰的无衬线字体，配合复古的边框产生反差美 */
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
 ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-/* ================= 极致物理组件 ================= */
+/* ================= 纯粹直角组件 ================= */
 
-/* 1. 微曲面凸起平台 (Convex Panel) - 带有高光边缘 */
-.nm-panel {
-    background: linear-gradient(145deg, #f0f5fd, #cacfd4);
-    box-shadow: 10px 10px 20px var(--nm-dark), 
-               -10px -10px 20px var(--nm-light);
-    border-radius: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.6); /* 模拟边缘倒角高光 */
+/* 1. 复古硬卡片 (Retro Panel) */
+.retro-panel {
+    background-color: var(--retro-light);
+    border: 3px solid var(--retro-dark);
+    box-shadow: 8px 8px 0px var(--retro-dark);
+    border-radius: 0; /* 绝对直角 */
 }
 
-/* 2. 深凹陷安全槽 (Concave Inset) - 底部带有反光唇边 */
-.nm-inset {
-    background: #e0e5ec;
-    box-shadow: inset 8px 8px 16px var(--nm-dark), 
-                inset -8px -8px 16px var(--nm-light);
-    border-radius: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8); /* 模拟凹槽底部的物理反光 */
-    border-right: 1px solid rgba(255, 255, 255, 0.4);
+/* 2. 复古内凹槽 (Retro Inset) */
+.retro-inset {
+    background-color: var(--retro-bg);
+    border: 3px solid var(--retro-dark);
+    box-shadow: inset 4px 4px 0px rgba(0,0,0,0.1);
+    border-radius: 0;
 }
 
-/* 3. 高级物理按键 (Physical Button) */
-.nm-button {
-    background: linear-gradient(145deg, #f0f5fd, #cacfd4);
-    color: var(--text-main);
-    box-shadow: 6px 6px 12px var(--nm-dark), 
-               -6px -6px 12px var(--nm-light);
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+/* 3. 机械感复古按键 (Retro Button) */
+.retro-button {
+    background-color: var(--retro-light);
+    color: var(--retro-dark);
+    border: 3px solid var(--retro-dark);
+    box-shadow: 6px 6px 0px var(--retro-dark);
+    border-radius: 0; /* 绝对直角 */
+    transition: all 0.1s ease; /* 极速响应，模拟机械开关 */
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-weight: 900; /* 加粗，更具力量感 */
 }
 
-/* 悬停时：失去曲面，变为平整，阴影缩短 (更真实的接触前反馈) */
-.nm-button:hover {
-    background: #e0e5ec;
-    box-shadow: 3px 3px 6px var(--nm-dark), 
-               -3px -3px 6px var(--nm-light);
-    color: var(--nm-accent);
+/* 悬停：假装微微抬起 */
+.retro-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--retro-dark);
+    color: var(--retro-accent);
 }
 
-/* 按下时：完全凹陷 */
-.nm-button:active {
-    background: #e0e5ec;
-    box-shadow: inset 5px 5px 10px var(--nm-dark), 
-                inset -5px -5px 10px var(--nm-light);
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+/* 按下：真实的机械按压反馈 (阴影消失，位置偏移) */
+.retro-button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px var(--retro-dark);
 }
 
-/* 4. SVG 物理深井底座 */
-.nm-icon-slot {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: #e0e5ec;
-    box-shadow: inset 5px 5px 10px var(--nm-dark), 
-                inset -5px -5px 10px var(--nm-light);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+/* 4. 复古图标框 */
+.retro-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--retro-light);
+    border: 3px solid var(--retro-dark);
+    box-shadow: 4px 4px 0px var(--retro-dark);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--nm-accent);
+    border-radius: 0;
 }
 
-/* 5. 状态指示灯 (LED Indicator) */
-.nm-led {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3), 0 0 8px var(--nm-accent);
-}
-
+/* 文字渐变改为单色强调，保持复古的纯粹 */
 .text-metallic-green {
-    background: linear-gradient(135deg, #047857, #10b981);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--retro-accent);
 }
 
-.custom-scrollbar::-webkit-scrollbar { width: 6px; }
-.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--nm-dark); border-radius: 10px; }
-
+/* 简单的淡入动画 */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-.animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
