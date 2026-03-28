@@ -3,60 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Agent & Resume | Sam Wu (Light)</title>
+    <title>AI Agent | Sam Wu</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="p-6 md:p-12 min-h-screen flex flex-col animate-fade-in">
 
-    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center flex-shrink-0">
-        <a href="index.html" class="nm-button px-6 py-3 text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-700 flex items-center gap-2">
-            &larr; Back to Hub
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center">
+        <a href="index.html" class="nm-button px-6 py-3 text-xs uppercase tracking-widest text-slate-600">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> Back
         </a>
-        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold">Module: Resume_AI</span>
+        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold">Agent.sys</span>
     </div>
 
-    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <main class="max-w-7xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12">
         
-        <div class="nm-panel p-8 md:p-10 flex flex-col h-[750px]">
-            <div class="flex justify-between items-center mb-8 pb-6 border-b border-gray-100">
-                <h2 class="text-2xl font-black text-slate-950 tracking-widest uppercase">Sam's AI Agent</h2>
+        <div class="nm-inset p-8 flex flex-col h-[750px]">
+            <div class="flex justify-between items-center mb-6 px-2">
+                <h2 class="text-xl font-black text-slate-800 tracking-widest uppercase">AI Terminal</h2>
                 <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
             </div>
 
-            <div class="bg-amber-50 border border-amber-200 px-6 py-3 flex items-start gap-3 rounded-xl mb-6">
-                <span class="text-amber-600 mt-0.5">⏱️</span>
-                <p class="text-xs text-amber-900 leading-relaxed font-mono font-medium">
-                    <strong class="font-bold">NOTICE:</strong> Free cloud deployment. The <strong class="font-bold">FIRST</strong> response requires ~50s to wake up the server.
-                </p>
-            </div>
-
-            <div id="chat-window" class="nm-inset flex-1 p-6 overflow-y-auto mb-8 custom-scrollbar border border-gray-100">
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-full nm-panel flex items-center justify-center text-emerald-600 flex-shrink-0 text-[10px] font-bold border border-gray-100">AI</div>
-                    <span class="nm-panel text-slate-800 px-5 py-4 rounded-2xl rounded-tl-none text-sm leading-relaxed max-w-[85%] border border-gray-100">
-                        Hello! Ask me about Sam's Python intern, his UofT Mississauga studies, or his skating!
-                    </span>
+            <div id="chat-window" class="flex-1 overflow-y-auto mb-6 custom-scrollbar pr-4">
+                <div class="flex items-start gap-4 mb-4">
+                    <div class="w-10 h-10 rounded-full nm-panel flex items-center justify-center text-emerald-600 font-black text-[10px] flex-shrink-0">AI</div>
+                    <span class="nm-panel text-slate-700 px-6 py-4 rounded-2xl rounded-tl-none text-sm font-medium">System Online. Ask me about Sam's expertise. (Free tier boot time: ~50s).</span>
                 </div>
             </div>
 
             <form id="ai-chat-form" class="flex gap-4">
-                <input type="text" id="ai-input" placeholder="Query data..." class="flex-1 nm-inset px-6 py-4 text-slate-900 text-sm focus:outline-none placeholder-gray-500 border border-gray-100">
-                <button type="submit" class="nm-button px-8 font-bold text-xs uppercase tracking-widest text-emerald-700">Send</button>
+                <input type="text" id="ai-input" placeholder="Enter query..." class="flex-1 nm-panel px-6 py-4 text-slate-800 font-bold text-sm focus:outline-none">
+                <button type="submit" class="nm-button px-8 font-black text-xs uppercase tracking-widest text-emerald-600">Send</button>
             </form>
         </div>
 
-        <div class="nm-panel p-8 md:p-10 flex flex-col h-[750px]">
-            <div class="flex justify-between items-center mb-8 pb-6 border-b border-gray-100">
-                <h2 class="text-2xl font-black text-slate-950 tracking-widest uppercase">Document Viewer</h2>
-                <a href="Yihang.Wu.pdf" download class="nm-button px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-emerald-700 border-emerald-200">
-                    Download
-                </a>
+        <div class="nm-panel p-8 flex flex-col h-[750px]">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-black text-slate-800 tracking-widest uppercase">Document Tray</h2>
+                <a href="Yihang.Wu.pdf" download class="nm-button px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-emerald-700">Download PDF</a>
             </div>
             
-            <div class="nm-inset flex-1 p-2 overflow-hidden border border-gray-100">
-                <iframe src="Yihang.Wu.pdf" class="w-full h-full rounded-2xl border-none saturate-[0.95] opacity-[0.98]"></iframe>
+            <div class="nm-inset flex-1 p-2 overflow-hidden">
+                <iframe src="Yihang.Wu.pdf" class="w-full h-full rounded-2xl border-none"></iframe>
             </div>
         </div>
 
