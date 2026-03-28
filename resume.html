@@ -3,52 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Agent | Sam Wu</title>
+    <title>AI Agent & Resume | Sam Wu (Light Neumorphic)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="p-6 md:p-12 min-h-screen flex flex-col animate-fade-in">
 
-    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center border-b-4 border-gray-900 pb-4">
-        <a href="index.html" class="retro-button px-6 py-2 text-xs uppercase tracking-widest">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> BACK
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center flex-shrink-0">
+        <a href="index.html" class="nm-button px-6 py-3 text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-700 flex items-center gap-2">
+            &larr; Back to Hub
         </a>
-        <span class="text-xl font-black tracking-widest uppercase">Agent.EXE</span>
+        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold">Module: Resume_AI</span>
     </div>
 
-    <main class="max-w-7xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12">
         
-        <div class="retro-panel flex flex-col h-[750px] overflow-hidden bg-gray-100">
-            <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-4 border-gray-900">
-                <h2 class="text-lg font-black text-white tracking-widest uppercase">Terminal: Sam_AI</h2>
-                <div class="w-3 h-3 bg-emerald-500 border-2 border-white"></div>
+        <div class="nm-panel p-8 md:p-10 flex flex-col h-[750px]">
+            <div class="flex justify-between items-center mb-8 pb-6 border-b border-gray-100">
+                <h2 class="text-2xl font-black text-slate-950 tracking-widest uppercase">Sam's AI Agent</h2>
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
             </div>
 
-            <div class="bg-yellow-100 border-b-4 border-gray-900 p-4 font-mono text-sm font-bold text-gray-900">
-                [NOTICE] Initial connection to free cloud tier requires ~50s delay.
+            <div class="bg-amber-50 border border-amber-100 px-6 py-3 flex items-start gap-3 rounded-xl mb-6">
+                <span class="text-amber-600 mt-0.5">⏱️</span>
+                <p class="text-xs text-amber-900 leading-relaxed font-mono font-medium">
+                    <strong class="font-bold">NOTICE:</strong> Free cloud deployment. The <strong class="font-bold">FIRST</strong> response requires ~50s to wake up the server. Subsequent queries will run instantly.
+                </p>
             </div>
 
-            <div id="chat-window" class="flex-1 overflow-y-auto p-8 custom-scrollbar">
-                <div class="flex items-start gap-4 mb-4">
-                    <div class="w-10 h-10 retro-panel flex items-center justify-center text-gray-900 font-black text-[12px] flex-shrink-0 bg-emerald-200">AI</div>
-                    <span class="retro-panel text-gray-900 px-6 py-4 text-sm font-bold max-w-[85%]">System Ready. Awaiting queries regarding Sam's professional experience.</span>
+            <div id="chat-window" class="nm-inset flex-1 p-6 overflow-y-auto mb-8 custom-scrollbar border border-gray-100">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full nm-panel flex items-center justify-center text-emerald-600 mr-4 flex-shrink-0 font-bold text-[10px] shadow-lg border border-gray-100">AI</div>
+                    <span class="nm-panel text-slate-800 px-5 py-4 rounded-2xl rounded-tl-none text-sm leading-relaxed max-w-[85%] border border-gray-100">
+                        Hello! Ask me about Sam's expertise in screenless Distributed Wearable Trinity (Hub/Lens/Signet), De-Apped AIOS architectures, or TIC Pepper Biometrics.
+                    </span>
                 </div>
             </div>
 
-            <form id="ai-chat-form" class="flex p-4 bg-gray-200 border-t-4 border-gray-900 gap-4">
-                <input type="text" id="ai-input" placeholder="Type command..." class="flex-1 retro-inset bg-white px-6 py-4 text-gray-900 font-bold text-sm focus:outline-none font-mono">
-                <button type="submit" class="retro-button px-8 font-black text-xs uppercase tracking-widest bg-emerald-400">SEND</button>
+            <form id="ai-chat-form" class="flex gap-4">
+                <input type="text" id="ai-input" placeholder="Query data..." class="flex-1 nm-inset px-6 py-4 text-slate-900 text-sm focus:border-emerald-500 outline-noneplaceholder-gray-500 border border-gray-100">
+                <button type="submit" class="nm-button px-8 font-bold text-xs uppercase tracking-widest text-emerald-700">Ask AI</button>
             </form>
         </div>
 
-        <div class="retro-panel flex flex-col h-[750px] overflow-hidden">
-            <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-4 border-gray-900">
-                <h2 class="text-lg font-black text-white tracking-widest uppercase">Document: CV</h2>
-                <a href="Yihang.Wu.pdf" download class="retro-button px-4 py-2 text-[10px] font-black uppercase tracking-widest">Download</a>
+        <div class="nm-panel p-8 md:p-10 flex flex-col h-[750px]">
+            <div class="flex justify-between items-center mb-8 pb-6 border-b border-gray-100">
+                <h2 class="text-2xl font-black text-slate-950 tracking-widest uppercase">Document Tray</h2>
+                <a href="Yihang.Wu.pdf" download class="nm-button px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-emerald-700 border-emerald-200">
+                    Download PDF
+                </a>
             </div>
             
-            <div class="flex-1 bg-gray-300 p-4">
-                <iframe src="Yihang.Wu.pdf" class="w-full h-full border-4 border-gray-900 bg-white"></iframe>
+            <div class="nm-inset flex-1 p-1 overflow-hidden border border-gray-100 w-full lg:w-[calc(100%+120px)] lg:-ml-12 lg:mb-12">
+                <iframe src="Yihang.Wu.pdf" class="w-full h-full rounded-2xl border-none saturate-[0.98] opacity-[0.98]"></iframe>
             </div>
         </div>
 
