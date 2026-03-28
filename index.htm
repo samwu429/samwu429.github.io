@@ -3,193 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="google-site-verification" content="wbjCbBbtTAWoyD7v3D2YIJEw5uK0dgN91-QdqdQWNjo" />
-    <title>Yihang (Sam) Wu | UofT CS & Data Science Portfolio</title>
-    <meta name="description" content="Official portfolio of Yihang (Sam) Wu. Mathematics, Statistics, and Computer Science student at UofT Mississauga specialized in Python automation and AI.">
-    
+    <title>Yihang (Sam) Wu | System Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
-    
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-[#0d131f] text-gray-400 font-sans antialiased overflow-x-hidden">
+<body class="text-gray-400 font-sans antialiased h-screen flex flex-col items-center justify-center animate-fade-in">
 
-    <div class="fixed top-0 right-0 w-1.5 h-full bg-[#0d131f]/80 z-50 border-l border-gray-800">
-        <div id="scroll-progress" class="w-full bg-gradient-to-b from-emerald-400 via-teal-500 to-emerald-700 h-0 transition-all duration-150 shadow-[0_0_10px_#10b981]"></div>
+    <div class="text-center mb-16">
+        <div class="w-32 h-32 mx-auto nm-panel p-2 mb-8 rounded-full">
+            <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu" class="w-full h-full object-cover rounded-full grayscale-[0.2]" />
+        </div>
+        <h1 class="text-5xl md:text-6xl font-black mb-4 tracking-tighter text-white">
+            Yihang <span class="text-metallic-green">Sam</span> Wu
+        </h1>
+        <p class="text-sm font-mono tracking-widest text-emerald-500 uppercase">System Hub v2.0</p>
     </div>
 
-    <div class="fixed top-[-10%] left-[-5%] w-[50%] h-[50%] bg-emerald-900/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
-    <div class="fixed bottom-[-10%] right-[-5%] w-[50%] h-[50%] bg-teal-900/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl w-full px-6">
+        
+        <a href="#about-placeholder" class="nm-button p-8 flex flex-col items-center gap-4 group">
+            <span class="text-3xl group-hover:text-emerald-400 transition-colors">👤</span>
+            <span class="font-bold text-gray-300 tracking-widest uppercase text-sm">The Profile</span>
+        </a>
 
-    <nav id="navbar" class="fixed w-full z-40 transition-all duration-500 py-6">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center relative z-10">
-            <a href="#home" class="text-xl font-bold text-white tracking-widest uppercase" id="nav-logo">Sam Wu</a>
-            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
-                <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
-                <a href="#portfolio" class="hover:text-emerald-400 transition-colors">Data Lab</a>
-                <a href="#resume" class="hover:text-emerald-400 transition-colors">Resume</a>
-                <a href="#beyond" class="hover:text-emerald-400 transition-colors">Beyond</a>
-            </div>
-        </div>
-    </nav>
+        <a href="#portfolio-placeholder" class="nm-button p-8 flex flex-col items-center gap-4 group">
+            <span class="text-3xl group-hover:text-emerald-400 transition-colors">📊</span>
+            <span class="font-bold text-gray-300 tracking-widest uppercase text-sm">Data Lab</span>
+        </a>
 
-    <main>
-        <header id="home" class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="1fb2deff3073e3283c81605365fc199d.jpg" alt="Sam Wu" class="w-full h-full object-cover opacity-60 scale-105 animate-zoom" />
-                <div class="absolute inset-0 bg-gradient-to-b from-[#0d131f]/20 via-[#0d131f]/70 to-[#0d131f]"></div>
-            </div>
-            <div class="relative z-10 px-6 reveal-hero nm-raised p-12 md:p-16 border border-gray-800/50 backdrop-blur-sm">
-                <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-white drop-shadow-2xl">
-                    Yihang <span class="text-metallic-green">Sam</span> Wu
-                </h1>
-                <p class="text-xl md:text-2xl font-light mb-12 text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                    Mathematics, Statistics & CS @ UofT. <br>
-                    Bridging data engineering with applied AI architecture.
-                </p>
-                <div class="flex justify-center gap-8">
-                    <a href="#about" class="px-10 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full font-bold transition-all shadow-xl hover:-translate-y-1 tracking-widest uppercase text-sm">Explore</a>
-                    <a href="mailto:wuyihang429@gmail.com" class="px-10 py-4 border-2 border-gray-700 hover:border-emerald-500 text-gray-200 rounded-full font-bold transition-all nm-pressed tracking-widest uppercase text-sm">Connect</a>
-                </div>
-            </div>
-        </header>
+        <a href="resume.html" class="nm-button p-8 flex flex-col items-center gap-4 group">
+            <span class="text-3xl group-hover:text-emerald-400 transition-colors">🤖</span>
+            <span class="font-bold text-gray-300 tracking-widest uppercase text-sm">AI Agent & PDF</span>
+        </a>
 
-        <section id="about" class="py-32 px-6 max-w-6xl mx-auto relative z-10 overflow-hidden">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center nm-raised p-10 border border-gray-800">
-                <div class="reveal-left" data-tilt data-tilt-max="5">
-                    <div class="relative group nm-raised p-2 transition-all hover:p-0 border border-gray-800">
-                        <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" class="rounded-3xl relative z-10 grayscale-[0.2] transition-all group-hover:grayscale-0" />
-                    </div>
-                </div>
-                <div class="reveal-right text-left nm-pressed p-10 border border-gray-800">
-                    <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-tight italic">
-                        The Profile <span class="block w-12 h-1 bg-emerald-500 mt-2 shadow-[0_0_10px_#10b981]"></span>
-                    </h2>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-8">
-                        UofT Mathematics and Computer Science candidate. Specialized in Python automation, statistical analysis with R Studio, and building interfaces with JavaScript. Focused on bridging quantitative methodology with industrial Applied AI.
-                    </p>
-                    <div class="flex gap-4">
-                        <div class="px-4 py-2 nm-raised border border-gray-800 text-xs font-bold text-emerald-400 uppercase tracking-widest">Data Eng</div>
-                        <div class="px-4 py-2 nm-raised border border-gray-800 text-xs font-bold text-emerald-400 uppercase tracking-widest">UofT MSCS</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <a href="#beyond-placeholder" class="nm-button p-8 flex flex-col items-center gap-4 group">
+            <span class="text-3xl group-hover:text-emerald-400 transition-colors">🏆</span>
+            <span class="font-bold text-gray-300 tracking-widest uppercase text-sm">Beyond Code</span>
+        </a>
 
-        <section id="portfolio" class="py-32 px-6 bg-[#0a101d] border-y-2 border-gray-800 relative z-10">
-            <div class="max-w-6xl mx-auto pr-4">
-                <div class="text-center mb-20 reveal-hero nm-pressed p-8 border border-gray-800 rounded-3xl">
-                    <h2 class="text-4xl font-black text-white uppercase tracking-widest">The Data Lab</h2>
-                    <p class="text-gray-500 mt-4 font-mono text-sm">/ projects_and_execution /</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="reveal-card bg-[#0d131f] p-8 rounded-3xl border-2 border-gray-800 border-t-emerald-500 nm-raised nm-interactive" data-tilt data-tilt-max="10">
-                        <h3 class="text-xl font-bold text-white mb-4 tracking-tight">AI Boss - Resume Screener</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed mb-8">Engineered a Python FastAPI & Gemini LLM backend for recruiter automation.</p>
-                        <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="text-emerald-400 text-xs font-black uppercase tracking-widest hover:underline">Live System &rarr;</a>
-                    </div>
-                    <div class="reveal-card bg-[#0d131f] p-8 rounded-3xl border-2 border-gray-800 border-t-teal-500 nm-raised nm-interactive" data-tilt data-tilt-max="10" style="transition-delay: 100ms;">
-                        <h3 class="text-xl font-bold text-white mb-4 tracking-tight">Logistics Automation</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed mb-8">Custom Python scripts for automating monthly logistics cost data and ERP updates.</p>
-                    </div>
-                    <div class="reveal-card bg-[#0d131f] p-8 rounded-3xl border-2 border-gray-800 border-t-blue-500 nm-raised nm-interactive" data-tilt data-tilt-max="10" style="transition-delay: 200ms;">
-                        <h3 class="text-xl font-bold text-white mb-4 tracking-tight">Statistical Modeling</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed mb-8">Applying advanced R Studio techniques for quantitative research at UofT Mississauga.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
 
-        <section id="resume" class="py-32 px-6 relative z-10 bg-[#0d131f]">
-            <div class="max-w-4xl mx-auto pr-4">
-                
-                <div class="text-center mb-16 reveal-hero nm-pressed p-6 border border-gray-800 rounded-3xl">
-                    <h2 class="text-4xl font-black text-white uppercase tracking-widest mb-6">Experience & Capabilities</h2>
-                    <a href="Yihang.Wu.pdf" download class="nm-raised nm-interactive inline-flex items-center px-8 py-3 bg-[#1e293b]/50 backdrop-blur-md border border-gray-700 text-emerald-300 rounded-full font-bold shadow-lg text-sm uppercase tracking-widest">
-                        Download New Resume
-                    </a>
-                </div>
+    <div class="mt-16 flex gap-6">
+        <a href="mailto:wuyihang429@gmail.com" class="w-12 h-12 nm-button rounded-full text-xl text-gray-500 hover:text-emerald-400">✉️</a>
+    </div>
 
-                <div class="reveal-card mb-20 relative transition-all rounded-3xl nm-raised" data-tilt data-tilt-max="2">
-                    <div class="relative bg-[#0d131f] rounded-3xl overflow-hidden border border-gray-800">
-                        <div class="px-8 py-5 border-b border-gray-800 bg-[#0a101d] flex justify-between items-center">
-                            <div class="flex items-center gap-3">
-                                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                                <span class="text-sm font-bold text-white uppercase tracking-widest">Sam's AI Agent</span>
-                            </div>
-                            <span class="text-[10px] text-emerald-500 font-mono tracking-widest bg-emerald-950 px-2 py-1 rounded">Gemini 2.5 Active</span>
-                        </div>
-
-                        <div class="bg-amber-900/10 border-b border-amber-900/50 px-8 py-3 flex items-start gap-4">
-                            <span class="text-amber-500 mt-1">⚠️</span>
-                            <p class="text-xs text-amber-200/80 leading-relaxed font-mono text-left">
-                                <strong class="text-amber-400 font-bold tracking-wider">SYSTEM NOTICE:</strong> As this uses a free API tier, the <strong>FIRST</strong> response requires ~50s to wake up the server. Subsequent queries will run instantly.
-                            </p>
-                        </div>
-
-                        <div id="chat-window" class="p-8 md:p-10 h-80 overflow-y-auto flex flex-col gap-6 text-sm nm-pressed border border-gray-800 rounded-3xl m-4 custom-scrollbar">
-                            <div class="flex items-start gap-4">
-                                <div class="w-9 h-9 rounded-full nm-raised border border-emerald-500 flex items-center justify-center text-emerald-400 flex-shrink-0 text-xs font-bold">AI</div>
-                                <span class="bg-[#1e293b]/50 text-gray-300 px-5 py-4 rounded-2xl rounded-tl-none border border-gray-700 max-w-[85%] leading-relaxed nm-pressed">Hi there! I am Sam's digital assistant. Ask me about his Python internships, his UofT studies, or his skating!</span>
-                            </div>
-                        </div>
-                        <form id="ai-chat-form" class="p-6 bg-[#0a101d] border-t border-gray-800 flex gap-4">
-                            <input type="text" id="ai-input" placeholder="Ask a question..." class="flex-1 bg-[#0d131f] border border-gray-700 rounded-xl px-5 py-4 text-white text-sm focus:border-emerald-500 outline-none nm-pressed">
-                            <button type="submit" class="bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest nm-raised nm-interactive">Ask AI</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="reveal-frame bg-white rounded-3xl overflow-hidden border border-gray-800 nm-raised" data-tilt data-tilt-max="2">
-                    <div class="bg-[#0f172a] px-5 py-3 flex items-center gap-2 border-b-2 border-gray-800 nm-pressed-sm rounded-none">
-                        <div class="w-3.5 h-3.5 rounded-full bg-red-500/80 shadow-inner"></div><div class="w-3.5 h-3.5 rounded-full bg-yellow-500/80 shadow-inner"></div><div class="w-3.5 h-3.5 rounded-full bg-green-500/80 shadow-inner"></div>
-                        <div class="flex-1 text-center text-[10px] text-gray-500 font-mono tracking-widest font-bold pr-10 uppercase">YIHANG_WU.PDF</div>
-                    </div>
-                    <iframe src="Yihang.Wu.pdf" class="w-full h-[650px] md:h-[800px] border-none saturate-[0.98]"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <section id="beyond" class="py-32 px-6 bg-[#06090e] text-white relative z-10 border-t border-gray-950 overflow-hidden">
-            <div class="max-w-6xl mx-auto pr-4 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-                <div class="space-y-12 reveal-left text-left nm-pressed p-10 md:p-12 border border-gray-800 rounded-3xl">
-                    <h2 class="text-5xl font-extrabold mb-10 tracking-tight text-white">Beyond the Code</h2>
-                    
-                    <div class="bg-[#0d131f] p-8 rounded-3xl border border-gray-800 flex gap-6 items-start nm-raised nm-interactive" data-tilt data-tilt-max="5">
-                        <img src="6558fa4ecffc7a7d45c10e5eb66e142d.png" alt="Church Logo" class="h-16 w-auto bg-white/10 p-2 rounded-xl" />
-                        <div>
-                            <h4 class="text-xl font-bold text-emerald-300 mb-2">Ward Missionary</h4>
-                            <p class="text-sm text-gray-400 font-light leading-relaxed">Dedicated to leadership and community service at The Church of Jesus Christ of Latter-day Saints.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4 nm-pressed p-6 border border-gray-800 rounded-3xl">
-                        <div class="p-5 border border-gray-800 rounded-2xl bg-[#0d131f] text-center nm-raised" data-tilt data-tilt-max="10">
-                            <span class="text-4xl block mb-2">🏆</span><span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Skating Champ</span>
-                        </div>
-                        <div class="p-5 border border-gray-800 rounded-2xl bg-[#0d131f] text-center nm-raised" data-tilt data-tilt-max="10">
-                            <span class="text-3xl block mb-3">📜</span><span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">JS Certified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex flex-col gap-8 items-center nm-pressed p-10 rounded-3xl border border-gray-800">
-                    <div class="relative group tilt-card reveal-focus nm-raised p-2 transition-all hover:p-1 border border-gray-800" data-tilt data-tilt-max="15">
-                        <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="relative rounded-3xl border border-gray-700 max-w-sm" />
-                    </div>
-                    <div class="relative group tilt-card reveal-focus nm-raised p-2 transition-all hover:p-1 border border-gray-800" data-tilt data-tilt-max="15" style="transition-delay: 150ms;">
-                        <img src="547ca3549526611a20df5305e23ee22b.jpg" class="relative rounded-3xl border border-gray-700 saturate-[0.85] hover:saturate-100 max-w-sm" />
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-black py-16 text-center text-xs border-t border-gray-950 text-gray-600 font-bold tracking-[0.4em] uppercase pr-4">
-        <p>&copy; 2026 YIHANG (SAM) WU. MISSISSAUGA, CANADA.</p>
-    </footer>
-
-    <script src="app.js"></script>
 </body>
 </html>
