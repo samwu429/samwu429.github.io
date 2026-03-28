@@ -1,12 +1,12 @@
 /* =========================================================
- * Yihang (Sam) Wu - Neo-Brutalism / Retro Tech System
- * Core: Right Angles, Hard Shadows, Thick Borders, High Contrast
+ * Yihang (Sam) Wu - Refined Editorial Brutalism
+ * Core: Asymmetry, Crisp 2px Borders, Human-crafted Typography
  * ========================================================= */
 
 :root {
-    /* 复古色板：老式打印纸背景，纯黑边框，复古绿点缀 */
-    --retro-bg: #f4f0e6; 
-    --retro-dark: #111827; 
+    /* 更加自然的纸白背景，不再是生硬的灰白 */
+    --retro-bg: #fdfbf7; 
+    --retro-dark: #1c1917; /* 温和的深墨色，代替刺眼的纯黑 */
     --retro-light: #ffffff;
     --retro-accent: #059669; 
 }
@@ -17,76 +17,71 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* 主体使用清晰的无衬线字体，配合复古的边框产生反差美 */
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-/* ================= 纯粹直角组件 ================= */
+/* ================= 高级人类排版组件 ================= */
 
-/* 1. 复古硬卡片 (Retro Panel) */
+/* 1. 杂志级卡片 (线条收敛到 2px，更显高级) */
 .retro-panel {
     background-color: var(--retro-light);
-    border: 3px solid var(--retro-dark);
-    box-shadow: 8px 8px 0px var(--retro-dark);
-    border-radius: 0; /* 绝对直角 */
+    border: 2px solid var(--retro-dark);
+    box-shadow: 6px 6px 0px var(--retro-dark);
+    border-radius: 0; 
 }
 
-/* 2. 复古内凹槽 (Retro Inset) */
+/* 2. 内凹阅读区 */
 .retro-inset {
     background-color: var(--retro-bg);
-    border: 3px solid var(--retro-dark);
-    box-shadow: inset 4px 4px 0px rgba(0,0,0,0.1);
+    border: 2px solid var(--retro-dark);
+    box-shadow: inset 4px 4px 0px rgba(0,0,0,0.06);
     border-radius: 0;
 }
 
-/* 3. 机械感复古按键 (Retro Button) */
+/* 3. 操作按钮 */
 .retro-button {
     background-color: var(--retro-light);
     color: var(--retro-dark);
-    border: 3px solid var(--retro-dark);
-    box-shadow: 6px 6px 0px var(--retro-dark);
-    border-radius: 0; /* 绝对直角 */
-    transition: all 0.1s ease; /* 极速响应，模拟机械开关 */
+    border: 2px solid var(--retro-dark);
+    box-shadow: 4px 4px 0px var(--retro-dark);
+    border-radius: 0;
+    transition: all 0.15s ease-out;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 900; /* 加粗，更具力量感 */
+    font-weight: 800;
 }
 
-/* 悬停：假装微微抬起 */
 .retro-button:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px var(--retro-dark);
+    box-shadow: 6px 6px 0px var(--retro-dark);
     color: var(--retro-accent);
 }
 
-/* 按下：真实的机械按压反馈 (阴影消失，位置偏移) */
 .retro-button:active {
-    transform: translate(6px, 6px);
+    transform: translate(4px, 4px);
     box-shadow: 0px 0px 0px var(--retro-dark);
 }
 
-/* 4. 复古图标框 */
+/* 4. 专属图标框 */
 .retro-icon {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background: var(--retro-light);
-    border: 3px solid var(--retro-dark);
-    box-shadow: 4px 4px 0px var(--retro-dark);
+    border: 2px solid var(--retro-dark);
+    box-shadow: 3px 3px 0px var(--retro-dark);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0;
 }
 
-/* 文字渐变改为单色强调，保持复古的纯粹 */
 .text-metallic-green {
     color: var(--retro-accent);
 }
 
-/* 简单的淡入动画 */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
