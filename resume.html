@@ -9,42 +9,46 @@
 </head>
 <body class="p-6 md:p-12 min-h-screen flex flex-col animate-fade-in">
 
-    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center">
-        <a href="index.html" class="nm-button px-6 py-3 text-xs uppercase tracking-widest text-slate-600">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> Back
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center border-b-4 border-gray-900 pb-4">
+        <a href="index.html" class="retro-button px-6 py-2 text-xs uppercase tracking-widest">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> BACK
         </a>
-        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold">Agent.sys</span>
+        <span class="text-xl font-black tracking-widest uppercase">Agent.EXE</span>
     </div>
 
     <main class="max-w-7xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12">
         
-        <div class="nm-inset p-8 flex flex-col h-[750px]">
-            <div class="flex justify-between items-center mb-6 px-2">
-                <h2 class="text-xl font-black text-slate-800 tracking-widest uppercase">AI Terminal</h2>
-                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+        <div class="retro-panel flex flex-col h-[750px] overflow-hidden bg-gray-100">
+            <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-4 border-gray-900">
+                <h2 class="text-lg font-black text-white tracking-widest uppercase">Terminal: Sam_AI</h2>
+                <div class="w-3 h-3 bg-emerald-500 border-2 border-white"></div>
             </div>
 
-            <div id="chat-window" class="flex-1 overflow-y-auto mb-6 custom-scrollbar pr-4">
+            <div class="bg-yellow-100 border-b-4 border-gray-900 p-4 font-mono text-sm font-bold text-gray-900">
+                [NOTICE] Initial connection to free cloud tier requires ~50s delay.
+            </div>
+
+            <div id="chat-window" class="flex-1 overflow-y-auto p-8 custom-scrollbar">
                 <div class="flex items-start gap-4 mb-4">
-                    <div class="w-10 h-10 rounded-full nm-panel flex items-center justify-center text-emerald-600 font-black text-[10px] flex-shrink-0">AI</div>
-                    <span class="nm-panel text-slate-700 px-6 py-4 rounded-2xl rounded-tl-none text-sm font-medium">System Online. Ask me about Sam's expertise. (Free tier boot time: ~50s).</span>
+                    <div class="w-10 h-10 retro-panel flex items-center justify-center text-gray-900 font-black text-[12px] flex-shrink-0 bg-emerald-200">AI</div>
+                    <span class="retro-panel text-gray-900 px-6 py-4 text-sm font-bold max-w-[85%]">System Ready. Awaiting queries regarding Sam's professional experience.</span>
                 </div>
             </div>
 
-            <form id="ai-chat-form" class="flex gap-4">
-                <input type="text" id="ai-input" placeholder="Enter query..." class="flex-1 nm-panel px-6 py-4 text-slate-800 font-bold text-sm focus:outline-none">
-                <button type="submit" class="nm-button px-8 font-black text-xs uppercase tracking-widest text-emerald-600">Send</button>
+            <form id="ai-chat-form" class="flex p-4 bg-gray-200 border-t-4 border-gray-900 gap-4">
+                <input type="text" id="ai-input" placeholder="Type command..." class="flex-1 retro-inset bg-white px-6 py-4 text-gray-900 font-bold text-sm focus:outline-none font-mono">
+                <button type="submit" class="retro-button px-8 font-black text-xs uppercase tracking-widest bg-emerald-400">SEND</button>
             </form>
         </div>
 
-        <div class="nm-panel p-8 flex flex-col h-[750px]">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-black text-slate-800 tracking-widest uppercase">Document Tray</h2>
-                <a href="Yihang.Wu.pdf" download class="nm-button px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-emerald-700">Download PDF</a>
+        <div class="retro-panel flex flex-col h-[750px] overflow-hidden">
+            <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-4 border-gray-900">
+                <h2 class="text-lg font-black text-white tracking-widest uppercase">Document: CV</h2>
+                <a href="Yihang.Wu.pdf" download class="retro-button px-4 py-2 text-[10px] font-black uppercase tracking-widest">Download</a>
             </div>
             
-            <div class="nm-inset flex-1 p-2 overflow-hidden">
-                <iframe src="Yihang.Wu.pdf" class="w-full h-full rounded-2xl border-none"></iframe>
+            <div class="flex-1 bg-gray-300 p-4">
+                <iframe src="Yihang.Wu.pdf" class="w-full h-full border-4 border-gray-900 bg-white"></iframe>
             </div>
         </div>
 
