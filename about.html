@@ -3,47 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Profile | Sam Wu</title>
+    <title>The Profile | Sam Wu (Light Neumorphic)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="animate-fade-in p-6 md:p-12 h-screen flex flex-col">
 
-    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center border-b-4 border-gray-900 pb-4">
-        <a href="index.html" class="retro-button px-6 py-2 text-xs uppercase tracking-widest">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> BACK
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center flex-shrink-0">
+        <a href="index.html" class="nm-button px-6 py-3 text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-700 flex items-center gap-2">
+            &larr; Back to Hub
         </a>
-        <span class="text-xl font-black tracking-widest uppercase">Profile.EXE</span>
+        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold">Module: Profile</span>
     </div>
 
-    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
-        <div class="lg:col-span-4 flex justify-center">
-            <div class="retro-panel p-3 w-full bg-emerald-100">
-                <img src="1fb2deff3073e3283c81605365fc199d.jpg" class="w-full border-4 border-gray-900 object-cover aspect-square grayscale-[0.3]" />
+    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="flex justify-center">
+            <div class="relative nm-raised p-4 border border-gray-100 rounded-[2rem]">
+                <img src="1fb2deff3073e3283c81605365fc199d.jpg" class="rounded-3xl border border-gray-100 max-h-[500px] object-cover saturate-[0.85] opacity-[0.98]" />
             </div>
         </div>
         
-        <div class="lg:col-span-8 retro-panel p-10 md:p-12">
-            <h2 class="text-4xl md:text-5xl font-black text-gray-900 uppercase tracking-tight border-b-4 border-gray-900 pb-4 mb-6">
-                Sam Wu
+        <div class="nm-pressed p-10 md:p-12 border border-gray-100 rounded-3xl">
+            <h2 class="text-4xl font-black text-slate-950 mb-6 uppercase tracking-tight italic">
+                Yihang <span class="text-emerald-600">Sam</span> Wu
             </h2>
-            
-            <p class="text-lg text-gray-900 leading-relaxed mb-6 font-black bg-emerald-100 p-4 border-2 border-gray-900">
-                Analytical and detail-oriented undergraduate at the University of Toronto Mississauga, specializing in Mathematics, Statistics, and Computer Science.
+            <p class="text-lg text-slate-900 leading-relaxed mb-6 font-medium">
+                Mathematics, Statistics, and Computer Science candidate at the University of Toronto Mississauga. specialized in architecting screen-less Human-AI Interaction and data-driven systems.
             </p>
-            <p class="text-base text-gray-800 leading-relaxed mb-10 font-bold font-mono">
-                > Proven ability to translate complex datasets into actionable insights through robust Python pipelines and advanced R-based statistical modeling.<br><br>
-                > Passionate about leveraging AI integration and full-stack software engineering to optimize industrial workflows and drive data-centric decisions.
+            <p class="text-base text-slate-700 leading-relaxed mb-10 font-normal">
+                My technical philosophy is built on bridging pure logic with industrial execution. From ERP automation to de-apped AIOS integrations, I architect systems that process data to drive real-world decisions.
             </p>
             
-            <h3 class="text-xl font-black text-white bg-gray-900 px-4 py-2 uppercase tracking-widest mb-5 inline-block">Technical Stack</h3>
-            <div class="flex flex-wrap gap-4 mt-2">
-                <span class="px-5 py-2 retro-panel text-xs font-black uppercase tracking-widest">Python & FastAPI</span>
-                <span class="px-5 py-2 retro-panel text-xs font-black uppercase tracking-widest">R Studio</span>
-                <span class="px-5 py-2 retro-panel text-xs font-black uppercase tracking-widest">JavaScript & UI</span>
-                <span class="px-5 py-2 retro-panel text-xs font-black uppercase tracking-widest">Gemini LLM API</span>
-                <span class="px-5 py-2 retro-panel text-xs font-black uppercase tracking-widest">ERP Automation</span>
+            <h3 class="text-sm font-bold text-slate-950 uppercase tracking-widest mb-5 border-b border-gray-100 pb-2">Technical Arsenal</h3>
+            <div class="flex flex-wrap gap-4">
+                <span class="px-5 py-2 nm-raised border border-gray-100 text-xs font-bold text-emerald-700 uppercase tracking-widest">Python & FastAPI</span>
+                <span class="px-5 py-2 nm-raised border border-gray-100 text-xs font-bold text-blue-700 uppercase tracking-widest">R Studio (Stats)</span>
+                <span class="px-5 py-2 nm-raised border border-gray-100 text-xs font-bold text-amber-700 uppercase tracking-widest">JavaScript / CSS</span>
+                <span class="px-5 py-2 nm-raised border border-gray-100 text-xs font-bold text-purple-700 uppercase tracking-widest">Gemini AI LLM</span>
             </div>
         </div>
     </main>
