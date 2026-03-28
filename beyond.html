@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond Code | Sam Wu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-gray-400 font-sans antialiased animate-fade-in p-6 md:p-12 min-h-screen flex flex-col overflow-x-hidden relative">
+
+    <div class="absolute top-[20%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center relative z-10">
+        <a href="index.html" class="nm-button px-6 py-3 text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-emerald-400 flex items-center gap-2">
+            &larr; Back to Hub
+        </a>
+        <span class="text-xs font-mono tracking-widest text-emerald-500 uppercase">Module: Beyond</span>
+    </div>
+
+    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+        
+        <div class="space-y-10 nm-pressed p-10 md:p-12 border border-gray-800 rounded-3xl">
+            <h2 class="text-5xl font-extrabold mb-8 tracking-tight text-white">Beyond the Code</h2>
+            <p class="text-gray-400 leading-relaxed mb-8">
+                Life isn't just about algorithms and data pipelines. It's about discipline, faith, and pushing physical and mental boundaries.
+            </p>
+            
+            <div class="nm-raised p-6 flex items-start gap-6 border border-gray-800" data-tilt data-tilt-max="5">
+                <img src="6558fa4ecffc7a7d45c10e5eb66e142d.png" alt="Church Logo" class="h-16 w-auto bg-white/10 p-2 rounded-xl border border-gray-700" />
+                <div>
+                    <h4 class="text-xl font-bold text-emerald-300 mb-2">Ward Missionary</h4>
+                    <p class="text-sm text-gray-400 font-light leading-relaxed">Dedicated to leadership, service, and community support at The Church of Jesus Christ of Latter-day Saints.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-6">
+                <div class="p-6 border border-gray-800 rounded-2xl text-center nm-raised" data-tilt data-tilt-max="10">
+                    <span class="text-4xl block mb-3 drop-shadow-lg">🏆</span>
+                    <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest leading-relaxed">Shenyang Men's<br>Figure Skating Champ</span>
+                </div>
+                <div class="p-6 border border-gray-800 rounded-2xl text-center nm-raised" data-tilt data-tilt-max="10">
+                    <span class="text-4xl block mb-3 drop-shadow-lg">📜</span>
+                    <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest leading-relaxed">Microsoft Tech<br>Associate (JS)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-10 items-center nm-pressed p-10 border border-gray-800 rounded-3xl">
+            <div class="relative group nm-raised p-3 transition-all hover:p-2 border border-gray-800" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.3">
+                <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="relative rounded-2xl border border-gray-700 shadow-2xl max-w-sm" />
+            </div>
+            <div class="relative group nm-raised p-3 transition-all hover:p-2 border border-gray-800" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.3">
+                <img src="547ca3549526611a20df5305e23ee22b.jpg" class="relative rounded-2xl border border-gray-700 shadow-2xl max-w-sm saturate-[0.85] group-hover:saturate-100 transition-all" />
+            </div>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
