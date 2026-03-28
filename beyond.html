@@ -7,27 +7,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="p-6 md:p-12 min-h-screen flex flex-col animate-fade-in">
+<body class="animate-fade-in p-6 md:p-12 min-h-screen flex flex-col relative overflow-hidden">
 
-    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center border-b-4 border-gray-900 pb-4">
-        <a href="index.html" class="retro-button px-6 py-2 text-xs uppercase tracking-widest">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> BACK
+    <div class="absolute top-[-10%] left-[-10%] w-[30%] h-[30%] bg-blue-100 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center border-b-2 border-gray-900 pb-4 relative z-10">
+        <a href="index.html" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> Back to Hub
         </a>
-        <span class="text-xl font-black tracking-widest uppercase">Beyond.DAT</span>
+        <span class="text-sm font-black tracking-widest text-emerald-800 uppercase font-bold">Beyond.EXE</span>
     </div>
 
-    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
         
         <div class="space-y-8">
-            <div class="retro-panel p-10 bg-emerald-50">
-                <h2 class="text-5xl font-black mb-6 tracking-tight text-gray-900 uppercase">Beyond Logic</h2>
-                <p class="text-gray-800 leading-relaxed font-bold font-mono">
+            <div class="retro-inset p-10 bg-white">
+                <h2 class="text-5xl md:text-6xl font-black mb-6 tracking-tighter text-gray-900 uppercase">Beyond Logic</h2>
+                <p class="text-gray-800 leading-relaxed font-bold font-mono border-l-4 border-emerald-500 pl-4">
                     > Architecture and algorithms define my profession, but discipline, faith, and pushing physical limits define who I am.
                 </p>
             </div>
             
             <div class="retro-panel p-8 flex items-start gap-6">
-                <div class="retro-icon flex-shrink-0 bg-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                <div class="retro-icon flex-shrink-0 bg-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
                 <div>
                     <h4 class="text-2xl font-black text-gray-900 mb-2 uppercase">Ward Missionary</h4>
                     <p class="text-sm text-gray-800 font-bold leading-relaxed">Demonstrated profound commitment to community service and leadership within The Church of Jesus Christ of Latter-day Saints. Cultivated interpersonal communication and mental resilience.</p>
@@ -36,22 +38,22 @@
             
             <div class="grid grid-cols-2 gap-6">
                 <div class="p-6 text-center retro-panel bg-yellow-50">
-                    <span class="text-xl text-gray-900 font-black uppercase tracking-widest block mb-2 border-b-2 border-gray-900 pb-2">Shenyang Champ</span>
+                    <span class="text-lg text-gray-900 font-black uppercase tracking-widest block mb-2 border-b-2 border-gray-900 pb-2">Shenyang Champ</span>
                     <p class="text-xs text-gray-700 font-bold mt-2">Men's Figure Skating</p>
                 </div>
                 <div class="p-6 text-center retro-panel bg-blue-50">
-                    <span class="text-xl text-gray-900 font-black uppercase tracking-widest block mb-2 border-b-2 border-gray-900 pb-2">MS Associate</span>
+                    <span class="text-lg text-gray-900 font-black uppercase tracking-widest block mb-2 border-b-2 border-gray-900 pb-2">MS Associate</span>
                     <p class="text-xs text-gray-700 font-bold mt-2">JavaScript Certification</p>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-col gap-10 items-center">
-            <div class="retro-panel p-4 bg-white transform -rotate-2 hover:rotate-0 transition-transform">
-                <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="max-w-sm border-4 border-gray-900 aspect-square object-cover" />
+        <div class="flex flex-col gap-12 items-center lg:pt-8">
+            <div class="retro-panel p-3 bg-white transform -rotate-1 hover:rotate-0 transition-transform">
+                <img src="9d18107d87cb01479c9f8fb64a1e2711.jpg" class="max-w-md w-full h-auto border-2 border-gray-900" />
             </div>
-            <div class="retro-panel p-4 bg-white transform rotate-2 hover:rotate-0 transition-transform">
-                <img src="547ca3549526611a20df5305e23ee22b.jpg" class="max-w-sm border-4 border-gray-900 aspect-square object-cover" />
+            <div class="retro-panel p-3 bg-white transform rotate-1 hover:rotate-0 transition-transform">
+                <img src="547ca3549526611a20df5305e23ee22b.jpg" class="max-w-md w-full h-auto border-2 border-gray-900" />
             </div>
         </div>
 
