@@ -1,16 +1,15 @@
 /* =========================================================
- * Yihang (Sam) Wu - Premium Industrial Neumorphism
- * Core: High Contrast, SVG Geometry, Classic Silver-Grey
+ * Yihang (Sam) Wu - Advanced Industrial Neumorphism
+ * Core: Convex Surfaces, Bevel Highlights, Premium Typography
  * ========================================================= */
 
 :root {
-    /* 黄金拟物配色：吸收高光，凸显文字 */
     --nm-bg: #e0e5ec;
     --nm-dark: #a3b1c6;
     --nm-light: #ffffff;
-    --nm-accent: #059669; /* 沉稳的翡翠绿 */
-    --text-main: #1e293b; /* 极深碳灰色，保证绝对清晰 */
-    --text-muted: #475569; /* 深灰次级文字 */
+    --nm-accent: #059669; /* Premium Emerald */
+    --text-main: #1e293b; /* Deep Slate for High Legibility */
+    --text-muted: #64748b; /* Professional Muted Gray */
 }
 
 body {
@@ -24,32 +23,36 @@ body {
 
 ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-/* ================= 纯粹物理组件 ================= */
+/* ================= 极致物理组件 ================= */
 
-/* 1. 物理凸起平台 */
+/* 1. 微曲面凸起平台 (Convex Panel) - 带有高光边缘 */
 .nm-panel {
-    background: var(--nm-bg);
-    box-shadow: 9px 9px 16px var(--nm-dark), 
-               -9px -9px 16px var(--nm-light);
+    background: linear-gradient(145deg, #f0f5fd, #cacfd4);
+    box-shadow: 10px 10px 20px var(--nm-dark), 
+               -10px -10px 20px var(--nm-light);
     border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* 模拟边缘倒角高光 */
 }
 
-/* 2. 物理凹陷深井 (用于文字区、聊天框，极具安全感) */
+/* 2. 深凹陷安全槽 (Concave Inset) - 底部带有反光唇边 */
 .nm-inset {
-    background: var(--nm-bg);
-    box-shadow: inset 6px 6px 10px var(--nm-dark), 
-                inset -6px -6px 10px var(--nm-light);
+    background: #e0e5ec;
+    box-shadow: inset 8px 8px 16px var(--nm-dark), 
+                inset -8px -8px 16px var(--nm-light);
     border-radius: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8); /* 模拟凹槽底部的物理反光 */
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* 3. 真实物理按键 (去除了花哨效果，回归按压本质) */
+/* 3. 高级物理按键 (Physical Button) */
 .nm-button {
-    background: var(--nm-bg);
+    background: linear-gradient(145deg, #f0f5fd, #cacfd4);
     color: var(--text-main);
-    box-shadow: 5px 5px 10px var(--nm-dark), 
-               -5px -5px 10px var(--nm-light);
+    box-shadow: 6px 6px 12px var(--nm-dark), 
+               -6px -6px 12px var(--nm-light);
     border-radius: 1rem;
-    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -57,29 +60,44 @@ body {
     font-weight: 700;
 }
 
+/* 悬停时：失去曲面，变为平整，阴影缩短 (更真实的接触前反馈) */
 .nm-button:hover {
-    box-shadow: 2px 2px 5px var(--nm-dark), 
-               -2px -2px 5px var(--nm-light);
+    background: #e0e5ec;
+    box-shadow: 3px 3px 6px var(--nm-dark), 
+               -3px -3px 6px var(--nm-light);
     color: var(--nm-accent);
 }
 
+/* 按下时：完全凹陷 */
 .nm-button:active {
-    box-shadow: inset 4px 4px 8px var(--nm-dark), 
-                inset -4px -4px 8px var(--nm-light);
+    background: #e0e5ec;
+    box-shadow: inset 5px 5px 10px var(--nm-dark), 
+                inset -5px -5px 10px var(--nm-light);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-/* SVG 图标专用物理槽 */
+/* 4. SVG 物理深井底座 */
 .nm-icon-slot {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    background: var(--nm-bg);
-    box-shadow: inset 3px 3px 6px var(--nm-dark), 
-                inset -3px -3px 6px var(--nm-light);
+    background: #e0e5ec;
+    box-shadow: inset 5px 5px 10px var(--nm-dark), 
+                inset -5px -5px 10px var(--nm-light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--nm-accent);
+}
+
+/* 5. 状态指示灯 (LED Indicator) */
+.nm-led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3), 0 0 8px var(--nm-accent);
 }
 
 .text-metallic-green {
@@ -93,4 +111,4 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--nm-dark); border-radius: 10px; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-.animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
