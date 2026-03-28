@@ -1,11 +1,12 @@
 /* =========================================================
- * Yihang (Sam) Wu - Refined Editorial Brutalism (RESTORED)
+ * Yihang (Sam) Wu - Refined Editorial Brutalism (RESTORED + REFINED)
  * Core: Asymmetry, Crisp 2px Borders, Human-crafted Typography
  * ========================================================= */
 
 :root {
+    /* 温暖的纸白背景 */
     --retro-bg: #fdfbf7; 
-    --retro-dark: #1c1917; 
+    --retro-dark: #1c1917; /* 温和的深墨色，代替刺眼的纯黑 */
     --retro-light: #ffffff;
     --retro-accent: #059669; 
 }
@@ -16,6 +17,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    /* 主体使用清晰的无衬线字体 */
     font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
@@ -23,6 +25,7 @@ body {
 
 /* ================= 高级人类排版组件 ================= */
 
+/* 1. 杂志级卡片 (线条收敛到 2px，更显高级) */
 .retro-panel {
     background-color: var(--retro-light);
     border: 2px solid var(--retro-dark);
@@ -30,6 +33,7 @@ body {
     border-radius: 0; 
 }
 
+/* 2. 内凹阅读区 */
 .retro-inset {
     background-color: var(--retro-bg);
     border: 2px solid var(--retro-dark);
@@ -37,6 +41,7 @@ body {
     border-radius: 0;
 }
 
+/* 3. 操作按钮 */
 .retro-button {
     background-color: var(--retro-light);
     color: var(--retro-dark);
@@ -62,6 +67,7 @@ body {
     box-shadow: 0px 0px 0px var(--retro-dark);
 }
 
+/* 4. 专属图标框 */
 .retro-icon {
     width: 40px;
     height: 40px;
@@ -74,7 +80,14 @@ body {
     border-radius: 0;
 }
 
-.text-metallic-green { color: var(--retro-accent); }
+/* 5. Serif 衬线字体实用类 - 用于 About 页面高级排版 */
+.font-serif-heading {
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.text-metallic-green {
+    color: var(--retro-accent);
+}
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
