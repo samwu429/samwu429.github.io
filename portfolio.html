@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Lab | Sam Wu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-gray-400 font-sans antialiased animate-fade-in p-6 md:p-12 min-h-screen flex flex-col">
+
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center">
+        <a href="index.html" class="nm-button px-6 py-3 text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-emerald-400 flex items-center gap-2">
+            &larr; Back to Hub
+        </a>
+        <span class="text-xs font-mono tracking-widest text-emerald-500 uppercase">Module: Data_Lab</span>
+    </div>
+
+    <main class="max-w-6xl mx-auto w-full flex-1">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black text-white uppercase tracking-widest mb-2">Projects & Execution</h2>
+            <p class="text-sm font-mono text-gray-500">Systemizing raw data into actionable intelligence.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="nm-raised p-8 border-t-2 border-emerald-500 group flex flex-col" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                <div class="text-4xl mb-6 drop-shadow-md">🤖</div>
+                <h3 class="text-2xl font-bold text-white mb-4 tracking-tight">AI Boss<br>Resume Screener</h3>
+                <p class="text-sm text-gray-400 leading-relaxed mb-8 flex-1">
+                    Architected a full-stack system using <strong>Python FastAPI</strong> and the <strong>Google Gemini LLM</strong>. It automates candidate evaluation against employer criteria, dramatically reducing HR screening time.
+                </p>
+                <a href="https://samwu429.github.io/ai-boss-web/" target="_blank" class="nm-button px-4 py-3 text-emerald-400 text-xs font-black uppercase tracking-widest text-center w-full">View Live System</a>
+            </div>
+
+            <div class="nm-raised p-8 border-t-2 border-teal-500 group flex flex-col" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                <div class="text-4xl mb-6 drop-shadow-md">📦</div>
+                <h3 class="text-2xl font-bold text-white mb-4 tracking-tight">Logistics<br>Automation</h3>
+                <p class="text-sm text-gray-400 leading-relaxed mb-8 flex-1">
+                    During my internship at Haicheng Hongshengda, I developed custom <strong>Python scripts</strong> to process and automate complex monthly logistics-cost data, synchronizing it perfectly with the company's ERP systems.
+                </p>
+                <span class="nm-pressed px-4 py-3 text-teal-500 text-xs font-black uppercase tracking-widest text-center w-full block">Python / ERP</span>
+            </div>
+
+            <div class="nm-raised p-8 border-t-2 border-blue-500 group flex flex-col" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                <div class="text-4xl mb-6 drop-shadow-md">📈</div>
+                <h3 class="text-2xl font-bold text-white mb-4 tracking-tight">Statistical<br>Modeling</h3>
+                <p class="text-sm text-gray-400 leading-relaxed mb-8 flex-1">
+                    Applying advanced <strong>R Studio</strong> techniques for quantitative research, predictive modeling, and data visualization as part of my rigorous academic training at the University of Toronto.
+                </p>
+                <span class="nm-pressed px-4 py-3 text-blue-500 text-xs font-black uppercase tracking-widest text-center w-full block">R Studio / Stats</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
