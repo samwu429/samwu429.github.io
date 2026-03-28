@@ -8,63 +8,67 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="animate-fade-in min-h-screen py-12 flex flex-col items-center justify-center relative">
+<body class="animate-fade-in min-h-screen py-16 flex flex-col items-center justify-center relative">
 
-    <div class="text-center mb-16 relative z-10 w-full max-w-4xl px-6">
+    <div class="max-w-5xl mx-auto w-full px-6 mb-16 flex flex-col md:flex-row items-center md:items-start gap-12 relative z-10">
         
-        <div class="w-40 h-40 mx-auto retro-panel p-2 mb-8 relative">
-            <div class="w-full h-full border-2 border-gray-900 overflow-hidden">
-                <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu" class="w-full h-full object-cover saturate-[0.8]" />
+        <div class="flex-shrink-0 relative">
+            <div class="w-48 h-48 md:w-56 md:h-56 retro-panel p-2 bg-emerald-50 relative z-10">
+                <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu" class="w-full h-full object-cover border-2 border-gray-900 grayscale-[0.1]" />
             </div>
-            <div class="absolute -bottom-3 -right-3 w-8 h-8 bg-emerald-500 border-3 border-gray-900 retro-panel"></div>
+            <div class="absolute -bottom-4 -right-4 w-12 h-12 bg-emerald-500 border-2 border-gray-900 shadow-[4px_4px_0px_#1c1917] flex items-center justify-center z-20">
+                <span class="text-white font-black text-xs tracking-tighter">SW.</span>
+            </div>
         </div>
         
-        <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter text-gray-900 uppercase">
-            Yihang Wu
-        </h1>
-        <p class="text-base font-black tracking-widest text-gray-600 uppercase mb-8 border-y-4 border-gray-900 py-2 inline-block">Data Engineering / UofT</p>
-        
-        <div class="retro-panel p-6 md:p-8 mb-10 max-w-3xl mx-auto text-left">
-            <p class="text-gray-800 font-bold leading-relaxed text-sm md:text-base font-mono">
-                > TARGET: Mathematics, Statistics, and Computer Science student at the University of Toronto.<br><br>
-                > MISSION: Specialized in architecting automated data pipelines, robust statistical modeling, and integrating Large Language Models into full-stack industrial applications.
+        <div class="text-left flex-1 flex flex-col justify-center pt-2">
+            <h1 class="text-6xl md:text-8xl font-black mb-2 tracking-tighter text-gray-900 uppercase leading-none">
+                Sam Wu
+            </h1>
+            <p class="text-base font-black tracking-widest text-emerald-700 uppercase mb-6 border-b-2 border-gray-900 pb-2 inline-block max-w-max">
+                Data Engineering / UofT
             </p>
-        </div>
+            
+            <p class="text-gray-800 font-bold leading-relaxed text-sm md:text-base font-mono mb-8 max-w-2xl border-l-4 border-emerald-500 pl-4">
+                Mathematics, Statistics, and Computer Science student at the University of Toronto. Specialized in architecting automated data pipelines, robust statistical modeling, and integrating Large Language Models into full-stack industrial applications.
+            </p>
 
-        <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-4">
-            <a href="mailto:wuyihang429@gmail.com" class="retro-button px-6 py-3 flex items-center gap-4">
-                <div class="retro-icon text-emerald-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                </div>
-                <div class="text-left">
-                    <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">Personal</span>
-                    <span class="block text-xs text-gray-900 font-black tracking-wide">wuyihang429@gmail.com</span>
-                </div>
-            </a>
-            <a href="mailto:yihang.wu@mail.utoronto.ca" class="retro-button px-6 py-3 flex items-center gap-4">
-                <div class="retro-icon text-blue-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path></svg>
-                </div>
-                <div class="text-left">
-                    <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">University</span>
-                    <span class="block text-xs text-gray-900 font-black tracking-wide">yihang.wu@mail.utoronto.ca</span>
-                </div>
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="mailto:wuyihang429@gmail.com" class="retro-button px-5 py-3 flex items-center gap-4">
+                    <div class="retro-icon text-emerald-700 flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">Personal</span>
+                        <span class="block text-xs text-gray-900 font-black tracking-wide">wuyihang429@gmail.com</span>
+                    </div>
+                </a>
+                
+                <a href="mailto:yihang.wu@mail.utoronto.ca" class="retro-button px-5 py-3 flex items-center gap-4">
+                    <div class="retro-icon text-blue-700 flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path></svg>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">University</span>
+                        <span class="block text-xs text-gray-900 font-black tracking-wide">yihang.wu@mail.utoronto.ca</span>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full px-6 relative z-10">
-        <a href="about.html" class="retro-button p-8 flex flex-col items-center gap-5">
-            <div class="retro-icon"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg></div>
-            <span class="tracking-widest uppercase text-sm font-black text-center">Professional<br>Profile</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full px-6 relative z-10">
+        <a href="about.html" class="retro-button p-6 md:p-8 flex flex-col items-start text-left group">
+            <div class="retro-icon mb-4"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg></div>
+            <span class="tracking-widest uppercase text-sm font-black text-gray-900">Professional<br>Profile</span>
         </a>
-        <a href="resume.html" class="retro-button p-8 flex flex-col items-center gap-5">
-            <div class="retro-icon"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
-            <span class="tracking-widest uppercase text-sm font-black text-center">CV and<br>AI Agent</span>
+        <a href="resume.html" class="retro-button p-6 md:p-8 flex flex-col items-start text-left group">
+            <div class="retro-icon mb-4"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
+            <span class="tracking-widest uppercase text-sm font-black text-gray-900">CV and<br>AI Agent</span>
         </a>
-        <a href="beyond.html" class="retro-button p-8 flex flex-col items-center gap-5">
-            <div class="retro-icon"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></div>
-            <span class="tracking-widest uppercase text-sm font-black text-center">Beyond<br>the Code</span>
+        <a href="beyond.html" class="retro-button p-6 md:p-8 flex flex-col items-start text-left group">
+            <div class="retro-icon mb-4"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></div>
+            <span class="tracking-widest uppercase text-sm font-black text-gray-900">Beyond<br>the Code</span>
         </a>
     </div>
 
