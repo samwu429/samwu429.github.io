@@ -1,93 +1,103 @@
 /* =========================================================
- * Yihang (Sam) Wu - Refined Editorial Brutalism (RESTORED + REFINED)
- * Core: Asymmetry, Crisp 2px Borders, Human-crafted Typography
+ * Yihang (Sam) Wu - Advanced Industrial Neumorphism
+ * Core: Convex Surfaces, Concave Wells, Bevel Highlights, Classic Silver-Grey
  * ========================================================= */
 
 :root {
-    /* 温暖的纸白背景 */
-    --retro-bg: #fdfbf7; 
-    --retro-dark: #1c1917; /* 温和的深墨色，代替刺眼的纯黑 */
-    --retro-light: #ffffff;
-    --retro-accent: #059669; 
+    /* 黄金拟物配色：吸收刺眼高光，凸显极深碳灰文字 */
+    --nm-bg: #e0e5ec;
+    --nm-dark: #a3b1c6;
+    --nm-light: #ffffff;
+    --nm-accent: #059669; /* 沉稳的翡翠绿 */
+    --text-main: #1e293b; /* 极深碳灰色，绝对清晰，高可读性 */
+    --text-muted: #475569; /* 深灰次级文字 */
 }
 
 body {
-    background-color: var(--retro-bg);
-    color: var(--retro-dark);
+    background-color: var(--nm-bg);
+    color: var(--text-main);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* 主体使用清晰的无衬线字体 */
     font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-/* ================= 高级人类排版组件 ================= */
+/* ================= 纯粹工业物理组件 ================= */
 
-/* 1. 杂志级卡片 (线条收敛到 2px，更显高级) */
-.retro-panel {
-    background-color: var(--retro-light);
-    border: 2px solid var(--retro-dark);
-    box-shadow: 6px 6px 0px var(--retro-dark);
-    border-radius: 0; 
+/* 1. 微曲面凸起平台 (Convex Panel) - 用于卡片、按钮 */
+.nm-panel {
+    background: linear-gradient(145deg, #f0f5fd, #cacfd4);
+    box-shadow: 10px 10px 20px var(--nm-dark), 
+               -10px -10px 20px var(--nm-light);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* 模拟边缘倒角高光 */
 }
 
-/* 2. 内凹阅读区 */
-.retro-inset {
-    background-color: var(--retro-bg);
-    border: 2px solid var(--retro-dark);
-    box-shadow: inset 4px 4px 0px rgba(0,0,0,0.06);
-    border-radius: 0;
+/* 2. 微凹陷屏幕 (Concave Inset) - 用于文本区、输入框、AI聊天窗 */
+.nm-inset {
+    background: #e0e5ec;
+    box-shadow: inset 8px 8px 16px var(--nm-dark), 
+                inset -8px -8px 16px var(--nm-light);
+    border-radius: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8); /* 模拟凹槽底部的物理反光 */
 }
 
-/* 3. 操作按钮 */
-.retro-button {
-    background-color: var(--retro-light);
-    color: var(--retro-dark);
-    border: 2px solid var(--retro-dark);
-    box-shadow: 4px 4px 0px var(--retro-dark);
-    border-radius: 0;
-    transition: all 0.15s ease-out;
+/* 3. 复古硬按键 (Tuned Physical Button) - 极具质感的物理反馈 */
+.nm-button {
+    background: linear-gradient(145deg, #f0f5fd, #cacfd4);
+    color: var(--text-main);
+    box-shadow: 6px 6px 12px var(--nm-dark), 
+               -6px -6px 12px var(--nm-light);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
+    font-weight: 700;
 }
 
-.retro-button:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--retro-dark);
-    color: var(--retro-accent);
+/* 悬停：假装微微浮起，光影变强 */
+.nm-button:hover {
+    box-shadow: 8px 8px 16px var(--nm-dark), 
+               -8px -8px 16px var(--nm-light);
+    color: var(--nm-accent);
 }
 
-.retro-button:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0px 0px 0px var(--retro-dark);
+/* 点击：真实的物理按压反馈！ */
+.nm-button:active {
+    box-shadow: inset 4px 4px 8px var(--nm-dark), 
+                inset -4px -4px 8px var(--nm-light);
+    color: #059669;
 }
 
-/* 4. 专属图标框 */
-.retro-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--retro-light);
-    border: 2px solid var(--retro-dark);
-    box-shadow: 3px 3px 0px var(--retro-dark);
+/* 图标专用物理槽 */
+.nm-icon-slot {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #e0e5ec;
+    box-shadow: inset 5px 5px 10px var(--nm-dark), 
+                inset -5px -5px 10px var(--nm-light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
-}
-
-/* 5. Serif 衬线字体实用类 - 用于 About 页面高级排版 */
-.font-serif-heading {
-    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    color: var(--nm-accent);
 }
 
 .text-metallic-green {
-    color: var(--retro-accent);
+    background: linear-gradient(135deg, #047857, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--nm-dark); border-radius: 10px; }
+
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
