@@ -1,5 +1,6 @@
 /* =========================================================
  * Yihang (Sam) Wu - App Logic (Restored Retro Brutalism)
+ * Updated to reflect the Human-AI Symbiosis vision
  * ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function addBubble(text, isUser = true) {
         const formattedBody = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-700 font-black">$1</strong>').replace(/\n/g, '<br>');
         
-        // 恢复直角复古气泡
         const html = isUser 
             ? `<div class="flex justify-end mb-5 animate-fade-in"><span class="retro-panel px-6 py-4 text-sm font-bold border-emerald-600 border-b-4 max-w-[85%]">${formattedBody}</span></div>`
             : `<div class="flex items-start mt-2 mb-5 animate-fade-in"><div class="w-10 h-10 retro-panel flex items-center justify-center text-emerald-800 mr-4 flex-shrink-0 font-black text-[12px] bg-emerald-100">AI</div><div class="retro-inset bg-white px-6 py-4 text-sm max-w-[85%] leading-relaxed font-bold text-gray-800">${formattedBody}</div></div>`;
