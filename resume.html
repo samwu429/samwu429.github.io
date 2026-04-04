@@ -3,54 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Agent & CV | Sam Wu</title>
+    <title>AI Agent & Resume | Sam Wu (Light Neumorphic)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="p-6 md:p-12 min-h-screen flex flex-col animate-fade-in relative overflow-x-hidden">
+<body class="animate-fade-in p-6 md:p-12 h-screen flex flex-col relative overflow-hidden">
 
-    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center border-b-2 border-gray-900 pb-4 relative z-10">
-        <a href="index.html" class="retro-button px-6 py-2 text-xs uppercase tracking-widest">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> BACK
+    <div class="max-w-6xl mx-auto w-full mb-12 flex justify-between items-center flex-shrink-0 relative z-10">
+        <a href="index.html" class="nm-button px-6 py-3 text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-700 flex items-center gap-2">
+            &larr; Back to Hub
         </a>
-        <span class="text-xl font-black tracking-widest uppercase">Agent.EXE</span>
+        <span class="text-xs font-mono tracking-widest text-emerald-700 uppercase font-bold relative z-10">Module: CV_AI</span>
     </div>
 
-    <main class="max-w-7xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 pb-20">
+    <main class="max-w-6xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 h-full">
         
-        <div class="retro-panel flex flex-col h-[750px] overflow-hidden bg-gray-100">
-            <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-2 border-gray-900">
-                <h2 class="text-lg font-black text-white tracking-widest uppercase font-bold">Terminal: Sam_AI</h2>
-                <div class="w-3 h-3 bg-emerald-500 border border-white pulse"></div>
+        <div class="nm-pressed p-8 md:p-10 flex flex-col h-full border border-gray-100 rounded-3xl">
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-gray-100 flex-shrink-0">
+                <h2 class="text-2xl font-black text-slate-950 uppercase tracking-widest relative z-10">Sam's AI Agent</h2>
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse relative z-10"></div>
             </div>
 
-            <div class="bg-yellow-100 border-b-2 border-gray-900 p-4 font-mono text-sm font-bold text-gray-900 text-left">
-                [NOTICE] Connection established. Standard free tier wait time (~50s) applies for first boot.
-            </div>
-
-            <div id="chat-window" class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            <div id="chat-window" class="nm-inset flex-1 p-6 overflow-y-auto mb-8 custom-scrollbar border border-gray-100 relative z-0 h-[30svh]">
                 <div class="flex items-start gap-4 mb-4">
-                    <div class="w-10 h-10 retro-panel flex items-center justify-center text-gray-900 font-black text-[12px] flex-shrink-0 bg-emerald-200 shadow-md">AI</div>
-                    <span class="retro-panel text-gray-800 px-6 py-4 text-sm font-bold max-w-[85%] leading-relaxed">System Ready. Awaiting queries regarding Sam's expertise in screenless interaction trinity, De-Apped AIOS architectures, or TIC Pepper Biometrics.</span>
+                    <div class="w-10 h-10 rounded-full nm-panel flex items-center justify-center text-emerald-600 mr-4 flex-shrink-0 font-bold text-[10px] shadow-lg border border-gray-100 relative z-10">AI</div>
+                    <span class="nm-panel text-slate-800 px-5 py-4 rounded-2xl rounded-tl-none text-sm leading-relaxed max-w-[85%] border border-gray-100 relative z-0">
+                        Hello! Ask me about Sam's expertise in mathematics, robust data pipelines, full-stack AI integrations, or his specific project interest fields derived from the TIC project documentation.
+                    </span>
                 </div>
             </div>
 
-            <form id="ai-chat-form" class="flex p-4 bg-gray-200 border-t-2 border-gray-900 gap-4">
-                <input type="text" id="ai-input" placeholder="Enter command..." class="flex-1 retro-inset bg-white px-6 py-4 text-gray-900 font-bold text-sm focus:outline-none font-mono">
-                <button type="submit" class="retro-button px-8 font-black text-xs uppercase tracking-widest bg-emerald-400">SEND</button>
+            <form id="ai-chat-form" class="flex gap-4 relative z-10">
+                <input type="text" id="ai-input" placeholder="Query data..." class="flex-1 nm-inset px-6 py-4 text-slate-900 text-sm focus:border-emerald-500 outline-noneplaceholder-gray-500 border border-gray-100">
+                <button type="submit" class="nm-button px-8 font-bold text-xs uppercase tracking-widest text-emerald-700">Ask AI</button>
             </form>
         </div>
 
-        <div class="retro-panel flex flex-col h-[750px] overflow-hidden w-full lg:w-[calc(100%+80px)]">
-            <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-2 border-gray-900 flex-shrink-0">
-                <h2 class="text-lg font-black text-white tracking-widest uppercase font-bold">Document: CV_Credentials</h2>
-                <a href="Yihang.Wu.pdf" download class="retro-button px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-white">Download PDF</a>
-            </div>
+        <div class="nm-pressed p-6 bg-gray-50 flex flex-col h-full border border-gray-100 rounded-3xl relative z-0 overflow-y-auto custom-scrollbar">
+            <p class="text-emerald-700 mb-6 border-b-2 border-emerald-200 font-mono font-bold tracking-widest uppercase relative z-10">// PDF VIEWER TRAY:</p>
             
-            <div class="flex-1 retro-inset bg-gray-200 p-1 flex items-center justify-center relative overflow-hidden">
-                <iframe src="Yihang.Wu.pdf" class="w-full h-full lg:w-[calc(100%+80px)] lg:-ml-10 border-none bg-white scale-[1.01] saturate-[0.98] opacity-[0.98]"></iframe>
+            <div class="relative nm-inset p-1 border border-gray-100 flex items-center justify-center overflow-hidden h-full z-0">
+                <iframe src="Yihang.Wu.pdf" alt="Credentials" class="w-full lg:w-[calc(100%+120px)] lg:-ml-12 border-none h-full scale-[1.01] saturate-[0.98] opacity-[0.98]"></iframe>
                 
-                <div class="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-900"></div>
+                <div class="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-900 relative z-10"></div>
             </div>
         </div>
 
