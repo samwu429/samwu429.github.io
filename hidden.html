@@ -208,13 +208,22 @@
                             <button onclick="filterPhotos('Portrait')" class="retro-button text-xs">Portrait</button>
                             <button onclick="filterPhotos('all')" class="retro-button text-xs active-tab">All</button>
                         </div>
-                        <div id="photo-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div id="photo-grid" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
                             <!-- 动态加载照片 -->
                         </div>
                     </div>
                     
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Lightbox for Image Viewing (Anti-download) -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-[100] hidden flex-col items-center justify-center p-4 select-none" onclick="closeLightbox()" oncontextmenu="return false;">
+        <div class="relative max-w-full max-h-full flex flex-col items-center justify-center">
+            <button class="absolute -top-10 right-0 text-white font-bold text-xl hover:text-red-500 retro-button !p-1 !px-2" onclick="closeLightbox()">[X] CLOSE</button>
+            <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain border-4 border-gray-500 shadow-2xl pointer-events-none" oncontextmenu="return false;" draggable="false">
+            <p class="text-gray-500 text-xs mt-4 pixel-font uppercase font-bold tracking-widest">* Image download disabled by system policy *</p>
         </div>
     </div>
 
@@ -262,11 +271,15 @@
         function renderPhotos(photos) {
             const container = document.getElementById('photo-grid');
             container.innerHTML = photos.map(p => `
-                <div class="bg-[#c0c0c0] p-2 border-2 border-white border-r-black border-b-black">
-                    <div class="retro-inset p-1 mb-2 h-48">
-                        <img src="${p.url}" alt="${p.category}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300">
+                <div class="bg-[#c0c0c0] p-2 border-2 border-white border-r-black border-b-black inline-block w-full break-inside-avoid">
+                    <div class="retro-inset p-1 mb-2 bg-black cursor-pointer group" onclick="openLightbox('${p.url}')" oncontextmenu="return false;">
+                        <!-- Remove fixed height, use height auto to show full frame -->
+                        <img src="${p.url}" alt="${p.category}" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300 pointer-events-none" draggable="false">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">
+                            <span class="bg-black bg-opacity-70 text-green-400 font-bold pixel-font px-2 py-1">[VIEW]</span>
+                        </div>
                     </div>
-                    <div class="text-center text-sm font-bold pixel-font text-lg">${p.category}.jpg</div>
+                    <div class="text-center text-sm font-bold pixel-font text-lg select-none">${p.category}.jpg</div>
                 </div>
             `).join('');
         }
@@ -325,6 +338,20 @@
             } catch(e) {
                 alert('SYSTEM ERROR: Could not connect to database.');
             }
+        }
+
+        function openLightbox(url) {
+            document.getElementById('lightbox-img').src = url;
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('hidden');
+            lb.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.add('hidden');
+            lb.classList.remove('flex');
+            document.getElementById('lightbox-img').src = '';
         }
     </script>
 </body>
