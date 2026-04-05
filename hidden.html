@@ -299,27 +299,31 @@
 
         async function submitTestimonial() {
             const name = document.getElementById('t-name').value;
-            const linkedin = document.getElementById('t-linkedin').value;
+            const linkedin = document.getElementById('t-linkedin').value || '';
             const relationship = document.getElementById('t-relationship').value;
             const comment = document.getElementById('t-comment').value;
 
             if (!name || !relationship || !comment) return alert('ERROR: Required fields missing.');
 
-            const res = await fetch(`${API_BASE}/hidden/testimonials`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'x-password': currentPassword },
-                body: JSON.stringify({ name, linkedin, relationship, comment })
-            });
+            try {
+                const res = await fetch(`${API_BASE}/hidden/testimonials`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'x-password': currentPassword },
+                    body: JSON.stringify({ name, linkedin, relationship, comment })
+                });
 
-            if (res.ok) {
-                alert('DATA SAVED SUCCESSFULLY.');
-                document.getElementById('t-name').value = '';
-                document.getElementById('t-linkedin').value = '';
-                document.getElementById('t-relationship').value = '';
-                document.getElementById('t-comment').value = '';
-                loadData();
-            } else {
-                alert('ERROR: Submission failed.');
+                if (res.ok) {
+                    alert('DATA SAVED SUCCESSFULLY.');
+                    document.getElementById('t-name').value = '';
+                    document.getElementById('t-linkedin').value = '';
+                    document.getElementById('t-relationship').value = '';
+                    document.getElementById('t-comment').value = '';
+                    await loadData(); // 强制刷新列表
+                } else {
+                    alert('ERROR: Submission failed.');
+                }
+            } catch(e) {
+                alert('SYSTEM ERROR: Could not connect to database.');
             }
         }
     </script>
