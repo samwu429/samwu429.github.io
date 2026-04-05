@@ -7,57 +7,150 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         .hidden-space { display: none; }
-        .active-tab { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        
+        /* Metallic / Skeuomorphic Design Elements */
+        body {
+            background-color: #e0e5ec; /* Neumorphic base */
+        }
+
+        .metal-panel {
+            background: linear-gradient(135deg, #f0f3f5 0%, #d4d9e0 100%);
+            box-shadow: 
+                -10px -10px 20px rgba(255, 255, 255, 0.8),
+                10px 10px 20px rgba(166, 171, 189, 0.5),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+                inset -1px -1px 2px rgba(166, 171, 189, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 1rem;
+        }
+
+        .metal-input {
+            background: #e0e5ec;
+            box-shadow: 
+                inset 5px 5px 10px rgba(166, 171, 189, 0.6),
+                inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+            border: none;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        
+        .metal-input:focus {
+            box-shadow: 
+                inset 6px 6px 12px rgba(166, 171, 189, 0.7),
+                inset -6px -6px 12px rgba(255, 255, 255, 0.9),
+                0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+
+        .metal-button {
+            background: linear-gradient(145deg, #e6ebf2, #c1c7d0);
+            box-shadow: 
+                5px 5px 10px rgba(166, 171, 189, 0.6),
+                -5px -5px 10px rgba(255, 255, 255, 0.8),
+                inset 1px 1px 1px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #4a5568;
+            font-weight: bold;
+            transition: all 0.1s ease;
+        }
+
+        .metal-button:active {
+            background: #d4d9e0;
+            box-shadow: 
+                inset 4px 4px 8px rgba(166, 171, 189, 0.6),
+                inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .metal-button-primary {
+            background: linear-gradient(145deg, #4b92ff, #2563eb);
+            color: white;
+            box-shadow: 
+                5px 5px 10px rgba(166, 171, 189, 0.6),
+                -5px -5px 10px rgba(255, 255, 255, 0.8),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            border: none;
+        }
+
+        .metal-button-primary:active {
+            background: #2563eb;
+            box-shadow: 
+                inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .metal-text {
+            color: #4a5568;
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+        }
+
+        .active-tab { 
+            border-bottom: 3px solid #3b82f6; 
+            color: #2563eb; 
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+        }
+        .inactive-tab {
+            color: #718096;
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+        }
+        .inactive-tab:hover {
+            color: #4a5568;
+        }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="min-h-screen">
 
-    <div id="auth-layer" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
-        <div class="bg-white p-8 rounded-lg shadow-xl text-center w-80">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Access Restricted</h2>
-            <p class="text-sm text-gray-600 mb-4">Please enter visitor password</p>
-            <input type="password" id="pwd-input" class="w-full border-2 border-gray-300 p-2 rounded mb-4" placeholder="Password">
-            <button onclick="verifyPassword()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Unlock</button>
-            <p id="error-msg" class="text-red-500 text-sm mt-2 hidden">Incorrect password</p>
-            <a href="index.html" class="block mt-4 text-sm text-gray-500 hover:underline">Cancel</a>
+    <!-- 密码验证层 (Metallic Design) -->
+    <div id="auth-layer" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-60 z-50 backdrop-filter backdrop-blur-sm">
+        <div class="metal-panel p-10 text-center w-80 md:w-96 relative overflow-hidden">
+            <!-- Decorative screw heads -->
+            <div class="absolute top-3 left-3 w-2 h-2 rounded-full bg-gray-400 shadow-inner"></div>
+            <div class="absolute top-3 right-3 w-2 h-2 rounded-full bg-gray-400 shadow-inner"></div>
+            <div class="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-gray-400 shadow-inner"></div>
+            <div class="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-gray-400 shadow-inner"></div>
+
+            <h2 class="text-3xl font-black mb-2 metal-text tracking-tight">Access Restricted</h2>
+            <p class="text-sm text-gray-500 font-medium mb-6">Please enter visitor password</p>
+            
+            <input type="password" id="pwd-input" class="w-full metal-input p-3 rounded-lg mb-6 text-center tracking-widest font-bold text-gray-700" placeholder="••••">
+            
+            <button onclick="verifyPassword()" class="w-full metal-button-primary py-3 rounded-lg uppercase tracking-widest text-sm transition">Unlock</button>
+            
+            <p id="error-msg" class="text-red-500 font-bold text-sm mt-3 hidden">Incorrect password</p>
+            
+            <a href="index.html" class="block mt-6 text-xs text-gray-500 uppercase tracking-wider font-bold hover:text-gray-700 transition">Cancel</a>
         </div>
     </div>
 
     <!-- 主内容区 -->
-    <div id="main-content" class="hidden-space container mx-auto p-4 max-w-4xl">
-        <header class="text-center py-6">
-            <h1 class="text-3xl font-bold text-gray-800">Private Space</h1>
-            <a href="index.html" class="text-blue-500 hover:underline text-sm mt-2 block">← &larr; &larr; Back to Home</a>
+    <div id="main-content" class="hidden-space container mx-auto p-4 max-w-4xl pt-10">
+        <header class="text-center mb-10 metal-panel p-6">
+            <h1 class="text-4xl font-black metal-text uppercase tracking-tight">Private Space</h1>
+            <a href="index.html" class="text-blue-500 hover:text-blue-700 font-bold text-sm mt-2 block transition">&larr; Back to Home</a>
         </header>
 
         <!-- 选项卡 -->
-        <div class="flex justify-center mb-6 border-b">
-            <button onclick="switchTab('photos')" id="tab-photos" class="px-6 py-2 active-tab font-semibold">Gallery</button>
-            <button onclick="switchTab('testimonials')" id="tab-testimonials" class="px-6 py-2 text-gray-600 font-semibold">Testimonials</button>
+        <div class="flex justify-center mb-8 gap-8">
+            <button onclick="switchTab('testimonials')" id="tab-testimonials" class="px-2 py-2 active-tab font-black text-lg uppercase tracking-wide transition">Testimonials</button>
+            <button onclick="switchTab('photos')" id="tab-photos" class="px-2 py-2 inactive-tab font-black text-lg uppercase tracking-wide transition">Gallery</button>
         </div>
 
-        <!-- 照片集模块 -->
-        <div id="module-photos" class="module">
-            <div class="flex justify-center space-x-4 mb-4">
-                <button onclick="filterPhotos('Culture')" class="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300">Culture</button>
-                <button onclick="filterPhotos('Landscape')" class="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300">Landscape</button>
-                <button onclick="filterPhotos('Portrait')" class="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300">Portrait</button>
-                <button onclick="filterPhotos('all')" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200">All</button>
+        <!-- 留言评价模块 (DEFAULT) -->
+        <div id="module-testimonials" class="module">
+            
+            <!-- 展示列表 (MOVED TO TOP) -->
+            <div class="metal-panel p-6 mb-8">
+                <h3 class="text-2xl font-black metal-text mb-6 border-b border-gray-300 pb-3">Testimonials Board</h3>
+                <div id="testimonial-list" class="space-y-6">
+                    <!-- 动态加载留言 -->
+                </div>
             </div>
-            <div id="photo-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- 动态加载照片 -->
-            </div>
-        </div>
 
-        <!-- 留言评价模块 -->
-        <div id="module-testimonials" class="module hidden">
-            <!-- 提交表单 -->
-            <div class="bg-white p-6 rounded-lg shadow mb-8">
-                <h3 class="text-xl font-bold mb-4">Leave a Testimonial</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <input type="text" id="t-name" placeholder="Your Name" class="border p-2 rounded w-full">
-                    <input type="text" id="t-linkedin" placeholder="LinkedIn Profile URL (Optional)" class="border p-2 rounded w-full">
-                    <select id="t-relationship" class="border p-2 rounded w-full md:col-span-2">
+            <!-- 提交表单 (MOVED TO BOTTOM) -->
+            <div class="metal-panel p-6 mb-8">
+                <h3 class="text-xl font-black metal-text mb-4">Leave a Testimonial</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                    <input type="text" id="t-name" placeholder="Your Name" class="metal-input p-3 rounded-lg w-full font-medium">
+                    <input type="text" id="t-linkedin" placeholder="LinkedIn Profile URL (Optional)" class="metal-input p-3 rounded-lg w-full font-medium">
+                    <select id="t-relationship" class="metal-input p-3 rounded-lg w-full md:col-span-2 font-medium text-gray-600">
                         <option value="">Select our relationship...</option>
                         <option value="Colleague">Colleague</option>
                         <option value="Classmate">Classmate</option>
@@ -66,21 +159,28 @@
                         <option value="Other">Other</option>
                     </select>
                 </div>
-                <textarea id="t-comment" rows="4" placeholder="Your message..." class="border p-2 rounded w-full mb-4"></textarea>
-                <button onclick="submitTestimonial()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Submit</button>
-                <p class="text-xs text-gray-500 mt-2">* Submissions cannot be edited. Please contact the author for changes.</p>
+                <textarea id="t-comment" rows="4" placeholder="Your message..." class="metal-input p-3 rounded-lg w-full mb-5 font-medium"></textarea>
+                <button onclick="submitTestimonial()" class="metal-button-primary px-8 py-3 rounded-lg font-bold tracking-wide transition">Submit</button>
+                <p class="text-xs text-gray-500 font-medium mt-3">* Submissions cannot be edited. Please contact the author for changes.</p>
             </div>
+        </div>
 
-            <!-- 展示列表 -->
-            <h3 class="text-xl font-bold mb-4 border-b pb-2">Testimonials Board</h3>
-            <div id="testimonial-list" class="space-y-4">
-                <!-- 动态加载留言 -->
+        <!-- 照片集模块 -->
+        <div id="module-photos" class="module hidden">
+            <div class="flex justify-center flex-wrap gap-4 mb-8">
+                <button onclick="filterPhotos('Culture')" class="metal-button px-6 py-2 rounded-full text-sm">Culture</button>
+                <button onclick="filterPhotos('Landscape')" class="metal-button px-6 py-2 rounded-full text-sm">Landscape</button>
+                <button onclick="filterPhotos('Portrait')" class="metal-button px-6 py-2 rounded-full text-sm">Portrait</button>
+                <button onclick="filterPhotos('all')" class="metal-button-primary px-6 py-2 rounded-full text-sm">All</button>
+            </div>
+            <div id="photo-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 动态加载照片 -->
             </div>
         </div>
     </div>
 
     <script>
-        const API_BASE = 'https://sam-api-backend.onrender.com/api'; // 请根据你的实际后端URL调整
+        const API_BASE = 'https://sam-api-backend.onrender.com/api'; 
         let currentPassword = '';
         let allPhotos = [];
 
@@ -102,31 +202,32 @@
         function switchTab(tab) {
             document.getElementById('module-photos').classList.add('hidden');
             document.getElementById('module-testimonials').classList.add('hidden');
-            document.getElementById('tab-photos').classList.remove('active-tab');
-            document.getElementById('tab-testimonials').classList.remove('active-tab');
+            
+            document.getElementById('tab-photos').className = 'px-2 py-2 inactive-tab font-black text-lg uppercase tracking-wide transition';
+            document.getElementById('tab-testimonials').className = 'px-2 py-2 inactive-tab font-black text-lg uppercase tracking-wide transition';
             
             document.getElementById(`module-${tab}`).classList.remove('hidden');
-            document.getElementById(`tab-${tab}`).classList.add('active-tab');
+            document.getElementById(`tab-${tab}`).className = 'px-2 py-2 active-tab font-black text-lg uppercase tracking-wide transition';
         }
 
         async function loadData() {
-            // Load Photos
-            const photoRes = await fetch(`${API_BASE}/hidden/photos`, { headers: { 'x-password': currentPassword } });
-            allPhotos = await photoRes.json();
-            renderPhotos(allPhotos);
-
-            // Load Testimonials
             const tRes = await fetch(`${API_BASE}/hidden/testimonials`, { headers: { 'x-password': currentPassword } });
             const testimonials = await tRes.json();
             renderTestimonials(testimonials);
+
+            const photoRes = await fetch(`${API_BASE}/hidden/photos`, { headers: { 'x-password': currentPassword } });
+            allPhotos = await photoRes.json();
+            renderPhotos(allPhotos);
         }
 
         function renderPhotos(photos) {
             const container = document.getElementById('photo-grid');
             container.innerHTML = photos.map(p => `
-                <div class="bg-white rounded overflow-hidden shadow">
-                    <img src="${p.url}" alt="${p.category}" class="w-full h-48 object-cover">
-                    <div class="p-2 text-center text-sm text-gray-500">${p.category}</div>
+                <div class="metal-panel overflow-hidden p-2">
+                    <div class="rounded-lg overflow-hidden border border-gray-300">
+                        <img src="${p.url}" alt="${p.category}" class="w-full h-56 object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-3 text-center text-sm font-bold metal-text uppercase tracking-widest">${p.category}</div>
                 </div>
             `).join('');
         }
@@ -139,16 +240,16 @@
         function renderTestimonials(testimonials) {
             const container = document.getElementById('testimonial-list');
             container.innerHTML = testimonials.map(t => `
-                <div class="bg-white p-4 rounded shadow border-l-4 border-blue-500">
-                    <div class="flex justify-between items-start mb-2">
+                <div class="metal-input p-5 rounded-lg border-l-4 border-blue-500 relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-3">
                         <div>
-                            <span class="font-bold text-lg">${t.name}</span>
-                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded ml-2">${t.relationship}</span>
+                            <span class="font-black text-xl metal-text tracking-tight">${t.name}</span>
+                            <span class="text-xs bg-gray-300 text-gray-700 font-bold px-2 py-1 rounded ml-3 shadow-inner uppercase tracking-wider">${t.relationship}</span>
                         </div>
-                        ${t.linkedin ? `<a href="${t.linkedin}" target="_blank" class="text-blue-500 text-sm hover:underline">LinkedIn</a>` : ''}
+                        ${t.linkedin ? `<a href="${t.linkedin}" target="_blank" class="text-blue-500 font-bold text-sm hover:underline">LinkedIn</a>` : ''}
                     </div>
-                    <p class="text-gray-700 mt-2">${t.comment}</p>
-                    <div class="text-xs text-gray-400 mt-2">${new Date(t.timestamp).toLocaleString()}</div>
+                    <p class="text-gray-700 font-medium leading-relaxed">${t.comment}</p>
+                    <div class="text-xs text-gray-400 font-bold mt-4 tracking-wider">${new Date(t.timestamp).toLocaleString()}</div>
                 </div>
             `).join('');
         }
@@ -173,7 +274,7 @@
                 document.getElementById('t-linkedin').value = '';
                 document.getElementById('t-relationship').value = '';
                 document.getElementById('t-comment').value = '';
-                loadData(); // Reload
+                loadData();
             } else {
                 alert('Submission failed.');
             }
