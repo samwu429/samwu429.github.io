@@ -219,11 +219,18 @@
     </div>
 
     <!-- Lightbox for Image Viewing (Anti-download) -->
-    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-[100] hidden flex-col items-center justify-center p-4 select-none" onclick="closeLightbox()" oncontextmenu="return false;">
-        <div class="relative max-w-full max-h-full flex flex-col items-center justify-center">
-            <button class="absolute -top-10 right-0 text-white font-bold text-xl hover:text-red-500 retro-button !p-1 !px-2" onclick="closeLightbox()">[X] CLOSE</button>
-            <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain border-4 border-gray-500 shadow-2xl pointer-events-none" oncontextmenu="return false;" draggable="false">
-            <p class="text-gray-500 text-xs mt-4 pixel-font uppercase font-bold tracking-widest">* Image download disabled by system policy *</p>
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-95 z-[100] hidden flex-col items-center justify-center p-6 select-none" onclick="closeLightbox()" oncontextmenu="return false;">
+        <div class="relative w-full max-w-4xl max-h-[90vh] flex flex-col items-center justify-center">
+            
+            <div class="w-full flex justify-end mb-2">
+                <button class="text-white font-bold text-xl hover:text-red-500 retro-button !p-1 !px-2 z-50" onclick="closeLightbox()">[X] CLOSE</button>
+            </div>
+            
+            <div class="flex-1 w-full flex items-center justify-center overflow-hidden">
+                <img id="lightbox-img" src="" class="max-w-full max-h-[75vh] object-contain border-4 border-gray-500 shadow-2xl pointer-events-none" oncontextmenu="return false;" draggable="false">
+            </div>
+            
+            <p class="text-gray-400 text-xs mt-3 pixel-font uppercase font-bold tracking-widest text-center">* Image download disabled by system policy *</p>
         </div>
     </div>
 
