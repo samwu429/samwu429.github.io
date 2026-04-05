@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Wu - 访客空间</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hidden-space { display: none; }
+        .active-tab { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- 密码验证层 -->
+    <div id="auth-layer" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+        <div class="bg-white p-8 rounded-lg shadow-xl text-center w-80">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">访问受限</h2>
+            <p class="text-sm text-gray-600 mb-4">请输入访客密码继续</p>
+            <input type="password" id="pwd-input" class="w-full border-2 border-gray-300 p-2 rounded mb-4" placeholder="Password">
+            <button onclick="verifyPassword()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">解锁</button>
+            <p id="error-msg" class="text-red-500 text-sm mt-2 hidden">密码错误</p>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div id="main-content" class="hidden-space container mx-auto p-4 max-w-4xl">
+        <header class="text-center py-6">
+            <h1 class="text-3xl font-bold text-gray-800">隐藏空间</h1>
+            <a href="index.html" class="text-blue-500 hover:underline text-sm mt-2 block">← 返回主页</a>
+        </header>
+
+        <!-- 选项卡 -->
+        <div class="flex justify-center mb-6 border-b">
+            <button onclick="switchTab('photos')" id="tab-photos" class="px-6 py-2 active-tab font-semibold">照片集</button>
+            <button onclick="switchTab('testimonials')" id="tab-testimonials" class="px-6 py-2 text-gray-600 font-semibold">留言评价</button>
+        </div>
+
+        <!-- 照片集模块 -->
+        <div id="module-photos" class="module">
+            <div class="flex justify-center space-x-4 mb-4">
+                <button onclick="filterPhotos('人文')" class="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300">人文</button>
+                <button onclick="filterPhotos('风景')" class="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300">风景</button>
+                <button onclick="filterPhotos('人像')" class="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300">人像</button>
+                <button onclick="filterPhotos('all')" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200">全部</button>
+            </div>
+            <div id="photo-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- 动态加载照片 -->
+            </div>
+        </div>
+
+        <!-- 留言评价模块 -->
+        <div id="module-testimonials" class="module hidden">
+            <!-- 提交表单 -->
+            <div class="bg-white p-6 rounded-lg shadow mb-8">
+                <h3 class="text-xl font-bold mb-4">写下你的评价</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <input type="text" id="t-name" placeholder="你的名字" class="border p-2 rounded w-full">
+                    <input type="text" id="t-linkedin" placeholder="领英主页链接 (选填)" class="border p-2 rounded w-full">
+                    <select id="t-relationship" class="border p-2 rounded w-full md:col-span-2">
+                        <option value="">选择我们之间的关系...</option>
+                        <option value="同事">同事</option>
+                        <option value="同学">同学</option>
+                        <option value="朋友">朋友</option>
+                        <option value="领导">领导</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <textarea id="t-comment" rows="4" placeholder="你想说的话..." class="border p-2 rounded w-full mb-4"></textarea>
+                <button onclick="submitTestimonial()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">提交评价</button>
+                <p class="text-xs text-gray-500 mt-2">* 提交后不可修改，如需修改请联系网站作者。</p>
+            </div>
+
+            <!-- 展示列表 -->
+            <h3 class="text-xl font-bold mb-4 border-b pb-2">留言板</h3>
+            <div id="testimonial-list" class="space-y-4">
+                <!-- 动态加载留言 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://sam-backend-s2z9.onrender.com/api'; // 请根据你的实际后端URL调整
+        let currentPassword = '';
+        let allPhotos = [];
+
+        async function verifyPassword() {
+            const pwd = document.getElementById('pwd-input').value;
+            try {
+                const res = await fetch(`${API_BASE}/hidden/photos`, { headers: { 'x-password': pwd } });
+                if (res.ok) {
+                    currentPassword = pwd;
+                    document.getElementById('auth-layer').style.display = 'none';
+                    document.getElementById('main-content').classList.remove('hidden-space');
+                    loadData();
+                } else {
+                    document.getElementById('error-msg').classList.remove('hidden');
+                }
+            } catch (err) { alert('网络错误，请稍后再试'); }
+        }
+
+        function switchTab(tab) {
+            document.getElementById('module-photos').classList.add('hidden');
+            document.getElementById('module-testimonials').classList.add('hidden');
+            document.getElementById('tab-photos').classList.remove('active-tab');
+            document.getElementById('tab-testimonials').classList.remove('active-tab');
+            
+            document.getElementById(`module-${tab}`).classList.remove('hidden');
+            document.getElementById(`tab-${tab}`).classList.add('active-tab');
+        }
+
+        async function loadData() {
+            // Load Photos
+            const photoRes = await fetch(`${API_BASE}/hidden/photos`, { headers: { 'x-password': currentPassword } });
+            allPhotos = await photoRes.json();
+            renderPhotos(allPhotos);
+
+            // Load Testimonials
+            const tRes = await fetch(`${API_BASE}/hidden/testimonials`, { headers: { 'x-password': currentPassword } });
+            const testimonials = await tRes.json();
+            renderTestimonials(testimonials);
+        }
+
+        function renderPhotos(photos) {
+            const container = document.getElementById('photo-grid');
+            container.innerHTML = photos.map(p => `
+                <div class="bg-white rounded overflow-hidden shadow">
+                    <img src="${p.url}" alt="${p.category}" class="w-full h-48 object-cover">
+                    <div class="p-2 text-center text-sm text-gray-500">${p.category}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterPhotos(category) {
+            if (category === 'all') renderPhotos(allPhotos);
+            else renderPhotos(allPhotos.filter(p => p.category === category));
+        }
+
+        function renderTestimonials(testimonials) {
+            const container = document.getElementById('testimonial-list');
+            container.innerHTML = testimonials.map(t => `
+                <div class="bg-white p-4 rounded shadow border-l-4 border-blue-500">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <span class="font-bold text-lg">${t.name}</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded ml-2">${t.relationship}</span>
+                        </div>
+                        ${t.linkedin ? `<a href="${t.linkedin}" target="_blank" class="text-blue-500 text-sm hover:underline">LinkedIn</a>` : ''}
+                    </div>
+                    <p class="text-gray-700 mt-2">${t.comment}</p>
+                    <div class="text-xs text-gray-400 mt-2">${new Date(t.timestamp).toLocaleString()}</div>
+                </div>
+            `).join('');
+        }
+
+        async function submitTestimonial() {
+            const name = document.getElementById('t-name').value;
+            const linkedin = document.getElementById('t-linkedin').value;
+            const relationship = document.getElementById('t-relationship').value;
+            const comment = document.getElementById('t-comment').value;
+
+            if (!name || !relationship || !comment) return alert('请填写必填项（名字，关系，留言内容）');
+
+            const res = await fetch(`${API_BASE}/hidden/testimonials`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'x-password': currentPassword },
+                body: JSON.stringify({ name, linkedin, relationship, comment })
+            });
+
+            if (res.ok) {
+                alert('提交成功！');
+                document.getElementById('t-name').value = '';
+                document.getElementById('t-linkedin').value = '';
+                document.getElementById('t-relationship').value = '';
+                document.getElementById('t-comment').value = '';
+                loadData(); // Reload
+            } else {
+                alert('提交失败');
+            }
+        }
+    </script>
+</body>
+</html>
