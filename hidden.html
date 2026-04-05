@@ -170,18 +170,18 @@
 
                         <!-- 提交表单 (放在下方) -->
                         <div class="bg-[#c0c0c0] p-4 border-2 border-white border-r-gray-800 border-b-gray-800">
-                            <h3 class="text-lg font-bold mb-4">C:\> WRITE_TESTIMONIAL</h3>
+                            <h3 class="text-lg font-bold mb-4">C:\> WRITE_TESTIMONIAL <span class="text-xs text-red-600 ml-2">(* All fields are required)</span></h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                 <div>
-                                    <label class="block text-sm mb-1">Name:</label>
+                                    <label class="block text-sm mb-1">Name *:</label>
                                     <input type="text" id="t-name" class="retro-inset w-full">
                                 </div>
                                 <div>
-                                    <label class="block text-sm mb-1">LinkedIn (Opt):</label>
+                                    <label class="block text-sm mb-1">LinkedIn URL *:</label>
                                     <input type="text" id="t-linkedin" class="retro-inset w-full">
                                 </div>
                                 <div class="md:col-span-2">
-                                    <label class="block text-sm mb-1">Relationship:</label>
+                                    <label class="block text-sm mb-1">Relationship *:</label>
                                     <select id="t-relationship" class="retro-inset w-full">
                                         <option value="">Select...</option>
                                         <option value="Colleague">Colleague</option>
@@ -192,7 +192,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <label class="block text-sm mb-1">Message:</label>
+                            <label class="block text-sm mb-1">Message *:</label>
                             <textarea id="t-comment" rows="3" class="retro-inset w-full mb-4"></textarea>
                             <button onclick="submitTestimonial()" class="retro-button">Execute (Submit)</button>
                             <p class="text-xs mt-2 font-bold text-gray-700">* Read-only after submission. If you need to make changes, simply submit a new one until you are satisfied. For deletion of incorrect entries, please contact me directly.</p>
@@ -324,11 +324,11 @@
 
         async function submitTestimonial() {
             const name = document.getElementById('t-name').value;
-            const linkedin = document.getElementById('t-linkedin').value || '';
+            const linkedin = document.getElementById('t-linkedin').value;
             const relationship = document.getElementById('t-relationship').value;
             const comment = document.getElementById('t-comment').value;
 
-            if (!name || !relationship || !comment) return alert('ERROR: Required fields missing.');
+            if (!name || !linkedin || !relationship || !comment) return alert('ERROR: All fields are required.');
 
             try {
                 const res = await fetch(`${API_BASE}/hidden/testimonials`, {
