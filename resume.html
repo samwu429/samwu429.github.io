@@ -37,7 +37,20 @@
                 </div>
             </div>
 
-            <form id="ai-chat-form" class="flex p-4 bg-gray-200 border-t-2 border-gray-900 gap-4">
+            <!-- Ice Breaker Quick Prompts -->
+            <div class="px-4 pt-4 pb-0 bg-gray-200 border-t-2 border-gray-900 flex flex-wrap gap-2" id="ai-quick-prompts">
+                <button type="button" class="quick-prompt-btn px-3 py-1.5 bg-white border-2 border-gray-900 text-[11px] font-black text-emerald-800 shadow-[2px_2px_0px_#1c1917] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:bg-emerald-50">
+                    "What are Sam's core technical strengths?"
+                </button>
+                <button type="button" class="quick-prompt-btn px-3 py-1.5 bg-white border-2 border-gray-900 text-[11px] font-black text-emerald-800 shadow-[2px_2px_0px_#1c1917] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:bg-emerald-50">
+                    "Tell me about his internship experience."
+                </button>
+                <button type="button" class="quick-prompt-btn px-3 py-1.5 bg-white border-2 border-gray-900 text-[11px] font-black text-emerald-800 shadow-[2px_2px_0px_#1c1917] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:bg-emerald-50">
+                    "Why is he a great fit for a Data Engineering role?"
+                </button>
+            </div>
+
+            <form id="ai-chat-form" class="flex p-4 bg-gray-200 gap-4">
                 <input type="text" id="ai-input" placeholder="Enter command..." class="flex-1 retro-inset bg-white px-6 py-4 text-gray-900 font-bold text-sm focus:outline-none font-mono">
                 <button type="submit" class="retro-button px-8 font-black text-xs uppercase tracking-widest bg-emerald-400">SEND</button>
             </form>

@@ -90,6 +90,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if(chatForm) {
+        // Handle Quick Prompts
+        const quickPromptBtns = document.querySelectorAll('.quick-prompt-btn');
+        const quickPromptsContainer = document.getElementById('ai-quick-prompts');
+        
+        quickPromptBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Extract text without quotes
+                const promptText = btn.textContent.trim().replace(/^"|"$/g, '');
+                chatInput.value = promptText;
+                
+                // Trigger form submission
+                const event = new Event('submit', { cancelable: true });
+                chatForm.dispatchEvent(event);
+                
+                // Hide quick prompts after first use to keep UI clean
+                if (quickPromptsContainer) {
+                    quickPromptsContainer.style.display = 'none';
+                }
+            });
+        });
+
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const text = chatInput.value.trim();
