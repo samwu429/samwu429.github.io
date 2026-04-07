@@ -84,3 +84,19 @@ body {
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+
+/* Custom CSS for Warning Stripes */
+.bg-stripes-yellow {
+    background-color: #facc15;
+    background-image: linear-gradient(
+        45deg,
+        #111827 25%,
+        transparent 25%,
+        transparent 50%,
+        #111827 50%,
+        #111827 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 20px 20px;
+}
