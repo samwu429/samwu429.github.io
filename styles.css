@@ -26,6 +26,25 @@
     --grid-gap-12: 48px;
 }
 
+/* Wider than Tailwind max-w-7xl (80rem): uses almost full viewport on large monitors */
+.site-wrap {
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+    max-width: min(118rem, calc(100vw - 2.5rem));
+}
+
+@media (min-width: 1536px) {
+    .site-wrap {
+        padding-left: max(2rem, env(safe-area-inset-left, 0px));
+        padding-right: max(2rem, env(safe-area-inset-right, 0px));
+        max-width: min(128rem, calc(100vw - 5rem));
+    }
+}
+
 body {
     background:
         radial-gradient(circle at 12% 10%, rgba(5, 150, 105, 0.08), transparent 40%),
