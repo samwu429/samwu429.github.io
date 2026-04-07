@@ -172,6 +172,17 @@ body::before {
     margin-bottom: 20px;
 }
 
+.divider-rule {
+    height: 2px;
+    width: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--retro-dark) 0 22px,
+        transparent 22px 30px
+    );
+    opacity: 0.55;
+}
+
 .focus-ring:focus-visible,
 a:focus-visible,
 button:focus-visible,
