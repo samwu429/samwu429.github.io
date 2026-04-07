@@ -257,10 +257,21 @@
             }[tag]));
         }
 
-        function safeExternalUrl(url) {
+        function safeAssetUrl(url) {
             if (!url) return '';
+            const raw = String(url).trim();
+            if (!raw) return '';
+
+            // Keep strict enough for security, but allow existing stored image formats.
+            if (/^data:image\/(png|jpe?g|webp|gif);base64,[a-z0-9+/=]+$/i.test(raw)) {
+                return raw;
+            }
+            if (raw.startsWith('/') || raw.startsWith('./') || raw.startsWith('../')) {
+                return raw;
+            }
+
             try {
-                const parsed = new URL(url);
+                const parsed = new URL(raw, window.location.origin);
                 if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
                     return parsed.toString();
                 }
@@ -317,7 +328,7 @@
         function renderPhotos(photos) {
             const container = document.getElementById('photo-grid');
             container.innerHTML = photos.map(p => {
-                const photoUrl = safeExternalUrl(p.url);
+                const photoUrl = safeAssetUrl(p.url);
                 return `
                 <div class="bg-[#c0c0c0] p-2 border-2 border-white border-r-black border-b-black flex flex-col h-full">
                     <div class="retro-inset p-1 mb-2 bg-black cursor-pointer group relative flex-1 flex items-center justify-center overflow-hidden" onclick="openLightbox(${JSON.stringify(photoUrl)})" oncontextmenu="return false;">
@@ -344,7 +355,7 @@
                 return;
             }
             container.innerHTML = testimonials.map(t => {
-                const profileUrl = safeExternalUrl(t.linkedin);
+                const profileUrl = safeAssetUrl(t.linkedin);
                 return `
                 <div class="bg-[#dfdfdf] p-4 border border-gray-400">
                     <div class="flex justify-between items-start mb-2 border-b border-gray-400 pb-2">
@@ -392,7 +403,7 @@
         }
 
         function openLightbox(url) {
-            const safeUrl = safeExternalUrl(url);
+            const safeUrl = safeAssetUrl(url);
             if (!safeUrl) return;
             document.getElementById('lightbox-img').src = safeUrl;
             const lb = document.getElementById('lightbox');
