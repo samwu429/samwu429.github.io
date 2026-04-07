@@ -15,6 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let chatHistory = []; // 用于保存上下文记忆
 
+    // 转义 HTML 标签防御 XSS 攻击
+    function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag]));
+    }
+
     // Pre-wake the backend on load
     fetch('https://sam-api-backend.onrender.com/ping').catch(() => {});
 
@@ -31,15 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 data.forEach(t => {
+                    const safeComment = escapeHTML(t.comment);
+                    const safeRelationship = escapeHTML(t.relationship);
                     const html = `
                         <div class="retro-panel bg-white p-6 relative flex flex-col justify-between">
                             <div class="absolute -top-3 -left-2 text-5xl text-emerald-200 font-serif leading-none">"</div>
                             <p class="text-gray-800 text-sm font-medium leading-relaxed mb-4 relative z-10 italic">
-                                ${t.comment}
+                                ${safeComment}
                             </p>
                             <div class="border-t border-gray-200 pt-3 flex justify-between items-center mt-auto">
                                 <span class="text-[11px] font-black tracking-widest text-emerald-700 uppercase">
-                                    ${t.relationship}
+                                    ${safeRelationship}
                                 </span>
                                 <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
                                     Anonymous
@@ -55,8 +69,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    function formatAIText(text) {
+        let safeText = escapeHTML(text);
+        // 加粗
+        safeText = safeText.replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-700 font-bold">$1</strong>');
+        // 列表项 (- 或 *)
+        safeText = safeText.replace(/^(?:\*|\-)\s+(.*)$/gm, '<li class="ml-5 list-disc marker:text-emerald-500 mb-1">$1</li>');
+        // 将相邻的 <li> 包装在 <ul> 中
+        safeText = safeText.replace(/(<li[^>]*>.*?<\/li>\n?)+/g, match => `<ul class="my-3">${match}</ul>`);
+        // 换行
+        safeText = safeText.replace(/\n/g, '<br>');
+        // 修复由换行和列表导致的重叠问题
+        safeText = safeText.replace(/<\/ul><br>/g, '</ul>').replace(/<\/li><br>/g, '</li>');
+        return safeText;
+    }
+
     function addBubble(text, isUser = true) {
-        const formattedBody = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-700 font-bold">$1</strong>').replace(/\n/g, '<br>');
+        const formattedBody = isUser ? escapeHTML(text) : formatAIText(text);
         
         // 气泡采用物理高低差
         const html = isUser 
