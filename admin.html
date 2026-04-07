@@ -152,18 +152,24 @@
             document.getElementById('admin-photos').innerHTML = photos.map(p => `
                 <div class="flex justify-between items-center bg-gray-50 p-2 rounded">
                     <span class="text-sm truncate w-2/3">${escapeHTML(p.category)} - ${escapeHTML((p.url || '').substring(0,20))}...</span>
-                    <button onclick="deletePhoto(${JSON.stringify(String(p.id || ''))})" class="text-red-500 text-sm">Delete</button>
+                    <button class="text-red-500 text-sm js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Delete</button>
                 </div>
             `).join('');
+            document.querySelectorAll('.js-delete-photo-btn').forEach((btn) => {
+                btn.addEventListener('click', () => deletePhoto(btn.dataset.photoId || ''));
+            });
 
             const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-testimonials').innerHTML = testimonials.map(t => `
                 <div class="border p-2 rounded relative">
-                    <button onclick="deleteTestimonial(${JSON.stringify(String(t.id || ''))})" class="absolute top-2 right-2 text-red-500 text-sm">Delete</button>
+                    <button class="absolute top-2 right-2 text-red-500 text-sm js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
                     <strong>${escapeHTML(t.name)}</strong> (${escapeHTML(t.relationship)})<br>
                     <p class="text-sm mt-1">${escapeHTML(t.comment)}</p>
                 </div>
             `).join('');
+            document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
+                btn.addEventListener('click', () => deleteTestimonial(btn.dataset.testimonialId || ''));
+            });
         }
 
         async function addPhoto() {
