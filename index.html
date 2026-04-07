@@ -22,11 +22,9 @@
 
 
 
-    <div class="max-w-7xl mx-auto w-full px-6 lg:px-12 mb-14 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 items-start gap-12 desktop-rhythm relative z-10">
+    <div class="max-w-7xl mx-auto w-full px-6 lg:px-12 mb-14 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-[auto_auto] items-start gap-12 lg:gap-x-12 lg:gap-y-6 desktop-rhythm relative z-10">
 
-        
-
-        <div class="flex-shrink-0 relative lg:col-span-4 lg:pt-2">
+        <div class="flex-shrink-0 relative lg:col-span-4 lg:row-start-1 lg:col-start-1 lg:pt-2">
 
             <div class="w-52 h-52 md:w-64 md:h-64 retro-panel p-2 bg-emerald-50 relative z-10">
 
@@ -42,9 +40,8 @@
 
         </div>
 
-        
+        <div class="text-left flex-1 flex flex-col justify-start pt-2 lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:row-span-2">
 
-        <div class="text-left flex-1 flex flex-col justify-start pt-2 lg:col-span-8">
             <h1 class="text-6xl md:text-8xl font-black mb-3 tracking-tighter text-gray-900 uppercase leading-none hero-title-balance">
 
                 Sam Wu
@@ -57,9 +54,7 @@
 
             </p>
 
-            
-
-            <div class="surface-card p-6 md:p-8 text-gray-800 text-sm md:text-base mb-8 border-l-4 border-emerald-500">
+            <div class="surface-card p-6 md:p-8 text-gray-800 text-sm md:text-base border-l-4 border-emerald-500">
 
                 <p class="mb-6 text-gray-900 font-black text-lg leading-snug">
 
@@ -68,8 +63,6 @@
                     <span class="text-emerald-800 text-sm font-bold tracking-widest uppercase mt-1 inline-block">University of Toronto.</span>
 
                 </p>
-
-                
 
                 <p class="hci-kicker mb-3">
 
@@ -94,65 +87,63 @@
 
             </div>
 
+        </div>
 
+        <div class="flex flex-col gap-4 w-full lg:max-w-none lg:col-span-4 lg:col-start-1 lg:row-start-2">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full lg:max-w-3xl">
+            <a href="mailto:wuyihang429@gmail.com" class="retro-button tactile-button motion-safe px-5 py-3 flex items-center gap-4 w-full">
 
-                <a href="mailto:wuyihang429@gmail.com" class="retro-button tactile-button motion-safe px-5 py-3 flex items-center gap-4 flex-1">
+                <div class="retro-icon text-emerald-700 flex-shrink-0">
 
-                    <div class="retro-icon text-emerald-700 flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
 
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
 
-                    </div>
+                <div class="min-w-0 text-left">
 
-                    <div>
+                    <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">Personal</span>
 
-                        <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">Personal</span>
+                    <span class="block text-xs text-gray-900 font-black tracking-wide break-all">wuyihang429@gmail.com</span>
 
-                        <span class="block text-xs text-gray-900 font-black tracking-wide">wuyihang429@gmail.com</span>
+                </div>
 
-                    </div>
+            </a>
 
-                </a>
+            <a href="mailto:yihang.wu@mail.utoronto.ca" class="retro-button motion-safe px-5 py-3 flex items-center gap-4 w-full opacity-90">
 
-                <a href="mailto:yihang.wu@mail.utoronto.ca" class="retro-button motion-safe px-5 py-3 flex items-center gap-4 flex-1 opacity-90">
+                <div class="retro-icon text-blue-700 flex-shrink-0">
 
-                    <div class="retro-icon text-blue-700 flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path></svg>
 
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path></svg>
+                </div>
 
-                    </div>
+                <div class="min-w-0 text-left">
 
-                    <div>
+                    <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">University</span>
 
-                        <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">University</span>
+                    <span class="block text-xs text-gray-900 font-black tracking-wide break-all">yihang.wu@mail.utoronto.ca</span>
 
-                        <span class="block text-xs text-gray-900 font-black tracking-wide">yihang.wu@mail.utoronto.ca</span>
+                </div>
 
-                    </div>
+            </a>
 
-                </a>
+            <a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener noreferrer" class="retro-button motion-safe px-5 py-3 flex items-center gap-4 w-full opacity-90">
 
-                <a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener noreferrer" class="retro-button motion-safe px-5 py-3 flex items-center gap-4 flex-1 opacity-90">
+                <div class="retro-icon text-sky-700 flex-shrink-0">
 
-                    <div class="retro-icon text-sky-700 flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
 
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </div>
 
-                    </div>
+                <div class="min-w-0 text-left">
 
-                    <div>
+                    <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">Professional</span>
 
-                        <span class="block text-[10px] text-gray-500 font-black uppercase tracking-widest leading-none mb-1">Professional</span>
+                    <span class="block text-xs text-gray-900 font-black tracking-wide">/in/yihang-wu</span>
 
-                        <span class="block text-xs text-gray-900 font-black tracking-wide">/in/yihang-wu</span>
+                </div>
 
-                    </div>
-
-                </a>
-
-            </div>
+            </a>
 
         </div>
 
