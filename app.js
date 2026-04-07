@@ -11,11 +11,49 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Render Backend URL
     const RENDER_URL = 'https://sam-api-backend.onrender.com/chat';
+    const API_BASE = 'https://sam-api-backend.onrender.com/api';
     
     let chatHistory = []; // 用于保存上下文记忆
 
     // Pre-wake the backend on load
     fetch('https://sam-api-backend.onrender.com/ping').catch(() => {});
+
+    // Load Public Testimonials
+    const testimonialsContainer = document.getElementById('public-testimonials-container');
+    if (testimonialsContainer) {
+        fetch(`${API_BASE}/public/testimonials`)
+            .then(res => res.json())
+            .then(data => {
+                testimonialsContainer.innerHTML = ''; 
+                if (!data || data.length === 0) {
+                    testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold">No testimonials yet. Be the first one to leave a comment in the admin panel!</div>';
+                    return;
+                }
+                
+                data.forEach(t => {
+                    const html = `
+                        <div class="retro-panel bg-white p-6 relative flex flex-col justify-between">
+                            <div class="absolute -top-3 -left-2 text-5xl text-emerald-200 font-serif leading-none">"</div>
+                            <p class="text-gray-800 text-sm font-medium leading-relaxed mb-4 relative z-10 italic">
+                                ${t.comment}
+                            </p>
+                            <div class="border-t border-gray-200 pt-3 flex justify-between items-center mt-auto">
+                                <span class="text-[11px] font-black tracking-widest text-emerald-700 uppercase">
+                                    ${t.relationship}
+                                </span>
+                                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                                    Anonymous
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    testimonialsContainer.insertAdjacentHTML('beforeend', html);
+                });
+            })
+            .catch(err => {
+                testimonialsContainer.innerHTML = '<div class="text-sm text-red-500 font-bold">Failed to load testimonials. Please try again later.</div>';
+            });
+    }
 
     function addBubble(text, isUser = true) {
         const formattedBody = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-emerald-700 font-bold">$1</strong>').replace(/\n/g, '<br>');
