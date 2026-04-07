@@ -9,9 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('ai-input');
     const chatWindow = document.getElementById('chat-window');
     
-    // Render Backend URL
-    const RENDER_URL = 'https://sam-api-backend.onrender.com/chat';
-    const API_BASE = 'https://sam-api-backend.onrender.com/api';
+    // Shared backend config
+    const apiConfig = window.SAM_API_CONFIG || {};
+    const RENDER_URL = apiConfig.chatUrl || 'https://sam-api-backend.onrender.com/chat';
+    const API_BASE = apiConfig.apiBase || 'https://sam-api-backend.onrender.com/api';
+    const PING_URL = apiConfig.pingUrl || 'https://sam-api-backend.onrender.com/ping';
     
     let chatHistory = []; 
 
@@ -26,14 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }[tag]));
     }
 
+    async function fetchJson(url, options = {}) {
+        const res = await fetch(url, options);
+        if (!res.ok) {
+            throw new Error(`Request failed with status ${res.status}`);
+        }
+        return res.json();
+    }
+
     // Pre-wake the backend on load
-    fetch('https://sam-api-backend.onrender.com/ping').catch(() => {});
+    fetch(PING_URL).catch(() => {});
 
     // Load Public Testimonials
     const testimonialsContainer = document.getElementById('public-testimonials-container');
     if (testimonialsContainer) {
-        fetch(`${API_BASE}/public/testimonials`)
-            .then(res => res.json())
+        fetchJson(`${API_BASE}/public/testimonials`)
             .then(data => {
                 testimonialsContainer.innerHTML = ''; 
                 if (!data || data.length === 0) {
@@ -126,11 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
             chatWindow.scrollTop = chatWindow.scrollHeight;
             
             try {
-                const response = await fetch(RENDER_URL, { 
+                const response = await fetch(RENDER_URL, {
                     method: 'POST', 
                     headers: { 'Content-Type': 'application/json' }, 
                     body: JSON.stringify({ message: text, history: chatHistory }) 
                 });
+                if (!response.ok) {
+                    throw new Error(`Chat request failed with status ${response.status}`);
+                }
                 const data = await response.json();
                 
                 document.getElementById(loadingId).remove();

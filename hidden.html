@@ -240,24 +240,59 @@
         </div>
     </div>
 
+    <script src="api-config.js"></script>
     <script>
-        const API_BASE = 'https://sam-api-backend.onrender.com/api'; 
+        const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
         let currentPassword = '';
         let allPhotos = [];
+
+        function escapeHTML(str) {
+            if (str == null) return '';
+            return String(str).replace(/[&<>'"]/g, (tag) => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag]));
+        }
+
+        function safeExternalUrl(url) {
+            if (!url) return '';
+            try {
+                const parsed = new URL(url);
+                if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+                    return parsed.toString();
+                }
+            } catch (e) {}
+            return '';
+        }
+
+        async function requestJson(path, options = {}) {
+            const res = await fetch(`${API_BASE}${path}`, options);
+            if (!res.ok) {
+                throw new Error(`Request failed with status ${res.status}`);
+            }
+            const contentType = res.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) {
+                return null;
+            }
+            return res.json();
+        }
 
         async function verifyPassword() {
             const pwd = document.getElementById('pwd-input').value;
             try {
-                const res = await fetch(`${API_BASE}/hidden/photos`, { headers: { 'x-password': pwd } });
-                if (res.ok) {
+                await requestJson('/hidden/photos', { headers: { 'x-password': pwd } });
+                if (pwd) {
                     currentPassword = pwd;
                     document.getElementById('auth-layer').style.display = 'none';
                     document.getElementById('main-content').classList.remove('hidden-space');
                     loadData();
-                } else {
-                    document.getElementById('error-msg').classList.remove('hidden');
                 }
-            } catch (err) { alert('SYSTEM ERROR: Network unavailable.'); }
+            } catch (err) {
+                document.getElementById('error-msg').classList.remove('hidden');
+            }
         }
 
         function switchTab(tab) {
@@ -272,28 +307,29 @@
         }
 
         async function loadData() {
-            const tRes = await fetch(`${API_BASE}/hidden/testimonials`, { headers: { 'x-password': currentPassword } });
-            const testimonials = await tRes.json();
+            const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': currentPassword } });
             renderTestimonials(testimonials);
 
-            const photoRes = await fetch(`${API_BASE}/hidden/photos`, { headers: { 'x-password': currentPassword } });
-            allPhotos = await photoRes.json();
+            allPhotos = await requestJson('/hidden/photos', { headers: { 'x-password': currentPassword } });
             renderPhotos(allPhotos);
         }
 
         function renderPhotos(photos) {
             const container = document.getElementById('photo-grid');
-            container.innerHTML = photos.map(p => `
+            container.innerHTML = photos.map(p => {
+                const photoUrl = safeExternalUrl(p.url);
+                return `
                 <div class="bg-[#c0c0c0] p-2 border-2 border-white border-r-black border-b-black flex flex-col h-full">
-                    <div class="retro-inset p-1 mb-2 bg-black cursor-pointer group relative flex-1 flex items-center justify-center overflow-hidden" onclick="openLightbox('${p.url}')" oncontextmenu="return false;">
-                        <img src="${p.url}" alt="${p.category}" class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 pointer-events-none" draggable="false">
+                    <div class="retro-inset p-1 mb-2 bg-black cursor-pointer group relative flex-1 flex items-center justify-center overflow-hidden" onclick="openLightbox(${JSON.stringify(photoUrl)})" oncontextmenu="return false;">
+                        <img src="${escapeHTML(photoUrl)}" alt="${escapeHTML(p.category)}" class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 pointer-events-none" draggable="false">
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">
                             <span class="bg-black bg-opacity-70 text-green-400 font-bold pixel-font px-2 py-1">[VIEW]</span>
                         </div>
                     </div>
-                    <div class="text-center text-sm font-bold pixel-font text-lg select-none mt-auto">${p.category}.jpg</div>
+                    <div class="text-center text-sm font-bold pixel-font text-lg select-none mt-auto">${escapeHTML(p.category)}.jpg</div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         function filterPhotos(category) {
@@ -307,19 +343,22 @@
                 container.innerHTML = '<p class="text-gray-500 italic">No entries found in database.</p>';
                 return;
             }
-            container.innerHTML = testimonials.map(t => `
+            container.innerHTML = testimonials.map(t => {
+                const profileUrl = safeExternalUrl(t.linkedin);
+                return `
                 <div class="bg-[#dfdfdf] p-4 border border-gray-400">
                     <div class="flex justify-between items-start mb-2 border-b border-gray-400 pb-2">
                         <div>
-                            <span class="font-bold text-lg text-blue-900">${t.name}</span>
-                            <span class="text-xs bg-black text-green-400 px-2 py-1 ml-2 pixel-font">[${t.relationship}]</span>
+                            <span class="font-bold text-lg text-blue-900">${escapeHTML(t.name)}</span>
+                            <span class="text-xs bg-black text-green-400 px-2 py-1 ml-2 pixel-font">[${escapeHTML(t.relationship)}]</span>
                         </div>
-                        ${t.linkedin ? `<a href="${t.linkedin}" target="_blank" class="text-blue-600 underline text-sm hover:text-blue-800">LINK</a>` : ''}
+                        ${profileUrl ? `<a href="${escapeHTML(profileUrl)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline text-sm hover:text-blue-800">LINK</a>` : ''}
                     </div>
-                    <p class="text-black font-medium mt-2 pixel-font text-xl leading-relaxed">${t.comment}</p>
-                    <div class="text-xs text-gray-600 font-bold mt-4 text-right">TIMESTAMP: ${new Date(t.timestamp).toLocaleString()}</div>
+                    <p class="text-black font-medium mt-2 pixel-font text-xl leading-relaxed">${escapeHTML(t.comment)}</p>
+                    <div class="text-xs text-gray-600 font-bold mt-4 text-right">TIMESTAMP: ${escapeHTML(new Date(t.timestamp).toLocaleString())}</div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         async function submitTestimonial() {
@@ -353,7 +392,9 @@
         }
 
         function openLightbox(url) {
-            document.getElementById('lightbox-img').src = url;
+            const safeUrl = safeExternalUrl(url);
+            if (!safeUrl) return;
+            document.getElementById('lightbox-img').src = safeUrl;
             const lb = document.getElementById('lightbox');
             lb.classList.remove('hidden');
             lb.classList.add('flex');
