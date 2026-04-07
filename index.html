@@ -158,7 +158,9 @@
 
 
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto w-full px-6 relative z-10">
+    <div class="max-w-6xl mx-auto w-full px-6 relative z-10 space-y-6">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <a href="about.html" class="retro-button p-6 md:p-8 flex flex-col items-center text-center group">
 
@@ -176,14 +178,6 @@
 
         </a>
 
-        <a href="hidden.html" class="retro-button p-6 md:p-8 flex flex-col items-center text-center group">
-
-            <div class="retro-icon mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7z"></path></svg></div>
-
-            <span class="tracking-widest uppercase text-sm font-black text-gray-900">Private Gallery<br><span class="text-xs text-gray-500">(Photos & Testimonials)</span><br><span class="text-[10px] text-gray-400 normal-case tracking-normal font-semibold leading-tight block mt-3 pt-2 border-t border-gray-300 w-full">HR / Employers: Need a password?<br>Email me above (24h reply).</span></span>
-
-        </a>
-
         <!-- Publications Button (Under Construction) -->
         <a href="#" onclick="event.preventDefault();" class="retro-button p-6 md:p-8 flex flex-col items-center justify-center text-center group relative overflow-hidden cursor-not-allowed">
             <div class="absolute inset-0 bg-gray-50/40 z-10"></div>
@@ -198,6 +192,21 @@
             
             <!-- Bottom Warning Bar -->
             <div class="absolute bottom-0 left-0 w-full bg-stripes-yellow h-3 border-t-2 border-gray-900 z-20"></div>
+        </a>
+
+        </div>
+
+        <a href="hidden.html" class="retro-button p-6 md:px-8 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-left">
+            <div class="flex items-center gap-4">
+                <div class="retro-icon text-gray-900 flex-shrink-0"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7z"></path></svg></div>
+                <div>
+                    <span class="block tracking-widest uppercase text-sm font-black text-gray-900">Private Gallery</span>
+                    <span class="block text-xs text-gray-500 font-black tracking-wider uppercase">(Photos & Testimonials)</span>
+                </div>
+            </div>
+            <div class="text-xs text-gray-600 font-bold tracking-wide md:text-right">
+                HR / Employers: Need a password?<br>Email me above (24h reply).
+            </div>
         </a>
 
     </div>
