@@ -3,63 +3,103 @@
  * ========================================================= */
 
 :root {
-    /* 白背景 */
     --retro-bg: #fdfbf7; 
     --retro-dark: #1c1917; 
     --retro-light: #ffffff;
     --retro-accent: #059669; 
+    --retro-signal: #1d4ed8;
+    --retro-warning: #facc15;
+    --surface-paper: #f7f4ec;
+    --surface-panel: #ffffff;
+    --surface-inset: #f4efe3;
+    --ambient-shadow: 0 14px 32px rgba(28, 25, 23, 0.12);
+    --hard-shadow-sm: 3px 3px 0px var(--retro-dark);
+    --hard-shadow-md: 5px 5px 0px var(--retro-dark);
+    --hard-shadow-lg: 7px 7px 0px var(--retro-dark);
+    --radius-tight: 2px;
+    --grid-gap-1: 4px;
+    --grid-gap-2: 8px;
+    --grid-gap-3: 12px;
+    --grid-gap-4: 16px;
+    --grid-gap-6: 24px;
+    --grid-gap-8: 32px;
+    --grid-gap-12: 48px;
 }
 
 body {
-    background-color: var(--retro-bg);
+    background:
+        radial-gradient(circle at 12% 10%, rgba(5, 150, 105, 0.08), transparent 40%),
+        radial-gradient(circle at 88% 0%, rgba(29, 78, 216, 0.05), transparent 34%),
+        var(--retro-bg);
     color: var(--retro-dark);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.14;
+    background-image:
+        linear-gradient(rgba(28, 25, 23, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(28, 25, 23, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    mix-blend-mode: multiply;
 }
 
 ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-/* ================= 排版组件 ================= */
+/* ================= Core Components ================= */
 
 .retro-panel {
-    background-color: var(--retro-light);
+    background-color: var(--surface-panel);
     border: 2px solid var(--retro-dark);
-    box-shadow: 6px 6px 0px var(--retro-dark);
-    border-radius: 0; 
+    box-shadow: var(--hard-shadow-lg), var(--ambient-shadow);
+    border-radius: var(--radius-tight);
 }
 
 .retro-inset {
-    background-color: var(--retro-bg);
+    background-color: var(--surface-inset);
     border: 2px solid var(--retro-dark);
-    box-shadow: inset 4px 4px 0px rgba(0,0,0,0.06);
-    border-radius: 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 4px 4px 0 rgba(0, 0, 0, 0.06);
+    border-radius: var(--radius-tight);
 }
 
 .retro-button {
-    background-color: var(--retro-light);
+    background:
+        linear-gradient(180deg, #ffffff 0%, #f4f4f1 100%);
     color: var(--retro-dark);
     border: 2px solid var(--retro-dark);
-    box-shadow: 4px 4px 0px var(--retro-dark);
-    border-radius: 0;
+    box-shadow: var(--hard-shadow-md), var(--ambient-shadow);
+    border-radius: var(--radius-tight);
     transition: all 0.15s ease-out;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
+    text-decoration: none;
 }
 
 .retro-button:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--retro-dark);
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0px var(--retro-dark), var(--ambient-shadow);
     color: var(--retro-accent);
 }
 
 .retro-button:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0px 0px 0px var(--retro-dark);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--retro-dark);
+}
+
+.retro-button[aria-current="page"] {
+    color: var(--retro-accent);
+    box-shadow: 2px 2px 0 var(--retro-dark), var(--ambient-shadow);
 }
 
 .retro-icon {
@@ -67,7 +107,7 @@ body {
     height: 40px;
     background: var(--retro-light);
     border: 2px solid var(--retro-dark);
-    box-shadow: 3px 3px 0px var(--retro-dark);
+    box-shadow: var(--hard-shadow-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,6 +120,103 @@ body {
 
 .text-metallic-green {
     color: var(--retro-accent);
+}
+
+.surface-card {
+    background: var(--surface-panel);
+    border: 2px solid var(--retro-dark);
+    box-shadow: var(--hard-shadow-md), var(--ambient-shadow);
+    border-radius: var(--radius-tight);
+}
+
+.surface-inset {
+    background: var(--surface-inset);
+    border: 2px solid var(--retro-dark);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 4px 4px 0 rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-tight);
+}
+
+.tactile-button {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f5f2 100%);
+    border: 2px solid var(--retro-dark);
+    box-shadow: var(--hard-shadow-sm), var(--ambient-shadow);
+}
+
+.hci-kicker {
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 10px;
+    color: #4b5563;
+}
+
+.body-readable {
+    max-width: 68ch;
+    line-height: 1.72;
+}
+
+.section-shell {
+    padding: var(--grid-gap-6);
+    border: 2px solid var(--retro-dark);
+    box-shadow: var(--hard-shadow-md), var(--ambient-shadow);
+    background: linear-gradient(180deg, #fff 0%, #f7f4ed 100%);
+}
+
+.section-title {
+    font-size: clamp(1.4rem, 2.3vw, 2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 3px solid var(--retro-dark);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+.focus-ring:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--retro-signal);
+    outline-offset: 3px;
+}
+
+.motion-safe {
+    transition: transform 0.18s ease, box-shadow 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+}
+
+@media (min-width: 1280px) {
+    .desktop-rhythm {
+        row-gap: 56px;
+    }
+
+    .hero-title-balance {
+        letter-spacing: -0.04em;
+        line-height: 0.94;
+    }
+
+    .hero-copy-balance {
+        max-width: 66ch;
+    }
+
+    .card-grid-balance {
+        gap: 28px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .desktop-rhythm {
+        row-gap: 64px;
+    }
+
+    .hero-copy-balance {
+        max-width: 70ch;
+    }
+
+    .card-grid-balance {
+        gap: 32px;
+    }
 }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }

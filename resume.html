@@ -16,15 +16,15 @@
         <span class="text-xl font-black tracking-widest uppercase"> </span>
     </div>
 
-    <main class="max-w-7xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 pb-20">
+    <main class="max-w-7xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-14 desktop-rhythm relative z-10 pb-20">
         
-        <div class="retro-panel flex flex-col h-[750px] overflow-hidden bg-gray-100">
+        <div class="retro-panel surface-card flex flex-col h-[760px] overflow-hidden bg-gray-100">
             <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-2 border-gray-900">
                 <h2 class="text-lg font-black text-white tracking-widest uppercase font-bold">Terminal: Sam_AI</h2>
                 <div class="w-3 h-3 bg-emerald-500 border border-white animate-pulse"></div>
             </div>
 
-            <div class="bg-yellow-100 border-b-2 border-gray-900 p-4 font-mono text-sm font-bold text-gray-900 text-left">
+            <div class="bg-yellow-100 border-b-2 border-gray-900 p-4 text-sm font-black text-gray-900 text-left tracking-wide">
                 [NOTICE] Connection established. Standard free tier wait time (~50s) applies for first boot.
             </div>
 
@@ -39,32 +39,32 @@
 
             <!-- Ice Breaker Quick Prompts -->
             <div class="px-4 pt-4 pb-0 bg-gray-200 border-t-2 border-gray-900 flex flex-wrap gap-2" id="ai-quick-prompts">
-                <button type="button" class="quick-prompt-btn px-3 py-1.5 bg-white border-2 border-gray-900 text-[11px] font-black text-emerald-800 shadow-[2px_2px_0px_#1c1917] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:bg-emerald-50">
+                <button type="button" class="quick-prompt-btn tactile-button motion-safe px-3 py-1.5 text-[11px] font-black text-emerald-800 transition-all active:bg-emerald-50">
                     "What are Sam's core technical strengths?"
                 </button>
-                <button type="button" class="quick-prompt-btn px-3 py-1.5 bg-white border-2 border-gray-900 text-[11px] font-black text-emerald-800 shadow-[2px_2px_0px_#1c1917] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:bg-emerald-50">
+                <button type="button" class="quick-prompt-btn tactile-button motion-safe px-3 py-1.5 text-[11px] font-black text-emerald-800 transition-all active:bg-emerald-50">
                     "Tell me about his internship experience."
                 </button>
-                <button type="button" class="quick-prompt-btn px-3 py-1.5 bg-white border-2 border-gray-900 text-[11px] font-black text-emerald-800 shadow-[2px_2px_0px_#1c1917] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:bg-emerald-50">
+                <button type="button" class="quick-prompt-btn tactile-button motion-safe px-3 py-1.5 text-[11px] font-black text-emerald-800 transition-all active:bg-emerald-50">
                     "Why is he a great fit for a Data Engineering role?"
                 </button>
             </div>
 
-            <form id="ai-chat-form" class="flex p-4 bg-gray-200 gap-4">
-                <input type="text" id="ai-input" placeholder="Enter command..." class="flex-1 retro-inset bg-white px-6 py-4 text-gray-900 font-bold text-sm focus:outline-none font-mono">
-                <button type="submit" class="retro-button px-8 font-black text-xs uppercase tracking-widest bg-emerald-400">SEND</button>
+            <form id="ai-chat-form" class="flex p-4 bg-gray-200 gap-4 border-t-2 border-gray-900">
+                <input type="text" id="ai-input" aria-label="Ask Sam AI assistant" placeholder="Enter command..." class="flex-1 retro-inset bg-white px-6 py-4 text-gray-900 font-bold text-sm focus:outline-none font-mono">
+                <button type="submit" aria-label="Send AI prompt" class="retro-button px-8 font-black text-xs uppercase tracking-widest bg-emerald-400">SEND</button>
             </form>
         </div>
 
-        <div class="retro-panel flex flex-col h-[750px] overflow-hidden w-full lg:w-[calc(100%+80px)]">
+        <div class="retro-panel surface-card flex flex-col h-[760px] overflow-hidden w-full">
             <div class="flex justify-between items-center px-8 py-4 bg-gray-900 border-b-2 border-gray-900 flex-shrink-0">
                 <h2 class="text-lg font-black text-white tracking-widest uppercase font-bold">Document: CV_Credentials</h2>
                 <a href="Yihang.Wu.pdf" download class="retro-button px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-white">Download PDF</a>
             </div>
             
-            <div class="flex-1 retro-inset bg-gray-200 p-1 flex flex-col items-center justify-center relative overflow-hidden">
+            <div class="flex-1 retro-inset bg-gray-200 p-3 flex flex-col items-center justify-center relative overflow-hidden">
                 <!-- Desktop PDF Preview -->
-                <iframe src="Yihang.Wu.pdf" class="hidden md:block w-full h-full lg:w-[calc(100%+80px)] lg:-ml-10 border-none bg-white scale-[1.01] saturate-[0.98] opacity-[0.98]"></iframe>
+                <iframe src="Yihang.Wu.pdf" class="hidden md:block w-full h-full border-2 border-gray-900 bg-white"></iframe>
                 
                 <!-- Mobile Fallback -->
                 <div class="block md:hidden flex flex-col items-center justify-center p-8 text-center">
