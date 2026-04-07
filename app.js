@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Render Backend URL
     const RENDER_URL = 'https://sam-api-backend.onrender.com/chat';
+    
+    let chatHistory = []; // 用于保存上下文记忆
 
     // Pre-wake the backend on load
     fetch('https://sam-api-backend.onrender.com/ping').catch(() => {});
@@ -36,9 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
             
             try {
-                const response = await fetch(RENDER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text }) });
+                const response = await fetch(RENDER_URL, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify({ message: text, history: chatHistory }) // 发送历史记录
+                });
                 const data = await response.json();
-                if(data.reply) addBubble(data.reply, false);
+                if(data.reply) {
+                    addBubble(data.reply, false);
+                    // 将这轮对话存入历史
+                    chatHistory.push({ role: 'User', text: text });
+                    chatHistory.push({ role: 'AI', text: data.reply });
+                    // 最多保留最近的10轮（20条）对话，防止请求体过大
+                    if (chatHistory.length > 20) chatHistory = chatHistory.slice(chatHistory.length - 20);
+                }
             } catch (err) {
                 // 警示文字颜色调整，适配亮色背景
                 addBubble(`🟡 I am waking up my digital assistant... (Free API tier requires ~50s for first wake). Please wait a moment and try again.`, false);
