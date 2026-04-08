@@ -123,9 +123,10 @@
                     <label class="mr-2 text-sm font-bold">Password:</label>
                     <input type="password" id="pwd-input" class="retro-inset flex-1 text-black outline-none" placeholder="">
                 </div>
+                <p id="auth-status" class="text-xs font-bold text-blue-700 mb-4 hidden"></p>
                 
                 <div class="flex gap-4 w-full justify-center">
-                    <button onclick="verifyPassword()" class="retro-button w-24">OK</button>
+                    <button id="auth-ok-btn" onclick="verifyPassword()" class="retro-button w-24">OK</button>
                     <a href="index.html" class="retro-button w-24 text-center block leading-loose">Cancel</a>
                 </div>
                 
@@ -243,8 +244,11 @@
     <script src="api-config.js"></script>
     <script>
         const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
+        const PING_URL = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.pingUrl) || 'https://sam-api-backend.onrender.com/ping';
+        const COLD_START_MAX_WAIT_MS = 65000;
         let currentPassword = '';
         let allPhotos = [];
+        let backendWarmupPromise = null;
 
         function escapeHTML(str) {
             if (str == null) return '';
@@ -279,10 +283,55 @@
             return '';
         }
 
-        async function requestJson(path, options = {}) {
-            const res = await fetch(`${API_BASE}${path}`, options);
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function fetchWithTimeout(url, options = {}, timeoutMs = 12000) {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeoutMs);
+            try {
+                return await fetch(url, { ...options, signal: controller.signal, cache: 'no-store' });
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
+        async function wakeBackend(maxWaitMs = COLD_START_MAX_WAIT_MS) {
+            if (backendWarmupPromise) return backendWarmupPromise;
+            backendWarmupPromise = (async () => {
+                const startedAt = Date.now();
+                while (Date.now() - startedAt < maxWaitMs) {
+                    try {
+                        const pingRes = await fetchWithTimeout(PING_URL, {}, 4000);
+                        if (pingRes.ok) return true;
+                    } catch (_) {}
+                    await sleep(2500);
+                }
+                return false;
+            })();
+            return backendWarmupPromise;
+        }
+
+        function setAuthStatus(text = '', isError = false) {
+            const node = document.getElementById('auth-status');
+            if (!node) return;
+            if (!text) {
+                node.classList.add('hidden');
+                node.textContent = '';
+                return;
+            }
+            node.classList.remove('hidden');
+            node.textContent = text;
+            node.className = `text-xs font-bold mb-4 ${isError ? 'text-red-700' : 'text-blue-700'}`;
+        }
+
+        async function requestJson(path, options = {}, timeoutMs = 12000) {
+            const res = await fetchWithTimeout(`${API_BASE}${path}`, options, timeoutMs);
             if (!res.ok) {
-                throw new Error(`Request failed with status ${res.status}`);
+                const err = new Error(`Request failed with status ${res.status}`);
+                err.status = res.status;
+                throw err;
             }
             const contentType = res.headers.get('content-type') || '';
             if (!contentType.includes('application/json')) {
@@ -293,16 +342,29 @@
 
         async function verifyPassword() {
             const pwd = document.getElementById('pwd-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            const okBtn = document.getElementById('auth-ok-btn');
+            if (!pwd) return;
+            errorMsg.classList.add('hidden');
+            okBtn.disabled = true;
+            setAuthStatus('Waking server... (Render free tier may need 20-60 seconds)');
             try {
-                await requestJson('/hidden/photos', { headers: { 'x-password': pwd } });
-                if (pwd) {
-                    currentPassword = pwd;
-                    document.getElementById('auth-layer').style.display = 'none';
-                    document.getElementById('main-content').classList.remove('hidden-space');
-                    loadData();
-                }
+                await wakeBackend();
+                await requestJson('/hidden/photos', { headers: { 'x-password': pwd } }, 15000);
+                currentPassword = pwd;
+                setAuthStatus('');
+                document.getElementById('auth-layer').style.display = 'none';
+                document.getElementById('main-content').classList.remove('hidden-space');
+                loadData();
             } catch (err) {
-                document.getElementById('error-msg').classList.remove('hidden');
+                if (err && err.status === 401) {
+                    setAuthStatus('');
+                    errorMsg.classList.remove('hidden');
+                } else {
+                    setAuthStatus('Server is still waking. Wait a few seconds, then press OK again.', true);
+                }
+            } finally {
+                okBtn.disabled = false;
             }
         }
 
@@ -318,11 +380,20 @@
         }
 
         async function loadData() {
-            const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': currentPassword } });
-            renderTestimonials(testimonials);
-
-            allPhotos = await requestJson('/hidden/photos', { headers: { 'x-password': currentPassword } });
-            renderPhotos(allPhotos);
+            try {
+                const [testimonials, photos] = await Promise.all([
+                    requestJson('/hidden/testimonials', { headers: { 'x-password': currentPassword } }, 15000),
+                    requestJson('/hidden/photos', { headers: { 'x-password': currentPassword } }, 15000)
+                ]);
+                renderTestimonials(testimonials || []);
+                allPhotos = photos || [];
+                renderPhotos(allPhotos);
+            } catch (_) {
+                const container = document.getElementById('testimonial-list');
+                if (container) {
+                    container.innerHTML = '<p class="text-red-700 font-bold">Data loading timed out. Please refresh and try again.</p>';
+                }
+            }
         }
 
         function renderPhotos(photos) {
@@ -422,6 +493,9 @@
             lb.classList.remove('flex');
             document.getElementById('lightbox-img').src = '';
         }
+
+        // Start warming backend as soon as page loads.
+        wakeBackend();
     </script>
 </body>
 </html>

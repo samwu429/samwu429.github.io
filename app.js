@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const RENDER_URL = apiConfig.chatUrl || 'https://sam-api-backend.onrender.com/chat';
     const API_BASE = apiConfig.apiBase || 'https://sam-api-backend.onrender.com/api';
     const PING_URL = apiConfig.pingUrl || 'https://sam-api-backend.onrender.com/ping';
+    const COLD_START_MAX_WAIT_MS = 65000;
     
     let chatHistory = []; 
 
@@ -28,22 +29,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }[tag]));
     }
 
-    async function fetchJson(url, options = {}) {
-        const res = await fetch(url, options);
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function fetchWithTimeout(url, options = {}, timeoutMs = 12000) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), timeoutMs);
+        try {
+            return await fetch(url, { ...options, signal: controller.signal, cache: 'no-store' });
+        } finally {
+            clearTimeout(timer);
+        }
+    }
+
+    async function fetchJson(url, options = {}, timeoutMs = 12000) {
+        const res = await fetchWithTimeout(url, options, timeoutMs);
         if (!res.ok) {
-            throw new Error(`Request failed with status ${res.status}`);
+            const err = new Error(`Request failed with status ${res.status}`);
+            err.status = res.status;
+            throw err;
         }
         return res.json();
     }
 
-    // Pre-wake the backend on load
-    fetch(PING_URL).catch(() => {});
+    async function wakeBackend(maxWaitMs = COLD_START_MAX_WAIT_MS) {
+        const startedAt = Date.now();
+        while (Date.now() - startedAt < maxWaitMs) {
+            try {
+                const pingRes = await fetchWithTimeout(PING_URL, {}, 4000);
+                if (pingRes.ok) return true;
+            } catch (_) {}
+            await sleep(2500);
+        }
+        return false;
+    }
+
+    // Pre-wake the backend on load (loop retries for free-tier cold starts)
+    const backendWarmupPromise = wakeBackend();
 
     // Load Public Testimonials
     const testimonialsContainer = document.getElementById('public-testimonials-container');
     if (testimonialsContainer) {
-        fetchJson(`${API_BASE}/public/testimonials`)
-            .then(data => {
+        const renderTestimonialsError = () => {
+            testimonialsContainer.innerHTML = `
+                <div class="text-sm text-amber-700 font-bold">
+                    Server is waking up (Render free tier). Please retry in a few seconds.
+                </div>
+                <button id="retry-public-testimonials" class="retro-button px-3 py-2 text-xs uppercase tracking-widest">
+                    Retry now
+                </button>
+            `;
+            const retryBtn = document.getElementById('retry-public-testimonials');
+            if (retryBtn) retryBtn.addEventListener('click', loadPublicTestimonials);
+        };
+
+        const loadPublicTestimonials = async () => {
+            testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold animate-pulse">Waking server and loading testimonials...</div>';
+            try {
+                let data;
+                try {
+                    data = await fetchJson(`${API_BASE}/public/testimonials`, {}, 9000);
+                } catch (_) {
+                    const woke = await backendWarmupPromise;
+                    if (!woke) throw new Error('Backend warmup timed out');
+                    data = await fetchJson(`${API_BASE}/public/testimonials`, {}, 9000);
+                }
                 testimonialsContainer.innerHTML = ''; 
                 if (!data || data.length === 0) {
                     testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold">No testimonials yet. Be the first one to leave a comment in the admin panel!</div>';
@@ -71,10 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     testimonialsContainer.insertAdjacentHTML('beforeend', html);
                 });
-            })
-            .catch(err => {
-                testimonialsContainer.innerHTML = '<div class="text-sm text-red-500 font-bold">Failed to load testimonials. Please try again later.</div>';
-            });
+            } catch (_) {
+                renderTestimonialsError();
+            }
+        };
+
+        loadPublicTestimonials();
     }
 
     function formatAIText(text) {
@@ -135,11 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
             chatWindow.scrollTop = chatWindow.scrollHeight;
             
             try {
-                const response = await fetch(RENDER_URL, {
+                const response = await fetchWithTimeout(RENDER_URL, {
                     method: 'POST', 
                     headers: { 'Content-Type': 'application/json' }, 
                     body: JSON.stringify({ message: text, history: chatHistory }) 
-                });
+                }, 75000);
                 if (!response.ok) {
                     throw new Error(`Chat request failed with status ${response.status}`);
                 }
