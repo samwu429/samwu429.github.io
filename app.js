@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    // Pre-wake the backend on load (loop retries for free-tier cold starts)
+    // Pre-wake backend on load for faster first response.
     const backendWarmupPromise = wakeBackend();
 
     // Load Public Testimonials
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const renderTestimonialsError = () => {
             testimonialsContainer.innerHTML = `
                 <div class="text-sm text-amber-700 font-bold">
-                    Server is waking up (Render free tier). Please retry in a few seconds.
+                    Temporarily unable to load testimonials. Please retry in a few seconds.
                 </div>
                 <button id="retry-public-testimonials" class="retro-button px-3 py-2 text-xs uppercase tracking-widest">
                     Retry now
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const loadPublicTestimonials = async () => {
-            testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold animate-pulse">Waking server and loading testimonials...</div>';
+            testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold animate-pulse">Loading testimonials...</div>';
             try {
                 let data;
                 try {
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.disabled = true;
             
             const loadingId = 'loading-' + Date.now();
-            const loadingHtml = `<div id="${loadingId}" class="flex items-start mt-2 mb-5 animate-fade-in"><div class="w-10 h-10 retro-panel flex items-center justify-center text-gray-900 font-black text-[12px] flex-shrink-0 bg-emerald-200 mr-4 shadow-md">AI</div><div class="retro-panel bg-white text-gray-500 px-6 py-4 text-sm font-bold max-w-[85%] leading-relaxed shadow-md animate-pulse">Thinking / Waking up server...</div></div>`;
+            const loadingHtml = `<div id="${loadingId}" class="flex items-start mt-2 mb-5 animate-fade-in"><div class="w-10 h-10 retro-panel flex items-center justify-center text-gray-900 font-black text-[12px] flex-shrink-0 bg-emerald-200 mr-4 shadow-md">AI</div><div class="retro-panel bg-white text-gray-500 px-6 py-4 text-sm font-bold max-w-[85%] leading-relaxed shadow-md animate-pulse">Thinking...</div></div>`;
             chatWindow.insertAdjacentHTML('beforeend', loadingHtml);
             chatWindow.scrollTop = chatWindow.scrollHeight;
             
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (err) {
                 document.getElementById(loadingId).remove();
-                addBubble(`🟡 Connection timeout. The server might be performing a deep cold start. Please wait a moment and try again.`, false);
+                addBubble(`🟡 Connection timeout. Please check your network and try again.`, false);
             } finally {
                 chatInput.disabled = false;
                 chatInput.focus();

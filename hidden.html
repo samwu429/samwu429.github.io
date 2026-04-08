@@ -347,7 +347,7 @@
             if (!pwd) return;
             errorMsg.classList.add('hidden');
             okBtn.disabled = true;
-            setAuthStatus('Waking server... (Render free tier may need 20-60 seconds)');
+            setAuthStatus('Verifying access...');
             try {
                 await wakeBackend();
                 await requestJson('/hidden/photos', { headers: { 'x-password': pwd } }, 15000);
@@ -361,7 +361,7 @@
                     setAuthStatus('');
                     errorMsg.classList.remove('hidden');
                 } else {
-                    setAuthStatus('Server is still waking. Wait a few seconds, then press OK again.', true);
+                    setAuthStatus('Connection timed out. Please try again in a moment.', true);
                 }
             } finally {
                 okBtn.disabled = false;
