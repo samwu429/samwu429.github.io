@@ -24,6 +24,8 @@
             --edge: clamp(1.25rem, 5vw, 5.5rem);
             --mx: 0;
             --my: 0;
+            --reel-hue: 168;
+            --reel: 0;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -34,6 +36,7 @@
 
         body.sp {
             margin: 0;
+            padding-bottom: 4.25rem;
             background: var(--void);
             color: var(--paper);
             font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -50,9 +53,12 @@
         }
         .sp-fx--bloom {
             background:
-                radial-gradient(ellipse 140% 80% at 50% -15%, rgba(94, 234, 212, 0.18), transparent 52%),
-                radial-gradient(ellipse 70% 50% at calc(50% + var(--mx) * 22%) calc(35% + var(--my) * 14%), rgba(96, 165, 250, 0.12), transparent 48%),
-                radial-gradient(ellipse 55% 45% at calc(25% - var(--mx) * 12%) calc(72% - var(--my) * 10%), rgba(5, 150, 105, 0.08), transparent 42%);
+                radial-gradient(ellipse 140% 80% at calc(42% + var(--reel) * 16%) -18%,
+                    hsla(var(--reel-hue), 72%, 58%, 0.22), transparent 54%),
+                radial-gradient(ellipse 75% 52% at calc(50% + var(--mx) * 22%) calc(34% + var(--my) * 14%),
+                    hsla(calc(var(--reel-hue) + 48), 70%, 58%, 0.14), transparent 50%),
+                radial-gradient(ellipse 58% 48% at calc(22% - var(--mx) * 12%) calc(74% - var(--my) * 10%),
+                    hsla(calc(var(--reel-hue) - 32), 55%, 42%, 0.1), transparent 44%);
             animation: sp-breathe 16s ease-in-out infinite alternate;
         }
         @keyframes sp-breathe {
@@ -435,6 +441,7 @@
 
         body.sp--reduce .sp-hint { animation: none; }
         body.sp--reduce .sp-fx--bloom { animation: none; }
+        body.sp--reduce .sp-reel-wrap { opacity: 0.35; }
 
         #hero-name { position: relative; display: inline-block; }
         #hero-outline {
@@ -475,9 +482,57 @@
             align-items: flex-start;
             padding-top: clamp(4rem, 10vh, 7rem);
         }
+
+        /* Film strip: one continuous “reel” across scenes */
+        .sp-reel {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 110;
+            pointer-events: none;
+            padding: 0.65rem var(--edge) calc(0.55rem + env(safe-area-inset-bottom));
+            background: linear-gradient(to top, rgba(3, 2, 1, 0.92), rgba(3, 2, 1, 0));
+        }
+        .sp-reel__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.35rem;
+            max-width: min(1920px, 100%);
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 252, 248, 0.1);
+            padding-top: 0.55rem;
+        }
+        .sp-reel__tick {
+            flex: 1;
+            text-align: center;
+            font-size: clamp(0.55rem, 1.1vw, 0.68rem);
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            color: rgba(244, 237, 228, 0.2);
+            transition: color 0.45s ease, text-shadow 0.45s ease, transform 0.45s ease;
+        }
+        .sp-reel__tick.is-on {
+            color: rgba(94, 234, 212, 0.95);
+            text-shadow: 0 0 24px rgba(94, 234, 212, 0.45);
+            transform: translateY(-2px);
+        }
+        .sp-reel__label {
+            position: absolute;
+            left: var(--edge);
+            bottom: calc(100% + 0.35rem);
+            font-size: 0.55rem;
+            font-weight: 800;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: rgba(244, 237, 228, 0.28);
+        }
+        .sp-reel-wrap { position: relative; max-width: min(1920px, 100%); margin: 0 auto; }
+        body.sp .border-teal-500 { border-color: #14b8a6; }
     </style>
 </head>
-<body class="sp">
+<body class="sp" data-scene="0">
 
     <div class="sp-fx sp-fx--bloom" aria-hidden="true"></div>
     <div class="sp-fx sp-fx--grain" aria-hidden="true"></div>
@@ -486,10 +541,27 @@
     <div class="sp-floor" id="sp-floor" aria-hidden="true"></div>
 
     <div class="sp-progress" aria-hidden="true"><div class="sp-progress__fill" id="sp-prog-fill"></div></div>
+    <div class="sp-reel-wrap" aria-hidden="true">
+        <nav class="sp-reel" id="sp-reel" aria-label="Reel scenes">
+            <p class="sp-reel__label">Spatial reel</p>
+            <div class="sp-reel__inner">
+                <span class="sp-reel__tick is-on" data-reel-scene="0">I</span>
+                <span class="sp-reel__tick" data-reel-scene="1">II</span>
+                <span class="sp-reel__tick" data-reel-scene="2">III</span>
+                <span class="sp-reel__tick" data-reel-scene="3">IV</span>
+                <span class="sp-reel__tick" data-reel-scene="4">V</span>
+                <span class="sp-reel__tick" data-reel-scene="5">VI</span>
+                <span class="sp-reel__tick" data-reel-scene="6">VII</span>
+                <span class="sp-reel__tick" data-reel-scene="7">VIII</span>
+                <span class="sp-reel__tick" data-reel-scene="8">IX</span>
+                <span class="sp-reel__tick" data-reel-scene="9">X</span>
+            </div>
+        </nav>
+    </div>
     <a href="index.html" class="sp-exit">Hub</a>
 
     <!-- ═══ SCENE A — Hero ═══ -->
-    <section class="sp-track" id="sc-hero" style="height: 420vh;">
+    <section class="sp-track" id="sc-hero" style="height: 560vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">I</div>
             <div class="sp-orb sp-orb--a" style="width:min(90vw,680px);height:min(90vw,680px);background:var(--mint-deep);top:8%;left:-5%;"></div>
@@ -519,7 +591,7 @@
     </section>
 
     <!-- ═══ SCENE B — Monolith ═══ -->
-    <section class="sp-track" id="sc-mono" style="height: 380vh;">
+    <section class="sp-track" id="sc-mono" style="height: 520vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">II</div>
             <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
@@ -543,7 +615,7 @@
     </section>
 
     <!-- ═══ SCENE C — Portrait ═══ -->
-    <section class="sp-track" id="sc-photo" style="height: 360vh;">
+    <section class="sp-track" id="sc-photo" style="height: 500vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">III</div>
             <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
@@ -567,7 +639,7 @@
     </section>
 
     <!-- ═══ SCENE D — Contact ═══ -->
-    <section class="sp-track" id="sc-contact" style="height: 320vh;">
+    <section class="sp-track" id="sc-contact" style="height: 460vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">IV</div>
             <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
@@ -593,7 +665,7 @@
     </section>
 
     <!-- ═══ SCENE E — Dossier ═══ -->
-    <section class="sp-track" id="sc-dossier" style="height: 340vh;">
+    <section class="sp-track" id="sc-dossier" style="height: 480vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">V</div>
             <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
@@ -611,7 +683,7 @@
     </section>
 
     <!-- ═══ SCENE F — Work ═══ -->
-    <section class="sp-track" id="sc-work" style="height: 400vh;">
+    <section class="sp-track" id="sc-work" style="height: 560vh;">
         <div class="sp-sticky persp sp-sticky--wide" style="align-items:flex-start;padding-top:clamp(4rem,10vh,7rem);">
             <div class="sp-shell p3d w-full" id="work-pack">
                 <p class="sp-k mb-12">VI · Field work</p>
@@ -638,7 +710,7 @@
     </section>
 
     <!-- ═══ SCENE G — Stack ═══ -->
-    <section class="sp-track" id="sc-stack" style="height: 300vh;">
+    <section class="sp-track" id="sc-stack" style="height: 420vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">VII</div>
             <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
@@ -664,7 +736,7 @@
     </section>
 
     <!-- ═══ SCENE H — Gate ═══ -->
-    <section class="sp-track" id="sc-gate" style="height: 280vh;">
+    <section class="sp-track" id="sc-gate" style="height: 400vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">VIII</div>
             <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
@@ -684,7 +756,7 @@
     </section>
 
     <!-- ═══ SCENE I — Voices ═══ -->
-    <section class="sp-track" id="sc-voices" style="height: 280vh;">
+    <section class="sp-track" id="sc-voices" style="height: 420vh;">
         <div class="sp-sticky persp sp-sticky--wide sp-sticky-voices overflow-y-auto">
             <div class="sp-shell p3d w-full pb-24" id="voices-pack">
                 <p class="sp-k mb-8">IX · Voices</p>
@@ -697,7 +769,7 @@
     </section>
 
     <!-- ═══ SCENE J — Finale ═══ -->
-    <section class="sp-track" id="sc-end" style="height: 340vh;">
+    <section class="sp-track" id="sc-end" style="height: 480vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true" style="opacity:0.06;">X</div>
             <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:flex-start;">
@@ -771,9 +843,9 @@
 
     if (typeof Lenis !== 'undefined') {
         var lenis = new Lenis({
-            duration: 1.15,
+            duration: 1.32,
             smoothWheel: true,
-            wheelMultiplier: 0.88,
+            wheelMultiplier: 0.84,
             touchMultiplier: 1.35
         });
         lenis.on('scroll', ScrollTrigger.update);
@@ -785,7 +857,22 @@
     }
 
     var EASE = 'none';
-    var TP = 1800;
+    var TP = 2000;
+    /* Longer “in”, readable “hold”, softer “out” so scenes read as one reel */
+    var SCRUB = 1.68;
+    var SCRUB_HERO = 1.52;
+    var IN = 0.52;
+    var OUT0 = 0.68;
+
+    function setScene(idx) {
+        idx = Math.max(0, Math.min(9, idx | 0));
+        document.body.setAttribute('data-scene', String(idx));
+        document.documentElement.style.setProperty('--reel-hue', String(148 + idx * 11));
+        document.documentElement.style.setProperty('--reel', (idx / 9).toFixed(4));
+        document.querySelectorAll('.sp-reel__tick').forEach(function (el) {
+            el.classList.toggle('is-on', el.getAttribute('data-reel-scene') === String(idx));
+        });
+    }
 
     var progFill = document.getElementById('sp-prog-fill');
     ScrollTrigger.create({
@@ -796,7 +883,30 @@
         }
     });
 
-    /* —— Hero: smash in → hold → vault out —— */
+    var scenePairs = [
+        ['sc-mono', 1],
+        ['sc-photo', 2],
+        ['sc-contact', 3],
+        ['sc-dossier', 4],
+        ['sc-work', 5],
+        ['sc-stack', 6],
+        ['sc-gate', 7],
+        ['sc-voices', 8],
+        ['sc-end', 9]
+    ];
+    scenePairs.forEach(function (row, j) {
+        var prev = j === 0 ? 0 : scenePairs[j - 1][1];
+        var id = row[0];
+        var si = row[1];
+        ScrollTrigger.create({
+            trigger: '#' + id,
+            start: 'top 56%',
+            onEnter: function () { setScene(si); },
+            onLeaveBack: function () { setScene(prev); }
+        });
+    });
+
+    /* —— Hero —— */
     var hero = document.getElementById('sc-hero');
     var heroPack = document.getElementById('hero-pack');
     var heroName = document.getElementById('hero-name');
@@ -805,6 +915,7 @@
     var heroK = document.getElementById('hero-k');
     var heroSide = document.getElementById('hero-side');
     var heroHint = document.getElementById('hero-hint');
+    var HOUT = 0.72;
 
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
@@ -812,93 +923,95 @@
             trigger: hero,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 1.05
+            scrub: SCRUB_HERO
         }
     })
         .fromTo(heroPack,
-            { rotateX: 52, z: -950, y: '22vh', scale: 1.65, transformOrigin: '50% 80%', filter: 'blur(14px)', opacity: 0.15 },
-            { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', opacity: 1, duration: 0.34 },
+            { rotateX: 58, z: -1250, y: '30vh', scale: 1.92, transformOrigin: '50% 82%', filter: 'blur(28px)', opacity: 0.04 },
+            { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
             0
         )
-        .fromTo(heroName, { rotateY: -38, x: '-18vw' }, { rotateY: 6, x: 0, duration: 0.34 }, 0)
-        .fromTo(heroOutline, { opacity: 1, x: '-4vw' }, { opacity: 0.12, x: '3vw', duration: 0.34 }, 0)
-        .fromTo(heroWu, { z: 200, y: '8vh', rotateX: 25 }, { z: 40, y: 0, rotateX: 0, duration: 0.34 }, 0)
-        .fromTo(heroSide, { x: '25vw', opacity: 0 }, { x: 0, opacity: 1, duration: 0.34 }, 0.02)
-        .to(heroPack, { rotateX: -38, z: 720, y: '-35vh', scale: 0.72, filter: 'blur(10px)', opacity: 0.2, duration: 0.36 }, 0.64)
-        .to(heroK, { opacity: 0, letterSpacing: '0.7em', duration: 0.2 }, 0.7);
+        .fromTo(heroName, { rotateY: -46, x: '-26vw' }, { rotateY: 8, x: 0, duration: IN }, 0)
+        .fromTo(heroOutline, { opacity: 1, x: '-6vw' }, { opacity: 0.1, x: '4vw', duration: IN }, 0)
+        .fromTo(heroWu, { z: 260, y: '12vh', rotateX: 32 }, { z: 44, y: 0, rotateX: 0, duration: IN }, 0)
+        .fromTo(heroSide, { x: '32vw', opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: IN }, 0.03)
+        .to(heroPack, { rotateX: -36, z: 820, y: '-42vh', scale: 0.66, filter: 'blur(14px)', opacity: 0.4, duration: 1 - HOUT }, HOUT)
+        .to(heroK, { opacity: 0, letterSpacing: '0.75em', duration: 0.22 }, HOUT + 0.02);
 
     gsap.to(heroHint, {
         opacity: 0,
-        scrollTrigger: { trigger: hero, start: 'top top', end: '12% bottom', scrub: true }
+        scrollTrigger: { trigger: hero, start: 'top top', end: '10% bottom', scrub: true }
     });
 
-    /* —— Monolith: off-screen slam → read → shear away —— */
+    /* —— Monolith —— */
     var mono = document.getElementById('sc-mono');
     var monoPack = document.getElementById('mono-pack');
     var monoCard = document.getElementById('mono-card');
     var monoStrip = document.getElementById('mono-strip');
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: mono, start: 'top bottom', end: 'bottom top', scrub: 1.1 }
+        scrollTrigger: { trigger: mono, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     })
         .fromTo(monoPack,
-            { x: '42vw', rotateY: 58, z: -880, opacity: 0, filter: 'blur(18px)' },
-            { x: 0, rotateY: 0, z: 0, opacity: 1, filter: 'blur(0px)', duration: 0.36 },
+            { x: '48vw', rotateY: 64, z: -1150, opacity: 0, filter: 'blur(28px)', scale: 0.86 },
+            { x: 0, rotateY: 0, z: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: IN },
             0
         )
         .fromTo(monoCard,
-            { rotateX: 22, y: '15vh', scale: 0.92 },
-            { rotateX: 0, y: 0, scale: 1, duration: 0.36 },
+            { rotateX: 28, y: '18vh', scale: 0.88 },
+            { rotateX: 0, y: 0, scale: 1, duration: IN },
             0
         )
         .fromTo(monoStrip,
-            { opacity: 0, x: '-10vw' },
-            { opacity: 1, x: 0, duration: 0.36 },
+            { opacity: 0, x: '-14vw' },
+            { opacity: 1, x: 0, duration: IN },
             0
         )
-        .to(monoPack, { x: '-38vw', rotateY: -42, z: 520, opacity: 0.12, filter: 'blur(14px)', duration: 0.38 }, 0.62);
+        .to(monoCard, { y: '-1.5vh', duration: 0.14 }, IN)
+        .to(monoPack, { x: '-34vw', rotateY: -40, z: 480, opacity: 0.44, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
 
-    /* —— Photo: orbital enter → exit opposite —— */
+    /* —— Photo —— */
     var photo = document.getElementById('sc-photo');
     var photoFrame = document.getElementById('photo-frame');
     var photoCopy = document.getElementById('photo-copy');
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: photo, start: 'top bottom', end: 'bottom top', scrub: 1.05 }
+        scrollTrigger: { trigger: photo, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     })
         .fromTo(photoFrame,
-            { x: '-55vw', rotateY: 62, z: -900, rotateZ: -14, scale: 0.65, filter: 'blur(12px)' },
-            { x: 0, rotateY: -8, z: 80, rotateZ: 2, scale: 1, filter: 'blur(0px)', duration: 0.38 },
+            { x: '-62vw', rotateY: 68, z: -1100, rotateZ: -16, scale: 0.58, filter: 'blur(22px)', opacity: 0.5 },
+            { x: 0, rotateY: -10, z: 90, rotateZ: 2, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
             0
         )
         .fromTo(photoCopy,
-            { x: '40vw', opacity: 0, z: -400, rotateY: -35 },
-            { x: 0, opacity: 1, z: 60, rotateY: 0, duration: 0.38 },
+            { x: '48vw', opacity: 0, z: -520, rotateY: -42, filter: 'blur(14px)' },
+            { x: 0, opacity: 1, z: 70, rotateY: 0, filter: 'blur(0px)', duration: IN },
             0
         )
-        .to(photoFrame, { x: '45vw', rotateY: -48, z: 600, scale: 0.55, opacity: 0.15, filter: 'blur(16px)', duration: 0.36 }, 0.62)
-        .to(photoCopy, { x: '-35vw', opacity: 0, z: -200, duration: 0.36 }, 0.62);
+        .to(photoFrame, { x: '48vw', rotateY: -52, z: 640, scale: 0.58, opacity: 0.42, filter: 'blur(14px)', duration: 1 - OUT0 }, OUT0)
+        .to(photoCopy, { x: '-38vw', opacity: 0.35, z: -120, duration: 1 - OUT0 }, OUT0);
 
-    /* —— Contact: deck flies in → disperses —— */
+    /* —— Contact —— */
     var contact = document.getElementById('sc-contact');
     var contactPack = document.getElementById('contact-pack');
     var cNodes = document.querySelectorAll('#contact-grid .sp-chrome');
     var cTl = gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: contact, start: 'top bottom', end: 'bottom top', scrub: 1.05 }
+        scrollTrigger: { trigger: contact, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     });
     cTl.fromTo(contactPack,
-        { rotateX: 38, z: -700, y: '25vh', scale: 0.82, filter: 'blur(16px)' },
-        { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.35 },
+        { rotateX: 44, z: -900, y: '32vh', scale: 0.78, filter: 'blur(24px)', opacity: 0.35 },
+        { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
         0
     );
     cNodes.forEach(function (el, i) {
+        var stagger = i * 0.055;
         cTl.fromTo(el,
-            { y: '30vh', z: -500 - i * 120, rotateX: 35, opacity: 0.2 },
-            { y: 0, z: i * 40, rotateX: 0, opacity: 1, duration: 0.35 },
-            0.02 + i * 0.04
+            { y: '38vh', z: -620 - i * 140, rotateX: 42, opacity: 0.12, filter: 'blur(12px)' },
+            { y: 0, z: i * 48, rotateX: 0, opacity: 1, filter: 'blur(0px)', duration: IN - 0.06 },
+            stagger
         );
-        cTl.to(el, { y: '-20vh', z: 400 + i * 50, rotateX: -28, opacity: 0, duration: 0.34 }, 0.64 + i * 0.03);
+        cTl.to(el, { y: '-22vh', z: 460 + i * 55, rotateX: -30, opacity: 0.38, duration: 1 - OUT0 - stagger * 0.4 }, OUT0 + stagger * 0.35);
     });
 
     /* —— Dossier —— */
@@ -906,30 +1019,30 @@
     var dossierPack = document.getElementById('dossier-pack');
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: dossier, start: 'top bottom', end: 'bottom top', scrub: 1 }
+        scrollTrigger: { trigger: dossier, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     })
         .fromTo(dossierPack,
-            { x: '-50vw', rotateY: 45, z: -800, scale: 0.75, filter: 'blur(20px)', opacity: 0 },
-            { x: 0, rotateY: 0, z: 40, scale: 1, filter: 'blur(0px)', opacity: 1, duration: 0.38 },
+            { x: '-58vw', rotateY: 52, z: -1050, scale: 0.7, filter: 'blur(26px)', opacity: 0 },
+            { x: 0, rotateY: 0, z: 50, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
             0
         )
-        .to(dossierPack, { x: '35vw', rotateY: -38, z: 500, opacity: 0.1, filter: 'blur(18px)', duration: 0.38 }, 0.62);
+        .to(dossierPack, { x: '32vw', rotateY: -36, z: 520, opacity: 0.4, filter: 'blur(11px)', duration: 1 - OUT0 }, OUT0);
 
-    /* —— Work slabs (one shared scrub timeline) —— */
+    /* —— Work —— */
     var work = document.getElementById('sc-work');
     var w0 = document.querySelector('[data-w="0"]');
     var w1 = document.querySelector('[data-w="1"]');
     var workTl = gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 1.05 }
+        scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     });
     if (w0) {
-        workTl.fromTo(w0, { x: '-70%', rotateY: 35, z: -600, opacity: 0, filter: 'blur(12px)' }, { x: '0%', rotateY: -6, z: 80, opacity: 1, filter: 'blur(0px)', duration: 0.36 }, 0)
-            .to(w0, { x: '-55%', rotateY: 28, z: 450, opacity: 0, duration: 0.36 }, 0.62);
+        workTl.fromTo(w0, { x: '-78%', rotateY: 42, z: -780, opacity: 0, filter: 'blur(18px)' }, { x: '0%', rotateY: -8, z: 90, opacity: 1, filter: 'blur(0px)', duration: IN }, 0)
+            .to(w0, { x: '-52%', rotateY: 32, z: 480, opacity: 0.4, duration: 1 - OUT0 }, OUT0);
     }
     if (w1) {
-        workTl.fromTo(w1, { x: '70%', rotateY: -35, z: -600, opacity: 0, filter: 'blur(12px)' }, { x: '0%', rotateY: 6, z: 80, opacity: 1, filter: 'blur(0px)', duration: 0.36 }, 0)
-            .to(w1, { x: '55%', rotateY: -28, z: 450, opacity: 0, duration: 0.36 }, 0.62);
+        workTl.fromTo(w1, { x: '78%', rotateY: -42, z: -780, opacity: 0, filter: 'blur(18px)' }, { x: '0%', rotateY: 8, z: 90, opacity: 1, filter: 'blur(0px)', duration: IN }, 0)
+            .to(w1, { x: '52%', rotateY: -32, z: 480, opacity: 0.4, duration: 1 - OUT0 }, OUT0);
     }
 
     /* —— Stack —— */
@@ -937,56 +1050,57 @@
     var stackPack = document.getElementById('stack-pack');
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: stack, start: 'top bottom', end: 'bottom top', scrub: 1 }
+        scrollTrigger: { trigger: stack, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     })
         .fromTo(stackPack,
-            { rotateY: -55, z: -900, scale: 0.7, filter: 'blur(14px)' },
-            { rotateY: 4, z: 60, scale: 1, filter: 'blur(0px)', duration: 0.38 },
+            { rotateY: -62, z: -1050, scale: 0.64, filter: 'blur(22px)', opacity: 0.65 },
+            { rotateY: 5, z: 70, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
             0
         )
-        .to(stackPack, { rotateY: 48, z: 700, y: '-20vh', opacity: 0.15, filter: 'blur(16px)', duration: 0.38 }, 0.62);
+        .to(stackPack, { rotateY: 52, z: 760, y: '-24vh', opacity: 0.42, filter: 'blur(13px)', duration: 1 - OUT0 }, OUT0);
 
     /* —— Gate —— */
     var gate = document.getElementById('sc-gate');
     var gatePack = document.getElementById('gate-pack');
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: gate, start: 'top bottom', end: 'bottom top', scrub: 0.95 }
+        scrollTrigger: { trigger: gate, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     })
         .fromTo(gatePack,
-            { z: -700, scale: 1.85, opacity: 0, filter: 'blur(22px)', rotateX: 35 },
-            { z: 0, scale: 1, opacity: 1, filter: 'blur(0px)', rotateX: 0, duration: 0.4 },
+            { z: -900, scale: 2.05, opacity: 0, filter: 'blur(28px)', rotateX: 42 },
+            { z: 0, scale: 1, opacity: 1, filter: 'blur(0px)', rotateX: 0, duration: IN },
             0
         )
-        .to(gatePack, { z: 550, scale: 0.65, opacity: 0, rotateX: -28, filter: 'blur(18px)', duration: 0.38 }, 0.6);
+        .to(gatePack, { z: 580, scale: 0.72, opacity: 0.38, rotateX: -32, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
 
     /* —— Voices —— */
     var voices = document.getElementById('sc-voices');
     var voicesPack = document.getElementById('voices-pack');
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: voices, start: 'top bottom', end: 'bottom top', scrub: 1 }
+        scrollTrigger: { trigger: voices, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     })
         .fromTo(voicesPack,
-            { y: '40vh', z: -500, opacity: 0, filter: 'blur(16px)' },
-            { y: 0, z: 40, opacity: 1, filter: 'blur(0px)', duration: 0.38 },
+            { y: '48vh', z: -620, opacity: 0, filter: 'blur(22px)' },
+            { y: 0, z: 50, opacity: 1, filter: 'blur(0px)', duration: IN },
             0
         )
-        .to(voicesPack, { y: '-25vh', z: 400, opacity: 0, filter: 'blur(14px)', duration: 0.38 }, 0.62);
+        .to(voicesPack, { y: '-28vh', z: 440, opacity: 0.4, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
 
     /* —— Finale —— */
     var end = document.getElementById('sc-end');
     var endPack = document.getElementById('end-pack');
+    var FOUT = 0.7;
     gsap.timeline({
         defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: end, start: 'top bottom', end: 'bottom top', scrub: 1 }
+        scrollTrigger: { trigger: end, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
     })
         .fromTo(endPack,
-            { z: 900, scale: 2.2, rotateX: 40, opacity: 0, filter: 'blur(24px)', transformOrigin: '0% 50%' },
-            { z: 0, scale: 1, rotateX: 0, opacity: 1, filter: 'blur(0px)', duration: 0.4 },
+            { z: 1050, scale: 2.45, rotateX: 48, opacity: 0, filter: 'blur(30px)', transformOrigin: '0% 50%' },
+            { z: 0, scale: 1, rotateX: 0, opacity: 1, filter: 'blur(0px)', duration: IN },
             0
         )
-        .to(endPack, { z: -400, scale: 0.85, opacity: 0.35, filter: 'blur(8px)', duration: 0.38 }, 0.6);
+        .to(endPack, { z: -320, scale: 0.88, opacity: 0.48, filter: 'blur(9px)', duration: 1 - FOUT }, FOUT);
 
     var floor = document.getElementById('sp-floor');
     ScrollTrigger.create({
