@@ -179,6 +179,76 @@
             text-shadow: 0 0 24px rgba(94, 234, 212, 0.4);
         }
 
+        /* Hands-free scroll tour — only when Lenis + GSAP are active (see sp--tour-ready). */
+        body.sp:not(.sp--tour-ready) .sp-auto-tour {
+            display: none;
+        }
+        body.sp.sp--tour-ready .sp-auto-tour {
+            display: inline-flex;
+        }
+        body.sp--reduce .sp-auto-tour {
+            display: none !important;
+        }
+        .sp-auto-tour {
+            position: fixed;
+            bottom: calc(3.85rem + env(safe-area-inset-bottom));
+            left: max(0.85rem, env(safe-area-inset-left));
+            z-index: 118;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.42rem 0.55rem 0.42rem 0.48rem;
+            margin: 0;
+            border: 1px solid rgba(255, 252, 248, 0.1);
+            border-radius: 3px;
+            background: rgba(10, 9, 8, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: rgba(244, 237, 228, 0.42);
+            cursor: pointer;
+            opacity: 0.38;
+            transition: opacity 0.35s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.35s ease;
+            pointer-events: auto;
+        }
+        .sp-auto-tour:hover,
+        .sp-auto-tour:focus-visible {
+            opacity: 1;
+            color: rgba(244, 237, 228, 0.92);
+            border-color: rgba(94, 234, 212, 0.35);
+            box-shadow: 0 0 22px rgba(94, 234, 212, 0.12);
+        }
+        .sp-auto-tour:focus-visible {
+            outline: 2px solid rgba(94, 234, 212, 0.55);
+            outline-offset: 2px;
+        }
+        .sp-auto-tour.is-on {
+            opacity: 0.92;
+            color: var(--mint);
+            border-color: rgba(94, 234, 212, 0.42);
+        }
+        .sp-auto-tour__icon {
+            width: 1.05rem;
+            height: 1.05rem;
+            flex-shrink: 0;
+        }
+        .sp-auto-tour__label {
+            font-size: 0.52rem;
+            font-weight: 800;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            line-height: 1;
+            padding-right: 0.1rem;
+        }
+        .sp-auto-tour__pause {
+            display: none;
+        }
+        .sp-auto-tour.is-on .sp-auto-tour__play {
+            display: none;
+        }
+        .sp-auto-tour.is-on .sp-auto-tour__pause {
+            display: block;
+        }
+
         .sp-chrome {
             border: 1px solid var(--chrome);
             background: linear-gradient(155deg, rgba(24, 22, 19, 0.92) 0%, rgba(8, 7, 6, 0.96) 100%);
@@ -796,6 +866,11 @@
         </nav>
     </div>
     <a href="index.html" class="sp-exit">Hub</a>
+    <button type="button" class="sp-auto-tour" id="sp-auto-tour" aria-pressed="false" aria-label="Play automatic scroll tour (hands-free)" title="Hands-free scroll: watch the page motion without using the wheel. Click again to stop.">
+        <svg class="sp-auto-tour__icon sp-auto-tour__play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"></path></svg>
+        <svg class="sp-auto-tour__icon sp-auto-tour__pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"></path></svg>
+        <span class="sp-auto-tour__label">Tour</span>
+    </button>
 
     <section class="sp-track" id="sc-hero" style="height: 560vh;">
         <div class="sp-sticky persp sp-sticky--wide">
@@ -1172,6 +1247,58 @@
             var y = inst && (typeof inst.scroll === 'number' ? inst.scroll : (typeof inst.animatedScroll === 'number' ? inst.animatedScroll : 0));
             if (y > 12) dismissSpWelcome();
         });
+
+        window.__spLenis = lenis;
+        document.body.classList.add('sp--tour-ready');
+
+        var tourBtn = document.getElementById('sp-auto-tour');
+        var tourActive = false;
+        function bindAutoTour(L) {
+            if (!tourBtn) return;
+            function setTourUi(active) {
+                tourActive = active;
+                tourBtn.classList.toggle('is-on', active);
+                tourBtn.setAttribute('aria-pressed', active ? 'true' : 'false');
+                tourBtn.setAttribute('aria-label', active ? 'Stop automatic scroll' : 'Play automatic scroll tour (hands-free)');
+            }
+            function runTourFrom(startY) {
+                var maxY = L.limit;
+                var remain = Math.max(0, maxY - startY);
+                var durSec = Math.max(22, Math.min(150, (remain / Math.max(maxY, 1)) * 118));
+                setTourUi(true);
+                dismissSpWelcome();
+                L.scrollTo(maxY, {
+                    duration: durSec,
+                    easing: function (t) { return t; },
+                    programmatic: true,
+                    onComplete: function () {
+                        setTourUi(false);
+                    }
+                });
+            }
+            tourBtn.addEventListener('click', function () {
+                if (tourActive) {
+                    L.stop();
+                    L.start();
+                    setTourUi(false);
+                    return;
+                }
+                dismissSpWelcome();
+                var cur = L.scroll;
+                var maxY = L.limit;
+                if (maxY - cur < 48) {
+                    L.scrollTo(0, { immediate: true });
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            runTourFrom(0);
+                        });
+                    });
+                    return;
+                }
+                runTourFrom(cur);
+            });
+        }
+        bindAutoTour(lenis);
     }
 
     var EASE = 'none';
