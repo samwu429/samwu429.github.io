@@ -12,15 +12,16 @@
     <style>
         @font-face { font-family: system; src: local(system-ui); }
         :root {
-            --void: #050403;
-            --smoke: #0e0c0a;
+            --void: #030201;
+            --smoke: #0c0a08;
             --ash: #1a1714;
             --paper: #f4ede4;
-            --paper-dim: #b5ada3;
+            --paper-dim: #9a9288;
             --mint: #5eead4;
             --mint-deep: #0d9488;
             --signal: #60a5fa;
-            --chrome: rgba(255, 252, 248, 0.14);
+            --chrome: rgba(255, 252, 248, 0.12);
+            --edge: clamp(1.25rem, 5vw, 5.5rem);
             --mx: 0;
             --my: 0;
         }
@@ -41,7 +42,6 @@
         }
         body.sp--reduce * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 
-        /* —— Global FX stack —— */
         .sp-fx {
             position: fixed;
             inset: 0;
@@ -50,63 +50,63 @@
         }
         .sp-fx--bloom {
             background:
-                radial-gradient(ellipse 120% 70% at 50% -10%, rgba(94, 234, 212, 0.14), transparent 50%),
-                radial-gradient(ellipse 50% 40% at calc(50% + var(--mx) * 18%) calc(40% + var(--my) * 12%), rgba(96, 165, 250, 0.08), transparent 45%),
-                radial-gradient(ellipse 40% 35% at calc(30% - var(--mx) * 10%) calc(70% - var(--my) * 8%), rgba(5, 150, 105, 0.06), transparent 40%);
-            animation: sp-breathe 14s ease-in-out infinite alternate;
+                radial-gradient(ellipse 140% 80% at 50% -15%, rgba(94, 234, 212, 0.18), transparent 52%),
+                radial-gradient(ellipse 70% 50% at calc(50% + var(--mx) * 22%) calc(35% + var(--my) * 14%), rgba(96, 165, 250, 0.12), transparent 48%),
+                radial-gradient(ellipse 55% 45% at calc(25% - var(--mx) * 12%) calc(72% - var(--my) * 10%), rgba(5, 150, 105, 0.08), transparent 42%);
+            animation: sp-breathe 16s ease-in-out infinite alternate;
         }
         @keyframes sp-breathe {
             0% { filter: saturate(1) brightness(1); }
-            100% { filter: saturate(1.15) brightness(1.05); }
+            100% { filter: saturate(1.22) brightness(1.06); }
         }
         .sp-fx--grain {
-            opacity: 0.055;
+            opacity: 0.065;
             mix-blend-mode: overlay;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             z-index: 6;
         }
         .sp-fx--vig {
-            box-shadow: inset 0 0 180px rgba(0,0,0,0.75), inset 0 -40vh 120px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 min(220px, 25vw) rgba(0,0,0,0.82), inset 0 -45vh 140px rgba(0,0,0,0.55);
             z-index: 7;
         }
         .sp-fx--scan {
-            opacity: 0.04;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+            opacity: 0.045;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.035) 2px, rgba(255,255,255,0.035) 4px);
             z-index: 8;
             mix-blend-mode: soft-light;
         }
 
         .sp-floor {
             position: fixed;
-            left: -50%;
-            right: -50%;
-            bottom: -20%;
-            height: 70%;
+            left: -60%;
+            right: -60%;
+            bottom: -25%;
+            height: 75%;
             z-index: 2;
             pointer-events: none;
             background:
-                linear-gradient(rgba(244, 237, 228, 0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(244, 237, 228, 0.04) 1px, transparent 1px);
-            background-size: 80px 80px;
+                linear-gradient(rgba(244, 237, 228, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244, 237, 228, 0.045) 1px, transparent 1px);
+            background-size: clamp(64px, 8vw, 120px) clamp(64px, 8vw, 120px);
             transform-origin: 50% 100%;
             transform:
-                translate3d(calc(var(--mx) * 20px), 0, 0)
-                perspective(1000px)
-                rotateX(82deg)
-                scale(1.35);
-            opacity: 0.35;
-            mask-image: linear-gradient(to top, black 0%, transparent 85%);
-            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 85%);
+                translate3d(calc(var(--mx) * 28px), 0, 0)
+                perspective(900px)
+                rotateX(84deg)
+                scale(1.55);
+            opacity: 0.42;
+            mask-image: linear-gradient(to top, black 0%, transparent 88%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 88%);
         }
 
         .sp-progress {
             position: fixed;
-            right: max(12px, env(safe-area-inset-right));
+            right: max(14px, env(safe-area-inset-right));
             top: 50%;
             transform: translateY(-50%);
-            width: 3px;
-            height: 38vh;
-            background: rgba(255,252,248,0.08);
+            width: 4px;
+            height: min(52vh, 520px);
+            background: rgba(255,252,248,0.07);
             border-radius: 2px;
             z-index: 100;
             overflow: hidden;
@@ -118,7 +118,7 @@
             width: 100%;
             height: 0%;
             background: linear-gradient(0deg, var(--mint-deep), var(--mint));
-            box-shadow: 0 0 24px rgba(94, 234, 212, 0.45);
+            box-shadow: 0 0 32px rgba(94, 234, 212, 0.55);
         }
 
         .sp-exit {
@@ -126,77 +126,91 @@
             top: max(1rem, env(safe-area-inset-top));
             left: max(1rem, env(safe-area-inset-left));
             z-index: 120;
-            font-size: 0.62rem;
+            font-size: 0.68rem;
             font-weight: 800;
-            letter-spacing: 0.28em;
+            letter-spacing: 0.32em;
             text-transform: uppercase;
             color: var(--paper-dim);
             text-decoration: none;
-            padding: 0.5rem 0;
+            padding: 0.55rem 0;
             border-bottom: 1px solid transparent;
             transition: color 0.25s, border-color 0.25s, text-shadow 0.25s;
         }
         .sp-exit:hover {
             color: var(--mint);
-            border-bottom-color: rgba(94, 234, 212, 0.45);
-            text-shadow: 0 0 20px rgba(94, 234, 212, 0.35);
+            border-bottom-color: rgba(94, 234, 212, 0.5);
+            text-shadow: 0 0 24px rgba(94, 234, 212, 0.4);
         }
 
         .sp-chrome {
             border: 1px solid var(--chrome);
-            background: linear-gradient(145deg, rgba(22, 20, 18, 0.88) 0%, rgba(12, 10, 9, 0.92) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: linear-gradient(155deg, rgba(24, 22, 19, 0.92) 0%, rgba(8, 7, 6, 0.96) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             box-shadow:
-                0 0 0 1px rgba(0,0,0,0.5),
-                16px 16px 0 rgba(0, 0, 0, 0.35),
-                0 40px 80px rgba(0, 0, 0, 0.45),
-                inset 0 1px 0 rgba(255,252,248,0.06);
-            border-radius: 2px;
+                0 0 0 1px rgba(0,0,0,0.55),
+                min(20px, 2vw) min(20px, 2vw) 0 rgba(0, 0, 0, 0.4),
+                0 min(48px, 6vw) min(100px, 12vw) rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255,252,248,0.07);
+            border-radius: 3px;
         }
 
-        .persp { perspective: 1400px; perspective-origin: 50% 40%; }
+        .persp { perspective: min(2000px, 120vw); perspective-origin: 45% 38%; }
         .p3d { transform-style: preserve-3d; }
 
-        .sp-h1 {
-            font-size: clamp(3.5rem, 14vw, 9rem);
+        .sp-water {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: clamp(8rem, 28vw, 22rem);
             font-weight: 900;
-            line-height: 0.88;
-            letter-spacing: -0.05em;
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            color: rgba(244, 237, 228, 0.035);
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            text-align: center;
+        }
+
+        .sp-h1 {
+            font-size: clamp(4.5rem, 17vw, 13rem);
+            font-weight: 900;
+            line-height: 0.86;
+            letter-spacing: -0.055em;
             text-transform: uppercase;
             text-shadow:
-                -2px 0 rgba(255, 80, 80, 0.12),
-                2px 0 rgba(80, 200, 255, 0.12),
-                0 0 80px rgba(94, 234, 212, 0.15);
+                -3px 0 rgba(255, 60, 60, 0.14),
+                3px 0 rgba(60, 180, 255, 0.14),
+                0 0 min(120px, 12vw) rgba(94, 234, 212, 0.2);
         }
         .sp-h2 {
-            font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+            font-size: clamp(2rem, 5.5vw, 4.2rem);
             font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.12;
+            letter-spacing: -0.035em;
+            line-height: 1.05;
         }
-        .sp-serif {
-            font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-        }
+        .sp-serif { font-family: Georgia, Cambria, "Times New Roman", Times, serif; }
         .sp-k {
-            font-size: 0.65rem;
+            font-size: clamp(0.62rem, 1.1vw, 0.75rem);
             font-weight: 800;
-            letter-spacing: 0.42em;
+            letter-spacing: 0.48em;
             text-transform: uppercase;
             color: var(--mint);
         }
         .sp-prose {
-            font-size: 1.02rem;
-            line-height: 1.82;
-            color: #d8d0c6;
-            max-width: 40rem;
+            font-size: clamp(1rem, 1.35vw, 1.2rem);
+            line-height: 1.85;
+            color: #d4ccc2;
+            max-width: min(48rem, 100%);
         }
-        .sp-prose a {
-            color: var(--mint);
-            text-underline-offset: 4px;
-        }
+        .sp-prose a { color: var(--mint); text-underline-offset: 4px; }
+        .sp-muted { color: #9a9288; }
+        .sp-teal { color: #5eead4; }
+        .sp-sky { color: #7dd3fc; }
 
-        /* Scene shells: tall scroll tracks + sticky stage */
         .sp-track { position: relative; }
         .sp-sticky {
             position: sticky;
@@ -208,66 +222,259 @@
             justify-content: center;
             overflow: hidden;
         }
+        .sp-sticky--wide { justify-content: stretch; align-items: stretch; }
 
         .sp-hint {
             position: absolute;
             bottom: max(2rem, env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 0.45em;
+            letter-spacing: 0.5em;
             text-transform: uppercase;
-            color: rgba(244, 237, 228, 0.35);
+            color: rgba(244, 237, 228, 0.38);
             animation: sp-hint-pulse 2.8s ease-in-out infinite;
         }
         @keyframes sp-hint-pulse {
             0%, 100% { opacity: 0.35; }
-            50% { opacity: 0.85; }
+            50% { opacity: 0.9; }
         }
 
         .sp-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.35;
+            filter: blur(min(80px, 10vw));
+            opacity: 0.42;
             pointer-events: none;
         }
 
         .sp-linkrow {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem 1.5rem;
-            justify-content: center;
-            margin-top: 2rem;
+            gap: 1rem 2.5rem;
+            justify-content: flex-start;
+            margin-top: 2.5rem;
         }
         .sp-linkrow a {
-            font-size: 0.72rem;
+            font-size: clamp(0.85rem, 1.4vw, 1.05rem);
             font-weight: 800;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--paper-dim);
             text-decoration: none;
-            border-bottom: 1px solid rgba(244, 237, 228, 0.2);
+            border-bottom: 2px solid rgba(244, 237, 228, 0.18);
+            padding-bottom: 0.35rem;
             transition: color 0.2s, border-color 0.2s, transform 0.2s;
         }
         .sp-linkrow a:hover {
             color: var(--mint);
             border-bottom-color: var(--mint);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .sp-tcard {
-            border: 1px solid rgba(255,252,248,0.1);
-            padding: 1rem 1.25rem;
-            margin-bottom: 0.75rem;
-            background: rgba(0,0,0,0.25);
-            font-size: 0.92rem;
+            border: 1px solid rgba(255,252,248,0.12);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(0,0,0,0.35);
+            font-size: clamp(0.95rem, 1.2vw, 1.05rem);
             color: #cec6bc;
+        }
+
+        /* —— Layout: desktop-first wide —— */
+        .sp-shell {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: min(1920px, 100%);
+            margin: 0 auto;
+            padding-left: var(--edge);
+            padding-right: var(--edge);
+        }
+        .sp-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2rem, 5vw, 4rem);
+            width: 100%;
+            align-items: end;
+        }
+        @media (min-width: 900px) {
+            .sp-hero-grid {
+                grid-template-columns: 1.15fr 0.85fr;
+                align-items: end;
+            }
+        }
+        .sp-hero-nameblock { position: relative; }
+        .sp-hero-side {
+            text-align: left;
+            padding-bottom: clamp(0.5rem, 2vw, 1.5rem);
+            border-left: 3px solid rgba(94, 234, 212, 0.45);
+            padding-left: clamp(1rem, 2.5vw, 2rem);
+        }
+        .sp-mono-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2rem, 4vw, 3rem);
+            width: 100%;
+            align-items: center;
+        }
+        @media (min-width: 1000px) {
+            .sp-mono-layout {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+            }
+        }
+        .sp-mono-strip {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            color: rgba(244, 237, 228, 0.06);
+            text-transform: uppercase;
+            user-select: none;
+        }
+        .sp-photo-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(2rem, 6vw, 5rem);
+            width: 100%;
+            align-items: center;
+        }
+        @media (min-width: 900px) {
+            .sp-photo-row {
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            }
+        }
+        .sp-photo-imgwrap {
+            position: relative;
+            width: min(52vw, 640px);
+            max-width: 100%;
+        }
+        .sp-photo-imgwrap img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border: 3px solid #1c1917;
+            filter: grayscale(0.12) contrast(1.08);
+        }
+        .sp-contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1.25rem, 2.5vw, 2rem);
+            width: 100%;
+        }
+        @media (min-width: 900px) {
+            .sp-contact-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .sp-work-slab-title {
+            font-size: clamp(0.72rem, 1.1vw, 0.85rem);
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .sp-work-slab-title--teal { color: #5eead4; }
+        .sp-work-slab-title--sky { color: #7dd3fc; }
+        .sp-work-list {
+            font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+            color: #d4d4d4;
+            font-weight: 600;
+            line-height: 1.75;
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        .sp-work-list li { margin-bottom: 0.5rem; }
+        .sp-stack-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1.25rem, 2.5vw, 2rem);
+        }
+        @media (min-width: 800px) {
+            .sp-stack-grid { grid-template-columns: 1fr 1fr; }
+        }
+        .sp-gate-links {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem 2rem;
+        }
+        @media (min-width: 700px) {
+            .sp-gate-links {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .sp-gate-links a {
+            display: block;
+            font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: #e7e2da;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            padding: 0.85rem 0;
+            transition: color 0.2s, padding-left 0.25s, border-color 0.2s;
+        }
+        .sp-gate-links a:hover {
+            color: var(--mint);
+            padding-left: 0.75rem;
+            border-bottom-color: rgba(94, 234, 212, 0.5);
+        }
+
+        .sp-label-xs {
+            font-size: clamp(0.65rem, 0.95vw, 0.72rem);
+            font-weight: 900;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: #78716c;
+            margin-bottom: 0.5rem;
         }
 
         body.sp--reduce .sp-hint { animation: none; }
         body.sp--reduce .sp-fx--bloom { animation: none; }
+
+        #hero-name { position: relative; display: inline-block; }
+        #hero-outline {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            pointer-events: none;
+            margin: 0;
+        }
+
+        /* Scoped utilities (no Tailwind on this page) */
+        body.sp .w-full { width: 100%; }
+        body.sp .max-w-none { max-width: none; }
+        body.sp .text-white { color: #faf8f5; }
+        body.sp .text-left { text-align: left; }
+        body.sp .font-black { font-weight: 900; }
+        body.sp .font-bold { font-weight: 700; }
+        body.sp .mb-2 { margin-bottom: 0.5rem; }
+        body.sp .mb-4 { margin-bottom: 1rem; }
+        body.sp .mb-6 { margin-bottom: 1.5rem; }
+        body.sp .mb-8 { margin-bottom: 2rem; }
+        body.sp .mb-10 { margin-bottom: 2.5rem; }
+        body.sp .mb-12 { margin-bottom: 3rem; }
+        body.sp .mt-1 { margin-top: 0.25rem; }
+        body.sp .mt-6 { margin-top: 1.5rem; }
+        body.sp .mt-10 { margin-top: 2.5rem; }
+        body.sp .pb-24 { padding-bottom: 6rem; }
+        body.sp .leading-tight { line-height: 1.15; }
+        body.sp .opacity-90 { opacity: 0.9; }
+        body.sp .italic { font-style: italic; }
+        body.sp .uppercase { text-transform: uppercase; }
+        body.sp .tracking-widest { letter-spacing: 0.2em; }
+        body.sp .overflow-y-auto { overflow-y: auto; }
+        body.sp a.sp-hover-white { transition: color 0.2s ease; }
+        body.sp a.sp-hover-white:hover { color: #fff; }
+        body.sp .sp-sticky-voices {
+            align-items: flex-start;
+            padding-top: clamp(4rem, 10vh, 7rem);
+        }
     </style>
 </head>
 <body class="sp">
@@ -281,120 +488,145 @@
     <div class="sp-progress" aria-hidden="true"><div class="sp-progress__fill" id="sp-prog-fill"></div></div>
     <a href="index.html" class="sp-exit">Hub</a>
 
-    <!-- ═══ SCENE A — Hero volume ═══ -->
-    <section class="sp-track" id="sc-hero" style="height: 320vh;">
-        <div class="sp-sticky persp">
-            <div class="sp-orb sp-orb--a" style="width:min(80vw,420px);height:min(80vw,420px);background:var(--mint-deep);top:15%;left:10%;"></div>
-            <div class="sp-orb sp-orb--b" style="width:min(60vw,320px);height:min(60vw,320px);background:#1d4ed8;bottom:20%;right:5%;"></div>
-            <div class="p3d relative w-full max-w-6xl px-6 text-center" id="hero-pack">
-                <p class="sp-k mb-6 opacity-80" id="hero-k">Spatial reel · 空间卷轴</p>
-                <div class="p3d relative inline-block" id="hero-name">
-                    <h1 class="sp-h1 text-white" style="transform: translateZ(80px);">Sam</h1>
-                    <h1 class="sp-h1 absolute left-0 right-0 top-0 text-transparent" style="-webkit-text-stroke: 1.5px rgba(244,237,228,0.35); transform: translateZ(0px);" id="hero-outline">Sam</h1>
+    <!-- ═══ SCENE A — Hero ═══ -->
+    <section class="sp-track" id="sc-hero" style="height: 420vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true">I</div>
+            <div class="sp-orb sp-orb--a" style="width:min(90vw,680px);height:min(90vw,680px);background:var(--mint-deep);top:8%;left:-5%;"></div>
+            <div class="sp-orb sp-orb--b" style="width:min(70vw,520px);height:min(70vw,520px);background:#1e40af;bottom:5%;right:-8%;"></div>
+            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
+                <div class="sp-hero-grid w-full" id="hero-pack">
+                    <div class="sp-hero-nameblock" id="hero-nameblock">
+                        <p class="sp-k mb-8 opacity-90" id="hero-k">Spatial reel · 空间卷轴</p>
+                        <div class="p3d relative" id="hero-name" style="display:inline-block;">
+                            <h1 class="sp-h1" style="color:#faf8f5;">Sam</h1>
+                            <h1 class="sp-h1" id="hero-outline" style="color:transparent;-webkit-text-stroke:2px rgba(244,237,228,0.4);transform:translateZ(0);">Sam</h1>
+                        </div>
+                        <h1 class="sp-h1 sp-teal mt-1" id="hero-wu" style="transform:translateZ(40px);">Wu</h1>
+                    </div>
+                    <div class="sp-hero-side" id="hero-side">
+                        <p class="sp-h2 text-white mb-6 leading-tight" id="hero-dek" style="font-size:clamp(1.4rem,3vw,2.1rem);font-weight:700;">
+                            HCI · Applied AI · University of Toronto
+                        </p>
+                        <p class="sp-prose sp-muted" id="hero-tag" style="max-width:36rem;font-size:clamp(0.95rem,1.2vw,1.1rem);">
+                            Full-bleed spatial narrative — scroll as camera. Built to read on a cinema-scale desktop.
+                        </p>
+                    </div>
                 </div>
-                <h1 class="sp-h1 mt-2 text-emerald-300/95" id="hero-wu" style="transform: translateZ(40px);">Wu</h1>
-                <p class="mt-10 text-sm md:text-base font-bold tracking-[0.35em] uppercase text-stone-400" id="hero-tag">HCI · Applied AI · University of Toronto</p>
             </div>
             <p class="sp-hint" id="hero-hint">Scroll</p>
         </div>
     </section>
 
-    <!-- ═══ SCENE B — Institution monolith ═══ -->
-    <section class="sp-track" id="sc-mono" style="height: 280vh;">
-        <div class="sp-sticky persp">
-            <div class="max-w-3xl px-6 p3d" id="mono-pack">
-                <div class="sp-chrome p-8 md:p-12 p3d" id="mono-card">
-                    <p class="sp-k mb-4">II · Monolith</p>
-                    <p class="text-lg md:text-xl font-black text-white mb-3 leading-tight">Department of Mathematics, Statistics, and Computer Science</p>
-                    <p class="text-sm font-black text-teal-300 uppercase tracking-[0.2em] mb-8">University of Toronto</p>
-                    <p class="text-xs font-bold text-stone-500 uppercase tracking-[0.25em] mb-3">Core vision &amp; architecture</p>
-                    <h2 class="sp-h2 sp-serif text-white mb-6 leading-tight">Distributed Wearable AIOS for Human–AI Symbiosis</h2>
-                    <p class="sp-prose text-stone-300">
-                        Reimagining intent-driven transparent interaction architectures and physical trust primitives — emotional connectivity and social trust in digital existence.
-                    </p>
-                    <div class="mt-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-                    <p class="mt-4 text-xs font-bold text-stone-500 tracking-wide">Built and maintained by Sam Wu.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ SCENE C — Portrait flight ═══ -->
-    <section class="sp-track" id="sc-photo" style="height: 240vh;">
-        <div class="sp-sticky persp">
-            <div class="relative w-full max-w-5xl px-6 flex flex-col md:flex-row items-center justify-center gap-12 p3d" id="photo-pack">
-                <div class="p3d flex-shrink-0" id="photo-frame">
-                    <div class="relative p-2 bg-emerald-950/40 border-2 border-white/20" style="box-shadow: 12px 12px 0 rgba(0,0,0,0.5), 0 0 60px rgba(94,234,212,0.12);">
-                        <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="" width="400" height="400" class="block w-56 h-56 md:w-72 md:h-72 object-cover border-2 border-stone-900" style="filter: grayscale(0.15) contrast(1.05);">
-                        <div class="absolute -bottom-3 -right-3 w-14 h-14 bg-emerald-500 border-2 border-stone-950 flex items-center justify-center font-black text-xs text-white" style="box-shadow:4px 4px 0 #000;">SW.</div>
-                    </div>
-                </div>
-                <div class="p3d text-left max-w-md" id="photo-copy">
-                    <p class="sp-k mb-4">III · Signal</p>
-                    <h2 class="sp-h2 text-white mb-4">Same face.<br>Different depth.</h2>
-                    <p class="sp-prose text-stone-400">
-                        Portrait frame borrowed from the hub — here it travels through Z-space while the reel keeps rolling. Neo-brutalist edge, mint seal, slight silver on the glass.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ SCENE D — Contact constellation ═══ -->
-    <section class="sp-track" id="sc-contact" style="height: 220vh;">
-        <div class="sp-sticky persp">
-            <div class="w-full max-w-4xl px-6 p3d" id="contact-pack">
-                <p class="sp-k text-center mb-10">IV · Channels</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="contact-grid">
-                    <div class="sp-chrome p-6 p3d text-center" data-c-i="0">
-                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-2">Personal</p>
-                        <a href="mailto:wuyihang429@gmail.com" class="text-sm font-bold text-white break-all hover:text-teal-300 transition-colors">wuyihang429@gmail.com</a>
-                    </div>
-                    <div class="sp-chrome p-6 p3d text-center" data-c-i="1">
-                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-2">University</p>
-                        <a href="mailto:yihang.wu@mail.utoronto.ca" class="text-sm font-bold text-white break-all hover:text-teal-300 transition-colors">yihang.wu@mail.utoronto.ca</a>
-                    </div>
-                    <div class="sp-chrome p-6 p3d text-center" data-c-i="2">
-                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-2">LinkedIn</p>
-                        <a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener" class="text-sm font-bold text-white hover:text-teal-300 transition-colors">/in/yihang-wu</a>
+    <!-- ═══ SCENE B — Monolith ═══ -->
+    <section class="sp-track" id="sc-mono" style="height: 380vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true">II</div>
+            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
+                <div class="sp-mono-layout w-full" id="mono-pack">
+                    <div class="sp-mono-strip" id="mono-strip" aria-hidden="true">UofT<br>MSC</div>
+                    <div class="sp-chrome p3d" id="mono-card" style="padding:clamp(2rem,4vw,3.5rem);">
+                        <p class="sp-k mb-6">II · Monolith</p>
+                        <p class="text-white mb-2 font-black" style="font-size:clamp(1.15rem,2.1vw,1.65rem);line-height:1.2;">Department of Mathematics, Statistics, and Computer Science</p>
+                        <p class="sp-teal font-black mb-10" style="font-size:clamp(0.85rem,1.3vw,1rem);letter-spacing:0.22em;text-transform:uppercase;">University of Toronto</p>
+                        <p class="sp-label-xs">Core vision &amp; architecture</p>
+                        <h2 class="sp-h2 sp-serif text-white mb-8">Distributed Wearable AIOS for Human–AI Symbiosis</h2>
+                        <p class="sp-prose sp-muted mb-10">
+                            Reimagining intent-driven transparent interaction architectures and physical trust primitives — emotional connectivity and social trust in digital existence.
+                        </p>
+                        <div style="height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);"></div>
+                        <p class="mt-6 sp-muted font-bold" style="font-size:0.85rem;letter-spacing:0.06em;">Built and maintained by Sam Wu.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ═══ SCENE E — Dossier wall ═══ -->
-    <section class="sp-track" id="sc-dossier" style="height: 260vh;">
-        <div class="sp-sticky persp">
-            <div class="max-w-3xl px-6 p3d" id="dossier-pack">
-                <div class="sp-chrome p-8 md:p-10 p3d" id="dossier-card">
-                    <p class="sp-k mb-4">V · Dossier</p>
-                    <p class="sp-prose mb-6">
-                        <a href="about.html">Professional dossier</a> — bridging pure logic with industrial execution in Data and AI. Quantitative modeling, workflow optimization, Human–AI symbiosis through intent-driven agents and digital sovereignty.
-                    </p>
-                    <p class="text-sm font-black text-teal-300/90 uppercase tracking-widest border-l-2 border-teal-500 pl-4">IEEE Student Member</p>
+    <!-- ═══ SCENE C — Portrait ═══ -->
+    <section class="sp-track" id="sc-photo" style="height: 360vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true">III</div>
+            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
+                <div class="sp-photo-row w-full" id="photo-pack">
+                    <div class="p3d" id="photo-frame">
+                        <div class="sp-photo-imgwrap" style="box-shadow:min(16px,2vw) min(16px,2vw) 0 rgba(0,0,0,0.55),0 0 min(80px,8vw) rgba(94,234,212,0.18);background:rgba(6,78,59,0.35);padding:10px;border:2px solid rgba(255,255,255,0.22);">
+                            <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="" width="640" height="640">
+                            <div style="position:absolute;bottom:-14px;right:-14px;width:min(72px,12vw);height:min(72px,12vw);background:#10b981;border:3px solid #0c0a09;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:clamp(0.65rem,1vw,0.85rem);color:#fff;box-shadow:6px 6px 0 #000;">SW.</div>
+                        </div>
+                    </div>
+                    <div class="p3d" id="photo-copy">
+                        <p class="sp-k mb-6">III · Signal</p>
+                        <h2 class="sp-h2 text-white mb-8">Same face.<br>Different depth.</h2>
+                        <p class="sp-prose sp-muted">
+                            Portrait crosses the full frame — neo-brutalist edge, mint seal, silver on glass. The copy sits in open air, not a narrow column.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ═══ SCENE F — Experience slabs ═══ -->
-    <section class="sp-track" id="sc-work" style="height: 300vh;">
-        <div class="sp-sticky persp items-start pt-24 md:pt-32">
-            <div class="w-full max-w-5xl px-6 mx-auto p3d" id="work-pack">
-                <p class="sp-k mb-8">VI · Field work</p>
-                <div class="space-y-6" id="work-slabs">
-                    <div class="sp-chrome p-6 md:p-8 p3d" data-w="0">
-                        <p class="text-xs font-black text-teal-400 uppercase tracking-widest mb-3">Logistics &amp; Data Intern · Haicheng Hong Sheng Da · 2024</p>
-                        <ul class="text-sm text-stone-300 space-y-2 font-semibold">
+    <!-- ═══ SCENE D — Contact ═══ -->
+    <section class="sp-track" id="sc-contact" style="height: 320vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true">IV</div>
+            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
+                <div class="w-full" id="contact-pack">
+                    <p class="sp-k mb-12" style="text-align:left;font-size:clamp(0.7rem,1.2vw,0.8rem);">IV · Channels</p>
+                    <div class="sp-contact-grid" id="contact-grid">
+                        <div class="sp-chrome p3d" style="padding:clamp(1.75rem,3vw,2.5rem);min-height:min(220px,28vh);" data-c-i="0">
+                            <p class="sp-label-xs">Personal</p>
+                            <a href="mailto:wuyihang429@gmail.com" class="sp-teal font-bold sp-hover-white" style="font-size:clamp(0.95rem,1.35vw,1.15rem);word-break:break-all;">wuyihang429@gmail.com</a>
+                        </div>
+                        <div class="sp-chrome p3d" style="padding:clamp(1.75rem,3vw,2.5rem);min-height:min(220px,28vh);" data-c-i="1">
+                            <p class="sp-label-xs">University</p>
+                            <a href="mailto:yihang.wu@mail.utoronto.ca" class="sp-teal font-bold sp-hover-white" style="font-size:clamp(0.95rem,1.35vw,1.15rem);word-break:break-all;">yihang.wu@mail.utoronto.ca</a>
+                        </div>
+                        <div class="sp-chrome p3d" style="padding:clamp(1.75rem,3vw,2.5rem);min-height:min(220px,28vh);" data-c-i="2">
+                            <p class="sp-label-xs">LinkedIn</p>
+                            <a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener" class="sp-teal font-bold sp-hover-white" style="font-size:clamp(0.95rem,1.35vw,1.15rem);">/in/yihang-wu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE E — Dossier ═══ -->
+    <section class="sp-track" id="sc-dossier" style="height: 340vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true">V</div>
+            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
+                <div class="w-full max-w-none" id="dossier-pack">
+                    <div class="sp-chrome p3d" id="dossier-card" style="padding:clamp(2.5rem,5vw,4rem);width:min(100%,1400px);margin-left:0;">
+                        <p class="sp-k mb-8">V · Dossier</p>
+                        <p class="sp-prose sp-muted mb-10" style="font-size:clamp(1.05rem,1.5vw,1.35rem);max-width:min(56rem,92vw);">
+                            <a href="about.html">Professional dossier</a> — bridging pure logic with industrial execution in Data and AI. Quantitative modeling, workflow optimization, Human–AI symbiosis through intent-driven agents and digital sovereignty.
+                        </p>
+                        <p class="font-black sp-teal uppercase tracking-widest border-l-4 border-teal-500 pl-6" style="font-size:clamp(0.9rem,1.4vw,1.05rem);">IEEE Student Member</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE F — Work ═══ -->
+    <section class="sp-track" id="sc-work" style="height: 400vh;">
+        <div class="sp-sticky persp sp-sticky--wide" style="align-items:flex-start;padding-top:clamp(4rem,10vh,7rem);">
+            <div class="sp-shell p3d w-full" id="work-pack">
+                <p class="sp-k mb-12">VI · Field work</p>
+                <div id="work-slabs" style="display:flex;flex-direction:column;gap:clamp(2rem,4vw,3.5rem);width:100%;">
+                    <div class="sp-chrome p3d" data-w="0" style="padding:clamp(2rem,4vw,3rem);width:min(100%,1180px);margin-right:auto;">
+                        <p class="sp-work-slab-title sp-work-slab-title--teal">Logistics &amp; Data Intern · Haicheng Hong Sheng Da · 2024</p>
+                        <ul class="sp-work-list">
                             <li>— Inventory operations &amp; data processing</li>
                             <li>— International logistics communication</li>
                             <li>— Supply-chain documentation velocity</li>
                         </ul>
                     </div>
-                    <div class="sp-chrome p-6 md:p-8 p3d" data-w="1">
-                        <p class="text-xs font-black text-sky-400 uppercase tracking-widest mb-3">Ward Missionary · LDS Church · 2025–present</p>
-                        <ul class="text-sm text-stone-300 space-y-2 font-semibold">
+                    <div class="sp-chrome p3d" data-w="1" style="padding:clamp(2rem,4vw,3rem);width:min(100%,1180px);margin-left:auto;">
+                        <p class="sp-work-slab-title sp-work-slab-title--sky">Ward Missionary · LDS Church · 2025–present</p>
+                        <ul class="sp-work-list">
                             <li>— Demographic analysis with leadership</li>
                             <li>— English–Mandarin interpretation</li>
                             <li>— Onboarding &amp; accessibility</li>
@@ -405,67 +637,78 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE G — Stack prism ═══ -->
-    <section class="sp-track" id="sc-stack" style="height: 220vh;">
-        <div class="sp-sticky persp">
-            <div class="max-w-4xl px-6 w-full p3d" id="stack-pack">
-                <p class="sp-k text-center mb-8">VII · Stack</p>
-                <div class="grid md:grid-cols-2 gap-6" id="stack-grid">
-                    <div class="sp-chrome p-6 p3d">
-                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-4">Core tech</p>
-                        <p class="text-sm font-bold text-stone-300 leading-loose">
-                            Python / FastAPI · R Studio · JavaScript / UI · Gemini API · ERP automation
-                        </p>
-                    </div>
-                    <div class="sp-chrome p-6 p3d">
-                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-4">Honors</p>
-                        <p class="text-sm font-bold text-stone-300 leading-loose">
-                            MTA JavaScript · Workspace / Office · Data &amp; logistics · Asian FS L2 · Figure skating
-                        </p>
+    <!-- ═══ SCENE G — Stack ═══ -->
+    <section class="sp-track" id="sc-stack" style="height: 300vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true">VII</div>
+            <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
+                <div class="w-full" id="stack-pack">
+                    <p class="sp-k mb-12" style="text-align:center;">VII · Stack</p>
+                    <div class="sp-stack-grid" id="stack-grid">
+                        <div class="sp-chrome p3d" style="padding:clamp(2rem,3.5vw,2.75rem);">
+                            <p class="sp-label-xs">Core tech</p>
+                            <p class="font-bold sp-muted" style="font-size:clamp(1rem,1.45vw,1.2rem);line-height:2;">
+                                Python / FastAPI · R Studio · JavaScript / UI · Gemini API · ERP automation
+                            </p>
+                        </div>
+                        <div class="sp-chrome p3d" style="padding:clamp(2rem,3.5vw,2.75rem);">
+                            <p class="sp-label-xs">Honors</p>
+                            <p class="font-bold sp-muted" style="font-size:clamp(1rem,1.45vw,1.2rem);line-height:2;">
+                                MTA JavaScript · Workspace / Office · Data &amp; logistics · Asian FS L2 · Figure skating
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ═══ SCENE H — Gate (links only, typographic) ═══ -->
-    <section class="sp-track" id="sc-gate" style="height: 200vh;">
-        <div class="sp-sticky persp">
-            <div class="text-center px-6 max-w-2xl p3d" id="gate-pack">
-                <p class="sp-k mb-8">VIII · Routing</p>
-                <h2 class="sp-h2 text-white mb-6">All doors.<br>One scroll.</h2>
-                <div class="sp-linkrow justify-center">
-                    <a href="publications.html">Publications</a>
-                    <a href="blog.html">Moments</a>
-                    <a href="resume.html">CV &amp; agent</a>
-                    <a href="about.html">Dossier</a>
-                    <a href="hidden.html">Private gallery</a>
+    <!-- ═══ SCENE H — Gate ═══ -->
+    <section class="sp-track" id="sc-gate" style="height: 280vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true">VIII</div>
+            <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
+                <div class="w-full" id="gate-pack">
+                    <p class="sp-k mb-10">VIII · Routing</p>
+                    <h2 class="sp-h2 text-white mb-4" style="font-size:clamp(2.5rem,7vw,5.5rem);max-width:min(20ch,95vw);">All doors.<br>One scroll.</h2>
+                    <div class="sp-gate-links">
+                        <a href="publications.html">Publications</a>
+                        <a href="blog.html">Moments</a>
+                        <a href="resume.html">CV &amp; agent</a>
+                        <a href="about.html">Dossier</a>
+                        <a href="hidden.html">Private gallery</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ═══ SCENE I — Voices ═══ -->
-    <section class="sp-track" id="sc-voices" style="height: 200vh;">
-        <div class="sp-sticky persp items-start pt-20 md:pt-28 overflow-y-auto">
-            <div class="max-w-2xl px-6 mx-auto w-full p3d pb-20" id="voices-pack">
-                <p class="sp-k mb-6">IX · Voices</p>
-                <p class="sp-prose text-sm text-stone-500 mb-6">Public excerpts · full identities behind <a href="hidden.html">Private Gallery</a>.</p>
+    <section class="sp-track" id="sc-voices" style="height: 280vh;">
+        <div class="sp-sticky persp sp-sticky--wide sp-sticky-voices overflow-y-auto">
+            <div class="sp-shell p3d w-full pb-24" id="voices-pack">
+                <p class="sp-k mb-8">IX · Voices</p>
+                <p class="sp-prose sp-muted mb-10" style="font-size:clamp(0.95rem,1.2vw,1.05rem);max-width:min(48rem,90vw);">
+                    Public excerpts · full identities behind <a href="hidden.html">Private Gallery</a>.
+                </p>
                 <div id="sp-testimonials">Loading…</div>
             </div>
         </div>
     </section>
 
     <!-- ═══ SCENE J — Finale ═══ -->
-    <section class="sp-track" id="sc-end" style="height: 220vh;">
-        <div class="sp-sticky persp">
-            <div class="text-center px-6 max-w-xl p3d" id="end-pack">
-                <p class="sp-k mb-6">X · Reel end</p>
-                <h2 class="sp-h1 text-white text-5xl md:text-7xl mb-8" style="text-shadow: 0 0 100px rgba(94,234,212,0.2);">CUT</h2>
-                <p class="sp-prose mx-auto mb-10">
-                    Classic hub unchanged for daily use. This was the spatial director’s cut.
-                </p>
-                <a href="index.html" class="text-xs font-black uppercase tracking-[0.3em] text-teal-300 border-b border-teal-500/50 pb-1 hover:text-white transition-colors">Return to hub →</a>
+    <section class="sp-track" id="sc-end" style="height: 340vh;">
+        <div class="sp-sticky persp sp-sticky--wide">
+            <div class="sp-water" aria-hidden="true" style="opacity:0.06;">X</div>
+            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:flex-start;">
+                <div class="w-full text-left" id="end-pack">
+                    <p class="sp-k mb-10">X · Reel end</p>
+                    <h2 class="sp-h1 text-white mb-10" style="font-size:clamp(5rem,22vw,16rem);line-height:0.9;">CUT</h2>
+                    <p class="sp-prose sp-muted mb-12" style="max-width:min(40rem,90vw);font-size:clamp(1.05rem,1.5vw,1.25rem);">
+                        Classic hub unchanged for daily use. This was the spatial director’s cut.
+                    </p>
+                    <a href="index.html" class="sp-teal font-black uppercase sp-hover-white" style="font-size:clamp(0.75rem,1.1vw,0.9rem);letter-spacing:0.35em;text-decoration:none;border-bottom:2px solid rgba(94,234,212,0.45);padding-bottom:0.35rem;">Return to hub →</a>
+                </div>
             </div>
         </div>
     </section>
@@ -480,7 +723,7 @@
     document.documentElement.style.setProperty('--mx', '0');
     document.documentElement.style.setProperty('--my', '0');
     if (!reduce) {
-        window.addEventListener('mousemove', (e) => {
+        window.addEventListener('mousemove', function (e) {
             const x = (e.clientX / window.innerWidth - 0.5) * 2;
             const y = (e.clientY / window.innerHeight - 0.5) * 2;
             document.documentElement.style.setProperty('--mx', x.toFixed(3));
@@ -492,7 +735,7 @@
 
     function escapeHTML(str) {
         if (str == null) return '';
-        return String(str).replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+        return String(str).replace(/[&<>'"]/g, function (ch) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[ch]; });
     }
 
     async function loadVoices() {
@@ -503,33 +746,34 @@
             if (!res.ok) throw new Error('x');
             const data = await res.json();
             if (!Array.isArray(data) || !data.length) {
-                box.innerHTML = '<p class="text-stone-500 text-sm">No public excerpts.</p>';
+                box.innerHTML = '<p class="sp-muted" style="font-size:0.95rem;">No public excerpts.</p>';
                 return;
             }
-            box.innerHTML = data.slice(0, 5).map((row) => {
+            box.innerHTML = data.slice(0, 5).map(function (row) {
                 const c = escapeHTML(String(row.comment || '').slice(0, 260));
                 const rel = escapeHTML(row.relationship || '');
                 const more = String(row.comment || '').length > 260 ? '…' : '';
-                return '<div class="sp-tcard"><p class="italic text-stone-300 mb-2">' + c + more + '</p><p class="text-xs font-black uppercase tracking-widest text-teal-400/90">' + rel + '</p></div>';
+                return '<div class="sp-tcard"><p class="italic mb-2" style="color:#d6cec4;">' + c + more + '</p><p class="sp-teal font-black uppercase tracking-widest" style="font-size:0.72rem;">' + rel + '</p></div>';
             }).join('');
         } catch (_) {
-            box.innerHTML = '<p class="text-stone-500 text-sm">Voices sync when the API is up.</p>';
+            box.innerHTML = '<p class="sp-muted" style="font-size:0.95rem;">Voices sync when the API is up.</p>';
         }
     }
     loadVoices();
 
     if (reduce || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        document.getElementById('hero-hint') && (document.getElementById('hero-hint').style.opacity = '0');
+        var hh = document.getElementById('hero-hint');
+        if (hh) hh.style.opacity = '0';
         return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
 
     if (typeof Lenis !== 'undefined') {
-        const lenis = new Lenis({
-            duration: 1.12,
+        var lenis = new Lenis({
+            duration: 1.15,
             smoothWheel: true,
-            wheelMultiplier: 0.92,
+            wheelMultiplier: 0.88,
             touchMultiplier: 1.35
         });
         lenis.on('scroll', ScrollTrigger.update);
@@ -540,157 +784,219 @@
         document.documentElement.classList.add('lenis', 'lenis-smooth');
     }
 
-    const progFill = document.getElementById('sp-prog-fill');
+    var EASE = 'none';
+    var TP = 1800;
+
+    var progFill = document.getElementById('sp-prog-fill');
     ScrollTrigger.create({
         start: 0,
         end: 'max',
-        onUpdate: (self) => {
+        onUpdate: function (self) {
             if (progFill) progFill.style.height = (self.progress * 100) + '%';
         }
     });
 
-    /* —— Hero: dolly + rotate + split —— */
-    const hero = document.getElementById('sc-hero');
-    const heroPack = document.getElementById('hero-pack');
-    const heroName = document.getElementById('hero-name');
-    const heroOutline = document.getElementById('hero-outline');
-    const heroWu = document.getElementById('hero-wu');
-    const heroTag = document.getElementById('hero-tag');
-    const heroK = document.getElementById('hero-k');
-    const heroHint = document.getElementById('hero-hint');
+    /* —— Hero: smash in → hold → vault out —— */
+    var hero = document.getElementById('sc-hero');
+    var heroPack = document.getElementById('hero-pack');
+    var heroName = document.getElementById('hero-name');
+    var heroOutline = document.getElementById('hero-outline');
+    var heroWu = document.getElementById('hero-wu');
+    var heroK = document.getElementById('hero-k');
+    var heroSide = document.getElementById('hero-side');
+    var heroHint = document.getElementById('hero-hint');
 
     gsap.timeline({
-        defaults: { ease: 'none', transformPerspective: 1400 },
+        defaults: { ease: EASE, transformPerspective: TP },
         scrollTrigger: {
             trigger: hero,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 0.65
+            scrub: 1.05
         }
     })
-        .fromTo(heroPack, { rotateX: 8, z: -200, y: 40, transformOrigin: '50% 80%' }, { rotateX: -12, z: 120, y: -80 })
-        .fromTo(heroName, { rotateY: -18 }, { rotateY: 10 }, 0)
-        .fromTo(heroOutline, { opacity: 0.9, x: 0 }, { opacity: 0.15, x: 24 }, 0)
-        .fromTo(heroWu, { z: 40, y: 0 }, { z: -120, y: -30 }, 0)
-        .fromTo(heroTag, { opacity: 1, letterSpacing: '0.35em' }, { opacity: 0.25, letterSpacing: '0.5em' }, 0)
-        .fromTo(heroK, { opacity: 0.8 }, { opacity: 0 }, 0.2);
+        .fromTo(heroPack,
+            { rotateX: 52, z: -950, y: '22vh', scale: 1.65, transformOrigin: '50% 80%', filter: 'blur(14px)', opacity: 0.15 },
+            { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', opacity: 1, duration: 0.34 },
+            0
+        )
+        .fromTo(heroName, { rotateY: -38, x: '-18vw' }, { rotateY: 6, x: 0, duration: 0.34 }, 0)
+        .fromTo(heroOutline, { opacity: 1, x: '-4vw' }, { opacity: 0.12, x: '3vw', duration: 0.34 }, 0)
+        .fromTo(heroWu, { z: 200, y: '8vh', rotateX: 25 }, { z: 40, y: 0, rotateX: 0, duration: 0.34 }, 0)
+        .fromTo(heroSide, { x: '25vw', opacity: 0 }, { x: 0, opacity: 1, duration: 0.34 }, 0.02)
+        .to(heroPack, { rotateX: -38, z: 720, y: '-35vh', scale: 0.72, filter: 'blur(10px)', opacity: 0.2, duration: 0.36 }, 0.64)
+        .to(heroK, { opacity: 0, letterSpacing: '0.7em', duration: 0.2 }, 0.7);
 
     gsap.to(heroHint, {
         opacity: 0,
-        scrollTrigger: { trigger: hero, start: 'top top', end: '15% bottom', scrub: true }
+        scrollTrigger: { trigger: hero, start: 'top top', end: '12% bottom', scrub: true }
     });
 
-    /* —— Monolith: tilt + glare sweep —— */
-    const mono = document.getElementById('sc-mono');
-    const monoPack = document.getElementById('mono-pack');
-    const monoCard = document.getElementById('mono-card');
+    /* —— Monolith: off-screen slam → read → shear away —— */
+    var mono = document.getElementById('sc-mono');
+    var monoPack = document.getElementById('mono-pack');
+    var monoCard = document.getElementById('mono-card');
+    var monoStrip = document.getElementById('mono-strip');
     gsap.timeline({
-        defaults: { ease: 'none', transformPerspective: 1400 },
-        scrollTrigger: { trigger: mono, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: mono, start: 'top bottom', end: 'bottom top', scrub: 1.1 }
     })
-        .fromTo(monoPack, { rotateY: 22, x: 120, z: -300 }, { rotateY: -8, x: -40, z: 80 })
-        .fromTo(monoCard, { rotateX: 12, transformOrigin: '50% 100%' }, { rotateX: -6 }, 0);
-
-    /* —— Photo flight —— */
-    const photo = document.getElementById('sc-photo');
-    const photoFrame = document.getElementById('photo-frame');
-    const photoCopy = document.getElementById('photo-copy');
-    gsap.timeline({
-        defaults: { ease: 'none', transformPerspective: 1400 },
-        scrollTrigger: { trigger: photo, start: 'top bottom', end: 'bottom top', scrub: 0.7 }
-    })
-        .fromTo(photoFrame, { x: -180, rotateY: 35, z: -400, rotateZ: -6 }, { x: 0, rotateY: -12, z: 60, rotateZ: 2 })
-        .fromTo(photoCopy, { x: 200, opacity: 0.2, z: -100 }, { x: 0, opacity: 1, z: 40 }, 0);
-
-    /* —— Contact: pack tilt + cards cascade in depth (single scrub timeline) —— */
-    const contact = document.getElementById('sc-contact');
-    const contactPack = document.getElementById('contact-pack');
-    const cNodes = document.querySelectorAll('#contact-grid .sp-chrome');
-    const cTl = gsap.timeline({
-        defaults: { ease: 'none', transformPerspective: 1400 },
-        scrollTrigger: { trigger: contact, start: 'top 78%', end: 'bottom 22%', scrub: 0.88 }
-    });
-    if (contactPack) {
-        cTl.fromTo(contactPack,
-            { rotateX: 16, z: -140, y: 50, transformOrigin: '50% 100%' },
-            { rotateX: -5, z: 50, y: 0 },
+        .fromTo(monoPack,
+            { x: '42vw', rotateY: 58, z: -880, opacity: 0, filter: 'blur(18px)' },
+            { x: 0, rotateY: 0, z: 0, opacity: 1, filter: 'blur(0px)', duration: 0.36 },
             0
-        );
-    }
+        )
+        .fromTo(monoCard,
+            { rotateX: 22, y: '15vh', scale: 0.92 },
+            { rotateX: 0, y: 0, scale: 1, duration: 0.36 },
+            0
+        )
+        .fromTo(monoStrip,
+            { opacity: 0, x: '-10vw' },
+            { opacity: 1, x: 0, duration: 0.36 },
+            0
+        )
+        .to(monoPack, { x: '-38vw', rotateY: -42, z: 520, opacity: 0.12, filter: 'blur(14px)', duration: 0.38 }, 0.62);
+
+    /* —— Photo: orbital enter → exit opposite —— */
+    var photo = document.getElementById('sc-photo');
+    var photoFrame = document.getElementById('photo-frame');
+    var photoCopy = document.getElementById('photo-copy');
+    gsap.timeline({
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: photo, start: 'top bottom', end: 'bottom top', scrub: 1.05 }
+    })
+        .fromTo(photoFrame,
+            { x: '-55vw', rotateY: 62, z: -900, rotateZ: -14, scale: 0.65, filter: 'blur(12px)' },
+            { x: 0, rotateY: -8, z: 80, rotateZ: 2, scale: 1, filter: 'blur(0px)', duration: 0.38 },
+            0
+        )
+        .fromTo(photoCopy,
+            { x: '40vw', opacity: 0, z: -400, rotateY: -35 },
+            { x: 0, opacity: 1, z: 60, rotateY: 0, duration: 0.38 },
+            0
+        )
+        .to(photoFrame, { x: '45vw', rotateY: -48, z: 600, scale: 0.55, opacity: 0.15, filter: 'blur(16px)', duration: 0.36 }, 0.62)
+        .to(photoCopy, { x: '-35vw', opacity: 0, z: -200, duration: 0.36 }, 0.62);
+
+    /* —— Contact: deck flies in → disperses —— */
+    var contact = document.getElementById('sc-contact');
+    var contactPack = document.getElementById('contact-pack');
+    var cNodes = document.querySelectorAll('#contact-grid .sp-chrome');
+    var cTl = gsap.timeline({
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: contact, start: 'top bottom', end: 'bottom top', scrub: 1.05 }
+    });
+    cTl.fromTo(contactPack,
+        { rotateX: 38, z: -700, y: '25vh', scale: 0.82, filter: 'blur(16px)' },
+        { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.35 },
+        0
+    );
     cNodes.forEach(function (el, i) {
         cTl.fromTo(el,
-            { y: 110, z: -220 - i * 70, rotateX: 22, opacity: 0.35, transformOrigin: '50% 100%' },
-            { y: 0, z: i * 28, rotateX: 0, opacity: 1 },
-            i * 0.12
+            { y: '30vh', z: -500 - i * 120, rotateX: 35, opacity: 0.2 },
+            { y: 0, z: i * 40, rotateX: 0, opacity: 1, duration: 0.35 },
+            0.02 + i * 0.04
         );
+        cTl.to(el, { y: '-20vh', z: 400 + i * 50, rotateX: -28, opacity: 0, duration: 0.34 }, 0.64 + i * 0.03);
     });
 
     /* —— Dossier —— */
-    const dossier = document.getElementById('sc-dossier');
-    const dossierPack = document.getElementById('dossier-pack');
-    gsap.fromTo(dossierPack,
-        { scale: 0.85, z: -250, rotateX: 20, transformPerspective: 1400, transformOrigin: '50% 50%' },
-        {
-            scale: 1, z: 40, rotateX: -4,
-            ease: 'none',
-            scrollTrigger: { trigger: dossier, start: 'top bottom', end: 'center center', scrub: 0.75 }
-        }
-    );
+    var dossier = document.getElementById('sc-dossier');
+    var dossierPack = document.getElementById('dossier-pack');
+    gsap.timeline({
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: dossier, start: 'top bottom', end: 'bottom top', scrub: 1 }
+    })
+        .fromTo(dossierPack,
+            { x: '-50vw', rotateY: 45, z: -800, scale: 0.75, filter: 'blur(20px)', opacity: 0 },
+            { x: 0, rotateY: 0, z: 40, scale: 1, filter: 'blur(0px)', opacity: 1, duration: 0.38 },
+            0
+        )
+        .to(dossierPack, { x: '35vw', rotateY: -38, z: 500, opacity: 0.1, filter: 'blur(18px)', duration: 0.38 }, 0.62);
 
-    /* —— Work slabs opposing drift —— */
-    const work = document.getElementById('sc-work');
-    const w0 = document.querySelector('[data-w="0"]');
-    const w1 = document.querySelector('[data-w="1"]');
+    /* —— Work slabs (one shared scrub timeline) —— */
+    var work = document.getElementById('sc-work');
+    var w0 = document.querySelector('[data-w="0"]');
+    var w1 = document.querySelector('[data-w="1"]');
+    var workTl = gsap.timeline({
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 1.05 }
+    });
     if (w0) {
-        gsap.fromTo(w0, { x: '-25%', rotateY: 15, z: -100, transformPerspective: 1400 }, { x: '0%', rotateY: -5, z: 50, ease: 'none', scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 0.85 } });
+        workTl.fromTo(w0, { x: '-70%', rotateY: 35, z: -600, opacity: 0, filter: 'blur(12px)' }, { x: '0%', rotateY: -6, z: 80, opacity: 1, filter: 'blur(0px)', duration: 0.36 }, 0)
+            .to(w0, { x: '-55%', rotateY: 28, z: 450, opacity: 0, duration: 0.36 }, 0.62);
     }
     if (w1) {
-        gsap.fromTo(w1, { x: '25%', rotateY: -15, z: -100, transformPerspective: 1400 }, { x: '0%', rotateY: 5, z: 50, ease: 'none', scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 0.85 } });
+        workTl.fromTo(w1, { x: '70%', rotateY: -35, z: -600, opacity: 0, filter: 'blur(12px)' }, { x: '0%', rotateY: 6, z: 80, opacity: 1, filter: 'blur(0px)', duration: 0.36 }, 0)
+            .to(w1, { x: '55%', rotateY: -28, z: 450, opacity: 0, duration: 0.36 }, 0.62);
     }
 
-    /* —— Stack grid spin —— */
-    const stack = document.getElementById('sc-stack');
-    const stackPack = document.getElementById('stack-pack');
-    gsap.fromTo(stackPack,
-        { rotateY: -30, z: -180 },
-        { rotateY: 12, z: 60, ease: 'none', scrollTrigger: { trigger: stack, start: 'top bottom', end: 'bottom top', scrub: 0.8 } }
-    );
+    /* —— Stack —— */
+    var stack = document.getElementById('sc-stack');
+    var stackPack = document.getElementById('stack-pack');
+    gsap.timeline({
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: stack, start: 'top bottom', end: 'bottom top', scrub: 1 }
+    })
+        .fromTo(stackPack,
+            { rotateY: -55, z: -900, scale: 0.7, filter: 'blur(14px)' },
+            { rotateY: 4, z: 60, scale: 1, filter: 'blur(0px)', duration: 0.38 },
+            0
+        )
+        .to(stackPack, { rotateY: 48, z: 700, y: '-20vh', opacity: 0.15, filter: 'blur(16px)', duration: 0.38 }, 0.62);
 
-    /* —— Gate typography bloom —— */
-    const gate = document.getElementById('sc-gate');
-    const gatePack = document.getElementById('gate-pack');
-    gsap.fromTo(gatePack,
-        { scale: 1.2, z: -200, opacity: 0.4, transformPerspective: 1600 },
-        { scale: 1, z: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: gate, start: 'top bottom', end: 'center center', scrub: 0.6 } }
-    );
+    /* —— Gate —— */
+    var gate = document.getElementById('sc-gate');
+    var gatePack = document.getElementById('gate-pack');
+    gsap.timeline({
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: gate, start: 'top bottom', end: 'bottom top', scrub: 0.95 }
+    })
+        .fromTo(gatePack,
+            { z: -700, scale: 1.85, opacity: 0, filter: 'blur(22px)', rotateX: 35 },
+            { z: 0, scale: 1, opacity: 1, filter: 'blur(0px)', rotateX: 0, duration: 0.4 },
+            0
+        )
+        .to(gatePack, { z: 550, scale: 0.65, opacity: 0, rotateX: -28, filter: 'blur(18px)', duration: 0.38 }, 0.6);
 
     /* —— Voices —— */
-    const voices = document.getElementById('sc-voices');
-    const voicesPack = document.getElementById('voices-pack');
-    gsap.fromTo(voicesPack,
-        { y: 80, z: -80, transformPerspective: 1400 },
-        { y: 0, z: 20, ease: 'none', scrollTrigger: { trigger: voices, start: 'top bottom', end: 'bottom top', scrub: 0.7 } }
-    );
-
-    /* —— Finale: pull back —— */
-    const end = document.getElementById('sc-end');
-    const endPack = document.getElementById('end-pack');
+    var voices = document.getElementById('sc-voices');
+    var voicesPack = document.getElementById('voices-pack');
     gsap.timeline({
-        defaults: { ease: 'none', transformPerspective: 1500 },
-        scrollTrigger: { trigger: end, start: 'top bottom', end: 'bottom top', scrub: 0.55 }
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: voices, start: 'top bottom', end: 'bottom top', scrub: 1 }
     })
-        .fromTo(endPack, { z: 400, scale: 1.4, rotateX: -25, transformOrigin: '50% 40%' }, { z: 0, scale: 1, rotateX: 0 });
+        .fromTo(voicesPack,
+            { y: '40vh', z: -500, opacity: 0, filter: 'blur(16px)' },
+            { y: 0, z: 40, opacity: 1, filter: 'blur(0px)', duration: 0.38 },
+            0
+        )
+        .to(voicesPack, { y: '-25vh', z: 400, opacity: 0, filter: 'blur(14px)', duration: 0.38 }, 0.62);
 
-    /* Floor parallax tied to global scroll */
-    const floor = document.getElementById('sp-floor');
+    /* —— Finale —— */
+    var end = document.getElementById('sc-end');
+    var endPack = document.getElementById('end-pack');
+    gsap.timeline({
+        defaults: { ease: EASE, transformPerspective: TP },
+        scrollTrigger: { trigger: end, start: 'top bottom', end: 'bottom top', scrub: 1 }
+    })
+        .fromTo(endPack,
+            { z: 900, scale: 2.2, rotateX: 40, opacity: 0, filter: 'blur(24px)', transformOrigin: '0% 50%' },
+            { z: 0, scale: 1, rotateX: 0, opacity: 1, filter: 'blur(0px)', duration: 0.4 },
+            0
+        )
+        .to(endPack, { z: -400, scale: 0.85, opacity: 0.35, filter: 'blur(8px)', duration: 0.38 }, 0.6);
+
+    var floor = document.getElementById('sp-floor');
     ScrollTrigger.create({
         start: 0,
         end: 'max',
-        onUpdate: (self) => {
+        onUpdate: function (self) {
             if (!floor) return;
-            const t = self.progress;
+            var t = self.progress;
             floor.style.transform =
-                'translate3d(calc(var(--mx) * 20px), ' + (t * -8) + '%, 0) perspective(1000px) rotateX(82deg) scale(1.35)';
+                'translate3d(calc(var(--mx) * 28px), ' + (t * -14) + '%, 0) perspective(900px) rotateX(84deg) scale(1.55)';
         }
     });
 
