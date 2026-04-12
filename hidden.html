@@ -8,12 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #008080; /* Classic retro desktop teal */
+            background-color: #008080;
             font-family: 'Tahoma', 'MS Sans Serif', sans-serif;
         }
         .hidden-space { display: none; }
         
-        /* 80s/90s Retro Skeuomorphic Styles */
         .retro-window {
             background-color: #c0c0c0;
             border-top: 2px solid #ffffff;
@@ -89,7 +88,7 @@
             border-bottom: 2px solid #ffffff;
             border-right: 2px solid #ffffff;
             box-shadow: inset 1px 1px 0px #808080, inset -1px -1px 0px #dfdfdf;
-            padding: 5px 15px 3px 17px; /* Shift text slightly down and right when pressed */
+            padding: 5px 15px 3px 17px;
             background-color: #c0c0c0;
         }
 
@@ -106,7 +105,6 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 
-    <!-- Auth Overlay (Retro OS Dialog) -->
     <div id="auth-layer" class="w-full max-w-sm z-50">
         <div class="retro-window p-1">
             <div class="retro-titlebar mb-4">
@@ -135,7 +133,6 @@
         </div>
     </div>
 
-    <!-- Main Content Area -->
     <div id="main-content" class="hidden-space w-full max-w-5xl self-start mt-8 mb-8">
         <div class="retro-window p-1">
             <div class="retro-titlebar mb-2">
@@ -144,7 +141,6 @@
             </div>
             
             <div class="p-4 bg-[#c0c0c0]">
-                <!-- Tabs -->
                 <div class="flex gap-2 mb-4">
                     <button onclick="switchTab('testimonials')" id="tab-testimonials" class="retro-button active-tab">Testimonials.txt</button>
                     <button onclick="switchTab('photos')" id="tab-photos" class="retro-button">Gallery.exe</button>
@@ -152,10 +148,8 @@
                 
                 <div class="retro-inset p-4 bg-white" style="min-height: 60vh;">
                     
-                    <!-- Testimonials Section (Default) -->
                     <div id="module-testimonials" class="module">
                         
-                        <!-- Display List (Top) -->
                         <div class="mb-8">
                             <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
                                 <span class="bg-blue-800 text-white px-2 py-1 text-sm">DIR</span> 
@@ -163,13 +157,11 @@
                             </h3>
                             <div class="retro-divider"></div>
                             <div id="testimonial-list" class="space-y-4">
-                                <!-- Dynamic Testimonials -->
                             </div>
                         </div>
 
                         <div class="retro-divider"></div>
 
-                        <!-- Submission Form (Bottom) -->
                         <div class="bg-[#c0c0c0] p-4 border-2 border-white border-r-gray-800 border-b-gray-800">
                             <h3 class="text-lg font-bold mb-4">C:\> WRITE_TESTIMONIAL <span class="text-xs text-red-600 ml-2">(* All fields are required)</span></h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -200,7 +192,6 @@
                         </div>
                     </div>
 
-                    <!-- Photo Gallery Section -->
                     <div id="module-photos" class="module hidden">
                         <div class="flex gap-2 mb-6 p-2 bg-[#c0c0c0] border border-gray-400">
                             <span class="font-bold mr-2 self-center text-sm">Filter:</span>
@@ -210,7 +201,6 @@
                             <button onclick="filterPhotos('all')" class="retro-button text-xs active-tab">All</button>
                         </div>
                         <div id="photo-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- Dynamic Photos -->
                         </div>
                         
                         <div class="mt-8 p-4 border-2 border-white border-r-gray-500 border-b-gray-500 bg-[#dfdfdf] text-center">
@@ -225,7 +215,6 @@
         </div>
     </div>
 
-    <!-- Lightbox for Image Viewing (Anti-download) -->
     <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-95 z-[100] hidden flex-col items-center justify-center p-6 select-none" onclick="closeLightbox()" oncontextmenu="return false;">
         <div class="relative w-full max-w-4xl max-h-[90vh] flex flex-col items-center justify-center">
             
@@ -266,7 +255,6 @@
             const raw = String(url).trim();
             if (!raw) return '';
 
-            // Keep strict enough for security, but allow existing stored image formats.
             if (/^data:image\/(png|jpe?g|webp|gif);base64,[a-z0-9+/=]+$/i.test(raw)) {
                 return raw;
             }
@@ -432,6 +420,8 @@
             }
             container.innerHTML = testimonials.map(t => {
                 const profileUrl = safeAssetUrl(t.linkedin);
+                const ts = t.timestamp ? new Date(t.timestamp) : null;
+                const tsLabel = ts && !isNaN(ts.getTime()) ? ts.toLocaleString() : '—';
                 return `
                 <div class="bg-[#dfdfdf] p-4 border border-gray-400">
                     <div class="flex justify-between items-start mb-2 border-b border-gray-400 pb-2">
@@ -442,7 +432,7 @@
                         ${profileUrl ? `<a href="${escapeHTML(profileUrl)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline text-sm hover:text-blue-800">LINK</a>` : ''}
                     </div>
                     <p class="text-black font-medium mt-2 pixel-font text-xl leading-relaxed">${escapeHTML(t.comment)}</p>
-                    <div class="text-xs text-gray-600 font-bold mt-4 text-right">TIMESTAMP: ${escapeHTML(new Date(t.timestamp).toLocaleString())}</div>
+                    <div class="text-xs text-gray-600 font-bold mt-4 text-right">TIMESTAMP: ${escapeHTML(tsLabel)}</div>
                 </div>
             `;
             }).join('');
@@ -469,7 +459,7 @@
                     document.getElementById('t-linkedin').value = '';
                     document.getElementById('t-relationship').value = '';
                     document.getElementById('t-comment').value = '';
-                    await loadData(); // 强制刷新列表
+                    await loadData();
                 } else {
                     alert('ERROR: Submission failed.');
                 }
@@ -494,7 +484,6 @@
             document.getElementById('lightbox-img').src = '';
         }
 
-        // Start warming backend as soon as page loads.
         wakeBackend();
     </script>
 </body>

@@ -1,15 +1,9 @@
-/* =========================================================
- * Yihang (Sam) Wu - App Logic
- * ========================================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("System Initialized: Multi-page Neumorphic Architecture.");
 
     const chatForm = document.getElementById('ai-chat-form');
     const chatInput = document.getElementById('ai-input');
     const chatWindow = document.getElementById('chat-window');
     
-    // Shared backend config
     const apiConfig = window.SAM_API_CONFIG || {};
     const RENDER_URL = apiConfig.chatUrl || 'https://sam-api-backend.onrender.com/chat';
     const API_BASE = apiConfig.apiBase || 'https://sam-api-backend.onrender.com/api';
@@ -65,10 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    // Pre-wake backend on load for faster first response.
     const backendWarmupPromise = wakeBackend();
 
-    // Load Public Testimonials
     const testimonialsContainer = document.getElementById('public-testimonials-container');
     if (testimonialsContainer) {
         const renderTestimonialsError = () => {
@@ -152,21 +144,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if(chatForm) {
-        // Handle Quick Prompts
         const quickPromptBtns = document.querySelectorAll('.quick-prompt-btn');
         const quickPromptsContainer = document.getElementById('ai-quick-prompts');
         
         quickPromptBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Extract text without quotes
                 const promptText = btn.textContent.trim().replace(/^"|"$/g, '');
                 chatInput.value = promptText;
                 
-                // Trigger form submission
                 const event = new Event('submit', { cancelable: true });
                 chatForm.dispatchEvent(event);
                 
-                // Hide quick prompts after first use to keep UI clean
                 if (quickPromptsContainer) {
                     quickPromptsContainer.style.display = 'none';
                 }
@@ -198,7 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 const data = await response.json();
                 
-                document.getElementById(loadingId).remove();
+                const loadingEl = document.getElementById(loadingId);
+                if (loadingEl) loadingEl.remove();
                 
                 if(data.reply) {
                     addBubble(data.reply, false);
@@ -207,7 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (chatHistory.length > 20) chatHistory = chatHistory.slice(chatHistory.length - 20);
                 }
             } catch (err) {
-                document.getElementById(loadingId).remove();
+                const loadingEl = document.getElementById(loadingId);
+                if (loadingEl) loadingEl.remove();
                 addBubble(`🟡 Connection timeout. Please check your network and try again.`, false);
             } finally {
                 chatInput.disabled = false;

@@ -1,6 +1,3 @@
-/**
- * Shared client logic for publications list + Moments-style blog feed.
- */
 (function () {
     const apiConfig = window.SAM_API_CONFIG || {};
     const API_BASE = apiConfig.apiBase || 'https://sam-api-backend.onrender.com/api';

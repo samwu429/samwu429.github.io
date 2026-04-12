@@ -1,7 +1,3 @@
-/* =========================================================
- * Yihang (Sam) Wu
- * ========================================================= */
-
 :root {
     --retro-bg: #fdfbf7; 
     --retro-dark: #1c1917; 
@@ -26,7 +22,6 @@
     --grid-gap-12: 48px;
 }
 
-/* Wider than Tailwind max-w-7xl (80rem): uses almost full viewport on large monitors */
 .site-wrap {
     box-sizing: border-box;
     width: 100%;
@@ -72,8 +67,6 @@ body::before {
 }
 
 ::-webkit-scrollbar { width: 0px; background: transparent; }
-
-/* ================= Core Components ================= */
 
 .retro-panel {
     background-color: var(--surface-panel);
@@ -252,8 +245,6 @@ select:focus-visible {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
 
-/* Custom CSS for Warning Stripes */
-/* Moments (WeChat-style feed, no social actions) */
 .moments-photo-grid {
     margin-top: 0.75rem;
 }
