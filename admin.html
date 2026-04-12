@@ -634,7 +634,7 @@
                 const linkHint = (p.link || '').trim() ? '<span class="text-slate-700 font-medium text-xs">Has URL</span>' : '<span class="text-slate-400 text-xs">No URL</span>';
                 const sortBadge = `<span class="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded border border-slate-200 text-slate-700">${escapeHTML(String(p.sortOrder != null ? p.sortOrder : 0))}</span>`;
                 return `
-                <div class="adm-list-row">
+                <div class="adm-list-row sm:row">
                     <div class="min-w-0 flex-1">
                         <div class="font-semibold text-slate-900 leading-snug">${escapeHTML(p.title || '(untitled)')}</div>
                         ${meta ? `<div class="text-sm text-slate-600 mt-2">${meta}</div>` : ''}
