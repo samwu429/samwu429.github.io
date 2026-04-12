@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sam Wu — cinematic spatial experience. HCI, Applied AI, University of Toronto.">
-    <title>Spatial Reel · Sam Wu</title>
+    <meta name="description" content="Sam Wu — HCI, Applied AI, University of Toronto.">
+    <title>Sam Wu</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -110,21 +110,52 @@
             right: max(14px, env(safe-area-inset-right));
             top: 50%;
             transform: translateY(-50%);
-            width: 4px;
-            height: min(52vh, 520px);
-            background: rgba(255,252,248,0.07);
-            border-radius: 2px;
             z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .sp-progress__cap {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--mint);
+            box-shadow: 0 0 14px rgba(94, 234, 212, 0.65);
+            border: 1px solid rgba(255, 252, 248, 0.35);
+        }
+        .sp-progress__cap--end {
+            background: transparent;
+            border: 2px solid rgba(244, 237, 228, 0.4);
+            box-shadow: none;
+        }
+        .sp-progress__track {
+            width: 5px;
+            height: min(46vh, 460px);
+            border-radius: 3px;
+            background: rgba(255,252,248,0.09);
+            position: relative;
             overflow: hidden;
         }
         .sp-progress__fill {
             position: absolute;
             left: 0;
-            bottom: 0;
+            top: 0;
             width: 100%;
             height: 0%;
-            background: linear-gradient(0deg, var(--mint-deep), var(--mint));
-            box-shadow: 0 0 32px rgba(94, 234, 212, 0.55);
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--mint), var(--mint-deep));
+            box-shadow: 0 0 28px rgba(94, 234, 212, 0.5);
+        }
+        .sp-progress__hint {
+            font-size: 0.48rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(244, 237, 228, 0.4);
+            writing-mode: vertical-rl;
+            line-height: 1;
         }
 
         .sp-exit {
@@ -288,7 +319,6 @@
             color: #cec6bc;
         }
 
-        /* —— Layout: desktop-first wide —— */
         .sp-shell {
             position: relative;
             z-index: 1;
@@ -453,7 +483,6 @@
             margin: 0;
         }
 
-        /* Scoped utilities (no Tailwind on this page) */
         body.sp .w-full { width: 100%; }
         body.sp .max-w-none { max-width: none; }
         body.sp .text-white { color: #faf8f5; }
@@ -483,7 +512,6 @@
             padding-top: clamp(4rem, 10vh, 7rem);
         }
 
-        /* Film strip: one continuous “reel” across scenes */
         .sp-reel {
             position: fixed;
             left: 0;
@@ -540,10 +568,16 @@
     <div class="sp-fx sp-fx--scan" aria-hidden="true"></div>
     <div class="sp-floor" id="sp-floor" aria-hidden="true"></div>
 
-    <div class="sp-progress" aria-hidden="true"><div class="sp-progress__fill" id="sp-prog-fill"></div></div>
+    <div class="sp-progress" aria-hidden="true">
+        <span class="sp-progress__hint">Top</span>
+        <span class="sp-progress__cap"></span>
+        <div class="sp-progress__track"><div class="sp-progress__fill" id="sp-prog-fill"></div></div>
+        <span class="sp-progress__cap sp-progress__cap--end"></span>
+        <span class="sp-progress__hint">End</span>
+    </div>
     <div class="sp-reel-wrap" aria-hidden="true">
-        <nav class="sp-reel" id="sp-reel" aria-label="Reel scenes">
-            <p class="sp-reel__label">Spatial reel</p>
+        <nav class="sp-reel" id="sp-reel" aria-label="Sections">
+            <p class="sp-reel__label">Acts</p>
             <div class="sp-reel__inner">
                 <span class="sp-reel__tick is-on" data-reel-scene="0">I</span>
                 <span class="sp-reel__tick" data-reel-scene="1">II</span>
@@ -560,7 +594,6 @@
     </div>
     <a href="index.html" class="sp-exit">Hub</a>
 
-    <!-- ═══ SCENE A — Hero ═══ -->
     <section class="sp-track" id="sc-hero" style="height: 560vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">I</div>
@@ -569,7 +602,6 @@
             <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
                 <div class="sp-hero-grid w-full" id="hero-pack">
                     <div class="sp-hero-nameblock" id="hero-nameblock">
-                        <p class="sp-k mb-8 opacity-90" id="hero-k">Spatial reel · 空间卷轴</p>
                         <div class="p3d relative" id="hero-name" style="display:inline-block;">
                             <h1 class="sp-h1" style="color:#faf8f5;">Sam</h1>
                             <h1 class="sp-h1" id="hero-outline" style="color:transparent;-webkit-text-stroke:2px rgba(244,237,228,0.4);transform:translateZ(0);">Sam</h1>
@@ -581,7 +613,7 @@
                             HCI · Applied AI · University of Toronto
                         </p>
                         <p class="sp-prose sp-muted" id="hero-tag" style="max-width:36rem;font-size:clamp(0.95rem,1.2vw,1.1rem);">
-                            Full-bleed spatial narrative — scroll as camera. Built to read on a cinema-scale desktop.
+                            Long-scroll version of the same material as the main site.
                         </p>
                     </div>
                 </div>
@@ -590,7 +622,6 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE B — Monolith ═══ -->
     <section class="sp-track" id="sc-mono" style="height: 520vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">II</div>
@@ -614,7 +645,6 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE C — Portrait ═══ -->
     <section class="sp-track" id="sc-photo" style="height: 500vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">III</div>
@@ -638,7 +668,6 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE D — Contact ═══ -->
     <section class="sp-track" id="sc-contact" style="height: 460vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">IV</div>
@@ -664,7 +693,6 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE E — Dossier ═══ -->
     <section class="sp-track" id="sc-dossier" style="height: 480vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">V</div>
@@ -682,7 +710,6 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE F — Work ═══ -->
     <section class="sp-track" id="sc-work" style="height: 560vh;">
         <div class="sp-sticky persp sp-sticky--wide" style="align-items:flex-start;padding-top:clamp(4rem,10vh,7rem);">
             <div class="sp-shell p3d w-full" id="work-pack">
@@ -709,7 +736,6 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE G — Stack ═══ -->
     <section class="sp-track" id="sc-stack" style="height: 420vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">VII</div>
@@ -735,14 +761,13 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE H — Gate ═══ -->
     <section class="sp-track" id="sc-gate" style="height: 400vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">VIII</div>
             <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
                 <div class="w-full" id="gate-pack">
                     <p class="sp-k mb-10">VIII · Routing</p>
-                    <h2 class="sp-h2 text-white mb-4" style="font-size:clamp(2.5rem,7vw,5.5rem);max-width:min(20ch,95vw);">All doors.<br>One scroll.</h2>
+                    <h2 class="sp-h2 text-white mb-4" style="font-size:clamp(2.5rem,7vw,5.5rem);max-width:min(20ch,95vw);">Other pages</h2>
                     <div class="sp-gate-links">
                         <a href="publications.html">Publications</a>
                         <a href="blog.html">Moments</a>
@@ -755,7 +780,6 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE I — Voices ═══ -->
     <section class="sp-track" id="sc-voices" style="height: 420vh;">
         <div class="sp-sticky persp sp-sticky--wide sp-sticky-voices overflow-y-auto">
             <div class="sp-shell p3d w-full pb-24" id="voices-pack">
@@ -768,18 +792,17 @@
         </div>
     </section>
 
-    <!-- ═══ SCENE J — Finale ═══ -->
     <section class="sp-track" id="sc-end" style="height: 480vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true" style="opacity:0.06;">X</div>
             <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:flex-start;">
                 <div class="w-full text-left" id="end-pack">
-                    <p class="sp-k mb-10">X · Reel end</p>
-                    <h2 class="sp-h1 text-white mb-10" style="font-size:clamp(5rem,22vw,16rem);line-height:0.9;">CUT</h2>
+                    <p class="sp-k mb-10">End</p>
+                    <h2 class="sp-h1 text-white mb-10" style="font-size:clamp(2.75rem,10vw,5rem);line-height:1.05;">Thanks for scrolling.</h2>
                     <p class="sp-prose sp-muted mb-12" style="max-width:min(40rem,90vw);font-size:clamp(1.05rem,1.5vw,1.25rem);">
-                        Classic hub unchanged for daily use. This was the spatial director’s cut.
+                        Default entry is still the main page.
                     </p>
-                    <a href="index.html" class="sp-teal font-black uppercase sp-hover-white" style="font-size:clamp(0.75rem,1.1vw,0.9rem);letter-spacing:0.35em;text-decoration:none;border-bottom:2px solid rgba(94,234,212,0.45);padding-bottom:0.35rem;">Return to hub →</a>
+                    <a href="index.html" class="sp-teal font-black uppercase sp-hover-white" style="font-size:clamp(0.75rem,1.1vw,0.9rem);letter-spacing:0.35em;text-decoration:none;border-bottom:2px solid rgba(94,234,212,0.45);padding-bottom:0.35rem;">Home →</a>
                 </div>
             </div>
         </div>
@@ -858,7 +881,6 @@
 
     var EASE = 'none';
     var TP = 2000;
-    /* Longer “in”, readable “hold”, softer “out” so scenes read as one reel */
     var SCRUB = 1.68;
     var SCRUB_HERO = 1.52;
     var IN = 0.52;
@@ -906,13 +928,11 @@
         });
     });
 
-    /* —— Hero —— */
     var hero = document.getElementById('sc-hero');
     var heroPack = document.getElementById('hero-pack');
     var heroName = document.getElementById('hero-name');
     var heroOutline = document.getElementById('hero-outline');
     var heroWu = document.getElementById('hero-wu');
-    var heroK = document.getElementById('hero-k');
     var heroSide = document.getElementById('hero-side');
     var heroHint = document.getElementById('hero-hint');
     var HOUT = 0.72;
@@ -935,15 +955,13 @@
         .fromTo(heroOutline, { opacity: 1, x: '-6vw' }, { opacity: 0.1, x: '4vw', duration: IN }, 0)
         .fromTo(heroWu, { z: 260, y: '12vh', rotateX: 32 }, { z: 44, y: 0, rotateX: 0, duration: IN }, 0)
         .fromTo(heroSide, { x: '32vw', opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: IN }, 0.03)
-        .to(heroPack, { rotateX: -36, z: 820, y: '-42vh', scale: 0.66, filter: 'blur(14px)', opacity: 0.4, duration: 1 - HOUT }, HOUT)
-        .to(heroK, { opacity: 0, letterSpacing: '0.75em', duration: 0.22 }, HOUT + 0.02);
+        .to(heroPack, { rotateX: -36, z: 820, y: '-42vh', scale: 0.66, filter: 'blur(14px)', opacity: 0.4, duration: 1 - HOUT }, HOUT);
 
     gsap.to(heroHint, {
         opacity: 0,
         scrollTrigger: { trigger: hero, start: 'top top', end: '10% bottom', scrub: true }
     });
 
-    /* —— Monolith —— */
     var mono = document.getElementById('sc-mono');
     var monoPack = document.getElementById('mono-pack');
     var monoCard = document.getElementById('mono-card');
@@ -970,7 +988,6 @@
         .to(monoCard, { y: '-1.5vh', duration: 0.14 }, IN)
         .to(monoPack, { x: '-34vw', rotateY: -40, z: 480, opacity: 0.44, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
 
-    /* —— Photo —— */
     var photo = document.getElementById('sc-photo');
     var photoFrame = document.getElementById('photo-frame');
     var photoCopy = document.getElementById('photo-copy');
@@ -991,7 +1008,6 @@
         .to(photoFrame, { x: '48vw', rotateY: -52, z: 640, scale: 0.58, opacity: 0.42, filter: 'blur(14px)', duration: 1 - OUT0 }, OUT0)
         .to(photoCopy, { x: '-38vw', opacity: 0.35, z: -120, duration: 1 - OUT0 }, OUT0);
 
-    /* —— Contact —— */
     var contact = document.getElementById('sc-contact');
     var contactPack = document.getElementById('contact-pack');
     var cNodes = document.querySelectorAll('#contact-grid .sp-chrome');
@@ -1014,7 +1030,6 @@
         cTl.to(el, { y: '-22vh', z: 460 + i * 55, rotateX: -30, opacity: 0.38, duration: 1 - OUT0 - stagger * 0.4 }, OUT0 + stagger * 0.35);
     });
 
-    /* —— Dossier —— */
     var dossier = document.getElementById('sc-dossier');
     var dossierPack = document.getElementById('dossier-pack');
     gsap.timeline({
@@ -1028,7 +1043,6 @@
         )
         .to(dossierPack, { x: '32vw', rotateY: -36, z: 520, opacity: 0.4, filter: 'blur(11px)', duration: 1 - OUT0 }, OUT0);
 
-    /* —— Work —— */
     var work = document.getElementById('sc-work');
     var w0 = document.querySelector('[data-w="0"]');
     var w1 = document.querySelector('[data-w="1"]');
@@ -1045,7 +1059,6 @@
             .to(w1, { x: '52%', rotateY: -32, z: 480, opacity: 0.4, duration: 1 - OUT0 }, OUT0);
     }
 
-    /* —— Stack —— */
     var stack = document.getElementById('sc-stack');
     var stackPack = document.getElementById('stack-pack');
     gsap.timeline({
@@ -1059,7 +1072,6 @@
         )
         .to(stackPack, { rotateY: 52, z: 760, y: '-24vh', opacity: 0.42, filter: 'blur(13px)', duration: 1 - OUT0 }, OUT0);
 
-    /* —— Gate —— */
     var gate = document.getElementById('sc-gate');
     var gatePack = document.getElementById('gate-pack');
     gsap.timeline({
@@ -1073,7 +1085,6 @@
         )
         .to(gatePack, { z: 580, scale: 0.72, opacity: 0.38, rotateX: -32, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
 
-    /* —— Voices —— */
     var voices = document.getElementById('sc-voices');
     var voicesPack = document.getElementById('voices-pack');
     gsap.timeline({
@@ -1087,7 +1098,6 @@
         )
         .to(voicesPack, { y: '-28vh', z: 440, opacity: 0.4, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
 
-    /* —— Finale —— */
     var end = document.getElementById('sc-end');
     var endPack = document.getElementById('end-pack');
     var FOUT = 0.7;
