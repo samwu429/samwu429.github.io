@@ -1,168 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Portal</title>
+    <title>Admin · Sam Wu</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .admin-module { border: 1px solid #e2e8f0; border-radius: 0.5rem; background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06); overflow: hidden; }
+        .admin-module-hd { background: #1e293b; color: #fff; padding: 0.75rem 1rem; }
+        .admin-module-hd h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.02em; }
+        .admin-module-hd p { font-size: 0.7rem; color: #94a3b8; margin-top: 0.25rem; max-width: 42rem; }
+        .admin-nav a { color: #475569; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+        .admin-nav a:hover { color: #0f172a; }
+    </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-slate-100 text-slate-900 min-h-screen pb-16">
 
-    <div id="auth-layer" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
-        <div class="bg-white p-8 rounded-lg shadow-xl w-80">
-            <h2 class="text-2xl font-bold mb-4">Admin Login</h2>
-            <p class="text-xs text-gray-600 mb-3">Use your <strong>admin</strong> password (not the visitor gallery password).</p>
-            <input type="password" id="pwd-input" class="w-full border p-2 rounded mb-4" placeholder="Admin Password">
-            <button onclick="verifyAdmin()" class="w-full bg-red-600 text-white py-2 rounded">Login</button>
+    <div id="auth-layer" class="fixed inset-0 flex items-center justify-center bg-slate-900 bg-opacity-80 z-50 px-4">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800">Admin</h2>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Use your <strong class="text-slate-700">admin</strong> password only (not the Private Gallery visitor password).</p>
+            <input type="password" id="pwd-input" class="w-full border border-slate-300 p-2 rounded mt-4 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Password" autocomplete="current-password">
+            <button type="button" onclick="verifyAdmin()" class="w-full bg-slate-800 hover:bg-slate-900 text-white py-2.5 rounded mt-3 text-sm font-semibold">Enter</button>
         </div>
     </div>
 
-    <div id="main-content" class="hidden container mx-auto p-4 max-w-6xl">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Admin Portal</h1>
-            <a href="index.html" class="text-blue-500 hover:underline">← Back to Home</a>
-        </div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="bg-white p-6 rounded shadow">
-                <h2 class="text-xl font-bold mb-4">Add Photo</h2>
-                
-                <div id="drop-zone" class="border-2 border-dashed border-gray-400 rounded-lg p-8 text-center mb-4 hover:bg-gray-50 transition cursor-pointer" onclick="document.getElementById('file-input').click()">
-                    <div class="text-gray-500 flex flex-col items-center">
-                        <svg class="w-12 h-12 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                        <span class="font-medium" id="drop-text">Click to select or drag & drop image here</span>
+    <div id="main-content" class="hidden max-w-5xl mx-auto px-4 pt-4 pb-8">
+        <!-- Sticky module map -->
+        <header class="sticky top-0 z-30 -mx-4 px-4 py-3 mb-6 bg-slate-100/95 backdrop-blur border-b border-slate-200/80">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 max-w-5xl mx-auto">
+                <div>
+                    <h1 class="text-lg font-bold text-slate-800 tracking-tight">Content admin</h1>
+                    <p class="text-xs text-slate-500">Single page · jump to module below</p>
+                </div>
+                <nav class="admin-nav flex flex-wrap items-center gap-x-4 gap-y-1" aria-label="Module navigation">
+                    <a href="#module-photos">Photos</a>
+                    <span class="text-slate-300">·</span>
+                    <a href="#module-testimonials">Testimonials</a>
+                    <span class="text-slate-300">·</span>
+                    <a href="#module-publications">Publications</a>
+                    <span class="text-slate-300">·</span>
+                    <a href="#module-moments">Moments</a>
+                    <span class="text-slate-300 hidden sm:inline">|</span>
+                    <a href="index.html" class="text-emerald-700 hover:text-emerald-900">Site →</a>
+                </nav>
+            </div>
+        </header>
+
+        <p class="text-xs text-slate-600 mb-8 leading-relaxed border-l-4 border-slate-300 pl-3">
+            <strong class="text-slate-800">Map:</strong>
+            <strong>Photos</strong> → Private gallery (password-protected page).
+            <strong>Testimonials</strong> → Submissions stored in DB; public site shows anonymous snippets.
+            <strong>Publications</strong> → <code class="bg-slate-200 px-1 rounded text-[11px]">publications.html</code> catalog.
+            <strong>Moments</strong> → <code class="bg-slate-200 px-1 rounded text-[11px]">blog.html</code> timeline.
+        </p>
+
+        <!-- Row: media + moderation -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+            <section id="module-photos" class="scroll-mt-28">
+                <div class="admin-module">
+                    <div class="admin-module-hd">
+                        <h2>Private gallery · Photos</h2>
+                        <p>Upload to MongoDB; visitors see images on hidden.html after entering the gallery password.</p>
+                    </div>
+                    <div class="p-4 space-y-4">
+                        <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 cursor-pointer transition-colors" onclick="document.getElementById('file-input').click()">
+                            <div class="text-slate-500 flex flex-col items-center text-sm">
+                                <svg class="w-10 h-10 mb-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <span id="drop-text">Drop one image or click to choose</span>
+                            </div>
+                        </div>
+                        <input type="file" id="file-input" class="hidden" accept="image/*">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="p-cat">Category</label>
+                            <select id="p-cat" class="w-full border border-slate-300 p-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-slate-400">
+                                <option value="Culture">Culture</option>
+                                <option value="Landscape">Landscape</option>
+                                <option value="Portrait">Portrait</option>
+                            </select>
+                        </div>
+                        <button type="button" id="btn-add-photo" onclick="addPhoto()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-2 rounded text-sm font-semibold">Upload to gallery</button>
+                        <div>
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Library</h3>
+                            <div id="admin-photos" class="space-y-1.5 max-h-56 overflow-y-auto border border-slate-200 rounded p-2 bg-slate-50 text-sm"></div>
+                        </div>
                     </div>
                 </div>
-                <input type="file" id="file-input" class="hidden" accept="image/*">
-                
-                <select id="p-cat" class="w-full border p-2 rounded mb-4">
-                    <option value="Culture">Culture</option>
-                    <option value="Landscape">Landscape</option>
-                    <option value="Portrait">Portrait</option>
-                </select>
-                <button onclick="addPhoto()" class="bg-green-600 text-white px-4 py-2 rounded w-full font-bold">Upload Photo</button>
+            </section>
 
-                <h3 class="font-bold mt-6 mb-2">Photo List (Click to Delete)</h3>
-                <div id="admin-photos" class="space-y-2 max-h-64 overflow-y-auto border p-2"></div>
-            </div>
-
-            <div class="bg-white p-6 rounded shadow">
-                <h2 class="text-xl font-bold mb-4">Manage Testimonials</h2>
-                <div id="admin-testimonials" class="space-y-4 max-h-96 overflow-y-auto pr-2"></div>
-            </div>
+            <section id="module-testimonials" class="scroll-mt-28">
+                <div class="admin-module">
+                    <div class="admin-module-hd">
+                        <h2>Testimonials</h2>
+                        <p>Read-only cards except delete. New submissions arrive from hidden.html (visitor flow).</p>
+                    </div>
+                    <div class="p-4">
+                        <div id="admin-testimonials" class="space-y-3 max-h-[22rem] overflow-y-auto pr-1 text-sm"></div>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <div class="mt-10 bg-white rounded shadow overflow-hidden border border-gray-200">
-            <div class="bg-indigo-700 text-white px-6 py-4">
-                <h2 class="text-2xl font-bold">Publications catalog</h2>
-                <p class="text-sm text-indigo-100 mt-1 max-w-3xl">
-                    Entries here power the <strong>Publications</strong> list on <code class="bg-indigo-900/50 px-1 rounded">publications.html</code>.
-                    Use <strong>Edit</strong> to update anything after publishing — all fields below are saved to the database.
-                </p>
-            </div>
-
-            <div class="p-6 space-y-6">
-                <div id="pub-edit-banner" class="hidden rounded-lg border-2 border-amber-400 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                    <span class="font-bold">Editing:</span>
-                    <span id="pub-edit-title-preview" class="ml-1"></span>
-                    <span class="block text-xs text-amber-800 mt-1 font-mono" id="pub-edit-id-preview"></span>
+        <!-- Full width: publications -->
+        <section id="module-publications" class="scroll-mt-28 mb-10">
+            <div class="admin-module">
+                <div class="admin-module-hd">
+                    <h2>Publications catalog</h2>
+                    <p>Renders on the public <strong>Publications</strong> section. Edit overwrites the same record; delete removes it everywhere.</p>
                 </div>
+                <div class="p-4 sm:p-6 space-y-6">
+                    <div id="pub-edit-banner" class="hidden rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-950">
+                        <span class="font-semibold">Editing</span>
+                        <span id="pub-edit-title-preview" class="ml-1"></span>
+                        <span class="block text-xs text-amber-900/80 mt-0.5 font-mono" id="pub-edit-id-preview"></span>
+                    </div>
 
-                <div id="pub-editor-panel" class="border-l-4 border-indigo-500 pl-4 space-y-6">
-                    <div>
-                        <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">Bibliography (what to cite)</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-bold text-gray-800 mb-1" for="pub-title">Title <span class="text-red-600">*</span></label>
-                                <input type="text" id="pub-title" class="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-indigo-400" placeholder="Exact paper or report title">
-                                <p class="text-xs text-gray-500 mt-1">Shown as the main heading on the public page.</p>
+                    <div id="pub-editor-panel" class="border-l-4 border-slate-400 pl-4 space-y-6">
+                        <div>
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Bibliography</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-title">Title <span class="text-red-600">*</span></label>
+                                    <input type="text" id="pub-title" class="w-full border border-slate-300 p-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Paper title">
+                                    <p class="text-xs text-slate-500 mt-1">Main heading on site.</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-authors">Authors</label>
+                                    <input type="text" id="pub-authors" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Names, comma-separated">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-venue">Venue</label>
+                                    <input type="text" id="pub-venue" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Venue / preprint">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-year">Year</label>
+                                    <input type="number" id="pub-year" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="2026" min="1990" max="2100">
+                                </div>
                             </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-bold text-gray-800 mb-1" for="pub-authors">Authors</label>
-                                <input type="text" id="pub-authors" class="w-full border border-gray-300 p-2 rounded" placeholder="e.g. Yihang Wu, Jane Doe">
-                                <p class="text-xs text-gray-500 mt-1">Comma-separated; appears under the title as metadata.</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-800 mb-1" for="pub-venue">Venue</label>
-                                <input type="text" id="pub-venue" class="w-full border border-gray-300 p-2 rounded" placeholder="NeurIPS, arXiv, thesis, …">
-                                <p class="text-xs text-gray-500 mt-1">Conference, journal, or “Preprint”.</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-800 mb-1" for="pub-year">Year</label>
-                                <input type="number" id="pub-year" class="w-full border border-gray-300 p-2 rounded" placeholder="2026" min="1990" max="2100">
-                                <p class="text-xs text-gray-500 mt-1">Publication or acceptance year.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">On-site listing</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-link">External URL</label>
+                                    <input type="text" id="pub-link" class="w-full border border-slate-300 p-2 rounded text-sm font-mono" placeholder="https://…">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-abstract">Abstract / blurb</label>
+                                    <textarea id="pub-abstract" rows="4" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Short paragraph"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-sort">Sort priority</label>
+                                    <input type="number" id="pub-sort" class="w-full border border-slate-300 p-2 rounded text-sm" value="0">
+                                    <p class="text-xs text-slate-500 mt-1">Higher first.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-200">
+                        <button type="button" onclick="savePublication()" id="pub-save-btn" class="bg-slate-800 hover:bg-slate-900 text-white px-4 py-2 rounded text-sm font-semibold">Save</button>
+                        <button type="button" onclick="clearPublicationForm()" class="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded text-sm font-semibold hover:bg-slate-50">New / cancel edit</button>
+                    </div>
+                    <input type="hidden" id="pub-edit-id" value="">
+
                     <div>
-                        <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">Public listing (button + blurb)</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-bold text-gray-800 mb-1" for="pub-link">External link</label>
-                                <input type="text" id="pub-link" class="w-full border border-gray-300 p-2 rounded font-mono text-sm" placeholder="https://doi.org/… or https://arxiv.org/…">
-                                <p class="text-xs text-gray-500 mt-1">Full URL. The site shows an <strong>Open link</strong> button when this is set.</p>
-                            </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-bold text-gray-800 mb-1" for="pub-abstract">Abstract / short description</label>
-                                <textarea id="pub-abstract" rows="4" class="w-full border border-gray-300 p-2 rounded" placeholder="2–4 sentences: contribution, methods, or why it matters."></textarea>
-                                <p class="text-xs text-gray-500 mt-1">Optional; shown as body text under the title block.</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-800 mb-1" for="pub-sort">Sort priority</label>
-                                <input type="number" id="pub-sort" class="w-full border border-gray-300 p-2 rounded" placeholder="0" value="0">
-                                <p class="text-xs text-gray-500 mt-1">Higher numbers appear first (ties fall back to year / recency).</p>
-                            </div>
-                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 mb-2">Saved items</h3>
+                        <div id="admin-publications" class="space-y-3 max-h-[28rem] overflow-y-auto pr-1"></div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="flex flex-wrap gap-3 items-center pt-2 border-t border-gray-200">
-                    <button type="button" onclick="savePublication()" id="pub-save-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded font-bold shadow">Save publication</button>
-                    <button type="button" onclick="clearPublicationForm()" class="bg-gray-200 hover:bg-gray-300 px-5 py-2 rounded font-bold">New entry / discard edit</button>
+        <!-- Moments -->
+        <section id="module-moments" class="scroll-mt-28">
+            <div class="admin-module">
+                <div class="admin-module-hd">
+                    <h2>Moments (blog)</h2>
+                    <p>Photo + caption + display date → <code class="text-slate-400">blog.html</code> feed. At least one image per new post.</p>
                 </div>
-                <input type="hidden" id="pub-edit-id" value="">
-
-                <div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">Published items</h3>
-                    <p class="text-sm text-gray-600 mb-3">Click <span class="text-indigo-600 font-bold">Edit</span> to load a row into the form above. Use <span class="text-red-600 font-bold">Delete</span> to remove from the database and the public site.</p>
-                    <div id="admin-publications" class="space-y-3 max-h-[28rem] overflow-y-auto pr-1"></div>
+                <div class="p-4 sm:p-6 space-y-4">
+                    <div id="blog-drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center cursor-pointer hover:bg-slate-50 text-sm text-slate-600" onclick="document.getElementById('blog-file-input').click()">
+                        <span id="blog-drop-text">Drop images or click · multiple OK</span>
+                    </div>
+                    <input type="file" id="blog-file-input" class="hidden" accept="image/*" multiple>
+                    <div id="blog-previews" class="flex flex-wrap gap-2 min-h-[2rem]"></div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1" for="blog-text">Text</label>
+                        <textarea id="blog-text" rows="4" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Caption"></textarea>
+                    </div>
+                    <div class="flex flex-wrap gap-4 items-end">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="blog-y">Year</label>
+                            <input type="number" id="blog-y" class="border border-slate-300 p-2 rounded w-24 text-sm" min="1990" max="2100">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="blog-m">Month</label>
+                            <input type="number" id="blog-m" class="border border-slate-300 p-2 rounded w-20 text-sm" min="1" max="12">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="blog-d">Day</label>
+                            <input type="number" id="blog-d" class="border border-slate-300 p-2 rounded w-20 text-sm" min="1" max="31">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="saveBlogPost()" id="blog-save-btn" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded text-sm font-semibold">Publish</button>
+                        <button type="button" onclick="clearBlogForm()" class="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded text-sm font-semibold">Clear</button>
+                    </div>
+                    <input type="hidden" id="blog-edit-id" value="">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-800 mb-2">Saved moments</h3>
+                        <div id="admin-blog" class="space-y-2 max-h-96 overflow-y-auto border border-slate-200 rounded p-2 bg-slate-50 text-sm"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="mt-10 bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-bold mb-2">Moments (blog feed)</h2>
-            <p class="text-sm text-gray-600 mb-4">Upload one or more photos, add text, and set the display date. Shown publicly like a timeline — no likes or comments.</p>
-            <div id="blog-drop-zone" class="border-2 border-dashed border-gray-400 rounded-lg p-6 text-center mb-4 cursor-pointer hover:bg-gray-50" onclick="document.getElementById('blog-file-input').click()">
-                <span class="text-gray-600 font-medium" id="blog-drop-text">Click or drag images here (multiple allowed)</span>
-            </div>
-            <input type="file" id="blog-file-input" class="hidden" accept="image/*" multiple>
-            <div id="blog-previews" class="flex flex-wrap gap-2 mb-4 min-h-[2rem]"></div>
-            <label class="block text-sm font-bold mb-1">Caption / text</label>
-            <textarea id="blog-text" rows="4" class="w-full border p-2 rounded mb-4" placeholder="What happened today?"></textarea>
-            <div class="flex flex-wrap gap-3 mb-4">
-                <div>
-                    <label class="block text-xs font-bold mb-1">Year</label>
-                    <input type="number" id="blog-y" class="border p-2 rounded w-24" min="1990" max="2100">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold mb-1">Month</label>
-                    <input type="number" id="blog-m" class="border p-2 rounded w-20" min="1" max="12">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold mb-1">Day</label>
-                    <input type="number" id="blog-d" class="border p-2 rounded w-20" min="1" max="31">
-                </div>
-            </div>
-            <div class="flex gap-3 flex-wrap">
-                <button type="button" onclick="saveBlogPost()" id="blog-save-btn" class="bg-emerald-600 text-white px-4 py-2 rounded font-bold">Publish moment</button>
-                <button type="button" onclick="clearBlogForm()" class="bg-gray-200 px-4 py-2 rounded font-bold">Clear</button>
-            </div>
-            <input type="hidden" id="blog-edit-id" value="">
-            <h3 class="font-bold mt-8 mb-2">Existing moments</h3>
-            <div id="admin-blog" class="space-y-2 max-h-96 overflow-y-auto border p-2 text-sm"></div>
-        </div>
+        </section>
     </div>
 
     <script src="api-config.js"></script>
@@ -236,11 +288,11 @@
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
 
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-blue-50', 'border-blue-500'); });
-        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-blue-50', 'border-blue-500'); });
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-emerald-50', 'border-emerald-400'); });
+        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-emerald-50', 'border-emerald-400'); });
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            dropZone.classList.remove('bg-blue-50', 'border-blue-500');
+            dropZone.classList.remove('bg-emerald-50', 'border-emerald-400');
             handleFile(e.dataTransfer.files[0]);
         });
         
@@ -253,7 +305,7 @@
                 const img = new Image();
                 img.onload = () => {
                     selectedBase64 = canvasCompressDataUrl(img, 1080, 1080, 0.8);
-                    document.getElementById('drop-text').innerHTML = `<img src="${selectedBase64}" class="h-32 mx-auto object-cover rounded shadow">`;
+                    document.getElementById('drop-text').innerHTML = `<img src="${selectedBase64}" class="h-28 mx-auto object-cover rounded border border-slate-200" alt="">`;
                 };
                 img.src = e.target.result;
             };
@@ -262,11 +314,11 @@
 
         const blogDrop = document.getElementById('blog-drop-zone');
         const blogInput = document.getElementById('blog-file-input');
-        blogDrop.addEventListener('dragover', (e) => { e.preventDefault(); blogDrop.classList.add('bg-blue-50'); });
-        blogDrop.addEventListener('dragleave', () => blogDrop.classList.remove('bg-blue-50'));
+        blogDrop.addEventListener('dragover', (e) => { e.preventDefault(); blogDrop.classList.add('bg-emerald-50'); });
+        blogDrop.addEventListener('dragleave', () => blogDrop.classList.remove('bg-emerald-50'));
         blogDrop.addEventListener('drop', async (e) => {
             e.preventDefault();
-            blogDrop.classList.remove('bg-blue-50');
+            blogDrop.classList.remove('bg-emerald-50');
             await addBlogFiles(e.dataTransfer.files);
         });
         blogInput.addEventListener('change', async (e) => addBlogFiles(e.target.files));
@@ -281,16 +333,16 @@
                     blogImagesBase64.push(b64);
                 } catch (_) {}
             }
-            document.getElementById('blog-drop-text').textContent = 'Click or drag images here (multiple allowed)';
+            document.getElementById('blog-drop-text').textContent = 'Drop images or click · multiple OK';
             renderBlogPreviews();
         }
 
         function renderBlogPreviews() {
             const box = document.getElementById('blog-previews');
             box.innerHTML = blogImagesBase64.map((src, i) => `
-                <div class="relative w-20 h-20 border rounded overflow-hidden">
+                <div class="relative w-20 h-20 border border-slate-200 rounded overflow-hidden bg-white">
                     <img src="${src}" class="w-full h-full object-cover" alt="">
-                    <button type="button" class="absolute top-0 right-0 bg-red-600 text-white text-xs px-1 js-remove-blog-img" data-idx="${i}">×</button>
+                    <button type="button" class="absolute top-0 right-0 bg-red-600 text-white text-xs leading-none px-1.5 py-0.5 js-remove-blog-img" data-idx="${i}">×</button>
                 </div>
             `).join('');
             box.querySelectorAll('.js-remove-blog-img').forEach((btn) => {
@@ -326,9 +378,9 @@
         async function loadAdminData() {
             const photos = await requestJson('/hidden/photos', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-photos').innerHTML = photos.map(p => `
-                <div class="flex justify-between items-center bg-gray-50 p-2 rounded">
-                    <span class="text-sm truncate w-2/3">${escapeHTML(p.category)} - ${escapeHTML((p.url || '').substring(0,20))}...</span>
-                    <button class="text-red-500 text-sm js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Delete</button>
+                <div class="flex justify-between items-center gap-2 bg-white p-2 rounded border border-slate-100">
+                    <span class="text-xs truncate flex-1 font-mono text-slate-600">${escapeHTML(p.category)} · ${escapeHTML((p.url || '').substring(0, 24))}…</span>
+                    <button type="button" class="text-red-600 text-xs font-semibold flex-shrink-0 js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Delete</button>
                 </div>
             `).join('');
             document.querySelectorAll('.js-delete-photo-btn').forEach((btn) => {
@@ -337,10 +389,10 @@
 
             const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-testimonials').innerHTML = testimonials.map(t => `
-                <div class="border p-2 rounded relative">
-                    <button class="absolute top-2 right-2 text-red-500 text-sm js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
-                    <strong>${escapeHTML(t.name)}</strong> (${escapeHTML(t.relationship)})<br>
-                    <p class="text-sm mt-1">${escapeHTML(t.comment)}</p>
+                <div class="border border-slate-200 rounded p-3 relative bg-white pr-16">
+                    <button type="button" class="absolute top-2 right-2 text-red-600 text-xs font-semibold js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
+                    <div class="font-semibold text-slate-800 text-sm">${escapeHTML(t.name)} <span class="text-slate-500 font-normal">(${escapeHTML(t.relationship)})</span></div>
+                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">${escapeHTML(t.comment)}</p>
                 </div>
             `).join('');
             document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
@@ -352,28 +404,28 @@
                 const meta = [p.authors, p.venue, p.year].filter((x) => x !== undefined && x !== null && String(x).trim() !== '').map(escapeHTML).join(' · ');
                 const abs = (p.abstract || '').trim();
                 const absShort = abs.length > 160 ? escapeHTML(abs.slice(0, 160)) + '…' : escapeHTML(abs);
-                const linkHint = (p.link || '').trim() ? '<span class="text-emerald-700 font-bold">Has link</span>' : '<span class="text-gray-400">No link</span>';
-                const sortBadge = `<span class="inline-block bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded">sort ${escapeHTML(String(p.sortOrder != null ? p.sortOrder : 0))}</span>`;
+                const linkHint = (p.link || '').trim() ? '<span class="text-emerald-700 font-semibold text-xs">Link</span>' : '<span class="text-slate-400 text-xs">No URL</span>';
+                const sortBadge = `<span class="text-[10px] font-mono bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">sort ${escapeHTML(String(p.sortOrder != null ? p.sortOrder : 0))}</span>`;
                 return `
-                <div class="border border-gray-200 rounded-lg bg-gray-50 p-4 shadow-sm">
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
+                <div class="border border-slate-200 rounded-lg bg-white p-3 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                         <div class="min-w-0 flex-1">
-                            <div class="font-bold text-gray-900 text-base leading-snug">${escapeHTML(p.title || '(untitled)')}</div>
-                            ${meta ? `<div class="text-xs text-gray-600 mt-1">${meta}</div>` : ''}
-                            ${abs ? `<p class="text-xs text-gray-700 mt-2 leading-relaxed">${absShort}</p>` : '<p class="text-xs text-gray-400 mt-2 italic">No abstract</p>'}
+                            <div class="font-semibold text-slate-900 text-sm leading-snug">${escapeHTML(p.title || '(untitled)')}</div>
+                            ${meta ? `<div class="text-xs text-slate-500 mt-0.5">${meta}</div>` : ''}
+                            ${abs ? `<p class="text-xs text-slate-600 mt-2 leading-relaxed">${absShort}</p>` : '<p class="text-xs text-slate-400 mt-1 italic">No blurb</p>'}
                             <div class="flex flex-wrap items-center gap-2 mt-2">
                                 ${sortBadge}
                                 ${linkHint}
-                                <span class="text-[10px] text-gray-400 font-mono">id: ${escapeHTML(String(p.id || ''))}</span>
+                                <span class="text-[10px] text-slate-400 font-mono truncate max-w-[12rem]" title="${escapeHTML(String(p.id || ''))}">${escapeHTML(String(p.id || ''))}</span>
                             </div>
                         </div>
                         <div class="flex gap-2 flex-shrink-0">
-                            <button type="button" class="bg-white border border-indigo-300 text-indigo-700 px-3 py-1 rounded text-sm font-bold hover:bg-indigo-50 js-edit-pub" data-id="${escapeHTML(p.id)}">Edit</button>
-                            <button type="button" class="bg-white border border-red-300 text-red-600 px-3 py-1 rounded text-sm font-bold hover:bg-red-50 js-del-pub" data-id="${escapeHTML(p.id)}">Delete</button>
+                            <button type="button" class="text-xs font-semibold text-slate-700 border border-slate-300 px-2 py-1 rounded hover:bg-slate-50 js-edit-pub" data-id="${escapeHTML(p.id)}">Edit</button>
+                            <button type="button" class="text-xs font-semibold text-red-600 border border-red-200 px-2 py-1 rounded hover:bg-red-50 js-del-pub" data-id="${escapeHTML(p.id)}">Delete</button>
                         </div>
                     </div>
                 </div>`;
-            }).join('') || '<p class="text-gray-500 p-4 border border-dashed rounded">No publications yet. Fill the form above and click Save.</p>';
+            }).join('') || '<p class="text-slate-500 text-sm p-3 border border-dashed border-slate-200 rounded text-center">No publications yet.</p>';
 
             document.querySelectorAll('.js-edit-pub').forEach((btn) => {
                 btn.addEventListener('click', () => {
@@ -387,9 +439,9 @@
                     document.getElementById('pub-link').value = row.link || '';
                     document.getElementById('pub-abstract').value = row.abstract || '';
                     document.getElementById('pub-sort').value = row.sortOrder != null ? row.sortOrder : 0;
-                    document.getElementById('pub-save-btn').textContent = 'Update publication';
+                    document.getElementById('pub-save-btn').textContent = 'Update';
                     setPubEditBanner(true, row.title || '', row.id || '');
-                    document.getElementById('pub-editor-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('module-publications')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
             document.querySelectorAll('.js-del-pub').forEach((btn) => {
@@ -398,18 +450,18 @@
 
             const blogs = await requestJson('/admin/blog', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-blog').innerHTML = (blogs || []).map(b => `
-                <div class="flex justify-between items-start gap-2 bg-gray-50 p-2 rounded">
+                <div class="flex justify-between items-start gap-2 bg-white p-2 rounded border border-slate-100">
                     <div class="min-w-0">
-                        <div class="font-bold">${escapeHTML(String(b.displayYear))}-${escapeHTML(String(b.displayMonth).padStart(2, '0'))}-${escapeHTML(String(b.displayDay).padStart(2, '0'))}</div>
-                        <div class="text-xs text-gray-700 truncate">${escapeHTML((b.text || '').slice(0, 80))}${(b.text || '').length > 80 ? '…' : ''}</div>
-                        <div class="text-xs text-gray-500">${(b.images || []).length} photo(s)</div>
+                        <div class="font-semibold text-slate-800 text-xs">${escapeHTML(String(b.displayYear))}-${escapeHTML(String(b.displayMonth).padStart(2, '0'))}-${escapeHTML(String(b.displayDay).padStart(2, '0'))}</div>
+                        <div class="text-xs text-slate-600 truncate max-w-[14rem]">${escapeHTML((b.text || '').slice(0, 100))}${(b.text || '').length > 100 ? '…' : ''}</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">${(b.images || []).length} image(s)</div>
                     </div>
-                    <div class="flex gap-2 flex-shrink-0">
-                        <button type="button" class="text-blue-600 js-edit-blog" data-id="${escapeHTML(b.id)}">Edit</button>
-                        <button type="button" class="text-red-600 js-del-blog" data-id="${escapeHTML(b.id)}">Delete</button>
+                    <div class="flex gap-1 flex-shrink-0">
+                        <button type="button" class="text-xs font-semibold text-slate-700 js-edit-blog" data-id="${escapeHTML(b.id)}">Edit</button>
+                        <button type="button" class="text-xs font-semibold text-red-600 js-del-blog" data-id="${escapeHTML(b.id)}">Del</button>
                     </div>
                 </div>
-            `).join('') || '<p class="text-gray-500">No moments yet.</p>';
+            `).join('') || '<p class="text-slate-500 text-xs text-center py-2">No moments.</p>';
 
             document.querySelectorAll('.js-edit-blog').forEach((btn) => {
                 btn.addEventListener('click', () => {
@@ -422,7 +474,8 @@
                     document.getElementById('blog-d').value = row.displayDay;
                     blogImagesBase64 = Array.isArray(row.images) ? row.images.slice() : [];
                     renderBlogPreviews();
-                    document.getElementById('blog-save-btn').textContent = 'Update moment';
+                    document.getElementById('blog-save-btn').textContent = 'Update';
+                    document.getElementById('module-moments')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
             document.querySelectorAll('.js-del-blog').forEach((btn) => {
@@ -438,7 +491,7 @@
             if (active) {
                 wrap.classList.remove('hidden');
                 tEl.textContent = title || '(untitled)';
-                idEl.textContent = 'Record id: ' + (id || '');
+                idEl.textContent = 'id ' + (id || '');
             } else {
                 wrap.classList.add('hidden');
                 tEl.textContent = '';
@@ -455,7 +508,7 @@
             document.getElementById('pub-link').value = '';
             document.getElementById('pub-abstract').value = '';
             document.getElementById('pub-sort').value = '0';
-            document.getElementById('pub-save-btn').textContent = 'Save publication';
+            document.getElementById('pub-save-btn').textContent = 'Save';
             setPubEditBanner(false);
         }
 
@@ -466,7 +519,7 @@
             renderBlogPreviews();
             blogInput.value = '';
             setDefaultBlogDate();
-            document.getElementById('blog-save-btn').textContent = 'Publish moment';
+            document.getElementById('blog-save-btn').textContent = 'Publish';
         }
 
         async function savePublication() {
@@ -565,8 +618,10 @@
             const category = document.getElementById('p-cat').value;
             if (!selectedBase64) return alert('Please select an image first.');
             
-            const uploadBtn = document.querySelector('button[onclick="addPhoto()"]');
-            uploadBtn.innerText = 'Uploading...';
+            const uploadBtn = document.getElementById('btn-add-photo');
+            const prev = uploadBtn.textContent;
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = 'Uploading…';
             try {
                 await requestJson('/admin/photos', {
                 method: 'POST',
@@ -574,12 +629,13 @@
                 body: JSON.stringify({ url: selectedBase64, category })
                 });
                 selectedBase64 = null;
-                document.getElementById('drop-text').innerHTML = `Click to select or drag & drop image here`;
+                document.getElementById('drop-text').textContent = 'Drop one image or click to choose';
                 await loadAdminData();
             } catch (e) {
                 alert('Upload failed. Please try again.');
             } finally {
-                uploadBtn.innerText = 'Upload Photo';
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = prev;
             }
         }
 
