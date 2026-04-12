@@ -3,382 +3,561 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sam Wu — spatial scroll narrative. HCI, Applied AI, University of Toronto.">
+    <meta name="description" content="Sam Wu — spatial narrative. HCI, Applied AI, University of Toronto. Full site in one scroll.">
     <title>Spatial Narrative · Sam Wu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css?v=4">
     <style>
-        /* Cinematic shell — scoped to this page */
-        .exp-page {
-            --exp-ink: #faf8f5;
-            --exp-dim: #a8a29e;
-            --exp-accent: #34d399;
-            --exp-bg0: #0a0908;
-            --exp-bg1: #121110;
-            background: var(--exp-bg0);
-            color: var(--exp-ink);
-            font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        /* —— Spatial narrative: readable, long-form, cinematic —— */
+        .exp {
+            --paper: #f2ebe3;
+            --paper-dim: #c9c0b6;
+            --ink: #141211;
+            --surface: rgba(22, 20, 18, 0.94);
+            --surface-edge: rgba(255, 252, 248, 0.22);
+            --accent: #5eead4;
+            --accent-dim: #2dd4bf;
+            --glow: rgba(94, 234, 212, 0.12);
+            color: var(--paper);
+            background: var(--ink);
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            font-size: 1.0625rem;
+            line-height: 1.75;
             overflow-x: hidden;
         }
-        .exp-page ::selection {
-            background: rgba(52, 211, 153, 0.35);
+        .exp ::selection {
+            background: rgba(45, 212, 191, 0.35);
             color: #fff;
         }
 
-        /* Letterbox + grain */
-        .exp-cinematic::before,
-        .exp-cinematic::after {
-            content: "";
+        .exp-ambient {
             position: fixed;
-            left: 0;
-            right: 0;
-            z-index: 50;
+            inset: 0;
+            z-index: 0;
             pointer-events: none;
-            background: #000;
-            height: env(safe-area-inset-top, 0px);
-            min-height: 0;
+            background:
+                radial-gradient(ellipse 100% 80% at 50% -20%, var(--glow), transparent 55%),
+                radial-gradient(ellipse 70% 50% at 100% 60%, rgba(29, 78, 216, 0.06), transparent 50%),
+                radial-gradient(ellipse 60% 40% at 0% 80%, rgba(5, 150, 105, 0.07), transparent 45%),
+                linear-gradient(180deg, #0a0908 0%, #12100e 40%, #0e0c0b 100%);
         }
-        .exp-cinematic::before { top: 0; box-shadow: 0 0 0 12vh #000 inset; height: 3.5vh; min-height: 20px; }
-        .exp-cinematic::after { bottom: 0; box-shadow: 0 0 0 12vh #000 inset; height: 3.5vh; min-height: 20px; }
 
         .exp-grain {
             position: fixed;
             inset: 0;
-            z-index: 40;
-            pointer-events: none;
-            opacity: 0.07;
-            mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
-
-        .exp-vignette {
-            position: fixed;
-            inset: 0;
-            z-index: 5;
-            pointer-events: none;
-            background:
-                radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(0,0,0,0.5) 100%),
-                radial-gradient(circle at 15% 20%, rgba(52, 211, 153, 0.07), transparent 45%),
-                radial-gradient(circle at 85% 80%, rgba(29, 78, 216, 0.06), transparent 40%);
-        }
-
-        .exp-grid-floor {
-            position: fixed;
-            inset: -50% -50% 0;
             z-index: 1;
             pointer-events: none;
-            background-image:
-                linear-gradient(rgba(250, 248, 245, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(250, 248, 245, 0.04) 1px, transparent 1px);
-            background-size: 64px 64px;
-            transform-origin: 50% 100%;
-            transform: perspective(800px) rotateX(78deg) translateY(0) scale(1.2);
-            opacity: 0.35;
-            will-change: transform;
+            opacity: 0.045;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .exp-scroll-spacer {
-            height: 520vh;
-        }
-
-        .exp-stage {
+        .exp-grid {
             position: fixed;
-            inset: 0;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            perspective: 1400px;
-            perspective-origin: 50% 45%;
-        }
-
-        .exp-world {
-            position: relative;
-            width: min(92vw, 52rem);
-            min-height: 70vh;
-            transform-style: preserve-3d;
+            inset: -30% 0 0 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.2;
+            background-image:
+                linear-gradient(rgba(242, 235, 227, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(242, 235, 227, 0.05) 1px, transparent 1px);
+            background-size: 72px 72px;
+            transform-origin: 50% 100%;
+            transform: perspective(900px) rotateX(76deg) scale(1.15);
             will-change: transform;
         }
 
-        /* Neo-brutal panels on dark — same language as public site, inverted */
-        .exp-panel {
-            position: absolute;
-            left: 50%;
-            top: 48%;
-            width: calc(100% - 2rem);
-            max-width: 42rem;
-            padding: 0;
-            transform: translate(-50%, -50%) translateZ(0);
-            transform-style: preserve-3d;
-            opacity: 0;
+        .exp-main {
+            position: relative;
+            z-index: 2;
+        }
+
+        .exp-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            padding: max(1rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right)) 0.75rem max(1.25rem, env(safe-area-inset-left));
+            display: flex;
+            justify-content: flex-end;
+            background: linear-gradient(180deg, rgba(10, 9, 8, 0.92) 0%, transparent 100%);
             pointer-events: none;
-            transition: opacity 0.55s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .exp-panel.is-active {
-            opacity: 1;
+        .exp-nav a {
             pointer-events: auto;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--paper-dim);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .exp-nav a:hover {
+            color: var(--accent);
+            border-bottom-color: rgba(94, 234, 212, 0.5);
         }
 
-        .exp-card {
-            border: 2px solid var(--exp-ink);
+        .exp-sc {
+            min-height: min(92vh, 52rem);
+            padding: clamp(3.5rem, 10vh, 7rem) max(1.25rem, env(safe-area-inset-left)) clamp(4rem, 12vh, 8rem) max(1.25rem, env(safe-area-inset-right));
+            max-width: 52rem;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translate3d(0, 36px, 0);
+            transition: opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1), transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .exp-sc--visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .exp-chapter {
+            font-size: 0.6875rem;
+            font-weight: 800;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--accent-dim);
+            margin-bottom: 1.25rem;
+        }
+
+        .exp-h1 {
+            font-size: clamp(3.25rem, 11vw, 6.5rem);
+            font-weight: 900;
+            line-height: 0.92;
+            letter-spacing: -0.045em;
+            text-transform: uppercase;
+            color: var(--paper);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-h2 {
+            font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--paper);
+            margin: 0 0 1.25rem;
+        }
+
+        .exp-h3 {
+            font-family: Georgia, Cambria, "Times New Roman", serif;
+            font-size: clamp(1.35rem, 3vw, 1.85rem);
+            font-weight: 900;
+            line-height: 1.25;
+            color: #fff;
+            margin: 0 0 1rem;
+        }
+
+        .exp-lead {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #e8e0d6;
+            max-width: 38rem;
+        }
+
+        .exp-prose {
+            font-size: 1.0625rem;
+            line-height: 1.85;
+            color: #ddd5cb;
+            max-width: 40rem;
+        }
+        .exp-prose strong { color: #fff; font-weight: 700; }
+        .exp-prose a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+        .exp-prose a:hover { opacity: 0.85; }
+
+        .exp-slab {
+            border: 1px solid var(--surface-edge);
+            background: var(--surface);
+            box-shadow:
+                0 0 0 1px rgba(0,0,0,0.35),
+                12px 12px 0 rgba(0, 0, 0, 0.35),
+                0 32px 64px rgba(0, 0, 0, 0.35);
             border-radius: 2px;
-            background: rgba(18, 17, 16, 0.72);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 10px 10px 0 rgba(250, 248, 245, 0.1), 0 24px 48px rgba(0, 0, 0, 0.45);
-            padding: clamp(1.5rem, 4vw, 2.5rem);
-            transform: rotateX(2deg);
+            padding: clamp(1.75rem, 4vw, 2.75rem);
         }
 
-        .exp-kicker {
+        .exp-rule {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,252,248,0.25), transparent);
+            margin: 2.5rem 0;
+        }
+
+        .exp-dl {
+            display: grid;
+            gap: 1.75rem;
+        }
+        .exp-dt {
             font-size: 0.65rem;
             font-weight: 800;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--exp-accent);
-            margin-bottom: 0.75rem;
+            color: var(--paper-dim);
+            margin-bottom: 0.35rem;
+        }
+        .exp-dd {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--paper);
+            word-break: break-word;
+        }
+        .exp-dd a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+        .exp-portrait {
+            max-width: 16rem;
+            margin: 0 auto 2rem;
+            border: 2px solid var(--surface-edge);
+            padding: 0.5rem;
+            background: rgba(5, 150, 105, 0.08);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.4);
+        }
+        .exp-portrait img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border: 2px solid #1c1917;
+            filter: grayscale(0.08);
         }
 
-        .exp-title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -0.04em;
-            text-transform: uppercase;
+        .exp-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .exp-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.65rem;
+            color: #d4ccc2;
+            font-weight: 600;
+            font-size: 0.98rem;
+        }
+        .exp-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent-dim);
+            font-weight: 400;
         }
 
-        .exp-sub {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--exp-dim);
-            margin-top: 1rem;
+        .exp-quote {
+            border-left: 3px solid var(--accent-dim);
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            font-style: italic;
+            font-size: 1.125rem;
+            color: #ebe4da;
+            line-height: 1.7;
         }
 
-        .exp-body-text {
-            font-size: 0.95rem;
-            line-height: 1.75;
-            color: #d6d3d1;
-            max-width: 52ch;
-        }
-
-        .exp-links {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
-        }
-        @media (min-width: 640px) {
-            .exp-links { grid-template-columns: 1fr 1fr; }
-        }
-
-        .exp-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 1rem 1.25rem;
-            font-size: 0.7rem;
-            font-weight: 900;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--exp-bg0);
-            background: linear-gradient(180deg, #faf8f5 0%, #e7e5e4 100%);
-            border: 2px solid var(--exp-ink);
-            box-shadow: 5px 5px 0 rgba(250, 248, 245, 0.2);
-            text-decoration: none;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
-        }
-        .exp-link:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0 rgba(52, 211, 153, 0.35);
-            color: #047857;
-        }
-        .exp-link:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0 rgba(250, 248, 245, 0.15);
-        }
-
-        .exp-hub {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--exp-accent);
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.2s, color 0.2s;
-        }
-        .exp-hub:hover {
-            border-bottom-color: var(--exp-accent);
-            color: #a7f3d0;
+        .exp-testimonial-card {
+            border: 1px solid rgba(255,252,248,0.12);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(0,0,0,0.2);
+            font-size: 0.98rem;
+            color: #d8d0c6;
         }
 
         .exp-hint {
-            position: fixed;
-            bottom: max(2rem, env(safe-area-inset-bottom));
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 60;
+            text-align: center;
             font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            color: rgba(250, 248, 245, 0.45);
-            animation: exp-pulse 2.5s ease-in-out infinite;
+            color: rgba(242, 235, 227, 0.4);
+            padding: 2rem 1rem 4rem;
+            animation: exp-breathe 3s ease-in-out infinite;
         }
-        @keyframes exp-pulse {
-            0%, 100% { opacity: 0.45; }
-            50% { opacity: 0.9; }
+        @keyframes exp-breathe {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.85; }
         }
-        .exp-hint.is-hidden { opacity: 0; pointer-events: none; }
+
+        .exp-end {
+            padding: 6rem 1.5rem 8rem;
+            text-align: center;
+            max-width: 36rem;
+            margin: 0 auto;
+        }
 
         @media (prefers-reduced-motion: reduce) {
-            .exp-panel { transition: opacity 0.35s ease; }
-            .exp-world { transform: none !important; }
-            .exp-grid-floor { transform: perspective(800px) rotateX(78deg) scale(1.2); }
+            .exp-sc { opacity: 1; transform: none; transition: none; }
             .exp-hint { animation: none; }
         }
     </style>
 </head>
-<body class="exp-page exp-cinematic min-h-screen">
-    <div class="exp-vignette" aria-hidden="true"></div>
+<body class="exp min-h-screen">
+    <div class="exp-ambient" aria-hidden="true"></div>
     <div class="exp-grain" aria-hidden="true"></div>
-    <div class="exp-grid-floor" id="exp-grid" aria-hidden="true"></div>
+    <div class="exp-grid" id="exp-grid" aria-hidden="true"></div>
 
-    <a href="index.html" class="fixed top-6 left-6 z-[70] retro-button px-5 py-2.5 text-xs font-black uppercase tracking-widest !bg-[#1c1917] !text-[#faf8f5] !border-[#faf8f5] hover:!text-emerald-300" style="box-shadow: 5px 5px 0 rgba(250,248,245,0.2);">
-        ← Classic hub
-    </a>
+    <nav class="exp-nav" aria-label="Exit spatial narrative">
+        <a href="index.html">Classic hub layout</a>
+    </nav>
 
-    <div class="exp-scroll-spacer" id="exp-scroll-track" aria-hidden="true"></div>
+    <main class="exp-main">
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-hint">Scroll — one continuous surface</p>
+            <p class="exp-chapter">Spatial narrative · 卷轴</p>
+            <h1 class="exp-h1">Sam Wu</h1>
+            <p class="exp-lead mt-4" style="max-width: 28rem;">
+                Yihang (Sam) Wu · <span style="color: var(--accent);">HCI</span> &amp; <span style="color: var(--accent);">Applied AI</span>
+            </p>
+            <p class="exp-prose mt-8">
+                This lane mirrors the full site: same facts, same links — staged as a slow title sequence. Read top to bottom; every destination from the hub appears in order.
+            </p>
+        </section>
 
-    <div class="exp-stage" aria-hidden="false">
-        <div class="exp-world" id="exp-world">
-            <!-- Panel positions in Z will be set by JS for scroll choreography -->
-            <div class="exp-panel" data-exp-step="0" data-exp-z="0">
-                <div class="exp-card text-center">
-                    <p class="exp-kicker">Yihang (Sam) Wu</p>
-                    <h1 class="exp-title text-[#faf8f5]">Sam Wu</h1>
-                    <p class="exp-sub">HCI · Applied AI · University of Toronto</p>
-                    <p class="exp-body-text mx-auto mt-8 text-center text-sm text-stone-400">
-                        Scroll to move through depth — intent, architecture, and links in one continuous take.
-                    </p>
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">I · Portrait</p>
+            <div class="exp-portrait">
+                <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" width="512" height="512" alt="Sam Wu portrait">
+            </div>
+            <p class="exp-prose text-center" style="margin: 0 auto;">
+                The same portrait frame as the system hub: neo-brutalist edge, slight grayscale, initials <strong>SW.</strong> on the public layout — here, only the image and the line.
+            </p>
+        </section>
+
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">II · Institution</p>
+            <div class="exp-slab">
+                <p class="exp-prose mb-6" style="margin-bottom: 1.5rem;">
+                    <strong class="text-white">Department of Mathematics, Statistics, and Computer Science</strong><br>
+                    <span class="text-emerald-300/95 font-bold tracking-widest uppercase text-sm">University of Toronto</span>
+                </p>
+                <p class="text-xs font-black tracking-[0.25em] text-teal-300/90 mb-3 uppercase">Core vision &amp; architecture</p>
+                <h2 class="exp-h3">Distributed Wearable AIOS for Human–AI Symbiosis</h2>
+                <p class="exp-prose">
+                    Reimagining intent-driven transparent interaction architectures and physical trust primitives to reshape emotional connectivity and social trust in digital existence.
+                </p>
+                <div class="exp-rule"></div>
+                <p class="text-sm font-semibold text-stone-400">Built and maintained by Sam Wu.</p>
+            </div>
+        </section>
+
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">III · Contact</p>
+            <p class="exp-lead mb-8">Exactly as on the hub — channels, written out.</p>
+            <div class="exp-slab exp-dl">
+                <div>
+                    <div class="exp-dt">Personal</div>
+                    <div class="exp-dd"><a href="mailto:wuyihang429@gmail.com">wuyihang429@gmail.com</a></div>
+                </div>
+                <div>
+                    <div class="exp-dt">University</div>
+                    <div class="exp-dd"><a href="mailto:yihang.wu@mail.utoronto.ca">yihang.wu@mail.utoronto.ca</a></div>
+                </div>
+                <div>
+                    <div class="exp-dt">Professional</div>
+                    <div class="exp-dd"><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener noreferrer">linkedin.com/in/yihang-wu-ba3b58237</a></div>
                 </div>
             </div>
+        </section>
 
-            <div class="exp-panel" data-exp-step="1" data-exp-z="-380">
-                <div class="exp-card">
-                    <p class="exp-kicker">Institutional anchor</p>
-                    <p class="text-lg md:text-xl font-black text-white leading-snug mb-4">
-                        Department of Mathematics, Statistics, and Computer Science
-                    </p>
-                    <p class="text-sm font-bold text-emerald-400/90 uppercase tracking-widest mb-6">University of Toronto</p>
-                    <p class="exp-kicker !text-stone-500 !tracking-[0.16em]">Core vision</p>
-                    <h2 class="text-xl md:text-2xl font-serif-heading font-black text-white leading-tight mb-4">
-                        Distributed Wearable AIOS for Human–AI Symbiosis
-                    </h2>
-                    <p class="exp-body-text">
-                        Reimagining intent-driven transparent interaction architectures and physical trust primitives — emotional connectivity and social trust in digital existence.
-                    </p>
-                </div>
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">IV · Professional dossier</p>
+            <p class="exp-prose mb-6">
+                From the <a href="about.html">Professional Dossier</a> — profile &amp; beyond: bridging pure logic with industrial execution in Data and AI. Specialized in data processing, quantitative modeling, and workflow optimization; Human–AI symbiosis through methodology, de-app’d systems, and intent-driven agents toward digital sovereignty.
+            </p>
+            <div class="exp-quote mb-8">
+                IEEE Student Member · Institute of Electrical and Electronics Engineers.
             </div>
+            <p class="exp-prose">
+                Full narrative, media, stack, and honors live on the dossier page — <a href="about.html">about.html</a>.
+            </p>
+        </section>
 
-            <div class="exp-panel" data-exp-step="2" data-exp-z="-760">
-                <div class="exp-card">
-                    <p class="exp-kicker">How this space moves</p>
-                    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-4">Depth as narrative</h2>
-                    <p class="exp-body-text mb-4">
-                        The classic hub stays intact for daily browsing. This lane is for a slower, spatial read — same neo-brutalist discipline (hard edges, honest type), staged like a title sequence.
-                    </p>
-                    <p class="exp-body-text text-stone-500 text-sm">
-                        Built and maintained by Sam Wu.
-                    </p>
-                </div>
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">V · Experience</p>
+            <div class="exp-slab mb-8">
+                <p class="text-xs font-black text-teal-300/90 uppercase tracking-widest mb-2">Logistics &amp; Data Intern · Haicheng Hong Sheng Da · Jul–Sep 2024</p>
+                <ul class="exp-list">
+                    <li>Inbound/outbound inventory operations and data processing.</li>
+                    <li>International logistics communication with vendors and clients.</li>
+                    <li>Supply-chain documentation workflows tuned for execution speed.</li>
+                </ul>
             </div>
-
-            <div class="exp-panel" data-exp-step="3" data-exp-z="-1140">
-                <div class="exp-card">
-                    <p class="exp-kicker">Navigate</p>
-                    <h2 class="text-xl font-black uppercase tracking-tight text-white mb-6">Enter a room</h2>
-                    <div class="exp-links">
-                        <a class="exp-link" href="about.html">Professional dossier</a>
-                        <a class="exp-link" href="resume.html">CV &amp; AI agent</a>
-                        <a class="exp-link" href="publications.html">Publications</a>
-                        <a class="exp-link" href="blog.html">Moments</a>
-                        <a class="exp-link sm:col-span-2" href="hidden.html">Private gallery</a>
-                    </div>
-                    <a class="exp-hub" href="index.html">Return to system hub layout →</a>
-                </div>
+            <div class="exp-slab">
+                <p class="text-xs font-black text-sky-300/90 uppercase tracking-widest mb-2">Ward Missionary · The Church of Jesus Christ of Latter-day Saints · Nov 2025–present</p>
+                <ul class="exp-list">
+                    <li>Statistical analysis with leadership on member demographics.</li>
+                    <li>Live English–Mandarin interpretation in service contexts.</li>
+                    <li>Onboarding and accessibility for new members.</li>
+                </ul>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <p class="exp-hint" id="exp-hint">Scroll</p>
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">VI · Stack &amp; honors</p>
+            <div class="exp-slab mb-6">
+                <p class="text-xs font-black uppercase tracking-widest text-stone-400 mb-4">Core tech stack</p>
+                <ul class="exp-list">
+                    <li><strong class="text-emerald-300">Python / FastAPI</strong></li>
+                    <li><strong class="text-blue-300">R Studio modeling</strong></li>
+                    <li><strong class="text-amber-200">JavaScript / UI</strong></li>
+                    <li><strong class="text-purple-200">Gemini AI API</strong></li>
+                    <li><strong class="text-teal-300">ERP automation</strong></li>
+                </ul>
+            </div>
+            <div class="exp-slab">
+                <p class="text-xs font-black uppercase tracking-widest text-stone-400 mb-4">Honors &amp; beyond</p>
+                <ul class="exp-list">
+                    <li>MTA: JavaScript certified · Google Workspace / Microsoft Office</li>
+                    <li>Data processing &amp; logistics · Asian FS Level 2 · Shenyang men’s figure skating champion</li>
+                </ul>
+            </div>
+        </section>
 
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">VII · Publications</p>
+            <h2 class="exp-h2">Formal catalog</h2>
+            <p class="exp-prose mb-6">
+                Papers and academic listings — the same feed as the hub’s Publications tile, rendered as a dedicated page.
+            </p>
+            <p class="exp-prose">
+                Open the full bibliography: <a href="publications.html">publications.html</a>
+            </p>
+        </section>
+
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">VIII · Moments</p>
+            <h2 class="exp-h2">Blog · photos &amp; notes</h2>
+            <p class="exp-prose">
+                The Moments feed — timeline layout, snapshots and captions. Same content as the hub’s Moments entry.
+            </p>
+            <p class="exp-prose mt-4">
+                <a href="blog.html">blog.html</a>
+            </p>
+        </section>
+
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">IX · CV &amp; AI agent</p>
+            <p class="exp-prose">
+                Résumé lane and AI-agent affordances — identical destination to the hub card.
+            </p>
+            <p class="exp-prose mt-4">
+                <a href="resume.html">resume.html</a>
+            </p>
+        </section>
+
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">X · What people say</p>
+            <h2 class="exp-h2">Public voices</h2>
+            <p class="exp-prose mb-6">
+                Short excerpts below load from the same public API as the hub sidebar. Full names and links stay behind the private gallery, as on the main site.
+            </p>
+            <div id="exp-testimonials" class="mb-6">
+                <p class="text-stone-500 text-sm font-semibold">Loading…</p>
+            </div>
+            <p class="exp-prose text-sm text-stone-400">
+                To read full reviewer details (name, LinkedIn, etc.), use <a href="hidden.html">Private Gallery</a> with access.
+            </p>
+        </section>
+
+        <section class="exp-sc" data-exp-section>
+            <p class="exp-chapter">XI · Private gallery</p>
+            <h2 class="exp-h2">Photos &amp; testimonials</h2>
+            <p class="exp-prose mb-6">
+                Verified access — same promise as the long tile on the hub: HR and employers may request a password by email; typical reply within 24 hours.
+            </p>
+            <p class="exp-prose">
+                <a href="hidden.html">hidden.html</a>
+            </p>
+        </section>
+
+        <section class="exp-sc exp-end" data-exp-section>
+            <p class="exp-chapter">XII · Close</p>
+            <p class="exp-lead" style="margin: 0 auto;">
+                End of the spatial narrative. The <a href="index.html">classic hub</a> remains the day-to-day interface; this scroll is the same site, unfolded.
+            </p>
+            <p class="mt-10 text-xs font-bold tracking-[0.25em] uppercase text-stone-500">Sam Wu · HCI &amp; Applied AI · Toronto</p>
+        </section>
+    </main>
+
+    <script src="api-config.js"></script>
     <script>
         (function () {
-            const world = document.getElementById('exp-world');
-            const grid = document.getElementById('exp-grid');
-            const panels = Array.from(document.querySelectorAll('.exp-panel'));
-            const hint = document.getElementById('exp-hint');
-            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
 
-            function layout() {
-                const h = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-                const t = Math.min(1, Math.max(0, window.scrollY / h));
-                document.documentElement.style.setProperty('--exp-t', t);
-
-                if (!reduce && world) {
-                    const rotX = 7 + t * 9;
-                    const tz = t * 1050;
-                    const ty = t * -5;
-                    world.style.transform = 'translateY(' + ty + 'vh) rotateX(' + rotX + 'deg) translateZ(' + tz + 'px)';
-                } else if (world) {
-                    world.style.transform = '';
-                }
-
-                if (grid && !reduce) {
-                    grid.style.transform = 'perspective(800px) rotateX(78deg) translateY(' + (t * -10) + '%) scale(1.28)';
-                }
-
-                const n = panels.length;
-                const seg = t * (n - 0.001);
-                const step = Math.min(n - 1, Math.floor(seg));
-                panels.forEach((el, i) => {
-                    const zBase = parseFloat(el.getAttribute('data-exp-z') || '0') || 0;
-                    const dist = Math.abs(seg - i);
-                    const focus = Math.max(0, Math.min(1, 1 - dist));
-                    const active = focus > 0.45;
-                    el.classList.toggle('is-active', active);
-
+            function reveal() {
+                const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                document.querySelectorAll('[data-exp-section]').forEach((el) => {
                     if (reduce) {
-                        el.style.transform = 'translate(-50%, -50%) translateZ(' + zBase + 'px)';
-                        const on = i === step;
-                        el.style.opacity = on ? '1' : '0';
-                        el.style.pointerEvents = on ? 'auto' : 'none';
+                        el.classList.add('exp-sc--visible');
                         return;
                     }
-
-                    const scale = 0.9 + focus * 0.1;
-                    const rx = (1 - focus) * 7;
-                    const z = zBase + (1 - focus) * 120;
-                    el.style.transform = 'translate(-50%, -50%) translateZ(' + z + 'px) rotateX(' + rx + 'deg) scale(' + scale + ')';
-                    el.style.opacity = String(0.2 + focus * 0.8);
-                    el.style.pointerEvents = focus > 0.55 ? 'auto' : 'none';
+                    const obs = new IntersectionObserver(
+                        (entries, o) => {
+                            entries.forEach((e) => {
+                                if (e.isIntersecting) {
+                                    e.target.classList.add('exp-sc--visible');
+                                    o.unobserve(e.target);
+                                }
+                            });
+                        },
+                        { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
+                    );
+                    obs.observe(el);
                 });
+            }
 
-                if (hint) {
-                    hint.classList.toggle('is-hidden', t > 0.06);
+            function parallax() {
+                const grid = document.getElementById('exp-grid');
+                if (!grid || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(() => {
+                        const y = window.scrollY;
+                        const h = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+                        const t = y / h;
+                        grid.style.transform = 'perspective(900px) rotateX(76deg) translateY(' + (t * -12) + '%) scale(1.18)';
+                        ticking = false;
+                    });
+                }, { passive: true });
+            }
+
+            function escapeHTML(str) {
+                if (str == null) return '';
+                return String(str).replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+            }
+
+            async function testimonials() {
+                const box = document.getElementById('exp-testimonials');
+                if (!box) return;
+                try {
+                    const res = await fetch(API_BASE + '/public/testimonials', { cache: 'no-store' });
+                    if (!res.ok) throw new Error('bad status');
+                    const data = await res.json();
+                    if (!Array.isArray(data) || !data.length) {
+                        box.innerHTML = '<p class="text-stone-500 text-sm font-semibold">No public excerpts yet.</p>';
+                        return;
+                    }
+                    box.innerHTML = data.slice(0, 4).map((row) => {
+                        const raw = String(row.comment || '');
+                        const c = escapeHTML(raw.slice(0, 240));
+                        const rel = escapeHTML(row.relationship || '');
+                        const more = raw.length > 240 ? '…' : '';
+                        return '<div class="exp-testimonial-card"><p class="italic leading-relaxed mb-3">' + c + more + '</p><p class="text-xs font-bold uppercase tracking-widest text-teal-400/90">' + rel + '</p></div>';
+                    }).join('');
+                } catch (_) {
+                    box.innerHTML = '<p class="text-stone-500 text-sm">Public voices load when the API is reachable — same as the hub.</p>';
                 }
             }
 
-            window.addEventListener('scroll', layout, { passive: true });
-            window.addEventListener('resize', layout);
-            layout();
+            reveal();
+            parallax();
+            testimonials();
         })();
     </script>
 </body>
