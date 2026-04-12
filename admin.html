@@ -5,399 +5,278 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin · Sam Wu</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
     <style>
-        :root {
-            --adm-bg: #0f172a;
-            --adm-surface: #ffffff;
-            --adm-muted: #64748b;
-            --adm-border: #e2e8f0;
-            --adm-accent: #0d9488;
-            --adm-accent-dim: rgba(13, 148, 136, 0.12);
+        /* Login overlay only — rest uses public site system */
+        .adm-login-overlay {
+            background: rgba(28, 25, 23, 0.92);
         }
-        .adm-app { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-        .adm-shell {
-            height: 100dvh;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            background: #f1f5f9;
-            color: #0f172a;
-        }
-        .adm-topbar {
-            flex-shrink: 0;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1rem;
-            background: var(--adm-bg);
-            color: #f8fafc;
-            border-bottom: 1px solid #1e293b;
-        }
-        .adm-workspace { flex: 1; min-height: 0; display: flex; }
-        .adm-rail {
-            width: 200px;
-            flex-shrink: 0;
-            background: #1e293b;
-            color: #cbd5e1;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #334155;
-        }
-        .adm-rail__foot {
-            margin-top: auto;
-            padding: 0.75rem 1rem;
-            border-top: 1px solid #334155;
-            font-size: 0.7rem;
-        }
-        .adm-nav-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .adm-form-input {
             width: 100%;
-            text-align: left;
-            padding: 0.65rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #94a3b8;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            transition: background 0.12s, color 0.12s;
-        }
-        .adm-nav-btn:hover { background: rgba(255,255,255,0.06); color: #f1f5f9; }
-        .adm-nav-btn--active {
-            background: rgba(13, 148, 136, 0.15);
-            color: #5eead4;
-            box-shadow: inset 3px 0 0 #14b8a6;
-        }
-        .adm-nav-key {
-            font-size: 0.65rem;
-            font-weight: 700;
-            opacity: 0.45;
-            width: 1.25rem;
-        }
-        .adm-tabs-mobile {
-            flex-shrink: 0;
-            display: flex;
-            gap: 0.35rem;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 0.5rem 0.75rem;
-            background: #1e293b;
-            border-bottom: 1px solid #334155;
-        }
-        .adm-tabs-mobile::-webkit-scrollbar { height: 0; }
-        .adm-stage {
-            flex: 1;
-            min-width: 0;
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        .adm-pane {
-            flex: 1;
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
-            overflow: hidden;
-        }
-        @media (min-width: 1024px) {
-            .adm-pane { padding: 1.25rem 1.5rem; }
-        }
-        .adm-pane-head {
-            flex-shrink: 0;
-            margin-bottom: 0.75rem;
-        }
-        .adm-pane-title { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em; color: #0f172a; }
-        .adm-pane-desc { font-size: 0.75rem; color: var(--adm-muted); margin-top: 0.25rem; }
-        .adm-panel {
-            background: var(--adm-surface);
-            border: 1px solid var(--adm-border);
-            border-radius: 6px;
-            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
-        }
-        .adm-input {
-            width: 100%;
-            border: 1px solid #cbd5e1;
-            border-radius: 4px;
-            padding: 0.45rem 0.6rem;
+            border: 2px solid var(--retro-dark);
+            border-radius: var(--radius-tight);
+            padding: 0.55rem 0.75rem;
             font-size: 0.875rem;
             background: #fff;
-            transition: border-color 0.15s, box-shadow 0.15s;
+            transition: box-shadow 0.15s ease;
         }
-        .adm-input:focus {
+        .adm-form-input:focus {
             outline: none;
-            border-color: var(--adm-accent);
-            box-shadow: 0 0 0 3px var(--adm-accent-dim);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.25);
         }
-        .adm-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin-bottom: 0.35rem; display: block; }
-        .adm-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            border: 1px solid #1e293b;
-            background: #1e293b;
-            color: #fff;
-            cursor: pointer;
-            transition: background 0.15s, border-color 0.15s;
-        }
-        .adm-btn:hover { background: #0f172a; border-color: #0f172a; }
-        .adm-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .adm-btn--secondary {
-            background: #fff;
-            color: #334155;
-            border-color: #cbd5e1;
-        }
-        .adm-btn--secondary:hover { background: #f8fafc; }
-        .adm-btn--go {
-            background: #0f766e;
-            border-color: #0f766e;
-        }
-        .adm-btn--go:hover { background: #0d9488; border-color: #0d9488; }
-        .adm-btn--danger {
-            background: #fff;
-            color: #b91c1c;
-            border-color: #fecaca;
-        }
-        .adm-btn--danger:hover { background: #fef2f2; }
-        .adm-drop {
-            border: 1px dashed #94a3b8;
-            border-radius: 6px;
-            background: #f8fafc;
-            transition: background 0.15s, border-color 0.15s;
-        }
-        .adm-drop:hover { border-color: #64748b; background: #f1f5f9; }
-        .adm-scroll { overflow-y: auto; min-height: 0; -webkit-overflow-scrolling: touch; }
-        .adm-card-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0.65rem;
-            border: 1px solid var(--adm-border);
-            border-radius: 4px;
-            background: #fff;
-            font-size: 0.75rem;
-        }
-        .adm-kbd-hint { font-size: 0.65rem; color: #94a3b8; font-weight: 600; }
+        select.adm-form-input { cursor: pointer; }
+        #btn-back-dashboard:not(.hidden) { display: inline-flex; align-items: center; justify-content: center; }
     </style>
 </head>
-<body class="adm-app bg-slate-100 text-slate-900">
+<body class="min-h-screen text-gray-900">
 
-    <div id="auth-layer" class="fixed inset-0 z-50 flex items-center justify-center px-4" style="background: rgba(15, 23, 42, 0.88);">
-        <div class="adm-panel max-w-md w-full p-8 shadow-xl">
-            <p class="text-xs font-semibold text-teal-700 uppercase tracking-wider">Admin access</p>
-            <h2 class="text-xl font-bold text-slate-900 mt-2">Sign in</h2>
-            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Use your <strong class="text-slate-700">admin</strong> password only — not the Private Gallery visitor password.</p>
-            <form id="admin-login-form" class="mt-6" autocomplete="on">
-                <label for="pwd-input" class="adm-label">Password</label>
-                <input type="password" id="pwd-input" name="password" class="adm-input" placeholder="••••••••" autocomplete="current-password" required>
-                <button type="submit" id="admin-login-btn" class="adm-btn w-full mt-4 py-2.5">Continue</button>
+    <!-- Login -->
+    <div id="auth-layer" class="fixed inset-0 z-50 flex items-center justify-center px-4 adm-login-overlay">
+        <div class="surface-card max-w-md w-full p-8 md:p-10">
+            <p class="hci-kicker text-emerald-800">Admin access</p>
+            <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-gray-900 mt-2">Sign in</h2>
+            <p class="text-xs text-gray-600 mt-3 leading-relaxed">Use your <strong class="text-gray-900">admin</strong> password only — not the Private Gallery visitor password.</p>
+            <form id="admin-login-form" class="mt-6 space-y-4" autocomplete="on">
+                <div>
+                    <label for="pwd-input" class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1.5">Password</label>
+                    <input type="password" id="pwd-input" name="password" class="adm-form-input" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <button type="submit" id="admin-login-btn" class="retro-button w-full py-3 text-sm font-black uppercase tracking-widest">Continue</button>
             </form>
-            <p id="login-err" class="hidden text-xs text-red-700 font-medium mt-3" role="alert"></p>
+            <p id="login-err" class="hidden text-xs text-red-700 font-bold mt-3 border-l-4 border-red-600 pl-2" role="alert"></p>
         </div>
     </div>
 
-    <div id="main-content" class="hidden adm-shell">
-        <header class="adm-topbar">
-            <div class="flex items-baseline gap-3">
-                <span class="text-sm font-bold tracking-tight">Content admin</span>
-                <span class="hidden sm:inline text-xs text-slate-500 font-medium">Sam Wu</span>
-            </div>
-            <div class="flex items-center gap-3">
-                <span class="hidden md:inline adm-kbd-hint">Keys 1–4 · switch</span>
-                <a href="index.html" class="text-xs font-semibold text-teal-300 hover:text-white transition-colors">Public site →</a>
+    <div id="main-content" class="hidden">
+        <!-- Sticky header: same information hierarchy as public hub (brand + action) -->
+        <header class="sticky top-0 z-40 border-b-2 border-gray-900 bg-[#fdfbf7]/95 backdrop-blur-sm">
+            <div class="site-wrap flex items-center justify-between gap-4 py-3 md:py-4">
+                <div class="flex items-center gap-3 min-w-0">
+                    <button type="button" id="btn-back-dashboard" class="hidden retro-button text-xs md:text-sm py-2 px-3 font-black uppercase tracking-widest flex-shrink-0" aria-label="Back to dashboard">← Hub</button>
+                    <div class="min-w-0">
+                        <span class="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Sam Wu · Admin</span>
+                        <span id="admin-heading" class="block font-black text-lg md:text-xl uppercase tracking-tight text-gray-900 truncate">Console</span>
+                    </div>
+                </div>
+                <a href="index.html" class="retro-button text-xs md:text-sm py-2 px-4 font-black uppercase tracking-widest whitespace-nowrap">Public site</a>
             </div>
         </header>
 
-        <div class="adm-tabs-mobile lg:hidden" role="tablist" aria-label="Sections">
-            <button type="button" class="adm-nav-btn adm-nav-btn--active rounded-md flex-shrink-0 px-3 py-2 whitespace-nowrap" data-pane="photos" aria-pressed="true"><span class="adm-nav-key">1</span>Gallery</button>
-            <button type="button" class="adm-nav-btn rounded-md flex-shrink-0 px-3 py-2 whitespace-nowrap" data-pane="testimonials" aria-pressed="false"><span class="adm-nav-key">2</span>Voices</button>
-            <button type="button" class="adm-nav-btn rounded-md flex-shrink-0 px-3 py-2 whitespace-nowrap" data-pane="publications" aria-pressed="false"><span class="adm-nav-key">3</span>Papers</button>
-            <button type="button" class="adm-nav-btn rounded-md flex-shrink-0 px-3 py-2 whitespace-nowrap" data-pane="moments" aria-pressed="false"><span class="adm-nav-key">4</span>Moments</button>
+        <!-- Hub: large entry tiles — same interaction model as index.html card grid -->
+        <div id="view-hub">
+            <div class="site-wrap py-10 md:py-16 pb-20">
+                <p class="hci-kicker mb-2">Content operations</p>
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-gray-900 leading-none mb-4">Console</h1>
+                <p class="text-sm md:text-base text-gray-700 max-w-2xl leading-relaxed mb-10 md:mb-12">
+                    Pick a module below. Each opens a dedicated workspace with every control in one place — like jumping from the homepage into a section, but for site data.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 card-grid-balance">
+                    <button type="button" class="retro-button p-8 md:p-10 flex flex-col items-center text-center group text-left" data-open="photos">
+                        <div class="retro-icon mb-5"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div>
+                        <span class="tracking-widest uppercase text-sm md:text-base font-black text-gray-900">Private gallery<br><span class="text-xs text-gray-500 font-bold">Upload · categories · library</span></span>
+                    </button>
+
+                    <button type="button" class="retro-button p-8 md:p-10 flex flex-col items-center text-center group" data-open="testimonials">
+                        <div class="retro-icon mb-5"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg></div>
+                        <span class="tracking-widest uppercase text-sm md:text-base font-black text-gray-900">Visitor voices<br><span class="text-xs text-gray-500 font-bold">Review · remove entries</span></span>
+                    </button>
+
+                    <button type="button" class="retro-button p-8 md:p-10 flex flex-col items-center text-center group" data-open="publications">
+                        <div class="retro-icon mb-5"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg></div>
+                        <span class="tracking-widest uppercase text-sm md:text-base font-black text-gray-900">Publications<br><span class="text-xs text-gray-500 font-bold">Bibliography · listing · saved</span></span>
+                    </button>
+
+                    <button type="button" class="retro-button p-8 md:p-10 flex flex-col items-center text-center group" data-open="moments">
+                        <div class="retro-icon mb-5"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg></div>
+                        <span class="tracking-widest uppercase text-sm md:text-base font-black text-gray-900">Moments<br><span class="text-xs text-gray-500 font-bold">Photos · caption · feed</span></span>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="adm-workspace">
-            <aside class="adm-rail hidden lg:flex" aria-label="Primary">
-                <div class="px-4 py-4 border-b border-slate-700">
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Workspace</p>
-                    <p class="text-sm font-semibold text-slate-200 mt-1">Modules</p>
-                </div>
-                <nav class="flex-1 py-2 space-y-0.5">
-                    <button type="button" class="adm-nav-btn adm-nav-btn--active" data-pane="photos" aria-pressed="true"><span class="adm-nav-key">1</span>Gallery</button>
-                    <button type="button" class="adm-nav-btn" data-pane="testimonials" aria-pressed="false"><span class="adm-nav-key">2</span>Voices</button>
-                    <button type="button" class="adm-nav-btn" data-pane="publications" aria-pressed="false"><span class="adm-nav-key">3</span>Papers</button>
-                    <button type="button" class="adm-nav-btn" data-pane="moments" aria-pressed="false"><span class="adm-nav-key">4</span>Moments</button>
-                </nav>
-                <div class="adm-rail__foot text-slate-500">
-                    <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-200">← Public site</a>
-                </div>
-            </aside>
-
-            <main class="adm-stage">
-                <!-- 01 Photos -->
-                <div id="pane-photos" class="adm-pane" role="tabpanel">
-                    <div class="adm-pane-head">
-                        <h2 class="adm-pane-title">Private gallery</h2>
-                        <p class="adm-pane-desc">Maps to <code class="text-xs bg-slate-200 px-1 rounded">hidden.html</code> · upload appears after sync.</p>
+        <!-- Workspace: Private gallery -->
+        <div id="view-photos" class="hidden" hidden>
+            <div class="site-wrap py-8 md:py-12 pb-24 max-w-5xl">
+                <section id="module-photos" class="space-y-8 md:space-y-10">
+                    <div>
+                        <p class="hci-kicker">Private</p>
+                        <h2 class="section-title !text-2xl md:!text-3xl mt-2 mb-3">Gallery</h2>
+                        <p class="text-sm text-gray-700 max-w-3xl leading-relaxed">Images appear on <code class="text-xs bg-emerald-100 border border-gray-900 px-1 py-0.5 font-bold">hidden.html</code> after upload. Choose a file, set the category, then send to the library.</p>
                     </div>
-                    <div class="flex-1 min-h-0 grid grid-cols-1 xl:grid-cols-2 gap-4">
-                        <div id="module-photos" class="adm-panel p-4 flex flex-col gap-4 min-h-0">
-                            <div id="drop-zone" class="adm-drop p-6 text-center cursor-pointer flex-shrink-0" onclick="document.getElementById('file-input').click()">
-                                <div class="text-slate-600 flex flex-col items-center text-sm">
-                                    <svg class="w-9 h-9 mb-2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    <span id="drop-text">Drop image or click to browse</span>
-                                </div>
+
+                    <div class="surface-card p-6 md:p-10">
+                        <h3 class="font-black text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Upload</h3>
+                        <div id="drop-zone" class="retro-inset cursor-pointer py-16 md:py-20 text-center" onclick="document.getElementById('file-input').click()">
+                            <div class="text-gray-700 flex flex-col items-center text-sm md:text-base font-bold">
+                                <svg class="w-12 h-12 mb-4 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <span id="drop-text">Drop an image here, or click to choose a file</span>
                             </div>
-                            <input type="file" id="file-input" class="hidden" accept="image/*">
+                        </div>
+                        <input type="file" id="file-input" class="hidden" accept="image/*">
+                        <div class="mt-8 max-w-md">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="p-cat">Category</label>
+                            <select id="p-cat" class="adm-form-input">
+                                <option value="Culture">Culture</option>
+                                <option value="Landscape">Landscape</option>
+                                <option value="Portrait">Portrait</option>
+                            </select>
+                        </div>
+                        <button type="button" id="btn-add-photo" onclick="addPhoto()" class="retro-button mt-8 w-full md:w-auto px-10 py-3 text-sm font-black uppercase tracking-widest">Add to gallery</button>
+                    </div>
+
+                    <div class="section-shell">
+                        <h3 class="font-black text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Library</h3>
+                        <div id="admin-photos" class="space-y-3 text-sm"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Visitor voices -->
+        <div id="view-testimonials" class="hidden" hidden>
+            <div class="site-wrap py-8 md:py-12 pb-24 max-w-5xl">
+                <section id="module-testimonials" class="space-y-8">
+                    <div>
+                        <p class="hci-kicker">Social proof</p>
+                        <h2 class="section-title !text-2xl md:!text-3xl mt-2 mb-3">Visitor voices</h2>
+                        <p class="text-sm text-gray-700 max-w-3xl leading-relaxed">Visitors submit testimonials from the site. You can review and remove entries here — there is no manual “create” path.</p>
+                    </div>
+                    <div class="section-shell">
+                        <div id="admin-testimonials" class="space-y-5 text-sm md:text-base"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Publications -->
+        <div id="view-publications" class="hidden" hidden>
+            <div class="site-wrap py-8 md:py-12 pb-24 max-w-5xl">
+                <section id="module-publications" class="space-y-8 md:space-y-12">
+                    <div>
+                        <p class="hci-kicker">Academic</p>
+                        <h2 class="section-title !text-2xl md:!text-3xl mt-2 mb-3">Publications</h2>
+                        <p class="text-sm text-gray-700 max-w-3xl leading-relaxed">Synced to <code class="text-xs bg-emerald-100 border border-gray-900 px-1 py-0.5 font-bold">publications.html</code>. Fill the form, save, then manage the list below.</p>
+                    </div>
+
+                    <div class="surface-card p-6 md:p-10">
+                        <div id="pub-edit-banner" class="hidden mb-6 px-4 py-3 border-2 border-amber-500 bg-amber-50 text-amber-950 retro-panel">
+                            <span class="font-black text-xs uppercase tracking-widest text-amber-900">Editing</span>
+                            <span id="pub-edit-title-preview" class="ml-2 font-bold"></span>
+                            <span class="block text-[10px] font-mono text-amber-900/80 mt-1" id="pub-edit-id-preview"></span>
+                        </div>
+
+                        <div id="pub-editor-panel" class="space-y-10 border-l-4 border-emerald-600 pl-4 md:pl-6">
                             <div>
-                                <label class="adm-label" for="p-cat">Category</label>
-                                <select id="p-cat" class="adm-input">
-                                    <option value="Culture">Culture</option>
-                                    <option value="Landscape">Landscape</option>
-                                    <option value="Portrait">Portrait</option>
-                                </select>
-                            </div>
-                            <button type="button" id="btn-add-photo" onclick="addPhoto()" class="adm-btn adm-btn--go w-full py-2.5 flex-shrink-0">Upload to gallery</button>
-                        </div>
-                        <div class="adm-panel p-4 flex flex-col min-h-0">
-                            <h3 class="adm-label mb-2">Library</h3>
-                            <div id="admin-photos" class="adm-scroll space-y-2 flex-1 pr-1 text-xs"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 02 Testimonials -->
-                <div id="pane-testimonials" class="adm-pane hidden" role="tabpanel" hidden>
-                    <div class="adm-pane-head">
-                        <h2 class="adm-pane-title">Visitor voices</h2>
-                        <p class="adm-pane-desc">Delete only — new entries are submitted by visitors.</p>
-                    </div>
-                    <div id="module-testimonials" class="adm-panel flex flex-col flex-1 min-h-0 p-4">
-                        <div id="admin-testimonials" class="adm-scroll space-y-3 pr-1 flex-1 text-sm"></div>
-                    </div>
-                </div>
-
-                <!-- 03 Publications -->
-                <div id="pane-publications" class="adm-pane hidden" role="tabpanel" hidden>
-                    <div class="adm-pane-head">
-                        <h2 class="adm-pane-title">Publications</h2>
-                        <p class="adm-pane-desc">Listing on <code class="text-xs bg-slate-200 px-1 rounded">publications.html</code></p>
-                    </div>
-                    <div id="module-publications" class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-5 gap-4 min-h-0">
-                        <div class="adm-panel p-4 lg:col-span-2 flex flex-col min-h-0 overflow-hidden">
-                            <div id="pub-edit-banner" class="hidden mb-3 px-3 py-2 rounded text-sm border border-amber-200 bg-amber-50 text-amber-950">
-                                <span class="font-semibold text-xs uppercase tracking-wide text-amber-900">Editing</span>
-                                <span id="pub-edit-title-preview" class="ml-2 font-semibold"></span>
-                                <span class="block text-[10px] font-mono text-amber-800/90 mt-1" id="pub-edit-id-preview"></span>
-                            </div>
-                            <div id="pub-editor-panel" class="adm-scroll space-y-5 flex-1 pr-1 border-l-2 border-teal-600 pl-3">
-                                <div>
-                                    <h3 class="adm-label mb-3">Bibliography</h3>
-                                    <div class="space-y-3">
-                                        <div>
-                                            <label class="adm-label" for="pub-title">Title *</label>
-                                            <input type="text" id="pub-title" class="adm-input" placeholder="Title">
-                                        </div>
-                                        <div>
-                                            <label class="adm-label" for="pub-authors">Authors</label>
-                                            <input type="text" id="pub-authors" class="adm-input" placeholder="Names">
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-3">
-                                            <div>
-                                                <label class="adm-label" for="pub-venue">Venue</label>
-                                                <input type="text" id="pub-venue" class="adm-input" placeholder="Venue">
-                                            </div>
-                                            <div>
-                                                <label class="adm-label" for="pub-year">Year</label>
-                                                <input type="number" id="pub-year" class="adm-input" placeholder="2026" min="1990" max="2100">
-                                            </div>
-                                        </div>
+                                <h3 class="font-black text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Bibliography</h3>
+                                <div class="space-y-5 max-w-3xl">
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-title">Title *</label>
+                                        <input type="text" id="pub-title" class="adm-form-input" placeholder="Paper or project title">
                                     </div>
-                                </div>
-                                <div>
-                                    <h3 class="adm-label mb-3">Listing</h3>
-                                    <div class="space-y-3">
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-authors">Authors</label>
+                                        <input type="text" id="pub-authors" class="adm-form-input" placeholder="Names as they should appear">
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                         <div>
-                                            <label class="adm-label" for="pub-link">URL</label>
-                                            <input type="text" id="pub-link" class="adm-input font-mono text-xs" placeholder="https://…">
+                                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-venue">Venue</label>
+                                            <input type="text" id="pub-venue" class="adm-form-input" placeholder="Conference / journal">
                                         </div>
                                         <div>
-                                            <label class="adm-label" for="pub-abstract">Blurb</label>
-                                            <textarea id="pub-abstract" rows="4" class="adm-input font-sans"></textarea>
-                                        </div>
-                                        <div>
-                                            <label class="adm-label" for="pub-sort">Sort order</label>
-                                            <input type="number" id="pub-sort" class="adm-input" value="0">
+                                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-year">Year</label>
+                                            <input type="number" id="pub-year" class="adm-form-input" placeholder="2026" min="1990" max="2100">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex flex-wrap gap-2 pt-4 mt-4 border-t border-slate-200 flex-shrink-0">
-                                <button type="button" onclick="savePublication()" id="pub-save-btn" class="adm-btn">Save</button>
-                                <button type="button" onclick="clearPublicationForm()" class="adm-btn adm-btn--secondary">New entry</button>
-                            </div>
-                            <input type="hidden" id="pub-edit-id" value="">
-                        </div>
-                        <div class="adm-panel p-4 lg:col-span-3 flex flex-col min-h-0">
-                            <h3 class="adm-label mb-2">Saved items</h3>
-                            <div id="admin-publications" class="adm-scroll space-y-2 flex-1 pr-1"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 04 Moments -->
-                <div id="pane-moments" class="adm-pane hidden" role="tabpanel" hidden>
-                    <div class="adm-pane-head">
-                        <h2 class="adm-pane-title">Moments</h2>
-                        <p class="adm-pane-desc">Feed on <code class="text-xs bg-slate-200 px-1 rounded">blog.html</code></p>
-                    </div>
-                    <div id="module-moments" class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-5 gap-4">
-                        <div class="adm-panel p-4 lg:col-span-2 flex flex-col gap-4 min-h-0">
-                            <div id="blog-drop-zone" class="adm-drop p-5 text-center cursor-pointer text-sm text-slate-700 flex-shrink-0" onclick="document.getElementById('blog-file-input').click()">
-                                <span id="blog-drop-text">Images — drop or click</span>
-                            </div>
-                            <input type="file" id="blog-file-input" class="hidden" accept="image/*" multiple>
-                            <div id="blog-previews" class="flex flex-wrap gap-2 min-h-[2rem]"></div>
                             <div>
-                                <label class="adm-label" for="blog-text">Text</label>
-                                <textarea id="blog-text" rows="3" class="adm-input" placeholder="Caption"></textarea>
-                            </div>
-                            <div class="flex gap-3 items-end flex-wrap">
-                                <div>
-                                    <label class="adm-label" for="blog-y">Year</label>
-                                    <input type="number" id="blog-y" class="adm-input w-24" min="1990" max="2100">
+                                <h3 class="font-black text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Public listing</h3>
+                                <div class="space-y-5 max-w-3xl">
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-link">URL</label>
+                                        <input type="text" id="pub-link" class="adm-form-input font-mono text-sm" placeholder="https://…">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-abstract">Short blurb</label>
+                                        <textarea id="pub-abstract" rows="6" class="adm-form-input font-sans leading-relaxed"></textarea>
+                                    </div>
+                                    <div class="max-w-xs">
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-sort">Sort order</label>
+                                        <input type="number" id="pub-sort" class="adm-form-input" value="0">
+                                    </div>
                                 </div>
-                                <div>
-                                    <label class="adm-label" for="blog-m">Month</label>
-                                    <input type="number" id="blog-m" class="adm-input w-20" min="1" max="12">
-                                </div>
-                                <div>
-                                    <label class="adm-label" for="blog-d">Day</label>
-                                    <input type="number" id="blog-d" class="adm-input w-20" min="1" max="31">
-                                </div>
                             </div>
-                            <div class="flex flex-wrap gap-2 mt-auto pt-2">
-                                <button type="button" onclick="saveBlogPost()" id="blog-save-btn" class="adm-btn adm-btn--go">Publish</button>
-                                <button type="button" onclick="clearBlogForm()" class="adm-btn adm-btn--secondary">Clear</button>
-                            </div>
-                            <input type="hidden" id="blog-edit-id" value="">
                         </div>
-                        <div class="adm-panel p-4 lg:col-span-3 flex flex-col min-h-0">
-                            <h3 class="adm-label mb-2">Published</h3>
-                            <div id="admin-blog" class="adm-scroll space-y-2 flex-1 pr-1 text-xs"></div>
+
+                        <div class="flex flex-wrap gap-4 mt-10 pt-8 border-t-2 border-gray-200">
+                            <button type="button" onclick="savePublication()" id="pub-save-btn" class="retro-button px-8 py-3 text-sm font-black uppercase tracking-widest">Save</button>
+                            <button type="button" onclick="clearPublicationForm()" class="retro-button px-8 py-3 text-sm font-black uppercase tracking-widest bg-white">New entry</button>
                         </div>
+                        <input type="hidden" id="pub-edit-id" value="">
                     </div>
-                </div>
-            </main>
+
+                    <div class="section-shell">
+                        <h3 class="font-black text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Saved publications</h3>
+                        <div id="admin-publications" class="space-y-4"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Moments -->
+        <div id="view-moments" class="hidden" hidden>
+            <div class="site-wrap py-8 md:py-12 pb-24 max-w-5xl">
+                <section id="module-moments" class="space-y-8 md:space-y-12">
+                    <div>
+                        <p class="hci-kicker">Feed</p>
+                        <h2 class="section-title !text-2xl md:!text-3xl mt-2 mb-3">Moments</h2>
+                        <p class="text-sm text-gray-700 max-w-3xl leading-relaxed">Shown on <code class="text-xs bg-emerald-100 border border-gray-900 px-1 py-0.5 font-bold">blog.html</code>. Add images, write a caption, set the display date, then publish.</p>
+                    </div>
+
+                    <div class="surface-card p-6 md:p-10">
+                        <h3 class="font-black text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Composer</h3>
+                        <div id="blog-drop-zone" class="retro-inset cursor-pointer py-14 md:py-16 text-center text-sm md:text-base font-bold text-gray-800 mb-8" onclick="document.getElementById('blog-file-input').click()">
+                            <span id="blog-drop-text">Drop images here or click to browse (multiple OK)</span>
+                        </div>
+                        <input type="file" id="blog-file-input" class="hidden" accept="image/*" multiple>
+                        <div id="blog-previews" class="flex flex-wrap gap-3 min-h-[3rem] mb-8"></div>
+                        <div class="space-y-6 max-w-3xl">
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="blog-text">Caption</label>
+                                <textarea id="blog-text" rows="6" class="adm-form-input font-sans leading-relaxed" placeholder="What should readers see?"></textarea>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Display date</span>
+                                <div class="flex flex-wrap gap-4 items-end">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1" for="blog-y">Year</label>
+                                        <input type="number" id="blog-y" class="adm-form-input w-28" min="1990" max="2100">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1" for="blog-m">Month</label>
+                                        <input type="number" id="blog-m" class="adm-form-input w-24" min="1" max="12">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1" for="blog-d">Day</label>
+                                        <input type="number" id="blog-d" class="adm-form-input w-24" min="1" max="31">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-4 mt-10">
+                            <button type="button" onclick="saveBlogPost()" id="blog-save-btn" class="retro-button px-8 py-3 text-sm font-black uppercase tracking-widest">Publish</button>
+                            <button type="button" onclick="clearBlogForm()" class="retro-button px-8 py-3 text-sm font-black uppercase tracking-widest bg-white">Clear form</button>
+                        </div>
+                        <input type="hidden" id="blog-edit-id" value="">
+                    </div>
+
+                    <div class="section-shell">
+                        <h3 class="font-black text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Published moments</h3>
+                        <div id="admin-blog" class="space-y-3 text-sm"></div>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
 
@@ -408,43 +287,93 @@
         let selectedBase64 = null;
         let blogImagesBase64 = [];
 
-        const PANES = ['photos', 'testimonials', 'publications', 'moments'];
+        const MODULES = ['photos', 'testimonials', 'publications', 'moments'];
+        let currentView = 'hub';
 
-        function showPane(name) {
-            if (!PANES.includes(name)) return;
-            PANES.forEach((id) => {
-                const pane = document.getElementById('pane-' + id);
-                if (!pane) return;
-                const on = id === name;
-                pane.classList.toggle('hidden', !on);
-                pane.toggleAttribute('hidden', !on);
-            });
-            document.querySelectorAll('[data-pane]').forEach((btn) => {
-                const on = btn.getAttribute('data-pane') === name;
-                btn.classList.toggle('adm-nav-btn--active', on);
-                btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-            });
+        const MODULE_TITLES = {
+            hub: 'Console',
+            photos: 'Private gallery',
+            testimonials: 'Visitor voices',
+            publications: 'Publications',
+            moments: 'Moments'
+        };
+
+        function updateHeader() {
+            const back = document.getElementById('btn-back-dashboard');
+            const h = document.getElementById('admin-heading');
+            if (!back || !h) return;
+            if (currentView === 'hub') {
+                back.classList.add('hidden');
+                h.textContent = MODULE_TITLES.hub;
+            } else {
+                back.classList.remove('hidden');
+                h.textContent = MODULE_TITLES[currentView] || 'Console';
+            }
         }
 
-        document.querySelectorAll('[data-pane]').forEach((btn) => {
+        function showHub() {
+            currentView = 'hub';
+            const hub = document.getElementById('view-hub');
+            if (hub) {
+                hub.classList.remove('hidden');
+                hub.removeAttribute('hidden');
+            }
+            MODULES.forEach((id) => {
+                const el = document.getElementById('view-' + id);
+                if (!el) return;
+                el.classList.add('hidden');
+                el.setAttribute('hidden', '');
+            });
+            updateHeader();
+            window.scrollTo(0, 0);
+        }
+
+        function openModule(name) {
+            if (!MODULES.includes(name)) return;
+            currentView = name;
+            const hub = document.getElementById('view-hub');
+            if (hub) {
+                hub.classList.add('hidden');
+                hub.setAttribute('hidden', '');
+            }
+            MODULES.forEach((id) => {
+                const el = document.getElementById('view-' + id);
+                if (!el) return;
+                const on = id === name;
+                el.classList.toggle('hidden', !on);
+                if (on) el.removeAttribute('hidden');
+                else el.setAttribute('hidden', '');
+            });
+            updateHeader();
+            window.scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('[data-open]').forEach((btn) => {
             btn.addEventListener('click', () => {
-                const p = btn.getAttribute('data-pane');
-                if (p) showPane(p);
+                const m = btn.getAttribute('data-open');
+                if (m) openModule(m);
             });
         });
+
+        document.getElementById('btn-back-dashboard')?.addEventListener('click', () => showHub());
 
         document.addEventListener('keydown', (e) => {
             const t = e.target;
             const tag = t && t.tagName;
             if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (t && t.isContentEditable)) return;
             if (e.metaKey || e.ctrlKey || e.altKey) return;
-            const k = e.key;
-            if (k === '1') showPane('photos');
-            else if (k === '2') showPane('testimonials');
-            else if (k === '3') showPane('publications');
-            else if (k === '4') showPane('moments');
+            if (e.key === 'Escape' && currentView !== 'hub') {
+                e.preventDefault();
+                showHub();
+                return;
+            }
+            if (currentView !== 'hub') return;
+            if (e.key === '1') openModule('photos');
+            else if (e.key === '2') openModule('testimonials');
+            else if (e.key === '3') openModule('publications');
+            else if (e.key === '4') openModule('moments');
         });
-        
+
         function escapeHTML(str) {
             if (str == null) return '';
             return String(str).replace(/[&<>'"]/g, (tag) => ({
@@ -509,11 +438,11 @@
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
 
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-teal-50'); });
-        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-teal-50'); });
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-emerald-50'); });
+        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-emerald-50'); });
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            dropZone.classList.remove('bg-teal-50');
+            dropZone.classList.remove('bg-emerald-50');
             handleFile(e.dataTransfer.files[0]);
         });
         
@@ -526,7 +455,7 @@
                 const img = new Image();
                 img.onload = () => {
                     selectedBase64 = canvasCompressDataUrl(img, 1080, 1080, 0.8);
-                    document.getElementById('drop-text').innerHTML = `<img src="${selectedBase64}" class="h-24 mx-auto object-cover rounded border border-slate-300 max-w-full" alt="">`;
+                    document.getElementById('drop-text').innerHTML = `<img src="${selectedBase64}" class="h-40 md:h-48 mx-auto object-cover border-2 border-gray-900 max-w-full shadow-md" alt="">`;
                 };
                 img.src = e.target.result;
             };
@@ -535,11 +464,11 @@
 
         const blogDrop = document.getElementById('blog-drop-zone');
         const blogInput = document.getElementById('blog-file-input');
-        blogDrop.addEventListener('dragover', (e) => { e.preventDefault(); blogDrop.classList.add('bg-teal-50'); });
-        blogDrop.addEventListener('dragleave', () => { blogDrop.classList.remove('bg-teal-50'); });
+        blogDrop.addEventListener('dragover', (e) => { e.preventDefault(); blogDrop.classList.add('bg-emerald-50'); });
+        blogDrop.addEventListener('dragleave', () => { blogDrop.classList.remove('bg-emerald-50'); });
         blogDrop.addEventListener('drop', async (e) => {
             e.preventDefault();
-            blogDrop.classList.remove('bg-teal-50');
+            blogDrop.classList.remove('bg-emerald-50');
             await addBlogFiles(e.dataTransfer.files);
         });
         blogInput.addEventListener('change', async (e) => addBlogFiles(e.target.files));
@@ -547,23 +476,23 @@
         async function addBlogFiles(fileList) {
             const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
             if (!files.length) return;
-            document.getElementById('blog-drop-text').textContent = `Processing ${files.length}…`;
+            document.getElementById('blog-drop-text').textContent = `Processing ${files.length} file(s)…`;
             for (const f of files) {
                 try {
                     const b64 = await fileToCompressedBase64(f);
                     blogImagesBase64.push(b64);
                 } catch (_) {}
             }
-            document.getElementById('blog-drop-text').textContent = 'Images — drop or click';
+            document.getElementById('blog-drop-text').textContent = 'Drop images here or click to browse (multiple OK)';
             renderBlogPreviews();
         }
 
         function renderBlogPreviews() {
             const box = document.getElementById('blog-previews');
             box.innerHTML = blogImagesBase64.map((src, i) => `
-                <div class="relative w-20 h-20 rounded border border-slate-300 overflow-hidden bg-white">
+                <div class="relative w-24 h-24 border-2 border-gray-900 bg-white overflow-hidden shadow-sm">
                     <img src="${src}" class="w-full h-full object-cover" alt="">
-                    <button type="button" class="absolute top-0 right-0 bg-slate-900 text-white text-xs leading-none px-1.5 py-0.5 js-remove-blog-img" data-idx="${i}">×</button>
+                    <button type="button" class="absolute top-0 right-0 bg-gray-900 text-white text-xs leading-none px-2 py-0.5 js-remove-blog-img" data-idx="${i}">×</button>
                 </div>
             `).join('');
             box.querySelectorAll('.js-remove-blog-img').forEach((btn) => {
@@ -607,7 +536,7 @@
                 adminPwd = pwd;
                 document.getElementById('auth-layer').style.display = 'none';
                 document.getElementById('main-content').classList.remove('hidden');
-                showPane('photos');
+                showHub();
                 setDefaultBlogDate();
                 await loadAdminData();
             } catch (err) {
@@ -633,23 +562,23 @@
         async function loadAdminData() {
             const photos = await requestJson('/hidden/photos', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-photos').innerHTML = photos.map(p => `
-                <div class="adm-card-row">
-                    <span class="truncate flex-1 font-mono text-slate-700">${escapeHTML(p.category)} · ${escapeHTML((p.url || '').substring(0, 22))}…</span>
-                    <button type="button" class="text-xs font-semibold text-red-700 hover:underline js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Remove</button>
+                <div class="retro-panel p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <span class="text-sm font-mono text-gray-800 break-all">${escapeHTML(p.category)} · <span class="text-gray-600">${escapeHTML((p.url || '').substring(0, 36))}…</span></span>
+                    <button type="button" class="retro-button text-xs py-2 px-4 font-black uppercase tracking-widest text-red-800 flex-shrink-0 js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Remove</button>
                 </div>
-            `).join('');
+            `).join('') || '<p class="text-gray-500 text-sm py-6 text-center border-2 border-dashed border-gray-300">No photos yet.</p>';
             document.querySelectorAll('.js-delete-photo-btn').forEach((btn) => {
                 btn.addEventListener('click', () => deletePhoto(btn.dataset.photoId || ''));
             });
 
             const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-testimonials').innerHTML = testimonials.map(t => `
-                <div class="border border-slate-200 rounded-md bg-white p-4 relative pr-20">
-                    <button type="button" class="absolute top-3 right-3 adm-btn adm-btn--secondary text-xs py-1 px-2 js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
-                    <div class="font-semibold text-sm text-slate-900">${escapeHTML(t.name)} <span class="text-teal-800 font-medium text-xs">(${escapeHTML(t.relationship)})</span></div>
-                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">${escapeHTML(t.comment)}</p>
+                <div class="retro-panel p-5 md:p-6 relative pr-24 md:pr-28">
+                    <button type="button" class="absolute top-4 right-4 retro-button text-xs py-2 px-3 font-black uppercase js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
+                    <div class="font-black text-base text-gray-900">${escapeHTML(t.name)} <span class="text-emerald-800 font-bold text-sm">(${escapeHTML(t.relationship)})</span></div>
+                    <p class="text-sm text-gray-700 mt-3 leading-relaxed">${escapeHTML(t.comment)}</p>
                 </div>
-            `).join('');
+            `).join('') || '<p class="text-gray-500 text-sm text-center py-8">No testimonials yet.</p>';
             document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
                 btn.addEventListener('click', () => deleteTestimonial(btn.dataset.testimonialId || ''));
             });
@@ -658,29 +587,29 @@
             document.getElementById('admin-publications').innerHTML = (pubs || []).map(p => {
                 const meta = [p.authors, p.venue, p.year].filter((x) => x !== undefined && x !== null && String(x).trim() !== '').map(escapeHTML).join(' · ');
                 const abs = (p.abstract || '').trim();
-                const absShort = abs.length > 140 ? escapeHTML(abs.slice(0, 140)) + '…' : escapeHTML(abs);
-                const linkHint = (p.link || '').trim() ? '<span class="text-teal-700 font-semibold text-[10px] uppercase">Link</span>' : '<span class="text-slate-400 text-[10px] uppercase">No URL</span>';
-                const sortBadge = `<span class="text-[10px] font-mono bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">${escapeHTML(String(p.sortOrder != null ? p.sortOrder : 0))}</span>`;
+                const absShort = abs.length > 220 ? escapeHTML(abs.slice(0, 220)) + '…' : escapeHTML(abs);
+                const linkHint = (p.link || '').trim() ? '<span class="text-emerald-800 font-black text-[10px] uppercase">Has link</span>' : '<span class="text-gray-400 text-[10px] uppercase">No URL</span>';
+                const sortBadge = `<span class="text-[10px] font-mono bg-gray-100 px-2 py-0.5 border border-gray-900">${escapeHTML(String(p.sortOrder != null ? p.sortOrder : 0))}</span>`;
                 return `
-                <div class="adm-panel p-3">
-                    <div class="flex flex-col sm:flex-row sm:justify-between gap-2">
+                <div class="retro-panel p-5 md:p-6">
+                    <div class="flex flex-col lg:flex-row lg:justify-between gap-4">
                         <div class="min-w-0 flex-1">
-                            <div class="font-semibold text-sm text-slate-900 leading-snug">${escapeHTML(p.title || '(untitled)')}</div>
-                            ${meta ? `<div class="text-[11px] text-slate-500 mt-1">${meta}</div>` : ''}
-                            ${abs ? `<p class="text-xs text-slate-600 mt-2 leading-relaxed">${absShort}</p>` : '<p class="text-[11px] text-slate-400 mt-1 italic">—</p>'}
-                            <div class="flex flex-wrap items-center gap-2 mt-2">
+                            <div class="font-black text-base text-gray-900 leading-snug">${escapeHTML(p.title || '(untitled)')}</div>
+                            ${meta ? `<div class="text-sm text-gray-600 mt-2">${meta}</div>` : ''}
+                            ${abs ? `<p class="text-sm text-gray-700 mt-3 leading-relaxed">${absShort}</p>` : '<p class="text-sm text-gray-400 mt-2 italic">No blurb</p>'}
+                            <div class="flex flex-wrap items-center gap-2 mt-3">
                                 ${sortBadge}
                                 ${linkHint}
-                                <span class="text-[9px] text-slate-400 font-mono truncate max-w-[10rem]" title="${escapeHTML(String(p.id || ''))}">${escapeHTML(String(p.id || ''))}</span>
+                                <span class="text-[10px] text-gray-400 font-mono truncate max-w-full sm:max-w-xs" title="${escapeHTML(String(p.id || ''))}">${escapeHTML(String(p.id || ''))}</span>
                             </div>
                         </div>
                         <div class="flex gap-2 flex-shrink-0">
-                            <button type="button" class="adm-btn adm-btn--secondary text-xs py-1 px-2 js-edit-pub" data-id="${escapeHTML(p.id)}">Edit</button>
-                            <button type="button" class="adm-btn adm-btn--danger text-xs py-1 px-2 js-del-pub" data-id="${escapeHTML(p.id)}">Delete</button>
+                            <button type="button" class="retro-button text-xs py-2 px-4 font-black uppercase js-edit-pub" data-id="${escapeHTML(p.id)}">Edit</button>
+                            <button type="button" class="retro-button text-xs py-2 px-4 font-black uppercase text-red-800 bg-red-50 js-del-pub" data-id="${escapeHTML(p.id)}">Delete</button>
                         </div>
                     </div>
                 </div>`;
-            }).join('') || '<p class="text-slate-500 text-xs text-center py-8 border border-dashed border-slate-200 rounded-md">No publications yet.</p>';
+            }).join('') || '<p class="text-gray-500 text-sm text-center py-10 border-2 border-dashed border-gray-300">No publications yet.</p>';
 
             document.querySelectorAll('.js-edit-pub').forEach((btn) => {
                 btn.addEventListener('click', () => {
@@ -696,7 +625,8 @@
                     document.getElementById('pub-sort').value = row.sortOrder != null ? row.sortOrder : 0;
                     document.getElementById('pub-save-btn').textContent = 'Update';
                     setPubEditBanner(true, row.title || '', row.id || '');
-                    showPane('publications');
+                    openModule('publications');
+                    document.getElementById('pub-editor-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
             document.querySelectorAll('.js-del-pub').forEach((btn) => {
@@ -705,18 +635,18 @@
 
             const blogs = await requestJson('/admin/blog', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-blog').innerHTML = (blogs || []).map(b => `
-                <div class="adm-card-row items-start">
+                <div class="retro-panel p-4 flex flex-col sm:flex-row sm:justify-between gap-4">
                     <div class="min-w-0">
-                        <div class="font-semibold text-xs text-slate-900">${escapeHTML(String(b.displayYear))}-${escapeHTML(String(b.displayMonth).padStart(2, '0'))}-${escapeHTML(String(b.displayDay).padStart(2, '0'))}</div>
-                        <div class="text-xs text-slate-600 truncate max-w-[14rem]">${escapeHTML((b.text || '').slice(0, 90))}${(b.text || '').length > 90 ? '…' : ''}</div>
-                        <div class="text-[10px] text-slate-400 mt-0.5">${(b.images || []).length} image(s)</div>
+                        <div class="font-black text-sm text-gray-900">${escapeHTML(String(b.displayYear))}-${escapeHTML(String(b.displayMonth).padStart(2, '0'))}-${escapeHTML(String(b.displayDay).padStart(2, '0'))}</div>
+                        <div class="text-sm text-gray-700 mt-2 leading-relaxed max-w-prose">${escapeHTML((b.text || '').slice(0, 200))}${(b.text || '').length > 200 ? '…' : ''}</div>
+                        <div class="text-xs text-gray-500 mt-2 font-bold">${(b.images || []).length} image(s)</div>
                     </div>
-                    <div class="flex gap-2 flex-shrink-0">
-                        <button type="button" class="text-xs font-semibold text-teal-800 hover:underline js-edit-blog" data-id="${escapeHTML(b.id)}">Edit</button>
-                        <button type="button" class="text-xs font-semibold text-red-700 hover:underline js-del-blog" data-id="${escapeHTML(b.id)}">Delete</button>
+                    <div class="flex gap-3 flex-shrink-0 items-start">
+                        <button type="button" class="text-sm font-black uppercase text-emerald-800 underline js-edit-blog" data-id="${escapeHTML(b.id)}">Edit</button>
+                        <button type="button" class="text-sm font-black uppercase text-red-800 underline js-del-blog" data-id="${escapeHTML(b.id)}">Delete</button>
                     </div>
                 </div>
-            `).join('') || '<p class="text-slate-500 text-center py-4 text-xs">No moments yet.</p>';
+            `).join('') || '<p class="text-gray-500 text-sm text-center py-8">No moments yet.</p>';
 
             document.querySelectorAll('.js-edit-blog').forEach((btn) => {
                 btn.addEventListener('click', () => {
@@ -730,7 +660,8 @@
                     blogImagesBase64 = Array.isArray(row.images) ? row.images.slice() : [];
                     renderBlogPreviews();
                     document.getElementById('blog-save-btn').textContent = 'Update';
-                    showPane('moments');
+                    openModule('moments');
+                    document.getElementById('blog-drop-zone')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
             document.querySelectorAll('.js-del-blog').forEach((btn) => {
@@ -884,7 +815,7 @@
                 body: JSON.stringify({ url: selectedBase64, category })
                 });
                 selectedBase64 = null;
-                document.getElementById('drop-text').textContent = 'Drop image or click to browse';
+                document.getElementById('drop-text').textContent = 'Drop an image here, or click to choose a file';
                 await loadAdminData();
             } catch (e) {
                 alert('Upload failed. Please try again.');
