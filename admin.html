@@ -20,8 +20,14 @@
         <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-sm border border-slate-200">
             <h2 class="text-xl font-bold text-slate-800">Admin</h2>
             <p class="text-xs text-slate-500 mt-2 leading-relaxed">Use your <strong class="text-slate-700">admin</strong> password only (not the Private Gallery visitor password).</p>
-            <input type="password" id="pwd-input" class="w-full border border-slate-300 p-2 rounded mt-4 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Password" autocomplete="current-password">
-            <button type="button" onclick="verifyAdmin()" class="w-full bg-slate-800 hover:bg-slate-900 text-white py-2.5 rounded mt-3 text-sm font-semibold">Enter</button>
+            <form id="admin-login-form" class="mt-4" autocomplete="on">
+                <label for="pwd-input" class="block text-xs font-semibold text-slate-600 mb-1">Password</label>
+                <input type="password" id="pwd-input" name="password" class="w-full border border-slate-300 p-2.5 rounded text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Enter admin password" autocomplete="current-password" required>
+                <button type="submit" id="admin-login-btn" class="w-full bg-slate-800 hover:bg-slate-900 text-white py-3 rounded mt-4 text-sm font-semibold shadow">
+                    确认登录 · Log in
+                </button>
+            </form>
+            <p id="login-err" class="hidden text-xs text-red-600 mt-2 font-semibold" role="alert"></p>
         </div>
     </div>
 
@@ -363,6 +369,24 @@
 
         async function verifyAdmin() {
             const pwd = document.getElementById('pwd-input').value;
+            const errBox = document.getElementById('login-err');
+            const btn = document.getElementById('admin-login-btn');
+            if (errBox) {
+                errBox.classList.add('hidden');
+                errBox.textContent = '';
+            }
+            if (!pwd) {
+                if (errBox) {
+                    errBox.textContent = 'Please enter your admin password.';
+                    errBox.classList.remove('hidden');
+                }
+                return;
+            }
+            const prevLabel = btn ? btn.textContent : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = 'Verifying…';
+            }
             try {
                 await requestJson('/admin/ping', { headers: { 'x-password': pwd } });
                 adminPwd = pwd;
@@ -371,9 +395,24 @@
                 setDefaultBlogDate();
                 await loadAdminData();
             } catch (err) {
-                alert('Incorrect admin password');
+                if (errBox) {
+                    errBox.textContent = 'Incorrect password or server unreachable. Check admin password and API.';
+                    errBox.classList.remove('hidden');
+                } else {
+                    alert('Login failed');
+                }
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = prevLabel;
+                }
             }
         }
+
+        document.getElementById('admin-login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            verifyAdmin();
+        });
 
         async function loadAdminData() {
             const photos = await requestJson('/hidden/photos', { headers: { 'x-password': adminPwd } });
