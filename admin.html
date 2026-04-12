@@ -3,224 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin · Sam Wu</title>
+    <title>Control · Sam Wu</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        .admin-module { border: 1px solid #e2e8f0; border-radius: 0.5rem; background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06); overflow: hidden; }
-        .admin-module-hd { background: #1e293b; color: #fff; padding: 0.75rem 1rem; }
-        .admin-module-hd h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.02em; }
-        .admin-module-hd p { font-size: 0.7rem; color: #94a3b8; margin-top: 0.25rem; max-width: 42rem; }
-        .admin-nav a { color: #475569; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-        .admin-nav a:hover { color: #0f172a; }
+        :root {
+            --ink: #1c1917;
+            --paper: #fdfbf7;
+            --panel: #ffffff;
+            --inset: #f4efe3;
+            --accent: #059669;
+            --shadow: 5px 5px 0 var(--ink);
+            --shadow-lg: 8px 8px 0 var(--ink);
+        }
+        .admin-root {
+            min-height: 100vh;
+            background: var(--paper);
+            color: var(--ink);
+            position: relative;
+        }
+        .admin-root::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.12;
+            background-image:
+                linear-gradient(rgba(28, 25, 23, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(28, 25, 23, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 0;
+        }
+        .rb-border { border: 2px solid var(--ink); }
+        .rb-panel {
+            background: var(--panel);
+            border: 2px solid var(--ink);
+            box-shadow: var(--shadow);
+            border-radius: 2px;
+        }
+        .rb-inset {
+            background: var(--inset);
+            border: 2px solid var(--ink);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset 3px 3px 0 rgba(0,0,0,.05);
+            border-radius: 2px;
+        }
+        .rb-input {
+            width: 100%;
+            border: 2px solid var(--ink);
+            border-radius: 2px;
+            padding: 0.5rem 0.65rem;
+            font-size: 0.875rem;
+            background: #fff;
+            transition: box-shadow 0.15s ease;
+        }
+        .rb-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .rb-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.7rem;
+            padding: 0.65rem 1rem;
+            border: 2px solid var(--ink);
+            border-radius: 2px;
+            background: linear-gradient(180deg, #fff 0%, #f4f4f1 100%);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .rb-btn:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--ink); }
+        .rb-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+        .rb-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+        .rb-btn--dark { background: var(--ink); color: #fff; }
+        .rb-btn--dark:hover { color: #a7f3d0; }
+        .rb-btn--emerald { background: #059669; color: #fff; }
+        .rb-btn--emerald:hover { background: #047857; color: #fff; }
+        .rb-btn--ghost { background: #fff; color: var(--ink); }
+        .admin-kicker {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #059669;
+        }
+        .admin-sec-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .admin-aside-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #57534e;
+            border-left: 3px solid transparent;
+            transition: color 0.15s, border-color 0.15s, background 0.15s;
+        }
+        .admin-aside-link:hover {
+            color: var(--ink);
+            background: rgba(5, 150, 105, 0.06);
+            border-left-color: var(--accent);
+        }
+        .admin-mobile-link {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #44403c;
+            padding: 0.35rem 0.5rem;
+            border: 2px solid var(--ink);
+            background: #fff;
+            box-shadow: 2px 2px 0 var(--ink);
+        }
+        .admin-drop {
+            border: 2px dashed #78716c;
+            border-radius: 2px;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .admin-drop:hover { background: rgba(5, 150, 105, 0.06); border-color: var(--ink); }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-900 min-h-screen pb-16">
+<body class="admin-root text-gray-900">
 
-    <div id="auth-layer" class="fixed inset-0 flex items-center justify-center bg-slate-900 bg-opacity-80 z-50 px-4">
-        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-sm border border-slate-200">
-            <h2 class="text-xl font-bold text-slate-800">Admin</h2>
-            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Use your <strong class="text-slate-700">admin</strong> password only (not the Private Gallery visitor password).</p>
-            <form id="admin-login-form" class="mt-4" autocomplete="on">
-                <label for="pwd-input" class="block text-xs font-semibold text-slate-600 mb-1">Password</label>
-                <input type="password" id="pwd-input" name="password" class="w-full border border-slate-300 p-2.5 rounded text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Enter admin password" autocomplete="current-password" required>
-                <button type="submit" id="admin-login-btn" class="w-full bg-slate-800 hover:bg-slate-900 text-white py-3 rounded mt-4 text-sm font-semibold shadow">
-                    确认登录 · Log in
-                </button>
+    <div id="auth-layer" class="fixed inset-0 flex items-center justify-center z-50 px-4" style="background: rgba(28,25,23,0.88);">
+        <div class="rb-panel max-w-md w-full p-8 md:p-10 relative z-10" style="box-shadow: var(--shadow-lg);">
+            <p class="admin-kicker mb-2">System</p>
+            <h2 class="text-3xl font-black uppercase tracking-tight text-gray-950 mb-3">Control room</h2>
+            <p class="text-xs text-gray-600 leading-relaxed mb-6">Admin password only — not the Private Gallery visitor password.</p>
+            <form id="admin-login-form" autocomplete="on">
+                <label for="pwd-input" class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Password</label>
+                <input type="password" id="pwd-input" name="password" class="rb-input mb-4" placeholder="········" autocomplete="current-password" required>
+                <button type="submit" id="admin-login-btn" class="rb-btn rb-btn--dark w-full py-3 text-xs">确认登录 · Enter</button>
             </form>
-            <p id="login-err" class="hidden text-xs text-red-600 mt-2 font-semibold" role="alert"></p>
+            <p id="login-err" class="hidden text-xs text-red-700 font-bold mt-3 border-l-4 border-red-600 pl-2" role="alert"></p>
         </div>
     </div>
 
-    <div id="main-content" class="hidden max-w-5xl mx-auto px-4 pt-4 pb-8">
-        <!-- Sticky module map -->
-        <header class="sticky top-0 z-30 -mx-4 px-4 py-3 mb-6 bg-slate-100/95 backdrop-blur border-b border-slate-200/80">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 max-w-5xl mx-auto">
-                <div>
-                    <h1 class="text-lg font-bold text-slate-800 tracking-tight">Content admin</h1>
-                    <p class="text-xs text-slate-500">Single page · jump to module below</p>
+    <div id="main-content" class="hidden relative z-10">
+        <!-- Mobile jump bar -->
+        <nav class="lg:hidden sticky top-0 z-40 flex flex-wrap gap-2 justify-center px-3 py-3 bg-[#fdfbf7]/95 border-b-2 border-stone-900 backdrop-blur-sm" aria-label="Sections">
+            <a class="admin-mobile-link" href="#module-photos">01</a>
+            <a class="admin-mobile-link" href="#module-testimonials">02</a>
+            <a class="admin-mobile-link" href="#module-publications">03</a>
+            <a class="admin-mobile-link" href="#module-moments">04</a>
+            <a class="admin-mobile-link text-emerald-800" href="index.html">Site</a>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row min-h-screen">
+            <!-- Desktop sidebar -->
+            <aside class="hidden lg:flex lg:flex-col lg:w-56 xl:w-64 flex-shrink-0 border-b-2 lg:border-b-0 lg:border-r-2 border-stone-900 bg-white min-h-screen sticky top-0">
+                <div class="p-6 border-b-2 border-stone-900">
+                    <p class="font-black text-xs tracking-[0.25em] uppercase text-emerald-800">Sam Wu</p>
+                    <p class="font-black text-lg uppercase tracking-tight mt-1">Control</p>
+                    <p class="text-[10px] text-gray-500 mt-2 leading-snug">Content only you touch.</p>
                 </div>
-                <nav class="admin-nav flex flex-wrap items-center gap-x-4 gap-y-1" aria-label="Module navigation">
-                    <a href="#module-photos">Photos</a>
-                    <span class="text-slate-300">·</span>
-                    <a href="#module-testimonials">Testimonials</a>
-                    <span class="text-slate-300">·</span>
-                    <a href="#module-publications">Publications</a>
-                    <span class="text-slate-300">·</span>
-                    <a href="#module-moments">Moments</a>
-                    <span class="text-slate-300 hidden sm:inline">|</span>
-                    <a href="index.html" class="text-emerald-700 hover:text-emerald-900">Site →</a>
+                <nav class="flex-1 p-4 space-y-1" aria-label="Modules">
+                    <a class="admin-aside-link" href="#module-photos"><span class="text-gray-400 mr-2">01</span>Gallery</a>
+                    <a class="admin-aside-link" href="#module-testimonials"><span class="text-gray-400 mr-2">02</span>Voices</a>
+                    <a class="admin-aside-link" href="#module-publications"><span class="text-gray-400 mr-2">03</span>Papers</a>
+                    <a class="admin-aside-link" href="#module-moments"><span class="text-gray-400 mr-2">04</span>Moments</a>
                 </nav>
-            </div>
-        </header>
+                <div class="p-4 border-t-2 border-stone-900">
+                    <a href="index.html" class="text-xs font-black uppercase tracking-widest text-emerald-800 hover:text-emerald-950">← Public site</a>
+                </div>
+            </aside>
 
-        <p class="text-xs text-slate-600 mb-8 leading-relaxed border-l-4 border-slate-300 pl-3">
-            <strong class="text-slate-800">Map:</strong>
-            <strong>Photos</strong> → Private gallery (password-protected page).
-            <strong>Testimonials</strong> → Submissions stored in DB; public site shows anonymous snippets.
-            <strong>Publications</strong> → <code class="bg-slate-200 px-1 rounded text-[11px]">publications.html</code> catalog.
-            <strong>Moments</strong> → <code class="bg-slate-200 px-1 rounded text-[11px]">blog.html</code> timeline.
-        </p>
+            <main class="flex-1 px-5 sm:px-10 lg:px-14 xl:px-20 py-10 lg:py-14 max-w-3xl xl:max-w-4xl">
+                <header class="mb-14 lg:mb-20">
+                    <p class="admin-kicker">Operations</p>
+                    <h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-gray-950 leading-none mt-2">Content</h1>
+                    <p class="text-sm text-gray-600 mt-4 max-w-md leading-relaxed">Sparse layout on purpose: one module at a time, brutalist chrome aligned with your public hub.</p>
+                </header>
 
-        <!-- Row: media + moderation -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-            <section id="module-photos" class="scroll-mt-28">
-                <div class="admin-module">
-                    <div class="admin-module-hd">
-                        <h2>Private gallery · Photos</h2>
-                        <p>Upload to MongoDB; visitors see images on hidden.html after entering the gallery password.</p>
+                <!-- 01 Photos -->
+                <section id="module-photos" class="scroll-mt-24 mb-20 lg:mb-28">
+                    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-6">
+                        <div>
+                            <p class="admin-kicker">01 · Private</p>
+                            <h2 class="admin-sec-title mt-1">Gallery</h2>
+                            <p class="text-xs text-gray-500 mt-2 font-medium">→ <code class="text-[11px] bg-stone-200 px-1 rounded">hidden.html</code></p>
+                        </div>
                     </div>
-                    <div class="p-4 space-y-4">
-                        <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 cursor-pointer transition-colors" onclick="document.getElementById('file-input').click()">
-                            <div class="text-slate-500 flex flex-col items-center text-sm">
-                                <svg class="w-10 h-10 mb-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                <span id="drop-text">Drop one image or click to choose</span>
+                    <div class="rb-panel p-6 sm:p-8 space-y-6">
+                        <div id="drop-zone" class="admin-drop p-8 text-center cursor-pointer" onclick="document.getElementById('file-input').click()">
+                            <div class="text-gray-600 flex flex-col items-center text-sm font-bold">
+                                <svg class="w-10 h-10 mb-3 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <span id="drop-text">Drop image or click</span>
                             </div>
                         </div>
                         <input type="file" id="file-input" class="hidden" accept="image/*">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="p-cat">Category</label>
-                            <select id="p-cat" class="w-full border border-slate-300 p-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-slate-400">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="p-cat">Category</label>
+                            <select id="p-cat" class="rb-input">
                                 <option value="Culture">Culture</option>
                                 <option value="Landscape">Landscape</option>
                                 <option value="Portrait">Portrait</option>
                             </select>
                         </div>
-                        <button type="button" id="btn-add-photo" onclick="addPhoto()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-2 rounded text-sm font-semibold">Upload to gallery</button>
+                        <button type="button" id="btn-add-photo" onclick="addPhoto()" class="rb-btn rb-btn--emerald w-full py-3">Upload</button>
                         <div>
-                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Library</h3>
-                            <div id="admin-photos" class="space-y-1.5 max-h-56 overflow-y-auto border border-slate-200 rounded p-2 bg-slate-50 text-sm"></div>
+                            <h3 class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Library</h3>
+                            <div id="admin-photos" class="space-y-2 max-h-56 overflow-y-auto rb-inset p-3 text-xs"></div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="module-testimonials" class="scroll-mt-28">
-                <div class="admin-module">
-                    <div class="admin-module-hd">
-                        <h2>Testimonials</h2>
-                        <p>Read-only cards except delete. New submissions arrive from hidden.html (visitor flow).</p>
+                <!-- 02 Testimonials -->
+                <section id="module-testimonials" class="scroll-mt-24 mb-20 lg:mb-28">
+                    <div class="mb-6">
+                        <p class="admin-kicker">02 · Social proof</p>
+                        <h2 class="admin-sec-title mt-1">Voices</h2>
+                        <p class="text-xs text-gray-500 mt-2">Delete only. New entries come from visitors.</p>
                     </div>
-                    <div class="p-4">
+                    <div class="rb-panel p-6 sm:p-8">
                         <div id="admin-testimonials" class="space-y-3 max-h-[22rem] overflow-y-auto pr-1 text-sm"></div>
                     </div>
-                </div>
-            </section>
+                </section>
+
+                <!-- 03 Publications -->
+                <section id="module-publications" class="scroll-mt-24 mb-20 lg:mb-28">
+                    <div class="mb-6">
+                        <p class="admin-kicker">03 · Academic</p>
+                        <h2 class="admin-sec-title mt-1">Papers</h2>
+                        <p class="text-xs text-gray-500 mt-2">→ <code class="text-[11px] bg-stone-200 px-1 rounded">publications.html</code></p>
+                    </div>
+                    <div class="rb-panel p-6 sm:p-8 space-y-8">
+                        <div id="pub-edit-banner" class="hidden rb-inset px-4 py-3 text-sm border-amber-600">
+                            <span class="font-black uppercase text-xs tracking-widest text-amber-900">Editing</span>
+                            <span id="pub-edit-title-preview" class="ml-2 font-bold"></span>
+                            <span class="block text-[10px] font-mono text-amber-900/80 mt-1" id="pub-edit-id-preview"></span>
+                        </div>
+
+                        <div id="pub-editor-panel" class="space-y-8 border-l-4 border-emerald-600 pl-5">
+                            <div>
+                                <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">Bibliography</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="md:col-span-2">
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-title">Title *</label>
+                                        <input type="text" id="pub-title" class="rb-input" placeholder="Title">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-authors">Authors</label>
+                                        <input type="text" id="pub-authors" class="rb-input" placeholder="Names">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-venue">Venue</label>
+                                        <input type="text" id="pub-venue" class="rb-input" placeholder="Venue">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-year">Year</label>
+                                        <input type="number" id="pub-year" class="rb-input" placeholder="2026" min="1990" max="2100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">Listing</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="md:col-span-2">
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-link">URL</label>
+                                        <input type="text" id="pub-link" class="rb-input font-mono text-xs" placeholder="https://…">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-abstract">Blurb</label>
+                                        <textarea id="pub-abstract" rows="4" class="rb-input font-sans"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="pub-sort">Sort</label>
+                                        <input type="number" id="pub-sort" class="rb-input" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3 pt-4 border-t-2 border-stone-200">
+                            <button type="button" onclick="savePublication()" id="pub-save-btn" class="rb-btn rb-btn--dark">Save</button>
+                            <button type="button" onclick="clearPublicationForm()" class="rb-btn rb-btn--ghost">New</button>
+                        </div>
+                        <input type="hidden" id="pub-edit-id" value="">
+
+                        <div>
+                            <h3 class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Saved</h3>
+                            <div id="admin-publications" class="space-y-3 max-h-[28rem] overflow-y-auto"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 04 Moments -->
+                <section id="module-moments" class="scroll-mt-24 mb-24">
+                    <div class="mb-6">
+                        <p class="admin-kicker">04 · Feed</p>
+                        <h2 class="admin-sec-title mt-1">Moments</h2>
+                        <p class="text-xs text-gray-500 mt-2">→ <code class="text-[11px] bg-stone-200 px-1 rounded">blog.html</code></p>
+                    </div>
+                    <div class="rb-panel p-6 sm:p-8 space-y-6">
+                        <div id="blog-drop-zone" class="admin-drop p-8 text-center cursor-pointer text-sm font-bold text-gray-700" onclick="document.getElementById('blog-file-input').click()">
+                            <span id="blog-drop-text">Images · drop or click</span>
+                        </div>
+                        <input type="file" id="blog-file-input" class="hidden" accept="image/*" multiple>
+                        <div id="blog-previews" class="flex flex-wrap gap-2 min-h-[2rem]"></div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="blog-text">Text</label>
+                            <textarea id="blog-text" rows="4" class="rb-input" placeholder="Caption"></textarea>
+                        </div>
+                        <div class="flex flex-wrap gap-4 items-end">
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="blog-y">Y</label>
+                                <input type="number" id="blog-y" class="rb-input w-24" min="1990" max="2100">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="blog-m">M</label>
+                                <input type="number" id="blog-m" class="rb-input w-20" min="1" max="12">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2" for="blog-d">D</label>
+                                <input type="number" id="blog-d" class="rb-input w-20" min="1" max="31">
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <button type="button" onclick="saveBlogPost()" id="blog-save-btn" class="rb-btn rb-btn--emerald">Publish</button>
+                            <button type="button" onclick="clearBlogForm()" class="rb-btn rb-btn--ghost">Clear</button>
+                        </div>
+                        <input type="hidden" id="blog-edit-id" value="">
+                        <div>
+                            <h3 class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Saved</h3>
+                            <div id="admin-blog" class="space-y-2 max-h-96 overflow-y-auto rb-inset p-3 text-xs"></div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
-
-        <!-- Full width: publications -->
-        <section id="module-publications" class="scroll-mt-28 mb-10">
-            <div class="admin-module">
-                <div class="admin-module-hd">
-                    <h2>Publications catalog</h2>
-                    <p>Renders on the public <strong>Publications</strong> section. Edit overwrites the same record; delete removes it everywhere.</p>
-                </div>
-                <div class="p-4 sm:p-6 space-y-6">
-                    <div id="pub-edit-banner" class="hidden rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-950">
-                        <span class="font-semibold">Editing</span>
-                        <span id="pub-edit-title-preview" class="ml-1"></span>
-                        <span class="block text-xs text-amber-900/80 mt-0.5 font-mono" id="pub-edit-id-preview"></span>
-                    </div>
-
-                    <div id="pub-editor-panel" class="border-l-4 border-slate-400 pl-4 space-y-6">
-                        <div>
-                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Bibliography</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="md:col-span-2">
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-title">Title <span class="text-red-600">*</span></label>
-                                    <input type="text" id="pub-title" class="w-full border border-slate-300 p-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Paper title">
-                                    <p class="text-xs text-slate-500 mt-1">Main heading on site.</p>
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-authors">Authors</label>
-                                    <input type="text" id="pub-authors" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Names, comma-separated">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-venue">Venue</label>
-                                    <input type="text" id="pub-venue" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Venue / preprint">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-year">Year</label>
-                                    <input type="number" id="pub-year" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="2026" min="1990" max="2100">
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">On-site listing</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="md:col-span-2">
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-link">External URL</label>
-                                    <input type="text" id="pub-link" class="w-full border border-slate-300 p-2 rounded text-sm font-mono" placeholder="https://…">
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-abstract">Abstract / blurb</label>
-                                    <textarea id="pub-abstract" rows="4" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Short paragraph"></textarea>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1" for="pub-sort">Sort priority</label>
-                                    <input type="number" id="pub-sort" class="w-full border border-slate-300 p-2 rounded text-sm" value="0">
-                                    <p class="text-xs text-slate-500 mt-1">Higher first.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-200">
-                        <button type="button" onclick="savePublication()" id="pub-save-btn" class="bg-slate-800 hover:bg-slate-900 text-white px-4 py-2 rounded text-sm font-semibold">Save</button>
-                        <button type="button" onclick="clearPublicationForm()" class="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded text-sm font-semibold hover:bg-slate-50">New / cancel edit</button>
-                    </div>
-                    <input type="hidden" id="pub-edit-id" value="">
-
-                    <div>
-                        <h3 class="text-sm font-bold text-slate-800 mb-2">Saved items</h3>
-                        <div id="admin-publications" class="space-y-3 max-h-[28rem] overflow-y-auto pr-1"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Moments -->
-        <section id="module-moments" class="scroll-mt-28">
-            <div class="admin-module">
-                <div class="admin-module-hd">
-                    <h2>Moments (blog)</h2>
-                    <p>Photo + caption + display date → <code class="text-slate-400">blog.html</code> feed. At least one image per new post.</p>
-                </div>
-                <div class="p-4 sm:p-6 space-y-4">
-                    <div id="blog-drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center cursor-pointer hover:bg-slate-50 text-sm text-slate-600" onclick="document.getElementById('blog-file-input').click()">
-                        <span id="blog-drop-text">Drop images or click · multiple OK</span>
-                    </div>
-                    <input type="file" id="blog-file-input" class="hidden" accept="image/*" multiple>
-                    <div id="blog-previews" class="flex flex-wrap gap-2 min-h-[2rem]"></div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1" for="blog-text">Text</label>
-                        <textarea id="blog-text" rows="4" class="w-full border border-slate-300 p-2 rounded text-sm" placeholder="Caption"></textarea>
-                    </div>
-                    <div class="flex flex-wrap gap-4 items-end">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="blog-y">Year</label>
-                            <input type="number" id="blog-y" class="border border-slate-300 p-2 rounded w-24 text-sm" min="1990" max="2100">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="blog-m">Month</label>
-                            <input type="number" id="blog-m" class="border border-slate-300 p-2 rounded w-20 text-sm" min="1" max="12">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1" for="blog-d">Day</label>
-                            <input type="number" id="blog-d" class="border border-slate-300 p-2 rounded w-20 text-sm" min="1" max="31">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <button type="button" onclick="saveBlogPost()" id="blog-save-btn" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded text-sm font-semibold">Publish</button>
-                        <button type="button" onclick="clearBlogForm()" class="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded text-sm font-semibold">Clear</button>
-                    </div>
-                    <input type="hidden" id="blog-edit-id" value="">
-                    <div>
-                        <h3 class="text-sm font-bold text-slate-800 mb-2">Saved moments</h3>
-                        <div id="admin-blog" class="space-y-2 max-h-96 overflow-y-auto border border-slate-200 rounded p-2 bg-slate-50 text-sm"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 
     <script src="api-config.js"></script>
@@ -294,11 +414,11 @@
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
 
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-emerald-50', 'border-emerald-400'); });
-        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-emerald-50', 'border-emerald-400'); });
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-emerald-50'); });
+        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-emerald-50'); });
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            dropZone.classList.remove('bg-emerald-50', 'border-emerald-400');
+            dropZone.classList.remove('bg-emerald-50');
             handleFile(e.dataTransfer.files[0]);
         });
         
@@ -311,7 +431,7 @@
                 const img = new Image();
                 img.onload = () => {
                     selectedBase64 = canvasCompressDataUrl(img, 1080, 1080, 0.8);
-                    document.getElementById('drop-text').innerHTML = `<img src="${selectedBase64}" class="h-28 mx-auto object-cover rounded border border-slate-200" alt="">`;
+                    document.getElementById('drop-text').innerHTML = `<img src="${selectedBase64}" class="h-28 mx-auto object-cover rb-border max-w-full" alt="">`;
                 };
                 img.src = e.target.result;
             };
@@ -332,23 +452,23 @@
         async function addBlogFiles(fileList) {
             const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
             if (!files.length) return;
-            document.getElementById('blog-drop-text').textContent = `Processing ${files.length} image(s)…`;
+            document.getElementById('blog-drop-text').textContent = `Processing ${files.length}…`;
             for (const f of files) {
                 try {
                     const b64 = await fileToCompressedBase64(f);
                     blogImagesBase64.push(b64);
                 } catch (_) {}
             }
-            document.getElementById('blog-drop-text').textContent = 'Drop images or click · multiple OK';
+            document.getElementById('blog-drop-text').textContent = 'Images · drop or click';
             renderBlogPreviews();
         }
 
         function renderBlogPreviews() {
             const box = document.getElementById('blog-previews');
             box.innerHTML = blogImagesBase64.map((src, i) => `
-                <div class="relative w-20 h-20 border border-slate-200 rounded overflow-hidden bg-white">
+                <div class="relative w-20 h-20 rb-border overflow-hidden bg-white">
                     <img src="${src}" class="w-full h-full object-cover" alt="">
-                    <button type="button" class="absolute top-0 right-0 bg-red-600 text-white text-xs leading-none px-1.5 py-0.5 js-remove-blog-img" data-idx="${i}">×</button>
+                    <button type="button" class="absolute top-0 right-0 bg-gray-900 text-white text-xs leading-none px-1.5 py-0.5 js-remove-blog-img" data-idx="${i}">×</button>
                 </div>
             `).join('');
             box.querySelectorAll('.js-remove-blog-img').forEach((btn) => {
@@ -377,7 +497,7 @@
             }
             if (!pwd) {
                 if (errBox) {
-                    errBox.textContent = 'Please enter your admin password.';
+                    errBox.textContent = 'Enter admin password.';
                     errBox.classList.remove('hidden');
                 }
                 return;
@@ -385,7 +505,7 @@
             const prevLabel = btn ? btn.textContent : '';
             if (btn) {
                 btn.disabled = true;
-                btn.textContent = 'Verifying…';
+                btn.textContent = '···';
             }
             try {
                 await requestJson('/admin/ping', { headers: { 'x-password': pwd } });
@@ -396,7 +516,7 @@
                 await loadAdminData();
             } catch (err) {
                 if (errBox) {
-                    errBox.textContent = 'Incorrect password or server unreachable. Check admin password and API.';
+                    errBox.textContent = 'Wrong password or API unreachable.';
                     errBox.classList.remove('hidden');
                 } else {
                     alert('Login failed');
@@ -417,9 +537,9 @@
         async function loadAdminData() {
             const photos = await requestJson('/hidden/photos', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-photos').innerHTML = photos.map(p => `
-                <div class="flex justify-between items-center gap-2 bg-white p-2 rounded border border-slate-100">
-                    <span class="text-xs truncate flex-1 font-mono text-slate-600">${escapeHTML(p.category)} · ${escapeHTML((p.url || '').substring(0, 24))}…</span>
-                    <button type="button" class="text-red-600 text-xs font-semibold flex-shrink-0 js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Delete</button>
+                <div class="flex justify-between items-center gap-2 bg-white p-2 rb-border">
+                    <span class="text-xs truncate flex-1 font-mono text-gray-700">${escapeHTML(p.category)} · ${escapeHTML((p.url || '').substring(0, 22))}…</span>
+                    <button type="button" class="text-red-700 text-[10px] font-black uppercase js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Del</button>
                 </div>
             `).join('');
             document.querySelectorAll('.js-delete-photo-btn').forEach((btn) => {
@@ -428,10 +548,10 @@
 
             const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-testimonials').innerHTML = testimonials.map(t => `
-                <div class="border border-slate-200 rounded p-3 relative bg-white pr-16">
-                    <button type="button" class="absolute top-2 right-2 text-red-600 text-xs font-semibold js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
-                    <div class="font-semibold text-slate-800 text-sm">${escapeHTML(t.name)} <span class="text-slate-500 font-normal">(${escapeHTML(t.relationship)})</span></div>
-                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">${escapeHTML(t.comment)}</p>
+                <div class="rb-border bg-white p-4 relative pr-16">
+                    <button type="button" class="absolute top-3 right-3 rb-btn rb-btn--ghost text-[10px] py-1 px-2 js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
+                    <div class="font-black text-sm text-gray-900">${escapeHTML(t.name)} <span class="text-emerald-800 font-bold text-xs">(${escapeHTML(t.relationship)})</span></div>
+                    <p class="text-xs text-gray-600 mt-2 leading-relaxed">${escapeHTML(t.comment)}</p>
                 </div>
             `).join('');
             document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
@@ -442,29 +562,29 @@
             document.getElementById('admin-publications').innerHTML = (pubs || []).map(p => {
                 const meta = [p.authors, p.venue, p.year].filter((x) => x !== undefined && x !== null && String(x).trim() !== '').map(escapeHTML).join(' · ');
                 const abs = (p.abstract || '').trim();
-                const absShort = abs.length > 160 ? escapeHTML(abs.slice(0, 160)) + '…' : escapeHTML(abs);
-                const linkHint = (p.link || '').trim() ? '<span class="text-emerald-700 font-semibold text-xs">Link</span>' : '<span class="text-slate-400 text-xs">No URL</span>';
-                const sortBadge = `<span class="text-[10px] font-mono bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">sort ${escapeHTML(String(p.sortOrder != null ? p.sortOrder : 0))}</span>`;
+                const absShort = abs.length > 140 ? escapeHTML(abs.slice(0, 140)) + '…' : escapeHTML(abs);
+                const linkHint = (p.link || '').trim() ? '<span class="text-emerald-700 font-black text-[10px] uppercase">Link</span>' : '<span class="text-gray-400 text-[10px] uppercase">No URL</span>';
+                const sortBadge = `<span class="text-[10px] font-mono bg-stone-200 px-1.5 py-0.5 rb-border">${escapeHTML(String(p.sortOrder != null ? p.sortOrder : 0))}</span>`;
                 return `
-                <div class="border border-slate-200 rounded-lg bg-white p-3 shadow-sm">
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                <div class="rb-panel p-4">
+                    <div class="flex flex-col sm:flex-row sm:justify-between gap-3">
                         <div class="min-w-0 flex-1">
-                            <div class="font-semibold text-slate-900 text-sm leading-snug">${escapeHTML(p.title || '(untitled)')}</div>
-                            ${meta ? `<div class="text-xs text-slate-500 mt-0.5">${meta}</div>` : ''}
-                            ${abs ? `<p class="text-xs text-slate-600 mt-2 leading-relaxed">${absShort}</p>` : '<p class="text-xs text-slate-400 mt-1 italic">No blurb</p>'}
+                            <div class="font-black text-sm text-gray-900 leading-snug">${escapeHTML(p.title || '(untitled)')}</div>
+                            ${meta ? `<div class="text-[11px] text-gray-500 mt-1 font-medium">${meta}</div>` : ''}
+                            ${abs ? `<p class="text-xs text-gray-600 mt-2 leading-relaxed">${absShort}</p>` : '<p class="text-[11px] text-gray-400 mt-1 italic">—</p>'}
                             <div class="flex flex-wrap items-center gap-2 mt-2">
                                 ${sortBadge}
                                 ${linkHint}
-                                <span class="text-[10px] text-slate-400 font-mono truncate max-w-[12rem]" title="${escapeHTML(String(p.id || ''))}">${escapeHTML(String(p.id || ''))}</span>
+                                <span class="text-[9px] text-gray-400 font-mono truncate max-w-[10rem]" title="${escapeHTML(String(p.id || ''))}">${escapeHTML(String(p.id || ''))}</span>
                             </div>
                         </div>
                         <div class="flex gap-2 flex-shrink-0">
-                            <button type="button" class="text-xs font-semibold text-slate-700 border border-slate-300 px-2 py-1 rounded hover:bg-slate-50 js-edit-pub" data-id="${escapeHTML(p.id)}">Edit</button>
-                            <button type="button" class="text-xs font-semibold text-red-600 border border-red-200 px-2 py-1 rounded hover:bg-red-50 js-del-pub" data-id="${escapeHTML(p.id)}">Delete</button>
+                            <button type="button" class="rb-btn py-1.5 px-3 text-[10px] js-edit-pub" data-id="${escapeHTML(p.id)}">Edit</button>
+                            <button type="button" class="rb-btn rb-btn--ghost py-1.5 px-3 text-[10px] text-red-700 border-red-800 js-del-pub" data-id="${escapeHTML(p.id)}">Del</button>
                         </div>
                     </div>
                 </div>`;
-            }).join('') || '<p class="text-slate-500 text-sm p-3 border border-dashed border-slate-200 rounded text-center">No publications yet.</p>';
+            }).join('') || '<p class="text-gray-500 text-xs text-center py-6 rb-inset">Empty.</p>';
 
             document.querySelectorAll('.js-edit-pub').forEach((btn) => {
                 btn.addEventListener('click', () => {
@@ -489,18 +609,18 @@
 
             const blogs = await requestJson('/admin/blog', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-blog').innerHTML = (blogs || []).map(b => `
-                <div class="flex justify-between items-start gap-2 bg-white p-2 rounded border border-slate-100">
+                <div class="flex justify-between items-start gap-2 bg-white p-2 rb-border">
                     <div class="min-w-0">
-                        <div class="font-semibold text-slate-800 text-xs">${escapeHTML(String(b.displayYear))}-${escapeHTML(String(b.displayMonth).padStart(2, '0'))}-${escapeHTML(String(b.displayDay).padStart(2, '0'))}</div>
-                        <div class="text-xs text-slate-600 truncate max-w-[14rem]">${escapeHTML((b.text || '').slice(0, 100))}${(b.text || '').length > 100 ? '…' : ''}</div>
-                        <div class="text-[10px] text-slate-400 mt-0.5">${(b.images || []).length} image(s)</div>
+                        <div class="font-black text-xs text-gray-900">${escapeHTML(String(b.displayYear))}-${escapeHTML(String(b.displayMonth).padStart(2, '0'))}-${escapeHTML(String(b.displayDay).padStart(2, '0'))}</div>
+                        <div class="text-xs text-gray-600 truncate max-w-[12rem]">${escapeHTML((b.text || '').slice(0, 90))}${(b.text || '').length > 90 ? '…' : ''}</div>
+                        <div class="text-[10px] text-gray-400 mt-0.5">${(b.images || []).length} img</div>
                     </div>
                     <div class="flex gap-1 flex-shrink-0">
-                        <button type="button" class="text-xs font-semibold text-slate-700 js-edit-blog" data-id="${escapeHTML(b.id)}">Edit</button>
-                        <button type="button" class="text-xs font-semibold text-red-600 js-del-blog" data-id="${escapeHTML(b.id)}">Del</button>
+                        <button type="button" class="text-[10px] font-black uppercase text-emerald-800 js-edit-blog" data-id="${escapeHTML(b.id)}">Edit</button>
+                        <button type="button" class="text-[10px] font-black uppercase text-red-700 js-del-blog" data-id="${escapeHTML(b.id)}">Del</button>
                     </div>
                 </div>
-            `).join('') || '<p class="text-slate-500 text-xs text-center py-2">No moments.</p>';
+            `).join('') || '<p class="text-gray-500 text-center py-3 text-xs">Empty.</p>';
 
             document.querySelectorAll('.js-edit-blog').forEach((btn) => {
                 btn.addEventListener('click', () => {
@@ -530,7 +650,7 @@
             if (active) {
                 wrap.classList.remove('hidden');
                 tEl.textContent = title || '(untitled)';
-                idEl.textContent = 'id ' + (id || '');
+                idEl.textContent = id || '';
             } else {
                 wrap.classList.add('hidden');
                 tEl.textContent = '';
@@ -660,7 +780,7 @@
             const uploadBtn = document.getElementById('btn-add-photo');
             const prev = uploadBtn.textContent;
             uploadBtn.disabled = true;
-            uploadBtn.textContent = 'Uploading…';
+            uploadBtn.textContent = '…';
             try {
                 await requestJson('/admin/photos', {
                 method: 'POST',
@@ -668,7 +788,7 @@
                 body: JSON.stringify({ url: selectedBase64, category })
                 });
                 selectedBase64 = null;
-                document.getElementById('drop-text').textContent = 'Drop one image or click to choose';
+                document.getElementById('drop-text').textContent = 'Drop image or click';
                 await loadAdminData();
             } catch (e) {
                 alert('Upload failed. Please try again.');
