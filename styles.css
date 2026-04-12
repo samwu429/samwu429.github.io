@@ -253,6 +253,25 @@ select:focus-visible {
 .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
 
 /* Custom CSS for Warning Stripes */
+/* Moments (WeChat-style feed, no social actions) */
+.moments-photo-grid {
+    margin-top: 0.75rem;
+}
+.moments-photo-grid--1 .moments-thumb {
+    aspect-ratio: 4 / 3;
+    max-height: min(70vh, 28rem);
+}
+.moments-photo-grid--1 .moments-thumb img {
+    max-height: min(70vh, 28rem);
+    object-fit: cover;
+}
+.moments-thumb {
+    aspect-ratio: 1 / 1;
+}
+.moments-text {
+    word-break: break-word;
+}
+
 .bg-stripes-yellow {
     background-color: #facc15;
     background-image: linear-gradient(

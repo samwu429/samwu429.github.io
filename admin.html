@@ -11,23 +11,22 @@
     <div id="auth-layer" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
         <div class="bg-white p-8 rounded-lg shadow-xl w-80">
             <h2 class="text-2xl font-bold mb-4">Admin Login</h2>
+            <p class="text-xs text-gray-600 mb-3">Use your <strong>admin</strong> password (not the visitor gallery password).</p>
             <input type="password" id="pwd-input" class="w-full border p-2 rounded mb-4" placeholder="Admin Password">
             <button onclick="verifyAdmin()" class="w-full bg-red-600 text-white py-2 rounded">Login</button>
         </div>
     </div>
 
-    <div id="main-content" class="hidden container mx-auto p-4">
+    <div id="main-content" class="hidden container mx-auto p-4 max-w-6xl">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold">Admin Portal</h1>
             <a href="index.html" class="text-blue-500 hover:underline">← Back to Home</a>
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Photo Upload -->
             <div class="bg-white p-6 rounded shadow">
                 <h2 class="text-xl font-bold mb-4">Add Photo</h2>
                 
-                <!-- Drag and Drop Area -->
                 <div id="drop-zone" class="border-2 border-dashed border-gray-400 rounded-lg p-8 text-center mb-4 hover:bg-gray-50 transition cursor-pointer" onclick="document.getElementById('file-input').click()">
                     <div class="text-gray-500 flex flex-col items-center">
                         <svg class="w-12 h-12 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
@@ -47,11 +46,84 @@
                 <div id="admin-photos" class="space-y-2 max-h-64 overflow-y-auto border p-2"></div>
             </div>
 
-            <!-- Testimonials Management -->
             <div class="bg-white p-6 rounded shadow">
                 <h2 class="text-xl font-bold mb-4">Manage Testimonials</h2>
                 <div id="admin-testimonials" class="space-y-4 max-h-96 overflow-y-auto pr-2"></div>
             </div>
+        </div>
+
+        <div class="mt-10 bg-white p-6 rounded shadow">
+            <h2 class="text-xl font-bold mb-4">Publications (catalog)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-bold mb-1">Title *</label>
+                    <input type="text" id="pub-title" class="w-full border p-2 rounded" placeholder="Paper or project title">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Authors</label>
+                    <input type="text" id="pub-authors" class="w-full border p-2 rounded" placeholder="Optional">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Venue</label>
+                    <input type="text" id="pub-venue" class="w-full border p-2 rounded" placeholder="Conference / journal">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Year</label>
+                    <input type="number" id="pub-year" class="w-full border p-2 rounded" placeholder="e.g. 2026">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Sort priority</label>
+                    <input type="number" id="pub-sort" class="w-full border p-2 rounded" placeholder="Higher shows first" value="0">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-bold mb-1">Link</label>
+                    <input type="url" id="pub-link" class="w-full border p-2 rounded" placeholder="https://…">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-bold mb-1">Abstract / note</label>
+                    <textarea id="pub-abstract" rows="3" class="w-full border p-2 rounded" placeholder="Short blurb"></textarea>
+                </div>
+            </div>
+            <div class="flex gap-3 flex-wrap">
+                <button type="button" onclick="savePublication()" id="pub-save-btn" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">Save publication</button>
+                <button type="button" onclick="clearPublicationForm()" class="bg-gray-200 px-4 py-2 rounded font-bold">Clear</button>
+            </div>
+            <input type="hidden" id="pub-edit-id" value="">
+            <h3 class="font-bold mt-8 mb-2">Existing entries</h3>
+            <div id="admin-publications" class="space-y-2 max-h-72 overflow-y-auto border p-2 text-sm"></div>
+        </div>
+
+        <div class="mt-10 bg-white p-6 rounded shadow">
+            <h2 class="text-xl font-bold mb-2">Moments (blog feed)</h2>
+            <p class="text-sm text-gray-600 mb-4">Upload one or more photos, add text, and set the display date. Shown publicly like a timeline — no likes or comments.</p>
+            <div id="blog-drop-zone" class="border-2 border-dashed border-gray-400 rounded-lg p-6 text-center mb-4 cursor-pointer hover:bg-gray-50" onclick="document.getElementById('blog-file-input').click()">
+                <span class="text-gray-600 font-medium" id="blog-drop-text">Click or drag images here (multiple allowed)</span>
+            </div>
+            <input type="file" id="blog-file-input" class="hidden" accept="image/*" multiple>
+            <div id="blog-previews" class="flex flex-wrap gap-2 mb-4 min-h-[2rem]"></div>
+            <label class="block text-sm font-bold mb-1">Caption / text</label>
+            <textarea id="blog-text" rows="4" class="w-full border p-2 rounded mb-4" placeholder="What happened today?"></textarea>
+            <div class="flex flex-wrap gap-3 mb-4">
+                <div>
+                    <label class="block text-xs font-bold mb-1">Year</label>
+                    <input type="number" id="blog-y" class="border p-2 rounded w-24" min="1990" max="2100">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-1">Month</label>
+                    <input type="number" id="blog-m" class="border p-2 rounded w-20" min="1" max="12">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold mb-1">Day</label>
+                    <input type="number" id="blog-d" class="border p-2 rounded w-20" min="1" max="31">
+                </div>
+            </div>
+            <div class="flex gap-3 flex-wrap">
+                <button type="button" onclick="saveBlogPost()" id="blog-save-btn" class="bg-emerald-600 text-white px-4 py-2 rounded font-bold">Publish moment</button>
+                <button type="button" onclick="clearBlogForm()" class="bg-gray-200 px-4 py-2 rounded font-bold">Clear</button>
+            </div>
+            <input type="hidden" id="blog-edit-id" value="">
+            <h3 class="font-bold mt-8 mb-2">Existing moments</h3>
+            <div id="admin-blog" class="space-y-2 max-h-96 overflow-y-auto border p-2 text-sm"></div>
         </div>
     </div>
 
@@ -60,6 +132,7 @@
         const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
         let adminPwd = '';
         let selectedBase64 = null;
+        let blogImagesBase64 = [];
         
         function escapeHTML(str) {
             if (str == null) return '';
@@ -84,7 +157,44 @@
             return res.json();
         }
 
-        // --- 拖拽与图片压缩逻辑 ---
+        function canvasCompressDataUrl(img, maxW, maxH, quality) {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            if (width > height && width > maxW) {
+                height *= maxW / width;
+                width = maxW;
+            } else if (height > maxH) {
+                width *= maxH / height;
+                height = maxH;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            return canvas.toDataURL('image/jpeg', quality);
+        }
+
+        function fileToCompressedBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        try {
+                            resolve(canvasCompressDataUrl(img, 1280, 1280, 0.82));
+                        } catch (err) {
+                            reject(err);
+                        }
+                    };
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
 
@@ -104,46 +214,74 @@
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const MAX_WIDTH = 1080;
-                    const MAX_HEIGHT = 1080;
-                    let width = img.width;
-                    let height = img.height;
-
-                    if (width > height && width > MAX_WIDTH) {
-                        height *= MAX_WIDTH / width;
-                        width = MAX_WIDTH;
-                    } else if (height > MAX_HEIGHT) {
-                        width *= MAX_HEIGHT / height;
-                        height = MAX_HEIGHT;
-                    }
-
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    selectedBase64 = canvas.toDataURL('image/jpeg', 0.8);
+                    selectedBase64 = canvasCompressDataUrl(img, 1080, 1080, 0.8);
                     document.getElementById('drop-text').innerHTML = `<img src="${selectedBase64}" class="h-32 mx-auto object-cover rounded shadow">`;
-                }
+                };
                 img.src = e.target.result;
-            }
+            };
             reader.readAsDataURL(file);
         }
-        // -------------------------
+
+        const blogDrop = document.getElementById('blog-drop-zone');
+        const blogInput = document.getElementById('blog-file-input');
+        blogDrop.addEventListener('dragover', (e) => { e.preventDefault(); blogDrop.classList.add('bg-blue-50'); });
+        blogDrop.addEventListener('dragleave', () => blogDrop.classList.remove('bg-blue-50'));
+        blogDrop.addEventListener('drop', async (e) => {
+            e.preventDefault();
+            blogDrop.classList.remove('bg-blue-50');
+            await addBlogFiles(e.dataTransfer.files);
+        });
+        blogInput.addEventListener('change', async (e) => addBlogFiles(e.target.files));
+
+        async function addBlogFiles(fileList) {
+            const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
+            if (!files.length) return;
+            document.getElementById('blog-drop-text').textContent = `Processing ${files.length} image(s)…`;
+            for (const f of files) {
+                try {
+                    const b64 = await fileToCompressedBase64(f);
+                    blogImagesBase64.push(b64);
+                } catch (_) {}
+            }
+            document.getElementById('blog-drop-text').textContent = 'Click or drag images here (multiple allowed)';
+            renderBlogPreviews();
+        }
+
+        function renderBlogPreviews() {
+            const box = document.getElementById('blog-previews');
+            box.innerHTML = blogImagesBase64.map((src, i) => `
+                <div class="relative w-20 h-20 border rounded overflow-hidden">
+                    <img src="${src}" class="w-full h-full object-cover" alt="">
+                    <button type="button" class="absolute top-0 right-0 bg-red-600 text-white text-xs px-1 js-remove-blog-img" data-idx="${i}">×</button>
+                </div>
+            `).join('');
+            box.querySelectorAll('.js-remove-blog-img').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const idx = Number(btn.dataset.idx);
+                    blogImagesBase64.splice(idx, 1);
+                    renderBlogPreviews();
+                });
+            });
+        }
+
+        function setDefaultBlogDate() {
+            const t = new Date();
+            document.getElementById('blog-y').value = t.getFullYear();
+            document.getElementById('blog-m').value = t.getMonth() + 1;
+            document.getElementById('blog-d').value = t.getDate();
+        }
 
         async function verifyAdmin() {
             const pwd = document.getElementById('pwd-input').value;
             try {
-                await requestJson('/hidden/photos', { headers: { 'x-password': pwd } });
-                if (pwd) {
-                    adminPwd = pwd;
-                    document.getElementById('auth-layer').style.display = 'none';
-                    document.getElementById('main-content').classList.remove('hidden');
-                    loadAdminData();
-                }
+                await requestJson('/admin/ping', { headers: { 'x-password': pwd } });
+                adminPwd = pwd;
+                document.getElementById('auth-layer').style.display = 'none';
+                document.getElementById('main-content').classList.remove('hidden');
+                setDefaultBlogDate();
+                await loadAdminData();
             } catch (err) {
-                alert('Incorrect password or insufficient permissions');
+                alert('Incorrect admin password');
             }
         }
 
@@ -170,6 +308,186 @@
             document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
                 btn.addEventListener('click', () => deleteTestimonial(btn.dataset.testimonialId || ''));
             });
+
+            const pubs = await requestJson('/admin/publications', { headers: { 'x-password': adminPwd } });
+            document.getElementById('admin-publications').innerHTML = (pubs || []).map(p => `
+                <div class="flex justify-between items-start gap-2 bg-gray-50 p-2 rounded">
+                    <div class="min-w-0">
+                        <div class="font-bold">${escapeHTML(p.title)}</div>
+                        <div class="text-xs text-gray-600">${escapeHTML([p.year, p.venue].filter(Boolean).join(' · '))}</div>
+                    </div>
+                    <div class="flex gap-2 flex-shrink-0">
+                        <button type="button" class="text-blue-600 js-edit-pub" data-id="${escapeHTML(p.id)}">Edit</button>
+                        <button type="button" class="text-red-600 js-del-pub" data-id="${escapeHTML(p.id)}">Delete</button>
+                    </div>
+                </div>
+            `).join('') || '<p class="text-gray-500">No publications yet.</p>';
+
+            document.querySelectorAll('.js-edit-pub').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const row = pubs.find(x => x.id === btn.dataset.id);
+                    if (!row) return;
+                    document.getElementById('pub-edit-id').value = row.id;
+                    document.getElementById('pub-title').value = row.title || '';
+                    document.getElementById('pub-authors').value = row.authors || '';
+                    document.getElementById('pub-venue').value = row.venue || '';
+                    document.getElementById('pub-year').value = row.year != null ? row.year : '';
+                    document.getElementById('pub-link').value = row.link || '';
+                    document.getElementById('pub-abstract').value = row.abstract || '';
+                    document.getElementById('pub-sort').value = row.sortOrder != null ? row.sortOrder : 0;
+                    document.getElementById('pub-save-btn').textContent = 'Update publication';
+                });
+            });
+            document.querySelectorAll('.js-del-pub').forEach((btn) => {
+                btn.addEventListener('click', () => deletePublication(btn.dataset.id));
+            });
+
+            const blogs = await requestJson('/admin/blog', { headers: { 'x-password': adminPwd } });
+            document.getElementById('admin-blog').innerHTML = (blogs || []).map(b => `
+                <div class="flex justify-between items-start gap-2 bg-gray-50 p-2 rounded">
+                    <div class="min-w-0">
+                        <div class="font-bold">${escapeHTML(String(b.displayYear))}-${escapeHTML(String(b.displayMonth).padStart(2, '0'))}-${escapeHTML(String(b.displayDay).padStart(2, '0'))}</div>
+                        <div class="text-xs text-gray-700 truncate">${escapeHTML((b.text || '').slice(0, 80))}${(b.text || '').length > 80 ? '…' : ''}</div>
+                        <div class="text-xs text-gray-500">${(b.images || []).length} photo(s)</div>
+                    </div>
+                    <div class="flex gap-2 flex-shrink-0">
+                        <button type="button" class="text-blue-600 js-edit-blog" data-id="${escapeHTML(b.id)}">Edit</button>
+                        <button type="button" class="text-red-600 js-del-blog" data-id="${escapeHTML(b.id)}">Delete</button>
+                    </div>
+                </div>
+            `).join('') || '<p class="text-gray-500">No moments yet.</p>';
+
+            document.querySelectorAll('.js-edit-blog').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const row = blogs.find(x => x.id === btn.dataset.id);
+                    if (!row) return;
+                    document.getElementById('blog-edit-id').value = row.id;
+                    document.getElementById('blog-text').value = row.text || '';
+                    document.getElementById('blog-y').value = row.displayYear;
+                    document.getElementById('blog-m').value = row.displayMonth;
+                    document.getElementById('blog-d').value = row.displayDay;
+                    blogImagesBase64 = Array.isArray(row.images) ? row.images.slice() : [];
+                    renderBlogPreviews();
+                    document.getElementById('blog-save-btn').textContent = 'Update moment';
+                });
+            });
+            document.querySelectorAll('.js-del-blog').forEach((btn) => {
+                btn.addEventListener('click', () => deleteBlog(btn.dataset.id));
+            });
+        }
+
+        function clearPublicationForm() {
+            document.getElementById('pub-edit-id').value = '';
+            document.getElementById('pub-title').value = '';
+            document.getElementById('pub-authors').value = '';
+            document.getElementById('pub-venue').value = '';
+            document.getElementById('pub-year').value = '';
+            document.getElementById('pub-link').value = '';
+            document.getElementById('pub-abstract').value = '';
+            document.getElementById('pub-sort').value = '0';
+            document.getElementById('pub-save-btn').textContent = 'Save publication';
+        }
+
+        function clearBlogForm() {
+            document.getElementById('blog-edit-id').value = '';
+            document.getElementById('blog-text').value = '';
+            blogImagesBase64 = [];
+            renderBlogPreviews();
+            blogInput.value = '';
+            setDefaultBlogDate();
+            document.getElementById('blog-save-btn').textContent = 'Publish moment';
+        }
+
+        async function savePublication() {
+            const id = document.getElementById('pub-edit-id').value;
+            const body = {
+                title: document.getElementById('pub-title').value,
+                authors: document.getElementById('pub-authors').value,
+                venue: document.getElementById('pub-venue').value,
+                year: document.getElementById('pub-year').value,
+                link: document.getElementById('pub-link').value,
+                abstract: document.getElementById('pub-abstract').value,
+                sortOrder: document.getElementById('pub-sort').value
+            };
+            if (!body.title || !String(body.title).trim()) return alert('Title is required.');
+            const btn = document.getElementById('pub-save-btn');
+            btn.disabled = true;
+            try {
+                if (id) {
+                    await requestJson(`/admin/publications/${encodeURIComponent(id)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify(body)
+                    });
+                } else {
+                    await requestJson('/admin/publications', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify(body)
+                    });
+                }
+                clearPublicationForm();
+                await loadAdminData();
+            } catch (_) {
+                alert('Save failed');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        async function deletePublication(id) {
+            if (!confirm('Delete this publication?')) return;
+            try {
+                await requestJson(`/admin/publications/${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
+                await loadAdminData();
+            } catch (_) {
+                alert('Delete failed');
+            }
+        }
+
+        async function saveBlogPost() {
+            const id = document.getElementById('blog-edit-id').value;
+            const text = document.getElementById('blog-text').value;
+            const displayYear = Number(document.getElementById('blog-y').value);
+            const displayMonth = Number(document.getElementById('blog-m').value);
+            const displayDay = Number(document.getElementById('blog-d').value);
+            if (!displayYear || !displayMonth || !displayDay) return alert('Please set year, month, and day.');
+            if (!id && !blogImagesBase64.length) return alert('Add at least one image for a new moment.');
+            const btn = document.getElementById('blog-save-btn');
+            btn.disabled = true;
+            try {
+                const payload = { text, displayYear, displayMonth, displayDay };
+                if (blogImagesBase64.length) payload.images = blogImagesBase64;
+                if (id) {
+                    await requestJson(`/admin/blog/${encodeURIComponent(id)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    await requestJson('/admin/blog', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify({ ...payload, images: blogImagesBase64 })
+                    });
+                }
+                clearBlogForm();
+                await loadAdminData();
+            } catch (e) {
+                alert('Save failed (payload may be too large — try fewer photos).');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        async function deleteBlog(id) {
+            if (!confirm('Delete this moment?')) return;
+            try {
+                await requestJson(`/admin/blog/${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
+                await loadAdminData();
+            } catch (_) {
+                alert('Delete failed');
+            }
         }
 
         async function addPhoto() {

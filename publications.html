@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications & Moments | Sam Wu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body class="animate-fade-in py-6 md:py-12 px-0 min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <div class="site-wrap w-full mb-10 flex justify-between items-center relative z-10 border-b-2 border-gray-900 pb-4">
+        <a href="index.html" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> Back to Hub
+        </a>
+    </div>
+
+    <main class="site-wrap w-full flex-1 relative z-10 pb-20 space-y-14 md:space-y-20">
+        <header class="space-y-3">
+            <p class="text-xs font-black tracking-[0.2em] text-emerald-800 uppercase">Research & writing</p>
+            <h1 class="text-4xl md:text-6xl font-black text-gray-950 uppercase tracking-tight leading-none font-serif-heading">
+                Publications <span class="text-emerald-700">&</span> Moments
+            </h1>
+            <p class="text-sm md:text-base text-gray-600 font-medium max-w-2xl body-readable">
+                Curated academic links and a lightweight feed inspired by social timelines — text plus images, without likes or comments.
+            </p>
+        </header>
+
+        <section aria-labelledby="pub-heading" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <h2 id="pub-heading" class="section-title text-xl md:text-2xl">Publications</h2>
+                <a href="blog.html" class="text-xs font-black uppercase tracking-widest text-emerald-800 retro-button px-4 py-2">Open moments feed →</a>
+            </div>
+            <div id="publications-list" class="grid grid-cols-1 gap-6"></div>
+        </section>
+
+        <section aria-labelledby="moments-heading" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <h2 id="moments-heading" class="section-title text-xl md:text-2xl">Moments (preview)</h2>
+                <a href="blog.html" class="text-xs font-black uppercase tracking-widest text-gray-600 underline decoration-2 decoration-emerald-500/50 hover:text-emerald-800">Full feed</a>
+            </div>
+            <div id="blog-preview" class="max-w-2xl space-y-6"></div>
+        </section>
+    </main>
+
+    <script src="api-config.js"></script>
+    <script src="moments-public.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const MC = window.SAM_PUBLIC_CONTENT;
+            if (!MC) return;
+            MC.loadPublications(document.getElementById('publications-list'));
+            MC.loadMomentsFeed(document.getElementById('blog-preview'), { limit: 4 });
+        });
+    </script>
+</body>
+</html>
