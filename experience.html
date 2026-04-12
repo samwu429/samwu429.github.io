@@ -3,562 +3,699 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sam Wu — spatial narrative. HCI, Applied AI, University of Toronto. Full site in one scroll.">
-    <title>Spatial Narrative · Sam Wu</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css?v=4">
+    <meta name="description" content="Sam Wu — cinematic spatial experience. HCI, Applied AI, University of Toronto.">
+    <title>Spatial Reel · Sam Wu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <style>
-        /* —— Spatial narrative: readable, long-form, cinematic —— */
-        .exp {
-            --paper: #f2ebe3;
-            --paper-dim: #c9c0b6;
-            --ink: #141211;
-            --surface: rgba(22, 20, 18, 0.94);
-            --surface-edge: rgba(255, 252, 248, 0.22);
-            --accent: #5eead4;
-            --accent-dim: #2dd4bf;
-            --glow: rgba(94, 234, 212, 0.12);
-            color: var(--paper);
-            background: var(--ink);
-            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-            font-size: 1.0625rem;
-            line-height: 1.75;
-            overflow-x: hidden;
-        }
-        .exp ::selection {
-            background: rgba(45, 212, 191, 0.35);
-            color: #fff;
+        @font-face { font-family: system; src: local(system-ui); }
+        :root {
+            --void: #050403;
+            --smoke: #0e0c0a;
+            --ash: #1a1714;
+            --paper: #f4ede4;
+            --paper-dim: #b5ada3;
+            --mint: #5eead4;
+            --mint-deep: #0d9488;
+            --signal: #60a5fa;
+            --chrome: rgba(255, 252, 248, 0.14);
+            --mx: 0;
+            --my: 0;
         }
 
-        .exp-ambient {
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: auto; }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+        body.sp {
+            margin: 0;
+            background: var(--void);
+            color: var(--paper);
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        body.sp--reduce * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+
+        /* —— Global FX stack —— */
+        .sp-fx {
             position: fixed;
             inset: 0;
-            z-index: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .sp-fx--bloom {
+            background:
+                radial-gradient(ellipse 120% 70% at 50% -10%, rgba(94, 234, 212, 0.14), transparent 50%),
+                radial-gradient(ellipse 50% 40% at calc(50% + var(--mx) * 18%) calc(40% + var(--my) * 12%), rgba(96, 165, 250, 0.08), transparent 45%),
+                radial-gradient(ellipse 40% 35% at calc(30% - var(--mx) * 10%) calc(70% - var(--my) * 8%), rgba(5, 150, 105, 0.06), transparent 40%);
+            animation: sp-breathe 14s ease-in-out infinite alternate;
+        }
+        @keyframes sp-breathe {
+            0% { filter: saturate(1) brightness(1); }
+            100% { filter: saturate(1.15) brightness(1.05); }
+        }
+        .sp-fx--grain {
+            opacity: 0.055;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            z-index: 6;
+        }
+        .sp-fx--vig {
+            box-shadow: inset 0 0 180px rgba(0,0,0,0.75), inset 0 -40vh 120px rgba(0,0,0,0.5);
+            z-index: 7;
+        }
+        .sp-fx--scan {
+            opacity: 0.04;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+            z-index: 8;
+            mix-blend-mode: soft-light;
+        }
+
+        .sp-floor {
+            position: fixed;
+            left: -50%;
+            right: -50%;
+            bottom: -20%;
+            height: 70%;
+            z-index: 2;
             pointer-events: none;
             background:
-                radial-gradient(ellipse 100% 80% at 50% -20%, var(--glow), transparent 55%),
-                radial-gradient(ellipse 70% 50% at 100% 60%, rgba(29, 78, 216, 0.06), transparent 50%),
-                radial-gradient(ellipse 60% 40% at 0% 80%, rgba(5, 150, 105, 0.07), transparent 45%),
-                linear-gradient(180deg, #0a0908 0%, #12100e 40%, #0e0c0b 100%);
-        }
-
-        .exp-grain {
-            position: fixed;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.045;
-            mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
-
-        .exp-grid {
-            position: fixed;
-            inset: -30% 0 0 0;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.2;
-            background-image:
-                linear-gradient(rgba(242, 235, 227, 0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(242, 235, 227, 0.05) 1px, transparent 1px);
-            background-size: 72px 72px;
+                linear-gradient(rgba(244, 237, 228, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244, 237, 228, 0.04) 1px, transparent 1px);
+            background-size: 80px 80px;
             transform-origin: 50% 100%;
-            transform: perspective(900px) rotateX(76deg) scale(1.15);
-            will-change: transform;
+            transform:
+                translate3d(calc(var(--mx) * 20px), 0, 0)
+                perspective(1000px)
+                rotateX(82deg)
+                scale(1.35);
+            opacity: 0.35;
+            mask-image: linear-gradient(to top, black 0%, transparent 85%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 85%);
         }
 
-        .exp-main {
-            position: relative;
-            z-index: 2;
-        }
-
-        .exp-nav {
+        .sp-progress {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 40;
-            padding: max(1rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right)) 0.75rem max(1.25rem, env(safe-area-inset-left));
-            display: flex;
-            justify-content: flex-end;
-            background: linear-gradient(180deg, rgba(10, 9, 8, 0.92) 0%, transparent 100%);
-            pointer-events: none;
+            right: max(12px, env(safe-area-inset-right));
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 38vh;
+            background: rgba(255,252,248,0.08);
+            border-radius: 2px;
+            z-index: 100;
+            overflow: hidden;
         }
-        .exp-nav a {
-            pointer-events: auto;
-            font-size: 0.6875rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
+        .sp-progress__fill {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(0deg, var(--mint-deep), var(--mint));
+            box-shadow: 0 0 24px rgba(94, 234, 212, 0.45);
+        }
+
+        .sp-exit {
+            position: fixed;
+            top: max(1rem, env(safe-area-inset-top));
+            left: max(1rem, env(safe-area-inset-left));
+            z-index: 120;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--paper-dim);
             text-decoration: none;
+            padding: 0.5rem 0;
             border-bottom: 1px solid transparent;
-            transition: color 0.2s, border-color 0.2s;
+            transition: color 0.25s, border-color 0.25s, text-shadow 0.25s;
         }
-        .exp-nav a:hover {
-            color: var(--accent);
-            border-bottom-color: rgba(94, 234, 212, 0.5);
-        }
-
-        .exp-sc {
-            min-height: min(92vh, 52rem);
-            padding: clamp(3.5rem, 10vh, 7rem) max(1.25rem, env(safe-area-inset-left)) clamp(4rem, 12vh, 8rem) max(1.25rem, env(safe-area-inset-right));
-            max-width: 52rem;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translate3d(0, 36px, 0);
-            transition: opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1), transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .exp-sc--visible {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
+        .sp-exit:hover {
+            color: var(--mint);
+            border-bottom-color: rgba(94, 234, 212, 0.45);
+            text-shadow: 0 0 20px rgba(94, 234, 212, 0.35);
         }
 
-        .exp-chapter {
-            font-size: 0.6875rem;
-            font-weight: 800;
-            letter-spacing: 0.38em;
-            text-transform: uppercase;
-            color: var(--accent-dim);
-            margin-bottom: 1.25rem;
+        .sp-chrome {
+            border: 1px solid var(--chrome);
+            background: linear-gradient(145deg, rgba(22, 20, 18, 0.88) 0%, rgba(12, 10, 9, 0.92) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow:
+                0 0 0 1px rgba(0,0,0,0.5),
+                16px 16px 0 rgba(0, 0, 0, 0.35),
+                0 40px 80px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255,252,248,0.06);
+            border-radius: 2px;
         }
 
-        .exp-h1 {
-            font-size: clamp(3.25rem, 11vw, 6.5rem);
+        .persp { perspective: 1400px; perspective-origin: 50% 40%; }
+        .p3d { transform-style: preserve-3d; }
+
+        .sp-h1 {
+            font-size: clamp(3.5rem, 14vw, 9rem);
             font-weight: 900;
-            line-height: 0.92;
-            letter-spacing: -0.045em;
+            line-height: 0.88;
+            letter-spacing: -0.05em;
             text-transform: uppercase;
-            color: var(--paper);
-            margin-bottom: 0.5rem;
+            text-shadow:
+                -2px 0 rgba(255, 80, 80, 0.12),
+                2px 0 rgba(80, 200, 255, 0.12),
+                0 0 80px rgba(94, 234, 212, 0.15);
         }
-
-        .exp-h2 {
-            font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+        .sp-h2 {
+            font-size: clamp(1.6rem, 4.5vw, 2.8rem);
             font-weight: 800;
             letter-spacing: -0.03em;
-            line-height: 1.15;
-            color: var(--paper);
-            margin: 0 0 1.25rem;
+            line-height: 1.12;
         }
-
-        .exp-h3 {
-            font-family: Georgia, Cambria, "Times New Roman", serif;
-            font-size: clamp(1.35rem, 3vw, 1.85rem);
-            font-weight: 900;
-            line-height: 1.25;
-            color: #fff;
-            margin: 0 0 1rem;
+        .sp-serif {
+            font-family: Georgia, Cambria, "Times New Roman", Times, serif;
         }
-
-        .exp-lead {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: #e8e0d6;
-            max-width: 38rem;
-        }
-
-        .exp-prose {
-            font-size: 1.0625rem;
-            line-height: 1.85;
-            color: #ddd5cb;
-            max-width: 40rem;
-        }
-        .exp-prose strong { color: #fff; font-weight: 700; }
-        .exp-prose a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: opacity 0.2s;
-        }
-        .exp-prose a:hover { opacity: 0.85; }
-
-        .exp-slab {
-            border: 1px solid var(--surface-edge);
-            background: var(--surface);
-            box-shadow:
-                0 0 0 1px rgba(0,0,0,0.35),
-                12px 12px 0 rgba(0, 0, 0, 0.35),
-                0 32px 64px rgba(0, 0, 0, 0.35);
-            border-radius: 2px;
-            padding: clamp(1.75rem, 4vw, 2.75rem);
-        }
-
-        .exp-rule {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,252,248,0.25), transparent);
-            margin: 2.5rem 0;
-        }
-
-        .exp-dl {
-            display: grid;
-            gap: 1.75rem;
-        }
-        .exp-dt {
+        .sp-k {
             font-size: 0.65rem;
             font-weight: 800;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.42em;
             text-transform: uppercase;
-            color: var(--paper-dim);
-            margin-bottom: 0.35rem;
+            color: var(--mint);
         }
-        .exp-dd {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--paper);
-            word-break: break-word;
-        }
-        .exp-dd a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-
-        .exp-portrait {
-            max-width: 16rem;
-            margin: 0 auto 2rem;
-            border: 2px solid var(--surface-edge);
-            padding: 0.5rem;
-            background: rgba(5, 150, 105, 0.08);
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.4);
-        }
-        .exp-portrait img {
-            display: block;
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border: 2px solid #1c1917;
-            filter: grayscale(0.08);
-        }
-
-        .exp-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .exp-list li {
-            position: relative;
-            padding-left: 1.25rem;
-            margin-bottom: 0.65rem;
-            color: #d4ccc2;
-            font-weight: 600;
-            font-size: 0.98rem;
-        }
-        .exp-list li::before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: var(--accent-dim);
-            font-weight: 400;
-        }
-
-        .exp-quote {
-            border-left: 3px solid var(--accent-dim);
-            padding: 0.5rem 0 0.5rem 1.5rem;
-            font-style: italic;
-            font-size: 1.125rem;
-            color: #ebe4da;
-            line-height: 1.7;
-        }
-
-        .exp-testimonial-card {
-            border: 1px solid rgba(255,252,248,0.12);
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 1rem;
-            background: rgba(0,0,0,0.2);
-            font-size: 0.98rem;
+        .sp-prose {
+            font-size: 1.02rem;
+            line-height: 1.82;
             color: #d8d0c6;
+            max-width: 40rem;
+        }
+        .sp-prose a {
+            color: var(--mint);
+            text-underline-offset: 4px;
         }
 
-        .exp-hint {
-            text-align: center;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: rgba(242, 235, 227, 0.4);
-            padding: 2rem 1rem 4rem;
-            animation: exp-breathe 3s ease-in-out infinite;
+        /* Scene shells: tall scroll tracks + sticky stage */
+        .sp-track { position: relative; }
+        .sp-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
-        @keyframes exp-breathe {
-            0%, 100% { opacity: 0.4; }
+
+        .sp-hint {
+            position: absolute;
+            bottom: max(2rem, env(safe-area-inset-bottom));
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: rgba(244, 237, 228, 0.35);
+            animation: sp-hint-pulse 2.8s ease-in-out infinite;
+        }
+        @keyframes sp-hint-pulse {
+            0%, 100% { opacity: 0.35; }
             50% { opacity: 0.85; }
         }
 
-        .exp-end {
-            padding: 6rem 1.5rem 8rem;
-            text-align: center;
-            max-width: 36rem;
-            margin: 0 auto;
+        .sp-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.35;
+            pointer-events: none;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .exp-sc { opacity: 1; transform: none; transition: none; }
-            .exp-hint { animation: none; }
+        .sp-linkrow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
         }
+        .sp-linkrow a {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--paper-dim);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(244, 237, 228, 0.2);
+            transition: color 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .sp-linkrow a:hover {
+            color: var(--mint);
+            border-bottom-color: var(--mint);
+            transform: translateY(-2px);
+        }
+
+        .sp-tcard {
+            border: 1px solid rgba(255,252,248,0.1);
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            background: rgba(0,0,0,0.25);
+            font-size: 0.92rem;
+            color: #cec6bc;
+        }
+
+        body.sp--reduce .sp-hint { animation: none; }
+        body.sp--reduce .sp-fx--bloom { animation: none; }
     </style>
 </head>
-<body class="exp min-h-screen">
-    <div class="exp-ambient" aria-hidden="true"></div>
-    <div class="exp-grain" aria-hidden="true"></div>
-    <div class="exp-grid" id="exp-grid" aria-hidden="true"></div>
+<body class="sp">
 
-    <nav class="exp-nav" aria-label="Exit spatial narrative">
-        <a href="index.html">Classic hub layout</a>
-    </nav>
+    <div class="sp-fx sp-fx--bloom" aria-hidden="true"></div>
+    <div class="sp-fx sp-fx--grain" aria-hidden="true"></div>
+    <div class="sp-fx sp-fx--vig" aria-hidden="true"></div>
+    <div class="sp-fx sp-fx--scan" aria-hidden="true"></div>
+    <div class="sp-floor" id="sp-floor" aria-hidden="true"></div>
 
-    <main class="exp-main">
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-hint">Scroll — one continuous surface</p>
-            <p class="exp-chapter">Spatial narrative · 卷轴</p>
-            <h1 class="exp-h1">Sam Wu</h1>
-            <p class="exp-lead mt-4" style="max-width: 28rem;">
-                Yihang (Sam) Wu · <span style="color: var(--accent);">HCI</span> &amp; <span style="color: var(--accent);">Applied AI</span>
-            </p>
-            <p class="exp-prose mt-8">
-                This lane mirrors the full site: same facts, same links — staged as a slow title sequence. Read top to bottom; every destination from the hub appears in order.
-            </p>
-        </section>
+    <div class="sp-progress" aria-hidden="true"><div class="sp-progress__fill" id="sp-prog-fill"></div></div>
+    <a href="index.html" class="sp-exit">Hub</a>
 
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">I · Portrait</p>
-            <div class="exp-portrait">
-                <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" width="512" height="512" alt="Sam Wu portrait">
+    <!-- ═══ SCENE A — Hero volume ═══ -->
+    <section class="sp-track" id="sc-hero" style="height: 320vh;">
+        <div class="sp-sticky persp">
+            <div class="sp-orb sp-orb--a" style="width:min(80vw,420px);height:min(80vw,420px);background:var(--mint-deep);top:15%;left:10%;"></div>
+            <div class="sp-orb sp-orb--b" style="width:min(60vw,320px);height:min(60vw,320px);background:#1d4ed8;bottom:20%;right:5%;"></div>
+            <div class="p3d relative w-full max-w-6xl px-6 text-center" id="hero-pack">
+                <p class="sp-k mb-6 opacity-80" id="hero-k">Spatial reel · 空间卷轴</p>
+                <div class="p3d relative inline-block" id="hero-name">
+                    <h1 class="sp-h1 text-white" style="transform: translateZ(80px);">Sam</h1>
+                    <h1 class="sp-h1 absolute left-0 right-0 top-0 text-transparent" style="-webkit-text-stroke: 1.5px rgba(244,237,228,0.35); transform: translateZ(0px);" id="hero-outline">Sam</h1>
+                </div>
+                <h1 class="sp-h1 mt-2 text-emerald-300/95" id="hero-wu" style="transform: translateZ(40px);">Wu</h1>
+                <p class="mt-10 text-sm md:text-base font-bold tracking-[0.35em] uppercase text-stone-400" id="hero-tag">HCI · Applied AI · University of Toronto</p>
             </div>
-            <p class="exp-prose text-center" style="margin: 0 auto;">
-                The same portrait frame as the system hub: neo-brutalist edge, slight grayscale, initials <strong>SW.</strong> on the public layout — here, only the image and the line.
-            </p>
-        </section>
+            <p class="sp-hint" id="hero-hint">Scroll</p>
+        </div>
+    </section>
 
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">II · Institution</p>
-            <div class="exp-slab">
-                <p class="exp-prose mb-6" style="margin-bottom: 1.5rem;">
-                    <strong class="text-white">Department of Mathematics, Statistics, and Computer Science</strong><br>
-                    <span class="text-emerald-300/95 font-bold tracking-widest uppercase text-sm">University of Toronto</span>
+    <!-- ═══ SCENE B — Institution monolith ═══ -->
+    <section class="sp-track" id="sc-mono" style="height: 280vh;">
+        <div class="sp-sticky persp">
+            <div class="max-w-3xl px-6 p3d" id="mono-pack">
+                <div class="sp-chrome p-8 md:p-12 p3d" id="mono-card">
+                    <p class="sp-k mb-4">II · Monolith</p>
+                    <p class="text-lg md:text-xl font-black text-white mb-3 leading-tight">Department of Mathematics, Statistics, and Computer Science</p>
+                    <p class="text-sm font-black text-teal-300 uppercase tracking-[0.2em] mb-8">University of Toronto</p>
+                    <p class="text-xs font-bold text-stone-500 uppercase tracking-[0.25em] mb-3">Core vision &amp; architecture</p>
+                    <h2 class="sp-h2 sp-serif text-white mb-6 leading-tight">Distributed Wearable AIOS for Human–AI Symbiosis</h2>
+                    <p class="sp-prose text-stone-300">
+                        Reimagining intent-driven transparent interaction architectures and physical trust primitives — emotional connectivity and social trust in digital existence.
+                    </p>
+                    <div class="mt-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                    <p class="mt-4 text-xs font-bold text-stone-500 tracking-wide">Built and maintained by Sam Wu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE C — Portrait flight ═══ -->
+    <section class="sp-track" id="sc-photo" style="height: 240vh;">
+        <div class="sp-sticky persp">
+            <div class="relative w-full max-w-5xl px-6 flex flex-col md:flex-row items-center justify-center gap-12 p3d" id="photo-pack">
+                <div class="p3d flex-shrink-0" id="photo-frame">
+                    <div class="relative p-2 bg-emerald-950/40 border-2 border-white/20" style="box-shadow: 12px 12px 0 rgba(0,0,0,0.5), 0 0 60px rgba(94,234,212,0.12);">
+                        <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="" width="400" height="400" class="block w-56 h-56 md:w-72 md:h-72 object-cover border-2 border-stone-900" style="filter: grayscale(0.15) contrast(1.05);">
+                        <div class="absolute -bottom-3 -right-3 w-14 h-14 bg-emerald-500 border-2 border-stone-950 flex items-center justify-center font-black text-xs text-white" style="box-shadow:4px 4px 0 #000;">SW.</div>
+                    </div>
+                </div>
+                <div class="p3d text-left max-w-md" id="photo-copy">
+                    <p class="sp-k mb-4">III · Signal</p>
+                    <h2 class="sp-h2 text-white mb-4">Same face.<br>Different depth.</h2>
+                    <p class="sp-prose text-stone-400">
+                        Portrait frame borrowed from the hub — here it travels through Z-space while the reel keeps rolling. Neo-brutalist edge, mint seal, slight silver on the glass.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE D — Contact constellation ═══ -->
+    <section class="sp-track" id="sc-contact" style="height: 220vh;">
+        <div class="sp-sticky persp">
+            <div class="w-full max-w-4xl px-6 p3d" id="contact-pack">
+                <p class="sp-k text-center mb-10">IV · Channels</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="contact-grid">
+                    <div class="sp-chrome p-6 p3d text-center" data-c-i="0">
+                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-2">Personal</p>
+                        <a href="mailto:wuyihang429@gmail.com" class="text-sm font-bold text-white break-all hover:text-teal-300 transition-colors">wuyihang429@gmail.com</a>
+                    </div>
+                    <div class="sp-chrome p-6 p3d text-center" data-c-i="1">
+                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-2">University</p>
+                        <a href="mailto:yihang.wu@mail.utoronto.ca" class="text-sm font-bold text-white break-all hover:text-teal-300 transition-colors">yihang.wu@mail.utoronto.ca</a>
+                    </div>
+                    <div class="sp-chrome p-6 p3d text-center" data-c-i="2">
+                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-2">LinkedIn</p>
+                        <a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener" class="text-sm font-bold text-white hover:text-teal-300 transition-colors">/in/yihang-wu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE E — Dossier wall ═══ -->
+    <section class="sp-track" id="sc-dossier" style="height: 260vh;">
+        <div class="sp-sticky persp">
+            <div class="max-w-3xl px-6 p3d" id="dossier-pack">
+                <div class="sp-chrome p-8 md:p-10 p3d" id="dossier-card">
+                    <p class="sp-k mb-4">V · Dossier</p>
+                    <p class="sp-prose mb-6">
+                        <a href="about.html">Professional dossier</a> — bridging pure logic with industrial execution in Data and AI. Quantitative modeling, workflow optimization, Human–AI symbiosis through intent-driven agents and digital sovereignty.
+                    </p>
+                    <p class="text-sm font-black text-teal-300/90 uppercase tracking-widest border-l-2 border-teal-500 pl-4">IEEE Student Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE F — Experience slabs ═══ -->
+    <section class="sp-track" id="sc-work" style="height: 300vh;">
+        <div class="sp-sticky persp items-start pt-24 md:pt-32">
+            <div class="w-full max-w-5xl px-6 mx-auto p3d" id="work-pack">
+                <p class="sp-k mb-8">VI · Field work</p>
+                <div class="space-y-6" id="work-slabs">
+                    <div class="sp-chrome p-6 md:p-8 p3d" data-w="0">
+                        <p class="text-xs font-black text-teal-400 uppercase tracking-widest mb-3">Logistics &amp; Data Intern · Haicheng Hong Sheng Da · 2024</p>
+                        <ul class="text-sm text-stone-300 space-y-2 font-semibold">
+                            <li>— Inventory operations &amp; data processing</li>
+                            <li>— International logistics communication</li>
+                            <li>— Supply-chain documentation velocity</li>
+                        </ul>
+                    </div>
+                    <div class="sp-chrome p-6 md:p-8 p3d" data-w="1">
+                        <p class="text-xs font-black text-sky-400 uppercase tracking-widest mb-3">Ward Missionary · LDS Church · 2025–present</p>
+                        <ul class="text-sm text-stone-300 space-y-2 font-semibold">
+                            <li>— Demographic analysis with leadership</li>
+                            <li>— English–Mandarin interpretation</li>
+                            <li>— Onboarding &amp; accessibility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE G — Stack prism ═══ -->
+    <section class="sp-track" id="sc-stack" style="height: 220vh;">
+        <div class="sp-sticky persp">
+            <div class="max-w-4xl px-6 w-full p3d" id="stack-pack">
+                <p class="sp-k text-center mb-8">VII · Stack</p>
+                <div class="grid md:grid-cols-2 gap-6" id="stack-grid">
+                    <div class="sp-chrome p-6 p3d">
+                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-4">Core tech</p>
+                        <p class="text-sm font-bold text-stone-300 leading-loose">
+                            Python / FastAPI · R Studio · JavaScript / UI · Gemini API · ERP automation
+                        </p>
+                    </div>
+                    <div class="sp-chrome p-6 p3d">
+                        <p class="text-[10px] font-black text-stone-500 uppercase tracking-widest mb-4">Honors</p>
+                        <p class="text-sm font-bold text-stone-300 leading-loose">
+                            MTA JavaScript · Workspace / Office · Data &amp; logistics · Asian FS L2 · Figure skating
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE H — Gate (links only, typographic) ═══ -->
+    <section class="sp-track" id="sc-gate" style="height: 200vh;">
+        <div class="sp-sticky persp">
+            <div class="text-center px-6 max-w-2xl p3d" id="gate-pack">
+                <p class="sp-k mb-8">VIII · Routing</p>
+                <h2 class="sp-h2 text-white mb-6">All doors.<br>One scroll.</h2>
+                <div class="sp-linkrow justify-center">
+                    <a href="publications.html">Publications</a>
+                    <a href="blog.html">Moments</a>
+                    <a href="resume.html">CV &amp; agent</a>
+                    <a href="about.html">Dossier</a>
+                    <a href="hidden.html">Private gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE I — Voices ═══ -->
+    <section class="sp-track" id="sc-voices" style="height: 200vh;">
+        <div class="sp-sticky persp items-start pt-20 md:pt-28 overflow-y-auto">
+            <div class="max-w-2xl px-6 mx-auto w-full p3d pb-20" id="voices-pack">
+                <p class="sp-k mb-6">IX · Voices</p>
+                <p class="sp-prose text-sm text-stone-500 mb-6">Public excerpts · full identities behind <a href="hidden.html">Private Gallery</a>.</p>
+                <div id="sp-testimonials">Loading…</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCENE J — Finale ═══ -->
+    <section class="sp-track" id="sc-end" style="height: 220vh;">
+        <div class="sp-sticky persp">
+            <div class="text-center px-6 max-w-xl p3d" id="end-pack">
+                <p class="sp-k mb-6">X · Reel end</p>
+                <h2 class="sp-h1 text-white text-5xl md:text-7xl mb-8" style="text-shadow: 0 0 100px rgba(94,234,212,0.2);">CUT</h2>
+                <p class="sp-prose mx-auto mb-10">
+                    Classic hub unchanged for daily use. This was the spatial director’s cut.
                 </p>
-                <p class="text-xs font-black tracking-[0.25em] text-teal-300/90 mb-3 uppercase">Core vision &amp; architecture</p>
-                <h2 class="exp-h3">Distributed Wearable AIOS for Human–AI Symbiosis</h2>
-                <p class="exp-prose">
-                    Reimagining intent-driven transparent interaction architectures and physical trust primitives to reshape emotional connectivity and social trust in digital existence.
-                </p>
-                <div class="exp-rule"></div>
-                <p class="text-sm font-semibold text-stone-400">Built and maintained by Sam Wu.</p>
+                <a href="index.html" class="text-xs font-black uppercase tracking-[0.3em] text-teal-300 border-b border-teal-500/50 pb-1 hover:text-white transition-colors">Return to hub →</a>
             </div>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">III · Contact</p>
-            <p class="exp-lead mb-8">Exactly as on the hub — channels, written out.</p>
-            <div class="exp-slab exp-dl">
-                <div>
-                    <div class="exp-dt">Personal</div>
-                    <div class="exp-dd"><a href="mailto:wuyihang429@gmail.com">wuyihang429@gmail.com</a></div>
-                </div>
-                <div>
-                    <div class="exp-dt">University</div>
-                    <div class="exp-dd"><a href="mailto:yihang.wu@mail.utoronto.ca">yihang.wu@mail.utoronto.ca</a></div>
-                </div>
-                <div>
-                    <div class="exp-dt">Professional</div>
-                    <div class="exp-dd"><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener noreferrer">linkedin.com/in/yihang-wu-ba3b58237</a></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">IV · Professional dossier</p>
-            <p class="exp-prose mb-6">
-                From the <a href="about.html">Professional Dossier</a> — profile &amp; beyond: bridging pure logic with industrial execution in Data and AI. Specialized in data processing, quantitative modeling, and workflow optimization; Human–AI symbiosis through methodology, de-app’d systems, and intent-driven agents toward digital sovereignty.
-            </p>
-            <div class="exp-quote mb-8">
-                IEEE Student Member · Institute of Electrical and Electronics Engineers.
-            </div>
-            <p class="exp-prose">
-                Full narrative, media, stack, and honors live on the dossier page — <a href="about.html">about.html</a>.
-            </p>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">V · Experience</p>
-            <div class="exp-slab mb-8">
-                <p class="text-xs font-black text-teal-300/90 uppercase tracking-widest mb-2">Logistics &amp; Data Intern · Haicheng Hong Sheng Da · Jul–Sep 2024</p>
-                <ul class="exp-list">
-                    <li>Inbound/outbound inventory operations and data processing.</li>
-                    <li>International logistics communication with vendors and clients.</li>
-                    <li>Supply-chain documentation workflows tuned for execution speed.</li>
-                </ul>
-            </div>
-            <div class="exp-slab">
-                <p class="text-xs font-black text-sky-300/90 uppercase tracking-widest mb-2">Ward Missionary · The Church of Jesus Christ of Latter-day Saints · Nov 2025–present</p>
-                <ul class="exp-list">
-                    <li>Statistical analysis with leadership on member demographics.</li>
-                    <li>Live English–Mandarin interpretation in service contexts.</li>
-                    <li>Onboarding and accessibility for new members.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">VI · Stack &amp; honors</p>
-            <div class="exp-slab mb-6">
-                <p class="text-xs font-black uppercase tracking-widest text-stone-400 mb-4">Core tech stack</p>
-                <ul class="exp-list">
-                    <li><strong class="text-emerald-300">Python / FastAPI</strong></li>
-                    <li><strong class="text-blue-300">R Studio modeling</strong></li>
-                    <li><strong class="text-amber-200">JavaScript / UI</strong></li>
-                    <li><strong class="text-purple-200">Gemini AI API</strong></li>
-                    <li><strong class="text-teal-300">ERP automation</strong></li>
-                </ul>
-            </div>
-            <div class="exp-slab">
-                <p class="text-xs font-black uppercase tracking-widest text-stone-400 mb-4">Honors &amp; beyond</p>
-                <ul class="exp-list">
-                    <li>MTA: JavaScript certified · Google Workspace / Microsoft Office</li>
-                    <li>Data processing &amp; logistics · Asian FS Level 2 · Shenyang men’s figure skating champion</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">VII · Publications</p>
-            <h2 class="exp-h2">Formal catalog</h2>
-            <p class="exp-prose mb-6">
-                Papers and academic listings — the same feed as the hub’s Publications tile, rendered as a dedicated page.
-            </p>
-            <p class="exp-prose">
-                Open the full bibliography: <a href="publications.html">publications.html</a>
-            </p>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">VIII · Moments</p>
-            <h2 class="exp-h2">Blog · photos &amp; notes</h2>
-            <p class="exp-prose">
-                The Moments feed — timeline layout, snapshots and captions. Same content as the hub’s Moments entry.
-            </p>
-            <p class="exp-prose mt-4">
-                <a href="blog.html">blog.html</a>
-            </p>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">IX · CV &amp; AI agent</p>
-            <p class="exp-prose">
-                Résumé lane and AI-agent affordances — identical destination to the hub card.
-            </p>
-            <p class="exp-prose mt-4">
-                <a href="resume.html">resume.html</a>
-            </p>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">X · What people say</p>
-            <h2 class="exp-h2">Public voices</h2>
-            <p class="exp-prose mb-6">
-                Short excerpts below load from the same public API as the hub sidebar. Full names and links stay behind the private gallery, as on the main site.
-            </p>
-            <div id="exp-testimonials" class="mb-6">
-                <p class="text-stone-500 text-sm font-semibold">Loading…</p>
-            </div>
-            <p class="exp-prose text-sm text-stone-400">
-                To read full reviewer details (name, LinkedIn, etc.), use <a href="hidden.html">Private Gallery</a> with access.
-            </p>
-        </section>
-
-        <section class="exp-sc" data-exp-section>
-            <p class="exp-chapter">XI · Private gallery</p>
-            <h2 class="exp-h2">Photos &amp; testimonials</h2>
-            <p class="exp-prose mb-6">
-                Verified access — same promise as the long tile on the hub: HR and employers may request a password by email; typical reply within 24 hours.
-            </p>
-            <p class="exp-prose">
-                <a href="hidden.html">hidden.html</a>
-            </p>
-        </section>
-
-        <section class="exp-sc exp-end" data-exp-section>
-            <p class="exp-chapter">XII · Close</p>
-            <p class="exp-lead" style="margin: 0 auto;">
-                End of the spatial narrative. The <a href="index.html">classic hub</a> remains the day-to-day interface; this scroll is the same site, unfolded.
-            </p>
-            <p class="mt-10 text-xs font-bold tracking-[0.25em] uppercase text-stone-500">Sam Wu · HCI &amp; Applied AI · Toronto</p>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <script src="api-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
     <script>
-        (function () {
-            const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
+(function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) document.body.classList.add('sp--reduce');
 
-            function reveal() {
-                const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                document.querySelectorAll('[data-exp-section]').forEach((el) => {
-                    if (reduce) {
-                        el.classList.add('exp-sc--visible');
-                        return;
-                    }
-                    const obs = new IntersectionObserver(
-                        (entries, o) => {
-                            entries.forEach((e) => {
-                                if (e.isIntersecting) {
-                                    e.target.classList.add('exp-sc--visible');
-                                    o.unobserve(e.target);
-                                }
-                            });
-                        },
-                        { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
-                    );
-                    obs.observe(el);
-                });
+    document.documentElement.style.setProperty('--mx', '0');
+    document.documentElement.style.setProperty('--my', '0');
+    if (!reduce) {
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            document.documentElement.style.setProperty('--mx', x.toFixed(3));
+            document.documentElement.style.setProperty('--my', y.toFixed(3));
+        }, { passive: true });
+    }
+
+    const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
+
+    function escapeHTML(str) {
+        if (str == null) return '';
+        return String(str).replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+    }
+
+    async function loadVoices() {
+        const box = document.getElementById('sp-testimonials');
+        if (!box) return;
+        try {
+            const res = await fetch(API_BASE + '/public/testimonials', { cache: 'no-store' });
+            if (!res.ok) throw new Error('x');
+            const data = await res.json();
+            if (!Array.isArray(data) || !data.length) {
+                box.innerHTML = '<p class="text-stone-500 text-sm">No public excerpts.</p>';
+                return;
             }
+            box.innerHTML = data.slice(0, 5).map((row) => {
+                const c = escapeHTML(String(row.comment || '').slice(0, 260));
+                const rel = escapeHTML(row.relationship || '');
+                const more = String(row.comment || '').length > 260 ? '…' : '';
+                return '<div class="sp-tcard"><p class="italic text-stone-300 mb-2">' + c + more + '</p><p class="text-xs font-black uppercase tracking-widest text-teal-400/90">' + rel + '</p></div>';
+            }).join('');
+        } catch (_) {
+            box.innerHTML = '<p class="text-stone-500 text-sm">Voices sync when the API is up.</p>';
+        }
+    }
+    loadVoices();
 
-            function parallax() {
-                const grid = document.getElementById('exp-grid');
-                if (!grid || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-                let ticking = false;
-                window.addEventListener('scroll', () => {
-                    if (ticking) return;
-                    ticking = true;
-                    requestAnimationFrame(() => {
-                        const y = window.scrollY;
-                        const h = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-                        const t = y / h;
-                        grid.style.transform = 'perspective(900px) rotateX(76deg) translateY(' + (t * -12) + '%) scale(1.18)';
-                        ticking = false;
-                    });
-                }, { passive: true });
-            }
+    if (reduce || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        document.getElementById('hero-hint') && (document.getElementById('hero-hint').style.opacity = '0');
+        return;
+    }
 
-            function escapeHTML(str) {
-                if (str == null) return '';
-                return String(str).replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
-            }
+    gsap.registerPlugin(ScrollTrigger);
 
-            async function testimonials() {
-                const box = document.getElementById('exp-testimonials');
-                if (!box) return;
-                try {
-                    const res = await fetch(API_BASE + '/public/testimonials', { cache: 'no-store' });
-                    if (!res.ok) throw new Error('bad status');
-                    const data = await res.json();
-                    if (!Array.isArray(data) || !data.length) {
-                        box.innerHTML = '<p class="text-stone-500 text-sm font-semibold">No public excerpts yet.</p>';
-                        return;
-                    }
-                    box.innerHTML = data.slice(0, 4).map((row) => {
-                        const raw = String(row.comment || '');
-                        const c = escapeHTML(raw.slice(0, 240));
-                        const rel = escapeHTML(row.relationship || '');
-                        const more = raw.length > 240 ? '…' : '';
-                        return '<div class="exp-testimonial-card"><p class="italic leading-relaxed mb-3">' + c + more + '</p><p class="text-xs font-bold uppercase tracking-widest text-teal-400/90">' + rel + '</p></div>';
-                    }).join('');
-                } catch (_) {
-                    box.innerHTML = '<p class="text-stone-500 text-sm">Public voices load when the API is reachable — same as the hub.</p>';
-                }
-            }
+    if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+            duration: 1.12,
+            smoothWheel: true,
+            wheelMultiplier: 0.92,
+            touchMultiplier: 1.35
+        });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(function (time) {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+        document.documentElement.classList.add('lenis', 'lenis-smooth');
+    }
 
-            reveal();
-            parallax();
-            testimonials();
-        })();
+    const progFill = document.getElementById('sp-prog-fill');
+    ScrollTrigger.create({
+        start: 0,
+        end: 'max',
+        onUpdate: (self) => {
+            if (progFill) progFill.style.height = (self.progress * 100) + '%';
+        }
+    });
+
+    /* —— Hero: dolly + rotate + split —— */
+    const hero = document.getElementById('sc-hero');
+    const heroPack = document.getElementById('hero-pack');
+    const heroName = document.getElementById('hero-name');
+    const heroOutline = document.getElementById('hero-outline');
+    const heroWu = document.getElementById('hero-wu');
+    const heroTag = document.getElementById('hero-tag');
+    const heroK = document.getElementById('hero-k');
+    const heroHint = document.getElementById('hero-hint');
+
+    gsap.timeline({
+        defaults: { ease: 'none', transformPerspective: 1400 },
+        scrollTrigger: {
+            trigger: hero,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.65
+        }
+    })
+        .fromTo(heroPack, { rotateX: 8, z: -200, y: 40, transformOrigin: '50% 80%' }, { rotateX: -12, z: 120, y: -80 })
+        .fromTo(heroName, { rotateY: -18 }, { rotateY: 10 }, 0)
+        .fromTo(heroOutline, { opacity: 0.9, x: 0 }, { opacity: 0.15, x: 24 }, 0)
+        .fromTo(heroWu, { z: 40, y: 0 }, { z: -120, y: -30 }, 0)
+        .fromTo(heroTag, { opacity: 1, letterSpacing: '0.35em' }, { opacity: 0.25, letterSpacing: '0.5em' }, 0)
+        .fromTo(heroK, { opacity: 0.8 }, { opacity: 0 }, 0.2);
+
+    gsap.to(heroHint, {
+        opacity: 0,
+        scrollTrigger: { trigger: hero, start: 'top top', end: '15% bottom', scrub: true }
+    });
+
+    /* —— Monolith: tilt + glare sweep —— */
+    const mono = document.getElementById('sc-mono');
+    const monoPack = document.getElementById('mono-pack');
+    const monoCard = document.getElementById('mono-card');
+    gsap.timeline({
+        defaults: { ease: 'none', transformPerspective: 1400 },
+        scrollTrigger: { trigger: mono, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+    })
+        .fromTo(monoPack, { rotateY: 22, x: 120, z: -300 }, { rotateY: -8, x: -40, z: 80 })
+        .fromTo(monoCard, { rotateX: 12, transformOrigin: '50% 100%' }, { rotateX: -6 }, 0);
+
+    /* —— Photo flight —— */
+    const photo = document.getElementById('sc-photo');
+    const photoFrame = document.getElementById('photo-frame');
+    const photoCopy = document.getElementById('photo-copy');
+    gsap.timeline({
+        defaults: { ease: 'none', transformPerspective: 1400 },
+        scrollTrigger: { trigger: photo, start: 'top bottom', end: 'bottom top', scrub: 0.7 }
+    })
+        .fromTo(photoFrame, { x: -180, rotateY: 35, z: -400, rotateZ: -6 }, { x: 0, rotateY: -12, z: 60, rotateZ: 2 })
+        .fromTo(photoCopy, { x: 200, opacity: 0.2, z: -100 }, { x: 0, opacity: 1, z: 40 }, 0);
+
+    /* —— Contact: pack tilt + cards cascade in depth (single scrub timeline) —— */
+    const contact = document.getElementById('sc-contact');
+    const contactPack = document.getElementById('contact-pack');
+    const cNodes = document.querySelectorAll('#contact-grid .sp-chrome');
+    const cTl = gsap.timeline({
+        defaults: { ease: 'none', transformPerspective: 1400 },
+        scrollTrigger: { trigger: contact, start: 'top 78%', end: 'bottom 22%', scrub: 0.88 }
+    });
+    if (contactPack) {
+        cTl.fromTo(contactPack,
+            { rotateX: 16, z: -140, y: 50, transformOrigin: '50% 100%' },
+            { rotateX: -5, z: 50, y: 0 },
+            0
+        );
+    }
+    cNodes.forEach(function (el, i) {
+        cTl.fromTo(el,
+            { y: 110, z: -220 - i * 70, rotateX: 22, opacity: 0.35, transformOrigin: '50% 100%' },
+            { y: 0, z: i * 28, rotateX: 0, opacity: 1 },
+            i * 0.12
+        );
+    });
+
+    /* —— Dossier —— */
+    const dossier = document.getElementById('sc-dossier');
+    const dossierPack = document.getElementById('dossier-pack');
+    gsap.fromTo(dossierPack,
+        { scale: 0.85, z: -250, rotateX: 20, transformPerspective: 1400, transformOrigin: '50% 50%' },
+        {
+            scale: 1, z: 40, rotateX: -4,
+            ease: 'none',
+            scrollTrigger: { trigger: dossier, start: 'top bottom', end: 'center center', scrub: 0.75 }
+        }
+    );
+
+    /* —— Work slabs opposing drift —— */
+    const work = document.getElementById('sc-work');
+    const w0 = document.querySelector('[data-w="0"]');
+    const w1 = document.querySelector('[data-w="1"]');
+    if (w0) {
+        gsap.fromTo(w0, { x: '-25%', rotateY: 15, z: -100, transformPerspective: 1400 }, { x: '0%', rotateY: -5, z: 50, ease: 'none', scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 0.85 } });
+    }
+    if (w1) {
+        gsap.fromTo(w1, { x: '25%', rotateY: -15, z: -100, transformPerspective: 1400 }, { x: '0%', rotateY: 5, z: 50, ease: 'none', scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 0.85 } });
+    }
+
+    /* —— Stack grid spin —— */
+    const stack = document.getElementById('sc-stack');
+    const stackPack = document.getElementById('stack-pack');
+    gsap.fromTo(stackPack,
+        { rotateY: -30, z: -180 },
+        { rotateY: 12, z: 60, ease: 'none', scrollTrigger: { trigger: stack, start: 'top bottom', end: 'bottom top', scrub: 0.8 } }
+    );
+
+    /* —— Gate typography bloom —— */
+    const gate = document.getElementById('sc-gate');
+    const gatePack = document.getElementById('gate-pack');
+    gsap.fromTo(gatePack,
+        { scale: 1.2, z: -200, opacity: 0.4, transformPerspective: 1600 },
+        { scale: 1, z: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: gate, start: 'top bottom', end: 'center center', scrub: 0.6 } }
+    );
+
+    /* —— Voices —— */
+    const voices = document.getElementById('sc-voices');
+    const voicesPack = document.getElementById('voices-pack');
+    gsap.fromTo(voicesPack,
+        { y: 80, z: -80, transformPerspective: 1400 },
+        { y: 0, z: 20, ease: 'none', scrollTrigger: { trigger: voices, start: 'top bottom', end: 'bottom top', scrub: 0.7 } }
+    );
+
+    /* —— Finale: pull back —— */
+    const end = document.getElementById('sc-end');
+    const endPack = document.getElementById('end-pack');
+    gsap.timeline({
+        defaults: { ease: 'none', transformPerspective: 1500 },
+        scrollTrigger: { trigger: end, start: 'top bottom', end: 'bottom top', scrub: 0.55 }
+    })
+        .fromTo(endPack, { z: 400, scale: 1.4, rotateX: -25, transformOrigin: '50% 40%' }, { z: 0, scale: 1, rotateX: 0 });
+
+    /* Floor parallax tied to global scroll */
+    const floor = document.getElementById('sp-floor');
+    ScrollTrigger.create({
+        start: 0,
+        end: 'max',
+        onUpdate: (self) => {
+            if (!floor) return;
+            const t = self.progress;
+            floor.style.transform =
+                'translate3d(calc(var(--mx) * 20px), ' + (t * -8) + '%, 0) perspective(1000px) rotateX(82deg) scale(1.35)';
+        }
+    });
+
+    ScrollTrigger.refresh();
+})();
     </script>
 </body>
 </html>
