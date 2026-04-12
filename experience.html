@@ -433,31 +433,152 @@
         @media (min-width: 800px) {
             .sp-stack-grid { grid-template-columns: 1fr 1fr; }
         }
-        .sp-gate-links {
+        /* VIII — destination manifest: data-driven grid; add rows in SP_ROUTE_MANIFEST (or fetch). */
+        .sp-route-lede {
+            max-width: min(44rem, 100%);
+            margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+            font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+            line-height: 1.65;
+            color: rgba(212, 204, 194, 0.88);
+        }
+        .sp-dest-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 0.5rem 2rem;
+            gap: clamp(1rem, 2vw, 1.35rem);
+            width: 100%;
+            max-width: min(1200px, 100%);
         }
-        @media (min-width: 700px) {
-            .sp-gate-links {
-                grid-template-columns: 1fr 1fr;
+        @media (min-width: 560px) {
+            .sp-dest-grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
             }
         }
-        .sp-gate-links a {
-            display: block;
-            font-size: clamp(1.5rem, 3.5vw, 2.75rem);
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            color: #e7e2da;
+        .sp-dest-card {
+            --dest-accent: var(--mint);
+            --enter-delay: 0s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: min(220px, 42vh);
+            padding: clamp(1.35rem, 2.5vw, 1.85rem);
+            padding-left: clamp(1.5rem, 2.8vw, 2rem);
             text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.12);
-            padding: 0.85rem 0;
-            transition: color 0.2s, padding-left 0.25s, border-color 0.2s;
+            color: inherit;
+            overflow: hidden;
+            border-radius: 3px;
+            border: 1px solid rgba(255, 252, 248, 0.1);
+            background: linear-gradient(145deg, rgba(22, 20, 17, 0.95) 0%, rgba(6, 6, 5, 0.98) 100%);
+            box-shadow:
+                min(12px, 1.5vw) min(12px, 1.5vw) 0 rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 252, 248, 0.06);
+            border-left: 3px solid var(--dest-accent);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+            animation: sp-dest-enter 0.75s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+            animation-delay: var(--enter-delay);
         }
-        .sp-gate-links a:hover {
-            color: var(--mint);
-            padding-left: 0.75rem;
-            border-bottom-color: rgba(94, 234, 212, 0.5);
+        @keyframes sp-dest-enter {
+            from {
+                opacity: 0;
+                transform: translateY(22px) scale(0.98);
+                filter: blur(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .sp-dest-card { animation: none; }
+        }
+        .sp-dest-card::before {
+            content: attr(data-ix);
+            position: absolute;
+            right: -0.05em;
+            top: -0.15em;
+            font-size: clamp(4rem, 14vw, 7rem);
+            font-weight: 900;
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            color: rgba(244, 237, 228, 0.045);
+            pointer-events: none;
+            user-select: none;
+        }
+        .sp-dest-card:hover {
+            transform: translateY(-6px);
+            box-shadow:
+                min(16px, 2vw) min(16px, 2vw) 0 rgba(0, 0, 0, 0.42),
+                0 0 0 1px rgba(94, 234, 212, 0.18),
+                0 28px 56px rgba(0, 0, 0, 0.45);
+            border-color: rgba(94, 234, 212, 0.28);
+        }
+        .sp-dest-card:focus-visible {
+            outline: 2px solid var(--dest-accent);
+            outline-offset: 3px;
+        }
+        .sp-dest-card--mint { --dest-accent: #5eead4; }
+        .sp-dest-card--sky { --dest-accent: #7dd3fc; }
+        .sp-dest-card--violet { --dest-accent: #a78bfa; }
+        .sp-dest-card--amber { --dest-accent: #fbbf24; }
+        .sp-dest-card--rose { --dest-accent: #fb7185; }
+        .sp-dest-card__kicker {
+            font-size: clamp(0.62rem, 1vw, 0.72rem);
+            font-weight: 900;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--dest-accent);
+            margin: 0 0 0.65rem;
+        }
+        .sp-dest-card__title {
+            margin: 0 0 0.75rem;
+            font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #faf8f5;
+            line-height: 1.15;
+            position: relative;
+            z-index: 1;
+        }
+        .sp-dest-card__body {
+            margin: 0;
+            flex: 1;
+            font-size: clamp(0.82rem, 1.15vw, 0.95rem);
+            line-height: 1.6;
+            color: rgba(212, 204, 194, 0.88);
+            position: relative;
+            z-index: 1;
+        }
+        .sp-dest-card__go {
+            margin-top: 1.25rem;
+            font-size: clamp(0.65rem, 0.95vw, 0.74rem);
+            font-weight: 900;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(244, 237, 228, 0.45);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 1;
+            transition: color 0.25s ease, letter-spacing 0.25s ease;
+        }
+        .sp-dest-card:hover .sp-dest-card__go {
+            color: var(--dest-accent);
+            letter-spacing: 0.32em;
+        }
+        .sp-dest-card__go svg {
+            width: 1em;
+            height: 1em;
+            opacity: 0.85;
+        }
+        .sp-route-foot {
+            margin-top: clamp(1.5rem, 3vw, 2.25rem);
+            max-width: min(48rem, 100%);
+            font-size: clamp(0.72rem, 1.05vw, 0.82rem);
+            line-height: 1.55;
+            color: rgba(168, 162, 158, 0.95);
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 252, 248, 0.08);
         }
 
         .sp-label-xs {
@@ -535,37 +656,6 @@
             50% { transform: translateY(10px); opacity: 0.65; }
         }
 
-        .sp-gate-blurbs {
-            margin-top: clamp(2rem, 4vw, 3rem);
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem 1.5rem;
-            max-width: min(52rem, 100%);
-        }
-        @media (min-width: 640px) {
-            .sp-gate-blurbs {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        .sp-gate-blurbs p {
-            margin: 0;
-            font-size: clamp(0.78rem, 1.15vw, 0.88rem);
-            color: rgba(212, 204, 194, 0.88);
-            line-height: 1.55;
-            padding: 0.65rem 0.85rem;
-            border-left: 2px solid rgba(94, 234, 212, 0.35);
-            background: rgba(0, 0, 0, 0.22);
-        }
-        .sp-gate-blurbs a {
-            color: var(--mint);
-            font-weight: 800;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(94, 234, 212, 0.35);
-        }
-        .sp-gate-blurbs a:hover {
-            color: #fff;
-            border-bottom-color: var(--mint);
-        }
         .sp-voices-footnote {
             margin-top: 1.25rem;
             padding: 0.75rem 1rem;
@@ -875,27 +965,20 @@
         </div>
     </section>
 
-    <section class="sp-track" id="sc-gate" style="height: 400vh;">
+    <section class="sp-track" id="sc-gate" style="height: 520vh;">
         <div class="sp-sticky persp sp-sticky--wide">
             <div class="sp-water" aria-hidden="true">VIII</div>
             <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
                 <div class="w-full" id="gate-pack">
-                    <p class="sp-k mb-10">VIII · Routing</p>
-                    <h2 class="sp-h2 text-white mb-4" style="font-size:clamp(2.5rem,7vw,5.5rem);max-width:min(24ch,95vw);">Same doors as the hub</h2>
-                    <div class="sp-gate-links">
-                        <a href="publications.html">Publications</a>
-                        <a href="blog.html">Moments</a>
-                        <a href="resume.html">CV &amp; AI agent</a>
-                        <a href="about.html">Professional dossier</a>
-                        <a href="hidden.html">Private gallery</a>
-                    </div>
-                    <div class="sp-gate-blurbs">
-                        <p><a href="publications.html">Publications</a> — papers &amp; academic catalog.</p>
-                        <p><a href="blog.html">Moments</a> — Blog · photos &amp; notes.</p>
-                        <p><a href="resume.html">CV &amp; AI agent</a> — PDF and terminal assistant.</p>
-                        <p><a href="about.html">Professional dossier</a> — profile &amp; beyond.</p>
-                        <p class="md:col-span-2"><a href="hidden.html">Private gallery</a> — photos &amp; full testimonials. <span class="sp-muted" style="display:block;margin-top:0.35rem;">Verified access · HR / employers: need a password? Email the addresses in Channels (24h reply).</span></p>
-                    </div>
+                    <p class="sp-k mb-8">VIII · Routing</p>
+                    <h2 class="sp-h2 text-white mb-6" style="font-size:clamp(2.25rem,6.5vw,4.75rem);max-width:min(22ch,95vw);line-height:1.05;">Destinations</h2>
+                    <p class="sp-route-lede">
+                        Same entry points as the System Hub — each tile is a full destination page in the site, not a control. Scroll through the previews, then open any route to continue reading in its dedicated layout.
+                    </p>
+                    <nav class="sp-dest-grid" id="sp-dest-grid" aria-label="Site destinations"></nav>
+                    <p class="sp-route-foot">
+                        New sections can be added without breaking this grid — the manifest that powers this list lives in the page script so it can later be swapped for an API feed.
+                    </p>
                 </div>
             </div>
         </div>
@@ -957,6 +1040,68 @@
         if (str == null) return '';
         return String(str).replace(/[&<>'"]/g, function (ch) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[ch]; });
     }
+
+    var SP_ROUTE_TONES = { mint: 1, sky: 1, violet: 1, amber: 1, rose: 1 };
+    /** Act VIII — add/reorder objects here, or replace renderSpDestinations() with fetch(adminRoutes). */
+    var SP_ROUTE_MANIFEST = [
+        {
+            title: 'Publications',
+            kicker: 'Papers & academic catalog',
+            body: 'Peer-reviewed work and the living bibliography. Opens the full publications index.',
+            href: 'publications.html',
+            tone: 'mint'
+        },
+        {
+            title: 'Moments',
+            kicker: 'Blog · photos & notes',
+            body: 'Long-form notes and imagery — the same stream as the Moments card on the hub.',
+            href: 'blog.html',
+            tone: 'sky'
+        },
+        {
+            title: 'CV & AI agent',
+            kicker: 'PDF & terminal assistant',
+            body: 'Downloadable résumé plus the conversational agent on curated public context.',
+            href: 'resume.html',
+            tone: 'violet'
+        },
+        {
+            title: 'Professional dossier',
+            kicker: 'Profile & beyond',
+            body: 'Structured narrative of roles, stack, and intent — the dossier route from the hub.',
+            href: 'about.html',
+            tone: 'amber'
+        },
+        {
+            title: 'Private gallery',
+            kicker: 'Photos & full testimonials',
+            body: 'Verified access for richer media and attributed quotes. HR: request a password via Channels (24h reply).',
+            href: 'hidden.html',
+            tone: 'rose'
+        }
+    ];
+
+    function pickRouteTone(t) {
+        return SP_ROUTE_TONES[t] ? t : 'mint';
+    }
+
+    function renderSpDestinations() {
+        var root = document.getElementById('sp-dest-grid');
+        if (!root) return;
+        var arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>';
+        root.innerHTML = SP_ROUTE_MANIFEST.map(function (row, i) {
+            var tone = pickRouteTone(row.tone);
+            var ix = (i + 1 < 10 ? '0' : '') + (i + 1);
+            var delay = (i * 0.07).toFixed(2) + 's';
+            return '<a class="sp-dest-card sp-dest-card--' + tone + '" href="' + escapeHTML(row.href) + '" style="--enter-delay:' + delay + '" data-ix="' + ix + '">' +
+                '<p class="sp-dest-card__kicker">' + escapeHTML(row.kicker) + '</p>' +
+                '<h3 class="sp-dest-card__title">' + escapeHTML(row.title) + '</h3>' +
+                '<p class="sp-dest-card__body">' + escapeHTML(row.body) + '</p>' +
+                '<span class="sp-dest-card__go">Open full page ' + arrow + '</span>' +
+                '</a>';
+        }).join('');
+    }
+    renderSpDestinations();
 
     async function loadVoices() {
         const box = document.getElementById('sp-testimonials');
