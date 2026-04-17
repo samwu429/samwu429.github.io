@@ -185,7 +185,41 @@
                     <div>
                         <p class="adm-kicker">Feedback</p>
                         <h2 class="adm-page-title mt-1 mb-2">Visitor voices</h2>
-                        <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">Entries are submitted by visitors. You may remove items; there is no manual create flow.</p>
+                        <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">You can edit reviewer details (name, LinkedIn, relationship, comment), remove entries, or add a new curated testimonial.</p>
+                    </div>
+                    <div class="adm-card p-6 md:p-8">
+                        <p class="adm-section-title">Editor</p>
+                        <input type="hidden" id="testimonial-edit-id" value="">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl">
+                            <div>
+                                <label class="adm-label" for="testimonial-name">Name *</label>
+                                <input type="text" id="testimonial-name" class="adm-input" placeholder="Reviewer name">
+                            </div>
+                            <div>
+                                <label class="adm-label" for="testimonial-linkedin">LinkedIn URL</label>
+                                <input type="text" id="testimonial-linkedin" class="adm-input font-mono text-sm" placeholder="https://www.linkedin.com/in/...">
+                            </div>
+                            <div>
+                                <label class="adm-label" for="testimonial-relationship">Relationship *</label>
+                                <select id="testimonial-relationship" class="adm-input">
+                                    <option value="">Select...</option>
+                                    <option value="Colleague">Colleague</option>
+                                    <option value="Classmate">Classmate</option>
+                                    <option value="Friend">Friend</option>
+                                    <option value="Leader">Leader</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-5 max-w-4xl">
+                            <label class="adm-label" for="testimonial-comment">Comment *</label>
+                            <textarea id="testimonial-comment" rows="5" class="adm-input font-sans leading-relaxed" placeholder="Comment"></textarea>
+                        </div>
+                        <div class="flex flex-wrap gap-3 mt-6">
+                            <button type="button" id="testimonial-save-btn" class="adm-btn">Save</button>
+                            <button type="button" id="testimonial-clear-btn" class="adm-btn adm-btn--secondary">Clear</button>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3">Tip: if backend update API is unavailable, save will automatically fall back to delete + recreate.</p>
                     </div>
                     <div class="adm-card p-6 md:p-8">
                         <div id="admin-testimonials" class="space-y-4 text-sm md:text-base"></div>
@@ -616,12 +650,32 @@
 
             const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-testimonials').innerHTML = testimonials.map(t => `
-                <div class="adm-list-row relative pr-24 md:pr-28">
-                    <button type="button" class="absolute top-4 right-4 adm-btn adm-btn--secondary text-xs py-2 px-3 js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
-                    <div class="font-semibold text-slate-900">${escapeHTML(t.name)} <span class="text-slate-600 font-normal text-sm">(${escapeHTML(t.relationship)})</span></div>
-                    <p class="text-sm text-slate-700 mt-2 leading-relaxed">${escapeHTML(t.comment)}</p>
+                <div class="adm-list-row">
+                    <div class="flex flex-wrap items-start justify-between gap-3">
+                        <div class="font-semibold text-slate-900">${escapeHTML(t.name || '')} <span class="text-slate-600 font-normal text-sm">(${escapeHTML(t.relationship || '')})</span></div>
+                        <div class="flex gap-2">
+                            <button type="button" class="adm-btn adm-btn--secondary text-xs py-2 px-3 js-edit-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Edit</button>
+                            <button type="button" class="adm-btn adm-btn--danger text-xs py-2 px-3 js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
+                        </div>
+                    </div>
+                    ${(t.linkedin || '').trim() ? `<a href="${escapeHTML(String(t.linkedin))}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-blue-700 hover:text-blue-900 underline break-all">${escapeHTML(String(t.linkedin))}</a>` : '<p class="text-xs text-slate-400">No LinkedIn URL</p>'}
+                    <p class="text-sm text-slate-700 leading-relaxed">${escapeHTML(t.comment || '')}</p>
                 </div>
             `).join('') || '<p class="text-slate-500 text-sm text-center py-8">No testimonials yet.</p>';
+            document.querySelectorAll('.js-edit-testimonial-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const row = testimonials.find(x => String(x.id) === String(btn.dataset.testimonialId || ''));
+                    if (!row) return;
+                    document.getElementById('testimonial-edit-id').value = row.id || '';
+                    document.getElementById('testimonial-name').value = row.name || '';
+                    document.getElementById('testimonial-linkedin').value = row.linkedin || '';
+                    document.getElementById('testimonial-relationship').value = row.relationship || '';
+                    document.getElementById('testimonial-comment').value = row.comment || '';
+                    document.getElementById('testimonial-save-btn').textContent = 'Update';
+                    openModule('testimonials');
+                    document.getElementById('module-testimonials')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
             document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
                 btn.addEventListener('click', () => deleteTestimonial(btn.dataset.testimonialId || ''));
             });
@@ -749,6 +803,15 @@
             document.getElementById('blog-save-btn').textContent = 'Publish';
         }
 
+        function clearTestimonialForm() {
+            document.getElementById('testimonial-edit-id').value = '';
+            document.getElementById('testimonial-name').value = '';
+            document.getElementById('testimonial-linkedin').value = '';
+            document.getElementById('testimonial-relationship').value = '';
+            document.getElementById('testimonial-comment').value = '';
+            document.getElementById('testimonial-save-btn').textContent = 'Save';
+        }
+
         async function savePublication() {
             const id = document.getElementById('pub-edit-id').value;
             const body = {
@@ -841,6 +904,55 @@
             }
         }
 
+        async function saveTestimonial() {
+            const id = document.getElementById('testimonial-edit-id').value;
+            const name = document.getElementById('testimonial-name').value.trim();
+            const linkedin = document.getElementById('testimonial-linkedin').value.trim();
+            const relationship = document.getElementById('testimonial-relationship').value.trim();
+            const comment = document.getElementById('testimonial-comment').value.trim();
+            if (!name || !relationship || !comment) return alert('Name, relationship, and comment are required.');
+            const btn = document.getElementById('testimonial-save-btn');
+            btn.disabled = true;
+            try {
+                if (id) {
+                    let updated = false;
+                    try {
+                        await requestJson(`/admin/testimonials/${encodeURIComponent(id)}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                            body: JSON.stringify({ name, linkedin, relationship, comment })
+                        });
+                        updated = true;
+                    } catch (err) {
+                        if (err && err.message && /status (404|405)/.test(err.message)) {
+                            await requestJson(`/admin/testimonials/${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
+                            await requestJson('/hidden/testimonials', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                                body: JSON.stringify({ name, linkedin, relationship, comment })
+                            });
+                            updated = true;
+                        } else {
+                            throw err;
+                        }
+                    }
+                    if (!updated) throw new Error('Testimonial update failed');
+                } else {
+                    await requestJson('/hidden/testimonials', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify({ name, linkedin, relationship, comment })
+                    });
+                }
+                clearTestimonialForm();
+                await loadAdminData();
+            } catch (_) {
+                alert('Save failed');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
         async function addPhoto() {
             const category = document.getElementById('p-cat').value;
             if (!selectedBase64) return alert('Please select an image first.');
@@ -880,11 +992,17 @@
             if(!confirm('Are you sure you want to delete this testimonial?')) return;
             try {
                 await requestJson(`/admin/testimonials/${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
+                if (String(document.getElementById('testimonial-edit-id').value || '') === String(id || '')) {
+                    clearTestimonialForm();
+                }
                 await loadAdminData();
             } catch (e) {
                 alert('Delete failed. Please try again.');
             }
         }
+
+        document.getElementById('testimonial-save-btn')?.addEventListener('click', saveTestimonial);
+        document.getElementById('testimonial-clear-btn')?.addEventListener('click', clearTestimonialForm);
     </script>
 </body>
 </html>
