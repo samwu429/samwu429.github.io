@@ -136,6 +136,20 @@
             container.innerHTML = '<p class="text-sm text-gray-500 font-bold animate-pulse">Loading moments…</p>';
             try {
                 let rows = await fetchJson(`${API_BASE}/public/blog`);
+                rows = (Array.isArray(rows) ? rows : []).sort((a, b) => {
+                    const ay = Number(a && a.displayYear ? a.displayYear : 0);
+                    const by = Number(b && b.displayYear ? b.displayYear : 0);
+                    if (ay !== by) return by - ay;
+                    const am = Number(a && a.displayMonth ? a.displayMonth : 0);
+                    const bm = Number(b && b.displayMonth ? b.displayMonth : 0);
+                    if (am !== bm) return bm - am;
+                    const ad = Number(a && a.displayDay ? a.displayDay : 0);
+                    const bd = Number(b && b.displayDay ? b.displayDay : 0);
+                    if (ad !== bd) return bd - ad;
+                    const at = new Date(a && (a.createdAt || a.timestamp) ? (a.createdAt || a.timestamp) : 0).getTime();
+                    const bt = new Date(b && (b.createdAt || b.timestamp) ? (b.createdAt || b.timestamp) : 0).getTime();
+                    return bt - at;
+                });
                 const limit = opts && opts.limit ? Number(opts.limit) : 0;
                 if (limit > 0) rows = rows.slice(0, limit);
                 container.innerHTML = '';
