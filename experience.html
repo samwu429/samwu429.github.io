@@ -33,6 +33,9 @@
         html.lenis, html.lenis body { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto !important; }
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        :where(a[href], button, [role="button"], input[type="button"], input[type="submit"], summary) { cursor: pointer; }
+        :where(a[href], button, [role="button"], input[type="button"], input[type="submit"], summary):hover { filter: brightness(1.03); }
+        :where(a[href], button, [role="button"], input[type="button"], input[type="submit"], summary):active { transform: translateY(1px); }
 
         body.sp {
             margin: 0;
