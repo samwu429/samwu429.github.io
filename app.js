@@ -88,12 +88,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     data = await fetchJson(`${API_BASE}/public/testimonials`, {}, 9000);
                 }
                 testimonialsContainer.innerHTML = ''; 
-                if (!data || data.length === 0) {
+                const rows = (Array.isArray(data) ? data : [])
+                    .filter(t => t && t.isPublic !== false)
+                    .sort((a, b) => {
+                        const sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
+                        const sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
+                        if (sa !== sb) return sa - sb;
+                        const ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
+                        const tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+                        return tb - ta;
+                    });
+                if (!rows.length) {
                     testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold">No testimonials yet. Be the first one to leave a comment in the admin panel!</div>';
                     return;
                 }
                 
-                data.forEach(t => {
+                rows.forEach(t => {
                     const safeComment = escapeHTML(t.comment);
                     const safeRelationship = escapeHTML(t.relationship);
                     const html = `
@@ -120,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         loadPublicTestimonials();
+        setInterval(loadPublicTestimonials, 30000);
     }
 
     function formatAIText(text) {

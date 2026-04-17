@@ -1219,11 +1219,21 @@
             const res = await fetch(API_BASE + '/public/testimonials', { cache: 'no-store' });
             if (!res.ok) throw new Error('x');
             const data = await res.json();
-            if (!Array.isArray(data) || !data.length) {
+            const rows = (Array.isArray(data) ? data : [])
+                .filter(function (row) { return row && row.isPublic !== false; })
+                .sort(function (a, b) {
+                    const sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
+                    const sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
+                    if (sa !== sb) return sa - sb;
+                    const ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
+                    const tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+                    return tb - ta;
+                });
+            if (!rows.length) {
                 box.innerHTML = '<p class="sp-muted" style="font-size:0.95rem;">No testimonials yet. Be the first one to leave a comment in the admin panel!</p>';
                 return;
             }
-            box.innerHTML = data.map(function (row) {
+            box.innerHTML = rows.map(function (row) {
                 const c = escapeHTML(String(row.comment || ''));
                 const rel = escapeHTML(row.relationship || '');
                 return '<div class="sp-tcard"><p class="italic mb-3" style="color:#d6cec4;">' + c + '</p><div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:0.65rem;display:flex;justify-content:space-between;align-items:center;gap:0.75rem;"><span class="sp-teal font-black uppercase tracking-widest" style="font-size:0.72rem;">' + rel + '</span><span style="font-size:0.62rem;color:#78716c;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">Anonymous</span></div></div>';
@@ -1233,6 +1243,7 @@
         }
     }
     loadVoices();
+    setInterval(loadVoices, 30000);
 
     var welcomeEl = document.getElementById('sp-welcome');
     var welcomeGone = false;

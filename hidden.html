@@ -414,25 +414,36 @@
 
         function renderTestimonials(testimonials) {
             const container = document.getElementById('testimonial-list');
-            if (testimonials.length === 0) {
+            const rows = (Array.isArray(testimonials) ? testimonials.slice() : []).sort((a, b) => {
+                const sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
+                const sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
+                if (sa !== sb) return sa - sb;
+                const ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
+                const tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+                return tb - ta;
+            });
+            if (rows.length === 0) {
                 container.innerHTML = '<p class="text-gray-500 italic">No entries found in database.</p>';
                 return;
             }
-            container.innerHTML = testimonials.map(t => {
+            container.innerHTML = rows.map(t => {
                 const profileUrl = safeAssetUrl(t.linkedin);
                 const ts = t.timestamp ? new Date(t.timestamp) : null;
                 const tsLabel = ts && !isNaN(ts.getTime()) ? ts.toLocaleString() : '—';
+                const vis = t && t.isPublic === false ? 'HIDDEN' : 'PUBLIC';
+                const visClass = t && t.isPublic === false ? 'text-yellow-700' : 'text-green-700';
                 return `
                 <div class="bg-[#dfdfdf] p-4 border border-gray-400">
                     <div class="flex justify-between items-start mb-2 border-b border-gray-400 pb-2">
                         <div>
                             <span class="font-bold text-lg text-blue-900">${escapeHTML(t.name)}</span>
                             <span class="text-xs bg-black text-green-400 px-2 py-1 ml-2 pixel-font">[${escapeHTML(t.relationship)}]</span>
+                            <span class="text-xs px-2 py-1 ml-2 font-bold ${visClass} border border-current bg-white">[${vis}]</span>
                         </div>
                         ${profileUrl ? `<a href="${escapeHTML(profileUrl)}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline text-sm hover:text-blue-800">LINK</a>` : ''}
                     </div>
                     <p class="text-black font-medium mt-2 pixel-font text-xl leading-relaxed">${escapeHTML(t.comment)}</p>
-                    <div class="text-xs text-gray-600 font-bold mt-4 text-right">TIMESTAMP: ${escapeHTML(tsLabel)}</div>
+                    <div class="text-xs text-gray-600 font-bold mt-4 text-right">SORT: ${escapeHTML(String(t && t.sortOrder != null ? t.sortOrder : 0))} · TIMESTAMP: ${escapeHTML(tsLabel)}</div>
                 </div>
             `;
             }).join('');
@@ -484,6 +495,9 @@
             document.getElementById('lightbox-img').src = '';
         }
 
+        setInterval(() => {
+            if (currentPassword) loadData();
+        }, 30000);
         wakeBackend();
     </script>
 </body>

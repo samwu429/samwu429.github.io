@@ -210,6 +210,17 @@
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
+                            <div>
+                                <label class="adm-label" for="testimonial-sort-order">Sort order</label>
+                                <input type="number" id="testimonial-sort-order" class="adm-input" value="0">
+                            </div>
+                            <div>
+                                <label class="adm-label" for="testimonial-visibility">Visibility</label>
+                                <select id="testimonial-visibility" class="adm-input">
+                                    <option value="public">Public (show on home)</option>
+                                    <option value="hidden">Hidden (private only)</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="mt-5 max-w-4xl">
                             <label class="adm-label" for="testimonial-comment">Comment *</label>
@@ -363,6 +374,7 @@
         let adminPwd = '';
         let selectedBase64 = null;
         let blogImagesBase64 = [];
+        let latestTestimonials = [];
 
         const MODULES = ['photos', 'testimonials', 'publications', 'moments'];
         let currentView = 'hub';
@@ -649,14 +661,28 @@
             });
 
             const testimonials = await requestJson('/hidden/testimonials', { headers: { 'x-password': adminPwd } });
-            document.getElementById('admin-testimonials').innerHTML = testimonials.map(t => `
+            const testimonialRows = (Array.isArray(testimonials) ? testimonials.slice() : []).sort((a, b) => {
+                const sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
+                const sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
+                if (sa !== sb) return sa - sb;
+                const ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
+                const tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+                return tb - ta;
+            });
+            latestTestimonials = testimonialRows;
+            document.getElementById('admin-testimonials').innerHTML = testimonialRows.map(t => `
                 <div class="adm-list-row">
                     <div class="flex flex-wrap items-start justify-between gap-3">
                         <div class="font-semibold text-slate-900">${escapeHTML(t.name || '')} <span class="text-slate-600 font-normal text-sm">(${escapeHTML(t.relationship || '')})</span></div>
                         <div class="flex gap-2">
                             <button type="button" class="adm-btn adm-btn--secondary text-xs py-2 px-3 js-edit-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Edit</button>
+                            <button type="button" class="adm-btn adm-btn--secondary text-xs py-2 px-3 js-toggle-visibility-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}" data-next-public="${t && t.isPublic === false ? 'true' : 'false'}">${t && t.isPublic === false ? 'Make public' : 'Hide'}</button>
                             <button type="button" class="adm-btn adm-btn--danger text-xs py-2 px-3 js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
                         </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 text-xs">
+                        <span class="font-mono bg-slate-100 border border-slate-200 rounded px-2 py-0.5 text-slate-700">sort: ${escapeHTML(String(t && t.sortOrder != null ? t.sortOrder : 0))}</span>
+                        <span class="font-semibold ${t && t.isPublic === false ? 'text-amber-700' : 'text-emerald-700'}">${t && t.isPublic === false ? 'Hidden' : 'Public'}</span>
                     </div>
                     ${(t.linkedin || '').trim() ? `<a href="${escapeHTML(String(t.linkedin))}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-blue-700 hover:text-blue-900 underline break-all">${escapeHTML(String(t.linkedin))}</a>` : '<p class="text-xs text-slate-400">No LinkedIn URL</p>'}
                     <p class="text-sm text-slate-700 leading-relaxed">${escapeHTML(t.comment || '')}</p>
@@ -664,17 +690,22 @@
             `).join('') || '<p class="text-slate-500 text-sm text-center py-8">No testimonials yet.</p>';
             document.querySelectorAll('.js-edit-testimonial-btn').forEach((btn) => {
                 btn.addEventListener('click', () => {
-                    const row = testimonials.find(x => String(x.id) === String(btn.dataset.testimonialId || ''));
+                    const row = testimonialRows.find(x => String(x.id) === String(btn.dataset.testimonialId || ''));
                     if (!row) return;
                     document.getElementById('testimonial-edit-id').value = row.id || '';
                     document.getElementById('testimonial-name').value = row.name || '';
                     document.getElementById('testimonial-linkedin').value = row.linkedin || '';
                     document.getElementById('testimonial-relationship').value = row.relationship || '';
+                    document.getElementById('testimonial-sort-order').value = row.sortOrder != null ? row.sortOrder : 0;
+                    document.getElementById('testimonial-visibility').value = row.isPublic === false ? 'hidden' : 'public';
                     document.getElementById('testimonial-comment').value = row.comment || '';
                     document.getElementById('testimonial-save-btn').textContent = 'Update';
                     openModule('testimonials');
                     document.getElementById('module-testimonials')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
+            });
+            document.querySelectorAll('.js-toggle-visibility-btn').forEach((btn) => {
+                btn.addEventListener('click', () => setTestimonialVisibility(btn.dataset.testimonialId || '', btn.dataset.nextPublic === 'true'));
             });
             document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
                 btn.addEventListener('click', () => deleteTestimonial(btn.dataset.testimonialId || ''));
@@ -808,6 +839,8 @@
             document.getElementById('testimonial-name').value = '';
             document.getElementById('testimonial-linkedin').value = '';
             document.getElementById('testimonial-relationship').value = '';
+            document.getElementById('testimonial-sort-order').value = '0';
+            document.getElementById('testimonial-visibility').value = 'public';
             document.getElementById('testimonial-comment').value = '';
             document.getElementById('testimonial-save-btn').textContent = 'Save';
         }
@@ -909,6 +942,8 @@
             const name = document.getElementById('testimonial-name').value.trim();
             const linkedin = document.getElementById('testimonial-linkedin').value.trim();
             const relationship = document.getElementById('testimonial-relationship').value.trim();
+            const sortOrder = Number(document.getElementById('testimonial-sort-order').value || 0);
+            const isPublic = document.getElementById('testimonial-visibility').value !== 'hidden';
             const comment = document.getElementById('testimonial-comment').value.trim();
             if (!name || !relationship || !comment) return alert('Name, relationship, and comment are required.');
             const btn = document.getElementById('testimonial-save-btn');
@@ -920,7 +955,7 @@
                         await requestJson(`/admin/testimonials/${encodeURIComponent(id)}`, {
                             method: 'PUT',
                             headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                            body: JSON.stringify({ name, linkedin, relationship, comment })
+                            body: JSON.stringify({ name, linkedin, relationship, comment, sortOrder, isPublic })
                         });
                         updated = true;
                     } catch (err) {
@@ -929,7 +964,7 @@
                             await requestJson('/hidden/testimonials', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                                body: JSON.stringify({ name, linkedin, relationship, comment })
+                                body: JSON.stringify({ name, linkedin, relationship, comment, sortOrder, isPublic })
                             });
                             updated = true;
                         } else {
@@ -941,7 +976,7 @@
                     await requestJson('/hidden/testimonials', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                        body: JSON.stringify({ name, linkedin, relationship, comment })
+                        body: JSON.stringify({ name, linkedin, relationship, comment, sortOrder, isPublic })
                     });
                 }
                 clearTestimonialForm();
@@ -950,6 +985,48 @@
                 alert('Save failed');
             } finally {
                 btn.disabled = false;
+            }
+        }
+
+        async function setTestimonialVisibility(id, nextPublic) {
+            const row = latestTestimonials.find((x) => String(x.id) === String(id));
+            if (!row) return;
+            try {
+                try {
+                    await requestJson(`/admin/testimonials/${encodeURIComponent(id)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify({
+                            name: row.name || '',
+                            linkedin: row.linkedin || '',
+                            relationship: row.relationship || '',
+                            comment: row.comment || '',
+                            sortOrder: row.sortOrder != null ? Number(row.sortOrder) : 0,
+                            isPublic: !!nextPublic
+                        })
+                    });
+                } catch (err) {
+                    if (err && err.message && /status (404|405)/.test(err.message)) {
+                        await requestJson(`/admin/testimonials/${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
+                        await requestJson('/hidden/testimonials', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                            body: JSON.stringify({
+                                name: row.name || '',
+                                linkedin: row.linkedin || '',
+                                relationship: row.relationship || '',
+                                comment: row.comment || '',
+                                sortOrder: row.sortOrder != null ? Number(row.sortOrder) : 0,
+                                isPublic: !!nextPublic
+                            })
+                        });
+                    } else {
+                        throw err;
+                    }
+                }
+                await loadAdminData();
+            } catch (_) {
+                alert('Visibility update failed');
             }
         }
 
