@@ -30,13 +30,57 @@
         <div id="moments-feed" class="space-y-8"></div>
     </div>
 
+    <div id="moments-lightbox" class="fixed inset-0 hidden items-center justify-center z-[120] bg-black/85 p-4 md:p-8" aria-hidden="true">
+        <button type="button" id="moments-lightbox-close" class="retro-button absolute top-4 right-4 px-3 py-1.5 text-[11px] uppercase tracking-widest">Close</button>
+        <img id="moments-lightbox-img" src="" alt="" class="max-w-full max-h-[88vh] border-2 border-gray-900 shadow-[8px_8px_0px_#1c1917] bg-white object-contain">
+    </div>
+
     <script src="api-config.js"></script>
     <script src="moments-public.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const MC = window.SAM_PUBLIC_CONTENT;
             if (!MC) return;
-            MC.loadMomentsFeed(document.getElementById('moments-feed'), {});
+            const feed = document.getElementById('moments-feed');
+            const lightbox = document.getElementById('moments-lightbox');
+            const lightboxImg = document.getElementById('moments-lightbox-img');
+            const closeBtn = document.getElementById('moments-lightbox-close');
+
+            function closeLightbox() {
+                if (!lightbox || !lightboxImg) return;
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImg.src = '';
+            }
+
+            function openLightbox(src, alt) {
+                if (!lightbox || !lightboxImg || !src) return;
+                lightboxImg.src = src;
+                lightboxImg.alt = alt || '';
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+                lightbox.setAttribute('aria-hidden', 'false');
+            }
+
+            if (feed) {
+                feed.addEventListener('click', (e) => {
+                    const img = e.target && e.target.closest('.moments-thumb img');
+                    if (!img) return;
+                    openLightbox(img.getAttribute('src') || '', img.getAttribute('alt') || '');
+                });
+            }
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+
+            MC.loadMomentsFeed(feed, {});
         });
     </script>
 </body>

@@ -64,7 +64,7 @@
             if (!src) return '';
             return `
             <div class="moments-thumb border-2 border-gray-900 bg-gray-100 overflow-hidden">
-                <img src="${src}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                <img src="${src}" alt="" class="w-full h-full object-cover cursor-zoom-in" loading="lazy" decoding="async">
             </div>`;
         }).join('');
         return `<div class="${gridClass}">${cells}</div>`;
