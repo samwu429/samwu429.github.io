@@ -3,124 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sam Wu — map walkthrough of the same hub content.">
-  <title>Sam Wu | Route Map</title>
+  <meta name="description" content="Sam Wu — retro route-map walkthrough.">
+  <title>Sam Wu | Route Canvas</title>
   <style>
-    :root {
-      --paper: #fdfbf7;
-      --ink: #1c1917;
-      --muted: #6b7280;
-      --mint: #059669;
-      --blue: #1d4ed8;
-      --edge: 1.2rem;
+    :root{--paper:#fdfbf7;--ink:#1c1917;--muted:#6b7280;--mint:#059669;--blue:#1d4ed8}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      min-height:1400vh;overflow-x:hidden;color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+      background:radial-gradient(circle at 12% 10%,rgba(5,150,105,.08),transparent 40%),radial-gradient(circle at 88% 0%,rgba(29,78,216,.05),transparent 34%),var(--paper)
     }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background:
-        radial-gradient(circle at 12% 10%, rgba(5, 150, 105, 0.08), transparent 40%),
-        radial-gradient(circle at 88% 0%, rgba(29, 78, 216, 0.05), transparent 34%),
-        var(--paper);
-      color: var(--ink);
-      min-height: 1200vh;
-      overflow-x: hidden;
+    .grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.1;background-image:linear-gradient(rgba(28,25,23,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(28,25,23,.03) 1px,transparent 1px);background-size:22px 22px}
+    .hud{position:fixed;inset:0;z-index:20;pointer-events:none}
+    .back,.tour{
+      pointer-events:auto;position:absolute;border:2px solid var(--ink);background:#fff;color:var(--ink);
+      box-shadow:3px 3px 0 var(--ink);text-decoration:none;text-transform:uppercase;font-weight:900
     }
-    .grain {
-      position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.1;
-      background-image: linear-gradient(rgba(28,25,23,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(28,25,23,.03) 1px, transparent 1px);
-      background-size: 22px 22px;
+    .back{top:1rem;left:1rem;padding:.45rem .65rem;font-size:.66rem;letter-spacing:.24em}
+    .tour{left:1rem;bottom:1rem;padding:.48rem .68rem;font-size:.62rem;letter-spacing:.18em;cursor:pointer}
+    .tour.is-on{color:var(--mint)}
+    .meter{position:absolute;right:1rem;top:50%;transform:translateY(-50%);display:grid;gap:.4rem;pointer-events:auto}
+    .dot{width:9px;height:9px;border-radius:999px;border:1px solid var(--ink);background:#fff;opacity:.6;cursor:pointer}
+    .dot.is-on{opacity:1;background:var(--mint);box-shadow:0 0 12px rgba(5,150,105,.45)}
+    .stamp{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.86);opacity:0;pointer-events:none;
+      border:2px solid var(--mint);background:rgba(255,255,255,.92);box-shadow:8px 8px 0 rgba(28,25,23,.28);padding:.55rem .9rem;transition:.45s cubic-bezier(.22,1,.36,1)
     }
-    .hud {
-      position: fixed; inset: 0; pointer-events: none; z-index: 20;
+    .stamp.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+    .stamp .r{font-size:1.4rem;font-weight:900;letter-spacing:-.04em}
+    .stage{position:fixed;inset:0;z-index:10;overflow:hidden}
+    .camera{width:100%;height:100%;transform-origin:0 0;transition:transform .18s linear}
+    .world{
+      position:relative;width:7600px;height:2800px;
+      background:linear-gradient(rgba(28,25,23,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(28,25,23,.03) 1px,transparent 1px);background-size:54px 54px
     }
-    .back {
-      pointer-events: auto;
-      position: absolute; top: 1rem; left: 1rem;
-      text-decoration: none; color: var(--ink);
-      font-size: .66rem; font-weight: 900; letter-spacing: .24em; text-transform: uppercase;
-      border: 2px solid var(--ink); background: #fff; padding: .45rem .65rem;
-      box-shadow: 3px 3px 0 var(--ink);
+    .route{position:absolute;inset:0;pointer-events:none}
+    .route .line{fill:none;stroke:rgba(28,25,23,.34);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:16 12;animation:dash 7s linear infinite}
+    .route .line2{fill:none;stroke:rgba(5,150,105,.16);stroke-width:18;stroke-linecap:round;stroke-linejoin:round}
+    @keyframes dash{to{stroke-dashoffset:-250}}
+    .pin{fill:#fff;stroke:var(--ink);stroke-width:4;transition:fill .25s ease,transform .25s ease;transform-origin:center}
+    .pin.is-on{fill:var(--mint);transform:scale(1.12)}
+    .card{
+      position:absolute;width:540px;border:2px solid var(--ink);
+      background:linear-gradient(180deg,#fff 0%,#f7f4ec 100%);box-shadow:8px 8px 0 var(--ink),0 16px 34px rgba(28,25,23,.12);
+      padding:1.1rem 1.25rem;opacity:.56;transform:scale(.96);transition:opacity .35s ease,transform .35s ease,box-shadow .35s ease
     }
-    .tour {
-      pointer-events: auto;
-      position: absolute; left: 1rem; bottom: 1rem;
-      border: 2px solid var(--ink); background: #fff; color: var(--ink);
-      font-size: .62rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase;
-      padding: .48rem .68rem; box-shadow: 3px 3px 0 var(--ink); cursor: pointer;
-    }
-    .tour.is-on { color: var(--mint); }
-    .meter {
-      position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
-      display: grid; gap: .4rem; pointer-events: auto;
-    }
-    .dot {
-      width: 9px; height: 9px; border-radius: 999px;
-      border: 1px solid var(--ink); background: #fff; opacity: .6; cursor: pointer;
-    }
-    .dot.is-on { opacity: 1; background: var(--mint); box-shadow: 0 0 12px rgba(5,150,105,.45); }
-    .stamp {
-      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.84);
-      border: 2px solid var(--mint); background: rgba(255,255,255,.92); box-shadow: 8px 8px 0 rgba(28,25,23,.28);
-      padding: .55rem .85rem; opacity: 0; transition: .45s cubic-bezier(.22,1,.36,1);
-      pointer-events: none;
-    }
-    .stamp.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    .stamp .r { font-size: 1.35rem; font-weight: 900; letter-spacing: -.04em; }
-    .stage {
-      position: fixed; inset: 0; z-index: 10; overflow: hidden;
-    }
-    .camera {
-      width: 100%; height: 100%;
-      transform-origin: 0 0;
-      transition: transform .18s linear;
-    }
-    .world {
-      position: relative;
-      width: 5200px; height: 2100px;
-      background:
-        linear-gradient(rgba(28,25,23,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(28,25,23,.03) 1px, transparent 1px);
-      background-size: 54px 54px;
-    }
-    .route {
-      position: absolute; inset: 0; pointer-events: none;
-    }
-    .route path {
-      fill: none; stroke: rgba(28,25,23,.34); stroke-width: 8;
-      stroke-linecap: round; stroke-linejoin: round;
-      stroke-dasharray: 14 12; animation: dash 7s linear infinite;
-    }
-    @keyframes dash { to { stroke-dashoffset: -250; } }
-    .route .pin { fill: #fff; stroke: var(--ink); stroke-width: 4; }
-    .route .pin.is-on { fill: var(--mint); }
-    .card {
-      position: absolute; width: 520px;
-      border: 2px solid var(--ink);
-      background: linear-gradient(180deg, #fff 0%, #f7f4ec 100%);
-      box-shadow: 8px 8px 0 var(--ink), 0 16px 34px rgba(28,25,23,.12);
-      padding: 1.1rem 1.25rem;
-    }
-    .card .k { margin: 0 0 .45rem; color: var(--muted); font-size: .6rem; letter-spacing: .28em; text-transform: uppercase; font-weight: 900; }
-    .card .t { margin: 0 0 .5rem; font-size: 1.6rem; line-height: 1.08; letter-spacing: -.03em; }
-    .card .p { margin: 0; color: #374151; line-height: 1.6; font-size: .92rem; }
-    .card ul { margin: .5rem 0 0; padding-left: 1rem; color: #374151; line-height: 1.55; font-size: .9rem; }
-    .card a { color: var(--mint); font-weight: 800; text-decoration: none; border-bottom: 1px solid rgba(5,150,105,.4); }
-    .headshot { width: 220px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); margin-bottom: .7rem; }
-    #voices { display: grid; gap: .45rem; margin-top: .45rem; }
-    #voices .v { border: 1px solid rgba(28,25,23,.2); background: rgba(255,255,255,.74); padding: .5rem .55rem; }
-    #voices .v p { margin: 0; font-size: .84rem; line-height: 1.45; color: #374151; }
-    #voices .v span { display: block; margin-top: .35rem; color: var(--mint); font-size: .64rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
-    @media (max-width: 900px) {
-      .meter { display: none; }
-      .card { width: 380px; padding: .9rem 1rem; }
-      .card .t { font-size: 1.25rem; }
-    }
+    .card.is-active{opacity:1;transform:scale(1);box-shadow:10px 10px 0 var(--ink),0 24px 42px rgba(28,25,23,.2)}
+    .k{margin:0 0 .45rem;color:var(--muted);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;font-weight:900}
+    .t{margin:0 0 .5rem;font-size:1.6rem;line-height:1.08;letter-spacing:-.03em}
+    .p{margin:0;color:#374151;line-height:1.6;font-size:.92rem}
+    ul{margin:.5rem 0 0;padding-left:1rem;color:#374151;line-height:1.55;font-size:.9rem}
+    a{color:var(--mint);font-weight:800;text-decoration:none;border-bottom:1px solid rgba(5,150,105,.4)}
+    .headshot{width:220px;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);margin-bottom:.7rem}
+    .chips{margin-top:.55rem;display:flex;flex-wrap:wrap;gap:.35rem}
+    .chips span{border:1px solid rgba(28,25,23,.3);background:rgba(255,255,255,.74);padding:.18rem .35rem;font-size:.74rem;font-weight:700;color:#374151}
+    #voices{display:grid;gap:.45rem;margin-top:.45rem}
+    .v{border:1px solid rgba(28,25,23,.2);background:rgba(255,255,255,.74);padding:.5rem .55rem}
+    .v p{margin:0;font-size:.84rem;line-height:1.45;color:#374151}
+    .v span{display:block;margin-top:.35rem;color:var(--mint);font-size:.64rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+    @media (max-width:900px){.meter{display:none}.card{width:390px;padding:.9rem 1rem}.t{font-size:1.25rem}}
   </style>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
-
   <div class="hud">
     <a class="back" href="index.html">Hub</a>
     <button id="tour" class="tour is-on" type="button">Auto play</button>
@@ -131,67 +77,31 @@
   <main class="stage">
     <div id="camera" class="camera">
       <div class="world">
-        <svg class="route" viewBox="0 0 5200 2100" preserveAspectRatio="none" aria-hidden="true">
-          <path id="routePath" d="M300 340 L1150 610 L1880 300 L2670 760 L3350 420 L4130 920 L4870 560"></path>
-          <circle class="pin" data-pin="0" cx="300" cy="340" r="16"></circle>
-          <circle class="pin" data-pin="1" cx="1150" cy="610" r="16"></circle>
-          <circle class="pin" data-pin="2" cx="1880" cy="300" r="16"></circle>
-          <circle class="pin" data-pin="3" cx="2670" cy="760" r="16"></circle>
-          <circle class="pin" data-pin="4" cx="3350" cy="420" r="16"></circle>
-          <circle class="pin" data-pin="5" cx="4130" cy="920" r="16"></circle>
-          <circle class="pin" data-pin="6" cx="4870" cy="560" r="16"></circle>
+        <svg class="route" viewBox="0 0 7600 2800" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line2" d="M320 360 L920 740 L1600 420 L2300 940 L2980 560 L3700 1020 L4420 640 L5150 1180 L5900 760 L7080 980"></path>
+          <path class="line" d="M320 360 L920 740 L1600 420 L2300 940 L2980 560 L3700 1020 L4420 640 L5150 1180 L5900 760 L7080 980"></path>
+          <circle class="pin" data-pin="0" cx="320" cy="360" r="16"></circle>
+          <circle class="pin" data-pin="1" cx="920" cy="740" r="16"></circle>
+          <circle class="pin" data-pin="2" cx="1600" cy="420" r="16"></circle>
+          <circle class="pin" data-pin="3" cx="2300" cy="940" r="16"></circle>
+          <circle class="pin" data-pin="4" cx="2980" cy="560" r="16"></circle>
+          <circle class="pin" data-pin="5" cx="3700" cy="1020" r="16"></circle>
+          <circle class="pin" data-pin="6" cx="4420" cy="640" r="16"></circle>
+          <circle class="pin" data-pin="7" cx="5150" cy="1180" r="16"></circle>
+          <circle class="pin" data-pin="8" cx="5900" cy="760" r="16"></circle>
+          <circle class="pin" data-pin="9" cx="7080" cy="980" r="16"></circle>
         </svg>
 
-        <article class="card" style="left:120px;top:520px;">
-          <p class="k">I · Entry</p>
-          <h1 class="t">Yihang (Sam) Wu</h1>
-          <p class="p">HCI &amp; Applied AI. Same substance as the System Hub, retold as a route walkthrough.</p>
-        </article>
-
-        <article class="card" style="left:960px;top:760px;">
-          <p class="k">II · Core Vision</p>
-          <h2 class="t">Distributed Wearable AIOS</h2>
-          <p class="p">Department of Mathematics, Statistics, and Computer Science · University of Toronto.</p>
-          <p class="p" style="margin-top:.45rem;">Reimagining intent-driven transparent interaction architectures and physical trust primitives.</p>
-        </article>
-
-        <article class="card" style="left:1700px;top:500px;">
-          <p class="k">III · Signal</p>
-          <img class="headshot" src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu">
-          <p class="p">Same face, same seal, same identity anchor as the hub.</p>
-        </article>
-
-        <article class="card" style="left:2460px;top:960px;">
-          <p class="k">IV · Channels</p>
-          <ul>
-            <li><a href="mailto:wuyihang429@gmail.com">Personal · wuyihang429@gmail.com</a></li>
-            <li><a href="mailto:yihang.wu@mail.utoronto.ca">University · yihang.wu@mail.utoronto.ca</a></li>
-            <li><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener">Professional · /in/yihang-wu</a></li>
-          </ul>
-        </article>
-
-        <article class="card" style="left:3180px;top:620px;">
-          <p class="k">V · Dossier</p>
-          <h2 class="t">Professional Dossier</h2>
-          <p class="p">Bridging pure logic with industrial execution in Data and AI. IEEE Student Member.</p>
-        </article>
-
-        <article class="card" style="left:3960px;top:1130px;">
-          <p class="k">VI · VII · Work + Stack</p>
-          <ul>
-            <li>Research Assistant · Food Bank Mississauga · 2026</li>
-            <li>Ward Missionary · LDS Church · 2025-present</li>
-            <li>Python · FastAPI · JavaScript/UI · R Studio · Gemini API</li>
-          </ul>
-        </article>
-
-        <article class="card" style="left:4680px;top:740px;">
-          <p class="k">VIII · IX · X</p>
-          <h2 class="t">Destinations + Voices</h2>
-          <p class="p"><a href="publications.html">Publications</a> · <a href="blog.html">Moments</a> · <a href="resume.html">CV &amp; AI agent</a> · <a href="about.html">Dossier</a> · <a href="hidden.html">Private Gallery</a></p>
-          <div id="voices"></div>
-          <p class="p" style="margin-top:.55rem;"><a href="index.html">Return to Hub</a></p>
-        </article>
+        <article class="card" data-scene="0" style="left:120px;top:560px"><p class="k">I · Entry</p><h1 class="t">Yihang (Sam) Wu</h1><p class="p">HCI &amp; Applied AI. Same substance as the System Hub, retold as a route walkthrough.</p></article>
+        <article class="card" data-scene="1" style="left:720px;top:980px"><p class="k">II · Core Vision</p><h2 class="t">Distributed Wearable AIOS</h2><p class="p">Department of Mathematics, Statistics, and Computer Science · University of Toronto.</p><p class="p" style="margin-top:.45rem">Reimagining intent-driven transparent interaction architectures and physical trust primitives.</p></article>
+        <article class="card" data-scene="2" style="left:1400px;top:560px"><p class="k">III · Signal</p><img class="headshot" src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu"><p class="p">Same face and seal anchor as hub.</p></article>
+        <article class="card" data-scene="3" style="left:2100px;top:1160px"><p class="k">IV · Channels</p><ul><li><a href="mailto:wuyihang429@gmail.com">Personal · wuyihang429@gmail.com</a></li><li><a href="mailto:yihang.wu@mail.utoronto.ca">University · yihang.wu@mail.utoronto.ca</a></li><li><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener">Professional · /in/yihang-wu</a></li></ul></article>
+        <article class="card" data-scene="4" style="left:2780px;top:760px"><p class="k">V · Dossier</p><h2 class="t">Professional Dossier</h2><p class="p">Bridging pure logic with industrial execution in Data and AI.</p><p class="p" style="margin-top:.4rem">Quantitative modeling, workflow optimization, and intent-driven agent systems.</p></article>
+        <article class="card" data-scene="5" style="left:3460px;top:1260px"><p class="k">VI · Field Work</p><ul><li>Research Assistant · Food Bank Mississauga · 2026</li><li>Structured interviews and high-fidelity data collection</li><li>Mandarin-supported outreach to reduce response bias</li></ul></article>
+        <article class="card" data-scene="6" style="left:4180px;top:780px"><p class="k">VII · Stack</p><div class="chips"><span>Python</span><span>FastAPI</span><span>JavaScript/UI</span><span>R Studio</span><span>Gemini API</span><span>ERP automation</span></div></article>
+        <article class="card" data-scene="7" style="left:4900px;top:1420px"><p class="k">VIII · Destinations</p><p class="p"><a href="publications.html">Publications</a> · <a href="blog.html">Moments</a> · <a href="resume.html">CV &amp; AI agent</a> · <a href="about.html">Dossier</a> · <a href="hidden.html">Private Gallery</a></p><p class="p" style="margin-top:.45rem">Verified access for full testimonials and photo archive.</p></article>
+        <article class="card" data-scene="8" style="left:5660px;top:980px"><p class="k">IX · Voices</p><h2 class="t">What People Say</h2><div id="voices"></div><p class="p" style="margin-top:.5rem">Public excerpts only. Full details are in Private Gallery.</p></article>
+        <article class="card" data-scene="9" style="left:6840px;top:1220px"><p class="k">X · Exit</p><h2 class="t">Thanks for following the route.</h2><p class="p"><a href="index.html">Return to Hub</a></p></article>
       </div>
     </div>
   </main>
@@ -199,119 +109,58 @@
   <script src="api-config.js"></script>
   <script>
     (function () {
-      var API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
-      var camera = document.getElementById('camera');
-      var tourBtn = document.getElementById('tour');
-      var meter = document.getElementById('meter');
-      var stamp = document.getElementById('stamp');
-      var stampR = document.getElementById('stamp-r');
-      var pins = Array.prototype.slice.call(document.querySelectorAll('.pin'));
-      var romans = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-      var points = [
-        { x: 300, y: 340 }, { x: 1150, y: 610 }, { x: 1880, y: 300 }, { x: 2670, y: 760 },
-        { x: 3350, y: 420 }, { x: 4130, y: 920 }, { x: 4870, y: 560 }
-      ];
-      var stops = [0, 1, 2, 3, 4, 5, 6, 6, 6, 6];
-      var autoOn = true;
-      var p = 0;
-      var targetP = 0;
-      var lastScene = -1;
-      var rafId = 0;
-      var autoSpeed = 0.00009;
-
-      meter.innerHTML = romans.map(function (_, i) {
-        return '<button class="dot' + (i === 0 ? ' is-on' : '') + '" data-jump="' + i + '" aria-label="Jump to act"></button>';
-      }).join('');
-      Array.prototype.forEach.call(meter.querySelectorAll('.dot'), function (dot) {
-        dot.addEventListener('click', function () {
-          autoOn = false;
-          tourBtn.classList.remove('is-on');
-          targetP = Number(dot.getAttribute('data-jump') || 0) / 9;
-        });
-      });
-
-      function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-      function lerp(a, b, t) { return a + (b - a) * t; }
-      function sceneFromProgress(x) { return clamp(Math.round(x * 9), 0, 9); }
-
-      function cameraPoint(progress) {
-        var seg = progress * (points.length - 1);
-        var i = Math.floor(seg);
-        var t = seg - i;
-        var a = points[i];
-        var b = points[Math.min(i + 1, points.length - 1)];
-        return { x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t) };
+      var API_BASE=(window.SAM_API_CONFIG&&window.SAM_API_CONFIG.apiBase)||'https://sam-api-backend.onrender.com/api';
+      var camera=document.getElementById('camera'),tourBtn=document.getElementById('tour'),meter=document.getElementById('meter');
+      var stamp=document.getElementById('stamp'),stampR=document.getElementById('stamp-r');
+      var pins=[].slice.call(document.querySelectorAll('.pin'));
+      var cards=[].slice.call(document.querySelectorAll('.card'));
+      var romans=['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+      var points=[{x:320,y:360},{x:920,y:740},{x:1600,y:420},{x:2300,y:940},{x:2980,y:560},{x:3700,y:1020},{x:4420,y:640},{x:5150,y:1180},{x:5900,y:760},{x:7080,y:980}];
+      var autoOn=true,p=0,targetP=0,lastScene=-1,rafId=0,autoSpeed=.00009;
+      meter.innerHTML=romans.map(function(_,i){return '<button class="dot'+(i===0?' is-on':'')+'" data-jump="'+i+'" aria-label="Jump to act"></button>'}).join('');
+      [].forEach.call(meter.querySelectorAll('.dot'),function(dot){dot.addEventListener('click',function(){autoOn=false;tourBtn.classList.remove('is-on');targetP=Number(dot.getAttribute('data-jump')||0)/9})});
+      function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+      function lerp(a,b,t){return a+(b-a)*t}
+      function easeInOut(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+      function sceneFromProgress(x){return clamp(Math.round(x*9),0,9)}
+      function cameraPoint(progress){var seg=progress*(points.length-1),i=Math.floor(seg),t=easeInOut(seg-i),a=points[i],b=points[Math.min(i+1,points.length-1)];return{x:lerp(a.x,b.x,t),y:lerp(a.y,b.y,t),seg:seg}}
+      function updateSceneVisual(scene){
+        [].forEach.call(meter.querySelectorAll('.dot'),function(d,i){d.classList.toggle('is-on',i===scene)});
+        pins.forEach(function(pin,i){pin.classList.toggle('is-on',i===scene)});
+        cards.forEach(function(c){c.classList.toggle('is-active',Number(c.getAttribute('data-scene'))===scene)});
+        stampR.textContent=romans[scene]; stamp.classList.add('show'); clearTimeout(updateSceneVisual._t); updateSceneVisual._t=setTimeout(function(){stamp.classList.remove('show')},520)
       }
-
-      function updateSceneVisual(scene) {
-        Array.prototype.forEach.call(meter.querySelectorAll('.dot'), function (d, i) { d.classList.toggle('is-on', i === scene); });
-        pins.forEach(function (pin, i) { pin.classList.toggle('is-on', i === stops[scene]); });
-        stampR.textContent = romans[scene];
-        stamp.classList.add('show');
-        clearTimeout(updateSceneVisual._t);
-        updateSceneVisual._t = setTimeout(function () { stamp.classList.remove('show'); }, 460);
+      function render(){
+        if(autoOn)targetP=clamp(targetP+autoSpeed,0,1);
+        p=lerp(p,targetP,.085);
+        var cp=cameraPoint(p),vw=window.innerWidth,vh=window.innerHeight;
+        var baseScale=vw<900?.54:.69;
+        var scene=sceneFromProgress(p);
+        var sceneCenter=scene/9;
+        var local=Math.max(0,1-Math.abs(p-sceneCenter)*9*2.4);
+        var punch=0.11*local;
+        var sway=Math.sin(cp.seg*1.2)*0.03;
+        var scale=baseScale+punch+sway;
+        var tx=vw*.5-cp.x*scale,ty=vh*.53-cp.y*scale;
+        camera.style.transform='translate3d('+tx.toFixed(2)+'px,'+ty.toFixed(2)+'px,0) scale('+scale.toFixed(4)+')';
+        if(scene!==lastScene){lastScene=scene;updateSceneVisual(scene)}
+        if(autoOn&&targetP>=1)autoOn=false;
+        rafId=requestAnimationFrame(render)
       }
-
-      function render() {
-        if (autoOn) targetP = clamp(targetP + autoSpeed, 0, 1);
-        p = lerp(p, targetP, 0.09);
-        var cp = cameraPoint(p);
-        var vw = window.innerWidth;
-        var vh = window.innerHeight;
-        var scale = vw < 900 ? 0.56 : 0.72;
-        var tx = vw * 0.5 - cp.x * scale;
-        var ty = vh * 0.5 - cp.y * scale;
-        camera.style.transform = 'translate3d(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px,0) scale(' + scale + ')';
-        var s = sceneFromProgress(p);
-        if (s !== lastScene) {
-          lastScene = s;
-          updateSceneVisual(s);
-        }
-        if (autoOn && targetP >= 1) autoOn = false;
-        rafId = requestAnimationFrame(render);
+      tourBtn.addEventListener('click',function(){autoOn=!autoOn;tourBtn.classList.toggle('is-on',autoOn)});
+      window.addEventListener('wheel',function(e){autoOn=false;tourBtn.classList.remove('is-on');targetP=clamp(targetP+(e.deltaY>0?.035:-.035),0,1)},{passive:true});
+      window.addEventListener('scroll',function(){if(autoOn)return;var max=Math.max(1,document.body.scrollHeight-window.innerHeight);targetP=clamp(window.scrollY/max,0,1)},{passive:true});
+      async function loadVoices(){
+        var box=document.getElementById('voices'); if(!box)return;
+        try{
+          var res=await fetch(API_BASE+'/public/testimonials',{cache:'no-store'}); if(!res.ok)throw new Error('x');
+          var data=await res.json();
+          var rows=(Array.isArray(data)?data:[]).filter(function(r){return r&&r.isPublic!==false}).sort(function(a,b){var sa=Number(a.sortOrder||0),sb=Number(b.sortOrder||0);if(sa!==sb)return sa-sb;return new Date(b.timestamp||0)-new Date(a.timestamp||0)}).slice(0,4);
+          if(!rows.length){box.innerHTML='<p class="p" style="margin-top:.45rem;">No public excerpts.</p>';return}
+          box.innerHTML=rows.map(function(r){var c=String(r.comment||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]}),rel=String(r.relationship||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]});return '<div class="v"><p>'+c.slice(0,180)+'</p><span>'+rel+'</span></div>'}).join('')
+        }catch(_){box.innerHTML='<p class="p" style="margin-top:.45rem;">Voices sync when API is up.</p>'}
       }
-
-      tourBtn.addEventListener('click', function () {
-        autoOn = !autoOn;
-        tourBtn.classList.toggle('is-on', autoOn);
-      });
-      window.addEventListener('wheel', function (e) {
-        autoOn = false;
-        tourBtn.classList.remove('is-on');
-        targetP = clamp(targetP + (e.deltaY > 0 ? 0.04 : -0.04), 0, 1);
-      }, { passive: true });
-      window.addEventListener('scroll', function () {
-        if (autoOn) return;
-        var max = Math.max(1, document.body.scrollHeight - window.innerHeight);
-        targetP = clamp(window.scrollY / max, 0, 1);
-      }, { passive: true });
-
-      async function loadVoices() {
-        var box = document.getElementById('voices');
-        if (!box) return;
-        try {
-          var res = await fetch(API_BASE + '/public/testimonials', { cache: 'no-store' });
-          if (!res.ok) throw new Error('x');
-          var data = await res.json();
-          var rows = (Array.isArray(data) ? data : [])
-            .filter(function (r) { return r && r.isPublic !== false; })
-            .sort(function (a, b) { return Number(a.sortOrder || 0) - Number(b.sortOrder || 0); })
-            .slice(0, 3);
-          if (!rows.length) { box.innerHTML = '<p class="p" style="margin-top:.45rem;">No public excerpts.</p>'; return; }
-          box.innerHTML = rows.map(function (r) {
-            var c = String(r.comment || '').replace(/[&<>'"]/g, function (t) { return ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]; });
-            var rel = String(r.relationship || '').replace(/[&<>'"]/g, function (t) { return ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]; });
-            return '<div class="v"><p>' + c.slice(0, 170) + '</p><span>' + rel + '</span></div>';
-          }).join('');
-        } catch (_) {
-          box.innerHTML = '<p class="p" style="margin-top:.45rem;">Voices sync when API is up.</p>';
-        }
-      }
-
-      loadVoices();
-      setInterval(loadVoices, 30000);
-      cancelAnimationFrame(rafId);
-      render();
+      loadVoices(); setInterval(loadVoices,30000); cancelAnimationFrame(rafId); render();
     })();
   </script>
 </body>
