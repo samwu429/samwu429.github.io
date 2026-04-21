@@ -35,25 +35,28 @@
     .stage{position:fixed;inset:0;z-index:10;overflow:hidden}
     .camera{width:100%;height:100%;transform-origin:0 0;transition:transform .18s linear}
     .world{
-      position:relative;width:7600px;height:2800px;
+      position:relative;width:8200px;height:3200px;
       background:linear-gradient(rgba(28,25,23,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(28,25,23,.03) 1px,transparent 1px);background-size:54px 54px
     }
     .route{position:absolute;inset:0;pointer-events:none}
     .route .line{fill:none;stroke:rgba(28,25,23,.34);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:16 12;animation:dash 7s linear infinite}
-    .route .line2{fill:none;stroke:rgba(5,150,105,.16);stroke-width:18;stroke-linecap:round;stroke-linejoin:round}
+    .route .line2{fill:none;stroke:rgba(5,150,105,.16);stroke-width:20;stroke-linecap:round;stroke-linejoin:round}
+    .route .pulse{fill:none;stroke:rgba(5,150,105,.42);stroke-width:2;opacity:0;transform-origin:center;transition:opacity .22s ease}
+    .route .pulse.is-on{opacity:1;animation:pulse .9s ease-out infinite}
     @keyframes dash{to{stroke-dashoffset:-250}}
+    @keyframes pulse{0%{r:18;opacity:.7}100%{r:56;opacity:0}}
     .pin{fill:#fff;stroke:var(--ink);stroke-width:4;transition:fill .25s ease,transform .25s ease;transform-origin:center}
     .pin.is-on{fill:var(--mint);transform:scale(1.12)}
     .card{
-      position:absolute;width:540px;border:2px solid var(--ink);
+      position:absolute;width:620px;border:2px solid var(--ink);
       background:linear-gradient(180deg,#fff 0%,#f7f4ec 100%);box-shadow:8px 8px 0 var(--ink),0 16px 34px rgba(28,25,23,.12);
       padding:1.1rem 1.25rem;opacity:.56;transform:scale(.96);transition:opacity .35s ease,transform .35s ease,box-shadow .35s ease
     }
     .card.is-active{opacity:1;transform:scale(1);box-shadow:10px 10px 0 var(--ink),0 24px 42px rgba(28,25,23,.2)}
-    .k{margin:0 0 .45rem;color:var(--muted);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;font-weight:900}
-    .t{margin:0 0 .5rem;font-size:1.6rem;line-height:1.08;letter-spacing:-.03em}
-    .p{margin:0;color:#374151;line-height:1.6;font-size:.92rem}
-    ul{margin:.5rem 0 0;padding-left:1rem;color:#374151;line-height:1.55;font-size:.9rem}
+    .k{margin:0 0 .5rem;color:var(--muted);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;font-weight:900}
+    .t{margin:0 0 .62rem;font-size:1.9rem;line-height:1.08;letter-spacing:-.03em}
+    .p{margin:0;color:#374151;line-height:1.66;font-size:1rem}
+    ul{margin:.55rem 0 0;padding-left:1rem;color:#374151;line-height:1.62;font-size:.98rem}
     a{color:var(--mint);font-weight:800;text-decoration:none;border-bottom:1px solid rgba(5,150,105,.4)}
     .headshot{width:220px;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);margin-bottom:.7rem}
     .chips{margin-top:.55rem;display:flex;flex-wrap:wrap;gap:.35rem}
@@ -62,7 +65,7 @@
     .v{border:1px solid rgba(28,25,23,.2);background:rgba(255,255,255,.74);padding:.5rem .55rem}
     .v p{margin:0;font-size:.84rem;line-height:1.45;color:#374151}
     .v span{display:block;margin-top:.35rem;color:var(--mint);font-size:.64rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
-    @media (max-width:900px){.meter{display:none}.card{width:390px;padding:.9rem 1rem}.t{font-size:1.25rem}}
+    @media (max-width:900px){.meter{display:none}.card{width:430px;padding:.95rem 1rem}.t{font-size:1.4rem}.p,ul{font-size:.92rem}}
   </style>
 </head>
 <body>
@@ -77,31 +80,31 @@
   <main class="stage">
     <div id="camera" class="camera">
       <div class="world">
-        <svg class="route" viewBox="0 0 7600 2800" preserveAspectRatio="none" aria-hidden="true">
-          <path class="line2" d="M320 360 L920 740 L1600 420 L2300 940 L2980 560 L3700 1020 L4420 640 L5150 1180 L5900 760 L7080 980"></path>
-          <path class="line" d="M320 360 L920 740 L1600 420 L2300 940 L2980 560 L3700 1020 L4420 640 L5150 1180 L5900 760 L7080 980"></path>
-          <circle class="pin" data-pin="0" cx="320" cy="360" r="16"></circle>
-          <circle class="pin" data-pin="1" cx="920" cy="740" r="16"></circle>
-          <circle class="pin" data-pin="2" cx="1600" cy="420" r="16"></circle>
-          <circle class="pin" data-pin="3" cx="2300" cy="940" r="16"></circle>
-          <circle class="pin" data-pin="4" cx="2980" cy="560" r="16"></circle>
-          <circle class="pin" data-pin="5" cx="3700" cy="1020" r="16"></circle>
-          <circle class="pin" data-pin="6" cx="4420" cy="640" r="16"></circle>
-          <circle class="pin" data-pin="7" cx="5150" cy="1180" r="16"></circle>
-          <circle class="pin" data-pin="8" cx="5900" cy="760" r="16"></circle>
-          <circle class="pin" data-pin="9" cx="7080" cy="980" r="16"></circle>
+        <svg class="route" viewBox="0 0 8200 3200" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line2" d="M360 420 C 620 760, 960 900, 1320 700 C 1680 500, 1960 320, 2380 620 C 2820 930, 3040 1280, 3460 1020 C 3920 730, 4200 560, 4640 860 C 5040 1130, 5280 1540, 5800 1360 C 6240 1210, 6420 880, 6860 980 C 7240 1060, 7540 1320, 7880 1280"></path>
+          <path class="line" d="M360 420 C 620 760, 960 900, 1320 700 C 1680 500, 1960 320, 2380 620 C 2820 930, 3040 1280, 3460 1020 C 3920 730, 4200 560, 4640 860 C 5040 1130, 5280 1540, 5800 1360 C 6240 1210, 6420 880, 6860 980 C 7240 1060, 7540 1320, 7880 1280"></path>
+          <circle class="pin" data-pin="0" cx="360" cy="420" r="16"></circle><circle class="pulse" data-pulse="0" cx="360" cy="420" r="18"></circle>
+          <circle class="pin" data-pin="1" cx="1320" cy="700" r="16"></circle><circle class="pulse" data-pulse="1" cx="1320" cy="700" r="18"></circle>
+          <circle class="pin" data-pin="2" cx="2380" cy="620" r="16"></circle><circle class="pulse" data-pulse="2" cx="2380" cy="620" r="18"></circle>
+          <circle class="pin" data-pin="3" cx="3460" cy="1020" r="16"></circle><circle class="pulse" data-pulse="3" cx="3460" cy="1020" r="18"></circle>
+          <circle class="pin" data-pin="4" cx="4640" cy="860" r="16"></circle><circle class="pulse" data-pulse="4" cx="4640" cy="860" r="18"></circle>
+          <circle class="pin" data-pin="5" cx="5800" cy="1360" r="16"></circle><circle class="pulse" data-pulse="5" cx="5800" cy="1360" r="18"></circle>
+          <circle class="pin" data-pin="6" cx="6400" cy="980" r="16"></circle><circle class="pulse" data-pulse="6" cx="6400" cy="980" r="18"></circle>
+          <circle class="pin" data-pin="7" cx="7000" cy="1040" r="16"></circle><circle class="pulse" data-pulse="7" cx="7000" cy="1040" r="18"></circle>
+          <circle class="pin" data-pin="8" cx="7480" cy="1260" r="16"></circle><circle class="pulse" data-pulse="8" cx="7480" cy="1260" r="18"></circle>
+          <circle class="pin" data-pin="9" cx="7880" cy="1280" r="16"></circle><circle class="pulse" data-pulse="9" cx="7880" cy="1280" r="18"></circle>
         </svg>
 
-        <article class="card" data-scene="0" style="left:120px;top:560px"><p class="k">I · Entry</p><h1 class="t">Yihang (Sam) Wu</h1><p class="p">HCI &amp; Applied AI. Same substance as the System Hub, retold as a route walkthrough.</p></article>
-        <article class="card" data-scene="1" style="left:720px;top:980px"><p class="k">II · Core Vision</p><h2 class="t">Distributed Wearable AIOS</h2><p class="p">Department of Mathematics, Statistics, and Computer Science · University of Toronto.</p><p class="p" style="margin-top:.45rem">Reimagining intent-driven transparent interaction architectures and physical trust primitives.</p></article>
-        <article class="card" data-scene="2" style="left:1400px;top:560px"><p class="k">III · Signal</p><img class="headshot" src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu"><p class="p">Same face and seal anchor as hub.</p></article>
-        <article class="card" data-scene="3" style="left:2100px;top:1160px"><p class="k">IV · Channels</p><ul><li><a href="mailto:wuyihang429@gmail.com">Personal · wuyihang429@gmail.com</a></li><li><a href="mailto:yihang.wu@mail.utoronto.ca">University · yihang.wu@mail.utoronto.ca</a></li><li><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener">Professional · /in/yihang-wu</a></li></ul></article>
-        <article class="card" data-scene="4" style="left:2780px;top:760px"><p class="k">V · Dossier</p><h2 class="t">Professional Dossier</h2><p class="p">Bridging pure logic with industrial execution in Data and AI.</p><p class="p" style="margin-top:.4rem">Quantitative modeling, workflow optimization, and intent-driven agent systems.</p></article>
-        <article class="card" data-scene="5" style="left:3460px;top:1260px"><p class="k">VI · Field Work</p><ul><li>Research Assistant · Food Bank Mississauga · 2026</li><li>Structured interviews and high-fidelity data collection</li><li>Mandarin-supported outreach to reduce response bias</li></ul></article>
-        <article class="card" data-scene="6" style="left:4180px;top:780px"><p class="k">VII · Stack</p><div class="chips"><span>Python</span><span>FastAPI</span><span>JavaScript/UI</span><span>R Studio</span><span>Gemini API</span><span>ERP automation</span></div></article>
-        <article class="card" data-scene="7" style="left:4900px;top:1420px"><p class="k">VIII · Destinations</p><p class="p"><a href="publications.html">Publications</a> · <a href="blog.html">Moments</a> · <a href="resume.html">CV &amp; AI agent</a> · <a href="about.html">Dossier</a> · <a href="hidden.html">Private Gallery</a></p><p class="p" style="margin-top:.45rem">Verified access for full testimonials and photo archive.</p></article>
-        <article class="card" data-scene="8" style="left:5660px;top:980px"><p class="k">IX · Voices</p><h2 class="t">What People Say</h2><div id="voices"></div><p class="p" style="margin-top:.5rem">Public excerpts only. Full details are in Private Gallery.</p></article>
-        <article class="card" data-scene="9" style="left:6840px;top:1220px"><p class="k">X · Exit</p><h2 class="t">Thanks for following the route.</h2><p class="p"><a href="index.html">Return to Hub</a></p></article>
+        <article class="card" data-scene="0" style="left:120px;top:640px"><p class="k">I · Entry</p><h1 class="t">Yihang (Sam) Wu</h1><p class="p">HCI &amp; Applied AI. This route keeps the same substance as the System Hub, but stages it as a guided canvas walkthrough.</p></article>
+        <article class="card" data-scene="1" style="left:980px;top:980px"><p class="k">II · Core Vision</p><h2 class="t">Distributed Wearable AIOS for Human-AI Symbiosis</h2><p class="p">Department of Mathematics, Statistics, and Computer Science · University of Toronto.</p><p class="p" style="margin-top:.45rem">Reimagining intent-driven transparent interaction architectures and physical trust primitives to reshape emotional connectivity and social trust in digital existence.</p></article>
+        <article class="card" data-scene="2" style="left:2060px;top:760px"><p class="k">III · Signal</p><img class="headshot" src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu"><p class="p">Same portrait and seal as the hub, used here as the identity anchor of the route.</p></article>
+        <article class="card" data-scene="3" style="left:3080px;top:1340px"><p class="k">IV · Channels</p><ul><li><a href="mailto:wuyihang429@gmail.com">Personal · wuyihang429@gmail.com</a></li><li><a href="mailto:yihang.wu@mail.utoronto.ca">University · yihang.wu@mail.utoronto.ca</a></li><li><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener">Professional · /in/yihang-wu</a></li></ul></article>
+        <article class="card" data-scene="4" style="left:4300px;top:980px"><p class="k">V · Dossier</p><h2 class="t">Professional Dossier</h2><p class="p">Bridging pure logic with industrial execution in Data and AI. Specialized in data processing, quantitative modeling, and workflow optimization.</p><p class="p" style="margin-top:.45rem">IEEE Student Member.</p></article>
+        <article class="card" data-scene="5" style="left:5480px;top:1680px"><p class="k">VI · Field Work</p><ul><li>Research Assistant · Food Bank Mississauga · May-Aug 2026</li><li>Structured socio-economic interviews; Registered Dietitian-supervised data collection</li><li>Mandarin-supported outreach to improve representativeness</li><li>Ward Missionary · Nov 2025-present</li></ul></article>
+        <article class="card" data-scene="6" style="left:6120px;top:1120px"><p class="k">VII · Stack</p><div class="chips"><span>Python / FastAPI</span><span>R Studio</span><span>JavaScript / UI</span><span>Gemini API</span><span>ERP automation</span><span>MTA JavaScript</span></div></article>
+        <article class="card" data-scene="7" style="left:6740px;top:1340px"><p class="k">VIII · Destinations</p><p class="p"><a href="publications.html">Publications</a> · <a href="blog.html">Moments</a> · <a href="resume.html">CV &amp; AI agent</a> · <a href="about.html">Professional dossier</a> · <a href="hidden.html">Private gallery</a></p><p class="p" style="margin-top:.45rem">Verified access for full testimonials and photo archive.</p></article>
+        <article class="card" data-scene="8" style="left:7260px;top:1560px"><p class="k">IX · Voices</p><h2 class="t">What People Say</h2><div id="voices"></div><p class="p" style="margin-top:.5rem">Public excerpts only. Full reviewer details are in Private Gallery.</p></article>
+        <article class="card" data-scene="9" style="left:7640px;top:1480px"><p class="k">X · Exit</p><h2 class="t">Thanks for following the route.</h2><p class="p">The System Hub remains default entry. This page is the same narrative, remixed as a map journey.</p><p class="p" style="margin-top:.45rem"><a href="index.html">Return to Hub</a></p></article>
       </div>
     </div>
   </main>
@@ -115,7 +118,8 @@
       var pins=[].slice.call(document.querySelectorAll('.pin'));
       var cards=[].slice.call(document.querySelectorAll('.card'));
       var romans=['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-      var points=[{x:320,y:360},{x:920,y:740},{x:1600,y:420},{x:2300,y:940},{x:2980,y:560},{x:3700,y:1020},{x:4420,y:640},{x:5150,y:1180},{x:5900,y:760},{x:7080,y:980}];
+      var points=[{x:360,y:420},{x:1320,y:700},{x:2380,y:620},{x:3460,y:1020},{x:4640,y:860},{x:5800,y:1360},{x:6400,y:980},{x:7000,y:1040},{x:7480,y:1260},{x:7880,y:1280}];
+      var pulses=[].slice.call(document.querySelectorAll('.pulse'));
       var autoOn=true,p=0,targetP=0,lastScene=-1,rafId=0,autoSpeed=.00009;
       meter.innerHTML=romans.map(function(_,i){return '<button class="dot'+(i===0?' is-on':'')+'" data-jump="'+i+'" aria-label="Jump to act"></button>'}).join('');
       [].forEach.call(meter.querySelectorAll('.dot'),function(dot){dot.addEventListener('click',function(){autoOn=false;tourBtn.classList.remove('is-on');targetP=Number(dot.getAttribute('data-jump')||0)/9})});
@@ -127,6 +131,7 @@
       function updateSceneVisual(scene){
         [].forEach.call(meter.querySelectorAll('.dot'),function(d,i){d.classList.toggle('is-on',i===scene)});
         pins.forEach(function(pin,i){pin.classList.toggle('is-on',i===scene)});
+        pulses.forEach(function(pu,i){pu.classList.toggle('is-on',i===scene)});
         cards.forEach(function(c){c.classList.toggle('is-active',Number(c.getAttribute('data-scene'))===scene)});
         stampR.textContent=romans[scene]; stamp.classList.add('show'); clearTimeout(updateSceneVisual._t); updateSceneVisual._t=setTimeout(function(){stamp.classList.remove('show')},520)
       }
@@ -134,14 +139,14 @@
         if(autoOn)targetP=clamp(targetP+autoSpeed,0,1);
         p=lerp(p,targetP,.085);
         var cp=cameraPoint(p),vw=window.innerWidth,vh=window.innerHeight;
-        var baseScale=vw<900?.54:.69;
+        var baseScale=vw<900?.6:.84;
         var scene=sceneFromProgress(p);
         var sceneCenter=scene/9;
-        var local=Math.max(0,1-Math.abs(p-sceneCenter)*9*2.4);
-        var punch=0.11*local;
-        var sway=Math.sin(cp.seg*1.2)*0.03;
+        var local=Math.max(0,1-Math.abs(p-sceneCenter)*9*2.2);
+        var punch=0.16*local;
+        var sway=Math.sin(cp.seg*1.2)*0.028;
         var scale=baseScale+punch+sway;
-        var tx=vw*.5-cp.x*scale,ty=vh*.53-cp.y*scale;
+        var tx=vw*.5-cp.x*scale,ty=vh*.54-cp.y*scale;
         camera.style.transform='translate3d('+tx.toFixed(2)+'px,'+ty.toFixed(2)+'px,0) scale('+scale.toFixed(4)+')';
         if(scene!==lastScene){lastScene=scene;updateSceneVisual(scene)}
         if(autoOn&&targetP>=1)autoOn=false;
