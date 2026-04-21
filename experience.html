@@ -4,1599 +4,507 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sam Wu — HCI, Applied AI, University of Toronto.">
-    <title>Sam Wu</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <title>Sam Wu | Mind Map</title>
     <style>
-        @font-face { font-family: system; src: local(system-ui); }
         :root {
-            --void: #030201;
-            --smoke: #0c0a08;
-            --ash: #1a1714;
-            --paper: #f4ede4;
-            --paper-dim: #9a9288;
+            --bg: #060504;
+            --ink: #f4ede4;
+            --muted: #a8a29e;
             --mint: #5eead4;
-            --mint-deep: #0d9488;
-            --signal: #60a5fa;
-            --chrome: rgba(255, 252, 248, 0.12);
-            --edge: clamp(1.25rem, 5vw, 5.5rem);
-            --mx: 0;
-            --my: 0;
-            --reel-hue: 168;
-            --reel: 0;
+            --sky: #7dd3fc;
+            --amber: #fbbf24;
+            --rose: #fb7185;
+            --line: rgba(244, 237, 228, 0.24);
         }
-
-        *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: auto; }
-        html.lenis, html.lenis body { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto !important; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        :where(a[href], button, [role="button"], input[type="button"], input[type="submit"], summary) { cursor: pointer; }
-        :where(a[href], button, [role="button"], input[type="button"], input[type="submit"], summary):hover { filter: brightness(1.03); }
-        :where(a[href], button, [role="button"], input[type="button"], input[type="submit"], summary):active { transform: translateY(1px); }
-
-        body.sp {
-            margin: 0;
-            padding-bottom: 4.25rem;
-            background: var(--void);
-            color: var(--paper);
+        * { box-sizing: border-box; }
+        html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+        body {
             font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            background:
+                radial-gradient(circle at 12% 10%, rgba(94, 234, 212, 0.12), transparent 40%),
+                radial-gradient(circle at 86% 8%, rgba(125, 211, 252, 0.1), transparent 36%),
+                var(--bg);
+            color: var(--ink);
         }
-        body.sp--reduce * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-
-        .sp-fx {
+        .mm-fx {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .mm-fx--grid {
+            background-image:
+                linear-gradient(rgba(244, 237, 228, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244, 237, 228, 0.03) 1px, transparent 1px);
+            background-size: 44px 44px;
+            opacity: 0.5;
+        }
+        .mm-fx--grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+            mix-blend-mode: soft-light;
+            opacity: 0.2;
+        }
+        .mm-hud {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 5;
         }
-        .sp-fx--bloom {
-            background:
-                radial-gradient(ellipse 140% 80% at calc(42% + var(--reel) * 16%) -18%,
-                    hsla(var(--reel-hue), 72%, 58%, 0.22), transparent 54%),
-                radial-gradient(ellipse 75% 52% at calc(50% + var(--mx) * 22%) calc(34% + var(--my) * 14%),
-                    hsla(calc(var(--reel-hue) + 48), 70%, 58%, 0.14), transparent 50%),
-                radial-gradient(ellipse 58% 48% at calc(22% - var(--mx) * 12%) calc(74% - var(--my) * 10%),
-                    hsla(calc(var(--reel-hue) - 32), 55%, 42%, 0.1), transparent 44%);
-            animation: sp-breathe 16s ease-in-out infinite alternate;
-        }
-        @keyframes sp-breathe {
-            0% { filter: saturate(1) brightness(1); }
-            100% { filter: saturate(1.22) brightness(1.06); }
-        }
-        .sp-fx--grain {
-            opacity: 0.065;
-            mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            z-index: 6;
-        }
-        .sp-fx--vig {
-            box-shadow: inset 0 0 min(220px, 25vw) rgba(0,0,0,0.82), inset 0 -45vh 140px rgba(0,0,0,0.55);
-            z-index: 7;
-        }
-        .sp-fx--scan {
-            opacity: 0.045;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.035) 2px, rgba(255,255,255,0.035) 4px);
-            z-index: 8;
-            mix-blend-mode: soft-light;
-        }
-
-        .sp-floor {
-            position: fixed;
-            left: -60%;
-            right: -60%;
-            bottom: -25%;
-            height: 75%;
-            z-index: 2;
-            pointer-events: none;
-            background:
-                linear-gradient(rgba(244, 237, 228, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(244, 237, 228, 0.045) 1px, transparent 1px);
-            background-size: clamp(64px, 8vw, 120px) clamp(64px, 8vw, 120px);
-            transform-origin: 50% 100%;
-            transform:
-                translate3d(calc(var(--mx) * 28px), 0, 0)
-                perspective(900px)
-                rotateX(84deg)
-                scale(1.55);
-            opacity: 0.42;
-            mask-image: linear-gradient(to top, black 0%, transparent 88%);
-            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 88%);
-        }
-
-        .sp-progress {
-            position: fixed;
-            right: max(14px, env(safe-area-inset-right));
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .sp-progress__cap {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            background: var(--mint);
-            box-shadow: 0 0 14px rgba(94, 234, 212, 0.65);
-            border: 1px solid rgba(255, 252, 248, 0.35);
-        }
-        .sp-progress__cap--end {
-            background: transparent;
-            border: 2px solid rgba(244, 237, 228, 0.4);
-            box-shadow: none;
-        }
-        .sp-progress__track {
-            width: 5px;
-            height: min(46vh, 460px);
-            border-radius: 3px;
-            background: rgba(255,252,248,0.09);
-            position: relative;
-            overflow: hidden;
-        }
-        .sp-progress__fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 0%;
-            border-radius: 3px;
-            background: linear-gradient(180deg, var(--mint), var(--mint-deep));
-            box-shadow: 0 0 28px rgba(94, 234, 212, 0.5);
-        }
-        .sp-progress__hint {
-            font-size: 0.48rem;
-            font-weight: 800;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(244, 237, 228, 0.4);
-            writing-mode: vertical-rl;
-            line-height: 1;
-        }
-
-        .sp-exit {
-            position: fixed;
-            top: max(1rem, env(safe-area-inset-top));
-            left: max(1rem, env(safe-area-inset-left));
-            z-index: 120;
-            font-size: 0.68rem;
-            font-weight: 800;
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
-            color: var(--paper-dim);
-            text-decoration: none;
-            padding: 0.55rem 0;
-            border-bottom: 1px solid transparent;
-            transition: color 0.25s, border-color 0.25s, text-shadow 0.25s;
-        }
-        .sp-exit:hover {
-            color: var(--mint);
-            border-bottom-color: rgba(94, 234, 212, 0.5);
-            text-shadow: 0 0 24px rgba(94, 234, 212, 0.4);
-        }
-
-        /* Hands-free scroll tour — only when Lenis + GSAP are active (see sp--tour-ready). */
-        body.sp:not(.sp--tour-ready) .sp-auto-tour {
-            display: none;
-        }
-        body.sp.sp--tour-ready .sp-auto-tour {
-            display: inline-flex;
-        }
-        body.sp--reduce .sp-auto-tour {
-            display: none !important;
-        }
-        .sp-auto-tour {
-            position: fixed;
-            bottom: calc(3.85rem + env(safe-area-inset-bottom));
-            left: max(0.85rem, env(safe-area-inset-left));
-            z-index: 122;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 0.28rem;
-            padding: 0.55rem 0.85rem 0.5rem 0.65rem;
-            margin: 0;
-            border: 1px solid rgba(94, 234, 212, 0.38);
-            border-radius: 4px;
-            background: linear-gradient(155deg, rgba(22, 32, 30, 0.94) 0%, rgba(8, 8, 7, 0.96) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            color: rgba(250, 248, 245, 0.94);
-            cursor: pointer;
-            opacity: 1;
-            box-shadow:
-                0 0 0 1px rgba(0, 0, 0, 0.45),
-                0 4px 22px rgba(0, 0, 0, 0.45),
-                0 0 28px rgba(94, 234, 212, 0.22),
-                inset 0 1px 0 rgba(255, 252, 248, 0.1);
-            transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.35s ease, transform 0.2s ease;
+        .mm-back {
             pointer-events: auto;
-        }
-        .sp-auto-tour__row {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-        }
-        .sp-auto-tour:hover,
-        .sp-auto-tour:focus-visible {
-            color: #fff;
-            border-color: rgba(94, 234, 212, 0.65);
-            box-shadow:
-                0 0 0 1px rgba(0, 0, 0, 0.4),
-                0 8px 32px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(94, 234, 212, 0.38);
-            transform: translateY(-1px);
-        }
-        .sp-auto-tour:focus-visible {
-            outline: 2px solid rgba(94, 234, 212, 0.75);
-            outline-offset: 3px;
-        }
-        .sp-auto-tour.is-on {
-            color: var(--mint);
-            border-color: rgba(94, 234, 212, 0.55);
-            box-shadow:
-                0 0 0 1px rgba(0, 0, 0, 0.45),
-                0 0 36px rgba(94, 234, 212, 0.35),
-                inset 0 0 20px rgba(94, 234, 212, 0.08);
-        }
-        .sp-auto-tour__icon {
-            width: 1.28rem;
-            height: 1.28rem;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 8px rgba(94, 234, 212, 0.35));
-        }
-        .sp-auto-tour__label {
-            font-size: 0.62rem;
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            line-height: 1.15;
-            padding-right: 0.05rem;
-        }
-        .sp-auto-tour__hint {
-            display: block;
-            font-size: 0.48rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: none;
-            color: rgba(212, 204, 194, 0.75);
-            margin-top: 0.2rem;
-            line-height: 1.2;
-        }
-        .sp-auto-tour__pause {
-            display: none;
-        }
-        .sp-auto-tour.is-on .sp-auto-tour__play {
-            display: none;
-        }
-        .sp-auto-tour.is-on .sp-auto-tour__pause {
-            display: block;
-        }
-        .sp-auto-tour.is-on .sp-auto-tour__hint {
-            color: rgba(94, 234, 212, 0.75);
-        }
-
-        .sp-chrome {
-            border: 1px solid var(--chrome);
-            background: linear-gradient(155deg, rgba(24, 22, 19, 0.92) 0%, rgba(8, 7, 6, 0.96) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow:
-                0 0 0 1px rgba(0,0,0,0.55),
-                min(20px, 2vw) min(20px, 2vw) 0 rgba(0, 0, 0, 0.4),
-                0 min(48px, 6vw) min(100px, 12vw) rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255,252,248,0.07);
-            border-radius: 3px;
-        }
-
-        .persp { perspective: min(2000px, 120vw); perspective-origin: 45% 38%; }
-        .p3d { transform-style: preserve-3d; }
-
-        .sp-water {
             position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: clamp(8rem, 28vw, 22rem);
+            top: 1rem;
+            left: 1rem;
+            font-size: 0.68rem;
             font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -0.06em;
-            color: rgba(244, 237, 228, 0.035);
-            pointer-events: none;
-            user-select: none;
-            z-index: 0;
-            text-align: center;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 0.45rem;
         }
-
-        .sp-h1 {
-            font-size: clamp(4.5rem, 17vw, 13rem);
+        .mm-back:hover { color: var(--mint); border-bottom-color: rgba(94, 234, 212, 0.4); }
+        .mm-tour {
+            pointer-events: auto;
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            border: 1px solid rgba(94, 234, 212, 0.42);
+            background: rgba(8, 10, 10, 0.82);
+            color: var(--ink);
+            padding: 0.5rem 0.8rem;
+            font-size: 0.66rem;
             font-weight: 900;
-            line-height: 0.86;
-            letter-spacing: -0.055em;
-            text-transform: uppercase;
-            text-shadow:
-                -3px 0 rgba(255, 60, 60, 0.14),
-                3px 0 rgba(60, 180, 255, 0.14),
-                0 0 min(120px, 12vw) rgba(94, 234, 212, 0.2);
-        }
-        .sp-h2 {
-            font-size: clamp(2rem, 5.5vw, 4.2rem);
-            font-weight: 800;
-            letter-spacing: -0.035em;
-            line-height: 1.05;
-        }
-        .sp-serif { font-family: Georgia, Cambria, "Times New Roman", Times, serif; }
-        .sp-k {
-            font-size: clamp(0.62rem, 1.1vw, 0.75rem);
-            font-weight: 800;
-            letter-spacing: 0.48em;
-            text-transform: uppercase;
-            color: var(--mint);
-        }
-        .sp-prose {
-            font-size: clamp(1rem, 1.35vw, 1.2rem);
-            line-height: 1.85;
-            color: #d4ccc2;
-            max-width: min(48rem, 100%);
-        }
-        .sp-prose a { color: var(--mint); text-underline-offset: 4px; }
-        .sp-muted { color: #9a9288; }
-        .sp-teal { color: #5eead4; }
-        .sp-sky { color: #7dd3fc; }
-
-        .sp-track { position: relative; }
-        .sp-sticky {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            height: 100dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .sp-sticky--wide { justify-content: stretch; align-items: stretch; }
-
-        .sp-hint {
-            position: absolute;
-            bottom: max(2rem, env(safe-area-inset-bottom));
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            color: rgba(244, 237, 228, 0.38);
-            animation: sp-hint-pulse 2.8s ease-in-out infinite;
-        }
-        @keyframes sp-hint-pulse {
-            0%, 100% { opacity: 0.35; }
-            50% { opacity: 0.9; }
-        }
-
-        .sp-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(min(80px, 10vw));
-            opacity: 0.42;
-            pointer-events: none;
-        }
-
-        .sp-linkrow {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem 2.5rem;
-            justify-content: flex-start;
-            margin-top: 2.5rem;
-        }
-        .sp-linkrow a {
-            font-size: clamp(0.85rem, 1.4vw, 1.05rem);
-            font-weight: 800;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: var(--paper-dim);
-            text-decoration: none;
-            border-bottom: 2px solid rgba(244, 237, 228, 0.18);
-            padding-bottom: 0.35rem;
-            transition: color 0.2s, border-color 0.2s, transform 0.2s;
+            cursor: pointer;
         }
-        .sp-linkrow a:hover {
-            color: var(--mint);
-            border-bottom-color: var(--mint);
-            transform: translateY(-3px);
-        }
-
-        .sp-tcard {
-            border: 1px solid rgba(255,252,248,0.12);
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 1rem;
-            background: rgba(0,0,0,0.35);
-            font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-            color: #cec6bc;
-        }
-
-        .sp-shell {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: min(1920px, 100%);
-            margin: 0 auto;
-            padding-left: var(--edge);
-            padding-right: var(--edge);
-        }
-        .sp-hero-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(2rem, 5vw, 4rem);
-            width: 100%;
-            align-items: end;
-        }
-        @media (min-width: 900px) {
-            .sp-hero-grid {
-                grid-template-columns: 1.15fr 0.85fr;
-                align-items: end;
-            }
-        }
-        .sp-hero-nameblock { position: relative; }
-        .sp-hero-side {
-            text-align: left;
-            padding-bottom: clamp(0.5rem, 2vw, 1.5rem);
-            border-left: 3px solid rgba(94, 234, 212, 0.45);
-            padding-left: clamp(1rem, 2.5vw, 2rem);
-        }
-        .sp-mono-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(2rem, 4vw, 3rem);
-            width: 100%;
-            align-items: center;
-        }
-        @media (min-width: 1000px) {
-            .sp-mono-layout {
-                grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-            }
-        }
-        .sp-mono-strip {
-            font-size: clamp(3rem, 8vw, 7rem);
-            font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -0.04em;
-            color: rgba(244, 237, 228, 0.06);
-            text-transform: uppercase;
-            user-select: none;
-        }
-        .sp-photo-row {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(2rem, 6vw, 5rem);
-            width: 100%;
-            align-items: center;
-        }
-        @media (min-width: 900px) {
-            .sp-photo-row {
-                grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-            }
-        }
-        .sp-photo-imgwrap {
-            position: relative;
-            width: min(52vw, 640px);
-            max-width: 100%;
-        }
-        .sp-photo-imgwrap img {
-            display: block;
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border: 3px solid #1c1917;
-            filter: grayscale(0.12) contrast(1.08);
-        }
-        .sp-contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(1.25rem, 2.5vw, 2rem);
-            width: 100%;
-        }
-        @media (min-width: 900px) {
-            .sp-contact-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        .sp-work-slab-title {
-            font-size: clamp(0.72rem, 1.1vw, 0.85rem);
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-        .sp-work-slab-title--teal { color: #5eead4; }
-        .sp-work-slab-title--sky { color: #7dd3fc; }
-        .sp-work-list {
-            font-size: clamp(0.95rem, 1.25vw, 1.1rem);
-            color: #d4d4d4;
-            font-weight: 600;
-            line-height: 1.75;
-            margin: 0;
-            padding-left: 0;
-            list-style: none;
-        }
-        .sp-work-list li { margin-bottom: 0.5rem; }
-        .sp-stack-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(1.25rem, 2.5vw, 2rem);
-        }
-        @media (min-width: 800px) {
-            .sp-stack-grid { grid-template-columns: 1fr 1fr; }
-        }
-        /* VIII — destination manifest: data-driven grid; add rows in SP_ROUTE_MANIFEST (or fetch). */
-        .sp-route-lede {
-            max-width: min(44rem, 100%);
-            margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
-            font-size: clamp(0.95rem, 1.35vw, 1.08rem);
-            line-height: 1.65;
-            color: rgba(212, 204, 194, 0.88);
-        }
-        .sp-dest-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(1rem, 2vw, 1.35rem);
-            width: 100%;
-            max-width: min(1200px, 100%);
-        }
-        @media (min-width: 560px) {
-            .sp-dest-grid {
-                grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
-            }
-        }
-        .sp-dest-card {
-            --dest-accent: var(--mint);
-            --enter-delay: 0s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-height: min(220px, 42vh);
-            padding: clamp(1.35rem, 2.5vw, 1.85rem);
-            padding-left: clamp(1.5rem, 2.8vw, 2rem);
-            text-decoration: none;
-            color: inherit;
-            overflow: hidden;
-            border-radius: 3px;
-            border: 1px solid rgba(255, 252, 248, 0.1);
-            background: linear-gradient(145deg, rgba(22, 20, 17, 0.95) 0%, rgba(6, 6, 5, 0.98) 100%);
-            box-shadow:
-                min(12px, 1.5vw) min(12px, 1.5vw) 0 rgba(0, 0, 0, 0.35),
-                inset 0 1px 0 rgba(255, 252, 248, 0.06);
-            border-left: 3px solid var(--dest-accent);
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.3s ease;
-            animation: sp-dest-enter 0.75s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-            animation-delay: var(--enter-delay);
-        }
-        @keyframes sp-dest-enter {
-            from {
-                opacity: 0;
-                transform: translateY(22px) scale(0.98);
-                filter: blur(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .sp-dest-card { animation: none; }
-        }
-        .sp-dest-card::before {
-            content: attr(data-ix);
+        .mm-tour.is-on { color: var(--mint); }
+        .mm-reel {
             position: absolute;
-            right: -0.05em;
-            top: -0.15em;
-            font-size: clamp(4rem, 14vw, 7rem);
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -0.06em;
-            color: rgba(244, 237, 228, 0.045);
-            pointer-events: none;
-            user-select: none;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: grid;
+            gap: 0.45rem;
+            pointer-events: auto;
         }
-        .sp-dest-card:hover {
-            transform: translateY(-6px);
-            box-shadow:
-                min(16px, 2vw) min(16px, 2vw) 0 rgba(0, 0, 0, 0.42),
-                0 0 0 1px rgba(94, 234, 212, 0.18),
-                0 28px 56px rgba(0, 0, 0, 0.45);
-            border-color: rgba(94, 234, 212, 0.28);
+        .mm-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 1px solid rgba(244, 237, 228, 0.35);
+            background: transparent;
+            opacity: 0.55;
+            cursor: pointer;
         }
-        .sp-dest-card:focus-visible {
-            outline: 2px solid var(--dest-accent);
-            outline-offset: 3px;
+        .mm-dot.is-on {
+            background: var(--mint);
+            box-shadow: 0 0 16px rgba(94, 234, 212, 0.65);
+            opacity: 1;
         }
-        .sp-dest-card--mint { --dest-accent: #5eead4; }
-        .sp-dest-card--sky { --dest-accent: #7dd3fc; }
-        .sp-dest-card--violet { --dest-accent: #a78bfa; }
-        .sp-dest-card--amber { --dest-accent: #fbbf24; }
-        .sp-dest-card--rose { --dest-accent: #fb7185; }
-        .sp-dest-card__kicker {
-            font-size: clamp(0.62rem, 1vw, 0.72rem);
-            font-weight: 900;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--dest-accent);
-            margin: 0 0 0.65rem;
-        }
-        .sp-dest-card__title {
-            margin: 0 0 0.75rem;
-            font-size: clamp(1.25rem, 2.4vw, 1.65rem);
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            color: #faf8f5;
-            line-height: 1.15;
-            position: relative;
-            z-index: 1;
-        }
-        .sp-dest-card__body {
-            margin: 0;
-            flex: 1;
-            font-size: clamp(0.82rem, 1.15vw, 0.95rem);
-            line-height: 1.6;
-            color: rgba(212, 204, 194, 0.88);
-            position: relative;
-            z-index: 1;
-        }
-        .sp-dest-card__go {
-            margin-top: 1.25rem;
-            font-size: clamp(0.65rem, 0.95vw, 0.74rem);
-            font-weight: 900;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: rgba(244, 237, 228, 0.45);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            z-index: 1;
-            transition: color 0.25s ease, letter-spacing 0.25s ease;
-        }
-        .sp-dest-card:hover .sp-dest-card__go {
-            color: var(--dest-accent);
-            letter-spacing: 0.32em;
-        }
-        .sp-dest-card__go svg {
-            width: 1em;
-            height: 1em;
-            opacity: 0.85;
-        }
-        .sp-route-foot {
-            margin-top: clamp(1.5rem, 3vw, 2.25rem);
-            max-width: min(48rem, 100%);
-            font-size: clamp(0.72rem, 1.05vw, 0.82rem);
-            line-height: 1.55;
-            color: rgba(168, 162, 158, 0.95);
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 252, 248, 0.08);
-        }
-
-        .sp-label-xs {
-            font-size: clamp(0.65rem, 0.95vw, 0.72rem);
-            font-weight: 900;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: #78716c;
-            margin-bottom: 0.5rem;
-        }
-
-        body.sp--reduce .sp-hint { animation: none; }
-        body.sp--reduce .sp-fx--bloom { animation: none; }
-        body.sp--reduce .sp-reel-wrap { opacity: 0.35; }
-        body.sp--reduce .sp-welcome { display: none; }
-
-        .sp-hero-lift {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: min(42vh, 520px);
-            pointer-events: none;
-            z-index: 3;
-            background: linear-gradient(to top, rgba(244, 237, 228, 0.09) 0%, transparent 72%);
-        }
-
-        .sp-welcome {
-            position: fixed;
+        .mm-tip {
+            position: absolute;
             left: 50%;
-            bottom: calc(5.25rem + env(safe-area-inset-bottom));
+            bottom: 1.1rem;
             transform: translateX(-50%);
-            z-index: 115;
-            max-width: min(36rem, 94vw);
-            text-align: center;
-            pointer-events: none;
-            transition: opacity 0.55s ease, visibility 0.55s ease;
-        }
-        .sp-welcome.is-gone {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        .sp-welcome__panel {
-            background: rgba(14, 12, 10, 0.92);
-            border: 1px solid rgba(94, 234, 212, 0.42);
-            padding: 1rem 1.35rem 1.2rem;
-            border-radius: 4px;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), 0 0 1px rgba(255, 252, 248, 0.12) inset;
-        }
-        .sp-welcome__title {
-            font-size: clamp(0.72rem, 1.5vw, 0.82rem);
-            font-weight: 900;
-            letter-spacing: 0.42em;
+            color: rgba(244, 237, 228, 0.65);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--mint);
-            margin: 0 0 0.45rem;
-        }
-        .sp-welcome__sub {
-            margin: 0;
-            font-size: clamp(0.82rem, 1.35vw, 0.95rem);
-            color: rgba(244, 237, 228, 0.82);
-            line-height: 1.55;
-        }
-        .sp-welcome__arrow {
-            display: block;
-            margin: 0.85rem auto 0;
-            width: 2rem;
-            height: 2rem;
-            color: var(--mint);
-            animation: sp-welcome-bounce 1.45s ease-in-out infinite;
-        }
-        @keyframes sp-welcome-bounce {
-            0%, 100% { transform: translateY(0); opacity: 1; }
-            50% { transform: translateY(10px); opacity: 0.65; }
-        }
-
-        .sp-voices-footnote {
-            margin-top: 1.25rem;
-            padding: 0.75rem 1rem;
-            text-align: center;
-            font-size: clamp(0.75rem, 1.05vw, 0.85rem);
-            font-weight: 700;
-            line-height: 1.45;
-            color: #a8a29e;
-            background: rgba(6, 78, 59, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            max-width: min(48rem, 94vw);
-        }
-        #hero-name { position: relative; display: inline-block; }
-        #hero-outline {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            pointer-events: none;
-            margin: 0;
-        }
-
-        body.sp .w-full { width: 100%; }
-        body.sp .max-w-none { max-width: none; }
-        body.sp .text-white { color: #faf8f5; }
-        body.sp .text-left { text-align: left; }
-        body.sp .font-black { font-weight: 900; }
-        body.sp .font-bold { font-weight: 700; }
-        body.sp .mb-2 { margin-bottom: 0.5rem; }
-        body.sp .mb-4 { margin-bottom: 1rem; }
-        body.sp .mb-6 { margin-bottom: 1.5rem; }
-        body.sp .mb-8 { margin-bottom: 2rem; }
-        body.sp .mb-10 { margin-bottom: 2.5rem; }
-        body.sp .mb-12 { margin-bottom: 3rem; }
-        body.sp .mt-1 { margin-top: 0.25rem; }
-        body.sp .mt-6 { margin-top: 1.5rem; }
-        body.sp .mt-10 { margin-top: 2.5rem; }
-        body.sp .pb-24 { padding-bottom: 6rem; }
-        body.sp .leading-tight { line-height: 1.15; }
-        body.sp .opacity-90 { opacity: 0.9; }
-        body.sp .italic { font-style: italic; }
-        body.sp .uppercase { text-transform: uppercase; }
-        body.sp .tracking-widest { letter-spacing: 0.2em; }
-        body.sp .overflow-y-auto { overflow-y: auto; }
-        body.sp a.sp-hover-white { transition: color 0.2s ease; }
-        body.sp a.sp-hover-white:hover { color: #fff; }
-        body.sp .sp-sticky-voices {
-            align-items: flex-start;
-            padding-top: clamp(4rem, 10vh, 7rem);
-        }
-
-        .sp-reel {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 110;
-            pointer-events: none;
-            padding: 0.65rem var(--edge) calc(0.55rem + env(safe-area-inset-bottom));
-            background: linear-gradient(to top, rgba(3, 2, 1, 0.92), rgba(3, 2, 1, 0));
-        }
-        .sp-reel__inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.35rem;
-            max-width: min(1920px, 100%);
-            margin: 0 auto;
-            border-top: 1px solid rgba(255, 252, 248, 0.1);
-            padding-top: 0.55rem;
-        }
-        .sp-reel__tick {
-            flex: 1;
-            text-align: center;
-            font-size: clamp(0.55rem, 1.1vw, 0.68rem);
-            font-weight: 900;
-            letter-spacing: 0.12em;
-            color: rgba(244, 237, 228, 0.2);
-            transition: color 0.45s ease, text-shadow 0.45s ease, transform 0.45s ease;
-        }
-        .sp-reel__tick.is-on {
-            color: rgba(94, 234, 212, 0.95);
-            text-shadow: 0 0 24px rgba(94, 234, 212, 0.45);
-            transform: translateY(-2px);
-        }
-        .sp-reel__label {
-            position: absolute;
-            left: var(--edge);
-            bottom: calc(100% + 0.35rem);
-            font-size: 0.55rem;
             font-weight: 800;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: rgba(244, 237, 228, 0.28);
         }
-        .sp-reel-wrap { position: relative; max-width: min(1920px, 100%); margin: 0 auto; }
-        body.sp .border-teal-500 { border-color: #14b8a6; }
+        .mm-stage {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .mm-camera {
+            width: 100%;
+            height: 100%;
+            transform-origin: 0 0;
+            transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .mm-map {
+            position: relative;
+            width: 3500px;
+            height: 2300px;
+        }
+        .mm-links {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        .mm-links path {
+            fill: none;
+            stroke: var(--line);
+            stroke-width: 2.2;
+            stroke-dasharray: 10 12;
+            animation: flow 11s linear infinite;
+        }
+        @keyframes flow { to { stroke-dashoffset: -220; } }
+        .mm-node {
+            position: absolute;
+            width: 460px;
+            border: 1px solid rgba(244, 237, 228, 0.18);
+            background: linear-gradient(150deg, rgba(20, 18, 16, 0.92), rgba(7, 6, 5, 0.95));
+            box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.36), 0 22px 70px rgba(0, 0, 0, 0.35);
+            padding: 1.35rem 1.5rem;
+        }
+        .mm-node::before {
+            content: attr(data-act);
+            position: absolute;
+            right: 0.6rem;
+            top: 0.5rem;
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(244, 237, 228, 0.05);
+            pointer-events: none;
+        }
+        .mm-node.is-focus {
+            border-color: rgba(94, 234, 212, 0.5);
+            box-shadow: 14px 14px 0 rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(94, 234, 212, 0.22), 0 30px 90px rgba(0, 0, 0, 0.52);
+        }
+        .mm-k {
+            margin: 0 0 0.55rem;
+            color: var(--mint);
+            font-size: 0.65rem;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+        .mm-title {
+            margin: 0 0 0.75rem;
+            font-size: 1.75rem;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+        .mm-body {
+            margin: 0;
+            color: #d4ccc2;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+        .mm-list {
+            margin: 0.65rem 0 0;
+            padding-left: 1rem;
+            color: #d4ccc2;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .mm-photo {
+            width: 100%;
+            max-width: 260px;
+            border: 2px solid rgba(244, 237, 228, 0.22);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.4);
+            display: block;
+            margin-bottom: 0.9rem;
+        }
+        .mm-chips {
+            margin-top: 0.95rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+        .mm-chip {
+            border: 1px solid rgba(255, 252, 248, 0.2);
+            background: rgba(0, 0, 0, 0.18);
+            padding: 0.3rem 0.5rem;
+            color: #d4ccc2;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+        .mm-links-list {
+            margin-top: 0.65rem;
+            display: grid;
+            gap: 0.48rem;
+        }
+        .mm-link {
+            display: inline-flex;
+            width: fit-content;
+            color: var(--mint);
+            font-weight: 800;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(94, 234, 212, 0.4);
+            font-size: 0.9rem;
+        }
+        .mm-link:hover { color: #fff; }
+        .mm-foot {
+            margin-top: 0.8rem;
+            color: var(--muted);
+            font-size: 0.72rem;
+            line-height: 1.5;
+        }
+        #mm-voices-list { margin-top: 0.55rem; display: grid; gap: 0.55rem; }
+        .mm-tcard {
+            border: 1px solid rgba(255, 252, 248, 0.12);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.62rem 0.68rem;
+        }
+        .mm-tcard p { margin: 0; }
+        .mm-tcard p:first-child { color: #d6cec4; font-size: 0.84rem; line-height: 1.5; }
+        .mm-tcard p:last-child { margin-top: 0.45rem; color: var(--mint); font-size: 0.66rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; }
+        @media (max-width: 900px) {
+            .mm-tip { display: none; }
+            .mm-node { width: 360px; padding: 1rem 1.08rem; }
+            .mm-title { font-size: 1.35rem; }
+        }
     </style>
 </head>
-<body class="sp" data-scene="0">
+<body>
+    <div class="mm-fx mm-fx--grid" aria-hidden="true"></div>
+    <div class="mm-fx mm-fx--grain" aria-hidden="true"></div>
 
-    <div class="sp-fx sp-fx--bloom" aria-hidden="true"></div>
-    <div class="sp-fx sp-fx--grain" aria-hidden="true"></div>
-    <div class="sp-fx sp-fx--vig" aria-hidden="true"></div>
-    <div class="sp-fx sp-fx--scan" aria-hidden="true"></div>
-    <div class="sp-floor" id="sp-floor" aria-hidden="true"></div>
-    <div class="sp-hero-lift" aria-hidden="true"></div>
-    <div class="sp-welcome" id="sp-welcome" role="status">
-        <div class="sp-welcome__panel">
-            <p class="sp-welcome__title">Scroll down</p>
-            <p class="sp-welcome__sub">Same information as the main hub — only the order and motion differ. Use the strip on the right to see where you are.</p>
-            <svg class="sp-welcome__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-        </div>
+    <div class="mm-hud">
+        <a class="mm-back" href="index.html">Hub</a>
+        <button class="mm-tour is-on" id="mm-tour-btn" type="button" aria-label="Pause autoplay">Auto play</button>
+        <div class="mm-reel" id="mm-reel" aria-label="Acts"></div>
+        <p class="mm-tip">wheel / swipe to branch, auto play keeps moving</p>
     </div>
 
-    <div class="sp-progress" aria-hidden="true">
-        <span class="sp-progress__hint">Top</span>
-        <span class="sp-progress__cap"></span>
-        <div class="sp-progress__track"><div class="sp-progress__fill" id="sp-prog-fill"></div></div>
-        <span class="sp-progress__cap sp-progress__cap--end"></span>
-        <span class="sp-progress__hint">End</span>
+    <div class="mm-stage" id="mm-stage">
+        <div class="mm-camera" id="mm-camera">
+            <div class="mm-map" id="mm-map">
+                <svg class="mm-links" viewBox="0 0 3500 2300" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M330 260 C 600 200, 760 300, 920 520"></path>
+                    <path d="M1160 530 C 1400 620, 1480 650, 1580 840"></path>
+                    <path d="M1760 860 C 2000 990, 2000 980, 2190 810"></path>
+                    <path d="M2220 840 C 2380 940, 2450 1040, 2480 1240"></path>
+                    <path d="M2510 1260 C 2330 1400, 2100 1520, 1910 1640"></path>
+                    <path d="M1880 1660 C 1640 1780, 1410 1750, 1200 1630"></path>
+                    <path d="M1180 1600 C 970 1510, 770 1540, 610 1760"></path>
+                    <path d="M620 1790 C 860 1950, 1300 2050, 1700 1980"></path>
+                    <path d="M1710 1980 C 2120 1910, 2500 1740, 2840 1540"></path>
+                </svg>
+
+                <article class="mm-node" data-index="0" data-x="330" data-y="260" data-act="I">
+                    <p class="mm-k">I · Entry</p>
+                    <h1 class="mm-title">Yihang (Sam) Wu</h1>
+                    <p class="mm-body">HCI &amp; Applied AI. This map carries the exact same material as the System Hub, just told as a connected route.</p>
+                </article>
+
+                <article class="mm-node" data-index="1" data-x="920" data-y="520" data-act="II">
+                    <p class="mm-k">II · Core Vision</p>
+                    <h2 class="mm-title">Distributed Wearable AIOS for Human-AI Symbiosis</h2>
+                    <p class="mm-body">Department of Mathematics, Statistics, and Computer Science · University of Toronto. Reimagining intent-driven transparent interaction architectures and physical trust primitives to reshape emotional connectivity and social trust in digital existence.</p>
+                </article>
+
+                <article class="mm-node" data-index="2" data-x="1580" data-y="840" data-act="III">
+                    <p class="mm-k">III · Signal</p>
+                    <img class="mm-photo" src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu">
+                    <p class="mm-body">Same portrait and seal as the hub, reframed here as a map anchor instead of a card.</p>
+                </article>
+
+                <article class="mm-node" data-index="3" data-x="2190" data-y="810" data-act="IV">
+                    <p class="mm-k">IV · Channels</p>
+                    <div class="mm-links-list">
+                        <a class="mm-link" href="mailto:wuyihang429@gmail.com">Personal · wuyihang429@gmail.com</a>
+                        <a class="mm-link" href="mailto:yihang.wu@mail.utoronto.ca">University · yihang.wu@mail.utoronto.ca</a>
+                        <a class="mm-link" href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener">Professional · /in/yihang-wu</a>
+                    </div>
+                </article>
+
+                <article class="mm-node" data-index="4" data-x="2480" data-y="1240" data-act="V">
+                    <p class="mm-k">V · Dossier</p>
+                    <h2 class="mm-title">Professional Dossier</h2>
+                    <p class="mm-body">Bridging pure logic with industrial execution in Data and AI. Quantitative modeling, workflow optimization, Human-AI symbiosis through intent-driven agents and digital sovereignty.</p>
+                    <p class="mm-foot">IEEE Student Member</p>
+                </article>
+
+                <article class="mm-node" data-index="5" data-x="1910" data-y="1640" data-act="VI">
+                    <p class="mm-k">VI · Field Work</p>
+                    <ul class="mm-list">
+                        <li>Research Assistant · Food Bank Mississauga · 2026</li>
+                        <li>Structured socio-economic interviews, data collection, bilingual outreach</li>
+                        <li>Ward Missionary · LDS Church · 2025-present</li>
+                    </ul>
+                </article>
+
+                <article class="mm-node" data-index="6" data-x="1200" data-y="1630" data-act="VII">
+                    <p class="mm-k">VII · Stack</p>
+                    <div class="mm-chips">
+                        <span class="mm-chip">Python</span>
+                        <span class="mm-chip">FastAPI</span>
+                        <span class="mm-chip">JavaScript / UI</span>
+                        <span class="mm-chip">R Studio</span>
+                        <span class="mm-chip">Gemini API</span>
+                        <span class="mm-chip">ERP automation</span>
+                    </div>
+                </article>
+
+                <article class="mm-node" data-index="7" data-x="610" data-y="1760" data-act="VIII">
+                    <p class="mm-k">VIII · Destinations</p>
+                    <div class="mm-links-list">
+                        <a class="mm-link" href="publications.html">Publications · papers &amp; catalog</a>
+                        <a class="mm-link" href="blog.html">Moments · blog/photos/notes</a>
+                        <a class="mm-link" href="resume.html">CV &amp; AI agent</a>
+                        <a class="mm-link" href="about.html">Professional dossier</a>
+                        <a class="mm-link" href="hidden.html">Private gallery</a>
+                    </div>
+                    <p class="mm-foot">Verified access for full testimonials and private photo collection.</p>
+                </article>
+
+                <article class="mm-node" data-index="8" data-x="1700" data-y="1980" data-act="IX">
+                    <p class="mm-k">IX · Voices</p>
+                    <h2 class="mm-title">What People Say</h2>
+                    <div id="mm-voices-list"><p class="mm-body">Loading voices…</p></div>
+                    <p class="mm-foot">Public excerpts only. Full reviewer details are in Private Gallery.</p>
+                </article>
+
+                <article class="mm-node" data-index="9" data-x="2840" data-y="1540" data-act="X">
+                    <p class="mm-k">X · Exit</p>
+                    <h2 class="mm-title">Thanks for following the map.</h2>
+                    <p class="mm-body">Default entry remains the System Hub. This view is the same information with a storyboard camera language.</p>
+                    <div class="mm-links-list">
+                        <a class="mm-link" href="index.html">Return to Hub</a>
+                    </div>
+                </article>
+            </div>
+        </div>
     </div>
-    <div class="sp-reel-wrap" aria-hidden="true">
-        <nav class="sp-reel" id="sp-reel" aria-label="Sections">
-            <p class="sp-reel__label">Acts</p>
-            <div class="sp-reel__inner">
-                <span class="sp-reel__tick is-on" data-reel-scene="0">I</span>
-                <span class="sp-reel__tick" data-reel-scene="1">II</span>
-                <span class="sp-reel__tick" data-reel-scene="2">III</span>
-                <span class="sp-reel__tick" data-reel-scene="3">IV</span>
-                <span class="sp-reel__tick" data-reel-scene="4">V</span>
-                <span class="sp-reel__tick" data-reel-scene="5">VI</span>
-                <span class="sp-reel__tick" data-reel-scene="6">VII</span>
-                <span class="sp-reel__tick" data-reel-scene="7">VIII</span>
-                <span class="sp-reel__tick" data-reel-scene="8">IX</span>
-                <span class="sp-reel__tick" data-reel-scene="9">X</span>
-            </div>
-        </nav>
-    </div>
-    <a href="index.html" class="sp-exit">Hub</a>
-    <button type="button" class="sp-auto-tour" id="sp-auto-tour" aria-pressed="false" aria-label="Play automatic scroll tour (hands-free)" title="Plays a ~90 second full-page pass so you can watch the motion without scrolling. Click again to stop.">
-        <span class="sp-auto-tour__row">
-            <svg class="sp-auto-tour__icon sp-auto-tour__play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"></path></svg>
-            <svg class="sp-auto-tour__icon sp-auto-tour__pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"></path></svg>
-            <span class="sp-auto-tour__label">Auto tour</span>
-        </span>
-        <span class="sp-auto-tour__hint">~90s top-to-bottom · tap to stop</span>
-    </button>
-
-    <section class="sp-track" id="sc-hero" style="height: 560vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true">I</div>
-            <div class="sp-orb sp-orb--a" style="width:min(90vw,680px);height:min(90vw,680px);background:var(--mint-deep);top:8%;left:-5%;"></div>
-            <div class="sp-orb sp-orb--b" style="width:min(70vw,520px);height:min(70vw,520px);background:#1e40af;bottom:5%;right:-8%;"></div>
-            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
-                <div class="sp-hero-grid w-full" id="hero-pack">
-                    <div class="sp-hero-nameblock" id="hero-nameblock">
-                        <p class="sp-k mb-6 opacity-90" id="hero-line">HCI &amp; Applied AI</p>
-                        <div class="p3d relative" id="hero-name" style="display:inline-block;">
-                            <h1 class="sp-h1" style="color:#faf8f5;">Sam</h1>
-                            <h1 class="sp-h1" id="hero-outline" style="color:transparent;-webkit-text-stroke:2px rgba(244,237,228,0.4);transform:translateZ(0);">Sam</h1>
-                        </div>
-                        <h1 class="sp-h1 sp-teal mt-1" id="hero-wu" style="transform:translateZ(40px);">Wu</h1>
-                    </div>
-                    <div class="sp-hero-side" id="hero-side">
-                        <p class="sp-h2 text-white mb-6 leading-tight" id="hero-dek" style="font-size:clamp(1.35rem,2.9vw,2rem);font-weight:700;">
-                            Yihang (Sam) Wu
-                        </p>
-                        <p class="sp-prose sp-muted" id="hero-tag" style="max-width:36rem;font-size:clamp(0.95rem,1.2vw,1.1rem);">
-                            This page mirrors the System Hub: same facts, links, and public excerpts — told as one continuous scroll instead of cards.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <p class="sp-hint" id="hero-hint">Scroll down</p>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-mono" style="height: 520vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true">II</div>
-            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
-                <div class="sp-mono-layout w-full" id="mono-pack">
-                    <div class="sp-mono-strip" id="mono-strip" aria-hidden="true">UofT<br>MSC</div>
-                    <div class="sp-chrome p3d" id="mono-card" style="padding:clamp(2rem,4vw,3.5rem);">
-                        <p class="sp-k mb-6">II · Monolith</p>
-                        <p class="text-white mb-2 font-black" style="font-size:clamp(1.15rem,2.1vw,1.65rem);line-height:1.2;">Department of Mathematics, Statistics, and Computer Science</p>
-                        <p class="sp-teal font-black mb-10" style="font-size:clamp(0.85rem,1.3vw,1rem);letter-spacing:0.22em;text-transform:uppercase;">University of Toronto</p>
-                        <p class="sp-label-xs">Core Vision &amp; Architecture</p>
-                        <h2 class="sp-h2 sp-serif text-white mb-8">Distributed Wearable AIOS for Human-AI Symbiosis</h2>
-                        <p class="sp-prose sp-muted mb-10">
-                            Reimagining intent-driven transparent interaction architectures and physical trust primitives to reshape emotional connectivity and social trust in digital existence.
-                        </p>
-                        <div style="height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);"></div>
-                        <p class="mt-6 sp-muted font-bold" style="font-size:0.85rem;letter-spacing:0.06em;">Built and maintained by Sam Wu.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-photo" style="height: 500vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true">III</div>
-            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
-                <div class="sp-photo-row w-full" id="photo-pack">
-                    <div class="p3d" id="photo-frame">
-                        <div class="sp-photo-imgwrap" style="box-shadow:min(16px,2vw) min(16px,2vw) 0 rgba(0,0,0,0.55),0 0 min(80px,8vw) rgba(94,234,212,0.18);background:rgba(6,78,59,0.35);padding:10px;border:2px solid rgba(255,255,255,0.22);">
-                            <img src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu" width="640" height="640">
-                            <div style="position:absolute;bottom:-14px;right:-14px;width:min(72px,12vw);height:min(72px,12vw);background:#10b981;border:3px solid #0c0a09;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:clamp(0.65rem,1vw,0.85rem);color:#fff;box-shadow:6px 6px 0 #000;">WS.</div>
-                        </div>
-                    </div>
-                    <div class="p3d" id="photo-copy">
-                        <p class="sp-k mb-6">III · Signal</p>
-                        <h2 class="sp-h2 text-white mb-8">Same face as the hub.</h2>
-                        <p class="sp-prose sp-muted">
-                            Same headshot and seal as on the main page — shown here larger and in motion.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-contact" style="height: 460vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true">IV</div>
-            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
-                <div class="w-full" id="contact-pack">
-                    <p class="sp-k mb-12" style="text-align:left;font-size:clamp(0.7rem,1.2vw,0.8rem);">IV · Channels</p>
-                    <div class="sp-contact-grid" id="contact-grid">
-                        <div class="sp-chrome p3d" style="padding:clamp(1.75rem,3vw,2.5rem);min-height:min(220px,28vh);" data-c-i="0">
-                            <p class="sp-label-xs">Personal</p>
-                            <a href="mailto:wuyihang429@gmail.com" class="sp-teal font-bold sp-hover-white" style="font-size:clamp(0.95rem,1.35vw,1.15rem);word-break:break-all;">wuyihang429@gmail.com</a>
-                        </div>
-                        <div class="sp-chrome p3d" style="padding:clamp(1.75rem,3vw,2.5rem);min-height:min(220px,28vh);" data-c-i="1">
-                            <p class="sp-label-xs">University</p>
-                            <a href="mailto:yihang.wu@mail.utoronto.ca" class="sp-teal font-bold sp-hover-white" style="font-size:clamp(0.95rem,1.35vw,1.15rem);word-break:break-all;">yihang.wu@mail.utoronto.ca</a>
-                        </div>
-                        <div class="sp-chrome p3d" style="padding:clamp(1.75rem,3vw,2.5rem);min-height:min(220px,28vh);" data-c-i="2">
-                            <p class="sp-label-xs">Professional</p>
-                            <a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener" class="sp-teal font-bold sp-hover-white" style="font-size:clamp(0.95rem,1.35vw,1.15rem);">/in/yihang-wu</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-dossier" style="height: 480vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true">V</div>
-            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
-                <div class="w-full max-w-none" id="dossier-pack">
-                    <div class="sp-chrome p3d" id="dossier-card" style="padding:clamp(2.5rem,5vw,4rem);width:min(100%,1400px);margin-left:0;">
-                        <p class="sp-k mb-8">V · Dossier</p>
-                        <p class="sp-prose sp-muted mb-10" style="font-size:clamp(1.05rem,1.5vw,1.35rem);max-width:min(56rem,92vw);">
-                            <a href="about.html">Professional Dossier</a> (profile &amp; beyond) — same entry as on the hub: bridging pure logic with industrial execution in Data and AI. Quantitative modeling, workflow optimization, Human–AI symbiosis through intent-driven agents and digital sovereignty.
-                        </p>
-                        <p class="font-black sp-teal uppercase tracking-widest border-l-4 border-teal-500 pl-6" style="font-size:clamp(0.9rem,1.4vw,1.05rem);">IEEE Student Member</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-work" style="height: 560vh;">
-        <div class="sp-sticky persp sp-sticky--wide" style="align-items:flex-start;padding-top:clamp(4rem,10vh,7rem);">
-            <div class="sp-shell p3d w-full" id="work-pack">
-                <p class="sp-k mb-12">VI · Field work</p>
-                <div id="work-slabs" style="display:flex;flex-direction:column;gap:clamp(2rem,4vw,3.5rem);width:100%;">
-                    <div class="sp-chrome p3d" data-w="0" style="padding:clamp(2rem,4vw,3rem);width:min(100%,1180px);margin-right:auto;">
-                        <p class="sp-work-slab-title sp-work-slab-title--teal">Research Assistant · Food Bank Mississauga · 2026</p>
-                        <ul class="sp-work-list">
-                            <li>— Structured research interviews on regional socio-economic indicators</li>
-                            <li>— High-fidelity data collection under Registered Dietitian supervision</li>
-                            <li>— Mandarin-supported outreach to reduce response bias</li>
-                        </ul>
-                    </div>
-                    <div class="sp-chrome p3d" data-w="1" style="padding:clamp(2rem,4vw,3rem);width:min(100%,1180px);margin-left:auto;">
-                        <p class="sp-work-slab-title sp-work-slab-title--sky">Ward Missionary · LDS Church · 2025–present</p>
-                        <ul class="sp-work-list">
-                            <li>— Demographic analysis with leadership</li>
-                            <li>— English–Mandarin interpretation</li>
-                            <li>— Onboarding &amp; accessibility</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-stack" style="height: 420vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true">VII</div>
-            <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
-                <div class="w-full" id="stack-pack">
-                    <p class="sp-k mb-12" style="text-align:center;">VII · Stack</p>
-                    <div class="sp-stack-grid" id="stack-grid">
-                        <div class="sp-chrome p3d" style="padding:clamp(2rem,3.5vw,2.75rem);">
-                            <p class="sp-label-xs">Core tech</p>
-                            <p class="font-bold sp-muted" style="font-size:clamp(1rem,1.45vw,1.2rem);line-height:2;">
-                                Python / FastAPI · R Studio · JavaScript / UI · Gemini API · ERP automation
-                            </p>
-                        </div>
-                        <div class="sp-chrome p3d" style="padding:clamp(2rem,3.5vw,2.75rem);">
-                            <p class="sp-label-xs">Honors</p>
-                            <p class="font-bold sp-muted" style="font-size:clamp(1rem,1.45vw,1.2rem);line-height:2;">
-                                MTA JavaScript · Workspace / Office · Data &amp; logistics · Asian FS L2 · Figure skating
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-gate" style="height: 520vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true">VIII</div>
-            <div class="sp-shell p3d w-full" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;">
-                <div class="w-full" id="gate-pack">
-                    <p class="sp-k mb-8">VIII · Routing</p>
-                    <h2 class="sp-h2 text-white mb-6" style="font-size:clamp(2.25rem,6.5vw,4.75rem);max-width:min(22ch,95vw);line-height:1.05;">Destinations</h2>
-                    <p class="sp-route-lede">
-                        Same entry points as the System Hub — each tile is a full destination page in the site, not a control. Scroll through the previews, then open any route to continue reading in its dedicated layout.
-                    </p>
-                    <nav class="sp-dest-grid" id="sp-dest-grid" aria-label="Site destinations"></nav>
-                    <p class="sp-route-foot">
-                        New sections can be added without breaking this grid — the manifest that powers this list lives in the page script so it can later be swapped for an API feed.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-voices" style="height: 420vh;">
-        <div class="sp-sticky persp sp-sticky--wide sp-sticky-voices overflow-y-auto">
-            <div class="sp-shell p3d w-full pb-24" id="voices-pack">
-                <p class="sp-k mb-4">IX · Voices</p>
-                <h3 class="text-white font-black mb-6" style="font-size:clamp(1.15rem,2.2vw,1.5rem);letter-spacing:-0.02em;">What People Say</h3>
-                <p class="sp-prose sp-muted mb-6" style="font-size:clamp(0.95rem,1.2vw,1.05rem);max-width:min(48rem,90vw);">
-                    Public excerpts only — same feed as the hub sidebar.
-                </p>
-                <div id="sp-testimonials">Loading…</div>
-                <div class="sp-voices-footnote">
-                    To view the full version and detailed reviewer information (such as name and LinkedIn profile), please click the <a href="hidden.html" class="sp-teal sp-hover-white" style="font-weight:900;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(94,234,212,0.45);">Private Gallery</a> section.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sp-track" id="sc-end" style="height: 480vh;">
-        <div class="sp-sticky persp sp-sticky--wide">
-            <div class="sp-water" aria-hidden="true" style="opacity:0.06;">X</div>
-            <div class="sp-shell p3d" style="position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:flex-start;">
-                <div class="w-full text-left" id="end-pack">
-                    <p class="sp-k mb-10">End</p>
-                    <h2 class="sp-h1 text-white mb-10" style="font-size:clamp(2.75rem,10vw,5rem);line-height:1.05;">Thanks for scrolling.</h2>
-                    <p class="sp-prose sp-muted mb-12" style="max-width:min(40rem,90vw);font-size:clamp(1.05rem,1.5vw,1.25rem);">
-                        The System Hub is still the default entry; this route is the same story in scroll form.
-                    </p>
-                    <a href="index.html" class="sp-teal font-black uppercase sp-hover-white" style="font-size:clamp(0.75rem,1.1vw,0.9rem);letter-spacing:0.35em;text-decoration:none;border-bottom:2px solid rgba(94,234,212,0.45);padding-bottom:0.35rem;">Home →</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <script src="api-config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
     <script>
-(function () {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) document.body.classList.add('sp--reduce');
+        (function () {
+            var API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
+            var camera = document.getElementById('mm-camera');
+            var stage = document.getElementById('mm-stage');
+            var nodes = Array.prototype.slice.call(document.querySelectorAll('.mm-node'));
+            var reel = document.getElementById('mm-reel');
+            var tourBtn = document.getElementById('mm-tour-btn');
+            var idx = 0;
+            var autoOn = true;
+            var autoTimer = null;
+            var holdTimer = null;
 
-    document.documentElement.style.setProperty('--mx', '0');
-    document.documentElement.style.setProperty('--my', '0');
-    if (!reduce) {
-        window.addEventListener('mousemove', function (e) {
-            const x = (e.clientX / window.innerWidth - 0.5) * 2;
-            const y = (e.clientY / window.innerHeight - 0.5) * 2;
-            document.documentElement.style.setProperty('--mx', x.toFixed(3));
-            document.documentElement.style.setProperty('--my', y.toFixed(3));
-        }, { passive: true });
-    }
-
-    const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
-
-    function escapeHTML(str) {
-        if (str == null) return '';
-        return String(str).replace(/[&<>'"]/g, function (ch) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[ch]; });
-    }
-
-    var SP_ROUTE_TONES = { mint: 1, sky: 1, violet: 1, amber: 1, rose: 1 };
-    /** Act VIII — add/reorder objects here, or replace renderSpDestinations() with fetch(adminRoutes). */
-    var SP_ROUTE_MANIFEST = [
-        {
-            title: 'Publications',
-            kicker: 'Papers & academic catalog',
-            body: 'Peer-reviewed work and the living bibliography. Opens the full publications index.',
-            href: 'publications.html',
-            tone: 'mint'
-        },
-        {
-            title: 'Moments',
-            kicker: 'Blog · photos & notes',
-            body: 'Long-form notes and imagery — the same stream as the Moments card on the hub.',
-            href: 'blog.html',
-            tone: 'sky'
-        },
-        {
-            title: 'CV & AI agent',
-            kicker: 'PDF & terminal assistant',
-            body: 'Downloadable résumé plus the conversational agent on curated public context.',
-            href: 'resume.html',
-            tone: 'violet'
-        },
-        {
-            title: 'Professional dossier',
-            kicker: 'Profile & beyond',
-            body: 'Structured narrative of roles, stack, and intent — the dossier route from the hub.',
-            href: 'about.html',
-            tone: 'amber'
-        },
-        {
-            title: 'Private gallery',
-            kicker: 'Photos & full testimonials',
-            body: 'Verified access for richer media and attributed quotes. HR: request a password via Channels (24h reply).',
-            href: 'hidden.html',
-            tone: 'rose'
-        }
-    ];
-
-    function pickRouteTone(t) {
-        return SP_ROUTE_TONES[t] ? t : 'mint';
-    }
-
-    function renderSpDestinations() {
-        var root = document.getElementById('sp-dest-grid');
-        if (!root) return;
-        var arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>';
-        root.innerHTML = SP_ROUTE_MANIFEST.map(function (row, i) {
-            var tone = pickRouteTone(row.tone);
-            var ix = (i + 1 < 10 ? '0' : '') + (i + 1);
-            var delay = (i * 0.07).toFixed(2) + 's';
-            return '<a class="sp-dest-card sp-dest-card--' + tone + '" href="' + escapeHTML(row.href) + '" style="--enter-delay:' + delay + '" data-ix="' + ix + '">' +
-                '<p class="sp-dest-card__kicker">' + escapeHTML(row.kicker) + '</p>' +
-                '<h3 class="sp-dest-card__title">' + escapeHTML(row.title) + '</h3>' +
-                '<p class="sp-dest-card__body">' + escapeHTML(row.body) + '</p>' +
-                '<span class="sp-dest-card__go">Open full page ' + arrow + '</span>' +
-                '</a>';
-        }).join('');
-    }
-    renderSpDestinations();
-
-    async function loadVoices() {
-        const box = document.getElementById('sp-testimonials');
-        if (!box) return;
-        try {
-            const res = await fetch(API_BASE + '/public/testimonials', { cache: 'no-store' });
-            if (!res.ok) throw new Error('x');
-            const data = await res.json();
-            const rows = (Array.isArray(data) ? data : [])
-                .filter(function (row) { return row && row.isPublic !== false; })
-                .sort(function (a, b) {
-                    const sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
-                    const sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
-                    if (sa !== sb) return sa - sb;
-                    const ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
-                    const tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
-                    return tb - ta;
-                });
-            if (!rows.length) {
-                box.innerHTML = '<p class="sp-muted" style="font-size:0.95rem;">No testimonials yet. Be the first one to leave a comment in the admin panel!</p>';
-                return;
+            function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+            function getNodePos(node) {
+                return {
+                    x: Number(node.getAttribute('data-x') || 0) + node.offsetWidth / 2,
+                    y: Number(node.getAttribute('data-y') || 0) + node.offsetHeight / 2
+                };
             }
-            box.innerHTML = rows.map(function (row) {
-                const c = escapeHTML(String(row.comment || ''));
-                const rel = escapeHTML(row.relationship || '');
-                return '<div class="sp-tcard"><p class="italic mb-3" style="color:#d6cec4;">' + c + '</p><div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:0.65rem;display:flex;justify-content:space-between;align-items:center;gap:0.75rem;"><span class="sp-teal font-black uppercase tracking-widest" style="font-size:0.72rem;">' + rel + '</span><span style="font-size:0.62rem;color:#78716c;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;">Anonymous</span></div></div>';
-            }).join('');
-        } catch (_) {
-            box.innerHTML = '<p class="sp-muted" style="font-size:0.95rem;">Temporarily unable to load testimonials. Please retry in a few seconds.</p>';
-        }
-    }
-    loadVoices();
-    setInterval(loadVoices, 30000);
-
-    var welcomeEl = document.getElementById('sp-welcome');
-    var welcomeGone = false;
-    function dismissSpWelcome() {
-        if (welcomeGone || !welcomeEl) return;
-        welcomeGone = true;
-        welcomeEl.classList.add('is-gone');
-        welcomeEl.setAttribute('aria-hidden', 'true');
-    }
-    if (welcomeEl && !reduce) {
-        var welcomeTimer = setTimeout(dismissSpWelcome, 14000);
-        function onWelcomeIntent() {
-            clearTimeout(welcomeTimer);
-            dismissSpWelcome();
-            window.removeEventListener('wheel', onWelcomeIntent);
-            window.removeEventListener('touchstart', onWelcomeIntent);
-            window.removeEventListener('scroll', onWelcomeIntent);
-        }
-        window.addEventListener('wheel', onWelcomeIntent, { passive: true });
-        window.addEventListener('touchstart', onWelcomeIntent, { passive: true });
-        window.addEventListener('scroll', onWelcomeIntent, { passive: true });
-    }
-
-    if (reduce || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        var hh = document.getElementById('hero-hint');
-        if (hh) hh.style.opacity = '0';
-        return;
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    if (typeof Lenis !== 'undefined') {
-        var lenis = new Lenis({
-            duration: 1.32,
-            smoothWheel: true,
-            wheelMultiplier: 0.84,
-            touchMultiplier: 1.35
-        });
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add(function (time) {
-            lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-        document.documentElement.classList.add('lenis', 'lenis-smooth');
-        lenis.on('scroll', function (inst) {
-            var y = inst && (typeof inst.scroll === 'number' ? inst.scroll : (typeof inst.animatedScroll === 'number' ? inst.animatedScroll : 0));
-            if (y > 12) dismissSpWelcome();
-        });
-
-        window.__spLenis = lenis;
-        document.body.classList.add('sp--tour-ready');
-
-        var tourBtn = document.getElementById('sp-auto-tour');
-        var tourActive = false;
-        function bindAutoTour(L) {
-            if (!tourBtn) return;
-            function setTourUi(active) {
-                tourActive = active;
-                tourBtn.classList.toggle('is-on', active);
-                tourBtn.setAttribute('aria-pressed', active ? 'true' : 'false');
-                tourBtn.setAttribute('aria-label', active ? 'Stop automatic scroll' : 'Play automatic scroll tour (hands-free)');
+            function calcScale(i) {
+                if (i === 0 || i === 9) return 1.12;
+                if (i === 8) return 1.08;
+                return 1.18;
             }
-            function runTourFrom(startY) {
-                var maxY = L.limit;
-                var remain = Math.max(0, maxY - startY);
-                /* ~90s for a full-length run: slow enough to read beats, fast enough not to drag */
-                var durSec = Math.max(28, Math.min(105, (remain / Math.max(maxY, 1)) * 90));
-                setTourUi(true);
-                dismissSpWelcome();
-                L.scrollTo(maxY, {
-                    duration: durSec,
-                    easing: function (t) { return t; },
-                    programmatic: true,
-                    onComplete: function () {
-                        setTourUi(false);
-                    }
-                });
+            function focusNode(next, smooth) {
+                idx = ((next % nodes.length) + nodes.length) % nodes.length;
+                var node = nodes[idx];
+                var pos = getNodePos(node);
+                var vw = window.innerWidth;
+                var vh = window.innerHeight;
+                var scale = calcScale(idx);
+                var tx = vw / 2 - pos.x * scale;
+                var ty = vh / 2 - pos.y * scale;
+                tx = clamp(tx, -2900, 120);
+                ty = clamp(ty, -1850, 120);
+                camera.style.transitionDuration = smooth ? '1.8s' : '0s';
+                camera.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0) scale(' + scale + ')';
+                nodes.forEach(function (n, i) { n.classList.toggle('is-focus', i === idx); });
+                Array.prototype.forEach.call(reel.querySelectorAll('.mm-dot'), function (d, i) { d.classList.toggle('is-on', i === idx); });
             }
-            tourBtn.addEventListener('click', function () {
-                if (tourActive) {
-                    L.stop();
-                    L.start();
-                    setTourUi(false);
-                    return;
-                }
-                dismissSpWelcome();
-                var cur = L.scroll;
-                var maxY = L.limit;
-                if (maxY - cur < 48) {
-                    L.scrollTo(0, { immediate: true });
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            runTourFrom(0);
-                        });
+            function buildReel() {
+                reel.innerHTML = nodes.map(function (_, i) {
+                    return '<button type="button" class="mm-dot' + (i === 0 ? ' is-on' : '') + '" data-jump="' + i + '" aria-label="Jump to act ' + (i + 1) + '"></button>';
+                }).join('');
+                Array.prototype.forEach.call(reel.querySelectorAll('.mm-dot'), function (d) {
+                    d.addEventListener('click', function () {
+                        pauseThenResume();
+                        focusNode(Number(d.getAttribute('data-jump') || 0), true);
                     });
-                    return;
+                });
+            }
+            function startAuto() {
+                clearInterval(autoTimer);
+                autoTimer = setInterval(function () {
+                    if (!autoOn) return;
+                    focusNode(idx + 1, true);
+                }, 4200);
+            }
+            function pauseThenResume() {
+                autoOn = false;
+                tourBtn.classList.remove('is-on');
+                tourBtn.textContent = 'Auto play';
+                clearTimeout(holdTimer);
+                holdTimer = setTimeout(function () {
+                    autoOn = true;
+                    tourBtn.classList.add('is-on');
+                    tourBtn.textContent = 'Auto play';
+                }, 12000);
+            }
+            function escapeHTML(str) {
+                if (str == null) return '';
+                return String(str).replace(/[&<>'"]/g, function (tag) {
+                    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[tag];
+                });
+            }
+            async function loadVoices() {
+                var box = document.getElementById('mm-voices-list');
+                if (!box) return;
+                try {
+                    var res = await fetch(API_BASE + '/public/testimonials', { cache: 'no-store' });
+                    if (!res.ok) throw new Error('x');
+                    var data = await res.json();
+                    var rows = (Array.isArray(data) ? data : [])
+                        .filter(function (row) { return row && row.isPublic !== false; })
+                        .sort(function (a, b) {
+                            var sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
+                            var sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
+                            if (sa !== sb) return sa - sb;
+                            var ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
+                            var tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+                            return tb - ta;
+                        })
+                        .slice(0, 4);
+                    if (!rows.length) {
+                        box.innerHTML = '<p class="mm-body">No public excerpts right now.</p>';
+                        return;
+                    }
+                    box.innerHTML = rows.map(function (row) {
+                        return '<div class="mm-tcard"><p>' + escapeHTML(String(row.comment || '').slice(0, 190)) + '</p><p>' + escapeHTML(row.relationship || '') + '</p></div>';
+                    }).join('');
+                } catch (_) {
+                    box.innerHTML = '<p class="mm-body">Voices sync when the API is available.</p>';
                 }
-                runTourFrom(cur);
+            }
+
+            buildReel();
+            focusNode(0, false);
+            setTimeout(function () { focusNode(1, true); }, 700);
+            startAuto();
+            loadVoices();
+            setInterval(loadVoices, 30000);
+
+            tourBtn.addEventListener('click', function () {
+                autoOn = !autoOn;
+                tourBtn.classList.toggle('is-on', autoOn);
+                tourBtn.textContent = 'Auto play';
             });
-        }
-        bindAutoTour(lenis);
-    }
-
-    var EASE = 'none';
-    var TP = 2000;
-    var SCRUB = 1.68;
-    var SCRUB_HERO = 1.52;
-    var IN = 0.52;
-    var OUT0 = 0.68;
-
-    function setScene(idx) {
-        idx = Math.max(0, Math.min(9, idx | 0));
-        document.body.setAttribute('data-scene', String(idx));
-        document.documentElement.style.setProperty('--reel-hue', String(148 + idx * 11));
-        document.documentElement.style.setProperty('--reel', (idx / 9).toFixed(4));
-        document.querySelectorAll('.sp-reel__tick').forEach(function (el) {
-            el.classList.toggle('is-on', el.getAttribute('data-reel-scene') === String(idx));
-        });
-    }
-
-    var progFill = document.getElementById('sp-prog-fill');
-    ScrollTrigger.create({
-        start: 0,
-        end: 'max',
-        onUpdate: function (self) {
-            if (progFill) progFill.style.height = (self.progress * 100) + '%';
-        }
-    });
-
-    var scenePairs = [
-        ['sc-mono', 1],
-        ['sc-photo', 2],
-        ['sc-contact', 3],
-        ['sc-dossier', 4],
-        ['sc-work', 5],
-        ['sc-stack', 6],
-        ['sc-gate', 7],
-        ['sc-voices', 8],
-        ['sc-end', 9]
-    ];
-    scenePairs.forEach(function (row, j) {
-        var prev = j === 0 ? 0 : scenePairs[j - 1][1];
-        var id = row[0];
-        var si = row[1];
-        ScrollTrigger.create({
-            trigger: '#' + id,
-            start: 'top 56%',
-            onEnter: function () { setScene(si); },
-            onLeaveBack: function () { setScene(prev); }
-        });
-    });
-
-    var hero = document.getElementById('sc-hero');
-    var heroPack = document.getElementById('hero-pack');
-    var heroName = document.getElementById('hero-name');
-    var heroOutline = document.getElementById('hero-outline');
-    var heroWu = document.getElementById('hero-wu');
-    var heroSide = document.getElementById('hero-side');
-    var heroHint = document.getElementById('hero-hint');
-    var HOUT = 0.72;
-
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: {
-            trigger: hero,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: SCRUB_HERO
-        }
-    })
-        .fromTo(heroPack,
-            { rotateX: 58, z: -1250, y: '30vh', scale: 1.92, transformOrigin: '50% 82%', filter: 'blur(28px)', opacity: 0.04 },
-            { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
-            0
-        )
-        .fromTo(heroName, { rotateY: -46, x: '-26vw' }, { rotateY: 8, x: 0, duration: IN }, 0)
-        .fromTo(heroOutline, { opacity: 1, x: '-6vw' }, { opacity: 0.1, x: '4vw', duration: IN }, 0)
-        .fromTo(heroWu, { z: 260, y: '12vh', rotateX: 32 }, { z: 44, y: 0, rotateX: 0, duration: IN }, 0)
-        .fromTo(heroSide, { x: '32vw', opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: IN }, 0.03)
-        .to(heroPack, { rotateX: -36, z: 820, y: '-42vh', scale: 0.66, filter: 'blur(14px)', opacity: 0.4, duration: 1 - HOUT }, HOUT);
-
-    gsap.to(heroHint, {
-        opacity: 0,
-        scrollTrigger: { trigger: hero, start: 'top top', end: '10% bottom', scrub: true }
-    });
-
-    var mono = document.getElementById('sc-mono');
-    var monoPack = document.getElementById('mono-pack');
-    var monoCard = document.getElementById('mono-card');
-    var monoStrip = document.getElementById('mono-strip');
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: mono, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    })
-        .fromTo(monoPack,
-            { x: '48vw', rotateY: 64, z: -1150, opacity: 0, filter: 'blur(28px)', scale: 0.86 },
-            { x: 0, rotateY: 0, z: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: IN },
-            0
-        )
-        .fromTo(monoCard,
-            { rotateX: 28, y: '18vh', scale: 0.88 },
-            { rotateX: 0, y: 0, scale: 1, duration: IN },
-            0
-        )
-        .fromTo(monoStrip,
-            { opacity: 0, x: '-14vw' },
-            { opacity: 1, x: 0, duration: IN },
-            0
-        )
-        .to(monoCard, { y: '-1.5vh', duration: 0.14 }, IN)
-        .to(monoPack, { x: '-34vw', rotateY: -40, z: 480, opacity: 0.44, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
-
-    var photo = document.getElementById('sc-photo');
-    var photoFrame = document.getElementById('photo-frame');
-    var photoCopy = document.getElementById('photo-copy');
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: photo, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    })
-        .fromTo(photoFrame,
-            { x: '-62vw', rotateY: 68, z: -1100, rotateZ: -16, scale: 0.58, filter: 'blur(22px)', opacity: 0.5 },
-            { x: 0, rotateY: -10, z: 90, rotateZ: 2, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
-            0
-        )
-        .fromTo(photoCopy,
-            { x: '48vw', opacity: 0, z: -520, rotateY: -42, filter: 'blur(14px)' },
-            { x: 0, opacity: 1, z: 70, rotateY: 0, filter: 'blur(0px)', duration: IN },
-            0
-        )
-        .to(photoFrame, { x: '48vw', rotateY: -52, z: 640, scale: 0.58, opacity: 0.42, filter: 'blur(14px)', duration: 1 - OUT0 }, OUT0)
-        .to(photoCopy, { x: '-38vw', opacity: 0.35, z: -120, duration: 1 - OUT0 }, OUT0);
-
-    var contact = document.getElementById('sc-contact');
-    var contactPack = document.getElementById('contact-pack');
-    var cNodes = document.querySelectorAll('#contact-grid .sp-chrome');
-    var cTl = gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: contact, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    });
-    cTl.fromTo(contactPack,
-        { rotateX: 44, z: -900, y: '32vh', scale: 0.78, filter: 'blur(24px)', opacity: 0.35 },
-        { rotateX: 0, z: 0, y: 0, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
-        0
-    );
-    cNodes.forEach(function (el, i) {
-        var stagger = i * 0.055;
-        cTl.fromTo(el,
-            { y: '38vh', z: -620 - i * 140, rotateX: 42, opacity: 0.12, filter: 'blur(12px)' },
-            { y: 0, z: i * 48, rotateX: 0, opacity: 1, filter: 'blur(0px)', duration: IN - 0.06 },
-            stagger
-        );
-        cTl.to(el, { y: '-22vh', z: 460 + i * 55, rotateX: -30, opacity: 0.38, duration: 1 - OUT0 - stagger * 0.4 }, OUT0 + stagger * 0.35);
-    });
-
-    var dossier = document.getElementById('sc-dossier');
-    var dossierPack = document.getElementById('dossier-pack');
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: dossier, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    })
-        .fromTo(dossierPack,
-            { x: '-58vw', rotateY: 52, z: -1050, scale: 0.7, filter: 'blur(26px)', opacity: 0 },
-            { x: 0, rotateY: 0, z: 50, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
-            0
-        )
-        .to(dossierPack, { x: '32vw', rotateY: -36, z: 520, opacity: 0.4, filter: 'blur(11px)', duration: 1 - OUT0 }, OUT0);
-
-    var work = document.getElementById('sc-work');
-    var w0 = document.querySelector('[data-w="0"]');
-    var w1 = document.querySelector('[data-w="1"]');
-    var workTl = gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    });
-    if (w0) {
-        workTl.fromTo(w0, { x: '-78%', rotateY: 42, z: -780, opacity: 0, filter: 'blur(18px)' }, { x: '0%', rotateY: -8, z: 90, opacity: 1, filter: 'blur(0px)', duration: IN }, 0)
-            .to(w0, { x: '-52%', rotateY: 32, z: 480, opacity: 0.4, duration: 1 - OUT0 }, OUT0);
-    }
-    if (w1) {
-        workTl.fromTo(w1, { x: '78%', rotateY: -42, z: -780, opacity: 0, filter: 'blur(18px)' }, { x: '0%', rotateY: 8, z: 90, opacity: 1, filter: 'blur(0px)', duration: IN }, 0)
-            .to(w1, { x: '52%', rotateY: -32, z: 480, opacity: 0.4, duration: 1 - OUT0 }, OUT0);
-    }
-
-    var stack = document.getElementById('sc-stack');
-    var stackPack = document.getElementById('stack-pack');
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: stack, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    })
-        .fromTo(stackPack,
-            { rotateY: -62, z: -1050, scale: 0.64, filter: 'blur(22px)', opacity: 0.65 },
-            { rotateY: 5, z: 70, scale: 1, filter: 'blur(0px)', opacity: 1, duration: IN },
-            0
-        )
-        .to(stackPack, { rotateY: 52, z: 760, y: '-24vh', opacity: 0.42, filter: 'blur(13px)', duration: 1 - OUT0 }, OUT0);
-
-    var gate = document.getElementById('sc-gate');
-    var gatePack = document.getElementById('gate-pack');
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: gate, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    })
-        .fromTo(gatePack,
-            { z: -900, scale: 2.05, opacity: 0, filter: 'blur(28px)', rotateX: 42 },
-            { z: 0, scale: 1, opacity: 1, filter: 'blur(0px)', rotateX: 0, duration: IN },
-            0
-        )
-        .to(gatePack, { z: 580, scale: 0.72, opacity: 0.38, rotateX: -32, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
-
-    var voices = document.getElementById('sc-voices');
-    var voicesPack = document.getElementById('voices-pack');
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: voices, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    })
-        .fromTo(voicesPack,
-            { y: '48vh', z: -620, opacity: 0, filter: 'blur(22px)' },
-            { y: 0, z: 50, opacity: 1, filter: 'blur(0px)', duration: IN },
-            0
-        )
-        .to(voicesPack, { y: '-28vh', z: 440, opacity: 0.4, filter: 'blur(12px)', duration: 1 - OUT0 }, OUT0);
-
-    var end = document.getElementById('sc-end');
-    var endPack = document.getElementById('end-pack');
-    var FOUT = 0.7;
-    gsap.timeline({
-        defaults: { ease: EASE, transformPerspective: TP },
-        scrollTrigger: { trigger: end, start: 'top bottom', end: 'bottom top', scrub: SCRUB }
-    })
-        .fromTo(endPack,
-            { z: 1050, scale: 2.45, rotateX: 48, opacity: 0, filter: 'blur(30px)', transformOrigin: '0% 50%' },
-            { z: 0, scale: 1, rotateX: 0, opacity: 1, filter: 'blur(0px)', duration: IN },
-            0
-        )
-        .to(endPack, { z: -320, scale: 0.88, opacity: 0.48, filter: 'blur(9px)', duration: 1 - FOUT }, FOUT);
-
-    var floor = document.getElementById('sp-floor');
-    ScrollTrigger.create({
-        start: 0,
-        end: 'max',
-        onUpdate: function (self) {
-            if (!floor) return;
-            var t = self.progress;
-            floor.style.transform =
-                'translate3d(calc(var(--mx) * 28px), ' + (t * -14) + '%, 0) perspective(900px) rotateX(84deg) scale(1.55)';
-        }
-    });
-
-    ScrollTrigger.refresh();
-})();
+            window.addEventListener('wheel', function (e) {
+                pauseThenResume();
+                if (Math.abs(e.deltaY) < 4) return;
+                focusNode(idx + (e.deltaY > 0 ? 1 : -1), true);
+            }, { passive: true });
+            var touchY = 0;
+            window.addEventListener('touchstart', function (e) {
+                touchY = e.touches[0] ? e.touches[0].clientY : 0;
+            }, { passive: true });
+            window.addEventListener('touchend', function (e) {
+                var y = e.changedTouches[0] ? e.changedTouches[0].clientY : 0;
+                var dy = touchY - y;
+                if (Math.abs(dy) < 28) return;
+                pauseThenResume();
+                focusNode(idx + (dy > 0 ? 1 : -1), true);
+            }, { passive: true });
+            window.addEventListener('resize', function () {
+                focusNode(idx, false);
+            });
+        })();
     </script>
 </body>
 </html>
