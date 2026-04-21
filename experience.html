@@ -42,12 +42,12 @@
     }
     .stamp.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
     .stamp .r{font-size:1.45rem;font-weight:900;letter-spacing:-.04em}
-    .stage{position:fixed;inset:0;z-index:20;overflow:hidden}
+    .stage{position:fixed;inset:0;z-index:20;overflow:hidden;perspective:1600px;perspective-origin:50% 50%}
     .camera{
       width:100%;height:100%;transform-origin:0 0;
       transition:transform .13s linear, filter .2s ease;
       will-change:transform;
-      perspective:1400px;
+      transform-style:preserve-3d;
     }
     .world{
       position:relative;width:9800px;height:4400px;
@@ -55,6 +55,7 @@
         linear-gradient(rgba(28,25,23,.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(28,25,23,.03) 1px, transparent 1px);
       background-size:54px 54px;
+      transform-style:preserve-3d;
     }
     .route{position:absolute;inset:0;pointer-events:none}
     .route .under{fill:none;stroke:rgba(5,150,105,.14);stroke-width:20;stroke-linecap:round;stroke-linejoin:round}
@@ -66,16 +67,16 @@
     .pulse.is-on{opacity:1;animation:pulse .9s ease-out infinite}
     @keyframes pulse{0%{r:20;opacity:.7}100%{r:62;opacity:0}}
     .card{
-      position:absolute;width:700px;border:2px solid var(--ink);
+      position:absolute;width:620px;border:2px solid var(--ink);
       background:linear-gradient(180deg,#fff 0%,#f7f4ec 100%);
       box-shadow:8px 8px 0 var(--ink),0 16px 34px rgba(28,25,23,.12);
       padding:1.18rem 1.3rem;
-      opacity:.5;transform:scale(.95) rotate(var(--tilt,0deg));
+      opacity:.5;transform:translateZ(0) scale(.95) rotate(var(--tilt,0deg));
       transition:opacity .32s ease, transform .32s ease, box-shadow .32s ease;
     }
     .card.is-active{
       opacity:1;
-      transform:scale(1) rotate(var(--tilt,0deg));
+      transform:translateZ(120px) scale(1) rotate(var(--tilt,0deg));
       box-shadow:12px 12px 0 var(--ink),0 26px 46px rgba(28,25,23,.22);
     }
     .k{margin:0 0 .52rem;color:var(--muted);font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;font-weight:900}
@@ -92,7 +93,7 @@
     .v span{display:block;margin-top:.35rem;color:var(--mint);font-size:.66rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
     @media (max-width:900px){
       .meter{display:none}
-      .card{width:470px;padding:1rem}
+      .card{width:430px;padding:1rem}
       .t{font-size:1.45rem}
       .p,.list{font-size:.95rem}
       .headshot{width:200px}
@@ -127,15 +128,15 @@
         </svg>
 
         <article class="card" data-scene="0" style="--tilt:-1.2deg;left:180px;top:520px"><p class="k">I · Entry</p><h1 class="t">Yihang (Sam) Wu</h1><p class="p">HCI &amp; Applied AI. Same substance as the System Hub, staged as a cinematic route canvas.</p></article>
-        <article class="card" data-scene="1" style="--tilt:1.1deg;left:1480px;top:880px"><p class="k">II · Core Vision</p><h2 class="t">Distributed Wearable AIOS for Human-AI Symbiosis</h2><p class="p">Department of Mathematics, Statistics, and Computer Science · University of Toronto.</p><p class="p" style="margin-top:.45rem">Reimagining intent-driven transparent interaction architectures and physical trust primitives to reshape emotional connectivity and social trust in digital existence.</p></article>
+        <article class="card" data-scene="1" style="--tilt:1.1deg;left:1480px;top:860px"><p class="k">II · Core Vision</p><h2 class="t">Distributed Wearable AIOS for Human-AI Symbiosis</h2><p class="p">Department of Mathematics, Statistics, and Computer Science · University of Toronto.</p><p class="p" style="margin-top:.45rem">Reimagining intent-driven transparent interaction architectures and physical trust primitives to reshape emotional connectivity and social trust in digital existence.</p></article>
         <article class="card" data-scene="2" style="--tilt:-.9deg;left:2960px;top:760px"><p class="k">III · Signal</p><img class="headshot" src="f702013468e4d300dc33d4c1bfd12f82.jpg" alt="Sam Wu"><p class="p">Same portrait and seal as the hub, used here as the route’s identity anchor.</p></article>
-        <article class="card" data-scene="3" style="--tilt:1.2deg;left:4300px;top:1520px"><p class="k">IV · Channels</p><ul class="list"><li><a href="mailto:wuyihang429@gmail.com">Personal · wuyihang429@gmail.com</a></li><li><a href="mailto:yihang.wu@mail.utoronto.ca">University · yihang.wu@mail.utoronto.ca</a></li><li><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener">Professional · /in/yihang-wu</a></li></ul></article>
-        <article class="card" data-scene="4" style="--tilt:-1deg;left:5280px;top:1160px"><p class="k">V · Dossier</p><h2 class="t">Professional Dossier</h2><p class="p">Bridging pure logic with industrial execution in Data and AI. Quantitative modeling, workflow optimization, and intent-driven agents.</p><p class="p" style="margin-top:.45rem">IEEE Student Member.</p></article>
-        <article class="card" data-scene="5" style="--tilt:.8deg;left:6000px;top:1040px"><p class="k">VI · Field Work</p><ul class="list"><li>Research Assistant · Food Bank Mississauga · May-Aug 2026</li><li>Structured interviews and Registered Dietitian-supervised data collection</li><li>Mandarin-supported outreach to reduce response bias</li></ul></article>
-        <article class="card" data-scene="6" style="--tilt:-.7deg;left:6680px;top:1480px"><p class="k">VII · Stack</p><div class="chips"><span>Python / FastAPI</span><span>R Studio</span><span>JavaScript / UI</span><span>Gemini API</span><span>ERP automation</span><span>MTA JavaScript</span></div></article>
-        <article class="card" data-scene="7" style="--tilt:1deg;left:7600px;top:1660px"><p class="k">VIII · Destinations</p><p class="p"><a href="publications.html">Publications</a> · <a href="blog.html">Moments</a> · <a href="resume.html">CV &amp; AI agent</a> · <a href="about.html">Professional dossier</a> · <a href="hidden.html">Private gallery</a></p><p class="p" style="margin-top:.45rem">Verified access for full testimonials and photo archive.</p></article>
-        <article class="card" data-scene="8" style="--tilt:-.8deg;left:8400px;top:1320px"><p class="k">IX · Voices</p><h2 class="t">What People Say</h2><div id="voices"></div><p class="p" style="margin-top:.5rem">Public excerpts only. Full reviewer details are in Private Gallery.</p></article>
-        <article class="card" data-scene="9" style="--tilt:.6deg;left:9120px;top:1220px"><p class="k">X · Exit</p><h2 class="t">Thanks for following the route.</h2><p class="p">The System Hub remains default entry. This is the same narrative as a cinematic map journey.</p><p class="p" style="margin-top:.45rem"><a href="index.html">Return to Hub</a></p></article>
+        <article class="card" data-scene="3" style="--tilt:1.2deg;left:4300px;top:1440px"><p class="k">IV · Channels</p><ul class="list"><li><a href="mailto:wuyihang429@gmail.com">Personal · wuyihang429@gmail.com</a></li><li><a href="mailto:yihang.wu@mail.utoronto.ca">University · yihang.wu@mail.utoronto.ca</a></li><li><a href="https://www.linkedin.com/in/yihang-wu-ba3b58237" target="_blank" rel="noopener">Professional · /in/yihang-wu</a></li></ul></article>
+        <article class="card" data-scene="4" style="--tilt:-1deg;left:5280px;top:1120px"><p class="k">V · Dossier</p><h2 class="t">Professional Dossier</h2><p class="p">Bridging pure logic with industrial execution in Data and AI. Quantitative modeling, workflow optimization, and intent-driven agents.</p><p class="p" style="margin-top:.45rem">IEEE Student Member.</p></article>
+        <article class="card" data-scene="5" style="--tilt:.8deg;left:6000px;top:980px"><p class="k">VI · Field Work</p><ul class="list"><li>Research Assistant · Food Bank Mississauga · May-Aug 2026</li><li>Structured interviews and Registered Dietitian-supervised data collection</li><li>Mandarin-supported outreach to reduce response bias</li></ul></article>
+        <article class="card" data-scene="6" style="--tilt:-.7deg;left:6680px;top:1400px"><p class="k">VII · Stack</p><div class="chips"><span>Python / FastAPI</span><span>R Studio</span><span>JavaScript / UI</span><span>Gemini API</span><span>ERP automation</span><span>MTA JavaScript</span></div></article>
+        <article class="card" data-scene="7" style="--tilt:1deg;left:7600px;top:1580px"><p class="k">VIII · Destinations</p><p class="p"><a href="publications.html">Publications</a> · <a href="blog.html">Moments</a> · <a href="resume.html">CV &amp; AI agent</a> · <a href="about.html">Professional dossier</a> · <a href="hidden.html">Private gallery</a></p><p class="p" style="margin-top:.45rem">Verified access for full testimonials and photo archive.</p></article>
+        <article class="card" data-scene="8" style="--tilt:-.8deg;left:8400px;top:1280px"><p class="k">IX · Voices</p><h2 class="t">What People Say</h2><div id="voices"></div><p class="p" style="margin-top:.5rem">Public excerpts only. Full reviewer details are in Private Gallery.</p></article>
+        <article class="card" data-scene="9" style="--tilt:.6deg;left:9120px;top:1180px"><p class="k">X · Exit</p><h2 class="t">Thanks for following the route.</h2><p class="p">The System Hub remains default entry. This is the same narrative as a cinematic map journey.</p><p class="p" style="margin-top:.45rem"><a href="index.html">Return to Hub</a></p></article>
       </div>
     </div>
   </main>
@@ -173,9 +174,19 @@
       function lerp(a,b,t){return a+(b-a)*t}
       function easeInOut(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
       function sceneFromProgress(x){return clamp(Math.round(x*9),0,9)}
+      var focusPoints = [];
+      function refreshFocusPoints(){
+        focusPoints = cards.map(function(card){
+          return {
+            x: card.offsetLeft + card.offsetWidth * 0.5,
+            y: card.offsetTop + card.offsetHeight * 0.5
+          };
+        });
+      }
       function cameraPoint(progress){
         var seg=progress*(points.length-1),i=Math.floor(seg),t=easeInOut(seg-i),a=points[i],b=points[Math.min(i+1,points.length-1)];
-        return{x:lerp(a.x,b.x,t),y:lerp(a.y,b.y,t),seg:seg}
+        var fa=focusPoints[i]||a, fb=focusPoints[Math.min(i+1,focusPoints.length-1)]||b;
+        return{x:lerp(fa.x,fb.x,t),y:lerp(fa.y,fb.y,t),seg:seg}
       }
       function updateSceneVisual(scene){
         [].forEach.call(meter.querySelectorAll('.dot'),function(d,i){d.classList.toggle('is-on',i===scene)});
@@ -217,6 +228,8 @@
           box.innerHTML=rows.map(function(r){var c=String(r.comment||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]}),rel=String(r.relationship||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]});return '<div class="v"><p>'+c.slice(0,180)+'</p><span>'+rel+'</span></div>'}).join('')
         }catch(_){box.innerHTML='<p class="p" style="margin-top:.45rem;">Voices sync when API is up.</p>'}
       }
+      refreshFocusPoints();
+      window.addEventListener('resize', refreshFocusPoints, {passive:true});
       loadVoices(); setInterval(loadVoices,30000); cancelAnimationFrame(rafId); render();
     })();
   </script>
