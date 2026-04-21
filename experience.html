@@ -189,9 +189,9 @@
         if(autoOn)targetP=clamp(targetP+autoSpeed,0,1);
         p=lerp(p,targetP,.082);
         var cp=cameraPoint(p),vw=window.innerWidth,vh=window.innerHeight;
+        var scene=sceneFromProgress(p),sceneCenter=scene/9;
         var cfg=sceneConfig[scene]||sceneConfig[0];
         var baseScale=(vw<900?.66:.98)*cfg.zoom;
-        var scene=sceneFromProgress(p),sceneCenter=scene/9;
         var local=Math.max(0,1-Math.abs(p-sceneCenter)*9*2.1);
         var punch=.24*local*cfg.hold;      // push-in on each scene
         var sway=Math.sin(cp.seg*1.14)*.03; // handheld-like micro sway
