@@ -855,6 +855,105 @@
             color: rgba(244, 237, 228, 0.28);
         }
         .sp-reel-wrap { position: relative; max-width: min(1920px, 100%); margin: 0 auto; }
+        .sp-map {
+            position: fixed;
+            top: max(1rem, env(safe-area-inset-top));
+            right: max(1rem, env(safe-area-inset-right));
+            z-index: 109;
+            width: min(380px, calc(100vw - 5.5rem));
+            padding: 0.75rem 0.85rem 0.82rem;
+            border: 2px solid #1c1917;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,244,236,0.97));
+            box-shadow: 5px 5px 0 #1c1917, 0 10px 24px rgba(28,25,23,0.12);
+        }
+        .sp-map__k {
+            margin: 0 0 0.45rem;
+            font-size: 0.54rem;
+            font-weight: 900;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: #6b7280;
+        }
+        .sp-map__svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .sp-map__link {
+            fill: none;
+            stroke: rgba(28,25,23,0.25);
+            stroke-width: 1.6;
+            stroke-dasharray: 5 5;
+            animation: sp-map-flow 8.5s linear infinite;
+        }
+        @keyframes sp-map-flow { to { stroke-dashoffset: -160; } }
+        .sp-map__dot {
+            fill: #f7f4ec;
+            stroke: rgba(28,25,23,0.45);
+            stroke-width: 1.2;
+            transition: fill 0.25s ease, stroke 0.25s ease, transform 0.25s ease;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+        .sp-map__label {
+            font-size: 6.8px;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            fill: rgba(17,24,39,0.82);
+            text-anchor: middle;
+            pointer-events: none;
+            transition: fill 0.25s ease;
+        }
+        .sp-map__dot.is-on {
+            fill: #059669;
+            stroke: #1c1917;
+            transform: scale(1.22);
+        }
+        .sp-map__dot.is-on + .sp-map__label {
+            fill: #065f46;
+        }
+        .sp-scene-stamp {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            z-index: 112;
+            transform: translate(-50%, -50%) scale(0.75);
+            opacity: 0;
+            pointer-events: none;
+            border: 2px solid rgba(5,150,105,0.75);
+            background: rgba(255,255,255,0.9);
+            box-shadow: 8px 8px 0 rgba(28,25,23,0.3);
+            padding: 0.7rem 1rem;
+            min-width: 5.25rem;
+            text-align: center;
+            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22,1,0.36,1);
+        }
+        .sp-scene-stamp.is-show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .sp-scene-stamp__act {
+            font-size: 1.35rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #111827;
+            letter-spacing: -0.04em;
+        }
+        .sp-scene-stamp__k {
+            margin-top: 0.2rem;
+            font-size: 0.5rem;
+            font-weight: 900;
+            letter-spacing: 0.26em;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+        @media (max-width: 920px) {
+            .sp-map { width: min(270px, calc(100vw - 5.2rem)); padding: 0.55rem 0.6rem 0.62rem; }
+            .sp-map__k { font-size: 0.49rem; letter-spacing: 0.18em; }
+        }
+        @media (max-width: 700px) {
+            .sp-map { display: none; }
+        }
         body.sp .border-teal-500 { border-color: #14b8a6; }
     </style>
 </head>
@@ -897,6 +996,26 @@
                 <span class="sp-reel__tick" data-reel-scene="9">X</span>
             </div>
         </nav>
+    </div>
+    <aside class="sp-map" aria-label="Narrative mind map">
+        <p class="sp-map__k">Narrative map · acts I-X</p>
+        <svg class="sp-map__svg" viewBox="0 0 320 110" aria-hidden="true">
+            <path class="sp-map__link" d="M20 25 C 52 18, 74 30, 98 38 S 150 56, 178 44 S 230 24, 258 40 S 292 70, 300 86"></path>
+            <circle class="sp-map__dot is-on" data-map-scene="0" cx="20" cy="25" r="8"></circle><text class="sp-map__label" x="20" y="27.5">I</text>
+            <circle class="sp-map__dot" data-map-scene="1" cx="52" cy="29" r="8"></circle><text class="sp-map__label" x="52" y="31.5">II</text>
+            <circle class="sp-map__dot" data-map-scene="2" cx="84" cy="35" r="8"></circle><text class="sp-map__label" x="84" y="37.5">III</text>
+            <circle class="sp-map__dot" data-map-scene="3" cx="116" cy="45" r="8"></circle><text class="sp-map__label" x="116" y="47.5">IV</text>
+            <circle class="sp-map__dot" data-map-scene="4" cx="148" cy="51" r="8"></circle><text class="sp-map__label" x="148" y="53.5">V</text>
+            <circle class="sp-map__dot" data-map-scene="5" cx="180" cy="47" r="8"></circle><text class="sp-map__label" x="180" y="49.5">VI</text>
+            <circle class="sp-map__dot" data-map-scene="6" cx="212" cy="42" r="8"></circle><text class="sp-map__label" x="212" y="44.5">VII</text>
+            <circle class="sp-map__dot" data-map-scene="7" cx="244" cy="50" r="8"></circle><text class="sp-map__label" x="244" y="52.5">VIII</text>
+            <circle class="sp-map__dot" data-map-scene="8" cx="276" cy="67" r="8"></circle><text class="sp-map__label" x="276" y="69.5">IX</text>
+            <circle class="sp-map__dot" data-map-scene="9" cx="300" cy="86" r="8"></circle><text class="sp-map__label" x="300" y="88.5">X</text>
+        </svg>
+    </aside>
+    <div class="sp-scene-stamp" id="sp-scene-stamp" aria-hidden="true">
+        <div class="sp-scene-stamp__act" id="sp-scene-stamp-act">I</div>
+        <div class="sp-scene-stamp__k">Act</div>
     </div>
     <a href="index.html" class="sp-exit">Hub</a>
     <button type="button" class="sp-auto-tour" id="sp-auto-tour" aria-pressed="false" aria-label="Play automatic scroll tour (hands-free)" title="Plays a ~90 second full-page pass so you can watch the motion without scrolling. Click again to stop.">
@@ -1355,6 +1474,10 @@
     var SCRUB_HERO = 1.52;
     var IN = 0.52;
     var OUT0 = 0.68;
+    var romanActs = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+    var sceneStamp = document.getElementById('sp-scene-stamp');
+    var sceneStampAct = document.getElementById('sp-scene-stamp-act');
+    var sceneStampTimer = null;
 
     function setScene(idx) {
         idx = Math.max(0, Math.min(9, idx | 0));
@@ -1364,6 +1487,17 @@
         document.querySelectorAll('.sp-reel__tick').forEach(function (el) {
             el.classList.toggle('is-on', el.getAttribute('data-reel-scene') === String(idx));
         });
+        document.querySelectorAll('.sp-map__dot').forEach(function (el) {
+            el.classList.toggle('is-on', el.getAttribute('data-map-scene') === String(idx));
+        });
+        if (sceneStamp && sceneStampAct) {
+            sceneStampAct.textContent = romanActs[idx] || 'I';
+            sceneStamp.classList.add('is-show');
+            clearTimeout(sceneStampTimer);
+            sceneStampTimer = setTimeout(function () {
+                sceneStamp.classList.remove('is-show');
+            }, 540);
+        }
     }
 
     var progFill = document.getElementById('sp-prog-fill');
