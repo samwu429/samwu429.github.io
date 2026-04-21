@@ -855,62 +855,30 @@
             color: rgba(244, 237, 228, 0.28);
         }
         .sp-reel-wrap { position: relative; max-width: min(1920px, 100%); margin: 0 auto; }
-        .sp-map {
+        .sp-thoughtnet {
             position: fixed;
-            top: max(1rem, env(safe-area-inset-top));
-            right: max(1rem, env(safe-area-inset-right));
-            z-index: 109;
-            width: min(380px, calc(100vw - 5.5rem));
-            padding: 0.75rem 0.85rem 0.82rem;
-            border: 2px solid #1c1917;
-            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,244,236,0.97));
-            box-shadow: 5px 5px 0 #1c1917, 0 10px 24px rgba(28,25,23,0.12);
-        }
-        .sp-map__k {
-            margin: 0 0 0.45rem;
-            font-size: 0.54rem;
-            font-weight: 900;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: #6b7280;
-        }
-        .sp-map__svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .sp-map__link {
-            fill: none;
-            stroke: rgba(28,25,23,0.25);
-            stroke-width: 1.6;
-            stroke-dasharray: 5 5;
-            animation: sp-map-flow 8.5s linear infinite;
-        }
-        @keyframes sp-map-flow { to { stroke-dashoffset: -160; } }
-        .sp-map__dot {
-            fill: #f7f4ec;
-            stroke: rgba(28,25,23,0.45);
-            stroke-width: 1.2;
-            transition: fill 0.25s ease, stroke 0.25s ease, transform 0.25s ease;
-            transform-box: fill-box;
-            transform-origin: center;
-        }
-        .sp-map__label {
-            font-size: 6.8px;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            fill: rgba(17,24,39,0.82);
-            text-anchor: middle;
+            inset: 0;
+            z-index: 4;
             pointer-events: none;
-            transition: fill 0.25s ease;
+            opacity: 0.6;
         }
-        .sp-map__dot.is-on {
-            fill: #059669;
+        .sp-thoughtnet__link {
+            fill: none;
+            stroke: rgba(17,24,39,0.16);
+            stroke-width: 2;
+            stroke-dasharray: 8 10;
+            animation: sp-net-flow 8.2s linear infinite;
+        }
+        @keyframes sp-net-flow { to { stroke-dashoffset: -200; } }
+        .sp-thoughtnet__node {
+            fill: rgba(255,255,255,0.85);
+            stroke: rgba(17,24,39,0.32);
+            stroke-width: 1.6;
+            transition: fill 0.3s ease, stroke 0.3s ease, r 0.3s ease;
+        }
+        .sp-thoughtnet__node.is-on {
+            fill: rgba(5,150,105,0.92);
             stroke: #1c1917;
-            transform: scale(1.22);
-        }
-        .sp-map__dot.is-on + .sp-map__label {
-            fill: #065f46;
         }
         .sp-scene-stamp {
             position: fixed;
@@ -947,13 +915,6 @@
             color: #6b7280;
             text-transform: uppercase;
         }
-        @media (max-width: 920px) {
-            .sp-map { width: min(270px, calc(100vw - 5.2rem)); padding: 0.55rem 0.6rem 0.62rem; }
-            .sp-map__k { font-size: 0.49rem; letter-spacing: 0.18em; }
-        }
-        @media (max-width: 700px) {
-            .sp-map { display: none; }
-        }
         body.sp .border-teal-500 { border-color: #14b8a6; }
     </style>
 </head>
@@ -963,6 +924,19 @@
     <div class="sp-fx sp-fx--grain" aria-hidden="true"></div>
     <div class="sp-fx sp-fx--vig" aria-hidden="true"></div>
     <div class="sp-fx sp-fx--scan" aria-hidden="true"></div>
+    <svg class="sp-thoughtnet" id="sp-thoughtnet" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path class="sp-thoughtnet__link" data-net-link="0" d="M8 20 C 18 16, 24 24, 34 28"></path>
+        <path class="sp-thoughtnet__link" data-net-link="1" d="M34 28 C 44 36, 50 24, 56 40"></path>
+        <path class="sp-thoughtnet__link" data-net-link="2" d="M56 40 C 62 54, 70 32, 74 52"></path>
+        <path class="sp-thoughtnet__link" data-net-link="3" d="M74 52 C 80 66, 86 48, 92 70"></path>
+        <path class="sp-thoughtnet__link" data-net-link="4" d="M34 28 C 48 62, 64 70, 92 70"></path>
+        <circle class="sp-thoughtnet__node" data-net-node="0" cx="8" cy="20" r="1.3"></circle>
+        <circle class="sp-thoughtnet__node" data-net-node="1" cx="34" cy="28" r="1.35"></circle>
+        <circle class="sp-thoughtnet__node" data-net-node="2" cx="56" cy="40" r="1.35"></circle>
+        <circle class="sp-thoughtnet__node" data-net-node="3" cx="74" cy="52" r="1.35"></circle>
+        <circle class="sp-thoughtnet__node" data-net-node="4" cx="92" cy="70" r="1.5"></circle>
+        <circle class="sp-thoughtnet__node" data-net-node="5" cx="48" cy="62" r="1.2"></circle>
+    </svg>
     <div class="sp-floor" id="sp-floor" aria-hidden="true"></div>
     <div class="sp-hero-lift" aria-hidden="true"></div>
     <div class="sp-welcome" id="sp-welcome" role="status">
@@ -997,22 +971,6 @@
             </div>
         </nav>
     </div>
-    <aside class="sp-map" aria-label="Narrative mind map">
-        <p class="sp-map__k">Narrative map · acts I-X</p>
-        <svg class="sp-map__svg" viewBox="0 0 320 110" aria-hidden="true">
-            <path class="sp-map__link" d="M20 25 C 52 18, 74 30, 98 38 S 150 56, 178 44 S 230 24, 258 40 S 292 70, 300 86"></path>
-            <circle class="sp-map__dot is-on" data-map-scene="0" cx="20" cy="25" r="8"></circle><text class="sp-map__label" x="20" y="27.5">I</text>
-            <circle class="sp-map__dot" data-map-scene="1" cx="52" cy="29" r="8"></circle><text class="sp-map__label" x="52" y="31.5">II</text>
-            <circle class="sp-map__dot" data-map-scene="2" cx="84" cy="35" r="8"></circle><text class="sp-map__label" x="84" y="37.5">III</text>
-            <circle class="sp-map__dot" data-map-scene="3" cx="116" cy="45" r="8"></circle><text class="sp-map__label" x="116" y="47.5">IV</text>
-            <circle class="sp-map__dot" data-map-scene="4" cx="148" cy="51" r="8"></circle><text class="sp-map__label" x="148" y="53.5">V</text>
-            <circle class="sp-map__dot" data-map-scene="5" cx="180" cy="47" r="8"></circle><text class="sp-map__label" x="180" y="49.5">VI</text>
-            <circle class="sp-map__dot" data-map-scene="6" cx="212" cy="42" r="8"></circle><text class="sp-map__label" x="212" y="44.5">VII</text>
-            <circle class="sp-map__dot" data-map-scene="7" cx="244" cy="50" r="8"></circle><text class="sp-map__label" x="244" y="52.5">VIII</text>
-            <circle class="sp-map__dot" data-map-scene="8" cx="276" cy="67" r="8"></circle><text class="sp-map__label" x="276" y="69.5">IX</text>
-            <circle class="sp-map__dot" data-map-scene="9" cx="300" cy="86" r="8"></circle><text class="sp-map__label" x="300" y="88.5">X</text>
-        </svg>
-    </aside>
     <div class="sp-scene-stamp" id="sp-scene-stamp" aria-hidden="true">
         <div class="sp-scene-stamp__act" id="sp-scene-stamp-act">I</div>
         <div class="sp-scene-stamp__k">Act</div>
@@ -1478,6 +1436,45 @@
     var sceneStamp = document.getElementById('sp-scene-stamp');
     var sceneStampAct = document.getElementById('sp-scene-stamp-act');
     var sceneStampTimer = null;
+    var netNodes = Array.prototype.slice.call(document.querySelectorAll('.sp-thoughtnet__node'));
+    var netLinks = Array.prototype.slice.call(document.querySelectorAll('.sp-thoughtnet__link'));
+
+    function computeNetPoints(scene) {
+        var pts = [];
+        for (var i = 0; i < 6; i += 1) {
+            var x = 8 + i * 16 + Math.sin((scene + i * 0.9) * 0.78) * (i === 5 ? 3 : 5);
+            var y = 22 + (i % 2 === 0 ? 0 : 18) + Math.cos((scene * 0.7) + i * 0.82) * (i === 4 ? 4 : 6);
+            if (i === 5) { x = 46 + Math.sin(scene * 0.8) * 8; y = 62 + Math.cos(scene * 0.65) * 7; }
+            pts.push({ x: x, y: y });
+        }
+        return pts;
+    }
+
+    function netCurve(a, b, bend) {
+        var mx = (a.x + b.x) / 2;
+        var my = (a.y + b.y) / 2 - bend;
+        return 'M' + a.x.toFixed(2) + ' ' + a.y.toFixed(2) + ' C ' + mx.toFixed(2) + ' ' + my.toFixed(2) + ', ' + mx.toFixed(2) + ' ' + my.toFixed(2) + ', ' + b.x.toFixed(2) + ' ' + b.y.toFixed(2);
+    }
+
+    function updateThoughtNet(scene) {
+        if (!netNodes.length || !netLinks.length) return;
+        var pts = computeNetPoints(scene);
+        netNodes.forEach(function (node, i) {
+            var p = pts[i];
+            gsap.to(node, { attr: { cx: p.x, cy: p.y }, duration: 1.05, ease: 'power2.out' });
+            node.classList.toggle('is-on', i === (scene % 6));
+        });
+        var curves = [
+            netCurve(pts[0], pts[1], 4.5),
+            netCurve(pts[1], pts[2], -6),
+            netCurve(pts[2], pts[3], 6.5),
+            netCurve(pts[3], pts[4], -6),
+            netCurve(pts[1], pts[5], -10)
+        ];
+        netLinks.forEach(function (link, i) {
+            gsap.to(link, { attr: { d: curves[i] }, duration: 1.05, ease: 'power2.out' });
+        });
+    }
 
     function setScene(idx) {
         idx = Math.max(0, Math.min(9, idx | 0));
@@ -1487,9 +1484,7 @@
         document.querySelectorAll('.sp-reel__tick').forEach(function (el) {
             el.classList.toggle('is-on', el.getAttribute('data-reel-scene') === String(idx));
         });
-        document.querySelectorAll('.sp-map__dot').forEach(function (el) {
-            el.classList.toggle('is-on', el.getAttribute('data-map-scene') === String(idx));
-        });
+        updateThoughtNet(idx);
         if (sceneStamp && sceneStampAct) {
             sceneStampAct.textContent = romanActs[idx] || 'I';
             sceneStamp.classList.add('is-show');
