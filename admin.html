@@ -67,6 +67,13 @@
             border: 1px solid var(--adm-line); border-radius: 0.5rem; background: #fff;
             padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;
         }
+        .adm-list-row.is-dragging { opacity: 0.55; border-color: #94a3b8; }
+        .adm-list-row.is-drop-target { border-color: #334155; box-shadow: inset 0 0 0 1px #334155; }
+        .adm-drag-handle {
+            cursor: grab; user-select: none; touch-action: none;
+            font-size: 0.85rem; line-height: 1; min-width: 2rem; padding-left: 0.5rem; padding-right: 0.5rem;
+        }
+        .adm-drag-handle:active { cursor: grabbing; }
         @media (min-width: 640px) {
             .adm-list-row.sm\:row { flex-direction: row; align-items: center; justify-content: space-between; }
         }
@@ -233,6 +240,7 @@
                         <p class="text-xs text-slate-500 mt-3">Tip: if backend update API is unavailable, save will automatically fall back to delete + recreate.</p>
                     </div>
                     <div class="adm-card p-6 md:p-8">
+                        <p class="text-xs text-slate-500 mb-3">Tip: drag testimonials by the handle to reorder. Order is saved automatically.</p>
                         <div id="admin-testimonials" class="space-y-4 text-sm md:text-base"></div>
                     </div>
                 </section>
@@ -671,10 +679,11 @@
             });
             latestTestimonials = testimonialRows;
             document.getElementById('admin-testimonials').innerHTML = testimonialRows.map(t => `
-                <div class="adm-list-row">
+                <div class="adm-list-row" data-testimonial-id="${escapeHTML(String(t.id || ''))}">
                     <div class="flex flex-wrap items-start justify-between gap-3">
                         <div class="font-semibold text-slate-900">${escapeHTML(t.name || '')} <span class="text-slate-600 font-normal text-sm">(${escapeHTML(t.relationship || '')})</span></div>
                         <div class="flex gap-2">
+                            <button type="button" class="adm-btn adm-btn--ghost text-xs py-2 px-2 adm-drag-handle js-drag-testimonial-handle" data-testimonial-id="${escapeHTML(String(t.id || ''))}" title="Drag to reorder" aria-label="Drag to reorder">↕</button>
                             <button type="button" class="adm-btn adm-btn--secondary text-xs py-2 px-3 js-edit-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Edit</button>
                             <button type="button" class="adm-btn adm-btn--secondary text-xs py-2 px-3 js-toggle-visibility-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}" data-next-public="${t && t.isPublic === false ? 'true' : 'false'}">${t && t.isPublic === false ? 'Make public' : 'Hide'}</button>
                             <button type="button" class="adm-btn adm-btn--danger text-xs py-2 px-3 js-delete-testimonial-btn" data-testimonial-id="${escapeHTML(String(t.id || ''))}">Delete</button>
@@ -710,6 +719,7 @@
             document.querySelectorAll('.js-delete-testimonial-btn').forEach((btn) => {
                 btn.addEventListener('click', () => deleteTestimonial(btn.dataset.testimonialId || ''));
             });
+            wireTestimonialDragAndDrop();
 
             const pubs = await requestJson('/admin/publications', { headers: { 'x-password': adminPwd } });
             document.getElementById('admin-publications').innerHTML = (pubs || []).map(p => {
@@ -1027,6 +1037,99 @@
                 await loadAdminData();
             } catch (_) {
                 alert('Visibility update failed');
+            }
+        }
+
+        function clearTestimonialDragClasses() {
+            document.querySelectorAll('#admin-testimonials .adm-list-row').forEach((row) => {
+                row.classList.remove('is-dragging', 'is-drop-target');
+            });
+        }
+
+        async function persistTestimonialOrderFromDom() {
+            const container = document.getElementById('admin-testimonials');
+            if (!container) return;
+            const idOrder = Array.from(container.querySelectorAll('.adm-list-row[data-testimonial-id]'))
+                .map((row) => String(row.dataset.testimonialId || ''))
+                .filter(Boolean);
+            if (!idOrder.length) return;
+            const oldOrder = latestTestimonials.map((row) => String(row && row.id != null ? row.id : ''));
+            if (idOrder.join('|') === oldOrder.join('|')) return;
+
+            const orderedRows = idOrder
+                .map((id) => latestTestimonials.find((row) => String(row && row.id != null ? row.id : '') === id))
+                .filter(Boolean);
+            if (!orderedRows.length) return;
+
+            try {
+                for (let i = 0; i < orderedRows.length; i += 1) {
+                    const row = orderedRows[i];
+                    await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify({
+                            name: row.name || '',
+                            linkedin: row.linkedin || '',
+                            relationship: row.relationship || '',
+                            comment: row.comment || '',
+                            sortOrder: (i + 1) * 10,
+                            isPublic: row.isPublic !== false
+                        })
+                    });
+                }
+                await loadAdminData();
+            } catch (_) {
+                alert('Drag reorder save failed');
+                await loadAdminData();
+            }
+        }
+
+        function wireTestimonialDragAndDrop() {
+            const container = document.getElementById('admin-testimonials');
+            if (!container) return;
+            if (!container._testimonialDragState) {
+                container._testimonialDragState = { draggingRow: null };
+            }
+            const state = container._testimonialDragState;
+
+            container.querySelectorAll('.js-drag-testimonial-handle').forEach((handle) => {
+                handle.setAttribute('draggable', 'true');
+                handle.addEventListener('dragstart', (e) => {
+                    state.draggingRow = handle.closest('.adm-list-row');
+                    if (!state.draggingRow) return;
+                    state.draggingRow.classList.add('is-dragging');
+                    if (e.dataTransfer) {
+                        e.dataTransfer.effectAllowed = 'move';
+                        e.dataTransfer.setData('text/plain', String(handle.dataset.testimonialId || ''));
+                    }
+                });
+                handle.addEventListener('dragend', () => {
+                    clearTestimonialDragClasses();
+                    state.draggingRow = null;
+                });
+            });
+
+            if (container.dataset.dragContainerBound !== '1') {
+                container.addEventListener('dragover', (e) => {
+                    if (!state.draggingRow) return;
+                    e.preventDefault();
+                    const target = e.target.closest('.adm-list-row');
+                    container.querySelectorAll('.adm-list-row').forEach((row) => row.classList.remove('is-drop-target'));
+                    if (!target || target === state.draggingRow) return;
+                    target.classList.add('is-drop-target');
+                    const rect = target.getBoundingClientRect();
+                    const insertAfter = e.clientY > rect.top + rect.height / 2;
+                    container.insertBefore(state.draggingRow, insertAfter ? target.nextSibling : target);
+                });
+
+                container.addEventListener('drop', async (e) => {
+                    if (!state.draggingRow) return;
+                    e.preventDefault();
+                    clearTestimonialDragClasses();
+                    await persistTestimonialOrderFromDom();
+                    state.draggingRow = null;
+                });
+                container.dataset.dragContainerBound = '1';
             }
         }
 
