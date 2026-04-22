@@ -1064,18 +1064,32 @@
             try {
                 for (let i = 0; i < orderedRows.length; i += 1) {
                     const row = orderedRows[i];
-                    await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                        body: JSON.stringify({
-                            name: row.name || '',
-                            linkedin: row.linkedin || '',
-                            relationship: row.relationship || '',
-                            comment: row.comment || '',
-                            sortOrder: (i + 1) * 10,
-                            isPublic: row.isPublic !== false
-                        })
-                    });
+                    const payload = {
+                        name: row.name || '',
+                        linkedin: row.linkedin || '',
+                        relationship: row.relationship || '',
+                        comment: row.comment || '',
+                        sortOrder: (i + 1) * 10,
+                        isPublic: row.isPublic !== false
+                    };
+                    try {
+                        await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                            body: JSON.stringify(payload)
+                        });
+                    } catch (err) {
+                        if (err && err.message && /status (404|405)/.test(err.message)) {
+                            await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
+                            await requestJson('/hidden/testimonials', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                                body: JSON.stringify(payload)
+                            });
+                        } else {
+                            throw err;
+                        }
+                    }
                 }
                 await loadAdminData();
             } catch (_) {
