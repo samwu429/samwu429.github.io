@@ -1061,56 +1061,63 @@
                 .filter(Boolean);
             if (!orderedRows.length) return;
 
-            const signature = (row) => [row && row.name ? String(row.name).trim() : '', row && row.relationship ? String(row.relationship).trim() : '', row && row.comment ? String(row.comment).trim() : ''].join('||');
             const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
             try {
                 let failedCount = 0;
                 for (let i = 0; i < orderedRows.length; i += 1) {
                     const row = orderedRows[i];
-                    const payload = {
+                    const nextSort = (i + 1) * 10;
+                    const fullPayload = {
                         name: row.name || '',
                         linkedin: row.linkedin || '',
                         relationship: row.relationship || '',
                         comment: row.comment || '',
-                        sortOrder: (i + 1) * 10,
+                        sortOrder: nextSort,
                         isPublic: row.isPublic !== false
                     };
                     try {
+                        // Try full payload first (most backend-compatible with existing update behavior).
                         await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
                             method: 'PUT',
                             headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                            body: JSON.stringify(payload)
+                            body: JSON.stringify(fullPayload)
                         });
-                    } catch (putErr) {
+                    } catch (putFullErr) {
                         try {
-                            // Fallback for environments where PUT is unsupported or unstable.
-                            await requestJson('/hidden/testimonials', {
-                                method: 'POST',
+                            // Some backends only accept partial updates.
+                            await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
+                                method: 'PUT',
                                 headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                                body: JSON.stringify(payload)
+                                body: JSON.stringify({ sortOrder: nextSort })
                             });
+                        } catch (putPartialErr) {
                             try {
-                                await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
-                                    method: 'DELETE',
-                                    headers: { 'x-password': adminPwd }
+                                // Final fallback for environments where PUT route is unavailable.
+                                await requestJson('/hidden/testimonials', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                                    body: JSON.stringify(fullPayload)
                                 });
-                            } catch (_) {
-                                // Keep going even if old row deletion fails; do not abort entire reorder.
+                                try {
+                                    await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
+                                        method: 'DELETE',
+                                        headers: { 'x-password': adminPwd }
+                                    });
+                                } catch (_) {
+                                    // Keep going even if old row deletion fails; do not abort entire reorder.
+                                }
+                            } catch (postErr) {
+                                failedCount += 1;
+                                console.error('testimonial reorder row failed', { putFullErr, putPartialErr, postErr, rowId: row && row.id });
                             }
-                        } catch (postErr) {
-                            failedCount += 1;
-                            console.error('testimonial reorder row failed', { putErr, postErr, rowId: row && row.id });
                         }
                     }
                     await wait(120);
                 }
                 await loadAdminData();
-                const desired = orderedRows.map(signature);
-                const actual = (latestTestimonials || []).slice(0, desired.length).map(signature);
-                const orderMatched = desired.join('@@') === actual.join('@@');
-                if (failedCount > 0 || !orderMatched) {
-                    alert('Reorder partially applied. Some rows may need another drag to finalize.');
+                if (failedCount > 0) {
+                    alert('Reorder partially applied. Failed rows: ' + failedCount);
                 }
             } catch (err) {
                 alert('Drag reorder save failed: ' + (err && err.message ? err.message : 'unknown error'));
