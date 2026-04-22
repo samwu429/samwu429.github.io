@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Portfolio | Sam Wu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body class="animate-fade-in py-6 md:py-12 px-0 min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <div class="site-wrap w-full mb-10 flex justify-between items-center relative z-10 border-b-2 border-gray-900 pb-4 gap-4 flex-wrap">
+        <a href="index.html" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> Back to Hub
+        </a>
+        <div class="flex items-center gap-4">
+            <a href="publications.html" class="text-xs font-black uppercase tracking-widest text-emerald-800 hidden sm:inline">Publications →</a>
+            <a href="blog.html" class="text-xs font-black uppercase tracking-widest text-emerald-800 hidden sm:inline">Moments (blog) →</a>
+        </div>
+    </div>
+
+    <main class="site-wrap w-full flex-1 relative z-10 pb-20 space-y-10 md:space-y-14">
+        <header class="space-y-3 text-center max-w-3xl mx-auto">
+            <p class="text-xs font-black tracking-[0.2em] text-emerald-800 uppercase">Portfolio</p>
+            <h1 class="text-4xl md:text-5xl font-black text-gray-950 uppercase tracking-tight leading-none font-serif-heading">
+                Project Portfolio
+            </h1>
+            <p class="text-sm md:text-base text-gray-600 font-medium body-readable">
+                A curated collection of shipped work, prototypes, and research-to-product explorations.
+            </p>
+            <p class="text-xs md:text-sm text-gray-500 font-bold tracking-wide uppercase">
+                You will see your full project list here in the next update.
+            </p>
+        </header>
+
+        <section aria-label="Portfolio Placeholder" class="space-y-6">
+            <div class="retro-panel bg-emerald-50/60 p-6 md:p-8 border-2 border-gray-900 shadow-[8px_8px_0px_#1c1917]">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-black text-gray-900 uppercase tracking-wide">Collection Coming Online</h2>
+                        <p class="mt-2 text-sm md:text-base text-gray-700 font-medium max-w-3xl">
+                            This page is ready for structured project cards. Once you provide project details, I will populate each entry with title, role, timeline, stack, outcome, and demo/repo links.
+                        </p>
+                    </div>
+                    <span class="inline-flex items-center px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] font-black border-2 border-gray-900 bg-white text-emerald-800">
+                        Ready for content
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section aria-label="Planned Project Grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <article class="retro-button p-6 flex flex-col text-left min-h-[200px]">
+                <p class="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 mb-2">Project 01</p>
+                <h3 class="text-lg font-black text-gray-900 uppercase tracking-wide">Placeholder</h3>
+                <p class="mt-3 text-sm text-gray-700 font-medium">Reserved slot for your first featured project.</p>
+            </article>
+            <article class="retro-button p-6 flex flex-col text-left min-h-[200px]">
+                <p class="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 mb-2">Project 02</p>
+                <h3 class="text-lg font-black text-gray-900 uppercase tracking-wide">Placeholder</h3>
+                <p class="mt-3 text-sm text-gray-700 font-medium">Reserved slot for your second featured project.</p>
+            </article>
+            <article class="retro-button p-6 flex flex-col text-left min-h-[200px]">
+                <p class="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 mb-2">Project 03</p>
+                <h3 class="text-lg font-black text-gray-900 uppercase tracking-wide">Placeholder</h3>
+                <p class="mt-3 text-sm text-gray-700 font-medium">Reserved slot for your third featured project.</p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

@@ -13,7 +13,10 @@
         <a href="index.html" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> Back to Hub
         </a>
-        <a href="blog.html" class="text-xs font-black uppercase tracking-widest text-emerald-800 hidden sm:inline">Moments (blog) →</a>
+        <div class="flex items-center gap-4">
+            <a href="portfolio.html" class="text-xs font-black uppercase tracking-widest text-emerald-800 hidden sm:inline">Project Portfolio →</a>
+            <a href="blog.html" class="text-xs font-black uppercase tracking-widest text-emerald-800 hidden sm:inline">Moments (blog) →</a>
+        </div>
     </div>
 
     <main class="site-wrap w-full flex-1 relative z-10 pb-20 space-y-10 md:space-y-14">
@@ -25,7 +28,27 @@
             <p class="text-sm md:text-base text-gray-600 font-medium body-readable">
                 Formal papers and academic listings. For the photo feed and short notes, see <a href="blog.html" class="text-emerald-800 font-black underline decoration-2 underline-offset-2">Moments</a>.
             </p>
+            <p class="text-xs md:text-sm text-gray-500 font-bold tracking-wide uppercase">
+                Need projects instead? Open <a href="portfolio.html" class="text-emerald-800 underline decoration-2 underline-offset-2">Project Portfolio</a>.
+            </p>
         </header>
+
+        <section id="section-portfolio-entry" aria-labelledby="portfolio-entry-heading" class="space-y-4 scroll-mt-24">
+            <h2 id="portfolio-entry-heading" class="section-title text-xl md:text-2xl">Project Portfolio</h2>
+            <a href="portfolio.html" class="retro-button p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5 text-left">
+                <div>
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-2">Inside Publications</p>
+                    <h3 class="text-2xl md:text-3xl font-black text-gray-900 uppercase tracking-tight leading-none">Open Project Showcase</h3>
+                    <p class="mt-3 text-sm md:text-base text-gray-700 font-medium body-readable">
+                        View project cases, build process, and outcomes in the dedicated portfolio page.
+                    </p>
+                </div>
+                <span class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.15em] text-emerald-800">
+                    Enter Portfolio
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m0 0l-6-6m6 6l-6 6"></path></svg>
+                </span>
+            </a>
+        </section>
 
         <section id="section-publications" aria-labelledby="pub-heading" class="space-y-6 scroll-mt-24">
             <h2 id="pub-heading" class="section-title text-xl md:text-2xl">Catalog</h2>
