@@ -1061,7 +1061,11 @@
                 .filter(Boolean);
             if (!orderedRows.length) return;
 
+            const signature = (row) => [row && row.name ? String(row.name).trim() : '', row && row.relationship ? String(row.relationship).trim() : '', row && row.comment ? String(row.comment).trim() : ''].join('||');
+            const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
             try {
+                let failedCount = 0;
                 for (let i = 0; i < orderedRows.length; i += 1) {
                     const row = orderedRows[i];
                     const payload = {
@@ -1078,20 +1082,36 @@
                             headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
                             body: JSON.stringify(payload)
                         });
-                    } catch (_) {
-                        // Robust fallback for environments where PUT is unsupported or unstable.
-                        await requestJson('/hidden/testimonials', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                            body: JSON.stringify(payload)
-                        });
-                        await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
-                            method: 'DELETE',
-                            headers: { 'x-password': adminPwd }
-                        });
+                    } catch (putErr) {
+                        try {
+                            // Fallback for environments where PUT is unsupported or unstable.
+                            await requestJson('/hidden/testimonials', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                                body: JSON.stringify(payload)
+                            });
+                            try {
+                                await requestJson(`/admin/testimonials/${encodeURIComponent(row.id)}`, {
+                                    method: 'DELETE',
+                                    headers: { 'x-password': adminPwd }
+                                });
+                            } catch (_) {
+                                // Keep going even if old row deletion fails; do not abort entire reorder.
+                            }
+                        } catch (postErr) {
+                            failedCount += 1;
+                            console.error('testimonial reorder row failed', { putErr, postErr, rowId: row && row.id });
+                        }
                     }
+                    await wait(120);
                 }
                 await loadAdminData();
+                const desired = orderedRows.map(signature);
+                const actual = (latestTestimonials || []).slice(0, desired.length).map(signature);
+                const orderMatched = desired.join('@@') === actual.join('@@');
+                if (failedCount > 0 || !orderMatched) {
+                    alert('Reorder partially applied. Some rows may need another drag to finalize.');
+                }
             } catch (err) {
                 alert('Drag reorder save failed: ' + (err && err.message ? err.message : 'unknown error'));
                 await loadAdminData();
