@@ -482,6 +482,11 @@
             }[tag]));
         }
 
+        function getTestimonialCreatedAt(row) {
+            if (!row) return null;
+            return row.createdAt || row.timestamp || null;
+        }
+
         async function requestJson(path, options = {}) {
             const res = await fetch(`${API_BASE}${path}`, options);
             if (!res.ok) {
@@ -673,8 +678,8 @@
                 const sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
                 const sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
                 if (sa !== sb) return sa - sb;
-                const ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
-                const tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+                const ta = new Date(getTestimonialCreatedAt(a) || 0).getTime();
+                const tb = new Date(getTestimonialCreatedAt(b) || 0).getTime();
                 return tb - ta;
             });
             latestTestimonials = testimonialRows;
@@ -955,6 +960,8 @@
             const sortOrder = Number(document.getElementById('testimonial-sort-order').value || 0);
             const isPublic = document.getElementById('testimonial-visibility').value !== 'hidden';
             const comment = document.getElementById('testimonial-comment').value.trim();
+            const existingRow = id ? latestTestimonials.find((x) => String(x && x.id) === String(id)) : null;
+            const existingCreatedAt = getTestimonialCreatedAt(existingRow);
             if (!name || !relationship || !comment) return alert('Name, relationship, and comment are required.');
             const btn = document.getElementById('testimonial-save-btn');
             btn.disabled = true;
@@ -974,7 +981,11 @@
                             await requestJson('/hidden/testimonials', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
-                                body: JSON.stringify({ name, linkedin, relationship, comment, sortOrder, isPublic })
+                                body: JSON.stringify({
+                                    name, linkedin, relationship, comment, sortOrder, isPublic,
+                                    createdAt: existingCreatedAt || undefined,
+                                    timestamp: existingCreatedAt || undefined
+                                })
                             });
                             updated = true;
                         } else {
@@ -1027,7 +1038,9 @@
                                 relationship: row.relationship || '',
                                 comment: row.comment || '',
                                 sortOrder: row.sortOrder != null ? Number(row.sortOrder) : 0,
-                                isPublic: !!nextPublic
+                                isPublic: !!nextPublic,
+                                createdAt: getTestimonialCreatedAt(row) || undefined,
+                                timestamp: getTestimonialCreatedAt(row) || undefined
                             })
                         });
                     } else {
@@ -1074,7 +1087,9 @@
                         relationship: row.relationship || '',
                         comment: row.comment || '',
                         sortOrder: nextSort,
-                        isPublic: row.isPublic !== false
+                        isPublic: row.isPublic !== false,
+                        createdAt: getTestimonialCreatedAt(row) || undefined,
+                        timestamp: getTestimonialCreatedAt(row) || undefined
                     };
                     try {
                         // Try full payload first (most backend-compatible with existing update behavior).

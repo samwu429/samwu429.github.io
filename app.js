@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         const sa = Number(a && a.sortOrder != null ? a.sortOrder : 0);
                         const sb = Number(b && b.sortOrder != null ? b.sortOrder : 0);
                         if (sa !== sb) return sa - sb;
-                        const ta = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
-                        const tb = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+                        const ta = new Date(a && (a.createdAt || a.timestamp) ? (a.createdAt || a.timestamp) : 0).getTime();
+                        const tb = new Date(b && (b.createdAt || b.timestamp) ? (b.createdAt || b.timestamp) : 0).getTime();
                         return tb - ta;
                     });
                 if (!rows.length) {

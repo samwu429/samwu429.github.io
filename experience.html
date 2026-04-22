@@ -223,7 +223,7 @@
         try{
           var res=await fetch(API_BASE+'/public/testimonials',{cache:'no-store'}); if(!res.ok)throw new Error('x');
           var data=await res.json();
-          var rows=(Array.isArray(data)?data:[]).filter(function(r){return r&&r.isPublic!==false}).sort(function(a,b){var sa=Number(a.sortOrder||0),sb=Number(b.sortOrder||0);if(sa!==sb)return sa-sb;return new Date(b.timestamp||0)-new Date(a.timestamp||0)}).slice(0,4);
+          var rows=(Array.isArray(data)?data:[]).filter(function(r){return r&&r.isPublic!==false}).sort(function(a,b){var sa=Number(a.sortOrder||0),sb=Number(b.sortOrder||0);if(sa!==sb)return sa-sb;return new Date((b.createdAt||b.timestamp)||0)-new Date((a.createdAt||a.timestamp)||0)}).slice(0,4);
           if(!rows.length){box.innerHTML='<p class="p" style="margin-top:.45rem;">No public excerpts.</p>';return}
           box.innerHTML=rows.map(function(r){var c=String(r.comment||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]}),rel=String(r.relationship||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]});return '<div class="v"><p>'+c.slice(0,180)+'</p><span>'+rel+'</span></div>'}).join('')
         }catch(_){box.innerHTML='<p class="p" style="margin-top:.45rem;">Voices sync when API is up.</p>'}
