@@ -1129,7 +1129,7 @@
             const container = document.getElementById('admin-testimonials');
             if (!container) return;
             if (!container._testimonialDragState) {
-                container._testimonialDragState = { draggingRow: null };
+                container._testimonialDragState = { draggingRow: null, dragStartOrder: '', didDrop: false, isPersisting: false };
             }
             const state = container._testimonialDragState;
 
@@ -1138,15 +1138,35 @@
                 handle.addEventListener('dragstart', (e) => {
                     state.draggingRow = handle.closest('.adm-list-row');
                     if (!state.draggingRow) return;
+                    state.dragStartOrder = Array.from(container.querySelectorAll('.adm-list-row[data-testimonial-id]'))
+                        .map((row) => String(row.dataset.testimonialId || ''))
+                        .filter(Boolean)
+                        .join('|');
+                    state.didDrop = false;
                     state.draggingRow.classList.add('is-dragging');
                     if (e.dataTransfer) {
                         e.dataTransfer.effectAllowed = 'move';
                         e.dataTransfer.setData('text/plain', String(handle.dataset.testimonialId || ''));
                     }
                 });
-                handle.addEventListener('dragend', () => {
+                handle.addEventListener('dragend', async () => {
                     clearTestimonialDragClasses();
+                    const currentOrder = Array.from(container.querySelectorAll('.adm-list-row[data-testimonial-id]'))
+                        .map((row) => String(row.dataset.testimonialId || ''))
+                        .filter(Boolean)
+                        .join('|');
+                    const changed = !!state.dragStartOrder && state.dragStartOrder !== currentOrder;
+                    if (changed && !state.didDrop && !state.isPersisting) {
+                        state.isPersisting = true;
+                        try {
+                            await persistTestimonialOrderFromDom();
+                        } finally {
+                            state.isPersisting = false;
+                        }
+                    }
                     state.draggingRow = null;
+                    state.dragStartOrder = '';
+                    state.didDrop = false;
                 });
             });
 
@@ -1166,9 +1186,19 @@
                 container.addEventListener('drop', async (e) => {
                     if (!state.draggingRow) return;
                     e.preventDefault();
+                    state.didDrop = true;
                     clearTestimonialDragClasses();
-                    await persistTestimonialOrderFromDom();
+                    if (!state.isPersisting) {
+                        state.isPersisting = true;
+                        try {
+                            await persistTestimonialOrderFromDom();
+                        } finally {
+                            state.isPersisting = false;
+                        }
+                    }
                     state.draggingRow = null;
+                    state.dragStartOrder = '';
+                    state.didDrop = false;
                 });
                 container.dataset.dragContainerBound = '1';
             }
