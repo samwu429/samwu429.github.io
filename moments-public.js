@@ -68,7 +68,7 @@
         if (!isShield) return p;
         return {
             ...p,
-            venue: 'SSRN working paper (posted May 2024) · IEEE journal submission — under review',
+            venue: 'SSRN working paper · IEEE journal submission — under review',
             link: SSRN_SHIELD_OF_TIME,
             _readLabel: 'Read preprint on SSRN',
             _statusHtml:
