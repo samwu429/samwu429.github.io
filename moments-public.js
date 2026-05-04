@@ -39,6 +39,31 @@
         return `${y}-${m || '??'}-${d || '??'}`;
     }
 
+    const SSRN_SHIELD_OF_TIME = 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4593378';
+
+    /**
+     * Merge canonical status + read link for known papers when API data lags.
+     * @param {Record<string, unknown>} p
+     */
+    function enrichPublication(p) {
+        if (!p || typeof p !== 'object') return p;
+        const title = String(p.title || '');
+        const link = String(p.link || '');
+        const isShield =
+            /shield of time/i.test(title) ||
+            /non-simulatable physical causality/i.test(title) ||
+            /4593378/.test(link);
+        if (!isShield) return p;
+        return {
+            ...p,
+            venue: 'SSRN working paper (posted May 2024) · IEEE journal submission — under review',
+            link: SSRN_SHIELD_OF_TIME,
+            _readLabel: 'Read preprint on SSRN',
+            _statusHtml:
+                '<p class="text-xs font-bold text-gray-700 mt-2 leading-relaxed border-l-4 border-emerald-500 pl-3">A public working paper is available on SSRN. The archival IEEE journal version is still under peer review and is not yet the version of record.</p>',
+        };
+    }
+
     function imgSrcForAttr(u) {
         if (!u || typeof u !== 'string') return '';
         const t = u.trim();
@@ -110,17 +135,21 @@
                     container.innerHTML = '<p class="text-sm text-gray-500 font-bold">No publications listed yet.</p>';
                     return;
                 }
-                rows.forEach((p) => {
+                rows.forEach((raw) => {
+                    const p = enrichPublication(raw);
                     const title = escapeHTML(p.title || '');
                     const meta = [p.authors, p.venue, p.year].filter(Boolean).map(escapeHTML).join(' · ');
+                    const status = p._statusHtml || '';
                     const abs = p.abstract ? `<p class="text-sm text-gray-600 mt-2 leading-relaxed">${escapeHTML(p.abstract)}</p>` : '';
+                    const readLabel = escapeHTML(p._readLabel || 'Open link');
                     const link = p.link
-                        ? `<a href="${escapeHTML(p.link)}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 retro-button px-4 py-2 text-xs uppercase tracking-widest">Open link</a>`
+                        ? `<a href="${escapeHTML(p.link)}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 retro-button px-4 py-2 text-xs uppercase tracking-widest">${readLabel}</a>`
                         : '';
                     container.insertAdjacentHTML('beforeend', `
                         <div class="retro-panel p-5 md:p-6 bg-white motion-safe">
                             <h3 class="text-lg font-black text-gray-900 leading-snug">${title}</h3>
                             ${meta ? `<p class="text-xs font-bold text-emerald-800 uppercase tracking-widest mt-2">${meta}</p>` : ''}
+                            ${status}
                             ${abs}
                             ${link}
                         </div>
