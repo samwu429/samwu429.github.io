@@ -39,7 +39,7 @@
         return `${y}-${m || '??'}-${d || '??'}`;
     }
 
-    const SSRN_SHIELD_OF_TIME = 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4593378';
+    const SSRN_SHIELD_OF_TIME = 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6593378';
 
     /**
      * Merge canonical status + read link for known papers when API data lags.
@@ -52,7 +52,7 @@
         const isShield =
             /shield of time/i.test(title) ||
             /non-simulatable physical causality/i.test(title) ||
-            /4593378/.test(link);
+            /4593378|6593378/.test(link);
         if (!isShield) return p;
         return {
             ...p,
