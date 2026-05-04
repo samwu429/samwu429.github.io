@@ -42,6 +42,18 @@
     const SSRN_SHIELD_OF_TIME = 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6593378';
 
     /**
+     * Fixed display order for the publications catalog (lower = higher on page).
+     * @param {Record<string, unknown>} p
+     */
+    function publicationCatalogRank(p) {
+        const t = String((p && p.title) || '').toLowerCase();
+        if (/shield of time/.test(t)) return 0;
+        if (/deconstructing the application-centric/.test(t)) return 1;
+        if (/just-in-time|atomic services/i.test(t)) return 1;
+        return 50;
+    }
+
+    /**
      * Merge canonical status + read link for known papers when API data lags.
      * @param {Record<string, unknown>} p
      */
@@ -135,7 +147,16 @@
                     container.innerHTML = '<p class="text-sm text-gray-500 font-bold">No publications listed yet.</p>';
                     return;
                 }
-                rows.forEach((raw) => {
+                const ordered = rows
+                    .map((r, i) => ({ r, i }))
+                    .sort((a, b) => {
+                        const ra = publicationCatalogRank(a.r);
+                        const rb = publicationCatalogRank(b.r);
+                        if (ra !== rb) return ra - rb;
+                        return a.i - b.i;
+                    })
+                    .map((x) => x.r);
+                ordered.forEach((raw) => {
                     const p = enrichPublication(raw);
                     const title = escapeHTML(p.title || '');
                     const meta = [p.authors, p.venue, p.year].filter(Boolean).map(escapeHTML).join(' · ');
