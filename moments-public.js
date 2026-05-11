@@ -109,7 +109,7 @@
 
     function buildMomentArticle(post, opts) {
         const avatarUrl = (opts && opts.avatarUrl) || 'f702013468e4d300dc33d4c1bfd12f82.jpg';
-        const name = (opts && opts.displayName) || 'Sam Wu';
+        const name = (opts && opts.displayName) || 'Yihang Wu';
         const dateStr = formatDisplayDate(post);
         const text = escapeHTML(post.text || '').replace(/\n/g, '<br>');
         return `
