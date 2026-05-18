@@ -63,6 +63,21 @@
             transition: background 0.15s, border-color 0.15s;
         }
         .adm-drop:hover { border-color: #64748b; background: #f1f5f9; }
+        .adm-drop.is-dragover {
+            border-color: #334155;
+            background: #e2e8f0;
+            box-shadow: inset 0 0 0 1px #334155;
+        }
+        .adm-drop-upload {
+            border-width: 2px;
+            border-style: dashed;
+            padding: 2rem 1.25rem;
+        }
+        .adm-drop-upload-icon {
+            font-size: 1.75rem;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
         .adm-list-row {
             border: 1px solid var(--adm-line); border-radius: 0.5rem; background: #fff;
             padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;
@@ -397,7 +412,7 @@
                                 <label class="adm-label" for="stash-kind">Type</label>
                                 <select id="stash-kind" class="adm-input max-w-xs">
                                     <option value="photo">Photo</option>
-                                    <option value="video">Video (YouTube / Vimeo link)</option>
+                                    <option value="video">Video (upload file or link)</option>
                                     <option value="article">Article</option>
                                     <option value="note">Note</option>
                                 </select>
@@ -417,19 +432,25 @@
                             </div>
                             <div id="stash-photo-block">
                                 <p class="adm-label">Images (photo type)</p>
-                                <div id="stash-drop-zone" class="adm-drop cursor-pointer py-10 text-center text-sm text-slate-700 mb-4" onclick="document.getElementById('stash-file-input').click()">
-                                    <span id="stash-drop-text">Drop images or click to browse</span>
+                                <div id="stash-drop-zone" class="adm-drop adm-drop-upload cursor-pointer text-center text-sm text-slate-700 mb-4">
+                                    <p class="adm-drop-upload-icon" aria-hidden="true">🖼</p>
+                                    <p class="font-semibold text-slate-800" id="stash-drop-text">Drag images here</p>
+                                    <p class="text-xs text-slate-500 mt-1">or click this area · multiple files OK</p>
+                                    <button type="button" id="stash-photo-browse-btn" class="adm-btn adm-btn--secondary mt-4 text-xs">Choose images…</button>
                                 </div>
                                 <input type="file" id="stash-file-input" class="hidden" accept="image/*" multiple>
                                 <div id="stash-previews" class="flex flex-wrap gap-3 min-h-[3rem]"></div>
                             </div>
                             <div id="stash-media-block" class="hidden">
                                 <p class="adm-label" id="stash-media-label">File</p>
-                                <div id="stash-media-drop-zone" class="adm-drop cursor-pointer py-10 text-center text-sm text-slate-700 mb-4" onclick="document.getElementById('stash-media-file-input').click()">
-                                    <span id="stash-media-drop-text">Drop file here or click to browse</span>
+                                <div id="stash-media-drop-zone" class="adm-drop adm-drop-upload cursor-pointer text-center text-sm text-slate-700 mb-2" role="button" tabindex="0" aria-labelledby="stash-media-drop-text">
+                                    <p class="adm-drop-upload-icon" id="stash-media-drop-icon" aria-hidden="true">📄</p>
+                                    <p class="font-semibold text-slate-800" id="stash-media-drop-text">Drag file here</p>
+                                    <p class="text-xs text-slate-500 mt-1" id="stash-media-drop-hint">or click this area</p>
+                                    <button type="button" id="stash-media-browse-btn" class="adm-btn adm-btn--secondary mt-4 text-xs">Choose file on this computer…</button>
                                 </div>
                                 <input type="file" id="stash-media-file-input" class="hidden" accept="">
-                                <p class="text-xs text-slate-500 mt-2">Max ~18 MB. Video: MP4, WebM, MOV. Article/Note: PDF.</p>
+                                <p class="text-xs text-slate-500 mt-2" id="stash-media-size-hint">Max ~18 MB. Video: MP4, WebM, MOV. Article/Note: PDF.</p>
                                 <div id="stash-media-preview" class="min-h-[2rem] mt-3"></div>
                             </div>
                             <div>
@@ -538,6 +559,7 @@
             });
             updateHeader();
             window.scrollTo(0, 0);
+            if (name === 'stash') updateStashFormUi();
         }
 
         document.querySelectorAll('[data-open]').forEach((btn) => {
@@ -1136,35 +1158,61 @@
             });
         }
 
+        function wireStashFileDropZone(zoneEl, inputEl, onPick) {
+            if (!zoneEl || !inputEl) return;
+            zoneEl.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zoneEl.classList.add('is-dragover');
+            });
+            zoneEl.addEventListener('dragleave', () => zoneEl.classList.remove('is-dragover'));
+            zoneEl.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                zoneEl.classList.remove('is-dragover');
+                await onPick(e.dataTransfer);
+            });
+            zoneEl.addEventListener('click', (e) => {
+                if (e.target.closest('button')) return;
+                inputEl.click();
+            });
+            zoneEl.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    inputEl.click();
+                }
+            });
+        }
+
         const stashDrop = document.getElementById('stash-drop-zone');
         const stashInput = document.getElementById('stash-file-input');
-        if (stashDrop && stashInput) {
-            stashDrop.addEventListener('dragover', (e) => { e.preventDefault(); stashDrop.classList.add('bg-slate-200'); });
-            stashDrop.addEventListener('dragleave', () => { stashDrop.classList.remove('bg-slate-200'); });
-            stashDrop.addEventListener('drop', async (e) => {
-                e.preventDefault();
-                stashDrop.classList.remove('bg-slate-200');
-                await addStashFiles(e.dataTransfer.files);
-            });
+        wireStashFileDropZone(stashDrop, stashInput, async (dt) => {
+            if (dt?.files?.length) await addStashFiles(dt.files);
+        });
+        if (stashInput) {
             stashInput.addEventListener('change', async (e) => addStashFiles(e.target.files));
         }
+        document.getElementById('stash-photo-browse-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            stashInput?.click();
+        });
 
         const stashMediaDrop = document.getElementById('stash-media-drop-zone');
         const stashMediaInput = document.getElementById('stash-media-file-input');
-        if (stashMediaDrop && stashMediaInput) {
-            stashMediaDrop.addEventListener('dragover', (e) => { e.preventDefault(); stashMediaDrop.classList.add('bg-slate-200'); });
-            stashMediaDrop.addEventListener('dragleave', () => { stashMediaDrop.classList.remove('bg-slate-200'); });
-            stashMediaDrop.addEventListener('drop', async (e) => {
-                e.preventDefault();
-                stashMediaDrop.classList.remove('bg-slate-200');
-                const f = e.dataTransfer.files && e.dataTransfer.files[0];
-                if (f) await addStashMediaFile(f);
-            });
+        wireStashFileDropZone(stashMediaDrop, stashMediaInput, async (dt) => {
+            const f = dt?.files && dt.files[0];
+            if (f) await addStashMediaFile(f);
+        });
+        if (stashMediaInput) {
             stashMediaInput.addEventListener('change', async (e) => {
                 const f = e.target.files && e.target.files[0];
                 if (f) await addStashMediaFile(f);
             });
         }
+        document.getElementById('stash-media-browse-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            stashMediaInput?.click();
+        });
         document.getElementById('stash-kind')?.addEventListener('change', updateStashFormUi);
 
         async function addStashFiles(fileList) {
@@ -1178,7 +1226,7 @@
                     stashImagesBase64.push(b64);
                 } catch (_) {}
             }
-            if (dropText) dropText.textContent = 'Drop images or click to browse';
+            if (dropText) dropText.textContent = 'Drag images here';
             renderStashPreviews();
         }
 
@@ -1245,7 +1293,7 @@
             } catch (_) {
                 alert('Could not read that file.');
             }
-            if (dropText) dropText.textContent = kind === 'video' ? 'Drop video here or click to browse' : 'Drop PDF here or click to browse';
+            if (dropText) dropText.textContent = kind === 'video' ? 'Drag video here' : 'Drag PDF here';
         }
 
         function renderStashMediaPreview() {
@@ -1279,19 +1327,33 @@
             const mediaBlock = document.getElementById('stash-media-block');
             const mediaLabel = document.getElementById('stash-media-label');
             const mediaDropText = document.getElementById('stash-media-drop-text');
+            const mediaDropHint = document.getElementById('stash-media-drop-hint');
+            const mediaDropIcon = document.getElementById('stash-media-drop-icon');
             const hint = document.getElementById('stash-link-hint');
             const mediaInput = document.getElementById('stash-media-file-input');
-            if (photoBlock) photoBlock.style.display = kind === 'photo' ? '' : 'none';
-            if (mediaBlock) mediaBlock.style.display = (kind === 'video' || kind === 'article' || kind === 'note') ? '' : 'none';
+            const showPhoto = kind === 'photo';
+            const showMedia = kind === 'video' || kind === 'article' || kind === 'note';
+            if (photoBlock) {
+                photoBlock.classList.toggle('hidden', !showPhoto);
+                photoBlock.style.display = '';
+            }
+            if (mediaBlock) {
+                mediaBlock.classList.toggle('hidden', !showMedia);
+                mediaBlock.style.display = '';
+            }
             if (mediaInput) {
                 if (kind === 'video') mediaInput.setAttribute('accept', 'video/*');
                 else if (kind === 'article' || kind === 'note') mediaInput.setAttribute('accept', 'application/pdf,.pdf');
             }
-            if (mediaLabel) mediaLabel.textContent = kind === 'video' ? 'Video file' : 'PDF file';
+            if (mediaLabel) mediaLabel.textContent = kind === 'video' ? 'Video file (upload)' : 'PDF file (upload)';
+            if (mediaDropIcon) mediaDropIcon.textContent = kind === 'video' ? '🎬' : '📄';
             if (mediaDropText) {
-                mediaDropText.textContent = kind === 'video'
-                    ? 'Drop video here or click to browse'
-                    : 'Drop PDF here or click to browse';
+                mediaDropText.textContent = kind === 'video' ? 'Drag video here' : 'Drag PDF here';
+            }
+            if (mediaDropHint) {
+                mediaDropHint.textContent = kind === 'video'
+                    ? 'or click this area · MP4, WebM, MOV'
+                    : 'or click this area · PDF only';
             }
             if (hint) {
                 if (kind === 'video') hint.textContent = 'Optional: YouTube/Vimeo link if you are not uploading a file.';
