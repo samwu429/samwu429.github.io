@@ -413,7 +413,7 @@
                             <div>
                                 <label class="adm-label" for="stash-link">Link</label>
                                 <input type="url" id="stash-link" class="adm-input font-mono text-sm" placeholder="Video URL, article URL, or extra link">
-                                <p id="stash-link-hint" class="text-xs text-slate-500 mt-1">Required for video. Optional for articles and notes.</p>
+                                <p id="stash-link-hint" class="text-xs text-slate-500 mt-1">Video: YouTube/Vimeo link or upload below. Article/Note: optional URL.</p>
                             </div>
                             <div id="stash-photo-block">
                                 <p class="adm-label">Images (photo type)</p>
@@ -422,6 +422,15 @@
                                 </div>
                                 <input type="file" id="stash-file-input" class="hidden" accept="image/*" multiple>
                                 <div id="stash-previews" class="flex flex-wrap gap-3 min-h-[3rem]"></div>
+                            </div>
+                            <div id="stash-media-block" class="hidden">
+                                <p class="adm-label" id="stash-media-label">File</p>
+                                <div id="stash-media-drop-zone" class="adm-drop cursor-pointer py-10 text-center text-sm text-slate-700 mb-4" onclick="document.getElementById('stash-media-file-input').click()">
+                                    <span id="stash-media-drop-text">Drop file here or click to browse</span>
+                                </div>
+                                <input type="file" id="stash-media-file-input" class="hidden" accept="">
+                                <p class="text-xs text-slate-500 mt-2">Max ~18 MB. Video: MP4, WebM, MOV. Article/Note: PDF.</p>
+                                <div id="stash-media-preview" class="min-h-[2rem] mt-3"></div>
                             </div>
                             <div>
                                 <span class="adm-label">Display date</span>
@@ -464,6 +473,9 @@
         let selectedBase64 = null;
         let blogImagesBase64 = [];
         let stashImagesBase64 = [];
+        let stashMediaFile = null;
+        let stashMediaRemoved = false;
+        const STASH_MAX_MEDIA_BYTES = 18 * 1024 * 1024;
         let latestTestimonials = [];
 
         const MODULES = ['photos', 'testimonials', 'publications', 'moments', 'stash'];
@@ -956,7 +968,12 @@
                     document.getElementById('stash-m').value = row.displayMonth;
                     document.getElementById('stash-d').value = row.displayDay;
                     stashImagesBase64 = Array.isArray(row.images) ? row.images.slice() : [];
+                    stashMediaFile = row.mediaData
+                        ? { data: row.mediaData, name: row.mediaName || '', mime: row.mediaMime || '' }
+                        : null;
+                    stashMediaRemoved = false;
                     renderStashPreviews();
+                    renderStashMediaPreview();
                     updateStashFormUi();
                     document.getElementById('stash-save-btn').textContent = 'Update';
                     openModule('stash');
@@ -1110,6 +1127,15 @@
             }
         }
 
+        function fileToDataUrl(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
         const stashDrop = document.getElementById('stash-drop-zone');
         const stashInput = document.getElementById('stash-file-input');
         if (stashDrop && stashInput) {
@@ -1121,6 +1147,23 @@
                 await addStashFiles(e.dataTransfer.files);
             });
             stashInput.addEventListener('change', async (e) => addStashFiles(e.target.files));
+        }
+
+        const stashMediaDrop = document.getElementById('stash-media-drop-zone');
+        const stashMediaInput = document.getElementById('stash-media-file-input');
+        if (stashMediaDrop && stashMediaInput) {
+            stashMediaDrop.addEventListener('dragover', (e) => { e.preventDefault(); stashMediaDrop.classList.add('bg-slate-200'); });
+            stashMediaDrop.addEventListener('dragleave', () => { stashMediaDrop.classList.remove('bg-slate-200'); });
+            stashMediaDrop.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                stashMediaDrop.classList.remove('bg-slate-200');
+                const f = e.dataTransfer.files && e.dataTransfer.files[0];
+                if (f) await addStashMediaFile(f);
+            });
+            stashMediaInput.addEventListener('change', async (e) => {
+                const f = e.target.files && e.target.files[0];
+                if (f) await addStashMediaFile(f);
+            });
         }
         document.getElementById('stash-kind')?.addEventListener('change', updateStashFormUi);
 
@@ -1167,14 +1210,92 @@
             if (d) d.value = t.getDate();
         }
 
+        async function addStashMediaFile(file) {
+            if (!file) return;
+            const kind = document.getElementById('stash-kind')?.value || 'note';
+            const isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name || '');
+            if (kind === 'video') {
+                if (!file.type.startsWith('video/')) {
+                    alert('Please drop a video file (MP4, WebM, MOV, etc.).');
+                    return;
+                }
+            } else if (kind === 'article' || kind === 'note') {
+                if (!isPdf) {
+                    alert('Please drop a PDF file.');
+                    return;
+                }
+            } else {
+                return;
+            }
+            if (file.size > STASH_MAX_MEDIA_BYTES) {
+                alert('File is too large. Please use a file under ~18 MB.');
+                return;
+            }
+            const dropText = document.getElementById('stash-media-drop-text');
+            if (dropText) dropText.textContent = 'Reading file…';
+            try {
+                const data = await fileToDataUrl(file);
+                stashMediaFile = {
+                    data,
+                    name: file.name || (isPdf ? 'document.pdf' : 'video'),
+                    mime: file.type || (isPdf ? 'application/pdf' : 'video/mp4')
+                };
+                stashMediaRemoved = false;
+                renderStashMediaPreview();
+            } catch (_) {
+                alert('Could not read that file.');
+            }
+            if (dropText) dropText.textContent = kind === 'video' ? 'Drop video here or click to browse' : 'Drop PDF here or click to browse';
+        }
+
+        function renderStashMediaPreview() {
+            const box = document.getElementById('stash-media-preview');
+            if (!box) return;
+            if (!stashMediaFile || !stashMediaFile.data) {
+                box.innerHTML = '';
+                return;
+            }
+            const kind = document.getElementById('stash-kind')?.value || 'note';
+            const name = escapeHTML(stashMediaFile.name || 'file');
+            let inner = `<p class="text-sm font-semibold text-slate-800 mb-2">${name}</p>`;
+            if (kind === 'video' || (stashMediaFile.mime || '').startsWith('video/')) {
+                inner += `<video src="${stashMediaFile.data}" controls class="max-h-48 w-full rounded border border-slate-300 bg-black"></video>`;
+            } else {
+                inner += `<p class="text-xs text-slate-600 mb-2">PDF ready — view on the item page after save.</p>`;
+            }
+            inner += `<button type="button" class="adm-btn adm-btn--danger text-xs py-1.5 px-3 mt-3 js-remove-stash-media">Remove file</button>`;
+            box.innerHTML = inner;
+            box.querySelector('.js-remove-stash-media')?.addEventListener('click', () => {
+                stashMediaFile = null;
+                stashMediaRemoved = true;
+                if (stashMediaInput) stashMediaInput.value = '';
+                renderStashMediaPreview();
+            });
+        }
+
         function updateStashFormUi() {
             const kind = document.getElementById('stash-kind')?.value || 'note';
             const photoBlock = document.getElementById('stash-photo-block');
+            const mediaBlock = document.getElementById('stash-media-block');
+            const mediaLabel = document.getElementById('stash-media-label');
+            const mediaDropText = document.getElementById('stash-media-drop-text');
             const hint = document.getElementById('stash-link-hint');
+            const mediaInput = document.getElementById('stash-media-file-input');
             if (photoBlock) photoBlock.style.display = kind === 'photo' ? '' : 'none';
+            if (mediaBlock) mediaBlock.style.display = (kind === 'video' || kind === 'article' || kind === 'note') ? '' : 'none';
+            if (mediaInput) {
+                if (kind === 'video') mediaInput.setAttribute('accept', 'video/*');
+                else if (kind === 'article' || kind === 'note') mediaInput.setAttribute('accept', 'application/pdf,.pdf');
+            }
+            if (mediaLabel) mediaLabel.textContent = kind === 'video' ? 'Video file' : 'PDF file';
+            if (mediaDropText) {
+                mediaDropText.textContent = kind === 'video'
+                    ? 'Drop video here or click to browse'
+                    : 'Drop PDF here or click to browse';
+            }
             if (hint) {
-                if (kind === 'video') hint.textContent = 'Required: paste a YouTube or Vimeo URL.';
-                else if (kind === 'article') hint.textContent = 'Optional: link to the full article.';
+                if (kind === 'video') hint.textContent = 'Optional: YouTube/Vimeo link if you are not uploading a file.';
+                else if (kind === 'article') hint.textContent = 'Optional: external article URL.';
                 else if (kind === 'photo') hint.textContent = 'Optional: external link alongside photos.';
                 else hint.textContent = 'Optional: related link.';
             }
@@ -1187,8 +1308,12 @@
             document.getElementById('stash-body').value = '';
             document.getElementById('stash-link').value = '';
             stashImagesBase64 = [];
+            stashMediaFile = null;
+            stashMediaRemoved = false;
             renderStashPreviews();
+            renderStashMediaPreview();
             if (stashInput) stashInput.value = '';
+            if (stashMediaInput) stashMediaInput.value = '';
             setDefaultStashDate();
             updateStashFormUi();
             document.getElementById('stash-save-btn').textContent = 'Save';
@@ -1205,9 +1330,10 @@
             const displayDay = Number(document.getElementById('stash-d').value);
             if (!displayYear || !displayMonth || !displayDay) return alert('Please set year, month, and day.');
             if (!id && kind === 'photo' && !stashImagesBase64.length) return alert('Add at least one image for a photo item.');
-            if (!id && kind === 'video' && !link) return alert('Video items need a YouTube or Vimeo link.');
-            if (!id && kind === 'article' && !title.trim() && !body.trim() && !link) return alert('Article needs a title, body, or link.');
-            if (!id && kind === 'note' && !body.trim()) return alert('Note needs body text.');
+            const hasMedia = stashMediaFile && stashMediaFile.data;
+            if (!id && kind === 'video' && !link && !hasMedia) return alert('Add a video file or a YouTube/Vimeo link.');
+            if (!id && kind === 'article' && !title.trim() && !body.trim() && !link && !hasMedia) return alert('Article needs a title, body, link, or PDF.');
+            if (!id && kind === 'note' && !body.trim() && !hasMedia) return alert('Note needs body text or a PDF.');
             const btn = document.getElementById('stash-save-btn');
             btn.disabled = true;
             try {
@@ -1221,6 +1347,15 @@
                     displayDay
                 };
                 if (stashImagesBase64.length) payload.images = stashImagesBase64;
+                if (stashMediaFile && stashMediaFile.data) {
+                    payload.mediaData = stashMediaFile.data;
+                    payload.mediaName = stashMediaFile.name || '';
+                    payload.mediaMime = stashMediaFile.mime || '';
+                } else if (id && stashMediaRemoved) {
+                    payload.mediaData = '';
+                    payload.mediaName = '';
+                    payload.mediaMime = '';
+                }
                 if (id) {
                     await requestJson(`/admin/stash/${encodeURIComponent(id)}`, {
                         method: 'PUT',
@@ -1237,7 +1372,7 @@
                 clearStashForm();
                 await loadAdminData();
             } catch (e) {
-                alert(e && e.message ? e.message : 'Save failed.');
+                alert('Save failed (file may be too large — try under 18 MB, or use a YouTube link for video).');
             } finally {
                 btn.disabled = false;
             }

@@ -485,6 +485,27 @@ select:focus-visible {
     height: 100%;
     border: 0;
 }
+.stash-video-wrap--native {
+    padding-bottom: 0;
+    height: auto;
+    min-height: 12rem;
+}
+.stash-video-native {
+    display: block;
+    width: 100%;
+    max-height: min(70vh, 32rem);
+    background: #111827;
+}
+.stash-pdf-wrap {
+    margin-top: 1rem;
+}
+.stash-pdf-frame {
+    width: 100%;
+    height: min(75vh, 42rem);
+    border: 2px solid #1c1917;
+    box-shadow: 4px 4px 0 #1c1917;
+    background: #fff;
+}
 .stash-card-title {
     font-family: Georgia, "Times New Roman", serif;
     font-weight: 900;

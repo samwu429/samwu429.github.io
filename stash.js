@@ -120,6 +120,47 @@
         return `<div class="stash-video-wrap"><iframe src="${escapeHTML(embed)}" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
     }
 
+    function isUploadedVideo(media) {
+        return /^data:video\//i.test(String(media || '').trim());
+    }
+
+    function isUploadedPdf(media) {
+        return /^data:application\/pdf/i.test(String(media || '').trim());
+    }
+
+    function mediaSrcForAttr(u) {
+        if (!u || typeof u !== 'string') return '';
+        const t = u.trim();
+        if (/^data:(video|application)\//i.test(t)) return t.replace(/"/g, '%22');
+        return '';
+    }
+
+    function videoPlayerHtml(item) {
+        const media = String(item.mediaData || '').trim();
+        const link = String(item.link || '').trim();
+        if (isUploadedVideo(media)) {
+            const src = mediaSrcForAttr(media);
+            if (src) {
+                return `<div class="stash-video-wrap stash-video-wrap--native"><video class="stash-video-native" controls playsinline preload="metadata" src="${src}"></video></div>`;
+            }
+        }
+        return videoEmbedHtml(link);
+    }
+
+    function pdfViewerHtml(item) {
+        const media = String(item.mediaData || '').trim();
+        if (!isUploadedPdf(media)) return '';
+        const src = mediaSrcForAttr(media);
+        if (!src) return '';
+        const name = escapeHTML(item.mediaName || 'Document.pdf');
+        return `
+            <div class="stash-pdf-wrap mt-4">
+                <p class="text-xs font-bold text-gray-600 mb-2 uppercase tracking-widest">${name}</p>
+                <iframe class="stash-pdf-frame" src="${src}" title="${name}"></iframe>
+                <a href="${src}" download="${name}" class="retro-button inline-block mt-3 px-4 py-2 text-[10px] font-black uppercase tracking-widest">Download PDF</a>
+            </div>`;
+    }
+
     function buildStashListCard(item) {
         const kind = String(item.kind || 'note');
         const label = KIND_LABELS[kind] || kind;
@@ -140,7 +181,11 @@
                 </div>`;
             }
         } else if (kind === 'video') {
-            preview = `<p class="text-xs font-bold text-pink-900/80 mt-3 uppercase tracking-widest">▶ Video — open to play</p>`;
+            preview = item.mediaData && isUploadedVideo(item.mediaData)
+                ? `<p class="text-xs font-bold text-pink-900/80 mt-3 uppercase tracking-widest">▶ Uploaded video — open to play</p>`
+                : `<p class="text-xs font-bold text-pink-900/80 mt-3 uppercase tracking-widest">▶ Video — open to play</p>`;
+        } else if ((kind === 'article' || kind === 'note') && item.mediaData && isUploadedPdf(item.mediaData)) {
+            preview = `<p class="text-xs font-bold text-indigo-900/80 mt-3 uppercase tracking-widest">📄 PDF attached</p>`;
         } else if (kind === 'article' && link) {
             preview = `<p class="text-xs text-gray-500 mt-3 font-mono truncate">${escapeHTML(link)}</p>`;
         }
@@ -175,15 +220,17 @@
         if (kind === 'photo') {
             media = photoGrid(item.images, 'stash-detail-thumb');
         } else if (kind === 'video') {
-            media = videoEmbedHtml(link);
+            media = videoPlayerHtml(item);
+        } else if (kind === 'article' || kind === 'note') {
+            media = pdfViewerHtml(item);
         }
 
         let linkBlock = '';
         if (kind === 'article' && link) {
             linkBlock = `<p class="mt-6"><a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer" class="retro-button inline-block px-5 py-2.5 text-[10px] font-black uppercase tracking-widest">Open original article</a></p>`;
-        } else if (link && kind !== 'video') {
+        } else if (link && kind !== 'video' && !isUploadedPdf(item.mediaData)) {
             linkBlock = `<p class="mt-4 text-sm"><a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer" class="font-bold text-emerald-800 underline break-all">${escapeHTML(link)}</a></p>`;
-        } else if (kind === 'video' && link) {
+        } else if (kind === 'video' && link && !isUploadedVideo(item.mediaData)) {
             linkBlock = `<p class="mt-4 text-xs text-gray-500 font-mono break-all"><a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer" class="underline">Source: ${escapeHTML(link)}</a></p>`;
         }
 
