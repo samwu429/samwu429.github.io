@@ -450,7 +450,7 @@
                                     <button type="button" id="stash-media-browse-btn" class="adm-btn adm-btn--secondary mt-4 text-xs">Choose file on this computer…</button>
                                 </div>
                                 <input type="file" id="stash-media-file-input" class="hidden" accept="">
-                                <p class="text-xs text-slate-500 mt-2" id="stash-media-size-hint">Max 100 MB per file. Video: MP4, WebM, MOV. Article/Note: PDF. Very large videos can also use a YouTube link.</p>
+                                <p class="text-xs text-slate-500 mt-2" id="stash-media-size-hint">Max 110 MB per file. Video: MP4, WebM, MOV. Article/Note: PDF. Very large videos can also use a YouTube link.</p>
                                 <div id="stash-media-preview" class="min-h-[2rem] mt-3"></div>
                             </div>
                             <div>
@@ -496,7 +496,7 @@
         let stashImagesBase64 = [];
         let stashMediaFile = null;
         let stashMediaRemoved = false;
-        const STASH_MAX_MEDIA_BYTES = 100 * 1024 * 1024;
+        const STASH_MAX_MEDIA_BYTES = 110 * 1024 * 1024;
         let latestTestimonials = [];
 
         const MODULES = ['photos', 'testimonials', 'publications', 'moments', 'stash'];
@@ -1317,7 +1317,7 @@
                 return;
             }
             if (file.size > STASH_MAX_MEDIA_BYTES) {
-                alert('File is too large. Maximum size is 100 MB (or use a YouTube link for video).');
+                alert('File is too large. Maximum size is 110 MB (or use a YouTube link for video).');
                 return;
             }
             revokeStashMediaPreviewUrl();
@@ -1490,7 +1490,7 @@
                 clearStashForm();
                 await loadAdminData();
             } catch (e) {
-                alert(e.message || 'Save failed. For very large videos, try a YouTube link or a file under 100 MB.');
+                alert(e.message || 'Save failed. For very large videos, try a YouTube link or a file under 110 MB.');
             } finally {
                 btn.disabled = false;
                 btn.textContent = btnLabel;
