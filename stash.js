@@ -120,12 +120,42 @@
         return `<div class="stash-video-wrap"><iframe src="${escapeHTML(embed)}" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
     }
 
+    function apiBase() {
+        return (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
+    }
+
+    function stashMediaStreamUrl(item) {
+        const id = String(item.mediaGridId || '').trim();
+        if (!id) return '';
+        return `${apiBase()}/public/stash/media/${encodeURIComponent(id)}`;
+    }
+
     function isUploadedVideo(media) {
         return /^data:video\//i.test(String(media || '').trim());
     }
 
     function isUploadedPdf(media) {
         return /^data:application\/pdf/i.test(String(media || '').trim());
+    }
+
+    function itemHasUploadedVideo(item) {
+        if (isUploadedVideo(item.mediaData)) return true;
+        if (!item.mediaGridId) return false;
+        const mime = String(item.mediaMime || '').toLowerCase();
+        return mime.startsWith('video/') || String(item.kind || '') === 'video';
+    }
+
+    function itemHasUploadedPdf(item) {
+        if (isUploadedPdf(item.mediaData)) return true;
+        if (!item.mediaGridId) return false;
+        const mime = String(item.mediaMime || '').toLowerCase();
+        return mime.includes('pdf') || item.kind === 'article' || item.kind === 'note';
+    }
+
+    function stashMediaSrc(item) {
+        const stream = stashMediaStreamUrl(item);
+        if (stream) return stream;
+        return mediaSrcForAttr(item.mediaData);
     }
 
     function mediaSrcForAttr(u) {
@@ -136,10 +166,9 @@
     }
 
     function videoPlayerHtml(item) {
-        const media = String(item.mediaData || '').trim();
         const link = String(item.link || '').trim();
-        if (isUploadedVideo(media)) {
-            const src = mediaSrcForAttr(media);
+        if (itemHasUploadedVideo(item)) {
+            const src = escapeHTML(stashMediaSrc(item));
             if (src) {
                 return `<div class="stash-video-wrap stash-video-wrap--native"><video class="stash-video-native" controls playsinline preload="metadata" src="${src}"></video></div>`;
             }
@@ -148,9 +177,8 @@
     }
 
     function pdfViewerHtml(item) {
-        const media = String(item.mediaData || '').trim();
-        if (!isUploadedPdf(media)) return '';
-        const src = mediaSrcForAttr(media);
+        if (!itemHasUploadedPdf(item)) return '';
+        const src = escapeHTML(stashMediaSrc(item));
         if (!src) return '';
         const name = escapeHTML(item.mediaName || 'Document.pdf');
         return `
@@ -181,10 +209,10 @@
                 </div>`;
             }
         } else if (kind === 'video') {
-            preview = item.mediaData && isUploadedVideo(item.mediaData)
+            preview = itemHasUploadedVideo(item)
                 ? `<p class="text-xs font-bold text-pink-900/80 mt-3 uppercase tracking-widest">▶ Uploaded video — open to play</p>`
                 : `<p class="text-xs font-bold text-pink-900/80 mt-3 uppercase tracking-widest">▶ Video — open to play</p>`;
-        } else if ((kind === 'article' || kind === 'note') && item.mediaData && isUploadedPdf(item.mediaData)) {
+        } else if ((kind === 'article' || kind === 'note') && itemHasUploadedPdf(item)) {
             preview = `<p class="text-xs font-bold text-indigo-900/80 mt-3 uppercase tracking-widest">📄 PDF attached</p>`;
         } else if (kind === 'article' && link) {
             preview = `<p class="text-xs text-gray-500 mt-3 font-mono truncate">${escapeHTML(link)}</p>`;
@@ -228,9 +256,9 @@
         let linkBlock = '';
         if (kind === 'article' && link) {
             linkBlock = `<p class="mt-6"><a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer" class="retro-button inline-block px-5 py-2.5 text-[10px] font-black uppercase tracking-widest">Open original article</a></p>`;
-        } else if (link && kind !== 'video' && !isUploadedPdf(item.mediaData)) {
+        } else if (link && kind !== 'video' && !itemHasUploadedPdf(item)) {
             linkBlock = `<p class="mt-4 text-sm"><a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer" class="font-bold text-emerald-800 underline break-all">${escapeHTML(link)}</a></p>`;
-        } else if (kind === 'video' && link && !isUploadedVideo(item.mediaData)) {
+        } else if (kind === 'video' && link && !itemHasUploadedVideo(item)) {
             linkBlock = `<p class="mt-4 text-xs text-gray-500 font-mono break-all"><a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer" class="underline">Source: ${escapeHTML(link)}</a></p>`;
         }
 

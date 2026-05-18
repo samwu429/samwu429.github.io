@@ -450,7 +450,7 @@
                                     <button type="button" id="stash-media-browse-btn" class="adm-btn adm-btn--secondary mt-4 text-xs">Choose file on this computer…</button>
                                 </div>
                                 <input type="file" id="stash-media-file-input" class="hidden" accept="">
-                                <p class="text-xs text-slate-500 mt-2" id="stash-media-size-hint">Max ~18 MB. Video: MP4, WebM, MOV. Article/Note: PDF.</p>
+                                <p class="text-xs text-slate-500 mt-2" id="stash-media-size-hint">Max 100 MB per file. Video: MP4, WebM, MOV. Article/Note: PDF. Very large videos can also use a YouTube link.</p>
                                 <div id="stash-media-preview" class="min-h-[2rem] mt-3"></div>
                             </div>
                             <div>
@@ -496,7 +496,7 @@
         let stashImagesBase64 = [];
         let stashMediaFile = null;
         let stashMediaRemoved = false;
-        const STASH_MAX_MEDIA_BYTES = 18 * 1024 * 1024;
+        const STASH_MAX_MEDIA_BYTES = 100 * 1024 * 1024;
         let latestTestimonials = [];
 
         const MODULES = ['photos', 'testimonials', 'publications', 'moments', 'stash'];
@@ -615,6 +615,44 @@
                 return null;
             }
             return res.json();
+        }
+
+        function revokeStashMediaPreviewUrl() {
+            if (stashMediaFile && stashMediaFile.previewUrl) {
+                URL.revokeObjectURL(stashMediaFile.previewUrl);
+            }
+        }
+
+        function hasStashMediaSelected() {
+            return !!(stashMediaFile && (stashMediaFile.file || stashMediaFile.data || stashMediaFile.gridId));
+        }
+
+        function stashMediaPreviewSrc() {
+            if (!stashMediaFile) return '';
+            if (stashMediaFile.previewUrl) return stashMediaFile.previewUrl;
+            if (stashMediaFile.data) return stashMediaFile.data;
+            if (stashMediaFile.gridId) {
+                return `${API_BASE}/public/stash/media/${encodeURIComponent(stashMediaFile.gridId)}`;
+            }
+            return '';
+        }
+
+        async function uploadStashMediaToServer(file) {
+            const fd = new FormData();
+            fd.append('file', file, file.name || 'upload');
+            const res = await fetch(`${API_BASE}/admin/stash/media`, {
+                method: 'POST',
+                headers: { 'x-password': adminPwd },
+                body: fd
+            });
+            let json = {};
+            try {
+                json = await res.json();
+            } catch (_) {}
+            if (!res.ok) {
+                throw new Error(json.error || `Upload failed (${res.status})`);
+            }
+            return json;
         }
 
         function canvasCompressDataUrl(img, maxW, maxH, quality) {
@@ -990,9 +1028,12 @@
                     document.getElementById('stash-m').value = row.displayMonth;
                     document.getElementById('stash-d').value = row.displayDay;
                     stashImagesBase64 = Array.isArray(row.images) ? row.images.slice() : [];
-                    stashMediaFile = row.mediaData
-                        ? { data: row.mediaData, name: row.mediaName || '', mime: row.mediaMime || '' }
-                        : null;
+                    revokeStashMediaPreviewUrl();
+                    stashMediaFile = row.mediaGridId
+                        ? { gridId: row.mediaGridId, name: row.mediaName || '', mime: row.mediaMime || '' }
+                        : row.mediaData
+                            ? { data: row.mediaData, name: row.mediaName || '', mime: row.mediaMime || '' }
+                            : null;
                     stashMediaRemoved = false;
                     renderStashPreviews();
                     renderStashMediaPreview();
@@ -1276,44 +1317,43 @@
                 return;
             }
             if (file.size > STASH_MAX_MEDIA_BYTES) {
-                alert('File is too large. Please use a file under ~18 MB.');
+                alert('File is too large. Maximum size is 100 MB (or use a YouTube link for video).');
                 return;
             }
-            const dropText = document.getElementById('stash-media-drop-text');
-            if (dropText) dropText.textContent = 'Reading file…';
-            try {
-                const data = await fileToDataUrl(file);
-                stashMediaFile = {
-                    data,
-                    name: file.name || (isPdf ? 'document.pdf' : 'video'),
-                    mime: file.type || (isPdf ? 'application/pdf' : 'video/mp4')
-                };
-                stashMediaRemoved = false;
-                renderStashMediaPreview();
-            } catch (_) {
-                alert('Could not read that file.');
-            }
-            if (dropText) dropText.textContent = kind === 'video' ? 'Drag video here' : 'Drag PDF here';
+            revokeStashMediaPreviewUrl();
+            stashMediaFile = {
+                file,
+                name: file.name || (isPdf ? 'document.pdf' : 'video'),
+                mime: file.type || (isPdf ? 'application/pdf' : 'video/mp4'),
+                previewUrl: URL.createObjectURL(file)
+            };
+            stashMediaRemoved = false;
+            renderStashMediaPreview();
         }
 
         function renderStashMediaPreview() {
             const box = document.getElementById('stash-media-preview');
             if (!box) return;
-            if (!stashMediaFile || !stashMediaFile.data) {
+            if (!hasStashMediaSelected()) {
                 box.innerHTML = '';
                 return;
             }
             const kind = document.getElementById('stash-kind')?.value || 'note';
             const name = escapeHTML(stashMediaFile.name || 'file');
+            const src = stashMediaPreviewSrc();
             let inner = `<p class="text-sm font-semibold text-slate-800 mb-2">${name}</p>`;
             if (kind === 'video' || (stashMediaFile.mime || '').startsWith('video/')) {
-                inner += `<video src="${stashMediaFile.data}" controls class="max-h-48 w-full rounded border border-slate-300 bg-black"></video>`;
+                inner += `<video src="${src}" controls class="max-h-48 w-full rounded border border-slate-300 bg-black"></video>`;
+                if (stashMediaFile.file) {
+                    inner += `<p class="text-xs text-slate-500 mt-2">Will upload when you save (${(stashMediaFile.file.size / (1024 * 1024)).toFixed(1)} MB)</p>`;
+                }
             } else {
                 inner += `<p class="text-xs text-slate-600 mb-2">PDF ready — view on the item page after save.</p>`;
             }
             inner += `<button type="button" class="adm-btn adm-btn--danger text-xs py-1.5 px-3 mt-3 js-remove-stash-media">Remove file</button>`;
             box.innerHTML = inner;
             box.querySelector('.js-remove-stash-media')?.addEventListener('click', () => {
+                revokeStashMediaPreviewUrl();
                 stashMediaFile = null;
                 stashMediaRemoved = true;
                 if (stashMediaInput) stashMediaInput.value = '';
@@ -1370,6 +1410,7 @@
             document.getElementById('stash-body').value = '';
             document.getElementById('stash-link').value = '';
             stashImagesBase64 = [];
+            revokeStashMediaPreviewUrl();
             stashMediaFile = null;
             stashMediaRemoved = false;
             renderStashPreviews();
@@ -1392,11 +1433,12 @@
             const displayDay = Number(document.getElementById('stash-d').value);
             if (!displayYear || !displayMonth || !displayDay) return alert('Please set year, month, and day.');
             if (!id && kind === 'photo' && !stashImagesBase64.length) return alert('Add at least one image for a photo item.');
-            const hasMedia = stashMediaFile && stashMediaFile.data;
+            const hasMedia = hasStashMediaSelected();
             if (!id && kind === 'video' && !link && !hasMedia) return alert('Add a video file or a YouTube/Vimeo link.');
             if (!id && kind === 'article' && !title.trim() && !body.trim() && !link && !hasMedia) return alert('Article needs a title, body, link, or PDF.');
             if (!id && kind === 'note' && !body.trim() && !hasMedia) return alert('Note needs body text or a PDF.');
             const btn = document.getElementById('stash-save-btn');
+            const btnLabel = btn.textContent;
             btn.disabled = true;
             try {
                 const payload = {
@@ -1409,12 +1451,26 @@
                     displayDay
                 };
                 if (stashImagesBase64.length) payload.images = stashImagesBase64;
-                if (stashMediaFile && stashMediaFile.data) {
+                if (stashMediaFile && stashMediaFile.file) {
+                    btn.textContent = 'Uploading file…';
+                    const up = await uploadStashMediaToServer(stashMediaFile.file);
+                    payload.mediaGridId = up.gridId || '';
+                    payload.mediaData = '';
+                    payload.mediaName = up.name || stashMediaFile.name || '';
+                    payload.mediaMime = up.mime || stashMediaFile.mime || '';
+                } else if (stashMediaFile && stashMediaFile.gridId) {
+                    payload.mediaGridId = stashMediaFile.gridId;
+                    payload.mediaData = '';
+                    payload.mediaName = stashMediaFile.name || '';
+                    payload.mediaMime = stashMediaFile.mime || '';
+                } else if (stashMediaFile && stashMediaFile.data) {
                     payload.mediaData = stashMediaFile.data;
+                    payload.mediaGridId = '';
                     payload.mediaName = stashMediaFile.name || '';
                     payload.mediaMime = stashMediaFile.mime || '';
                 } else if (id && stashMediaRemoved) {
                     payload.mediaData = '';
+                    payload.mediaGridId = '';
                     payload.mediaName = '';
                     payload.mediaMime = '';
                 }
@@ -1434,9 +1490,10 @@
                 clearStashForm();
                 await loadAdminData();
             } catch (e) {
-                alert('Save failed (file may be too large — try under 18 MB, or use a YouTube link for video).');
+                alert(e.message || 'Save failed. For very large videos, try a YouTube link or a file under 100 MB.');
             } finally {
                 btn.disabled = false;
+                btn.textContent = btnLabel;
             }
         }
 
