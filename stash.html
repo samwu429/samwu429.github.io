@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Archive | Yihang Wu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css?v=14">
+</head>
+<body class="animate-fade-in py-6 md:py-12 px-0 min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <div class="site-wrap w-full mb-8 flex justify-between items-center relative z-10 border-b-2 border-gray-900 pb-4">
+        <a href="index.html" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back
+        </a>
+        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Loose shelf</span>
+    </div>
+
+    <main class="site-wrap w-full max-w-3xl mx-auto flex-1 relative z-10 pb-24">
+        <header class="mb-8">
+            <p class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.22em] mb-2">Misc archive</p>
+            <h1 class="text-3xl md:text-4xl font-black text-gray-950 tracking-tight uppercase">Odds &amp; ends</h1>
+            <p class="text-sm text-gray-600 font-medium mt-3 body-readable max-w-xl">
+                Photos, clips, articles, and scratch notes that do not belong on the main hub. Unlisted — reach it from the corner mark on the home page.
+            </p>
+        </header>
+
+        <nav class="stash-filter-bar mb-8" id="stash-filters" aria-label="Filter by type">
+            <button type="button" class="stash-filter-btn is-active" data-filter="all">All</button>
+            <button type="button" class="stash-filter-btn" data-filter="photo">Photos</button>
+            <button type="button" class="stash-filter-btn" data-filter="video">Video</button>
+            <button type="button" class="stash-filter-btn" data-filter="article">Articles</button>
+            <button type="button" class="stash-filter-btn" data-filter="note">Notes</button>
+        </nav>
+
+        <div id="stash-feed" class="space-y-4"></div>
+    </main>
+
+    <script src="api-config.js"></script>
+    <script src="stash.js?v=2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ST = window.SAM_STASH;
+            if (!ST) return;
+
+            const feed = document.getElementById('stash-feed');
+            const filters = document.getElementById('stash-filters');
+            let activeFilter = 'all';
+
+            function refresh() {
+                ST.loadFeed(feed, activeFilter);
+            }
+
+            if (filters) {
+                filters.addEventListener('click', (e) => {
+                    const btn = e.target.closest('[data-filter]');
+                    if (!btn) return;
+                    activeFilter = btn.getAttribute('data-filter') || 'all';
+                    filters.querySelectorAll('.stash-filter-btn').forEach((b) => {
+                        b.classList.toggle('is-active', b === btn);
+                    });
+                    refresh();
+                });
+            }
+
+            refresh();
+        });
+    </script>
+</body>
+</html>

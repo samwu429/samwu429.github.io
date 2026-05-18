@@ -145,6 +145,12 @@
                         <span class="text-base font-semibold text-slate-900">Moments</span>
                         <span class="text-sm text-slate-500 mt-1">Compose feed posts with images, caption, and date.</span>
                     </button>
+
+                    <button type="button" class="adm-tile" data-open="stash">
+                        <div class="adm-tile-icon"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg></div>
+                        <span class="text-base font-semibold text-slate-900">Loose shelf</span>
+                        <span class="text-sm text-slate-500 mt-1">Misc archive (corner link on home). Photos, video links, articles, notes.</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -374,6 +380,81 @@
                 </section>
             </div>
         </div>
+
+        <div id="view-stash" class="hidden" hidden>
+            <div class="adm-wrap py-8 md:py-12 pb-24">
+                <section id="module-stash" class="space-y-8 md:space-y-10">
+                    <div>
+                        <p class="adm-kicker">Hidden</p>
+                        <h2 class="adm-page-title mt-1 mb-2">Loose shelf</h2>
+                        <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">Shown on <code class="text-xs bg-slate-100 border border-slate-200 rounded px-1.5 py-0.5 font-mono text-slate-700">stash.html</code> (home page corner <code class="text-xs bg-slate-100 border border-slate-200 rounded px-1.5 py-0.5 font-mono text-slate-700">_</code>). Pick a type, fill the fields, set a display date.</p>
+                    </div>
+
+                    <div class="adm-card p-6 md:p-10">
+                        <p class="adm-section-title">Add item</p>
+                        <div class="space-y-6 max-w-3xl">
+                            <div>
+                                <label class="adm-label" for="stash-kind">Type</label>
+                                <select id="stash-kind" class="adm-input max-w-xs">
+                                    <option value="photo">Photo</option>
+                                    <option value="video">Video (YouTube / Vimeo link)</option>
+                                    <option value="article">Article</option>
+                                    <option value="note">Note</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="adm-label" for="stash-title">Title</label>
+                                <input type="text" id="stash-title" class="adm-input" placeholder="Optional for notes">
+                            </div>
+                            <div>
+                                <label class="adm-label" for="stash-body">Body / caption</label>
+                                <textarea id="stash-body" rows="5" class="adm-input font-sans leading-relaxed" placeholder="Text, description, or scratch notes"></textarea>
+                            </div>
+                            <div>
+                                <label class="adm-label" for="stash-link">Link</label>
+                                <input type="url" id="stash-link" class="adm-input font-mono text-sm" placeholder="Video URL, article URL, or extra link">
+                                <p id="stash-link-hint" class="text-xs text-slate-500 mt-1">Required for video. Optional for articles and notes.</p>
+                            </div>
+                            <div id="stash-photo-block">
+                                <p class="adm-label">Images (photo type)</p>
+                                <div id="stash-drop-zone" class="adm-drop cursor-pointer py-10 text-center text-sm text-slate-700 mb-4" onclick="document.getElementById('stash-file-input').click()">
+                                    <span id="stash-drop-text">Drop images or click to browse</span>
+                                </div>
+                                <input type="file" id="stash-file-input" class="hidden" accept="image/*" multiple>
+                                <div id="stash-previews" class="flex flex-wrap gap-3 min-h-[3rem]"></div>
+                            </div>
+                            <div>
+                                <span class="adm-label">Display date</span>
+                                <div class="flex flex-wrap gap-4 items-end">
+                                    <div>
+                                        <label class="text-xs text-slate-500 mb-1 block" for="stash-y">Year</label>
+                                        <input type="number" id="stash-y" class="adm-input w-28" min="1990" max="2100">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs text-slate-500 mb-1 block" for="stash-m">Month</label>
+                                        <input type="number" id="stash-m" class="adm-input w-24" min="1" max="12">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs text-slate-500 mb-1 block" for="stash-d">Day</label>
+                                        <input type="number" id="stash-d" class="adm-input w-24" min="1" max="31">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3 mt-10">
+                            <button type="button" onclick="saveStashItem()" id="stash-save-btn" class="adm-btn">Save</button>
+                            <button type="button" onclick="clearStashForm()" class="adm-btn adm-btn--secondary">Clear form</button>
+                        </div>
+                        <input type="hidden" id="stash-edit-id" value="">
+                    </div>
+
+                    <div class="adm-card p-6 md:p-8">
+                        <p class="adm-section-title">Saved items</p>
+                        <div id="admin-stash" class="space-y-3 text-sm"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 
     <script src="api-config.js"></script>
@@ -382,9 +463,10 @@
         let adminPwd = '';
         let selectedBase64 = null;
         let blogImagesBase64 = [];
+        let stashImagesBase64 = [];
         let latestTestimonials = [];
 
-        const MODULES = ['photos', 'testimonials', 'publications', 'moments'];
+        const MODULES = ['photos', 'testimonials', 'publications', 'moments', 'stash'];
         let currentView = 'hub';
 
         const MODULE_TITLES = {
@@ -392,7 +474,8 @@
             photos: 'Private gallery',
             testimonials: 'Visitor voices',
             publications: 'Publications',
-            moments: 'Moments'
+            moments: 'Moments',
+            stash: 'Loose shelf'
         };
 
         function updateHeader() {
@@ -469,6 +552,7 @@
             else if (e.key === '2') openModule('testimonials');
             else if (e.key === '3') openModule('publications');
             else if (e.key === '4') openModule('moments');
+            else if (e.key === '5') openModule('stash');
         });
 
         function escapeHTML(str) {
@@ -640,6 +724,8 @@
                 document.getElementById('main-content').classList.remove('hidden');
                 showHub();
                 setDefaultBlogDate();
+                setDefaultStashDate();
+                updateStashFormUi();
                 await loadAdminData();
             } catch (err) {
                 if (errBox) {
@@ -808,6 +894,78 @@
             document.querySelectorAll('.js-del-blog').forEach((btn) => {
                 btn.addEventListener('click', () => deleteBlog(btn.dataset.id));
             });
+
+            const stashRows = await requestJson('/admin/stash', { headers: { 'x-password': adminPwd } });
+            const stashKindLabel = { photo: 'Photo', video: 'Video', article: 'Article', note: 'Note' };
+            document.getElementById('admin-stash').innerHTML = (stashRows || []).map((s) => {
+                const k = stashKindLabel[s.kind] || s.kind;
+                const title = (s.title || '').trim();
+                const preview = (s.body || '').trim().slice(0, 120);
+                let pageUrl = `stash-item.html?id=${encodeURIComponent(String(s.id || ''))}`;
+                try { pageUrl = new URL(pageUrl, window.location.href).href; } catch (_) {}
+                const relPage = `stash-item.html?id=${encodeURIComponent(String(s.id || ''))}`;
+                return `
+                <div class="adm-list-row sm:row">
+                    <div class="min-w-0">
+                        <div class="font-semibold text-slate-900"><span class="text-xs uppercase tracking-wide text-slate-500 mr-2">${escapeHTML(k)}</span>${escapeHTML(title || preview || '(no title)')}</div>
+                        <div class="text-xs text-slate-500 mt-1">${escapeHTML(String(s.displayYear))}-${escapeHTML(String(s.displayMonth).padStart(2, '0'))}-${escapeHTML(String(s.displayDay).padStart(2, '0'))}</div>
+                        ${preview ? `<div class="text-sm text-slate-700 mt-2 leading-relaxed">${escapeHTML(preview)}${(s.body || '').length > 120 ? '…' : ''}</div>` : ''}
+                        <p class="text-[11px] font-mono text-slate-400 mt-2 break-all">${escapeHTML(pageUrl)}</p>
+                    </div>
+                    <div class="flex flex-col gap-2 flex-shrink-0 items-stretch sm:items-end">
+                        <a href="${escapeHTML(relPage)}" target="_blank" rel="noopener noreferrer" class="adm-btn adm-btn--secondary text-xs py-2 px-3 text-center">Open page</a>
+                        <button type="button" class="adm-btn adm-btn--secondary text-xs py-2 px-3 js-copy-stash-link" data-url="${escapeHTML(pageUrl)}">Copy link</button>
+                        <div class="flex gap-2">
+                            <button type="button" class="text-sm font-medium text-slate-700 hover:text-slate-900 underline js-edit-stash" data-id="${escapeHTML(s.id)}">Edit</button>
+                            <button type="button" class="text-sm font-medium text-red-700 hover:text-red-900 underline js-del-stash" data-id="${escapeHTML(s.id)}">Delete</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('') || '<p class="text-slate-500 text-sm text-center py-8">No stash items yet.</p>';
+
+            document.querySelectorAll('.js-copy-stash-link').forEach((btn) => {
+                btn.addEventListener('click', async () => {
+                    const url = btn.getAttribute('data-url') || '';
+                    if (!url) return;
+                    try {
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            await navigator.clipboard.writeText(url);
+                        } else {
+                            window.prompt('Copy this link:', url);
+                            return;
+                        }
+                        const prev = btn.textContent;
+                        btn.textContent = 'Copied';
+                        setTimeout(() => { btn.textContent = prev; }, 2000);
+                    } catch (_) {
+                        window.prompt('Copy this link:', url);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.js-edit-stash').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const row = (stashRows || []).find((x) => x.id === btn.dataset.id);
+                    if (!row) return;
+                    document.getElementById('stash-edit-id').value = row.id;
+                    document.getElementById('stash-kind').value = row.kind || 'note';
+                    document.getElementById('stash-title').value = row.title || '';
+                    document.getElementById('stash-body').value = row.body || '';
+                    document.getElementById('stash-link').value = row.link || '';
+                    document.getElementById('stash-y').value = row.displayYear;
+                    document.getElementById('stash-m').value = row.displayMonth;
+                    document.getElementById('stash-d').value = row.displayDay;
+                    stashImagesBase64 = Array.isArray(row.images) ? row.images.slice() : [];
+                    renderStashPreviews();
+                    updateStashFormUi();
+                    document.getElementById('stash-save-btn').textContent = 'Update';
+                    openModule('stash');
+                    document.getElementById('stash-drop-zone')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+            document.querySelectorAll('.js-del-stash').forEach((btn) => {
+                btn.addEventListener('click', () => deleteStashItem(btn.dataset.id));
+            });
         }
 
         function setPubEditBanner(active, title, id) {
@@ -946,6 +1104,149 @@
             if (!confirm('Delete this moment?')) return;
             try {
                 await requestJson(`/admin/blog/${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
+                await loadAdminData();
+            } catch (_) {
+                alert('Delete failed');
+            }
+        }
+
+        const stashDrop = document.getElementById('stash-drop-zone');
+        const stashInput = document.getElementById('stash-file-input');
+        if (stashDrop && stashInput) {
+            stashDrop.addEventListener('dragover', (e) => { e.preventDefault(); stashDrop.classList.add('bg-slate-200'); });
+            stashDrop.addEventListener('dragleave', () => { stashDrop.classList.remove('bg-slate-200'); });
+            stashDrop.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                stashDrop.classList.remove('bg-slate-200');
+                await addStashFiles(e.dataTransfer.files);
+            });
+            stashInput.addEventListener('change', async (e) => addStashFiles(e.target.files));
+        }
+        document.getElementById('stash-kind')?.addEventListener('change', updateStashFormUi);
+
+        async function addStashFiles(fileList) {
+            const files = Array.from(fileList || []).filter((f) => f.type.startsWith('image/'));
+            if (!files.length) return;
+            const dropText = document.getElementById('stash-drop-text');
+            if (dropText) dropText.textContent = `Processing ${files.length} file(s)…`;
+            for (const f of files) {
+                try {
+                    const b64 = await fileToCompressedBase64(f);
+                    stashImagesBase64.push(b64);
+                } catch (_) {}
+            }
+            if (dropText) dropText.textContent = 'Drop images or click to browse';
+            renderStashPreviews();
+        }
+
+        function renderStashPreviews() {
+            const box = document.getElementById('stash-previews');
+            if (!box) return;
+            box.innerHTML = stashImagesBase64.map((src, i) => `
+                <div class="relative w-24 h-24 rounded border border-slate-300 bg-white overflow-hidden">
+                    <img src="${src}" class="w-full h-full object-cover" alt="">
+                    <button type="button" class="absolute top-0 right-0 bg-slate-800 text-white text-xs leading-none px-2 py-0.5 js-remove-stash-img" data-idx="${i}">×</button>
+                </div>
+            `).join('');
+            box.querySelectorAll('.js-remove-stash-img').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const idx = Number(btn.dataset.idx);
+                    stashImagesBase64.splice(idx, 1);
+                    renderStashPreviews();
+                });
+            });
+        }
+
+        function setDefaultStashDate() {
+            const t = new Date();
+            const y = document.getElementById('stash-y');
+            const m = document.getElementById('stash-m');
+            const d = document.getElementById('stash-d');
+            if (y) y.value = t.getFullYear();
+            if (m) m.value = t.getMonth() + 1;
+            if (d) d.value = t.getDate();
+        }
+
+        function updateStashFormUi() {
+            const kind = document.getElementById('stash-kind')?.value || 'note';
+            const photoBlock = document.getElementById('stash-photo-block');
+            const hint = document.getElementById('stash-link-hint');
+            if (photoBlock) photoBlock.style.display = kind === 'photo' ? '' : 'none';
+            if (hint) {
+                if (kind === 'video') hint.textContent = 'Required: paste a YouTube or Vimeo URL.';
+                else if (kind === 'article') hint.textContent = 'Optional: link to the full article.';
+                else if (kind === 'photo') hint.textContent = 'Optional: external link alongside photos.';
+                else hint.textContent = 'Optional: related link.';
+            }
+        }
+
+        function clearStashForm() {
+            document.getElementById('stash-edit-id').value = '';
+            document.getElementById('stash-kind').value = 'note';
+            document.getElementById('stash-title').value = '';
+            document.getElementById('stash-body').value = '';
+            document.getElementById('stash-link').value = '';
+            stashImagesBase64 = [];
+            renderStashPreviews();
+            if (stashInput) stashInput.value = '';
+            setDefaultStashDate();
+            updateStashFormUi();
+            document.getElementById('stash-save-btn').textContent = 'Save';
+        }
+
+        async function saveStashItem() {
+            const id = document.getElementById('stash-edit-id').value;
+            const kind = document.getElementById('stash-kind').value;
+            const title = document.getElementById('stash-title').value;
+            const body = document.getElementById('stash-body').value;
+            const link = document.getElementById('stash-link').value.trim();
+            const displayYear = Number(document.getElementById('stash-y').value);
+            const displayMonth = Number(document.getElementById('stash-m').value);
+            const displayDay = Number(document.getElementById('stash-d').value);
+            if (!displayYear || !displayMonth || !displayDay) return alert('Please set year, month, and day.');
+            if (!id && kind === 'photo' && !stashImagesBase64.length) return alert('Add at least one image for a photo item.');
+            if (!id && kind === 'video' && !link) return alert('Video items need a YouTube or Vimeo link.');
+            if (!id && kind === 'article' && !title.trim() && !body.trim() && !link) return alert('Article needs a title, body, or link.');
+            if (!id && kind === 'note' && !body.trim()) return alert('Note needs body text.');
+            const btn = document.getElementById('stash-save-btn');
+            btn.disabled = true;
+            try {
+                const payload = {
+                    kind,
+                    title,
+                    body,
+                    link,
+                    displayYear,
+                    displayMonth,
+                    displayDay
+                };
+                if (stashImagesBase64.length) payload.images = stashImagesBase64;
+                if (id) {
+                    await requestJson(`/admin/stash/${encodeURIComponent(id)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    await requestJson('/admin/stash', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'x-password': adminPwd },
+                        body: JSON.stringify({ ...payload, images: stashImagesBase64 })
+                    });
+                }
+                clearStashForm();
+                await loadAdminData();
+            } catch (e) {
+                alert(e && e.message ? e.message : 'Save failed.');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        async function deleteStashItem(id) {
+            if (!confirm('Delete this stash item?')) return;
+            try {
+                await requestJson(`/admin/stash/${encodeURIComponent(id)}`, { method: 'DELETE', headers: { 'x-password': adminPwd } });
                 await loadAdminData();
             } catch (_) {
                 alert('Delete failed');

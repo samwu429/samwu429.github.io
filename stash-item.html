@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Item | Loose shelf</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css?v=14">
+</head>
+<body class="animate-fade-in py-6 md:py-12 px-0 min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <div class="site-wrap w-full mb-6 flex justify-between items-center relative z-10 border-b-2 border-gray-900 pb-4">
+        <a href="stash.html" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Shelf
+        </a>
+        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Item</span>
+    </div>
+
+    <main class="site-wrap w-full max-w-3xl mx-auto flex-1 relative z-10 pb-24">
+        <div id="stash-permalink-bar" class="stash-permalink-bar retro-panel p-4 md:p-5 bg-emerald-50/80 mb-8 hidden">
+            <p class="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-2">Share this page</p>
+            <div class="flex flex-col sm:flex-row gap-2 sm:items-stretch">
+                <input type="text" id="stash-permalink-input" readonly class="flex-1 retro-inset bg-white px-3 py-2.5 text-xs font-mono text-gray-800 border-2 border-gray-900 min-w-0">
+                <button type="button" id="stash-copy-btn" class="retro-button px-4 py-2.5 text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Copy link</button>
+            </div>
+            <p id="stash-copy-feedback" class="text-xs font-bold text-emerald-800 mt-2 hidden" role="status"></p>
+        </div>
+
+        <div id="stash-detail"></div>
+    </main>
+
+    <div id="stash-lightbox" class="fixed inset-0 hidden items-center justify-center z-[120] bg-black/85 p-4 md:p-8" aria-hidden="true">
+        <button type="button" id="stash-lightbox-close" class="retro-button absolute top-4 right-4 px-3 py-1.5 text-[11px] uppercase tracking-widest">Close</button>
+        <img id="stash-lightbox-img" src="" alt="" class="max-w-full max-h-[88vh] border-2 border-gray-900 shadow-[8px_8px_0px_#1c1917] bg-white object-contain">
+    </div>
+
+    <script src="api-config.js"></script>
+    <script src="stash.js?v=2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const ST = window.SAM_STASH;
+            if (!ST) return;
+
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const detail = document.getElementById('stash-detail');
+            const bar = document.getElementById('stash-permalink-bar');
+            const input = document.getElementById('stash-permalink-input');
+            const copyBtn = document.getElementById('stash-copy-btn');
+            const feedback = document.getElementById('stash-copy-feedback');
+
+            if (!id) {
+                if (detail) detail.innerHTML = '<p class="text-sm text-red-600 font-bold">Missing item id. <a href="stash.html" class="underline">Back to shelf</a></p>';
+                return;
+            }
+
+            const permalink = ST.absoluteItemPageUrl(id);
+            if (bar && input) {
+                input.value = permalink;
+                bar.classList.remove('hidden');
+            }
+            if (copyBtn && input) {
+                copyBtn.addEventListener('click', async () => {
+                    const text = input.value;
+                    try {
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            await navigator.clipboard.writeText(text);
+                        } else {
+                            input.select();
+                            document.execCommand('copy');
+                        }
+                        if (feedback) {
+                            feedback.textContent = 'Link copied.';
+                            feedback.classList.remove('hidden');
+                            setTimeout(() => feedback.classList.add('hidden'), 2500);
+                        }
+                    } catch (_) {
+                        input.select();
+                        if (feedback) {
+                            feedback.textContent = 'Select the URL above and copy manually.';
+                            feedback.classList.remove('hidden');
+                        }
+                    }
+                });
+            }
+
+            await ST.loadDetail(detail, id);
+
+            const lightbox = document.getElementById('stash-lightbox');
+            const lightboxImg = document.getElementById('stash-lightbox-img');
+            const closeBtn = document.getElementById('stash-lightbox-close');
+
+            function closeLightbox() {
+                if (!lightbox || !lightboxImg) return;
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImg.src = '';
+            }
+
+            if (detail) {
+                detail.addEventListener('click', (e) => {
+                    const img = e.target && e.target.closest('.stash-detail-thumb');
+                    if (!img) return;
+                    e.preventDefault();
+                    const src = img.getAttribute('src') || '';
+                    if (!lightbox || !lightboxImg || !src) return;
+                    lightboxImg.src = src;
+                    lightboxImg.alt = img.getAttribute('alt') || '';
+                    lightbox.classList.remove('hidden');
+                    lightbox.classList.add('flex');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                });
+            }
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        });
+    </script>
+</body>
+</html>
