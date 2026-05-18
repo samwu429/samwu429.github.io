@@ -544,6 +544,37 @@ select:focus-visible {
     overflow: hidden;
 }
 
+/* Home: corner “_” → stash (must sit above sticky aside / private gallery) */
+.stash-corner-link {
+    position: fixed;
+    right: max(1.25rem, env(safe-area-inset-right, 0px));
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+    z-index: 60;
+    font-size: 1.75rem;
+    line-height: 1;
+    font-weight: 900;
+    color: #6b7280;
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.15s ease, color 0.15s ease, transform 0.12s ease;
+    pointer-events: auto;
+}
+.stash-corner-link:hover,
+.stash-corner-link:focus-visible {
+    opacity: 1;
+    color: #374151;
+    outline: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .stash-corner-link {
+        animation: stash-corner-pulse 2.8s ease-in-out infinite;
+    }
+}
+@keyframes stash-corner-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.85; }
+}
+
 .bg-stripes-yellow {
     background-color: #facc15;
     background-image: linear-gradient(
