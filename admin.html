@@ -106,10 +106,11 @@
             <p class="adm-kicker">Administration</p>
             <h2 class="text-xl font-semibold text-slate-900 mt-2">Sign in</h2>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">Use your <strong class="text-slate-800">admin</strong> password only — not the Private Gallery visitor password.</p>
-            <form id="admin-login-form" class="mt-6 space-y-4" autocomplete="on">
+            <form id="admin-login-form" class="mt-6 space-y-4" autocomplete="off">
+                <input type="text" name="username" autocomplete="username" class="hidden" tabindex="-1" aria-hidden="true">
                 <div>
                     <label for="pwd-input" class="adm-label">Password</label>
-                    <input type="password" id="pwd-input" name="password" class="adm-input" placeholder="Enter admin password" autocomplete="current-password" required>
+                    <input type="password" id="pwd-input" name="admin-password" class="adm-input" placeholder="Enter admin password" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-form-type="other" readonly required>
                 </div>
                 <button type="submit" id="admin-login-btn" class="adm-btn w-full py-2.5">Continue</button>
             </form>
@@ -821,6 +822,23 @@
             e.preventDefault();
             verifyAdmin();
         });
+
+        (function preventPwdAutofill() {
+            const pwdInput = document.getElementById('pwd-input');
+            if (!pwdInput) return;
+            const clearOnce = () => { pwdInput.value = ''; };
+            clearOnce();
+            setTimeout(clearOnce, 0);
+            setTimeout(clearOnce, 100);
+            setTimeout(clearOnce, 500);
+            const unlock = () => {
+                pwdInput.removeAttribute('readonly');
+                pwdInput.value = '';
+            };
+            pwdInput.addEventListener('focus', unlock, { once: true });
+            pwdInput.addEventListener('pointerdown', unlock, { once: true });
+            pwdInput.addEventListener('touchstart', unlock, { once: true, passive: true });
+        })();
 
         async function loadAdminData() {
             const photos = await requestJson('/hidden/photos', { headers: { 'x-password': adminPwd } });
