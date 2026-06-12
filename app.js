@@ -76,8 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (retryBtn) retryBtn.addEventListener('click', loadPublicTestimonials);
         };
 
-        const loadPublicTestimonials = async () => {
-            testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold animate-pulse">Loading testimonials...</div>';
+        const loadPublicTestimonials = async (showLoading = true) => {
+            if (showLoading) {
+                testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold animate-pulse">Loading testimonials...</div>';
+            }
             try {
                 let data;
                 try {
@@ -87,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!woke) throw new Error('Backend warmup timed out');
                     data = await fetchJson(`${API_BASE}/public/testimonials`, {}, 9000);
                 }
-                testimonialsContainer.innerHTML = ''; 
                 const rows = (Array.isArray(data) ? data : [])
                     .filter(t => t && t.isPublic !== false)
                     .sort((a, b) => {
@@ -102,11 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     testimonialsContainer.innerHTML = '<div class="text-sm text-gray-500 font-bold">No testimonials yet. Be the first one to leave a comment in the admin panel!</div>';
                     return;
                 }
-                
-                rows.forEach(t => {
+
+                const html = rows.map(t => {
                     const safeComment = escapeHTML(t.comment);
                     const safeRelationship = escapeHTML(t.relationship);
-                    const html = `
+                    return `
                         <div class="retro-panel bg-white p-6 relative flex flex-col justify-between">
                             <div class="absolute -top-3 -left-2 text-5xl text-emerald-200 font-serif leading-none">"</div>
                             <p class="text-gray-800 text-sm font-medium leading-relaxed mb-4 relative z-10 italic">
@@ -122,15 +123,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     `;
-                    testimonialsContainer.insertAdjacentHTML('beforeend', html);
-                });
+                }).join('');
+                testimonialsContainer.innerHTML = html;
             } catch (_) {
-                renderTestimonialsError();
+                // Keep already-rendered testimonials on silent background refresh failures.
+                if (showLoading) renderTestimonialsError();
             }
         };
 
         loadPublicTestimonials();
-        setInterval(loadPublicTestimonials, 30000);
+        setInterval(() => {
+            if (!document.hidden) loadPublicTestimonials(false);
+        }, 30000);
     }
 
     function formatAIText(text) {

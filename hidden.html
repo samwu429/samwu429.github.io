@@ -7,6 +7,8 @@
     <link rel="mask-icon" href="favicon.svg?v=2" color="#000000">
     <meta name="theme-color" content="#047857">
     <title>Yihang Wu - Private System</title>
+    <link rel="preconnect" href="https://sam-api-backend.onrender.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
@@ -499,8 +501,15 @@
             document.getElementById('lightbox-img').src = '';
         }
 
+        document.getElementById('pwd-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                verifyPassword();
+            }
+        });
+
         setInterval(() => {
-            if (currentPassword) loadData();
+            if (currentPassword && !document.hidden) loadData();
         }, 30000);
         wakeBackend();
     </script>

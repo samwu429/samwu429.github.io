@@ -7,6 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
   <link rel="mask-icon" href="favicon.svg?v=2" color="#000000">
   <meta name="theme-color" content="#047857">
+  <link rel="preconnect" href="https://sam-api-backend.onrender.com" crossorigin>
   <title>Yihang Wu | Cinematic Route</title>
   <style>
     :root {
@@ -237,12 +238,12 @@
           var data=await res.json();
           var rows=(Array.isArray(data)?data:[]).filter(function(r){return r&&r.isPublic!==false}).sort(function(a,b){var sa=Number(a.sortOrder||0),sb=Number(b.sortOrder||0);if(sa!==sb)return sa-sb;return new Date((b.createdAt||b.timestamp)||0)-new Date((a.createdAt||a.timestamp)||0)}).slice(0,4);
           if(!rows.length){box.innerHTML='<p class="p" style="margin-top:.45rem;">No public excerpts.</p>';return}
-          box.innerHTML=rows.map(function(r){var c=String(r.comment||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]}),rel=String(r.relationship||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]});return '<div class="v"><p>'+c.slice(0,180)+'</p><span>'+rel+'</span></div>'}).join('')
+          box.innerHTML=rows.map(function(r){var esc=function(s){return String(s||'').replace(/[&<>'"]/g,function(t){return({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[t]})};var c=esc(String(r.comment||'').slice(0,180)),rel=esc(r.relationship);return '<div class="v"><p>'+c+'</p><span>'+rel+'</span></div>'}).join('')
         }catch(_){box.innerHTML='<p class="p" style="margin-top:.45rem;">Voices sync when API is up.</p>'}
       }
       refreshFocusPoints();
       window.addEventListener('resize', refreshFocusPoints, {passive:true});
-      loadVoices(); setInterval(loadVoices,30000); cancelAnimationFrame(rafId); render();
+      loadVoices(); setInterval(function(){if(!document.hidden)loadVoices()},30000); cancelAnimationFrame(rafId); render();
     })();
   </script>
 </body>
