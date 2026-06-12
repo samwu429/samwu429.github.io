@@ -75,6 +75,12 @@
         return '';
     }
 
+    // Only allow http(s) link targets (blocks javascript: and other schemes).
+    function safeHttpUrl(u) {
+        const t = String(u || '').trim();
+        return /^https?:\/\//i.test(t) ? t : '';
+    }
+
     function photoGrid(urls, thumbClass) {
         const safe = (urls || []).filter(Boolean);
         const n = safe.length;
@@ -115,7 +121,9 @@
             embed = `https://player.vimeo.com/video/${encodeURIComponent(vimeo[1])}`;
         }
         if (!embed) {
-            return `<p class="text-sm mt-3"><a href="${escapeHTML(raw)}" target="_blank" rel="noopener noreferrer" class="underline font-bold text-emerald-800">Open video link</a></p>`;
+            const safeRaw = safeHttpUrl(raw);
+            if (!safeRaw) return '';
+            return `<p class="text-sm mt-3"><a href="${escapeHTML(safeRaw)}" target="_blank" rel="noopener noreferrer" class="underline font-bold text-emerald-800">Open video link</a></p>`;
         }
         return `<div class="stash-video-wrap"><iframe src="${escapeHTML(embed)}" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
     }
@@ -241,7 +249,7 @@
         const dateStr = formatDisplayDate(item);
         const title = escapeHTML(item.title || '').trim();
         const body = escapeHTML(item.body || '').replace(/\n/g, '<br>');
-        const link = String(item.link || '').trim();
+        const link = safeHttpUrl(item.link);
         const badge = `<span class="stash-kind-badge stash-kind-badge--${escapeHTML(kind)}">${escapeHTML(label)}</span>`;
 
         let media = '';

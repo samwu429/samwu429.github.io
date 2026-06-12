@@ -7,6 +7,7 @@
     <link rel="mask-icon" href="favicon.svg?v=2" color="#000000">
     <meta name="theme-color" content="#047857">
     <title>Admin · Yihang Wu</title>
+    <link rel="preconnect" href="https://sam-api-backend.onrender.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         :root {
@@ -609,6 +610,12 @@
             return row.createdAt || row.timestamp || null;
         }
 
+        // Only allow http(s) link targets (blocks javascript: and other schemes).
+        function safeHttpUrl(u) {
+            const t = String(u || '').trim();
+            return /^https?:\/\//i.test(t) ? t : '';
+        }
+
         async function requestJson(path, options = {}) {
             const res = await fetch(`${API_BASE}${path}`, options);
             if (!res.ok) {
@@ -753,7 +760,7 @@
             const box = document.getElementById('blog-previews');
             box.innerHTML = blogImagesBase64.map((src, i) => `
                 <div class="relative w-24 h-24 rounded border border-slate-300 bg-white overflow-hidden">
-                    <img src="${src}" class="w-full h-full object-cover" alt="">
+                    <img src="${escapeHTML(src)}" class="w-full h-full object-cover" alt="">
                     <button type="button" class="absolute top-0 right-0 bg-slate-800 text-white text-xs leading-none px-2 py-0.5 js-remove-blog-img" data-idx="${i}">×</button>
                 </div>
             `).join('');
@@ -842,7 +849,7 @@
 
         async function loadAdminData() {
             const photos = await requestJson('/hidden/photos', { headers: { 'x-password': adminPwd } });
-            document.getElementById('admin-photos').innerHTML = photos.map(p => `
+            document.getElementById('admin-photos').innerHTML = (photos || []).map(p => `
                 <div class="adm-list-row sm:row">
                     <span class="text-sm font-mono text-slate-800 break-all">${escapeHTML(p.category)} · <span class="text-slate-500">${escapeHTML((p.url || '').substring(0, 36))}…</span></span>
                     <button type="button" class="adm-btn adm-btn--danger text-sm py-2 px-4 flex-shrink-0 js-delete-photo-btn" data-photo-id="${escapeHTML(String(p.id || ''))}">Remove</button>
@@ -877,7 +884,7 @@
                         <span class="font-mono bg-slate-100 border border-slate-200 rounded px-2 py-0.5 text-slate-700">sort: ${escapeHTML(String(t && t.sortOrder != null ? t.sortOrder : 0))}</span>
                         <span class="font-semibold ${t && t.isPublic === false ? 'text-amber-700' : 'text-emerald-700'}">${t && t.isPublic === false ? 'Hidden' : 'Public'}</span>
                     </div>
-                    ${(t.linkedin || '').trim() ? `<a href="${escapeHTML(String(t.linkedin))}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-blue-700 hover:text-blue-900 underline break-all">${escapeHTML(String(t.linkedin))}</a>` : '<p class="text-xs text-slate-400">No LinkedIn URL</p>'}
+                    ${safeHttpUrl(t.linkedin) ? `<a href="${escapeHTML(safeHttpUrl(t.linkedin))}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-blue-700 hover:text-blue-900 underline break-all">${escapeHTML(String(t.linkedin))}</a>` : (String(t.linkedin || '').trim() ? `<p class="text-xs text-slate-500 break-all">${escapeHTML(String(t.linkedin))}</p>` : '<p class="text-xs text-slate-400">No LinkedIn URL</p>')}
                     <p class="text-sm text-slate-700 leading-relaxed">${escapeHTML(t.comment || '')}</p>
                 </div>
             `).join('') || '<p class="text-slate-500 text-sm text-center py-8">No testimonials yet.</p>';
@@ -1297,7 +1304,7 @@
             if (!box) return;
             box.innerHTML = stashImagesBase64.map((src, i) => `
                 <div class="relative w-24 h-24 rounded border border-slate-300 bg-white overflow-hidden">
-                    <img src="${src}" class="w-full h-full object-cover" alt="">
+                    <img src="${escapeHTML(src)}" class="w-full h-full object-cover" alt="">
                     <button type="button" class="absolute top-0 right-0 bg-slate-800 text-white text-xs leading-none px-2 py-0.5 js-remove-stash-img" data-idx="${i}">×</button>
                 </div>
             `).join('');
@@ -1364,7 +1371,7 @@
             const src = stashMediaPreviewSrc();
             let inner = `<p class="text-sm font-semibold text-slate-800 mb-2">${name}</p>`;
             if (kind === 'video' || (stashMediaFile.mime || '').startsWith('video/')) {
-                inner += `<video src="${src}" controls class="max-h-48 w-full rounded border border-slate-300 bg-black"></video>`;
+                inner += `<video src="${escapeHTML(src)}" controls class="max-h-48 w-full rounded border border-slate-300 bg-black"></video>`;
                 if (stashMediaFile.file) {
                     inner += `<p class="text-xs text-slate-500 mt-2">Will upload when you save (${(stashMediaFile.file.size / (1024 * 1024)).toFixed(1)} MB)</p>`;
                 }

@@ -84,6 +84,12 @@
         return '';
     }
 
+    // Only allow http(s) link targets (blocks javascript: and other schemes).
+    function safeHttpUrl(u) {
+        const t = String(u || '').trim();
+        return /^https?:\/\//i.test(t) ? t : '';
+    }
+
     function momentsPhotoGrid(urls) {
         const safe = (urls || []).filter(Boolean);
         const n = safe.length;
@@ -163,8 +169,9 @@
                     const status = p._statusHtml || '';
                     const abs = p.abstract ? `<p class="text-sm text-gray-600 mt-2 leading-relaxed">${escapeHTML(p.abstract)}</p>` : '';
                     const readLabel = escapeHTML(p._readLabel || 'Open link');
-                    const link = p.link
-                        ? `<a href="${escapeHTML(p.link)}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 retro-button px-4 py-2 text-xs uppercase tracking-widest">${readLabel}</a>`
+                    const safeLink = safeHttpUrl(p.link);
+                    const link = safeLink
+                        ? `<a href="${escapeHTML(safeLink)}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 retro-button px-4 py-2 text-xs uppercase tracking-widest">${readLabel}</a>`
                         : '';
                     container.insertAdjacentHTML('beforeend', `
                         <div class="retro-panel p-5 md:p-6 bg-white motion-safe">
