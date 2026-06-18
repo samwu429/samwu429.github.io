@@ -149,6 +149,7 @@
                 <div class="flex gap-2 mb-4">
                     <button onclick="switchTab('testimonials')" id="tab-testimonials" class="retro-button active-tab">Testimonials.txt</button>
                     <button onclick="switchTab('photos')" id="tab-photos" class="retro-button">Gallery.exe</button>
+                    <button onclick="logoutVisitor()" id="btn-logout" class="retro-button ml-auto">Log Off</button>
                 </div>
                 
                 <div class="retro-inset p-4 bg-white" style="min-height: 60vh;">
@@ -240,9 +241,35 @@
         const API_BASE = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.apiBase) || 'https://sam-api-backend.onrender.com/api';
         const PING_URL = (window.SAM_API_CONFIG && window.SAM_API_CONFIG.pingUrl) || 'https://sam-api-backend.onrender.com/ping';
         const COLD_START_MAX_WAIT_MS = 65000;
-        let currentPassword = '';
+        // Persisted visitor session token. Stored in localStorage so the gallery
+        // survives reloads without re-entering the password; the server-side
+        // expiry bounds how long it remains valid.
+        // 持久化的访客会话令牌。存于 localStorage，使图库刷新后无需重新输入
+        // 密码即可保持访问；其有效期由服务端的过期时间限定。
+        const VISITOR_TOKEN_KEY = 'sam_visitor_session';
+        let visitorToken = '';
         let allPhotos = [];
         let backendWarmupPromise = null;
+
+        function readStoredToken() {
+            try { return localStorage.getItem(VISITOR_TOKEN_KEY) || ''; } catch (_) { return ''; }
+        }
+        function persistToken(token) {
+            visitorToken = token || '';
+            try {
+                if (visitorToken) localStorage.setItem(VISITOR_TOKEN_KEY, visitorToken);
+                else localStorage.removeItem(VISITOR_TOKEN_KEY);
+            } catch (_) {}
+        }
+
+        // Merge the bearer Authorization header into any per-request headers so
+        // every protected call carries the session token from a single source.
+        // 将 Bearer Authorization 头合并进各请求头，使所有受保护调用从单一来源携带会话令牌。
+        function authHeaders(extra) {
+            const headers = Object.assign({}, extra || {});
+            if (visitorToken) headers['Authorization'] = `Bearer ${visitorToken}`;
+            return headers;
+        }
 
         function escapeHTML(str) {
             if (str == null) return '';
@@ -320,7 +347,7 @@
         }
 
         async function requestJson(path, options = {}, timeoutMs = 12000) {
-            const res = await fetchWithTimeout(`${API_BASE}${path}`, options, timeoutMs);
+            const res = await fetchWithTimeout(`${API_BASE}${path}`, { ...options, headers: authHeaders(options.headers) }, timeoutMs);
             if (!res.ok) {
                 const err = new Error(`Request failed with status ${res.status}`);
                 err.status = res.status;
@@ -333,6 +360,28 @@
             return res.json();
         }
 
+        // Reveal the gallery once a valid visitor token is held. Shared by fresh
+        // logins and reload-time restoration.
+        // 在持有有效访客令牌后展示图库。供新登录与刷新恢复共用。
+        function enterGallery() {
+            document.getElementById('auth-layer').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden-space');
+        }
+
+        // Clear the stored session and return to the login screen. Used by manual
+        // logout and by automatic handling of an expired or rejected token.
+        // 清除已存储的会话并返回登录界面。供手动登出及对过期/被拒令牌的自动处理使用。
+        function endVisitorSession() {
+            persistToken('');
+            document.getElementById('main-content').classList.add('hidden-space');
+            const auth = document.getElementById('auth-layer');
+            if (auth) auth.style.display = '';
+        }
+
+        function logoutVisitor() {
+            endVisitorSession();
+        }
+
         async function verifyPassword() {
             const pwd = document.getElementById('pwd-input').value;
             const errorMsg = document.getElementById('error-msg');
@@ -343,11 +392,16 @@
             setAuthStatus('Verifying access...');
             try {
                 await wakeBackend();
-                await requestJson('/hidden/photos', { headers: { 'x-password': pwd } }, 15000);
-                currentPassword = pwd;
+                const result = await requestJson('/hidden/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: pwd })
+                }, 15000);
+                if (!result || !result.token) throw new Error('Login response missing token');
+                persistToken(result.token);
+                document.getElementById('pwd-input').value = '';
                 setAuthStatus('');
-                document.getElementById('auth-layer').style.display = 'none';
-                document.getElementById('main-content').classList.remove('hidden-space');
+                enterGallery();
                 loadData();
             } catch (err) {
                 if (err && err.status === 401) {
@@ -375,13 +429,17 @@
         async function loadData() {
             try {
                 const [testimonials, photos] = await Promise.all([
-                    requestJson('/hidden/testimonials', { headers: { 'x-password': currentPassword } }, 15000),
-                    requestJson('/hidden/photos', { headers: { 'x-password': currentPassword } }, 15000)
+                    requestJson('/hidden/testimonials', {}, 15000),
+                    requestJson('/hidden/photos', {}, 15000)
                 ]);
                 renderTestimonials(testimonials || []);
                 allPhotos = photos || [];
                 renderPhotos(allPhotos);
-            } catch (_) {
+            } catch (err) {
+                if (err && err.status === 401) {
+                    endVisitorSession();
+                    return;
+                }
                 const container = document.getElementById('testimonial-list');
                 if (container) {
                     container.innerHTML = '<p class="text-red-700 font-bold">Data loading timed out. Please refresh and try again.</p>';
@@ -466,10 +524,14 @@
             try {
                 const res = await fetch(`${API_BASE}/hidden/testimonials`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'x-password': currentPassword },
+                    headers: authHeaders({ 'Content-Type': 'application/json' }),
                     body: JSON.stringify({ name, linkedin, relationship, comment })
                 });
 
+                if (res.status === 401) {
+                    endVisitorSession();
+                    return alert('SESSION EXPIRED: Please sign in again.');
+                }
                 if (res.ok) {
                     alert('DATA SAVED SUCCESSFULLY.');
                     document.getElementById('t-name').value = '';
@@ -509,8 +571,20 @@
         });
 
         setInterval(() => {
-            if (currentPassword && !document.hidden) loadData();
+            if (visitorToken && !document.hidden) loadData();
         }, 30000);
+
+        // Restore an existing session on load so a reload keeps the visitor signed
+        // in; an invalid or expired token is cleared on the first protected call.
+        // 在加载时恢复既有会话，使刷新后访客仍保持访问；无效或过期令牌将在首次受保护调用时被清除。
+        (function restoreVisitorSession() {
+            const stored = readStoredToken();
+            if (!stored) return;
+            visitorToken = stored;
+            enterGallery();
+            loadData();
+        })();
+
         wakeBackend();
     </script>
 </body>
