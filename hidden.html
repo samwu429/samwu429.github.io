@@ -347,7 +347,12 @@
         }
 
         async function requestJson(path, options = {}, timeoutMs = 12000) {
-            const res = await fetchWithTimeout(`${API_BASE}${path}`, { ...options, headers: authHeaders(options.headers) }, timeoutMs);
+            // credentials:'include' sends/receives the cross-site httpOnly session
+            // cookie (primary auth). The Bearer header from authHeaders() is kept as
+            // a fallback for browsers that block third-party cookies.
+            // credentials:'include' 用于发送/接收跨站 httpOnly 会话 Cookie（主用鉴权）。
+            // 仍保留 authHeaders() 的 Bearer 头作为兜底，应对拦截第三方 Cookie 的浏览器。
+            const res = await fetchWithTimeout(`${API_BASE}${path}`, { ...options, credentials: 'include', headers: authHeaders(options.headers) }, timeoutMs);
             if (!res.ok) {
                 const err = new Error(`Request failed with status ${res.status}`);
                 err.status = res.status;
@@ -378,7 +383,19 @@
             if (auth) auth.style.display = '';
         }
 
-        function logoutVisitor() {
+        // Log off: ask the server to clear the httpOnly cookie (page JS cannot
+        // remove it), then drop the local Bearer/localStorage fallback state. The
+        // local state is cleared even if the network call fails.
+        // 登出：请求服务端清除 httpOnly Cookie（页面脚本无法删除），随后清理本地
+        // Bearer/localStorage 兜底状态。即便网络请求失败，本地状态仍会被清除。
+        async function logoutVisitor() {
+            try {
+                await fetch(`${API_BASE}/hidden/logout`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: authHeaders()
+                });
+            } catch (_) {}
             endVisitorSession();
         }
 
@@ -524,6 +541,7 @@
             try {
                 const res = await fetch(`${API_BASE}/hidden/testimonials`, {
                     method: 'POST',
+                    credentials: 'include',
                     headers: authHeaders({ 'Content-Type': 'application/json' }),
                     body: JSON.stringify({ name, linkedin, relationship, comment })
                 });

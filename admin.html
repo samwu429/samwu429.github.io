@@ -652,7 +652,12 @@
         }
 
         async function requestJson(path, options = {}) {
-            const res = await fetch(`${API_BASE}${path}`, { ...options, headers: authHeaders(options.headers) });
+            // credentials:'include' sends/receives the cross-site httpOnly session
+            // cookie (primary auth). The Bearer header from authHeaders() is kept as
+            // a fallback for browsers that block third-party cookies.
+            // credentials:'include' 用于发送/接收跨站 httpOnly 会话 Cookie（主用鉴权）。
+            // 仍保留 authHeaders() 的 Bearer 头作为兜底，应对拦截第三方 Cookie 的浏览器。
+            const res = await fetch(`${API_BASE}${path}`, { ...options, credentials: 'include', headers: authHeaders(options.headers) });
             if (res.status === 401) {
                 // An expired or rejected token lands here; drop the session and
                 // prompt for the password again instead of failing silently.
@@ -695,6 +700,7 @@
             fd.append('file', file, file.name || 'upload');
             const res = await fetch(`${API_BASE}/admin/stash/media`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: authHeaders(),
                 body: fd
             });
@@ -910,7 +916,23 @@
             verifyAdmin();
         });
 
-        document.getElementById('btn-logout')?.addEventListener('click', () => endSession(''));
+        // Sign out: ask the server to clear the httpOnly cookie (page JS cannot
+        // remove it), then drop the local Bearer/localStorage fallback state. The
+        // local state is cleared even if the network call fails.
+        // 登出：请求服务端清除 httpOnly Cookie（页面脚本无法删除），随后清理本地
+        // Bearer/localStorage 兜底状态。即便网络请求失败，本地状态仍会被清除。
+        async function logoutAdmin() {
+            try {
+                await fetch(`${API_BASE}/admin/logout`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: authHeaders()
+                });
+            } catch (_) {}
+            endSession('');
+        }
+
+        document.getElementById('btn-logout')?.addEventListener('click', () => logoutAdmin());
 
         (function preventPwdAutofill() {
             const pwdInput = document.getElementById('pwd-input');
