@@ -127,7 +127,7 @@
                     <div class="min-w-0">
                         <span class="block text-xs font-medium text-slate-500">Yihang Wu</span>
                         <span id="admin-heading" class="block text-base md:text-lg font-semibold text-slate-900 truncate">Overview</span>
-                    </div>
+        </div>
                 </div>
                 <div class="flex items-center gap-4">
                     <button type="button" id="btn-logout" class="text-sm font-medium text-slate-600 hover:text-slate-900 underline decoration-slate-300 underline-offset-2">Sign out</button>
@@ -174,8 +174,8 @@
                         <span class="text-base font-semibold text-slate-900">Loose shelf</span>
                         <span class="text-sm text-slate-500 mt-1">Misc archive (corner link on home). Photos, video links, articles, notes.</span>
                     </button>
+                    </div>
                 </div>
-            </div>
         </div>
 
         <div id="view-photos" class="hidden" hidden>
@@ -199,10 +199,10 @@
                         <div class="mt-8 max-w-md">
                             <label class="adm-label" for="p-cat">Category</label>
                             <select id="p-cat" class="adm-input">
-                                <option value="Culture">Culture</option>
-                                <option value="Landscape">Landscape</option>
-                                <option value="Portrait">Portrait</option>
-                            </select>
+                    <option value="Culture">Culture</option>
+                    <option value="Landscape">Landscape</option>
+                    <option value="Portrait">Portrait</option>
+                </select>
                         </div>
                         <button type="button" id="btn-add-photo" onclick="addPhoto()" class="adm-btn mt-8">Add to gallery</button>
                     </div>
@@ -213,7 +213,7 @@
                     </div>
                 </section>
             </div>
-        </div>
+            </div>
 
         <div id="view-testimonials" class="hidden" hidden>
             <div class="adm-wrap py-8 md:py-12 pb-24">
@@ -222,7 +222,7 @@
                         <p class="adm-kicker">Feedback</p>
                         <h2 class="adm-page-title mt-1 mb-2">Visitor voices</h2>
                         <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">You can edit reviewer details (name, LinkedIn, relationship, comment), remove entries, or add a new curated testimonial.</p>
-                    </div>
+            </div>
                     <div class="adm-card p-6 md:p-8">
                         <p class="adm-section-title">Editor</p>
                         <input type="hidden" id="testimonial-edit-id" value="">
@@ -414,6 +414,53 @@
                     </div>
 
                     <div class="adm-card p-6 md:p-10">
+                        <p class="adm-section-title">Folders</p>
+                        <p class="text-sm text-slate-600 mb-6 max-w-3xl leading-relaxed">Organize the loose shelf with nested folders. Each folder can have a short intro and a cover image. Items are placed inside a folder from the form below.</p>
+                        <div class="space-y-6 max-w-3xl">
+                            <div>
+                                <label class="adm-label" for="stash-folder-name">Folder name</label>
+                                <input type="text" id="stash-folder-name" class="adm-input" placeholder="e.g. Research drafts">
+                            </div>
+                            <div>
+                                <label class="adm-label" for="stash-folder-body">Introduction</label>
+                                <textarea id="stash-folder-body" rows="3" class="adm-input font-sans leading-relaxed" placeholder="What lives in this folder?"></textarea>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="adm-label" for="stash-folder-parent">Parent folder</label>
+                                    <select id="stash-folder-parent" class="adm-input">
+                                        <option value="">Shelf root</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="adm-label" for="stash-folder-sort">Sort order</label>
+                                    <input type="number" id="stash-folder-sort" class="adm-input w-32" value="0" step="1">
+                                    <p class="text-xs text-slate-500 mt-1">Lower numbers appear first.</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="adm-label">Cover image (optional)</p>
+                                <div id="stash-folder-drop-zone" class="adm-drop adm-drop-upload cursor-pointer text-center text-sm text-slate-700 mb-3">
+                                    <p class="font-semibold text-slate-800" id="stash-folder-drop-text">Drag a cover image here</p>
+                                    <p class="text-xs text-slate-500 mt-1">or click this area</p>
+                                    <button type="button" id="stash-folder-browse-btn" class="adm-btn adm-btn--secondary mt-4 text-xs">Choose image…</button>
+                                </div>
+                                <input type="file" id="stash-folder-file-input" class="hidden" accept="image/*">
+                                <div id="stash-folder-cover-preview" class="min-h-[2rem]"></div>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <button type="button" onclick="saveStashFolder()" id="stash-folder-save-btn" class="adm-btn">Save folder</button>
+                                <button type="button" onclick="clearStashFolderForm()" class="adm-btn adm-btn--secondary">Clear</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="stash-folder-edit-id" value="">
+                        <div class="mt-10 pt-8 border-t border-slate-200">
+                            <p class="adm-section-title">All folders</p>
+                            <div id="admin-stash-folders" class="space-y-3 text-sm mt-4"></div>
+                        </div>
+                    </div>
+
+                    <div class="adm-card p-6 md:p-10">
                         <p class="adm-section-title">Add item</p>
                         <div class="space-y-6 max-w-3xl">
                             <div>
@@ -423,6 +470,12 @@
                                     <option value="video">Video (upload file or link)</option>
                                     <option value="article">Article</option>
                                     <option value="note">Note</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="adm-label" for="stash-folder-id">Folder</label>
+                                <select id="stash-folder-id" class="adm-input max-w-md">
+                                    <option value="">Shelf root (no folder)</option>
                                 </select>
                             </div>
                             <div>
@@ -536,6 +589,8 @@
         let stashImagesBase64 = [];
         let stashMediaFile = null;
         let stashMediaRemoved = false;
+        let stashFolderCoverBase64 = '';
+        let stashFoldersRows = [];
         const STASH_MAX_MEDIA_BYTES = 110 * 1024 * 1024;
         let latestTestimonials = [];
 
@@ -628,7 +683,7 @@
             else if (e.key === '4') openModule('moments');
             else if (e.key === '5') openModule('stash');
         });
-
+        
         function escapeHTML(str) {
             if (str == null) return '';
             return String(str).replace(/[&<>'"]/g, (tag) => ({
@@ -1100,9 +1155,55 @@
             });
 
             const stashRows = await requestJson('/admin/stash');
+            stashFoldersRows = await requestJson('/admin/stash/folders') || [];
+            populateStashFolderSelects();
+            const folderNameById = new Map((stashFoldersRows || []).map((f) => [String(f.id), (f.name || '').trim() || 'Folder']));
+            document.getElementById('admin-stash-folders').innerHTML = (stashFoldersRows || []).map((f) => {
+                const parentLabel = f.parentId ? (folderNameById.get(String(f.parentId)) || 'Parent') : 'Shelf root';
+                const intro = (f.body || '').trim().slice(0, 100);
+                const folderUrl = `stash.html?folder=${encodeURIComponent(String(f.id || ''))}`;
+                return `
+                <div class="adm-list-row sm:row">
+                    <div class="min-w-0">
+                        <div class="font-semibold text-slate-900">${escapeHTML((f.name || '').trim() || 'Folder')}</div>
+                        <div class="text-xs text-slate-500 mt-1">Inside: ${escapeHTML(parentLabel)} · sort ${escapeHTML(String(f.sortOrder != null ? f.sortOrder : 0))}</div>
+                        ${intro ? `<div class="text-sm text-slate-700 mt-2 leading-relaxed">${escapeHTML(intro)}${(f.body || '').length > 100 ? '…' : ''}</div>` : ''}
+                    </div>
+                    <div class="flex flex-col gap-2 flex-shrink-0 items-stretch sm:items-end">
+                        <a href="${escapeHTML(folderUrl)}" target="_blank" rel="noopener noreferrer" class="adm-btn adm-btn--secondary text-xs py-2 px-3 text-center">Open folder</a>
+                        <div class="flex gap-2">
+                            <button type="button" class="text-sm font-medium text-slate-700 hover:text-slate-900 underline js-edit-stash-folder" data-id="${escapeHTML(f.id)}">Edit</button>
+                            <button type="button" class="text-sm font-medium text-red-700 hover:text-red-900 underline js-del-stash-folder" data-id="${escapeHTML(f.id)}">Delete</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('') || '<p class="text-slate-500 text-sm text-center py-6">No folders yet.</p>';
+            document.querySelectorAll('.js-edit-stash-folder').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const row = (stashFoldersRows || []).find((x) => x.id === btn.dataset.id);
+                    if (!row) return;
+                    document.getElementById('stash-folder-edit-id').value = row.id;
+                    document.getElementById('stash-folder-name').value = row.name || '';
+                    document.getElementById('stash-folder-body').value = row.body || '';
+                    document.getElementById('stash-folder-sort').value = row.sortOrder != null ? row.sortOrder : 0;
+                    stashFolderCoverBase64 = row.coverImage || '';
+                    renderStashFolderCoverPreview();
+                    populateStashFolderSelects(row.id, '');
+                    const parentSel = document.getElementById('stash-folder-parent');
+                    if (parentSel) parentSel.value = row.parentId || '';
+                    document.getElementById('stash-folder-save-btn').textContent = 'Update folder';
+                    openModule('stash');
+                    document.getElementById('stash-folder-name')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+            document.querySelectorAll('.js-del-stash-folder').forEach((btn) => {
+                btn.addEventListener('click', () => deleteStashFolder(btn.dataset.id || ''));
+            });
+
             const stashKindLabel = { photo: 'Photo', video: 'Video', article: 'Article', note: 'Note' };
             document.getElementById('admin-stash').innerHTML = (stashRows || []).map((s) => {
                 const k = stashKindLabel[s.kind] || s.kind;
+                const folderLabel = s.folderId ? (folderNameById.get(String(s.folderId)) || 'Folder') : 'Shelf root';
                 const title = (s.title || '').trim();
                 const preview = (s.body || '').trim().slice(0, 120);
                 let pageUrl = `stash-item.html?id=${encodeURIComponent(String(s.id || ''))}`;
@@ -1112,7 +1213,7 @@
                 <div class="adm-list-row sm:row">
                     <div class="min-w-0">
                         <div class="font-semibold text-slate-900"><span class="text-xs uppercase tracking-wide text-slate-500 mr-2">${escapeHTML(k)}</span>${escapeHTML(title || preview || '(no title)')}</div>
-                        <div class="text-xs text-slate-500 mt-1">${escapeHTML(String(s.displayYear))}-${escapeHTML(String(s.displayMonth).padStart(2, '0'))}-${escapeHTML(String(s.displayDay).padStart(2, '0'))}</div>
+                        <div class="text-xs text-slate-500 mt-1">${escapeHTML(String(s.displayYear))}-${escapeHTML(String(s.displayMonth).padStart(2, '0'))}-${escapeHTML(String(s.displayDay).padStart(2, '0'))} · ${escapeHTML(folderLabel)}</div>
                         ${preview ? `<div class="text-sm text-slate-700 mt-2 leading-relaxed">${escapeHTML(preview)}${(s.body || '').length > 120 ? '…' : ''}</div>` : ''}
                         <p class="text-[11px] font-mono text-slate-400 mt-2 break-all">${escapeHTML(pageUrl)}</p>
                     </div>
@@ -1159,6 +1260,9 @@
                     document.getElementById('stash-y').value = row.displayYear;
                     document.getElementById('stash-m').value = row.displayMonth;
                     document.getElementById('stash-d').value = row.displayDay;
+                    const itemFolderSel = document.getElementById('stash-folder-id');
+                    populateStashFolderSelects('', row.folderId || '');
+                    if (itemFolderSel) itemFolderSel.value = row.folderId || '';
                     stashImagesBase64 = Array.isArray(row.images) ? row.images.slice() : [];
                     revokeStashMediaPreviewUrl();
                     stashMediaFile = row.mediaGridId
@@ -1388,6 +1492,34 @@
         });
         document.getElementById('stash-kind')?.addEventListener('change', updateStashFormUi);
 
+        const stashFolderDrop = document.getElementById('stash-folder-drop-zone');
+        const stashFolderInput = document.getElementById('stash-folder-file-input');
+        wireStashFileDropZone(stashFolderDrop, stashFolderInput, async (dt) => {
+            const f = dt?.files && dt.files[0];
+            if (f && f.type.startsWith('image/')) {
+                try {
+                    stashFolderCoverBase64 = await fileToCompressedBase64(f);
+                    renderStashFolderCoverPreview();
+                } catch (_) {}
+            }
+        });
+        if (stashFolderInput) {
+            stashFolderInput.addEventListener('change', async (e) => {
+                const f = e.target.files && e.target.files[0];
+                if (f && f.type.startsWith('image/')) {
+                    try {
+                        stashFolderCoverBase64 = await fileToCompressedBase64(f);
+                        renderStashFolderCoverPreview();
+                    } catch (_) {}
+                }
+            });
+        }
+        document.getElementById('stash-folder-browse-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            stashFolderInput?.click();
+        });
+
         async function addStashFiles(fileList) {
             const files = Array.from(fileList || []).filter((f) => f.type.startsWith('image/'));
             if (!files.length) return;
@@ -1549,6 +1681,9 @@
             renderStashMediaPreview();
             if (stashInput) stashInput.value = '';
             if (stashMediaInput) stashMediaInput.value = '';
+            const itemFolderSel = document.getElementById('stash-folder-id');
+            if (itemFolderSel) itemFolderSel.value = '';
+            populateStashFolderSelects();
             setDefaultStashDate();
             updateStashFormUi();
             document.getElementById('stash-save-btn').textContent = 'Save';
@@ -1563,6 +1698,7 @@
             const displayYear = Number(document.getElementById('stash-y').value);
             const displayMonth = Number(document.getElementById('stash-m').value);
             const displayDay = Number(document.getElementById('stash-d').value);
+            const folderId = document.getElementById('stash-folder-id')?.value || '';
             if (!displayYear || !displayMonth || !displayDay) return alert('Please set year, month, and day.');
             if (!id && kind === 'photo' && !stashImagesBase64.length) return alert('Add at least one image for a photo item.');
             const hasMedia = hasStashMediaSelected();
@@ -1578,6 +1714,7 @@
                     title,
                     body,
                     link,
+                    folderId,
                     displayYear,
                     displayMonth,
                     displayDay
@@ -1626,6 +1763,153 @@
             } finally {
                 btn.disabled = false;
                 btn.textContent = btnLabel;
+            }
+        }
+
+        function buildStashFolderSelectOptions(folders, opts) {
+            const options = opts || {};
+            const excludeId = options.excludeId ? String(options.excludeId) : '';
+            const selectedId = options.selectedId != null ? String(options.selectedId) : '';
+            const excludeSet = excludeId ? new Set([excludeId]) : new Set();
+            if (excludeId) {
+                const queue = [excludeId];
+                const byParent = new Map();
+                (folders || []).forEach((f) => {
+                    const pid = String(f.parentId || '');
+                    if (!byParent.has(pid)) byParent.set(pid, []);
+                    byParent.get(pid).push(f);
+                });
+                while (queue.length) {
+                    const cur = queue.shift();
+                    (byParent.get(cur) || []).forEach((child) => {
+                        if (child.id && !excludeSet.has(child.id)) {
+                            excludeSet.add(child.id);
+                            queue.push(child.id);
+                        }
+                    });
+                }
+            }
+            const roots = (folders || []).filter((f) => !excludeSet.has(String(f.id)) && !String(f.parentId || ''));
+            const lines = [];
+            function walk(list, depth) {
+                (list || []).slice().sort((a, b) => {
+                    const ao = Number(a.sortOrder != null ? a.sortOrder : 0);
+                    const bo = Number(b.sortOrder != null ? b.sortOrder : 0);
+                    if (ao !== bo) return ao - bo;
+                    return String(a.name || '').localeCompare(String(b.name || ''));
+                }).forEach((f) => {
+                    const id = String(f.id || '');
+                    if (excludeSet.has(id)) return;
+                    const label = `${'— '.repeat(depth)}${(f.name || '').trim() || 'Folder'}`;
+                    const sel = id === selectedId ? ' selected' : '';
+                    lines.push(`<option value="${escapeHTML(id)}"${sel}>${escapeHTML(label)}</option>`);
+                    const children = (folders || []).filter((c) => String(c.parentId || '') === id && !excludeSet.has(String(c.id)));
+                    walk(children, depth + 1);
+                });
+            }
+            walk(roots, 0);
+            return lines.join('');
+        }
+
+        function populateStashFolderSelects(editFolderId, selectedItemFolderId) {
+            const parentSel = document.getElementById('stash-folder-parent');
+            const itemSel = document.getElementById('stash-folder-id');
+            const folderOpts = buildStashFolderSelectOptions(stashFoldersRows, {
+                excludeId: editFolderId || '',
+                selectedId: parentSel && document.getElementById('stash-folder-edit-id')?.value
+                    ? document.getElementById('stash-folder-parent')?.value
+                    : ''
+            });
+            const itemOpts = buildStashFolderSelectOptions(stashFoldersRows, {
+                selectedId: selectedItemFolderId != null ? selectedItemFolderId : (itemSel ? itemSel.value : '')
+            });
+            if (parentSel) {
+                const curParent = parentSel.value;
+                parentSel.innerHTML = `<option value="">Shelf root</option>${buildStashFolderSelectOptions(stashFoldersRows, { excludeId: editFolderId || '', selectedId: curParent })}`;
+            }
+            if (itemSel) {
+                const curItem = selectedItemFolderId != null ? String(selectedItemFolderId) : itemSel.value;
+                itemSel.innerHTML = `<option value="">Shelf root (no folder)</option>${buildStashFolderSelectOptions(stashFoldersRows, { selectedId: curItem })}`;
+            }
+        }
+
+        function renderStashFolderCoverPreview() {
+            const box = document.getElementById('stash-folder-cover-preview');
+            if (!box) return;
+            if (!stashFolderCoverBase64) {
+                box.innerHTML = '';
+                return;
+            }
+            box.innerHTML = `
+                <div class="relative w-40 h-28 rounded border border-slate-300 bg-white overflow-hidden">
+                    <img src="${escapeHTML(stashFolderCoverBase64)}" class="w-full h-full object-cover" alt="">
+                    <button type="button" class="absolute top-0 right-0 bg-slate-800 text-white text-xs leading-none px-2 py-0.5 js-remove-stash-folder-cover">×</button>
+                </div>`;
+            box.querySelector('.js-remove-stash-folder-cover')?.addEventListener('click', () => {
+                stashFolderCoverBase64 = '';
+                const input = document.getElementById('stash-folder-file-input');
+                if (input) input.value = '';
+                renderStashFolderCoverPreview();
+            });
+        }
+
+        function clearStashFolderForm() {
+            document.getElementById('stash-folder-edit-id').value = '';
+            document.getElementById('stash-folder-name').value = '';
+            document.getElementById('stash-folder-body').value = '';
+            document.getElementById('stash-folder-sort').value = '0';
+            stashFolderCoverBase64 = '';
+            const input = document.getElementById('stash-folder-file-input');
+            if (input) input.value = '';
+            renderStashFolderCoverPreview();
+            document.getElementById('stash-folder-save-btn').textContent = 'Save folder';
+            populateStashFolderSelects();
+        }
+
+        async function saveStashFolder() {
+            const id = document.getElementById('stash-folder-edit-id').value;
+            const name = document.getElementById('stash-folder-name').value.trim();
+            const body = document.getElementById('stash-folder-body').value;
+            const parentId = document.getElementById('stash-folder-parent').value;
+            const sortOrder = Number(document.getElementById('stash-folder-sort').value || 0);
+            if (!name) return alert('Folder name is required.');
+            const btn = document.getElementById('stash-folder-save-btn');
+            const btnLabel = btn.textContent;
+            btn.disabled = true;
+            try {
+                const payload = { name, body, parentId, sortOrder };
+                if (stashFolderCoverBase64) payload.coverImage = stashFolderCoverBase64;
+                else if (id) payload.coverImage = '';
+                if (id) {
+                    await requestJson(`/admin/stash/folders/${encodeURIComponent(id)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    await requestJson('/admin/stash/folders', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                }
+                clearStashFolderForm();
+                await loadAdminData();
+            } catch (e) {
+                alert(e.message || 'Save folder failed');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = btnLabel;
+            }
+        }
+
+        async function deleteStashFolder(id) {
+            if (!confirm('Delete this folder? Subfolders move up one level; items move to the deleted folder\'s parent.')) return;
+            try {
+                await requestJson(`/admin/stash/folders/${encodeURIComponent(id)}`, { method: 'DELETE' });
+                await loadAdminData();
+            } catch (e) {
+                alert(e.message || 'Delete folder failed');
             }
         }
 

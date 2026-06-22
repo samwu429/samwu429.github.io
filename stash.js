@@ -59,6 +59,19 @@
         return `stash-item.html?id=${encodeURIComponent(String(id))}`;
     }
 
+    function folderPageUrl(id) {
+        if (!id) return 'stash.html';
+        return `stash.html?folder=${encodeURIComponent(String(id))}`;
+    }
+
+    function absoluteFolderPageUrl(id) {
+        try {
+            return new URL(folderPageUrl(id), window.location.href).href;
+        } catch (_) {
+            return folderPageUrl(id);
+        }
+    }
+
     function absoluteItemPageUrl(id) {
         try {
             return new URL(itemPageUrl(id), window.location.href).href;
@@ -197,6 +210,129 @@
             </div>`;
     }
 
+    function buildFolderCard(folder, stats) {
+        const name = escapeHTML((folder.name || '').trim() || 'Folder');
+        const bodyExcerpt = escapeHTML(excerpt(folder.body, 100)).replace(/\n/g, ' ');
+        const href = escapeHTML(folderPageUrl(folder.id));
+        const cover = imgSrcForAttr(folder.coverImage);
+        const subCount = stats && stats.subfolders != null ? Number(stats.subfolders) : 0;
+        const itemCount = stats && stats.items != null ? Number(stats.items) : 0;
+        const meta = [];
+        if (subCount) meta.push(`${subCount} folder${subCount === 1 ? '' : 's'}`);
+        if (itemCount) meta.push(`${itemCount} item${itemCount === 1 ? '' : 's'}`);
+        const metaText = meta.length ? escapeHTML(meta.join(' · ')) : '';
+
+        const coverHtml = cover
+            ? `<div class="stash-folder-card-cover border-b-2 border-gray-900 aspect-[16/10] overflow-hidden bg-gray-100">
+                <img src="${cover}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
+               </div>`
+            : `<div class="stash-folder-card-cover stash-folder-card-cover--empty border-b-2 border-gray-900 aspect-[16/10] flex items-center justify-center bg-emerald-50">
+                <span class="text-3xl font-black text-emerald-900/30 uppercase tracking-widest" aria-hidden="true">Dir</span>
+               </div>`;
+
+        return `
+            <a href="${href}" class="stash-folder-card-link group">
+                <article class="stash-folder-card retro-panel bg-white h-full overflow-hidden">
+                    ${coverHtml}
+                    <div class="p-4 md:p-5">
+                        <h2 class="stash-folder-card-title">${name}</h2>
+                        ${bodyExcerpt ? `<p class="text-sm text-gray-600 mt-2 line-clamp-2">${bodyExcerpt}</p>` : ''}
+                        ${metaText ? `<p class="text-[11px] font-bold text-gray-400 mt-3 uppercase tracking-wide">${metaText}</p>` : ''}
+                        <span class="stash-folder-open-hint">Open folder →</span>
+                    </div>
+                </article>
+            </a>`;
+    }
+
+    function buildFolderHeader(folder) {
+        const name = escapeHTML((folder.name || '').trim() || 'Folder');
+        const body = escapeHTML(folder.body || '').replace(/\n/g, '<br>');
+        const cover = imgSrcForAttr(folder.coverImage);
+        const coverHtml = cover
+            ? `<div class="stash-folder-header-cover border-2 border-gray-900 overflow-hidden bg-gray-100 flex-shrink-0 w-full sm:w-40 md:w-48 aspect-[4/3] sm:aspect-square">
+                <img src="${cover}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
+               </div>`
+            : '';
+        return `
+            <header class="stash-folder-header retro-panel p-5 md:p-6 bg-white mb-8">
+                <div class="flex flex-col sm:flex-row gap-5 md:gap-6">
+                    ${coverHtml}
+                    <div class="min-w-0 flex-1">
+                        <p class="text-[10px] font-black uppercase tracking-[0.22em] text-gray-500 mb-2">Folder</p>
+                        <h1 class="text-2xl md:text-3xl font-black text-gray-950 tracking-tight leading-tight">${name}</h1>
+                        ${body ? `<div class="text-sm text-gray-700 mt-3 leading-relaxed body-readable">${body}</div>` : ''}
+                    </div>
+                </div>
+            </header>`;
+    }
+
+    function buildBreadcrumb(folders, currentFolderId) {
+        const byId = new Map((folders || []).map((f) => [String(f.id), f]));
+        const crumbs = [];
+        let cursor = currentFolderId ? String(currentFolderId) : '';
+        const guard = new Set();
+        while (cursor && byId.has(cursor) && !guard.has(cursor)) {
+            guard.add(cursor);
+            const f = byId.get(cursor);
+            crumbs.unshift({ id: f.id, name: (f.name || '').trim() || 'Folder' });
+            cursor = String(f.parentId || '');
+        }
+        const parts = [`<a href="stash.html" class="stash-crumb-link">Shelf</a>`];
+        crumbs.forEach((c, i) => {
+            const isLast = i === crumbs.length - 1;
+            const label = escapeHTML(c.name);
+            if (isLast) {
+                parts.push(`<span class="stash-crumb-current" aria-current="page">${label}</span>`);
+            } else {
+                parts.push(`<a href="${escapeHTML(folderPageUrl(c.id))}" class="stash-crumb-link">${label}</a>`);
+            }
+        });
+        return `<nav class="stash-breadcrumb mb-6" aria-label="Folder path">${parts.join('<span class="stash-crumb-sep" aria-hidden="true">/</span>')}</nav>`;
+    }
+
+    function folderStatsMap(folders, items) {
+        const stats = new Map();
+        (folders || []).forEach((f) => {
+            const pid = String(f.parentId || '');
+            if (!stats.has(pid)) stats.set(pid, { subfolders: 0, items: 0 });
+            stats.get(pid).subfolders += 1;
+        });
+        (items || []).forEach((it) => {
+            const fid = String(it.folderId || '');
+            if (!stats.has(fid)) stats.set(fid, { subfolders: 0, items: 0 });
+            stats.get(fid).items += 1;
+        });
+        return stats;
+    }
+
+    async function fetchStashFolders() {
+        return fetchJson(`${API_BASE}/public/stash/folders`);
+    }
+
+    async function fetchStashFolder(id) {
+        if (!id) return null;
+        try {
+            return await fetchJson(`${API_BASE}/public/stash/folders/${encodeURIComponent(id)}`);
+        } catch (_) {
+            const rows = await fetchStashFolders();
+            return (Array.isArray(rows) ? rows : []).find((r) => String(r.id) === String(id)) || null;
+        }
+    }
+
+    function sortFolders(rows) {
+        return (Array.isArray(rows) ? rows : []).slice().sort((a, b) => {
+            const ao = Number(a && a.sortOrder != null ? a.sortOrder : 0);
+            const bo = Number(b && b.sortOrder != null ? b.sortOrder : 0);
+            if (ao !== bo) return ao - bo;
+            const an = String(a && a.name ? a.name : '').toLowerCase();
+            const bn = String(b && b.name ? b.name : '').toLowerCase();
+            if (an !== bn) return an.localeCompare(bn);
+            const at = new Date(a && a.timestamp ? a.timestamp : 0).getTime();
+            const bt = new Date(b && b.timestamp ? b.timestamp : 0).getTime();
+            return bt - at;
+        });
+    }
+
     function buildStashListCard(item) {
         const kind = String(item.kind || 'note');
         const label = KIND_LABELS[kind] || kind;
@@ -317,31 +453,110 @@
         KIND_LABELS,
         fetchJson,
         itemPageUrl,
+        folderPageUrl,
         absoluteItemPageUrl,
+        absoluteFolderPageUrl,
         buildStashListCard,
         buildStashDetail,
+        buildFolderCard,
+        buildFolderHeader,
+        buildBreadcrumb,
         sortStashRows,
+        sortFolders,
         fetchStashItem,
-        async loadFeed(container, filterKind) {
-            if (!container) return;
-            container.innerHTML = '<p class="text-sm text-gray-500 font-bold animate-pulse">Loading…</p>';
+        fetchStashFolder,
+        fetchStashFolders,
+        async loadBrowse(opts) {
+            const options = opts || {};
+            const folderId = options.folderId ? String(options.folderId) : '';
+            const filterKind = options.filterKind || 'all';
+            const breadcrumbEl = options.breadcrumbEl || null;
+            const headerEl = options.headerEl || null;
+            const folderGridEl = options.folderGridEl || null;
+            const feedEl = options.feedEl || null;
+
+            const setLoading = () => {
+                const msg = '<p class="text-sm text-gray-500 font-bold animate-pulse">Loading…</p>';
+                if (folderGridEl) folderGridEl.innerHTML = '';
+                if (feedEl) feedEl.innerHTML = msg;
+            };
+            setLoading();
+
             try {
-                let rows = await fetchJson(`${API_BASE}/public/stash`);
-                rows = sortStashRows(rows);
+                const [foldersRaw, itemsRaw] = await Promise.all([
+                    fetchStashFolders(),
+                    fetchJson(`${API_BASE}/public/stash`)
+                ]);
+                const folders = sortFolders(foldersRaw);
+                const items = sortStashRows(itemsRaw);
+                const stats = folderStatsMap(folders, items);
+                const parentKey = folderId;
+
+                if (breadcrumbEl) {
+                    breadcrumbEl.innerHTML = folderId ? buildBreadcrumb(folders, folderId) : '';
+                }
+
+                let currentFolder = null;
+                if (folderId) {
+                    currentFolder = folders.find((f) => String(f.id) === folderId) || await fetchStashFolder(folderId);
+                }
+                if (headerEl) {
+                    headerEl.innerHTML = currentFolder ? buildFolderHeader(currentFolder) : '';
+                }
+                if (options.setDocumentTitle !== false && currentFolder) {
+                    const title = (currentFolder.name && String(currentFolder.name).trim()) || 'Folder';
+                    document.title = `${title} | Loose shelf`;
+                } else if (options.setDocumentTitle !== false && !folderId) {
+                    document.title = 'Archive | Yihang Wu';
+                }
+
+                const childFolders = folders.filter((f) => String(f.parentId || '') === parentKey);
+                let childItems = items.filter((it) => String(it.folderId || '') === parentKey);
                 if (filterKind && filterKind !== 'all') {
-                    rows = rows.filter((r) => String(r.kind) === filterKind);
+                    childItems = childItems.filter((r) => String(r.kind) === filterKind);
                 }
-                container.innerHTML = '';
-                if (!rows.length) {
-                    container.innerHTML = '<p class="text-sm text-gray-500 font-bold">Nothing here yet.</p>';
-                    return;
+
+                if (folderGridEl) {
+                    folderGridEl.innerHTML = '';
+                    if (childFolders.length) {
+                        folderGridEl.classList.remove('hidden');
+                        childFolders.forEach((folder) => {
+                            const folderStats = stats.get(String(folder.id)) || { subfolders: 0, items: 0 };
+                            folderGridEl.insertAdjacentHTML('beforeend', buildFolderCard(folder, folderStats));
+                        });
+                    } else {
+                        folderGridEl.classList.add('hidden');
+                    }
                 }
-                rows.forEach((row) => {
-                    container.insertAdjacentHTML('beforeend', buildStashListCard(row));
-                });
+
+                if (feedEl) {
+                    feedEl.innerHTML = '';
+                    if (!childFolders.length && !childItems.length) {
+                        feedEl.innerHTML = '<p class="text-sm text-gray-500 font-bold">Nothing in this folder yet.</p>';
+                    } else if (!childItems.length) {
+                        feedEl.innerHTML = '<p class="text-sm text-gray-500 font-bold">No items here — open a subfolder or change the filter.</p>';
+                    } else {
+                        childItems.forEach((row) => {
+                            feedEl.insertAdjacentHTML('beforeend', buildStashListCard(row));
+                        });
+                    }
+                }
+
+                return { folders, items, currentFolder, childFolders, childItems };
             } catch (_) {
-                container.innerHTML = '<p class="text-sm text-red-600 font-bold">Could not load archive. Try again later.</p>';
+                if (feedEl) {
+                    feedEl.innerHTML = '<p class="text-sm text-red-600 font-bold">Could not load archive. Try again later.</p>';
+                }
+                return null;
             }
+        },
+        async loadFeed(container, filterKind, folderId) {
+            return this.loadBrowse({
+                feedEl: container,
+                filterKind,
+                folderId: folderId || '',
+                setDocumentTitle: false
+            });
         },
         async loadDetail(container, id, opts) {
             if (!container || !id) return null;

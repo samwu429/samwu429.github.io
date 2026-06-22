@@ -10,14 +10,14 @@
     <title>Item | Loose shelf</title>
     <link rel="preconnect" href="https://sam-api-backend.onrender.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css?v=16">
+    <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body class="animate-fade-in py-6 md:py-12 px-0 min-h-screen flex flex-col relative overflow-x-hidden">
 
     <div class="site-wrap w-full mb-6 flex justify-between items-center relative z-10 border-b-2 border-gray-900 pb-4">
-        <a href="stash.html" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
+        <a href="stash.html" id="stash-back-link" class="retro-button px-6 py-2.5 text-xs font-black uppercase tracking-widest text-gray-800 flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            Shelf
+            <span id="stash-back-label">Shelf</span>
         </a>
         <span class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Item</span>
     </div>
@@ -41,7 +41,7 @@
     </div>
 
     <script src="api-config.js"></script>
-    <script src="stash.js?v=5"></script>
+    <script src="stash.js?v=6"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const ST = window.SAM_STASH;
@@ -90,7 +90,13 @@
                 });
             }
 
-            await ST.loadDetail(detail, id);
+            const item = await ST.loadDetail(detail, id);
+            if (item && item.folderId) {
+                const back = document.getElementById('stash-back-link');
+                const label = document.getElementById('stash-back-label');
+                if (back) back.href = ST.folderPageUrl(item.folderId);
+                if (label) label.textContent = 'Folder';
+            }
 
             const lightbox = document.getElementById('stash-lightbox');
             const lightboxImg = document.getElementById('stash-lightbox-img');
