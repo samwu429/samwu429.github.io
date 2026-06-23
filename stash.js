@@ -234,24 +234,24 @@
 
         const coverHtml = cover
             ? `<div class="stash-folder-card-cover border-b-2 border-gray-900 aspect-[16/10] overflow-hidden bg-gray-100">
-                ${folderCoverZoomHtml(cover, 'stash-folder-card-cover-zoom')}
+                <img src="${cover}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
                </div>`
             : `<div class="stash-folder-card-cover stash-folder-card-cover--empty border-b-2 border-gray-900 aspect-[16/10] flex items-center justify-center bg-emerald-50">
                 <span class="text-3xl font-black text-emerald-900/30 uppercase tracking-widest" aria-hidden="true">Dir</span>
                </div>`;
 
         return `
-            <div class="stash-folder-card-wrap h-full">
+            <a href="${href}" class="stash-folder-card-link group">
                 <article class="stash-folder-card retro-panel bg-white h-full overflow-hidden">
                     ${coverHtml}
-                    <a href="${href}" class="stash-folder-card-body block p-4 md:p-5 text-inherit no-underline">
+                    <div class="p-4 md:p-5">
                         <h2 class="stash-folder-card-title">${name}</h2>
                         ${bodyExcerpt ? `<p class="text-sm text-gray-600 mt-2 line-clamp-2">${bodyExcerpt}</p>` : ''}
                         ${metaText ? `<p class="text-[11px] font-bold text-gray-400 mt-3 uppercase tracking-wide">${metaText}</p>` : ''}
                         <span class="stash-folder-open-hint">Open folder →</span>
-                    </a>
+                    </div>
                 </article>
-            </div>`;
+            </a>`;
     }
 
     function buildFolderHeader(folder) {
