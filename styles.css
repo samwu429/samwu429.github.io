@@ -564,12 +564,67 @@ select:focus-visible {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+.stash-folder-card-wrap {
+    display: block;
+    height: 100%;
+}
+.stash-folder-card-wrap:hover .stash-folder-card,
+.stash-folder-card-wrap:focus-within .stash-folder-card {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 #1c1917;
+}
+.stash-folder-card-wrap .stash-folder-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.stash-folder-card-body {
+    color: inherit;
+    text-decoration: none;
+}
+.stash-folder-card-body:hover .stash-folder-open-hint {
+    color: #047857;
+}
+.stash-folder-cover-zoom {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    overflow: hidden;
+}
+.stash-folder-cover-zoom:focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
+}
+.stash-folder-cover-zoom-hint {
+    position: absolute;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.45rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid #1c1917;
+    color: #1c1917;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+}
+.stash-folder-cover-zoom:hover .stash-folder-cover-zoom-hint,
+.stash-folder-cover-zoom:focus-visible .stash-folder-cover-zoom-hint {
+    opacity: 1;
+}
 .stash-folder-card-link {
     display: block;
     text-decoration: none;
     color: inherit;
     height: 100%;
 }
+/* Legacy selector kept for older cached markup. */
 .stash-folder-card-link:hover .stash-folder-card,
 .stash-folder-card-link:focus-visible .stash-folder-card {
     transform: translate(-2px, -2px);

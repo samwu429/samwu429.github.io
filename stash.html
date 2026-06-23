@@ -10,7 +10,7 @@
     <title>Archive | Yihang Wu</title>
     <link rel="preconnect" href="https://sam-api-backend.onrender.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css?v=17">
+    <link rel="stylesheet" href="styles.css?v=18">
 </head>
 <body class="animate-fade-in py-6 md:py-12 px-0 min-h-screen flex flex-col relative overflow-x-hidden">
 
@@ -47,8 +47,13 @@
         <div id="stash-feed" class="space-y-4"></div>
     </main>
 
+    <div id="stash-lightbox" class="fixed inset-0 hidden items-center justify-center z-[120] bg-black/85 p-4 md:p-8" aria-hidden="true">
+        <button type="button" id="stash-lightbox-close" class="retro-button absolute top-4 right-4 px-3 py-1.5 text-[11px] uppercase tracking-widest">Close</button>
+        <img id="stash-lightbox-img" src="" alt="" class="max-w-full max-h-[88vh] border-2 border-gray-900 shadow-[8px_8px_0px_#1c1917] bg-white object-contain">
+    </div>
+
     <script src="api-config.js"></script>
-    <script src="stash.js?v=6"></script>
+    <script src="stash.js?v=7"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const ST = window.SAM_STASH;
@@ -62,7 +67,10 @@
             const folderHeader = document.getElementById('stash-folder-header');
             const folderGrid = document.getElementById('stash-folder-grid');
             const rootHeader = document.getElementById('stash-root-header');
+            const mainEl = document.querySelector('main');
             let activeFilter = 'all';
+
+            ST.wireFolderCoverLightbox(mainEl || document);
 
             if (rootHeader) {
                 rootHeader.classList.toggle('hidden', !!folderId);

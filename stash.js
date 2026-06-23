@@ -210,6 +210,16 @@
             </div>`;
     }
 
+    function folderCoverZoomHtml(cover, wrapClass) {
+        if (!cover) return '';
+        const safeSrc = escapeHTML(cover);
+        const cls = wrapClass ? ` ${wrapClass}` : '';
+        return `<button type="button" class="stash-folder-cover-zoom${cls}" data-cover-src="${safeSrc}" aria-label="View cover image">
+            <img src="${safeSrc}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <span class="stash-folder-cover-zoom-hint" aria-hidden="true">View</span>
+        </button>`;
+    }
+
     function buildFolderCard(folder, stats) {
         const name = escapeHTML((folder.name || '').trim() || 'Folder');
         const bodyExcerpt = escapeHTML(excerpt(folder.body, 100)).replace(/\n/g, ' ');
@@ -224,24 +234,24 @@
 
         const coverHtml = cover
             ? `<div class="stash-folder-card-cover border-b-2 border-gray-900 aspect-[16/10] overflow-hidden bg-gray-100">
-                <img src="${cover}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                ${folderCoverZoomHtml(cover, 'stash-folder-card-cover-zoom')}
                </div>`
             : `<div class="stash-folder-card-cover stash-folder-card-cover--empty border-b-2 border-gray-900 aspect-[16/10] flex items-center justify-center bg-emerald-50">
                 <span class="text-3xl font-black text-emerald-900/30 uppercase tracking-widest" aria-hidden="true">Dir</span>
                </div>`;
 
         return `
-            <a href="${href}" class="stash-folder-card-link group">
+            <div class="stash-folder-card-wrap h-full">
                 <article class="stash-folder-card retro-panel bg-white h-full overflow-hidden">
                     ${coverHtml}
-                    <div class="p-4 md:p-5">
+                    <a href="${href}" class="stash-folder-card-body block p-4 md:p-5 text-inherit no-underline">
                         <h2 class="stash-folder-card-title">${name}</h2>
                         ${bodyExcerpt ? `<p class="text-sm text-gray-600 mt-2 line-clamp-2">${bodyExcerpt}</p>` : ''}
                         ${metaText ? `<p class="text-[11px] font-bold text-gray-400 mt-3 uppercase tracking-wide">${metaText}</p>` : ''}
                         <span class="stash-folder-open-hint">Open folder →</span>
-                    </div>
+                    </a>
                 </article>
-            </a>`;
+            </div>`;
     }
 
     function buildFolderHeader(folder) {
@@ -249,9 +259,7 @@
         const body = escapeHTML(folder.body || '').replace(/\n/g, '<br>');
         const cover = imgSrcForAttr(folder.coverImage);
         const coverHtml = cover
-            ? `<div class="stash-folder-header-cover border-2 border-gray-900 overflow-hidden bg-gray-100 flex-shrink-0 w-full sm:w-40 md:w-48 aspect-[4/3] sm:aspect-square">
-                <img src="${cover}" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
-               </div>`
+            ? folderCoverZoomHtml(cover, 'stash-folder-header-cover border-2 border-gray-900 overflow-hidden bg-gray-100 flex-shrink-0 w-full sm:w-40 md:w-48 aspect-[4/3] sm:aspect-square')
             : '';
         return `
             <header class="stash-folder-header retro-panel p-5 md:p-6 bg-white mb-8">
@@ -466,6 +474,55 @@
         fetchStashItem,
         fetchStashFolder,
         fetchStashFolders,
+        wireFolderCoverLightbox(root, opts) {
+            const options = opts || {};
+            const lightbox = options.lightboxEl || document.getElementById('stash-lightbox');
+            const lightboxImg = options.lightboxImgEl || document.getElementById('stash-lightbox-img');
+            const closeBtn = options.closeBtnEl || document.getElementById('stash-lightbox-close');
+            const mount = root || document;
+            if (!mount || !lightbox || !lightboxImg) return;
+
+            const closeLightbox = () => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImg.src = '';
+            };
+
+            if (!mount.dataset.stashCoverLightboxWired) {
+                mount.dataset.stashCoverLightboxWired = '1';
+                mount.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.stash-folder-cover-zoom');
+                    if (!btn) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const src = btn.getAttribute('data-cover-src') || (btn.querySelector('img') && btn.querySelector('img').getAttribute('src')) || '';
+                    if (!src) return;
+                    lightboxImg.src = src;
+                    lightboxImg.alt = 'Folder cover';
+                    lightbox.classList.remove('hidden');
+                    lightbox.classList.add('flex');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                });
+            }
+
+            if (closeBtn && !closeBtn.dataset.stashCoverLightboxCloseWired) {
+                closeBtn.dataset.stashCoverLightboxCloseWired = '1';
+                closeBtn.addEventListener('click', closeLightbox);
+            }
+            if (lightbox && !lightbox.dataset.stashCoverLightboxBackdropWired) {
+                lightbox.dataset.stashCoverLightboxBackdropWired = '1';
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
+            if (!document.body.dataset.stashCoverLightboxEscWired) {
+                document.body.dataset.stashCoverLightboxEscWired = '1';
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) closeLightbox();
+                });
+            }
+        },
         async loadBrowse(opts) {
             const options = opts || {};
             const folderId = options.folderId ? String(options.folderId) : '';
