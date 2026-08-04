@@ -467,6 +467,7 @@ select:focus-visible {
 }
 .stash-kind-badge--photo { background: #dbeafe; color: #1e40af; }
 .stash-kind-badge--video { background: #fce7f3; color: #9d174d; }
+.stash-kind-badge--audio { background: #ccfbf1; color: #115e59; }
 .stash-kind-badge--article { background: #e0e7ff; color: #3730a3; }
 .stash-kind-badge--note { background: #fef3c7; color: #92400e; }
 .stash-video-wrap {
@@ -505,6 +506,17 @@ select:focus-visible {
     border: 2px solid #1c1917;
     box-shadow: 4px 4px 0 #1c1917;
     background: #fff;
+}
+.stash-audio-wrap {
+    margin-top: 1rem;
+}
+.stash-audio-native {
+    display: block;
+    width: 100%;
+    border: 2px solid #1c1917;
+    box-shadow: 4px 4px 0 #1c1917;
+    background: #f0fdfa;
+    padding: 0.75rem;
 }
 .stash-card-title {
     font-family: Georgia, "Times New Roman", serif;

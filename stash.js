@@ -5,6 +5,7 @@
     const KIND_LABELS = {
         photo: 'Photo',
         video: 'Video',
+        audio: 'Audio',
         article: 'Article',
         note: 'Note'
     };
@@ -159,6 +160,10 @@
         return /^data:application\/pdf/i.test(String(media || '').trim());
     }
 
+    function isUploadedAudio(media) {
+        return /^data:audio\//i.test(String(media || '').trim());
+    }
+
     function itemHasUploadedVideo(item) {
         if (isUploadedVideo(item.mediaData)) return true;
         if (!item.mediaGridId) return false;
@@ -173,6 +178,13 @@
         return mime.includes('pdf') || item.kind === 'article' || item.kind === 'note';
     }
 
+    function itemHasUploadedAudio(item) {
+        if (isUploadedAudio(item.mediaData)) return true;
+        if (!item.mediaGridId) return false;
+        const mime = String(item.mediaMime || '').toLowerCase();
+        return mime.startsWith('audio/') || String(item.kind || '') === 'audio';
+    }
+
     function stashMediaSrc(item) {
         const stream = stashMediaStreamUrl(item);
         if (stream) return stream;
@@ -182,7 +194,7 @@
     function mediaSrcForAttr(u) {
         if (!u || typeof u !== 'string') return '';
         const t = u.trim();
-        if (/^data:(video|application)\//i.test(t)) return t.replace(/"/g, '%22');
+        if (/^data:(video|audio|application)\//i.test(t)) return t.replace(/"/g, '%22');
         return '';
     }
 
@@ -195,6 +207,19 @@
             }
         }
         return videoEmbedHtml(link);
+    }
+
+    function audioPlayerHtml(item) {
+        if (!itemHasUploadedAudio(item)) return '';
+        const src = escapeHTML(stashMediaSrc(item));
+        if (!src) return '';
+        const name = escapeHTML(item.mediaName || 'Audio.mp3');
+        return `
+            <div class="stash-audio-wrap mt-4">
+                <p class="text-xs font-bold text-gray-600 mb-2 uppercase tracking-widest">${name}</p>
+                <audio class="stash-audio-native" controls preload="metadata" src="${src}"></audio>
+                <a href="${src}" download="${name}" class="retro-button inline-block mt-3 px-4 py-2 text-[10px] font-black uppercase tracking-widest">Download audio</a>
+            </div>`;
     }
 
     function pdfViewerHtml(item) {
@@ -364,6 +389,8 @@
             preview = itemHasUploadedVideo(item)
                 ? `<p class="text-xs font-bold text-pink-900/80 mt-3 uppercase tracking-widest">▶ Uploaded video — open to play</p>`
                 : `<p class="text-xs font-bold text-pink-900/80 mt-3 uppercase tracking-widest">▶ Video — open to play</p>`;
+        } else if (kind === 'audio') {
+            preview = `<p class="text-xs font-bold text-teal-900/80 mt-3 uppercase tracking-widest">♪ Audio — open to play</p>`;
         } else if ((kind === 'article' || kind === 'note') && itemHasUploadedPdf(item)) {
             preview = `<p class="text-xs font-bold text-indigo-900/80 mt-3 uppercase tracking-widest">📄 PDF attached</p>`;
         } else if (kind === 'article' && link) {
@@ -401,6 +428,8 @@
             media = photoGrid(item.images, 'stash-detail-thumb');
         } else if (kind === 'video') {
             media = videoPlayerHtml(item);
+        } else if (kind === 'audio') {
+            media = audioPlayerHtml(item);
         } else if (kind === 'article' || kind === 'note') {
             media = pdfViewerHtml(item);
         }

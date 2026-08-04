@@ -10,7 +10,7 @@
     <title>Archive | Yihang Wu</title>
     <link rel="preconnect" href="https://sam-api-backend.onrender.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css?v=18">
+    <link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body class="animate-fade-in py-6 md:py-12 px-0 min-h-screen flex flex-col relative overflow-x-hidden">
 
@@ -27,7 +27,7 @@
             <p class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.22em] mb-2">Misc archive</p>
             <h1 class="text-3xl md:text-4xl font-black text-gray-950 tracking-tight uppercase">Odds &amp; ends</h1>
             <p class="text-sm text-gray-600 font-medium mt-3 body-readable max-w-xl">
-                Photos, clips, articles, and scratch notes that do not belong on the main hub. Unlisted — reach it from the corner mark on the home page.
+                Photos, clips, audio, articles, and scratch notes that do not belong on the main hub. Unlisted — reach it from the corner mark on the home page.
             </p>
         </header>
 
@@ -38,6 +38,7 @@
             <button type="button" class="stash-filter-btn is-active" data-filter="all">All</button>
             <button type="button" class="stash-filter-btn" data-filter="photo">Photos</button>
             <button type="button" class="stash-filter-btn" data-filter="video">Video</button>
+            <button type="button" class="stash-filter-btn" data-filter="audio">Audio</button>
             <button type="button" class="stash-filter-btn" data-filter="article">Articles</button>
             <button type="button" class="stash-filter-btn" data-filter="note">Notes</button>
         </nav>
@@ -53,7 +54,7 @@
     </div>
 
     <script src="api-config.js"></script>
-    <script src="stash.js?v=8"></script>
+    <script src="stash.js?v=9"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const ST = window.SAM_STASH;

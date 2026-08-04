@@ -172,7 +172,7 @@
                     <button type="button" class="adm-tile" data-open="stash">
                         <div class="adm-tile-icon"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg></div>
                         <span class="text-base font-semibold text-slate-900">Loose shelf</span>
-                        <span class="text-sm text-slate-500 mt-1">Misc archive (corner link on home). Photos, video links, articles, notes.</span>
+                        <span class="text-sm text-slate-500 mt-1">Misc archive (corner link on home). Photos, video, audio, articles, notes.</span>
                     </button>
                     </div>
                 </div>
@@ -468,6 +468,7 @@
                                 <select id="stash-kind" class="adm-input max-w-xs">
                                     <option value="photo">Photo</option>
                                     <option value="video">Video (upload file or link)</option>
+                                    <option value="audio">Audio (MP3 upload)</option>
                                     <option value="article">Article</option>
                                     <option value="note">Note</option>
                                 </select>
@@ -511,7 +512,7 @@
                                     <button type="button" id="stash-media-browse-btn" class="adm-btn adm-btn--secondary mt-4 text-xs">Choose file on this computer…</button>
                                 </div>
                                 <input type="file" id="stash-media-file-input" class="hidden" accept="">
-                                <p class="text-xs text-slate-500 mt-2" id="stash-media-size-hint">Max 110 MB per file. Video: MP4, WebM, MOV. Article/Note: PDF. Very large videos can also use a YouTube link.</p>
+                                <p class="text-xs text-slate-500 mt-2" id="stash-media-size-hint">Max 110 MB per file. Video: MP4, WebM, MOV. Audio: MP3. Article/Note: PDF. Very large videos can also use a YouTube link.</p>
                                 <div id="stash-media-preview" class="min-h-[2rem] mt-3"></div>
                             </div>
                             <div>
@@ -1200,7 +1201,7 @@
                 btn.addEventListener('click', () => deleteStashFolder(btn.dataset.id || ''));
             });
 
-            const stashKindLabel = { photo: 'Photo', video: 'Video', article: 'Article', note: 'Note' };
+            const stashKindLabel = { photo: 'Photo', video: 'Video', audio: 'Audio', article: 'Article', note: 'Note' };
             document.getElementById('admin-stash').innerHTML = (stashRows || []).map((s) => {
                 const k = stashKindLabel[s.kind] || s.kind;
                 const folderLabel = s.folderId ? (folderNameById.get(String(s.folderId)) || 'Folder') : 'Shelf root';
@@ -1567,9 +1568,15 @@
             if (!file) return;
             const kind = document.getElementById('stash-kind')?.value || 'note';
             const isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name || '');
+            const isAudio = file.type.startsWith('audio/') || /\.(mp3|m4a|wav|ogg|aac|flac)$/i.test(file.name || '');
             if (kind === 'video') {
                 if (!file.type.startsWith('video/')) {
                     alert('Please drop a video file (MP4, WebM, MOV, etc.).');
+                    return;
+                }
+            } else if (kind === 'audio') {
+                if (!isAudio) {
+                    alert('Please drop an audio file (MP3 preferred).');
                     return;
                 }
             } else if (kind === 'article' || kind === 'note') {
@@ -1585,10 +1592,12 @@
                 return;
             }
             revokeStashMediaPreviewUrl();
+            const defaultName = isPdf ? 'document.pdf' : (kind === 'audio' ? 'audio.mp3' : 'video');
+            const defaultMime = isPdf ? 'application/pdf' : (kind === 'audio' ? 'audio/mpeg' : 'video/mp4');
             stashMediaFile = {
                 file,
-                name: file.name || (isPdf ? 'document.pdf' : 'video'),
-                mime: file.type || (isPdf ? 'application/pdf' : 'video/mp4'),
+                name: file.name || defaultName,
+                mime: file.type || defaultMime,
                 previewUrl: URL.createObjectURL(file)
             };
             stashMediaRemoved = false;
@@ -1608,6 +1617,11 @@
             let inner = `<p class="text-sm font-semibold text-slate-800 mb-2">${name}</p>`;
             if (kind === 'video' || (stashMediaFile.mime || '').startsWith('video/')) {
                 inner += `<video src="${escapeHTML(src)}" controls class="max-h-48 w-full rounded border border-slate-300 bg-black"></video>`;
+                if (stashMediaFile.file) {
+                    inner += `<p class="text-xs text-slate-500 mt-2">Will upload when you save (${(stashMediaFile.file.size / (1024 * 1024)).toFixed(1)} MB)</p>`;
+                }
+            } else if (kind === 'audio' || (stashMediaFile.mime || '').startsWith('audio/')) {
+                inner += `<audio src="${escapeHTML(src)}" controls class="w-full mt-1"></audio>`;
                 if (stashMediaFile.file) {
                     inner += `<p class="text-xs text-slate-500 mt-2">Will upload when you save (${(stashMediaFile.file.size / (1024 * 1024)).toFixed(1)} MB)</p>`;
                 }
@@ -1636,7 +1650,7 @@
             const hint = document.getElementById('stash-link-hint');
             const mediaInput = document.getElementById('stash-media-file-input');
             const showPhoto = kind === 'photo';
-            const showMedia = kind === 'video' || kind === 'article' || kind === 'note';
+            const showMedia = kind === 'video' || kind === 'audio' || kind === 'article' || kind === 'note';
             if (photoBlock) {
                 photoBlock.classList.toggle('hidden', !showPhoto);
                 photoBlock.style.display = '';
@@ -1647,20 +1661,30 @@
             }
             if (mediaInput) {
                 if (kind === 'video') mediaInput.setAttribute('accept', 'video/*');
+                else if (kind === 'audio') mediaInput.setAttribute('accept', 'audio/mpeg,audio/mp3,.mp3,audio/*');
                 else if (kind === 'article' || kind === 'note') mediaInput.setAttribute('accept', 'application/pdf,.pdf');
             }
-            if (mediaLabel) mediaLabel.textContent = kind === 'video' ? 'Video file (upload)' : 'PDF file (upload)';
-            if (mediaDropIcon) mediaDropIcon.textContent = kind === 'video' ? '🎬' : '📄';
+            if (mediaLabel) {
+                if (kind === 'video') mediaLabel.textContent = 'Video file (upload)';
+                else if (kind === 'audio') mediaLabel.textContent = 'Audio file (MP3 upload)';
+                else mediaLabel.textContent = 'PDF file (upload)';
+            }
+            if (mediaDropIcon) {
+                mediaDropIcon.textContent = kind === 'video' ? '🎬' : (kind === 'audio' ? '♪' : '📄');
+            }
             if (mediaDropText) {
-                mediaDropText.textContent = kind === 'video' ? 'Drag video here' : 'Drag PDF here';
+                if (kind === 'video') mediaDropText.textContent = 'Drag video here';
+                else if (kind === 'audio') mediaDropText.textContent = 'Drag MP3 here';
+                else mediaDropText.textContent = 'Drag PDF here';
             }
             if (mediaDropHint) {
-                mediaDropHint.textContent = kind === 'video'
-                    ? 'or click this area · MP4, WebM, MOV'
-                    : 'or click this area · PDF only';
+                if (kind === 'video') mediaDropHint.textContent = 'or click this area · MP4, WebM, MOV';
+                else if (kind === 'audio') mediaDropHint.textContent = 'or click this area · MP3 preferred';
+                else mediaDropHint.textContent = 'or click this area · PDF only';
             }
             if (hint) {
                 if (kind === 'video') hint.textContent = 'Optional: YouTube/Vimeo link if you are not uploading a file.';
+                else if (kind === 'audio') hint.textContent = 'Optional: related link (audio itself is uploaded as a file).';
                 else if (kind === 'article') hint.textContent = 'Optional: external article URL.';
                 else if (kind === 'photo') hint.textContent = 'Optional: external link alongside photos.';
                 else hint.textContent = 'Optional: related link.';
@@ -1703,6 +1727,7 @@
             if (!id && kind === 'photo' && !stashImagesBase64.length) return alert('Add at least one image for a photo item.');
             const hasMedia = hasStashMediaSelected();
             if (!id && kind === 'video' && !link && !hasMedia) return alert('Add a video file or a YouTube/Vimeo link.');
+            if (!id && kind === 'audio' && !hasMedia) return alert('Add an MP3 (or other audio) file.');
             if (!id && kind === 'article' && !title.trim() && !body.trim() && !link && !hasMedia) return alert('Article needs a title, body, link, or PDF.');
             if (!id && kind === 'note' && !body.trim() && !hasMedia) return alert('Note needs body text or a PDF.');
             const btn = document.getElementById('stash-save-btn');
