@@ -152,6 +152,26 @@
         return `${apiBase()}/public/stash/media/${encodeURIComponent(id)}`;
     }
 
+    function stashMediaDownloadUrl(item) {
+        const stream = stashMediaStreamUrl(item);
+        if (!stream) return '';
+        return `${stream}?download=1`;
+    }
+
+    function downloadFileName(item, fallback) {
+        let name = String(item.mediaName || fallback || 'file').trim() || String(fallback || 'file');
+        name = name.replace(/["\r\n]/g, '');
+        const kind = String(item.kind || '');
+        const mime = String(item.mediaMime || '').toLowerCase();
+        if ((kind === 'audio' || mime.startsWith('audio/')) && !/\.(mp3|m4a|wav|ogg|aac|flac)$/i.test(name)) {
+            name = `${name}.mp3`;
+        }
+        if ((mime.includes('pdf') || kind === 'article' || kind === 'note') && !/\.pdf$/i.test(name) && mime.includes('pdf')) {
+            name = `${name}.pdf`;
+        }
+        return name;
+    }
+
     function isUploadedVideo(media) {
         return /^data:video\//i.test(String(media || '').trim());
     }
@@ -213,12 +233,13 @@
         if (!itemHasUploadedAudio(item)) return '';
         const src = escapeHTML(stashMediaSrc(item));
         if (!src) return '';
-        const name = escapeHTML(item.mediaName || 'Audio.mp3');
+        const name = escapeHTML(downloadFileName(item, 'Audio.mp3'));
+        const downloadHref = escapeHTML(stashMediaDownloadUrl(item) || src);
         return `
             <div class="stash-audio-wrap mt-4">
                 <p class="text-xs font-bold text-gray-600 mb-2 uppercase tracking-widest">${name}</p>
                 <audio class="stash-audio-native" controls preload="metadata" src="${src}"></audio>
-                <a href="${src}" download="${name}" class="retro-button inline-block mt-3 px-4 py-2 text-[10px] font-black uppercase tracking-widest">Download audio</a>
+                <a href="${downloadHref}" class="retro-button inline-block mt-3 px-4 py-2 text-[10px] font-black uppercase tracking-widest" download="${name}">Download audio</a>
             </div>`;
     }
 
@@ -226,12 +247,13 @@
         if (!itemHasUploadedPdf(item)) return '';
         const src = escapeHTML(stashMediaSrc(item));
         if (!src) return '';
-        const name = escapeHTML(item.mediaName || 'Document.pdf');
+        const name = escapeHTML(downloadFileName(item, 'Document.pdf'));
+        const downloadHref = escapeHTML(stashMediaDownloadUrl(item) || src);
         return `
             <div class="stash-pdf-wrap mt-4">
                 <p class="text-xs font-bold text-gray-600 mb-2 uppercase tracking-widest">${name}</p>
                 <iframe class="stash-pdf-frame" src="${src}" title="${name}"></iframe>
-                <a href="${src}" download="${name}" class="retro-button inline-block mt-3 px-4 py-2 text-[10px] font-black uppercase tracking-widest">Download PDF</a>
+                <a href="${downloadHref}" class="retro-button inline-block mt-3 px-4 py-2 text-[10px] font-black uppercase tracking-widest" download="${name}">Download PDF</a>
             </div>`;
     }
 
