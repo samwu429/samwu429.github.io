@@ -6,6 +6,7 @@ import {
   groupUnits,
   isPlainClick,
   lessonHref,
+  lessonKindLabel,
   minutesLabel,
   neighbourUnits,
   normalizeSections,
@@ -13,6 +14,7 @@ import {
   sectionNumber,
   slidesLabel,
   stripKindPrefix,
+  unitCardVariant,
   unitKindLabel,
 } from '../../../engine/views/lesson/lesson-model.js';
 
@@ -32,21 +34,52 @@ test('lesson and practice links fall back safely on odd ids', () => {
   assert.equal(practiceHref('x?y'), '#/practice');
 });
 
-test('kind labels name lectures and labs in both languages', () => {
+test('kind labels name lectures, modules and labs in both languages', () => {
   assert.deepEqual(unitKindLabel({ kind: 'lecture', number: 3 }), { zh: '第 3 讲', en: 'Lecture 3' });
+  assert.deepEqual(unitKindLabel({ kind: 'module', number: 4 }), { zh: '模块 4', en: 'Module 4' });
   assert.deepEqual(unitKindLabel({ kind: 'lab', number: 2 }), { zh: '实验 2', en: 'Lab 2' });
   assert.deepEqual(unitKindLabel({ kind: 'lecture' }), { zh: '讲课', en: 'Lecture' });
   assert.deepEqual(unitKindLabel({ kind: 'other', number: 1 }), { zh: '单元 1', en: 'Unit 1' });
   assert.deepEqual(unitKindLabel(undefined), { zh: '单元', en: 'Unit' });
 });
 
+test('a lesson file names its own kind and number when it can, otherwise its unit does', () => {
+  assert.deepEqual(lessonKindLabel({ kind: 'lab', number: 2 }, { kind: 'lab', number: 2 }), { zh: '实验 2', en: 'Lab 2' });
+  assert.deepEqual(lessonKindLabel({ kind: 'module', number: 2 }, { kind: 'lecture', number: 9 }), { zh: '模块 2', en: 'Module 2' });
+  assert.deepEqual(lessonKindLabel({ kind: 'review', number: '3' }, { kind: 'lab', number: 3 }), { zh: '实验 3', en: 'Lab 3' });
+  assert.deepEqual(lessonKindLabel({}, { kind: 'lecture', number: 4 }), { zh: '第 4 讲', en: 'Lecture 4' });
+  assert.deepEqual(lessonKindLabel(null, { kind: 'module', number: 1 }), { zh: '模块 1', en: 'Module 1' });
+});
+
 test('units are grouped into lectures, labs and other, keeping course order', () => {
   const groups = groupUnits([...UNITS, null, 'junk']);
   assert.deepEqual(groups.map((group) => group.kind), ['lecture', 'lab', 'other']);
+  assert.deepEqual(groups.map((group) => group.title), [{ zh: '讲课', en: 'Lectures' }, { zh: '实验', en: 'Labs' }, { zh: '其他', en: 'Other' }]);
   assert.deepEqual(groups[0].units.map((unit) => unit.id), ['lec01', 'lec02']);
   assert.deepEqual(groups[2].units.map((unit) => unit.id), ['extra-reading']);
   assert.deepEqual(groupUnits([{ id: 'lab01', kind: 'lab' }]).map((group) => group.kind), ['lab']);
   assert.deepEqual(groupUnits(undefined), []);
+});
+
+test('modules, tutorials and workshops get their own groups in display order', () => {
+  const groups = groupUnits([
+    { id: 'lab01', kind: 'lab', number: 1 },
+    { id: 'wks01', kind: 'workshop', number: 1 },
+    { id: 'mod02', kind: 'module', number: 2 },
+    { id: 'tut01', kind: 'tutorial', number: 1 },
+    { id: 'mod01', kind: 'module', number: 1 },
+  ]);
+  assert.deepEqual(groups.map((group) => group.kind), ['module', 'lab', 'tutorial', 'workshop']);
+  assert.deepEqual(groups.map((group) => group.title.zh), ['模块', '实验', '辅导', '工作坊']);
+  assert.deepEqual(groups[0].units.map((unit) => unit.id), ['mod02', 'mod01']);
+});
+
+test('lecture and module cards share the main-unit style; labs keep theirs', () => {
+  assert.equal(unitCardVariant('lecture'), 'lecture');
+  assert.equal(unitCardVariant('module'), 'lecture');
+  assert.equal(unitCardVariant('lab'), 'lab');
+  assert.equal(unitCardVariant('reading'), 'lecture');
+  assert.equal(unitCardVariant(undefined), 'lecture');
 });
 
 test('neighbours follow course.units order across lectures and labs', () => {

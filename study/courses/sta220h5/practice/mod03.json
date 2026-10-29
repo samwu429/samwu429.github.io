@@ -1,0 +1,2164 @@
+{
+  "lessonId": "mod03",
+  "questions": [
+    {
+      "id": "mod03-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-distribution-outliers",
+      "prompt": {
+        "en": "Which of the following best describes an outlier?",
+        "zh": "下面哪一项最能描述离群值（outlier）？"
+      },
+      "options": [
+        {
+          "en": "An individual value that falls outside the overall pattern of the data",
+          "zh": "落在数据整体模式之外的单个值"
+        },
+        {
+          "en": "The value that occurs most often in the data",
+          "zh": "数据里出现次数最多的值"
+        },
+        {
+          "en": "Any value that is larger than the mean",
+          "zh": "任何比均值大的值"
+        },
+        {
+          "en": "The middle value of the sorted data",
+          "zh": "排好序后正中间的那个值"
+        },
+        {
+          "en": "A bin of a histogram that has no cases in it",
+          "zh": "直方图里一个没有任何个案的组"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件 p.7：离群值（**outlier**）是“落在整体模式之外的单个值”（an individual value that falls outside the overall pattern），所以选 A。B 说的是众数（**mode**）；D 说的是中位数（**median**）；E 说的是直方图里的空档（**gap**），那是一个没有数据的组，不是一个值。C 错在“比均值大就算”：差不多一半的数据都比均值大，它们大多就在整体模式里面，一点也不特别。离群值要明显离开“大部队”，而且可以特别小，也可以特别大。",
+        "en": "An outlier is an individual value that falls outside the overall pattern (p.7). B is the mode, D is the median and E is a gap; many ordinary values are larger than the mean."
+      }
+    },
+    {
+      "id": "mod03-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s04-histogram-basics",
+      "prompt": {
+        "en": "A researcher records how many minutes each of 60 UTM students spends commuting to campus. Which of the following is the most appropriate way to display the distribution of commuting time?",
+        "zh": "一位研究者记录了 60 名 UTM 学生每人通勤到学校要花多少分钟。下面哪一种最适合用来展示通勤时间的分布？"
+      },
+      "options": [
+        {
+          "en": "Pie chart",
+          "zh": "饼图"
+        },
+        {
+          "en": "Bar chart",
+          "zh": "条形图"
+        },
+        {
+          "en": "Segmented bar chart",
+          "zh": "分段条形图"
+        },
+        {
+          "en": "Histogram",
+          "zh": "直方图"
+        },
+        {
+          "en": "Two-way (contingency) table",
+          "zh": "二维表（列联表）"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "先判断变量类型：通勤时间是分钟数，是测量出来、可以求平均的数，属于数值变量（**quantitative variable**）。课件 p.9：直方图（**histogram**）展示一个数值变量的整个分布，所以选 D。A 饼图（pie chart）和 B 条形图（bar chart）是 Module 2 给分类变量（**categorical variable**）用的；C 分段条形图（segmented bar chart）和 E 二维表（two-way table）用来看两个分类变量之间的关系。2025 期中 Q21 正好反过来考：MAC 还是 PC 是分类变量，答案是条形图，直方图、茎叶图、点图都是干扰项。同类题：2025 期中 Q21。",
+        "en": "Commuting time is quantitative, so a histogram shows its distribution. Pie charts, bar charts, segmented bar charts and two-way tables are tools for categorical variables."
+      }
+    },
+    {
+      "id": "mod03-q03",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s04-histogram-basics",
+      "prompt": {
+        "en": "Using its default settings, R's hist() draws a histogram with the bars 20-30, 30-40 and 40-50. One case in the data has the value exactly 30. In which bar is this case counted?",
+        "zh": "R 的 hist() 用默认设置画出了 20–30、30–40、40–50 三根柱子。数据里有一个个案的值正好是 30。它被算在哪根柱子里？"
+      },
+      "options": [
+        {
+          "en": "The 30-40 bar",
+          "zh": "30–40 那根柱子"
+        },
+        {
+          "en": "Both bars",
+          "zh": "两根柱子都算"
+        },
+        {
+          "en": "The 20-30 bar",
+          "zh": "20–30 那根柱子"
+        },
+        {
+          "en": "Neither bar",
+          "zh": "两根柱子都不算"
+        },
+        {
+          "en": "Half in each bar",
+          "zh": "两根柱子各算一半"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "R 的 hist() 默认用右闭区间（**right-closed**）(a, b]：左端不算在内，右端算在内。所以 20–30 那根柱子其实是 (20, 30]，意思是“大于 20、且最多为 30”，正好 30 就算在这里，选 C。A 是课件 p.8 学生海报的规则 [a, b)（边界值放进右边的柱子），不是 R 的规则。一个个案只能算一次、只能在一根柱子里，所以 B（算两次）和 E（拆成两半）都不对；D 会让这个个案凭空消失，柱子加起来就不等于 n 了。课件证据：甜甜圈直方图的第一根柱子是 6，正好包括两个 200（p.14、p.16）。",
+        "en": "R's hist() uses right-closed bins (a, b], so the 20-30 bar is (20, 30] and contains 30. Each case is counted once, in exactly one bar."
+      }
+    },
+    {
+      "id": "mod03-q04",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s05-shape-peaks",
+      "prompt": {
+        "en": "A histogram of the weights of 200 dogs seen at a vet clinic shows one hump around 8 kg (mostly small breeds) and another hump around 30 kg (mostly large breeds), with few dogs in between. How is the shape of this distribution best described?",
+        "zh": "一家宠物医院记录了 200 只狗的体重。直方图在 8 kg 左右有一个峰（多数是小型犬），在 30 kg 左右又有一个峰（多数是大型犬），中间的狗很少。这个分布的形状最好怎么描述？"
+      },
+      "options": [
+        {
+          "en": "Unimodal",
+          "zh": "单峰"
+        },
+        {
+          "en": "Bimodal",
+          "zh": "双峰"
+        },
+        {
+          "en": "Uniform",
+          "zh": "均匀"
+        },
+        {
+          "en": "Multimodal",
+          "zh": "多峰（三个或更多峰）"
+        },
+        {
+          "en": "Skewed to the left",
+          "zh": "左偏"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "数一数峰（**peak**，也叫 hump 或 mode）：8 kg 一个，30 kg 一个，一共两个，所以是双峰（**bimodal**），选 B（课件 p.10）。两个峰常常说明数据里混着两组：这里是小型犬和大型犬，就像 p.12 谷物的含糖量分成低糖组和高糖组。A 单峰（unimodal）只有一个峰；D 多峰（multimodal）要三个或更多峰；C 均匀分布（uniform）没有明显的峰，柱子都差不多高；E 左偏说的是“长尾巴在左边”，和两个峰对不上。同类题：Module 3 Practice Q1a、Q3a（直方图都是 bimodal）。",
+        "en": "Two clear peaks make the histogram bimodal; two peaks often mean two groups mixed in one data set (p.10, p.12)."
+      }
+    },
+    {
+      "id": "mod03-q05",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s06-shape-symmetry-skew",
+      "prompt": {
+        "en": "A histogram of the scores of 120 students on an easy quiz (out of 20) shows most scores between 16 and 20, and a long thin tail that stretches down to about 4. What is the shape of the distribution of quiz scores?",
+        "zh": "120 名学生做了一个很简单的小测验（满分 20）。成绩直方图显示：大多数分数在 16 到 20 之间，还有一条又长又细的尾巴一直拉到 4 分左右。小测验成绩分布的形状是什么？"
+      },
+      "options": [
+        {
+          "en": "Bell-shaped and symmetric",
+          "zh": "钟形且对称"
+        },
+        {
+          "en": "Normal",
+          "zh": "正态（Normal）"
+        },
+        {
+          "en": "Symmetric but not bell-shaped",
+          "zh": "对称但不是钟形"
+        },
+        {
+          "en": "Skewed to the right",
+          "zh": "右偏"
+        },
+        {
+          "en": "Skewed to the left",
+          "zh": "左偏"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "偏斜（**skewed**）按“长尾巴（**tail**）在哪一边”起名字（课件 p.10）。这里尾巴从高分一直拉到 4 分，在数轴的左边，所以是左偏（**skewed to the left**），选 E。p.11 也写着：左偏 = 尾巴在左边，大多数观测值在右边，正好就是“大多数人考 16–20 分”。D 是最常见的错：看到数据堆在右边（高分）就说右偏，按“大部队的位置”起了名字。A、B 都要求一个峰在中间、两边对称（考试把它们列成两个选项；钟形的直方图选 A，理由见 s06）；C 也要求两边对称。这里一边长、一边短，都不对。同类题：2025 期中 Q16（五个选项一模一样）。",
+        "en": "Skew is named after the longer tail. The tail stretches toward the low scores (left), so the distribution is skewed to the left; D names the side where most scores pile up."
+      }
+    },
+    {
+      "id": "mod03-q06",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s06-shape-symmetry-skew",
+      "prompt": {
+        "en": "A professor recorded how many times each student in a large class visited office hours this term. The relative frequency distribution is shown below. What would you expect the shape of this distribution to be?",
+        "zh": "一位教授记录了一个大班里每个学生这学期去了几次 office hours（答疑时间）。相对频率分布见下表。你预计这个分布的形状是什么？"
+      },
+      "table": {
+        "headers": [
+          "Visits to office hours",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "rows": [
+          [
+            "Relative frequency",
+            "0.40",
+            "0.25",
+            "0.15",
+            "0.10",
+            "0.06",
+            "0.04"
+          ]
+        ],
+        "caption": {
+          "en": "The relative frequencies add up to 1.00.",
+          "zh": "相对频率加起来等于 1.00。"
+        }
+      },
+      "options": [
+        {
+          "en": "Bell-shaped and symmetric",
+          "zh": "钟形且对称"
+        },
+        {
+          "en": "Normal",
+          "zh": "正态（Normal）"
+        },
+        {
+          "en": "Symmetric but not bell-shaped",
+          "zh": "对称但不是钟形"
+        },
+        {
+          "en": "Skewed to the right",
+          "zh": "右偏"
+        },
+        {
+          "en": "Skewed to the left",
+          "zh": "左偏"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "把相对频率（**relative frequency**）当成柱子的高度来看：0 次最高（0.40），然后 0.25、0.15、0.10、0.06、0.04，越来越矮。最高的柱子在左边（小的值），一条细尾巴拉向右边（5 次），所以是右偏（**skewed to the right**），选 D。E 把方向弄反了：峰在左边，尾巴才在右边。A、B、C 都需要左右对称，可这里高度一路往下掉，不对称。2025 期中 Q11 是反过来的情况：相对频率一路往上升，峰在最大的值，答案是 Skewed to the left。同类题：2025 期中 Q11。",
+        "en": "The tallest bar is at 0 visits and the heights fall toward 5, so the thin tail is on the right: skewed to the right."
+      }
+    },
+    {
+      "id": "mod03-q07",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s06-shape-symmetry-skew",
+      "prompt": {
+        "en": "A histogram of the last digit (0 to 9) of 1,000 phone numbers has ten bars that are all about the same height. Which of the following describes the shape of this distribution?",
+        "zh": "把 1,000 个电话号码的最后一位数字（0 到 9）画成直方图，十根柱子差不多一样高。下面哪一项描述了这个分布的形状？"
+      },
+      "options": [
+        {
+          "en": "Bell-shaped and symmetric",
+          "zh": "钟形且对称"
+        },
+        {
+          "en": "Normal",
+          "zh": "正态（Normal）"
+        },
+        {
+          "en": "Symmetric but not bell-shaped",
+          "zh": "对称但不是钟形"
+        },
+        {
+          "en": "Skewed to the right",
+          "zh": "右偏"
+        },
+        {
+          "en": "Skewed to the left",
+          "zh": "左偏"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "柱子都差不多高、没有明显的峰，这是均匀分布（**uniform distribution**），见课件 p.10–11（p.11 的图 (b) 就是 0–9 每个数字各出现约 1000 次）。从中间对折，左右能对上，所以它是对称（**symmetric**）的；但它没有中间那个高高的峰，所以不是钟形（**bell-shaped**）。答案是 C：Symmetric but not bell-shaped。A 和 B 都要求一个峰在中间、两边慢慢变低（两者是分开的选项，钟形的直方图选 A，见 s06）；D 和 E 要求一边有长尾巴，这里两边一样高，没有尾巴。",
+        "en": "Bars of about equal height form a uniform distribution: it is symmetric (the fold test matches) but has no central peak, so it is not bell-shaped."
+      }
+    },
+    {
+      "id": "mod03-q08",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s07-histogram-percentages",
+      "prompt": {
+        "en": "The commuting times (in minutes) of 40 UTM students were plotted with R's hist(). The bin counts are shown below. What percentage of the 40 students commute more than 30 minutes?",
+        "zh": "40 名 UTM 学生的通勤时间（分钟）用 R 的 hist() 画成了直方图，每组的个数见下表。40 名学生中，通勤时间超过 30 分钟（more than 30）的占百分之几？"
+      },
+      "table": {
+        "headers": [
+          "Commuting time (minutes)",
+          "Number of students"
+        ],
+        "rows": [
+          [
+            "(0, 10]",
+            6
+          ],
+          [
+            "(10, 20]",
+            13
+          ],
+          [
+            "(20, 30]",
+            10
+          ],
+          [
+            "(30, 40]",
+            7
+          ],
+          [
+            "(40, 50]",
+            3
+          ],
+          [
+            "(50, 60]",
+            1
+          ],
+          [
+            "Total",
+            40
+          ]
+        ],
+        "caption": {
+          "en": "Bin counts from R's hist(Commute). A bin (a, b] holds the times that are more than a and at most b.",
+          "zh": "R 的 hist(Commute) 的分组个数。(a, b] 这一组装的是“大于 a、且最多为 b”的时间。"
+        }
+      },
+      "options": [
+        {
+          "en": "27.5",
+          "zh": "27.5"
+        },
+        {
+          "en": "0.275",
+          "zh": "0.275"
+        },
+        {
+          "en": "11",
+          "zh": "11"
+        },
+        {
+          "en": "52.5",
+          "zh": "52.5"
+        },
+        {
+          "en": "17.5",
+          "zh": "17.5"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "第 1 步：more than 30 = 大于 30（> 30），30 本身不算。第 2 步：R 的组是 (a, b]，(30, 40]、(40, 50]、(50, 60] 三组里的值都大于 30，正好对得上：7 + 3 + 1 = 11 人；(20, 30] 组里的值都 ≤ 30，一个也不算。第 3 步：比例（**proportion**）= 11/40 = 0.275，百分比 = 0.275 × 100 = 27.5%，选 A。B 0.275 是比例，题目问的是百分比（**percentage**）；C 11 是人数；D 52.5 = 21/40，多加了 (20, 30] 那根柱子；E 17.5 = 7/40，只算了 (30, 40] 一根。同类题：2025 期中 Q15、Module 3 Practice Q3b。",
+        "en": "More than 30 means the (30, 40], (40, 50] and (50, 60] bars: 7 + 3 + 1 = 11 students, and 11/40 = 0.275 = 27.5%."
+      }
+    },
+    {
+      "id": "mod03-q09",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-histogram-percentages",
+      "prompt": {
+        "en": "The commuting times (in minutes) of 40 UTM students were plotted with R's hist(). The bin counts are shown below. What percentage of the 40 students commute at most 20 minutes?",
+        "zh": "40 名 UTM 学生的通勤时间（分钟）用 R 的 hist() 画成了直方图，每组的个数见下表。40 名学生中，通勤时间最多 20 分钟（at most 20）的占百分之几？"
+      },
+      "table": {
+        "headers": [
+          "Commuting time (minutes)",
+          "Number of students"
+        ],
+        "rows": [
+          [
+            "(0, 10]",
+            6
+          ],
+          [
+            "(10, 20]",
+            13
+          ],
+          [
+            "(20, 30]",
+            10
+          ],
+          [
+            "(30, 40]",
+            7
+          ],
+          [
+            "(40, 50]",
+            3
+          ],
+          [
+            "(50, 60]",
+            1
+          ],
+          [
+            "Total",
+            40
+          ]
+        ],
+        "caption": {
+          "en": "Bin counts from R's hist(Commute). A bin (a, b] holds the times that are more than a and at most b.",
+          "zh": "R 的 hist(Commute) 的分组个数。(a, b] 这一组装的是“大于 a、且最多为 b”的时间。"
+        }
+      },
+      "options": [
+        {
+          "en": "15",
+          "zh": "15"
+        },
+        {
+          "en": "32.5",
+          "zh": "32.5"
+        },
+        {
+          "en": "72.5",
+          "zh": "72.5"
+        },
+        {
+          "en": "0.475",
+          "zh": "0.475"
+        },
+        {
+          "en": "47.5",
+          "zh": "47.5"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "at most 20 = 最多 20 = 20 或更少（≤ 20），20 本身也算。R 的组是 (a, b]，(10, 20] 的右端 20 算在里面，所以 (0, 10] 和 (10, 20] 两组正好是 ≤ 20 的全部：6 + 13 = 19 人，19/40 = 0.475 = 47.5%，选 E。A 15 = 6/40，只算了第一组；B 32.5 = 13/40，只算了 (10, 20]；C 72.5 = 29/40，把 (20, 30] 也加进来了；D 0.475 是比例，不是百分比。课件同款：p.14 的 “at most 200” 就是第一根柱子，6/30 = 20%。",
+        "en": "At most 20 means 20 or less: the (0, 10] and (10, 20] bars, 6 + 13 = 19 students, and 19/40 = 0.475 = 47.5%."
+      }
+    },
+    {
+      "id": "mod03-q10",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s07-histogram-percentages",
+      "prompt": {
+        "en": "A tech blog measured the battery life (in hours) of 25 phones and plotted the data with R's hist(). The bin counts are shown below. What percentage of the phones lasted more than 8 hours and at most 12 hours? Give your answer as a percentage.",
+        "zh": "一个科技博客测了 25 部手机的电池续航（小时），并用 R 的 hist() 画了直方图，各组个数见下表。续航“超过 8 小时、且最多 12 小时”的手机占百分之几？答案写成百分比。"
+      },
+      "table": {
+        "headers": [
+          "Battery life (hours)",
+          "Number of phones"
+        ],
+        "rows": [
+          [
+            "(4, 6]",
+            2
+          ],
+          [
+            "(6, 8]",
+            5
+          ],
+          [
+            "(8, 10]",
+            9
+          ],
+          [
+            "(10, 12]",
+            6
+          ],
+          [
+            "(12, 14]",
+            3
+          ],
+          [
+            "Total",
+            25
+          ]
+        ],
+        "caption": {
+          "en": "Bin counts from R's hist(Battery). A bin (a, b] holds the values that are more than a and at most b.",
+          "zh": "R 的 hist(Battery) 的分组个数。(a, b] 这一组装的是“大于 a、且最多为 b”的值。"
+        }
+      },
+      "answer": 60,
+      "tolerance": 0.5,
+      "unit": "%",
+      "explain": {
+        "zh": "第 1 步，把字眼变成不等式：more than 8 → x > 8；at most 12 → x ≤ 12。第 2 步：R 的组是 (a, b]，(8, 10] 和 (10, 12] 合起来正好是“x > 8 且 x ≤ 12”，所以直方图能直接回答（和课件 p.19–20 的 “more than 250 to including 300” 是一个道理）：9 + 6 = 15 部。第 3 步：15/25 = 0.60 = 60%。常见错误：多加 (12, 14] 得 18/25 = 72%；只算 (8, 10] 得 9/25 = 36%；从 (6, 8] 开始加得 20/25 = 80%；或者交了 0.60（比例）、15（个数）。",
+        "en": "More than 8 and at most 12 is the (8, 10] and (10, 12] bars: 9 + 6 = 15 phones, and 15/25 = 0.60 = 60%."
+      }
+    },
+    {
+      "id": "mod03-q11",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s08-bar-edges-raw-data",
+      "prompt": {
+        "en": "The commuting times (in minutes) of 40 UTM students were plotted with R's hist(). The bin counts are shown below. Which question CANNOT be answered exactly from these bin counts alone?",
+        "zh": "40 名 UTM 学生的通勤时间（分钟）用 R 的 hist() 画成了直方图，每组的个数见下表。下面哪个问题只靠这些分组个数**没法**准确回答？"
+      },
+      "table": {
+        "headers": [
+          "Commuting time (minutes)",
+          "Number of students"
+        ],
+        "rows": [
+          [
+            "(0, 10]",
+            6
+          ],
+          [
+            "(10, 20]",
+            13
+          ],
+          [
+            "(20, 30]",
+            10
+          ],
+          [
+            "(30, 40]",
+            7
+          ],
+          [
+            "(40, 50]",
+            3
+          ],
+          [
+            "(50, 60]",
+            1
+          ],
+          [
+            "Total",
+            40
+          ]
+        ],
+        "caption": {
+          "en": "Bin counts from R's hist(Commute). A bin (a, b] holds the times that are more than a and at most b.",
+          "zh": "R 的 hist(Commute) 的分组个数。(a, b] 这一组装的是“大于 a、且最多为 b”的时间。"
+        }
+      },
+      "options": [
+        {
+          "en": "What percentage of the students commute at most 20 minutes?",
+          "zh": "通勤最多 20 分钟的学生占百分之几？"
+        },
+        {
+          "en": "What percentage of the students commute more than 40 minutes?",
+          "zh": "通勤超过 40 分钟的学生占百分之几？"
+        },
+        {
+          "en": "What percentage of the students commute at least 30 minutes?",
+          "zh": "通勤至少 30 分钟的学生占百分之几？"
+        },
+        {
+          "en": "What percentage of the students commute more than 10 minutes and at most 30 minutes?",
+          "zh": "通勤超过 10 分钟、且最多 30 分钟的学生占百分之几？"
+        },
+        {
+          "en": "What percentage of the students commute at most 60 minutes?",
+          "zh": "通勤最多 60 分钟的学生占百分之几？"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "at least 30 = 至少 30 = 30 或更多（≥ 30），30 本身要算。可是 R 的组是 (a, b]，正好 30 分钟的学生被装进了 (20, 30] 那根柱子，和这根柱子里的其他人混在一起，光看柱子不知道有几个人正好是 30。所以 C 只能回到原始数据（**raw data**）去数，例如 `length(Commute[Commute >= 30])`（课件 p.17–18 的 “at least 300” 就是这样做的）。其他四个都和柱子的边界对得上：A（≤ 20）= 前两组 6 + 13 = 19 人（47.5%）；B（> 40）= 最后两组 3 + 1 = 4 人（10%）；D（x > 10 且 x ≤ 30）= (10, 20] 和 (20, 30] 两组 13 + 10 = 23 人（57.5%）；E（≤ 60）= 全部 40 人（100%）。",
+        "en": "At least 30 includes 30 itself, but a student with exactly 30 minutes is inside the (20, 30] bar, so the raw data are needed. The other four conditions line up with bar edges."
+      }
+    },
+    {
+      "id": "mod03-q12",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s08-bar-edges-raw-data",
+      "prompt": {
+        "en": "The commuting times (in minutes) of 40 UTM students were plotted with R's hist(); the bin counts are shown below. A student also ran this R code on the raw data:\n`> sort(Commute[Commute >= 30])`\n`[1] 30 30 30 32 33 35 35 37 38 40 42 45 48 55`\n`> length(Commute[Commute >= 30])`\n`[1] 14`\nWhat percentage of the 40 students commute at least 30 minutes?",
+        "zh": "40 名 UTM 学生的通勤时间（分钟）用 R 的 hist() 画成了直方图，各组个数见下表。另外有同学用原始数据在 R 里运行了下面的代码：\n`> sort(Commute[Commute >= 30])`\n`[1] 30 30 30 32 33 35 35 37 38 40 42 45 48 55`\n`> length(Commute[Commute >= 30])`\n`[1] 14`\n40 名学生中，通勤时间至少 30 分钟（at least 30）的占百分之几？"
+      },
+      "table": {
+        "headers": [
+          "Commuting time (minutes)",
+          "Number of students"
+        ],
+        "rows": [
+          [
+            "(0, 10]",
+            6
+          ],
+          [
+            "(10, 20]",
+            13
+          ],
+          [
+            "(20, 30]",
+            10
+          ],
+          [
+            "(30, 40]",
+            7
+          ],
+          [
+            "(40, 50]",
+            3
+          ],
+          [
+            "(50, 60]",
+            1
+          ],
+          [
+            "Total",
+            40
+          ]
+        ],
+        "caption": {
+          "en": "Bin counts from R's hist(Commute). A bin (a, b] holds the times that are more than a and at most b.",
+          "zh": "R 的 hist(Commute) 的分组个数。(a, b] 这一组装的是“大于 a、且最多为 b”的时间。"
+        }
+      },
+      "options": [
+        {
+          "en": "27.5",
+          "zh": "27.5"
+        },
+        {
+          "en": "35",
+          "zh": "35"
+        },
+        {
+          "en": "52.5",
+          "zh": "52.5"
+        },
+        {
+          "en": "14",
+          "zh": "14"
+        },
+        {
+          "en": "0.35",
+          "zh": "0.35"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "at least 30 = 30 或更多（≥ 30），正好 30 也要算。R 的输出已经帮我们数好了：≥ 30 的有 14 人，其中前三个 30 就藏在 (20, 30] 那根柱子里。14/40 = 0.35 = 35%，选 B。A 27.5 = 11/40，只加了 30 后面的三根柱子 7 + 3 + 1，漏掉了三个正好 30 分钟的人，这就是课件 p.17–18 的陷阱（甜甜圈“至少 300 卡”不是 10%，而是 5/30 = 16.67%）；C 52.5 = 21/40，把整根 (20, 30] 柱子都加了进来，可那根柱子里只有 3 个人是 30；D 14 是人数；E 0.35 是比例。核对：R 列出的 14 个值里，3 个是 30，7 个在 (30, 40]，3 个在 (40, 50]，1 个在 (50, 60]，和表格对得上。",
+        "en": "R counts 14 values of at least 30 (three of them equal 30 and sit in the (20, 30] bar), so 14/40 = 0.35 = 35%. Adding only the bars after 30 (27.5%) misses the three 30s."
+      }
+    },
+    {
+      "id": "mod03-q13",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s08-bar-edges-raw-data",
+      "prompt": {
+        "en": "The commuting times (in minutes) of 40 UTM students were plotted with R's hist(); the bin counts are shown below. Explain why the percentage of students who commute at least 30 minutes cannot be read from this histogram, and describe how to find it.",
+        "zh": "40 名 UTM 学生的通勤时间（分钟）用 R 的 hist() 画成了直方图，各组个数见下表。解释为什么“通勤至少 30 分钟的学生占百分之几”不能从这张直方图直接读出来，并说明应该怎样求。"
+      },
+      "table": {
+        "headers": [
+          "Commuting time (minutes)",
+          "Number of students"
+        ],
+        "rows": [
+          [
+            "(0, 10]",
+            6
+          ],
+          [
+            "(10, 20]",
+            13
+          ],
+          [
+            "(20, 30]",
+            10
+          ],
+          [
+            "(30, 40]",
+            7
+          ],
+          [
+            "(40, 50]",
+            3
+          ],
+          [
+            "(50, 60]",
+            1
+          ],
+          [
+            "Total",
+            40
+          ]
+        ],
+        "caption": {
+          "en": "Bin counts from R's hist(Commute). A bin (a, b] holds the times that are more than a and at most b.",
+          "zh": "R 的 hist(Commute) 的分组个数。(a, b] 这一组装的是“大于 a、且最多为 b”的时间。"
+        }
+      },
+      "modelAnswer": {
+        "en": "R's hist() uses right-closed bins (a, b], so a student who commutes exactly 30 minutes is counted in the (20, 30] bar, together with the other times in that bar. The bars after 30 only contain commutes of more than 30 minutes, so adding them (11/40 = 27.5%) answers 'more than 30', not 'at least 30'. We need the raw data: count the commutes of 30 minutes or more, for example with `length(Commute[Commute >= 30])`, then divide the count by n = 40 and multiply by 100.",
+        "zh": "得分点拆开看：① R 的 hist() 是右闭区间 (a, b]，右端算在组里；② 正好 30 分钟的人在 (20, 30] 那根柱子里，和这根柱子的其他人混在一起，看不出有几个；③ 30 后面的柱子加起来只是 “more than 30”（> 30，27.5%），不是 “at least 30”（≥ 30）；④ 要用原始数据数出 ≥ 30 的个数（例如 `length(Commute[Commute >= 30])`），再除以 n = 40，乘 100 变成百分比。"
+      },
+      "points": [
+        {
+          "en": "States that R's hist() bins are right-closed (a, b]: the right edge is included",
+          "zh": "说出 R 的 hist() 分组是右闭区间 (a, b]：右端算在组里"
+        },
+        {
+          "en": "A commute of exactly 30 minutes is counted in the (20, 30] bar, so the bars cannot show how many are exactly 30",
+          "zh": "正好 30 分钟的人算在 (20, 30] 那根柱子里，所以看柱子不知道有几个正好是 30"
+        },
+        {
+          "en": "The bars after 30 give 'more than 30' (27.5%), not 'at least 30'",
+          "zh": "30 后面的柱子给的是“超过 30”（27.5%），不是“至少 30”"
+        },
+        {
+          "en": "Counts the commutes of 30 or more in the raw data (e.g. length(Commute[Commute >= 30])) and divides by n = 40",
+          "zh": "用原始数据数出 ≥ 30 的个数（如 length(Commute[Commute >= 30])），再除以 n = 40"
+        }
+      ],
+      "explain": {
+        "zh": "这题对应课件 p.17–18 甜甜圈“至少 300 卡”的问题：两个正好 300 卡的甜甜圈在 (250, 300] 柱子里，只加最后两根柱子得到 3 个（10%），把它们漏掉了；R 用原始数据数出来是 5 个，5/30 = 16.67%。用英文写答案时，关键词是 right-closed、(a, b]、exactly 30、raw data、divide by n。如果原始数据里有 14 个值 ≥ 30，答案就是 14/40 = 35%。"
+      }
+    },
+    {
+      "id": "mod03-q14",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s10-stem-and-leaf",
+      "prompt": {
+        "en": "The final-exam marks of 25 students were displayed in R with `stem(Marks, scale = 2)`. The output is shown below. Which statement is correct?",
+        "zh": "25 名学生的期末考试分数用 R 的 `stem(Marks, scale = 2)` 画成了茎叶图，输出见下表。哪一句是对的？"
+      },
+      "table": {
+        "headers": [
+          "Stem",
+          "Leaf"
+        ],
+        "rows": [
+          [
+            "3",
+            "8"
+          ],
+          [
+            "4",
+            ""
+          ],
+          [
+            "5",
+            "26"
+          ],
+          [
+            "6",
+            "0347"
+          ],
+          [
+            "7",
+            "1235889"
+          ],
+          [
+            "8",
+            "0124567"
+          ],
+          [
+            "9",
+            "0236"
+          ]
+        ],
+        "caption": {
+          "en": "R output of stem(Marks, scale = 2). The decimal point is 1 digit(s) to the right of the |",
+          "zh": "R 的 stem(Marks, scale = 2) 输出。刻度行：The decimal point is 1 digit(s) to the right of the |（小数点在竖线右边 1 位）"
+        }
+      },
+      "options": [
+        {
+          "en": "The minimum is 38 and the distribution is skewed to the left.",
+          "zh": "最小值是 38，分布左偏。"
+        },
+        {
+          "en": "The minimum is 3.8 and the distribution is skewed to the left.",
+          "zh": "最小值是 3.8，分布左偏。"
+        },
+        {
+          "en": "The minimum is 38 and the distribution is skewed to the right.",
+          "zh": "最小值是 38，分布右偏。"
+        },
+        {
+          "en": "The maximum is 9.6 and the distribution is symmetric.",
+          "zh": "最大值是 9.6，分布对称。"
+        },
+        {
+          "en": "The maximum is 96 and the distribution is uniform.",
+          "zh": "最大值是 96，分布均匀。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "第 1 步，先读刻度行（课件 p.24 用红框圈出来的那一行）：小数点在竖线右边 1 位，所以 3 | 8 = 38，9 | 6 = 96。最小值是第一行的第一片叶子 38，最大值是最后一行的最后一片叶子 96。B 的 3.8 和 D 的 9.6 都是没看刻度行。第 2 步，看形状：把头向右歪（p.25），叶子最多的是 70 和 80 那两行（各 7 片），往低分走越来越少，40 那一行是空的，最后孤零零一个 38。长尾巴在低分那边，也就是左边，所以是左偏（**skewed to the left**），选 A。C 把方向说反了；D 对称、E 均匀都要求两边差不多，这里不是。核对：均值 75.28 小于中位数 78（第 13 个值），也符合左偏。",
+        "en": "The scale line says 3 | 8 = 38, so the minimum is 38 and the maximum is 96. Most leaves are in the 70s and 80s with a long tail down to 38, so the distribution is skewed to the left."
+      }
+    },
+    {
+      "id": "mod03-q15",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s13-mean",
+      "prompt": {
+        "en": "The numbers of cups of coffee that 8 students drank last week are:\n3, 7, 0, 5, 12, 4, 6, 3\nWhat is the mean number of cups of coffee?",
+        "zh": "8 名学生上周喝咖啡的杯数是：\n3, 7, 0, 5, 12, 4, 6, 3\n喝咖啡杯数的均值是多少？"
+      },
+      "options": [
+        {
+          "en": "4.5",
+          "zh": "4.5"
+        },
+        {
+          "en": "5.71",
+          "zh": "5.71"
+        },
+        {
+          "en": "3",
+          "zh": "3"
+        },
+        {
+          "en": "6",
+          "zh": "6"
+        },
+        {
+          "en": "5",
+          "zh": "5"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "均值（**mean**）ȳ = Σy / n（课件 p.29）：Σ 的意思是“全部加起来”，n 是个案数。加起来：3 + 7 + 0 + 5 + 12 + 4 + 6 + 3 = 40；n = 8（喝 0 杯的同学也是一个个案，要算进去）；ȳ = 40/8 = 5 杯，选 E。A 4.5 是中位数（**median**）：排序 0, 3, 3, 4, 5, 6, 7, 12，中间两个 (4 + 5)/2 = 4.5；B 5.71 = 40/7，除以了 n − 1（那是方差才用的），或者把喝 0 杯的同学漏掉了；C 3 是众数（**mode**），出现了两次；D 6 = (0 + 12)/2，只用了最小值和最大值。同类题：Module 3 Practice Q1b、Q2b、Q3d（求均值）。",
+        "en": "ȳ = Σy / n = 40/8 = 5 cups. 4.5 is the median, 5.71 divides by 7, 3 is the mode and 6 averages only the smallest and largest values."
+      }
+    },
+    {
+      "id": "mod03-q16",
+      "type": "short",
+      "difficulty": 1,
+      "sectionId": "s13-mean",
+      "prompt": {
+        "en": "A sample of 50 UTM students reported their monthly phone bills. The mean monthly phone bill is $62.40. Interpret this value in the context of the data.",
+        "zh": "50 名 UTM 学生报告了自己每月的手机话费。每月话费的均值是 $62.40。结合数据的情境解释这个数。"
+      },
+      "modelAnswer": {
+        "en": "On average, the 50 UTM students in this sample pay $62.40 per month for their phone bill.",
+        "zh": "套课件 p.30 的句型：On average, [个案] have/pay [均值] [单位]. 拆开：① 用 On average 开头；② 说清楚个案是谁：这个样本里的 50 名 UTM 学生；③ 写出数值和单位：$62.40 per month；④ 不要写成“每个学生都付 $62.40”——均值是“总额平均分下来”每人多少，不一定是任何一个人的真实话费。"
+      },
+      "points": [
+        {
+          "en": "Starts with 'On average'",
+          "zh": "用 On average 开头"
+        },
+        {
+          "en": "Names the cases: the 50 UTM students in the sample",
+          "zh": "说出个案：样本里的 50 名 UTM 学生"
+        },
+        {
+          "en": "Gives the value with units: $62.40 per month",
+          "zh": "写出数值和单位：每月 $62.40"
+        },
+        {
+          "en": "Does not claim that every student pays $62.40",
+          "zh": "不说“每个学生都付 $62.40”"
+        }
+      ],
+      "explain": {
+        "zh": "课件 p.30 的原句是 On average, Tim Hortons donuts (in 2014) have 251 calories. 换成这题的情境就行。注意 $62.40 是样本均值 ȳ（**sample mean**），因为数据来自 50 名学生组成的样本，不是全体 UTM 学生（全体的均值是总体均值 μ）。"
+      }
+    },
+    {
+      "id": "mod03-q17",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s14-median",
+      "prompt": {
+        "en": "The bus waiting times (in minutes) of 10 students are:\n12, 5, 9, 20, 7, 15, 9, 31, 6, 10\nWhat is the median waiting time?",
+        "zh": "10 名学生等公交车的时间（分钟）是：\n12, 5, 9, 20, 7, 15, 9, 31, 6, 10\n等车时间的中位数是多少？"
+      },
+      "options": [
+        {
+          "en": "11",
+          "zh": "11"
+        },
+        {
+          "en": "9.5",
+          "zh": "9.5"
+        },
+        {
+          "en": "12.4",
+          "zh": "12.4"
+        },
+        {
+          "en": "9",
+          "zh": "9"
+        },
+        {
+          "en": "10",
+          "zh": "10"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "中位数（**median**）一定要先排序（课件 p.32）：5, 6, 7, 9, 9, 10, 12, 15, 20, 31。n = 10 是偶数，位置 0.5 × (10 + 1) = 5.5，意思是第 5 个和第 6 个值的平均：(9 + 10)/2 = 9.5 分钟，选 B。A 11 是没排序，直接拿原来列表的第 5、6 个数 (7 + 15)/2；C 12.4 = 124/10 是均值（**mean**），被 31 这个大值拉高了；D 9 只取了第 5 个值，E 10 只取了第 6 个值，偶数个数据要取中间两个的平均。同类题：Module 3 Practice Q1c（n = 30，偶数）。",
+        "en": "Sorted: 5, 6, 7, 9, 9, 10, 12, 15, 20, 31. Position 0.5(10 + 1) = 5.5, so the median is (9 + 10)/2 = 9.5 minutes. 11 comes from the unsorted list and 12.4 is the mean."
+      }
+    },
+    {
+      "id": "mod03-q18",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s14-median",
+      "prompt": {
+        "en": "A data set has n = 45 values, sorted from smallest to largest. Which value is the median?",
+        "zh": "一组数据有 n = 45 个值，已经从小到大排好序。中位数是哪一个值？"
+      },
+      "options": [
+        {
+          "en": "The 22nd value",
+          "zh": "第 22 个值"
+        },
+        {
+          "en": "The average of the 22nd and 23rd values",
+          "zh": "第 22 个和第 23 个值的平均"
+        },
+        {
+          "en": "The 22.5th value",
+          "zh": "第 22.5 个值"
+        },
+        {
+          "en": "The 23rd value",
+          "zh": "第 23 个值"
+        },
+        {
+          "en": "The average of the 23rd and 24th values",
+          "zh": "第 23 个和第 24 个值的平均"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "中位数的位置 = 0.5 × (n + 1)（课件 p.32）。n = 45 是奇数：0.5 × (45 + 1) = 23，所以中位数就是第 23 个值，选 D。检查一下：第 23 个值前面有 22 个，后面也有 22 个，正好在正中间。B 和 E 是把“偶数个取中间两个平均”的规则用到了奇数上；C 用的是 n/2 = 22.5，公式记错了（要用 n + 1）；A 少算了一位。同类题：Module 3 Practice Q3e（n = 35，取第 18 个值）。",
+        "en": "Position 0.5(n + 1) = 0.5(46) = 23, so the median is the 23rd value; 22 values lie below it and 22 above it."
+      }
+    },
+    {
+      "id": "mod03-q19",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s14-median",
+      "prompt": {
+        "en": "The median monthly rent of a sample of 120 one-bedroom apartments in Mississauga is $2,150. Interpret this value in the context of the data.",
+        "zh": "在 Mississauga 抽取了 120 套一居室公寓，每月租金的中位数是 $2,150。结合数据的情境解释这个数。"
+      },
+      "modelAnswer": {
+        "en": "The median monthly rent is $2,150. This means that 50% of the one-bedroom apartments have a monthly rent of at most $2,150 ($2,150 or less), whereas 50% have a monthly rent of more than $2,150.",
+        "zh": "套课件 p.33 的句型：The median [变量] is M. This means that 50% of [个案] have at most M (M or less), whereas 50% have more than M. 拆开：① 先写出中位数和单位（每月租金 $2,150）；② 前一半：50% 的公寓每月租金最多 $2,150（at most，即 $2,150 或更少）；③ 后一半：另外 50% 的公寓每月租金超过 $2,150（more than）；④ 句子里要有个案（one-bedroom apartments）和变量（monthly rent）。"
+      },
+      "points": [
+        {
+          "en": "States the median with its units: $2,150 per month",
+          "zh": "写出中位数和单位：每月 $2,150"
+        },
+        {
+          "en": "50% of the apartments have a rent of at most $2,150 ($2,150 or less)",
+          "zh": "50% 的公寓租金最多 $2,150（$2,150 或更少）"
+        },
+        {
+          "en": "50% have a rent of more than $2,150",
+          "zh": "另外 50% 的公寓租金超过 $2,150"
+        },
+        {
+          "en": "Names the cases (one-bedroom apartments) and the variable (monthly rent)",
+          "zh": "说出个案（一居室公寓）和变量（每月租金）"
+        }
+      ],
+      "explain": {
+        "zh": "这句话是本课程的固定模板（课件 p.33；Practice Q1c、Q2c、Q3e 都这样写），考试照着写就行。常见丢分：只写 half below, half above，没有情境和单位；把 at most 写成 less than（少了“等于”）；把中位数的句子写成均值的句子（On average ...）。"
+      }
+    },
+    {
+      "id": "mod03-q20",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s14-median",
+      "prompt": {
+        "en": "In a data set of 25 values, replacing the largest value with a much larger value does not change the median.",
+        "zh": "在一组有 25 个值的数据里，把最大的那个值换成一个大得多的值，中位数不会变。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。n = 25，中位数的位置是 0.5 × (25 + 1) = 13，也就是排序后的第 13 个值。把最大值（第 25 个）变得更大，它还是排在最后，第 13 个值完全不动，所以中位数不变。这就是课件 p.32 说的：中位数是稳健的（**resistant**），因为它只看数据的顺序，不看数值本身有多大。均值就不一样了：总和变大，均值跟着变大（the mean is not resistant，p.28）。",
+        "en": "True. The median is the 13th sorted value, which does not move when the largest value grows. The median is resistant; the mean would increase."
+      }
+    },
+    {
+      "id": "mod03-q21",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s15-mean-median-caution",
+      "prompt": {
+        "en": "If the mean and the median of a data set are almost equal, the distribution must be symmetric.",
+        "zh": "如果一组数据的均值和中位数几乎相等，那么它的分布一定是对称的。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。课件 p.35 专门提醒（Caution）：甜甜圈热量的均值是 251，中位数是 250，几乎一样，可是直方图明明是右偏（**skewed to the right**）的。所以不能只靠均值和中位数判断形状，一定要看图（直方图、茎叶图或点图）。均值和中位数接近，最多说明“可能”比较对称，不是“一定”。Practice Q1 和 Q3 也是例子：只看均值和中位数会猜成偏斜，可官方答案看图说是双峰（bimodal）。",
+        "en": "False. The donut calories have mean 251 and median 250, yet their histogram is skewed to the right (p.35). Always check a graph."
+      }
+    },
+    {
+      "id": "mod03-q22",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s16-mode",
+      "prompt": {
+        "en": "A survey asked 39 students how many siblings they have. The output of table(Siblings) in R is shown below. What is the mode number of siblings?",
+        "zh": "一项调查问了 39 名学生各有几个兄弟姐妹。R 里 table(Siblings) 的输出见下表。兄弟姐妹人数的众数是多少？"
+      },
+      "table": {
+        "headers": [
+          "Siblings",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "rows": [
+          [
+            "Frequency",
+            7,
+            12,
+            12,
+            5,
+            2,
+            1
+          ]
+        ],
+        "caption": {
+          "en": "Output of table(Siblings) for 39 students.",
+          "zh": "39 名学生的 table(Siblings) 输出。"
+        }
+      },
+      "options": [
+        {
+          "en": "1 only",
+          "zh": "只有 1"
+        },
+        {
+          "en": "2 only",
+          "zh": "只有 2"
+        },
+        {
+          "en": "12",
+          "zh": "12"
+        },
+        {
+          "en": "1.5",
+          "zh": "1.5"
+        },
+        {
+          "en": "1 and 2",
+          "zh": "1 和 2"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "众数（**mode**）是出现次数最多的值（课件 p.36）。最大的频数是 12，而“1 个兄弟姐妹”和“2 个兄弟姐妹”都出现了 12 次，并列第一，所以有两个众数：1 和 2，选 E。A、B 只写了一个，漏掉了并列的那个；C 12 是频数（出现了几次），不是值本身，课件 p.39 的 `max(freq.table$Freq)` 给出的 5 也只是频数，众数是 270；D 1.5 是把两个众数求了平均，众数不能这样算。同类题：Module 3 Practice Q1d（有三个众数 8、10、17）。",
+        "en": "Both 1 and 2 have the highest frequency (12), so there are two modes: 1 and 2. 12 is a frequency, not a value."
+      }
+    },
+    {
+      "id": "mod03-q23",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-centre-from-frequency-table",
+      "prompt": {
+        "en": "A campus bookstore sells gift cards worth $10, $20, $30, $40 or $50. The relative frequency distribution of the value of the gift cards sold last month is shown below. What is the mean value (in dollars) of a gift card sold?",
+        "zh": "校园书店卖面值 $10、$20、$30、$40、$50 的礼品卡。上个月卖出的礼品卡面值的相对频率分布见下表。卖出的礼品卡面值的均值是多少（美元）？"
+      },
+      "table": {
+        "headers": [
+          "Value of gift card ($)",
+          "10",
+          "20",
+          "30",
+          "40",
+          "50"
+        ],
+        "rows": [
+          [
+            "Relative frequency",
+            "0.35",
+            "0.25",
+            "0.20",
+            "0.12",
+            "0.08"
+          ]
+        ],
+        "caption": {
+          "en": "The relative frequencies add up to 1.00.",
+          "zh": "相对频率加起来等于 1.00。"
+        }
+      },
+      "options": [
+        {
+          "en": "30",
+          "zh": "30"
+        },
+        {
+          "en": "20",
+          "zh": "20"
+        },
+        {
+          "en": "23.3",
+          "zh": "23.3"
+        },
+        {
+          "en": "10",
+          "zh": "10"
+        },
+        {
+          "en": "4.66",
+          "zh": "4.66"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "补充（课件外）：课件是用原始数据算均值的；只给相对频率表时，用 2025 期中 Q12 官方解法：均值 = Σ(值 × 相对频率)，不用再除以 n（相对频率本身就是“已经除过 n”的比例）。10(0.35) + 20(0.25) + 30(0.20) + 40(0.12) + 50(0.08) = 3.5 + 5 + 6 + 4.8 + 4 = 23.3，所以均值是 $23.30，选 C。A 30 = (10 + 20 + 30 + 40 + 50)/5，把五个面值直接平均，忽略了每种卡卖得多还是少；B 20 是中位数；D 10 是众数；E 4.66 = 23.3/5，多除了一次。同类题：2025 期中 Q12。",
+        "en": "Mean = Σ(value × relative frequency) = 3.5 + 5 + 6 + 4.8 + 4 = 23.3 dollars. Averaging the five listed values (30) ignores the relative frequencies."
+      }
+    },
+    {
+      "id": "mod03-q24",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-centre-from-frequency-table",
+      "prompt": {
+        "en": "A campus bookstore sells gift cards worth $10, $20, $30, $40 or $50. The relative frequency distribution of the value of the gift cards sold last month is shown below. What is the median value (in dollars) of a gift card sold?",
+        "zh": "校园书店卖面值 $10、$20、$30、$40、$50 的礼品卡。上个月卖出的礼品卡面值的相对频率分布见下表。卖出的礼品卡面值的中位数是多少（美元）？"
+      },
+      "table": {
+        "headers": [
+          "Value of gift card ($)",
+          "10",
+          "20",
+          "30",
+          "40",
+          "50"
+        ],
+        "rows": [
+          [
+            "Relative frequency",
+            "0.35",
+            "0.25",
+            "0.20",
+            "0.12",
+            "0.08"
+          ]
+        ],
+        "caption": {
+          "en": "The relative frequencies add up to 1.00.",
+          "zh": "相对频率加起来等于 1.00。"
+        }
+      },
+      "options": [
+        {
+          "en": "10",
+          "zh": "10"
+        },
+        {
+          "en": "25",
+          "zh": "25"
+        },
+        {
+          "en": "30",
+          "zh": "30"
+        },
+        {
+          "en": "20",
+          "zh": "20"
+        },
+        {
+          "en": "23.3",
+          "zh": "23.3"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "从最小的值开始，把相对频率一个一个加起来，得到累积相对频率（**cumulative relative frequency**）：$10 → 0.35；$20 → 0.35 + 0.25 = 0.60。中位数是第一个累积相对频率 ≥ 0.50 的值（2025 期中 Q13 官方解法），所以是 $20，选 D。意思是：至少一半的卡面值不超过 $20。A 10 的累积只有 0.35，还不到一半（10 其实是众数）；B 25 = (20 + 30)/2，是把相邻两个面值取了平均，可中位数就是第一个累积 ≥ 0.50 的那个值（$20），不用再取平均；C 30 是五个面值里正中间的那个，忽略了频率；E 23.3 是均值。同类题：2025 期中 Q13。",
+        "en": "Cumulative relative frequencies: 0.35 at $10 and 0.60 at $20. The first value with a cumulative relative frequency of at least 0.50 is $20."
+      }
+    },
+    {
+      "id": "mod03-q25",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s17-centre-from-frequency-table",
+      "prompt": {
+        "en": "A campus bookstore sells gift cards worth $10, $20, $30, $40 or $50. The relative frequency distribution of the value of the gift cards sold last month is shown below. What is the mode value (in dollars) of a gift card sold?",
+        "zh": "校园书店卖面值 $10、$20、$30、$40、$50 的礼品卡。上个月卖出的礼品卡面值的相对频率分布见下表。卖出的礼品卡面值的众数是多少（美元）？"
+      },
+      "table": {
+        "headers": [
+          "Value of gift card ($)",
+          "10",
+          "20",
+          "30",
+          "40",
+          "50"
+        ],
+        "rows": [
+          [
+            "Relative frequency",
+            "0.35",
+            "0.25",
+            "0.20",
+            "0.12",
+            "0.08"
+          ]
+        ],
+        "caption": {
+          "en": "The relative frequencies add up to 1.00.",
+          "zh": "相对频率加起来等于 1.00。"
+        }
+      },
+      "options": [
+        {
+          "en": "10",
+          "zh": "10"
+        },
+        {
+          "en": "20",
+          "zh": "20"
+        },
+        {
+          "en": "30",
+          "zh": "30"
+        },
+        {
+          "en": "50",
+          "zh": "50"
+        },
+        {
+          "en": "0.35",
+          "zh": "0.35"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "众数（**mode**）是相对频率最大的那个值：0.35 最大，对应 $10，选 A。E 0.35 是相对频率，不是面值；D 50 是最大的面值，不是卖得最多的；B 20 是中位数；C 30 只是表格中间的那个面值。小结：众数 $10、中位数 $20、均值 $23.30，从小到大是 Mode、Median、Mean，正好是课件 p.42 右偏（**skewed to the right**）的“最可能顺序”；表格里的频率也是从左往右越来越小，尾巴在右边。同类题：2025 期中 Q14。",
+        "en": "The largest relative frequency (0.35) belongs to $10, so the mode is $10; 0.35 is a relative frequency, not a value."
+      }
+    },
+    {
+      "id": "mod03-q26",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s17-centre-from-frequency-table",
+      "prompt": {
+        "en": "A survey of 50 households recorded how many cars each household owns. The frequency table is shown below. What is the mean number of cars per household? Round your answer to 2 decimal places.",
+        "zh": "一项调查记录了 50 户家庭每户有几辆车，频数表见下表。平均每户有几辆车（均值）？答案保留 2 位小数。"
+      },
+      "table": {
+        "headers": [
+          "Number of cars",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Number of households",
+            6,
+            20,
+            16,
+            6,
+            2,
+            50
+          ]
+        ]
+      },
+      "answer": 1.56,
+      "tolerance": 0.005,
+      "explain": {
+        "zh": "频数表（**frequency table**）里每个值出现了 f 次，所以总和要用“值 × 频数”加起来（课件 p.38 的 table(Calories) 就是这样一张表）。第 1 步：Σ(y × f) = 0(6) + 1(20) + 2(16) + 3(6) + 4(2) = 0 + 20 + 32 + 18 + 8 = 78 辆车。第 2 步：n = Σf = 6 + 20 + 16 + 6 + 2 = 50 户。第 3 步：ȳ = 78/50 = 1.56 辆。常见错误：78/5 = 15.6（除以了类别个数 5，而不是 50 户）；(0 + 1 + 2 + 3 + 4)/5 = 2（忽略了每种情况各有几户）。",
+        "en": "Σ(y × f) = 0 + 20 + 32 + 18 + 8 = 78 cars and n = 50, so ȳ = 78/50 = 1.56 cars per household."
+      }
+    },
+    {
+      "id": "mod03-q27",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s18-centre-and-shape",
+      "prompt": {
+        "en": "For a left-skewed distribution, what is the most probable order of the mean, the median and the mode, from smallest to largest?",
+        "zh": "对一个左偏的分布，均值、中位数、众数从小到大最可能的顺序是什么？"
+      },
+      "options": [
+        {
+          "en": "Mode, Median, Mean",
+          "zh": "众数、中位数、均值"
+        },
+        {
+          "en": "Mean, Median, Mode",
+          "zh": "均值、中位数、众数"
+        },
+        {
+          "en": "Median, Mean, Mode",
+          "zh": "中位数、均值、众数"
+        },
+        {
+          "en": "Mean, Mode, Median",
+          "zh": "均值、众数、中位数"
+        },
+        {
+          "en": "All three are always equal",
+          "zh": "三个永远相等"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "课件 p.42：负偏/左偏（Negative (left) skewed）的最可能顺序是 Mean, Median, Mode，选 B。道理：左偏的长尾巴在左边（小的值那边），像绳子一样把均值往左拉得最多；中位数只看顺序，被拉得少一点；众数待在峰那里（右边），不动。所以从小到大是：均值 → 中位数 → 众数。A 是右偏（right skewed）的顺序，正好反过来；C、D 不是课件里的任何一种顺序；E 只有完全对称的单峰钟形分布才会三个相等，而且也不是“永远”。同类题：2025 期中 Q11–Q14（左偏的相对频率表）。",
+        "en": "In a left-skewed distribution the long left tail pulls the mean down the most, so the most probable order is Mean, Median, Mode (p.42). Mode, Median, Mean is the right-skew order."
+      }
+    },
+    {
+      "id": "mod03-q28",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s18-centre-and-shape",
+      "prompt": {
+        "en": "The household incomes in a city have a mean of $78,000 and a median of $61,000. Which statement is most reasonable?",
+        "zh": "某城市家庭收入的均值是 $78,000，中位数是 $61,000。哪一种说法最合理？"
+      },
+      "options": [
+        {
+          "en": "The distribution must be symmetric, because both numbers describe the centre.",
+          "zh": "分布一定是对称的，因为这两个数都描述中心。"
+        },
+        {
+          "en": "The distribution is probably skewed to the left.",
+          "zh": "分布很可能是左偏的。"
+        },
+        {
+          "en": "The distribution is probably skewed to the right, but a graph should be used to confirm it.",
+          "zh": "分布很可能是右偏的，但应该看图来确认。"
+        },
+        {
+          "en": "The mode must be larger than the mean.",
+          "zh": "众数一定比均值大。"
+        },
+        {
+          "en": "The mean is resistant, so it describes the centre better than the median.",
+          "zh": "均值是稳健的，所以它比中位数更能描述中心。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "均值 > 中位数（78,000 > 61,000），按课件 p.42 的经验规则：If Mean > Median, the data is right skewed。收入通常有少数特别高的家庭，长尾巴在右边，把均值往上拉。但同一页也说：能看图的话要看图再下结论，因为数据也可能是双峰的（p.35 甜甜圈也提醒过）。所以 C 最合理。A 错：均值和中位数差了 17,000，一点也不接近；B 方向反了（左偏时均值更小）；D 错：右偏的最可能顺序是 Mode, Median, Mean，众数通常最小，而且课件只说“最可能”，没有“一定”；E 错：均值不稳健（not resistant，p.28），偏斜数据应该报告中位数（p.32）。",
+        "en": "Mean > median suggests a right skew (p.42), but the slide also says to confirm the shape with a graph. The mean is not resistant, so the median is reported for skewed data."
+      }
+    },
+    {
+      "id": "mod03-q29",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s19-spread-and-range",
+      "prompt": {
+        "en": "For a variable Score, R prints the following output for `range(Score)`:\n`[1] 12 85`\nWhat is the range of the scores?",
+        "zh": "对变量 Score，R 运行 `range(Score)` 打印出：\n`[1] 12 85`\n分数的极差是多少？"
+      },
+      "options": [
+        {
+          "en": "12 and 85",
+          "zh": "12 和 85"
+        },
+        {
+          "en": "85",
+          "zh": "85"
+        },
+        {
+          "en": "48.5",
+          "zh": "48.5"
+        },
+        {
+          "en": "73",
+          "zh": "73"
+        },
+        {
+          "en": "97",
+          "zh": "97"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "极差（**range**）= 最大值 − 最小值（课件 p.44）。R 的 range() 打印的是两个数：最小值 12 和最大值 85，并不是极差本身，要自己减：85 − 12 = 73，选 D。A 把 R 的两个输出当成了极差，这正是 p.44 要提醒的陷阱（甜甜圈的 range(Calories) 打印 180 400，极差是 220）；B 85 只是最大值；C 48.5 = (12 + 85)/2，是两个数的中点；E 97 = 12 + 85，做成了加法。",
+        "en": "range() prints the minimum and the maximum; the range is Max − Min = 85 − 12 = 73."
+      }
+    },
+    {
+      "id": "mod03-q30",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s20-deviations",
+      "prompt": {
+        "en": "For any data set, the deviations from the sample mean, yᵢ − ȳ, add up to 0.",
+        "zh": "对任何一组数据，离差（每个值减去样本均值，yᵢ − ȳ）加起来都等于 0。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。离差（**deviation**）= yᵢ − ȳ：比均值小的值，离差是负的；比均值大的值，离差是正的。均值是平衡点（balance point，课件 p.28），负的和正的正好抵消。p.45 的例子：数据 2, 3, 7，ȳ = 4，离差是 −2、−1、+3，加起来 = 0。正因为永远是 0，直接平均离差没法衡量离散程度，所以要先把离差平方，再求样本方差 S²（p.46）。",
+        "en": "True. The mean is the balance point, so negative and positive deviations cancel: for 2, 3, 7 the deviations −2, −1, +3 add to 0 (p.45). That is why deviations are squared."
+      }
+    },
+    {
+      "id": "mod03-q31",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s21-sample-variance",
+      "prompt": {
+        "en": "A sample has the values 4, 8, 6, 2. What is the sample variance S²? If your exact answer is not listed, choose the closest value.",
+        "zh": "一个样本的数据是 4, 8, 6, 2。样本方差 S² 是多少？如果你算出的准确答案不在选项里，选最接近的。"
+      },
+      "options": [
+        {
+          "en": "5.00",
+          "zh": "5.00"
+        },
+        {
+          "en": "6.67",
+          "zh": "6.67"
+        },
+        {
+          "en": "2.58",
+          "zh": "2.58"
+        },
+        {
+          "en": "20.00",
+          "zh": "20.00"
+        },
+        {
+          "en": "0.00",
+          "zh": "0.00"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "按课件 p.47 的步骤：① ȳ = (4 + 8 + 6 + 2)/4 = 20/4 = 5；② 离差 yᵢ − ȳ：−1、3、1、−3；③ 平方：1、9、1、9；④ 加起来 = 20；⑤ 除以 n − 1 = 3：S² = 20/3 = 6.67，选 B。A 5.00 = 20/4，除以了 n，样本方差要除以 n − 1，“because we estimated the mean”（p.47）；C 2.58 = √6.67，那是标准差 S，不是方差；D 20.00 是平方和，忘了除；E 0.00 是把没平方的离差直接相加（离差加起来永远是 0，p.45）。",
+        "en": "ȳ = 5; the squared deviations 1, 9, 1, 9 add to 20; S² = 20/(4 − 1) = 6.67. 5.00 divides by n, 2.58 is S, and 20 forgets to divide."
+      }
+    },
+    {
+      "id": "mod03-q32",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s21-sample-variance",
+      "prompt": {
+        "en": "The hours of sleep of 5 students last night were 6, 8, 7, 5, 9. Find the sample standard deviation S. Round your answer to 2 decimal places.",
+        "zh": "5 名学生昨晚的睡眠时间（小时）是 6, 8, 7, 5, 9。求样本标准差 S，保留 2 位小数。"
+      },
+      "answer": 1.58,
+      "tolerance": 0.005,
+      "unit": "hours",
+      "explain": {
+        "zh": "第 1 步：ȳ = (6 + 8 + 7 + 5 + 9)/5 = 35/5 = 7 小时。第 2 步：离差 yᵢ − ȳ：−1、1、0、−2、2（加起来是 0，可以用来检查）。第 3 步：平方：1、1、0、4、4，加起来 = 10。第 4 步：S² = 10/(5 − 1) = 2.5 小时²。第 5 步：S = √2.5 = 1.58 小时。常见错误：除以 n 得 √(10/5) = √2 = 1.41；交了方差 2.5 而不是 S；忘了开根号。补充（课件外）：用计算器的统计模式时，选 sx（或 σn−1）那个键，不要选 σx（σn），后者是除以 n 的。",
+        "en": "ȳ = 7; the squared deviations 1, 1, 0, 4, 4 add to 10; S² = 10/(5 − 1) = 2.5; S = √2.5 = 1.58 hours."
+      }
+    },
+    {
+      "id": "mod03-q33",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s22-degrees-of-freedom",
+      "prompt": {
+        "en": "Five values have a mean of 6. Four of the values are 3, 9, 4 and 7. What can we say about the fifth value?",
+        "zh": "五个数的均值是 6，其中四个数是 3、9、4、7。关于第五个数，我们能说什么？"
+      },
+      "options": [
+        {
+          "en": "It must be 6.",
+          "zh": "它一定是 6。"
+        },
+        {
+          "en": "It can be any number.",
+          "zh": "它可以是任何数。"
+        },
+        {
+          "en": "It must be 23.",
+          "zh": "它一定是 23。"
+        },
+        {
+          "en": "It must be 30.",
+          "zh": "它一定是 30。"
+        },
+        {
+          "en": "It must be 7.",
+          "zh": "它一定是 7。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "均值定了，总和就定了：总和 = n × ȳ = 5 × 6 = 30。前四个加起来 3 + 9 + 4 + 7 = 23，所以第五个只能是 30 − 23 = 7，选 E。这就是自由度（**degrees of freedom**，df）的意思（课件 p.49）：n 个数里，前 n − 1 = 4 个可以随便取，最后一个被均值“锁死”了，所以 df = n − 1。B 忽略了均值带来的限制；A 以为第五个数就等于均值；C 23 是前四个数的和；D 30 是五个数的总和。",
+        "en": "The total must be 5 × 6 = 30, so the fifth value is 30 − 23 = 7. Only n − 1 = 4 values are free to vary."
+      }
+    },
+    {
+      "id": "mod03-q34",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s23-sd-properties",
+      "prompt": {
+        "en": "The standard deviation of the heights of a group of students is 8 cm. The heights are converted from centimetres to metres (1 m = 100 cm). What is the standard deviation of the heights in metres?",
+        "zh": "一群学生身高的标准差是 8 cm。把身高从厘米换算成米（1 m = 100 cm）。换算后身高的标准差是多少？"
+      },
+      "options": [
+        {
+          "en": "800 m",
+          "zh": "800 米"
+        },
+        {
+          "en": "8 m",
+          "zh": "8 米"
+        },
+        {
+          "en": "0.8 m",
+          "zh": "0.8 米"
+        },
+        {
+          "en": "0.08 m",
+          "zh": "0.08 米"
+        },
+        {
+          "en": "0.0008 m",
+          "zh": "0.0008 米"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "换单位就是把每个数都除以 100（例如 170 cm → 1.70 m）。课件 p.52：数据按比例换算（rescaled）时，标准差也按同样的比例变。所以 S = 8 ÷ 100 = 0.08 m，选 D。A 是乘了 100（方向反了）；B 以为 S 不变（只有每个数都“加上同一个数”时 S 才不变）；C 只除了 10；E 除了 100² = 10,000，那是方差 S² 的变化方式（方差是平方单位）。顺便一提：课件 p.52 的收入例子写的 “factor of 100” 是笔误，美元换成千美元是除以 1000（11,800 → 11.8）。",
+        "en": "Every height is divided by 100, so S is also divided by 100: 8 cm becomes 0.08 m. Dividing by 100² = 10,000 is how the variance would change."
+      }
+    },
+    {
+      "id": "mod03-q35",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s23-sd-properties",
+      "prompt": {
+        "en": "Which of the following statements about the sample standard deviation S are true? Select all that apply.",
+        "zh": "关于样本标准差 S，下面哪些说法是对的？选出所有正确的。"
+      },
+      "options": [
+        {
+          "en": "S can never be negative.",
+          "zh": "S 永远不会是负数。"
+        },
+        {
+          "en": "S = 0 when every value in the data set is the same.",
+          "zh": "数据里每个值都一样时，S = 0。"
+        },
+        {
+          "en": "S is measured in the same units as the data.",
+          "zh": "S 的单位和数据的单位一样。"
+        },
+        {
+          "en": "S is resistant to extremely large or small values.",
+          "zh": "S 不受极端大或极端小的值影响（是稳健的）。"
+        },
+        {
+          "en": "S² is measured in the same units as the data.",
+          "zh": "S² 的单位和数据的单位一样。"
+        },
+        {
+          "en": "To get the sample variance, divide the sum of squared deviations by n.",
+          "zh": "求样本方差时，把离差平方和除以 n。"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explain": {
+        "zh": "对的是 A、B、C：A（课件 p.52：S ≥ 0，S 是先平方再开根号，不可能是负的）；B（p.52：三个人的测验分数都是 10 分，S² = 0，所以 S = 0）；C（p.51：开根号就是为了回到和数据一样的单位）。错的是 D、E、F：D，p.51 明确说方差和标准差都不稳健（not resistant, sensitive），一个极端值就能把 S 拉大很多；E，S² 是“平方的想法”（squared idea），单位是数据单位的平方（例如 kcal²）；F，样本方差要除以 n − 1（自由度），不是 n（p.46–47）。",
+        "en": "S ≥ 0, S = 0 when all values are equal, and S has the data's units (p.51-52). S is not resistant, S² is in squared units, and S² divides by n − 1."
+      }
+    },
+    {
+      "id": "mod03-q36",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s24-sd-donuts",
+      "prompt": {
+        "en": "The standard deviation of the weights of 40 apples is 18 grams. Which sentence interprets this value correctly?",
+        "zh": "40 个苹果重量的标准差是 18 克。哪一句话正确地解释了这个数？"
+      },
+      "options": [
+        {
+          "en": "We can expect the weights of the apples to differ from the mean weight by about 18 grams, on average.",
+          "zh": "我们可以预期，苹果的重量平均来说与平均重量相差大约 18 克。"
+        },
+        {
+          "en": "Most of the apples weigh about 18 grams.",
+          "zh": "大多数苹果重约 18 克。"
+        },
+        {
+          "en": "The weights of the apples range from 0 to 18 grams.",
+          "zh": "苹果的重量在 0 到 18 克之间。"
+        },
+        {
+          "en": "About 18% of the apples have weights that are different from the mean.",
+          "zh": "大约 18% 的苹果重量与均值不同。"
+        },
+        {
+          "en": "The variance of the apple weights is 18 grams.",
+          "zh": "苹果重量的方差是 18 克。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "标准差（**standard deviation**）S 是“一个值离均值的典型距离”（课件 p.56）。课程的标准解释句（p.53）：We can expect [变量] to differ from the mean by about S, on average. 所以选 A。B 把 S 当成了典型的重量（那是中心，不是离散程度）；C 把 S 当成了范围，而且范围是最小值到最大值，不是“0 到 S”；D 把 18 当成了百分比；E 把标准差和方差混了：方差 S² = 18² = 324 克²，单位是平方。同类题：Module 3 Practice Q1e、Q2d、Q3f。",
+        "en": "S is a typical distance from the mean: the weights differ from the mean weight by about 18 grams, on average. The variance would be 18² = 324 grams²."
+      }
+    },
+    {
+      "id": "mod03-q37",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s24-sd-donuts",
+      "prompt": {
+        "en": "The standard deviation of the waiting times of 80 customers at a coffee shop is 4.2 minutes. Interpret this value in the context of the data.",
+        "zh": "一家咖啡店 80 位顾客等待时间的标准差是 4.2 分钟。结合数据的情境解释这个数。"
+      },
+      "modelAnswer": {
+        "en": "We can expect the waiting times of the customers at this coffee shop to differ from the mean waiting time by about 4.2 minutes, on average.",
+        "zh": "套课件 p.53 的句型：We can expect [变量] to differ from the mean by about S, on average. 四个必备成分：① differ from the mean（与均值相差）；② by about 4.2 minutes（大约多少，带单位）；③ on average（平均来说）；④ 情境：这家咖啡店顾客的等待时间。"
+      },
+      "points": [
+        {
+          "en": "Says the waiting times 'differ from the mean'",
+          "zh": "写出 differ from the mean（与均值相差）"
+        },
+        {
+          "en": "Gives 'by about 4.2 minutes' with units",
+          "zh": "写出 by about 4.2 minutes，带单位"
+        },
+        {
+          "en": "Includes 'on average'",
+          "zh": "写出 on average"
+        },
+        {
+          "en": "Uses the context: the waiting times of customers at the coffee shop",
+          "zh": "用上情境：咖啡店顾客的等待时间"
+        }
+      ],
+      "explain": {
+        "zh": "语法提醒：要么写 We can expect the waiting times to differ ...，要么写 We can expect that the waiting times differ ...，不要把 that 和 to differ 混在一起用。常见丢分：写成“大多数顾客等 4.2 分钟”（那是在说中心）；漏掉 on average 或 from the mean；漏掉单位 minutes。同类题：Module 3 Practice Q1e、Q2d、Q3f。"
+      }
+    },
+    {
+      "id": "mod03-q38",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s25-size-of-s",
+      "prompt": {
+        "en": "Final marks in a large course are on a scale from 0 to 100, with a mean of 72. Which value of the standard deviation is the most realistic?",
+        "zh": "一门大课的期末成绩在 0 到 100 分之间，均值是 72。下面哪个标准差最现实？"
+      },
+      "options": [
+        {
+          "en": "−10",
+          "zh": "−10"
+        },
+        {
+          "en": "0",
+          "zh": "0"
+        },
+        {
+          "en": "12",
+          "zh": "12"
+        },
+        {
+          "en": "60",
+          "zh": "60"
+        },
+        {
+          "en": "150",
+          "zh": "150"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "S 是一个值离均值的典型距离（课件 p.56）。C 12 表示成绩一般在 72 分上下十几分的范围里波动，很合理（课件 STA123 的例子里，5 或 15 都 much more realistic）。A 错：S 永远 ≥ 0（p.52）；B 错：S = 0 意味着所有人都正好考 72 分，几乎不可能；D 60 太大：成绩只在 0–100 之间、均值 72，典型距离不可能有 60 分（p.56 说 S = 50 就已经 implausibly large）；E 150 比整个分数范围还大。",
+        "en": "S is a typical distance from the mean, so about 12 marks is realistic. S cannot be negative, S = 0 needs everyone to score 72, and 60 or 150 is far too large for marks from 0 to 100."
+      }
+    },
+    {
+      "id": "mod03-q39",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s26-empirical-rule",
+      "prompt": {
+        "en": "The reaction times of drivers are approximately bell-shaped, with a mean of 250 milliseconds and a standard deviation of 30 milliseconds. About what percentage of the reaction times are between 190 and 310 milliseconds?",
+        "zh": "司机反应时间的分布大致是钟形的，均值 250 毫秒，标准差 30 毫秒。大约百分之几的反应时间在 190 到 310 毫秒之间？"
+      },
+      "options": [
+        {
+          "en": "68",
+          "zh": "68"
+        },
+        {
+          "en": "95",
+          "zh": "95"
+        },
+        {
+          "en": "100",
+          "zh": "100"
+        },
+        {
+          "en": "34",
+          "zh": "34"
+        },
+        {
+          "en": "47.5",
+          "zh": "47.5"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "先看这个区间是均值加减几个 S：250 − 190 = 60 = 2 × 30，310 − 250 = 60 = 2 × 30，所以 (190, 310) = (ȳ − 2S, ȳ + 2S)。数据是钟形的，可以用经验法则（**Empirical Rule**，课件 p.58）：大约 95% 的观测值在 2 个标准差以内，选 B。A 68 对应 1 个 S 的区间 (220, 280)；C 100 对应 3 个 S 的区间 (160, 340)（课件说 all or about all）；D 34 和 E 47.5 是 68 和 95 的一半，只对应均值的一侧（例如 250 到 310 之间大约 47.5%）。",
+        "en": "190 and 310 are 2 SDs below and above the mean (250 ± 2 × 30), so about 95% by the Empirical Rule."
+      }
+    },
+    {
+      "id": "mod03-q40",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s26-empirical-rule",
+      "prompt": {
+        "en": "The lengths of 400 bolts made by a machine have an approximately bell-shaped distribution. According to the Empirical Rule, about how many of the bolts have a length within one standard deviation of the mean?",
+        "zh": "一台机器生产的 400 个螺栓，长度分布大致是钟形的。按经验法则，大约有多少个螺栓的长度在均值的 1 个标准差以内？"
+      },
+      "answer": 272,
+      "tolerance": 1,
+      "explain": {
+        "zh": "钟形数据可以用经验法则（**Empirical Rule**，课件 p.58）：大约 68% 的观测值在 (ȳ − 1S, ȳ + 1S) 之内。个数 = 0.68 × 400 = 272 个。常见错误：用 95% 得 380（那是 2 个 S）；用全部得 400（3 个 S）；用 34% 得 136（只算了均值的一侧）。注意题目问的是“多少个”，不是百分比，所以不要交 68。",
+        "en": "About 68% lie within 1 SD of the mean: 0.68 × 400 = 272 bolts."
+      }
+    },
+    {
+      "id": "mod03-q41",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s28-donuts-check",
+      "prompt": {
+        "en": "A library asked 500 students how many books they borrowed last month. The number of books borrowed has a mean of 2.14 and a standard deviation of 1.42. The frequency distribution is shown below. Approximately what percentage of the responses fall within one standard deviation of the mean? If your exact answer is not listed, choose the closest value.",
+        "zh": "图书馆问了 500 名学生上个月各借了几本书。借书数的均值是 2.14 本，标准差是 1.42 本，频数分布见下表。大约百分之几的回答落在均值的 1 个标准差以内？如果你算出的准确答案不在选项里，选最接近的。"
+      },
+      "table": {
+        "headers": [
+          "Books borrowed",
+          "Frequency",
+          "Percent of total"
+        ],
+        "rows": [
+          [
+            "0",
+            100,
+            "20.0"
+          ],
+          [
+            "1",
+            70,
+            "14.0"
+          ],
+          [
+            "2",
+            90,
+            "18.0"
+          ],
+          [
+            "3",
+            140,
+            "28.0"
+          ],
+          [
+            "4",
+            100,
+            "20.0"
+          ],
+          [
+            "Total",
+            500,
+            "100.0"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "60",
+          "zh": "60"
+        },
+        {
+          "en": "68",
+          "zh": "68"
+        },
+        {
+          "en": "80",
+          "zh": "80"
+        },
+        {
+          "en": "95",
+          "zh": "95"
+        },
+        {
+          "en": "100",
+          "zh": "100"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "第 1 步，算 1 个 S 的区间：(2.14 − 1.42, 2.14 + 1.42) = (0.72, 3.56)。第 2 步，看哪些回答严格落在区间里面：1 本、2 本、3 本在里面；0 本比 0.72 小，4 本比 3.56 大，都在外面。第 3 步，把这几行的百分比加起来：14.0 + 18.0 + 28.0 = 60%，选 A。B 68 是直接背经验法则（**Empirical Rule**）的数字，可这组数据不是钟形的（0 本和 3 本两个地方都很高），法则不保证成立，题目问的是实际百分比；C 80 = 60 + 20，把 0 本或 4 本那一行也算了进来（把 3.56 当成 4 就会犯这个错）；D 95 是 2 个 S 的法则数字；E 100 是全部回答，其实是 2 个 S 区间 (−0.70, 4.98) 的实际百分比。同类题：2025 期中 Q17（答案 62%，不是 68%）。",
+        "en": "Mean ± S = (0.72, 3.56) contains 1, 2 and 3 books: 14 + 18 + 28 = 60%. 68% is the Empirical Rule value, which these non-bell-shaped data need not follow."
+      }
+    },
+    {
+      "id": "mod03-q42",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s28-donuts-check",
+      "prompt": {
+        "en": "The waiting times (in minutes) of 20 riders of a campus shuttle, sorted from smallest to largest, are:\n2 3 3 4 4 5 5 5 6 6 7 7 8 8 9 10 12 14 18 24\nIn R, `mean(Wait)` gives 8 and `sd(Wait)` gives 5.467608. What percentage of the waiting times lie within one standard deviation of the mean, that is, strictly between ȳ − S and ȳ + S?",
+        "zh": "校园班车 20 位乘客的等车时间（分钟），从小到大排好是：\n2 3 3 4 4 5 5 5 6 6 7 7 8 8 9 10 12 14 18 24\n在 R 里 `mean(Wait)` 得 8，`sd(Wait)` 得 5.467608。有百分之几的等车时间落在均值的 1 个标准差以内（也就是严格在 ȳ − S 和 ȳ + S 之间）？"
+      },
+      "answer": 80,
+      "tolerance": 0.5,
+      "unit": "%",
+      "explain": {
+        "zh": "按课件 p.65 的方法：第 1 步，算边界：ȳ − S = 8 − 5.467608 = 2.532392，ȳ + S = 8 + 5.467608 = 13.467608。第 2 步，数严格在 (2.53, 13.47) 里面的值：从 3 到 12 一共 16 个（3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10, 12）；在外面的是 2（比 2.53 小）和 14、18、24（比 13.47 大），共 4 个。第 3 步：16/20 = 0.80 = 80%。80% 比经验法则的 68% 高出不少，因为这组数据是右偏的（长尾巴拉到 24），不是钟形，法则不保证成立。顺便：2 个 S 的区间 (−2.94, 18.94) 里有 19 个（只有 24 在外面），19/20 = 95%。常见错误：直接写 68；把 2 也算进区间（2 比 2.53 小，在外面）。",
+        "en": "Bounds 8 ± 5.47 give (2.53, 13.47). The 16 values from 3 to 12 lie inside (2, 14, 18 and 24 are outside), so 16/20 = 0.80 = 80%."
+      }
+    },
+    {
+      "id": "mod03-q43",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s28-donuts-check",
+      "prompt": {
+        "en": "If about 70% of the values in a data set lie within one standard deviation of the mean, the distribution must be bell-shaped.",
+        "zh": "如果一组数据里大约 70% 的值落在均值的 1 个标准差以内，那它的分布一定是钟形的。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。经验法则只能“正着用”：如果数据是钟形的，那么大约 68% 在 1 个 S 以内；反过来不成立。课件 p.64–67 的甜甜圈热量就是反例：1 个 S 以内正好 21/30 = 70%，2 个 S 以内 96.67%，3 个 S 以内 100%，都很接近 68%、95%、几乎全部，可直方图明明是右偏的（p.35）。判断形状要看图，不能只看这些百分比。",
+        "en": "False. The donut calories have 70% of their values within 1 SD, yet they are skewed to the right (p.64-67). The rule only works one way: bell-shaped data give about 68%."
+      }
+    },
+    {
+      "id": "mod03-q44",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s29-summary",
+      "prompt": {
+        "en": "Which of the following measures are NOT resistant (are sensitive) to extremely low or extremely high values in the data? Select all that apply.",
+        "zh": "下面哪些量对数据里极端低或极端高的值**不**稳健（很敏感）？选出所有正确的。"
+      },
+      "options": [
+        {
+          "en": "Mean",
+          "zh": "均值"
+        },
+        {
+          "en": "Median",
+          "zh": "中位数"
+        },
+        {
+          "en": "Range",
+          "zh": "极差"
+        },
+        {
+          "en": "Standard deviation",
+          "zh": "标准差"
+        },
+        {
+          "en": "Variance",
+          "zh": "方差"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "explain": {
+        "zh": "课件 p.68 小结加粗写着：Mean, range, SD, and Variance are not resistant (are sensitive)，它们会被极端值严重影响。所以选 A 均值、C 极差、D 标准差、E 方差。只有 B 中位数（**median**）是稳健的（**resistant**，p.32），因为它只看排序后的位置，不管极端值有多大。小例子：甜甜圈数据里如果把 400 卡换成 1000 卡，均值从 251 变成 271，极差从 220 变成 820，S 从 50.06 变成 143.78，可中位数还是 250。",
+        "en": "The mean, range, SD and variance are all sensitive to extreme values (p.68); the median is resistant (p.32)."
+      }
+    },
+    {
+      "id": "mod03-q45",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s29-summary",
+      "prompt": {
+        "en": "The times (in minutes) that 60 customers spent in a grocery store were recorded. The histogram has one peak at 20-25 minutes, and its bars get shorter toward the right; no customer spent between 60 and 70 minutes, and one customer spent between 70 and 75 minutes. The summary statistics from R are shown below. Describe the distribution of the time spent in the store in context (shape, centre, spread and any unusual values), and say which measure of centre you would report and why.",
+        "zh": "记录了 60 位顾客在一家超市里待的时间（分钟）。直方图只有一个峰，在 20–25 分钟；越往右柱子越矮；没有顾客待了 60 到 70 分钟；有一位顾客待了 70 到 75 分钟。R 给出的汇总统计量见下表。结合情境描述这个分布（形状、中心、离散程度和异常值），并说明你会报告哪一个中心的量、为什么。"
+      },
+      "table": {
+        "headers": [
+          "n",
+          "Mean",
+          "Median",
+          "SD",
+          "Min",
+          "Max"
+        ],
+        "rows": [
+          [
+            60,
+            "28.4",
+            "24.0",
+            "12.6",
+            6,
+            75
+          ]
+        ],
+        "caption": {
+          "en": "Summary statistics from R (time in minutes).",
+          "zh": "R 给出的汇总统计量（时间单位：分钟）。"
+        }
+      },
+      "modelAnswer": {
+        "en": "The distribution of the time customers spent in the store is unimodal and skewed to the right: the most common times are about 20 to 25 minutes (the peak), and a long thin tail stretches toward longer visits. Because the distribution is skewed, I would report the median, 24 minutes: 50% of the customers spent at most 24 minutes in the store, whereas 50% spent more than 24 minutes. The mean (28.4 minutes) is larger than the median because the long right tail pulls it up; the mean is not resistant. The times range from 6 to 75 minutes (a range of 69 minutes). Like the mean, the standard deviation (12.6 minutes) is not resistant and is pulled up by the long right tail, so for these skewed data the IQR is a better measure of spread. The customer who stayed 70 to 75 minutes lies apart from the overall pattern, after a gap from 60 to 70 minutes, so this value is a possible outlier.",
+        "zh": "答题结构（按课件 p.68：形状、中心、离散，再加异常值，全程带情境和单位）：① 形状：单峰（unimodal）、右偏（skewed to the right），最常见的时间是 20–25 分钟（峰所在的组），长尾巴拉向时间长的一边；② 中心：数据偏斜，所以报告中位数 24 分钟，并用中位数模板解释（50% 最多 24 分钟，50% 超过 24 分钟）；③ 说明均值 28.4 比中位数大，是被右边的长尾巴拉上去的，均值不稳健（not resistant）；④ 离散：时间从 6 到 75 分钟（极差 69 分钟）；标准差 S = 12.6 分钟和均值一样不稳健，也被右尾巴拉大，所以偏斜数据更适合用 IQR（Module 4 讲）；⑤ 异常值：空档（60–70 分钟）之后那位 70–75 分钟的顾客离开了整体模式，是可能的离群值（possible outlier）。"
+      },
+      "points": [
+        {
+          "en": "Shape: unimodal and skewed to the right (a long tail toward longer times)",
+          "zh": "形状：单峰、右偏（长尾巴在时间长的一边）"
+        },
+        {
+          "en": "Centre: reports the median, 24 minutes, because the distribution is skewed, with the median sentence",
+          "zh": "中心：因为分布偏斜，报告中位数 24 分钟，并用中位数模板解释"
+        },
+        {
+          "en": "Explains that the mean (28.4 minutes) is pulled up by the right tail because the mean is not resistant",
+          "zh": "说明均值 28.4 分钟被右尾巴拉高，因为均值不稳健"
+        },
+        {
+          "en": "Spread: from 6 to 75 minutes (range 69 minutes); notes that S = 12.6 minutes is also pulled up by the right tail (not resistant)",
+          "zh": "离散：6 到 75 分钟（极差 69 分钟）；指出 S = 12.6 分钟也被右尾巴拉大（不稳健）"
+        },
+        {
+          "en": "Unusual value: the 70-75 minute visit after the gap is a possible outlier; context and units throughout",
+          "zh": "异常值：空档之后那位 70–75 分钟的顾客是可能的离群值；全程带情境和单位"
+        }
+      ],
+      "explain": {
+        "zh": "答题顺序按课件 p.68：overall pattern = shape、centre、spread，再加上异常值。为什么报告中位数：课件 p.32 写 For skewed distributions, we report the median；p.68 说均值和标准差适合差不多钟形、对称的数据。均值 > 中位数（28.4 > 24.0）和右偏一致，但我们是先看了直方图才下的结论（p.35、p.42）。离群值这里只能说“可能的”（possible outlier）：它离开了整体模式（p.7），正式的判断规则（fences）在 Module 4。同类题：Module 3 Practice Q1a、Q2a、Q3a。"
+      }
+    },
+    {
+      "id": "mod03-q46",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s21-sample-variance",
+      "prompt": {
+        "en": "A small bakery has exactly 5 employees, and we treat them as the whole population. Their numbers of years at the bakery are 2, 4, 6, 8 and 10. What is the population variance σ²?",
+        "zh": "一家小面包店正好有 5 名员工，我们把他们当作整个总体。他们在店里工作的年数是 2、4、6、8、10。总体方差 σ² 是多少？"
+      },
+      "options": [
+        {
+          "en": "10",
+          "zh": "10"
+        },
+        {
+          "en": "2.83",
+          "zh": "2.83"
+        },
+        {
+          "en": "40",
+          "zh": "40"
+        },
+        {
+          "en": "0",
+          "zh": "0"
+        },
+        {
+          "en": "8",
+          "zh": "8"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "总体方差（**population variance**）的公式（课件 p.46）：σ² = Σ(yᵢ − μ)² / N，用总体均值 μ，除以总体大小 N。① μ = (2 + 4 + 6 + 8 + 10)/5 = 30/5 = 6；② 离差 yᵢ − μ：−4、−2、0、2、4；③ 平方：16、4、0、4、16；④ 加起来 = 40；⑤ 除以 N = 5：σ² = 40/5 = 8，选 E。A 10 = 40/4，除以了 N − 1，那是样本方差 S² 的做法，可这里的数据是整个总体；B 2.83 = √8，是总体标准差 σ，不是方差；C 40 是平方和，忘了除以 N；D 0 是把没平方的离差直接相加（离差加起来永远是 0，p.45）。",
+        "en": "μ = 6; the squared deviations 16, 4, 0, 4, 16 add to 40; σ² = 40/N = 40/5 = 8. Dividing by N − 1 = 4 gives the sample variance 10, and 2.83 is σ, not σ²."
+      }
+    },
+    {
+      "id": "mod03-q47",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-histogram-percentages",
+      "prompt": {
+        "en": "The numbers of hours that 40 students worked at part-time jobs last week were plotted with R's hist(). The bin counts are shown below. Based on the histogram, which description of the distribution is the most reasonable?",
+        "zh": "40 名学生上周做兼职的小时数用 R 的 hist() 画成了直方图，每组的个数见下表。根据这个直方图，下面哪一项对分布的描述最合理？"
+      },
+      "table": {
+        "headers": [
+          "Hours worked",
+          "Number of students"
+        ],
+        "rows": [
+          [
+            "(0, 5]",
+            6
+          ],
+          [
+            "(5, 10]",
+            14
+          ],
+          [
+            "(10, 15]",
+            9
+          ],
+          [
+            "(15, 20]",
+            5
+          ],
+          [
+            "(20, 25]",
+            3
+          ],
+          [
+            "(25, 30]",
+            2
+          ],
+          [
+            "(30, 35]",
+            1
+          ],
+          [
+            "Total",
+            40
+          ]
+        ],
+        "caption": {
+          "en": "Bin counts from R's hist(Hours). A bin (a, b] holds the values that are more than a and at most b.",
+          "zh": "R 的 hist(Hours) 的分组个数。(a, b] 这一组装的是“大于 a、且最多为 b”的值。"
+        }
+      },
+      "options": [
+        {
+          "en": "Unimodal and skewed to the left; the centre is about 10 hours; the values range from about 0 to 35 hours.",
+          "zh": "单峰、左偏；中心大约 10 小时；数值大约从 0 到 35 小时。"
+        },
+        {
+          "en": "Unimodal and skewed to the right; the centre is about 17.5 hours; the values range from about 0 to 35 hours.",
+          "zh": "单峰、右偏；中心大约 17.5 小时；数值大约从 0 到 35 小时。"
+        },
+        {
+          "en": "Unimodal and skewed to the right; the centre is about 10 hours; the values range from about 0 to 35 hours.",
+          "zh": "单峰、右偏；中心大约 10 小时；数值大约从 0 到 35 小时。"
+        },
+        {
+          "en": "Bimodal; the centre is about 10 hours; the values range from about 0 to 35 hours.",
+          "zh": "双峰；中心大约 10 小时；数值大约从 0 到 35 小时。"
+        },
+        {
+          "en": "Unimodal and skewed to the right; the centre is about 10 hours; the values range from about 1 to 14 hours.",
+          "zh": "单峰、右偏；中心大约 10 小时；数值大约从 1 到 14 小时。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "按练习题 Q1a–Q3a 的三步来。① 形状：柱高 6、14、9、5、3、2、1，只有一个峰（5–10），右边一条细长的尾巴拖到 35，所以是单峰、右偏（**skewed to the right**）。② 中心：从左往右数到一半。n = 40，一半是 20；6 不够，6 + 14 = 20，第 20 个值是 (5, 10] 里最大的那个，第 21 个值在 (10, 15] 里，所以中间在 10 小时左右（中位数大约 10）。③ 离散：最小的组从 0 开始，最大的组到 35，所以数值大约从 0 到 35 小时。答案 C。A 方向反了：数据堆在左边、尾巴拖向右边，才是右偏；B 17.5 是横轴 0 到 35 的正中间，没管每根柱子有多少人；D 只有一个峰，不是双峰；E 1 到 14 是柱子的高度（人数），不是小时数。同类题：Module 3 Practice Q1a、Q2a、Q3a。",
+        "en": "One peak at 5-10 hours and a long right tail: unimodal and skewed to the right. Counting to n/2 = 20 (6 + 14 = 20) puts the middle at about 10 hours, and the values run from about 0 to 35 hours. 17.5 is only the middle of the axis, and 1 to 14 are bar heights, not hours."
+      }
+    },
+    {
+      "id": "mod03-q48",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s29-summary",
+      "prompt": {
+        "en": "The histogram of the heights of 200 adult women is roughly bell-shaped and symmetric, with no outliers. Which pair of measures should be reported to describe the centre and the spread?",
+        "zh": "200 名成年女性身高的直方图大致是钟形、对称的，没有离群值。描述中心和离散程度，应该报告哪一对量？"
+      },
+      "options": [
+        {
+          "en": "The median and the IQR",
+          "zh": "中位数和 IQR（四分位距）"
+        },
+        {
+          "en": "The mode and the range",
+          "zh": "众数和极差"
+        },
+        {
+          "en": "The mean and the variance",
+          "zh": "均值和方差"
+        },
+        {
+          "en": "The mean and the standard deviation",
+          "zh": "均值和标准差"
+        },
+        {
+          "en": "The median and the standard deviation",
+          "zh": "中位数和标准差"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "课件 p.68：We report mean and standard deviation for almost bell-shaped and symmetric distributions（近似钟形、对称的分布，报告均值和标准差），选 D。A 中位数和 IQR 是给偏斜分布用的一对（p.68 说下一个模块再讲）；B 众数主要用于分类变量和离散变量，极差只看最大和最小两个值；C 方差的单位是平方（cm²），不好解释，所以报告开了根号的标准差（p.51）；E 把两种搭配混在一起了：标准差衡量的是围绕均值的离散程度（S measures the spread about the sample mean，p.52），要和均值配对。",
+        "en": "For roughly bell-shaped, symmetric data the course reports the mean and the standard deviation (p.68). The median and IQR are for skewed data, and the variance is in squared units."
+      }
+    },
+    {
+      "id": "mod03-q49",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s26-empirical-rule",
+      "prompt": {
+        "en": "The weights of eggs from a farm have a roughly bell-shaped and symmetric distribution, with a mean of 60 grams and a standard deviation of 4 grams. Which egg weight would be very unusual?",
+        "zh": "某农场鸡蛋的重量大致呈钟形、对称分布，均值 60 克，标准差 4 克。下面哪个鸡蛋重量非常少见（very unusual）？"
+      },
+      "options": [
+        {
+          "en": "73 grams",
+          "zh": "73 克"
+        },
+        {
+          "en": "64 grams",
+          "zh": "64 克"
+        },
+        {
+          "en": "56 grams",
+          "zh": "56 克"
+        },
+        {
+          "en": "66 grams",
+          "zh": "66 克"
+        },
+        {
+          "en": "53 grams",
+          "zh": "53 克"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件 p.68：在钟形对称的分布里，一个值离均值超过 3 个标准差是不太可能的（very rare, unusual）。3 个标准差的区间是 60 ± 3 × 4 = (48, 72)。73 克比 72 大：它比均值多 13 克 = 3.25 个标准差，在区间外面，所以非常少见，选 A。其他几个都在 2 个标准差的区间 (52, 68) 以内：64 克（多 1 个标准差）、56 克（少 1 个标准差）、66 克（多 1.5 个标准差）、53 克（少 1.75 个标准差），都是很普通的重量。",
+        "en": "60 ± 3 × 4 gives (48, 72). Only 73 g is more than 3 SDs (3.25 SDs) from the mean, which is very rare for bell-shaped data (p.68); the other weights are within 2 SDs."
+      }
+    }
+  ]
+}

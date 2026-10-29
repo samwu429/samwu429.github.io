@@ -12,12 +12,16 @@ Exit code is 0 only when no ERROR is found. 仅当没有 ERROR 时退出码为 0
 """
 import argparse
 import json
+import math
 import re
 import sys
 from collections import Counter
 from pathlib import Path
 
 FOLDERS = {"lesson": "lessons", "questions": "practice", "glossary": "glossary", "review": "review"}
+# Unit kinds the engine names (engine/core/text/unit-labels.js).
+# 引擎能够命名的单元类型（见 engine/core/text/unit-labels.js）。
+UNIT_KINDS = ("lecture", "lab", "module", "tutorial", "workshop")
 
 CJK = re.compile(r"[一-鿿]")
 HTML_TAG = re.compile(r"<\s*/?\s*[a-zA-Z][^>]*>")
@@ -40,7 +44,24 @@ WIDGETS = {
     "linear-separability": ["dataset"],
     "tokenizer-toy": ["text"],
     "temperature-sampler": ["context", "candidates"],
+    "two-way-table": ["rows", "columns", "counts"],
+    "category-chart": ["categories"],
+    "histogram": ["data"],
+    "center-spread": ["data"],
+    "boxplot": ["groups"],
+    "z-score": [],
+    "scatter-correlation": ["points"],
+    "least-squares-line": [],
 }
+# Option values of the statistics widgets (engine/widgets/statistics/).
+# 统计类组件的可选取值（见 engine/widgets/statistics/）。
+STATISTICS_WIDGETS = {
+    "two-way-table", "category-chart", "histogram", "center-spread", "boxplot", "z-score",
+    "scatter-correlation", "least-squares-line",
+}
+QUARTILE_METHODS = ("hand", "r7")
+TWO_WAY_VIEWS = ("counts", "total", "row", "column")
+HISTOGRAM_VIEWS = ("histogram", "dotplot", "stemleaf")
 TURTLE_PRESETS = {
     "sequence", "function-call", "function-param", "function-two-params", "loop",
     "loop-robot", "loop-robot-9", "loop-calls-function", "nested-loop",
@@ -195,8 +216,194 @@ def check_widget(report, where, block):
         for index, point in enumerate(config.get("points", [])):
             if point.get("class") not in class_ids:
                 report.err(f"{where}.points[{index}]", "class must be one of classes[].id")
+    if name in STATISTICS_WIDGETS:
+        check_statistics_widget(report, where, name, config)
     if "caption" in block:
         report.bi(f"{where}.caption", block["caption"], need=("zh",))
+
+
+def is_number(value):
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
+def number_list(report, where, values, low, high):
+    """Reports unless `values` is a list of low..high finite numbers; returns whether it is.
+    检查 values 是否为 low 到 high 个有限数字组成的列表，不是则报错；返回检查结果。"""
+    if not isinstance(values, list) or not all(is_number(value) for value in values):
+        report.err(where, "must be a list of numbers")
+        return False
+    if not low <= len(values) <= high:
+        report.err(where, f"needs {low}-{high} values, found {len(values)}")
+        return False
+    return True
+
+
+def point_list(report, where, points, low, high):
+    """Reports unless `points` holds low..high [x, y] pairs whose x values are not all equal.
+    检查 points 是否为 low 到 high 个 [x, y] 数对且 x 不全相同，不是则报错；返回检查结果。"""
+    pairs = isinstance(points, list) and all(
+        isinstance(point, list) and len(point) == 2 and all(is_number(value) for value in point) for point in points)
+    if not pairs:
+        report.err(where, "must be a list of [x, y] number pairs")
+        return False
+    if not low <= len(points) <= high:
+        report.err(where, f"needs {low}-{high} points, found {len(points)}")
+        return False
+    if len({point[0] for point in points}) < 2:
+        report.err(where, "x values must not all be equal")
+        return False
+    return True
+
+
+def histogram_bars(data, width, start, closed):
+    """Number of bars the histogram widget draws (binCountFor in histogram-logic.js): the first edge is the
+    grid line through `start` (or 0) at or below the minimum; right-closed bins end at the edge holding the
+    maximum, left-closed ones open one more bar when the maximum sits on an edge.
+    直方图组件实际画出的柱数（与 histogram-logic.js 的 binCountFor 一致）。"""
+    anchor = start if is_number(start) else 0
+    first = anchor + math.floor((min(data) - anchor) / width + 1e-9) * width
+    span = (max(data) - first) / width
+    return math.floor(span + 1e-9) + 1 if closed == "left" else max(1, math.ceil(span - 1e-9))
+
+
+def check_labels(report, where, labels, low, high, key):
+    if not isinstance(labels, list) or not low <= len(labels) <= high:
+        report.err(where, f"{key} needs {low}-{high} labels")
+        return False
+    for index, label in enumerate(labels):
+        report.bi(f"{where}.{key}[{index}]", label)
+    return True
+
+
+def check_boxplot_group(report, where, group):
+    if not isinstance(group, dict):
+        report.err(where, "must be an object")
+        return
+    report.bi(f"{where}.name", group.get("name"))
+    if "data" in group:
+        number_list(report, f"{where}.data", group["data"], 4, 200)
+        return
+    summary = group.get("summary")
+    if not isinstance(summary, dict):
+        report.err(where, "needs data or a summary")
+        return
+    values = [summary.get(key) for key in ("min", "q1", "median", "q3", "max")]
+    if not all(is_number(value) for value in values) or values != sorted(values):
+        report.err(where, "summary needs numbers min <= q1 <= median <= q3 <= max")
+        return
+    whiskers = group.get("whiskers")
+    if whiskers is not None:
+        ordered = isinstance(whiskers, list) and len(whiskers) == 2 and all(is_number(value) for value in whiskers)
+        if not ordered or not (values[0] <= whiskers[0] <= values[1] and values[3] <= whiskers[1] <= values[4]):
+            report.err(where, "whiskers must be [low, high] with min <= low <= q1 and q3 <= high <= max")
+    outliers = group.get("outliers", [])
+    if not isinstance(outliers, list) or not all(is_number(value) for value in outliers):
+        report.err(where, "outliers must be a list of numbers")
+
+
+def check_statistics_widget(report, where, name, config):
+    """Shape checks of the statistics widgets, matching their config readers in engine/widgets/statistics/.
+    统计类组件的配置检查，与 engine/widgets/statistics/ 中各组件读取配置的规则一致。"""
+    for key in ("title", "variable", "cases", "rowVariable", "columnVariable", "xLabel", "yLabel", "xName", "yName"):
+        if key in config:
+            report.bi(f"{where}.config.{key}", config[key])
+    if config.get("quartiles", "hand") not in QUARTILE_METHODS:
+        report.err(where, f"quartiles must be one of {', '.join(QUARTILE_METHODS)}")
+    if "unit" in config and not isinstance(config["unit"], str):
+        report.err(where, "unit must be a string such as \"kcal\"")
+    if "transform" in config and not isinstance(config["transform"], bool):
+        report.err(where, "transform must be true or false")
+    if "decimals" in config and not (isinstance(config["decimals"], int) and not isinstance(config["decimals"], bool)
+                                     and 2 <= config["decimals"] <= 6):
+        report.err(where, "decimals must be a whole number from 2 to 6")
+    if name == "two-way-table":
+        rows, columns, counts = config.get("rows"), config.get("columns"), config.get("counts")
+        if not (check_labels(report, f"{where}.config", rows, 2, 6, "rows")
+                and check_labels(report, f"{where}.config", columns, 2, 6, "columns")):
+            return
+        shaped = isinstance(counts, list) and len(counts) == len(rows) and all(
+            isinstance(row, list) and len(row) == len(columns) for row in counts)
+        if not shaped:
+            report.err(where, "counts needs one row per row label and one count per column label")
+        elif any(not isinstance(count, int) or isinstance(count, bool) or count < 0 for row in counts for count in row):
+            report.err(where, "counts must be non-negative integers")
+        elif sum(sum(row) for row in counts) == 0:
+            report.err(where, "counts must not all be zero")
+        if config.get("start", "counts") not in TWO_WAY_VIEWS:
+            report.err(where, f"start must be one of {', '.join(TWO_WAY_VIEWS)}")
+    elif name == "category-chart":
+        categories = config.get("categories")
+        if not isinstance(categories, list) or not 2 <= len(categories) <= 10:
+            report.err(where, "categories needs 2-10 entries")
+            return
+        for index, category in enumerate(categories):
+            item = f"{where}.config.categories[{index}]"
+            if not isinstance(category, dict) or not is_number(category.get("count")) or category["count"] < 0:
+                report.err(item, "needs a label and a non-negative count")
+                continue
+            report.bi(f"{item}.label", category.get("label"))
+        if config.get("display", "both") not in ("bar", "pie", "both"):
+            report.err(where, "display must be bar, pie or both")
+    elif name == "histogram":
+        has_data = number_list(report, f"{where}.config.data", config.get("data"), 5, 200)
+        for key in ("binWidth", "leafUnit"):
+            if key in config and not (is_number(config[key]) and config[key] > 0):
+                report.err(where, f"{key} must be a positive number")
+        width = config.get("binWidth")
+        if has_data and is_number(width) and width > 0 and min(config["data"]) < max(config["data"]):
+            bars = histogram_bars(config["data"], width, config.get("start"), config.get("closed", "right"))
+            if not 2 <= bars <= 60:
+                report.err(where, f"binWidth {width} gives {bars} bars; the widget needs 2-60")
+        leaf = config.get("leafUnit")
+        if is_number(leaf) and leaf > 0 and abs(math.log10(leaf) - round(math.log10(leaf))) > 1e-9:
+            report.err(where, "leafUnit must be a power of ten (0.1, 1, 10, ...)")
+        if "start" in config and not is_number(config["start"]):
+            report.err(where, "start must be a number")
+        if config.get("closed", "left") not in ("left", "right"):
+            report.err(where, "closed must be left or right")
+        views = config.get("views", ["histogram"])
+        if not isinstance(views, list) or not views or any(view not in HISTOGRAM_VIEWS for view in views):
+            report.err(where, f"views must be a non-empty list of {', '.join(HISTOGRAM_VIEWS)}")
+    elif name == "center-spread":
+        number_list(report, f"{where}.config.data", config.get("data"), 3, 30)
+    elif name == "boxplot":
+        groups = config.get("groups")
+        if not isinstance(groups, list) or not 1 <= len(groups) <= 4:
+            report.err(where, "groups needs 1-4 entries")
+            return
+        for index, group in enumerate(groups):
+            check_boxplot_group(report, f"{where}.config.groups[{index}]", group)
+    elif name == "z-score":
+        if "compare" in config:
+            entries = config["compare"]
+            if not isinstance(entries, list) or not 2 <= len(entries) <= 4:
+                report.err(where, "compare needs 2-4 entries")
+                return
+            for index, entry in enumerate(entries):
+                item = f"{where}.config.compare[{index}]"
+                if not isinstance(entry, dict) or not all(is_number(entry.get(key)) for key in ("mean", "sd", "value")) or entry["sd"] <= 0:
+                    report.err(item, "needs numbers mean and value and a positive sd")
+                    continue
+                report.bi(f"{item}.name", entry.get("name"))
+        else:
+            if not (is_number(config.get("mean")) and is_number(config.get("sd")) and config["sd"] > 0):
+                report.err(where, "z-score needs a number mean and a positive sd, or a compare list")
+            number_list(report, f"{where}.config.values", config.get("values"), 1, 6)
+    elif name == "scatter-correlation":
+        points = config.get("points")
+        if point_list(report, f"{where}.config.points", points, 4, 30) and len({point[1] for point in points}) < 2:
+            report.err(where, "y values must not all be equal")
+    elif name == "least-squares-line":
+        if "points" in config:
+            point_list(report, f"{where}.config.points", config["points"], 3, 30)
+        elif isinstance(config.get("summary"), dict):
+            summary = config["summary"]
+            if not all(is_number(summary.get(key)) for key in ("xbar", "sx", "ybar", "sy", "r")):
+                report.err(where, "summary needs numbers xbar, sx, ybar, sy and r")
+            elif summary["sx"] <= 0 or summary["sy"] <= 0 or not -1 <= summary["r"] <= 1:
+                report.err(where, "summary needs positive sx and sy and r between -1 and 1")
+        else:
+            report.err(where, "least-squares-line needs points or a summary")
 
 
 def check_block(report, where, block, stats):
@@ -267,8 +474,8 @@ def validate_lesson(report, data, unit_id):
             report.err("lesson", f"missing '{key}'")
     if data.get("id") != unit_id:
         report.err("lesson.id", f"expected {unit_id!r}")
-    if data.get("kind") not in ("lecture", "lab"):
-        report.err("lesson.kind", "must be lecture or lab")
+    if data.get("kind") not in UNIT_KINDS:
+        report.err("lesson.kind", f"must be one of {', '.join(UNIT_KINDS)}")
     report.bi("lesson.title", data.get("title"))
     report.bi("lesson.oneLiner", data.get("oneLiner"))
     report.items("lesson.outcomes", data.get("outcomes"), need=("en", "zh"))
@@ -283,7 +490,9 @@ def validate_lesson(report, data, unit_id):
             report.err(where, f"duplicate section id {section_id!r}")
         section_ids.add(section_id)
         report.bi(f"{where}.title", section.get("title"))
-        if not SLIDES.match(str(section.get("slides", ""))):
+        # A section without a slide source (taught from handouts or solutions only) leaves "slides" out.
+        # 没有对应幻灯片的小节（只来自讲义或答案）可以省略 "slides"。
+        if "slides" in section and not SLIDES.match(str(section["slides"])):
             report.err(where, f"bad slides value {section.get('slides')!r}")
         if section.get("level") not in ("core", "exam", "extra"):
             report.err(where, "level must be core, exam or extra")
@@ -331,7 +540,41 @@ def validate_questions(report, data, unit_id, section_ids):
             report.bi(f"{where}.modelAnswer", question.get("modelAnswer"), need=("en", "zh"))
             if not question.get("points"):
                 report.err(where, "needs scoring points")
+        if "table" in question:
+            check_question_table(report, f"{where}.table", question["table"])
     return f"questions={len(seen)} {dict(types)}"
+
+
+def is_cell(cell):
+    return isinstance(cell, (str, int, float)) and not isinstance(cell, bool)
+
+
+def check_question_table(report, where, table):
+    """Optional data table under a question prompt (engine/views/practice/logic/question-table.js).
+    题干下方可选的数据表（见 engine/views/practice/logic/question-table.js）。"""
+    if not isinstance(table, dict):
+        report.err(where, "must be an object with rows (and optional headers, caption)")
+        return
+    headers, rows = table.get("headers", []), table.get("rows")
+    if not isinstance(headers, list) or not all(is_cell(cell) for cell in headers):
+        report.err(where, "headers must be a list of strings or numbers")
+        return
+    if not isinstance(rows, list) or not rows or not all(isinstance(row, list) for row in rows):
+        report.err(where, "rows must be a non-empty list of rows")
+        return
+    width = len(headers) or len(rows[0])
+    if not 1 <= len(rows) <= 30 or not 1 <= width <= 12:
+        report.err(where, "tables are limited to 30 rows and 12 columns")
+    for index, row in enumerate(rows):
+        if len(row) != width:
+            report.err(f"{where}.rows[{index}]", "row length must equal the header length")
+        if not all(is_cell(cell) for cell in row):
+            report.err(f"{where}.rows[{index}]", "cells must be strings or numbers")
+    for cell in [*headers, *(cell for row in rows for cell in row)]:
+        if isinstance(cell, str) and (HTML_TAG.search(cell) or EMOJI.search(cell)):
+            report.err(where, f"cell {cell!r} contains HTML or an emoji")
+    if "caption" in table:
+        report.bi(f"{where}.caption", table["caption"])
 
 
 def validate_glossary(report, data, unit_id):
@@ -401,6 +644,9 @@ def validate_one(pack, kind, unit_id):
 
 
 def main():
+    # Messages may quote content (Chinese, math symbols), so print UTF-8 whatever the console code page is.
+    # 报告可能引用内容（中文、数学符号），因此无论控制台代码页是什么都以 UTF-8 输出。
+    sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="Validate study-station course-pack content.")
     parser.add_argument("kind", choices=[*FOLDERS, "all"])
     parser.add_argument("unit_id", nargs="?", default="")

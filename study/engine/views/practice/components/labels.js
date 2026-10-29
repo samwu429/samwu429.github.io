@@ -3,13 +3,12 @@
  * 刷题各视图共用的文字小工具：单元名称、题型与难度徽标、题干预览与课文链接。
  */
 import { stripMarkup } from '../../../core/text/inline-markup.js';
-import { unitLabels } from '../../../core/text/unit-labels.js';
+import { kindGroupTitle, unitLabels } from '../../../core/text/unit-labels.js';
 import { isRouteId } from '../../../core/util/ids.js';
 import { badge } from '../../../components/badges/badge.js';
 import { TYPE_LABELS, isWrittenType } from '../logic/question-types.js';
 
 const DIFFICULTY = { 1: '基础 Easy', 2: '中等 Medium', 3: '较难 Hard' };
-const KIND_LABELS = { lecture: '讲课 Lectures', lab: '实验 Labs' };
 
 /** Map of unit id -> unit meta from course.json, in course order. course.json 中的单元，按课程顺序。 */
 export function unitsById(course) {
@@ -24,9 +23,10 @@ export function unitKicker(unit) {
   return label.numbered ? `${label.zh} ${label.en}` : String(unit.id || '');
 }
 
-/** Group heading for a unit kind. 单元类别的分组标题。 */
+/** Group heading for a unit kind, e.g. "讲课 Lectures", "模块 Modules" (core/text/unit-labels.js). 单元类别的分组标题。 */
 export function kindLabel(kind) {
-  return KIND_LABELS[kind] || '其他 Other';
+  const title = kindGroupTitle(kind);
+  return `${title.zh} ${title.en}`;
 }
 
 export function typeLabel(type) {

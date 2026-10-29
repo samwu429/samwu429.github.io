@@ -1,0 +1,725 @@
+{
+  "lessonId": "mod04",
+  "terms": [
+    {
+      "id": "measure-of-position",
+      "en": "Measure of position",
+      "zh": "位置度量",
+      "def": {
+        "en": "A measure of position tells us the point at which a certain percentage of the data fall below or above it. Percentiles, quartiles, the median, the mean, the minimum and maximum, and z-scores are measures of position.",
+        "zh": "位置度量回答“这个点在数据里排在哪儿”：有百分之多少的数据在它下面、多少在它上面。就像排队时你站第几位。百分位数、四分位数、中位数、平均数、最小值、最大值和 z 分数都是位置度量（课件 p.27、p.29 把平均数也算作位置度量）。有的位置度量还能描述中心（比如中位数），有的能描述离散程度（比如极差 = 最大值 − 最小值）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量（n = 30）：中位数 Q2 = 250 kcal，大约一半甜甜圈低于它、一半高于它，所以它描述中心；极差用两个位置相减：400 − 180 = 220 kcal，所以它描述离散程度。",
+        "en": "Donut calories (n = 30): the median Q2 = 250 kcal has about half of the donuts below it and half above, so it describes the centre. The range uses two positions: Max − Min = 400 − 180 = 220 kcal, so it describes spread."
+      },
+      "slides": "2, 25, 27, 29",
+      "related": [
+        "percentile",
+        "quartile",
+        "median",
+        "range",
+        "z-score"
+      ]
+    },
+    {
+      "id": "percentile",
+      "en": "Percentile",
+      "zh": "百分位数",
+      "def": {
+        "en": "The pth percentile is the value such that p% of the observations fall at or below it and (100 − p)% fall above it. The median is the 50th percentile.",
+        "zh": "先把数据从小到大排好。第 p 百分位数就是这样一个数：大约 p% 的数据小于或等于它，剩下 (100 − p)% 的数据大于它。p 是 0 到 100 之间的数。注意：百分位数是数据里的一个“位置”，不是“考了百分之多少分”。"
+      },
+      "example": {
+        "zh": "p = 50 时就是第 50 百分位数，也就是中位数。甜甜圈热量的中位数是 250 kcal：大约 50% 的甜甜圈不超过 250 kcal，50% 超过 250 kcal。再比如你的分数在第 90 百分位：大约 90% 的分数不高于你，10% 比你高。",
+        "en": "p = 50 gives the 50th percentile, which is the median. For the donuts it is 250 kcal: about 50% of donuts have at most 250 kcal and about 50% have more. A score at the 90th percentile means about 90% of the scores are at or below it and about 10% are above it."
+      },
+      "slides": "2-3",
+      "related": [
+        "quantile",
+        "quartile",
+        "median",
+        "measure-of-position",
+        "cumulative-relative-frequency"
+      ]
+    },
+    {
+      "id": "quantile",
+      "en": "Quantile",
+      "zh": "分位数",
+      "def": {
+        "en": "In proportion terms, a percentile is called a quantile: the pth percentile is the p/100 quantile. For example, the 50th percentile (the median) is the 0.50 quantile.",
+        "zh": "分位数就是把百分位数换成“比例”（0 到 1 之间的小数）来叫：第 p 百分位数 = p/100 分位数。第 50 百分位数（中位数）= 0.50 分位数，第 25 百分位数（Q1）= 0.25 分位数，第 75 百分位数（Q3）= 0.75 分位数。"
+      },
+      "example": {
+        "zh": "甜甜圈热量（R 的结果）：0.25 分位数 = Q1 = 210 kcal；0.50 分位数 = 中位数 = 250 kcal；0.75 分位数 = Q3 = 277.5 kcal。",
+        "en": "Donut calories (R values): the 0.25 quantile = Q1 = 210 kcal; the 0.50 quantile = median = 250 kcal; the 0.75 quantile = Q3 = 277.5 kcal."
+      },
+      "slides": "3",
+      "related": [
+        "percentile",
+        "quartile",
+        "median",
+        "relative-frequency"
+      ]
+    },
+    {
+      "id": "quartile",
+      "en": "Quartile",
+      "zh": "四分位数",
+      "def": {
+        "en": "The quartiles are Q1 (25th percentile), Q2 (the median, 50th percentile) and Q3 (75th percentile). Together they split the distribution into four parts, and each part contains one-fourth (25%) of the observations.",
+        "zh": "四分位数是把排好序的数据切成四份的三个“刀口”：Q1、Q2（就是中位数）、Q3。每一份里大约有 1/4（25%）的数据。注意：每份的数据“个数”一样多，但在数轴上的“宽度”不一定一样，偏态数据尤其不一样。"
+      },
+      "example": {
+        "zh": "甜甜圈热量（n = 30）手算：Q1 = 210，Q2 = 250，Q3 = 280 kcal。R 的 `summary()` 给出 Q1 = 210、Q3 = 277.5。课件说手算和 R 结果不同不用担心，课程用 R 来得到四分位数。",
+        "en": "Donut calories (n = 30) by hand: Q1 = 210, Q2 = 250, Q3 = 280 kcal. R's `summary()` gives Q1 = 210 and Q3 = 277.5. The slides say not to worry about the difference: the course uses R to obtain quartiles."
+      },
+      "slides": "3-6",
+      "related": [
+        "lower-quartile",
+        "upper-quartile",
+        "median",
+        "iqr",
+        "percentile",
+        "five-number-summary"
+      ]
+    },
+    {
+      "id": "lower-quartile",
+      "en": "Lower (first) quartile, Q1",
+      "zh": "下四分位数（第一四分位数，Q1）",
+      "def": {
+        "en": "Q1 is the 25th percentile: the median of the observations below the median (the bottom half of the data). One quarter (25%) of the data fall below it and three quarters (75%) fall above it.",
+        "zh": "先排序，再从中位数那里把数据切成上下两半；下面那一半的中位数就是 Q1。大约 1/4（25%）的数据比它小，3/4（75%）比它大。"
+      },
+      "example": {
+        "zh": "甜甜圈 n = 30：下半部分是排好序的前 15 个数（180 到 250）。15 个数的中位数在第 0.5 × (15 + 1) = 8 个，是 210，所以 Q1 = 210 kcal。R 也给出 210。",
+        "en": "Donuts, n = 30: the bottom half is the first 15 sorted values (180 to 250). The median of 15 values is at position 0.5 × (15 + 1) = 8, which is 210, so Q1 = 210 kcal. R also gives 210."
+      },
+      "slides": "3, 5-6",
+      "related": [
+        "quartile",
+        "upper-quartile",
+        "percentile",
+        "iqr",
+        "median"
+      ]
+    },
+    {
+      "id": "upper-quartile",
+      "en": "Upper (third) quartile, Q3",
+      "zh": "上四分位数（第三四分位数，Q3）",
+      "def": {
+        "en": "Q3 is the 75th percentile: the median of the observations above the median (the upper half of the data). Three quarters (75%) of the data fall below it and one quarter (25%) fall above it.",
+        "zh": "上面那一半数据的中位数就是 Q3。大约 3/4（75%）的数据比它小，只有 1/4（25%）比它大。别记反：Q3 上面只剩 25%。"
+      },
+      "example": {
+        "zh": "甜甜圈 n = 30：上半部分是后 15 个数，其中第 8 个（全体第 23 个）是 280，所以手算 Q3 = 280 kcal；R 的 `summary()` 给出 277.5。题目给了 R 输出时，用 277.5 去算 IQR 和栅栏。",
+        "en": "Donuts, n = 30: the upper half is the last 15 sorted values; its 8th value (the 23rd overall) is 280, so Q3 = 280 kcal by hand. R's `summary()` gives 277.5. When a question gives R output, use 277.5 for the IQR and the fences."
+      },
+      "slides": "3, 5-6",
+      "related": [
+        "quartile",
+        "lower-quartile",
+        "percentile",
+        "iqr",
+        "median"
+      ]
+    },
+    {
+      "id": "iqr",
+      "en": "Interquartile range (IQR)",
+      "zh": "四分位距（IQR）",
+      "def": {
+        "en": "The interquartile range is IQR = Q3 − Q1 (75th percentile − 25th percentile). It is the range of the middle half of the data (50% of the data fall in it), and it is resistant to outliers.",
+        "zh": "IQR 就是 Q3 减 Q1，量的是“中间那一半数据”跨了多宽。它是一个数，不是一个区间。IQR 越大，中间 50% 的数据越分散。它只用 Q1 和 Q3，不管两头最大、最小的数，所以离群值几乎影响不到它（稳健，**resistant**）。"
+      },
+      "example": {
+        "zh": "甜甜圈：手算 IQR = 280 − 210 = 70 kcal；用 R 的四分位数 IQR = 277.5 − 210 = 67.5 kcal。解读：中间 50% 的甜甜圈，热量跨了 70 kcal（从 210 到 280）。",
+        "en": "Donuts: by hand IQR = 280 − 210 = 70 kcal; with R's quartiles IQR = 277.5 − 210 = 67.5 kcal. Interpretation: the middle 50% of donuts have calories that extend across a range of 70 calories (from 210 to 280)."
+      },
+      "slides": "5-6, 14",
+      "related": [
+        "quartile",
+        "lower-quartile",
+        "upper-quartile",
+        "range",
+        "resistant",
+        "inner-fence"
+      ]
+    },
+    {
+      "id": "five-number-summary",
+      "en": "Five-number summary",
+      "zh": "五数概括",
+      "def": {
+        "en": "The five-number summary is the Minimum, Q1 (25th percentile), the Median (50th percentile), Q3 (75th percentile) and the Maximum. A boxplot is a graph of these five numbers.",
+        "zh": "用 5 个数概括一组数据：最小值、Q1、中位数、Q3、最大值。箱线图就是把这 5 个数画出来。注意：平均数和标准差不在里面（`favstats()` 只是把它们印在旁边）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量（课件 p.8）：最小值 180、Q1 210、中位数 250、Q3 280、最大值 400。用 R 的四分位数则是 180、210、250、277.5、400。",
+        "en": "Donut calories (p.8): min 180, Q1 210, median 250, Q3 280, max 400. With R's quartiles: 180, 210, 250, 277.5, 400."
+      },
+      "slides": "7-8",
+      "related": [
+        "boxplot",
+        "quartile",
+        "median",
+        "favstats",
+        "range"
+      ]
+    },
+    {
+      "id": "boxplot",
+      "en": "Boxplot (box plot)",
+      "zh": "箱线图",
+      "def": {
+        "en": "A boxplot (designed by John W. Tukey) is a graph of the five-number summary. The box runs from Q1 to Q3 (the middle 50% of the data) with a line at the median; the whiskers extend to the most extreme values inside the inner fences, and suspect outliers are plotted individually.",
+        "zh": "把五数概括画成图：一个“盒子”从 Q1 画到 Q3，装着中间 50% 的数据，盒子的宽度就是 IQR；盒子里的一条线是中位数（不一定在正中间）；两边的须线（**whisker**）伸到内栅栏以内最远的数据；栅栏外的点单独画成小圆圈。从图上能看出形状、中心（中位数）和离散（IQR）。箱线图不显示平均数。"
+      },
+      "example": {
+        "zh": "甜甜圈热量的箱线图（课件 p.8–10）：盒子从 210 到 280，中位数线在 250；左须线到 180，右须线到 340（不是 400）；400 单独画成一个圆圈。形状：稍微右偏。",
+        "en": "Boxplot of donut calories (p.8-10): the box runs from 210 to 280 with the median line at 250; the left whisker reaches 180 and the right whisker reaches 340 (not 400); 400 is plotted individually as a circle. Shape: slightly right skewed."
+      },
+      "slides": "7-10, 13-16",
+      "related": [
+        "five-number-summary",
+        "whisker",
+        "inner-fence",
+        "suspect-outlier",
+        "side-by-side-boxplots",
+        "iqr"
+      ]
+    },
+    {
+      "id": "whisker",
+      "en": "Whisker",
+      "zh": "须线（箱线图两侧的线）",
+      "def": {
+        "en": "The whiskers are the lines extending from the box of a boxplot. Each whisker goes to the most extreme data value inside the inner fences (≥ Q1 − 1.5 × IQR on the low side, ≤ Q3 + 1.5 × IQR on the high side); values outside the fences are plotted individually.",
+        "zh": "盒子两边伸出去的线。它不一定伸到最小值、最大值：只伸到“内栅栏以内最远的那个真实数据”。栅栏外的数不连线，单独画点。所以须线的终点永远是一个数据值，不是栅栏那个数。"
+      },
+      "example": {
+        "zh": "甜甜圈（课件 p.14，R 的四分位数）：下内栅栏是 108.75，≥ 108.75 的最小数据是 180，左须线画到 180；上内栅栏是 378.75，≤ 378.75 的最大数据是 340，右须线画到 340；400 在栅栏外，单独画。",
+        "en": "Donuts (p.14, R quartiles): the lower inner fence is 108.75, so the left whisker goes to 180, the smallest value ≥ 108.75; the upper inner fence is 378.75, so the right whisker goes to 340, the largest value ≤ 378.75. 400 is outside the fences and is plotted on its own."
+      },
+      "slides": "7-8, 14",
+      "related": [
+        "boxplot",
+        "inner-fence",
+        "suspect-outlier",
+        "five-number-summary"
+      ]
+    },
+    {
+      "id": "inner-fence",
+      "en": "Inner fences",
+      "zh": "内栅栏",
+      "def": {
+        "en": "Lower inner fence = Q1 − 1.5 × IQR; upper inner fence = Q3 + 1.5 × IQR. Data values outside the interval (lower inner fence, upper inner fence) are suspect outliers.",
+        "zh": "给数据围一圈“篱笆”：下面那根在 Q1 往下 1.5 个 IQR，上面那根在 Q3 往上 1.5 个 IQR。站在篱笆外面的数是疑似离群值；正好落在栅栏上的数算在里面。栅栏只是分界线，不一定是数据里的数。课件写的 1.5(IQR)、1.5 x IQR、1.5 * IQR 都是“1.5 乘以 IQR”。"
+      },
+      "example": {
+        "zh": "甜甜圈（课件 p.14）：IQR = 277.5 − 210 = 67.5；1.5 × IQR = 101.25；下内栅栏 = 210 − 101.25 = 108.75；上内栅栏 = 277.5 + 101.25 = 378.75。只有 400 在外面，所以 400 是疑似离群值。",
+        "en": "Donuts (p.14): IQR = 277.5 − 210 = 67.5; 1.5 × IQR = 101.25; lower inner fence = 210 − 101.25 = 108.75; upper inner fence = 277.5 + 101.25 = 378.75. Only 400 is outside, so 400 is a suspect outlier."
+      },
+      "slides": "12, 14",
+      "related": [
+        "outer-fence",
+        "iqr",
+        "suspect-outlier",
+        "whisker",
+        "boxplot"
+      ]
+    },
+    {
+      "id": "outer-fence",
+      "en": "Outer fences",
+      "zh": "外栅栏",
+      "def": {
+        "en": "Lower outer fence = Q1 − 3 × IQR; upper outer fence = Q3 + 3 × IQR. Data values outside the interval (lower outer fence, upper outer fence) are highly suspect outliers.",
+        "zh": "比内栅栏更远的第二圈篱笆：Q1 往下 3 个 IQR，Q3 往上 3 个 IQR。跑出外栅栏的数是高度疑似离群值；在内、外栅栏之间的数只是疑似离群值。"
+      },
+      "example": {
+        "zh": "甜甜圈（用 R 的 Q1 = 210、Q3 = 277.5、IQR = 67.5 重算，课件没有印出来）：3 × IQR = 202.5；下外栅栏 = 210 − 202.5 = 7.5；上外栅栏 = 277.5 + 202.5 = 480。400 在 378.75 和 480 之间，所以只是疑似离群值，不是高度疑似。",
+        "en": "Donuts (recomputed with R's Q1 = 210, Q3 = 277.5, IQR = 67.5; not printed on the slides): 3 × IQR = 202.5; lower outer fence = 210 − 202.5 = 7.5; upper outer fence = 277.5 + 202.5 = 480. 400 lies between 378.75 and 480, so it is a suspect outlier, not a highly suspect one."
+      },
+      "slides": "12",
+      "related": [
+        "inner-fence",
+        "highly-suspect-outlier",
+        "suspect-outlier",
+        "iqr"
+      ]
+    },
+    {
+      "id": "suspect-outlier",
+      "en": "Suspect outlier (potential outlier)",
+      "zh": "疑似离群值",
+      "def": {
+        "en": "A suspect outlier is a data value more than 1.5 × IQR beyond Q1 or Q3 (outside the inner fences) but not beyond the outer fences. For bell-shaped, symmetric data, a value whose z-score is between 2 and 3 in absolute value is also a potential (suspect) outlier.",
+        "zh": "在内栅栏外面、但还没跑出外栅栏的数，叫疑似离群值（也叫潜在离群值，**potential outlier**）。如果连外栅栏都跑出去了，就升级叫“高度疑似离群值”。R 的箱线图把栅栏外的点单独画成小圆圈。钟形对称的数据也可以用 z 分数判断：|z|（z 去掉负号）在 2 和 3 之间（本站按 2 < |z| ≤ 3）就是疑似离群值。"
+      },
+      "example": {
+        "zh": "甜甜圈的 400 kcal：在上内栅栏 378.75 外面，但在上外栅栏 480 里面，所以是疑似离群值；它的 z = (400 − 251)/50.06 = 2.98，也在 2 和 3 之间。",
+        "en": "The 400-kcal donut lies beyond the upper inner fence 378.75 but inside the upper outer fence 480, so it is a suspect outlier. Its z-score, (400 − 251)/50.06 = 2.98, is also between 2 and 3."
+      },
+      "slides": "8, 12, 26",
+      "related": [
+        "inner-fence",
+        "outer-fence",
+        "highly-suspect-outlier",
+        "outlier",
+        "z-score"
+      ]
+    },
+    {
+      "id": "highly-suspect-outlier",
+      "en": "Highly suspect outlier",
+      "zh": "高度疑似离群值",
+      "def": {
+        "en": "A highly suspect outlier is a data value more than 3 × IQR beyond Q1 or Q3, i.e. outside the outer fences. For bell-shaped, symmetric data, a value more than 3 standard deviations from the mean (|z| > 3) is very rare and is also a highly suspect outlier.",
+        "zh": "跑出外栅栏（低于 Q1 − 3 × IQR，或高于 Q3 + 3 × IQR）的数，最可疑。钟形对称的数据里，离均值超过 3 个标准差（|z| > 3）非常少见，也算高度疑似离群值。z 是负的也一样，看绝对值 |z|（去掉负号）。"
+      },
+      "example": {
+        "zh": "IQ 分数是钟形的，均值 100、标准差 16（课件 p.36 的数）：IQ 150 的 z = (150 − 100)/16 = 3.125 > 3，是高度疑似离群值；IQ 140 的 z = 2.5，只是疑似。用栅栏判断：如果 Q1 = 10、Q3 = 20（IQR = 10），上外栅栏 = 20 + 3 × 10 = 50，数据 55 超过 50，是高度疑似离群值。",
+        "en": "IQ scores are bell-shaped with mean 100 and SD 16 (numbers from p.36): an IQ of 150 has z = (150 − 100)/16 = 3.125 > 3, a highly suspect outlier; an IQ of 140 has z = 2.5, only a suspect one. With fences: if Q1 = 10 and Q3 = 20 (IQR = 10), the upper outer fence is 20 + 3 × 10 = 50, so a value of 55 is highly suspect."
+      },
+      "slides": "12, 26",
+      "related": [
+        "outer-fence",
+        "suspect-outlier",
+        "z-score",
+        "outlier",
+        "empirical-rule"
+      ]
+    },
+    {
+      "id": "extreme-value",
+      "en": "Extreme value",
+      "zh": "极端值",
+      "def": {
+        "en": "Extreme value is another name for an outlier: an observation at the lowest or highest end of the data that appears to deviate from the rest. When we describe a boxplot, the extreme values are the points plotted individually. In the official practice solutions, the Yes/No question 'Is it an extreme value?' is answered with the z-score: Yes only when |z| > 3.",
+        "zh": "极端值就是离群值的另一个叫法：在数据最低端或最高端、看起来和其他数据明显分开的值。描述箱线图时，单独画出来的点就是极端值。官方练习题答案还用 z 分数判断 extreme value：|z| > 3 才算。"
+      },
+      "example": {
+        "zh": "课件 p.10 描述甜甜圈箱线图的最后一项 Extreme value(s)：有一个点单独画在 400，也就是一个 400 kcal 的甜甜圈。",
+        "en": "Slide p.10, the last part of the donut boxplot description, Extreme value(s): one point is plotted individually at 400, i.e. one donut with 400 calories."
+      },
+      "slides": "9-11",
+      "related": [
+        "outlier",
+        "suspect-outlier",
+        "highly-suspect-outlier",
+        "boxplot",
+        "z-score"
+      ]
+    },
+    {
+      "id": "context-dependent-outlier",
+      "en": "Context-dependent outlier",
+      "zh": "依情境而定的离群值",
+      "def": {
+        "en": "Outliers are context-dependent: when data are described by groups, a value can be an outlier within one group but not in the overall data.",
+        "zh": "一个数是不是离群值，要看“和谁比”。放在全部数据里很正常的数，按组分开以后，在某一组里可能就成了离群值。所以分组比较时，每一组都要用自己的 Q1、Q3 算栅栏。"
+      },
+      "example": {
+        "zh": "340 kcal 的甜甜圈：蛋糕型（Cake）这一组 Q1 = 250、Q3 = 280、IQR = 30，上内栅栏 = 280 + 1.5 × 30 = 325，340 > 325，在组内是离群值；但全部 30 个甜甜圈的上内栅栏是 378.75，340 在里面，不算离群值（根据课件 p.22–23 计算）。",
+        "en": "The 340-kcal donut: in the Cake group Q1 = 250, Q3 = 280 and IQR = 30, so the upper inner fence is 280 + 1.5 × 30 = 325 and 340 is an outlier there. Among all 30 donuts the upper inner fence is 378.75, so 340 is not an outlier overall (computed from p.22-23)."
+      },
+      "slides": "18",
+      "related": [
+        "outlier",
+        "side-by-side-boxplots",
+        "inner-fence",
+        "suspect-outlier"
+      ]
+    },
+    {
+      "id": "side-by-side-boxplots",
+      "en": "Side-by-side boxplots",
+      "zh": "并排箱线图",
+      "def": {
+        "en": "Side-by-side boxplots show one boxplot of a quantitative variable for each group of a categorical variable, on the same axis. They are good for comparing two or more groups: which group has the higher median, the smaller IQR and the smaller range, and where the outliers are.",
+        "zh": "把一个数值变量按一个分类变量分成几组，每组画一个箱线图，并排放在同一根数轴上。比较两组或更多组时最好用：看谁的中位数更高、谁的盒子更窄（IQR 更小）、谁的极差更小、谁有离群值。每组的离群值按它自己的栅栏判断。"
+      },
+      "example": {
+        "zh": "不同种类甜甜圈的热量（课件 p.22–24；“其他”只有 1 个甜甜圈，先不看）：蛋糕型中位数最高（270 kcal），盒子最窄（IQR = 280 − 250 = 30）；酵母型中位数最低（200 kcal），盒子最宽（IQR = 260 − 190 = 70）；夹馅型中位数 230，IQR = 265 − 212.5 = 52.5，400 单独画出。",
+        "en": "Calories by donut type (p.22-24; Other has only 1 donut, so leave it out): Cake has the highest median (270 kcal) and the narrowest box (IQR = 280 − 250 = 30); Yeast has the lowest median (200 kcal) and the widest box (IQR = 260 − 190 = 70); Filled has median 230 and IQR = 265 − 212.5 = 52.5, with 400 plotted on its own."
+      },
+      "slides": "18, 21-24",
+      "related": [
+        "boxplot",
+        "context-dependent-outlier",
+        "favstats",
+        "explanatory-variable",
+        "response-variable",
+        "iqr"
+      ]
+    },
+    {
+      "id": "favstats",
+      "en": "favstats() (mosaic package)",
+      "zh": "favstats() 函数（mosaic 包）",
+      "def": {
+        "en": "`favstats()` is an R function in the mosaic package. It prints min, Q1, median, Q3, max, mean, sd, n and missing for a quantitative variable, and `favstats(y ~ group)` prints them for each group.",
+        "zh": "R 里 mosaic 包的函数，一次印出一个数值变量的：最小值 min、Q1、中位数 median、Q3、最大值 max（这 5 个就是五数概括），再加平均数 mean、标准差 sd、个数 n、缺失值个数 missing。写成 `favstats(数值变量 ~ 分组变量)` 就是每组各算一遍。用之前先运行 `library(mosaic)`。"
+      },
+      "example": {
+        "zh": "课件 p.17：`favstats(Calories)` 输出 min 180、Q1 210、median 250、Q3 277.5、max 400、mean 251、sd 50.05859、n 30、missing 0。课件 p.23：`favstats(Calories ~ Type.of.Donut)` 给出每种甜甜圈的这些数。",
+        "en": "Slide p.17: `favstats(Calories)` prints min 180, Q1 210, median 250, Q3 277.5, max 400, mean 251, sd 50.05859, n 30, missing 0. Slide p.23: `favstats(Calories ~ Type.of.Donut)` gives these numbers for each type of donut."
+      },
+      "slides": "17, 23",
+      "related": [
+        "five-number-summary",
+        "quartile",
+        "side-by-side-boxplots",
+        "standard-deviation",
+        "scale-function"
+      ]
+    },
+    {
+      "id": "paired-data",
+      "en": "Paired data (paired differences)",
+      "zh": "配对数据（配对差值）",
+      "def": {
+        "en": "Paired data have two linked values for each case, such as the same student's mark before and after a review session. We study the difference within each case (value 1 − value 2, in a stated order), for example with a boxplot of the differences.",
+        "zh": "每个个案都有两个“绑在一起”的数，比如同一个学生复习前和复习后的成绩。这时先算每个个案自己的差值（按说好的顺序相减，比如“后 − 前”），再分析这些差值，比如画差值的箱线图。并排箱线图把两组分开看，看不出“谁和谁是一对”。课件里没有专门讲，来自 Module 4 官方练习题答案（Q2E）。"
+      },
+      "example": {
+        "zh": "自编例子：8 个学生复习前后的小测成绩，差值（后 − 前）是 2, 0, 4, −1, 2, 4, 1, 2。差值的中位数是 2，8 人里只有 1 人退步。差值的平均数 1.75 = 两组平均数之差（15.125 − 13.375）；但差值的中位数 2 不等于两组中位数之差（14.5 − 13.5 = 1）。",
+        "en": "Made-up example: 8 students' quiz marks before and after a review session give differences (after − before) of 2, 0, 4, −1, 2, 4, 1, 2. The median difference is 2, and only 1 of the 8 students went down. The mean difference 1.75 equals the difference of the means (15.125 − 13.375), but the median difference 2 is not the difference of the medians (14.5 − 13.5 = 1)."
+      },
+      "related": [
+        "side-by-side-boxplots",
+        "boxplot",
+        "median",
+        "mean"
+      ]
+    },
+    {
+      "id": "z-score",
+      "en": "z-score (standardized value)",
+      "zh": "z 分数（标准化值）",
+      "def": {
+        "en": "A z-score (standardized data value) is a measure of position that tells how many standard deviations an observation falls away from the mean: z = (y − ȳ)/s for sample data and z = (y − μ)/σ for population data. A positive z is above the mean and a negative z is below it.",
+        "zh": "z 分数回答：“这个数比平均数高（或低）几个标准差？”算法：先减平均数，再除以标准差。y 是这个数，ȳ 是样本平均数，s 是样本标准差（课件后面也写成大写 S）；总体数据就用 μ 和 σ。z 是正的在平均数上面，负的在下面，0 就正好等于平均数。它的单位是“标准差”，没有 kcal、分这样的单位。比较来自不同分布的数时看 z：z 越大，相对位置越高。反过来求原始值：y = μ + z × σ。"
+      },
+      "example": {
+        "zh": "甜甜圈热量均值 251、标准差 50.06（课件 p.39）：400 kcal 的 z = (400 − 251)/50.06 = 2.98，比均值高 2.98 个标准差；180 kcal 的 z = (180 − 251)/50.06 = −1.42，比均值低 1.42 个标准差。倒推（课件 p.37）：IQ 均值 100、标准差 16，z = 2.5 对应 IQ = 100 + 2.5 × 16 = 140。",
+        "en": "Donut calories have mean 251 and SD 50.06 (p.39): 400 kcal gives z = (400 − 251)/50.06 = 2.98, so it is 2.98 standard deviations above the mean; 180 kcal gives z = (180 − 251)/50.06 = −1.42, so it is 1.42 standard deviations below the mean. Reverse (p.37): with IQ mean 100 and SD 16, z = 2.5 means IQ = 100 + 2.5 × 16 = 140."
+      },
+      "slides": "25-26, 34-41",
+      "related": [
+        "standardizing",
+        "standard-deviation",
+        "mean",
+        "suspect-outlier",
+        "highly-suspect-outlier",
+        "scale-function",
+        "correlation-coefficient"
+      ]
+    },
+    {
+      "id": "standardizing",
+      "en": "Standardizing",
+      "zh": "标准化",
+      "def": {
+        "en": "To standardize a value, we subtract the mean and then divide the difference by the standard deviation; the result is a z-score. Standardizing shifts and rescales the data: the z-scores have mean 0 and standard deviation 1, and the shape of the distribution does not change.",
+        "zh": "把原始数据变成 z 分数的过程，分两步：先“平移”（每个数减去平均数，中心挪到 0），再“缩放”（每个数除以标准差，标准差变成 1）。变完以后：平均数 = 0，标准差 = 1，形状和原来一模一样。标准化不会把偏态数据变成钟形。"
+      },
+      "example": {
+        "zh": "课件 p.32：数据 5, 10, 15, 20, 25（均值 15，s = 7.905694）。先减 15 得 −10, −5, 0, 5, 10，再除以 7.905694 得 −1.26, −0.63, 0, 0.63, 1.26。这些 z 分数的平均数是 0，标准差是 1；p.33 的两个箱线图形状一样。",
+        "en": "Slide p.32: data 5, 10, 15, 20, 25 (mean 15, s = 7.905694). Subtract 15 to get −10, −5, 0, 5, 10, then divide by 7.905694 to get −1.26, −0.63, 0, 0.63, 1.26. These z-scores have mean 0 and SD 1, and the two boxplots on p.33 have the same shape."
+      },
+      "slides": "25, 31-33",
+      "related": [
+        "z-score",
+        "shifting",
+        "rescaling",
+        "scale-function",
+        "shape"
+      ]
+    },
+    {
+      "id": "shifting",
+      "en": "Shifting (adding or subtracting a constant)",
+      "zh": "平移（每个数加减同一个常数）",
+      "def": {
+        "en": "Adding (or subtracting) the same constant to every value increases (or decreases) all measures of position (mean, median, Q1, Q3, min, max) by that constant. It leaves the measures of spread (range, IQR, standard deviation) and the shape unchanged.",
+        "zh": "每个数都加上（或减去）同一个数 c，整组数据一起挪动，像排队的人一起往前走一步。所以位置度量（平均数、中位数、Q1、Q3、最小值、最大值）都跟着加（减）c；但人和人之间的距离没变，所以离散度量（极差、IQR、标准差）都不变，直方图的形状也不变。"
+      },
+      "example": {
+        "zh": "课件 p.27：5, 10, 15, 20, 25 每个数加 10，变成 15, 20, 25, 30, 35。平均数和中位数都从 15 变成 25，Q1 从 10 变成 20；标准差还是 7.905694，IQR 还是 10，极差还是 20。",
+        "en": "Slide p.27: adding 10 to 5, 10, 15, 20, 25 gives 15, 20, 25, 30, 35. The mean and the median go from 15 to 25 and Q1 from 10 to 20, while the SD stays 7.905694, the IQR stays 10 and the range stays 20."
+      },
+      "slides": "27-28",
+      "related": [
+        "rescaling",
+        "standardizing",
+        "measure-of-position",
+        "standard-deviation",
+        "iqr",
+        "range"
+      ]
+    },
+    {
+      "id": "rescaling",
+      "en": "Rescaling (multiplying or dividing by a constant)",
+      "zh": "缩放（每个数乘除同一个常数）",
+      "def": {
+        "en": "Multiplying (or dividing) all data values by the same positive constant multiplies (or divides) all measures of position (mean, median, percentiles) and all measures of spread (range, IQR, standard deviation) by that constant. The shape does not change.",
+        "zh": "每个数都乘以（或除以）同一个数 c，常见于换单位（比如分钟换成小时 = 除以 60）。这时位置度量（平均数、中位数、百分位数）和离散度量（极差、IQR、标准差）全部跟着乘（除）c，形状不变。和平移的区别：加减只动位置，乘除连离散程度一起变。补充（课件外）：方差要乘 c²；c 是负数时，离散度量乘的是 |c|（离散程度不会是负的）。"
+      },
+      "example": {
+        "zh": "课件 p.29：5, 10, 15, 20, 25 每个数乘 2，变成 10, 20, 30, 40, 50。平均数 15 → 30，IQR 10 → 20，极差 20 → 40，标准差 7.905694 → 15.81139，全部翻倍。p.30 是每个数除以 5（得到平均数 3、标准差 1.581139），那里的变量名 `divide.scale.by2` 是课件笔误。",
+        "en": "Slide p.29: multiplying 5, 10, 15, 20, 25 by 2 gives 10, 20, 30, 40, 50. The mean goes from 15 to 30, the IQR from 10 to 20, the range from 20 to 40 and the SD from 7.905694 to 15.81139: all doubled. Slide p.30 divides by 5 (mean 3, SD 1.581139); its variable name `divide.scale.by2` is a slide typo."
+      },
+      "slides": "29-30",
+      "related": [
+        "shifting",
+        "standardizing",
+        "standard-deviation",
+        "iqr",
+        "range",
+        "variance"
+      ]
+    },
+    {
+      "id": "scale-function",
+      "en": "scale() (R function for z-scores)",
+      "zh": "scale() 函数（计算 z 分数）",
+      "def": {
+        "en": "`scale(x)` is the R function that turns every value of x into a z-score: it subtracts the mean of x and divides by the sample standard deviation (the one computed with n − 1).",
+        "zh": "R 里一步算出全部 z 分数的函数：每个数减去平均数，再除以样本标准差（用 n − 1 算的那个，和 `favstats()` 的 sd 一样）。算出来的 z 分数平均数是 0、标准差是 1。"
+      },
+      "example": {
+        "zh": "课件 p.41：`z.scores.calories <- scale(Calories)`，再 `favstats(z.scores.calories)`：最大值 2.976512（就是 400 kcal 那个甜甜圈），mean = 9.504839e-19（就是 0，只差电脑的舍入误差），sd = 1。",
+        "en": "Slide p.41: `z.scores.calories <- scale(Calories)`, then `favstats(z.scores.calories)` shows max 2.976512 (the 400-kcal donut), mean 9.504839e-19 (that is 0 apart from computer rounding error) and sd 1."
+      },
+      "slides": "41",
+      "related": [
+        "z-score",
+        "standardizing",
+        "favstats",
+        "standard-deviation"
+      ]
+    },
+    {
+      "id": "median",
+      "en": "Median",
+      "zh": "中位数",
+      "def": {
+        "en": "The middle value of the data sorted from smallest to largest; it is the 50th percentile. Its rank position is 0.5 × (n + 1): for odd n take the middle value, and for even n average the two middle values.",
+        "zh": "先把数据从小到大排好，站在正中间的那个数。位置 = 0.5 × (n + 1)：n 是奇数，取第 (n + 1)/2 个；n 是偶数，取第 n/2 个和第 n/2 + 1 个的平均。中位数是第 50 百分位数（**50th percentile**）。它稳健（**resistant**），只看排序、不看大小，极端值影响不了它，所以偏斜的数据报告中位数。解释模板：The median [variable] is M. This means that 50% of [cases] have at most M (M or less), whereas 50% have more than M."
+      },
+      "example": {
+        "zh": "Module 4 新增：中位数就是 Q2（第 50 百分位数），也是箱线图盒子里的那条线。甜甜圈 n = 30：位置 0.5 × (30 + 1) = 15.5，所以取第 15、16 个数的平均：(250 + 250)/2 = 250 kcal。",
+        "en": "Module 4 adds: the median is Q2, the 50th percentile, and the line inside the box of a boxplot. Donuts, n = 30: position 0.5 × (30 + 1) = 15.5, so average the 15th and 16th values: (250 + 250)/2 = 250 kcal."
+      },
+      "slides": "2-3, 5",
+      "related": [
+        "percentile",
+        "quartile",
+        "mean",
+        "resistant",
+        "five-number-summary"
+      ]
+    },
+    {
+      "id": "range",
+      "en": "Range",
+      "zh": "极差（全距）",
+      "def": {
+        "en": "The difference between the largest and the smallest value: Range = Max − Min. It uses only the two most extreme values, so it is not resistant.",
+        "zh": "最大值减最小值，是最简单的离散程度。它只用了最两头的两个数，一个极端值就能让它变很多，所以不稳健（p.68）。注意：R 的 `range()` 输出的是两个数（最小值和最大值），不是它们的差，要自己相减（p.44）。"
+      },
+      "example": {
+        "zh": "甜甜圈：极差 = 400 − 180 = 220 kcal。Module 4 新增：极差用了两个“位置”（最大值和最小值）；每个数加 10，极差不变（课件 p.27：还是 20）；每个数乘 2，极差翻倍（p.29：20 → 40）。（定义里的 p.68、p.44 是 Module 3 课件的页码。）",
+        "en": "Donuts: range = 400 − 180 = 220 kcal. Module 4 adds: the range uses two positions (the max and the min); adding 10 to every value leaves it unchanged (p.27: still 20) and multiplying by 2 doubles it (p.29: 20 to 40)."
+      },
+      "slides": "2, 27-30, 46",
+      "related": [
+        "iqr",
+        "measure-of-position",
+        "resistant",
+        "spread",
+        "shifting",
+        "rescaling"
+      ]
+    },
+    {
+      "id": "outlier",
+      "en": "Outlier",
+      "zh": "离群值（异常值）",
+      "def": {
+        "en": "An individual value that falls outside the overall pattern of the data; it is an important kind of deviation from that pattern.",
+        "zh": "离大部队很远、不符合整体模式的单个数据。Module 3 先用眼睛看图判断；Module 4 会教一个规则（栅栏 **fences**）来判断。最大的值不一定就是离群值，要看它是不是明显脱离了整体模式。离群值要先调查原因，不能随手删掉。"
+      },
+      "example": {
+        "zh": "Module 4 新增判断规则：在内栅栏（1.5 × IQR）外是疑似离群值，在外栅栏（3 × IQR）外是高度疑似离群值；甜甜圈的 400 kcal 在箱线图上单独画出。课件强调：离群值要先调查，输错了就改正，是真实的就解释它，不能直接删掉。",
+        "en": "Module 4 adds the rules: outside the inner fences (1.5 × IQR) is a suspect outlier, outside the outer fences (3 × IQR) a highly suspect outlier; the 400-kcal donut is plotted on its own. Investigate outliers: fix a wrong input, explain a correct value, and never simply remove them."
+      },
+      "slides": "11-12, 18",
+      "related": [
+        "suspect-outlier",
+        "highly-suspect-outlier",
+        "extreme-value",
+        "inner-fence",
+        "context-dependent-outlier"
+      ]
+    },
+    {
+      "id": "resistant",
+      "en": "Resistant",
+      "zh": "稳健（不敏感）",
+      "def": {
+        "en": "A measure is resistant if extremely large or small values do not affect it much. The median and the IQR are resistant; the mean, range, variance and standard deviation are not resistant (they are sensitive to extreme values).",
+        "zh": "一个统计量不怎么受极端值（特别大或特别小的数）影响，就叫稳健（课件也说 not sensitive）。中位数稳健，因为它只看数据的排序，不看具体有多大；均值、极差、方差、标准差都不稳健（**sensitive**），会被极端值大幅拉动（p.68 特意加粗了 are sensitive）。Module 4 的 IQR 也是稳健的。"
+      },
+      "example": {
+        "zh": "Module 4 新增：IQR 也稳健，因为它只用 Q1 和 Q3（课件 p.5、p.46）。所以偏态数据报告中位数和 IQR，大致钟形对称的数据才报告平均数和标准差。（定义里的 p.68 是 Module 3 课件的页码。）",
+        "en": "Module 4 adds: the IQR is also resistant because it uses only Q1 and Q3 (p.5, p.46). So report the median and IQR for skewed data, and the mean and SD for roughly bell-shaped, symmetric data."
+      },
+      "slides": "5, 46",
+      "related": [
+        "median",
+        "iqr",
+        "mean",
+        "standard-deviation",
+        "range",
+        "outlier"
+      ]
+    },
+    {
+      "id": "mean",
+      "en": "Mean (sample mean ȳ)",
+      "zh": "均值（平均数）",
+      "def": {
+        "en": "The sum of all the observations divided by the number of cases: ȳ = Σyᵢ / n. It is the balance point of the data, and it is not resistant to extreme values.",
+        "zh": "把所有数加起来，再除以个数 n：ȳ = Σyᵢ / n（ȳ 读作 y-bar，也写作 x̄；Σ 表示“全部加起来”）。可以想成“总量平均分给每个人，每人分到多少”。均值是平衡点：在它下面的距离总和 = 上面的距离总和。均值不稳健（**not resistant**），会被特别大或特别小的值拉走。解释模板：On average, [cases] have [mean] [units]."
+      },
+      "example": {
+        "zh": "甜甜圈：Σy = 7530，ȳ = 7530/30 = 251 kcal。Module 4 新增：每个数加 10，平均数也加 10（课件 p.27：15 → 25）；每个数乘 2，平均数也乘 2（p.29：15 → 30）；z 分数的平均数总是 0。",
+        "en": "Donuts: Σy = 7530, so ȳ = 7530/30 = 251 kcal. Module 4 adds: adding 10 to every value adds 10 to the mean (p.27: 15 to 25), multiplying by 2 doubles it (p.29: 15 to 30), and z-scores always have mean 0."
+      },
+      "slides": "27-31",
+      "related": [
+        "median",
+        "standard-deviation",
+        "z-score",
+        "shifting",
+        "rescaling",
+        "resistant"
+      ]
+    },
+    {
+      "id": "standard-deviation",
+      "en": "Standard deviation (sample SD, S)",
+      "zh": "标准差（样本标准差 S）",
+      "def": {
+        "en": "The square root of the sample variance, S = √S². It is the typical spread of the data, a typical distance of an observation from the mean, in the same units as the data; it is not resistant to extreme values.",
+        "zh": "方差开平方根：S = √S²（√ 是开平方根，比如 √49 = 7，因为 7 × 7 = 49）。开根号是为了回到和数据一样的单位，表示数据离均值的“典型距离”。性质：S ≥ 0；所有数都一样时 S = 0；越分散 S 越大；数据换单位（比如每个数都除以 1000），S 也同样除以 1000；不稳健。解释模板：We can expect [variable] to differ from the mean by about S [units], on average."
+      },
+      "example": {
+        "zh": "甜甜圈：S = 50.06 kcal（R 的 sd 是 50.05859），可以说：热量平均离均值大约 50.06 kcal。Module 4 新增：z 分数用 S 当“尺子”；每个数加常数，S 不变；每个数乘 2，S 也翻倍（7.905694 → 15.81139）；z 分数的标准差正好是 1。",
+        "en": "Donuts: S = 50.06 kcal (R: sd 50.05859): we can expect calories to differ from the mean by about 50.06, on average. Module 4 adds: the z-score uses S as its ruler; adding a constant leaves S unchanged, multiplying by 2 doubles it (7.905694 to 15.81139), and z-scores have SD 1."
+      },
+      "slides": "17, 25, 27-32, 42-44",
+      "related": [
+        "variance",
+        "mean",
+        "z-score",
+        "iqr",
+        "shifting",
+        "rescaling"
+      ]
+    },
+    {
+      "id": "variance",
+      "en": "Variance (sample variance S²)",
+      "zh": "方差（样本方差 S²）",
+      "def": {
+        "en": "The sample variance S² is (almost) the average of the squared deviations from the sample mean: S² = Σ(yᵢ − ȳ)² / (n − 1). We divide by n − 1 because we estimated the mean, and S² is in squared units.",
+        "zh": "衡量离散程度的量：离差平方和除以 n − 1。为什么不除以 n？因为算之前先用样本估计了均值，自由度（**degrees of freedom**）只剩 n − 1。步骤：① 算 ȳ；② 每个数减 ȳ；③ 平方；④ 加起来；⑤ 除以 n − 1。方差的单位是数据单位的平方（比如 kcal²），不好解释，所以再开平方得到标准差。方差不稳健。"
+      },
+      "example": {
+        "zh": "甜甜圈：Σ(y − ȳ)² = 72670，S² = 72670/29 = 2505.86，S = √2505.86 = 50.06。Module 4 新增（课件 p.42–44）：z 分数的平均数是 0，所以它们的方差 = Σz²/(n − 1)；30 个 z 分数的平方加起来正好是 29，方差 = 29/29 = 1。",
+        "en": "Donuts: Σ(y − ȳ)² = 72670, S² = 72670/29 = 2505.86 and S = √2505.86 = 50.06. Module 4 adds (p.42-44): z-scores have mean 0, so their variance is Σz²/(n − 1); the 30 squared z-scores add up to 29, so the variance is 29/29 = 1."
+      },
+      "slides": "42-44",
+      "related": [
+        "standard-deviation",
+        "z-score",
+        "mean",
+        "degrees-of-freedom"
+      ]
+    },
+    {
+      "id": "skewed-right",
+      "en": "Skewed to the right (right-skewed)",
+      "zh": "右偏（正偏）",
+      "def": {
+        "en": "The tail to the right stretches out farther: most of the observations are on the left, and a long thin tail runs toward the large values (positive skew). The tail pulls the mean up, so the mean is usually larger than the median.",
+        "zh": "大多数数据堆在左边（数值小的一边），一条细长的尾巴拖向右边（数值大的一边），也叫正偏（**positive skew**）。少数很大的值把均值往上拉，所以通常 均值 > 中位数；三个集中趋势最可能的顺序（从小到大）是 Mode、Median、Mean（p.42）。这只是“最可能”，最后要看图确定。偏斜的数据报告中位数（**median**）。"
+      },
+      "example": {
+        "zh": "Module 4 新增：在箱线图上，右偏表现为右边的须线更长、离群值在右边，或盒子右半边更宽。甜甜圈热量“稍微右偏”：右须线 280 → 340（长 60）是左须线 180 → 210（长 30）的两倍，离群值 400 也在右边（课件 p.10）。（定义里的 p.42 是 Module 3 课件的页码。）",
+        "en": "Module 4 adds: on a boxplot, right skew shows as a longer right whisker, outliers on the right, or a wider right half of the box. Donut calories are slightly right skewed: the right whisker (280 to 340, length 60) is twice as long as the left one (180 to 210, length 30), and the outlier 400 is on the right (p.10)."
+      },
+      "slides": "4, 10, 24",
+      "related": [
+        "skewed-left",
+        "symmetric",
+        "boxplot",
+        "median",
+        "mean",
+        "tail"
+      ]
+    },
+    {
+      "id": "skewed-left",
+      "en": "Skewed to the left (left-skewed)",
+      "zh": "左偏（负偏）",
+      "def": {
+        "en": "The tail to the left stretches out farther: most of the observations are on the right, and a long thin tail runs toward the small values (negative skew). The tail pulls the mean down, so the mean is usually smaller than the median.",
+        "zh": "大多数数据堆在右边（数值大的一边），一条细长的尾巴拖向左边（数值小的一边），也叫负偏（**negative skew**）。少数很小的值把均值往下拉，所以通常 中位数 > 均值；最可能的顺序（从小到大）是 Mean、Median、Mode（p.42）。注意：峰在右边恰恰是左偏，因为偏斜按尾巴的方向命名。"
+      },
+      "example": {
+        "zh": "Module 4 新增（课件 p.4 的图）：左偏时 Q1、Q2、Q3 都挤在右边，最小的那 25% 数据铺在一条很长的左尾巴上。在箱线图上：左边的须线更长，或离群值在左边。（定义里的 p.42 是 Module 3 课件的页码。）",
+        "en": "Module 4 adds (p.4): in a left-skewed distribution Q1, Q2 and Q3 are bunched on the right, and the lowest 25% of the data stretch over a long left tail. On a boxplot the left whisker is longer or the outliers are on the left."
+      },
+      "slides": "4",
+      "related": [
+        "skewed-right",
+        "symmetric",
+        "quartile",
+        "boxplot",
+        "tail"
+      ]
+    },
+    {
+      "id": "symmetric",
+      "en": "Symmetric",
+      "zh": "对称",
+      "def": {
+        "en": "A distribution is symmetric if, when its histogram is folded along a vertical line in the middle, the two sides match closely (the right side mirrors the left). For a perfectly symmetric distribution, the mean and the median are the same.",
+        "zh": "把直方图沿中间一条竖线对折，左右两边差不多能重合（右边是左边的镜像）。完全对称时，均值 = 中位数，都在正中间；大致对称时，两者很接近。反过来不成立：均值和中位数接近，不能证明对称，要看图（p.35）。对称也不一定是钟形：均匀分布、左右对称的双峰也都是对称的。"
+      },
+      "example": {
+        "zh": "Module 4 新增：钟形对称时，Q1 和 Q3 离 Q2 一样远（课件 p.4）。p.33 里 5, 10, 15, 20, 25 的箱线图是对称的：中位数 15 在盒子（10 到 20）正中间，两根须线一样长（都是 5）。平均数、标准差和 |z| > 3 规则只适合大致钟形对称的数据（p.26、p.46）。（定义里的 p.35 是 Module 3 课件的页码。）",
+        "en": "Module 4 adds: in a bell-shaped symmetric distribution, Q1 and Q3 are the same distance from Q2 (p.4). The boxplot of 5, 10, 15, 20, 25 on p.33 is symmetric: the median 15 is in the middle of the box (10 to 20) and both whiskers have length 5. The mean, the SD and the |z| > 3 rule are for roughly bell-shaped, symmetric data (p.26, p.46)."
+      },
+      "slides": "4, 24, 26, 33, 46",
+      "related": [
+        "skewed-right",
+        "skewed-left",
+        "bell-shaped",
+        "mean",
+        "median",
+        "empirical-rule"
+      ]
+    }
+  ]
+}

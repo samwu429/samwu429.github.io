@@ -1,0 +1,708 @@
+/*
+ * z-score widget: formula, value picker, number line with the outlier-rule bands, worked steps with the exam
+ * sentence, the table of given values, the reverse formula, and the comparison of several distributions.
+ * Colours, spacing and radii come from the design tokens only, so dark mode needs no extra rules.
+ * z-score 组件：公式、选值控件、带离群值规则色带的数轴、带考试句子的解题步骤、给定值表格、反推公式，以及多个分布的比较。
+ * 颜色、间距和圆角只使用设计变量，深色模式不需要额外规则。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.z-score {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  container-type: inline-size;
+}
+
+/* Header 标题区 */
+.z-score__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.z-score__eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.z-score__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.z-score__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.z-score__variable {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.z-score__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Panels 面板 */
+.z-score__panel {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.z-score__heading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.z-score__subheading {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+/* Bilingual sentences: Chinese line, then the English line. 双语句子：先中文一行，再英文一行。 */
+.z-score__pair {
+  margin: 0;
+  min-width: 0;
+}
+
+.z-score__zh,
+.z-score__en {
+  display: block;
+}
+
+.z-score__en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+/* Formulas keep the slide notation and wrap instead of overflowing. 公式沿用课件记号，换行而不撑破布局。 */
+.z-score__math {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.z-score__formula {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.z-score__formula-words {
+  font-size: var(--text-md);
+  font-weight: 800;
+}
+
+.z-score__formula-zh {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.z-score__symbols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.z-score__notation {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Given numbers and the value picker 已知数字与选值控件 */
+.z-score__given {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.z-score__given-name {
+  font-weight: 800;
+}
+
+.z-score__given-item {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-1);
+}
+
+.z-score__picker {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.z-score__picker-label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.z-score__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.z-score__chip {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.z-score__field {
+  min-width: 0;
+}
+
+.z-score__input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.z-score__input {
+  max-width: 14rem;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.z-score__unit {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+/* Kept in the layout while empty: a live region that starts hidden may not be announced. 空的时候也保留：开始时隐藏的朗读区域可能不会播报。 */
+.z-score__hint {
+  margin: 0;
+  color: var(--color-warn);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+/* Number line 数轴 */
+.z-score__figure {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  min-width: 0;
+}
+
+.z-score__lines {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+}
+
+.z-score__line-row {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.z-score__line-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.z-score__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.z-score__band--suspect {
+  fill: var(--color-warn-soft);
+}
+
+.z-score__band--highly {
+  fill: var(--color-danger-soft);
+}
+
+.z-score__axis {
+  stroke: var(--color-line);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.z-score__tick {
+  stroke: var(--color-ink-3);
+  stroke-width: 1.5;
+}
+
+.z-score__tick--mean {
+  stroke: var(--color-ink);
+  stroke-width: 2.5;
+}
+
+.z-score__tick-value,
+.z-score__tick-z {
+  fill: var(--color-ink-3);
+  font-size: 11px;
+}
+
+.z-score__tick-z {
+  fill: var(--color-ink-2);
+  font-weight: 700;
+}
+
+.z-score__tick-value--mean,
+.z-score__tick-z--mean {
+  fill: var(--color-ink);
+  font-weight: 900;
+}
+
+/* The stretch from the mean to the selected value: its length is |z| standard deviations. 从平均数到选中值的一段，长度就是 |z| 个标准差。 */
+.z-score__reach {
+  stroke: var(--color-accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+
+.z-score__dot {
+  fill: var(--color-ink-3);
+  stroke: var(--color-panel);
+  stroke-width: 1.5;
+}
+
+.z-score__dot--current {
+  fill: var(--color-accent);
+  stroke: var(--color-line);
+  stroke-width: 2;
+}
+
+.z-score__point-label {
+  fill: var(--color-ink);
+  stroke: var(--color-panel);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.z-score__caption {
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+.z-score__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.z-score__legend li {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+.z-score__swatch {
+  display: inline-block;
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.z-score__swatch--current {
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.z-score__swatch--dot {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink-3);
+}
+
+.z-score__swatch--suspect {
+  background: var(--color-warn-soft);
+}
+
+.z-score__swatch--highly {
+  background: var(--color-danger-soft);
+}
+
+/* Worked steps 解题步骤 */
+.z-score__working {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.z-score__steps {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding-left: 1.6em;
+}
+
+.z-score__step::marker {
+  font-weight: 900;
+}
+
+.z-score__step {
+  min-width: 0;
+}
+
+.z-score__step-math {
+  margin: 0 0 var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-accent-soft);
+  font-size: var(--text-sm);
+}
+
+.z-score__result {
+  margin: 0;
+  font-weight: 800;
+}
+
+.z-score__result-value {
+  color: var(--color-accent-strong);
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+/* Exam sentences 考试句子 */
+.z-score__exam {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+}
+
+.z-score__exam-title {
+  margin: 0;
+  color: var(--color-exam);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.z-score__exam-body {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.z-score__exam-sentence {
+  margin: 0;
+}
+
+.z-score__exam-en {
+  display: block;
+  font-weight: 800;
+}
+
+.z-score__exam-zh {
+  display: block;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.z-score__template {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.z-score__template-label {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.z-score__template-en {
+  font-style: italic;
+}
+
+.z-score__template-hint {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+/* z-score rule 离群值规则 */
+.z-score__rule {
+  display: grid;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-line-soft);
+}
+
+.z-score__rule-body {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
+.z-score__extreme {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.z-score__extreme-label {
+  font-weight: 800;
+}
+
+.z-score__extreme .z-score__exam-en,
+.z-score__extreme .z-score__exam-zh {
+  display: inline;
+}
+
+.z-score__caveat {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+.z-score__badge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.z-score__badge--none,
+.z-score__badge--fair {
+  color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.z-score__badge--suspect {
+  color: var(--color-warn);
+  background: var(--color-warn-soft);
+}
+
+.z-score__badge--highly-suspect,
+.z-score__badge--unfair {
+  color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+/* Tables 表格 */
+.z-score__table th,
+.z-score__table td {
+  vertical-align: middle;
+}
+
+.z-score__table td,
+.z-score__table thead th {
+  white-space: nowrap;
+}
+
+.z-score__num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.z-score__table tbody tr.z-score__row--current th,
+.z-score__table tbody tr.z-score__row--current td {
+  background: var(--color-highlight-soft);
+  font-weight: 800;
+}
+
+/* Reverse formula 反推公式 */
+.z-score__reverse-sentence {
+  font-size: var(--text-sm);
+}
+
+/* Comparison cards 比较卡片 */
+.z-score__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-3);
+}
+
+.z-score__card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.z-score__card--top {
+  border-color: var(--color-accent-strong);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.z-score__card-title {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.z-score__card-title .bi-title__en {
+  font-size: 0.75em;
+}
+
+.z-score__card-sentence {
+  font-size: var(--text-sm);
+}
+
+.z-score__top {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-self: start;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0 var(--space-2);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  color: var(--color-accent-strong);
+  background: var(--color-accent-soft);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+/* Conclusion and the three ways to compare 结论与三种比较方法 */
+.z-score__conclusion {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.z-score__conclusion-text .z-score__zh {
+  font-weight: 700;
+}
+
+.z-score__chain {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.z-score__ways {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.z-score__way {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left-width: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-size: var(--text-sm);
+}
+
+.z-score__way--fair {
+  border-left-color: var(--color-success);
+}
+
+.z-score__way--unfair {
+  border-left-color: var(--color-danger);
+}
+
+.z-score__way-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+}
+
+.z-score__way-name {
+  font-weight: 800;
+}
+
+.z-score__way-pick {
+  margin: 0;
+}
+
+.z-score__way-entry {
+  column-gap: var(--space-1);
+}
+
+.z-score__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+@media (max-width: 480px) {
+  .z-score {
+    padding: var(--space-3);
+  }
+
+  .z-score__panel {
+    padding: var(--space-3);
+  }
+}
+
+@container (min-width: 720px) {
+  .z-score__panel {
+    padding: var(--space-4) var(--space-5);
+  }
+}

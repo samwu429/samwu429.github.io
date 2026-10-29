@@ -1,0 +1,1549 @@
+{
+  "title": {
+    "zh": "考前速记",
+    "en": "Exam Cheat Sheet"
+  },
+  "units": [
+    {
+      "lessonId": "mod01",
+      "title": {
+        "zh": "统计学、数据与统计思维",
+        "en": "Statistics, Data and Statistical Thinking"
+      },
+      "points": [
+        {
+          "en": "A **statistic** is a number computed from the sample data; a **parameter** is the true value for the whole population. A value from the people surveyed is a statistic; a value about everyone in the population is a parameter.",
+          "zh": "统计量（**statistic**）＝从样本算出来的数；参数（**parameter**）＝整个总体的真实值（通常不知道）。“被调查的人里有 x%”是统计量；“所有人里有 y%”是参数。同类题：2025 期中 Q7。"
+        },
+        {
+          "en": "The **variable** is the characteristic recorded for each case, such as 'whether each student owns a laptop'. A percentage, a count of people or the sample size is not the variable.",
+          "zh": "变量（**variable**）＝每个个案身上记录的那个特征，常写成 whether each… 或 the number of… for each…。以 The percentage / proportion of… 开头的选项是统计量或参数，the number of people surveyed 是样本量，都不是变量。同类题：2025 期中 Q8。"
+        },
+        {
+          "en": "A **quantitative variable** has numerical values with a unit (counts are quantitative too) and is measured on an **interval scale**. A **categorical variable** places each case in a category, on a **nominal** (no order) or **ordinal** (ordered) scale.",
+          "zh": "数值变量（**quantitative variable**）：带单位的数字，人数、单词数这样的计数也算，本课程一律说等距尺度（**interval scale**）。分类变量（**categorical variable**）：名义尺度（没有顺序，如音乐类型）或顺序尺度（有顺序，如 S、M、L、XL）。"
+        },
+        {
+          "en": "Ordered categories such as poor, fair, good and excellent are still categorical (ordinal). Answers coded 1 to 5 are category labels, unless the question says they are treated as a quantitative variable.",
+          "zh": "有顺序的等级仍然是分类变量（2025 期中 Q19 的答案就是 poor/fair/good/excellent 这一项）。1–5 的编码只是标签；题目明确说 treated as a quantitative variable 时才按数值算均值和标准差（2025 期中 Q17）。"
+        },
+        {
+          "en": "**Stratified sampling**: divide the population into strata and take a simple random sample from every stratum. **Cluster sampling**: randomly select a few clusters and take all cases in them.",
+          "zh": "分层抽样（**stratified sampling**）＝每一组里都随机抽一些；整群抽样（**cluster sampling**）＝随机抽几组，抽中的组里全要。答题要说出层（strata）或群（clusters）是什么。同类题：2025 期中 Q20。"
+        },
+        {
+          "en": "**Systematic sampling** takes every k-th case after a random start; **multistage sampling** samples groups first and then cases within them; a **voluntary response sample** is made of people who chose to respond; a **census** measures every unit.",
+          "zh": "系统抽样：随机定起点，之后每隔 k 个取一个；多阶段抽样：先抽组，再在组里抽人；自愿回应抽样：自己报名参加（非概率抽样）；普查（**census**）：全部都测。"
+        },
+        {
+          "en": "The **population** is the entire group we want information about; the **sample** is the subset on which we actually collect data. Write the population with every qualifier (age, place, time).",
+          "zh": "总体（**population**）＝想了解的全体；样本（**sample**）＝真正收集了数据的那一部分。写总体时把题目里的限定词全部写上，例如 All Canadian adults aged 18 and older in 2026。"
+        },
+        {
+          "en": "Answer patterns: Population = All [who, with qualifiers]. Sample = The [n] randomly selected [who]. Parameter = The true [percentage/mean] of [variable] among all [population]. Statistic = The sample [percentage/mean] of [variable]. Several categories: one parameter per category, the true percentage of all [population] in each category.",
+          "zh": "找研究要素的固定句型（官方练习 Q1、Q2、Q7 都考）。参数的句子里要有 true，统计量的句子里要有 sample。题目问 parameters（复数）、变量有好几个类别时，每个类别写一个真实百分比，有几类就有几个参数（同类题：官方练习 Q1A(ii)、Q2B）。"
+        },
+        {
+          "en": "In a **designed experiment**, the researcher assigns the treatments (treatment vs control or placebo). Only experiments give fully convincing evidence of cause and effect.",
+          "zh": "设计实验（**experiment**）：研究者主动分配处理（处理组 vs 对照组／安慰剂组）。要证明因果，只有实验才完全令人信服。口诀：研究者有没有“动手分配”？"
+        },
+        {
+          "en": "In an **observational study**, the researcher only observes and measures. It can show an association but not causation, because a lurking variable may explain the pattern.",
+          "zh": "观察性研究（**observational study**）：只看、只测，不干预。只能说“有关联”，不能说“导致”，因为潜伏变量（**lurking variable**）可能才是原因。调查（survey）是最常见的观察性研究。"
+        },
+        {
+          "en": "**Descriptive statistics** summarize the data in hand; **inferential statistics** use sample data to estimate or predict something about the larger population.",
+          "zh": "只描述样本 → 描述统计；推广到总体 → 推断统计。样本是随机抽的，并不会让一个只描述样本的数变成推断（官方练习 Q1D）。"
+        },
+        {
+          "en": "In a **simple random sample** (SRS), every subset of the same size has the same chance of being selected. A plan that fixes the number taken from each group (for example 100 females and 100 males) is stratified, not an SRS.",
+          "zh": "简单随机样本（**SRS**）：同样大小的每一组个案被抽中的机会都一样。规定每组抽固定人数的，是分层抽样，不是 SRS（官方练习的原型）。"
+        },
+        {
+          "en": "Proportional stratified sampling: stratum sample size = (stratum size ÷ N) × n. Strata of 400, 280 and 280 (N = 960) with n = 100 give 42, 29 and 29.",
+          "zh": "按比例分配：每层在样本里的份额 = 它在总体里的份额。400/960 = 41.67% → 42 人，280/960 = 29.17% → 29 人。课件第 44 页印成 40/30/30，是舍入错误。"
+        },
+        {
+          "en": "**Undercoverage**: some groups have less chance of being in the sample. **Nonresponse**: selected people cannot be reached or refuse. **Response bias**: the wording or the interviewer changes the answers.",
+          "zh": "覆盖不足＝有些人很难被抽到；无回应＝抽到了却没回答；回应偏差＝回答了但不真实。答题要用题目的情境说明谁被漏掉、结果可能偏高还是偏低。"
+        },
+        {
+          "en": "A **voluntary response sample** is biased, because people with strong opinions are more likely to respond. A larger sample does not remove bias.",
+          "zh": "自愿回应样本有偏差：意见强烈的人更愿意回应。样本再大（几万人）也修不好偏差，一个小的随机样本反而更可信。"
+        },
+        {
+          "en": "A percentage from a codebook uses only the valid cases: percent = count ÷ number of valid cases × 100. Missing-data codes are not counted.",
+          "zh": "代码本算百分比：分母只用有效个案，缺失代码不算。课件例：15,712 ÷ 23,519 = 0.6681 = 66.81%（同类题：官方练习 Q1B–Q1C）。"
+        },
+        {
+          "en": "Data are values with their context: who, what, why, when, where and how. Statistics is the science of data.",
+          "zh": "数据＝数值＋背景（5 个 W 加 How）。看到一个数，先问：测的是谁？测了什么？数据是怎么收集的？"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "percent of a category = count ÷ number of valid cases × 100",
+          "zh": "代码本百分比：分母只用有效个案，缺失代码不算。15,712 ÷ 23,519 × 100 = 66.81%。",
+          "en": "Use only the valid cases as the denominator."
+        },
+        {
+          "expr": "stratum sample size = (stratum size ÷ N) × n",
+          "zh": "按比例分层：400/960 × 100 = 41.67 → 42；280/960 × 100 = 29.17 → 29（课件第 44 页印成 40/30/30）。",
+          "en": "Each stratum gets the same share of the sample as of the population."
+        },
+        {
+          "expr": "k = N ÷ n",
+          "zh": "补充（课件外）：系统抽样的间隔。先在 1 到 k 之间随机选起点，再每隔 k 个取一个。",
+          "en": "Systematic sampling interval."
+        },
+        {
+          "expr": "response rate = number who responded ÷ number contacted × 100%",
+          "zh": "回应率低的时候，要担心无回应偏差（**nonresponse bias**）。",
+          "en": "A low response rate warns of nonresponse bias."
+        },
+        {
+          "expr": "interval = (estimate − margin, estimate + margin)",
+          "zh": "可靠性度量：66.8% ± 0.6 个百分点 → 66.2% 到 67.4%（课件第 23 页写的 within 0.6% 应理解为 0.6 个百分点）。",
+          "en": "A measure of reliability: the estimate plus or minus a margin of error."
+        },
+        {
+          "expr": "Odds = p / (1 − p)\np = Odds / (Odds + 1)",
+          "zh": "Course Introduction 第 31–32 页：p = 0.75 → odds = 0.75/0.25 = 3；odds = 4 → p = 4/5 = 0.80。概率在 0 和 1 之间，odds 可以大于 1。",
+          "en": "Odds compare success with failure; they are not the same as probability."
+        }
+      ],
+      "mustKnowTerms": [
+        "population",
+        "sample",
+        "census",
+        "parameter",
+        "statistic",
+        "variable",
+        "quantitative-variable",
+        "categorical-variable",
+        "interval-scale",
+        "nominal-scale",
+        "ordinal-scale",
+        "descriptive-statistics",
+        "inferential-statistics",
+        "experiment",
+        "observational-study",
+        "simple-random-sample",
+        "stratified-sampling",
+        "cluster-sampling",
+        "systematic-sampling",
+        "multistage-sampling",
+        "voluntary-response-sampling",
+        "convenience-sampling",
+        "sampling-bias",
+        "undercoverage",
+        "nonresponse-bias",
+        "response-bias",
+        "valid-cases"
+      ]
+    },
+    {
+      "lessonId": "mod02",
+      "title": {
+        "zh": "描述分类数据：频数表、列联表与关联",
+        "en": "Categorical Data: Tables, Percentages and Association"
+      },
+      "points": [
+        {
+          "en": "For one cell of a contingency table: % of row = cell ÷ row total, % of column = cell ÷ column total, % of overall total = cell ÷ grand total.",
+          "zh": "同一个格子有三种百分比：分子都是这个格子，分母分别是行合计、列合计、总合计。Titanic 头等舱生还 203 人：203/711 = 28.6%（生还者中），203/325 = 62.5%（头等舱乘客中），203/2201 = 9.2%（全船）。"
+        },
+        {
+          "en": "'Among X, what proportion are Y?' asks for a conditional proportion: P(Y | X) = cell ÷ total of group X.",
+          "zh": "看到 Among X，分母就是 X 那一组的合计（条件比例，**conditional proportion**）。竖线 | 读作 given。例：P(Alive | Third) = 178/706 = 0.2521。同类题：2025 期中 Q4、Q5。"
+        },
+        {
+          "en": "To compare groups, compute the percentages within each group being compared: groups in the columns → column percentages; groups in the rows → row percentages.",
+          "zh": "先找题目要比较的组（解释变量，看 between、among、for each 后面的组）在行上还是列上，就在那个方向里算百分比，让每一组自己加起来是 100%。同一张表的不同题目，比较的组可能不一样：2025 期中 Q1 比较的是列上的两组，Q4–Q6 却是在行里算比例，每道题都按题目说的组定分母。"
+        },
+        {
+          "en": "Marginal proportion = row (or column) total ÷ grand total. It describes one variable on its own (the 'overall' or 'unconditional' percentage).",
+          "zh": "边际比例（**marginal**）：分子是一个合计，分母是总合计，不管另一个变量。例：711/2201 = 0.3230，即 32.30% 的人生还（课件第 35 页的 Overall, about 32.30% … 就是它，官方练习答案叫它无条件百分比 **unconditional percentages**）。同类题：2025 期中 Q3。两个 overall 别混：第 23 页的 % of overall total 是联合百分比（格子 ÷ 总合计）。"
+        },
+        {
+          "en": "Joint proportion = cell ÷ grand total. For 'A and B, or C and D', add the two cells first, then divide by the grand total.",
+          "zh": "联合比例（**joint**）：格子 ÷ 总合计。问“两种组合之一”时把两个格子相加；不要把两个合计相加（中间那格会被算两次）。同类题：2025 期中 Q2。"
+        },
+        {
+          "en": "Two categorical variables are associated if the conditional distributions of the response differ across the groups; if they are about the same, the variables are independent.",
+          "zh": "判断关联：比较各组的条件分布。Titanic 生还率：头等 62.46%、二等 41.40%、三等 25.21%、船员 23.95%（总体 32.30%）→ 有关联。答题先写 Yes 或 No，再引用百分比。"
+        },
+        {
+          "en": "The **response variable** is the outcome being compared; the **explanatory variable** defines the groups that may explain the differences.",
+          "zh": "响应变量＝被比较的结果（是否生还）；解释变量＝分组的变量（船票等级）。还要会说类型和尺度：生还状态是名义尺度的二元变量，船票等级课件算顺序尺度。"
+        },
+        {
+          "en": "Report a difference of two percentages in **percentage points**: 62% − 25% means 37 percentage points higher, not '37% higher'.",
+          "zh": "两个百分比相减，单位是“百分点”（**percentage points**）。0.62 − 0.25 = 0.37 → 头等舱生还率高 37 个百分点；说“高 37%”是错的。"
+        },
+        {
+          "en": "Ratio of proportions (relative risk): if the question says 'comparing A to B', put A on top, RR = P(outcome | A) ÷ P(outcome | B), even if the ratio is then below 1; otherwise put the larger proportion on top. Then word the ratio by its size (next point).",
+          "zh": "相对风险（**relative risk**）：题目说 comparing A to B，A 放分子（比值可能小于 1）；没这样说时，把大的比例放分子。“times less among A”这类选项方向反了。比例多保留几位小数（或直接用分数）再相除：2025 期中 Q6 的 RR ≈ 3.63，先四舍五入成 0.31 ÷ 0.09 会得到 3.44。"
+        },
+        {
+          "en": "Ratio wording: above 2, say 'k times as large' (0.62 ÷ 0.25 = 2.48 times); between 1 and 2, say '(ratio − 1) × 100% higher' (1.08 → 8% higher); below 1, say '(1 − ratio) × 100% lower'.",
+          "zh": "比值的三种说法。阿司匹林例：安慰剂组 0.054 ÷ 阿司匹林组 0.050 = 1.08 → 高 8%；反过来 0.050 ÷ 0.054 = 0.926 → 低约 7.4%（课件第 43 页写成 0.92、低 8%，是舍入错误）。"
+        },
+        {
+          "en": "No association means a difference of proportions of about 0 and a ratio of proportions of about 1 (RR = 1, not 0).",
+          "zh": "没有关联：差约等于 0，比约等于 1。RR = 1 才表示两组一样；RR = 0 表示某一组里一个都没有，完全是另一回事。"
+        },
+        {
+          "en": "Relative frequency (proportion) = count ÷ total, a number between 0 and 1; percentage = proportion × 100. Answer in the form the question asks for.",
+          "zh": "比例在 0 和 1 之间（0.3230），百分比 = 比例 × 100（32.30%）。问 proportion 写小数，问 percentage 写百分数；选项里常常两种都有。"
+        },
+        {
+          "en": "Display a categorical variable with a **bar chart** (separate bars) or a **pie chart** (slices of one whole). Histograms, dotplots, stem-and-leaf displays and boxplots are for quantitative variables.",
+          "zh": "分类变量画条形图（**bar chart**）或饼图（**pie chart**）；直方图、点图、茎叶图、箱线图都是给数值变量的。同类题：2025 期中 Q21。"
+        },
+        {
+          "en": "**Simpson's paradox**: a comparison that holds within every group can disappear or reverse when the groups are combined, because a **lurking variable** changes the mix of the groups.",
+          "zh": "辛普森悖论：分组看是一个结论，合并后结论消失甚至反转。伯克利例：女性大多申请录取率低的院系，所以合并后录取率更低。办法：在潜伏变量的每一层里比较（控制它）。"
+        },
+        {
+          "en": "Check the denominator before choosing an option: common wrong answers use the grand total instead of the group total, the reversed condition, the complement (1 − p) or a single cell.",
+          "zh": "选择题干扰项的来源：用总合计代替组合计、条件反了、用了补数、只取了一个格子。算完先问一句：分母对吗？"
+        },
+        {
+          "en": "A **contingency table** classifies cases by two categorical variables; its margins (row and column totals) give the marginal distributions.",
+          "zh": "列联表（**contingency table**，二维表）：两个分类变量交叉分类。先检查：行合计之和 = 列合计之和 = 总合计。"
+        },
+        {
+          "en": "An association in survey data is not proof of causation: we cannot conclude that the explanatory variable causes the response.",
+          "zh": "调查数据是观察性的：列联表里有关联，也不能说解释变量“导致”了响应变量（官方练习 Q3E 的写法）。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "proportion = count ÷ total\npercentage = proportion × 100",
+          "zh": "比例在 0 和 1 之间。Titanic：711 ÷ 2201 = 0.3230 → 32.30% 生还。",
+          "en": "Relative frequency and percentage."
+        },
+        {
+          "expr": "% of row = cell ÷ row total × 100\n% of column = cell ÷ column total × 100\n% of overall total = cell ÷ grand total × 100",
+          "zh": "同一格，三个分母：203/711 = 28.6%，203/325 = 62.5%，203/2201 = 9.2%。",
+          "en": "Same numerator, three denominators."
+        },
+        {
+          "expr": "marginal proportion = row (or column) total ÷ grand total",
+          "zh": "边际：只看一个变量。",
+          "en": "One variable on its own."
+        },
+        {
+          "expr": "joint proportion = cell ÷ grand total",
+          "zh": "联合：问两种组合之一时，先把两格相加，再除以总合计。",
+          "en": "Share of all cases in one combination."
+        },
+        {
+          "expr": "P(Y | X) = cell ÷ total of group X",
+          "zh": "条件比例：Among X… 就除以 X 的合计。P(Alive | Third) = 178/706 = 0.2521。",
+          "en": "Conditional proportion: divide by the group total."
+        },
+        {
+          "expr": "difference of proportions = p1 − p2",
+          "zh": "用百分点说：0.62 − 0.25 = 0.37 → 高 37 个百分点。",
+          "en": "Report it in percentage points."
+        },
+        {
+          "expr": "RR = P(outcome | A) ÷ P(outcome | B)",
+          "zh": "比例之比（相对风险）：题目说 comparing A to B 时 A 放分子；没这样说时，大的放分子。0.62 ÷ 0.25 = 2.48 倍。",
+          "en": "'Comparing A to B': A goes on top; otherwise the larger proportion goes on top."
+        },
+        {
+          "expr": "percent higher = (ratio − 1) × 100%\npercent lower = (1 − ratio) × 100%",
+          "zh": "1.08 → 高 8%；0.926 → 低 7.4%。比值大于 2 时说“几倍”。",
+          "en": "Use for ratios between 1 and 2, or below 1."
+        }
+      ],
+      "mustKnowTerms": [
+        "distribution",
+        "frequency",
+        "relative-frequency",
+        "percentage",
+        "frequency-table",
+        "bar-chart",
+        "pie-chart",
+        "side-by-side-bar-chart",
+        "contingency-table",
+        "marginal-distribution",
+        "joint-distribution",
+        "conditional-distribution",
+        "conditional-proportion",
+        "row-percentage",
+        "column-percentage",
+        "explanatory-variable",
+        "response-variable",
+        "association",
+        "independence",
+        "difference-of-proportions",
+        "percentage-points",
+        "ratio-of-proportions",
+        "relative-risk",
+        "simpsons-paradox",
+        "lurking-variable"
+      ]
+    },
+    {
+      "lessonId": "mod03",
+      "title": {
+        "zh": "描述数值数据（一）：直方图、中心与离散",
+        "en": "Quantitative Data (I): Histograms, Centre and Spread"
+      },
+      "points": [
+        {
+          "en": "A distribution is **skewed toward its longer tail**. Skewed to the right: a long tail of high values, with most data on the left. Skewed to the left: the peak is on the right and the tail is on the left.",
+          "zh": "偏斜看尾巴，不看峰：峰在右、尾巴拖向左边 → 左偏（2025 期中 Q11）；峰在左、尾巴拖向右边 → 右偏（Q16）。期中形状题的五个固定选项：Bell-shaped and symmetric、Normal、Symmetric but not bell-shaped、Skewed to the right、Skewed to the left。数据的直方图是钟形时，本站建议选 Bell-shaped and symmetric（课件描述数据就这么说）；Normal 是另一个选项，指 Module 8 才讲的正态模型。"
+        },
+        {
+          "en": "From a relative frequency table: mean = Σ(value × relative frequency); median = the first value whose cumulative relative frequency is at least 0.50; mode = the value with the largest relative frequency.",
+          "zh": "2025 期中 Q12–Q14 连考三题。均值要加权，不能把列出的值直接平均；累积到 0.49 还不够，要第一次 ≥ 0.50；众数是值，不是频率。累积正好等于 0.50 的情况课程没演示过：这条规则取这个值本身，按原始数据的 0.5(n + 1) 规则却是它和下一个值的正中间；真遇到时先看选项（见 Module 3“从频数表、相对频率表求均值、中位数、众数”一节的提醒）。"
+        },
+        {
+          "en": "**Empirical Rule** (bell-shaped data only): about 68% of the values lie within ȳ ± 1S, about 95% within ȳ ± 2S, and all or almost all within ȳ ± 3S.",
+          "zh": "经验法则（**Empirical Rule**）只用于近似钟形的数据。要会算端点 ȳ − kS 和 ȳ + kS，也要会从区间认出是几个 S。"
+        },
+        {
+          "en": "If the question asks for the actual percentage within one SD, compute ȳ − S and ȳ + S and add the percentages of the values strictly inside. Do not just answer 68%.",
+          "zh": "2025 期中 Q17：区间 (1.87, 3.91) 只包含 2 和 3 → 20.8% + 41.5% ≈ 62%，不是 68%。3.91 不能四舍五入成 4（错误选项 85 就是这样来的）。"
+        },
+        {
+          "en": "Histogram wording: 'at most a' is ≤ a, 'more than a' is > a, 'at least a' is ≥ a. Percentage = count ÷ n × 100%. R's hist() bins are right-closed (a, b], so 'at least' at a bar edge needs the raw data.",
+          "zh": "甜甜圈（n = 30）：at most 200 → 6/30 = 20%；more than 300 → 3/30 = 10%；at least 300 要回到原始数据 → 5/30 = 16.67%（两个正好 300 卡的藏在 (250, 300] 那根柱子里）。"
+        },
+        {
+          "en": "The **mean** ȳ = Σy ÷ n is the balance point of the data and is not resistant. Sentence: 'On average, Tim Hortons donuts have 251 calories.'",
+          "zh": "均值（**mean**）会被极端值拉动（不稳健）。解释句：On average, [个案] have [均值] [单位]。"
+        },
+        {
+          "en": "The **median** is the middle of the sorted data, at position 0.5(n + 1); for even n, average the two middle values. It is resistant.",
+          "zh": "中位数（**median**）一定先排序。n = 30 → 位置 15.5 → 第 15、16 个的平均（甜甜圈 250）。中位数不怕极端值（稳健，**resistant**）。"
+        },
+        {
+          "en": "Median sentence: 'The median calories is 250. This means that 50% of donuts have at most 250 calories (250 or less), whereas 50% have more than 250 calories.'",
+          "zh": "中位数解释句（必背）：50% at most M（M 或更少），whereas 50% more than M。带上情境和单位。"
+        },
+        {
+          "en": "The **mode** is the most frequent value (the location of the peak). Give the value, not its count, and list every mode when there is a tie.",
+          "zh": "众数（**mode**）是值（270 kcal），不是次数（5）。几个值并列最多时，全都是众数（练习 Q1d 有三个众数）。"
+        },
+        {
+          "en": "Shape and centre: in a right skew the usual order is mode, median, mean (mean > median); in a left skew it is mean, median, mode (mean < median). Always confirm with a graph.",
+          "zh": "长尾巴把均值往尾巴那边拉。但这只是线索：均值≈中位数不能证明对称，双峰数据也会骗人，一定要看图。"
+        },
+        {
+          "en": "Sample variance S² = Σ(y − ȳ)² ÷ (n − 1) and standard deviation S = √S². Divide by n − 1 (degrees of freedom) because ȳ was estimated from the same data.",
+          "zh": "除以 n − 1，不是 n；标准差要开根号，单位和数据一样（方差是平方单位）。甜甜圈：S² = 2505.8621，S = 50.06 kcal。"
+        },
+        {
+          "en": "SD sentence: 'We can expect calories in Tim Hortons donuts to differ from the mean by about 50 calories, on average.'",
+          "zh": "标准差解释句（必背）：We can expect [变量] to differ from the mean by about S [单位], on average。不要拿方差或极差来说。"
+        },
+        {
+          "en": "Range = Max − Min. The mean, range, variance and SD are pulled by extreme values (not resistant); the median is resistant.",
+          "zh": "甜甜圈极差 = 400 − 180 = 220 kcal。不稳健：均值、极差、方差、标准差；稳健：中位数（Module 4 还有 IQR）。"
+        },
+        {
+          "en": "Describe a distribution by its shape, centre and spread, and mention any outliers, with context and units. Report the median for skewed data and the mean and SD for bell-shaped data.",
+          "zh": "描述分布：形状、中心、离散、离群值，都带情境和单位。偏斜 → 报告中位数；钟形对称 → 报告均值和标准差。"
+        },
+        {
+          "en": "A **histogram** has equal-width bins and touching bars (height = count), usually 5 to 30 bins; a gap is an empty bin. It is only for quantitative variables.",
+          "zh": "直方图（**histogram**）：组宽相等、柱子相连、柱高 = 个数，一般 5–30 组；中间的空白＝那一组没有数据。条形图的柱子是分开的。"
+        },
+        {
+          "en": "Shape words: unimodal (one peak), bimodal (two peaks), multimodal (three or more), uniform (no clear peak), symmetric, skewed to the right or to the left.",
+          "zh": "单峰、双峰、多峰、均匀（各柱差不多高）、对称、右偏、左偏。描述时还要留意空档和离群值。"
+        },
+        {
+          "en": "A **stem-and-leaf display** shows every data value in order (stem = left part, leaf = right part); a **dotplot** shows one dot per case above its value.",
+          "zh": "茎叶图保留每个原始值，可以直接数出中位数；点图每个个案一个点，相同的值往上叠。两者都用于数值变量。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "ȳ = Σy / n      μ = Σy / N",
+          "zh": "样本均值和总体均值。Σ = 全部加起来；n 是样本量，N 是总体大小。甜甜圈：7530 / 30 = 251。",
+          "en": "Sample mean and population mean."
+        },
+        {
+          "expr": "position of the median = 0.5 × (n + 1)",
+          "zh": "先排序。n = 30 → 15.5 → 第 15、16 个的平均；n = 35 → 第 18 个。",
+          "en": "Sort first; for even n, average the two middle values."
+        },
+        {
+          "expr": "mean = Σ(y × relative frequency) = Σ(y × f) / n",
+          "zh": "从频率表求均值：用相对频率时不要再除以 n。",
+          "en": "Weighted mean from a table."
+        },
+        {
+          "expr": "Range = Max − Min",
+          "zh": "甜甜圈：400 − 180 = 220 kcal。",
+          "en": "Uses only the two extreme values."
+        },
+        {
+          "expr": "S² = Σ(y − ȳ)² / (n − 1)      S = √S²",
+          "zh": "样本方差和样本标准差。离差 y − ȳ 加起来永远是 0，所以要先平方。甜甜圈：S² = 2505.8621，S = 50.06。",
+          "en": "Divide by n − 1, then take the square root."
+        },
+        {
+          "expr": "σ² = Σ(y − μ)² / N",
+          "zh": "总体方差：围绕 μ，除以 N。",
+          "en": "Population variance."
+        },
+        {
+          "expr": "df = n − 1",
+          "zh": "自由度：均值定下来以后，只有 n − 1 个值能自由变化。",
+          "en": "Degrees of freedom."
+        },
+        {
+          "expr": "percentage = count / n × 100%",
+          "zh": "直方图百分比：把符合条件的柱子加起来再除以 n。",
+          "en": "Proportion times 100."
+        },
+        {
+          "expr": "ȳ ± 1S ≈ 68%\nȳ ± 2S ≈ 95%\nȳ ± 3S ≈ all or almost all",
+          "zh": "经验法则，只适用于钟形数据。甜甜圈 ȳ ± 1S = (200.94, 301.06)，实际有 21/30 = 70% 在里面。",
+          "en": "Empirical Rule for bell-shaped data."
+        }
+      ],
+      "mustKnowTerms": [
+        "histogram",
+        "shape",
+        "unimodal",
+        "bimodal",
+        "symmetric",
+        "bell-shaped",
+        "skewed-right",
+        "skewed-left",
+        "outlier",
+        "stem-and-leaf",
+        "dotplot",
+        "mean",
+        "median",
+        "mode",
+        "cumulative-relative-frequency",
+        "resistant",
+        "range",
+        "deviation",
+        "variance",
+        "standard-deviation",
+        "degrees-of-freedom",
+        "empirical-rule",
+        "at-most",
+        "more-than",
+        "at-least"
+      ]
+    },
+    {
+      "lessonId": "mod04",
+      "title": {
+        "zh": "描述数值数据（二）：位置、箱线图与 z 分数",
+        "en": "Quantitative Data (II): Position, Boxplots and z-Scores"
+      },
+      "points": [
+        {
+          "en": "Shape from a boxplot: if the longer half of the box, the longer whisker and the outliers are on the high side, the distribution is skewed to the right. Name the skew after the long tail.",
+          "zh": "看三样：中位数两边的盒子哪边长、哪条须线长、离群点在哪边。长尾巴在右 → 右偏。同类题：2025 期中 Q9。"
+        },
+        {
+          "en": "IQR = Q3 − Q1 is the range of the middle 50% of the data and is resistant. On a boxplot, the box edges are Q1 and Q3, so the box width is the IQR.",
+          "zh": "四分位距（**IQR**）是一个数，不是区间。从图上读数读不准时，选最接近的选项（同类题：2025 期中 Q10）。"
+        },
+        {
+          "en": "Five-number summary: Min, Q1, Median, Q3, Max. The box goes from Q1 to Q3 with a line at the median; each whisker ends at the most extreme data value inside the inner fence.",
+          "zh": "五数概括（**five-number summary**）。须线停在内栅栏以内最远的真实数据值，不停在栅栏数上，也不一定到最大值；栅栏外的值单独画点（R 画成小圆圈）。"
+        },
+        {
+          "en": "Inner fences: Q1 − 1.5 × IQR and Q3 + 1.5 × IQR. Outer fences: Q1 − 3 × IQR and Q3 + 3 × IQR. Outside an inner fence = suspect outlier; outside an outer fence = highly suspect outlier.",
+          "zh": "下面的栅栏从 Q1 往下减，上面的从 Q3 往上加。只出了内栅栏＝疑似（**suspect**）；连外栅栏也出了＝高度疑似（**highly suspect**）。"
+        },
+        {
+          "en": "Donuts with R's quartiles: Q1 = 210, Q3 = 277.5, IQR = 67.5; inner fences 108.75 and 378.75; outer fences 7.5 and 480. So 400 kcal is a suspect outlier, and the whiskers end at 180 and 340.",
+          "zh": "1.5 × 67.5 = 101.25，3 × 67.5 = 202.5。400 在 378.75 和 480 之间 → 疑似，不是高度疑似；右须线停在 340（≤ 378.75 的最大值）。"
+        },
+        {
+          "en": "Quartiles by hand: Q1 = median of the lower half, Q3 = median of the upper half (donuts, n = 30: Q1 = 210, Q3 = 280, IQR = 70). For odd n, leave the median out of both halves. R uses another rule (Q3 = 277.5); use R's values when they are given.",
+          "zh": "手算：排序、切成两半，各取中位数（每半 15 个 → 第 8 个）。n 为奇数时，中位数本身不放进任何一半（课件只演示了 n = 30，这是本站的做法）：5, 10, 15, 20, 25 → Q1 = 7.5、Q3 = 22.5，而 R 的 favstats 和 boxplot 给 10 和 20。课件说手算和电脑结果不同不用担心；题目给了 R 输出或箱线图，就用它们的数。"
+        },
+        {
+          "en": "z = (y − ȳ) ÷ S (population: (y − μ) ÷ σ) is the number of standard deviations a value lies above (z > 0) or below (z < 0) the mean.",
+          "zh": "z 分数（**z-score**）：先减均值，再除以标准差，保留 2 位小数。甜甜圈 400 kcal：(400 − 251) ÷ 50.06 = 2.98；180 kcal：−1.42。"
+        },
+        {
+          "en": "z sentence: 'The donut with 400 calories is 2.98 standard deviations above the mean.' Write |z| together with the word above or below.",
+          "zh": "句型：[个案] 的 [变量] is |z| standard deviations above / below the mean。负号用 below 来表达，例如 180 kcal is 1.42 standard deviations below the mean。"
+        },
+        {
+          "en": "For bell-shaped, symmetric data: |z| > 3 is a highly suspect outlier and 2 < |z| ≤ 3 is a suspect outlier.",
+          "zh": "z 规则只用于钟形对称数据；负的 z 也看绝对值。偏斜数据里 z 规则和栅栏规则可能给出不同结论。"
+        },
+        {
+          "en": "To compare values from different distributions, compare z-scores: the larger z is the better relative position. A 67 (mean 50, SD 10) has z = 1.70; a 62 (mean 40, SD 12) has z = 1.83, so the 62 is relatively better.",
+          "zh": "比 z，不比原始分。补充（课件外）：“越小越好”的变量（比如跑步用时）反过来，z 越小越好。"
+        },
+        {
+          "en": "From a z-score back to a value: y = μ + z × σ (multiply first, then add). With μ = 100, σ = 16 and z = 2.5, y = 140.",
+          "zh": "先乘后加。z 为负时结果在均值下面：60 + (−1.5) × 8 = 48。"
+        },
+        {
+          "en": "Shifting (adding c to every value) adds c to the mean, median, quartiles, min and max, but leaves the range, IQR and SD unchanged.",
+          "zh": "平移（**shifting**）：位置度量跟着加（减）c，离散度量不变，形状不变。"
+        },
+        {
+          "en": "Rescaling (multiplying every value by a positive c, as in a change of units) multiplies the measures of position and the measures of spread by c; the shape does not change.",
+          "zh": "缩放（**rescaling**，换单位）：位置和离散都乘（除）c。既乘又加时（如 °F = 1.8 × °C + 32），只有乘法影响标准差。补充（课件外）：方差乘 c²。"
+        },
+        {
+          "en": "z-scores always have mean 0 and standard deviation 1, and they keep the shape of the original data.",
+          "zh": "标准化 = 先平移再缩放：均值变 0，标准差变 1，形状不变（右偏的还是右偏，不会变成钟形）。"
+        },
+        {
+          "en": "Choose the measures by shape: the mean and SD for roughly symmetric, bell-shaped data; the median and IQR for skewed data or data with outliers, because they are resistant.",
+          "zh": "成对使用：均值配标准差，中位数配 IQR，不要混搭（官方练习 Q1C 的句型）。"
+        },
+        {
+          "en": "The pth **percentile** has p% of the observations at or below it and (100 − p)% above it. Q1 is the 25th percentile, the median the 50th (the 0.50 quantile) and Q3 the 75th.",
+          "zh": "百分位数说的是位置，不是百分制分数。从累积相对频率表找：第一个累积值 ≥ p/100 的那个值。"
+        },
+        {
+          "en": "Compare groups with side-by-side boxplots: shapes, medians, IQRs and outliers, judged with each group's own fences. Outliers are investigated, never simply removed.",
+          "zh": "甜甜圈（只比 Cake、Filled、Yeast 三类；Other 只有 1 个，310 kcal，不参加比较）：Cake 中位数最高（270）、IQR 最小（30）；Yeast 中位数最低（200）、IQR 最大（70）。离群值依情境而定，分组后可能出现新的离群值。"
+        },
+        {
+          "en": "Paired data: compute each case's difference in a fixed order (for example after − before) and describe the differences. The median of the differences is usually not the difference of the medians.",
+          "zh": "配对数据（官方练习 Q2E）：先定好减的顺序，正负号才有意义。差值的均值 = 均值之差，但中位数一般没有这个关系。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "IQR = Q3 − Q1",
+          "zh": "中间 50% 的跨度。甜甜圈（R）：277.5 − 210 = 67.5；手算：280 − 210 = 70。",
+          "en": "Range of the middle 50%."
+        },
+        {
+          "expr": "Lower inner fence = Q1 − 1.5 × IQR\nUpper inner fence = Q3 + 1.5 × IQR",
+          "zh": "甜甜圈：108.75 和 378.75。出了内栅栏 → 疑似离群值。",
+          "en": "Outside → suspect outlier."
+        },
+        {
+          "expr": "Lower outer fence = Q1 − 3 × IQR\nUpper outer fence = Q3 + 3 × IQR",
+          "zh": "甜甜圈：7.5 和 480。出了外栅栏 → 高度疑似离群值。",
+          "en": "Outside → highly suspect outlier."
+        },
+        {
+          "expr": "z = (y − ȳ) / S\nz = (y − μ) / σ",
+          "zh": "第一行用于样本，第二行用于总体。400 kcal → 2.98。",
+          "en": "Standard deviations above or below the mean."
+        },
+        {
+          "expr": "y = μ + z × σ",
+          "zh": "已知 z 求原始值：100 + 2.5 × 16 = 140。用样本时写成 y = ȳ + z × S。",
+          "en": "Multiply first, then add."
+        },
+        {
+          "expr": "y + c → position + c, spread unchanged\nc × y → position × c, spread × c",
+          "zh": "平移只动位置；缩放让位置和离散一起变；两者都不改形状。",
+          "en": "Shifting and rescaling."
+        }
+      ],
+      "mustKnowTerms": [
+        "measure-of-position",
+        "percentile",
+        "quantile",
+        "quartile",
+        "lower-quartile",
+        "upper-quartile",
+        "iqr",
+        "five-number-summary",
+        "boxplot",
+        "whisker",
+        "inner-fence",
+        "outer-fence",
+        "suspect-outlier",
+        "highly-suspect-outlier",
+        "extreme-value",
+        "side-by-side-boxplots",
+        "favstats",
+        "z-score",
+        "standardizing",
+        "shifting",
+        "rescaling",
+        "paired-data",
+        "resistant"
+      ]
+    },
+    {
+      "lessonId": "mod05",
+      "title": {
+        "zh": "描述数值数据（三）：散点图、相关与回归",
+        "en": "Quantitative Data (III): Scatterplots, Correlation and Regression"
+      },
+      "points": [
+        {
+          "en": "Residual e = y − ŷ = observed − predicted. A positive residual means the line underestimated (the point is above the line); a negative residual means it overestimated.",
+          "zh": "残差（**residual**）：先算 ŷ（先乘后加），再用真实的 y 去减。2025 期中 Q24 型：ŷ = 13.31 + 0.69 × 88 = 74.03，e = 90 − 74.03 = 15.97。官方解答把第二步误写成 88 − 74.03（88 是 x 的值，88 − 74.03 其实等于 13.97；答案 15.97 是对的）。"
+        },
+        {
+          "en": "R² = r² is the proportion of the variation in y explained by the linear regression with x; it is between 0 and 1 and never negative. With r = 0.77, R² = 0.5929 ≈ 0.59.",
+          "zh": "决定系数（**R²**）一定要平方（2025 期中 Q25）。常见错误：忘了平方（直接写 r）、开了根号而不是平方。r = −0.65 → R² = 0.42，不是负数。"
+        },
+        {
+          "en": "Slope sentence: 'With every additional 1-unit increase in x, the mean y is estimated to increase (or decrease) by |b1|.' Use the sign of b1 only to choose increase or decrease, then write |b1|; keep the units and the words mean and estimated.",
+          "zh": "斜率（**slope**）：2025 期中 Q22 型。错误选项：符号反了、x 和 y 对调、把斜率说成平均值。b1 = −3.08 时写 decrease by 3.08。"
+        },
+        {
+          "en": "Intercept sentence: 'The mean y is estimated to be b0 when x is 0.' It is meaningful only when x = 0 is within the observed range of x.",
+          "zh": "截距（**intercept**）：2025 期中 Q23 型。错误选项：说成 y 为 0、x 和 y 对调、0 和 b0 位置写反、说成“没有关系”。x = 0 在数据范围外就是外推，截距没有实际意义。"
+        },
+        {
+          "en": "Regression line ŷ = b0 + b1x: ŷ is the predicted value (the estimated mean of y) for a given x. Plug in x, not y, and multiply before adding.",
+          "zh": "ŷ 读 y-hat，是预测值，不是观测值。predict y from x 决定谁是 x、谁是 y；把 x 和 y 代反是常见陷阱（2025 期中 Q24 的干扰项里就有这种错）。"
+        },
+        {
+          "en": "Describe a scatterplot by **direction** (positive or negative), **form** (linear or nonlinear) and **strength** (how closely the points follow the form), and mention outliers, with context and units.",
+          "zh": "强度看点挤得紧不紧，不看陡不陡。点紧贴一条曲线＝强的非线性关系（2025 期中 Q18：strong positive nonlinear relationship）。"
+        },
+        {
+          "en": "Scatterplot sentence: 'There appears to be a strong positive linear association between [y] and [x]. As [x] increases, [y] tends to increase.'",
+          "zh": "老师的模板：强度 + 正负 + linear + between y and x；再加一句 As x increases, y tends to increase / decrease。"
+        },
+        {
+          "en": "The correlation coefficient r measures the direction and strength of a LINEAR association only: −1 ≤ r ≤ 1, no units, unchanged by changing units or swapping x and y, and sensitive to outliers.",
+          "zh": "相关系数（**correlation coefficient**）的性质是判断题常客。弯曲的关系不能用 r 概括。ρ 是总体相关系数，r 是用样本算出的估计。"
+        },
+        {
+          "en": "Strength scale: strong |r| ≥ 0.8; moderate to strong 0.5 ≤ |r| < 0.8; moderate 0.3 ≤ |r| < 0.5; weak |r| < 0.3. The sign only gives the direction.",
+          "zh": "按 |r| 分级，边界值归上一档（0.8 算强）。r = −0.85 比 r = 0.6 强；挑“最强的一对”就比 |r|。"
+        },
+        {
+          "en": "r = S_xy ÷ (s_x s_y) = SS_xy ÷ √(SS_xx · SS_yy) = Σ z_x z_y ÷ (n − 1). Drug example: r = 7 ÷ √60 = 0.9037.",
+          "zh": "三种算法结果一样。易错：分母忘了开根号（7 ÷ 60）；除以 n 而不是 n − 1；把 z 分数之和（永远是 0）当成乘积之和。课件第 40 页印的 0.9024 是笔误。"
+        },
+        {
+          "en": "r in SD units: 'If a subject's x was 1 standard deviation above the mean, their y is estimated to be |r| standard deviations above (r > 0) or below (r < 0) the mean, on average.'",
+          "zh": "药物例：药量高 1 个标准差 → 反应时间预计高 0.904 个标准差；高 2 个 → 1.808 个。r 为负时写 below。"
+        },
+        {
+          "en": "Correlation is not causation: with observational data, a **lurking variable** may affect both x and y (a country's standard of living may drive both doctors per person and life expectancy). Only a randomized experiment shows cause and effect.",
+          "zh": "答“能不能说明 x 导致 y”：先写 No，再点名一个同时影响 x 和 y 的潜伏变量，最后说只有随机化实验才能证明因果。"
+        },
+        {
+          "en": "Residual plot: residuals scattered randomly around 0 with no pattern means the linearity assumption is met; an even spread with no fan shape means the constant variance assumption is met.",
+          "zh": "残差图（**residual plot**）检查两个假设：线性和方差恒定。好的残差图是一团没有规律的点。补充（课件外）：弯成拱形 → 不是线性；喇叭口 → 方差不恒定。"
+        },
+        {
+          "en": "Predicting y for an x outside the observed range is **extrapolation** and is not reliable, because the pattern may change outside the data.",
+          "zh": "课件例：客座率是百分比，趋势不可能一直涨过 100%。补充（课件外）：范围内的预测叫内插，比较可靠。"
+        },
+        {
+          "en": "The explanatory (predictor) variable x goes on the horizontal axis and the response variable y on the vertical axis. In 'predict y from x', y is the response.",
+          "zh": "r 不分谁是 x、谁是 y，但回归直线要分。补充（课件外）：对调 x 和 y 会得到另一条直线。"
+        },
+        {
+          "en": "A high r does not prove causation or a straight-line form, and a low r does not mean x and y are unrelated: the relationship may be curved. A restricted range can make r surprisingly low.",
+          "zh": "r 高 ≠ 因果；r 低 ≠ 没关系（可能是曲线）。只看一小段 x 时 r 会变小；用平均值数据画图时关联会显得更强。"
+        },
+        {
+          "en": "Covariance S_xy = Σ(x − x̄)(y − ȳ) ÷ (n − 1) gives the direction but depends on the units; dividing it by s_x s_y gives r, which has no units.",
+          "zh": "协方差（**covariance**）的正负给方向，大小随单位变化；标准化（除以两个标准差）就得到没有单位的 r。分母同样是 n − 1。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "S_xy = Σ(x − x̄)(y − ȳ) / (n − 1)",
+          "zh": "协方差（第 26 页），分母是 n − 1。药物数据：7 / 4 = 1.75。",
+          "en": "Covariance."
+        },
+        {
+          "expr": "r = S_xy / (s_x s_y) = SS_xy / √(SS_xx · SS_yy)",
+          "zh": "药物数据：SS_xy = 7，SS_xx = 10，SS_yy = 6 → r = 7 / √60 = 0.9037。",
+          "en": "Correlation from the covariance or from sums of squares."
+        },
+        {
+          "expr": "r = Σ z_x z_y / (n − 1)",
+          "zh": "z 分数乘积之和除以 n − 1：3.6148 / 4 = 0.9037。",
+          "en": "Correlation from z-score products."
+        },
+        {
+          "expr": "predicted z_y = r × z_x",
+          "zh": "x 高 1 个标准差 → y 预计高（或低）|r| 个标准差。",
+          "en": "r as a conversion rate in SD units."
+        },
+        {
+          "expr": "ŷ = b0 + b1x",
+          "zh": "先乘后加：13.31 + 0.69 × 88 = 74.03。",
+          "en": "Predicted value."
+        },
+        {
+          "expr": "e = y − ŷ",
+          "zh": "观测值减预测值：90 − 74.03 = 15.97（为正 → 低估了）。",
+          "en": "Residual."
+        },
+        {
+          "expr": "R² = r²",
+          "zh": "r = 0.77 时 R² = 0.5929 ≈ 0.59；r = −0.65 时 R² = 0.4225 ≈ 0.42，平方以后不会是负数。",
+          "en": "Coefficient of determination."
+        },
+        {
+          "expr": "b1 = r × s_y / s_x\nb0 = ȳ − b1 × x̄",
+          "zh": "补充（课件外）：最小二乘直线的斜率和截距；课程材料里的题目都直接给出方程。药物数据：b1 = 0.70，b0 = −0.10。",
+          "en": "Extra: least-squares slope and intercept."
+        }
+      ],
+      "mustKnowTerms": [
+        "scatterplot",
+        "explanatory-variable",
+        "response-variable",
+        "direction",
+        "form",
+        "strength",
+        "linear-relationship",
+        "nonlinear-relationship",
+        "covariance",
+        "correlation-coefficient",
+        "population-correlation",
+        "correlation-strength-scale",
+        "lurking-variable",
+        "causation",
+        "common-response",
+        "regression-line",
+        "predicted-value",
+        "slope",
+        "intercept",
+        "residual",
+        "r-squared",
+        "extrapolation",
+        "residual-plot",
+        "linearity-assumption",
+        "constant-variance"
+      ]
+    }
+  ],
+  "formulaSheet": [
+    {
+      "expr": "Statistic = a number computed from the sample\nParameter = the true value for the whole population",
+      "zh": "判断方法：这个数是不是从被调查（被测量）的那些个案算出来的？是 → 统计量；描述全体 → 参数。同类题：2025 期中 Q7。",
+      "en": "A statistic is used to estimate a parameter.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "Descriptive statistics: summarize the data in hand (only the cases measured)\nInferential statistics: use sample data to estimate, predict or generalize about the population",
+      "zh": "这个数只说被测量的样本 → 描述统计；拿来估计、预测或推广到总体（信号词：we estimate that…、predict for all…、based on the sample, we conclude that…）→ 推断统计。样本是随机抽的，也不会让一个只描述样本的数变成推断（官方练习 Q1D）。",
+      "en": "Descriptive or inferential.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "Population: All [who + every qualifier].\nSample: The [n] randomly selected [who].\nParameter: The true [percentage / mean] of [variable] among all [population].\nParameters (several categories): the true percentage of all [population] in each category, one per category.\nStatistic: The sample [percentage / mean] of [variable].\nVariable: [the characteristic recorded for each case].",
+      "zh": "找研究要素的句型（官方练习 Q1、Q2、Q7）。题目问 parameters（复数）、变量有好几个类别时，每个类别一个参数（官方练习 Q1A(ii)、Q2B）。变量要写成每个个案的特征，不能写成百分比、人数或样本量（2025 期中 Q8）。",
+      "en": "Answer patterns for the elements of a study.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "Quantitative: numbers with a unit (counts too), interval scale\nCategorical: nominal (no order) or ordinal (ordered)",
+      "zh": "变量类型和尺度：有顺序的类别仍是分类变量（顺序尺度）；人数、单词数这样的计数是数值变量。答题要同时写出类型和尺度。",
+      "en": "T-shirt size is a categorical variable measured on an ordinal scale.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "random sample from EVERY group → stratified\nALL cases in a few random groups → cluster\nevery k-th case after a random start → systematic\ngroups first, then cases within them → multistage\npeople choose themselves → voluntary response\nevery unit → census",
+      "zh": "抽样方法关键词。答题时要说出层（strata）或群（clusters）具体是什么。",
+      "en": "This is stratified random sampling, with class years as the strata.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "stratum sample size = (stratum size ÷ N) × n",
+      "zh": "按比例分层抽样（课件第 44 页）：400、280、280（N = 960），n = 100 → 42、29、29（课件印成 40/30/30，是舍入错误）。",
+      "en": "Proportional allocation.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "k = N ÷ n",
+      "zh": "补充（课件外）：系统抽样的间隔。在 1 到 k 之间随机选起点，然后每隔 k 个取一个。",
+      "en": "Systematic sampling interval.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "percent of a category = count ÷ number of valid cases × 100",
+      "zh": "代码本：缺失代码不进分母。15,712 ÷ 23,519 × 100 = 66.81%。",
+      "en": "Use only the valid cases.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "response rate = number who responded ÷ number contacted × 100%",
+      "zh": "回应率低 → 小心无回应偏差。",
+      "en": "Low response rates go with nonresponse bias.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "interval = (estimate − margin, estimate + margin)",
+      "zh": "可靠性度量：66.8% ± 0.6 个百分点 → (66.2%, 67.4%)。",
+      "en": "A measure of reliability for an inference.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "Odds = p / (1 − p)\np = Odds / (Odds + 1)",
+      "zh": "Course Introduction 第 31–32 页：p = 0.75 → odds = 3；odds = 4 → p = 0.80。概率和 odds 不是一回事。",
+      "en": "Probability and odds are related but not the same.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "researcher assigns the treatments → designed experiment (cause and effect)\nresearcher only observes → observational study (association only)",
+      "zh": "研究类型：只有实验能令人信服地证明因果；观察性研究里可能有潜伏变量。",
+      "en": "Experiment or observational study.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "undercoverage: some groups have less chance to be included\nnonresponse: selected people cannot be reached or refuse\nresponse bias: the wording or the interviewer changes the answers\nvoluntary response: people select themselves",
+      "zh": "四种偏差。答题时用情境说明谁被漏掉、结果偏高还是偏低；样本变大修不好偏差。",
+      "en": "Name the bias and explain it in context.",
+      "lessonId": "mod01"
+    },
+    {
+      "expr": "one categorical variable → bar chart or pie chart\none quantitative variable → histogram, stem-and-leaf display, dotplot or boxplot\none quantitative variable by groups → side-by-side boxplots\ntwo categorical variables → contingency table (compare conditional %) and side-by-side bar chart\ntwo quantitative variables → scatterplot (explanatory x on the horizontal axis, response y on the vertical axis)",
+      "zh": "按变量类型选图：先数有几个变量、看清类型（Module 1 第 30 页，Module 2–5）。分类变量不能用直方图、茎叶图、点图或箱线图（同类题：2025 期中 Q21）。并排条形图画的是人数，判断关联还要比条件百分比。",
+      "en": "A bar chart is most appropriate, because the type of phone is a categorical variable.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "proportion = count ÷ total\npercentage = proportion × 100",
+      "zh": "比例在 0 和 1 之间；百分比加 %。711 ÷ 2201 = 0.3230 → 32.30%。问 proportion 写小数，问 percentage 写百分数。",
+      "en": "Relative frequency and percentage.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "% of row = cell ÷ row total\n% of column = cell ÷ column total\n% of overall total = cell ÷ grand total",
+      "zh": "同一格，三个分母：203/711 = 28.6%（生还者里头等舱占多少），203/325 = 62.5%（头等舱里有多少生还），203/2201 = 9.2%（全船）。",
+      "en": "Three percentages for one cell.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "marginal proportion = row (or column) total ÷ grand total",
+      "zh": "边际：只看一个变量。",
+      "en": "Marginal distribution.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "joint proportion = cell ÷ grand total",
+      "zh": "联合：某种组合占全体的比例；问两种组合之一时，先把两格相加。",
+      "en": "Joint distribution.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "P(Y | X) = cell ÷ total of group X",
+      "zh": "条件比例：Among X, what proportion are Y? 就除以 X 组的合计。P(Alive | Third) = 178/706 = 0.2521。",
+      "en": "Conditional distribution.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "compare groups → percentages within each group\n(groups in the columns → column %; groups in the rows → row %)",
+      "zh": "选百分比的规则：在解释变量的每个水平里面算。同类题：2025 期中 Q1。",
+      "en": "Which percentages to compute.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "same conditional distributions → independent (no association)\ndifferent conditional distributions → associated",
+      "zh": "判断关联：先写 Yes 或 No，再引用各组的条件百分比。",
+      "en": "Association or independence.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "difference of proportions = p1 − p2  → percentage points",
+      "zh": "0.62 − 0.25 = 0.37：高 37 个百分点，不能说高 37%。",
+      "en": "A difference of percentages is in percentage points.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "RR = P(outcome | A) ÷ P(outcome | B)\n'comparing A to B' → A on top; otherwise the larger proportion on top",
+      "zh": "比例之比（相对风险）：题目说 comparing A to B 时 A 放分子（比值可能小于 1）；没这样说时，大的放分子。0.62 ÷ 0.25 = 2.48。比例多保留几位小数（或用分数）再相除，先四舍五入可能选错。",
+      "en": "Ratio of proportions (relative risk).",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "ratio above 2: 'k times as large' ('k times more likely')\nratio 1 to 2: (ratio − 1) × 100% higher\nratio below 1: (1 − ratio) × 100% lower",
+      "zh": "比值的说法：2.48 → 2.48 倍；1.08 → 高 8%；0.926 → 低 7.4%。",
+      "en": "How to word a ratio of proportions.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "no association: difference ≈ 0 and ratio ≈ 1",
+      "zh": "RR = 1 表示两组比例一样；RR = 0 是另一回事。",
+      "en": "What no association looks like.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "About [x]% of [group] [outcome].\nThe percentage of [A] who [outcome] is [d] percentage points higher than that of [B].\nThe proportion who [outcome] is [RR] times as large among [A] as among [B].",
+      "zh": "第二模块三个解释句：条件百分比、百分点之差、比值。",
+      "en": "About 62.46% of first-class passengers survived.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "Simpson's paradox: the groups have very different mixes of [lurking variable], so compare the groups within each level of [lurking variable].",
+      "zh": "辛普森悖论答题框架：点名潜伏变量，说明合并比较不公平，改成在每一层里比较（控制它）。",
+      "en": "Combining groups can hide or reverse a comparison.",
+      "lessonId": "mod02"
+    },
+    {
+      "expr": "Shape: count the peaks (unimodal / bimodal / multimodal / uniform), then symmetric or skewed\na skew is named after the longer tail, not the peak\ntest options: Bell-shaped and symmetric / Normal / Symmetric but not bell-shaped / Skewed to the right / Skewed to the left",
+      "zh": "峰在右、尾巴拖向左 → 左偏；峰在左、尾巴拖向右 → 右偏。2025 期中 Q9、Q11、Q16 都用这 5 个选项。数据的直方图是钟形时，本站建议选 Bell-shaped and symmetric（课件描述数据的说法）；Normal 是另一个选项，指 Module 8 才讲的正态模型。",
+      "en": "Name a skew after the longer tail.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "at most a: ≤ a      more than a: > a\nat least a: ≥ a      less than a: < a",
+      "zh": "R 的 hist() 分组是右闭区间 (a, b]：at most 和 more than 能直接从柱子读；at least 和 less than 碰到柱子边界时要看原始数据。",
+      "en": "Turn the wording into an inequality first.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "percentage = (counts of the bars that meet the condition) ÷ n × 100%",
+      "zh": "甜甜圈：at most 200 → 6/30 = 20%；more than 300 → 3/30 = 10%；at least 300 → 5/30 = 16.67%（看原始数据）。",
+      "en": "Reading a percentage from a histogram.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "ȳ = Σy / n      μ = Σy / N",
+      "zh": "样本均值（y-bar）和总体均值（mu）。Σ 表示全部加起来。",
+      "en": "Mean.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "On average, [cases] have [ȳ] [units].",
+      "zh": "均值解释句。",
+      "en": "On average, Tim Hortons donuts have 251 calories.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "position of the median = 0.5 × (n + 1)",
+      "zh": "先排序；n 为偶数时取中间两个的平均。",
+      "en": "n = 30 gives position 15.5: average the 15th and 16th values.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "The median [variable] is M. This means that 50% of [cases] have at most M (M or less), whereas 50% have more than M.",
+      "zh": "中位数解释句（必背）。",
+      "en": "The median calories is 250: 50% of donuts have at most 250 calories, whereas 50% have more than 250 calories.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "mean = Σ(y × relative frequency)\nmedian = first value with cumulative relative frequency ≥ 0.50\nmode = value with the largest relative frequency",
+      "zh": "从相对频率表求中心（2025 期中 Q12–Q14 的方法）。累积到 0.49 还不够。累积正好等于 0.50 时（课程没演示过），原始数据的 0.5(n + 1) 规则给的是这个值和下一个值的正中间，和这条规则不同：先看选项，见 Module 3 讲频数表的那一节的提醒。",
+      "en": "Centre from a relative frequency table.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "Range = Max − Min",
+      "zh": "不稳健：一个极端值就能把它拉大。",
+      "en": "Donuts: 400 − 180 = 220 kcal.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "resistant: median, IQR\nnot resistant: mean, range, variance, SD",
+      "zh": "稳健（**resistant**）＝极端值几乎拉不动它。偏斜或有离群值时，用稳健的中位数和 IQR（IQR 在 Module 4）。",
+      "en": "Which measures are resistant.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "S² = Σ(y − ȳ)² / (n − 1)\nS = √S²\ndf = n − 1",
+      "zh": "样本方差、样本标准差、自由度；离差 y − ȳ 加起来永远是 0。计算器统计模式里选 n − 1 的那个标准差键（常标 sx 或 σn−1）。",
+      "en": "Donuts: S² = 2505.8621, S = 50.06 kcal.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "σ² = Σ(y − μ)² / N",
+      "zh": "总体方差：围绕 μ，除以 N。",
+      "en": "Population variance.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "We can expect [variable] to differ from the mean by about S [units], on average.",
+      "zh": "标准差解释句（必背）。",
+      "en": "We can expect calories in Tim Hortons donuts to differ from the mean by about 50 calories, on average.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "right skew: mode, median, mean (mean > median)\nleft skew: mean, median, mode (mean < median)\nsymmetric: mean ≈ median",
+      "zh": "从小到大的常见顺序。只是线索，形状一定要看图确认。",
+      "en": "Where the measures of centre sit.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "ȳ ± 1S ≈ 68%\nȳ ± 2S ≈ 95%\nȳ ± 3S ≈ all or almost all",
+      "zh": "经验法则：只适用于钟形数据。",
+      "en": "Empirical Rule.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "actual % within kS = add the % of the values strictly between ȳ − kS and ȳ + kS",
+      "zh": "数据不是钟形时这样算：2025 期中 Q17 得约 62%，不是 68%；甜甜圈 1S 之内是 21/30 = 70%。",
+      "en": "Check the rule by counting.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "Based on the histogram, the distribution of [variable] is [shape]. The centre is about [value] [units], and the values range from about [min] to [max] [units]. There is a possible outlier at [value].",
+      "zh": "描述分布的句型：形状、中心、离散、离群值，都带情境和单位（练习 Q1a、Q2a、Q3a 的格式）。偏斜报告中位数，钟形报告均值和标准差。中心：没有 R 输出时，从左往右把柱高加到第 n/2 个左右，看它落在哪根柱子；最高的柱子是峰，不一定是中心。",
+      "en": "Describe shape, centre, spread and outliers.",
+      "lessonId": "mod03"
+    },
+    {
+      "expr": "pth percentile: p% of the observations at or below it, (100 − p)% above it",
+      "zh": "中位数 = 第 50 百分位数 = 0.50 分位数；Q1 = 第 25，Q3 = 第 75。从累积相对频率表找：第一个累积值 ≥ p/100 的值。",
+      "en": "Percentile.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "Q1 = median of the lower half      Q3 = median of the upper half\nodd n: leave the median out of both halves",
+      "zh": "手算四分位数（甜甜圈 n = 30：每半 15 个，取第 8 个 → 210 和 280）。n 为奇数时中位数不放进任何一半（本站的做法，课件只演示了偶数个）：5, 10, 15, 20, 25 → 7.5 和 22.5，而 R 的 favstats 和 boxplot 给 10 和 20。R 的结果可能不同（277.5），题目给了 R 输出或箱线图就用它们的数。",
+      "en": "Quartiles by hand.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "IQR = Q3 − Q1\nThe middle 50% of [cases] have [variable] between [Q1] and [Q3] [units] (a range of [IQR] [units]).",
+      "zh": "IQR 是中间 50% 数据的跨度：一个数，不是区间；不怕离群值（稳健）。第二行是解释句。",
+      "en": "The middle 50% of donuts have between 210 and 277.5 calories (IQR = 67.5).",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "Five-number summary: Min, Q1, Median, Q3, Max",
+      "zh": "箱线图：盒子从 Q1 到 Q3，中间一条线是中位数。",
+      "en": "A boxplot draws these five numbers.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "Inner fences: Q1 − 1.5 × IQR,  Q3 + 1.5 × IQR\nOuter fences: Q1 − 3 × IQR,  Q3 + 3 × IQR",
+      "zh": "甜甜圈（R）：内栅栏 108.75、378.75；外栅栏 7.5、480。",
+      "en": "Fences.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "outside an inner fence → suspect outlier\noutside an outer fence → highly suspect outlier",
+      "zh": "400 kcal 在 378.75 和 480 之间 → 疑似离群值。",
+      "en": "Classify an outlier.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "whisker = the most extreme data value inside the inner fence; values outside are plotted individually",
+      "zh": "甜甜圈须线到 180 和 340，400 单独画成圆圈。离群值要调查，不能直接删。",
+      "en": "Where a whisker ends.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "Shape: [skew]. Centre: the median is [M] [units]. Spread: the middle 50% of [cases] are between [Q1] and [Q3] [units] (IQR = [IQR]). Extreme values: [value] is plotted individually.",
+      "zh": "描述箱线图的四步模板。比较几组时再写谁的中位数最高、谁的 IQR 最大，并用每组自己的栅栏判断离群值。",
+      "en": "Describe a boxplot.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "z = (y − ȳ) / S      z = (y − μ) / σ",
+      "zh": "第一个用于样本，第二个用于总体；z 保留 2 位小数。",
+      "en": "z-score.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "[Case]'s [variable] is |z| standard deviations above (below) the mean.",
+      "zh": "z 分数解释句；z 为负时用 below。",
+      "en": "The donut with 400 calories is 2.98 standard deviations above the mean.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "bell-shaped data: |z| > 3 → highly suspect outlier;  2 < |z| ≤ 3 → suspect outlier",
+      "zh": "z 规则只用于钟形对称数据。",
+      "en": "z-score outlier rule.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "Extreme value? (Yes/No with the z-score): Yes if |z| > 3\nExtreme value: No; it is not beyond a z-score of 3 in absolute value.",
+      "zh": "extreme value 有两种用法：描述箱线图时，它就是单独画出的点；题目问 Yes/No、要用 z 说理时（官方练习 Q2D、Q2E），看 |z| 是否大于 3。400 kcal 的甜甜圈在箱线图上单独画出，但 z = 2.98，答 No。偏斜数据里栅栏规则和 |z| 规则可能给出不同结论。",
+      "en": "Two meanings of 'extreme value'.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "different distributions → compare z-scores (larger z = relatively higher)",
+      "zh": "67 分（均值 50、标准差 10）z = 1.70；62 分（均值 40、标准差 12）z = 1.83 → 62 分相对更好。",
+      "en": "Comparing values with z-scores.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "y = μ + z × σ",
+      "zh": "已知 z 求原始值：先乘后加。100 + 2.5 × 16 = 140。",
+      "en": "Observation = mean + (z-score × standard deviation).",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "add c: mean, median, quartiles, min, max + c; range, IQR, SD unchanged\nmultiply by c: position and spread × c",
+      "zh": "平移不改离散；缩放（换单位）让位置和离散一起乘；两者都不改形状。补充（课件外）：方差乘 c²。",
+      "en": "Shifting and rescaling.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "z-scores: mean 0, SD 1, same shape as the data",
+      "zh": "标准化不会把偏斜数据变成钟形。",
+      "en": "Distribution of z-scores.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "bell-shaped and symmetric → mean and SD\nskewed or with outliers → median and IQR",
+      "zh": "选度量要成对：均值配标准差，中位数配 IQR。偏斜时的答题句见英文（官方练习 Q1C 的句型）。",
+      "en": "The distribution is skewed to the right, so the most appropriate measure of centre is the median and the most appropriate measure of spread is the IQR, because they are resistant.",
+      "lessonId": "mod04"
+    },
+    {
+      "expr": "There appears to be a [strength] [positive / negative] linear association between [y] and [x].\nAs [x] increases, [y] tends to increase (decrease).",
+      "zh": "散点图解释句：方向、形态、强度，带变量名和单位；有离群值也要提。",
+      "en": "There appears to be a strong positive linear association between reaction time and drug amount.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "S_xy = Σ(x − x̄)(y − ȳ) / (n − 1)",
+      "zh": "协方差：正负给方向，大小随单位变。",
+      "en": "Covariance.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "r = S_xy / (s_x s_y) = SS_xy / √(SS_xx · SS_yy)",
+      "zh": "SS_xx = Σ(x − x̄)²，SS_yy = Σ(y − ȳ)²，SS_xy = Σ(x − x̄)(y − ȳ)。药物数据：7 / √60 = 0.9037。",
+      "en": "Correlation coefficient.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "r = Σ z_x z_y / (n − 1)",
+      "zh": "z 分数乘积之和除以 n − 1（不是 n）；z 分数之和永远是 0，不要拿它来算。",
+      "en": "r from z-score products.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "strong: |r| ≥ 0.8\nmoderate to strong: 0.5 ≤ |r| < 0.8\nmoderate: 0.3 ≤ |r| < 0.5\nweak: |r| < 0.3",
+      "zh": "相关强度分级（第 32 页），看绝对值。",
+      "en": "Strength scale for r.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "−1 ≤ r ≤ 1; no units; unchanged by changing units or swapping x and y; linear only; sensitive to outliers",
+      "zh": "r 的性质。弯曲的关系不能用 r 概括。",
+      "en": "Properties of r.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "ρ = population correlation (a parameter)\nr = sample correlation (a statistic that estimates ρ)",
+      "zh": "ρ 读作 rho。和 Module 1 一样：总体的值是参数，从样本算出来的是统计量。",
+      "en": "Population and sample correlation.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "If [case]'s [x] was 1 standard deviation above the mean, their [y] is estimated to be |r| standard deviation above (below) the mean, on average.\npredicted z_y = r × z_x",
+      "zh": "用标准差单位解释 r；r 为负时写 below。",
+      "en": "Drug amount 1 SD above the mean → reaction time estimated 0.904 SD above the mean.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "No. These are observational data, so the association does not prove causation. A lurking variable such as [z] may affect both [x] and [y]. Only a randomized experiment can show cause and effect.\nOr: Not necessarily: the study does not provide good evidence that [x] causes [y].",
+      "zh": "“x 是否导致 y”的答题框架：一定要点名一个潜伏变量。相关练习 Q3 的官方答案用 Not necessarily 开头。",
+      "en": "Correlation is not causation.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "ŷ = b0 + b1x",
+      "zh": "预测值：代入 x，先乘后加。",
+      "en": "Regression line.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "With every additional 1-[unit] increase in [x], the mean [y] is estimated to increase (decrease) by |b1|.",
+      "zh": "斜率解释句。",
+      "en": "When the spelling score increases by 1, the mean writing score is estimated to increase by 0.69.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "The mean [y] is estimated to be b0 when [x] is 0.",
+      "zh": "截距解释句：只有 x = 0 在数据范围内时才有意义。",
+      "en": "The mean writing score is estimated to be 13.31 when the spelling score is 0.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "Residual = observed value − predicted value = y − ŷ",
+      "zh": "e 为正：低估了（点在直线上方）；e 为负：高估了（点在直线下方）。",
+      "en": "90 − 74.03 = 15.97, so the line underestimated.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "R² = r²\nAbout [100 × R²]% of the variation in [y] is explained by the linear regression with [x].",
+      "zh": "R² 在 0 和 1 之间，永远不是负数。",
+      "en": "About 42% of the variation in calories consumed is explained by the linear regression with time spent at the lunch table.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "random scatter around 0, no pattern → linearity met\neven spread, no fan shape → constant variance met",
+      "zh": "残差图的两个判断句。",
+      "en": "The residuals are randomly scattered around 0 with no major pattern, so the linearity assumption is met.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "x outside the observed range → extrapolation (not reliable)",
+      "zh": "外推不可靠；截距也只在 x = 0 位于数据范围内时才能解释。",
+      "en": "Do not trust predictions far outside the data.",
+      "lessonId": "mod05"
+    },
+    {
+      "expr": "b1 = r × s_y / s_x\nb0 = ȳ − b1 × x̄",
+      "zh": "补充（课件外）：最小二乘直线的斜率和截距；课程材料里的题目都直接给出方程。药物数据：b1 = 0.9037 × 1.2247 / 1.5811 = 0.70，b0 = 2 − 0.70 × 3 = −0.10。",
+      "en": "Extra: least-squares slope and intercept.",
+      "lessonId": "mod05"
+    }
+  ],
+  "confusables": [
+    {
+      "a": {
+        "en": "Population",
+        "zh": "总体"
+      },
+      "b": {
+        "en": "Sample",
+        "zh": "样本"
+      },
+      "difference": {
+        "en": "The population is the entire group we want information about; the sample is the part of it on which we actually collect data.",
+        "zh": "想了解的是总体，手里有的是样本。用样本的统计量去估计总体的参数。"
+      }
+    },
+    {
+      "a": {
+        "en": "Parameter",
+        "zh": "参数"
+      },
+      "b": {
+        "en": "Statistic",
+        "zh": "统计量"
+      },
+      "difference": {
+        "en": "A parameter is a numerical summary of the population (a true, usually unknown value); a statistic is a numerical summary of the sample data and is used to estimate the parameter.",
+        "zh": "口诀：Parameter 配 Population，Statistic 配 Sample（P 配 P，S 配 S）。从被调查的人算出来的数 → 统计量。"
+      }
+    },
+    {
+      "a": {
+        "en": "Categorical variable",
+        "zh": "分类变量"
+      },
+      "b": {
+        "en": "Quantitative variable",
+        "zh": "数值变量"
+      },
+      "difference": {
+        "en": "A quantitative variable has numerical values with a unit that measure an amount (counts too); a categorical variable places each case in a group, even when the groups are ordered or coded as numbers.",
+        "zh": "问自己：求平均有意义吗？有意义 → 数值变量；没有意义（尺码、满意度等级、邮编）→ 分类变量。题目明说 treated as quantitative 时按题目来。"
+      }
+    },
+    {
+      "a": {
+        "en": "Nominal scale",
+        "zh": "名义尺度"
+      },
+      "b": {
+        "en": "Ordinal scale",
+        "zh": "顺序尺度"
+      },
+      "difference": {
+        "en": "Both are scales of categorical variables: nominal categories are only names with no order, while ordinal categories have a meaningful order but no numerical units.",
+        "zh": "能不能排队？能（poor 到 excellent）→ 顺序尺度；不能（音乐类型、MAC/PC）→ 名义尺度。"
+      }
+    },
+    {
+      "a": {
+        "en": "Stratified sampling",
+        "zh": "分层抽样"
+      },
+      "b": {
+        "en": "Cluster sampling",
+        "zh": "整群抽样"
+      },
+      "difference": {
+        "en": "Stratified sampling takes a random sample from every stratum; cluster sampling randomly selects a few clusters and takes every case in them.",
+        "zh": "分层＝每组都抽一部分（各组都有代表）；整群＝只抽几组，组内全要（省时间、省路费）。"
+      }
+    },
+    {
+      "a": {
+        "en": "Designed experiment",
+        "zh": "设计实验"
+      },
+      "b": {
+        "en": "Observational study",
+        "zh": "观察性研究"
+      },
+      "difference": {
+        "en": "In a designed experiment the researcher assigns the treatments, so it can show cause and effect; in an observational study the researcher only observes, so it can only show an association.",
+        "zh": "看研究者有没有动手分配处理。有 → 实验；没有（包括问卷调查）→ 观察性研究。"
+      }
+    },
+    {
+      "a": {
+        "en": "Descriptive statistics",
+        "zh": "描述统计"
+      },
+      "b": {
+        "en": "Inferential statistics",
+        "zh": "推断统计"
+      },
+      "difference": {
+        "en": "Descriptive statistics summarize the data in hand; inferential statistics use sample data to make estimates or predictions about the population.",
+        "zh": "只说样本里的情况 → 描述；推广到总体 → 推断。"
+      }
+    },
+    {
+      "a": {
+        "en": "Row percentage",
+        "zh": "行百分比"
+      },
+      "b": {
+        "en": "Column percentage",
+        "zh": "列百分比"
+      },
+      "difference": {
+        "en": "A row percentage divides a cell by its row total, so each row adds to 100%; a column percentage divides by its column total, so each column adds to 100%.",
+        "zh": "选哪个，看被比较的组在哪个方向。Titanic：203/711 是行%（生还者里头等舱占多少），203/325 是列%（头等舱里有多少人生还）。"
+      }
+    },
+    {
+      "a": {
+        "en": "Marginal distribution",
+        "zh": "边际分布"
+      },
+      "b": {
+        "en": "Conditional distribution",
+        "zh": "条件分布"
+      },
+      "difference": {
+        "en": "A marginal distribution describes one variable on its own (total ÷ grand total); a conditional distribution describes one variable within one level of the other variable (cell ÷ group total).",
+        "zh": "边际＝表格边上的合计，不管另一个变量；条件＝只看某一组（Among X…）。比较几组的条件分布，才能判断有没有关联。"
+      }
+    },
+    {
+      "a": {
+        "en": "Joint proportion",
+        "zh": "联合比例"
+      },
+      "b": {
+        "en": "Conditional proportion",
+        "zh": "条件比例"
+      },
+      "difference": {
+        "en": "A joint proportion divides a cell by the grand total (a share of all cases); a conditional proportion divides the same cell by its group total (a share within the group).",
+        "zh": "同一个格子，不同分母。Titanic：178/2201 = 0.0809 是联合（全船里三等舱生还者占多少），178/706 = 0.2521 是条件（三等舱里有多少人生还）。"
+      }
+    },
+    {
+      "a": {
+        "en": "Percentage points (difference)",
+        "zh": "百分点（相减）"
+      },
+      "b": {
+        "en": "Percent higher (from a ratio)",
+        "zh": "高百分之几（相除）"
+      },
+      "difference": {
+        "en": "A difference of two percentages is in percentage points (62% − 25% = 37 percentage points); a percent increase comes from a ratio of proportions, (ratio − 1) × 100%.",
+        "zh": "相减 → 百分点；相除 → 几倍或高（低）百分之几。62% 对 25%：高 37 个百分点，或者是 2.48 倍，不能说“高 37%”。"
+      }
+    },
+    {
+      "a": {
+        "en": "Bar chart",
+        "zh": "条形图"
+      },
+      "b": {
+        "en": "Histogram",
+        "zh": "直方图"
+      },
+      "difference": {
+        "en": "A bar chart displays a categorical variable with separate bars; a histogram displays a quantitative variable with touching bars over equal-width bins.",
+        "zh": "条形图：柱子分开，横轴是类别；直方图：柱子相连，横轴是数轴。"
+      }
+    },
+    {
+      "a": {
+        "en": "Skewed to the right",
+        "zh": "右偏"
+      },
+      "b": {
+        "en": "Skewed to the left",
+        "zh": "左偏"
+      },
+      "difference": {
+        "en": "Skewed to the right means the long tail is on the high side and usually mean > median; skewed to the left means the long tail is on the low side and usually mean < median.",
+        "zh": "看尾巴，不看峰：峰在右边、尾巴在左边的是左偏。"
+      }
+    },
+    {
+      "a": {
+        "en": "Mean",
+        "zh": "均值"
+      },
+      "b": {
+        "en": "Median",
+        "zh": "中位数"
+      },
+      "difference": {
+        "en": "The mean is the balance point and is pulled by extreme values; the median is the middle sorted value and is resistant, so we report it for skewed data.",
+        "zh": "一个特别大的值能把均值拉走，中位数几乎不动。偏斜 → 中位数；钟形对称 → 均值。"
+      }
+    },
+    {
+      "a": {
+        "en": "Standard deviation (SD)",
+        "zh": "标准差"
+      },
+      "b": {
+        "en": "IQR",
+        "zh": "四分位距"
+      },
+      "difference": {
+        "en": "The SD is the typical distance of the values from the mean and is not resistant; the IQR = Q3 − Q1 is the range of the middle 50% and is resistant.",
+        "zh": "标准差配均值，IQR 配中位数，不要混搭。有离群值或偏斜时用 IQR。"
+      }
+    },
+    {
+      "a": {
+        "en": "S (sample SD)",
+        "zh": "样本标准差 S"
+      },
+      "b": {
+        "en": "σ (population SD)",
+        "zh": "总体标准差 σ"
+      },
+      "difference": {
+        "en": "S is computed from a sample around ȳ and divides by n − 1; σ describes the whole population around μ and divides by N.",
+        "zh": "样本：S、ȳ、除以 n − 1；总体：σ、μ、除以 N。计算器上选 n − 1 的那个标准差键（常标 sx 或 σn−1）。"
+      }
+    },
+    {
+      "a": {
+        "en": "Hand quartiles",
+        "zh": "手算四分位数"
+      },
+      "b": {
+        "en": "R quartiles",
+        "zh": "R 的四分位数"
+      },
+      "difference": {
+        "en": "By hand, Q1 and Q3 are the medians of the lower and upper halves (donuts: 210 and 280); R uses another rule (210 and 277.5), and the course uses R's values.",
+        "zh": "两种都不算错，只是算法不同。题目给了 R 输出就直接用，不要自己手算去“纠正”它。"
+      }
+    },
+    {
+      "a": {
+        "en": "Suspect outlier",
+        "zh": "疑似离群值"
+      },
+      "b": {
+        "en": "Highly suspect outlier",
+        "zh": "高度疑似离群值"
+      },
+      "difference": {
+        "en": "A suspect outlier lies outside an inner fence (more than 1.5 × IQR beyond Q1 or Q3) but not outside the outer fence; a highly suspect outlier lies outside an outer fence (more than 3 × IQR beyond).",
+        "zh": "z 的版本（钟形数据）：2 < |z| ≤ 3 疑似，|z| > 3 高度疑似。甜甜圈 400 kcal 是疑似。"
+      }
+    },
+    {
+      "a": {
+        "en": "At least",
+        "zh": "至少（≥）"
+      },
+      "b": {
+        "en": "More than",
+        "zh": "多于（>）"
+      },
+      "difference": {
+        "en": "'At least 300' means 300 or more (≥ 300); 'more than 300' means above 300 (> 300). The difference is the values exactly equal to 300.",
+        "zh": "差的就是“正好等于”的那几个。甜甜圈：more than 300 有 3 个，at least 300 有 5 个（多了两个正好 300 的）。"
+      }
+    },
+    {
+      "a": {
+        "en": "Explanatory variable",
+        "zh": "解释变量"
+      },
+      "b": {
+        "en": "Response variable",
+        "zh": "响应变量"
+      },
+      "difference": {
+        "en": "The explanatory (predictor) variable x may explain or predict the response (outcome) variable y; x goes on the horizontal axis and y on the vertical axis.",
+        "zh": "predict y from x：y 是响应变量。列联表里，解释变量定义要比较的组。"
+      }
+    },
+    {
+      "a": {
+        "en": "Correlation",
+        "zh": "相关"
+      },
+      "b": {
+        "en": "Causation",
+        "zh": "因果"
+      },
+      "difference": {
+        "en": "Correlation means two quantitative variables move together in a straight-line way; causation means changing x actually changes y, which only a randomized experiment can show.",
+        "zh": "相关是“一起变”，因果是“一个导致另一个”。观察数据里要点名一个潜伏变量。"
+      }
+    },
+    {
+      "a": {
+        "en": "r",
+        "zh": "相关系数 r"
+      },
+      "b": {
+        "en": "R²",
+        "zh": "决定系数 R²"
+      },
+      "difference": {
+        "en": "r (from −1 to 1) gives the direction and strength of a linear association; R² = r² (from 0 to 1) is the proportion of the variation in y explained by the regression.",
+        "zh": "r 有正负，说方向和强度；R² 没有负数，说解释了百分之几的变异。0.77 → 0.59：别忘了平方，也别开根号。"
+      }
+    },
+    {
+      "a": {
+        "en": "Slope",
+        "zh": "斜率"
+      },
+      "b": {
+        "en": "Intercept",
+        "zh": "截距"
+      },
+      "difference": {
+        "en": "The slope b1 is the estimated change in the mean of y for each 1-unit increase in x; the intercept b0 is the estimated mean of y when x = 0.",
+        "zh": "斜率＝变化率；截距＝x 为 0 时的起点，只有 x = 0 在数据范围内才能解释。"
+      }
+    },
+    {
+      "a": {
+        "en": "Positive residual",
+        "zh": "正残差"
+      },
+      "b": {
+        "en": "Negative residual",
+        "zh": "负残差"
+      },
+      "difference": {
+        "en": "A positive residual (y > ŷ) means the point is above the line and the line underestimated; a negative residual (y < ŷ) means the point is below the line and the line overestimated.",
+        "zh": "残差 = 观测 − 预测。正 → 低估了；负 → 高估了。减反了，符号和结论都会反。"
+      }
+    },
+    {
+      "a": {
+        "en": "Interpolation",
+        "zh": "内插"
+      },
+      "b": {
+        "en": "Extrapolation",
+        "zh": "外推"
+      },
+      "difference": {
+        "en": "Interpolation predicts y for an x inside the observed range and is fairly safe; extrapolation predicts y for an x outside the range and is not reliable.",
+        "zh": "补充（课件外）：这两个英文词课件没有，道理来自课件——趋势不一定在数据外继续（客座率不可能超过 100%）。"
+      }
+    }
+  ]
+}

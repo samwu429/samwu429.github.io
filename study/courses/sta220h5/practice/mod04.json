@@ -1,0 +1,2185 @@
+{
+  "lessonId": "mod04",
+  "questions": [
+    {
+      "id": "mod04-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s01-measures-of-position",
+      "prompt": {
+        "en": "Which of the following is NOT a measure of position?",
+        "zh": "下面哪一个**不是**位置度量（measure of position）？"
+      },
+      "options": [
+        {
+          "en": "The median",
+          "zh": "中位数"
+        },
+        {
+          "en": "The 90th percentile",
+          "zh": "第 90 百分位数"
+        },
+        {
+          "en": "The standard deviation",
+          "zh": "标准差"
+        },
+        {
+          "en": "A z-score",
+          "zh": "z 分数"
+        },
+        {
+          "en": "The maximum",
+          "zh": "最大值"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "位置度量（**measure of position**）说的是数据里的一个“位置点”：有百分之多少的数据在它下面、百分之多少在它上面（课件 p.2）。标准差（**standard deviation**）说的是数据离平均数平均有多远，是离散程度（spread）的度量，不是一个位置，所以选 C。\n其余四个都是位置度量：\nA 中位数 = 第 50 百分位数（Q2），一半数据在它下面（p.2–3）。\nB 第 90 百分位数：约 90% 的数据小于或等于它（p.3）。\nD z 分数：课件 p.25 的标题就是 Z-Score: Measure of Position，它说一个值在平均数上下几个标准差的位置。\nE 最大值：数据里最高的那个位置；极差 Range = Max − Min 就是用最大值和最小值这两个位置算的（p.2）。\n易错：z 分数的公式里有标准差，但它是拿标准差当“尺子”去量位置，本身仍是位置度量。",
+        "en": "The standard deviation measures spread (how far values are from the mean, on average), not a position. The median, percentiles, z-scores and the maximum all describe positions in the data (p.2, p.3, p.25)."
+      }
+    },
+    {
+      "id": "mod04-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-percentiles",
+      "prompt": {
+        "en": "A survey recorded the one-way commute times of UTM students. Lina's commute time is at the 80th percentile. Which statement is correct?",
+        "zh": "一项调查记录了 UTM 学生的单程通勤时间。Lina 的通勤时间在第 80 百分位数（80th percentile）。下面哪句话正确？"
+      },
+      "options": [
+        {
+          "en": "About 80% of the commute times are at or below Lina's.",
+          "zh": "大约 80% 的通勤时间小于或等于 Lina 的。"
+        },
+        {
+          "en": "Lina's commute takes 80 minutes, longer than most students'.",
+          "zh": "Lina 的通勤要 80 分钟，比大多数学生都长。"
+        },
+        {
+          "en": "Lina's commute is 80% longer than the mean commute time.",
+          "zh": "Lina 的通勤时间比平均通勤时间长 80%。"
+        },
+        {
+          "en": "About 20% of the commute times are at or below Lina's.",
+          "zh": "大约 20% 的通勤时间小于或等于 Lina 的。"
+        },
+        {
+          "en": "Lina's commute time is 80% of the longest commute time.",
+          "zh": "Lina 的通勤时间是最长通勤时间的 80%。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件 p.3 的定义：第 p 百分位数（**pth percentile**）是这样一个点——p% 的观测值小于或等于它（below or at），(100 − p)% 大于它（above）。代入 p = 80：约 80% 的通勤时间 ≤ Lina 的，剩下约 100 − 80 = 20% 比她的长，所以选 A。\nB 错：百分位数是“排在哪个位置”，不是数值本身；80th 不等于 80 分钟。\nC 错：百分位数和平均数（mean）无关，也不是“多出百分之几”。\nD 错：方向反了，20% 是在她**上面**（通勤更久）的比例。\nE 错：百分位数不是“最大值的百分之几”。",
+        "en": "By the definition on p.3, p% of the observations are at or below the pth percentile and (100 − p)% are above it: 80% at or below Lina's time, 20% above. A percentile is a position, not a number of minutes or a percent of the mean or of the maximum."
+      }
+    },
+    {
+      "id": "mod04-q03",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s02-percentiles",
+      "prompt": {
+        "en": "The table shows the relative frequency distribution of the number of cups of coffee that students in a residence drink per day. What is the third quartile (Q3) of the number of cups per day?",
+        "zh": "下表是某宿舍学生每天喝咖啡杯数的相对频率分布。每天喝咖啡杯数的第三四分位数（Q3）是多少？"
+      },
+      "table": {
+        "headers": [
+          "Cups of coffee per day",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "rows": [
+          [
+            "Relative frequency",
+            "0.15",
+            "0.30",
+            "0.25",
+            "0.20",
+            "0.10"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "1",
+          "zh": "1 杯"
+        },
+        {
+          "en": "2",
+          "zh": "2 杯"
+        },
+        {
+          "en": "2.5",
+          "zh": "2.5 杯"
+        },
+        {
+          "en": "3",
+          "zh": "3 杯"
+        },
+        {
+          "en": "4",
+          "zh": "4 杯"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "Q3 就是第 75 百分位数（0.75 分位数）。从频率表找它：从最小的值开始，把相对频率一个一个加起来，得到累计相对频率（**cumulative relative frequency**），第一个累计值 ≥ 0.75 的那个值就是 Q3。2025 期中 Q13 的官方答案就是用这个方法找中位数（第一个 ≥ 0.50 的值）。\n累计：0 杯 0.15；1 杯 0.15 + 0.30 = 0.45；2 杯 0.45 + 0.25 = 0.70；3 杯 0.70 + 0.20 = 0.90；4 杯 1.00。\n0.70 还不到 0.75，第一个 ≥ 0.75 的是 0.90，对应 3 杯，所以 Q3 = 3，选 D。\nA 1：那是 Q1（第一个累计值 ≥ 0.25 的是 0.45，在 1 杯）。\nB 2：在 0.70 处停下了。“差不多 0.75”不算，必须 ≥ 0.75；2 其实是中位数（第一个 ≥ 0.50 的是 0.70）。\nC 2.5：把 2 和 3 取平均是乱用“两个中间值取平均”的规则，这里 0.75 并不正好落在 2 和 3 的分界上。\nE 4：最大值，不是 Q3。\n检查：如果是 20 个学生（人数 3、6、5、4、2），排序后上半部分 10 个数的中位数是 (3 + 3)/2 = 3，R 也给出 3，结果一致。\n同类题：2025 期中 Q13（用累计相对频率找中位数）。",
+        "en": "Cumulative relative frequencies: 0.15, 0.45, 0.70, 0.90, 1.00. The first value whose cumulative relative frequency is at least 0.75 is 3 cups, so Q3 = 3. 1 is Q1, 2 is the median (0.70 < 0.75) and 4 is the maximum."
+      }
+    },
+    {
+      "id": "mod04-q04",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-quartiles",
+      "prompt": {
+        "en": "The waiting times for a table at a busy restaurant have Q1 = 4 minutes and Q3 = 9 minutes. About what percentage of the waiting times are longer than 9 minutes?",
+        "zh": "一家很忙的餐厅，顾客等位时间的 Q1 = 4 分钟，Q3 = 9 分钟。大约百分之多少的等位时间超过 9 分钟？"
+      },
+      "options": [
+        {
+          "en": "9%",
+          "zh": "9%"
+        },
+        {
+          "en": "25%",
+          "zh": "25%"
+        },
+        {
+          "en": "50%",
+          "zh": "50%"
+        },
+        {
+          "en": "75%",
+          "zh": "75%"
+        },
+        {
+          "en": "91%",
+          "zh": "91%"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "9 分钟正好是 Q3，也就是上四分位数（**upper quartile**，第 75 百分位数）。课件 p.3：Q3 下面有 3/4（75%）的数据，上面有 1/4（25%）的数据。“longer than 9 minutes”就是 Q3 上面的那部分，约 25%，选 B。\nA 9%：把 Q3 的数值 9 当成了百分比。\nC 50%：那是 Q1 到 Q3 之间（中间一半，也就是 IQR 覆盖的部分）的比例。\nD 75%：那是 Q3 **以下**（≤ 9 分钟）的比例，方向反了。\nE 91%：把 9 分钟当成了第 9 百分位数（以为大约 9% 的等位时间 ≤ 9 分钟），再算 100 − 9 = 91%。9 是分钟数，不是百分位；9 分钟这个位置是 Q3，也就是第 75 百分位数。",
+        "en": "9 minutes is Q3, the 75th percentile: about 75% of the waiting times are at or below it and about 25% are above it. 50% lie between Q1 and Q3."
+      }
+    },
+    {
+      "id": "mod04-q05",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s04-iqr",
+      "prompt": {
+        "en": "A data set has 40 values. If the largest value, 60, is changed to 600 (and every other value stays the same), the IQR will change a lot.",
+        "zh": "一组数据有 40 个值。如果把最大值 60 改成 600（其他值都不变），IQR 会变化很大。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。IQR = Q3 − Q1，只用到 Q1 和 Q3 两个四分位数（**quartiles**）。40 个数排好序后，每一半有 20 个数，Q1 是第 10、11 个数的平均，Q3 是第 30、31 个数的平均；最大值是第 40 个数。把 60 改成 600，它仍然排在最后，第 10、11、30、31 个数一个都没变，所以 IQR 一点都不变。\n这就是课件 p.5 的 Note：IQR is NOT (or less) affected by outliers，IQR 是稳健的（**resistant**）。\n会大变的是：极差 Range = Max − Min（多了 540）、平均数（多了 540/40 = 13.5）和标准差。课件 p.46：mean, range, SD and variance are not resistant。",
+        "en": "False. The IQR uses only Q1 and Q3 (the averages of the 10th/11th and 30th/31st sorted values), which do not move when the maximum changes. The range, the mean and the SD would change a lot (p.5 Note, p.46)."
+      }
+    },
+    {
+      "id": "mod04-q06",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s05-quartiles-by-hand",
+      "prompt": {
+        "en": "The weekly hours of part-time work of 12 students, already sorted, are:\n4, 6, 7, 8, 10, 12, 12, 14, 15, 18, 20, 32\nUsing the hand method from the course (Q1 = the median of the lower half of the data), what is Q1?",
+        "zh": "12 个学生每周做兼职的小时数（已经排好序）：\n4, 6, 7, 8, 10, 12, 12, 14, 15, 18, 20, 32\n用课程的手算方法（Q1 = 下半部分数据的中位数），Q1 是多少？"
+      },
+      "options": [
+        {
+          "en": "7 hours",
+          "zh": "7 小时"
+        },
+        {
+          "en": "7.5 hours",
+          "zh": "7.5 小时"
+        },
+        {
+          "en": "7.75 hours",
+          "zh": "7.75 小时"
+        },
+        {
+          "en": "8 hours",
+          "zh": "8 小时"
+        },
+        {
+          "en": "12 hours",
+          "zh": "12 小时"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "第 1 步：数据已经排好序，n = 12（偶数）。\n第 2 步：中位数位置 0.5 × (12 + 1) = 6.5，即第 6、7 个数的平均 = (12 + 12)/2 = 12。\n第 3 步：下半部分 = 前 6 个数：4, 6, 7, 8, 10, 12。\n第 4 步：下半部分有 6 个数（偶数），它的中位数 = 第 3、4 个数的平均 = (7 + 8)/2 = 7.5。所以 Q1 = 7.5，选 B。\nA 7：只取了第 3 个数，忘了偶数个数要取中间两个数的平均。\nC 7.75：这是 R 的 summary() 用它自己的算法会给出的值；题目问的是手算方法。课件 p.6：R 的结果和手算可能不同，不用担心。\nD 8：只取了第 4 个数。\nE 12：这是中位数（Q2），不是 Q1。\n顺便：Q3 = 上半部分 12, 14, 15, 18, 20, 32 的中位数 = (15 + 18)/2 = 16.5。",
+        "en": "Lower half: 4, 6, 7, 8, 10, 12. Its median is (7 + 8)/2 = 7.5. 7.75 is what R's summary() would print with its own rule; 12 is the median."
+      }
+    },
+    {
+      "id": "mod04-q07",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s05-quartiles-by-hand",
+      "prompt": {
+        "en": "Ten students reported how many hours they spent on homework last weekend:\n4.0, 1.5, 7.5, 3.0, 2.0, 9.0, 3.5, 6.0, 2.5, 4.5\nUse the course's hand method (Q1 = median of the lower half, Q3 = median of the upper half) to find the IQR. Give your answer in hours to 1 decimal place.",
+        "zh": "10 个学生报告了上周末做作业的小时数：\n4.0, 1.5, 7.5, 3.0, 2.0, 9.0, 3.5, 6.0, 2.5, 4.5\n用课程的手算方法（Q1 = 下半部分的中位数，Q3 = 上半部分的中位数）求 IQR。答案以小时为单位，保留 1 位小数。"
+      },
+      "answer": 3.5,
+      "tolerance": 0.05,
+      "unit": "hours",
+      "explain": {
+        "zh": "第 1 步 先排序（最容易忘）：1.5, 2.0, 2.5, 3.0, 3.5 | 4.0, 4.5, 6.0, 7.5, 9.0。\n第 2 步 中位数：n = 10，位置 0.5 × (10 + 1) = 5.5，第 5、6 个数的平均 = (3.5 + 4.0)/2 = 3.75。\n第 3 步 下半部分 1.5, 2.0, 2.5, 3.0, 3.5（5 个数），正中间是第 3 个：Q1 = 2.5。\n第 4 步 上半部分 4.0, 4.5, 6.0, 7.5, 9.0，正中间是第 3 个：Q3 = 6.0。\n第 5 步 IQR = Q3 − Q1 = 6.0 − 2.5 = 3.5 小时。\n常见错误：没排序就找中间（原来顺序的第 5、6 个是 2.0 和 9.0，完全不对）；算成极差 9.0 − 1.5 = 7.5；算成 Q3 − 中位数 = 6.0 − 3.75 = 2.25。\n补充：R 的 summary() 用另一套算法，会给出 Q1 = 2.625、Q3 = 5.625、IQR = 3.0。课件 p.6 说两者不同不用担心；题目要求手算，就用手算。",
+        "en": "Sorted: 1.5, 2.0, 2.5, 3.0, 3.5 | 4.0, 4.5, 6.0, 7.5, 9.0. Q1 = 2.5 (median of the lower five), Q3 = 6.0 (median of the upper five), IQR = 6.0 − 2.5 = 3.5 hours."
+      }
+    },
+    {
+      "id": "mod04-q08",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s06-quartiles-in-r",
+      "prompt": {
+        "en": "A sample of students reported their hours of sleep last night. The R output is shown below. What is the IQR of hours of sleep?",
+        "zh": "一组学生报告了昨晚的睡眠小时数，R 输出如下。睡眠小时数的 IQR 是多少？"
+      },
+      "table": {
+        "caption": {
+          "en": "> summary(Sleep)",
+          "zh": "R 输出：summary(Sleep)"
+        },
+        "headers": [
+          "Min.",
+          "1st Qu.",
+          "Median",
+          "Mean",
+          "3rd Qu.",
+          "Max."
+        ],
+        "rows": [
+          [
+            "4.50",
+            "6.00",
+            "7.00",
+            "6.85",
+            "7.75",
+            "10.00"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.75 hours",
+          "zh": "0.75 小时"
+        },
+        {
+          "en": "1.75 hours",
+          "zh": "1.75 小时"
+        },
+        {
+          "en": "2.25 hours",
+          "zh": "2.25 小时"
+        },
+        {
+          "en": "5.50 hours",
+          "zh": "5.50 小时"
+        },
+        {
+          "en": "6.85 hours",
+          "zh": "6.85 小时"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "summary() 输出里，**1st Qu.** 就是 Q1，**3rd Qu.** 就是 Q3（课件 p.6 用红框圈出的就是这两个）。IQR = Q3 − Q1 = 7.75 − 6.00 = 1.75 小时，选 B。题目给了 R 输出，就直接用 R 的四分位数（课件 p.6：We will use R to obtain quartile values）。\nA 0.75 = 3rd Qu. − Median（7.75 − 7.00），减错了数。\nC 2.25 = Max. − 3rd Qu.（10.00 − 7.75），这只是最大值到 Q3 的距离，不是 IQR。\nD 5.50 = Max. − Min.（10.00 − 4.50），那是极差（**range**）。\nE 6.85 是平均数（Mean），是中心的度量，不是离散程度。\n同类题：Module 4 Practice Q1B(iv) 的第一步（从 favstats 输出算 IQR）。",
+        "en": "IQR = 3rd Qu. − 1st Qu. = 7.75 − 6.00 = 1.75 hours. 0.75 is Q3 − median, 2.25 is Max − Q3, 5.50 is the range and 6.85 is the mean."
+      }
+    },
+    {
+      "id": "mod04-q09",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s07-five-number-summary-boxplot",
+      "prompt": {
+        "en": "A fitness app recorded the daily step counts of 45 users. The R output is shown below. Which of the following is the five-number summary of daily steps?",
+        "zh": "一个健身 App 记录了 45 个用户的每日步数，R 输出如下。下面哪一组是每日步数的五数概括（five-number summary）？"
+      },
+      "table": {
+        "caption": {
+          "en": "> favstats(Steps)",
+          "zh": "R 输出：favstats(Steps)"
+        },
+        "headers": [
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n",
+          "missing"
+        ],
+        "rows": [
+          [
+            "2100",
+            "5400",
+            "7800",
+            "10200",
+            "18600",
+            "8150",
+            "3420",
+            "45",
+            "0"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "2100, 5400, 7800, 10200, 18600",
+          "zh": "2100、5400、7800、10200、18600"
+        },
+        {
+          "en": "2100, 5400, 8150, 10200, 18600",
+          "zh": "2100、5400、8150、10200、18600"
+        },
+        {
+          "en": "3420, 5400, 7800, 10200, 18600",
+          "zh": "3420、5400、7800、10200、18600"
+        },
+        {
+          "en": "2100, 5400, 7800, 10200, 45",
+          "zh": "2100、5400、7800、10200、45"
+        },
+        {
+          "en": "5400, 7800, 8150, 10200, 18600",
+          "zh": "5400、7800、8150、10200、18600"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "五数概括（**five-number summary**）= 最小值（min）、Q1、中位数（median）、Q3、最大值（max），按这个顺序（课件 p.7）。favstats 输出的前五列正好就是它：2100、5400、7800、10200、18600，选 A。后面的 mean、sd、n、missing 都不属于五数概括。\nB：把平均数 mean = 8150 放在了中位数的位置。\nC：把标准差 sd = 3420 当成了最小值。\nD：把样本量 n = 45 当成了最大值。\nE：丢掉了最小值，又塞进了平均数。\n同类题：Module 4 Practice Q1B(ii)。",
+        "en": "The five-number summary is min, Q1, median, Q3, max: the first five columns of favstats. The mean, sd, n and missing are not part of it."
+      }
+    },
+    {
+      "id": "mod04-q10",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-five-number-summary-boxplot",
+      "prompt": {
+        "en": "In a boxplot drawn by R, where does the upper whisker end?",
+        "zh": "R 画的箱线图里，上须线（upper whisker）停在哪里？"
+      },
+      "options": [
+        {
+          "en": "Always at the maximum value of the data",
+          "zh": "总是停在数据的最大值"
+        },
+        {
+          "en": "Exactly at the upper inner fence, Q3 + 1.5 × IQR",
+          "zh": "正好停在上内栅栏 Q3 + 1.5 × IQR"
+        },
+        {
+          "en": "At the largest data value ≤ Q3 + 1.5 × IQR",
+          "zh": "停在 ≤ Q3 + 1.5 × IQR 的最大数据值"
+        },
+        {
+          "en": "Exactly at the upper outer fence, Q3 + 3 × IQR",
+          "zh": "正好停在上外栅栏 Q3 + 3 × IQR"
+        },
+        {
+          "en": "At the mean plus 2 standard deviations",
+          "zh": "停在平均数加 2 个标准差的位置"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "课件 p.7 的图标着 Max data point within Q3 + 1.5 * IQR；p.14 写：从 Q3 画一条线到数据中 ≤ 上内栅栏（**upper inner fence**）的值，例子里是 340。也就是说，须线停在栅栏以内最远的那个**数据值**，选 C。\nA 错：只有没有偏大的离群值时，须线才正好到最大值。甜甜圈的最大值是 400，须线却停在 340。\nB 错：Q3 + 1.5 × IQR 是栅栏（fence），是一个界限数字，不一定是数据里真有的值；须线必须停在一个真实的数据值上（甜甜圈：栅栏 378.75，须线停在 340）。\nD 错：Q3 + 3 × IQR 是外栅栏（outer fence），用来区分“高度疑似离群值”，不决定须线停在哪。\nE 错：箱线图只用五数概括和 IQR，跟平均数、标准差无关。\n同类题：Module 4 Practice Q1B(iv)（须线停在数据值 8.6，而不是栅栏 9.2）。",
+        "en": "The whisker ends at the most extreme data value inside the inner fence: the largest value ≤ Q3 + 1.5 × IQR (p.7, p.14). The fence is a cut-off, not a data value, and the maximum may be an outlier."
+      }
+    },
+    {
+      "id": "mod04-q11",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s08-describe-a-boxplot",
+      "prompt": {
+        "en": "A horizontal boxplot shows the quiz marks (out of 20) of one class. The lower whisker runs from 6 to 13, the box runs from 13 to 18 with the median line at 16.5, and the upper whisker runs from 18 to 20. Two points are plotted individually at 2 and 3. What is the shape of the distribution of quiz marks?",
+        "zh": "一个横向箱线图显示某班的小测成绩（满分 20）。下须线从 6 到 13，盒子从 13 到 18，中位数线在 16.5，上须线从 18 到 20。另有两个点单独画在 2 和 3。小测成绩分布的形状是什么？"
+      },
+      "options": [
+        {
+          "en": "Bell-shaped and symmetric",
+          "zh": "钟形且对称"
+        },
+        {
+          "en": "Normal",
+          "zh": "正态"
+        },
+        {
+          "en": "Symmetric but not bell-shaped",
+          "zh": "对称但不是钟形"
+        },
+        {
+          "en": "Skewed to the right",
+          "zh": "右偏"
+        },
+        {
+          "en": "Skewed to the left",
+          "zh": "左偏"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "按课件 p.9–10 的读图方法看三个地方：\n① 盒子两半：中位数 − Q1 = 16.5 − 13 = 3.5，Q3 − 中位数 = 18 − 16.5 = 1.5，左边那一半更长；\n② 两根须线：左须线 13 − 6 = 7，右须线 20 − 18 = 2，左边长得多；\n③ 单独画的点 2 和 3 都在低分一侧（左边）。\n长尾巴在左边（低分方向），所以是左偏（**skewed to the left**），选 E。偏态按“长尾巴的方向”命名。\nA、B、C 错：盒子两半和两根须线都明显不一样长，离群点只在一边，不对称。\nD 错：方向反了。右偏是长尾巴和离群点在高值一侧。\n检查：IQR = 18 − 13 = 5，下内栅栏 = 13 − 1.5 × 5 = 5.5，所以下须线停在 6，2 和 3 在栅栏外单独画点，图是自洽的。\n同类题：2025 期中 Q9（从箱线图判断形状）。",
+        "en": "The lower half of the box (3.5) is longer than the upper half (1.5), the lower whisker (7) is much longer than the upper one (2), and both individual points are low. The long tail is on the left, so the distribution is skewed to the left."
+      }
+    },
+    {
+      "id": "mod04-q12",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s08-describe-a-boxplot",
+      "prompt": {
+        "en": "A horizontal boxplot shows the daily minutes that 60 students spend on social media. The lower whisker runs from 20 to 45, the box runs from 45 to 95 with the median line at 60, and the upper whisker runs from 95 to 165. Three points are plotted individually at 190, 210 and 260. What is the IQR of daily minutes on social media?",
+        "zh": "一个横向箱线图显示 60 个学生每天刷社交媒体的分钟数。下须线从 20 到 45，盒子从 45 到 95，中位数线在 60，上须线从 95 到 165。另有三个点单独画在 190、210 和 260。每天刷社交媒体分钟数的 IQR 是多少？"
+      },
+      "options": [
+        {
+          "en": "15 minutes",
+          "zh": "15 分钟"
+        },
+        {
+          "en": "35 minutes",
+          "zh": "35 分钟"
+        },
+        {
+          "en": "50 minutes",
+          "zh": "50 分钟"
+        },
+        {
+          "en": "145 minutes",
+          "zh": "145 分钟"
+        },
+        {
+          "en": "240 minutes",
+          "zh": "240 分钟"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "箱线图盒子的左边是 Q1，右边是 Q3，盒子的宽度就是 IQR（课件 p.8：the box contains the middle 50% of the data, from Q1 to Q3）。IQR = Q3 − Q1 = 95 − 45 = 50 分钟，选 C。\nA 15 = 60 − 45（中位数 − Q1），只是盒子的左半边。\nB 35 = 95 − 60（Q3 − 中位数），只是盒子的右半边。\nD 145 = 165 − 20（两根须线末端之间），既不是 IQR，也不是极差（有离群值时，极差要用最大值 260）。\nE 240 = 260 − 20，这是极差（range = Max − Min）。\n检查：1.5 × 50 = 75，上内栅栏 = 95 + 75 = 170，所以上须线停在 165，190、210、260 单独画点，图是自洽的。\n同类题：2025 期中 Q10（从箱线图读 IQR）。",
+        "en": "The box runs from Q1 = 45 to Q3 = 95, so IQR = 95 − 45 = 50 minutes. 15 and 35 are the two halves of the box, 145 is whisker end to whisker end, and 240 is the range."
+      }
+    },
+    {
+      "id": "mod04-q13",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s08-describe-a-boxplot",
+      "prompt": {
+        "en": "The table gives the features of a boxplot of the daily screen time (in hours) of 40 students. Describe the distribution: its shape, centre, spread and any extreme values, in the context of the data.",
+        "zh": "下表给出了 40 个学生每天屏幕使用时间（小时）的箱线图信息。请结合情境描述这个分布：形状、中心、离散程度，以及有没有极端值。"
+      },
+      "table": {
+        "caption": {
+          "en": "Boxplot of daily screen time (hours), n = 40",
+          "zh": "每天屏幕使用时间（小时）的箱线图，n = 40"
+        },
+        "headers": [
+          "Min",
+          "Q1",
+          "Median",
+          "Q3",
+          "Max",
+          "Lower whisker ends at",
+          "Upper whisker ends at",
+          "Plotted individually"
+        ],
+        "rows": [
+          [
+            "1.0",
+            "3.0",
+            "4.0",
+            "5.5",
+            "12.0",
+            "1.0",
+            "8.5",
+            "12.0"
+          ]
+        ]
+      },
+      "modelAnswer": {
+        "en": "Shape: The distribution of daily screen time is skewed to the right: the upper part of the box (4 to 5.5) is longer than the lower part (3 to 4), the upper whisker is longer than the lower whisker, and the only extreme value is high.\nCentre: The median screen time is 4 hours, so about 50% of the students have at most 4 hours of screen time a day, whereas 50% have more than 4 hours.\nSpread: Daily screen time ranged from 1 to 12 hours. The middle 50% of the students have between 3 and 5.5 hours of screen time a day (IQR = 5.5 − 3 = 2.5 hours).\nExtreme value: One student is plotted individually at 12 hours a day, much higher than the other students.",
+        "zh": "按课件 p.10 的四行模板写：Shape（形状）、Centre（中心）、Spread（离散，用 IQR）、Extreme value(s)（极端值）。\n形状：写右偏，并给理由——盒子上半段（4 到 5.5，长 1.5）比下半段（3 到 4，长 1.0）长；上须线（5.5 到 8.5，长 3.0）比下须线（1.0 到 3.0，长 2.0）长；唯一的极端值在高的一侧。\n中心：中位数 4 小时，用老师的句型 50% … at most …, whereas 50% … more than …。\n离散：先说整体范围，从 1 到 12 小时（最小值到最大值，官方练习 Q1B(iii) 也这样写）；再说中间 50% 在 3 到 5.5 小时之间，IQR 写成一个数：2.5 小时。\n极端值：一个学生单独画在 12 小时。\n每一行都要带情境（students、screen time）和单位（hours）。"
+      },
+      "points": [
+        {
+          "en": "Shape: skewed to the right, with a reason (longer upper half of the box, longer upper whisker, a high extreme value).",
+          "zh": "形状：右偏，并给出理由（盒子上半段更长、上须线更长、极端值在高的一侧）"
+        },
+        {
+          "en": "Centre: the median is 4 hours; about 50% of the students have at most 4 hours and 50% have more than 4 hours.",
+          "zh": "中心：中位数 4 小时；约 50% 的学生不超过 4 小时，50% 超过 4 小时"
+        },
+        {
+          "en": "Spread: the range is 1 to 12 hours, and the middle 50% have between 3 and 5.5 hours; IQR = 2.5 hours.",
+          "zh": "离散：范围从 1 到 12 小时；中间 50% 在 3 到 5.5 小时之间，IQR = 2.5 小时"
+        },
+        {
+          "en": "Extreme value: one student is plotted individually at 12 hours.",
+          "zh": "极端值：一个学生单独画在 12 小时"
+        }
+      ],
+      "explain": {
+        "zh": "检查这个箱线图：IQR = 5.5 − 3.0 = 2.5，1.5 × IQR = 3.75，上内栅栏 = 5.5 + 3.75 = 9.25。8.5 在栅栏内，所以上须线停在 8.5；12 在栅栏外，所以单独画点。上外栅栏 = 5.5 + 3 × 2.5 = 13，12 < 13，所以 12 是疑似离群值（suspect outlier），不是高度疑似。下内栅栏 = 3.0 − 3.75 = −0.75，最小值 1.0 在栅栏内，没有偏低的离群值。\n常见失分：只写 right skewed 不给理由；用平均数描述中心（箱线图上没有平均数）；把 IQR 写成 3 to 5.5 却不给出 2.5 这个数；把上须线的末端 8.5 当成最大值（最大值是单独的那个点 12）。\n同类题：Module 4 Practice Q1B(iii)；课件 p.9–10。",
+        "en": "Right skew: upper half of the box 1.5 > lower half 1.0, upper whisker 3.0 > lower whisker 2.0, and the extreme value is high. IQR = 2.5; upper inner fence 9.25, so 8.5 is the whisker end and 12 is plotted individually."
+      }
+    },
+    {
+      "id": "mod04-q14",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s09-outliers",
+      "prompt": {
+        "en": "In a data set of the monthly phone bills of 50 students, one bill is recorded as $950, and it is plotted individually on the boxplot. What should be done first with this value?",
+        "zh": "在 50 个学生每月话费的数据里，有一笔话费记录为 $950，它在箱线图上被单独画了出来。对这个值，首先应该怎么做？"
+      },
+      "options": [
+        {
+          "en": "Investigate it: correct it if it is wrong, explain it if it is real",
+          "zh": "先调查：如果是错的就改正，如果是真实的就解释它"
+        },
+        {
+          "en": "Delete it right away, because outliers always distort the results",
+          "zh": "马上删掉，因为离群值总会歪曲结果"
+        },
+        {
+          "en": "Replace it with the mean phone bill, so the mean is not pulled up",
+          "zh": "用平均话费替换它，这样平均数就不会被拉高"
+        },
+        {
+          "en": "Replace it with the upper inner fence, so it is no longer an outlier",
+          "zh": "用上内栅栏的值替换它，这样它就不再是离群值"
+        },
+        {
+          "en": "Ignore it, because a boxplot already hides outliers from the reader",
+          "zh": "不用管它，因为箱线图已经把离群值藏起来了"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件 p.11：我们要调查（**investigate**）离群点。如果是录入错误（a wrong input），就改成正确的值；如果是正确的值，就要理解并解释它。Note: we do not simply remove outliers from any data set without investigating them. 所以选 A。比如 $950 可能是 $95.0 打错了小数点，也可能是这个学生真的在国外漫游了一个月——先查清楚再说。\nB 错：课件明确说不能不调查就删除；离群值往往很有信息量（very informative）。\nC、D 错：随手用平均数或栅栏值替换，等于编造数据。\nE 错：箱线图恰恰把离群值单独画出来（plotted individually），没有藏起来。",
+        "en": "p.11: investigate outliers. Correct a wrong input; if the value is real, keep it and explain it. We do not simply remove outliers, and a boxplot shows them as individual points."
+      }
+    },
+    {
+      "id": "mod04-q15",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s10-inner-outer-fences",
+      "prompt": {
+        "en": "For a food-delivery app, delivery times have Q1 = 20 minutes and Q3 = 30 minutes. Two orders took 52 minutes and 64 minutes. Using the inner and outer fences, which statement is correct?",
+        "zh": "某外卖 App 的送达时间 Q1 = 20 分钟，Q3 = 30 分钟。有两单分别用了 52 分钟和 64 分钟。用内栅栏和外栅栏判断，下面哪句话正确？"
+      },
+      "options": [
+        {
+          "en": "Both are suspect outliers.",
+          "zh": "两单都是疑似离群值。"
+        },
+        {
+          "en": "52 minutes is a suspect outlier and 64 minutes is a highly suspect outlier.",
+          "zh": "52 分钟是疑似离群值，64 分钟是高度疑似离群值。"
+        },
+        {
+          "en": "Both are highly suspect outliers.",
+          "zh": "两单都是高度疑似离群值。"
+        },
+        {
+          "en": "52 minutes is not an outlier and 64 minutes is a suspect outlier.",
+          "zh": "52 分钟不是离群值，64 分钟是疑似离群值。"
+        },
+        {
+          "en": "52 minutes is a highly suspect outlier and 64 minutes is a suspect outlier.",
+          "zh": "52 分钟是高度疑似离群值，64 分钟是疑似离群值。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "IQR = Q3 − Q1 = 30 − 20 = 10。\n上内栅栏（**upper inner fence**）= Q3 + 1.5 × IQR = 30 + 15 = 45。\n上外栅栏（**upper outer fence**）= Q3 + 3 × IQR = 30 + 30 = 60。\n52：在 45 和 60 之间，超出了内栅栏、没有超出外栅栏 → 疑似离群值（suspect outlier）。\n64：大于 60，超出了外栅栏 → 高度疑似离群值（highly suspect outlier）。选 B。\nA 错：只看了内栅栏，忘了还要用外栅栏区分“疑似”和“高度疑似”。\nC 错：52 < 60，没有超出外栅栏，只是疑似。\nD 错：把 3 × IQR 的外栅栏当成了内栅栏（以为超过 60 才算离群值）。\nE 错：两个结论反了，离 Q3 越远越可疑。\n同类题：Module 4 Practice Q2C。",
+        "en": "IQR = 10; upper inner fence = 30 + 1.5(10) = 45; upper outer fence = 30 + 3(10) = 60. 52 is between 45 and 60 (suspect); 64 is beyond 60 (highly suspect)."
+      }
+    },
+    {
+      "id": "mod04-q16",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s10-inner-outer-fences",
+      "prompt": {
+        "en": "The R output below summarizes the monthly mobile data use (in GB) of 50 students. Find the upper inner fence. Give your answer in GB to 1 decimal place.",
+        "zh": "下面的 R 输出汇总了 50 个学生每月的手机流量（GB）。求上内栅栏（upper inner fence）。答案以 GB 为单位，保留 1 位小数。"
+      },
+      "table": {
+        "caption": {
+          "en": "> favstats(Data)",
+          "zh": "R 输出：favstats(Data)"
+        },
+        "headers": [
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n",
+          "missing"
+        ],
+        "rows": [
+          [
+            "1.2",
+            "4.4",
+            "6.0",
+            "8.6",
+            "21.5",
+            "6.9",
+            "3.8",
+            "50",
+            "0"
+          ]
+        ]
+      },
+      "answer": 14.9,
+      "tolerance": 0.05,
+      "unit": "GB",
+      "explain": {
+        "zh": "第 1 步 IQR = Q3 − Q1 = 8.6 − 4.4 = 4.2 GB。\n第 2 步 1.5 × IQR = 1.5 × 4.2 = 6.3。\n第 3 步 上内栅栏 = Q3 + 1.5 × IQR = 8.6 + 6.3 = 14.9 GB。\n常见错误：从 Q1 出发，算成 4.4 + 6.3 = 10.7；忘了乘 IQR，算成 8.6 + 1.5 = 10.1；算成 1.5 × Q3 = 12.9；用标准差代替 IQR，算成 8.6 + 1.5 × 3.8 = 14.3；用了 3 × IQR，算成上外栅栏 8.6 + 12.6 = 21.2。\n顺便：最大值 21.5 > 21.2，超出了上外栅栏，是高度疑似离群值。\n同类题：Module 4 Practice Q1B(iv)（上内栅栏 = 6.275 + 1.5 × 1.95 = 9.2）。",
+        "en": "IQR = 8.6 − 4.4 = 4.2; 1.5 × 4.2 = 6.3; upper inner fence = Q3 + 1.5 × IQR = 8.6 + 6.3 = 14.9 GB."
+      }
+    },
+    {
+      "id": "mod04-q17",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s10-inner-outer-fences",
+      "prompt": {
+        "en": "The ages of the 60 students in an evening course have Q1 = 22 years and Q3 = 26 years. What is the lower outer fence?",
+        "zh": "某夜校课程 60 个学生的年龄 Q1 = 22 岁，Q3 = 26 岁。下外栅栏（lower outer fence）是多少？"
+      },
+      "options": [
+        {
+          "en": "10 years",
+          "zh": "10 岁"
+        },
+        {
+          "en": "14 years",
+          "zh": "14 岁"
+        },
+        {
+          "en": "16 years",
+          "zh": "16 岁"
+        },
+        {
+          "en": "19 years",
+          "zh": "19 岁"
+        },
+        {
+          "en": "38 years",
+          "zh": "38 岁"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "下外栅栏（**lower outer fence**）= Q1 − 3 × IQR（课件 p.12）。IQR = 26 − 22 = 4；3 × 4 = 12；22 − 12 = 10 岁，选 A。\nB 14 = Q3 − 3 × IQR（26 − 12）：下栅栏要从 Q1 往下减，不是从 Q3。\nC 16 = Q1 − 1.5 × IQR（22 − 6）：这是下**内**栅栏。\nD 19 = Q1 − 3：忘了乘 IQR。\nE 38 = Q3 + 3 × IQR（26 + 12）：这是上外栅栏。\n注意：栅栏只是界限数字，不一定是数据里真有的年龄（没有学生 10 岁也没关系）。\n同类题：Module 4 Practice Q2C（那题算的是上外栅栏 Q3 + 3 × IQR）。",
+        "en": "IQR = 26 − 22 = 4, so the lower outer fence is Q1 − 3 × IQR = 22 − 12 = 10 years. 16 is the lower inner fence and 38 is the upper outer fence."
+      }
+    },
+    {
+      "id": "mod04-q18",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s11-drawing-the-boxplot",
+      "prompt": {
+        "en": "Waiting times at a campus coffee shop have Q1 = 3 minutes and Q3 = 7 minutes. The six largest waiting times are 9.5, 10, 11.5, 12.5, 14 and 19 minutes. Where does the upper whisker of the boxplot end?",
+        "zh": "校园咖啡店的等候时间 Q1 = 3 分钟，Q3 = 7 分钟。最长的 6 个等候时间是 9.5、10、11.5、12.5、14 和 19 分钟。箱线图的上须线停在哪里？"
+      },
+      "options": [
+        {
+          "en": "11.5 minutes",
+          "zh": "11.5 分钟"
+        },
+        {
+          "en": "12.5 minutes",
+          "zh": "12.5 分钟"
+        },
+        {
+          "en": "13 minutes",
+          "zh": "13 分钟"
+        },
+        {
+          "en": "14 minutes",
+          "zh": "14 分钟"
+        },
+        {
+          "en": "19 minutes",
+          "zh": "19 分钟"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "IQR = 7 − 3 = 4；1.5 × IQR = 6；上内栅栏 = 7 + 6 = 13 分钟。\n须线停在 ≤ 13 的最大数据值（课件 p.14：From Q3 draw a line to a value ≤ the upper inner fence）。≤ 13 的有 9.5、10、11.5、12.5，最大的是 12.5，选 B。14 和 19 超出栅栏，要单独画点。\nA 11.5：不是 ≤ 13 的数里最大的。\nC 13：这是栅栏本身，不是数据里的值；须线一定停在真实的数据值上。\nD 14：已经超出栅栏，是单独画的点。\nE 19：是最大值，但在栅栏外，是离群值。\n同类题：Module 4 Practice Q1B(iv)（须线停在 8.6，而不是栅栏 9.2）。",
+        "en": "Upper inner fence = 7 + 1.5 × 4 = 13. The whisker ends at the largest data value ≤ 13, which is 12.5; 14 and 19 are plotted individually."
+      }
+    },
+    {
+      "id": "mod04-q19",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s11-drawing-the-boxplot",
+      "prompt": {
+        "en": "The numbers of push notifications that 16 students received yesterday, sorted, are:\n5, 12, 14, 15, 16, 18, 19, 20, 21, 22, 24, 25, 27, 30, 43, 58\nThe R output is shown below. Using the quartiles in the R output, which values are plotted individually on the boxplot?",
+        "zh": "16 个学生昨天收到的推送通知条数（已排序）：\n5, 12, 14, 15, 16, 18, 19, 20, 21, 22, 24, 25, 27, 30, 43, 58\nR 输出如下。用 R 输出里的四分位数，箱线图上哪些值会被单独画成点？"
+      },
+      "table": {
+        "caption": {
+          "en": "> summary(Notifications)",
+          "zh": "R 输出：summary(Notifications)"
+        },
+        "headers": [
+          "Min.",
+          "1st Qu.",
+          "Median",
+          "Mean",
+          "3rd Qu.",
+          "Max."
+        ],
+        "rows": [
+          [
+            "5.00",
+            "15.75",
+            "20.50",
+            "23.06",
+            "25.50",
+            "58.00"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "None of the values",
+          "zh": "一个都没有"
+        },
+        {
+          "en": "58 only",
+          "zh": "只有 58"
+        },
+        {
+          "en": "5 and 58",
+          "zh": "5 和 58"
+        },
+        {
+          "en": "43 and 58",
+          "zh": "43 和 58"
+        },
+        {
+          "en": "5, 43 and 58",
+          "zh": "5、43 和 58"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "IQR = 25.50 − 15.75 = 9.75；1.5 × IQR = 14.625。\n下内栅栏 = 15.75 − 14.625 = 1.125；上内栅栏 = 25.50 + 14.625 = 40.125。\n比 40.125 大的数据：43 和 58 → 单独画点；比 1.125 小的数据：没有（最小值 5 在栅栏内）。选 D。上须线停在 ≤ 40.125 的最大值 30，下须线停在最小值 5。\nA 错：43 和 58 都超出了上内栅栏。\nB 错：把上外栅栏 25.50 + 3 × 9.75 = 54.75 当成了标准；决定是否单独画点的是内栅栏（1.5 × IQR）。\nC、E 错：最小值不会自动被画成点，5 > 1.125，在栅栏内。\n补充：用手算四分位数（Q1 = 15.5，Q3 = 26，IQR = 10.5），栅栏是 −0.25 和 41.75，结论一样。题目给了 R 输出就用 R 的数（课件 p.14 用的也是 summary() 的 277.5）。\n同类题：Module 4 Practice Q1B(iv)、Q2C。",
+        "en": "IQR = 25.50 − 15.75 = 9.75; inner fences 15.75 − 14.625 = 1.125 and 25.50 + 14.625 = 40.125. Only 43 and 58 are outside, so they are plotted individually; 5 is inside the lower fence."
+      }
+    },
+    {
+      "id": "mod04-q20",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s13-interpret-summary-statistics",
+      "prompt": {
+        "en": "The favstats() output for the commute times of 120 students gives sd = 8.4 minutes. Which sentence correctly interprets the standard deviation?",
+        "zh": "120 个学生通勤时间的 favstats() 输出里 sd = 8.4 分钟。下面哪句话正确解释了这个标准差？"
+      },
+      "options": [
+        {
+          "en": "We can expect every commute time to be within 8.4 minutes of the mean commute time.",
+          "zh": "可以预期，每个通勤时间都在平均通勤时间上下 8.4 分钟以内。"
+        },
+        {
+          "en": "We can expect the middle 50% of the commute times to cover a span of about 8.4 minutes.",
+          "zh": "可以预期，中间 50% 的通勤时间跨度大约是 8.4 分钟。"
+        },
+        {
+          "en": "We can expect about 8.4% of the commute times to be above the mean commute time.",
+          "zh": "可以预期，大约 8.4% 的通勤时间高于平均通勤时间。"
+        },
+        {
+          "en": "On average, we can expect the students' commute times to be about 8.4 minutes long.",
+          "zh": "平均来说，可以预期学生的通勤时间大约是 8.4 分钟。"
+        },
+        {
+          "en": "We can expect commute times to differ from the mean by about 8.4 minutes, on average.",
+          "zh": "可以预期，通勤时间与平均数平均相差大约 8.4 分钟。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "老师解释标准差（**standard deviation**）的固定句型（课件 p.17）：We can expect [variable] to differ from the mean by about [S], on average. 所以选 E。\nA 错：标准差是“平均距离”，不是“最大距离”；有些通勤时间离平均数远远超过 8.4 分钟。\nB 错：“中间 50% 的跨度”是 IQR 的意思，不是标准差。\nC 错：标准差不是百分比。\nD 错：把离散程度当成了中心；平均通勤时间是 mean，不是 sd。\n五个选项都用了 We can expect 或 on average 这类说法，别只看开头，要看后半句说的是什么。\n同类题：Module 4 Practice Q1B(i)。",
+        "en": "The SD sentence is: we can expect values to differ from the mean by about S, on average (p.17). It is not a maximum distance, not the IQR, not a percentage and not the centre."
+      }
+    },
+    {
+      "id": "mod04-q21",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s13-interpret-summary-statistics",
+      "prompt": {
+        "en": "The R output below summarizes the monthly rents (in dollars) of 40 one-bedroom apartments near campus. Interpret the summary statistics in the context of the data.",
+        "zh": "下面的 R 输出汇总了校园附近 40 套一居室公寓的月租（加元）。请结合数据情境解读这些汇总统计量。"
+      },
+      "table": {
+        "caption": {
+          "en": "> favstats(Rent)",
+          "zh": "R 输出：favstats(Rent)"
+        },
+        "headers": [
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n",
+          "missing"
+        ],
+        "rows": [
+          [
+            "1150",
+            "1600",
+            "1825",
+            "2100",
+            "3400",
+            "1906.25",
+            "412.6",
+            "40",
+            "0"
+          ]
+        ]
+      },
+      "modelAnswer": {
+        "en": "The monthly rents of the 40 one-bedroom apartments near campus ranged from $1150 to $3400. On average, the apartments rent for $1906.25 per month. We can expect rents to differ from the mean by about $412.60, on average. The median rent was $1825, indicating that 50% of the apartments rent for at most $1825, whereas 50% rent for more than $1825. The middle 50% of the rents were between $1600 and $2100 (IQR = $500).",
+        "zh": "照课件 p.17 的解读顺序写：情境和样本量（40 套公寓）→ 范围（min 到 max）→ 平均数 → 标准差 → 中位数 → 中间 50%（Q1 到 Q3）。\n每个统计量用老师的固定句型：平均数 On average, …；标准差 We can expect … to differ from the mean by about …, on average；中位数 50% … at most …, whereas 50% … more than …；四分位数 The middle 50% … between Q1 and Q3。\n每个数都带单位（$）和对象（apartments、rents）。IQR = 2100 − 1600 = 500。"
+      },
+      "points": [
+        {
+          "en": "Range: rents ranged from $1150 (min) to $3400 (max).",
+          "zh": "范围：月租从最低 $1150 到最高 $3400"
+        },
+        {
+          "en": "Mean and SD: on average $1906.25; rents differ from the mean by about $412.60, on average.",
+          "zh": "平均数与标准差：平均 $1906.25；月租与平均数平均相差约 $412.60"
+        },
+        {
+          "en": "Median: 50% rent for at most $1825, whereas 50% rent for more than $1825.",
+          "zh": "中位数：50% 的公寓月租不超过 $1825，50% 超过 $1825"
+        },
+        {
+          "en": "Middle 50%: between $1600 (Q1) and $2100 (Q3), IQR = $500.",
+          "zh": "中间 50%：在 $1600（Q1）到 $2100（Q3）之间，IQR = $500"
+        }
+      ],
+      "explain": {
+        "zh": "得分关键是每个统计量都用对句型、带上情境和单位。\n常见失分：把中间 50% 写成全部数据的范围（课件 p.17 最后一句漏了 the middle 50% of，别照抄）；写“所有房租都在平均数 ± 412.6 之内”；把平均数和中位数混在一起；忘了写单位。\n补充：平均数 $1906.25 > 中位数 $1825，最大值 $3400 又特别高，分布可能右偏，这时中位数和 IQR 更能代表这组房租（课件 p.46）。\n同类题：课件 p.17 的解读段落；Module 4 Practice Q1B(i)。",
+        "en": "Use one sentence per statistic: range (min to max), mean, SD (differ from the mean by about S, on average), median (50% at most, 50% more than) and the middle 50% (Q1 to Q3, IQR = $500)."
+      }
+    },
+    {
+      "id": "mod04-q22",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s14-comparing-groups",
+      "prompt": {
+        "en": "Side-by-side boxplots show the calories of three types of drinks at a bubble tea shop (milk tea, fruit tea and slush). Which of the following can be read directly from the boxplots? (Select all that apply.)",
+        "zh": "并排箱线图显示一家奶茶店三类饮品（奶茶、果茶、冰沙）的热量。下面哪些信息可以直接从箱线图上读出来？（多选）"
+      },
+      "options": [
+        {
+          "en": "Which type has the highest median",
+          "zh": "哪一种的中位数最高"
+        },
+        {
+          "en": "Which type has the smallest IQR",
+          "zh": "哪一种的 IQR 最小"
+        },
+        {
+          "en": "The mean calories of each type",
+          "zh": "每一种的平均热量"
+        },
+        {
+          "en": "Whether a type has values plotted individually (potential outliers)",
+          "zh": "某一种有没有被单独画出的点（潜在离群值）"
+        },
+        {
+          "en": "The standard deviation of each type",
+          "zh": "每一种的标准差"
+        },
+        {
+          "en": "The number of drinks of each type",
+          "zh": "每一种饮品的杯数（样本量）"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explain": {
+        "zh": "课件 p.18：并排箱线图（**side-by-side boxplots**）适合比较两组或更多组，可以看出哪组中位数更高、IQR 更小、极差更小，以及有没有离群点。箱线图只画五数概括和单独的点：中位数是盒子里的那条线（A 对），IQR 是盒子的宽度（B 对），单独画出的点一眼就能看到（D 对）。\nC 错：箱线图不画平均数，平均数要看 favstats 的 mean 列。\nE 错：箱线图不画标准差。\nF 错：一个盒子不管有 10 个数据还是 1000 个数据，看起来都差不多；样本量 n 要看 R 输出（例如 favstats 的 n 列）。",
+        "en": "A boxplot shows the five-number summary and the individually plotted points, so medians, IQRs (box widths) and outliers can be compared. It does not show the mean, the SD or the sample size."
+      }
+    },
+    {
+      "id": "mod04-q23",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s14-comparing-groups",
+      "prompt": {
+        "en": "A value that is not an outlier in the whole data set can still be an outlier within one group of the data.",
+        "zh": "一个在整组数据里不是离群值的数，在其中某一个小组里仍然可能是离群值。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。课件 p.18：outliers are context-dependent（离群值依情境而定）。按组描述数据时，某一组里可能出现新的离群点，而它在整体数据里并不离群。\n甜甜圈的例子：340 kcal 的蛋糕型（Cake）甜甜圈，在蛋糕型这一组里，上内栅栏 = 280 + 1.5 × 30 = 325，340 超出了它，是离群值（课件 p.22 的图上它被单独画成点）；但在全部 30 个甜甜圈里，上内栅栏是 378.75，340 在栅栏内，不是离群值。\n所以判断某一组的离群值，要用这一组自己的 Q1 和 Q3 算栅栏。",
+        "en": "True. Outliers are context-dependent (p.18). The 340-kcal Cake donut is above the Cake upper inner fence 325 but below the overall upper inner fence 378.75."
+      }
+    },
+    {
+      "id": "mod04-q24",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s15-side-by-side-boxplots-in-r",
+      "prompt": {
+        "en": "The R output below summarizes students' commute times (in minutes) by their main way of travelling. Which group has the largest IQR, and what is it?",
+        "zh": "下面的 R 输出按主要出行方式汇总了学生的通勤时间（分钟）。哪一组的 IQR 最大？是多少？"
+      },
+      "table": {
+        "caption": {
+          "en": "> favstats(Minutes ~ Transport)",
+          "zh": "R 输出：favstats(Minutes ~ Transport)"
+        },
+        "headers": [
+          "Transport",
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n"
+        ],
+        "rows": [
+          [
+            "Bus",
+            "15",
+            "30",
+            "42",
+            "55",
+            "95",
+            "44.6",
+            "16.2",
+            "40"
+          ],
+          [
+            "Car",
+            "10",
+            "20",
+            "25",
+            "35",
+            "60",
+            "28.1",
+            "10.4",
+            "35"
+          ],
+          [
+            "Walk",
+            "5",
+            "8",
+            "12",
+            "15",
+            "25",
+            "12.3",
+            "4.6",
+            "20"
+          ],
+          [
+            "Bike",
+            "8",
+            "14",
+            "20",
+            "24",
+            "40",
+            "19.8",
+            "7.6",
+            "15"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "Bus, 25 minutes",
+          "zh": "公交组，25 分钟"
+        },
+        {
+          "en": "Bus, 80 minutes",
+          "zh": "公交组，80 分钟"
+        },
+        {
+          "en": "Bus, 16.2 minutes",
+          "zh": "公交组，16.2 分钟"
+        },
+        {
+          "en": "Car, 15 minutes",
+          "zh": "开车组，15 分钟"
+        },
+        {
+          "en": "Walk, 7 minutes",
+          "zh": "步行组，7 分钟"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "每一组都用自己那一行的 Q1 和 Q3：IQR = Q3 − Q1。\nBus：55 − 30 = 25；Car：35 − 20 = 15；Walk：15 − 8 = 7；Bike：24 − 14 = 10。最大的是 Bus，25 分钟，选 A。\nB 80 = 95 − 15，是 Bus 的极差（max − min），不是 IQR。\nC 16.2 是 Bus 的标准差 sd，虽然也是离散度量，但题目问的是 IQR。\nD Car 的 IQR 是 15，只排第二。\nE Walk 的 IQR 7 是最**小**的，把“最大”看成了“最小”。\n读输出：favstats(Minutes ~ Transport) 里，~ 前面是数值变量，~ 后面是用来分组的分类变量（课件 p.23）。\n同类题：Module 4 Practice Q2B（分别算女性组和男性组的 IQR）。",
+        "en": "IQR = Q3 − Q1 for each row: Bus 25, Car 15, Walk 7, Bike 10. Bus has the largest IQR, 25 minutes. 80 is Bus's range and 16.2 is its SD."
+      }
+    },
+    {
+      "id": "mod04-q25",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s16-comparing-donut-types",
+      "prompt": {
+        "en": "The table gives the five-number summaries of the test scores in three tutorial sections. Which statement is true?",
+        "zh": "下表给出三个辅导课班（tutorial section）测验成绩的五数概括。下面哪句话正确？"
+      },
+      "table": {
+        "headers": [
+          "Section",
+          "Min",
+          "Q1",
+          "Median",
+          "Q3",
+          "Max"
+        ],
+        "rows": [
+          [
+            "Monday",
+            42,
+            60,
+            70,
+            78,
+            95
+          ],
+          [
+            "Wednesday",
+            55,
+            65,
+            74,
+            80,
+            92
+          ],
+          [
+            "Friday",
+            30,
+            58,
+            72,
+            88,
+            99
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "The Friday section has the highest median.",
+          "zh": "周五班的中位数最高。"
+        },
+        {
+          "en": "The Monday section has the largest IQR.",
+          "zh": "周一班的 IQR 最大。"
+        },
+        {
+          "en": "The Wednesday section has the highest median and the smallest IQR.",
+          "zh": "周三班的中位数最高，而且 IQR 最小。"
+        },
+        {
+          "en": "The Friday section has the smallest range.",
+          "zh": "周五班的极差最小。"
+        },
+        {
+          "en": "All three sections have the same IQR.",
+          "zh": "三个班的 IQR 一样。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "先把每个班的中位数、IQR、极差列出来：\n周一：中位数 70，IQR = 78 − 60 = 18，极差 = 95 − 42 = 53；\n周三：中位数 74，IQR = 80 − 65 = 15，极差 = 92 − 55 = 37；\n周五：中位数 72，IQR = 88 − 58 = 30，极差 = 99 − 30 = 69。\n周三的中位数最高（74），IQR 最小（15），选 C。这正是课件 p.18 说的用并排箱线图比较：谁的中位数更高、谁的 IQR 更小、谁的极差更小。\nA 错：周五 72 < 周三 74。\nB 错：周五的 IQR 30 才是最大的。\nD 错：周五的极差 69 是最**大**的。\nE 错：18、15、30 各不相同。\n同类题：Module 4 Practice Q2B；课件 p.24。",
+        "en": "Medians 70, 74, 72; IQRs 18, 15, 30; ranges 53, 37, 69. Wednesday has the highest median (74) and the smallest IQR (15)."
+      }
+    },
+    {
+      "id": "mod04-q26",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s16-comparing-donut-types",
+      "prompt": {
+        "en": "A survey recorded the weekly grocery spending (in dollars) of students. For all students, Q1 = $20 and Q3 = $40. For the students who live in residence, Q1 = $22 and Q3 = $30. One residence student spent $50. Which statement is correct?",
+        "zh": "一项调查记录了学生每周买菜的花费（加元）。全部学生：Q1 = $20，Q3 = $40。住宿舍的学生：Q1 = $22，Q3 = $30。有一个住宿舍的学生花了 $50。下面哪句话正确？"
+      },
+      "options": [
+        {
+          "en": "$50 is a suspect outlier both in the overall data and within the residence group.",
+          "zh": "$50 在整体数据和宿舍组里都是疑似离群值。"
+        },
+        {
+          "en": "$50 is not an outlier in the overall data or within the residence group.",
+          "zh": "$50 在整体数据和宿舍组里都不是离群值。"
+        },
+        {
+          "en": "$50 is a highly suspect outlier within the residence group.",
+          "zh": "$50 在宿舍组里是高度疑似离群值。"
+        },
+        {
+          "en": "$50 is an outlier in the overall data but not within the residence group.",
+          "zh": "$50 在整体数据里是离群值，但在宿舍组里不是。"
+        },
+        {
+          "en": "$50 is a suspect outlier within the residence group, but it is not an outlier in the overall data.",
+          "zh": "$50 在宿舍组里是疑似离群值，但在整体数据里不是离群值。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "两套栅栏分开算（课件 p.18：离群值依情境而定；每一组用自己的 Q1 和 Q3）。\n整体：IQR = 40 − 20 = 20，上内栅栏 = 40 + 1.5 × 20 = 70。50 < 70 → 在整体数据里不是离群值。\n宿舍组：IQR = 30 − 22 = 8，上内栅栏 = 30 + 1.5 × 8 = 42，上外栅栏 = 30 + 3 × 8 = 54。42 < 50 < 54 → 在宿舍组里是疑似离群值（不是高度疑似）。选 E。\nA 错：整体的上内栅栏是 70，50 在栅栏内。\nB 错：在宿舍组里 50 已经超出了 42。\nC 错：50 没有超过外栅栏 54，只是“疑似”。\nD 错：情况正好反了。\n同类题：Module 4 Practice Q2B、Q2C（每个性别组都用自己的栅栏）。",
+        "en": "Overall: IQR 20, upper inner fence 70, so $50 is inside. Residence: IQR 8, inner fence 42, outer fence 54, so $50 is a suspect (not highly suspect) outlier within that group."
+      }
+    },
+    {
+      "id": "mod04-q27",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s16-comparing-donut-types",
+      "prompt": {
+        "en": "The table summarizes side-by-side boxplots of the weekly study hours of first-year and fourth-year students. Compare the two distributions (shape, centre, spread and any values plotted individually) in the context of the data.",
+        "zh": "下表汇总了一年级和四年级学生每周学习小时数的并排箱线图。请结合情境比较这两个分布（形状、中心、离散程度，以及单独画出的点）。"
+      },
+      "table": {
+        "caption": {
+          "en": "Weekly study hours: side-by-side boxplots",
+          "zh": "每周学习小时数的并排箱线图"
+        },
+        "headers": [
+          "Group",
+          "Min",
+          "Q1",
+          "Median",
+          "Q3",
+          "Max",
+          "Lower whisker ends at",
+          "Upper whisker ends at",
+          "Plotted individually"
+        ],
+        "rows": [
+          [
+            "First-year (n = 50)",
+            2,
+            6,
+            9,
+            12,
+            25,
+            2,
+            18,
+            "25"
+          ],
+          [
+            "Fourth-year (n = 45)",
+            4,
+            10,
+            14,
+            17,
+            24,
+            4,
+            24,
+            "none"
+          ]
+        ]
+      },
+      "modelAnswer": {
+        "en": "Shape: The first-year distribution is slightly skewed to the right (its upper whisker is longer than its lower whisker, and one student is plotted individually at 25 hours), while the fourth-year distribution is roughly symmetric.\nCentre: Fourth-year students tend to study more: their median is 14 hours a week, compared with 9 hours for first-year students.\nSpread: The middle 50% of study hours varies a little more for fourth-year students, about 7 hours (IQR = 17 − 10 = 7), than for first-year students, about 6 hours (IQR = 12 − 6 = 6).\nOutliers: One first-year student is plotted individually at 25 hours a week; no fourth-year student is plotted individually.",
+        "zh": "比较两组时，每个方面都要两组一起说、给出数字、说清谁大谁小（课件 p.24 和 Module 4 Practice Q2B 的写法）。\n形状：一年级盒子两半一样长（9 − 6 = 3，12 − 9 = 3），但上须线（12 到 18，长 6）比下须线（2 到 6，长 4）长，还有一个高的离群点 25，所以略右偏；四年级盒子两半（4 和 3）、两根须线（6 和 7）都差不多，也没有离群点，大致对称。\n中心：比较中位数 14 和 9。\n离散：比较 IQR 7 和 6，并写出 Q3 − Q1 的算式。\n离群值：说清是哪一组、在哪个值。"
+      },
+      "points": [
+        {
+          "en": "Centre: the fourth-year median (14 hours) is higher than the first-year median (9 hours).",
+          "zh": "中心：四年级中位数 14 小时，高于一年级的 9 小时"
+        },
+        {
+          "en": "Spread: IQR 7 hours (10 to 17) for fourth-year versus 6 hours (6 to 12) for first-year: similar, slightly larger for fourth-year.",
+          "zh": "离散：四年级 IQR 7 小时（10 到 17），一年级 6 小时（6 到 12），差不多，四年级略大"
+        },
+        {
+          "en": "Shape: first-year slightly skewed to the right (longer upper whisker, a high outlier); fourth-year roughly symmetric.",
+          "zh": "形状：一年级略右偏（上须线更长、有高的离群点）；四年级大致对称"
+        },
+        {
+          "en": "Outliers: one first-year student at 25 hours; none in the fourth-year group.",
+          "zh": "离群值：一年级有一个学生单独画在 25 小时；四年级没有"
+        }
+      ],
+      "explain": {
+        "zh": "检查离群点：一年级 IQR = 12 − 6 = 6，上内栅栏 = 12 + 1.5 × 6 = 21，所以上须线停在 18，25 单独画点；上外栅栏 = 12 + 3 × 6 = 30，25 只是疑似离群值。四年级 IQR = 17 − 10 = 7，上内栅栏 = 17 + 10.5 = 27.5，最大值 24 在栅栏内，没有离群点。\n常见失分：只说“四年级学得更多”却不给中位数；比较平均数（箱线图上没有平均数）；只给 IQR 的区间不给数值；用整体的栅栏去判断某一组的点（每组用自己的 Q1、Q3）。\n同类题：Module 4 Practice Q2B；课件 p.24。",
+        "en": "Compare medians (14 vs 9 hours), IQRs (7 vs 6 hours), shapes (first-year slightly right skewed, fourth-year roughly symmetric) and outliers (one first-year student at 25 hours, above the first-year inner fence 21)."
+      }
+    },
+    {
+      "id": "mod04-q28",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-paired-differences",
+      "prompt": {
+        "en": "Thirty students wrote a quiz before and after a review session. An analyst drew side-by-side boxplots of the two sets of quiz marks, and also a boxplot of each student's difference (after − before). Why is the boxplot of the differences more useful for learning how much the students changed?",
+        "zh": "30 个学生在复习课前后各考了一次小测。分析者画了两次小测成绩的并排箱线图，又画了每个学生差值（后 − 前）的箱线图。为什么差值的箱线图更适合用来了解学生变化了多少？"
+      },
+      "options": [
+        {
+          "en": "It always has a smaller IQR, so the marks look less spread out",
+          "zh": "它的 IQR 总是更小，所以成绩看起来没那么分散"
+        },
+        {
+          "en": "It shows the mean quiz mark before and after the review session",
+          "zh": "它显示了复习课前后两次小测的平均分"
+        },
+        {
+          "en": "Side-by-side boxplots cannot show two groups at the same time",
+          "zh": "并排箱线图不能同时显示两组"
+        },
+        {
+          "en": "It shows the size and direction of each student's own change",
+          "zh": "它显示每个学生自己变化的大小和方向"
+        },
+        {
+          "en": "It removes the outliers, so the change between quizzes is clearer",
+          "zh": "它把离群值去掉了，所以两次小测之间的变化更清楚"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "这种数据叫配对数据（**paired data**）：每个学生有两个成绩，前一个和后一个属于同一个人。并排箱线图把“前”和“后”当成两个独立的组来比，看不出哪个“后”成绩属于哪个“前”成绩；差值箱线图先在每个学生内部算“后 − 前”，再画图，所以能直接看出每个人进步或退步了多少、大约多少人进步了（差值 > 0）。选 D。这个思路来自官方练习 Module 4 Practice Q2E(iii)（同一个国家的女性和男性失业率配成一对，看差值）。\nA 错：差值的 IQR 不一定更小，而且“IQR 小”也不是它更有用的原因。\nB 错：箱线图本来就不显示平均数；差值箱线图显示的是差值的中位数。\nC 错：并排箱线图就是用来同时比较两组或更多组的（课件 p.18）。\nE 错：算差值不会去掉离群值，差值里也可能有离群值（练习题里希腊的差值 3.5 就被单独画了出来）。",
+        "en": "Each student gives two linked marks (paired data). The differences after − before show each student's own change, its size and direction. Side-by-side boxplots compare the two sets as separate groups and hide who improved."
+      }
+    },
+    {
+      "id": "mod04-q29",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s18-z-scores",
+      "prompt": {
+        "en": "Quiz scores in a class have a mean of 72 and a standard deviation of 8. A student scored 86. What is the student's z-score?",
+        "zh": "某班小测成绩的平均数是 72，标准差是 8。一个学生考了 86 分。这个学生的 z 分数是多少？"
+      },
+      "options": [
+        {
+          "en": "−1.75",
+          "zh": "−1.75"
+        },
+        {
+          "en": "0.57",
+          "zh": "0.57"
+        },
+        {
+          "en": "1.75",
+          "zh": "1.75"
+        },
+        {
+          "en": "10.75",
+          "zh": "10.75"
+        },
+        {
+          "en": "14",
+          "zh": "14"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "z = (观测值 − 平均数)/标准差 = (y − ȳ)/s（课件 p.25）= (86 − 72)/8 = 14/8 = 1.75，选 C。意思是：这个学生的分数比平均分高 1.75 个标准差。\nA −1.75：减反了，算成了 (72 − 86)/8。比平均数高的值，z 一定是正的（p.26）。\nB 0.57：把分子分母倒过来了，8/14 ≈ 0.57。\nD 10.75：忘了先减平均数，直接算 86/8。\nE 14：只减了平均数，忘了除以标准差；14 是“高出 14 分”，不是 z 分数。\n同类题：Module 4 Practice Q1B(v)。",
+        "en": "z = (86 − 72)/8 = 14/8 = 1.75. −1.75 reverses the subtraction, 0.57 is 8/14, 10.75 is 86/8 and 14 forgets to divide by the SD."
+      }
+    },
+    {
+      "id": "mod04-q30",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s18-z-scores",
+      "prompt": {
+        "en": "At a walk-in clinic, favstats() for patients' waiting times gives mean = 38.4 minutes and sd = 12.6 minutes. One patient waited 71 minutes. Find this patient's z-score. Round your answer to 2 decimal places.",
+        "zh": "某无需预约的诊所，病人等候时间的 favstats() 给出 mean = 38.4 分钟，sd = 12.6 分钟。一位病人等了 71 分钟。求这位病人的 z 分数，保留 2 位小数。"
+      },
+      "answer": 2.59,
+      "tolerance": 0.005,
+      "explain": {
+        "zh": "z = (y − ȳ)/s = (71 − 38.4)/12.6 = 32.6/12.6 = 2.587… ≈ 2.59。\n解读：这位病人的等候时间比平均等候时间高 2.59 个标准差。\n常见错误：除以方差 12.6² = 158.76，得 0.21；忘了减平均数，71/12.6 = 5.63；减反了得 −2.59（比平均数高，z 必须是正的）；中途把 32.6/12.6 提前四舍五入成 2.6。\n同类题：Module 4 Practice Q1B(v)（希腊 z = 2.28）。",
+        "en": "z = (71 − 38.4)/12.6 = 32.6/12.6 = 2.587, which rounds to 2.59: the wait is 2.59 standard deviations above the mean."
+      }
+    },
+    {
+      "id": "mod04-q31",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s18-z-scores",
+      "prompt": {
+        "en": "In a survey of students' nightly sleep, one student's hours of sleep have a z-score of −1.5. What does this mean?",
+        "zh": "一项关于学生夜间睡眠的调查中，一个学生睡眠时长的 z 分数是 −1.5。这是什么意思？"
+      },
+      "options": [
+        {
+          "en": "The student sleeps 1.5 hours less than the mean.",
+          "zh": "这个学生比平均数少睡 1.5 小时。"
+        },
+        {
+          "en": "The student sleeps 1.5% less than the mean.",
+          "zh": "这个学生比平均数少睡 1.5%。"
+        },
+        {
+          "en": "The student's sleep is 1.5 standard deviations above the mean.",
+          "zh": "这个学生的睡眠时长比平均数高 1.5 个标准差。"
+        },
+        {
+          "en": "The student sleeps less than 1.5% of the other students.",
+          "zh": "这个学生睡得比 1.5% 的同学少。"
+        },
+        {
+          "en": "The student's sleep is 1.5 standard deviations below the mean sleep time.",
+          "zh": "这个学生的睡眠时长比平均睡眠时长低 1.5 个标准差。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "z 分数的单位是“标准差”（课件 p.25 Note：Z-score expresses in units of standard deviation），负号表示在平均数下面（p.26：Data values below the mean have negative z-scores）。所以 −1.5 = 比平均数低 1.5 个标准差，选 E。\nA 错：1.5 不是小时，而是 1.5 个标准差；只有标准差恰好是 1 小时，才等于少睡 1.5 小时。\nB 错：z 分数不是百分比。\nC 错：忽略了负号，方向反了。\nD 错：z 分数不是百分位数。\n同类题：Module 4 Practice Q1B(v)、Q2D（解读句型 … is z standard deviation(s) above/below the mean …）。",
+        "en": "A z-score counts standard deviations, and a negative sign means below the mean: −1.5 means 1.5 standard deviations below the mean. It is not hours, not a percent and not a percentile."
+      }
+    },
+    {
+      "id": "mod04-q32",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s19-z-score-outlier-rule",
+      "prompt": {
+        "en": "Birth weights of babies at a hospital have a bell-shaped, symmetric distribution. Baby P has a z-score of 2.4 and baby Q has a z-score of −3.2. Using the z-score rule for outliers, which statement is correct?",
+        "zh": "某医院新生儿体重的分布是钟形且对称的。宝宝 P 的 z 分数是 2.4，宝宝 Q 的 z 分数是 −3.2。用 z 分数的离群值规则，下面哪句话正确？"
+      },
+      "options": [
+        {
+          "en": "Neither baby's weight is an outlier.",
+          "zh": "两个宝宝的体重都不是离群值。"
+        },
+        {
+          "en": "P's weight is a suspect outlier; Q's weight is not an outlier because its z-score is negative.",
+          "zh": "P 的体重是疑似离群值；Q 的 z 分数是负数，所以不是离群值。"
+        },
+        {
+          "en": "P's weight is a suspect outlier and Q's weight is a highly suspect outlier.",
+          "zh": "P 的体重是疑似离群值，Q 的体重是高度疑似离群值。"
+        },
+        {
+          "en": "Both weights are highly suspect outliers.",
+          "zh": "两个体重都是高度疑似离群值。"
+        },
+        {
+          "en": "P's weight is a highly suspect outlier and Q's weight is a suspect outlier.",
+          "zh": "P 的体重是高度疑似离群值，Q 的体重是疑似离群值。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "课件 p.26 的规则（只适用于钟形对称分布）：|z| > 3（比 −3 小或比 +3 大）→ 高度疑似离群值（highly suspect outlier）；|z| 在 2 和 3 之间 → 潜在/疑似离群值（potential/suspect outlier）。|z| 是绝对值，去掉负号看大小。\nP：|2.4| = 2.4，在 2 和 3 之间 → 疑似离群值。\nQ：|−3.2| = 3.2 > 3 → 高度疑似离群值。选 C。\nA 错：2.4 和 3.2 都超过了 2。\nB 错：负的 z 只说明在平均数下面；不管方向，离平均数越远越不寻常（p.26）。\nD 错：2.4 没有超过 3。\nE 错：两个结论弄反了。\n同类题：Module 4 Practice Q2D。",
+        "en": "For bell-shaped data: |z| > 3 is highly suspect and 2 < |z| ≤ 3 is suspect (p.26). |2.4| = 2.4 → suspect; |−3.2| = 3.2 → highly suspect. The sign does not matter."
+      }
+    },
+    {
+      "id": "mod04-q33",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s19-z-score-outlier-rule",
+      "prompt": {
+        "en": "The R output below summarizes the weekly hours that 40 students spent playing video games. One student played 27 hours. Using the 3 × IQR rule (outer fences) and the |z| > 3 rule for an extreme value, which statement is correct?",
+        "zh": "下面的 R 输出汇总了 40 个学生每周玩电子游戏的小时数。有一个学生玩了 27 小时。用 3 × IQR 规则（外栅栏）和“|z| > 3 才是极端值（extreme value）”的规则，哪句话正确？"
+      },
+      "table": {
+        "caption": {
+          "en": "> favstats(Hours)",
+          "zh": "R 输出：favstats(Hours)"
+        },
+        "headers": [
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n",
+          "missing"
+        ],
+        "rows": [
+          [
+            "5",
+            "10",
+            "11.5",
+            "14",
+            "27",
+            "13",
+            "5",
+            "40",
+            "0"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "Highly suspect by the outer fence (26), but not an extreme value (z = 2.80)",
+          "zh": "按外栅栏（26）是高度疑似离群值，但不是极端值（z = 2.80）"
+        },
+        {
+          "en": "Highly suspect by the outer fence (26), and an extreme value (z = 3.50)",
+          "zh": "按外栅栏（26）是高度疑似离群值，也是极端值（z = 3.50）"
+        },
+        {
+          "en": "Not highly suspect (its outer fence is 42), and not an extreme value (z = 2.80)",
+          "zh": "不是高度疑似（它的外栅栏是 42），也不是极端值（z = 2.80）"
+        },
+        {
+          "en": "Not highly suspect (its outer fence is 29), and not an extreme value (z = 2.80)",
+          "zh": "不是高度疑似（它的外栅栏是 29），也不是极端值（z = 2.80）"
+        },
+        {
+          "en": "Highly suspect by the outer fence (26), and an extreme value (z = 3.10)",
+          "zh": "按外栅栏（26）是高度疑似离群值，也是极端值（z = 3.10）"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "两条规则分开算。\n外栅栏：IQR = Q3 − Q1 = 14 − 10 = 4，上外栅栏 = Q3 + 3 × IQR = 14 + 12 = 26。27 > 26，所以是高度疑似离群值（**highly suspect outlier**）。\nz 分数：z = (27 − 13) / 5 = 14 / 5 = 2.80，没有超过 3，所以按官方练习题的说法它不是极端值（extreme value）；按课件 p.26 的 z 规则只算疑似离群值。所以选 A：两条规则给出不同的结论。\n为什么会不一样：栅栏用 Q1、Q3，不怕极端值（稳健）；z 用平均数和标准差，几个很大的值把标准差拉大了，z 就变小了。官方练习 Q2D 里女性组 Greece（14.3%）就是这种情况。\nB 3.50：除以了 IQR 4，而不是标准差 5。\nC 42：把外栅栏算成了 3 × Q3。\nD 29：外栅栏用了 Q3 + 3 × sd，栅栏要用 IQR。\nE 3.10：用中位数 11.5 代替了平均数 13。\n同类题：Module 4 Practice Q2C、Q2D。",
+        "en": "Upper outer fence = 14 + 3 × 4 = 26 and 27 > 26, so it is highly suspect. But z = (27 − 13)/5 = 2.80 is not beyond 3, so it is not an extreme value. The two rules can disagree because large values inflate the SD."
+      }
+    },
+    {
+      "id": "mod04-q34",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s19-z-score-outlier-rule",
+      "prompt": {
+        "en": "Adult heights in a city have a bell-shaped, symmetric distribution with mean 170 cm and standard deviation 7 cm. One person is 192 cm tall. Compute this person's z-score, interpret it in context, and decide whether this height is an outlier using the z-score rule.",
+        "zh": "某城市成年人身高的分布是钟形且对称的，平均数 170 cm，标准差 7 cm。有一个人身高 192 cm。求这个人身高的 z 分数，结合情境解释它，并用 z 分数规则判断这个身高是不是离群值。"
+      },
+      "modelAnswer": {
+        "en": "z = (192 − 170)/7 = 22/7 = 3.14. This person's height is 3.14 standard deviations above the mean height of adults in the city. Since |z| = 3.14 is larger than 3 and the distribution is bell-shaped and symmetric, this height is a highly suspect outlier (it is very unusual).",
+        "zh": "第一句写公式并代入数字（老师的答案都会写出代入过程）；第二句用解读句型 … is z standard deviation(s) above/below the mean …，带上情境（height、adults in the city）；第三句写判断：拿 |z| 和 3 比较，得出 highly suspect outlier，并点明这条规则的前提是钟形对称分布。"
+      },
+      "points": [
+        {
+          "en": "z = (192 − 170)/7 = 3.14, with the numbers substituted.",
+          "zh": "代入数字算出 z = 3.14"
+        },
+        {
+          "en": "Interpretation: the height is 3.14 standard deviations above the mean height.",
+          "zh": "解读：这个身高比平均身高高 3.14 个标准差"
+        },
+        {
+          "en": "Rule: |z| = 3.14 > 3, so it is a highly suspect outlier (very unusual).",
+          "zh": "规则：|z| = 3.14 > 3，所以是高度疑似离群值"
+        },
+        {
+          "en": "The z rule can be used because the distribution is bell-shaped and symmetric.",
+          "zh": "说明可以用 z 规则的前提：分布钟形对称"
+        }
+      ],
+      "explain": {
+        "zh": "计算：22/7 = 3.1428… ≈ 3.14。\n常见失分：写成 3.14 cm above the mean 或 3.14% above the mean（单位是标准差）；因为 3.14 离 3 很近就说只是 suspect（3.14 > 3，已经超过 3 了）；忘了说明这条规则只适用于钟形对称分布（课件 p.26）。\n同类题：Module 4 Practice Q2D（Extreme value: Yes; it is beyond a z-score of 3 in absolute value）。",
+        "en": "z = 22/7 = 3.14: 3.14 standard deviations above the mean height. |z| > 3 in a bell-shaped, symmetric distribution, so the height is a highly suspect outlier."
+      }
+    },
+    {
+      "id": "mod04-q35",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s20-shifting",
+      "prompt": {
+        "en": "On a test, the mean score is 64, the median is 66, the standard deviation is 9 and the IQR is 12. The instructor adds 5 bonus marks to every student's score. What are the new mean, median, standard deviation and IQR?",
+        "zh": "某次测验平均分 64，中位数 66，标准差 9，IQR 12。老师给每个学生都加 5 分。新的平均数、中位数、标准差和 IQR 分别是多少？"
+      },
+      "options": [
+        {
+          "en": "Mean 69, median 71, SD 9, IQR 12",
+          "zh": "平均数 69，中位数 71，标准差 9，IQR 12"
+        },
+        {
+          "en": "Mean 69, median 71, SD 14, IQR 17",
+          "zh": "平均数 69，中位数 71，标准差 14，IQR 17"
+        },
+        {
+          "en": "Mean 64, median 66, SD 14, IQR 17",
+          "zh": "平均数 64，中位数 66，标准差 14，IQR 17"
+        },
+        {
+          "en": "Mean 69, median 66, SD 9, IQR 12",
+          "zh": "平均数 69，中位数 66，标准差 9，IQR 12"
+        },
+        {
+          "en": "Mean 320, median 330, SD 45, IQR 60",
+          "zh": "平均数 320，中位数 330，标准差 45，IQR 60"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件 p.27–28：每个值都加同一个常数（平移，**shifting**），所有位置度量（平均数、中位数、Q1、Q3、最小值、最大值）都加这个常数；离散度量（极差、IQR、标准差）不变。所以平均数 64 + 5 = 69，中位数 66 + 5 = 71，标准差还是 9，IQR 还是 12，选 A。直觉：每个人都往前挪 5 分，人和人之间的距离一点没变。\nB 错：把 5 也加到了标准差和 IQR 上。\nC 错：位置度量没动，反而动了离散度量，正好反了。\nD 错：只改了平均数；中位数也要加 5。\nE 错：这是“乘以 5”（缩放）的结果，不是“加 5”（平移）。\n课件例子：5, 10, 15, 20, 25 每个加 10，平均数 15 → 25，sd 7.905694 不变（p.27）。",
+        "en": "Adding 5 to every score adds 5 to the mean and the median (69, 71) and leaves the SD (9) and the IQR (12) unchanged (p.27-28). 320, 330, 45, 60 would come from multiplying by 5."
+      }
+    },
+    {
+      "id": "mod04-q36",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s20-shifting",
+      "prompt": {
+        "en": "Every value in a data set is increased by 10. Which of the following summaries change? (Select all that apply.)",
+        "zh": "一组数据的每个值都加 10。下面哪些汇总统计量会改变？（多选）"
+      },
+      "options": [
+        {
+          "en": "IQR",
+          "zh": "四分位距 IQR"
+        },
+        {
+          "en": "Mean",
+          "zh": "平均数"
+        },
+        {
+          "en": "Standard deviation",
+          "zh": "标准差"
+        },
+        {
+          "en": "Median",
+          "zh": "中位数"
+        },
+        {
+          "en": "Q1",
+          "zh": "第一四分位数 Q1"
+        },
+        {
+          "en": "Range",
+          "zh": "极差"
+        }
+      ],
+      "answer": [
+        1,
+        3,
+        4
+      ],
+      "explain": {
+        "zh": "加一个常数是平移（**shifting**，课件 p.27）：位置度量（平均数、中位数、Q1、Q3、最小值、最大值）都加 10 → B、D、E 会变。\n离散度量（极差、IQR、标准差）不变 → A、C、F 不变，因为每个值都挪了同样的距离，值和值之间的差距没变。例如 IQR = (Q3 + 10) − (Q1 + 10) = Q3 − Q1。\n课件例子：5, 10, 15, 20, 25 → 15, 20, 25, 30, 35，favstats 的 Q1 从 10 变成 20，sd 前后都是 7.905694。",
+        "en": "Shifting moves every measure of position (mean, median, Q1) by 10 and leaves the spread (IQR, SD, range) unchanged: (Q3 + 10) − (Q1 + 10) = Q3 − Q1."
+      }
+    },
+    {
+      "id": "mod04-q37",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s21-rescaling",
+      "prompt": {
+        "en": "The weights of a group of students have a mean of 70 kg and a standard deviation of 12 kg. The weights are converted to pounds by multiplying every value by 2.2. What is the standard deviation of the weights in pounds?",
+        "zh": "一组学生体重的平均数是 70 kg，标准差是 12 kg。把每个体重都乘以 2.2 换算成磅（lb）。用磅表示时，标准差是多少？"
+      },
+      "options": [
+        {
+          "en": "5.45 lb",
+          "zh": "5.45 磅"
+        },
+        {
+          "en": "12 lb",
+          "zh": "12 磅"
+        },
+        {
+          "en": "14.2 lb",
+          "zh": "14.2 磅"
+        },
+        {
+          "en": "26.4 lb",
+          "zh": "26.4 磅"
+        },
+        {
+          "en": "154 lb",
+          "zh": "154 磅"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "课件 p.29–30：每个值都乘以（或除以）同一个常数（缩放，**rescaling**），位置度量**和**离散度量都乘以（或除以）这个常数。标准差 = 12 × 2.2 = 26.4 磅，选 D。\nA 5.45 = 12/2.2：乘除方向弄反了（kg 换成 lb，数字要变大）。\nB 12：以为标准差不变，那是“加常数”（平移）的规则，不是“乘常数”（缩放）。\nC 14.2 = 12 + 2.2：把乘法当成了加法。\nE 154 = 70 × 2.2：那是换算后的**平均数**，不是标准差。",
+        "en": "Multiplying every value by 2.2 multiplies the SD by 2.2: 12 × 2.2 = 26.4 lb (p.29-30). 154 lb is the new mean."
+      }
+    },
+    {
+      "id": "mod04-q38",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s21-rescaling",
+      "prompt": {
+        "en": "Daily high temperatures in Mississauga in October have a mean of 12 °C and a standard deviation of 5 °C. The temperatures are converted to Fahrenheit with °F = 1.8 × °C + 32. What is the standard deviation of the temperatures in °F?",
+        "zh": "密西沙加（Mississauga）10 月每日最高气温的平均数是 12 °C，标准差是 5 °C。用 °F = 1.8 × °C + 32 换算成华氏度。用华氏度表示时，标准差是多少？"
+      },
+      "answer": 9,
+      "tolerance": 0.05,
+      "unit": "°F",
+      "explain": {
+        "zh": "这个换算做了两件事：先乘 1.8（缩放，课件 p.29），再加 32（平移，课件 p.27）。\n乘 1.8：标准差也乘 1.8 → 5 × 1.8 = 9。\n加 32：平移不改变离散程度 → 标准差还是 9。\n所以标准差 = 9 °F。（平均数两步都受影响：1.8 × 12 + 32 = 53.6 °F。）\n常见错误：把 32 也加到标准差上，得 41；以为标准差不变，得 5；除以 1.8，得 2.78。\n补充（课件外）：课件把平移和缩放分开讲，这题只是把两条规则按顺序各用一次。",
+        "en": "Multiplying by 1.8 multiplies the SD: 5 × 1.8 = 9. Adding 32 is a shift and does not change the SD, so the SD is 9 °F (the mean becomes 53.6 °F)."
+      }
+    },
+    {
+      "id": "mod04-q39",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s22-distribution-of-z-scores",
+      "prompt": {
+        "en": "Every value in a data set is converted to a z-score. What are the mean and the standard deviation of the z-scores?",
+        "zh": "把一组数据的每个值都换成 z 分数。这些 z 分数的平均数和标准差是多少？"
+      },
+      "options": [
+        {
+          "en": "Mean 0 and standard deviation 0",
+          "zh": "平均数 0，标准差 0"
+        },
+        {
+          "en": "Mean 0 and standard deviation 1",
+          "zh": "平均数 0，标准差 1"
+        },
+        {
+          "en": "Mean 1 and standard deviation 0",
+          "zh": "平均数 1，标准差 0"
+        },
+        {
+          "en": "The same mean and standard deviation as the original data",
+          "zh": "和原数据一样的平均数和标准差"
+        },
+        {
+          "en": "Mean 0 and the same standard deviation as the original data",
+          "zh": "平均数 0，标准差和原数据一样"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "课件 p.31：No matter what mean or standard deviation y has, Z has mean 0, and standard deviation 1. 原因：算 z 分两步——先减平均数（平移：平均数变成 0，标准差不变），再除以标准差 s（缩放：标准差变成 s/s = 1）。选 B。\nA 错：标准差为 0 表示所有值都一样，但 z 分数并不都一样。\nC 错：把 0 和 1 弄反了。\nD 错：标准化一定会改变中心和离散程度（只是不改变形状）。\nE 错：只做了第一步（减平均数），忘了第二步除以标准差。\n课件 p.32 的 R 例子：favstats(zscores) 显示 mean = 0、sd = 1。",
+        "en": "Subtracting the mean makes the mean 0 (the SD is unchanged); dividing by s makes the SD s/s = 1. So z-scores always have mean 0 and SD 1 (p.31)."
+      }
+    },
+    {
+      "id": "mod04-q40",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s22-distribution-of-z-scores",
+      "prompt": {
+        "en": "If a data set is skewed to the right, the distribution of its z-scores is also skewed to the right.",
+        "zh": "如果一组数据是右偏的，那么它的 z 分数的分布也是右偏的。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。标准化（**standardizing**）= 先平移（减平均数）再缩放（除以标准差），这两步都不改变分布的形状（课件 p.31：Standardizing into Z-scores does not change the shape of the distribution）。\n课件 p.45 把甜甜圈热量和它的 z 分数并排画成箱线图，两个形状一模一样：都略右偏，400 kcal（z = 2.98）都是那个单独画出的点。\n常见误区：以为标准化会把数据“变成钟形/正态”——不会。",
+        "en": "True. Standardizing is a shift followed by a rescale, and neither changes the shape (p.31); the boxplots on p.33 and p.45 have the same shape."
+      }
+    },
+    {
+      "id": "mod04-q41",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s23-comparing-with-z-scores",
+      "prompt": {
+        "en": "Mia scored 78 on a statistics test where the class mean was 70 and the standard deviation was 5. Leo scored 85 on a math test where the class mean was 76 and the standard deviation was 7. Who did better relative to their own class?",
+        "zh": "Mia 在统计测验中考了 78 分，全班平均 70 分、标准差 5 分。Leo 在数学测验中考了 85 分，全班平均 76 分、标准差 7 分。相对于各自的班级，谁考得更好？"
+      },
+      "options": [
+        {
+          "en": "Leo, because 85 is higher than 78",
+          "zh": "Leo，因为 85 比 78 高"
+        },
+        {
+          "en": "Leo, because he is 9 marks above his class mean and Mia is only 8 marks above hers",
+          "zh": "Leo，因为他比班级平均高 9 分，而 Mia 只高 8 分"
+        },
+        {
+          "en": "They did equally well",
+          "zh": "两人一样好"
+        },
+        {
+          "en": "Leo, because his z-score (1.80) is larger than Mia's (1.14)",
+          "zh": "Leo，因为他的 z 分数（1.80）比 Mia 的（1.14）大"
+        },
+        {
+          "en": "Mia, because her z-score (1.60) is larger than Leo's (1.29)",
+          "zh": "Mia，因为她的 z 分数（1.60）比 Leo 的（1.29）大"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "不同分布里的值要比 z 分数（课件 p.34–35）。\nMia：z = (78 − 70)/5 = 8/5 = 1.60；\nLeo：z = (85 − 76)/7 = 9/7 ≈ 1.29。\n1.60 > 1.29，相对于自己的班级，Mia 表现更好，选 E。\nA 错：直接比原始分数，忽略了两次考试的平均数和标准差不同（课件 p.34：Is it fair to say 67 is better than 62, because 67 > 62?）。\nB 错：只比“高出平均数几分”，忽略了两个班的标准差不同：Leo 班的分数更分散（标准差 7），高出 9 分没那么难得。\nC 错：两个 z 分数不一样。\nD 错：把两人的标准差用反了，算成 (85 − 76)/5 = 1.80 和 (78 − 70)/7 ≈ 1.14。每个人都要用自己班级的平均数和标准差。",
+        "en": "z(Mia) = (78 − 70)/5 = 1.60 and z(Leo) = (85 − 76)/7 = 1.29. The larger z is the better relative position, so Mia did better. Option D swaps the two SDs."
+      }
+    },
+    {
+      "id": "mod04-q42",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s23-comparing-with-z-scores",
+      "prompt": {
+        "en": "Raj scored 640 on Test A, which has a mean of 500 and a standard deviation of 100. Mei scored 29 on Test B, which has a mean of 21 and a standard deviation of 5. Who performed better relative to the other test takers? Show your work and explain.",
+        "zh": "Raj 在 A 考试中考了 640 分，A 考试平均分 500、标准差 100。Mei 在 B 考试中考了 29 分，B 考试平均分 21、标准差 5。相对于其他考生，谁的表现更好？写出计算过程并解释。"
+      },
+      "modelAnswer": {
+        "en": "Raj: z = (640 − 500)/100 = 1.40, so his score is 1.40 standard deviations above the mean of Test A. Mei: z = (29 − 21)/5 = 1.60, so her score is 1.60 standard deviations above the mean of Test B. The raw scores cannot be compared directly because the two tests have different means and standard deviations. Since Mei's z-score is larger, Mei performed better relative to the other test takers.",
+        "zh": "照课件 p.35 的做法：先把两个分数都换成 z 分数，写出代入过程；再分别解读成“比自己考试的平均数高几个标准差”；然后说明为什么不能直接比原始分；最后比较两个 z，写出结论句 … performed better relative to …。"
+      },
+      "points": [
+        {
+          "en": "Raj: z = (640 − 500)/100 = 1.40.",
+          "zh": "Raj 的 z = 1.40"
+        },
+        {
+          "en": "Mei: z = (29 − 21)/5 = 1.60.",
+          "zh": "Mei 的 z = 1.60"
+        },
+        {
+          "en": "Each z is interpreted as standard deviations above the mean of its own test.",
+          "zh": "两个 z 都解读为比自己考试的平均数高几个标准差"
+        },
+        {
+          "en": "The larger z wins: Mei performed better; raw scores from different tests cannot be compared directly.",
+          "zh": "z 大的更好：Mei；不同考试的原始分不能直接比"
+        }
+      ],
+      "explain": {
+        "zh": "640 比 29 大得多，但两个考试的分数尺度完全不同（一个平均 500，一个平均 21），直接比原始分没有意义；高出平均数的分数（140 和 8）也不能直接比，因为标准差不同。z 分数把它们都换成“几个标准差”这个共同单位（课件 p.34–35）。\n常见失分：只算 z 不写结论；结论写成 Mei's score is higher（应该说相对表现更好）；除错了数，比如用方差 100² 代替标准差 100。",
+        "en": "z(Raj) = 140/100 = 1.40 and z(Mei) = 8/5 = 1.60. Compare z-scores, not raw scores: Mei's relative position is higher."
+      }
+    },
+    {
+      "id": "mod04-q43",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s24-original-value-from-z",
+      "prompt": {
+        "en": "A scholarship is offered to students whose z-score on an entrance test is at least 1.8. The test scores have a mean of 65 and a standard deviation of 10. What is the minimum score needed for the scholarship?",
+        "zh": "某奖学金发给入学测试 z 分数至少为 1.8 的学生。测试成绩平均数 65，标准差 10。拿到奖学金最低需要多少分？"
+      },
+      "options": [
+        {
+          "en": "18",
+          "zh": "18 分"
+        },
+        {
+          "en": "47",
+          "zh": "47 分"
+        },
+        {
+          "en": "66.8",
+          "zh": "66.8 分"
+        },
+        {
+          "en": "83",
+          "zh": "83 分"
+        },
+        {
+          "en": "117",
+          "zh": "117 分"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "把 z 的公式倒过来：y = μ + z × σ（课件 p.37：Observation = mean + (Z × standard deviation)）。y = 65 + 1.8 × 10 = 65 + 18 = 83 分，选 D。\nA 18 = 1.8 × 10：只算出了“比平均数高多少分”，忘了加上平均数。\nB 47 = 65 − 18：z 是正的，应该加，不该减。\nC 66.8 = 65 + 1.8：忘了乘标准差。\nE 117 = 65 × 1.8：用错了运算。\n课件例子：IQ 平均 100、标准差 16，z = 2.5 → IQ = 100 + 2.5 × 16 = 140（p.36–37）。",
+        "en": "y = μ + zσ = 65 + 1.8 × 10 = 83. 18 forgets the mean, 47 subtracts, 66.8 forgets × σ and 117 multiplies the mean by z."
+      }
+    },
+    {
+      "id": "mod04-q44",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s24-original-value-from-z",
+      "prompt": {
+        "en": "The battery life of a new phone model has a mean of 30 hours and a standard deviation of 2.4 hours. A battery is flagged as defective if its z-score is below −2.5. What battery life has a z-score of exactly −2.5 (the cut-off)? Give your answer in hours.",
+        "zh": "某款新手机的电池续航平均 30 小时，标准差 2.4 小时。如果某块电池续航的 z 分数低于 −2.5，就被标记为次品。z 分数正好等于 −2.5（分界线）的续航是多少小时？"
+      },
+      "answer": 24,
+      "tolerance": 0.05,
+      "unit": "hours",
+      "explain": {
+        "zh": "y = μ + z × σ = 30 + (−2.5) × 2.4 = 30 − 6 = 24 小时。续航低于 24 小时的电池会被标记为次品。z 是负数，所以结果在平均数下面。\n常见错误：忽略负号，算成 30 + 6 = 36；忘了乘标准差，算成 30 − 2.5 = 27.5；算成 30 × 2.4 = 72。\n课件 p.37 的公式：Observation (y) = μ + (Z × σ)。",
+        "en": "y = 30 + (−2.5)(2.4) = 30 − 6 = 24 hours. A negative z gives a value below the mean."
+      }
+    },
+    {
+      "id": "mod04-q45",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s25-donut-z-scores",
+      "prompt": {
+        "en": "Tim Hortons donuts have a mean of 251 kcal and a standard deviation of 50.06 kcal. The donut with 400 kcal has z = (400 − 251)/50.06 = 2.98. Using the z-score rule for outliers, how should this donut be classified?",
+        "zh": "Tim Hortons 甜甜圈热量的平均数是 251 kcal，标准差是 50.06 kcal。400 kcal 那个甜甜圈的 z = (400 − 251)/50.06 = 2.98。用 z 分数的离群值规则，这个甜甜圈应该怎么归类？"
+      },
+      "options": [
+        {
+          "en": "Not an outlier, because its z-score is below 3",
+          "zh": "不是离群值，因为它的 z 分数小于 3"
+        },
+        {
+          "en": "A highly suspect outlier, because 2.98 rounds to 3",
+          "zh": "高度疑似离群值，因为 2.98 约等于 3"
+        },
+        {
+          "en": "Not an outlier, because it is above the mean",
+          "zh": "不是离群值，因为它在平均数上面"
+        },
+        {
+          "en": "It cannot be judged without knowing the median",
+          "zh": "不知道中位数就无法判断"
+        },
+        {
+          "en": "A suspect outlier, because z is between 2 and 3",
+          "zh": "疑似离群值，因为 z 在 2 和 3 之间"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "课件 p.26 的规则：|z| 在 2 和 3 之间 → 潜在/疑似离群值（potential/suspect outlier）；|z| > 3 → 高度疑似离群值（highly suspect outlier）。2.98 在 2 和 3 之间，所以是疑似离群值，但不是高度疑似，选 E。用 1.5 × IQR 规则结论也一样：400 超出了上内栅栏 378.75，但没有超出上外栅栏 277.5 + 3 × 67.5 = 480。\nA 错：课件 p.39 写 this value is not necessarily a high outlier，应理解为“不一定是**高度**疑似离群值”，不是“根本不是离群值”；|z| > 2 已经是疑似离群值了。\nB 错：2.98 没有超过 3，不能先四舍五入成 3 再判断。\nC 错：在平均数上面或下面都可能是离群值，要看 |z|。\nD 错：z 规则只需要平均数和标准差。\n注意：这条规则是为钟形对称分布设计的，甜甜圈数据略右偏，所以只能当作粗略的参考。",
+        "en": "2 < 2.98 ≤ 3, so by the p.26 rule the 400-kcal donut is a suspect (potential) outlier, not a highly suspect one. The fences agree: 400 is above 378.75 but below the outer fence 480. 'Not necessarily a high outlier' on p.39 means not highly suspect."
+      }
+    },
+    {
+      "id": "mod04-q46",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s26-z-scores-in-r",
+      "prompt": {
+        "en": "A sample of 25 values is converted to z-scores with scale() in R, which uses the sample standard deviation. What is the sum of the squared z-scores?",
+        "zh": "用 R 的 scale() 把 25 个样本值换成 z 分数（scale() 用的是样本标准差）。这些 z 分数的平方和是多少？"
+      },
+      "options": [
+        {
+          "en": "0",
+          "zh": "0"
+        },
+        {
+          "en": "1",
+          "zh": "1"
+        },
+        {
+          "en": "29",
+          "zh": "29"
+        },
+        {
+          "en": "24",
+          "zh": "24"
+        },
+        {
+          "en": "25",
+          "zh": "25"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "z 分数的平均数是 0，所以它们的样本方差 S² = Σz²/(n − 1)（课件 p.43；Σ 表示“全部加起来”）。z 分数的方差一定是 1，所以 Σz² 必须等于 n − 1 = 25 − 1 = 24，选 D。课件 p.44：甜甜圈 n = 30，平方和 sum(square.z.scores.calories) = 29，29/(30 − 1) = 1。\nA 0：这是 z 分数本身的和（Σz = 0），不是平方和。\nB 1：这是 z 分数的方差 Σz²/(n − 1)，还没有乘回 n − 1。\nC 29：照抄了课件 p.44 甜甜圈的结果（那里 n = 30，所以平方和是 29），没有换成这道题的 n = 25。\nE 25 = n：忘了样本方差除以的是 n − 1，不是 n。",
+        "en": "The z-scores have variance Σz²/(n − 1) = 1, so Σz² = n − 1 = 24 (p.43-44: 29 for n = 30). 0 is the plain sum of the z-scores and 1 is their variance."
+      }
+    },
+    {
+      "id": "mod04-q47",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s27-summary",
+      "prompt": {
+        "en": "The annual household incomes in a town are strongly skewed to the right, with a few very large values. Which pair of measures best describes the centre and the spread of the incomes?",
+        "zh": "某镇家庭年收入强烈右偏，有几个非常大的值。哪一对度量最适合描述收入的中心和离散程度？"
+      },
+      "options": [
+        {
+          "en": "Mean and standard deviation",
+          "zh": "平均数和标准差"
+        },
+        {
+          "en": "Median and standard deviation",
+          "zh": "中位数和标准差"
+        },
+        {
+          "en": "Median and IQR",
+          "zh": "中位数和 IQR"
+        },
+        {
+          "en": "Mean and IQR",
+          "zh": "平均数和 IQR"
+        },
+        {
+          "en": "Mode and range",
+          "zh": "众数和极差"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "课件 p.46：偏态分布报告中位数和 IQR（We report median and IQR for skewed distributions），因为中位数和 IQR 是稳健的（**resistant**），不太受极大或极小值的影响；平均数、极差、标准差、方差不稳健，会被那几个特别大的收入拉高。选 C。\nA 错：平均数和标准差适合大致钟形对称的分布；这里会被几个极大值拉大。\nB、D 错：混搭了。中位数配 IQR，平均数配标准差，要成对使用。\nE 错：众数不是本课推荐的中心度量；极差只用最大值和最小值，最不稳健。\n同类题：Module 4 Practice Q1C、Q2E(ii)。",
+        "en": "For skewed data report the median and the IQR, which are resistant; the mean, SD and range are pulled by the very large incomes (p.46)."
+      }
+    },
+    {
+      "id": "mod04-q48",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s27-summary",
+      "prompt": {
+        "en": "The R output below summarizes the prices (in dollars) of 30 used textbooks sold online. On the boxplot of the prices, the upper whisker ends at $120, and two prices are plotted individually: $150 and $210.\n(a) Use the 1.5 × IQR rule to explain why $150 and $210 are plotted individually and why the upper whisker stops at $120.\n(b) Use the upper outer fence to classify each of these two prices as a suspect or a highly suspect outlier.\n(c) State and justify the most appropriate measures of centre and spread for these prices.",
+        "zh": "下面的 R 输出汇总了网上卖出的 30 本二手教材的价格（加元）。价格的箱线图上，上须线停在 $120，有两个价格被单独画出：$150 和 $210。\n(a) 用 1.5 × IQR 规则解释：为什么 $150 和 $210 被单独画出？为什么上须线停在 $120？\n(b) 用上外栅栏，把这两个价格分别归为疑似离群值或高度疑似离群值。\n(c) 说出这些价格最合适的中心度量和离散度量，并说明理由。"
+      },
+      "table": {
+        "caption": {
+          "en": "> favstats(Price)",
+          "zh": "R 输出：favstats(Price)"
+        },
+        "headers": [
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n",
+          "missing"
+        ],
+        "rows": [
+          [
+            "12",
+            "35",
+            "48",
+            "70",
+            "210",
+            "59.96667",
+            "41.62847",
+            "30",
+            "0"
+          ]
+        ]
+      },
+      "modelAnswer": {
+        "en": "(a) IQR = Q3 − Q1 = 70 − 35 = $35, so 1.5 × IQR = 52.5. The upper inner fence is Q3 + 1.5 × IQR = 70 + 52.5 = $122.5. The prices $150 and $210 are above the upper inner fence, so they are plotted individually. The upper whisker extends to the largest price that is still within the fence, which is $120.\n(b) The upper outer fence is Q3 + 3 × IQR = 70 + 105 = $175. $150 is a suspect outlier, since it is not above 175 but it is between 122.5 and 175. $210 is a highly suspect outlier, since it is above 175.\n(c) The distribution of prices is skewed to the right: the mean ($59.97) is larger than the median ($48), and both outliers are high. So the most appropriate measure of centre is the median ($48) and the most appropriate measure of spread is the IQR ($35), because they are resistant to extreme values.",
+        "zh": "分三段答，每段对应一小问：\n(a) 先写 IQR，再写 1.5 × IQR 和上内栅栏，说明 150 和 210 在栅栏外所以单独画点，上须线停在栅栏内最大的数据值 120（课件 p.14 的步骤；Module 4 Practice Q1B(iv) 的写法）。\n(b) 写上外栅栏 175，再用老师的句型分类：Suspect outlier since it is not above 175 but it is between 122.5 and 175；Highly suspect outlier since it is above 175（Module 4 Practice Q2C）。\n(c) 先下结论“右偏”并给证据，再说选中位数和 IQR，最后点出原因：它们是稳健的（resistant）（课件 p.46；Module 4 Practice Q1C）。"
+      },
+      "points": [
+        {
+          "en": "IQR = 70 − 35 = 35 and upper inner fence = 70 + 1.5 × 35 = 122.5.",
+          "zh": "IQR = 35，上内栅栏 = 70 + 52.5 = 122.5"
+        },
+        {
+          "en": "$150 and $210 are above 122.5, so they are plotted individually; the whisker ends at $120, the largest price ≤ 122.5.",
+          "zh": "150 和 210 超出 122.5，所以单独画点；上须线停在 ≤ 122.5 的最大价格 120"
+        },
+        {
+          "en": "Upper outer fence = 70 + 3 × 35 = 175.",
+          "zh": "上外栅栏 = 70 + 105 = 175"
+        },
+        {
+          "en": "$150 is a suspect outlier (between 122.5 and 175); $210 is a highly suspect outlier (above 175).",
+          "zh": "150 是疑似离群值（在 122.5 和 175 之间）；210 是高度疑似离群值（超过 175）"
+        },
+        {
+          "en": "Right skew: mean 59.97 > median 48, and the outliers are high.",
+          "zh": "右偏的证据：平均数 59.97 > 中位数 48，离群值都在高的一侧"
+        },
+        {
+          "en": "Report the median ($48) and the IQR ($35) because they are resistant.",
+          "zh": "报告中位数 $48 和 IQR $35，因为它们是稳健的"
+        }
+      ],
+      "explain": {
+        "zh": "所有数字：IQR = 35；1.5 × IQR = 52.5；上内栅栏 122.5；上外栅栏 175（3 × IQR = 105）。下内栅栏 = 35 − 52.5 = −17.5，比最小值 12 还低，所以没有偏低的离群值，下须线停在最小值 12。\n常见失分：说须线停在 122.5（须线一定停在真实的数据值上）；只用内栅栏就把 210 也叫 suspect，没有用外栅栏区分；(c) 只说 median 不说 IQR，或者混搭成 median + SD；说“偏态”却不说偏向哪边、也不给证据。\n同类题：Module 4 Practice Q1B(iv)、Q1C、Q2C。",
+        "en": "IQR 35, 1.5 × IQR 52.5, upper inner fence 122.5 (whisker at 120; 150 and 210 outside), upper outer fence 175 (150 suspect, 210 highly suspect). Right skew, so report the median 48 and the IQR 35."
+      }
+    },
+    {
+      "id": "mod04-q49",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s18-z-scores",
+      "prompt": {
+        "en": "The R output below summarizes last night's hours of sleep of 100 students by where they live. For all 100 students together, the mean is 6.96 hours and the standard deviation is 1.14 hours. An off-campus student slept 5.3 hours. What is this student's z-score within the off-campus group?",
+        "zh": "下面的 R 输出按居住地汇总了 100 个学生昨晚的睡眠小时数。把 100 个学生放在一起时，平均数是 6.96 小时，标准差是 1.14 小时。一个住在校外（off campus）的学生睡了 5.3 小时。这个学生在校外组里的 z 分数是多少？"
+      },
+      "table": {
+        "headers": [
+          "Residence",
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n"
+        ],
+        "rows": [
+          [
+            "Off campus",
+            "5.3",
+            "7.0",
+            "7.6",
+            "8.0",
+            "9.2",
+            "7.5",
+            "0.8",
+            "40"
+          ],
+          [
+            "On campus",
+            "3.5",
+            "5.9",
+            "6.7",
+            "7.4",
+            "9.5",
+            "6.6",
+            "1.2",
+            "60"
+          ]
+        ],
+        "caption": {
+          "en": "> favstats(Sleep ~ Residence)",
+          "zh": "R 输出：favstats(Sleep ~ Residence)"
+        }
+      },
+      "options": [
+        {
+          "en": "−1.46",
+          "zh": "−1.46"
+        },
+        {
+          "en": "−1.08",
+          "zh": "−1.08"
+        },
+        {
+          "en": "2.75",
+          "zh": "2.75"
+        },
+        {
+          "en": "−2.75",
+          "zh": "−2.75"
+        },
+        {
+          "en": "−1.93",
+          "zh": "−1.93"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "题目问的是“在校外组里”的位置，所以要用校外组自己的平均数和标准差（官方练习 Module 4 Practice Q2D 就是这样做的：女性的值用女性组的 mean 和 sd）。\nz = (y − ȳ)/s = (5.3 − 7.5)/0.8 = −2.2/0.8 = −2.75，选 D。意思是：这个学生的睡眠时长比校外学生的平均睡眠时长低 2.75 个标准差。\nA −1.46：用了全体 100 人的平均数和标准差，(5.3 − 6.96)/1.14。\nB −1.08：用了校内组（on campus）的平均数和标准差，(5.3 − 6.6)/1.2。\nC 2.75：减反了，算成 (7.5 − 5.3)/0.8；比平均数低的值，z 一定是负的。\nE −1.93：平均数用了本组的 7.5，标准差却用了全体的 1.14，混搭了。\n补充：如果校外组的睡眠时长大致钟形对称，|z| = 2.75 在 2 和 3 之间，在本组里算疑似离群值；用栅栏也一样（本组 IQR = 8.0 − 7.0 = 1.0，下内栅栏 = 7.0 − 1.5 = 5.5，5.3 < 5.5）。用全体的数（z = −1.46）就看不出它特别：离群值依情境而定（课件 p.18）。\n同类题：Module 4 Practice Q2D。",
+        "en": "Use the group's own mean and SD: z = (5.3 − 7.5)/0.8 = −2.75, so the student is 2.75 standard deviations below the mean of the off-campus group. −1.46 uses the overall mean and SD, −1.08 uses the on-campus group, 2.75 reverses the subtraction and −1.93 mixes the group mean with the overall SD."
+      }
+    },
+    {
+      "id": "mod04-q50",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-paired-differences",
+      "prompt": {
+        "en": "Thirty students recorded their study hours in week 2 and in week 9 of the term. For each student, Diff = Week9 − Week2. The R output below summarizes the three variables. What is the z-score of the largest difference?",
+        "zh": "30 个学生记录了自己第 2 周和第 9 周的学习小时数。对每个学生算 Diff = Week9 − Week2（第 9 周减第 2 周）。下面的 R 输出汇总了这三个变量。最大那个差值的 z 分数是多少？"
+      },
+      "table": {
+        "caption": {
+          "en": "favstats() output for each variable",
+          "zh": "每个变量的 favstats() 输出"
+        },
+        "headers": [
+          "Variable",
+          "min",
+          "Q1",
+          "median",
+          "Q3",
+          "max",
+          "mean",
+          "sd",
+          "n"
+        ],
+        "rows": [
+          [
+            "Week2",
+            "9.0",
+            "11.5",
+            "14.0",
+            "16.0",
+            "18.5",
+            "13.9",
+            "2.97",
+            "30"
+          ],
+          [
+            "Week9",
+            "9.3",
+            "13.025",
+            "15.2",
+            "17.55",
+            "20.9",
+            "15.1",
+            "3.20",
+            "30"
+          ],
+          [
+            "Diff",
+            "−3.0",
+            "0.0",
+            "1.0",
+            "2.5",
+            "7.4",
+            "1.2",
+            "2.00",
+            "30"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "−3.10",
+          "zh": "−3.10"
+        },
+        {
+          "en": "3.10",
+          "zh": "3.10"
+        },
+        {
+          "en": "3.20",
+          "zh": "3.20"
+        },
+        {
+          "en": "2.48",
+          "zh": "2.48"
+        },
+        {
+          "en": "−2.41",
+          "zh": "−2.41"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "差值的 z 分数用差值自己的平均数和标准差（官方练习 Q2E(i) 的做法）：z = (7.4 − 1.2) / 2.00 = 6.2 / 2 = 3.10，选 B。它比差值的平均数高 3.10 个标准差；3.10 > 3，按练习题的说法是极端值（extreme value）。\n再用栅栏看：差值的 IQR = 2.5 − 0.0 = 2.5，上内栅栏 = 2.5 + 1.5 × 2.5 = 6.25，上外栅栏 = 2.5 + 3 × 2.5 = 10。7.4 在 6.25 和 10 之间，所以按栅栏只是疑似离群值：两条规则又不一致（练习题里 Greece 的差值 3.5 也是这样）。\nA −3.10：把减的顺序弄反了（Week2 − Week9），正负号就反了。\nC 3.20：用了中位数 1.0，而不是平均数 1.2。\nD 2.48：除以了 IQR 2.5，而不是标准差 2.00。\nE −2.41：用了 Week9 那一组的平均数和标准差，(7.4 − 15.1) / 3.20；可 7.4 是差值，不是第 9 周的学习小时数。\n顺便验证：差值的平均数 1.2 = 15.1 − 13.9（两组平均数之差）。\n同类题：Module 4 Practice Q2E(i)。",
+        "en": "Use the mean and SD of the differences: z = (7.4 − 1.2)/2.00 = 3.10, so the largest difference is 3.10 standard deviations above the mean difference."
+      }
+    }
+  ]
+}

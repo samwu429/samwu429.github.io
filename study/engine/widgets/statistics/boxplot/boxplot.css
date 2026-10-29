@@ -1,0 +1,572 @@
+/*
+ * Boxplot widget: controls, the chart with its legend, readout and stepper, the sorted-data chips, the
+ * construction steps, the exam sentences and the comparison table.
+ * 箱线图组件：控件、带图例、读数和步进按钮的图、排序数据方块、作图步骤、考试句子与对比表。
+ */
+.boxplot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+}
+
+/* Header and controls 标题与控件 */
+.boxplot__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.boxplot__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.boxplot__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.boxplot__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.boxplot__default,
+.boxplot__method-note {
+  font-size: var(--text-sm);
+}
+
+.boxplot__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  min-width: 0;
+}
+
+.boxplot__control {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.boxplot__control-label {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+/* Long group names and method names wrap inside the control instead of widening the page. 长组名和方法名在控件内换行，不撑宽页面。 */
+.boxplot__segmented {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.boxplot__segmented .segmented__option {
+  text-align: left;
+}
+
+/* Chart panel 图面板 */
+.boxplot__figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.boxplot__plot {
+  min-width: 0;
+}
+
+.boxplot--groups .boxplot__svg {
+  cursor: pointer;
+}
+
+.boxplot__band {
+  fill: var(--color-accent-soft);
+}
+
+.boxplot__box {
+  fill: var(--color-signal-soft);
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+
+.boxplot__box.is-selected {
+  stroke-width: 3;
+}
+
+.boxplot__median {
+  stroke: var(--color-ink);
+  stroke-width: 3;
+}
+
+.boxplot__quartile {
+  stroke: var(--color-signal);
+  stroke-width: 2.5;
+}
+
+.boxplot__whisker {
+  stroke: var(--color-ink);
+  stroke-width: 2;
+  stroke-linecap: square;
+}
+
+.boxplot__extreme {
+  fill: var(--color-ink-2);
+}
+
+.boxplot__dot {
+  fill: var(--color-accent-strong);
+  fill-opacity: 0.6;
+}
+
+.boxplot__point {
+  stroke-width: 2;
+}
+
+.boxplot__point--suspect {
+  fill: var(--color-panel);
+  stroke: var(--color-warn);
+}
+
+.boxplot__point--highly-suspect {
+  fill: var(--color-danger);
+  stroke: var(--color-danger);
+}
+
+.boxplot__point--none {
+  fill: var(--color-panel);
+  stroke: var(--color-ink-3);
+}
+
+.boxplot__fence {
+  stroke-width: 2;
+}
+
+.boxplot__fence--inner {
+  stroke: var(--color-warn);
+  stroke-dasharray: 6 4;
+}
+
+.boxplot__fence--outer {
+  stroke: var(--color-danger);
+  stroke-dasharray: 2 4;
+}
+
+.boxplot__fence-edge--inner {
+  fill: var(--color-warn);
+}
+
+.boxplot__fence-edge--outer {
+  fill: var(--color-danger);
+}
+
+.boxplot__bracket line {
+  stroke: var(--color-accent-strong);
+  stroke-width: 2;
+}
+
+/* Text inside the chart gets a halo in the panel colour, so it stays readable over lines. 图中文字带一圈面板色描边，压在线上也能看清。 */
+.boxplot__bracket-label,
+.boxplot__group-label {
+  paint-order: stroke;
+  stroke: var(--color-panel);
+  stroke-linejoin: round;
+}
+
+.boxplot__bracket-label {
+  fill: var(--color-accent-ink);
+  stroke-width: 3px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.boxplot__group-label {
+  fill: var(--color-ink-2);
+  stroke-width: 4px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.boxplot__group-label.is-selected {
+  fill: var(--color-accent-ink);
+}
+
+/* Readout of the numbers found so far 已找出的数 */
+.boxplot__readout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.boxplot__readout-item {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-1);
+  min-width: 0;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.boxplot__readout-label {
+  color: var(--color-ink-2);
+  font-weight: 700;
+}
+
+.boxplot__readout-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.boxplot__readout-note {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+/* Stepper and status 步进按钮与状态 */
+.boxplot__stepper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.boxplot__stepper .btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.boxplot__stepper .btn[aria-disabled="true"]:hover {
+  transform: none;
+}
+
+.boxplot__stepper .btn--primary[aria-disabled="true"]:hover,
+.boxplot__stepper .btn--secondary[aria-disabled="true"]:hover {
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.boxplot__status {
+  min-height: 1.6em;
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.boxplot__status-math {
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+/* Panels 面板 */
+.boxplot__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.boxplot__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-2);
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.boxplot__heading .en,
+.boxplot__heading-group {
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+.boxplot__heading-group {
+  font-weight: 700;
+}
+
+.boxplot__subheading {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.boxplot__hint {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+.boxplot__teach {
+  font-size: var(--text-sm);
+}
+
+/* Sorted-data chips, like the marked sort() output of M4 p.6 排序数据方块，像第 4 单元第 6 页标注过的 sort() 输出 */
+.boxplot__chips-scroll {
+  max-height: 18rem;
+  overflow-y: auto;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.boxplot__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-2);
+  list-style: none;
+}
+
+.boxplot__chip {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  padding: 0 var(--space-1);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.6;
+}
+
+.boxplot__chip-position {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.boxplot__chip-tag {
+  color: var(--color-ink-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.boxplot__chip--lower {
+  background: var(--color-accent-soft);
+}
+
+.boxplot__chip--upper {
+  background: var(--color-signal-soft);
+}
+
+.boxplot__chip--q1,
+.boxplot__chip--q3 {
+  border: 2px solid var(--color-accent-strong);
+  font-weight: 800;
+}
+
+.boxplot__chip--median {
+  border: 2px solid var(--color-ink);
+  font-weight: 800;
+}
+
+/* The red bar between the two halves. 两半之间的红线。 */
+.boxplot__chip--split {
+  margin-left: var(--space-2);
+}
+
+.boxplot__chip--split::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--space-2));
+  width: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--color-danger);
+}
+
+.boxplot__chip--suspect .boxplot__chip-value {
+  color: var(--color-warn);
+  font-weight: 800;
+}
+
+.boxplot__chip--highly-suspect .boxplot__chip-value {
+  color: var(--color-danger);
+  font-weight: 800;
+}
+
+/* Construction steps 作图步骤 */
+.boxplot__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.boxplot__step {
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.boxplot__step.is-current {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.boxplot__step-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-1) 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  font-size: var(--text-md);
+  font-weight: 800;
+  text-align: left;
+}
+
+.boxplot__step-head:hover .boxplot__step-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.boxplot__step-number {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  min-width: 1.7em;
+  height: 1.7em;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  line-height: 1;
+}
+
+.boxplot__step.is-current .boxplot__step-number {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.boxplot__step-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  margin-top: var(--space-1);
+  padding-left: var(--space-6);
+}
+
+.boxplot__math {
+  margin: 0;
+  padding: var(--space-1) var(--space-2);
+  border: 1px dashed var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.boxplot__extra {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+}
+
+/* Exam sentences 考试句子 */
+.boxplot__sentences {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.boxplot__sentence {
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+  font-size: var(--text-sm);
+}
+
+/* Comparison table 对比表 */
+.boxplot__table th,
+.boxplot__table td {
+  text-align: right;
+}
+
+/* Header words stack, Chinese above English, and Chinese terms never break in the middle. 表头中文在上、英文在下，中文术语不从中间断开。 */
+.boxplot__table thead th {
+  vertical-align: bottom;
+  white-space: normal;
+}
+
+.boxplot__table thead .zh,
+.boxplot__table thead .en {
+  display: block;
+}
+
+.boxplot__table thead .zh {
+  white-space: nowrap;
+}
+
+.boxplot__table th[scope="row"] {
+  min-width: 8em;
+  text-align: left;
+  white-space: normal;
+}
+
+.boxplot__table td {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.boxplot__table tr.is-selected th,
+.boxplot__table tr.is-selected td {
+  background: var(--color-highlight-soft);
+}
+
+.boxplot__given {
+  display: block;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .boxplot__figure {
+    padding: var(--space-2);
+  }
+
+  .boxplot__step-body {
+    padding-left: 0;
+  }
+}
+
+@media print {
+  .boxplot__controls,
+  .boxplot__stepper {
+    display: none;
+  }
+}

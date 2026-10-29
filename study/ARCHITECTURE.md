@@ -19,7 +19,7 @@ study/
       dom/                      h()/s() element builders, icons, stylesheet loader,  DOM 构建、图标、样式加载、
                                 keyboard helpers                                     键盘工具
       text/                     Inline markup, bilingual helpers, script runs,       行内标记、双语工具、中英分段、
-                                unit labels, speech                                  单元命名、朗读
+                                unit labels, course channels, speech                 单元命名、公告渠道、朗读
       data/                     JSON fetching, course repository                     数据获取、课程仓库
       state/                    localStorage wrapper, progress, preferences          本地存储、进度、偏好
       util/                     Formatting, ids and randomness                       格式化、id 与随机工具
@@ -31,12 +31,16 @@ study/
   courses/
     registry.json               List of courses shown on the hub                     课程登记表
     <course-id>/                One course pack (data only, no code)                 课程包（只有数据）
-      course.json               Meta, assessments, unit index, review file paths     课程元数据与单元索引
-      lessons/<unit>.json       Lecture and lab lessons                              讲课与实验讲义
+      course.json               Meta, assessments, unit index, review file paths,    课程元数据、单元索引、
+                                optional mock exam settings                          可选的模拟考设置
+      lessons/<unit>.json       One lesson per unit (lecture, module, lab...)        每个单元一份讲义（讲课、模块、实验…）
       practice/<unit>.json      Practice question banks                              练习题库
       glossary/<unit>.json      Glossary terms                                       术语表
       review/*.json             Cheat sheet, exam toolkit, course overview           速记、答题工具箱、课程总览
   tools/                        Authoring tools (content validator, index builder)   内容校验与索引生成工具
+    content-spec.md             Course-neutral content contract                      通用内容契约
+    review-spec.md              Review files contract                                复习文件契约
+    course-briefs/<course>.md   Per-course facts, tests, notation, targets           每门课的事实、考试、记号与数量目标
   tests/                        node --test unit tests for pure logic                纯逻辑单元测试
 ```
 
@@ -81,15 +85,40 @@ The query parameters each route reads are listed at the top of `engine/app/route
 
 ## 4. Content contract / 内容契约
 
-Content files follow the course-pack schema (lesson blocks, question types, glossary terms, review files). The authoritative descriptions are `study/tools/content-spec.md` (lessons, practice, glossary; section 0-2 describe the bilingual teaching style, with CSC105H5 as the worked example) and `study/tools/review-spec.md` (cheat sheet, exam toolkit, course overview). Tools:
+Content files follow the course-pack schema (lesson blocks, question types, glossary terms, review files). The authoritative descriptions are `study/tools/content-spec.md` (lessons, practice, glossary, widget catalog; sections 0-2 describe the bilingual teaching style for the learner of every course) and `study/tools/review-spec.md` (cheat sheet, exam toolkit, course overview). Each course adds a brief, `study/tools/course-briefs/<course-id>.md`, with what only that course has: units, tests and their format, notation and methods to keep exactly, proper names, size targets and review-file focus. The brief wins where it is more specific. Tools:
 
 - `python study/tools/validate_content.py <lesson|questions|glossary|review|all> [unit-id] --pack study/courses/<course-id>`
 - `python study/tools/build_course_index.py study/courses/<course-id>` refreshes the unit index in `course.json` (titles, section ids, counts) from the lesson files.
 
+### Unit kinds / 单元类型
+
+Every unit in `course.json` has a `kind`. `core/text/unit-labels.js` is the only place that names kinds and orders their groups: `lecture` (第 3 讲 / Lecture 3 / Lec 3), `module` (模块 3 / Module 3 / Mod 3), `lab` (实验 3 / Lab 3), `tutorial` (辅导 3 / Tutorial 3) and `workshop` (工作坊 3 / Workshop 3), shown in that order; units of any other kind come last, under 其他 / Other. Lectures and modules are the main units: the mock exam ticks them by default, newcomers start with the first one, and their cards share one style. Views take unit names, group titles and order from that module (`KIND_ORDER`, `groupByKind`, `kindGroupTitle`, `isMainKind`) instead of naming kinds themselves. Study-plan tasks link "Lecture 5", "Module 2", "Lab 3", "第 4 讲", "模块 1–3", "第 3 模块" and "实验 2" to their units.
+course.json 中每个单元都有 kind。core/text/unit-labels.js 是命名单元类型、决定分组顺序的唯一位置：lecture（第 3 讲）、module（模块 3）、lab（实验 3）、tutorial（辅导 3）、workshop（工作坊 3），按此顺序显示；其他类型的单元排在最后，归入“其他 Other”。讲课与模块是主要单元：模拟考默认勾选它们，新同学从第一个主要单元开始，两者的卡片样式相同。各视图的单元名称、分组标题与顺序都取自该模块（KIND_ORDER、groupByKind、kindGroupTitle、isMainKind），不自行命名。学习计划中的“Lecture 5”“Module 2”“Lab 3”“第 4 讲”“模块 1–3”“第 3 模块”“实验 2”会链接到对应单元。
+
+### Mock exam settings / 模拟考设置
+
+`course.json` may describe the real test in an optional `mockExam` object, read by `views/practice/logic/mock-config.js`. Every field is optional; a missing field keeps the station default.
+course.json 可以用可选的 mockExam 对象描述真实考试，由 views/practice/logic/mock-config.js 读取。每个字段都可以省略，省略时沿用全站默认值。
+
+| field | meaning |
+|---|---|
+| `objectiveCount`, `writtenCount`, `minutes` | builder defaults, clamped by `MOCK_LIMITS` (at most 60, 10 and 180); `minutes: 0` means no limit. Station defaults: 20, 3 and 60. With `writtenCount: 0` the builder describes an objective-only paper |
+| `objectiveTypes` | objective question types the paper and the availability counts use, a subset of `mcq`, `multi`, `tf`, `calc`; default all four |
+| `note` | `{zh, en}`: one line about the real test, shown on the builder above the question counts |
+
+Example: `"mockExam": { "objectiveCount": 25, "writtenCount": 0, "minutes": 90, "objectiveTypes": ["mcq"], "note": { "zh": "...", "en": "..." } }`. Settings the learner chose earlier while the page stayed open still win over these defaults.
+页面打开期间学习者之前选过的设置，仍然优先于这些默认值。
+
+### Announcement channels / 公告渠道
+
+`course.json` `announcements` lists where the course announces test details, e.g. `["Quercus", "Piazza"]`. `core/text/course-channels.js` turns it into the wording of the footer and the mock-exam scope note ("Quercus / Piazza", "Quercus and Piazza"); without it they say "the course's official channels".
+course.json 的 announcements 列出课程公布考试信息的渠道，例如 ["Quercus", "Piazza"]。core/text/course-channels.js 据此生成页脚与模拟考范围提示中的说法；没有该字段时使用“课程官方通知”。
+
 ## 5. Adding a new course / 新增一门课程
 
-1. Create `study/courses/<course-id>/` with `course.json`, `lessons/`, `practice/`, `glossary/`, `review/`.
-2. Validate every file with the validator, then run the index builder.
-3. Add the course to `study/courses/registry.json`.
-4. Copy `csc105h5/index.html` to `<course-id>/index.html` and change `data-course`, `<title>`, description and canonical URL.
-5. If the course needs a new interactive demo, add it under `study/engine/widgets/<domain>/<name>/` and register it in `widgets/widget-registry.js`.
+1. Write the course brief `study/tools/course-briefs/<course-id>.md` from the syllabus and the course files.
+2. Create `study/courses/<course-id>/` with `course.json`, `lessons/`, `practice/`, `glossary/`, `review/`. Give every unit one of the kinds above, list the `announcements` channels, and add `mockExam` when the real test differs from the default paper.
+3. Validate every file with the validator, then run the index builder.
+4. Add the course to `study/courses/registry.json`.
+5. Copy `csc105h5/index.html` to `<course-id>/index.html` and change `data-course`, `<title>`, description and canonical URL.
+6. If the course needs a new interactive demo, add it under `study/engine/widgets/<domain>/<name>/`, register it in `widgets/widget-registry.js`, document its config in content-spec section 5 and teach `validate_content.py` its shape.

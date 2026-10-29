@@ -1,11 +1,12 @@
 /**
- * Pure helpers of the course home page: countdowns, unit grouping, the continue target and the branch map.
- * 课程首页的纯逻辑：考试倒计时、单元分组、继续学习目标与知识地图分组。
+ * Pure helpers of the course home page: countdowns, unit grouping, the start and continue targets and the branch map.
+ * 课程首页的纯逻辑：考试倒计时、单元分组、起点与继续学习目标、知识地图分组。
  *
  * Nothing here touches the DOM, so every function is covered by node tests.
  * 本模块不访问 DOM，所有函数都有 node 单元测试。
  */
 import { toBi } from '../../core/text/bilingual.js';
+import { groupByKind, isKnownKind, isMainKind } from '../../core/text/unit-labels.js';
 import { daysUntil } from '../../core/util/format.js';
 import { isRouteId } from '../../core/util/ids.js';
 
@@ -73,17 +74,30 @@ export function totalWeight(assessments) {
 }
 
 /**
- * Splits course units into lectures, labs and anything else; lectures and labs sorted by number.
- * 把课程单元分成讲课、实验与其他三组；讲课与实验按编号排序。
+ * Splits course units into one group per kind, in the display order of core/text/unit-labels.js
+ * (lectures, modules, labs, tutorials, workshops, then every other kind). Units of a known kind are
+ * sorted by number; the last group keeps course order. Returns [{ kind, units }] without empty groups.
+ * 按 core/text/unit-labels.js 的显示顺序把课程单元按类型分组（讲课、模块、实验、辅导、工作坊，最后是其他类型）。
+ * 已知类型的单元按编号排序，最后一组保持课程顺序。返回 [{ kind, units }]，不含空组。
  */
 export function splitUnits(units) {
   const byNumber = (a, b) => (Number(a.number) || 0) - (Number(b.number) || 0);
   const list = (Array.isArray(units) ? units : []).filter((unit) => unit && isRouteId(unit.id));
-  return {
-    lectures: list.filter((unit) => unit.kind === 'lecture').sort(byNumber),
-    labs: list.filter((unit) => unit.kind === 'lab').sort(byNumber),
-    others: list.filter((unit) => unit.kind !== 'lecture' && unit.kind !== 'lab'),
-  };
+  return groupByKind(list).map((group) => ({
+    kind: group.kind,
+    units: isKnownKind(group.kind) ? group.units.sort(byNumber) : group.units,
+  }));
+}
+
+/**
+ * The unit a newcomer starts with: the lowest-numbered main unit (lecture or module), otherwise the
+ * first unit in course order; null when there is none.
+ * 新同学的起点单元：编号最小的主要单元（讲课或模块）；没有时取课程顺序中的第一个单元；都没有时为 null。
+ */
+export function startUnit(units) {
+  const main = splitUnits(units).find((group) => isMainKind(group.kind));
+  if (main) return main.units[0];
+  return (Array.isArray(units) ? units : []).find((unit) => unit && isRouteId(unit.id)) || null;
 }
 
 export function sectionIdsOf(unit) {

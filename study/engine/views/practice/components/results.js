@@ -50,6 +50,9 @@ function toneOf(percent) {
 export function unitBreakdown(rows, units, { caption = '按单元得分 Score by unit' } = {}) {
   tableCounter += 1;
   const captionId = `practice-results-caption-${tableCounter}`;
+  // The written-points column only appears when some unit had written questions.
+  // 只有某个单元有主观题时，才显示“主观要点”这一列。
+  const hasWritten = rows.some((row) => row.writtenPossible);
   const body = rows.map((row) => {
     const unit = units.get(row.unitId);
     const percent = Number.isFinite(row.percent) ? Math.round(row.percent) : null;
@@ -58,7 +61,7 @@ export function unitBreakdown(rows, units, { caption = '按单元得分 Score by
         h('span', { class: 'practice-results__unit-kicker' }, unitKicker(unit) || row.unitId),
         unit?.title ? biTitle(unit.title, { className: 'practice-results__unit-title' }) : null),
       h('td', {}, row.objectiveQuestions ? `${row.objectiveCorrect} / ${row.objectiveQuestions}` : '—'),
-      h('td', {}, row.writtenPossible ? `${row.writtenEarned} / ${row.writtenPossible}` : '—'),
+      hasWritten ? h('td', {}, row.writtenPossible ? `${row.writtenEarned} / ${row.writtenPossible}` : '—') : null,
       h('td', {},
         h('div', { class: 'practice-results__bar' },
           h('span', { class: 'practice-results__bar-track', 'aria-hidden': 'true' },
@@ -71,7 +74,7 @@ export function unitBreakdown(rows, units, { caption = '按单元得分 Score by
       h('thead', {}, h('tr', {},
         h('th', { scope: 'col' }, '单元 Unit'),
         h('th', { scope: 'col' }, '客观题 Objective'),
-        h('th', { scope: 'col' }, '主观要点 Written points'),
+        hasWritten ? h('th', { scope: 'col' }, '主观要点 Written points') : null,
         h('th', { scope: 'col' }, '得分率 Score'))),
       h('tbody', {}, body)));
 }

@@ -1,0 +1,1724 @@
+{
+  "lessonId": "mod05",
+  "questions": [
+    {
+      "id": "mod05-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s01-observational-study",
+      "prompt": {
+        "en": "A researcher records the number of servings of fruit and vegetables eaten per day and the number of sick days taken last year for 250 office workers. She does not ask anyone to change their diet. Workers who eat more servings tend to take fewer sick days. Which statement is correct?",
+        "zh": "一位研究者记录了 250 名上班族每天吃几份水果和蔬菜、去年请了几天病假。她没有要求任何人改变饮食。结果是：水果蔬菜吃得多的人往往请病假更少。下面哪个说法正确？"
+      },
+      "options": [
+        {
+          "en": "This is an experiment, so it shows that eating more fruit and vegetables reduces the number of sick days.",
+          "zh": "这是一个实验，所以它说明多吃水果蔬菜会减少病假天数。"
+        },
+        {
+          "en": "This is an observational (correlational) study. It shows an association, but it cannot prove that eating more fruit and vegetables causes fewer sick days.",
+          "zh": "这是观察性（相关性）研究。它显示了关联，但不能证明多吃水果蔬菜导致病假减少。"
+        },
+        {
+          "en": "Because 250 workers were measured, the study proves that eating more fruit and vegetables causes fewer sick days.",
+          "zh": "因为测量了 250 名上班族，所以这项研究证明了多吃水果蔬菜导致病假减少。"
+        },
+        {
+          "en": "This is a census, because every worker in the study was measured on both variables.",
+          "zh": "这是普查，因为研究里的每个上班族两个变量都被测量了。"
+        },
+        {
+          "en": "This is a correlational study, which is an experiment in which the researcher controls the subjects.",
+          "zh": "这是相关性研究，也就是研究者控制受试者的实验。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "为什么选 B：研究者只是“记录”（records），没有安排谁吃多少，也就是对受试者没有实验控制（**no experimental control over the subjects**），所以这是观察性研究（**observational study**），又叫相关性研究（**correlational study**）（课件 p.2）。它能显示关联（**association**）：水果蔬菜吃得多的人往往病假少；但证明不了因果（**cause and effect**），因为可能有潜伏变量（**lurking variable**），比如常锻炼、生活习惯更健康的人，既更爱吃水果蔬菜，又更少生病（p.4）。\nA 错：实验（**experiment**）要由研究者主动安排处理，比如随机分配谁每天多吃水果蔬菜；这里没有任何安排。\nC 错：样本再大，观察研究也只能说明关联，人数多不能把它变成因果证明。\nD 错：普查（**census**）是测量总体（**population**）里的每一个个案；这 250 人只是样本（**sample**）。\nE 错：correlational study 就是 observational study 的另一个名字，研究者恰恰不控制受试者。",
+        "en": "The researcher only observes and records, so this is an observational (correlational) study. It can show an association, not cause and effect."
+      }
+    },
+    {
+      "id": "mod05-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-bivariate-analysis",
+      "prompt": {
+        "en": "Researchers want to know whether the outdoor temperature (°C) can be used to predict the monthly heating bill ($) of houses in a town. Which is the response variable?",
+        "zh": "研究者想知道能不能用室外气温（°C）来预测一个镇上房子每月的取暖费（美元）。哪个是响应变量？"
+      },
+      "options": [
+        {
+          "en": "Outdoor temperature (°C)",
+          "zh": "室外气温（°C）"
+        },
+        {
+          "en": "The houses in the town",
+          "zh": "镇上的房子"
+        },
+        {
+          "en": "The average monthly heating bill of all houses in the town",
+          "zh": "镇上所有房子每月取暖费的平均值"
+        },
+        {
+          "en": "The monthly heating bill ($)",
+          "zh": "每月取暖费（美元）"
+        },
+        {
+          "en": "The month of the year",
+          "zh": "一年中的月份"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "为什么选 D：响应变量（**response variable**，也叫 outcome variable）是我们想解释或预测的结果，记作 y，画在纵轴（课件 p.3）。题目说“用气温来预测取暖费”，被预测的是取暖费，所以它是 y。\nA 错：气温是用来做预测的那个变量，是解释变量（**explanatory variable**，也叫预测变量 **predictor variable**），角色反了。\nB 错：房子是个案（**case**），每栋房子是一行数据，不是变量。\nC 错：“所有房子的平均取暖费”是一个汇总数字，不是对每栋房子记录的变量。2025 期中 Q8 也有这种陷阱：以 “The proportion of …” 或 “The percentage of …” 开头的选项，说的是一群个案的汇总数字，不是变量；这里的 “The average … of all houses” 也一样。\nE 错：研究问题里没有月份。\n同类题：Module 5 correlation practice Q1b、Q5d；regression practice Q1。",
+        "en": "The heating bill is what we want to predict, so it is the response variable (y). Temperature is the explanatory (predictor) variable."
+      }
+    },
+    {
+      "id": "mod05-q03",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s03-lurking-variables",
+      "prompt": {
+        "en": "A vet plots body weight (kg) against daily food intake (g) for 80 adult dogs and finds a strong positive association. Half of the dogs are a small breed and half are a large breed, but breed is not shown on the plot. If breed is left out of the analysis, it is best described as:",
+        "zh": "一位兽医为 80 只成年狗画出体重（kg）对每日进食量（g）的散点图，发现很强的正关联。其中一半是小型犬品种，一半是大型犬品种，但图上没有显示品种。如果分析时不考虑品种，品种最好被描述为："
+      },
+      "options": [
+        {
+          "en": "a lurking variable, because breed is related to both food intake and body weight.",
+          "zh": "潜伏变量，因为品种同时和进食量、体重都有关。"
+        },
+        {
+          "en": "the response variable, because it is plotted on the vertical axis.",
+          "zh": "响应变量，因为它画在纵轴上。"
+        },
+        {
+          "en": "the explanatory variable, because it is plotted on the horizontal axis.",
+          "zh": "解释变量，因为它画在横轴上。"
+        },
+        {
+          "en": "an outlier, because it does not appear on the plot.",
+          "zh": "离群值，因为它没有出现在图上。"
+        },
+        {
+          "en": "irrelevant, because breed is a categorical variable.",
+          "zh": "无关紧要，因为品种是类别变量。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "为什么选 A：潜伏变量（**lurking variable**）是同时和解释变量、响应变量都有关，却没有放进分析里的变量，它会让人误以为 x 在影响 y（课件 p.4）。大型犬吃得多，也重；小型犬吃得少，也轻。所以品种同时连着进食量（x）和体重（y），被忽略时就是潜伏变量。\nB 错：品种根本没有画在图上；纵轴上的响应变量（**response variable**）是体重。\nC 错：同样，品种不在图上；横轴上的解释变量（**explanatory variable**）是进食量。\nD 错：离群值（**outlier**）是远离整体模式的单个点（p.9），不是一个变量。\nE 错：类别变量（**categorical variable**）也可以是潜伏变量。官方练习里，性别（gender）就是这样一个类别型的潜伏变量。\n同类题：Module 5 correlation practice Q5e（i 和 ii）。",
+        "en": "Breed is linked to both food intake and body weight but is not in the analysis, so it is a lurking variable. A categorical variable can be a lurking variable."
+      }
+    },
+    {
+      "id": "mod05-q04",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s04-causation-diagrams",
+      "prompt": {
+        "en": "Over one summer, a beach's daily number of cold drinks sold (x) and its daily number of lifeguard rescues (y) rise and fall together. Buying a cold drink does not put anyone in danger in the water. Which explanation for the association between x and y fits best?",
+        "zh": "一个夏天里，某海滩每天卖出的冷饮数量（x）和每天救生员救援的次数（y）同涨同落。买冷饮并不会让人在水里遇到危险。哪种解释最符合 x 和 y 之间的关联？"
+      },
+      "options": [
+        {
+          "en": "Causation: selling more cold drinks causes more rescues.",
+          "zh": "因果：卖出更多冷饮导致更多救援。"
+        },
+        {
+          "en": "Confounding: the drinks sold and some other variable may both affect y, so their effects cannot be separated.",
+          "zh": "混杂：冷饮销量和另一个变量都可能影响 y，所以它们的作用分不开。"
+        },
+        {
+          "en": "Common response: the number of visitors at the beach (z) increases both x and y.",
+          "zh": "共同响应：海滩上的游客人数（z）让 x 和 y 都增加。"
+        },
+        {
+          "en": "Common response: the price of a cold drink (z) affects both x and y.",
+          "zh": "共同响应：冷饮的价格（z）同时影响 x 和 y。"
+        },
+        {
+          "en": "Chance only: x and y are unrelated.",
+          "zh": "纯属巧合：x 和 y 没有关系。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "为什么选 C：课件 p.5 的三种解释里，(b) 共同响应（**common response**）是：潜伏变量 z 同时导致 x 和 y（z → x，z → y），x 和 y 之间只有关联，没有因果箭头。这里要自己找出 z：游客多的日子，冷饮卖得多，下水的人多，需要救援的也多。游客人数同时连着 x 和 y，而买冷饮不会让人遇险，正好是 (b)。\nA 错：因果（**causation**）需要 x → y 的箭头，题目已经排除了。\nB 错：混杂（**confounding**，p.5 (c)）是 x 和另一个变量都“可能”影响 y、作用分不开；这里 x 不影响 y，原因清楚地来自游客人数。\nD 错：潜伏变量必须同时和 x、y 都有关（p.4）。冷饮价格也许会影响冷饮销量，但和救援次数无关，解释不了两者同涨同落。\nE 错：两者同涨同落有一个真实的共同原因（游客人数），不是巧合。\n同类题：课件 p.46（生活水平可能同时影响医生数量、电视数量和预期寿命）。",
+        "en": "The number of beach visitors (z) is linked to both cold-drink sales and rescues, and x does not cause y: common response, panel (b) on slide p.5. The price of a drink is linked to x only, so it cannot explain the association."
+      }
+    },
+    {
+      "id": "mod05-q05",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s05-scatterplots",
+      "prompt": {
+        "en": "A coach records each player's vertical jump height (cm) and 20-metre sprint time (seconds) for 25 players. Which graph is most appropriate to show the relationship between these two variables?",
+        "zh": "一位教练记录了 25 名球员每人的垂直起跳高度（cm）和 20 米冲刺时间（秒）。要展示这两个变量之间的关系，哪种图最合适？"
+      },
+      "options": [
+        {
+          "en": "Histogram",
+          "zh": "直方图"
+        },
+        {
+          "en": "Bar chart",
+          "zh": "条形图"
+        },
+        {
+          "en": "Pie chart",
+          "zh": "饼图"
+        },
+        {
+          "en": "Side-by-side boxplots",
+          "zh": "并排箱线图"
+        },
+        {
+          "en": "Scatterplot",
+          "zh": "散点图"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "为什么选 E：两个变量都是数值变量（**quantitative variable**），而且是在同一批球员身上测的。要看两个数值变量之间的关系，就用散点图（**scatterplot**）：每个点是一名球员，横坐标是一个变量，纵坐标是另一个变量（课件 p.6）。\nA 错：直方图（**histogram**）只展示一个数值变量的分布（Module 3）。\nB、C 错：条形图（**bar chart**）和饼图（**pie chart**）用于类别变量（Module 2）。\nD 错：并排箱线图（**side-by-side boxplots**）用来按类别分组比较一个数值变量（Module 4），这里没有分组变量。\n同类题：2025 期中 Q21（那道题是类别变量，所以选 bar chart）。",
+        "en": "Two quantitative variables measured on the same players: use a scatterplot. Histograms and boxplots show one quantitative variable; bar and pie charts are for categorical variables."
+      }
+    },
+    {
+      "id": "mod05-q06",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s05-scatterplots",
+      "prompt": {
+        "en": "For 90 adults, a scatterplot of hand span (cm, y) against height (cm, x) is coloured by sex. Both groups rise along straight bands, but the females' points lie closer to a line (r = 0.81) than the males' points (r = 0.57). Does sex appear to be an important variable in understanding the relationship between hand span and height?",
+        "zh": "90 名成年人的手掌跨度（cm，y）对身高（cm，x）的散点图按性别上色。两组的点都沿着直线带上升，但女性的点更贴近一条直线（r = 0.81），男性的点散一些（r = 0.57）。在理解手掌跨度和身高的关系时，性别看起来是不是一个重要变量？"
+      },
+      "options": [
+        {
+          "en": "Yes. The relationship is stronger for females (r = 0.81) than for males (r = 0.57).",
+          "zh": "是。这个关系对女性更强（r = 0.81），对男性弱一些（r = 0.57）。"
+        },
+        {
+          "en": "No, because both groups show a positive linear association.",
+          "zh": "不是，因为两组都是正的线性关联。"
+        },
+        {
+          "en": "No, because sex is a categorical variable, so it cannot affect a relationship between two quantitative variables.",
+          "zh": "不是，因为性别是类别变量，不可能影响两个数值变量之间的关系。"
+        },
+        {
+          "en": "No, because the r for all 90 adults together already describes both groups.",
+          "zh": "不是，因为 90 人合在一起算的 r 已经能代表两组。"
+        },
+        {
+          "en": "Yes, because the scatterplot proves that a person's sex causes their hand span.",
+          "zh": "是，因为散点图证明了性别导致手掌跨度不同。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "为什么选 A：比较两组各自的强度。女性的点更贴近直线，r = 0.81（|r| ≥ 0.8，强）；男性 r = 0.57（0.5 ≤ |r| < 0.8，中到强）。同一个关系在两组里强弱不同，说明性别是理解这个关系的重要变量。答这种 Yes/No 题，先明确写出 Yes 或 No，再给理由（官方答案漏写了 Yes）。\nB 错：两组方向和形态一样，不代表性别不重要；关键是两组的强度不同。\nC 错：类别变量也可以是重要变量，甚至是潜伏变量（**lurking variable**）：图上不标性别时，它同时和身高、手掌跨度都有关。\nD 错：几群点合在一起算的 r，可能和每一组单独算的都不一样（官方练习里全体 r = 0.781，女生 0.75、男生 0.64），所以合起来的 r 代表不了每一组。\nE 错：这是观察数据，只能说明关联，证明不了因果；而且题目问的是关系的强弱。\n同类题：Module 5 correlation practice Q5e-i。",
+        "en": "The relationship is stronger for females (r = 0.81) than for males (r = 0.57), so sex matters: write 'Yes' first, then justify. A categorical variable can matter, a combined r hides the group difference, and the plot cannot prove causation."
+      }
+    },
+    {
+      "id": "mod05-q07",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s06-direction-form-strength",
+      "prompt": {
+        "en": "Five scatterplots are described below. Which one shows the strongest linear relationship?",
+        "zh": "下面描述了五张散点图。哪一张显示的线性关系最强？"
+      },
+      "options": [
+        {
+          "en": "The points rise steeply from left to right but are widely scattered around the trend.",
+          "zh": "点从左往右陡峭上升，但围绕趋势散得很开。"
+        },
+        {
+          "en": "The points rise gently from left to right and lie very close to a straight line.",
+          "zh": "点从左往右缓慢上升，而且非常贴近一条直线。"
+        },
+        {
+          "en": "The points form a round cloud with no trend.",
+          "zh": "点形成一团圆形的云，没有趋势。"
+        },
+        {
+          "en": "The points fall steeply from left to right with wide scatter.",
+          "zh": "点从左往右陡峭下降，散得很开。"
+        },
+        {
+          "en": "The points rise and then fall, forming an arch.",
+          "zh": "点先上升后下降，形成一个拱形。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "为什么选 B：强度（**strength**）看的是点有多紧、离直线有多近（课件 p.7：Tight cluster of points, measures how much scatter），不看线有多陡。B 的点几乎都在一条直线上，|r| 最接近 1（|r| 是 r 去掉正负号后的大小）。\nA 错：陡，但是很散。陡峭程度不是强度。\nC 错：圆形的云没有趋势，几乎没有关联（p.8）。\nD 错：同样是陡但散。方向是负的不影响强弱比较，关键是散得开。\nE 错：拱形是弯曲关系，线性关系几乎为 0（p.32 图 f：r near 0, little or no linear relationship）。\n同类题：Module 5 correlation practice Q5b（选点最紧的那一对变量）。",
+        "en": "Strength means how tightly the points cluster around a line, not how steep the line is. Plot B is the tightest."
+      }
+    },
+    {
+      "id": "mod05-q08",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s09-bookstore-sales",
+      "prompt": {
+        "en": "A café records the daily high temperature (°C) and the number of iced drinks sold on each of 30 days. The scatterplot rises from left to right along a straight band. The points are fairly close to the band, but sales vary more on the hottest days. Which statement best describes the relationship?",
+        "zh": "一家咖啡店记录了 30 天里每天的最高气温（°C）和冰饮卖出的杯数。散点图沿着一条直的带子从左往右上升。点离这条带子比较近，但最热的那些天销量波动更大。哪句话最好地描述了这个关系？"
+      },
+      "options": [
+        {
+          "en": "Higher temperatures cause the café to sell more iced drinks.",
+          "zh": "气温升高导致咖啡店卖出更多冰饮。"
+        },
+        {
+          "en": "There appears to be a moderate to strong negative linear association between iced-drink sales and daily high temperature. As the temperature increases, sales tend to decrease.",
+          "zh": "冰饮销量和每日最高气温之间看起来有中到强的负线性关联。气温升高时，销量往往下降。"
+        },
+        {
+          "en": "There appears to be a moderate to strong positive linear association between iced-drink sales and daily high temperature. As the temperature increases, sales tend to increase, with more variability in sales on the hottest days.",
+          "zh": "冰饮销量和每日最高气温之间看起来有中到强的正线性关联。气温升高时，销量往往增加；最热的几天销量的波动更大。"
+        },
+        {
+          "en": "There is no association between iced-drink sales and daily high temperature, because the points do not lie exactly on a line.",
+          "zh": "冰饮销量和每日最高气温之间没有关联，因为点并不完全落在一条直线上。"
+        },
+        {
+          "en": "There appears to be a positive linear association between iced-drink sales and daily high temperature, so every hotter day has higher sales than every cooler day.",
+          "zh": "冰饮销量和每日最高气温之间看起来有正线性关联，所以每一个更热的日子销量都比每一个更凉的日子高。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "为什么选 C：描述散点图要写的东西它都写全了：方向（positive）、形态（linear）、强度（moderate to strong，对应“比较近”）、特别之处（最热的几天波动更大，就像课件 p.12 书店例子里“10 到 15 个销售员时销售额波动更大”），还写了两个变量的名字，用的是 “tend to”。\nA 错：这是观察数据，用 “cause” 是因果说法。相关不能证明因果（p.47），可能还有别的因素，比如周末、游客多少。\nB 错：从左往右上升是正关联，方向写反了。\nD 错：点不完全在线上，只说明关系不完美（**not perfect**，p.12），不代表没有关联。\nE 错：关联是一种倾向（**tend to**，p.3），不是绝对规则，不是每个更热的日子都一定卖得更多。\n同类题：课件 p.12 的完整回答；Module 5 correlation practice Q1a。",
+        "en": "Option C gives direction, form, strength, the unusual feature and the context, with 'tend to'. A makes a causal claim, B has the wrong direction, and D and E treat an association as an exact rule."
+      }
+    },
+    {
+      "id": "mod05-q09",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s09-bookstore-sales",
+      "prompt": {
+        "en": "For 25 students, x = hours per week worked at a part-time job and y = hours of free time per week. The scatterplot shows points falling from left to right along a straight band, with moderate scatter and no outliers. The correlation is r = −0.72. Describe the direction, form and strength of the relationship in the context of this study.",
+        "zh": "25 名学生，x = 每周打工的小时数，y = 每周的空闲时间（小时）。散点图里的点沿着一条直的带子从左往右下降，散布程度中等，没有离群值。相关系数 r = −0.72。结合这项研究的情境，描述这个关系的方向、形态和强度。"
+      },
+      "modelAnswer": {
+        "en": "There appears to be a moderate to strong negative linear association between weekly free time (in hours) and weekly hours worked at a part-time job. As the number of hours worked per week increases, the hours of free time per week tend to decrease.",
+        "zh": "拆开看：第一句套模板 “There appears to be a [强度] [方向] linear association between [y] and [x].”。强度写 moderate to strong，因为 |−0.72| = 0.72 在 0.5 和 0.8 之间；方向写 negative，因为点往下走、r 是负的；形态写 linear，因为是一条直的带子。先写 y（空闲时间），再写 x（打工时间），都带单位。第二句用 “As x increases, y tends to decrease.” 说清方向在情境里的意思。全程不用 cause。"
+      },
+      "points": [
+        {
+          "en": "Direction: negative (the points fall from left to right; r < 0)",
+          "zh": "方向：负（点从左往右下降；r 小于 0）"
+        },
+        {
+          "en": "Form: linear (a straight band with no curve)",
+          "zh": "形态：线性（一条直的带子，没有弯曲）"
+        },
+        {
+          "en": "Strength: moderate to strong, because 0.5 ≤ |−0.72| < 0.8",
+          "zh": "强度：中到强，因为 0.5 ≤ |−0.72| < 0.8"
+        },
+        {
+          "en": "Context: both variables named with units, 'tend to', and no causal claim",
+          "zh": "情境：写出两个变量的名字和单位，用 “tend to”，不说因果"
+        }
+      ],
+      "explain": {
+        "zh": "评分要点就是方向、形态、强度，再加上情境。最容易丢分的地方：① 强度写成 strong（0.72 还不到 0.8）或 moderate（0.72 已经超过 0.5），一定要按课件 p.32 的强度标准（**strength scale**）看 |r|（r 去掉负号后的大小）；② 只写 “negative, linear, moderate to strong” 三个词，没有变量名和单位；③ 写成 “working more causes less free time”，这是因果说法，观察数据不能这样写。\n同类题：Module 5 correlation practice Q1a、Q2a；regression practice Q2b。",
+        "en": "|r| = 0.72 is between 0.5 and 0.8, so the strength is moderate to strong. Name both variables with units and use 'tend to'."
+      }
+    },
+    {
+      "id": "mod05-q10",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s10-smoking-and-brain-size",
+      "prompt": {
+        "en": "For 60 adults, a scatterplot of height (cm, x) against score on a short memory test (y) shows no upward or downward trend: short and tall adults both have high and low scores. Software gives r = 0.12. Which statement is best?",
+        "zh": "60 名成年人的身高（cm，x）和一个简短记忆测试的分数（y）画成散点图，看不出向上或向下的趋势：矮的和高的人都有高分，也都有低分。软件算出 r = 0.12。哪个说法最好？"
+      },
+      "options": [
+        {
+          "en": "There is a moderate positive linear association, because r is positive.",
+          "zh": "有中等的正线性关联，因为 r 是正的。"
+        },
+        {
+          "en": "There is a weak negative association, because the points show no upward trend.",
+          "zh": "有弱的负关联，因为点没有向上的趋势。"
+        },
+        {
+          "en": "Height and memory score are certainly unrelated in every way, because r is close to 0.",
+          "zh": "身高和记忆分数肯定在任何方面都没有关系，因为 r 接近 0。"
+        },
+        {
+          "en": "There appears to be little or no association between height and memory score; r = 0.12 is a weak linear association on the course scale.",
+          "zh": "身高和记忆分数之间看起来几乎没有关联；按课程的标准，r = 0.12 是弱的线性关联。"
+        },
+        {
+          "en": "The relationship must be non-linear, because the points do not lie on a straight line.",
+          "zh": "关系一定是非线性的，因为点没有落在一条直线上。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "为什么选 D：看不出趋势的点云，课件 p.16 的标准写法是 little or no association（几乎没有关联）；给了 r，就再按课件 p.32 的标准分级：|0.12| < 0.3 → weak（弱）。两句话说的是同一件事。\nA 错：正负号只说明方向；强度看 |r|，0.12 < 0.3 是弱，不是 moderate（0.3 ≤ |r| < 0.5）。\nB 错：r = 0.12 是正数，方向不是负的。\nC 错：说过头了。课件 p.50：低相关只说明没有很强的直线关系，不能证明两个变量在任何方面都无关。\nE 错：非线性关系要有一条清楚的曲线（像 p.17–20 的例子）；没有趋势的点云不是曲线。\n同类题：课件 p.15–16（脑容量和表现 IQ）。",
+        "en": "A trendless cloud shows little or no association, and |r| = 0.12 < 0.3 is weak on the p.32 scale. A low r does not prove the variables are unrelated in every way (p.50), and a non-linear relationship needs a clear curve."
+      }
+    },
+    {
+      "id": "mod05-q11",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s11-nonlinear-relationships",
+      "prompt": {
+        "en": "A café measures the temperature (°C, y) of 30 cups of coffee, each at a different time between 0 and 60 minutes after it was poured (x). The scatterplot falls steeply at first (from about 85 °C) and then more and more slowly, levelling off near 22 °C (room temperature). The points lie very close to this smooth curve. Which statement best describes the relationship between time and temperature?",
+        "zh": "一家咖啡店测量了 30 杯咖啡的温度（°C，y），每杯在倒出后 0 到 60 分钟之间的不同时间测量（x）。散点图一开始下降得很快（从大约 85 °C 开始），之后越降越慢，最后在 22 °C（室温）附近趋平。点都非常贴近这条平滑的曲线。哪个说法最能描述时间和温度之间的关系？"
+      },
+      "options": [
+        {
+          "en": "There is a strong negative linear relationship.",
+          "zh": "强的负线性关系。"
+        },
+        {
+          "en": "There is a strong positive nonlinear relationship.",
+          "zh": "强的正非线性关系。"
+        },
+        {
+          "en": "There is a strong negative nonlinear relationship.",
+          "zh": "强的负非线性关系。"
+        },
+        {
+          "en": "There is a weak negative nonlinear relationship.",
+          "zh": "弱的负非线性关系。"
+        },
+        {
+          "en": "There is little or no relationship.",
+          "zh": "几乎没有关系。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "为什么选 C：按方向、形态、强度三步看。方向：时间越长温度越低，所以是负（negative）。形态：先陡降、后趋平，是一条弯曲的线，所以是非线性（**nonlinear**）。强度：点非常贴近曲线、几乎没有散布，所以是强（strong）。曲线关系也可以是“强”的：强度看点离形态（这里是曲线）有多近。\nA 错：先陡后平的形状不是直线，不能说 linear。\nB 错：温度在下降，方向是负的。\nD 错：点紧贴曲线，是强，不是弱。\nE 错：温度明显随时间变化，关系很清楚。\n同类题：2025 期中 Q18（图的方向和形状不同，判断方法一样）。",
+        "en": "Temperature falls as time goes on (negative), the pattern bends and levels off (nonlinear), and the points hug the curve (strong)."
+      }
+    },
+    {
+      "id": "mod05-q12",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s11-nonlinear-relationships",
+      "prompt": {
+        "en": "A biologist counts the bacteria in a dish every hour for 12 hours. The scatterplot of the count (y) against time in hours (x) curves upward more and more steeply, with very little scatter. Is it appropriate to summarize the strength of this association with the correlation coefficient r?",
+        "zh": "一位生物学家在 12 个小时里每小时数一次培养皿里的细菌数。细菌数（y）对时间（小时，x）的散点图向上弯，而且越来越陡，几乎没有散布。用相关系数 r 来概括这个关联的强度合适吗？"
+      },
+      "options": [
+        {
+          "en": "Yes, because the association is strong and positive, with very little scatter.",
+          "zh": "合适，因为关联又强又正，几乎没有散布。"
+        },
+        {
+          "en": "Yes, because r can describe the strength of any kind of pattern, straight or curved.",
+          "zh": "合适，因为 r 可以描述任何形状的模式的强度，直的弯的都行。"
+        },
+        {
+          "en": "No, because there are only 12 points, which is too few for a correlation.",
+          "zh": "不合适，因为只有 12 个点，算相关系数太少了。"
+        },
+        {
+          "en": "No, because time is a categorical variable, not a quantitative one.",
+          "zh": "不合适，因为时间是类别变量，不是数值变量。"
+        },
+        {
+          "en": "No, because the association is not linear, and r measures only linear association.",
+          "zh": "不合适，因为这个关联不是线性的，而 r 只衡量线性关联。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "为什么选 E：相关（**correlation**）衡量的是两个数值变量之间线性（**linear**）关联的方向和强度（课件 p.25、p.28）。先看形态：这张图是向上弯的曲线，不是直线，所以用 r 概括不合适。\nA 错：只看“强”和“正”不够，前提是形态是直线。\nB 错：r 只管直线。弯曲的关系，r 可能接近 0（比如 p.32 图 f 的拱形），也可能很大但仍然误导人。\nC 错：点的个数不是原因；12 个点照样可以算 r，问题在于形状是弯的。\nD 错：时间（小时）是数值变量。\n同类题：Module 5 correlation practice Q4a（GDP 和 HDI 的图是弯的，所以答 No）。",
+        "en": "Correlation measures only linear association. The plot curves upward, so r is not an appropriate summary."
+      }
+    },
+    {
+      "id": "mod05-q13",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s11-nonlinear-relationships",
+      "prompt": {
+        "en": "For 80 companies, a scatterplot of yearly revenue ($) against the number of employees curves upward and is very spread out at the top. After revenue is replaced by log(revenue), the new scatterplot shows a roughly straight band. What is the main effect of the log re-expression?",
+        "zh": "80 家公司的年收入（美元）对员工人数的散点图向上弯，而且在上面散得很开。把收入换成 log(收入) 以后，新的散点图变成一条大致直的带子。取对数这一步的主要作用是什么？"
+      },
+      "options": [
+        {
+          "en": "It turned the positive association into a negative one, because logs make large values smaller.",
+          "zh": "它把正关联变成了负关联，因为取对数会让大的数变小。"
+        },
+        {
+          "en": "It made the pattern much straighter (closer to linear), so a correlation or a straight-line model is now more reasonable.",
+          "zh": "它让图形直了很多（更接近线性），所以现在用相关系数或直线模型更合理。"
+        },
+        {
+          "en": "It removed the association, so revenue no longer depends on the number of employees.",
+          "zh": "它消除了关联，所以收入不再和员工人数有关。"
+        },
+        {
+          "en": "It proved that having more employees causes a company to earn higher revenue.",
+          "zh": "它证明了员工更多会导致公司收入更高。"
+        },
+        {
+          "en": "It changed the number of companies in the sample, because some revenues were removed.",
+          "zh": "它改变了样本里公司的数量，因为有些收入被删掉了。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "为什么选 B：收入这类金额数据常常右偏（**skewed to the right**），大的数特别大。取对数（**log**）会把很大的数“压”回来，弯曲、上面散开的图就变直了（课件 p.20 老师手写的 “log” 就是这个意思）。图变直以后，用 r 或直线来概括才合理。\nA 错：取对数确实让大的数变小，但不改变大小顺序（收入越高，log 收入也越高），所以方向还是正的。\nC 错：新图仍然是一条上升的带子，关联还在。\nD 错：换一种表达方式不能证明因果，这仍然是观察数据。\nE 错：没有删掉任何数据，还是那 80 家公司，只是 y 换了一种写法。\n同类题：Module 5 correlation practice Q4b（官方答案的意思是：新图比原图直得多）。",
+        "en": "Taking logs pulls in the very large values, so the curved pattern becomes much straighter. The direction stays positive and n stays 80."
+      }
+    },
+    {
+      "id": "mod05-q14",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s13-changing-units",
+      "prompt": {
+        "en": "For 50 fish, the correlation between length (inches) and weight (pounds) is r = 0.83. The data are converted to centimetres (1 in = 2.54 cm) and kilograms (1 lb ≈ 0.4536 kg). What is r for the converted data?",
+        "zh": "50 条鱼的长度（英寸）和重量（磅）之间的相关系数 r = 0.83。把数据换算成厘米（1 英寸 = 2.54 厘米）和千克（1 磅 ≈ 0.4536 千克）。换算后的 r 是多少？"
+      },
+      "options": [
+        {
+          "en": "0.83"
+        },
+        {
+          "en": "2.11"
+        },
+        {
+          "en": "0.38"
+        },
+        {
+          "en": "0.96"
+        },
+        {
+          "en": "0.69"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "为什么选 A：r 没有单位（**r has no unit of measurement**，课件 p.28）。换单位只是把每个值乘上同一个正数，散点图的形状完全不变（p.24），所以 r 还是 0.83。\nB（2.11）错：0.83 × 2.54 = 2.108，把 r 也乘了换算系数；而且 r 永远在 −1 和 1 之间，2.11 不可能。\nC（0.38）错：0.83 × 0.4536 = 0.376，同样错误地乘了换算系数。\nD（0.96）错：0.83 × 2.54 × 0.4536 = 0.956，两个系数都乘了。\nE（0.69）错：0.83² = 0.689，这是 R²，不是 r。",
+        "en": "r has no units, so converting inches to centimetres and pounds to kilograms does not change it: r = 0.83."
+      }
+    },
+    {
+      "id": "mod05-q15",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s14-correlation-and-covariance",
+      "prompt": {
+        "en": "For a sample of n = 9 pairs (x, y), Σ(x − x̄)(y − ȳ) = −48. What is the covariance cov(x, y)?",
+        "zh": "一个样本有 n = 9 对数据 (x, y)，Σ(x − x̄)(y − ȳ) = −48。协方差 cov(x, y) 是多少？"
+      },
+      "options": [
+        {
+          "en": "−48"
+        },
+        {
+          "en": "−5.33"
+        },
+        {
+          "en": "6"
+        },
+        {
+          "en": "−6"
+        },
+        {
+          "en": "2.45"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "为什么选 D：协方差（**covariance**）cov(x, y) = Σ(x − x̄)(y − ȳ) / (n − 1)（课件 p.26，老师把 n − 1 圈了出来）。Σ 的意思是“全部加起来”，x̄、ȳ 是 x 和 y 的平均数。代入：−48 / (9 − 1) = −48 / 8 = −6。负号说明 x 和 y 是负关系。\nA（−48）错：忘了除以 n − 1，这只是交叉乘积之和 SS_xy。\nB（−5.33）错：−48 / 9 = −5.333，除以了 n；课程一律用 n − 1。\nC（6）错：丢了负号，方向就反了。\nE（2.45）错：√(48 / 8) = 2.449，像算标准差那样开了根号；协方差的公式里没有根号。",
+        "en": "cov(x, y) = Σ(x − x̄)(y − ȳ)/(n − 1) = −48/8 = −6. Dividing by n gives −5.33; forgetting to divide gives −48."
+      }
+    },
+    {
+      "id": "mod05-q16",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s15-correlation-coefficient",
+      "prompt": {
+        "en": "Select ALL statements that are true about the estimated correlation coefficient r.",
+        "zh": "选出关于样本相关系数 r 的所有正确说法。"
+      },
+      "options": [
+        {
+          "en": "r has no unit of measurement.",
+          "zh": "r 没有单位。"
+        },
+        {
+          "en": "r measures any kind of relationship, straight or curved.",
+          "zh": "r 能衡量任何形状的关系，直的弯的都行。"
+        },
+        {
+          "en": "r is sensitive to extreme outliers.",
+          "zh": "r 容易受到极端离群值的影响。"
+        },
+        {
+          "en": "r is the population correlation coefficient, written ρ.",
+          "zh": "r 是总体相关系数，记作 ρ。"
+        },
+        {
+          "en": "r is always between −1 and 1.",
+          "zh": "r 永远在 −1 和 1 之间。"
+        },
+        {
+          "en": "Converting x from inches to centimetres changes the value of r.",
+          "zh": "把 x 从英寸换算成厘米会改变 r 的值。"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "explain": {
+        "zh": "正确的三条（A、C、E）都来自课件 p.28 和 p.31：r 没有单位；r 对极端离群值敏感（**sensitive to extreme outliers**）；−1 ≤ r ≤ 1。\nB 错：r 只衡量线性（**linear**）关联；拱形这种弯曲关系，r 可能接近 0（p.32 图 f）。\nD 错：总体相关系数（**population correlation coefficient**）记作 ρ（读作 rho），r 是用样本算出来的估计值（p.28）。可以这样记：ρ 是参数（**parameter**），r 是统计量（**statistic**）。\nF 错：r 没有单位，换单位不改变 r（p.24、p.28）。",
+        "en": "True: no units, sensitive to outliers, between −1 and 1. False: r measures only linear association, ρ is the population value, and unit changes do not change r."
+      }
+    },
+    {
+      "id": "mod05-q17",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s15-correlation-coefficient",
+      "prompt": {
+        "en": "If we swap the roles of the two variables (put the response variable on the horizontal axis and the explanatory variable on the vertical axis), the value of r does not change.",
+        "zh": "如果把两个变量的角色对调（把响应变量放到横轴、解释变量放到纵轴），r 的值不会改变。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "正确。看公式 r = SS_xy / √(SS_xx · SS_yy)（课件 p.29）：分子 SS_xy = Σ(x − x̄)(y − ȳ)，x 和 y 对调后乘积不变；分母是 SS_xx 和 SS_yy 相乘，对调后也不变。所以 r 不变。例：药物数据 r = 7 / √(10 × 6) = 0.9037，把 x、y 对调还是 7 / √(6 × 10) = 0.9037。\n注意：回归直线不一样。用 x 预测 y 和用 y 预测 x 是两条不同的直线，所以回归题一定要先认清谁是响应变量（补充（课件外））。\n同类题：Module 5 correlation practice Q5d（选哪个当解释变量不会改变 r）。",
+        "en": "True. The formula for r treats x and y the same way, so swapping them gives the same r. The regression line, however, does change."
+      }
+    },
+    {
+      "id": "mod05-q18",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s16-values-of-r",
+      "prompt": {
+        "en": "For 40 concerts, the correlation between the ticket price ($) and the number of tickets sold is r = −0.46. Using the course's strength scale, how is this association described?",
+        "zh": "40 场音乐会的票价（美元）和售出票数之间的相关系数 r = −0.46。按课程的强度标准，这个关联怎么描述？"
+      },
+      "options": [
+        {
+          "en": "Weak negative",
+          "zh": "弱的负关联"
+        },
+        {
+          "en": "Moderate negative",
+          "zh": "中等的负关联"
+        },
+        {
+          "en": "Moderate to strong negative",
+          "zh": "中到强的负关联"
+        },
+        {
+          "en": "Strong negative",
+          "zh": "强的负关联"
+        },
+        {
+          "en": "Moderate positive",
+          "zh": "中等的正关联"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "为什么选 B：强度看绝对值 |r|（去掉负号）：|−0.46| = 0.46。课件 p.32 的标准：|r| ≥ 0.8 强（strong）；0.5 ≤ |r| < 0.8 中到强（moderate to strong）；0.3 ≤ |r| < 0.5 中等（moderate）；|r| < 0.3 弱（weak）。0.46 在 0.3 和 0.5 之间，所以是 moderate；r 是负数，所以是 negative。\nA 错：weak 要 |r| < 0.3。\nC 错：moderate to strong 要 |r| 至少 0.5。\nD 错：strong 要 |r| 至少 0.8。\nE 错：r 是负的，方向是 negative。",
+        "en": "|r| = 0.46 is between 0.3 and 0.5, so the association is moderate; the minus sign makes it negative."
+      }
+    },
+    {
+      "id": "mod05-q19",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s16-values-of-r",
+      "prompt": {
+        "en": "For 60 adults, the correlation matrix below gives r for each pair of four variables: sleep (hours per night), screen (screen time, hours per day), exercise (hours per week) and heart rate (resting heart rate, beats per minute). Which value shows the strongest linear relationship?",
+        "zh": "下面的相关矩阵给出 60 名成年人四个变量两两之间的 r：sleep（每晚睡眠小时数）、screen（每天看屏幕的小时数）、exercise（每周运动小时数）、heart rate（静息心率，每分钟次数）。哪个数值显示的线性关系最强？"
+      },
+      "table": {
+        "headers": [
+          "",
+          "sleep",
+          "screen",
+          "exercise"
+        ],
+        "rows": [
+          [
+            "screen",
+            "-0.62",
+            "",
+            ""
+          ],
+          [
+            "exercise",
+            "0.35",
+            "-0.41",
+            ""
+          ],
+          [
+            "heart rate",
+            "-0.28",
+            "0.47",
+            "-0.83"
+          ]
+        ],
+        "caption": {
+          "en": "Correlation matrix (lower triangle only)",
+          "zh": "相关矩阵（只显示下三角）"
+        }
+      },
+      "options": [
+        {
+          "en": "0.47"
+        },
+        {
+          "en": "−0.62"
+        },
+        {
+          "en": "0.35"
+        },
+        {
+          "en": "−0.28"
+        },
+        {
+          "en": "−0.83"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "为什么选 E：比强弱要比绝对值 |r|，负号只代表方向。六个值的 |r| 从大到小：0.83 > 0.62 > 0.47 > 0.41 > 0.35 > 0.28。最大的是 −0.83（exercise 和 heart rate）：|r| ≥ 0.8，是强的负线性关联，每周运动越多的人，静息心率往往越低。\nA（0.47）错：它只是最大的正数。挑最大的正数，等于忘了看绝对值。\nB（−0.62）错：|r| 排第二。\nC（0.35）、D（−0.28）错：更弱。\n同类题：Module 5 correlation practice Q5c（从相关矩阵里找最强的关系）。",
+        "en": "Compare |r|: 0.83 is the largest, so −0.83 (exercise and resting heart rate) is the strongest linear relationship. The sign only shows direction."
+      }
+    },
+    {
+      "id": "mod05-q20",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s16-values-of-r",
+      "prompt": {
+        "en": "r = −0.85 shows a weaker linear relationship than r = 0.60, because −0.85 is a negative number.",
+        "zh": "r = −0.85 显示的线性关系比 r = 0.60 弱，因为 −0.85 是负数。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错误。强度看绝对值：|−0.85| = 0.85，大于 0.60，所以 r = −0.85 更强。按课件 p.32：0.85 ≥ 0.8 是强（strong）；0.60 在 0.5 和 0.8 之间，是中到强（moderate to strong）。正负号只告诉我们方向（**direction**）：负号表示 x 增大时 y 往往减小，和强弱无关（p.31：r 离 0 越远，线性关系越强）。",
+        "en": "False. Strength depends on |r|: 0.85 is larger than 0.60, so r = −0.85 is the stronger (strong, negative) relationship."
+      }
+    },
+    {
+      "id": "mod05-q21",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-drug-example-setup",
+      "prompt": {
+        "en": "For 50 adults, daily hours of phone use (x) and hours of sleep per night (y) are negatively associated. The points lie close to a falling straight line, but not exactly on it. Which is the best explanation of why phone use cannot explain 100% of the variation in sleep?",
+        "zh": "50 名成年人每天用手机的小时数（x）和每晚睡眠小时数（y）呈负关联。点离一条下降的直线很近，但不是正好在线上。为什么用手机时间不能解释睡眠时间 100% 的变异？哪个解释最好？"
+      },
+      "options": [
+        {
+          "en": "Because r is negative, and a negative association can never explain all of the variation.",
+          "zh": "因为 r 是负的，而负关联永远不能解释全部变异。"
+        },
+        {
+          "en": "Because a sample of 50 adults is too large for an exact relationship.",
+          "zh": "因为 50 名成年人的样本太大，不可能有精确的关系。"
+        },
+        {
+          "en": "Because hours of sleep is a categorical variable, not a quantitative one.",
+          "zh": "因为睡眠小时数是类别变量，不是数值变量。"
+        },
+        {
+          "en": "Because other variables that are not in the analysis (lurking variables, such as stress or caffeine) and random error also affect sleep.",
+          "zh": "因为没有放进分析的其他变量（潜伏变量，比如压力、咖啡因）和随机误差也会影响睡眠。"
+        },
+        {
+          "en": "Because x could explain 100% of the variation in y only if the points formed a curve.",
+          "zh": "因为只有当点形成一条曲线时，x 才能解释 y 100% 的变异。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "为什么选 D：课件 pp.35–36 的药物例子讲的就是这个：关系不是精确的，没有放进分析的潜伏变量（**lurking variables**）会造成解释不了的变异（**unexplained variation**，变异就是数值之间的高低差异）；还有一部分变异谁也解释不了，叫随机误差（**random error**，p.36）。这里压力、咖啡因、工作时间等都会影响睡眠。\nA 错：正负号只是方向。r = −1 时所有点都在一条下降的直线上，x 就能解释全部变异。\nB 错：样本量大小不是原因；关系不精确是因为还有别的因素在影响睡眠。\nC 错：睡眠小时数是数值变量。\nE 错：要解释 100% 的变异，所有点必须正好落在一条直线上（r = 1 或 −1，p.32 图 d、e），不是曲线。",
+        "en": "Points that are close to a line but not on it leave unexplained variation, which comes from lurking variables and random error (slides pp.35-36)."
+      }
+    },
+    {
+      "id": "mod05-q22",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s18-drug-scatterplot-in-r",
+      "prompt": {
+        "en": "In R, a data frame named Data has two numeric variables, Hours and Score, which can be used directly. Which command returns the estimated correlation coefficient r between Hours and Score?",
+        "zh": "在 R 里，数据框 Data 有两个数值变量 Hours 和 Score，可以直接使用。哪条命令会返回 Hours 和 Score 之间的样本相关系数 r？"
+      },
+      "options": [
+        {
+          "en": "`plot(Hours, Score)`",
+          "zh": "命令 `plot(Hours, Score)`"
+        },
+        {
+          "en": "`scale(Hours)`",
+          "zh": "命令 `scale(Hours)`"
+        },
+        {
+          "en": "`cor(Hours, Score)`",
+          "zh": "命令 `cor(Hours, Score)`"
+        },
+        {
+          "en": "`names(Data)`",
+          "zh": "命令 `names(Data)`"
+        },
+        {
+          "en": "`length(Score)`",
+          "zh": "命令 `length(Score)`"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "为什么选 C：`cor(x, y)` 直接给出相关系数 r，课件 p.41 用 `cor(Drug, Time)` 得到 0.9036961。\nA 错：`plot(Hours, Score)` 画散点图（p.38），第一个参数放横轴。\nB 错：`scale(Hours)` 把数据变成 z 分数（**z-scores**，p.43），不是 r。\nD 错：`names(Data)` 列出变量名（p.37）。\nE 错：`length(Score)` 数一共有几个值，也就是 n（p.43 用 `length(Time)-1` 得到 n − 1）。",
+        "en": "cor() returns r. plot() draws the scatterplot, scale() gives z-scores, names() lists the variable names and length() counts n."
+      }
+    },
+    {
+      "id": "mod05-q23",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s19-computing-r-by-hand",
+      "prompt": {
+        "en": "For a sample, the covariance is S_xy = 12.6, the standard deviation of x is s_x = 4.2, and the standard deviation of y is s_y = 5.0. What is the estimated correlation coefficient r?",
+        "zh": "某样本的协方差 S_xy = 12.6，x 的标准差 s_x = 4.2，y 的标准差 s_y = 5.0。样本相关系数 r 是多少？"
+      },
+      "options": [
+        {
+          "en": "3.00"
+        },
+        {
+          "en": "1.37"
+        },
+        {
+          "en": "0.36"
+        },
+        {
+          "en": "0.60"
+        },
+        {
+          "en": "0.03"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "为什么选 D：r = S_xy / (s_x s_y)（课件 pp.29–30），分母是两个标准差相乘：4.2 × 5.0 = 21，r = 12.6 / 21 = 0.60，是中到强的正线性关联（0.5 ≤ 0.60 < 0.8）。\nA（3.00）错：12.6 / 4.2 = 3，只除了 s_x；r 不可能大于 1。\nB（1.37）错：12.6 / (4.2 + 5.0) = 1.37，把两个标准差加起来而不是相乘；也大于 1。\nC（0.36）错：0.60² = 0.36，这是 R²，不是 r。\nE（0.03）错：12.6 / (4.2² × 5.0²) = 12.6 / 441 = 0.029，除以了方差（标准差的平方）。",
+        "en": "r = S_xy/(s_x s_y) = 12.6/(4.2 × 5.0) = 12.6/21 = 0.60."
+      }
+    },
+    {
+      "id": "mod05-q24",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s19-computing-r-by-hand",
+      "prompt": {
+        "en": "From a data table, SS_xy = 84, SS_xx = 120 and SS_yy = 98. Compute the estimated correlation coefficient r = SS_xy / √(SS_xx · SS_yy). Round to 3 decimal places.",
+        "zh": "从一张数据表算出 SS_xy = 84，SS_xx = 120，SS_yy = 98。计算样本相关系数 r = SS_xy / √(SS_xx · SS_yy)。保留 3 位小数。"
+      },
+      "answer": 0.775,
+      "tolerance": 0.0005,
+      "explain": {
+        "zh": "第 1 步，分母先相乘再开根号（√ 是开平方根）：120 × 98 = 11760，√11760 = 108.4435。\n第 2 步，r = 84 / 108.4435 = 0.77460 ≈ 0.775。\n第 3 步，检查：r 在 −1 和 1 之间；0.5 ≤ 0.775 < 0.8，是中到强的正线性关联。\n常见错误：忘了开根号，84 / 11760 = 0.0071；只除以 SS_xx，84 / 120 = 0.70（这其实是最小二乘斜率 b1 的算法，属于补充（课件外），不是 r）。这个公式里 n − 1 已经约掉了，不用再除（课件 p.29）。",
+        "en": "r = 84/√(120 × 98) = 84/√11760 = 84/108.4435 = 0.7746 ≈ 0.775."
+      }
+    },
+    {
+      "id": "mod05-q25",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s20-r-from-z-scores",
+      "prompt": {
+        "en": "For 16 used bicycles, x = age (years) and y = resale price ($). Software gives the summary statistics below. Using r = Σ z_x z_y / (n − 1), what is the estimated correlation coefficient r?",
+        "zh": "16 辆二手自行车，x = 车龄（年），y = 转售价格（美元）。软件给出了下面的汇总统计。用 r = Σ z_x z_y / (n − 1)，样本相关系数 r 是多少？"
+      },
+      "table": {
+        "headers": [
+          "Column",
+          "n",
+          "Sum"
+        ],
+        "rows": [
+          [
+            "Z Scores Age",
+            16,
+            "0"
+          ],
+          [
+            "Z Scores Price",
+            16,
+            "1.1e-15"
+          ],
+          [
+            "Z Scores Age * Z Scores Price",
+            16,
+            "-11.25"
+          ]
+        ],
+        "caption": {
+          "en": "Summary statistics (software output)",
+          "zh": "汇总统计（软件输出）"
+        }
+      },
+      "options": [
+        {
+          "en": "−0.70"
+        },
+        {
+          "en": "−0.75"
+        },
+        {
+          "en": "0"
+        },
+        {
+          "en": "0.75"
+        },
+        {
+          "en": "−11.25"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "为什么选 B：只用第三行，也就是 z 分数乘积之和 Σ z_x z_y = −11.25，n = 16，所以 r = −11.25 / (16 − 1) = −11.25 / 15 = −0.75（课件 p.42）。|−0.75| 在 0.5 和 0.8 之间，是中到强的负线性关联：车龄越大，价格往往越低。\nA（−0.70）错：−11.25 / 16 = −0.703，除以了 n；课程用 n − 1。\nC（0）错：用了前两行。z 分数之和永远是 0；1.1e-15 是科学计数法，等于 0.0000000000000011，只是电脑的舍入误差，其实就是 0。\nD（0.75）错：丢了负号。\nE（−11.25）错：忘了除以 n − 1；r 不可能小于 −1。\n同类题：Module 5 correlation practice Q2b-i。",
+        "en": "Use the sum of the products: r = −11.25/(16 − 1) = −0.75. The sums of the z-scores are always 0 (1.1e-15 is rounding noise)."
+      }
+    },
+    {
+      "id": "mod05-q26",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s20-r-from-z-scores",
+      "prompt": {
+        "en": "Six students recorded x = hours spent on weekly practice sets and y = quiz score. The table gives their z-scores (rounded to 2 decimals). Compute r = Σ z_x z_y / (n − 1). Round to 2 decimal places.",
+        "zh": "六名学生记录了 x = 每周做练习题的小时数，y = 小测验分数。表里给出他们的 z 分数（保留 2 位小数）。计算 r = Σ z_x z_y / (n − 1)，保留 2 位小数。"
+      },
+      "table": {
+        "headers": [
+          "Student",
+          "z_x",
+          "z_y"
+        ],
+        "rows": [
+          [
+            1,
+            "−1.38",
+            "−1.28"
+          ],
+          [
+            2,
+            "−0.69",
+            "−0.91"
+          ],
+          [
+            3,
+            "−0.35",
+            "0.18"
+          ],
+          [
+            4,
+            "0.35",
+            "−0.18"
+          ],
+          [
+            5,
+            "0.69",
+            "0.91"
+          ],
+          [
+            6,
+            "1.38",
+            "1.28"
+          ]
+        ],
+        "caption": {
+          "en": "z-scores of the six students",
+          "zh": "六名学生的 z 分数"
+        }
+      },
+      "answer": 0.93,
+      "tolerance": 0.005,
+      "explain": {
+        "zh": "第 1 步，每一行把 z_x 和 z_y 相乘：(−1.38)(−1.28) = 1.7664；(−0.69)(−0.91) = 0.6279；(−0.35)(0.18) = −0.0630；(0.35)(−0.18) = −0.0630；(0.69)(0.91) = 0.6279；(1.38)(1.28) = 1.7664。\n第 2 步，加起来：Σ z_x z_y = 4.6626。\n第 3 步，除以 n − 1 = 5：r = 4.6626 / 5 = 0.9325 ≈ 0.93，是强的正线性关联。\n看符号：学生 1、2 两个变量都低于平均（负乘负得正），学生 5、6 都高于平均（正乘正得正）；学生 3、4 一个高于、一个低于平均，乘积是负的。离原点越远的点贡献越大（课件 p.42）。\n常见错误：除以 n = 6，得 0.78。用原始数据（x = 2, 4, 5, 7, 8, 10；y = 3, 4, 7, 6, 9, 10）算出的 r = 0.9323，也约等于 0.93，说明答案对。",
+        "en": "Products: 1.7664, 0.6279, −0.0630, −0.0630, 0.6279, 1.7664; sum = 4.6626; r = 4.6626/5 = 0.9325 ≈ 0.93."
+      }
+    },
+    {
+      "id": "mod05-q27",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s21-interpreting-r-sd-units",
+      "prompt": {
+        "en": "For a group of commuters, the correlation between the distance they live from campus (km) and the hours they spend on campus per week is r = −0.58. One commuter lives 1.5 standard deviations above the mean distance. Based on r, where is this commuter's number of hours on campus predicted to be?",
+        "zh": "一群通勤学生住处离校园的距离（公里）和每周在校园的小时数之间的相关系数 r = −0.58。其中一人的距离比平均距离高 1.5 个标准差。根据 r，这个人每周在校园的小时数预计在哪里？"
+      },
+      "options": [
+        {
+          "en": "0.87 standard deviation above the mean",
+          "zh": "比平均高 0.87 个标准差"
+        },
+        {
+          "en": "0.58 standard deviation below the mean",
+          "zh": "比平均低 0.58 个标准差"
+        },
+        {
+          "en": "1.5 standard deviations below the mean",
+          "zh": "比平均低 1.5 个标准差"
+        },
+        {
+          "en": "0.50 standard deviation below the mean",
+          "zh": "比平均低 0.50 个标准差"
+        },
+        {
+          "en": "0.87 standard deviation below the mean",
+          "zh": "比平均低 0.87 个标准差"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "为什么选 E：课件 p.44 的规则：预测的 z_y = r × z_x。也就是说，x 比平均高 k 个标准差时，y 预计比平均高（r 为正）或低（r 为负）|r| × k 个标准差。这里 z_x = 1.5，r = −0.58：−0.58 × 1.5 = −0.87，负号表示“低于平均”，所以平均来说，预计比平均低 0.87 个标准差（on average）。\nA 错：0.87 对了，但忽略了负号；r 为负时要写 below the mean。\nB 错：只用了 r，忘了乘 1.5（那是比平均高 1 个标准差时的答案）。\nC 错：没乘 r，好像 y 会和 x 一样移动 1.5 个标准差；只有 r = 1 或 −1 时才会这样。\nD 错：0.58² × 1.5 = 0.3364 × 1.5 = 0.50，错用了 r²。\n同类题：Module 5 correlation practice Q1c；课件 p.44（2 × 0.904 = 1.808）。",
+        "en": "Predicted z_y = r × z_x = −0.58 × 1.5 = −0.87, so the hours on campus are predicted to be 0.87 SD below the mean."
+      }
+    },
+    {
+      "id": "mod05-q28",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s21-interpreting-r-sd-units",
+      "prompt": {
+        "en": "A report says: 'A runner whose weekly training distance is 2 standard deviations above the mean is predicted to have a fitness score 1.3 standard deviations above the mean score.' If this prediction comes from the rule predicted z_y = r × z_x, what is r? Round to 2 decimal places.",
+        "zh": "一份报告说：“每周训练距离比平均高 2 个标准差的跑者，预计体能分数比平均高 1.3 个标准差。”如果这个预测来自规则“预测的 z_y = r × z_x”，r 是多少？保留 2 位小数。"
+      },
+      "answer": 0.65,
+      "tolerance": 0.005,
+      "explain": {
+        "zh": "第 1 步，把已知数代入 z_y = r × z_x：1.3 = r × 2。\n第 2 步，两边除以 2：r = 1.3 / 2 = 0.65。\n第 3 步，检查：0.65 在 −1 和 1 之间；是正数，因为 y 也在平均以上；0.5 ≤ 0.65 < 0.8，是中到强的正线性关联。\n常见错误：2 × 1.3 = 2.6，或 2 / 1.3 = 1.54，都大于 1。r 不可能这么大，一看就知道算反了。对照课件 p.44：高 1 个标准差 → 高 0.904 个标准差；高 2 个标准差 → 高 2 × 0.904 = 1.808 个标准差。",
+        "en": "1.3 = r × 2, so r = 1.3/2 = 0.65."
+      }
+    },
+    {
+      "id": "mod05-q29",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s21-interpreting-r-sd-units",
+      "prompt": {
+        "en": "For 50 adults, the correlation between weekly hours of exercise and lung capacity (litres) is r = 0.69. Interpret r in the context of this study, using standard deviation units.",
+        "zh": "50 名成年人每周运动小时数和肺活量（升）之间的相关系数 r = 0.69。用标准差单位，结合情境解释 r。"
+      },
+      "modelAnswer": {
+        "en": "If an adult's weekly exercise time (in hours) was 1 standard deviation above the mean, their lung capacity is estimated to be 0.69 standard deviation above the mean lung capacity, on average.",
+        "zh": "套模板 “If [个案]'s [x] was 1 standard deviation above the mean, their [y] is estimated to be |r| standard deviation above/below the mean, on average.”：个案 = an adult；x = weekly exercise time（每周运动时间，单位小时；用单数名词，后面的 was 才通顺）；y = lung capacity；|r| = 0.69；r 是正数，所以写 above。“is estimated to be … on average” 表示这是平均意义上的预测，不是保证，也不是因果。"
+      },
+      "points": [
+        {
+          "en": "x (weekly hours of exercise) is 1 standard deviation above its mean",
+          "zh": "x（每周运动小时数）比平均高 1 个标准差"
+        },
+        {
+          "en": "y (lung capacity) is estimated to be 0.69 standard deviation from its mean: the value of r",
+          "zh": "y（肺活量）预计离平均 0.69 个标准差，这个数就是 r"
+        },
+        {
+          "en": "'above the mean', because r is positive",
+          "zh": "写 above the mean，因为 r 是正的"
+        },
+        {
+          "en": "Context words and 'is estimated to be ... on average' (a prediction, not a cause)",
+          "zh": "有情境用词，并写 “is estimated to be … on average”（是预测，不是因果）"
+        }
+      ],
+      "explain": {
+        "zh": "这就是课件 p.44 老师圈出来的解释方式：预测的 z_y = r × z_x = 0.69 × 1 = 0.69。常见丢分：把 r 当成斜率（“lung capacity increases by 0.69 litres per hour”，可 r 没有单位）；写成百分比（“69% explained”，那是 R² 的说法，而且 R² = 0.69² ≈ 0.48）；r 为负时忘了写 below。\n同类题：Module 5 correlation practice Q1c、Q2b-ii、Q5c。",
+        "en": "Predicted z_y = r × z_x = 0.69 × 1 = 0.69: 1 SD above the mean in exercise goes with a predicted lung capacity 0.69 SD above its mean."
+      }
+    },
+    {
+      "id": "mod05-q30",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s22-correlation-not-causation",
+      "prompt": {
+        "en": "Across 40 towns, the correlation between the number of dentists and the number of fast-food restaurants is r = 0.88. Which conclusion is best?",
+        "zh": "在 40 个城镇里，牙医人数和快餐店数量之间的相关系数 r = 0.88。哪个结论最好？"
+      },
+      "options": [
+        {
+          "en": "More dentists cause more fast-food restaurants to open, because the correlation is strong.",
+          "zh": "牙医越多，导致开的快餐店越多，因为相关很强。"
+        },
+        {
+          "en": "Because r = 0.88 is strong, the relationship between the two counts must be causal.",
+          "zh": "因为 r = 0.88 很强，所以这两个数量之间一定是因果关系。"
+        },
+        {
+          "en": "A lurking variable, such as the town's population, is associated with both counts, so the correlation does not show that one causes the other.",
+          "zh": "有一个潜伏变量（比如城镇人口）和两个数量都有关，所以这个相关不能说明一个导致另一个。"
+        },
+        {
+          "en": "About 88% of the towns have both more dentists and more fast-food restaurants than average.",
+          "zh": "大约 88% 的城镇牙医和快餐店都比平均多。"
+        },
+        {
+          "en": "The association is negative, because dentists discourage people from eating fast food.",
+          "zh": "关联是负的，因为牙医劝人们少吃快餐。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "为什么选 C：人口多的城镇，牙医多，快餐店也多。城镇人口（the town's population，这里的 population 是“人口”，不是统计里的“总体”）这个潜伏变量（**lurking variable**）同时推动两个数量。这正是课件 p.5 (b) 的共同响应（**common response**），和 p.46 里“生活水平”同时影响医生数、电视数和寿命的图一样。\nA、B 错：从相关推出因果，正是 p.47 警告的陷阱。p.50：相关高只说明可能有线性趋势（**linear trend**），不说明有因果。\nD 错：把 r = 0.88 当成了“88% 的城镇”。r 不是百分比，也没有单位。\nE 错：r = 0.88 是正数，关联是正的。\n同类题：Module 5 correlation practice Q3；课件 pp.45–47。",
+        "en": "Bigger towns have more dentists and more fast-food restaurants. Population is a lurking variable, so the correlation does not show causation."
+      }
+    },
+    {
+      "id": "mod05-q31",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s22-correlation-not-causation",
+      "prompt": {
+        "en": "A survey of 500 high-school students finds r = 0.42 between the number of days per week a student eats breakfast and the student's grade average. A newspaper headline says: 'Eating breakfast raises grades.' Is the headline justified? In a paragraph, (1) describe the direction and strength of the association, (2) explain why this study cannot show cause and effect, (3) name at least two possible lurking variables and explain how each could create the association, and (4) say what kind of study could show cause and effect.",
+        "zh": "一项对 500 名高中生的调查发现：学生每周吃早餐的天数和平均成绩之间 r = 0.42。一家报纸的标题是：“吃早餐提高成绩。”这个标题有道理吗？用一段话：（1）描述关联的方向和强度；（2）解释为什么这项研究不能说明因果；（3）说出至少两个可能的潜伏变量，并解释每个怎样造成这个关联；（4）说明什么样的研究才能说明因果。"
+      },
+      "modelAnswer": {
+        "en": "No, the headline is not justified. Since r = 0.42, there is a moderate positive linear association: students who eat breakfast on more days per week tend to have higher grade averages. However, this is an observational study, so the association does not prove cause and effect. Lurking variables may be associated with both variables. For example, students whose families have regular daily routines may eat breakfast more often and also study more regularly. Students who get enough sleep may have time for breakfast and also concentrate better in class. These variables, not breakfast itself, could explain the pattern. To show that eating breakfast raises grades, researchers would need a randomized experiment, for example randomly assigning students to receive a free breakfast every school day or not, and then comparing their grades.",
+        "zh": "结构：① 先下结论：No, the headline is not justified。② 方向和强度：r = 0.42，在 0.3 ≤ |r| < 0.5，所以是 moderate positive linear，再用 “tend to” 写出情境。③ 为什么不能说因果：这是观察性研究（研究者只是调查，没有安排谁吃早餐），只能说明关联。④ 至少两个潜伏变量，每个都要说清它同时和“吃早餐”“成绩”两边有关：家庭作息规律（多吃早餐，也更规律地学习）；睡眠充足（有时间吃早餐，上课也更专心）。⑤ 怎样才能证明因果：随机化实验（randomized experiment），随机分配谁得到免费早餐，再比较成绩。"
+      },
+      "points": [
+        {
+          "en": "Clear conclusion: the headline is not justified",
+          "zh": "结论明确：这个标题站不住脚"
+        },
+        {
+          "en": "Moderate positive linear association, because 0.3 ≤ 0.42 < 0.5, described in context",
+          "zh": "中等的正线性关联（0.3 ≤ 0.42 < 0.5），并结合情境描述"
+        },
+        {
+          "en": "This is an observational study, so it shows association only, not cause and effect",
+          "zh": "这是观察性研究，只能说明关联，不能说明因果"
+        },
+        {
+          "en": "At least two named lurking variables, each linked to both breakfast and grades",
+          "zh": "点名至少两个潜伏变量，并说明每个都同时和吃早餐、成绩有关"
+        },
+        {
+          "en": "A randomized experiment is needed to show cause and effect",
+          "zh": "要证明因果，需要随机化实验"
+        }
+      ],
+      "explain": {
+        "zh": "这道题把课件 p.2（观察性研究不能证明因果）、p.4（潜伏变量的定义）、pp.45–47（医生、电视和寿命）和 p.50（相关高不代表因果）串在一起。写潜伏变量时，只写 “there may be other factors” 几乎不得分，一定要点名，并且说清它怎样同时影响 x 和 y。实验的概念在 Module 1：只有研究者主动、随机地分配处理，才能比较出因果。\n同类题：Module 5 correlation practice Q3（家里有电脑和成绩）。",
+        "en": "r = 0.42 is a moderate positive association from an observational study. Lurking variables such as family routines and sleep could explain it; only a randomized experiment could show cause and effect."
+      }
+    },
+    {
+      "id": "mod05-q32",
+      "type": "multi",
+      "difficulty": 3,
+      "sectionId": "s23-cautions-about-r",
+      "prompt": {
+        "en": "Which situations can make the correlation coefficient r a misleading summary of a relationship? Select ALL that apply.",
+        "zh": "下面哪些情况会让相关系数 r 成为对关系的误导性概括？选出所有正确答案。"
+      },
+      "options": [
+        {
+          "en": "One extreme outlier lies far from the overall pattern.",
+          "zh": "有一个远离整体模式的极端离群值。"
+        },
+        {
+          "en": "Both variables are converted to different units.",
+          "zh": "两个变量都换算成了别的单位。"
+        },
+        {
+          "en": "The pattern is strongly curved (non-linear).",
+          "zh": "图形明显是弯曲的（非线性）。"
+        },
+        {
+          "en": "Only a restricted range of x values is looked at.",
+          "zh": "只看了 x 的一小段范围。"
+        },
+        {
+          "en": "r is computed from the average y for each x value instead of from the individual cases.",
+          "zh": "r 是用每个 x 值对应的 y 的平均数算的，而不是用每个个案的数据。"
+        },
+        {
+          "en": "The variables called x and y are swapped.",
+          "zh": "把叫做 x 和 y 的两个变量对调。"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "explain": {
+        "zh": "选 A、C、D、E：\nA 离群值：r 对极端离群值敏感（课件 p.28），一个点就可能把 r 拉高或拉低。\nC 弯曲图形：r 只管线性。拱形的 r 可能接近 0（p.32 图 f）；向上弯的图 r 也可能很高，比如 p.10 移动硬盘数据 r = 0.988（补充（课件外）的计算），这两种都会误导人。\nD 范围受限：只看一部分值时，r 可能低得出奇（**restricted-range problem**，p.48）。\nE 用平均数算：用每个身高的平均体重代替个人数据，点更集中，关联看起来更强，会给出错误印象（p.49）。\nB 不选：r 没有单位，换单位 r 不变（p.24、p.28）。\nF 不选：x 和 y 对调，r 不变（公式对 x、y 是对称的）。",
+        "en": "Outliers, curved patterns, a restricted range and averaged data can all make r misleading. Changing units or swapping x and y does not change r."
+      }
+    },
+    {
+      "id": "mod05-q33",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s23-cautions-about-r",
+      "prompt": {
+        "en": "If r is close to 0, then x and y are unrelated.",
+        "zh": "如果 r 接近 0，那么 x 和 y 就没有关系。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错误。课件 p.50：相关低（**low correlation**）不一定说明 x 和 y 无关，只说明它们没有很强的线性（**linear**）关系。例子：p.32 图 f 的点形成一个清楚的拱形，x 和 y 明显有关，但 r 接近 0（老师手写 “no linear rel'n”）。另外，只看 x 的一小段范围也会让 r 偏低（p.48）。所以看到 r 接近 0，要先画散点图。",
+        "en": "False. r near 0 only means there is no strong linear relationship; a curved pattern such as an arch can have r near 0 (slides p.32 and p.50)."
+      }
+    },
+    {
+      "id": "mod05-q34",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s24-regression-line",
+      "prompt": {
+        "en": "A delivery company wants to predict the delivery time (minutes) of an order from the distance (km) between the restaurant and the customer. Which statement is correct?",
+        "zh": "一家外卖公司想用餐厅到顾客的距离（公里）来预测订单的送达时间（分钟）。哪个说法正确？"
+      },
+      "options": [
+        {
+          "en": "Delivery time is the response variable, and distance is the predictor variable.",
+          "zh": "送达时间是响应变量，距离是预测变量。"
+        },
+        {
+          "en": "Distance is the response variable, and delivery time is the predictor variable.",
+          "zh": "距离是响应变量，送达时间是预测变量。"
+        },
+        {
+          "en": "Both variables are predictor variables.",
+          "zh": "两个变量都是预测变量。"
+        },
+        {
+          "en": "The orders are the response variable.",
+          "zh": "订单是响应变量。"
+        },
+        {
+          "en": "The delivery company is the predictor variable.",
+          "zh": "外卖公司是预测变量。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "为什么选 A：“predict Y from X”（用 X 预测 Y）这个说法直接定下了角色：被预测的 Y 是响应变量（**response variable**），用来预测的 X 是预测变量（**predictor variable**，也就是解释变量 explanatory variable）。这里用距离预测送达时间，所以送达时间是 y，距离是 x。\nB 错：角色反了。\nC 错：简单线性回归里只有一个响应变量和一个预测变量。\nD 错：订单是个案（**case**），每个订单是一行数据，不是变量。\nE 错：公司是做研究的一方，不是变量。\n同类题：Module 5 regression practice Q1。",
+        "en": "In 'predict delivery time from distance', delivery time is the response (y) and distance is the predictor (x)."
+      }
+    },
+    {
+      "id": "mod05-q35",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s24-regression-line",
+      "prompt": {
+        "en": "A scatterplot of y against x rises steeply at first and then levels off, like a hill that flattens out at the top. There is little scatter around this curve, and r = 0.86. Is a linear regression model appropriate for these data?",
+        "zh": "一张 y 对 x 的散点图一开始陡峭上升，然后变平，像一座顶部变平的山坡。点围绕这条曲线的散布很小，r = 0.86。线性回归模型适合这些数据吗？"
+      },
+      "options": [
+        {
+          "en": "Yes, because r = 0.86 shows a strong association between x and y.",
+          "zh": "适合，因为 r = 0.86 说明 x 和 y 之间关联很强。"
+        },
+        {
+          "en": "Yes, because the association is positive and has little scatter.",
+          "zh": "适合，因为关联是正的，而且散布很小。"
+        },
+        {
+          "en": "Yes, because R² is above 0.5, so a straight line is appropriate.",
+          "zh": "适合，因为 R² 大于 0.5，所以用直线是合适的。"
+        },
+        {
+          "en": "No, because the form is curved, so a straight line does not describe the relationship.",
+          "zh": "不适合，因为形态是弯曲的，直线描述不了这个关系。"
+        },
+        {
+          "en": "No, because r is less than 0.9, which is too weak for a regression.",
+          "zh": "不适合，因为 r 小于 0.9，对回归来说太弱了。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "为什么选 D：先看形态（**form**），再决定能不能用直线。官方练习判断线性回归模型（**linear regression model**）合不合适，看的就是散点图是不是大致呈直线（regression practice Q2a 答 Yes，正是因为图大致是直线）。这张图先陡后平，是曲线，跟课件 pp.17–18 用电量的例子一样（Non-linear relationship），所以不适合用直线。\nA 错：r 高，图也可能是弯的。课件 p.10 移动硬盘的数据明显向上弯，算出来的 r 却有 0.988（补充（课件外）的计算）。\nB 错：方向是正的、散布小，都不能说明形态是直线；这张图散布小，但点是沿着一条曲线排的。\nC 错：没有这条规则；这里 R² = 0.86² ≈ 0.74，大于 0.5，但图还是弯的。\nE 错：0.9 是编出来的界限，课程没有这条规则；按课件 p.32，0.86 已经是 strong。",
+        "en": "Check the form first: the pattern is curved, so a straight-line model is not appropriate even though r = 0.86 is high."
+      }
+    },
+    {
+      "id": "mod05-q36",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s25-slope-and-intercept",
+      "prompt": {
+        "en": "For 40 children, the regression line ŷ = 2.4 + 0.35x predicts y = score on a vocabulary test from x = minutes of reading per day. The slope of the regression line is 0.35. This means that:",
+        "zh": "根据 40 名儿童的数据，回归直线 ŷ = 2.4 + 0.35x 用 x = 每天阅读的分钟数预测 y = 词汇测验分数。回归直线的斜率是 0.35，这表示："
+      },
+      "options": [
+        {
+          "en": "When daily reading increases by 1 minute, the mean vocabulary score is estimated to decrease by 0.35.",
+          "zh": "每天阅读增加 1 分钟，平均词汇分数预计减少 0.35。"
+        },
+        {
+          "en": "When the vocabulary score increases by 1, the mean daily reading time is estimated to increase by 0.35 minutes.",
+          "zh": "词汇分数增加 1 分，平均每天阅读时间预计增加 0.35 分钟。"
+        },
+        {
+          "en": "When daily reading increases by 1 minute, the mean vocabulary score is estimated to increase by 0.35.",
+          "zh": "每天阅读增加 1 分钟，平均词汇分数预计增加 0.35。"
+        },
+        {
+          "en": "The estimated mean vocabulary score is 0.35.",
+          "zh": "词汇分数的估计平均值是 0.35。"
+        },
+        {
+          "en": "About 35% of the variation in vocabulary scores is explained by the linear regression with reading time.",
+          "zh": "词汇分数大约 35% 的变异能被对阅读时间的线性回归解释。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "为什么选 C：斜率（**slope**）b1 是 x 每增加 1 个单位时，y 的平均值预计变化多少。模板：“With every additional 1-[unit] increase in [x], the mean [y] is estimated to increase/decrease by |b1|.” b1 = 0.35 是正数，所以是 increase。\nA 错：符号反了，0.35 是正的。\nB 错：把 x 和 y 对调了；这条线是用阅读时间预测词汇分数，不是反过来。\nD 错：斜率是变化率，不是平均值。\nE 错：这是 R² 的解释方式；而且 R² = r²，不是斜率。\n同类题：2025 期中 Q22；Module 5 regression practice Q3。",
+        "en": "The slope is the estimated change in the mean of y for each 1-unit increase in x: +0.35 vocabulary points per extra minute of daily reading."
+      }
+    },
+    {
+      "id": "mod05-q37",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s25-slope-and-intercept",
+      "prompt": {
+        "en": "The regression line ŷ = 18.6 − 1.2x predicts y = final quiz score (out of 20) from x = number of classes missed in a term. The observed x values run from 0 to 12. Since x = 0 is in the observed range of x values, which statement is true?",
+        "zh": "回归直线 ŷ = 18.6 − 1.2x 用 x = 一学期缺课次数预测 y = 期末小测验分数（满分 20）。观测到的 x 从 0 到 12。既然 x = 0 在观测范围内，哪个说法正确？"
+      },
+      "options": [
+        {
+          "en": "The mean quiz score is estimated to be 0 for students who missed 0 classes.",
+          "zh": "缺课 0 次的学生，平均测验分数估计为 0。"
+        },
+        {
+          "en": "The mean quiz score is estimated to be 18.6 for students who missed 0 classes.",
+          "zh": "缺课 0 次的学生，平均测验分数估计为 18.6。"
+        },
+        {
+          "en": "The mean number of classes missed is estimated to be 18.6 when the quiz score is 0.",
+          "zh": "测验分数为 0 时，平均缺课次数估计为 18.6。"
+        },
+        {
+          "en": "The mean quiz score is estimated to be 0 for students who missed 18.6 classes.",
+          "zh": "缺课 18.6 次的学生，平均测验分数估计为 0。"
+        },
+        {
+          "en": "There is no relationship between the number of classes missed and the quiz score.",
+          "zh": "缺课次数和测验分数之间没有关系。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "为什么选 B：截距（**intercept**）b0 是 x = 0 时 y 的平均值估计：ŷ = 18.6 − 1.2 × 0 = 18.6。因为 x = 0（一次课都没缺）在观测范围 0–12 里面，这个解释才有实际意义。\nA 错：以为直线一定经过原点 (0, 0)。\nC 错：把 x 和 y 对调了。\nD 错：把 0 和 18.6 的位置换了。其实解 18.6 − 1.2x = 0 得 x = 15.5，而且已经超出 0–12 的范围。\nE 错：关系看的是斜率 −1.2，不是截距。斜率不是 0，说明有关系：每多缺 1 次课，平均分预计降 1.2。\n同类题：2025 期中 Q23。",
+        "en": "The intercept is the estimated mean of y when x = 0: ŷ = 18.6 − 1.2 × 0 = 18.6, and x = 0 is inside the observed range."
+      }
+    },
+    {
+      "id": "mod05-q38",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s25-slope-and-intercept",
+      "prompt": {
+        "en": "The regression line ŷ = 41.5 + 2.8x predicts y = exam score from x = hours of study per week. Two students differ by 5 hours of study per week. By how much do their predicted exam scores differ?",
+        "zh": "回归直线 ŷ = 41.5 + 2.8x 用 x = 每周学习小时数预测 y = 考试分数。两名学生每周学习时间相差 5 小时。他们的预测分数相差多少？"
+      },
+      "options": [
+        {
+          "en": "14.0 points",
+          "zh": "14.0 分"
+        },
+        {
+          "en": "2.8 points",
+          "zh": "2.8 分"
+        },
+        {
+          "en": "55.5 points",
+          "zh": "55.5 分"
+        },
+        {
+          "en": "207.5 points",
+          "zh": "207.5 分"
+        },
+        {
+          "en": "1.79 points",
+          "zh": "1.79 分"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "为什么选 A：斜率的意思是 x 每多 1，ŷ 多 b1。x 多 5，ŷ 就多 5 × 2.8 = 14.0 分。截距 41.5 两个人都有，相减就抵消了。例如 x = 10 时 ŷ = 69.5，x = 15 时 ŷ = 83.5，正好差 14.0。\nB（2.8）错：这是相差 1 小时的差距，忘了乘 5。\nC（55.5）错：41.5 + 14 = 55.5 是 x = 5 时的预测分数，不是两人的差。\nD（207.5）错：41.5 × 5，把截距乘了 5。\nE（1.79）错：5 / 2.8 = 1.79，应该乘，不是除。\n同类题：Module 5 regression practice Q3（斜率的意思）。",
+        "en": "A 5-hour difference changes ŷ by 5 × 2.8 = 14.0 points; the intercept cancels out."
+      }
+    },
+    {
+      "id": "mod05-q39",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s25-slope-and-intercept",
+      "prompt": {
+        "en": "For 30 recreational runners, the regression line ŷ = 32.6 − 0.85x predicts y = time to run 5 km (minutes) from x = hours of training per week. Interpret the slope in the context of this study.",
+        "zh": "根据 30 名业余跑者的数据，回归直线 ŷ = 32.6 − 0.85x 用 x = 每周训练小时数预测 y = 跑完 5 公里的时间（分钟）。结合情境解释斜率。"
+      },
+      "modelAnswer": {
+        "en": "With every additional 1 hour of training per week, the mean 5-km running time is estimated to decrease by 0.85 minutes.",
+        "zh": "套斜率模板 “With every additional 1-[unit] increase in [x], the mean [y] is estimated to increase/decrease by |b1|.”：x 每增加 1 个单位 = 每周多训练 1 小时；y 是跑完 5 公里的时间；b1 = −0.85 是负数，所以写 decrease，后面写正数 0.85（也就是 |b1|），再加上 y 的单位 minutes。"
+      },
+      "points": [
+        {
+          "en": "Per 1-unit increase in x: each additional 1 hour of training per week",
+          "zh": "x 每增加 1 个单位：每周多训练 1 小时"
+        },
+        {
+          "en": "Uses 'mean' and 'is estimated to'",
+          "zh": "写出 mean 和 is estimated to"
+        },
+        {
+          "en": "'decrease', because the slope is negative",
+          "zh": "写 decrease，因为斜率是负的"
+        },
+        {
+          "en": "The value 0.85 with the unit of y (minutes)",
+          "zh": "写出 0.85 和 y 的单位（分钟）"
+        }
+      ],
+      "explain": {
+        "zh": "这是 Module 5 regression practice Q3 的同类题：官方答案用的就是这个句型（在午餐桌多待 1 分钟，平均卡路里预计减少 3.08）。常见丢分：写成 “decrease by −0.85”（负号和 decrease 重复了）；把 x 和 y 对调（“每快 1 分钟，训练时间增加……”）；去掉 mean 和 estimated，写成每个跑者都一定快 0.85 分钟；把 32.6 当成斜率。",
+        "en": "Slope b1 = −0.85: for each extra hour of training per week, the mean 5-km time is estimated to drop by 0.85 minutes."
+      }
+    },
+    {
+      "id": "mod05-q40",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s26-prediction-and-extrapolation",
+      "prompt": {
+        "en": "A juice stand's regression line is ŷ = 35 + 4.6x, where x = daily high temperature (°C) and y = number of cups of cold juice sold. The data cover days with highs from 12 °C to 31 °C. Predict the number of cups sold on a day with a high of 22 °C. Give your answer to 1 decimal place.",
+        "zh": "一个果汁摊的回归直线是 ŷ = 35 + 4.6x，其中 x = 每日最高气温（°C），y = 卖出的冷果汁杯数。数据覆盖最高气温 12 °C 到 31 °C 的日子。预测最高气温 22 °C 那天卖出的杯数，保留 1 位小数。"
+      },
+      "answer": 136.2,
+      "tolerance": 0.05,
+      "unit": "cups",
+      "explain": {
+        "zh": "第 1 步，先乘：4.6 × 22 = 101.2。\n第 2 步，再加截距：35 + 101.2 = 136.2 杯。\n第 3 步，检查范围：22 °C 在数据范围 12–31 °C 之内，不是外推（**extrapolation**），这个预测可以用。ŷ 是所有最高气温 22 °C 的日子的平均销量估计，不保证某一天正好卖 136.2 杯。\n常见错误：先加后乘，(35 + 4.6) × 22 = 871.2；把 22 当成 y 代入。\n同类题：Module 5 regression practice Q4、2025 期中 Q24 的第一步（先算 ŷ）。",
+        "en": "ŷ = 35 + 4.6 × 22 = 35 + 101.2 = 136.2 cups; 22 °C is inside the data range."
+      }
+    },
+    {
+      "id": "mod05-q41",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s26-prediction-and-extrapolation",
+      "prompt": {
+        "en": "A regression of plant height (cm) on the number of days since planting used data from day 5 to day 40. The line is ŷ = 1.2 + 0.9x. For which number of days would a prediction from this line be an extrapolation?",
+        "zh": "一个植物高度（cm）对种下天数的回归，用的是第 5 天到第 40 天的数据，直线是 ŷ = 1.2 + 0.9x。对下面哪个天数做预测属于外推？"
+      },
+      "options": [
+        {
+          "en": "5 days",
+          "zh": "5 天"
+        },
+        {
+          "en": "18 days",
+          "zh": "18 天"
+        },
+        {
+          "en": "30 days",
+          "zh": "30 天"
+        },
+        {
+          "en": "40 days",
+          "zh": "40 天"
+        },
+        {
+          "en": "120 days",
+          "zh": "120 天"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "为什么选 E：外推（**extrapolation**）是在观测到的 x 范围（这里是第 5–40 天）以外做预测。120 天远在范围外：ŷ = 1.2 + 0.9 × 120 = 109.2 cm，这等于假设植物一直按同样的速度长下去。但植物长到一定程度会放慢甚至停下，就像课件 p.22 航班的客座率（load factor，坐满的座位占的百分比）不可能超过 100%，总要变平。\nA（5）、D（40）错：它们是观测范围的两端，还在范围之内。\nB（18）、C（30）错：在范围中间，是正常的预测。\n补充（课件外）：范围内的预测叫内插（**interpolation**）。这两个词课件没有出现，思想来自 p.22 和 2025 期中 Q23 的前提（x = 0 在观测范围内，截距才有意义）。",
+        "en": "Only x outside the observed range of 5 to 40 days is extrapolation. At 120 days the line assumes growth continues at the same rate, which may not be true."
+      }
+    },
+    {
+      "id": "mod05-q42",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s27-residuals",
+      "prompt": {
+        "en": "The regression line ŷ = 8.4 + 0.55x predicts y = score on the final test from x = score on a practice test. One student scored x = 60 on the practice test and y = 37 on the final test. What is the residual for this student?",
+        "zh": "回归直线 ŷ = 8.4 + 0.55x 用 x = 模拟测验分数预测 y = 期末测验分数。一名学生模拟测验得了 x = 60 分，期末测验得了 y = 37 分。这名学生的残差是多少？"
+      },
+      "options": [
+        {
+          "en": "−4.4"
+        },
+        {
+          "en": "4.4"
+        },
+        {
+          "en": "18.6"
+        },
+        {
+          "en": "31.25"
+        },
+        {
+          "en": "−31.25"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "为什么选 A：残差（**residual**）e = 观测值 − 预测值 = y − ŷ。\n第 1 步，用 x 算预测值：ŷ = 8.4 + 0.55 × 60 = 8.4 + 33 = 41.4。\n第 2 步，e = 37 − 41.4 = −4.4。残差是负的，说明 y 比 ŷ 小，直线高估（**overestimated**）了这名学生。\nB（4.4）错：算成了 ŷ − y，减反了。\nC（18.6）错：60 − 41.4，把 x（模拟测验分数）当成了观测值 y。\nD（31.25）错：x 和 y 代反了：把 37 当成 x 代进去，ŷ = 8.4 + 0.55 × 37 = 28.75，再用 60 去减。\nE（−31.25）错：代反了，又减反了。\n同类题：2025 期中 Q24（注意：官方解答中间一步把 y 写成了 x，印成 88 − 74.03；正确是 90 − 74.03 = 15.97，最后答案没错）；Module 5 regression practice Q4。",
+        "en": "ŷ = 8.4 + 0.55 × 60 = 41.4 and e = y − ŷ = 37 − 41.4 = −4.4: the line overestimated this student."
+      }
+    },
+    {
+      "id": "mod05-q43",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s27-residuals",
+      "prompt": {
+        "en": "For one observation, the observed value is y = 30 and the residual is e = −4.2. Which statement is correct?",
+        "zh": "某个观测的观测值 y = 30，残差 e = −4.2。哪个说法正确？"
+      },
+      "options": [
+        {
+          "en": "ŷ = 34.2, so the regression line overestimated this observation.",
+          "zh": "ŷ = 34.2，所以回归直线高估了这个观测。"
+        },
+        {
+          "en": "ŷ = 25.8, so the regression line overestimated this observation.",
+          "zh": "ŷ = 25.8，所以回归直线高估了这个观测。"
+        },
+        {
+          "en": "ŷ = 25.8, so the regression line underestimated this observation.",
+          "zh": "ŷ = 25.8，所以回归直线低估了这个观测。"
+        },
+        {
+          "en": "ŷ = 34.2, so the regression line underestimated this observation.",
+          "zh": "ŷ = 34.2，所以回归直线低估了这个观测。"
+        },
+        {
+          "en": "ŷ = −4.2, so the point lies on the regression line.",
+          "zh": "ŷ = −4.2，所以这个点在回归直线上。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "为什么选 A：从 e = y − ŷ 倒推：ŷ = y − e = 30 − (−4.2) = 30 + 4.2 = 34.2。残差为负，说明 y（30）比 ŷ（34.2）小，直线预测得太高，叫高估（**overestimated**）。官方练习的补充说明也是这样：残差为负就是高估（regression practice Q4）。\nB、C 错：算成了 y + e = 30 − 4.2 = 25.8，“减去负数等于加”这一步弄错了。\nD 错：ŷ 对了，但意思反了；低估（**underestimated**）是残差为正的时候。\nE 错：把残差当成了预测值；点正好在线上时，残差 e = 0。",
+        "en": "ŷ = y − e = 30 − (−4.2) = 34.2. A negative residual means y is below ŷ, so the line overestimated."
+      }
+    },
+    {
+      "id": "mod05-q44",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s27-residuals",
+      "prompt": {
+        "en": "For used e-scooters, the regression line ŷ = 520 − 9.8x predicts y = resale price ($) from x = age (months). One scooter is 18 months old and sold for $310. Compute the residual for this scooter, in dollars. Give your answer to 1 decimal place.",
+        "zh": "对于二手电动滑板车，回归直线 ŷ = 520 − 9.8x 用 x = 车龄（月）预测 y = 转售价格（美元）。一辆车龄 18 个月的车卖了 310 美元。计算这辆车的残差（单位：美元），保留 1 位小数。"
+      },
+      "answer": -33.6,
+      "tolerance": 0.05,
+      "unit": "$",
+      "explain": {
+        "zh": "第 1 步，算预测值：9.8 × 18 = 176.4，ŷ = 520 − 176.4 = 343.6 美元。\n第 2 步，残差 e = y − ŷ = 310 − 343.6 = −33.6 美元。\n第 3 步，读符号：残差为负，实际价格比预测低，直线把这辆车的价格高估了 33.60 美元。\n常见错误：写成 +33.6（算成了 ŷ − y）；先算 520 − 9.8 = 510.2 再乘 18（应该先乘后减）。答案是负数，填写时别漏了负号。\n同类题：Module 5 regression practice Q4；2025 期中 Q24。",
+        "en": "ŷ = 520 − 9.8 × 18 = 343.6 and e = 310 − 343.6 = −33.6 dollars: the line overestimated the price."
+      }
+    },
+    {
+      "id": "mod05-q45",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s28-r-squared",
+      "prompt": {
+        "en": "For 70 cars of one model, the correlation between age (years) and fuel efficiency (km per litre) is r = −0.83. What proportion of the variation in fuel efficiency is explained by the linear regression with age? Choose the closest value.",
+        "zh": "同一车型的 70 辆车，车龄（年）和燃油效率（每升油能跑的公里数）之间的相关系数 r = −0.83。燃油效率的变异中，有多大比例能被对车龄的线性回归解释？选最接近的值。"
+      },
+      "options": [
+        {
+          "en": "0.83"
+        },
+        {
+          "en": "0.69"
+        },
+        {
+          "en": "−0.69"
+        },
+        {
+          "en": "0.91"
+        },
+        {
+          "en": "−0.83"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "为什么选 B：决定系数（**coefficient of determination**）R² = r² = (−0.83)² = 0.6889 ≈ 0.69，也就是大约 69% 的燃油效率变异能被对车龄的线性回归解释。平方以后负号就没了，R² 永远不会是负数。\nA（0.83）错：忘了平方（还丢了负号）。\nC（−0.69）错：R² 不可能是负数。\nD（0.91）错：√0.83 = 0.911，开了根号，而不是平方。\nE（−0.83）错：这是 r 本身。\n同类题：2025 期中 Q25；Module 5 regression practice Q6。",
+        "en": "R² = r² = (−0.83)² = 0.6889 ≈ 0.69; it can never be negative."
+      }
+    },
+    {
+      "id": "mod05-q46",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s28-r-squared",
+      "prompt": {
+        "en": "A simple linear regression of y on x has R² = 0.64, and the scatterplot shows a negative association. What is the correlation coefficient r?",
+        "zh": "一个 y 对 x 的简单线性回归 R² = 0.64，散点图显示负关联。相关系数 r 是多少？"
+      },
+      "options": [
+        {
+          "en": "0.64"
+        },
+        {
+          "en": "−0.64"
+        },
+        {
+          "en": "0.80"
+        },
+        {
+          "en": "0.41"
+        },
+        {
+          "en": "−0.80"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "为什么选 E：R² = r²，所以 |r| = √R² = √0.64 = 0.80。正负号要看方向：散点图是负关联，所以 r = −0.80。|r| = 0.80 正好在分界点上，按课件 p.32（|r| ≥ 0.8）是强的负线性关联。\nA、B 错：把 R² 当成了 r，没有开根号。\nC 错：开根号对了，但忘了负号；只看 R² 看不出方向。\nD 错：0.64² = 0.41，又平方了一次。\n同类题：Module 5 regression practice Q6（R² = r²）。",
+        "en": "|r| = √0.64 = 0.80, and the negative association gives r = −0.80."
+      }
+    },
+    {
+      "id": "mod05-q47",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s28-r-squared",
+      "prompt": {
+        "en": "Over 50 days, the correlation between the daily hours of sunshine and the daily sales of sunscreen at a beach shop is r = 0.60. Find R² and interpret it in the context of this study.",
+        "zh": "在 50 天里，海滩小店每天的日照小时数和每天防晒霜的销量之间的相关系数 r = 0.60。求 R²，并结合情境解释它。"
+      },
+      "modelAnswer": {
+        "en": "R² = r² = (0.60)² = 0.36. About 36% of the variation in daily sunscreen sales is explained by the linear regression with daily hours of sunshine.",
+        "zh": "两句话：第一句算数，R² = r² = 0.60² = 0.36；第二句套模板 “About [100·R²]% of the variation in [y] is explained by the linear regression with [x].”：y 是每天防晒霜销量（响应变量），x 是每天日照小时数。剩下的 64% 来自其他变量和随机误差。"
+      },
+      "points": [
+        {
+          "en": "Correct value: R² = 0.60² = 0.36 (about 36%)",
+          "zh": "数值正确：R² = 0.60² = 0.36（约 36%）"
+        },
+        {
+          "en": "It is a share of the variation in y (daily sunscreen sales), not 36% of the days or of the sales",
+          "zh": "说的是 y（每天防晒霜销量）的变异的比例，不是 36% 的天数，也不是 36% 的销量"
+        },
+        {
+          "en": "Says 'explained by the linear regression with' x (daily hours of sunshine)",
+          "zh": "写出 “explained by the linear regression with” x（每天日照小时数）"
+        }
+      ],
+      "explain": {
+        "zh": "常见丢分：忘了平方，写成 60%；写成 “36% of the days” 或 “36% of sunscreen sales”；没写 variation（变异）这个词；把 x 和 y 写反（“36% of the variation in sunshine”）。\n同类题：Module 5 regression practice Q6；2025 期中 Q25。",
+        "en": "R² = 0.60² = 0.36: about 36% of the variation in daily sunscreen sales is explained by the linear regression with daily hours of sunshine."
+      }
+    },
+    {
+      "id": "mod05-q48",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s29-residual-plots",
+      "prompt": {
+        "en": "A residual plot shows residuals centred around 0 with no curve, but the vertical spread of the residuals grows wider as x increases (a fan shape). Which regression assumption is in doubt?",
+        "zh": "一张残差图里，残差围绕 0 分布、没有弯曲，但随着 x 增大，残差上下散开的幅度越来越大（喇叭形）。哪条回归假设可能不成立？"
+      },
+      "options": [
+        {
+          "en": "Linearity (the residuals have mean zero)",
+          "zh": "线性（残差的平均值为零）"
+        },
+        {
+          "en": "That r is positive",
+          "zh": "r 是正数"
+        },
+        {
+          "en": "Constant variance of the residuals",
+          "zh": "残差的方差恒定"
+        },
+        {
+          "en": "That x is a quantitative variable",
+          "zh": "x 是数值变量"
+        },
+        {
+          "en": "None, because a fan shape is what a good residual plot looks like",
+          "zh": "没有，因为好的残差图就是喇叭形"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "为什么选 C：官方练习说，残差图（**residual plot**）检查两条假设：残差平均值为零（**residuals have mean zero**，也就是线性）和残差方差恒定（**constant variance**）。喇叭形（**fan shape**）说明残差上下散开的幅度随 x 变大而变大，方差不是恒定的。\nA 错：残差围着 0、没有弯曲，线性看起来没问题；出现弯曲（U 形或拱形）才说明线性不成立。\nB、D 错：和残差图检查的假设无关。\nE 错：好的残差图是围着 0 随机、均匀地散开，宽窄不变。\n补充（课件外）：喇叭形、弯曲形这些“坏残差图”的样子是课件外的补充。课件没有回归部分，这一节来自 Module 5 regression practice Q5。",
+        "en": "A fan shape means the spread of the residuals changes with x, so the constant-variance assumption is in doubt. With no curve, linearity looks fine."
+      }
+    },
+    {
+      "id": "mod05-q49",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s29-residual-plots",
+      "prompt": {
+        "en": "The residual plot of a simple linear regression shows points scattered randomly above and below the horizontal line at 0. The spread is about the same for all x values, and there is no pattern. Which conclusion is correct?",
+        "zh": "一个简单线性回归的残差图里，点随机地分布在 0 这条水平线的上下，所有 x 处的散布幅度差不多，没有任何模式。哪个结论正确？"
+      },
+      "options": [
+        {
+          "en": "The linear model is wrong, because the residuals do not lie on a straight line.",
+          "zh": "线性模型是错的，因为残差没有落在一条直线上。"
+        },
+        {
+          "en": "The plot proves that x causes y, because the residuals are small and random.",
+          "zh": "这张图证明了 x 导致 y，因为残差小而且随机。"
+        },
+        {
+          "en": "R² must be equal to 1, because the residuals are centred around 0.",
+          "zh": "R² 一定等于 1，因为残差都围绕 0 分布。"
+        },
+        {
+          "en": "The linearity (residuals have mean zero) and constant variance assumptions both appear to be met.",
+          "zh": "线性（残差平均值为零）和方差恒定两条假设看起来都成立。"
+        },
+        {
+          "en": "The plot only checks whether the response variable y is normally distributed.",
+          "zh": "这张图只检查响应变量 y 是否服从正态分布。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "为什么选 D：这和官方练习的回答一致：残差围着 0 随机分布、没有明显模式，所以线性（残差平均值为零）成立；残差均匀散开，所以方差恒定成立。\nA 错：好的残差图就应该是随机散点，不是一条线。\nB 错：残差图检查的是模型假设，不能证明因果。\nC 错：R² = 1 要求每个残差都等于 0（所有点都在直线上）。残差“围绕 0 分布”不等于每个残差都是 0，这里残差有正有负。\nE 错：这张图检查的是线性和方差恒定；是否服从正态分布（**normal**，钟形）不是用这张图检查的。\n同类题：Module 5 regression practice Q5。",
+        "en": "Random scatter around 0 with an even spread means both the linearity (mean-zero) and constant-variance assumptions appear to be met."
+      }
+    }
+  ]
+}

@@ -1,0 +1,907 @@
+{
+  "lessonId": "mod05",
+  "terms": [
+    {
+      "id": "observational-study",
+      "en": "Observational study",
+      "zh": "观察性研究",
+      "def": {
+        "en": "A study in which the researcher observes individual cases and measures variables of interest but has no experimental control over the subjects. It can reveal trends and possible relationships, but it cannot demonstrate a causal relationship.",
+        "zh": "观察性研究（**observational study**）= 研究者只看、只记录，不改变任何东西：不分配处理，对研究对象没有实验控制。它很常用，适合发现趋势和可能的关系；但不能证明因果关系，因为总可能有没测到的潜伏变量（**lurking variable**）在背后起作用。最常见的例子是民意调查和问卷调查（**survey**）。Module 5 也把它叫作相关性研究（**correlational study**）。"
+      },
+      "example": {
+        "zh": "Module 5 课件 p.2 把它叫作相关性研究（**correlational study**）。例：p.15 研究者测量了大学生的脑容量（MRI 图像里的像素数）和智商，没有安排任何人做任何事，所以是观察性研究：能看出两者有没有关联，但不能说明谁导致谁（p.4）。",
+        "en": "Module 5 (p.2) calls it a correlational study. Example (p.15): researchers measured the brain size (MRI pixels) and performance IQ of university students without assigning anything, so the study can show an association but cannot prove cause and effect (p.4)."
+      },
+      "slides": "2, 4, 15",
+      "related": [
+        "experiment",
+        "causation",
+        "lurking-variable",
+        "association"
+      ]
+    },
+    {
+      "id": "bivariate-analysis",
+      "en": "Bivariate analysis",
+      "zh": "双变量分析",
+      "def": {
+        "en": "An analysis of association between two variables. It studies how the outcomes of the response variable depend on, or are explained by, the values of the explanatory variable.",
+        "zh": "“bi-”是“两个”的意思。双变量分析就是同时看两个变量，研究它们有没有关联：响应变量（结果）怎样随解释变量变化、能不能被它解释。动手之前先分清谁是响应变量、谁是解释变量。"
+      },
+      "example": {
+        "zh": "课件 p.33–34 药物例子：研究血液中药物含量（%）和反应时间（秒）的关系。响应变量 = 对刺激的反应时间；解释变量 = 血液中某种药物的百分比。",
+        "en": "Drug example (pp.33-34): the relationship between reaction time (in seconds) and the amount of a drug in the blood (in %). Response variable: reaction time to a stimulus; explanatory variable: percentage of the drug in the blood."
+      },
+      "slides": "3, 33-34",
+      "related": [
+        "association",
+        "explanatory-variable",
+        "response-variable",
+        "scatterplot"
+      ]
+    },
+    {
+      "id": "association",
+      "en": "Association",
+      "zh": "关联",
+      "def": {
+        "en": "Two variables are associated when certain values of one variable tend to go with certain values of the other. For two categorical variables, this means the conditional distributions of the response are not the same across the levels of the explanatory variable. Associated = related = dependent.",
+        "zh": "两个变量“有关联”：一个变量取某些值时，另一个变量也倾向于取某些值。两个分类变量的判断方法：在解释变量的每一组里算响应变量的条件分布，各组不全一样 → 有关联（也说 **related** 有关系、**dependent** 不独立）；全都一样 → 没有关联（独立）。Module 5 也用这个词描述两个数值变量。有关联不等于有因果。"
+      },
+      "example": {
+        "zh": "两个数值变量的关联用散点图来看。书店例子（p.11–12）：在岗销售员多时销售额往往高，人少时销售额往往低，所以两者有正向关联（但关联不等于因果）。",
+        "en": "For two quantitative variables we picture the association with a scatterplot. Bookstore (pp.11-12): more sales people working tend to go with higher sales and fewer with lower sales, a positive association (which is still not proof of causation)."
+      },
+      "slides": "3, 11-12",
+      "related": [
+        "bivariate-analysis",
+        "scatterplot",
+        "direction",
+        "causation",
+        "independence"
+      ]
+    },
+    {
+      "id": "explanatory-variable",
+      "en": "Explanatory variable (predictor variable)",
+      "zh": "解释变量（预测变量）",
+      "def": {
+        "en": "A variable that is proposed to explain the variation (the differences) in the response variable. It defines the groups (or values) that we compare. With two quantitative variables, it is the x variable, plotted on the x-axis.",
+        "zh": "用来“解释”结果为什么不一样的变量，也叫预测变量（**predictor variable**）。找它的方法：看研究问题是“按什么分组来比较”，分组的依据就是解释变量。到 Module 5（两个数值变量）它就是 x，画在横轴上。叫“解释”不代表证明了因果关系。"
+      },
+      "example": {
+        "zh": "药物例子（p.34）：解释变量 = 血液中某种药物的百分比，画在横轴（x）。回归里看到“predict Y from X”（用 X 预测 Y），X 就是预测变量；比如回归练习“用在餐桌的时间预测卡路里”，时间就是 predictor。",
+        "en": "Drug example (p.34): the percentage of a certain drug in the blood, plotted on the x-axis. In regression, 'predict Y from X' makes X the predictor; in 'predict calories from time at the lunch table', time is the predictor."
+      },
+      "slides": "3, 33-34",
+      "related": [
+        "response-variable",
+        "scatterplot",
+        "regression-line",
+        "bivariate-analysis"
+      ]
+    },
+    {
+      "id": "response-variable",
+      "en": "Response variable (outcome variable)",
+      "zh": "响应变量（结果变量）",
+      "def": {
+        "en": "A variable on which the comparisons are made at the levels of the other variable(s): the outcome that we compare across groups. With two quantitative variables, it is the y variable, plotted on the y-axis.",
+        "zh": "我们真正关心、拿来比较的“结果”，也叫结果变量（**outcome variable**）。在解释变量的每一组里看它的分布，再比较各组是否不同。到 Module 5（两个数值变量）它就是 y，画在纵轴上。"
+      },
+      "example": {
+        "zh": "药物例子（p.34）：响应变量 = 对刺激的反应时间（秒），画在纵轴（y）。题目说“predict Y from X”，Y 就是响应变量；回归直线算出的预测值 ŷ 就是对它的预测。",
+        "en": "Drug example (p.34): the length of reaction time (in seconds) to a stimulus, plotted on the y-axis. In 'predict Y from X', Y is the response, and the regression line gives its predicted value ŷ."
+      },
+      "slides": "3, 33-34",
+      "related": [
+        "explanatory-variable",
+        "scatterplot",
+        "predicted-value",
+        "bivariate-analysis"
+      ]
+    },
+    {
+      "id": "lurking-variable",
+      "en": "Lurking variable",
+      "zh": "潜伏变量（隐藏变量）",
+      "def": {
+        "en": "An important variable that is not identified (not measured or not included in the analysis) but is buried in the data. Because it is related to the variables we study, it can create, hide or reverse the relationship we see. Lurking variables are one reason why association does not prove causation.",
+        "zh": "藏在数据里、没被注意到（没测量或没放进分析）的重要变量，也叫隐藏变量。它和我们研究的变量都有关系，所以能“制造”、掩盖甚至反转我们看到的关系。观察性研究不能证明因果，原因之一就是可能有潜伏变量。课件提醒：找出它并不总是容易。"
+      },
+      "example": {
+        "zh": "课件 p.46：生活水平可能同时影响医生数量、电视数量和预期寿命，它就是潜伏变量。p.36 药物例子也列了潜伏变量：一天中的时间、前一天的睡眠、视力、不吃药时的反应时间、年龄。答题要写出具体变量，并说明它和 x、y 怎么都有关。",
+        "en": "Slide p.46: living standards may affect the number of doctors, the number of TVs and life expectancy, so it is a lurking variable. Drug example (p.36): time of day, sleep the day before, visual acuity, reaction time without the drug and age. On a test, name a specific variable and explain how it is linked to both x and y."
+      },
+      "slides": "4-6, 36, 46",
+      "related": [
+        "causation",
+        "common-response",
+        "confounding",
+        "observational-study",
+        "simpsons-paradox"
+      ]
+    },
+    {
+      "id": "causation",
+      "en": "Causation (cause and effect)",
+      "zh": "因果关系",
+      "def": {
+        "en": "A cause-and-effect link: changing x actually produces a change in y. An association, even a strong correlation, does not prove causation, and an observational (correlational) study cannot establish it, because lurking variables may explain the pattern.",
+        "zh": "因果 = 改变 x 真的会让 y 跟着变。两个变量关联再强、r 再高，也证明不了因果；观察性（相关性）研究做不到，因为背后可能有潜伏变量。要说明因果，需要设计实验（Module 1）。"
+      },
+      "example": {
+        "zh": "课件 p.45–47：各国预期寿命和 √(每人电视数) 的 r = 0.85，但不能说“多送电视就能让人更长寿”：生活水平高的国家电视多、寿命也长，而电视到底有没有作用，这类数据分不清（p.47）。不管结论看起来多明显，都不要从相关分析推出“x 导致 y”。英文拼写是 **causal**（因果的），不是 casual（随便的，p.5 的笔误）。",
+        "en": "Slides pp.45-47: life expectancy and √(TVs per person) have r = 0.85, but we cannot conclude that sending TVs would make people live longer: countries with higher living standards have more TVs and longer lives, and data like these cannot tell whether TVs have any effect. Resist concluding that x causes y from a correlation. Spell it 'causal', not 'casual' (a typo on p.5)."
+      },
+      "slides": "2, 4-5, 45-47, 50",
+      "related": [
+        "observational-study",
+        "experiment",
+        "lurking-variable",
+        "common-response",
+        "confounding",
+        "correlation-coefficient"
+      ]
+    },
+    {
+      "id": "common-response",
+      "en": "Common response",
+      "zh": "共同响应",
+      "def": {
+        "en": "An explanation for an observed association in which a lurking variable z causes both x and y. x and y move together, but x does not cause y (p.5, picture b).",
+        "zh": "x 和 y 一起变，只是因为同一个潜伏变量 z 同时推动了它们俩，x 本身并不导致 y。p.5 图 (b)：z 用实线箭头指向 x 和 y，x 和 y 之间只有虚线（只是关联）。"
+      },
+      "example": {
+        "zh": "课件 p.46：生活水平（z）可能同时让医生数量、电视数量和预期寿命都上升；这样即使电视本身不影响寿命，电视多的国家寿命也会更长（r = 0.85）。课件把这张图叫作猜想（conjecture）：电视到底有没有作用，这些数据分不清（p.47）。",
+        "en": "Slide p.46: higher living standards (z) may raise the number of doctors, the number of TVs and life expectancy together, which would create the association (r = 0.85) even if TVs have no effect. The slide calls this a conjecture; the data cannot tell us whether TVs affect life expectancy (p.47)."
+      },
+      "slides": "5, 46",
+      "related": [
+        "lurking-variable",
+        "confounding",
+        "causation"
+      ]
+    },
+    {
+      "id": "confounding",
+      "en": "Confounding",
+      "zh": "混杂",
+      "def": {
+        "en": "x and a lurking variable z are associated with each other, and either one, both or neither may affect y. Their effects on y are mixed up (confounded), so we cannot tell which is the real cause (p.5, picture c).",
+        "zh": "x 和潜伏变量 z 互相有关联，两个都可能影响 y（图上是带问号的箭头）。它们的作用搅在一起分不开，说不清到底是 x、是 z、两个都是还是都不是；甚至可能另有没发现的变量才是“真凶”。"
+      },
+      "example": {
+        "zh": "自编例子：参加额外辅导课的学生往往也花更多时间自学，两者都可能提高考试成绩，只看数据分不清辅导课本身帮了多少。和共同响应的区别：共同响应里 x 不影响 y；混杂里 x 可能影响 y，只是分不出来。",
+        "en": "Own illustration: students who attend extra tutorials also tend to study more hours, and both may raise exam scores, so the data cannot separate the effect of the tutorials. Unlike common response, here x may affect y; we just cannot tell."
+      },
+      "slides": "5",
+      "related": [
+        "common-response",
+        "lurking-variable",
+        "causation"
+      ]
+    },
+    {
+      "id": "scatterplot",
+      "en": "Scatterplot",
+      "zh": "散点图",
+      "def": {
+        "en": "A graph that plots the values (x, y) of two quantitative variables against each other to picture their association. Each point is one case; the explanatory variable x goes on the horizontal axis and the response y on the vertical axis.",
+        "zh": "把两个数值变量画在一张图上看关系：每个点是一个个案，横坐标是它的 x 值（解释变量），纵坐标是它的 y 值（响应变量）。描述时先说方向、形态、强度，再说离群值和分组。"
+      },
+      "example": {
+        "zh": "药物例子（p.35、p.38）：5 个点 (1, 1)、(2, 1)、(3, 2)、(4, 2)、(5, 4)，横轴是血液中药物含量（%），纵轴是反应时间（秒）。R 代码 `plot(Drug, Time)`：第一个变量放横轴。",
+        "en": "Drug example (pp.35, 38): five points (1, 1), (2, 1), (3, 2), (4, 2), (5, 4) with % drug amount on the x-axis and reaction time (in seconds) on the y-axis. In R, `plot(Drug, Time)` puts the first variable on the x-axis."
+      },
+      "slides": "6, 35, 38",
+      "related": [
+        "direction",
+        "form",
+        "strength",
+        "outlier",
+        "explanatory-variable",
+        "response-variable",
+        "timeplot"
+      ]
+    },
+    {
+      "id": "direction",
+      "en": "Direction (of an association)",
+      "zh": "方向（关联的方向）",
+      "def": {
+        "en": "Whether the overall pattern of a scatterplot goes up or down. An upward trend is a positive direction (as x increases, y tends to increase); a downward trend is a negative direction (as x increases, y tends to decrease).",
+        "zh": "看点云整体往哪边走：从左下往右上是正方向，x 变大时 y 倾向于变大；从左上往右下是负方向，x 变大时 y 倾向于变小。正负只说方向，不是“好坏”，也不说强弱。"
+      },
+      "example": {
+        "zh": "药物例子（p.39）：点从左下往右上走，所以是正方向。吸烟率与年份（p.14）：点从左上往右下走，所以是负方向。",
+        "en": "Drug example (p.39): the points rise from lower left to upper right, so the direction is positive. Smoking rate vs year (p.14): the points fall from upper left to lower right, so the direction is negative."
+      },
+      "slides": "7, 14, 39",
+      "related": [
+        "positive-association",
+        "negative-association",
+        "form",
+        "strength",
+        "scatterplot"
+      ]
+    },
+    {
+      "id": "positive-association",
+      "en": "Positive association",
+      "zh": "正向关联（正相关）",
+      "def": {
+        "en": "An upward trend: as x increases, y tends to increase, so high values of one variable go with high values of the other and low values with low values. The covariance and r are positive.",
+        "zh": "一个大，另一个也倾向于大；一个小，另一个也倾向于小。散点图从左下往右上走，协方差和 r 都是正数。"
+      },
+      "example": {
+        "zh": "药物例子（p.39–40）：药物含量越高，反应时间往往越长，r = 0.904，是强的正向线性关联。书店例子（p.12）：销售员多配高销售额，销售员少配低销售额。",
+        "en": "Drug example (pp.39-40): higher drug amounts are associated with longer reaction times, r = 0.904, a strong positive linear association. Bookstore (p.12): many sales people pair with high sales and few with low sales."
+      },
+      "slides": "7, 12, 32, 39",
+      "related": [
+        "direction",
+        "negative-association",
+        "correlation-coefficient",
+        "covariance"
+      ]
+    },
+    {
+      "id": "negative-association",
+      "en": "Negative association",
+      "zh": "负向关联（负相关）",
+      "def": {
+        "en": "A downward trend: as x increases, y tends to decrease, so high values of one variable go with low values of the other. The covariance and r are negative.",
+        "zh": "一个变大，另一个倾向于变小。散点图从左上往右下走，协方差和 r 都是负数。“负”只是方向，不代表弱：r = −0.9 比 r = 0.5 更强。"
+      },
+      "example": {
+        "zh": "吸烟率与年份（p.14）：中到强的负向关联，年份越往后，吸烟率往往越低（男女都是）。",
+        "en": "Smoking rate vs year (p.14): a moderate to strong negative association; as the years increase, the smoking rate tends to decrease for both men and women."
+      },
+      "slides": "7, 14, 32",
+      "related": [
+        "direction",
+        "positive-association",
+        "correlation-coefficient",
+        "covariance"
+      ]
+    },
+    {
+      "id": "form",
+      "en": "Form (of an association)",
+      "zh": "形态（关联的形状）",
+      "def": {
+        "en": "The shape of the overall pattern in a scatterplot: a straight-line (linear) relationship, a slight curve or bend, or curvature (the pattern curves up or down sharply). Curved forms are called non-linear.",
+        "zh": "点云整体是什么形状：一条直线（线性），有点弯（slight curve or bend），还是明显弯曲（curvature，急剧往上或往下拐）。弯的统称非线性。形态决定能不能用 r 和直线来概括。"
+      },
+      "example": {
+        "zh": "药物例子（p.39）：点接近一条直线、没有弯曲，所以是线性。住宅面积与用电量（p.17–18）：用电量先快速上升，约 2500 平方英尺以后变平，所以是非线性（曲线式）关系。",
+        "en": "Drug example (p.39): the points follow a trend close to a straight line with no curvature, so the form is linear. Home size vs electricity usage (pp.17-18): usage rises quickly and then levels off after about 2500 sq ft, a non-linear (curvilinear) relationship."
+      },
+      "slides": "7, 17-18, 39",
+      "related": [
+        "linear-relationship",
+        "nonlinear-relationship",
+        "direction",
+        "strength",
+        "scatterplot"
+      ]
+    },
+    {
+      "id": "linear-relationship",
+      "en": "Linear relationship",
+      "zh": "线性关系",
+      "def": {
+        "en": "A relationship whose overall pattern follows a straight line. The correlation coefficient r measures the strength of only this kind of relationship, and a straight regression line fits only this kind.",
+        "zh": "点大致沿着一条直线排列（往上、往下都行）。r 只衡量这种“直线式”关系的强弱，回归直线也只适合线性关系。"
+      },
+      "example": {
+        "zh": "药物例子（p.39）：点接近直线、没有弯曲，r = 0.904，是强的正向线性关联。p.31：r = 0 只说明没有线性关联，不一定完全没关系。",
+        "en": "Drug example (p.39): close to a straight line with no curvature, r = 0.904, a strong positive linear association. On p.31, r = 0 means no linear association, not necessarily no relationship at all."
+      },
+      "slides": "7, 31, 39",
+      "related": [
+        "form",
+        "nonlinear-relationship",
+        "correlation-coefficient",
+        "regression-line"
+      ]
+    },
+    {
+      "id": "nonlinear-relationship",
+      "en": "Nonlinear (curvilinear) relationship",
+      "zh": "非线性（曲线）关系",
+      "def": {
+        "en": "A relationship whose overall pattern follows a curve (a bend or curvature) instead of a straight line. Then r and a straight line are not appropriate summaries, although the relationship can still be strong.",
+        "zh": "点沿着一条曲线走（拐弯、先升后平、先升后降都算）。这时不能用 r 或直线来概括；但非线性不等于没关系，曲线关系也可以很强。"
+      },
+      "example": {
+        "zh": "住宅面积与用电量（p.17–18）：用电量随面积上升，约 2500 平方英尺后变平，答案写“Non-linear relationship”。p.32 图 f：明显的拱形，但 r 接近 0。同类题 2025 期中 Q18：先平后急升、点很贴曲线，就是 strong positive nonlinear relationship。",
+        "en": "Home size vs electricity usage (pp.17-18): usage rises with size and levels off after about 2500 sq ft, a non-linear relationship. p.32 panel f: a clear arch with r near 0. A plot that is flat and then shoots up with little scatter is a strong positive nonlinear relationship (2025 midterm Q18 skill)."
+      },
+      "slides": "7, 17-20, 32",
+      "related": [
+        "form",
+        "linear-relationship",
+        "log-re-expression",
+        "correlation-coefficient"
+      ]
+    },
+    {
+      "id": "strength",
+      "en": "Strength (of an association)",
+      "zh": "强度（关联的强弱）",
+      "def": {
+        "en": "How tightly the points cluster around the form, that is, how much scatter there is: a tight cluster means a strong association and a loose cloud a weak one. For a linear pattern, strength is measured by |r| with the course scale (p.32).",
+        "zh": "点贴着整体形状贴得有多紧：越紧越强，越散越弱。看的是“紧不紧”，不是“陡不陡”。线性关系的强度用 |r|（r 去掉负号）按课程标准（p.32）分档。"
+      },
+      "example": {
+        "zh": "药物例子 r = 0.904，属于 strong。相关练习的散点图矩阵里，身高–臂展那一格的点最紧，所以是最强的一对（r = 0.781，按标准仍是 moderate to strong）。",
+        "en": "Drug example: r = 0.904, so strong. In the practice scatterplot matrix, height and armspan form the tightest band, so they are the strongest pair (r = 0.781, still 'moderate to strong' on the scale)."
+      },
+      "slides": "7, 32",
+      "related": [
+        "correlation-strength-scale",
+        "correlation-coefficient",
+        "direction",
+        "form"
+      ]
+    },
+    {
+      "id": "outlier",
+      "en": "Outlier",
+      "zh": "离群值（异常值）",
+      "def": {
+        "en": "An individual value that falls outside the overall pattern of the data; it is an important kind of deviation from that pattern.",
+        "zh": "离大部队很远、不符合整体模式的单个数据。Module 3 先用眼睛看图判断；Module 4 会教一个规则（栅栏 **fences**）来判断。最大的值不一定就是离群值，要看它是不是明显脱离了整体模式。离群值要先调查原因，不能随手删掉。"
+      },
+      "example": {
+        "zh": "散点图里也一样（p.9）：大部分点的鞋码约 4–13、智商约 84–136，但有一个点在鞋码约 32、智商约 186，远离整体模式，就是离群值。p.28：r 对极端离群值很敏感。",
+        "en": "In a scatterplot (p.9): most points have shoe size about 4-13 and IQ about 84-136, but one point at about shoe size 32 and IQ 186 lies far from the overall pattern, so it is an outlier. r is sensitive to extreme outliers (p.28)."
+      },
+      "slides": "9, 23, 28",
+      "related": [
+        "scatterplot",
+        "correlation-coefficient",
+        "overall-pattern"
+      ]
+    },
+    {
+      "id": "log-re-expression",
+      "en": "Log re-expression",
+      "zh": "对数变换",
+      "def": {
+        "en": "Replacing each value of a variable by its logarithm (for example log10). For a strongly right-skewed variable such as income or GDP per capita, this can make a curved scatterplot much straighter.",
+        "zh": "把一个变量的每个值都换成它的对数（比如 log10）。像收入、人均 GDP 这种右偏很厉害的变量，取对数后长尾巴被“收回来”，弯的散点图常常变直。只需懂意思，不用自己算对数（“为什么会变直”的解释是补充（课件外））。"
+      },
+      "example": {
+        "zh": "相关练习（GDP 与 HDI）：人均 GDP 对 HDI 的散点图往上弯，换成 log10(人均 GDP) 后图直多了（much straighter），这时才适合用相关系数。课件 p.20 砷含量的图上老师也手写了“log”。",
+        "en": "Correlation practice (GDP per capita vs HDI): the plot curves upward; after taking log10 of GDP per capita the plot is much straighter, so a correlation becomes a reasonable summary. On the arsenic plot (p.20) the instructor wrote 'log'."
+      },
+      "slides": "20",
+      "related": [
+        "nonlinear-relationship",
+        "linear-relationship",
+        "skewed-right"
+      ]
+    },
+    {
+      "id": "timeplot",
+      "en": "Timeplot",
+      "zh": "时间序列图",
+      "def": {
+        "en": "A scatterplot with time on the horizontal (x) axis, which shows how a variable changes over time.",
+        "zh": "横轴是时间的散点图，用来看一个变量随时间怎么变。注意：过去的趋势不保证会一直延续下去。"
+      },
+      "example": {
+        "zh": "课件 p.21–22：2000–2013 年国内航班每月客座率（%）。2000–2001 年变化不大，之后稳步上升；但客座率是百分比，不能超过 100%，所以不能假设这个趋势再延续十年。",
+        "en": "Slides pp.21-22: monthly load factors (%) of domestic flights, 2000-2013. Little change in 2000-2001, then a steady increase; but load factors are percentages and cannot exceed 100%, so we must not assume the trend continues for another decade."
+      },
+      "slides": "21-22",
+      "related": [
+        "scatterplot",
+        "extrapolation"
+      ]
+    },
+    {
+      "id": "covariance",
+      "en": "Covariance",
+      "zh": "协方差",
+      "def": {
+        "en": "Covariance measures the tendency of x and y to vary together ('covary'): cov(x, y) = S_xy = Σ(x − x̄)(y − ȳ)/(n − 1), an 'average cross product'. Its sign gives the direction, but its unit is (unit of x) × (unit of y), so its size changes when the units change.",
+        "zh": "衡量 x 和 y“一起变”的倾向：每个个案的 (x − x̄) 乘 (y − ȳ)，全部加起来再除以 n − 1（平均交叉乘积）。正关系为正，负关系为负。缺点：单位是 x 的单位乘 y 的单位，一换单位数值就变，所以要标准化成 r。"
+      },
+      "example": {
+        "zh": "药物例子（p.40）：交叉乘积 2、1、0、0、4，加起来 SS_xy = 7，S_xy = 7/4 = 1.75（%·秒）。补充（课件外）计算：反应时间改用分钟，协方差变成 1.75/60 ≈ 0.0292，可关系没变，r 还是 0.904，这就是 p.27 说的问题。",
+        "en": "Drug example (p.40): the cross products 2, 1, 0, 0, 4 add to SS_xy = 7, so S_xy = 7/4 = 1.75 (%·seconds). Our computation: with time in minutes the covariance becomes 1.75/60 ≈ 0.0292, although the relationship is the same and r stays 0.904."
+      },
+      "slides": "26-27, 30, 40",
+      "related": [
+        "correlation-coefficient",
+        "sum-of-cross-deviations",
+        "sum-of-squares",
+        "standardizing"
+      ]
+    },
+    {
+      "id": "sum-of-squares",
+      "en": "Sum of squares (SS_xx, SS_yy)",
+      "zh": "离差平方和 SS_xx、SS_yy",
+      "def": {
+        "en": "SS_xx = Σ(x − x̄)² and SS_yy = Σ(y − ȳ)² are the Module 3 sum of squared deviations, written for x and for y: SS_xx measures the variability of the predictor and SS_yy the variability of the response. Dividing by n − 1 gives the variances S_x² and S_y².",
+        "zh": "就是 Module 3 的离差平方和，只是分别对 x 和 y 来算：每个值减去均值（离差），平方，再全部加起来。SS_xx 量 x 的波动，SS_yy 量 y 的波动。除以 n − 1 就是方差，再开根号就是标准差 S_x、S_y。"
+      },
+      "example": {
+        "zh": "药物例子（p.40）：x − x̄ = −2、−1、0、1、2，平方后相加 SS_xx = 10，S_x = √(10/4) = 1.5811；y − ȳ = −1、−1、0、0、2，SS_yy = 6，S_y = √(6/4) = 1.2247。",
+        "en": "Drug example (p.40): x − x̄ = −2, −1, 0, 1, 2, so SS_xx = 10 and S_x = √(10/4) = 1.5811; y − ȳ = −1, −1, 0, 0, 2, so SS_yy = 6 and S_y = √(6/4) = 1.2247."
+      },
+      "slides": "29-30, 40",
+      "related": [
+        "sum-of-cross-deviations",
+        "correlation-coefficient",
+        "sum-of-squared-deviations",
+        "standard-deviation"
+      ]
+    },
+    {
+      "id": "sum-of-cross-deviations",
+      "en": "Sum of cross-deviations (SS_xy)",
+      "zh": "交叉离差和 SS_xy",
+      "def": {
+        "en": "SS_xy = Σ(x − x̄)(y − ȳ), the sum of the products of each case's x-deviation and y-deviation; it measures the tendency of x and y to vary together. The covariance is S_xy = SS_xy/(n − 1), and r = SS_xy/√(SS_xx · SS_yy).",
+        "zh": "每个个案的 x 离差乘 y 离差，再全部加起来。乘积为正说明这个点的 x、y 在各自均值的同一侧，为负说明在两侧。除以 n − 1 是协方差 S_xy；r = SS_xy ÷ √(SS_xx × SS_yy)，n − 1 正好约掉。"
+      },
+      "example": {
+        "zh": "药物例子（p.40）：乘积 (−2)(−1) = 2、(−1)(−1) = 1、0、0、(2)(2) = 4，加起来 SS_xy = 7；r = 7/√(10 × 6) = 7/√60 = 0.9037。",
+        "en": "Drug example (p.40): the products (−2)(−1) = 2, (−1)(−1) = 1, 0, 0 and (2)(2) = 4 add to SS_xy = 7, so r = 7/√(10 × 6) = 7/√60 = 0.9037."
+      },
+      "slides": "29-30, 40",
+      "related": [
+        "sum-of-squares",
+        "covariance",
+        "correlation-coefficient"
+      ]
+    },
+    {
+      "id": "correlation-coefficient",
+      "en": "Correlation coefficient (r)",
+      "zh": "相关系数 r",
+      "def": {
+        "en": "The estimated correlation coefficient r is a number that measures the direction and strength of the linear association between two quantitative variables. It is the standardized covariance, r = S_xy/(s_x s_y) = SS_xy/√(SS_xx SS_yy) = Σz_x z_y/(n − 1); always −1 ≤ r ≤ 1, it has no unit, and it is sensitive to outliers.",
+        "zh": "给“直线关系”打分的一个数：正负号说方向，离 0 越远越强，接近 ±1 说明点几乎在一条直线上。它是协方差除以两个标准差，所以没有单位，换单位、对调 x 和 y 都不变；但它怕离群值，也只管线性关系。"
+      },
+      "example": {
+        "zh": "药物例子（p.40–41）：r = 7/√60 = 0.9037（R 的 `cor(Drug, Time)` 输出 0.9036961；p.40 印的 0.9024 是笔误），是强的正向线性关联。用标准差单位解释（p.44）：药物含量比平均高 1 个标准差的人，反应时间预计比平均高 0.904 个标准差。",
+        "en": "Drug example (pp.40-41): r = 7/√60 = 0.9037 (R's `cor(Drug, Time)` prints 0.9036961; the 0.9024 on p.40 is a typo), a strong positive linear association. In SD units (p.44): a subject whose drug amount is 1 SD above the mean is predicted to have a reaction time 0.904 SD above the mean."
+      },
+      "slides": "25, 27-32, 40-44",
+      "related": [
+        "covariance",
+        "population-correlation",
+        "correlation-strength-scale",
+        "z-score",
+        "cor-function",
+        "r-squared",
+        "causation"
+      ]
+    },
+    {
+      "id": "population-correlation",
+      "en": "Population correlation coefficient (ρ)",
+      "zh": "总体相关系数 ρ",
+      "def": {
+        "en": "The correlation coefficient of the whole population, written ρ (rho). It is a parameter; we estimate it with the sample correlation coefficient r, computed from sample data.",
+        "zh": "整个总体的相关系数，用希腊字母 ρ（读 rho）表示，是参数（**parameter**）。我们手上只有样本，所以用样本算出的 r（统计量，**statistic**）去估计 ρ。"
+      },
+      "example": {
+        "zh": "p.28 老师手写了 “e.g. r = 0.78” 和 “Sampled data → r”，意思是用样本数据算出来的 0.78 是 r，不是 ρ。",
+        "en": "The instructor's note on p.28: a value computed from sampled data, such as 0.78, is r (an estimate), not ρ."
+      },
+      "slides": "28",
+      "related": [
+        "correlation-coefficient",
+        "parameter",
+        "statistic"
+      ]
+    },
+    {
+      "id": "correlation-strength-scale",
+      "en": "Strength scale for r",
+      "zh": "相关强度分级",
+      "def": {
+        "en": "The course labels the strength of a linear association by |r|: strong |r| ≥ 0.8; moderate to strong 0.5 ≤ |r| < 0.8; moderate 0.3 ≤ |r| < 0.5; weak |r| < 0.3. The same labels apply to negative r.",
+        "zh": "按 |r|（去掉负号后的大小）分档：≥ 0.8 强；0.5 到 0.8（不含 0.8）中到强；0.3 到 0.5（不含 0.5）中等；小于 0.3 弱。边界：正好 0.8 算强，正好 0.5 算中到强，正好 0.3 算中等。负的 r 一样看绝对值。"
+      },
+      "example": {
+        "zh": "药物 r = 0.904：strong；电视 r = 0.85：strong；医生 r = 0.78：moderate to strong；r = −0.65：moderate to strong（负向）；r = 0.12：weak。官方答案有时用词更宽松，已知 r 时就按这张表写。",
+        "en": "Drug 0.904: strong; TVs 0.85: strong; doctors 0.78: moderate to strong; r = −0.65: moderate to strong (negative); r = 0.12: weak. When r is known, use these labels even if an answer key words it more loosely."
+      },
+      "slides": "32",
+      "related": [
+        "strength",
+        "correlation-coefficient"
+      ]
+    },
+    {
+      "id": "z-score",
+      "en": "z-score (standardized value)",
+      "zh": "z 分数（标准化值）",
+      "def": {
+        "en": "A z-score (standardized data value) is a measure of position that tells how many standard deviations an observation falls away from the mean: z = (y − ȳ)/s for sample data and z = (y − μ)/σ for population data. A positive z is above the mean and a negative z is below it.",
+        "zh": "z 分数回答：“这个数比平均数高（或低）几个标准差？”算法：先减平均数，再除以标准差。y 是这个数，ȳ 是样本平均数，s 是样本标准差（课件后面也写成大写 S）；总体数据就用 μ 和 σ。z 是正的在平均数上面，负的在下面，0 就正好等于平均数。它的单位是“标准差”，没有 kcal、分这样的单位。比较来自不同分布的数时看 z：z 越大，相对位置越高。反过来求原始值：y = μ + z × σ。"
+      },
+      "example": {
+        "zh": "Module 5 用 z 分数算 r（p.42–43）：z_x = (x − x̄)/S_x，z_y = (y − ȳ)/S_y。药物例子的点 (5, 4)：z_x = (5 − 3)/1.5811 = 1.26，z_y = (4 − 2)/1.2247 = 1.63。五个乘积 z_x z_y 加起来 3.6148，r = 3.6148/(5 − 1) = 0.904。",
+        "en": "Module 5 uses z-scores to get r (pp.42-43): z_x = (x − x̄)/S_x and z_y = (y − ȳ)/S_y. For the drug point (5, 4), z_x = (5 − 3)/1.5811 = 1.26 and z_y = (4 − 2)/1.2247 = 1.63; the five products z_x z_y add to 3.6148, so r = 3.6148/(5 − 1) = 0.904."
+      },
+      "slides": "42-44",
+      "related": [
+        "correlation-coefficient",
+        "scale-function",
+        "standardizing",
+        "standard-deviation"
+      ]
+    },
+    {
+      "id": "cor-function",
+      "en": "cor() (R function)",
+      "zh": "R 函数 cor()",
+      "def": {
+        "en": "cor(x, y) is the R function that returns the estimated correlation coefficient r of two quantitative variables.",
+        "zh": "R 里算相关系数 r 的函数：cor(x, y) 直接给出 r，不用手算。"
+      },
+      "example": {
+        "zh": "课件 p.41：`correlation <- cor(Drug, Time)` 输出 0.9036961，和手算的 7/√60 一样。p.44：`cor(scale(Drug), scale(Time))` 也是 0.9036961，说明标准化不改变 r。",
+        "en": "Slide p.41: `correlation <- cor(Drug, Time)` prints 0.9036961, the same as 7/√60 by hand. On p.44, `cor(scale(Drug), scale(Time))` gives the same value, so standardizing does not change r."
+      },
+      "slides": "41, 44",
+      "related": [
+        "correlation-coefficient",
+        "scale-function"
+      ]
+    },
+    {
+      "id": "scale-function",
+      "en": "scale() (R function for z-scores)",
+      "zh": "scale() 函数（计算 z 分数）",
+      "def": {
+        "en": "`scale(x)` is the R function that turns every value of x into a z-score: it subtracts the mean of x and divides by the sample standard deviation (the one computed with n − 1).",
+        "zh": "R 里一步算出全部 z 分数的函数：每个数减去平均数，再除以样本标准差（用 n − 1 算的那个，和 `favstats()` 的 sd 一样）。算出来的 z 分数平均数是 0、标准差是 1。"
+      },
+      "example": {
+        "zh": "Module 5 用它算 r（p.43）：`sum(scale(Drug)*scale(Time))` 得到 z 分数乘积之和 3.614784，再除以 n − 1 = 4，得 r = 0.9036961。代码里的 `*` 是逐个相乘。",
+        "en": "Module 5 uses it to get r (p.43): `sum(scale(Drug)*scale(Time))` gives the sum of the z-score products, 3.614784; dividing by n − 1 = 4 gives r = 0.9036961."
+      },
+      "slides": "43-44",
+      "related": [
+        "z-score",
+        "cor-function",
+        "correlation-coefficient",
+        "standardizing"
+      ]
+    },
+    {
+      "id": "random-error",
+      "en": "Random error",
+      "zh": "随机误差",
+      "def": {
+        "en": "Variation in the response that cannot be explained by the explanatory variable or by lurking variables. Because of it, the relationship between x and y is not exact.",
+        "zh": "y 里那部分谁也解释不了的、偶然的高低差异（不是算错了）。因为有它（还有潜伏变量），x 和 y 的关系不会完全精确，x 不可能解释 y 的 100% 变异。"
+      },
+      "example": {
+        "zh": "药物例子（p.35–36）：药物含量不能解释反应时间 100% 的变异；剩下的来自潜伏变量（一天中的时间、睡眠、视力、年龄等）和随机误差。",
+        "en": "Drug example (pp.35-36): drug amount cannot explain 100% of the variation in reaction time; the rest comes from lurking variables (time of day, sleep, eyesight, age and so on) and random error."
+      },
+      "slides": "35-36",
+      "related": [
+        "explained-variation",
+        "lurking-variable",
+        "r-squared"
+      ]
+    },
+    {
+      "id": "restricted-range",
+      "en": "Restricted-range problem",
+      "zh": "范围受限问题",
+      "def": {
+        "en": "When one of the variables is restricted (we look at only some of its values), the correlation can be surprisingly low.",
+        "zh": "只看某个变量的一小段取值（范围被“截”了一段），算出来的 r 常常小得出人意料，让关系看起来比实际弱。"
+      },
+      "example": {
+        "zh": "补充（课件外）计算：书店的 10 个点 r = 0.965；只留销售员 9 到 12 人的 4 个点，r 降到 0.749。药物数据只用中间三个点（x = 2、3、4），r 从 0.904 变成 0.866。",
+        "en": "Our computation (not on the slides): all 10 bookstore points give r = 0.965, but the 4 points with 9 to 12 sales people give only r = 0.749. The middle three drug points (x = 2, 3, 4) give r = 0.866 instead of 0.904."
+      },
+      "slides": "48",
+      "related": [
+        "correlation-coefficient",
+        "averaged-data-correlation"
+      ]
+    },
+    {
+      "id": "averaged-data-correlation",
+      "en": "Correlation of averaged data (summary statistics)",
+      "zh": "用平均值算出的相关",
+      "def": {
+        "en": "If we use a summary such as the mean y for each x value instead of the individual cases, the points are less scattered and the association looks stronger. This can give a false impression of how well a line summarizes the data.",
+        "zh": "不用每个人的数据，只用“每个 x 对应的平均 y”来画图、算 r，点就没那么散，关联看起来比个人层面的真实关系更强，让人高估一条直线的概括能力。"
+      },
+      "example": {
+        "zh": "课件 p.49：男性体重与身高，个人数据围着直线散得很开；如果每个身高只画平均体重（约 19 个点），点几乎贴着直线，关联看起来更强。",
+        "en": "Slide p.49: for men's weight vs height, the individual points scatter widely around the line; if we plot only the mean weight for each height (about 19 points), they lie close to the line and the association looks even stronger."
+      },
+      "slides": "49",
+      "related": [
+        "restricted-range",
+        "correlation-coefficient",
+        "strength"
+      ]
+    },
+    {
+      "id": "scatterplot-matrix",
+      "en": "Scatterplot matrix",
+      "zh": "散点图矩阵",
+      "def": {
+        "en": "A grid of small scatterplots, one for each pair of several quantitative variables. The pair whose points form the tightest straight band has the strongest linear relationship.",
+        "zh": "好几个数值变量两两配对，每一对画一张小散点图，排成一个方阵。哪一格的点最紧地排成一条直线带，那一对的线性关系就最强。"
+      },
+      "example": {
+        "zh": "相关练习 Q5（课件里没有这种图）：111 名加拿大中学生的年龄、身高、臂展、腕骨、中指、脚长 6 个变量，身高–臂展那一格的点最紧，所以这一对关系最强。",
+        "en": "Correlation practice Q5 (not in the slides): six variables of 111 Canadian secondary-school students (age, height, armspan, wristbone, middle finger, foot); the height-armspan panel has the tightest band, so that pair has the strongest relationship."
+      },
+      "related": [
+        "scatterplot",
+        "correlation-matrix",
+        "strength"
+      ]
+    },
+    {
+      "id": "correlation-matrix",
+      "en": "Correlation matrix",
+      "zh": "相关系数矩阵",
+      "def": {
+        "en": "A table that lists the correlation coefficient r for every pair of variables. The strongest linear relationship is the pair with the largest |r|.",
+        "zh": "把每两个变量之间的 r 列成一张表。找 |r| 最大的那一格（看绝对值，不看正负），就是线性关系最强的一对。"
+      },
+      "example": {
+        "zh": "相关练习 Q5c：6 个变量共 15 对，最大的是身高与臂展 r = 0.781（中到强）；年龄与腕骨 r = −0.008，几乎没有线性关联。",
+        "en": "Correlation practice Q5c: 6 variables give 15 pairs; the largest is height and armspan, r = 0.781 (moderate to strong), while age and wristbone have r = −0.008, almost no linear association."
+      },
+      "related": [
+        "correlation-coefficient",
+        "scatterplot-matrix",
+        "correlation-strength-scale",
+        "cor-function"
+      ]
+    },
+    {
+      "id": "regression-line",
+      "en": "Regression line (least-squares line)",
+      "zh": "回归直线（最小二乘直线）",
+      "def": {
+        "en": "The straight line ŷ = b0 + b1x used to predict the response y from the predictor x when the scatterplot is roughly linear (b0 = intercept, b1 = slope). The least-squares line is the line that makes the sum of squared residuals Σ(y − ŷ)² as small as possible.",
+        "zh": "散点图大致是直线时，用一条直线 ŷ = b0 + b1x 概括关系，并用 x 预测 y：b0 是截距，b1 是斜率。补充（课件外）：“最小二乘”是说这条线让所有残差的平方和最小。图是弯的就不能用直线。"
+      },
+      "example": {
+        "zh": "课件没有回归部分，例子来自官方练习答案和 2025 期中。2025 期中：用拼写成绩 x 预测写作成绩 y，ŷ = 13.31 + 0.69x。回归练习：用在餐桌的时间预测幼儿午餐卡路里，ŷ = 560.65126 − 3.077073 × time。",
+        "en": "2025 midterm: writing score predicted from spelling score, ŷ = 13.31 + 0.69x. Regression practice: toddlers' lunch calories predicted from time at the lunch table, ŷ = 560.65126 − 3.077073 × time."
+      },
+      "related": [
+        "slope",
+        "intercept",
+        "predicted-value",
+        "residual",
+        "r-squared",
+        "linear-relationship"
+      ]
+    },
+    {
+      "id": "slope",
+      "en": "Slope (b1)",
+      "zh": "斜率 b1",
+      "def": {
+        "en": "The slope b1 is the estimated change in the mean of y for each 1-unit increase in x. A positive slope means the mean of y is estimated to increase, a negative slope that it decreases; the slope has the same sign as r.",
+        "zh": "x 每增加 1 个单位，y 的平均值估计变化多少。b1 为正说“增加”，为负说“减少”，后面写 |b1|。斜率和 r 同号。补充（课件外）：b1 = r × s_y / s_x。"
+      },
+      "example": {
+        "zh": "回归练习：ŷ = 560.65126 − 3.077073 × time，在餐桌每多待 1 分钟，摄入卡路里的平均值估计减少 3.08。2025 期中 Q22：拼写成绩每增加 1 分，写作成绩的平均值估计增加 0.69。",
+        "en": "Regression practice: for each additional minute at the lunch table, the mean number of calories consumed is estimated to decrease by 3.08. 2025 midterm: when the spelling score increases by 1, the mean writing score is estimated to increase by 0.69."
+      },
+      "related": [
+        "intercept",
+        "regression-line",
+        "correlation-coefficient",
+        "predicted-value"
+      ]
+    },
+    {
+      "id": "intercept",
+      "en": "Intercept (b0)",
+      "zh": "截距 b0",
+      "def": {
+        "en": "The intercept b0 is the estimated mean of y when x = 0 (the predicted value at x = 0). Interpret it only if x = 0 is within the observed range of x; otherwise it is extrapolation and has no practical meaning.",
+        "zh": "x = 0 时 y 的平均值的估计（直线与纵轴的交点）。只有 x = 0 在数据的观测范围之内才去解释它；不在范围内就是外推，没有实际意义。补充（课件外）：b0 = ȳ − b1·x̄。"
+      },
+      "example": {
+        "zh": "2025 期中 Q23：ŷ = 13.31 + 0.69x，如果拼写成绩 0 分在观测范围内，可以说：拼写成绩为 0 时，写作成绩的平均值估计为 13.31。回归练习里 0 分钟远在观测范围 21.4 到 43.8 分钟之外，所以 b0 = 560.65 不去解释。",
+        "en": "2025 midterm: for ŷ = 13.31 + 0.69x, if a spelling score of 0 were in the observed range, the mean writing score is estimated to be 13.31 when the spelling score is 0. In the regression practice, 0 minutes is far outside the observed 21.4 to 43.8 minutes, so b0 = 560.65 is not interpreted."
+      },
+      "related": [
+        "slope",
+        "regression-line",
+        "extrapolation",
+        "predicted-value"
+      ]
+    },
+    {
+      "id": "predicted-value",
+      "en": "Predicted value (ŷ)",
+      "zh": "预测值 ŷ",
+      "def": {
+        "en": "The predicted value ŷ ('y-hat') is the value of y given by the regression line for a particular x: ŷ = b0 + b1x. It estimates the mean response for that x and is also called the fitted value.",
+        "zh": "把某个 x 代进回归直线算出来的 y，写作 ŷ（读 y-hat），是这个 x 下 y 平均值的估计，也叫拟合值（**fitted value**）。ŷ 在直线上；真实的数据点 y 不一定在线上。"
+      },
+      "example": {
+        "zh": "2025 期中 Q24：x = 88，ŷ = 13.31 + 0.69 × 88 = 13.31 + 60.72 = 74.03（先乘后加）。回归练习：time = 43.1 分钟，ŷ = 560.65126 − 3.0770733 × 43.1 = 428.0294 卡路里。",
+        "en": "2025 midterm: for x = 88, ŷ = 13.31 + 0.69 × 88 = 13.31 + 60.72 = 74.03 (multiply first, then add). Regression practice: for time = 43.1 minutes, ŷ = 560.65126 − 3.0770733 × 43.1 = 428.0294 calories."
+      },
+      "related": [
+        "regression-line",
+        "residual",
+        "interpolation",
+        "extrapolation"
+      ]
+    },
+    {
+      "id": "residual",
+      "en": "Residual",
+      "zh": "残差",
+      "def": {
+        "en": "Residual = observed value − predicted value = y − ŷ (written e). A negative residual means the line overestimated y (the point is below the line); a positive residual means it underestimated y (the point is above the line).",
+        "zh": "真实值减预测值：e = y − ŷ，也就是点到直线的竖直距离（带正负号）。负的：预测多了（高估，点在线下方）；正的：预测少了（低估，点在线上方）。减法顺序不能反。"
+      },
+      "example": {
+        "zh": "回归练习 Q4：x = 43.1 分钟、y = 410 卡路里，ŷ = 428.0294，e = 410 − 428.0294 = −18.0294，为负，所以是高估。2025 期中 Q24：y = 90，ŷ = 74.03，e = 90 − 74.03 = 15.97，为正，所以是低估（官方解答写成 88 − 74.03 是笔误）。",
+        "en": "Regression practice Q4: x = 43.1 min and y = 410 calories give ŷ = 428.0294, so e = 410 − 428.0294 = −18.0294, negative, an overestimate. 2025 midterm Q24: y = 90 and ŷ = 74.03, so e = 90 − 74.03 = 15.97, positive, an underestimate (the printed working '88 − 74.03' is a typo)."
+      },
+      "related": [
+        "predicted-value",
+        "residual-plot",
+        "regression-line"
+      ]
+    },
+    {
+      "id": "interpolation",
+      "en": "Interpolation",
+      "zh": "内插",
+      "def": {
+        "en": "Using the regression line to predict y for an x value inside the observed range of x. It is much safer than extrapolation.",
+        "zh": "补充（课件外）：在数据已经覆盖的 x 范围之内做预测，叫内插，一般比较可靠。和它相对的是外推（跑到范围外去预测，有风险）。"
+      },
+      "example": {
+        "zh": "回归练习的时间范围是 21.4 到 43.8 分钟：预测 30 分钟时的卡路里 ŷ = 560.65126 − 3.077073 × 30 ≈ 468.34，是内插；预测 60 分钟或 0 分钟就是外推。",
+        "en": "In the regression practice the times range from 21.4 to 43.8 minutes: predicting calories at 30 minutes, ŷ = 560.65126 − 3.077073 × 30 ≈ 468.34, is interpolation; predicting at 60 or 0 minutes is extrapolation."
+      },
+      "related": [
+        "extrapolation",
+        "predicted-value",
+        "regression-line"
+      ]
+    },
+    {
+      "id": "extrapolation",
+      "en": "Extrapolation",
+      "zh": "外推",
+      "def": {
+        "en": "Using a regression line, or assuming a trend continues, to predict y for x values outside the observed range of x. Such predictions are unreliable, because the pattern may change outside the data.",
+        "zh": "拿数据范围以外的 x 去预测，或者假设过去的趋势会一直延续。很危险，因为数据范围外的规律可能完全不一样。（这个英文词课件里没出现，属补充（课件外）；思想来自 p.22 和 2025 期中 Q23。）"
+      },
+      "example": {
+        "zh": "课件 p.22：航班客座率稳步上升，但百分比不能超过 100%，所以不能假设趋势再延续十年。回归练习：代入 0 或 60 分钟（在 21.4 到 43.8 分钟之外）就是外推，比如 ŷ(60) ≈ 376 卡路里不可信。",
+        "en": "Slide p.22: load factors rose steadily, but a percentage cannot exceed 100%, so we must not assume the trend continues for another decade. Regression practice: plugging in 0 or 60 minutes (outside 21.4 to 43.8 minutes) is extrapolation, so ŷ(60) ≈ 376 calories is not trustworthy."
+      },
+      "slides": "21-22",
+      "related": [
+        "interpolation",
+        "predicted-value",
+        "intercept",
+        "timeplot"
+      ]
+    },
+    {
+      "id": "r-squared",
+      "en": "Coefficient of determination (R²)",
+      "zh": "决定系数 R²",
+      "def": {
+        "en": "R² = r² is the proportion of the variation in the response y that is explained by the linear regression with x. It is between 0 and 1 and never negative.",
+        "zh": "把 r 平方：R² = r²。意思是 y 的变异（高低差异）里，有多大比例能被“和 x 的线性回归”解释。在 0 和 1 之间，永远不会是负数；剩下的 1 − R² 来自潜伏变量和随机误差。"
+      },
+      "example": {
+        "zh": "2025 期中 Q25：r = 0.77，R² = 0.77² = 0.5929 ≈ 0.59（不是 0.77，也不是 √0.77 ≈ 0.88）。考试写法：About 59% of the variation in writing scores is explained by the linear regression with spelling scores. 回归练习：r = −0.65，R² = 0.4225 ≈ 0.42（不是 −0.42）。",
+        "en": "2025 midterm: r = 0.77 gives R² = 0.77² = 0.5929 ≈ 0.59 (not 0.77 and not √0.77 ≈ 0.88): 'About 59% of the variation in writing scores is explained by the linear regression with spelling scores.' Regression practice: r = −0.65 gives R² = 0.4225 ≈ 0.42, never −0.42."
+      },
+      "related": [
+        "correlation-coefficient",
+        "explained-variation",
+        "random-error",
+        "regression-line"
+      ]
+    },
+    {
+      "id": "explained-variation",
+      "en": "Explained variation",
+      "zh": "被解释的变异",
+      "def": {
+        "en": "The part of the variation (differences) in the response y that is accounted for by x through the linear regression. R² gives its share; the rest is unexplained variation from lurking variables and random error.",
+        "zh": "y 的数值有高有低（变异）。其中能用 x（通过回归直线）说明的那部分，叫被解释的变异；R² 就是它占的比例。剩下说明不了的，来自潜伏变量和随机误差。"
+      },
+      "example": {
+        "zh": "回归练习：R² = 0.42，约 42% 的卡路里变异被和时间的线性回归解释，约 58% 没被解释。药物例子 p.35 问：药物含量能解释反应时间 100% 的变异吗？p.36 的答案是不能。补充（课件外）计算：药物数据 R² = 0.9037² ≈ 0.817。",
+        "en": "Regression practice: R² = 0.42, so about 42% of the variation in calories is explained by the linear regression with time and about 58% is not. Drug example (pp.35-36): drug amount cannot explain 100% of the variation in reaction time. Our computation: the drug data give R² = 0.9037² ≈ 0.817."
+      },
+      "slides": "35-36",
+      "related": [
+        "r-squared",
+        "random-error",
+        "lurking-variable",
+        "variation"
+      ]
+    },
+    {
+      "id": "residual-plot",
+      "en": "Residual plot",
+      "zh": "残差图",
+      "def": {
+        "en": "A plot of the residuals (y − ŷ) against the x-values or the fitted values ŷ, with a horizontal line at 0. If the points are scattered randomly around 0 with no pattern and an even spread, the linearity and constant-variance assumptions appear to be met.",
+        "zh": "纵轴是残差，横轴是 x（或预测值 ŷ），中间画一条 0 的水平线。点在 0 上下随机散开、没有规律、宽窄均匀，线性和方差恒定两个假设就看起来满足。好的残差图应该“乱”，而不是排成一条线。"
+      },
+      "example": {
+        "zh": "回归练习 Q5：20 个残差（约 −36.7 到 +33.2）对拟合值作图，在 0 上下随机分布，没有弯曲也没有喇叭形，所以两个假设都满足。补充（课件外）：残差呈弯曲（U 形或拱形）说明线性不满足；呈喇叭形（越来越散）说明方差恒定不满足。",
+        "en": "Regression practice Q5: the 20 residuals (about −36.7 to +33.2) plotted against the fitted values are scattered randomly around 0 with no curve and no fan shape, so both assumptions are met. Not in the course files: a curved pattern (a U or an arch) means linearity fails, and a fan shape means constant variance fails."
+      },
+      "related": [
+        "residual",
+        "linearity-assumption",
+        "constant-variance",
+        "predicted-value"
+      ]
+    },
+    {
+      "id": "linearity-assumption",
+      "en": "Linearity assumption (residuals have mean zero)",
+      "zh": "线性假设（残差均值为零）",
+      "def": {
+        "en": "The regression assumption that x and y are linearly related, so the residuals have mean zero for every x. It appears to be met when the residual plot shows the points randomly scattered around 0 with no major pattern (no curve).",
+        "zh": "回归的假设之一：x 和 y 真的是直线关系，所以不管在哪个 x 附近，残差平均都是 0。检查：残差图上的点在 0 上下随机散布、没有明显规律（没有弯曲），就算满足。"
+      },
+      "example": {
+        "zh": "回归练习 Q5：残差在 0 上下随机分布、没有明显规律，所以线性假设满足。补充（课件外）计算：住宅面积与用电量（从 p.17 图上读出的点）拟合直线后，残差先负、后正、再负（拱形），线性不满足，虽然 R² 约 0.76。",
+        "en": "Regression practice Q5: the residuals are randomly scattered around 0 with no major pattern, so the linearity assumption is met. Our computation: for home size vs electricity usage (points read from p.17) the residuals go negative, then positive, then negative (an arch), so linearity is not met even though R² is about 0.76."
+      },
+      "related": [
+        "residual-plot",
+        "constant-variance",
+        "linear-relationship",
+        "nonlinear-relationship"
+      ]
+    },
+    {
+      "id": "constant-variance",
+      "en": "Constant variance assumption",
+      "zh": "方差恒定假设",
+      "def": {
+        "en": "The regression assumption that the residuals have the same spread (variance) for all values of x. It appears to be met when the residual plot shows an even band of points with no fan or funnel shape.",
+        "zh": "回归的另一个假设：不管 x 大还是小，残差上下散开的宽度都差不多。残差图上点的宽度均匀、没有喇叭口（越来越散或越来越紧），就算满足。"
+      },
+      "example": {
+        "zh": "回归练习 Q5：残差点散得很均匀、没有明显规律，所以方差恒定假设满足。补充（课件外）：如果 x 越大残差散得越开（喇叭形），这个假设就不满足。",
+        "en": "Regression practice Q5: the residual points are evenly spread with no major pattern, so the constant-variance assumption is met. Not in the course files: if the residuals spread out more and more as x grows (a fan shape), the assumption is not met."
+      },
+      "related": [
+        "residual-plot",
+        "linearity-assumption",
+        "residual"
+      ]
+    }
+  ]
+}

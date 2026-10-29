@@ -87,6 +87,17 @@
   border-left: 3px solid var(--color-line-soft);
 }
 
+/* Data table printed under the prompt, as on a real test paper. 题干下方的数据表，和真实试卷一样。 */
+.question-card__table {
+  margin: var(--space-3) 0 0;
+}
+
+.question-card__table-caption {
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
 .question-card__hint {
   margin: 0;
   color: var(--color-ink-3);

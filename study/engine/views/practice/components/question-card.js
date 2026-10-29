@@ -16,7 +16,7 @@ import { h, replaceContent } from '../../../core/dom/element.js';
 import { ensureStylesheet } from '../../../core/dom/stylesheet.js';
 import { icon } from '../../../core/dom/icons.js';
 import { isActivatable, isTextEntry } from '../../../core/dom/keyboard.js';
-import { enNode, hasText, zhNode } from '../../../core/text/bilingual.js';
+import { biTitle, enNode, hasText, scriptText, zhNode } from '../../../core/text/bilingual.js';
 import { renderInline } from '../../../core/text/inline-markup.js';
 import { optionLetter } from '../../../core/util/format.js';
 import { badge } from '../../../components/badges/badge.js';
@@ -32,6 +32,7 @@ import {
   parseNumber,
   withUnit,
 } from '../logic/grading.js';
+import { questionTable } from '../logic/question-table.js';
 import { isKnownType, isWrittenType, scoringPoints } from '../logic/question-types.js';
 import { difficultyBadge, lessonHref, typeBadge, typeLabel, unitKicker } from './labels.js';
 
@@ -55,6 +56,30 @@ let serial = 0;
 
 export function ensureQuestionCardStyles() {
   return ensureStylesheet(STYLESHEET);
+}
+
+/**
+ * The question's data table (logic/question-table.js) as a figure that scrolls inside its own box.
+ * Cells are exam material, so they stay visible in every language mode.
+ * 题目数据表（见 logic/question-table.js），宽表在自身容器内滚动。单元格属于试题内容，在所有语言模式下都保持可见。
+ */
+function tableFigure(table, uid) {
+  if (!table) return null;
+  const captionId = table.caption ? `${uid}-table-caption` : null;
+  return h('figure', { class: 'question-card__table' },
+    table.caption ? h('figcaption', { class: 'question-card__table-caption', id: captionId }, biTitle(table.caption)) : null,
+    h('div', {
+      class: 'table-scroll',
+      tabindex: '0',
+      role: 'region',
+      'aria-labelledby': captionId || undefined,
+      'aria-label': captionId ? undefined : '题目数据表 Data table',
+    },
+    h('table', { class: 'data-table' },
+      table.headers.length
+        ? h('thead', {}, h('tr', {}, table.headers.map((text) => h('th', { scope: 'col' }, scriptText(text, { role: 'label' })))))
+        : null,
+      h('tbody', {}, table.rows.map((row) => h('tr', {}, row.map((text) => h('td', {}, scriptText(text, { role: 'label' })))))))));
 }
 
 /**
@@ -143,7 +168,8 @@ export function createQuestionCard(question, options = {}) {
     : h('p', { class: 'question-card__prompt-en', id: `${uid}-prompt`, lang: 'zh-CN' }, renderInline(prompt.zh || ''));
   const promptBox = h('div', { class: 'question-card__prompt' },
     h('div', { class: 'question-card__prompt-line' }, promptMain, speakButton(prompt.en, { className: 'question-card__speak' })),
-    hasText(prompt.en) ? zhNode(prompt.zh, 'assist', 'p', 'question-card__prompt-zh') : null);
+    hasText(prompt.en) ? zhNode(prompt.zh, 'assist', 'p', 'question-card__prompt-zh') : null,
+    tableFigure(questionTable(question), uid));
 
   const answerArea = buildAnswerArea();
   const submitButton = practice && type

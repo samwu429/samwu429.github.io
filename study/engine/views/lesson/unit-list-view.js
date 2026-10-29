@@ -1,7 +1,8 @@
 /**
- * Lesson index (#/learn): a "continue" banner, overall progress, then lecture and lab cards with
- * their branch, section progress and links to learn or practise each unit.
- * 课程目录页（#/learn）：“继续学习”横幅、总进度，然后是讲课与实验卡片，显示所属方向、小节进度以及学习、练习入口。
+ * Lesson index (#/learn): a "continue" banner, overall progress, then the unit cards grouped by kind
+ * (lectures or modules, labs...) with their branch, section progress and links to learn or practise each unit.
+ * 课程目录页（#/learn）：“继续学习”横幅、总进度，然后是按类型分组的单元卡片（讲课或模块、实验等），
+ * 显示所属方向、小节进度以及学习、练习入口。
  */
 import { h, replaceContent } from '../../core/dom/element.js';
 import { icon } from '../../core/dom/icons.js';
@@ -13,7 +14,7 @@ import { linkButton } from '../../components/controls/button.js';
 import { progressBar } from '../../components/feedback/progress-bar.js';
 import { emptyState } from '../../components/feedback/states.js';
 import { pageHeader } from '../../components/layout/page-header.js';
-import { groupUnits, lessonHref, minutesLabel, practiceHref, unitKindLabel } from './lesson-model.js';
+import { groupUnits, lessonHref, minutesLabel, practiceHref, unitCardVariant, unitKindLabel } from './lesson-model.js';
 
 // A unit without a usable title shows its id, which is not Chinese, so it goes in the English slot.
 // 没有可用标题的单元显示其 id；id 不是中文，因此放在英文位置。
@@ -39,7 +40,7 @@ function unitCard(unit, { progress, branches }) {
 
   return h('li', { class: 'unit-list__item' },
     h('article', {
-      class: ['unit-list__card', `unit-list__card--${unit.kind === 'lab' ? 'lab' : 'lecture'}`, complete ? 'is-complete' : null],
+      class: ['unit-list__card', `unit-list__card--${unitCardVariant(unit.kind)}`, complete ? 'is-complete' : null],
       'aria-labelledby': titleId,
     },
     h('div', { class: 'unit-list__card-head' },

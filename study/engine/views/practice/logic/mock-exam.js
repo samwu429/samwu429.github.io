@@ -1,10 +1,12 @@
 /**
  * Mock-exam composer: N objective + M written questions from the chosen units, balanced across units,
- * reproducible from a seed, plus small helpers for the exam timer.
+ * reproducible from a seed, plus small helpers for the exam timer. A course may limit the objective
+ * question types a paper uses (see mock-config.js).
  * 模拟考组卷：从所选单元抽 N 道客观题 + M 道主观题，在单元之间均衡分配，可凭种子复现；另含计时器小工具。
+ * 课程可以限定试卷使用的客观题题型（见 mock-config.js）。
  */
 import { shuffleWith } from '../../../core/util/random.js';
-import { isObjectiveType, isWrittenType } from './question-types.js';
+import { OBJECTIVE_TYPES, isObjectiveType, isWrittenType } from './question-types.js';
 import { createRng } from './rng.js';
 
 export const MOCK_DEFAULTS = Object.freeze({ objectiveCount: 20, writtenCount: 3, minutes: 60 });
@@ -18,14 +20,25 @@ function clampInt(value, min, max, fallback) {
   return Number.isFinite(number) ? Math.min(max, Math.max(min, number)) : fallback;
 }
 
-/** Builder input -> safe settings (counts and minutes clamped, units de-duplicated). 组卷输入的规范化。 */
-export function normalizeMockSettings({ units = [], objectiveCount, writtenCount, minutes } = {}) {
+/**
+ * Builder input -> safe settings (counts and minutes clamped, units de-duplicated); missing or invalid
+ * values take `defaults` (a course's own defaults, MOCK_DEFAULTS when not given).
+ * 组卷输入的规范化（题量与时间限定在范围内，单元去重）；缺失或无效的值取 defaults（课程自己的默认值，未提供时为 MOCK_DEFAULTS）。
+ */
+export function normalizeMockSettings({ units = [], objectiveCount, writtenCount, minutes } = {}, defaults = MOCK_DEFAULTS) {
   return {
     units: [...new Set((Array.isArray(units) ? units : []).filter((id) => typeof id === 'string' && id))],
-    objectiveCount: clampInt(objectiveCount, 0, MOCK_LIMITS.objectiveMax, MOCK_DEFAULTS.objectiveCount),
-    writtenCount: clampInt(writtenCount, 0, MOCK_LIMITS.writtenMax, MOCK_DEFAULTS.writtenCount),
-    minutes: clampInt(minutes, 0, MOCK_LIMITS.minutesMax, MOCK_DEFAULTS.minutes),
+    objectiveCount: clampInt(objectiveCount, 0, MOCK_LIMITS.objectiveMax, defaults.objectiveCount),
+    writtenCount: clampInt(writtenCount, 0, MOCK_LIMITS.writtenMax, defaults.writtenCount),
+    minutes: clampInt(minutes, 0, MOCK_LIMITS.minutesMax, defaults.minutes),
   };
+}
+
+// The objective types a paper may use: the objective types listed in `objectiveTypes`, or every one
+// when no list is given.
+// 试卷可用的客观题题型：objectiveTypes 中列出的客观题题型；没有给出列表时为全部客观题题型。
+function allowedObjectiveTypes(objectiveTypes) {
+  return new Set(Array.isArray(objectiveTypes) ? objectiveTypes.filter(isObjectiveType) : OBJECTIVE_TYPES);
 }
 
 /**
@@ -53,8 +66,13 @@ export function allocateBalanced(capacities, total, random = Math.random) {
   return counts;
 }
 
-/** How many objective / written questions each chosen unit offers. 每个所选单元可用的客观题、主观题数量。 */
-export function mockAvailability(questions, units) {
+/**
+ * How many objective / written questions each chosen unit offers; objective questions count only when
+ * their type is in `objectiveTypes` (every objective type when not given).
+ * 每个所选单元可用的客观题、主观题数量；客观题只统计 objectiveTypes 中的题型（未提供时为全部客观题题型）。
+ */
+export function mockAvailability(questions, units, { objectiveTypes } = {}) {
+  const allowed = allowedObjectiveTypes(objectiveTypes);
   const chosen = new Set(Array.isArray(units) ? units : []);
   const perUnit = new Map([...chosen].map((id) => [id, { objective: 0, written: 0 }]));
   const seen = new Set();
@@ -62,7 +80,7 @@ export function mockAvailability(questions, units) {
     if (!question || seen.has(question.id) || !chosen.has(question.unitId)) continue;
     seen.add(question.id);
     const entry = perUnit.get(question.unitId);
-    if (isObjectiveType(question.type)) entry.objective += 1;
+    if (allowed.has(question.type)) entry.objective += 1;
     else if (isWrittenType(question.type)) entry.written += 1;
   }
   let objective = 0;
@@ -77,10 +95,13 @@ export function mockAvailability(questions, units) {
 /**
  * Composes a paper. Objective questions come first, then written ones; inside each part questions
  * follow the unit order given in `units` and then the bank order, so a built paper never reshuffles.
+ * Objective questions are drawn only from `objectiveTypes` (every objective type when not given).
  * 组卷：先客观题后主观题；每部分内部按 units 的单元顺序、再按题库顺序排列，组好的试卷顺序固定不变。
+ * 客观题只从 objectiveTypes 的题型中抽取（未提供时为全部客观题题型）。
  */
-export function composeMockExam(questions, { units = [], objectiveCount = MOCK_DEFAULTS.objectiveCount, writtenCount = MOCK_DEFAULTS.writtenCount, seed = 1 } = {}) {
+export function composeMockExam(questions, { units = [], objectiveCount = MOCK_DEFAULTS.objectiveCount, writtenCount = MOCK_DEFAULTS.writtenCount, objectiveTypes, seed = 1 } = {}) {
   const random = createRng(seed);
+  const allowed = allowedObjectiveTypes(objectiveTypes);
   const unitOrder = [...new Set(Array.isArray(units) ? units : [])];
   const unitIndex = new Map(unitOrder.map((id, index) => [id, index]));
   const bankIndex = new Map();
@@ -91,7 +112,7 @@ export function composeMockExam(questions, { units = [], objectiveCount = MOCK_D
     const pool = pools.get(question.unitId);
     if (!pool) return;
     bankIndex.set(question.id, index);
-    if (isObjectiveType(question.type)) pool.objective.push(question);
+    if (allowed.has(question.type)) pool.objective.push(question);
     else if (isWrittenType(question.type)) pool.written.push(question);
   });
 

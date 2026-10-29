@@ -7,6 +7,7 @@ import { h, replaceContent } from '../../core/dom/element.js';
 import { ensureStylesheet } from '../../core/dom/stylesheet.js';
 import { icon } from '../../core/dom/icons.js';
 import { biTitle } from '../../core/text/bilingual.js';
+import { groupByKind } from '../../core/text/unit-labels.js';
 import { button, linkButton } from '../../components/controls/button.js';
 import { emptyState, loadingState, partialLoadNotice } from '../../components/feedback/states.js';
 import { progressBar } from '../../components/feedback/progress-bar.js';
@@ -126,17 +127,15 @@ export async function render(container, context) {
       : h('div', { class: ['practice-hub__tile', 'card', 'card--flat', 'is-disabled'] }, content);
   }
 
+  // One group per unit kind, in the display order of core/text/unit-labels.js.
+  // 每类单元一组，按 core/text/unit-labels.js 的显示顺序排列。
   function unitSections(stats, typeParam) {
-    const kinds = [];
-    for (const unit of units) {
-      if (!kinds.includes(unit.kind)) kinds.push(unit.kind);
-    }
     return h('section', { class: 'practice-hub__section', 'aria-labelledby': 'practice-hub-units' },
       h('h2', { class: 'section-heading', id: 'practice-hub-units' }, '按单元练习 By unit'),
-      kinds.map((kind) => h('div', { class: 'practice-hub__group' },
-        h('h3', { class: 'practice-hub__group-title' }, kindLabel(kind)),
+      groupByKind(units).map((group) => h('div', { class: 'practice-hub__group' },
+        h('h3', { class: 'practice-hub__group-title' }, kindLabel(group.kind)),
         h('div', { class: 'grid-auto' },
-          units.filter((unit) => unit.kind === kind).map((unit) => unitCard(unit, stats.get(unit.id), typeParam))))));
+          group.units.map((unit) => unitCard(unit, stats.get(unit.id), typeParam))))));
   }
 
   function unitCard(unit, stats, typeParam) {

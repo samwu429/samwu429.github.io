@@ -1,0 +1,1288 @@
+{
+  "verbs": [
+    {
+      "en": "Identify",
+      "zh": "识别 / 指出",
+      "meaning": {
+        "zh": "从题目描述里“找出”某样东西并写出来：总体（**population**）、样本（**sample**）、参数（**parameter**）、统计量（**statistic**）、变量（**variable**）、个案（**case**）、响应变量和解释变量、抽样方法或研究类型。老师要的是准确的名称和完整的描述，不需要长篇解释。",
+        "en": "Pick out a part of the study and name it: the population, sample, parameter, statistic, variable, cases, the response or explanatory variable, the sampling method or the type of study."
+      },
+      "howTo": {
+        "zh": "① 先在题干里圈出“研究的是谁”（who）和“测了什么”（what）；② 总体用 All … 开头，保留题目里所有限定词（年龄、地点、时间）；③ 样本写成“样本量 + randomly selected + 谁”；④ 参数写 the true … of all …，统计量写 the sample …；⑤ 变量是每个个案身上的一个特征，不是百分比，也不是人数。",
+        "en": "Underline who was studied and what was measured. Start a population with 'All ...' and keep every qualifier. Write a sample as 'the n randomly selected ...'. A parameter is a true population value; a statistic is a sample value. A variable is a characteristic of each case, not a percentage or a number of people."
+      },
+      "starter": {
+        "en": "The population is all UTM students, and the sample is the 300 randomly selected UTM students who answered the survey.",
+        "zh": "总体是全体 UTM 学生，样本是回答问卷的 300 名随机抽取的 UTM 学生。"
+      }
+    },
+    {
+      "en": "Classify",
+      "zh": "分类",
+      "meaning": {
+        "zh": "把对象放进课程规定的类别：变量类型是分类变量（**categorical**）还是数值变量（**quantitative**）；测量尺度（**scale**）是 nominal、ordinal 还是 interval；研究是观察研究还是实验；离群值是 suspect 还是 highly suspect。",
+        "en": "Put something into the course's categories: categorical or quantitative variable; nominal, ordinal or interval scale; observational study or experiment; suspect or highly suspect outlier."
+      },
+      "howTo": {
+        "zh": "① 先写大类，再写尺度；② 用 because 说出依据：有没有数值单位？类别有没有自然顺序？③ 小心：用数字当代号（1 = poor … 5 = excellent）不等于数值变量；计数（几个人、几次）是数值变量；本课程的数值变量都写 interval scale。",
+        "en": "Give the type first, then the scale, and add a reason with 'because' (Does it have units? Do the categories have a natural order?). Number codes do not make a variable quantitative, counts are quantitative, and in this course quantitative variables are on an interval scale."
+      },
+      "starter": {
+        "en": "Customer satisfaction (low, medium, high) is a categorical variable measured on an ordinal scale, because its categories have a natural order but no numerical units.",
+        "zh": "顾客满意度（低、中、高）是分类变量，属于顺序尺度（ordinal），因为类别有自然顺序但没有数值单位。"
+      }
+    },
+    {
+      "en": "Describe",
+      "zh": "描述",
+      "meaning": {
+        "zh": "用几句话把一张图或一组数据“画”给老师看。分布（**distribution**）写形状、中心、离散和离群值；散点图写方向、形态、强度和离群点；抽样偏差写清楚谁被漏掉、谁更愿意回答。",
+        "en": "Say in a few sentences what a graph or data set looks like: shape, centre, spread and outliers for a distribution; direction, form, strength and unusual points for a scatterplot; who is missed or over-represented for a bias."
+      },
+      "howTo": {
+        "zh": "① 按课程固定顺序写：shape → centre → spread → outliers（散点图：direction → form → strength → unusual features）；② 每一项都带变量名和单位；③ 从图或 R 输出里读数，用 about / approximately；④ 一项一句，短句最安全。",
+        "en": "Follow the course order: shape, centre, spread, outliers (for a scatterplot: direction, form, strength, unusual features). Name the variable and the unit each time, use 'about' for values read from a graph, and write one short sentence per feature."
+      },
+      "starter": {
+        "en": "Based on the histogram, the distribution of commute time is unimodal and skewed to the right, with a centre of about 25 minutes.",
+        "zh": "根据直方图，通勤时间的分布是单峰、右偏的，中心大约是 25 分钟。"
+      }
+    },
+    {
+      "en": "Interpret ... in context",
+      "zh": "结合情境解释",
+      "meaning": {
+        "zh": "说明一个数字“在这道题里是什么意思”。老师要看到：个案（谁）、变量（什么）、数值和单位，最好直接套用老师的固定句型。这是 STA220 最常见的指令，选择题也常让你从 5 句里挑出正确的解释句。",
+        "en": "Explain what a number means in this study, naming the cases, the variable, the value and the unit. Use the instructor's sentence patterns; multiple-choice questions ask you to pick the correct one."
+      },
+      "howTo": {
+        "zh": "① 先认出要解释的是哪个量（mean、median、SD、IQR、percentile、z、r、slope、intercept、residual、R²、relative risk），找到对应模板；② 把题目里的名字、数字、单位填进去；③ 检查方向（above / below，increase / decrease）、有没有 on average 或 the mean … is estimated to，以及有没有写成因果。",
+        "en": "Recognize which quantity it is and use its template. Fill in the names, numbers and units from the question. Then check the direction (above/below, increase/decrease), the words 'on average' or 'the mean ... is estimated to', and that you did not claim cause and effect."
+      },
+      "starter": {
+        "en": "We can expect commute times to differ from the mean by about 15.55 minutes, on average.",
+        "zh": "我们可以预期，通勤时间与均值平均相差约 15.55 分钟。"
+      }
+    },
+    {
+      "en": "Calculate / Compute / Find",
+      "zh": "计算 / 求",
+      "meaning": {
+        "zh": "算出一个具体的数：比例、均值、中位数、S、IQR、fences、z、r、ŷ、残差、R²。老师想看到“公式 → 代入 → 结果”；选择题则看你能不能算出最接近的选项。",
+        "en": "Work out a number: a proportion, mean, median, S, IQR, fence, z, r, ŷ, residual or R². Show the formula, the substitution and the result."
+      },
+      "howTo": {
+        "zh": "① 写公式；② 代入数字；③ 中间步骤保留完整小数，最后才四舍五入（比例 2–4 位，百分比 1–2 位，z 两位，r 3–4 位）；④ 写上单位；⑤ 常见陷阱：分母用错组、用 n 而不是 n − 1、忘了排序、忘了平方。",
+        "en": "Write the formula, substitute, and keep full precision until the final answer (proportions 2-4 decimals, percentages 1-2, z 2, r 3-4). Add the unit. Watch for the wrong denominator, n instead of n − 1, unsorted data and forgetting to square."
+      },
+      "starter": {
+        "en": "IQR = Q3 − Q1 = 74 − 66 = 8 points.",
+        "zh": "IQR = Q3 − Q1 = 74 − 66 = 8 分。"
+      }
+    },
+    {
+      "en": "Compare",
+      "zh": "比较",
+      "meaning": {
+        "zh": "比较两组（或几组）数据，或者比较来自不同分布的两个数值。两边的数字都要写出来，并说清谁更高、谁更分散。",
+        "en": "Compare two or more groups, or two values from different distributions. Give the numbers for both sides and say which is higher or more spread out."
+      },
+      "howTo": {
+        "zh": "① 分类数据：比较每组内部的条件百分比（**conditional percentages**），差值用百分点（**percentage points**），比值用 times as large 或 % higher；② 数值数据：中位数比中心，IQR 比离散，各组用自己的 fences 判断离群值；③ 不同分布的两个值：比 z 分数，z 大的相对位置更好；④ 常用词：compared with、whereas、than that of、both。",
+        "en": "For categorical data compare conditional percentages (a difference in percentage points, a ratio as 'times as large' or '% higher'). For quantitative data compare medians, IQRs and each group's outliers. For values from different distributions compare z-scores. Use 'compared with', 'whereas' and 'than that of'."
+      },
+      "starter": {
+        "en": "Compared with on-campus students, off-campus students tend to work more hours per week (median 15 vs 8 hours).",
+        "zh": "和住校生相比，校外学生每周打工的时间往往更长（中位数 15 小时对 8 小时）。"
+      }
+    },
+    {
+      "en": "Which graph / measure is most appropriate?",
+      "zh": "哪种图或统计量最合适",
+      "meaning": {
+        "zh": "根据变量类型和分布形状，选出最合适的图或统计量。去年期中就考过“用哪种图展示结果”和“该算哪种百分比”。",
+        "en": "Choose the graph or summary that fits the variable type and the shape of the data."
+      },
+      "howTo": {
+        "zh": "① 一个分类变量 → bar chart 或 pie chart；② 一个数值变量 → histogram、stem-and-leaf、dotplot 或 boxplot；③ 比较几组数值数据 → side-by-side boxplots；④ 两个数值变量 → scatterplot（解释变量 x 放横轴，响应变量 y 放纵轴）；⑤ 两个分类变量 → 并排条形图（**side-by-side bar chart**），再在列联表（**contingency table**）里按解释变量的每一组算条件百分比（条形图画的是人数，判断关联要比百分比）；⑥ 偏斜或有离群值 → median 和 IQR，近似钟形对称 → mean 和 SD。最后补一句 because …。",
+        "en": "One categorical variable: bar chart or pie chart. One quantitative variable: histogram, stem-and-leaf display, dotplot or boxplot. Several groups: side-by-side boxplots. Two quantitative variables: scatterplot (explanatory x on the horizontal axis). Two categorical variables: a side-by-side (clustered) bar chart, and a contingency table with percentages within each level of the explanatory variable. Skewed data: median and IQR; bell-shaped data: mean and SD. Add a 'because' reason."
+      },
+      "starter": {
+        "en": "A bar chart is most appropriate, because the type of phone (iPhone, Android, other) is a categorical variable.",
+        "zh": "条形图最合适，因为手机类型（iPhone、安卓、其他）是分类变量。"
+      }
+    },
+    {
+      "en": "Is it appropriate ...?",
+      "zh": "是否合适",
+      "meaning": {
+        "zh": "判断某个方法在这里能不能用：能不能用 r 概括这个关系？能不能用线性回归？能不能用经验法则？截距能不能解释？这种抽样方法合不合理？然后说出理由。",
+        "en": "Decide whether a method fits this situation (r, a linear model, the Empirical Rule, interpreting the intercept, a sampling method) and give the reason."
+      },
+      "howTo": {
+        "zh": "① 第一句直接写 Yes 或 No；② 第二句给出课程规则；③ 第三句联系题目里的证据。常用规则：r 和线性回归只适合直线关系；经验法则只适合钟形数据；截距只有当 x = 0 在观测范围内才有意义；偏斜数据用中位数和 IQR；总体分散在各地时，整群抽样省时省钱。",
+        "en": "Start with Yes or No, state the course rule, then point to the evidence. Rules: r and linear regression need a linear form; the Empirical Rule needs bell-shaped data; the intercept needs x = 0 inside the observed range; skewed data need the median and IQR; cluster sampling saves time and cost when the population is spread out."
+      },
+      "starter": {
+        "en": "No. It is not appropriate to summarize this relationship with r, because the pattern is curved, not linear.",
+        "zh": "不合适。不能用 r 概括这个关系，因为图形是弯曲的，不是直线。"
+      }
+    },
+    {
+      "en": "Explain why / Justify",
+      "zh": "解释原因 / 说明理由",
+      "meaning": {
+        "zh": "题目写 Briefly explain / justify your answer，或 Answer Yes or No and justify：老师要看“结论 + 证据 + 规则”三件套，而不是只写一个词。",
+        "en": "Give the conclusion, the evidence from the data and the course rule behind it, not just one word."
+      },
+      "howTo": {
+        "zh": "① 先给结论（Yes / No / 方法名称）；② 用题目里的数字作证据（例如两组的条件百分比）；③ 点出依据的课程规则或定义；④ 2–3 句就够，不写和题目无关的内容。",
+        "en": "Conclusion first (Yes, No or a name), then numbers from the question as evidence, then the course rule or definition. Two or three sentences are enough."
+      },
+      "starter": {
+        "en": "Yes. 83.3% of the students who attended passed, compared with 60.0% of those who did not attend, so the conditional distributions are different.",
+        "zh": "是的。参加复习课的学生 83.3% 及格，没参加的只有 60.0%，两组的条件分布不同。"
+      }
+    },
+    {
+      "en": "Predict",
+      "zh": "预测",
+      "meaning": {
+        "zh": "用回归直线 ŷ = b0 + b1x 算出某个 x 对应的预测值（**predicted value**）ŷ，并检查这个 x 在不在观测范围内。",
+        "en": "Use the regression line ŷ = b0 + b1x to get the predicted value for a given x, and check that x is inside the observed range."
+      },
+      "howTo": {
+        "zh": "① 把 x 代入方程（别把 y 当成 x 代进去）；② 写单位；③ 如果 x 在观测范围之外，就是外推（**extrapolation**），要说明预测不可靠；④ 题目接着问残差时，用 y − ŷ。",
+        "en": "Substitute x (not y) into the equation and give the unit. If x is outside the observed range, say that the prediction is extrapolation and not reliable. If a residual is asked next, use y − ŷ."
+      },
+      "starter": {
+        "en": "The predicted price of a 6-year-old car is ŷ = 24.6 − 1.85(6) = 13.5 thousand dollars, that is, about $13,500.",
+        "zh": "车龄 6 年的车，预测价格是 ŷ = 24.6 − 1.85 × 6 = 13.5 千美元，也就是约 13,500 美元。"
+      }
+    },
+    {
+      "en": "Estimate / approximately",
+      "zh": "估计 / 大约",
+      "meaning": {
+        "zh": "从图上读出近似值（箱线图的 Q1、Q3 和 IQR，直方图的中心和范围），或者用样本统计量去估计总体参数。题目里常出现 approximately、likely、about。",
+        "en": "Read approximate values from a graph (Q1, Q3 and the IQR from a boxplot; the centre and range from a histogram), or use a sample statistic to estimate a population parameter."
+      },
+      "howTo": {
+        "zh": "① 对准坐标刻度读数，可以在图上画辅助线；② 刻度标签不全时，按刻度间距往外推；③ 用读到的数计算（例如 IQR = Q3 − Q1）；④ 选最接近的选项，答句里写 about / approximately。",
+        "en": "Line up each feature with the axis (draw a guide line), extend the scale if the labels stop early, compute with your readings, and choose the closest option. Write 'about' in your answer."
+      },
+      "starter": {
+        "en": "From the boxplot, Q1 is about 40 minutes and Q3 is about 55 minutes, so the IQR is about 15 minutes.",
+        "zh": "从箱线图读出 Q1 约 40 分钟，Q3 约 55 分钟，所以 IQR 约 15 分钟。"
+      }
+    },
+    {
+      "en": "Which of the following ...? / ... NOT ...? / This means that:",
+      "zh": "选择题问法：以下哪项正确 / 哪项不是 / 这意味着",
+      "meaning": {
+        "zh": "期中是单选题，题干常写 Which of the following is true?、Which … is NOT …?、The slope is … This means that:。要从 5 个选项里找出唯一正确（或唯一错误）的那一句。",
+        "en": "Multiple-choice stems ask for the one true statement, the one that is NOT true, or the sentence that gives the correct meaning."
+      },
+      "howTo": {
+        "zh": "① 先不看选项，自己写出正确答案或模板句；② NOT 题要逐项判断真假，找出唯一的“假”；③ 解释类题逐项检查：x 和 y 有没有对调、方向和符号对不对、有没有 the mean … is estimated to、有没有因果；④ 五个选项读完再涂卡。",
+        "en": "Write your own answer or template sentence before reading the options. For NOT questions, test each option and find the single false one. For meaning questions, check x and y, the direction, the words 'the mean ... is estimated to' and causal claims. Read all five options."
+      },
+      "starter": {
+        "en": "The slope is 2.5. This means that when x increases by 1, the mean y is estimated to increase by 2.5.",
+        "zh": "斜率是 2.5，意思是 x 每增加 1，y 的平均值估计增加 2.5。"
+      }
+    },
+    {
+      "en": "Propose / Suggest",
+      "zh": "提出更好的方案",
+      "meaning": {
+        "zh": "提出一个更好的做法：更好的抽样方案、能证明因果的实验设计，或者一个可能的潜伏变量（**lurking variable**）。",
+        "en": "Suggest a better way: a better sampling plan, an experiment that could show cause and effect, or a possible lurking variable."
+      },
+      "howTo": {
+        "zh": "① 用 A better strategy would be to … 开头；② 写清具体怎么做（按什么分层？谁被随机分到哪一组？）；③ 加一句为什么更好（每个群体都有代表；随机分组让两组在其他方面相似）。",
+        "en": "Start with 'A better strategy would be to ...', say exactly what to do (stratify by what? randomly assign whom?), and add why it is better."
+      },
+      "starter": {
+        "en": "A better strategy would be to stratify the sample by year of study: take a simple random sample of students from each year and combine them.",
+        "zh": "更好的方法是按年级分层：在每个年级里各抽一个简单随机样本，再合在一起。"
+      }
+    },
+    {
+      "en": "Define / What is ...?",
+      "zh": "下定义",
+      "meaning": {
+        "zh": "写出术语的准确意思。选择题常考“哪句话描述的是参数 / 统计量 / 变量”，书面题也可能直接问定义。",
+        "en": "Give the exact meaning of a course term. Multiple-choice questions often test which sentence describes a parameter, a statistic or a variable."
+      },
+      "howTo": {
+        "zh": "① 用 X is … 开头，尽量接近课件原话；② 定义里的关键词就是得分点：statistic 对应 sample，parameter 对应 population，variable 对应 each case；③ 需要时加一个本题情境的例子。",
+        "en": "Start with 'X is ...' and stay close to the course wording; the key words are the scoring points (statistic: sample; parameter: population; variable: each case). Add an example from the question if it helps."
+      },
+      "starter": {
+        "en": "A parameter is a numerical summary of the population, and a statistic is a numerical summary of the sample data.",
+        "zh": "参数是总体的数值概括，统计量是样本数据的数值概括。"
+      }
+    }
+  ],
+  "templates": [
+    {
+      "id": "describe-distribution",
+      "title": {
+        "zh": "描述一个分布（形状、中心、离散、离群值）",
+        "en": "Describe a distribution"
+      },
+      "whenToUse": {
+        "zh": "题目给出直方图（或茎叶图、点图、频率表），问 Describe the shape, centre and spread / What is the shape of the distribution? 时用；如果还问 Which measures of centre and spread are most appropriate?，再加最后一句。同类题：Module 3 Practice Q1a、Q2a、Q3a；Module 4 Practice Q1A、Q1C；2025 期中 Q11、Q16（形状题）。",
+        "en": "Use it when a histogram, stem-and-leaf display, dotplot or frequency table is given and you must describe the shape, centre and spread, or choose the best measures of centre and spread."
+      },
+      "skeleton": [
+        {
+          "en": "Based on the histogram, the distribution of ___ is ___ and ___.",
+          "zh": "形状：第 1 空填变量；第 2 空数峰（unimodal / bimodal / multimodal / uniform）；第 3 空写对称或偏斜（symmetric / skewed to the right / skewed to the left），偏斜按长尾巴的方向命名。"
+        },
+        {
+          "en": "Most of the ___ are between ___ and ___, and the tail stretches to the ___.",
+          "zh": "用数据支撑形状：大部分数据落在哪一段，尾巴往哪边拖。"
+        },
+        {
+          "en": "The centre is about ___ ___ (median = ___).",
+          "zh": "中心：典型值 + 单位；有 R 输出时写上中位数。没有 R 输出时，从左往右把柱高加起来，看正中间的值（第 n/2 个左右）落在哪根柱子；最高的柱子是峰，不一定是中心。"
+        },
+        {
+          "en": "The values of ___ range from about ___ to ___ ___.",
+          "zh": "离散：大约从最小值到最大值，带单位。"
+        },
+        {
+          "en": "There is a possible outlier at about ___ ___.",
+          "zh": "离群值：远离主体或隔着空档的值；没有就写 There are no obvious outliers。"
+        },
+        {
+          "en": "Because the distribution is ___, the most appropriate measures of centre and spread are the ___ (___) and the ___ (___).",
+          "zh": "选统计量：偏斜或有离群值 → median 和 IQR；近似钟形对称 → mean 和 SD。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A researcher asked 40 randomly selected UTM students how long their commute to campus takes (in minutes). The R histogram uses bins of width 10, from (0, 10] to (70, 80], with frequencies 4, 11, 12, 6, 3, 3, 0, 1. R output: min = 5, Q1 = 16.75, median = 24.5, Q3 = 35.25, max = 78, mean = 27.5, sd = 15.55. Describe the shape, centre and spread of the distribution, comment on any unusual values, and state the most appropriate measures of centre and spread.",
+          "zh": "研究者随机询问 40 名 UTM 学生到校通勤要多少分钟。R 直方图的组宽为 10，从 (0, 10] 到 (70, 80]，频数依次为 4, 11, 12, 6, 3, 3, 0, 1。R 输出：最小值 5，Q1 = 16.75，中位数 24.5，Q3 = 35.25，最大值 78，均值 27.5，标准差 15.55。描述这个分布的形状、中心和离散程度，说明有没有离群值，并指出最合适的中心和离散度量。"
+        },
+        "answer": {
+          "en": "Based on the histogram, the distribution of commute time is unimodal and skewed to the right. More than half of the students (23 of 40) commute between 10 and 30 minutes, and the tail stretches to the right. The centre is about 25 minutes (median = 24.5 minutes). Commute times range from about 5 to 78 minutes. There is a gap between 60 and 70 minutes, and one student, with a commute of 78 minutes, lies far from the rest. It is a possible outlier; by the 1.5 × IQR rule it is a suspect outlier, because 78 is above the upper inner fence, 35.25 + 1.5 × 18.5 = 63 minutes.\nBecause the distribution is skewed to the right, the most appropriate measure of centre is the median (24.5 minutes) and the most appropriate measure of spread is the IQR (35.25 − 16.75 = 18.5 minutes), because they are resistant to extreme values. The mean (27.5 minutes) is larger than the median, because the long right tail pulls it up.",
+          "zh": "得分点按顺序：① 形状：一个峰（**unimodal**），长尾巴在右边，所以右偏（**skewed to the right**）——偏斜按尾巴命名，不按峰的位置；② 中心：写中位数，带单位；③ 离散：从最小值到最大值，带单位；④ 离群值：直方图上 (60, 70] 是空的，78 孤零零地在右边，再用 Module 4 的内栅栏 Q3 + 1.5 × IQR = 63 验证（78 没有超过外栅栏 35.25 + 3 × 18.5 = 90.75，所以是 suspect，不是 highly suspect）；⑤ 选统计量：右偏 → 中位数和 IQR（它们是稳健的，**resistant**），均值被右边的长尾拉大（27.5 > 24.5）。注意：题目给了 R 的 Q1、Q3（16.75 和 35.25）就直接用，课件说四分位数以 R 的结果为准。"
+        }
+      }
+    },
+    {
+      "id": "interpret-mean-median-sd",
+      "title": {
+        "zh": "计算并解释均值、中位数和标准差",
+        "en": "Calculate and interpret the mean, median and standard deviation"
+      },
+      "whenToUse": {
+        "zh": "题目问 Find / What is the mean (median, standard deviation)? Interpret this value in the context of the data. 时用。R 直接给出数值时，跳过前三行计算，只写后三行解释句。同类题：Module 3 Practice Q1b–Q1e、Q2b–Q2d、Q3d–Q3f；Module 4 Practice Q1B(i)；2025 期中 Q12–Q14（从相对频率表求均值、中位数、众数）。",
+        "en": "Use it when you must find a mean, median or standard deviation and interpret it in context. If R gives the values, skip the calculation lines and write only the interpretation sentences."
+      },
+      "skeleton": [
+        {
+          "en": "Mean: ȳ = Σy / n = ___ / ___ = ___ ___.",
+          "zh": "均值：所有值加起来（Σ 读作 sigma，意思是“全部加起来”），再除以个数 n，写单位。"
+        },
+        {
+          "en": "Median: after sorting, the position is 0.5(n + 1) = ___, so the median is ___ ___.",
+          "zh": "中位数：先从小到大排序；位置是 0.5(n + 1)；n 是偶数时取中间两个数的平均。"
+        },
+        {
+          "en": "S² = Σ(y − ȳ)² / (n − 1) = ___ / ___ = ___, so S = √S² = ___ ___.",
+          "zh": "标准差：离差平方和除以 n − 1，再开平方；S 的单位和数据相同，S² 是平方单位。"
+        },
+        {
+          "en": "On average, ___ have ___ ___.",
+          "zh": "均值解释句：个案 + 均值 + 单位。动词可按情境换成 studied、spent 等。"
+        },
+        {
+          "en": "The median ___ is ___. This means that 50% of ___ have at most ___ (___ or less), whereas 50% have more than ___.",
+          "zh": "中位数解释句：at most（≤）和 more than（>）。"
+        },
+        {
+          "en": "We can expect ___ to differ from the mean by about ___ ___, on average.",
+          "zh": "标准差解释句：变量 + S + 单位，三个关键词 differ from the mean、by about、on average。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Eight students recorded how many hours they studied for STA220 last week: 2, 3, 4, 4, 5, 6, 7, 9. (a) Find the mean, the median and the standard deviation. (b) Interpret each value in the context of the data.",
+          "zh": "8 名学生记录了上周学习 STA220 的小时数：2, 3, 4, 4, 5, 6, 7, 9。(a) 求均值、中位数和标准差；(b) 结合情境解释这三个数。"
+        },
+        "answer": {
+          "en": "(a) Mean: ȳ = (2 + 3 + 4 + 4 + 5 + 6 + 7 + 9)/8 = 40/8 = 5 hours. Median: the data are already sorted and n = 8 is even, so the median is at position 0.5(8 + 1) = 4.5, the average of the 4th and 5th values: (4 + 5)/2 = 4.5 hours. Standard deviation: the deviations from the mean are −3, −2, −1, −1, 0, 1, 2 and 4, and their squares add up to 36. S² = 36/(8 − 1) = 5.14 hours², so S = √(36/7) = 2.27 hours.\n(b) On average, these 8 students studied 5 hours for STA220 last week. The median study time is 4.5 hours. This means that 50% of the students studied at most 4.5 hours (4.5 hours or less), whereas 50% studied more than 4.5 hours. We can expect study times to differ from the mean by about 2.27 hours, on average.",
+          "zh": "得分点：① 均值：列出 Σy/n，带单位；② 中位数：先排序，位置 0.5(n + 1) = 4.5，n 是偶数就取第 4、第 5 个数的平均；③ 标准差：先算离差（**deviation**）y − ȳ，平方后求和得 36，除以 n − 1 = 7（不是 8！除以 8 会得到 2.12，那是总体标准差的算法），再开方；方差的单位是“小时²”，标准差回到“小时”；④ 三个解释句都是老师的固定句型，每句都要有个案（students）、变量（study time）和单位（hours）。"
+        }
+      }
+    },
+    {
+      "id": "interpret-iqr-percentile-z",
+      "title": {
+        "zh": "解释 IQR、百分位数和 z 分数",
+        "en": "Interpret the IQR, a percentile and a z-score"
+      },
+      "whenToUse": {
+        "zh": "题目给出四分位数、百分位数或均值和标准差，问 Interpret the IQR / What does the 90th percentile mean? / Find and interpret the z-score / Which value is relatively better? 时用。同类题：Module 4 Practice Q1B(ii)–(v)、Q2D、Q2E(i)；2025 期中 Q10（从箱线图读 IQR）。",
+        "en": "Use it when you must interpret the IQR or a percentile, compute and interpret a z-score, or compare values from different distributions."
+      },
+      "skeleton": [
+        {
+          "en": "IQR = Q3 − Q1 = ___ − ___ = ___ ___.",
+          "zh": "IQR 计算：Q3 减 Q1，带单位。"
+        },
+        {
+          "en": "The middle 50% of ___ are between ___ and ___, a range of ___ ___.",
+          "zh": "IQR 解释：中间一半数据的范围。"
+        },
+        {
+          "en": "About ___% of ___ are at or below ___, and about ___% are above it.",
+          "zh": "百分位数解释：第 p 百分位 = 约 p% 的数据小于或等于它，约 (100 − p)% 大于它。"
+        },
+        {
+          "en": "z = (y − ȳ) / S = (___ − ___) / ___ = ___.",
+          "zh": "z 分数计算：（数值 − 均值）÷ 标准差，保留两位小数。"
+        },
+        {
+          "en": "___'s ___ is ___ standard deviations above the mean ___.",
+          "zh": "z 解释句：z 是负数时把 above 换成 below，数字用绝对值。"
+        },
+        {
+          "en": "Since ___ > ___, ___ has the better position relative to its own distribution.",
+          "zh": "比较不同分布的两个值：z 大的相对位置更好。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Lina wrote a STA220 quiz and a MAT quiz. STA220 class: mean = 70, SD = 6, Q1 = 66, Q3 = 74, and Lina's score of 78 is at the 90th percentile. MAT class: mean = 75, SD = 8, and Lina scored 85. (a) Compute and interpret the IQR of the STA220 quiz scores. (b) Interpret the statement that Lina's STA220 score is at the 90th percentile. (c) Use z-scores to decide on which quiz Lina did better relative to her class.",
+          "zh": "Lina 参加了 STA220 和 MAT 两次小测。STA220 全班：均值 70，标准差 6，Q1 = 66，Q3 = 74，Lina 的 78 分位于第 90 百分位。MAT 全班：均值 75，标准差 8，Lina 得了 85 分。(a) 计算并解释 STA220 成绩的 IQR；(b) 解释“Lina 的 STA220 成绩位于第 90 百分位”；(c) 用 z 分数判断：相对于各自的全班，Lina 哪一次考得更好？"
+        },
+        "answer": {
+          "en": "(a) IQR = Q3 − Q1 = 74 − 66 = 8 points. The middle 50% of the STA220 quiz scores are between 66 and 74 points, a range of 8 points.\n(b) About 90% of the STA220 students scored 78 or less, and about 10% scored more than 78.\n(c) STA220: z = (78 − 70)/6 = 1.33. MAT: z = (85 − 75)/8 = 1.25. Lina's STA220 score is 1.33 standard deviations above the class mean, and her MAT score is 1.25 standard deviations above the class mean. Since 1.33 > 1.25, Lina did slightly better on the STA220 quiz relative to her class, even though her MAT score (85) is the higher raw score.",
+          "zh": "得分点：① IQR 是中间 50% 数据的范围，句型 The middle 50% of … are between Q1 and Q3；② 百分位数（**percentile**）说的是位置：第 90 百分位 = 约 90% 的人小于或等于这个分数，约 10% 高于它，不是“考了 90 分”，也不是“答对 90%”；③ z = (y − ȳ)/S，正数写 above the mean，负数写 below the mean（用绝对值），单位是“个标准差”而不是 %；④ 比较不同分布的两个值，要比 z，不比原始分数：85 > 78，但 1.33 > 1.25，所以 STA220 的相对位置更好。"
+        }
+      }
+    },
+    {
+      "id": "compare-boxplots",
+      "title": {
+        "zh": "用并排箱线图比较几组数据",
+        "en": "Compare groups with side-by-side boxplots"
+      },
+      "whenToUse": {
+        "zh": "题目给出并排箱线图（**side-by-side boxplots**）或分组的 favstats 输出，问 Compare the distributions / Describe the shape, centre and spread of each group 时用。按形状 → 中心（中位数）→ 离散（IQR）→ 离群值的顺序，每一项都把两组放在一起写。同类题：Module 4 Practice Q2B、Q2C；课件里按甜甜圈类型比较热量的例子。",
+        "en": "Use it when side-by-side boxplots or grouped R output are given and you must compare the groups: shape, centre (median), spread (IQR) and outliers."
+      },
+      "skeleton": [
+        {
+          "en": "Shape: the distribution of ___ for ___ is ___, while for ___ it is ___.",
+          "zh": "形状：每组各说一次；看箱子两半、两根须的长短，以及单独画出的点在哪一边。"
+        },
+        {
+          "en": "Centre: ___ tend to have higher ___; their median is ___, compared with ___ for ___.",
+          "zh": "中心：比较中位数（不是均值），两边的数字都写。"
+        },
+        {
+          "en": "Spread: the middle 50% of ___ are between ___ and ___ (IQR = ___), compared with ___ to ___ (IQR = ___) for ___.",
+          "zh": "离散：比较 IQR；有离群值时不要用极差（range）比较。"
+        },
+        {
+          "en": "Outliers: in the ___ group, ___ is plotted individually; it is above that group's upper inner fence, Q3 + 1.5 × IQR = ___.",
+          "zh": "离群值：用该组自己的 Q1、Q3 算 fences；超过外栅栏 Q3 + 3 × IQR 才是 highly suspect。"
+        },
+        {
+          "en": "Overall, ___ tend to have ___ ___ than ___.",
+          "zh": "一句总结：哪组整体更高、哪组更分散。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A survey recorded the weekly hours of part-time work of 20 students who live on campus and 24 students who live off campus. R output: on campus: min = 0, Q1 = 4, median = 8, Q3 = 12, max = 30; off campus: min = 2, Q1 = 10, median = 15, Q3 = 20, max = 28. In the side-by-side boxplots, the on-campus upper whisker ends at 20 hours and one on-campus value (30 hours) is plotted individually; no off-campus value is plotted individually. Compare the two distributions.",
+          "zh": "一项调查记录了 20 名住校生和 24 名校外学生每周打工的小时数。R 输出：住校：最小值 0，Q1 = 4，中位数 8，Q3 = 12，最大值 30；校外：最小值 2，Q1 = 10，中位数 15，Q3 = 20，最大值 28。并排箱线图中，住校组的上须到 20 小时，有一个住校生的值（30 小时）被单独画出；校外组没有单独画出的点。比较两组的分布。"
+        },
+        "answer": {
+          "en": "Shape: The on-campus distribution is skewed to the right: its upper whisker (12 to 20 hours) is longer than its lower whisker (0 to 4 hours), and one high value is plotted individually. The off-campus distribution is roughly symmetric: the median is in the middle of the box, and the two whiskers have the same length (8 hours).\nCentre: Off-campus students tend to work more. Their median is 15 hours per week, compared with 8 hours for on-campus students.\nSpread: The middle 50% of off-campus students work between 10 and 20 hours (IQR = 10 hours), a slightly wider range than for on-campus students, 4 to 12 hours (IQR = 8 hours).\nOutliers: One on-campus student works 30 hours per week. This value is above the on-campus upper inner fence, 12 + 1.5 × 8 = 24, but below the upper outer fence, 12 + 3 × 8 = 36, so it is a suspect outlier.",
+          "zh": "得分点：① 形状看箱子两半和两根须的长短，再看单独画出的点在哪一边；② 中心比较中位数（不是均值）；③ 离散比较 IQR，写成“中间 50% 在 Q1 到 Q3 之间（IQR = …）”。注意住校组的极差 30 − 0 = 30 比校外组的 26 大，但那是被离群值拉大的，所以比较离散要用稳健的 IQR；④ 判断离群值要用该组自己的 Q1、Q3：内栅栏（**inner fence**）Q3 + 1.5 × IQR = 24，外栅栏（**outer fence**）Q3 + 3 × IQR = 36，30 在两者之间 → suspect outlier（不是 highly suspect）；⑤ 每句都带单位（hours per week）。"
+        }
+      }
+    },
+    {
+      "id": "two-way-table-association",
+      "title": {
+        "zh": "列联表：条件百分比、差值、比值与关联",
+        "en": "Association in a two-way table"
+      },
+      "whenToUse": {
+        "zh": "题目给出列联表（**contingency table**），问 Which percentages should be calculated? / Among X, what proportion …? / Is there an association? / Find the relative risk comparing A to B and interpret it 时用。去年期中前 6 题都用同一张表。同类题：Module 2 Practice Q1B–Q1E、Q3D–Q3E；2025 期中 Q1–Q6。",
+        "en": "Use it for a two-way table: choosing row or column percentages, conditional proportions, deciding whether there is an association, and comparing groups with a difference and a ratio of proportions."
+      },
+      "skeleton": [
+        {
+          "en": "___ is the explanatory variable, so we calculate ___ percentages, within each level of ___.",
+          "zh": "选百分比：在解释变量的每一组内部算（组在行 → 行百分比；组在列 → 列百分比）。"
+        },
+        {
+          "en": "___% (___/___) of ___ ___, compared with ___% (___/___) of ___.",
+          "zh": "条件百分比：分母是该组的合计；两组的数字都写出来。"
+        },
+        {
+          "en": "The conditional distributions are ___, so there appears to be ___ association between ___ and ___.",
+          "zh": "判断关联：明显不同 → an association；几乎相同（也接近不分组的无条件百分比，**unconditional percentages**）→ no association（两个变量独立）。答 No 时也要举出各组的百分比（官方练习 Q1E）。"
+        },
+        {
+          "en": "Difference: ___% − ___% = ___ percentage points, so the percentage who ___ is ___ percentage points higher among ___.",
+          "zh": "差值：单位是百分点（percentage points），不是 %。"
+        },
+        {
+          "en": "Ratio: ___ / ___ = ___, so the proportion who ___ is ___ times as large among ___ as among ___ (for a ratio between 1 and 2: ___% higher among ___ than among ___).",
+          "zh": "比值：题目说 comparing A to B 时 A 放分子（比值可能小于 1）；没这样说时，大的放分子。大于 2 写 times as large；在 1 和 2 之间改写成 (比值 − 1) × 100% higher；小于 1 写 (1 − 比值) × 100% lower。"
+        },
+        {
+          "en": "These are observational data, so we cannot conclude that ___ causes ___.",
+          "zh": "因果提醒：观察数据只能说关联。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "An instructor recorded whether 200 STA220 students attended an optional review session and whether they passed the next quiz.\nAttended: Passed 75, Failed 15, Total 90\nDid not attend: Passed 66, Failed 44, Total 110\nTotal: Passed 141, Failed 59, Total 200\n(a) Which percentages should be calculated to study whether passing depends on attendance? (b) Is there an association between attendance and the quiz result? Justify. (c) Compare the two groups with a difference and a ratio of proportions, and interpret both. (d) Does this show that attending the session causes students to pass?",
+          "zh": "老师记录了 200 名 STA220 学生是否参加选修复习课，以及下一次小测是否及格。\n参加：及格 75，不及格 15，合计 90\n未参加：及格 66，不及格 44，合计 110\n合计：及格 141，不及格 59，总计 200\n(a) 要研究及格与否是否取决于参加复习课，应该计算哪种百分比？(b) 是否参加和小测结果之间有关联吗？说明理由。(c) 用比例之差和比例之比比较两组，并分别解释。(d) 这能说明参加复习课导致学生及格吗？"
+        },
+        "answer": {
+          "en": "(a) Attendance is the explanatory variable and it defines the rows, so we calculate row percentages: the conditional distribution of the quiz result within each attendance group.\n(b) Yes. 75/90 = 83.33% of the students who attended passed, compared with 66/110 = 60.00% of the students who did not attend. The conditional distributions are different, so there appears to be an association between attendance and the quiz result.\n(c) Difference: 83.33% − 60.00% = 23.33 percentage points, so the pass rate is 23.33 percentage points higher among students who attended. Ratio: 0.8333/0.6000 = 1.39, so the proportion who passed is about 39% higher among students who attended than among those who did not. For failing, 0.40/0.1667 = 2.4: the proportion who failed is 2.4 times as large among students who did not attend as among those who attended.\n(d) No. These are observational data. More motivated students may be more likely both to attend and to pass.",
+          "zh": "得分点：① 选百分比：在解释变量（是否参加）的每一组内部算；这里组在行上 → 行百分比（组在列上就用列百分比）；② “Among X” → 分母是 X 那一组的合计（75/90，不是 75/200，也不是 75/141）；③ 判断关联：两组的条件百分比明显不同 → Yes，并写出两个百分比作证据；④ 差值的单位是百分点（**percentage points**），不能说 23.33% higher；⑤ 比值：题目没说 comparing A to B，就把大的放分子（说了就让 A 放分子，比值小于 1 时写 (1 − 比值) × 100% lower）；在 1 和 2 之间写 (比值 − 1) × 100% higher（1.39 → 约 39% higher）；大于 2 写 times as large among A as among B；⑥ 观察数据不能说因果，最好举出一个潜伏变量（学习动力）。"
+        }
+      }
+    },
+    {
+      "id": "describe-scatterplot",
+      "title": {
+        "zh": "描述散点图（方向、形态、强度）",
+        "en": "Describe a scatterplot"
+      },
+      "whenToUse": {
+        "zh": "题目给出散点图，问 Describe the direction, form and strength / What does the graph tell you about the relationship? 时用。先分清解释变量 x（横轴）和响应变量 y（纵轴）；有 r 时用课程的强度表：|r| ≥ 0.8 strong，0.5 ≤ |r| < 0.8 moderate to strong，0.3 ≤ |r| < 0.5 moderate，|r| < 0.3 weak。同类题：Module 5 correlation practice Q1a、Q2a；Module 5 regression practice Q2b；2025 期中 Q18。",
+        "en": "Use it when a scatterplot is given and you must describe the relationship: direction, form, strength and unusual points, in context."
+      },
+      "skeleton": [
+        {
+          "en": "The explanatory variable (x) is ___, and the response variable (y) is ___.",
+          "zh": "先分角色：x 在横轴，y 在纵轴。"
+        },
+        {
+          "en": "There appears to be a ___ ___ linear association between ___ and ___.",
+          "zh": "核心句：第 1 空强度（strong / moderate to strong / moderate / weak），第 2 空方向（positive / negative），第 3 空 y，第 4 空 x。"
+        },
+        {
+          "en": "As ___ increases, ___ tends to ___.",
+          "zh": "趋势句：increase 或 decrease。"
+        },
+        {
+          "en": "The relationship is not perfect: ___.",
+          "zh": "补充：点离直线有多分散，或者哪一段更分散。"
+        },
+        {
+          "en": "One unusual point, ___, lies far from the overall pattern, so it is a possible outlier.",
+          "zh": "离群点（unusual feature）：说出它的位置。"
+        },
+        {
+          "en": "If the points curve: there appears to be a ___ ___ nonlinear relationship between ___ and ___.",
+          "zh": "图形弯曲时写 nonlinear，并且不能用 r 概括。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A campus café recorded the daily high temperature (in °C) and the number of cups of iced coffee sold on 20 days. In the scatterplot, with temperature on the x-axis (12 to 32 °C), the points rise from the lower left to the upper right in a fairly straight band. On one day (18 °C) the café sold only 12 cups, far below the other points. The correlation is r = 0.875. Identify the explanatory and response variables, and describe the relationship.",
+          "zh": "校园咖啡店记录了 20 天的当日最高气温（°C）和冰咖啡销量（杯）。散点图横轴是气温（12 到 32 °C），点从左下到右上排成一条比较直的带。有一天（18 °C）只卖了 12 杯，远低于其他点。相关系数 r = 0.875。指出解释变量和响应变量，并描述两者的关系。"
+        },
+        "answer": {
+          "en": "The explanatory variable (x) is the daily high temperature (°C), and the response variable (y) is the number of cups of iced coffee sold.\nThere appears to be a strong positive linear association between the number of iced coffees sold and the daily high temperature (r = 0.875, and |r| ≥ 0.8). As the temperature increases, the number of iced coffees sold tends to increase. The points follow a straight-line trend, and no curve is seen.\nThe relationship is not perfect: the points are scattered around a line, not exactly on it.\nOne unusual day, 18 °C with only 12 cups, lies far below the overall pattern, so it is a possible outlier. Because r is sensitive to outliers, the association would look even stronger without this day.",
+          "zh": "得分点：① 先分清角色：解释变量 x 在横轴，响应变量 y 在纵轴；② 老师句型的顺序是“强度 → 方向 → linear”，并且先写 y 再写 x：between [y] and [x]；③ 强度用课程强度表：0.875 ≥ 0.8 → strong；④ 加一句 tend to 的趋势句；⑤ 提到离群点（**unusual feature**），r 对离群值敏感；⑥ 描述散点图只写关联，不写因果。如果点排成弯曲的形状，就写 a strong positive nonlinear relationship，并且不能用 r 概括（2025 期中 Q18 就是这种情况）。"
+        }
+      }
+    },
+    {
+      "id": "interpret-r-sd-units",
+      "title": {
+        "zh": "用标准差单位解释相关系数 r",
+        "en": "Interpret r in standard deviation units"
+      },
+      "whenToUse": {
+        "zh": "题目给出 r，问 Interpret this number in the context of this problem / Describe the strength and direction 时用。同类题：Module 5 correlation practice Q1c、Q2b、Q5c。",
+        "en": "Use it when r is given and you must classify its strength and direction or interpret it in standard deviation units."
+      },
+      "skeleton": [
+        {
+          "en": "Since |r| = ___, there is a ___ ___ linear association between ___ and ___.",
+          "zh": "强度用课程表：≥ 0.8 strong；0.5–0.8 moderate to strong；0.3–0.5 moderate；< 0.3 weak；方向看正负号。"
+        },
+        {
+          "en": "If ___'s ___ was 1 standard deviation above the mean, their ___ is estimated to be ___ standard deviation ___ the mean, on average.",
+          "zh": "标准差单位解释：数字用 |r|；r > 0 写 above，r < 0 写 below。"
+        },
+        {
+          "en": "If ___ was 2 standard deviations above the mean, the predicted ___ is 2 × ___ = ___ standard deviations ___ the mean.",
+          "zh": "2 个标准差时乘以 2（课件药物例子的做法）。"
+        },
+        {
+          "en": "Predicted y = ȳ + (r × z_x) × s_y = ___ + (___ × ___) × ___ = ___ ___.",
+          "zh": "换回原来的单位：先算 z_x = (x − x̄)/s_x，乘以 r 得到预测的 z_y，再用 y = ȳ + z_y × s_y（就是 Module 4 的 y = ȳ + z × S）。不要把 z_x 直接代进去。"
+        },
+        {
+          "en": "r has no unit, so changing the unit of ___ does not change r.",
+          "zh": "r 的性质：没有单位；换单位、对调 x 和 y 都不改变 r。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "In a random sample of 60 UTM students, daily screen time (x) has a mean of 4.5 hours and an SD of 1.8 hours, and last night's sleep (y) has a mean of 7.1 hours and an SD of 0.9 hours. The correlation is r = −0.64. (a) Describe the direction and strength of the linear association. (b) Interpret r in standard deviation units. (c) Predict the sleep time of a student whose screen time is 6.3 hours. (d) Would r change if screen time were measured in minutes?",
+          "zh": "在随机抽取的 60 名 UTM 学生中，每日屏幕时间（x）的均值是 4.5 小时、标准差 1.8 小时；昨晚睡眠时间（y）的均值是 7.1 小时、标准差 0.9 小时。相关系数 r = −0.64。(a) 描述线性关联的方向和强度；(b) 用标准差单位解释 r；(c) 预测屏幕时间为 6.3 小时的学生的睡眠时间；(d) 如果屏幕时间改用分钟计量，r 会变吗？"
+        },
+        "answer": {
+          "en": "(a) Since 0.5 ≤ |r| = 0.64 < 0.8, there is a moderate to strong negative linear association between sleep time and screen time. Students with more screen time tend to sleep less.\n(b) If a student's screen time was 1 standard deviation above the mean, their sleep time is estimated to be 0.64 standard deviation below the mean, on average.\n(c) 6.3 hours = 4.5 + 1.8, which is 1 standard deviation above the mean screen time. So the predicted sleep time is 0.64 standard deviation below the mean: 7.1 − 0.64 × 0.9 = 7.1 − 0.576 = 6.524, about 6.52 hours.\n(d) No. r has no unit, so changing the unit of screen time from hours to minutes does not change r; it stays −0.64.",
+          "zh": "得分点：① 强度看 |r|，方向看正负号：−0.64 → moderate to strong negative；② 标准差单位的模板：If [case]'s [x] was 1 standard deviation above the mean, their [y] is estimated to be |r| standard deviation below (r < 0) / above (r > 0) the mean, on average——r 是负的，所以写 below，数字用绝对值 0.64；③ (c) 先看出 6.3 在均值上方正好 1 个标准差（z = (6.3 − 4.5)/1.8 = 1），预测的 y 就在均值下方 0.64 个标准差，再用 Module 4 的 y = ȳ + z × S 换回小时；④ r 没有单位，换单位、对调 x 和 y 都不改变 r；⑤ 别把 r 说成百分比（“64%”是错的），也别和斜率混淆。"
+        }
+      }
+    },
+    {
+      "id": "correlation-not-causation",
+      "title": {
+        "zh": "为什么相关不等于因果",
+        "en": "Why correlation is not causation"
+      },
+      "whenToUse": {
+        "zh": "题目给出观察研究里的关联（相关系数或两组差别），再问 Does this show that x causes y? / Should people do x to improve y? / Is this conclusion justified? 时用。答案一般是 No / Not necessarily，然后说出具体的潜伏变量（**lurking variable**）。同类题：Module 5 correlation practice Q3；Module 2 Practice Q3E 的最后一句。",
+        "en": "Use it when an observational study shows an association and the question asks whether x causes y, or whether people should change x to improve y."
+      },
+      "skeleton": [
+        {
+          "en": "Not necessarily. These are observational data, so the association does not prove causation.",
+          "zh": "第一句表态，并点出“观察数据”。"
+        },
+        {
+          "en": "A lurking variable, such as ___, may be associated with both ___ and ___.",
+          "zh": "说出一个具体的潜伏变量，并说清它同时和 x、y 有关。"
+        },
+        {
+          "en": "For example, ___ may lead to both ___ and ___.",
+          "zh": "用一句话把机制讲清楚。"
+        },
+        {
+          "en": "Only a designed experiment, in which ___ are randomly assigned to ___, could show cause and effect.",
+          "zh": "说出什么样的设计才能证明因果。"
+        },
+        {
+          "en": "Therefore, the study does not provide good evidence that ___ causes ___.",
+          "zh": "收尾句。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A survey of 300 randomly selected UTM students found a moderate positive linear association between the number of visits to the campus gym per week and GPA (r = 0.41). A student concludes: 'If I go to the gym more often, my GPA will go up.' Is this conclusion justified? Explain.",
+          "zh": "对 300 名随机抽取的 UTM 学生的调查发现，每周去校园健身房的次数和 GPA 之间有中等强度的正线性关联（r = 0.41）。一个学生得出结论：“我多去健身房，GPA 就会提高。”这个结论成立吗？请解释。"
+        },
+        "answer": {
+          "en": "Not necessarily. This is an observational study: the researchers only recorded gym visits and GPA, and they did not assign gym visits to students. So the association does not prove causation. A lurking variable may explain the pattern. For example, students who work many hours at a part-time job have less free time, so they may visit the gym less and also have lower GPAs. Good time management could also lead to both more gym visits and a higher GPA. In addition, r = 0.41 is only a moderate association, so many students do not follow the pattern. Only a designed experiment, in which students are randomly assigned to different numbers of gym visits, could show cause and effect. Therefore, the study does not provide good evidence that going to the gym more often will raise a student's GPA.",
+          "zh": "得分点：① 开头直接表态：Not necessarily / No；② 说明理由：这是观察研究（研究者没有分配“每周去几次健身房”），关联不能证明因果；③ 一定要举出具体的潜伏变量，并说清它怎样同时影响 x 和 y（打工时间多 → 去健身房少、学习时间也少）；只写“可能有其他因素”拿不到分；④ 可以补充：r = 0.41 只是中等强度；⑤ 说出什么设计才能证明因果：随机分配的设计实验；⑥ 用 Therefore, the study does not provide good evidence that … 收尾。"
+        }
+      }
+    },
+    {
+      "id": "interpret-slope-intercept",
+      "title": {
+        "zh": "解释斜率和截距，并做预测",
+        "en": "Interpret the slope and intercept, and predict"
+      },
+      "whenToUse": {
+        "zh": "题目给出回归方程 ŷ = b0 + b1x，问 Interpret the slope / If x = 0 was in the observed range, interpret the intercept / Predict y when x = … 时用。斜率是负数就写 decrease，数值用绝对值。同类题：Module 5 regression practice Q3；2025 期中 Q22、Q23。",
+        "en": "Use it when a regression equation ŷ = b0 + b1x is given and you must interpret the slope or the intercept, or make a prediction."
+      },
+      "skeleton": [
+        {
+          "en": "With every additional 1-___ increase in ___, the mean ___ is estimated to ___ by ___.",
+          "zh": "斜率句：x 的单位、x、y、increase 或 decrease、|b1|。"
+        },
+        {
+          "en": "The mean ___ is estimated to be ___ when ___ is 0.",
+          "zh": "截距句：只在 x = 0 位于观测范围内时这样解释。"
+        },
+        {
+          "en": "However, x = 0 is outside the observed range of ___ (___ to ___), so the intercept has no meaningful interpretation here.",
+          "zh": "x = 0 不在观测范围内时这样写。"
+        },
+        {
+          "en": "ŷ = ___ + ___(___) = ___, so the predicted ___ is about ___.",
+          "zh": "预测：把 x 代入，带单位。"
+        },
+        {
+          "en": "x = ___ is outside the observed range, so this prediction is extrapolation and is not reliable.",
+          "zh": "外推（extrapolation）提醒。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A used-car website fits a least-squares line to predict the price of a car (y, in thousands of dollars) from its age (x, in years) for 25 cars of the same model. The ages range from 1 to 12 years. The equation is ŷ = 24.6 − 1.85x. (a) Interpret the slope. (b) Does the intercept have a meaningful interpretation here? (c) Predict the price of a 6-year-old car. (d) What does the line predict for a 20-year-old car? Comment.",
+          "zh": "二手车网站用 25 辆同一车型的车，拟合了用车龄（x，年）预测价格（y，千美元）的最小二乘直线。车龄范围是 1 到 12 年，方程为 ŷ = 24.6 − 1.85x。(a) 解释斜率；(b) 截距在这里有实际意义吗？(c) 预测车龄 6 年的车的价格；(d) 这条直线对车龄 20 年的车预测多少？请评论。"
+        },
+        "answer": {
+          "en": "(a) With every additional 1-year increase in age, the mean price is estimated to decrease by 1.85 thousand dollars ($1,850).\n(b) The intercept would mean that the mean price is estimated to be 24.6 thousand dollars ($24,600) when the age is 0, that is, for a brand-new car. However, x = 0 is outside the observed range of ages (1 to 12 years), so using it would be extrapolation, and the intercept has no meaningful interpretation here.\n(c) ŷ = 24.6 − 1.85(6) = 24.6 − 11.1 = 13.5, so the predicted price is about $13,500.\n(d) ŷ = 24.6 − 1.85(20) = 24.6 − 37 = −12.4, a negative price, which is impossible. Age 20 is far outside the observed range of 1 to 12 years, so this is extrapolation: the straight-line pattern may not continue, and the prediction is not reliable.",
+          "zh": "得分点：① 斜率句型：With every additional 1-[unit] increase in [x], the mean [y] is estimated to increase/decrease by |b1|——b1 = −1.85 是负数，所以写 decrease by 1.85，并带单位（千美元）；② 截距句型：The mean [y] is estimated to be b0 when [x] is 0，但只有 x = 0 在观测范围内才有意义；这里车龄从 1 年开始，0 在范围外 → 不解释；③ 预测：把 x 代入，不要把 y 代进去；④ 外推（**extrapolation**）：x 超出观测范围（20 > 12），直线规律可能不再成立，连负价格都算出来了，所以不可靠。"
+        }
+      }
+    },
+    {
+      "id": "residual-and-r-squared",
+      "title": {
+        "zh": "残差、R² 和残差图",
+        "en": "Residuals, R² and the residual plot"
+      },
+      "whenToUse": {
+        "zh": "题目给出回归方程和某个个案的 x、y，问 What is the residual? / What proportion of the variation in y is explained by the linear regression with x? / Which assumptions does the residual plot check? 时用。同类题：Module 5 regression practice Q4、Q5、Q6；2025 期中 Q24、Q25。",
+        "en": "Use it when you must compute a residual and explain its sign, compute and interpret R², or read a residual plot."
+      },
+      "skeleton": [
+        {
+          "en": "Predicted value: ŷ = ___ + ___(___) = ___.",
+          "zh": "先算预测值 ŷ。"
+        },
+        {
+          "en": "Residual = observed value − predicted value = y − ŷ = ___ − ___ = ___.",
+          "zh": "残差 = 观测值减预测值。"
+        },
+        {
+          "en": "The residual is ___, so the line ___ the ___ of this case.",
+          "zh": "符号：negative → overestimated；positive → underestimated。"
+        },
+        {
+          "en": "R² = r² = (___)² = ___.",
+          "zh": "R² 要平方，永远不是负数。"
+        },
+        {
+          "en": "About ___% of the variation in ___ is explained by the linear regression with ___.",
+          "zh": "R² 解释句：variation in y，linear regression with x。"
+        },
+        {
+          "en": "The residuals are randomly scattered around 0 with no major pattern and an even spread, so the linearity and constant variance assumptions are met.",
+          "zh": "残差图：没有规律 → 线性成立；宽度均匀、没有喇叭形 → 方差恒定成立。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Refer to the café data (20 days, temperatures from 12 to 32 °C). R gives the least-squares line ŷ = −25.21 + 4.54x, where x is the daily high temperature (°C) and ŷ is the predicted number of cups of iced coffee sold, and r = 0.875. (a) On one day the temperature was 25 °C and the café sold 80 cups. Find the residual and explain its sign. (b) Find R² and interpret it in context. (c) The residual plot shows the points randomly scattered around 0 with an even spread, except one residual of about −44.5 for the 18 °C day. What does the plot tell you?",
+          "zh": "沿用咖啡店的数据（20 天，气温 12 到 32 °C）。R 给出最小二乘直线 ŷ = −25.21 + 4.54x（x 是当日最高气温 °C，ŷ 是冰咖啡的预测销量，单位：杯），r = 0.875。(a) 某天气温 25 °C，卖了 80 杯，求残差并解释它的正负号；(b) 求 R² 并结合情境解释；(c) 残差图中的点围着 0 随机散开、宽度均匀，只有 18 °C 那天的残差约为 −44.5。残差图说明了什么？"
+        },
+        "answer": {
+          "en": "(a) Predicted value: ŷ = −25.21 + 4.54(25) = −25.21 + 113.5 = 88.29 cups. Residual = observed value − predicted value = y − ŷ = 80 − 88.29 = −8.29 cups. The residual is negative (y < ŷ), so the line overestimated the sales on this day by about 8.29 cups.\n(b) R² = r² = (0.875)² = 0.7656, about 0.77. About 77% of the variation in the number of iced coffees sold is explained by the linear regression with the daily high temperature.\n(c) The residuals are randomly scattered around 0 with no major pattern, so the linearity assumption is met. They are evenly spread out, with no fan shape, so the constant variance assumption is met. The residual of about −44.5 shows that the 18 °C day is an outlier: the line overestimated the sales on that day by about 44.5 cups.",
+          "zh": "得分点：① 残差（**residual**）永远是“观测减预测”：e = y − ŷ；先算 ŷ，再用真实的 y 去减；② 符号的意思：负残差 = 直线高估了（overestimated），正残差 = 低估了（underestimated）；③ R² = r²，一定要平方（0.875 不是答案，√0.875 更不是），R² 不可能是负数；④ R² 的固定句型：About ___% of the variation in [y] is explained by the linear regression with [x]，一定要有 variation；⑤ 残差图检查两个假设：围着 0 随机散开、没有弯曲 → 线性（linearity）；宽度均匀、没有喇叭形 → 方差恒定（constant variance）。"
+        }
+      }
+    },
+    {
+      "id": "sampling-method-and-bias",
+      "title": {
+        "zh": "判断抽样方法和可能的偏差",
+        "en": "Identify the sampling method and possible bias"
+      },
+      "whenToUse": {
+        "zh": "题目描述一个调查怎样选人，问 What kind of sampling is this? / Describe possible biases / Is the method appropriate? / Propose a better strategy 时用。关键词：每一组里随机抽一部分 → stratified；随机抽几组、组里的人全要 → cluster；每隔 k 个抽一个 → systematic；自己选择回答 → voluntary response；全部都测 → census。同类题：Module 1 Practice Q4–Q6、Q8–Q10；2025 期中 Q20。",
+        "en": "Use it when a question describes how people were chosen and asks for the sampling method, a possible bias, whether the method is appropriate, or a better plan."
+      },
+      "skeleton": [
+        {
+          "en": "This is a ___ sample, with ___ being the ___.",
+          "zh": "方法名称 + 点出群（clusters）或层（strata）是什么。"
+        },
+        {
+          "en": "This is a voluntary response sample, because ___ chose themselves to respond.",
+          "zh": "自愿回应样本的判断理由。"
+        },
+        {
+          "en": "___ have no chance of being included, so the sample suffers from undercoverage.",
+          "zh": "覆盖不足（undercoverage）：谁被漏掉了。"
+        },
+        {
+          "en": "People who ___ are more likely to respond, so the result probably ___ ___.",
+          "zh": "偏差的方向：overestimates 或 underestimates 什么。"
+        },
+        {
+          "en": "A larger sample size does not remove bias.",
+          "zh": "样本大不等于没有偏差。"
+        },
+        {
+          "en": "A better strategy would be to ___: take a simple random sample from each ___ and combine them.",
+          "zh": "改进：通常是分层随机抽样（stratified random sampling）。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A campus transit committee wants to estimate the percentage of all UTM students who support a new late-night shuttle bus. Plan A: randomly choose 10 of the 60 first-year tutorial sections and survey every student in the chosen sections. Plan B: post the question on the committee's Instagram page; 1,250 students reply and 81% say yes. (a) Name the sampling method of each plan. (b) Describe a possible bias in each plan. (c) Propose a better plan.",
+          "zh": "校园交通委员会想估计全体 UTM 学生中支持开设深夜校车的百分比。方案 A：从 60 个一年级 tutorial 班中随机选 10 个，调查选中班级里的每一个学生。方案 B：在委员会的 Instagram 上发布问题，有 1,250 名学生回复，其中 81% 表示支持。(a) 说出每个方案的抽样方法；(b) 描述每个方案可能的偏差；(c) 提出一个更好的方案。"
+        },
+        "answer": {
+          "en": "(a) Plan A is a cluster sample, with tutorial sections being the clusters: a few sections are chosen at random, and every student in them is surveyed. Plan B is a voluntary response sample, because the students chose themselves to reply.\n(b) Plan A only includes first-year students, so upper-year students have no chance of being included (undercoverage), and their opinions may be different. Plan B is biased: students with strong opinions, such as those who need a late bus, are more likely to reply, and students who do not follow the page cannot be included. A large sample (1,250 replies) does not remove bias, so 81% probably overestimates the support among all UTM students.\n(c) A better strategy would be stratified random sampling: take a simple random sample of students from each year of study (the strata) and combine them, so that every year is represented.",
+          "zh": "得分点：① 方法名称 + 点出单位：cluster sample, with tutorial sections being the clusters（老师的写法）；② 自己决定回不回答 → voluntary response sample，这是非概率抽样，一定有偏差；③ 描述偏差要说清“谁被漏掉 / 谁更愿意回答”，以及结果会偏高还是偏低（81% 很可能高估）；④ 样本大不能消除偏差（1,250 人也没用）；⑤ 改进方案：按年级分层（**stratified**），每层里做简单随机抽样，保证每个年级都有代表。注意区分：cluster 是“随机抽几组，组里的人全要”；stratified 是“每一组都抽，组里随机抽一部分”。"
+        }
+      }
+    },
+    {
+      "id": "study-elements-and-type",
+      "title": {
+        "zh": "研究的要素与研究类型（观察研究还是实验）",
+        "en": "Elements of a study: observational study or experiment"
+      },
+      "whenToUse": {
+        "zh": "题目描述一个研究，问 Identify the population / sample / parameter / statistic / variable of interest，或者 What type of study is this? / Can we conclude cause and effect? 时用。同类题：Module 1 Practice Q1A、Q2、Q3、Q7；2025 期中 Q7、Q8、Q19。",
+        "en": "Use it when a study is described and you must identify the population, sample, parameter, statistic and variable, say whether it is an observational study or a designed experiment, and decide whether it can show cause and effect."
+      },
+      "skeleton": [
+        {
+          "en": "Population: all ___.",
+          "zh": "总体：All + 题目里的全部限定词。"
+        },
+        {
+          "en": "Sample: the ___ randomly selected ___.",
+          "zh": "样本：样本量 + randomly selected + 谁。"
+        },
+        {
+          "en": "Parameter: the true ___ of ___ among all ___. Statistic: the sample ___, ___.",
+          "zh": "参数 = 总体的真实值；统计量 = 从样本算出来的数。"
+        },
+        {
+          "en": "___ is a ___ variable measured on a ___ scale.",
+          "zh": "变量的类型 + 尺度，两部分都要写。"
+        },
+        {
+          "en": "This is an observational study, because the researcher only observes ___ and does not assign ___, so it cannot show cause and effect.",
+          "zh": "研究类型：研究者有没有“分配”处理（treatment）。"
+        },
+        {
+          "en": "In a designed experiment, ___ would be randomly assigned to a treatment group (___) and a control group (___), and then ___ would be compared.",
+          "zh": "实验设计三要素：随机分配、处理组、对照组。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A researcher wants to know whether a 5-minute breathing exercise lowers students' heart rate before a test. In Study 1, she randomly selects 250 UTM students, asks each one whether they usually do a breathing exercise before tests (yes or no), and measures their heart rate (in beats per minute) just before a test. The mean heart rate of the 250 students is 84.6 beats per minute. (a) Identify the population, the sample, the parameter and the statistic, and give the type and scale of heart rate. (b) Is Study 1 an observational study or a designed experiment? Can it show that the exercise lowers heart rate? (c) Describe a designed experiment for the same question.",
+          "zh": "研究者想知道考前做 5 分钟呼吸练习能不能降低学生的心率。研究 1：她随机抽取 250 名 UTM 学生，问每个人考前是否通常做呼吸练习（是或否），并在考试前测量心率（每分钟心跳次数）。这 250 名学生的平均心率是每分钟 84.6 次。(a) 指出总体、样本、参数和统计量，并说明心率的变量类型和尺度；(b) 研究 1 是观察研究还是设计实验？它能说明呼吸练习降低心率吗？(c) 为同一个问题设计一个实验。"
+        },
+        "answer": {
+          "en": "(a) Population: all UTM students. Sample: the 250 randomly selected UTM students. Parameter: the true mean heart rate before a test of all UTM students. Statistic: the sample mean heart rate, 84.6 beats per minute. Heart rate is a quantitative variable (unit: beats per minute) measured on an interval scale. Doing the exercise (yes or no) is a categorical variable on a nominal scale.\n(b) Study 1 is an observational study, because the researcher only observes and measures; she does not assign the exercise. It cannot show cause and effect: a lurking variable, such as how anxious a student usually is, may be related to both doing the exercise and heart rate.\n(c) Randomly assign the students to two groups. The treatment group does the 5-minute breathing exercise, and the control group sits quietly for 5 minutes instead. Then compare the mean heart rates of the two groups. Because the groups are formed at random, a clear difference can be attributed to the exercise.",
+          "zh": "得分点：① 总体用 All … 开头；样本写“250 名随机抽取的 …”；② 参数 = 总体的真实值（the true mean … of all …），统计量 = 从样本算出来的数（84.6）；③ 变量的类型和尺度两部分都要写：心率有单位 → quantitative，interval scale；是否做练习 → categorical，nominal scale；④ 判断研究类型的关键：研究者有没有“分配”处理（**treatment**）？只观察、只测量 → 观察研究（**observational study**），不能证明因果；⑤ 实验三要素：随机分组、处理组（treatment）、对照组（control，做一个中性的替代活动），最后比较两组的结果。"
+        }
+      }
+    }
+  ],
+  "phrases": [
+    {
+      "group": {
+        "zh": "下定义",
+        "en": "Defining"
+      },
+      "items": [
+        {
+          "en": "**A parameter is** a numerical summary of the population, a true value.",
+          "zh": "**A parameter is …**：参数是总体的数值概括（真实值）。关键词 population。"
+        },
+        {
+          "en": "**A statistic is** a numerical summary of the sample data.",
+          "zh": "统计量是样本数据的数值概括。关键词 sample。"
+        },
+        {
+          "en": "**A variable is** a characteristic of an individual case that can take different values on different cases.",
+          "zh": "变量是每个个案身上的一个特征，不同个案的取值可以不同。"
+        },
+        {
+          "en": "**An outlier is** an individual value that falls outside the overall pattern.",
+          "zh": "离群值（也叫异常值）是落在整体模式之外的单个数值。"
+        },
+        {
+          "en": "**Correlation measures** the direction and strength of a linear association between two quantitative variables.",
+          "zh": "**… measures …**：用来说明一个统计量“衡量什么”。相关衡量两个数值变量之间线性关联的方向和强度。"
+        },
+        {
+          "en": "**A residual is** the observed value minus the predicted value: e = y − ŷ.",
+          "zh": "残差 = 观测值 − 预测值。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "描述分布的形状",
+        "en": "Describing the shape of a distribution"
+      },
+      "items": [
+        {
+          "en": "The distribution of commute time is **unimodal and skewed to the right**.",
+          "zh": "单峰、右偏。偏斜按长尾巴的方向命名。"
+        },
+        {
+          "en": "**Most of the values are between** 10 and 30 minutes, **and the tail stretches to the right**.",
+          "zh": "用数据说明形状：大部分数据在哪里，尾巴往哪边拖。"
+        },
+        {
+          "en": "The histogram has two peaks, so the distribution is **bimodal**.",
+          "zh": "两个峰 → bimodal；三个及以上 → multimodal。"
+        },
+        {
+          "en": "All the bars are about the same height, so the distribution is **roughly uniform**.",
+          "zh": "各柱差不多一样高、没有明显的峰 → 近似均匀分布（uniform）。"
+        },
+        {
+          "en": "The distribution is **roughly symmetric and bell-shaped**.",
+          "zh": "近似对称的钟形：这时才能用经验法则，也才用均值和标准差。"
+        },
+        {
+          "en": "**There is a gap between** 60 and 70 minutes, **and a possible outlier at** 78 minutes.",
+          "zh": "空档（gap）和可能的离群值（possible outlier）。用 possible，语气更稳妥。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "中心、离散与位置",
+        "en": "Centre, spread and position"
+      },
+      "items": [
+        {
+          "en": "**On average,** these students studied 5 hours last week.",
+          "zh": "均值句：On average, [cases] have [mean] [units]。"
+        },
+        {
+          "en": "**This means that 50% of** the students studied **at most** 4.5 hours **(4.5 hours or less), whereas 50%** studied **more than** 4.5 hours.",
+          "zh": "中位数句：at most（≤）和 more than（>），不要写成 less than。"
+        },
+        {
+          "en": "**We can expect** study times **to differ from the mean by about** 2.27 hours, **on average**.",
+          "zh": "标准差句：三个关键词 differ from the mean、by about、on average。"
+        },
+        {
+          "en": "**The middle 50% of** quiz scores **are between** 66 and 74 points **(IQR = 8 points)**.",
+          "zh": "IQR 句：中间 50% 的数据在 Q1 和 Q3 之间。"
+        },
+        {
+          "en": "Lina's score **is 1.33 standard deviations above the mean** score of her class.",
+          "zh": "z 分数句：单位是“个标准差”，z 为负时写 below。"
+        },
+        {
+          "en": "**About 90% of** the students scored 78 **or less, and about 10%** scored **more than** 78.",
+          "zh": "百分位数句：第 90 百分位 = 约 90% 的数据小于或等于它。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "比较两组",
+        "en": "Comparing groups"
+      },
+      "items": [
+        {
+          "en": "**Compared with** on-campus students, off-campus students tend to work more hours per week.",
+          "zh": "**Compared with …**：和……相比（是 Compared，不是 Compare）。"
+        },
+        {
+          "en": "The median of the off-campus group (15 hours) is higher than **that of** the on-campus group (8 hours).",
+          "zh": "**than that of**：比较的对象要对等（中位数比中位数）。"
+        },
+        {
+          "en": "The pass rate is **23.33 percentage points higher among** students who attended.",
+          "zh": "两个百分比之差用 **percentage points**（百分点）。"
+        },
+        {
+          "en": "The proportion who passed is **about 39% higher among** students who attended **than among** those who did not.",
+          "zh": "比值在 1 和 2 之间：(比值 − 1) × 100% higher。"
+        },
+        {
+          "en": "The proportion who failed is **2.4 times as large among** students who did not attend **as among** students who attended.",
+          "zh": "比值大于 2：k times as large among A as among B（A 是比例大的那一组）。"
+        },
+        {
+          "en": "Off-campus students work more hours, **whereas** on-campus students work fewer.",
+          "zh": "**whereas**：而……（把两边对照起来）。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "关联与趋势",
+        "en": "Association and tendency"
+      },
+      "items": [
+        {
+          "en": "**There appears to be a strong positive linear association between** iced coffee sales **and** temperature.",
+          "zh": "老师的散点图句型：强度 → 方向 → linear，先写 y 再写 x。"
+        },
+        {
+          "en": "**As** the temperature increases, iced coffee sales **tend to increase**.",
+          "zh": "趋势句：As [x] increases, [y] tends to increase / decrease。"
+        },
+        {
+          "en": "**Higher values of** screen time **are associated with lower values of** sleep.",
+          "zh": "关联句：is / are associated with，只说关联，不说因果。"
+        },
+        {
+          "en": "**The relationship is not perfect:** the points are scattered around the line.",
+          "zh": "补充：关系不完美，点散开在直线周围。"
+        },
+        {
+          "en": "**There appears to be little or no association between** shoe size **and** quiz score.",
+          "zh": "看不出规律时这样写。"
+        },
+        {
+          "en": "**There is a strong positive nonlinear relationship:** the pattern curves upward.",
+          "zh": "图形弯曲时写 nonlinear，不能用 r 概括。"
+        },
+        {
+          "en": "**There appears to be an association between** attendance **and** the quiz result, **because** the conditional percentages differ.",
+          "zh": "分类数据的关联句：条件百分比不同 → 有关联。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "回归与预测",
+        "en": "Regression and prediction"
+      },
+      "items": [
+        {
+          "en": "**With every additional 1-year increase in** age, **the mean** price **is estimated to decrease by** 1.85 thousand dollars.",
+          "zh": "斜率句：1-[unit] increase in x，the mean y is estimated to increase / decrease by |b1|。"
+        },
+        {
+          "en": "**The mean** price **is estimated to be** 24.6 thousand dollars **when** age **is 0**.",
+          "zh": "截距句；只有 x = 0 在观测范围内才有意义。"
+        },
+        {
+          "en": "**The predicted number of** cups on a 25 °C day **is** ŷ = 88.29.",
+          "zh": "预测值写成 ŷ（读作 y-hat）。"
+        },
+        {
+          "en": "**Residual = observed value − predicted value = y − ŷ.**",
+          "zh": "残差公式，必背。"
+        },
+        {
+          "en": "**The residual is negative, so the line overestimated** the sales on that day.",
+          "zh": "负残差 = 高估（overestimated）；正残差 = 低估（underestimated）。"
+        },
+        {
+          "en": "**About** 77% **of the variation in** iced coffee sales **is explained by the linear regression with** temperature.",
+          "zh": "R² 句型，一定要有 variation。"
+        },
+        {
+          "en": "**This prediction is extrapolation,** because 40 °C is outside the observed range of 12 to 32 °C.",
+          "zh": "外推：x 超出观测范围，预测不可靠。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "谨慎用词（不要说得太绝对）",
+        "en": "Hedging (being careful)"
+      },
+      "items": [
+        {
+          "en": "**There appears to be** a moderate to strong negative association between sleep time and screen time.",
+          "zh": "**There appears to be**：看起来存在（老师的标准开头）。"
+        },
+        {
+          "en": "The centre is **about** 25 minutes.",
+          "zh": "**about / approximately**：从图上读出来的数都要加。"
+        },
+        {
+          "en": "The mean price **is estimated to** decrease by $1,850 per year.",
+          "zh": "**is estimated to**：回归给出的是估计值。"
+        },
+        {
+          "en": "Sales **tend to** increase as the temperature increases.",
+          "zh": "**tend to**：总体趋势，不是每个点都这样。"
+        },
+        {
+          "en": "A mean larger than the median **suggests** a right skew, **but we should check** the histogram.",
+          "zh": "**suggests …, but we should check …**：数字只是线索，要看图确认。"
+        },
+        {
+          "en": "The commute of 78 minutes **may be** an outlier.",
+          "zh": "**may be / possible**：可能是。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "因果、潜伏变量与辛普森悖论",
+        "en": "Causation, lurking variables and Simpson's paradox"
+      },
+      "items": [
+        {
+          "en": "**Not necessarily.** These are observational data, so the association does not prove causation.",
+          "zh": "回答“能不能说明 x 导致 y”时的开头。"
+        },
+        {
+          "en": "**A lurking variable, such as** part-time work hours, **may be associated with both** gym visits **and** GPA.",
+          "zh": "一定要说出具体的潜伏变量（**lurking variable**），以及它同时和 x、y 有关。"
+        },
+        {
+          "en": "**Only a designed experiment, with** the treatments **randomly assigned, could show cause and effect.**",
+          "zh": "只有随机分配处理的设计实验才能证明因果。"
+        },
+        {
+          "en": "**Therefore, the study does not provide good evidence that** going to the gym raises GPA.",
+          "zh": "收尾句。"
+        },
+        {
+          "en": "**This is an example of Simpson's paradox:** the comparison within each group reverses when the groups are combined.",
+          "zh": "辛普森悖论（**Simpson's paradox**）：分组比较和合并后比较的结论相反。"
+        },
+        {
+          "en": "**We should compare the groups within each level of** the lurking variable, **that is, control for it.**",
+          "zh": "解决办法：在潜伏变量的每一层里分别比较（控制它）。"
+        },
+        {
+          "en": "**The overall percentages are misleading, because** the two groups have very different mixes of the lurking variable.",
+          "zh": "合并后的百分比会误导，因为两组在潜伏变量上的构成差别很大，不是公平的比较。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "抽样与偏差",
+        "en": "Sampling and bias"
+      },
+      "items": [
+        {
+          "en": "This is **a cluster sample, with** tutorial sections **being the clusters**.",
+          "zh": "整群抽样：随机抽几组，组里的人全部调查；要点出“群”是什么。"
+        },
+        {
+          "en": "This is **stratified random sampling, with** year of study **as the strata**.",
+          "zh": "分层抽样：每一层都随机抽一部分。"
+        },
+        {
+          "en": "This is **a voluntary response sample, because** the students **chose themselves to respond**.",
+          "zh": "自愿回应样本：自己决定回不回答，一定有偏差。"
+        },
+        {
+          "en": "Upper-year students **have no chance of being included, so the sample suffers from undercoverage**.",
+          "zh": "覆盖不足（undercoverage）：有些人根本进不了样本。"
+        },
+        {
+          "en": "**There is a potential for response bias,** because a manager asks the questions in person.",
+          "zh": "回应偏差（response bias）：问法或提问的人影响了回答。"
+        },
+        {
+          "en": "**A larger sample does not remove bias.**",
+          "zh": "样本再大也消除不了偏差。"
+        },
+        {
+          "en": "**So the result probably overestimates** the support among all students.",
+          "zh": "说出偏差的方向：高估（overestimates）还是低估（underestimates）。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "作答与下结论",
+        "en": "Answering and concluding"
+      },
+      "items": [
+        {
+          "en": "**Yes.** The conditional distributions are different, so the two variables are associated.",
+          "zh": "Yes / No 题：第一句先表态，第二句给理由。"
+        },
+        {
+          "en": "**Based on the histogram,** the distribution is skewed to the right.",
+          "zh": "**Based on …**：说明依据来自哪里（图、表、输出）。"
+        },
+        {
+          "en": "**According to the R output,** the mean commute time is 27.5 minutes.",
+          "zh": "**According to the R output**：引用 R 的输出结果。"
+        },
+        {
+          "en": "**From the two-way table,** 75 of the 90 students who attended passed.",
+          "zh": "**From the table**：引用表格里的数字。"
+        },
+        {
+          "en": "**This means that** 50% of the students studied at most 4.5 hours.",
+          "zh": "**This means that**：把数字翻译成意思。"
+        },
+        {
+          "en": "**Therefore,** there appears to be an association between attendance and the quiz result.",
+          "zh": "**Therefore**：得出结论。"
+        }
+      ]
+    }
+  ],
+  "mistakes": [
+    {
+      "wrong": "The percentage of first-class passengers who survived is 37% higher than third-class passengers.",
+      "right": "The percentage of first-class passengers who survived is 37 percentage points higher than that of third-class passengers.",
+      "zh": "两个百分比相减（62% − 25%）得到的是百分点（**percentage points**），不能说 37% higher；“高百分之多少”是比值的说法（这里比值 0.62/0.25 = 2.48，应该说 2.48 times as large）。另外 than 后面要补 that of，比较的对象才对等。",
+      "en": "A difference of two percentages is in percentage points."
+    },
+    {
+      "wrong": "The data is about the calories of 30 donuts, and it is skewed to the right.",
+      "right": "The data are the calories of 30 donuts, and their distribution is slightly skewed to the right.",
+      "zh": "课件把 data 当复数用（Data are values along with their context），所以动词用 are、show，代词用 they / their。另外，说形状时主语最好是 the distribution（分布），而不是 the data。",
+      "en": "In this course 'data' is plural, and the shape belongs to the distribution."
+    },
+    {
+      "wrong": "We collected many datas in the survey.",
+      "right": "We collected a lot of data in the survey.",
+      "zh": "data 本身已经是复数形式，不能再加 s；“很多数据”写 a lot of data 或 many observations，“一个数据”写 a data value 或 an observation。",
+      "en": "'Data' never takes -s."
+    },
+    {
+      "wrong": "The mean is 251.",
+      "right": "On average, Tim Hortons donuts have 251 calories.",
+      "zh": "只写数字拿不到解释分。老师的解释句一定包含：个案（donuts）、变量（calories）、数值、单位。均值的固定句型：On average, [cases] have [mean] [units]。",
+      "en": "Always give the cases, the variable and the unit."
+    },
+    {
+      "wrong": "Sleeping more makes students get higher grades, because r = 0.45.",
+      "right": "Students who sleep more tend to get higher grades (r = 0.45), but this observational study does not show that more sleep causes higher grades.",
+      "zh": "相关（**correlation**）不等于因果（**causation**）。观察数据只能用 is associated with / tends to，不能用 makes、causes、leads to、improves 这类因果动词。",
+      "en": "For observational data, use 'tends to' or 'is associated with', not causal verbs."
+    },
+    {
+      "wrong": "There has a strong negative association between price and age.",
+      "right": "There is a strong negative association between price and age.",
+      "zh": "中文说“有……关系”，英文表示“存在”要用 There is / There are，不能说 There has。",
+      "en": "Use 'there is', not 'there has'."
+    },
+    {
+      "wrong": "The distribution is skew to right.",
+      "right": "The distribution is skewed to the right.",
+      "zh": "描述形状要用形容词 **skewed**（不是 skew），并且 right / left 前面要加 the：skewed to the right / skewed to the left（也可以写 right-skewed）。",
+      "en": "Write 'skewed to the right' (or 'right-skewed')."
+    },
+    {
+      "wrong": "Mean is bigger than median, so distribution is right skewed.",
+      "right": "The mean is greater than the median, which suggests that the distribution is skewed to the right; the histogram should confirm it.",
+      "zh": "两个问题：① 英文的单数可数名词前要加冠词：the mean、the median、the distribution；② 课件强调 mean > median 只是“提示”右偏，一定要看图确认，所以用 suggests，不要说得太绝对。",
+      "en": "Add 'the', and say 'suggests', because the graph must confirm the shape."
+    },
+    {
+      "wrong": "The median of Cake donuts is higher than Yeast donuts.",
+      "right": "The median calories of Cake donuts (270 kcal) is higher than that of Yeast donuts (200 kcal).",
+      "zh": "中文“比酵母甜甜圈高”省略了“的中位数”，英文不能省：要拿中位数和中位数比，所以写 than that of …（复数用 than those of …）。最好把两个数字都写出来。",
+      "en": "Compare like with like: 'higher than that of ...'."
+    },
+    {
+      "wrong": "Students who work more hours tend to have less sleep hours.",
+      "right": "Students who work more hours tend to sleep fewer hours.",
+      "zh": "hours、calories、cups 是可数名词，“更少”要用 **fewer**；less 用于不可数名词（less sleep、less time）。也可以写 tend to get less sleep。",
+      "en": "Use 'fewer' with countable nouns and 'less' with uncountable nouns."
+    },
+    {
+      "wrong": "When age increases 1 year, price decreases 1.85.",
+      "right": "With every additional 1-year increase in age, the mean price is estimated to decrease by 1.85 thousand dollars.",
+      "zh": "斜率句有三个得分点：① 变化量前面要用介词 by（decrease by 1.85）；② 写 the mean price is estimated to …（直线预测的是平均值，而且是估计）；③ 带单位（1.85 千美元 = $1,850）。",
+      "en": "Use 'by', 'the mean ... is estimated to' and the unit."
+    },
+    {
+      "wrong": "R² = 0.77 means 77% of the days are explained by temperature.",
+      "right": "About 77% of the variation in iced coffee sales is explained by the linear regression with temperature.",
+      "zh": "R² 说的是 y 的变异（**variation**）中有多少能被线性回归解释，不是“77% 的天数”，也不是“77% 的销量”。句型固定：About ___% of the variation in [y] is explained by the linear regression with [x]。",
+      "en": "R² is about the variation in y."
+    },
+    {
+      "wrong": "r = 0.875 means 87.5% of the points are on the line.",
+      "right": "r = 0.875 shows a strong positive linear association, and r has no unit.",
+      "zh": "r 不是百分比，也没有单位；它表示线性关联的方向和强度（|r| ≥ 0.8 为 strong）。要说“百分之多少的变异”，得先平方：R² = 0.875² ≈ 0.77。",
+      "en": "r is not a percentage; square it to get R²."
+    },
+    {
+      "wrong": "Residual = predicted − observed = 88.29 − 80 = 8.29, so the line underestimated.",
+      "right": "Residual = observed − predicted = y − ŷ = 80 − 88.29 = −8.29, so the line overestimated.",
+      "zh": "残差（**residual**）永远是“观测值减预测值”：y − ŷ。顺序一反，符号就反，结论（高估还是低估）也跟着错。负残差 = 直线高估了（overestimated）；正残差 = 低估了（underestimated）。",
+      "en": "Residual = observed − predicted; a negative residual means the line overestimated."
+    },
+    {
+      "wrong": "The donut with 400 calories is 2.98% above the mean.",
+      "right": "The donut with 400 calories is 2.98 standard deviations above the mean.",
+      "zh": "z 分数的单位是“个标准差”（**standard deviations**），不是百分比。z 为负时写 below the mean，并用绝对值：z = −1.42 → 1.42 standard deviations below the mean。",
+      "en": "A z-score counts standard deviations, not percent."
+    },
+    {
+      "wrong": "Because this is an observational study, so we cannot conclude causation.",
+      "right": "Because this is an observational study, we cannot conclude causation.",
+      "zh": "中文“因为……所以……”成对出现，英文 because 和 so 只能留一个；“虽然……但是……”同理，although 和 but 只能留一个（Although r is 0.9, it does not prove causation.）。",
+      "en": "Use 'because' or 'so', not both (and 'although' or 'but', not both)."
+    },
+    {
+      "wrong": "The median is 250, so half of donuts are less than 250 calories.",
+      "right": "The median is 250 calories. This means that 50% of the donuts have at most 250 calories (250 or less), whereas 50% have more than 250 calories.",
+      "zh": "less than 是“<”，at most 是“≤”。课件的中位数句型用 at most M（M or less）和 more than M。“一半”写 50% of the donuts，并带单位。",
+      "en": "Use the course wording 'at most' and 'more than'."
+    },
+    {
+      "wrong": "The proportion who failed is 2.4 times less among students who attended.",
+      "right": "The proportion who failed is 2.4 times as large among students who did not attend as among students who attended.",
+      "zh": "“times less”意思含糊，在选择题里常是错误选项。课件的做法：题目说 comparing A to B 就让 A 放分子，没这样说就把大的比例放分子；比值大于 2 写 k times as large among A as among B，在 1 和 2 之间写 (k − 1) × 100% higher，小于 1 写 (1 − k) × 100% lower。",
+      "en": "Put A on top for 'comparing A to B' (otherwise the larger proportion), and say 'times as large among A as among B', never 'times less'."
+    },
+    {
+      "wrong": "The proportion of donuts with at most 200 calories is 20.",
+      "right": "The proportion of donuts with at most 200 calories is 6/30 = 0.20, that is, 20%.",
+      "zh": "比例（**proportion**）在 0 和 1 之间；百分比（**percentage**）= 比例 × 100。选择题常把 0.2 和 20 同时放进选项，先看清题目要的是 proportion 还是 percentage。",
+      "en": "A proportion is between 0 and 1; a percentage is the proportion × 100."
+    },
+    {
+      "wrong": "The population is the 250 students we measured.",
+      "right": "The population is all UTM students; the sample is the 250 randomly selected students we measured.",
+      "zh": "总体（**population**）是我们想了解的“全体”，用 All … 开头；真正被测量的那一小部分是样本（**sample**）。把样本写成总体，是 Module 1 最常见的失分点。",
+      "en": "The population is 'all ...'; the group that was measured is the sample."
+    }
+  ],
+  "strategy": [
+    {
+      "zh": "先弄清考试形式：期中 11 月 2 日（周一）下午 3:15 准时开考，现场考试，90 分钟，占总成绩 25%；迟到不补时间，建议提前 15–20 分钟到考场。去年的期中是 25 道单选题，每题 5 个选项（A–E），分值相同，答案涂在 Scantron 答题卡上。考试范围以老师在 Quercus 上公布的为准；如果公布的范围包括 Module 6（概率），本站暂时还没有这部分内容。",
+      "en": "Know the format: the midterm is on Monday, Nov 2, starts exactly at 3:15 PM, is in person, lasts 90 minutes and is worth 25%. Late arrivals get no extra time, so arrive 15-20 minutes early. Last year's midterm had 25 equally weighted multiple-choice questions with 5 options (A-E), answered on a Scantron sheet. Check the coverage posted on Quercus; if it includes Module 6 (probability), this station does not cover it yet."
+    },
+    {
+      "zh": "时间分配：90 ÷ 25 = 3.6，每题平均约 3.5 分钟。分三轮做：第一轮约 60 分钟，把会做的题都做完，某题超过约 4 分钟就先圈出题号跳过；第二轮约 20 分钟，回头做圈出的题；最后 10 分钟专门检查答题卡。",
+      "en": "Time: 90 ÷ 25 = 3.6, so about 3.5 minutes per question. Work in three rounds: about 60 minutes for every question you can do (circle and skip any question that takes more than about 4 minutes), about 20 minutes for the circled ones, and the last 10 minutes for checking the Scantron."
+    },
+    {
+      "zh": "一组数据常常连考好几题（去年一张 2 × 2 表考了 6 题，一个回归方程考了 4 题）。先花 1–2 分钟把表读透：标出行变量和列变量，核对各行、各列的合计和总计，再开始做题。读错一次表，可能连丢好几分。",
+      "en": "One data set often carries several questions (last year one 2 × 2 table had 6 questions and one regression equation had 4). Spend 1-2 minutes on the table first: label the row and column variables and check the row, column and grand totals. One misreading can cost several marks."
+    },
+    {
+      "zh": "数值题先在草稿上自己算出答案，再看选项。试卷规定：算出的准确值不在选项里时，选最接近的那个。中间步骤保留完整的小数，最后一步才四舍五入。错误选项往往来自典型错误——分母用错、条件反了、忘了平方、除以 n 而不是 n − 1——所以“选项里刚好有这个数”不代表一定对。",
+      "en": "For numeric questions, work out the answer on scrap paper before you look at the options. The test rule is: if your exact answer is not listed, choose the closest alternative. Keep full precision until the last step. Wrong options come from typical slips (wrong denominator, reversed condition, forgetting to square, dividing by n instead of n − 1), so a matching number is not automatically right."
+    },
+    {
+      "zh": "看清题目要什么：Among X / of those who are X → 分母是 X 那一组的合计；proportion → 0 到 1 之间的小数，percentage → 再乘 100；at most 是 ≤，more than 是 >，at least 是 ≥；两个百分比之差用 percentage points。选项里 0.1 和 10 常常同时出现。",
+      "en": "Check what is asked: 'Among X' means divide by the total of group X; a proportion is between 0 and 1 and a percentage is × 100; 'at most' is ≤, 'more than' is >, 'at least' is ≥; a difference of two percentages is in percentage points. Options like 0.1 and 10 often appear together."
+    },
+    {
+      "zh": "“这句话是什么意思”的题（斜率、截距、r、R²、相对风险），逐个选项检查四点：① x 和 y 有没有对调；② 方向对不对（increase / decrease、above / below、as large among A as among B 里哪一组是 A）；③ 有没有 the mean … is estimated to；④ 有没有因果的说法。任何一点不对就排除。",
+      "en": "For 'what does this mean' questions (slope, intercept, r, R², relative risk), check each option for four things: x and y not swapped; the right direction (increase/decrease, above/below, which group is A in 'as large among A as among B'); the words 'the mean ... is estimated to'; and no causal claim. Cross out any option that fails one check."
+    },
+    {
+      "zh": "五个选项都读完再选：选项不一定按大小排序；题干里有 NOT 时，要找的是唯一错误的那一项。去年三道形状题用的是同一组选项：Bell-shaped and symmetric / Normal / Symmetric but not bell-shaped / Skewed to the right / Skewed to the left。偏斜方向看长尾巴在哪一边，不看峰在哪一边。数据的直方图是钟形时，本站建议选 Bell-shaped and symmetric（课件描述数据就这么说）；Normal 是另一个选项，指 Module 8 才讲的正态模型。",
+      "en": "Read all five options: they are not always in order, and when a stem says NOT you are looking for the one false statement. Last year's three shape questions used the same five options (bell-shaped and symmetric, normal, symmetric but not bell-shaped, skewed to the right, skewed to the left). Name the skew by the side of the long tail, not the peak. For a bell-shaped histogram of data, the station suggests 'Bell-shaped and symmetric', the slides' words for data; 'Normal' is a separate option that names the model taught in Module 8."
+    },
+    {
+      "zh": "Aid sheet：一张 letter 纸（8.5 × 11 英寸），正反两面，手写或打印都行；除此之外不能带书和笔记。按单元排版：Module 1 的统计量 vs 参数、找研究要素的句型（总体、样本、参数、统计量、变量）、变量类型和尺度、抽样方法关键词（分层、整群、系统、自愿回应、普查）和几种偏差；Module 2 的三种百分比、百分点和相对风险的说法；Module 3 的五个形状选项（偏斜看长尾巴）、均值、中位数位置 0.5(n + 1)、S（除以 n − 1）、经验法则；Module 4 的 IQR、内外栅栏、z 和 y = ȳ + zS；Module 5 的 r 强度表、ŷ、残差、R²；再加上本页的解释句模板。范围包括 Module 6 的话，留一角写概率规则。用本站“考前速记”里的公式总表当清单，字不要小到考试时看不清。",
+      "en": "Aid sheet: one letter-size sheet (8.5 × 11 in), both sides, handwritten or typed, and no other books or notes. Organize it by module: statistic vs parameter, the answer patterns for the elements of a study (population, sample, parameter, statistic, variable), variable types and scales, sampling-method keywords (stratified, cluster, systematic, voluntary response, census) and the kinds of bias (Module 1); the three table percentages, percentage points and the relative risk wording (Module 2); the five shape options (a skew is named after the longer tail), the mean, median position 0.5(n + 1), S with n − 1 and the Empirical Rule (Module 3); the IQR, inner and outer fences, z and y = ȳ + zS (Module 4); the r strength scale, ŷ, residual and R² (Module 5); plus the interpretation templates on this page. If Module 6 is in the coverage, keep a corner for the probability rules. Use the Formula sheet in the cheat sheet as your checklist and keep the writing big enough to read."
+    },
+    {
+      "zh": "计算器：只能用自己带的、批准的科学计算器，它不可编程、不能联网或通信、不能画图、没有 AI 功能，大纲还要求它只支持基本运算（加、减、乘、除、开平方、阶乘）。功能更多的可能被拒绝，最稳妥的是大纲举例的 TI-30Xa 或 Casio fx-300MS Plus（两款都有下面说的统计模式）。不能借用别人的，考前和考试中都可能被检查。用统计模式（各型号叫法不同，如 STAT 或 SD）求 ȳ 和 S：输入前先清空旧数据，输完核对 n；标准差要选标签里带 n − 1 或 s 的那个（例如 σxn-1、xσn-1 或 sx），不要选带 n 的（σxn、xσn 或 σx），那是除以 n 的总体标准差。考前在家用本页的学习时数练一遍：2, 3, 4, 4, 5, 6, 7, 9 应得到 ȳ = 5、S ≈ 2.27；如果得到 2.12，说明按成了除以 n 的键。",
+      "en": "Calculator: bring your own approved scientific calculator. It must be non-programmable and non-communicating, with no graphing or AI features, and the syllabus says it must support only basic operations (+, −, ×, ÷, square roots, factorial). A calculator with more features may be refused, so the TI-30Xa or Casio fx-300MS Plus named in the syllabus is safest (both have the statistics mode below). Sharing is not allowed, and calculators may be inspected before or during the test. Use its statistics mode (called STAT or SD, depending on the model) for ȳ and S: clear old data first and check n after entering. Choose the standard deviation whose label has n − 1 or s in it (for example σxn-1, xσn-1 or sx), not the one labelled with n (σxn, xσn or σx), which divides by n. Practise at home: 2, 3, 4, 4, 5, 6, 7, 9 should give ȳ = 5 and S ≈ 2.27; if you get 2.12, you used the key that divides by n."
+    },
+    {
+      "zh": "Scantron 答题卡（以去年封面上的规则为准）：核对答题卡和试卷的版本一致；在封面和答题卡上写全名、学号并签名；每题只涂一个答案（涂两个不给分）；涂满涂黑，改答案要擦干净。去年只有答题卡计分，试卷上写的过程不批改，所以别等到最后一分钟才誊答案。去年试卷没有提到答错扣分，所以每题都要涂，不会就选最有可能的。",
+      "en": "Scantron (last year's cover rules): check that the version on the Scantron matches your test booklet; write your full name, student number and signature on the cover and on the Scantron; mark only one answer per question (two answers get no mark); fill bubbles completely and erase changes cleanly. Last year only the Scantron was graded and work in the booklet was not marked, so do not leave copying answers to the last minute. Last year's test mentioned no penalty for wrong answers, so answer every question."
+    },
+    {
+      "zh": "考前练习：把 2025 年期中的题按单元重做一遍（如果你有一份没标答案的卷子，也可以整卷限时做：25 题 90 分钟），再限时做本站的模拟考。模拟考的题来自刷题的题库，做过的题会再出现，所以每道都要重新算、重新推理，不要凭记忆选；只因为记得答案才做对的题，也当错题记下来。每道错题都写清楚错在哪一步（分母、方向、单位、句型）。把本页的模板句大声读到能默写——期中选择题考的正是这些句子的正确版本和错误版本。",
+      "en": "Before the test: redo the 2025 midterm questions module by module (or as one 90-minute paper if you have a copy without the answers marked), and take the station's mock exam under time (25 questions in 90 minutes). The mock draws its questions from the practice banks, so questions you have done will come back: work each one out again instead of answering from memory, and note a question you only remembered as a mistake. For every wrong answer, write down the step where it went wrong (denominator, direction, unit, sentence pattern), and read the templates aloud until you can write them from memory. The multiple-choice options test correct and incorrect versions of these sentences."
+    },
+    {
+      "zh": "期末：12 月考试周，3 小时，覆盖全部内容，占 50%，可以带两张双面 aid sheet。期末的题型老师还没有公布；官方练习题的答案都是英文句子，所以也要练习用模板写完整的答案：有情境、有单位、先结论后理由。考试期间不能使用生成式 AI。",
+      "en": "Final exam: December exam period, 3 hours, the whole course, 50%, two double-sided aid sheets. Its question format has not been announced, and the official practice solutions are written sentences, so also practise writing full answers with the templates: context, units, the conclusion first and then the reason. Generative AI is not allowed during tests."
+    }
+  ]
+}

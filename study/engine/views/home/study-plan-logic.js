@@ -18,14 +18,20 @@ const MAX_RANGE = 3;
 const MAX_LINKS = 5;
 
 // Groups of every unit pattern: 1 first number, 2 joiner, 3 repeated prefix, 4 second number.
+// English: "Lecture 5", "lec05", "Modules 1-3", "Mod 3", "Labs 2 and 4". Chinese: "第 4–6 讲",
+// "模块 1–3", "第 3 模块", "实验 2".
 // 每个单元匹配式的分组：1 第一个数字，2 连接词，3 重复的前缀，4 第二个数字。
+// 英文如“Lecture 5”“lec05”“Modules 1-3”“Mod 3”“Labs 2 and 4”；中文如“第 4–6 讲”“模块 1–3”“第 3 模块”“实验 2”。
 const EN_JOIN = '(-|–|—|~|to|and|&|,)';
 const ZH_JOIN = '(-|–|—|~|到|至|、|和)';
 const RANGE_JOINER = /^(?:-|–|—|~|to|到|至)$/i;
 const UNIT_PATTERNS = [
   { kind: 'lecture', regex: new RegExp(`\\blec(?:ture)?s?\\s*0?(\\d{1,2})(?:\\s*${EN_JOIN}\\s*(lec(?:ture)?s?\\s*)?0?(\\d{1,2}))?\\b`, 'gi') },
+  { kind: 'module', regex: new RegExp(`\\bmod(?:ule)?s?\\s*0?(\\d{1,2})(?:\\s*${EN_JOIN}\\s*(mod(?:ule)?s?\\s*)?0?(\\d{1,2}))?\\b`, 'gi') },
   { kind: 'lab', regex: new RegExp(`\\blabs?\\s*0?(\\d{1,2})(?:\\s*${EN_JOIN}\\s*(labs?\\s*)?0?(\\d{1,2}))?\\b`, 'gi') },
   { kind: 'lecture', regex: new RegExp(`第\\s*(\\d{1,2})\\s*(?:${ZH_JOIN}\\s*(第\\s*)?(\\d{1,2})\\s*)?讲`, 'g') },
+  { kind: 'module', regex: new RegExp(`模块\\s*(\\d{1,2})(?:\\s*${ZH_JOIN}\\s*(模块\\s*)?(\\d{1,2}))?`, 'g') },
+  { kind: 'module', regex: new RegExp(`第\\s*(\\d{1,2})\\s*(?:${ZH_JOIN}\\s*(第\\s*)?(\\d{1,2})\\s*)?(?:个\\s*)?模块`, 'g') },
   { kind: 'lab', regex: new RegExp(`实验\\s*(\\d{1,2})(?:\\s*${ZH_JOIN}\\s*(实验\\s*)?(\\d{1,2}))?`, 'g') },
 ];
 
@@ -105,9 +111,10 @@ function unitFor(units, kind, number) {
 }
 
 /**
- * Finds the station pages a task mentions ("Lecture 5", "lab03", "第 4–6 讲", "flashcards", "错题本")
- * and returns links to them, units first.
- * 找出任务文字提到的站内页面（如“Lecture 5”“lab03”“第 4–6 讲”“闪卡”“错题本”），返回对应链接，单元在前。
+ * Finds the station pages a task mentions ("Lecture 5", "lab03", "Module 2", "第 4–6 讲", "模块 1–3",
+ * "flashcards", "错题本") and returns links to them, units first.
+ * 找出任务文字提到的站内页面（如“Lecture 5”“lab03”“Module 2”“第 4–6 讲”“模块 1–3”“闪卡”“错题本”），
+ * 返回对应链接，单元在前。
  */
 export function detectTaskLinks(task, units) {
   const bi = toBi(task);

@@ -12,6 +12,7 @@ import { icon } from '../../core/dom/icons.js';
 import { ensureStylesheet } from '../../core/dom/stylesheet.js';
 import { biTitle, enNode, hasText, zhNode } from '../../core/text/bilingual.js';
 import { renderInline, stripMarkup } from '../../core/text/inline-markup.js';
+import { kindsText } from '../../core/text/unit-labels.js';
 import { isRouteId } from '../../core/util/ids.js';
 import { button, linkButton } from '../../components/controls/button.js';
 import { segmented } from '../../components/controls/segmented.js';
@@ -127,10 +128,13 @@ export async function render(container, context, params = {}, query = new URLSea
     },
   });
 
+  // The by-unit tooltip names the course's own kinds, e.g. "按讲课和实验分组 Grouped by lecture and lab".
+  // “按单元”的提示文字使用本课程的单元类型，例如“按讲课和实验分组 Grouped by lecture and lab”。
+  const kinds = kindsText(courseUnits);
   const sortControl = segmented({
     options: [
       { value: 'az', label: 'A-Z', title: '按英文字母排列 Alphabetical' },
-      { value: 'unit', label: '按单元 By unit', title: '按讲课和实验分组 Grouped by lecture and lab' },
+      { value: 'unit', label: '按单元 By unit', title: `按${kinds.zh}分组 Grouped by ${kinds.en}` },
     ],
     value: state.sort,
     ariaLabel: '排列方式 Order',

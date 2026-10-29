@@ -12,7 +12,7 @@ const LEVELS = {
   exam: {
     tone: 'exam',
     text: '高频考点 High-yield',
-    title: '高频考点：最常被考到的内容，考试范围以 Quercus / Piazza 通知为准 High-yield: often tested; the official scope is announced on Quercus / Piazza',
+    title: '高频考点：最常被考到的内容，考试范围以课程官方通知为准 High-yield: often tested; the official scope is announced by the course',
   },
   core: { tone: 'core', text: '必会 Must know', title: '必会：后面的内容都建立在它上面 Must know: later lessons build on it' },
   extra: { tone: 'muted', text: '了解 Background', title: '了解：背景知识，优先级较低 Background: context, lower priority' },

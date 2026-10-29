@@ -1,0 +1,782 @@
+/*
+ * Two-way-table widget: the contingency table with totals, the view switch, the explanation of the selected
+ * number, the segmented bar chart with the association note, the difference and ratio of two groups, and
+ * practice questions.
+ * 二维列联表组件：带合计的列联表、视图切换、选中数字的说明、分段条形图与关联说明、两组的差与比，以及练习题。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.two-way-table {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  container-type: inline-size;
+}
+
+/* Header 标题 */
+.two-way-table__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.two-way-table__eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.two-way-table__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.two-way-table__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.two-way-table__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.two-way-table__notice {
+  font-size: var(--text-sm);
+}
+
+/* Bilingual pieces 双语小构件 */
+.two-way-table__pair {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.two-way-table__pair-zh,
+.two-way-table__pair-en {
+  margin: 0;
+}
+
+.two-way-table__pair-en {
+  color: var(--color-ink-3);
+  font-size: 0.92em;
+}
+
+.two-way-table__name {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--space-1);
+  min-width: 0;
+}
+
+.two-way-table__name-en {
+  font-weight: 800;
+}
+
+.two-way-table__name-zh {
+  color: var(--color-ink-2);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+/* Mode and view switches wrap instead of overflowing on a phone. 模式与视图切换在手机上换行，不撑破页面。 */
+.two-way-table__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.two-way-table__modes,
+.two-way-table__views {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.two-way-table__modes .segmented__option,
+.two-way-table__views .segmented__option {
+  flex: 1 1 auto;
+}
+
+.two-way-table__meta {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  font-size: var(--text-sm);
+}
+
+.two-way-table__variable-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+}
+
+.two-way-table__key {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.two-way-table__shape {
+  color: var(--color-ink-2);
+}
+
+.two-way-table__view-panel {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.two-way-table__guide {
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  background: var(--color-signal-soft);
+  font-size: var(--text-sm);
+}
+
+.two-way-table__tip {
+  font-size: var(--text-sm);
+}
+
+/* The explanation sits beside the table only on a host wide enough for a 6-column table; a lesson page
+   (780 px at most) keeps it below the table.
+   只有宿主宽到能放下 6 列的表格时，说明才放在表格旁边；课程页面（最宽 780 px）把说明放在表格下方。 */
+.two-way-table__work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@container (min-width: 1000px) {
+  .two-way-table__work {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+}
+
+.two-way-table__work.is-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.two-way-table__table-area {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+/* Contingency table 列联表 */
+.two-way-table__table {
+  width: auto;
+  min-width: 100%;
+}
+
+.two-way-table__table th,
+.two-way-table__table td {
+  vertical-align: middle;
+}
+
+.two-way-table__table thead th {
+  white-space: normal;
+}
+
+.two-way-table__table .two-way-table__name {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.two-way-table__corner {
+  background: var(--color-paper-2);
+}
+
+.two-way-table__variable {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+.two-way-table__variable--row {
+  text-align: left;
+}
+
+.two-way-table__column-head .two-way-table__name {
+  align-items: flex-end;
+}
+
+.two-way-table__row-head {
+  min-width: 7em;
+  white-space: normal;
+}
+
+.two-way-table__slot {
+  padding: 0;
+  text-align: right;
+}
+
+/* The totals are set off by a heavier rule, like the margins of the slide tables. 合计用较粗的线隔开，和课件表格的边栏一样。 */
+.two-way-table__slot.is-row-total,
+.two-way-table__column-head.is-row-total,
+.two-way-table__corner.is-row-total {
+  border-left: 2px solid var(--color-line);
+}
+
+.two-way-table__slot.is-column-total,
+.two-way-table__row-head.is-column-total {
+  border-top: 2px solid var(--color-line);
+}
+
+.two-way-table__slot.is-column-total,
+.two-way-table__slot.is-row-total {
+  background: var(--color-paper-2);
+}
+
+/* Marks: a fill for the numerator, a thick frame for the denominator, a dashed frame for a wrong pick.
+   The shapes differ, so the marks never rely on colour alone.
+   标记：分子用底色，分母用粗框，选错的分母用虚线框；形状不同，标记不只靠颜色区分。 */
+.two-way-table__slot.is-band {
+  background: var(--color-accent-soft);
+}
+
+.two-way-table__slot.is-numerator {
+  background: var(--color-highlight-soft);
+}
+
+.two-way-table__slot.is-denominator {
+  box-shadow: inset 0 0 0 3px var(--color-signal);
+}
+
+.two-way-table__slot.is-wrong {
+  outline: 3px dashed var(--color-danger);
+  outline-offset: -3px;
+}
+
+.two-way-table__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-width: 4.5em;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.two-way-table__cell:hover:not(:disabled) {
+  background: var(--color-paper-2);
+}
+
+.two-way-table__cell:disabled {
+  color: var(--color-ink);
+  cursor: default;
+}
+
+/* The focus ring is drawn inside the cell so the scrolling box never clips it. 焦点框画在格子内侧，滚动框不会把它裁掉。 */
+.two-way-table__cell:focus-visible {
+  outline-offset: -4px;
+}
+
+.two-way-table__cell[aria-pressed="true"] {
+  box-shadow: inset 0 -4px 0 var(--color-accent-strong);
+}
+
+.two-way-table__count,
+.two-way-table__share {
+  font-size: var(--text-md);
+  font-weight: 800;
+}
+
+.two-way-table__percent {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+/* In the percentage views the count becomes a small first line; ink-2 keeps it readable on every mark fill.
+   百分比视图中计数变成小字的第一行；用 ink-2，在每一种标记底色上都清楚可读。 */
+.two-way-table__table:not([data-view="counts"]) .two-way-table__count {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.two-way-table__hint,
+.two-way-table__mark-legend {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+/* Explanation of the selected number 选中数字的说明 */
+.two-way-table__detail {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  box-shadow: var(--shadow-hard-sm);
+  font-size: var(--text-sm);
+}
+
+.two-way-table__detail-eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.two-way-table__detail-title {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.two-way-table__detail-title .bi-title__en {
+  font-size: 0.75em;
+}
+
+.two-way-table__term {
+  margin: 0;
+  font-weight: 700;
+}
+
+.two-way-table__lines {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.two-way-table__line {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-line-soft);
+}
+
+.two-way-table__line-label,
+.two-way-table__result-title {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.two-way-table__formula {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.two-way-table__note {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Panels below the table 表格下方的面板 */
+.two-way-table__panel {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-line);
+}
+
+.two-way-table__subheading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.two-way-table__subheading .bi-title__en {
+  font-size: 0.75em;
+}
+
+.two-way-table__panel-intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Segmented bar chart 分段条形图 */
+.two-way-table__chart {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.two-way-table__bar-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+@container (min-width: 560px) {
+  .two-way-table__bar-row {
+    grid-template-columns: minmax(0, 11em) minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--space-3);
+  }
+}
+
+.two-way-table__bar-row.is-marginal {
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-line);
+}
+
+.two-way-table__bar-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+  font-size: var(--text-sm);
+}
+
+.two-way-table__bar-n {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.two-way-table__bar {
+  display: flex;
+  min-width: 0;
+  height: 32px;
+  overflow: hidden;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+/* A panel-coloured line separates neighbouring segments without taking width from them. 用面板色的细线分隔相邻的段，不占用段的宽度。 */
+.two-way-table__segment {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: inset -2px 0 0 var(--color-panel);
+  color: var(--color-panel);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.two-way-table__segment:last-child {
+  box-shadow: none;
+}
+
+/* Category fills: strong tokens that keep panel-coloured text readable in both themes; the sixth adds stripes.
+   类别填充色：两种主题下都能让面板色文字清楚可读的强调色；第六种再加斜纹。 */
+.two-way-table__segment--0 {
+  background-color: var(--color-accent-strong);
+}
+
+.two-way-table__segment--1 {
+  background-color: var(--color-signal);
+}
+
+.two-way-table__segment--2 {
+  background-color: var(--color-warn);
+}
+
+.two-way-table__segment--3 {
+  background-color: var(--color-danger);
+}
+
+.two-way-table__segment--4 {
+  background-color: var(--color-ink-3);
+}
+
+.two-way-table__segment--5 {
+  background-color: var(--color-ink-2);
+  background-image: repeating-linear-gradient(135deg, transparent 0 5px, var(--color-ink-3) 5px 8px);
+}
+
+.two-way-table__bar-empty {
+  align-self: center;
+  padding: 0 var(--space-2);
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.two-way-table__legend {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.two-way-table__legend-title {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.two-way-table__legend-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.two-way-table__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.two-way-table__swatch {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+.two-way-table__association {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+  font-size: var(--text-sm);
+}
+
+.two-way-table__association-title {
+  margin: 0;
+  font-weight: 800;
+}
+
+.two-way-table__rule {
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-line-soft);
+  color: var(--color-ink-2);
+}
+
+/* Difference and ratio 差与比 */
+.two-way-table__compare-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: var(--space-3);
+  align-items: end;
+}
+
+.two-way-table__field,
+.two-way-table__select {
+  min-width: 0;
+}
+
+.two-way-table__swap {
+  display: flex;
+  align-items: flex-end;
+}
+
+.two-way-table__compare-result {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.two-way-table__result-block {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+  font-size: var(--text-sm);
+}
+
+/* Practice 练习 */
+.two-way-table__practice-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.two-way-table__progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.two-way-table__progress:empty {
+  display: none;
+}
+
+.two-way-table__question {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+}
+
+.two-way-table__question-en {
+  margin: 0;
+  font-weight: 700;
+}
+
+.two-way-table__question-zh {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.two-way-table__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: var(--space-2);
+}
+
+.two-way-table__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-hard-sm);
+  text-align: left;
+}
+
+.two-way-table__option:hover:not([aria-disabled="true"]) {
+  background: var(--color-paper-2);
+}
+
+.two-way-table__option[aria-disabled="true"] {
+  box-shadow: none;
+  cursor: default;
+}
+
+.two-way-table__option[data-state="wrong"] {
+  border-color: var(--color-danger);
+  border-style: dashed;
+  background: var(--color-danger-soft);
+}
+
+.two-way-table__option[data-state="correct"] {
+  border-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.two-way-table__letter {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 900;
+}
+
+.two-way-table__option-text {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.two-way-table__mark {
+  display: inline-flex;
+  flex: none;
+}
+
+.two-way-table__option[data-state="wrong"] .two-way-table__mark {
+  color: var(--color-danger);
+}
+
+.two-way-table__option[data-state="correct"] .two-way-table__mark {
+  color: var(--color-success);
+}
+
+.two-way-table__verdict {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-ink-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-size: var(--text-sm);
+}
+
+.two-way-table__verdict > .icon {
+  flex: none;
+  margin-top: var(--space-1);
+}
+
+.two-way-table__verdict.is-correct {
+  border-left-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.two-way-table__verdict.is-wrong {
+  border-left-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.two-way-table__verdict.is-revealed {
+  border-left-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+.two-way-table__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+@media (max-width: 480px) {
+  .two-way-table {
+    padding: var(--space-3);
+  }
+}

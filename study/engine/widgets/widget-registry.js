@@ -20,6 +20,14 @@ const LOADERS = {
   'linear-separability': () => import('./neural-networks/linear-separability/linear-separability.js'),
   'tokenizer-toy': () => import('./language-models/tokenizer-toy/tokenizer-toy.js'),
   'temperature-sampler': () => import('./language-models/temperature-sampler/temperature-sampler.js'),
+  'two-way-table': () => import('./statistics/two-way-table/two-way-table.js'),
+  'category-chart': () => import('./statistics/category-chart/category-chart.js'),
+  histogram: () => import('./statistics/histogram/histogram.js'),
+  'center-spread': () => import('./statistics/center-spread/center-spread.js'),
+  boxplot: () => import('./statistics/boxplot/boxplot.js'),
+  'z-score': () => import('./statistics/z-score/z-score.js'),
+  'scatter-correlation': () => import('./statistics/scatter-correlation/scatter-correlation.js'),
+  'least-squares-line': () => import('./statistics/least-squares-line/least-squares-line.js'),
 };
 
 export function hasWidget(name) {

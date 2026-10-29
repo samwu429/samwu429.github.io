@@ -118,6 +118,39 @@ test('normalizeMockSettings clamps counts and minutes', () => {
   assert.equal(normalizeMockSettings({ objectiveCount: 500 }).objectiveCount, MOCK_LIMITS.objectiveMax);
 });
 
+test('normalizeMockSettings falls back to a course\'s defaults and keeps saved settings', () => {
+  const defaults = { objectiveCount: 25, writtenCount: 0, minutes: 90 };
+  assert.deepEqual(normalizeMockSettings({ units: ['mod01'] }, defaults), { units: ['mod01'], ...defaults });
+  assert.deepEqual(normalizeMockSettings({ objectiveCount: '', writtenCount: 'x', minutes: '45' }, defaults), {
+    units: [], objectiveCount: 25, writtenCount: 0, minutes: 45,
+  });
+  const saved = normalizeMockSettings({ units: ['mod02', 'mod03'], objectiveCount: 12, writtenCount: 2, minutes: 30 });
+  assert.deepEqual(normalizeMockSettings(saved, defaults), saved);
+});
+
+test('objectiveTypes restrict the objective counts; written questions are unaffected', () => {
+  // lec03: mcq, tf, multi + 1 short; lab01: mcq x3, tf x3, multi x2, calc x2 + short, long.
+  const mcqOnly = mockAvailability(BANK, ['lec03', 'lab01'], { objectiveTypes: ['mcq'] });
+  assert.equal(mcqOnly.objective, 4);
+  assert.equal(mcqOnly.written, 3);
+  assert.deepEqual(mcqOnly.perUnit.get('lec03'), { objective: 1, written: 1 });
+  assert.equal(mockAvailability(BANK, ['lec03', 'lab01'], { objectiveTypes: ['mcq', 'tf', 'short'] }).objective, 8);
+  assert.equal(mockAvailability(BANK, ['lec03', 'lab01'], { objectiveTypes: [] }).objective, 0);
+  assert.equal(mockAvailability(BANK, ['lec03', 'lab01'], {}).objective, 13);
+});
+
+test('composeMockExam draws objective questions only from objectiveTypes', () => {
+  const paper = composeMockExam(BANK, { units: ['lec01', 'lec02'], objectiveCount: 10, writtenCount: 2, objectiveTypes: ['mcq'], seed: 3 });
+  assert.equal(paper.objectiveIds.length, 10);
+  for (const id of paper.objectiveIds) assert.equal(byId.get(id).type, 'mcq');
+  assert.equal(paper.writtenIds.length, 2);
+  assert.deepEqual(paper.shortfall, { objective: 0, written: 0 });
+  const short = composeMockExam(BANK, { units: ['lec01', 'lec02'], objectiveCount: 12, writtenCount: 0, objectiveTypes: ['mcq'], seed: 3 });
+  assert.deepEqual(short.shortfall, { objective: 2, written: 0 });
+  const unrestricted = composeMockExam(BANK, { units: ['lec01'], objectiveCount: 20, writtenCount: 0, seed: 3 });
+  assert.deepEqual(new Set(unrestricted.objectiveIds.map((id) => byId.get(id).type)), new Set(['mcq', 'tf', 'multi', 'calc']));
+});
+
 test('timer helpers: remaining seconds and milestone crossings', () => {
   assert.equal(remainingSeconds(10_000, 0), 10);
   assert.equal(remainingSeconds(10_000, 9_001), 1);

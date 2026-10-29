@@ -1,0 +1,2251 @@
+{
+  "lessonId": "mod02",
+  "questions": [
+    {
+      "id": "mod02-q01",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s01-frequency-distribution",
+      "prompt": {
+        "en": "A frequency distribution can be shown either as a table or as a graph, and in both forms it shows the categories and the number of cases (the frequency) in each category.",
+        "zh": "频数分布（**frequency distribution**）既可以做成表格，也可以画成图；不管哪种形式，它都列出各个类别（**category**），以及每个类别里有多少个案（频数，**frequency**）。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对（True）。课件第 2 页：频数分布可以是一张表，也可以是一张图，但两种形式都包含同样的两样东西：① 组成测量尺度的那一组类别；② 每个类别里有多少个体（频数）。\n注意：频数分布描述的是“整体的样子”（每一类各有多少），不是一个平均数那样的单个数字。例如 Titanic 数据的生还状态：Alive 711、Dead 1490，这两个类别加上各自的人数就是一个频数分布；把它画成条形图，仍然是同一个分布。",
+        "en": "True. Slide p.2: a frequency distribution, as a table or a graph, shows the categories and the frequency in each category."
+      }
+    },
+    {
+      "id": "mod02-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-frequency-proportion-percentage",
+      "prompt": {
+        "en": "The table shows the favourite bubble-tea topping of 160 students. What is the relative frequency (proportion) of students who chose pudding?",
+        "zh": "下表是 160 名学生最喜欢的奶茶小料。选布丁（Pudding）的学生的相对频数（**relative frequency**，也就是比例 **proportion**）是多少？"
+      },
+      "table": {
+        "headers": [
+          "Topping",
+          "Pearls",
+          "Pudding",
+          "Grass jelly",
+          "Red bean",
+          "None",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Number of students",
+            64,
+            28,
+            20,
+            16,
+            32,
+            160
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.0175"
+        },
+        {
+          "en": "0.125"
+        },
+        {
+          "en": "0.175"
+        },
+        {
+          "en": "0.28"
+        },
+        {
+          "en": "17.5"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C。相对频数（比例）= 这一类的频数 ÷ 总数 = 28/160 = 0.175。比例一定在 0 和 1 之间（课件第 3 页）。\nA 0.0175：小数点挪错了一位（相当于除以了 1600）。\nB 0.125：看错了格子，这是 Grass jelly 的 20/160。\nD 0.28：算成了 28 ÷ 100，可总数是 160，不是 100。\nE 17.5：这是百分比（0.175 × 100 = 17.5%）；题目问的是比例（proportion），不是百分比（percentage）。\n同类题：Module 2 Practice Q3B（用“频数 ÷ 总数”说明一个比例是怎么来的）。",
+        "en": "28/160 = 0.175. E is the percentage, D divides by 100 instead of 160, B uses the Grass jelly count and A misplaces the decimal point."
+      }
+    },
+    {
+      "id": "mod02-q03",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s02-frequency-proportion-percentage",
+      "prompt": {
+        "en": "240 students reported the device they mainly use for studying. The relative frequency for Phone is missing from the table. How many of the 240 students mainly use a phone?",
+        "zh": "240 名学生报告了自己主要用来学习的设备。表里 Phone（手机）的相对频数缺了。这 240 人中有多少人主要用手机学习？"
+      },
+      "table": {
+        "headers": [
+          "Main study device",
+          "Laptop",
+          "Tablet",
+          "Desktop",
+          "Phone",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Relative frequency",
+            "0.55",
+            "0.15",
+            "0.10",
+            "?",
+            "1.00"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.20"
+        },
+        {
+          "en": "20"
+        },
+        {
+          "en": "24"
+        },
+        {
+          "en": "36"
+        },
+        {
+          "en": "48"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "选 E。第 1 步：所有类别的相对频数加起来等于 1，所以 Phone = 1 − (0.55 + 0.15 + 0.10) = 0.20。第 2 步：人数（频数）= 比例 × 总数 = 0.20 × 240 = 48 人。\nA 0.20：只算到比例，题目问的是“多少人”（count）。\nB 20：把比例写成了百分比 20%，也不是人数。\nC 24：用的是 Desktop 的 0.10 × 240。\nD 36：用的是 Tablet 的 0.15 × 240。\n检查：0.55 × 240 + 0.15 × 240 + 0.10 × 240 + 48 = 132 + 36 + 24 + 48 = 240，正好是总人数。",
+        "en": "Phone = 1 − (0.55 + 0.15 + 0.10) = 0.20, and 0.20 × 240 = 48 students."
+      }
+    },
+    {
+      "id": "mod02-q04",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-titanic-data",
+      "prompt": {
+        "en": "The Titanic data set has n = 2201 cases and four variables: Survived, Age, Sex and Class. Which statement is correct?",
+        "zh": "Titanic（泰坦尼克号）数据集有 n = 2201 个个案（**case**）和四个变量（**variable**）：Survived、Age、Sex 和 Class。下面哪个说法正确？"
+      },
+      "options": [
+        {
+          "en": "Each of the 2201 cases is one person on board, and all four variables are categorical.",
+          "zh": "2201 个个案中每一个都是船上的一个人，而且四个变量都是分类变量。"
+        },
+        {
+          "en": "n = 2201 is the number of variables in the data set.",
+          "zh": "n = 2201 是数据集里变量的个数。"
+        },
+        {
+          "en": "Class is a quantitative variable because First, Second and Third are numbers.",
+          "zh": "Class 是数值变量，因为 First、Second、Third 是数字。"
+        },
+        {
+          "en": "Survived is a quantitative variable because it has only two values.",
+          "zh": "Survived 是数值变量，因为它只有两个取值。"
+        },
+        {
+          "en": "The variable Survived has 2201 categories.",
+          "zh": "变量 Survived 有 2201 个类别。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A。课件第 4 页：n = 2201 个个案，就是船上的 2201 个人（乘客和船员）；四个变量 Survived（Dead/Alive）、Age（Adult/Child）、Sex（Male/Female）、Class（First/Second/Third/Crew）都是分类变量（**categorical variable**）：每个人只是被分到某一类，不是量出一个数。\nB 错：n 是个案（行）的个数，不是变量（列）的个数；变量只有 4 个。\nC 错：First、Second、Third 是等级的名字（有顺序，所以课件第 20 页说它是 ordinal），不是可以加减的数量；而且还有 Crew 这一类。\nD 错：只有两个取值（Alive/Dead）说明它是二元（**binary**）分类变量，不是数值变量。\nE 错：Survived 只有 2 个类别（Alive、Dead）；2201 是人数。",
+        "en": "n = 2201 people on board (the cases); Survived, Age, Sex and Class are all categorical."
+      }
+    },
+    {
+      "id": "mod02-q05",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s04-r-import-and-inspect",
+      "prompt": {
+        "en": "A student ran `str(survey)` in R. The first two lines of the output are:\n`'data.frame':   350 obs. of  6 variables:`\n`$ Major : chr  \"Biology\" \"Economics\" \"Biology\" ...`\nWhat does the number 350 tell you?",
+        "zh": "一个学生在 R 里运行了 `str(survey)`，输出的前两行是：\n`'data.frame':   350 obs. of  6 variables:`\n`$ Major : chr  \"Biology\" \"Economics\" \"Biology\" ...`\n数字 350 告诉你什么？"
+      },
+      "options": [
+        {
+          "en": "The number of variables in the data",
+          "zh": "数据里变量的个数"
+        },
+        {
+          "en": "The number of cases (rows) in the data",
+          "zh": "数据里个案（行）的个数"
+        },
+        {
+          "en": "The number of categories of Major",
+          "zh": "变量 Major 的类别个数"
+        },
+        {
+          "en": "The sum of all the values in the data",
+          "zh": "数据里所有数值的总和"
+        },
+        {
+          "en": "The number of missing values in the data",
+          "zh": "数据里缺失值的个数"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B。`str()` 显示一个对象的结构（**structure**）。第一行 `350 obs. of 6 variables` 的意思是：350 个观测（**observations**，也就是 350 行、350 个个案），6 个变量（6 列）。课件第 7 页的 Titanic 例子是 `2201 obs. of 4 variables`：2201 个人、4 个变量。\nA 错：变量个数是 6，不是 350。\nC 错：这两行没有告诉你 Major 有几个类别；`chr` 只说明 Major 存的是文字（**character**），也就是一个分类变量。\nD、E 错：`str()` 不求和，也不数缺失值。",
+        "en": "obs. means observations, i.e. cases (rows); 6 is the number of variables; chr means text, so Major is categorical."
+      }
+    },
+    {
+      "id": "mod02-q06",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s06-bar-chart",
+      "prompt": {
+        "en": "A survey asked students to name their favourite season (Winter, Spring, Summer or Fall). Which of the following graphs is appropriate to display the results?",
+        "zh": "一项调查请学生说出最喜欢的季节（冬、春、夏、秋）。下面哪种图适合展示调查结果？"
+      },
+      "options": [
+        {
+          "en": "Histogram",
+          "zh": "直方图"
+        },
+        {
+          "en": "Boxplot",
+          "zh": "箱线图"
+        },
+        {
+          "en": "Stem-and-leaf display",
+          "zh": "茎叶图"
+        },
+        {
+          "en": "Pie chart",
+          "zh": "饼图"
+        },
+        {
+          "en": "Scatterplot",
+          "zh": "散点图"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。“最喜欢的季节”是分类变量（每个人选一个类别）。课件第 3 页：分类变量用条形图（**bar chart**）或饼图（**pie chart**）展示。这道题的选项里只有饼图。\nA 直方图、B 箱线图、C 茎叶图：都是给一个数值变量（**quantitative variable**，比如身高、分数）用的，Module 3–4 会学。\nE 散点图：需要两个数值变量（Module 5）。\n同类题：2025 期中 Q21（那道题的选项里有 Bar Chart）。",
+        "en": "Season is categorical, so use a bar chart or a pie chart; histograms, boxplots, stem-and-leaf displays and scatterplots need quantitative data."
+      }
+    },
+    {
+      "id": "mod02-q07",
+      "type": "multi",
+      "difficulty": 1,
+      "sectionId": "s06-bar-chart",
+      "prompt": {
+        "en": "Which graphs are appropriate for displaying the distribution of ONE categorical variable? Select all that apply.",
+        "zh": "哪些图适合展示“一个”分类变量的分布？选出所有正确的选项。"
+      },
+      "options": [
+        {
+          "en": "Bar chart",
+          "zh": "条形图"
+        },
+        {
+          "en": "Pie chart",
+          "zh": "饼图"
+        },
+        {
+          "en": "Histogram",
+          "zh": "直方图"
+        },
+        {
+          "en": "Boxplot",
+          "zh": "箱线图"
+        },
+        {
+          "en": "Stem-and-leaf display",
+          "zh": "茎叶图"
+        },
+        {
+          "en": "Dotplot",
+          "zh": "点图"
+        }
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explain": {
+        "zh": "选 A 和 B。课件第 3 页：分类数据的图形展示是条形图（每个类别一根分开的柱子）和饼图（每个类别一块，表示占整体的几分之几）。\n直方图、箱线图、茎叶图、点图都是展示数值变量用的（Module 3–4），它们都需要一条有数值刻度的数轴。\n易错：直方图长得像条形图，但直方图的柱子是挨着的，横轴是数值区间；条形图的柱子是分开的，横轴是类别。\n同类题：2025 期中 Q21。",
+        "en": "Bar charts and pie charts display categorical data; histograms, boxplots, stem-and-leaf displays and dotplots are for quantitative data."
+      }
+    },
+    {
+      "id": "mod02-q08",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s06-bar-chart",
+      "prompt": {
+        "en": "In a bar chart of a categorical variable, the bars should touch each other, and a bar may be drawn wider to make its category stand out.",
+        "zh": "在分类变量的条形图里，柱子应该互相挨着；为了突出某个类别，可以把它的柱子画得更宽。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错（False）。两处都错。\n① 课件第 3、10 页：相邻的柱子之间要留空隙，表示这些类别是分开的、互不相连的，可以按任何顺序排列。\n② 柱子要一样宽，这样柱子的高度决定面积，面积才和每个类别的频数成比例。这叫面积原则（**Area Principle**）：图中一部分所占的面积应该和它代表的数值大小相对应。把某根柱子画宽，它的面积就被放大了，会误导读图的人。",
+        "en": "False. Bars are separated by spaces and have equal widths, so their areas follow the Area Principle."
+      }
+    },
+    {
+      "id": "mod02-q09",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-pie-chart",
+      "prompt": {
+        "en": "A pie chart shows the blood types of 400 blood donors. The slice for type O covers 162° of the 360° circle. What percentage of the donors have type O blood?",
+        "zh": "一张饼图展示了 400 名献血者的血型。O 型那一块占了整个圆 360° 中的 162°。O 型血的献血者占百分之几？"
+      },
+      "options": [
+        {
+          "en": "0.45"
+        },
+        {
+          "en": "40.5"
+        },
+        {
+          "en": "45"
+        },
+        {
+          "en": "162"
+        },
+        {
+          "en": "180"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C。饼图把整个圆（360°）当作全部的人（100%），每一块的大小和它占整体的比例成正比（课件第 12 页）。所以 O 型的比例 = 162° ÷ 360° = 0.45，百分比 = 0.45 × 100 = 45%。\n补充（课件外）：画饼图时，扇形的角度 = 比例 × 360°；反过来，比例 = 角度 ÷ 360°。\nA 0.45：这是比例，题目要的是百分比。\nB 40.5：算成了 162 ÷ 400，把角度除以人数，两个数的单位根本不一样。\nD 162：这是角度（度数），不是百分比。\nE 180：这是 O 型的人数（0.45 × 400 = 180），不是百分比。",
+        "en": "162/360 = 0.45, so 45% (the angle rule is outside the slides). 0.45 is the proportion and 180 is the number of type-O donors."
+      }
+    },
+    {
+      "id": "mod02-q10",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s08-relative-frequency-table",
+      "prompt": {
+        "en": "The table shows the main way 845 students travel to campus. What percentage of the students mainly take the GO train? Round to two decimal places.",
+        "zh": "下表是 845 名学生到校的主要交通方式。主要坐 GO train 的学生占百分之几？保留两位小数。"
+      },
+      "table": {
+        "headers": [
+          "Main way to campus",
+          "Bus",
+          "Car",
+          "Walk or bike",
+          "GO train",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Number of students",
+            338,
+            211,
+            169,
+            127,
+            845
+          ]
+        ]
+      },
+      "answer": 15.03,
+      "tolerance": 0.005,
+      "unit": "%",
+      "explain": {
+        "zh": "答案 15.03%。第 1 步：比例 = 频数 ÷ 总数 = 127/845 = 0.150296…，保留四位是 0.1503。第 2 步：百分比 = 比例 × 100 = 15.03%（课件第 3 页：percentage = proportion x 100）。\n常见错误：127/100 = 1.27（分母用了 100）；127/338 = 37.57%（分母用了 Bus 那一类，不是总数）；只写 0.1503（那是比例，题目要百分比）；写 15.0 或 15（没有按要求保留两位小数）。\n同类题：Module 2 Practice Q1C（合计 ÷ 总数，百分比保留两位小数）。",
+        "en": "127/845 = 0.1503, so 15.03%."
+      }
+    },
+    {
+      "id": "mod02-q11",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s08-relative-frequency-table",
+      "prompt": {
+        "en": "The table shows the main way 845 students travel to campus. For Bus, 338/845 = 0.400, or 40.0%. Which sentence correctly interprets this value?",
+        "zh": "下表是 845 名学生到校的主要交通方式。Bus 这一类：338/845 = 0.400，也就是 40.0%。哪句话正确地解释了这个数？"
+      },
+      "table": {
+        "headers": [
+          "Main way to campus",
+          "Bus",
+          "Car",
+          "Walk or bike",
+          "GO train",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Number of students",
+            338,
+            211,
+            169,
+            127,
+            845
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "40.0% of the surveyed students mainly take the bus to campus.",
+          "zh": "被调查的学生中有 40.0% 主要坐公交车到校。"
+        },
+        {
+          "en": "40.0% of the bus riders in Mississauga are surveyed students.",
+          "zh": "Mississauga 坐公交车的人中，有 40.0% 是被调查的学生。"
+        },
+        {
+          "en": "338% of the surveyed students mainly take the bus to campus.",
+          "zh": "被调查的学生中有 338% 主要坐公交车到校。"
+        },
+        {
+          "en": "Taking the bus is 40 times as common as the other ways of getting to campus.",
+          "zh": "坐公交车比其他到校方式常见 40 倍。"
+        },
+        {
+          "en": "0.400% of the surveyed students mainly take the bus to campus.",
+          "zh": "被调查的学生中有 0.400% 主要坐公交车到校。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A。百分比的分母是谁，句子里就说“谁中的百分之几”。这里分母是 845 名被调查的学生，所以说“被调查的学生中有 40.0% 主要坐公交车”。课件第 14 页的写法一样：32.3% of passengers and crew members survived.\nB 错：群体说反了，而且说的是整个 Mississauga 坐公交车的人，超出了这份数据（我们只调查了 845 名学生）。\nC 错：338 是人数（频数），不是百分比；百分比不可能超过 100%。\nD 错：40.0% 不是倍数，“40 倍”是完全不同的意思。\nE 错：0.400 是比例，乘以 100 之后才是 40.0%；写成 0.400% 等于又缩小了 100 倍。",
+        "en": "The denominator is the 845 surveyed students, so 40.0% of the surveyed students mainly take the bus."
+      }
+    },
+    {
+      "id": "mod02-q12",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s09-ticket-class-tally",
+      "prompt": {
+        "en": "A student ran `tally(~ Major, format = \"percent\", margin = TRUE, data = survey)` in R and got the output below. Which statement is correct?",
+        "zh": "一个学生在 R 里运行了 `tally(~ Major, format = \"percent\", margin = TRUE, data = survey)`，得到下面的输出。下面哪个说法正确？"
+      },
+      "table": {
+        "headers": [
+          "Biology",
+          "Computer Science",
+          "Economics",
+          "Psychology",
+          "Total"
+        ],
+        "rows": [
+          [
+            "27.5",
+            "35.0",
+            "22.5",
+            "15.0",
+            "100.0"
+          ]
+        ],
+        "caption": {
+          "en": "R output for the variable Major",
+          "zh": "变量 Major 的 R 输出"
+        }
+      },
+      "options": [
+        {
+          "en": "35 students are Computer Science majors.",
+          "zh": "有 35 名学生是计算机科学专业。"
+        },
+        {
+          "en": "0.35% of the surveyed students are Computer Science majors.",
+          "zh": "被调查的学生中有 0.35% 是计算机科学专业。"
+        },
+        {
+          "en": "The survey asked 100 students.",
+          "zh": "这次调查一共问了 100 名学生。"
+        },
+        {
+          "en": "Psychology has the largest share of the surveyed students.",
+          "zh": "心理学专业在被调查学生中占的比例最大。"
+        },
+        {
+          "en": "35% of the surveyed students are Computer Science majors.",
+          "zh": "被调查的学生中有 35% 是计算机科学专业。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "选 E。`format = \"percent\"` 让 `tally()` 输出百分比；`margin = TRUE` 在最后加上 Total（合计）（课件第 16 页）。所以 35.0 的意思是 35.0%。\nA 错：35.0 是百分比，不是人数；要看人数得用不带 format 的 `tally(~ Major, data = survey)`。\nB 错：35.0 已经是百分比了，不要再写成 0.35%（比例是 0.35，百分比是 35%）。\nC 错：Total = 100.0 表示百分比加起来是 100%，不是一共 100 人；这份输出看不出总人数。\nD 错：Psychology 只有 15.0%，是最小的；最大的是 Computer Science 的 35.0%。",
+        "en": "`format = \"percent\"` gives percentages, so 35.0 means 35% of the surveyed students; Total = 100.0 is 100%, not 100 students."
+      }
+    },
+    {
+      "id": "mod02-q13",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s10-association-and-roles",
+      "prompt": {
+        "en": "Researchers compare students who eat breakfast with students who do not, to see whether the two groups differ in passing a short quiz (Pass or Fail). Which is the response variable?",
+        "zh": "研究者比较吃早餐和不吃早餐的学生，看这两组学生在一次小测验中的通过情况（Pass 或 Fail）有没有不同。哪个是响应变量（**response variable**）？"
+      },
+      "options": [
+        {
+          "en": "Whether a student eats breakfast",
+          "zh": "学生是否吃早餐"
+        },
+        {
+          "en": "Whether a student passes the quiz",
+          "zh": "学生是否通过小测验"
+        },
+        {
+          "en": "Both variables are explanatory variables",
+          "zh": "两个变量都是解释变量"
+        },
+        {
+          "en": "The number of students in the study",
+          "zh": "研究中的学生人数"
+        },
+        {
+          "en": "The percentage of students who pass the quiz",
+          "zh": "通过小测验的学生的百分比"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B。课件第 19 页：响应变量（结果变量，**outcome variable**）是“在另一个变量的各个水平上拿来比较”的那个变量；解释变量（**explanatory variable**，也叫预测变量 **predictor**）是可能帮助解释响应变量差异的那个变量。这里按“吃不吃早餐”分组，然后比较“通过没有”，所以：吃早餐 = 解释变量，通过与否 = 响应变量。\nA 错：这是解释变量（用来分组的那个）。\nC 错：一个用来分组，一个是被比较的结果，角色不同。\nD 错：人数是样本量 n，不是记录在每个学生身上的变量。\nE 错：百分比是从数据算出来的统计量（**statistic**），不是变量。\n同类题：Module 2 Practice Q1A、Q3A。",
+        "en": "The groups are formed by breakfast (explanatory variable); passing the quiz is compared across the groups (response variable)."
+      }
+    },
+    {
+      "id": "mod02-q14",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s10-association-and-roles",
+      "prompt": {
+        "en": "A survey asks: 'How satisfied are you with campus food?' The answers are coded 1 = Very unsatisfied, 2 = Unsatisfied, 3 = Neutral, 4 = Satisfied, 5 = Very satisfied. What type of variable is satisfaction?",
+        "zh": "一项调查问：“你对校园餐饮满意吗？”答案编码为 1 = 非常不满意，2 = 不满意，3 = 一般，4 = 满意，5 = 非常满意。“满意度”是什么类型的变量？"
+      },
+      "options": [
+        {
+          "en": "Quantitative, because the answers are coded 1 to 5",
+          "zh": "数值变量，因为答案编码成了 1 到 5"
+        },
+        {
+          "en": "Categorical, measured on a nominal scale",
+          "zh": "分类变量，名义尺度（nominal）"
+        },
+        {
+          "en": "Categorical and binary",
+          "zh": "分类变量，而且是二元的（binary）"
+        },
+        {
+          "en": "Categorical, measured on an ordinal scale",
+          "zh": "分类变量，顺序尺度（ordinal）"
+        },
+        {
+          "en": "Quantitative, because an average code can be computed",
+          "zh": "数值变量，因为可以算出编码的平均数"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。每个人的答案落在 5 个类别之一，所以是分类变量；这 5 个类别有明确的先后顺序（非常不满意 < … < 非常满意），所以是顺序尺度（**ordinal scale**）。1–5 只是贴在类别上的标签，不是真正量出来的数量。\nA、E 错：编码成数字不会让它变成数值变量（**quantitative variable**）。只有题目明确说 treated as a quantitative variable（像 2025 期中 Q17 的 1–5 压力评分）时，才按数值变量算平均数和标准差（Module 3 的内容）；本题没有这样说，所以答 ordinal。\nB 错：名义尺度（**nominal scale**）的类别没有顺序（例如专业、血型）；这里的类别有顺序。\nC 错：二元（**binary**）变量只有两个类别（例如 Alive/Dead），这里有 5 个。\n同类题：2025 期中 Q19（poor/fair/good/excellent 不是数值变量）；Module 2 Practice Q3A（心理健康编码成 1–5，仍然是 ordinal）。",
+        "en": "Ordered categories coded 1 to 5 are still a categorical variable on an ordinal scale; the codes are only labels. Only when a question says the codes are treated as a quantitative variable do we compute a mean and an SD."
+      }
+    },
+    {
+      "id": "mod02-q15",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s10-association-and-roles",
+      "prompt": {
+        "en": "Researchers want to compare how often dog owners and cat owners exercise (Never, Sometimes or Often). For each variable, identify its role (explanatory or response), its type and its scale of measurement.",
+        "zh": "研究者想比较养狗的人和养猫的人多常运动（从不、有时、经常）。对每个变量，说出它的角色（解释变量还是响应变量）、类型和测量尺度。"
+      },
+      "modelAnswer": {
+        "en": "Pet type (dog, cat) is the explanatory variable; it is a categorical variable measured on a nominal scale. How often a person exercises (never, sometimes, often) is the response variable; it is a categorical variable measured on an ordinal scale.",
+        "zh": "得分拆解：① 角色：按宠物类型分组来比较，所以宠物类型是解释变量（**explanatory variable**）；被比较的是多常运动，所以“多常运动”是响应变量（**response variable**）。② 类型：两个变量都是把人分到类别里，都是分类变量（**categorical variable**）。③ 宠物类型（狗、猫）没有先后顺序，是名义尺度（**nominal**）。④ 多常运动（从不 < 有时 < 经常）有顺序，是顺序尺度（**ordinal**）。\n也可以像官方答案那样画成一张四列的表：Variable / Role / Type / Scale of measurement。"
+      },
+      "points": [
+        {
+          "en": "Pet type is the explanatory variable and how often a person exercises is the response variable.",
+          "zh": "宠物类型 = 解释变量，多常运动 = 响应变量。"
+        },
+        {
+          "en": "Both variables are categorical.",
+          "zh": "两个变量都是分类变量。"
+        },
+        {
+          "en": "Pet type is measured on a nominal scale (no natural order).",
+          "zh": "宠物类型是名义尺度（没有顺序）。"
+        },
+        {
+          "en": "How often a person exercises is measured on an ordinal scale (ordered categories).",
+          "zh": "多常运动是顺序尺度（类别有顺序）。"
+        }
+      ],
+      "explain": {
+        "zh": "思路：先问“按什么分组、比较什么”：分组的是解释变量，被比较的是响应变量（课件第 19–20 页：Titanic 例子里 Ticket Class 是解释变量，Survival Status 是响应变量）。再看每个变量是“把人分到类别里”（分类）还是“量出一个数”（数量）；分类变量再看类别有没有顺序：有顺序是 ordinal，没有顺序是 nominal。\n常见错误：把两个角色说反；把“从不/有时/经常”说成 nominal（忽略了顺序）。\n同类题：Module 2 Practice Q1A、Q3A。",
+        "en": "Group by pet type (explanatory, nominal); compare how often people exercise (response, ordinal). Both variables are categorical."
+      }
+    },
+    {
+      "id": "mod02-q16",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s11-contingency-table",
+      "prompt": {
+        "en": "The 2 x 3 contingency table shows the preferred study spot of 400 students, by year. One cell is missing. How many first-year students prefer to study at home?",
+        "zh": "这张 2 × 3 列联表（**contingency table**）按年级列出了 400 名学生最喜欢的学习地点，其中一个格子缺了。有多少一年级学生最喜欢在家学习？"
+      },
+      "table": {
+        "headers": [
+          "Year",
+          "Library",
+          "Home",
+          "Café",
+          "Total"
+        ],
+        "rows": [
+          [
+            "First-year",
+            58,
+            "?",
+            22,
+            150
+          ],
+          [
+            "Upper-year",
+            87,
+            109,
+            54,
+            250
+          ],
+          [
+            "Total",
+            145,
+            179,
+            76,
+            400
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "70"
+        },
+        {
+          "en": "92"
+        },
+        {
+          "en": "109"
+        },
+        {
+          "en": "128"
+        },
+        {
+          "en": "179"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A。列联表里，同一行的格子加起来等于这一行的合计（Total）。一年级这一行：58 + ? + 22 = 150，所以 ? = 150 − 58 − 22 = 70。用列来检查：Home 这一列 ? + 109 = 179，? = 70，两种算法一致。\nB 92：150 − 58，忘了减 Café 的 22。\nC 109：这是高年级（Upper-year）在家学习的人数，看错了行。\nD 128：150 − 22，忘了减 Library 的 58。\nE 179：这是 Home 这一列的合计（两个年级加在一起）。\n小知识：“2 x 3”是 2 行 × 3 列，只数类别，不数 Total 行和 Total 列（课件第 23 页：Titanic 是 2 x 4 的表）。",
+        "en": "Row: 150 − 58 − 22 = 70; column check: 179 − 109 = 70."
+      }
+    },
+    {
+      "id": "mod02-q17",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s12-three-percentages-of-a-cell",
+      "prompt": {
+        "en": "Use the study-spot table. What percentage of the students who prefer the library are first-year students?",
+        "zh": "用学习地点那张表。最喜欢图书馆的学生中，一年级学生占百分之几？"
+      },
+      "table": {
+        "headers": [
+          "Year",
+          "Library",
+          "Home",
+          "Café",
+          "Total"
+        ],
+        "rows": [
+          [
+            "First-year",
+            58,
+            70,
+            22,
+            150
+          ],
+          [
+            "Upper-year",
+            87,
+            109,
+            54,
+            250
+          ],
+          [
+            "Total",
+            145,
+            179,
+            76,
+            400
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "14.50%"
+        },
+        {
+          "en": "38.67%"
+        },
+        {
+          "en": "40.00%"
+        },
+        {
+          "en": "60.00%"
+        },
+        {
+          "en": "66.67%"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C。先找分母：of the students who prefer the library（在最喜欢图书馆的学生中）说明分母是 Library 这一列的合计 145；分子是同时满足“一年级”和“图书馆”的格子 58。58/145 = 0.4000 = 40.00%，这是列百分比（**column percentage**，% of column）。\nA 14.50%：58/400，除以总数，这是占全体的百分比（联合，**joint**），回答的是“全体学生中有多少是一年级且最爱图书馆”。\nB 38.67%：58/150，除以一年级合计，这是行百分比（**row percentage**），回答的是“一年级学生中有多少最爱图书馆”，问反了。\nD 60.00%：87/145，这是图书馆组里高年级的占比。\nE 66.67%：58/87，格子除以格子，没有意义。\n口诀：“A 中有百分之几是 B”，分母就是 A 的合计。同类题：2025 期中 Q4；课件第 23 页（同一个格子的三种百分比）。",
+        "en": "The denominator is the Library column total: 58/145 = 40.00% (a column percentage)."
+      }
+    },
+    {
+      "id": "mod02-q18",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s12-three-percentages-of-a-cell",
+      "prompt": {
+        "en": "Use the study-spot table. A student computes 70/150 = 0.467. Which sentence correctly interprets this value?",
+        "zh": "用学习地点那张表。一个学生算出 70/150 = 0.467。哪句话正确地解释了这个数？"
+      },
+      "table": {
+        "headers": [
+          "Year",
+          "Library",
+          "Home",
+          "Café",
+          "Total"
+        ],
+        "rows": [
+          [
+            "First-year",
+            58,
+            70,
+            22,
+            150
+          ],
+          [
+            "Upper-year",
+            87,
+            109,
+            54,
+            250
+          ],
+          [
+            "Total",
+            145,
+            179,
+            76,
+            400
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "About 46.7% of the students who prefer to study at home are first-year students.",
+          "zh": "最喜欢在家学习的学生中，约 46.7% 是一年级学生。"
+        },
+        {
+          "en": "About 46.7% of all the students are first-year students who prefer to study at home.",
+          "zh": "全体学生中，约 46.7% 是“一年级且最喜欢在家学习”的学生。"
+        },
+        {
+          "en": "About 46.7% of all the students prefer to study at home.",
+          "zh": "全体学生中，约 46.7% 最喜欢在家学习。"
+        },
+        {
+          "en": "First-year students are 46.7% more likely to prefer studying at home.",
+          "zh": "一年级学生最喜欢在家学习的可能性高 46.7%。"
+        },
+        {
+          "en": "About 46.7% of first-year students prefer to study at home.",
+          "zh": "一年级学生中，约 46.7% 最喜欢在家学习。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "选 E。分母 150 是一年级（First-year）这一行的合计，所以这是行百分比：一年级学生中有 46.7% 最喜欢在家学习。课件第 23 页的句型：62.5% (203/325) of first-class passengers survived——分母是谁，句子就说“谁中的百分之几”。\nA 错：那应该是 70/179 = 39.1%（分母是 Home 列的合计），群体说反了。\nB 错：那是联合百分比 70/400 = 17.5%（分母是全体 400 人）。\nC 错：那是边际百分比 179/400 = 44.75%。\nD 错：more likely 是比较两个组时用的比值说法，这里只有一个组的百分比，没有比较对象。\n同类题：2025 期中 Q1、Q4（先看分母是谁）。",
+        "en": "150 is the first-year row total, so about 46.7% of first-year students prefer to study at home."
+      }
+    },
+    {
+      "id": "mod02-q19",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s12-three-percentages-of-a-cell",
+      "prompt": {
+        "en": "A survey of 1,040 adults recorded pet ownership and housing type. Among pet owners, what percentage live in an apartment? Round to two decimal places.",
+        "zh": "一项调查记录了 1,040 名成年人是否养宠物以及住房类型。在养宠物的人中，住公寓的占百分之几？保留两位小数。"
+      },
+      "table": {
+        "headers": [
+          "Pet owner",
+          "Apartment",
+          "House",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            132,
+            384,
+            516
+          ],
+          [
+            "No",
+            268,
+            256,
+            524
+          ],
+          [
+            "Total",
+            400,
+            640,
+            1040
+          ]
+        ]
+      },
+      "answer": 25.58,
+      "tolerance": 0.005,
+      "unit": "%",
+      "explain": {
+        "zh": "答案 25.58%。Among pet owners（在养宠物的人中）说明分母是养宠物（Yes）这一行的合计 516；分子是“养宠物且住公寓”的格子 132。132/516 = 0.2558 → 25.58%。这是行百分比（格子 ÷ 行合计）。\n常见错误：132/400 = 33.00%（分母用了 Apartment 列的合计，算的是“住公寓的人中有多少养宠物”，条件反了）；132/1040 = 12.69%（分母用了总数，这是联合百分比）。\n同类题：Module 2 Practice Q1D（每个组内部的条件分布）。",
+        "en": "132/516 = 0.2558, so 25.58% (a row percentage)."
+      }
+    },
+    {
+      "id": "mod02-q20",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s13-side-by-side-bar-plot",
+      "prompt": {
+        "en": "A side-by-side bar chart of counts compares commuter students and residence students. For each group there is a bar for 'Joined a campus club' and a bar for 'Did not join'. The bar heights are: commuters, 270 joined and 630 did not join; residence students, 120 joined and 80 did not join. The commuters' 'Joined' bar is much taller than the residence students' 'Joined' bar. Which conclusion is correct?",
+        "zh": "一张并排条形图（**side-by-side bar chart**，纵轴是人数 count）比较走读生和住校生。每组有两根柱子：“参加了校园社团”和“没参加”。柱子高度：走读生 270 人参加、630 人没参加；住校生 120 人参加、80 人没参加。走读生“参加”那根柱子比住校生的高得多。哪个结论正确？"
+      },
+      "options": [
+        {
+          "en": "Commuter students are more likely to join a club, because their 'Joined' bar is taller.",
+          "zh": "走读生更可能参加社团，因为他们“参加”的柱子更高。"
+        },
+        {
+          "en": "Residence students are more likely to join a club: 60% of them joined, compared with 30% of commuter students.",
+          "zh": "住校生更可能参加社团：住校生 60% 参加了，走读生只有 30%。"
+        },
+        {
+          "en": "The two groups are equally likely to join a club.",
+          "zh": "两组参加社团的可能性一样。"
+        },
+        {
+          "en": "Groups of different sizes can never be compared.",
+          "zh": "人数不同的两组永远不能比较。"
+        },
+        {
+          "en": "Commuter students are more than twice as likely to join a club, because 270 is more than twice 120.",
+          "zh": "走读生参加社团的可能性是住校生的两倍多，因为 270 比 120 的两倍还多。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B。两组人数差很多（走读生 270 + 630 = 900 人，住校生 120 + 80 = 200 人），所以不能比柱子高度（人数），要比组内的百分比（条件比例）：走读生 270/900 = 30%，住校生 120/200 = 60%。住校生参加的比例更高。\nA、E 错：比的是人数（count），走读生的柱子高只是因为走读生人多。E 的“两倍多”用的是人数之比 270/120 = 2.25，不是比例之比；真正的比例之比是 0.60/0.30 = 2，而且方向相反（住校生是走读生的 2 倍）。\nC 错：30% 和 60% 差很多。\nD 错：人数不同，正是要用百分比（条件分布）来比较的原因。\n同类题：Module 2 Practice Q3E（计数条形图里最高的柱子属于人最多的组）。课件第 26 页 Titanic 的并排条形图也是计数，要配合列百分比一起看。",
+        "en": "Compare rates, not counts: 270/900 = 30% versus 120/200 = 60%, so residence students are more likely to join."
+      }
+    },
+    {
+      "id": "mod02-q21",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s14-marginal-distribution",
+      "prompt": {
+        "en": "A health survey of 1,350 adults recorded whether each person exercises at least three times a week and whether they usually sleep well. What proportion of the adults usually sleep well?",
+        "zh": "一项健康调查记录了 1,350 名成年人是否每周运动至少三次，以及是否通常睡得好。通常睡得好的成年人占多大比例？"
+      },
+      "table": {
+        "headers": [
+          "Exercises 3+ times a week",
+          "Sleeps well: Yes",
+          "Sleeps well: No",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            315,
+            165,
+            480
+          ],
+          [
+            "No",
+            348,
+            522,
+            870
+          ],
+          [
+            "Total",
+            663,
+            687,
+            1350
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.233"
+        },
+        {
+          "en": "0.356"
+        },
+        {
+          "en": "0.400"
+        },
+        {
+          "en": "0.491"
+        },
+        {
+          "en": "0.656"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。题目没有任何条件（没有“在运动的人中”之类的话），问的是全体成年人中睡得好的比例，这是边际比例（**marginal proportion**）：表格边上的合计 ÷ 总数。睡得好的合计 = 663（Sleeps well: Yes 这一列的 Total），663/1350 = 0.4911 ≈ 0.491。\nA 0.233：315/1350，只用了“运动且睡得好”这一个格子（联合比例）。\nB 0.356：480/1350，这是“每周运动 3 次以上”的边际比例，看错了变量。\nC 0.400：348/870，这是“不运动的人中睡得好的比例”（条件比例）。\nE 0.656：315/480，这是“运动的人中睡得好的比例”（条件比例）。\n同类题：2025 期中 Q3（边际比例 = 合计 ÷ 总数）。",
+        "en": "Marginal proportion: 663/1350 = 0.491."
+      }
+    },
+    {
+      "id": "mod02-q22",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s14-marginal-distribution",
+      "prompt": {
+        "en": "The table gives the counts of sex by survival status for the people aboard the Titanic (the course's Titanic data). What percentage of the people aboard the Titanic were female? Round to two decimal places.",
+        "zh": "下表是 Titanic 船上人员按性别和生还状态分的人数（课程的 Titanic 数据）。船上的人中女性占百分之几？保留两位小数。"
+      },
+      "table": {
+        "headers": [
+          "Sex",
+          "Alive",
+          "Dead",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Female",
+            344,
+            126,
+            470
+          ],
+          [
+            "Male",
+            367,
+            1364,
+            1731
+          ],
+          [
+            "Total",
+            711,
+            1490,
+            2201
+          ]
+        ]
+      },
+      "answer": 21.35,
+      "tolerance": 0.005,
+      "unit": "%",
+      "explain": {
+        "zh": "答案 21.35%。问的是“全部 2201 人中女性的比例”，这是性别（Sex）的边际分布：女性合计 470 ÷ 总数 2201 = 0.2135 → 21.35%。这张表是把课件第 46 页三向表里各个船舱等级的人数加起来得到的（例如女性生还：20 + 141 + 93 + 90 = 344）。\n常见错误：344/711 = 48.38%（这是“生还者中女性的比例”，用了 Alive 列的合计）；344/2201 = 15.63%（这是“生还的女性”占全体的联合百分比）；470/1731（女性人数除以男性人数，不是比例）。\n同类题：Module 2 Practice Q1C、Q3C（边际分布）。",
+        "en": "Marginal percentage: 470/2201 = 0.2135, so 21.35%."
+      }
+    },
+    {
+      "id": "mod02-q23",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s15-joint-distribution",
+      "prompt": {
+        "en": "Use the health-survey table. What proportion of the adults gave the same answer to both questions (yes to both, or no to both)?",
+        "zh": "用健康调查那张表。两个问题回答相同（两个都答“是”，或两个都答“否”）的成年人占多大比例？"
+      },
+      "table": {
+        "headers": [
+          "Exercises 3+ times a week",
+          "Sleeps well: Yes",
+          "Sleeps well: No",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            315,
+            165,
+            480
+          ],
+          [
+            "No",
+            348,
+            522,
+            870
+          ],
+          [
+            "Total",
+            663,
+            687,
+            1350
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.233"
+        },
+        {
+          "en": "0.380"
+        },
+        {
+          "en": "0.387"
+        },
+        {
+          "en": "0.620"
+        },
+        {
+          "en": "0.847"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。“两个都是 Yes”的格子是 315，“两个都是 No”的格子是 522。这两群人没有重叠，可以直接相加：(315 + 522)/1350 = 837/1350 = 0.620。这是两个联合比例（**joint proportion**，格子 ÷ 总数）之和（课件第 30 页：联合分布 = 每个行列组合占全体的百分比）。\nA 0.233：只算了“都是 Yes”（315/1350）。\nB 0.380：(165 + 348)/1350，这是两个问题回答“不同”的人。\nC 0.387：只算了“都是 No”（522/1350）。\nE 0.847：(480 + 663)/1350，把两个 Yes 的合计相加，“都是 Yes”的 315 人被算了两次，而且回答的也不是这个问题。\n同类题：2025 期中 Q2。",
+        "en": "(315 + 522)/1350 = 837/1350 = 0.620."
+      }
+    },
+    {
+      "id": "mod02-q24",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s15-joint-distribution",
+      "prompt": {
+        "en": "Use the study-spot table. What proportion of ALL the surveyed students are upper-year students who prefer to study at home?",
+        "zh": "用学习地点那张表。在“全部”被调查学生中，“高年级且最喜欢在家学习”的学生占多大比例？"
+      },
+      "table": {
+        "headers": [
+          "Year",
+          "Library",
+          "Home",
+          "Café",
+          "Total"
+        ],
+        "rows": [
+          [
+            "First-year",
+            58,
+            70,
+            22,
+            150
+          ],
+          [
+            "Upper-year",
+            87,
+            109,
+            54,
+            250
+          ],
+          [
+            "Total",
+            145,
+            179,
+            76,
+            400
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.2725"
+        },
+        {
+          "en": "0.4360"
+        },
+        {
+          "en": "0.4475"
+        },
+        {
+          "en": "0.6089"
+        },
+        {
+          "en": "0.6250"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A。of ALL the surveyed students 说明分母是总数 400；要同时满足“高年级”和“在家”两个条件，所以分子是那个格子 109。109/400 = 0.2725，这是联合比例（**joint proportion**）。\nB 0.4360：109/250，这是“高年级学生中最爱在家的比例”（行，条件比例）。\nC 0.4475：179/400，这是“最爱在家”的边际比例，没管年级。\nD 0.6089：109/179，这是“最爱在家的学生中高年级的比例”（列，条件比例）。\nE 0.6250：250/400，这是“高年级”的边际比例，没管地点。\n同类题：2025 期中 Q2；课件第 30 页（203/2201 = 9.22% 是“生还的头等舱乘客”占全体的比例）。",
+        "en": "Joint proportion: cell ÷ grand total = 109/400 = 0.2725."
+      }
+    },
+    {
+      "id": "mod02-q25",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s16-conditional-distribution",
+      "prompt": {
+        "en": "Use the health-survey table. Among adults who exercise at least three times a week, what proportion usually sleep well?",
+        "zh": "用健康调查那张表。在每周运动至少三次的成年人中，通常睡得好的占多大比例？"
+      },
+      "table": {
+        "headers": [
+          "Exercises 3+ times a week",
+          "Sleeps well: Yes",
+          "Sleeps well: No",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            315,
+            165,
+            480
+          ],
+          [
+            "No",
+            348,
+            522,
+            870
+          ],
+          [
+            "Total",
+            663,
+            687,
+            1350
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.233"
+        },
+        {
+          "en": "0.400"
+        },
+        {
+          "en": "0.475"
+        },
+        {
+          "en": "0.491"
+        },
+        {
+          "en": "0.656"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "选 E。Among adults who exercise（在运动的人中）说明只看运动（Yes）这一行，分母是这一行的合计 480；其中睡得好的有 315 人。315/480 = 0.65625 ≈ 0.656。这是条件比例（**conditional proportion**），可以写成 P(sleeps well | exercises)。\nA 0.233：315/1350，分母用了总数，这是联合比例。\nB 0.400：348/870，这是“不运动的人中睡得好的比例”，看错了组。\nC 0.475：315/663，条件反了：这是“睡得好的人中有多少运动”。\nD 0.491：663/1350，没有用条件，这是边际比例。\n同类题：2025 期中 Q4。",
+        "en": "Condition on the adults who exercise: 315/480 = 0.656."
+      }
+    },
+    {
+      "id": "mod02-q26",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s16-conditional-distribution",
+      "prompt": {
+        "en": "Use the health-survey table. Among adults who do NOT exercise at least three times a week, what proportion usually sleep well?",
+        "zh": "用健康调查那张表。在“没有”每周运动至少三次的成年人中，通常睡得好的占多大比例？"
+      },
+      "table": {
+        "headers": [
+          "Exercises 3+ times a week",
+          "Sleeps well: Yes",
+          "Sleeps well: No",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            315,
+            165,
+            480
+          ],
+          [
+            "No",
+            348,
+            522,
+            870
+          ],
+          [
+            "Total",
+            663,
+            687,
+            1350
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "0.258"
+        },
+        {
+          "en": "0.400"
+        },
+        {
+          "en": "0.491"
+        },
+        {
+          "en": "0.525"
+        },
+        {
+          "en": "0.600"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B。只看不运动（No）这一行，分母是这一行的合计 870；其中睡得好的有 348 人。348/870 = 0.400。\nA 0.258：348/1350，分母用了总数（联合比例）。\nC 0.491：663/1350，没有用条件，这是边际比例。\nD 0.525：348/663，条件反了：这是“睡得好的人中有多少不运动”。\nE 0.600：522/870，这是不运动的人中“睡不好”的比例（补集，1 − 0.400）。\n和运动的人比一比：同一张表里，运动的人中睡得好的比例是 315/480 = 0.656，不运动的人只有 0.400，两个条件比例差别很大，说明运动和睡眠之间似乎有关联（**association**）。但这是调查数据（观察研究），只能说有关联，不能说运动“导致”睡得好（**causation**）。同类题：2025 期中 Q5。",
+        "en": "Condition on the adults who do not exercise: 348/870 = 0.400."
+      }
+    },
+    {
+      "id": "mod02-q27",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s16-conditional-distribution",
+      "prompt": {
+        "en": "Use the study-spot table. Among upper-year students, what percentage prefer to study in the library? Round to one decimal place.",
+        "zh": "用学习地点那张表。在高年级学生中，最喜欢在图书馆学习的占百分之几？保留一位小数。"
+      },
+      "table": {
+        "headers": [
+          "Year",
+          "Library",
+          "Home",
+          "Café",
+          "Total"
+        ],
+        "rows": [
+          [
+            "First-year",
+            58,
+            70,
+            22,
+            150
+          ],
+          [
+            "Upper-year",
+            87,
+            109,
+            54,
+            250
+          ],
+          [
+            "Total",
+            145,
+            179,
+            76,
+            400
+          ]
+        ]
+      },
+      "answer": 34.8,
+      "tolerance": 0.05,
+      "unit": "%",
+      "explain": {
+        "zh": "答案 34.8%。Among upper-year students（在高年级学生中）说明分母是高年级这一行的合计 250；分子是“高年级且图书馆”的格子 87。87/250 = 0.348 → 34.8%。这是条件百分比（这里是行百分比）。\n常见错误：87/145 = 60.0%（条件反了：这是“最爱图书馆的人中高年级的比例”）；87/400 = 21.75%（联合百分比）；58/150 = 38.7%（看成了一年级那一行）。\n同类题：Module 2 Practice Q1D、Q3D。",
+        "en": "87/250 = 0.348, so 34.8%."
+      }
+    },
+    {
+      "id": "mod02-q28",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-row-percentages-and-choosing",
+      "prompt": {
+        "en": "Use the pet-ownership table. A researcher wants to compare the proportion of pet owners between people who live in apartments and people who live in houses. Which percentages should the researcher calculate?",
+        "zh": "用养宠物那张表。研究者想比较“住公寓的人”和“住独立房屋的人”中养宠物的比例。研究者应该计算哪种百分比？"
+      },
+      "table": {
+        "headers": [
+          "Pet owner",
+          "Apartment",
+          "House",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            132,
+            384,
+            516
+          ],
+          [
+            "No",
+            268,
+            256,
+            524
+          ],
+          [
+            "Total",
+            400,
+            640,
+            1040
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "Joint percentages",
+          "zh": "联合百分比"
+        },
+        {
+          "en": "Marginal percentages",
+          "zh": "边际百分比"
+        },
+        {
+          "en": "Row percentages",
+          "zh": "行百分比"
+        },
+        {
+          "en": "Column percentages",
+          "zh": "列百分比"
+        },
+        {
+          "en": "Overall percentages",
+          "zh": "总体百分比（overall）"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。先找“被比较的组”：住公寓的人 vs 住独立房屋的人，也就是 Apartment 和 House，它们在表格的“列”上。要在每个组内部算比例，就要除以每一列的合计，所以用列百分比（**column percentage**）：公寓 132/400 = 33%，独立房屋 384/640 = 60%，每一列加起来都是 100%（课件第 32 页）。\nA 联合百分比：除以总数 1040，看的是每个组合占全体的比例，不能公平地比较两组。\nB 边际百分比：只看一个变量（例如养宠物的人占全体的 516/1040），完全不管另一个变量。\nC 行百分比：除以行合计（例如 132/516），回答的是“养宠物的人中有多少住公寓”，比较的方向反了。\nE 总体百分比（**overall percentages**）：不分组。把 overall 理解成不分组的总体百分比（其实就是边际百分比，例如全体中养宠物的 516/1040 = 49.6%），或者理解成第 23 页的 % of overall total（联合百分比），都不是在每组里面算，不能用来比较两组。\n规则：在分组变量（把人分成被比较的几组的那个变量，这里是住房类型 Apartment/House）的每一个水平里面算百分比；分组变量在列上就用列百分比，在行上就用行百分比。注意：“the proportion of pet owners” 里 of 后面的 pet owners 是要数的那一类（分子），不是分母。同类题：2025 期中 Q1；Module 2 Practice Q1B。",
+        "en": "The groups being compared (apartment, house) are the columns, so compute column percentages: 132/400 = 33% versus 384/640 = 60%."
+      }
+    },
+    {
+      "id": "mod02-q29",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-row-percentages-and-choosing",
+      "prompt": {
+        "en": "Use the Titanic table of sex by survival status. The value 344/711 = 0.484 is ...",
+        "zh": "用 Titanic 性别 × 生还状态那张表。344/711 = 0.484 这个值是……"
+      },
+      "table": {
+        "headers": [
+          "Sex",
+          "Alive",
+          "Dead",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Female",
+            344,
+            126,
+            470
+          ],
+          [
+            "Male",
+            367,
+            1364,
+            1731
+          ],
+          [
+            "Total",
+            711,
+            1490,
+            2201
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "the proportion of females who survived.",
+          "zh": "女性中生还的比例。"
+        },
+        {
+          "en": "the proportion of all people aboard who were surviving females.",
+          "zh": "全体船上人员中“生还的女性”所占的比例。"
+        },
+        {
+          "en": "the proportion of survivors who were female.",
+          "zh": "生还者中女性的比例。"
+        },
+        {
+          "en": "the proportion of all people aboard who were female.",
+          "zh": "全体船上人员中女性的比例。"
+        },
+        {
+          "en": "the proportion of all people aboard who survived.",
+          "zh": "全体船上人员中生还者的比例。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C。分母 711 是 Alive（生还）这一列的合计，所以这是“在生还者中，女性占多少”：344/711 = 0.484，即生还者中约 48.4% 是女性。\nA 错：“女性中生还的比例”分母应是女性合计：344/470 = 0.732。A 和 C 是最容易搞混的一对：条件不同，分母就不同。\nB 错：那是联合比例 344/2201 = 0.156。\nD 错：那是边际比例 470/2201 = 0.214。\nE 错：那是边际比例 711/2201 = 0.323。\n对照课件第 33 页：203/711 = 28.55% 是“生还者中头等舱乘客的比例”（行百分比），不是“头等舱乘客中生还的比例”（62.46%）。\n本题表里 Survived 在列上，所以 344/711 是列百分比；课件第 33 页的表把 Survived 放在行上，同样除以生还者合计 711，在那里叫行百分比。叫“行”还是“列”看表怎么摆，意思看分母是哪一群人。",
+        "en": "711 is the number of survivors, so 344/711 is the proportion of survivors who were female; the proportion of females who survived is 344/470 = 0.732."
+      }
+    },
+    {
+      "id": "mod02-q30",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s17-row-percentages-and-choosing",
+      "prompt": {
+        "en": "In a table of row percentages, each row adds up to 100%.",
+        "zh": "在一张行百分比表里，每一行加起来都是 100%。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对（True）。行百分比 = 格子 ÷ 这一行的合计。同一行里所有格子的分母相同，加起来就是这一行的全部，也就是 100%（课件第 33 页标题：Row Percentages Add to 100%）。对应地：列百分比表里每一列加起来是 100%（第 32 页）；联合百分比表里所有格子加起来是 100%（第 30 页）。\n易错：行百分比表的每一“列”加起来一般不是 100%。另外，四舍五入以后可能变成 99.9% 或 100.1%（例如 Module 2 Practice Q3D 有一行加起来是 1.01），那只是舍入误差。",
+        "en": "True. Row percentages divide by the row total, so each row adds to 100% (with column percentages, each column does)."
+      }
+    },
+    {
+      "id": "mod02-q31",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s18-association-vs-independence",
+      "prompt": {
+        "en": "The table gives the main news source of adults within each age group (row percentages). Do the results suggest an association between age group and main news source?",
+        "zh": "下表给出各年龄组成年人的主要新闻来源（行百分比）。这些结果是否表明年龄组和主要新闻来源之间有关联？"
+      },
+      "table": {
+        "headers": [
+          "Age group",
+          "Social media",
+          "TV",
+          "News website or paper",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Under 30",
+            "62%",
+            "18%",
+            "20%",
+            "100%"
+          ],
+          [
+            "30 to 59",
+            "41%",
+            "32%",
+            "27%",
+            "100%"
+          ],
+          [
+            "60 and over",
+            "15%",
+            "55%",
+            "30%",
+            "100%"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "Yes, because the conditional distributions of news source differ a lot across the age groups (for example, social media: 62% vs 15%).",
+          "zh": "是，因为各年龄组的新闻来源条件分布差别很大（例如社交媒体：62% 对 15%）。"
+        },
+        {
+          "en": "No, because each row adds up to 100%.",
+          "zh": "否，因为每一行加起来都是 100%。"
+        },
+        {
+          "en": "Yes, because the 60-and-over group is the largest group.",
+          "zh": "是，因为 60 岁及以上那一组人数最多。"
+        },
+        {
+          "en": "No, because the counts are not given.",
+          "zh": "否，因为表里没有给人数。"
+        },
+        {
+          "en": "It cannot be decided, because percentages cannot show an association.",
+          "zh": "无法判断，因为百分比不能显示关联。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A。判断两个分类变量有没有关联（**association**）：比较响应变量在解释变量各个水平上的条件分布（**conditional distribution**）。各组的分布都一样，就是独立（**independent**，没有关联）；不一样，就是有关联（**dependent**/associated）（课件第 34 页）。这里 30 岁以下 62% 主要看社交媒体，60 岁及以上只有 15%；主要看电视的比例从 18% 到 32% 再到 55%，差别很大，所以有关联。但这是调查数据（观察研究），只能说有关联，不能说年龄“导致”人们选择某种新闻来源（**causation**）。\nB 错：行百分比表的每一行本来就加起来是 100%，这和有没有关联无关。\nC 错：表里没有人数，看不出哪组最大；而且组的大小不能说明关联。\nD 错：判断关联正是要看百分比（条件分布），不需要人数。\nE 错：比较条件百分比就是课程判断关联的方法。\n同类题：Module 2 Practice Q3E（答 Yes 的例子）。",
+        "en": "The conditional distributions differ a lot across the age groups (social media 62% vs 15%), so there appears to be an association."
+      }
+    },
+    {
+      "id": "mod02-q32",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s18-association-vs-independence",
+      "prompt": {
+        "en": "The table shows the drink preference of 1,400 people by handedness, with row percentages in brackets. Do the results suggest an association between handedness and drink preference? Answer Yes or No and explain briefly.",
+        "zh": "下表是 1,400 人按惯用手分组的饮品偏好，括号里是行百分比。这些结果是否表明惯用手和饮品偏好之间有关联？回答 Yes 或 No，并简要解释。"
+      },
+      "table": {
+        "headers": [
+          "Handedness",
+          "Coffee",
+          "Tea",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Left-handed",
+            "87 (58.0%)",
+            "63 (42.0%)",
+            "150 (100%)"
+          ],
+          [
+            "Right-handed",
+            "715 (57.2%)",
+            "535 (42.8%)",
+            "1250 (100%)"
+          ],
+          [
+            "Total",
+            "802 (57.3%)",
+            "598 (42.7%)",
+            "1400 (100%)"
+          ]
+        ]
+      },
+      "modelAnswer": {
+        "en": "No, there appears to be no association between handedness and drink preference. Left-handed and right-handed people have nearly the same conditional distribution of drink preference: 58.0% and 57.2% prefer coffee, and 42.0% and 42.8% prefer tea. These conditional percentages are also close to the overall (marginal) percentages, 57.3% for coffee and 42.7% for tea.",
+        "zh": "得分拆解：① 先给结论：No（没有关联）。② 用条件分布说理：左撇子 58.0% 喜欢咖啡，右撇子 57.2%，几乎一样。③ 和边际（总体）百分比比较：两组都接近总体的 57.3%。④ 差别非常小：只差 0.8 个百分点，比值 0.580/0.572 ≈ 1.01，接近 1（课件第 40 页：没有关联时，差接近 0、比接近 1）。\n注意：不要因为右撇子的人数（715）比左撇子（87）多很多就说有关联，人数多只是因为右撇子的人本来就多。"
+      },
+      "points": [
+        {
+          "en": "States No (there appears to be no association).",
+          "zh": "结论是 No（似乎没有关联）。"
+        },
+        {
+          "en": "Compares the conditional percentages of the two groups: 58.0% vs 57.2% prefer coffee.",
+          "zh": "比较两组的条件百分比：58.0% 对 57.2% 喜欢咖啡。"
+        },
+        {
+          "en": "Notes that the conditional percentages are close to the marginal percentage (57.3%).",
+          "zh": "指出条件百分比接近边际百分比（57.3%）。"
+        },
+        {
+          "en": "Notes that the gap is tiny (0.8 percentage points; ratio about 1.01).",
+          "zh": "指出差别极小（0.8 个百分点；比值约 1.01）。"
+        }
+      ],
+      "explain": {
+        "zh": "判断方法（课件第 34–35 页、第 40 页）：没有关联时，各组的条件分布几乎相同，差接近 0，比接近 1；条件百分比也接近边际百分比。这里正是这种情况，所以答 No。官方练习答案接受的三种理由（任选其一）在这里都成立：两组的条件分布几乎一样；同一类别上两组的百分比很接近；条件百分比和无条件（边际）百分比几乎一样。\n同类题：Module 2 Practice Q1E。",
+        "en": "58.0% vs 57.2% prefer coffee (0.8 points apart, ratio about 1.01), and both are close to 57.3% overall, so there appears to be no association."
+      }
+    },
+    {
+      "id": "mod02-q33",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-row-percentages-and-choosing",
+      "prompt": {
+        "en": "In R, `tab <- table(Smoker, Asthma)` makes a contingency table with Smoker (Yes, No) in the rows and Asthma (Yes, No) in the columns. Which command gives the proportion with asthma within smokers and within non-smokers?",
+        "zh": "在 R 里，`tab <- table(Smoker, Asthma)` 生成一张列联表：行是 Smoker（是否吸烟：Yes、No），列是 Asthma（是否有哮喘：Yes、No）。哪条命令能给出“吸烟者中”和“不吸烟者中”有哮喘的比例？"
+      },
+      "options": [
+        {
+          "en": "`prop.table(tab)`"
+        },
+        {
+          "en": "`prop.table(tab, 2)`"
+        },
+        {
+          "en": "`prop.table(tab, 1)`"
+        },
+        {
+          "en": "`margin.table(tab, 1)`"
+        },
+        {
+          "en": "`addmargins(tab)`"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C。“吸烟者中”“不吸烟者中”就是在 Smoker 的每个水平内部算比例。Smoker 在行上，所以按行算：每个格子 ÷ 所在行的合计，每一行加起来是 1。R 里 `prop.table(tab, 1)` 就是行比例（1 = 行，2 = 列；课件第 33 页 `Row.Prop <- prop.table(Contingency.Table, 1)`）。\nA 错：`prop.table(tab)` 不写第二个参数，每个格子都除以总数，得到的是联合比例（课件第 30 页）。\nB 错：`prop.table(tab, 2)` 按列算，得到的是“有哮喘的人中吸烟的比例”，条件反了。\nD 错：`margin.table(tab, 1)` 只给出每一行的合计人数（计数），不是比例。\nE 错：`addmargins(tab)` 只是给表加上 Sum 合计行和合计列，还是计数。\n同类题：Module 2 Practice Q3D（`Row.Prop <- prop.table(Mental.Health.Table, 1)`）。",
+        "en": "Smoker is in the rows, so the proportions within smokers and within non-smokers are row proportions: `prop.table(tab, 1)`."
+      }
+    },
+    {
+      "id": "mod02-q34",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s19-difference-of-proportions",
+      "prompt": {
+        "en": "62% of students who live in residence attend at least one club event a month, compared with 45% of commuter students. Which sentence correctly describes the difference?",
+        "zh": "住校生中有 62% 每月至少参加一次社团活动，走读生中是 45%。哪句话正确地描述了这个差别？"
+      },
+      "options": [
+        {
+          "en": "The percentage is 17% higher for residence students.",
+          "zh": "住校生的百分比高 17%。"
+        },
+        {
+          "en": "The percentage is 17 percentage points higher for residence students.",
+          "zh": "住校生的百分比高 17 个百分点。"
+        },
+        {
+          "en": "The proportion is 17 times larger for residence students.",
+          "zh": "住校生的比例是走读生的 17 倍。"
+        },
+        {
+          "en": "The percentage is 0.17 percentage points higher for residence students.",
+          "zh": "住校生的百分比高 0.17 个百分点。"
+        },
+        {
+          "en": "The percentage is 1.38 percentage points higher for residence students.",
+          "zh": "住校生的百分比高 1.38 个百分点。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B。两个百分比相减：62% − 45% = 17，这个差要说成“17 个百分点”（**percentage points**）。课件第 37 页特别提醒：要说“高 37 个百分点”，小心不要说成“高 37%”。\nA 错：“高 17%”是相对的说法，意思是 45% × 1.17 = 52.65%，不是 62%。\nC 错：“17 倍”完全不对；两个比例的比值是 0.62/0.45 = 1.38。\nD 错：0.17 是比例之差（0.62 − 0.45），换成百分比要说 17 个百分点，不是 0.17 个。\nE 错：1.38 是两个比例的比值（ratio），不是差；把比值当成百分点，是把两种工具混在了一起。\n补充：按课程的比值规则，1.378 在 1 和 2 之间，可以说住校生的比例“高约 37.8%”（(1.378 − 1) × 100%，课件第 42、44 页）。这句话是对的，所以没有放进选项。",
+        "en": "62% − 45% = 17 percentage points (slide p.37: do not say '17% higher')."
+      }
+    },
+    {
+      "id": "mod02-q35",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s19-difference-of-proportions",
+      "prompt": {
+        "en": "Of 240 students who attended review sessions, 150 passed the midterm. Of 600 students who did not attend, 222 passed. By how many percentage points is the pass rate of the students who attended higher? Round to one decimal place.",
+        "zh": "参加了复习课的 240 名学生中有 150 人通过了期中；没参加的 600 名学生中有 222 人通过。参加者的通过率比没参加者高多少个百分点？保留一位小数。"
+      },
+      "answer": 25.5,
+      "tolerance": 0.05,
+      "unit": "pp",
+      "explain": {
+        "zh": "答案 25.5 个百分点。第 1 步：算组内比例（条件比例）：参加者 150/240 = 0.625 = 62.5%；没参加者 222/600 = 0.370 = 37.0%。第 2 步：比例之差（**difference of proportions**）= 62.5% − 37.0% = 25.5 个百分点（课件第 37 页）。\n常见错误：① 用总人数 840 当分母（150/840 = 17.86%，222/840 = 26.43%），那是联合比例，不是组内的通过率；② 算成比值 0.625/0.370 = 1.69（那是比例之比，是另一种工具）；③ 把答案说成“高 25.5%”：两个百分比的差要说百分点。",
+        "en": "62.5% − 37.0% = 25.5 percentage points."
+      }
+    },
+    {
+      "id": "mod02-q36",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s20-ratio-of-proportions",
+      "prompt": {
+        "en": "Use the health-survey table. Find the relative risk of sleeping well, comparing adults who exercise at least three times a week to adults who do not. Which statement interprets it correctly?",
+        "zh": "用健康调查那张表。求“睡得好”的相对风险（**relative risk**），比较每周运动至少三次的成年人和不这样运动的成年人。哪句话正确地解释了它？"
+      },
+      "table": {
+        "headers": [
+          "Exercises 3+ times a week",
+          "Sleeps well: Yes",
+          "Sleeps well: No",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            315,
+            165,
+            480
+          ],
+          [
+            "No",
+            348,
+            522,
+            870
+          ],
+          [
+            "Total",
+            663,
+            687,
+            1350
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "The relative risk is 0. The proportion who sleep well is the same among adults who exercise and adults who do not.",
+          "zh": "相对风险是 0。运动和不运动的成年人中，睡得好的比例相同。"
+        },
+        {
+          "en": "The relative risk is 1.64. The proportion who sleep well is 1.64 times less among adults who exercise than among adults who do not.",
+          "zh": "相对风险是 1.64。运动的成年人睡得好的比例比不运动的“少 1.64 倍”。"
+        },
+        {
+          "en": "The relative risk is 0.61. The proportion who sleep well is 39% lower among adults who exercise than among adults who do not.",
+          "zh": "相对风险是 0.61。运动的成年人睡得好的比例比不运动的低 39%。"
+        },
+        {
+          "en": "The relative risk is 1.64. The proportion who sleep well is about 64% higher among adults who exercise than among adults who do not.",
+          "zh": "相对风险是 1.64。运动的成年人睡得好的比例比不运动的高约 64%。"
+        },
+        {
+          "en": "The relative risk is 25.6. The proportion who sleep well is 25.6 times as large among adults who exercise as among adults who do not.",
+          "zh": "相对风险是 25.6。运动的成年人睡得好的比例是不运动的 25.6 倍。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。第 1 步：两个条件比例：运动的人 315/480 = 0.656；不运动的人 348/870 = 0.400。第 2 步：comparing A to B 时，先说的组 A 放分子：RR = 0.65625/0.400 = 1.64。第 3 步：比值在 1 和 2 之间，按课程规则说成“高百分之几”：(1.64 − 1) × 100% = 64% higher（课件第 42、44 页）。说“1.64 times as large”也对，所以选项里没有放这种说法。\nA 错：比例相同对应 RR = 1，不是 0（课件第 40 页：没有关联时比值约等于 1）。\nB 错：RR 大于 1 说明分子组（运动的人）更高，“times less”方向反了。\nC 错：0.61 = 0.400/0.656 是反过来的比值，而且句子的方向也错了（真正低 39% 的是不运动的人）。\nE 错：25.6 是两个百分比的差（65.6% − 40.0% = 25.6 个百分点），不是比值。\n同类题：2025 期中 Q6。",
+        "en": "RR = (315/480)/(348/870) = 0.656/0.400 = 1.64; it is between 1 and 2, so the proportion is about 64% higher among adults who exercise."
+      }
+    },
+    {
+      "id": "mod02-q37",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s20-ratio-of-proportions",
+      "prompt": {
+        "en": "A relative risk of 0 means that the proportion is the same in the two groups.",
+        "zh": "相对风险为 0，表示两组的比例相同。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错（False）。相对风险（**relative risk**，也叫风险比 **risk ratio**）= 两个条件比例相除。两组比例相同时，相除得 1（例如 0.30/0.30 = 1），所以“没有关联”对应 RR = 1（以及比例之差 = 0），见课件第 40 页。RR = 0 只会在分子那一组的比例是 0 时出现，也就是那一组里一个有这种结果的人都没有。\n易错：把“差为 0”和“比为 1”搞混：差看 0，比看 1。同类题：2025 期中 Q6 的选项 A。",
+        "en": "False. Equal proportions give a ratio of 1 (and a difference of 0); RR = 0 means the proportion in the numerator group is 0."
+      }
+    },
+    {
+      "id": "mod02-q38",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s20-ratio-of-proportions",
+      "prompt": {
+        "en": "Which of the following suggest that two categorical variables are NOT associated? Select all that apply.",
+        "zh": "下面哪些情况说明两个分类变量“没有”关联？选出所有正确的选项。"
+      },
+      "options": [
+        {
+          "en": "The conditional distributions are nearly the same in every group.",
+          "zh": "每个组的条件分布几乎相同。"
+        },
+        {
+          "en": "The difference of the two conditional proportions is close to 0.",
+          "zh": "两个条件比例之差接近 0。"
+        },
+        {
+          "en": "The ratio of the two conditional proportions is close to 1.",
+          "zh": "两个条件比例之比接近 1。"
+        },
+        {
+          "en": "The ratio of the two conditional proportions is close to 0.",
+          "zh": "两个条件比例之比接近 0。"
+        },
+        {
+          "en": "The conditional percentages are close to the marginal (overall) percentages.",
+          "zh": "条件百分比接近边际（总体）百分比。"
+        },
+        {
+          "en": "Each group has the same number of people.",
+          "zh": "每个组的人数相同。"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "explain": {
+        "zh": "选 A、B、C、E。课件第 34 页：一个变量的分布在另一个变量的各个类别里都一样，就是独立（没有关联）。第 40 页：没有关联时，两个条件比例（几乎）相同，所以差约等于 0、比约等于 1。各组的条件百分比都相同时，它们也会等于总体（边际）百分比，所以 E 也对（Module 2 Practice Q1E 的第三条理由；课件第 35 页拿总体的 32.30% 和各舱位的生还率比较）。\nD 错：比值接近 0 说明分子组的比例远远小于分母组，是很强的关联，不是没有关联。\nF 错：各组人数是否相同和有没有关联无关；关联看的是组内百分比。",
+        "en": "No association: the same conditional distributions, a difference near 0, a ratio near 1, and conditional percentages near the marginal ones. Group sizes do not matter."
+      }
+    },
+    {
+      "id": "mod02-q39",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s21-ratio-small-proportions",
+      "prompt": {
+        "en": "9.1% of passengers on connecting flights and 6.5% of passengers on direct flights had delayed luggage. Using the ratio of the two proportions, by what percent is the proportion with delayed luggage higher for connecting flights? Round to the nearest whole percent.",
+        "zh": "转机航班的乘客中有 9.1% 行李延误，直飞航班是 6.5%。用两个比例之比来算：转机航班行李延误的比例高百分之几？四舍五入到整数百分比。"
+      },
+      "answer": 40,
+      "tolerance": 0.5,
+      "unit": "%",
+      "explain": {
+        "zh": "答案 40%。两个比例都很小（0.091 和 0.065），这时课程更喜欢用比值（课件第 41 页）。第 1 步：大的放分子：0.091/0.065 = 1.40。第 2 步：比值在 1 和 2 之间，说成“高百分之几”：(1.40 − 1) × 100% = 40%（课件第 42、44 页）。结论：The proportion with delayed luggage is 40% higher for connecting flights than for direct flights.\n常见错误：2.6（9.1 − 6.5，这是差，单位是百分点，不是“高百分之几”）；1.4（只写了比值，没有换成百分比）；28.6（1 − 0.065/0.091，把分母换成了转机航班，回答的是“直飞航班低百分之几”）。",
+        "en": "0.091/0.065 = 1.40, so (1.40 − 1) × 100% = 40% higher."
+      }
+    },
+    {
+      "id": "mod02-q40",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s21-ratio-small-proportions",
+      "prompt": {
+        "en": "The proportion of patients with side effects is 0.090 for drug A and 0.075 for drug B. The ratio 0.090/0.075 = 1.2 shows that drug A's proportion is 20% higher than drug B's. Which statement correctly compares drug B with drug A?",
+        "zh": "A 药有副作用的病人比例是 0.090，B 药是 0.075。比值 0.090/0.075 = 1.2，说明 A 药的比例比 B 药高 20%。哪句话正确地拿 B 药和 A 药比较？"
+      },
+      "options": [
+        {
+          "en": "Drug B's proportion is about 20% lower than drug A's.",
+          "zh": "B 药的比例比 A 药低约 20%。"
+        },
+        {
+          "en": "Drug B's proportion is about 16.7% higher than drug A's.",
+          "zh": "B 药的比例比 A 药高约 16.7%。"
+        },
+        {
+          "en": "Drug B's proportion is about 83.3% lower than drug A's.",
+          "zh": "B 药的比例比 A 药低约 83.3%。"
+        },
+        {
+          "en": "Drug B's proportion is about 16.7 percentage points lower than drug A's.",
+          "zh": "B 药的比例比 A 药低约 16.7 个百分点。"
+        },
+        {
+          "en": "Drug B's proportion is about 16.7% lower than drug A's.",
+          "zh": "B 药的比例比 A 药低约 16.7%。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "选 E。现在 B 药放分子：0.075/0.090 = 0.833。比值小于 1，说成“低百分之几”：(1 − 0.833) × 100% = 16.7% lower（课件第 43 页的方法）。\nA 错：“A 高 20%”反过来不是“B 低 20%”，因为比较的基准（分母）变了：20% 是相对 0.075 说的，16.7% 是相对 0.090 说的。\nB 错：比值小于 1，B 更低，不是更高。\nC 错：0.833 是比值本身，不是降低的幅度；降低的是 1 − 0.833。\nD 错：百分点是两个百分比的差：9.0% − 7.5% = 1.5 个百分点，不是 16.7 个百分点。\n课件提醒：第 43 页写 0.050/0.054 = 0.92、“低 8%”，其实 0.050/0.054 = 0.926，应该是低约 7.4%。这正好说明“高 8%”反过来不等于“低 8%”。",
+        "en": "0.075/0.090 = 0.833, so (1 − 0.833) × 100% = 16.7% lower. Reversing a ratio changes the base, so it is not 20% lower."
+      }
+    },
+    {
+      "id": "mod02-q41",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s22-ratio-wording-relative-risk",
+      "prompt": {
+        "en": "The table shows whether 1,100 adults got a flu shot and whether they got the flu that winter. Find the relative risk of getting the flu, comparing people who did not get a flu shot to people who did. Which statement interprets it correctly?",
+        "zh": "下表记录了 1,100 名成年人有没有打流感疫苗，以及那个冬天有没有得流感。求“得流感”的相对风险，比较没打流感疫苗的人和打了疫苗的人。哪句话正确地解释了它？"
+      },
+      "table": {
+        "headers": [
+          "Flu shot",
+          "Got the flu: Yes",
+          "Got the flu: No",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            18,
+            582,
+            600
+          ],
+          [
+            "No",
+            52,
+            448,
+            500
+          ],
+          [
+            "Total",
+            70,
+            1030,
+            1100
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "The relative risk is 3.47. The proportion who got the flu is 3.47 times as large among people without a flu shot as among people with a flu shot.",
+          "zh": "相对风险是 3.47。没打疫苗的人得流感的比例是打了疫苗的人的 3.47 倍。"
+        },
+        {
+          "en": "The relative risk is 3.47. The proportion who got the flu is 3.47 times smaller among people without a flu shot than among people with a flu shot.",
+          "zh": "相对风险是 3.47。没打疫苗的人得流感的比例比打了疫苗的人“小 3.47 倍”。"
+        },
+        {
+          "en": "The relative risk is 0.29. The proportion who got the flu is 71% lower among people without a flu shot than among people with a flu shot.",
+          "zh": "相对风险是 0.29。没打疫苗的人得流感的比例比打了疫苗的人低 71%。"
+        },
+        {
+          "en": "The relative risk is 7.4. The proportion who got the flu is 7.4 times as large among people without a flu shot as among people with a flu shot.",
+          "zh": "相对风险是 7.4。没打疫苗的人得流感的比例是打了疫苗的人的 7.4 倍。"
+        },
+        {
+          "en": "The relative risk is 1. The proportion who got the flu is the same among people with and without a flu shot.",
+          "zh": "相对风险是 1。打没打疫苗，得流感的比例都一样。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A。第 1 步：条件比例：没打疫苗 52/500 = 0.104；打了疫苗 18/600 = 0.030。第 2 步：comparing people who did not get a flu shot to people who did，先说的“没打疫苗”放分子：RR = 0.104/0.030 = 3.47。第 3 步：比值大于 2，说成“几倍”：3.47 times as large（课件第 44 页：比值大于 2 用倍数的说法，也可以说 3.47 times more likely）。两个比例都很小（10.4% 和 3.0%），正是课件第 41 页说的更适合用比值的情况。\nB 错：RR 大于 1 说明分子组（没打疫苗）更高，“times smaller”方向反了。\nC 错：0.29 = 0.030/0.104 是反过来的比值，句子的方向也错了（低 71% 的是打了疫苗的人）。\nD 错：7.4 是两个百分比的差（10.4% − 3.0% = 7.4 个百分点），不是比值。\nE 错：RR = 1 才是“一样”，这里算出来是 3.47。\n同类题：2025 期中 Q6。",
+        "en": "RR = (52/500)/(18/600) = 0.104/0.030 = 3.47, so the proportion who got the flu is 3.47 times as large among people without a flu shot."
+      }
+    },
+    {
+      "id": "mod02-q42",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s22-ratio-wording-relative-risk",
+      "prompt": {
+        "en": "84% of students who attended tutoring passed the course, compared with 70% of students who did not attend. Compute the ratio of the two proportions and interpret it in context.",
+        "zh": "参加了辅导的学生中 84% 通过了这门课，没参加的学生中是 70%。计算两个比例之比，并结合情境解释它。"
+      },
+      "modelAnswer": {
+        "en": "The ratio of the two proportions is 0.84/0.70 = 1.20. The proportion of students who passed the course was 20% higher for students who attended tutoring than for students who did not attend.",
+        "zh": "得分拆解：① 大的比例放分子：0.84/0.70 = 1.20（课件第 44 页）。② 比值在 1 和 2 之间，按课程习惯说“高百分之几”：(1.20 − 1) × 100% = 20% higher（课件第 42 页：1.08 → 8% higher）。③ 句子要写清楚比较的结果（通过这门课）和两个组（参加辅导的 vs 没参加的）。④ 不要和差混淆：84% − 70% = 14 个百分点是比例之差，不是比值的解释；也不要说“高 14%”。"
+      },
+      "points": [
+        {
+          "en": "Puts the larger proportion on top: 0.84/0.70 = 1.20.",
+          "zh": "大的比例放分子：0.84/0.70 = 1.20。"
+        },
+        {
+          "en": "Interprets a ratio between 1 and 2 as a percent increase: (1.20 − 1) × 100% = 20% higher.",
+          "zh": "比值在 1 和 2 之间，说成高百分之几：(1.20 − 1) × 100% = 20%。"
+        },
+        {
+          "en": "Names the outcome (passing the course) and both groups in the sentence.",
+          "zh": "句子写清楚结果（通过课程）和两个组。"
+        },
+        {
+          "en": "Does not confuse the ratio with the 14-percentage-point difference.",
+          "zh": "不把比值和 14 个百分点的差混在一起。"
+        }
+      ],
+      "explain": {
+        "zh": "比值的说法规则（课件第 42–44 页）：比值在 1 和 2 之间，说“(比值 − 1) × 100% higher”；大于 2，说“几倍”（times as large / times more likely）；小于 1，说“(1 − 比值) × 100% lower”。这里 1.20 在 1 和 2 之间，所以说“高 20%”。写“1.20 times as large”也不算错，但课程更习惯用百分比的说法。",
+        "en": "0.84/0.70 = 1.20, so the proportion who passed was 20% higher for students who attended tutoring."
+      }
+    },
+    {
+      "id": "mod02-q43",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s23-three-way-table",
+      "prompt": {
+        "en": "The table gives the Titanic counts by sex, survival status and ticket class (the course's three-way table). What percentage of male second-class passengers survived?",
+        "zh": "下表是 Titanic 按性别、生还状态和船票等级分的人数（课程里的三向表）。二等舱男性乘客中，生还的占百分之几？"
+      },
+      "table": {
+        "headers": [
+          "Sex",
+          "Survived",
+          "Crew",
+          "First",
+          "Second",
+          "Third"
+        ],
+        "rows": [
+          [
+            "Female",
+            "Alive",
+            20,
+            141,
+            93,
+            90
+          ],
+          [
+            "Female",
+            "Dead",
+            3,
+            4,
+            13,
+            106
+          ],
+          [
+            "Male",
+            "Alive",
+            192,
+            62,
+            25,
+            88
+          ],
+          [
+            "Male",
+            "Dead",
+            670,
+            118,
+            154,
+            422
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "1.14%"
+        },
+        {
+          "en": "6.81%"
+        },
+        {
+          "en": "13.97%"
+        },
+        {
+          "en": "21.19%"
+        },
+        {
+          "en": "87.74%"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C。先锁定组：男性（Male）且二等舱（Second），这一组一共 25（Alive）+ 154（Dead）= 179 人，其中生还 25 人。25/179 = 0.1397 = 13.97%。这和课件第 47 页 `tally(~ Survived | Class + Sex, format = \"percent\")` 输出里 Male、Second、Alive 的 13.966480 一致。\nA 1.14%：25/2201，除以全体人数，这是联合百分比。\nB 6.81%：25/367，367 是所有男性生还者，算的是“男性生还者中二等舱的比例”。\nD 21.19%：25/118，118 是二等舱所有生还者（93 + 25），算的是“二等舱生还者中男性的比例”。\nE 87.74%：93/106，这是二等舱“女性”的生还率，看错了性别。\n延伸：二等舱女性 87.74% 生还，男性只有 13.97%。在同一个舱位里，性别和生还也有很强的关联。",
+        "en": "Male second class: 25 alive out of 25 + 154 = 179, so 25/179 = 13.97%."
+      }
+    },
+    {
+      "id": "mod02-q44",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s24-simpsons-paradox",
+      "prompt": {
+        "en": "The table shows the shots made by two basketball players in one season. Which statement is correct?",
+        "zh": "下表是两名篮球运动员一个赛季的投篮命中情况。下面哪个说法正确？"
+      },
+      "table": {
+        "headers": [
+          "Player",
+          "2-point shots",
+          "3-point shots",
+          "All shots"
+        ],
+        "rows": [
+          [
+            "Player A",
+            "14 of 20 (70%)",
+            "24 of 80 (30%)",
+            "38 of 100 (38%)"
+          ],
+          [
+            "Player B",
+            "52 of 80 (65%)",
+            "5 of 20 (25%)",
+            "57 of 100 (57%)"
+          ]
+        ]
+      },
+      "options": [
+        {
+          "en": "Player B has the higher success rate for both types of shots.",
+          "zh": "B 两种投篮的命中率都更高。"
+        },
+        {
+          "en": "Player A has the higher success rate for both types of shots, but Player B has the higher overall success rate.",
+          "zh": "A 两种投篮的命中率都更高，但 B 的总命中率更高。"
+        },
+        {
+          "en": "Player A has the higher overall success rate.",
+          "zh": "A 的总命中率更高。"
+        },
+        {
+          "en": "The overall rates are a fair comparison because both players took 100 shots.",
+          "zh": "两人都投了 100 次，所以比较总命中率是公平的。"
+        },
+        {
+          "en": "The table must contain an error, because the overall result cannot disagree with the results for each shot type.",
+          "zh": "表格一定有错，因为总体结果不可能和每种投篮的结果相反。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B。分开看：两分球 A 70% > B 65%；三分球 A 30% > B 25%，A 两项都更好。合起来看：A 38% < B 57%，结论反过来了。这就是辛普森悖论（**Simpson's paradox**）：把不同组的百分比合在一起，结论可能反转（课件第 50 页）。原因：A 的 100 次投篮里有 80 次是难投的三分球，B 只有 20 次；投篮类型就是潜伏变量（**lurking variable**），它既和“谁投的”有关，也和“进没进”有关。\nA 错：B 两项都更低。\nC 错：A 的总命中率 38% 低于 B 的 57%。\nD 错：总次数一样不代表公平，两人投的“难度组合”完全不同（A 80% 是三分球，B 只有 20%）。\nE 错：这种反转真实可能发生，数据没有错（课件第 50–52 页 Berkeley 的例子也是这样）。\n同类题：Module 2 Practice Q2。",
+        "en": "A wins within each shot type (70% vs 65%, 30% vs 25%) but B wins overall (57% vs 38%) because A took mostly hard 3-point shots: Simpson's paradox."
+      }
+    },
+    {
+      "id": "mod02-q45",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s24-simpsons-paradox",
+      "prompt": {
+        "en": "Two food-delivery apps report their on-time deliveries. FastBite says it is more reliable because 84% of its deliveries were on time, compared with 74.8% for QuickEat. Use the table to explain why this claim is misleading.",
+        "zh": "两个外卖 App 公布了准时送达的情况。FastBite 说自己更可靠，因为它 84% 的订单准时送达，而 QuickEat 只有 74.8%。用下表解释为什么这个说法有误导性。"
+      },
+      "table": {
+        "headers": [
+          "App",
+          "Clear weather",
+          "Snow",
+          "Overall"
+        ],
+        "rows": [
+          [
+            "FastBite",
+            "180 of 200 (90%)",
+            "30 of 50 (60%)",
+            "210 of 250 (84%)"
+          ],
+          [
+            "QuickEat",
+            "47 of 50 (94%)",
+            "140 of 200 (70%)",
+            "187 of 250 (74.8%)"
+          ]
+        ],
+        "caption": {
+          "en": "Deliveries on time, by app and weather",
+          "zh": "按 App 和天气分的准时送达订单数"
+        }
+      },
+      "modelAnswer": {
+        "en": "This is an example of Simpson's paradox. Within each weather condition, QuickEat is more reliable: 94% vs 90% of deliveries were on time in clear weather, and 70% vs 60% in snow. QuickEat looks worse overall only because most of its deliveries (200 of 250, or 80%) were made in snow, and deliveries in snow are harder for both apps (68% on time in snow vs 90.8% in clear weather, for the two apps combined). Most of FastBite's deliveries (200 of 250) were made in clear weather, which pulls its overall rate up. Weather is a lurking variable: it is related both to the app and to being on time. So comparing the overall percentages is not a fair comparison. We should compare the apps within each weather condition (controlling for weather), and then QuickEat is the more reliable app.",
+        "zh": "得分拆解：① 点名现象：辛普森悖论（**Simpson's paradox**）。② 组内比较（带数字）：晴天 QuickEat 94% > FastBite 90%；下雪 QuickEat 70% > FastBite 60%，两种天气下都是 QuickEat 更好。③ 解释原因：QuickEat 80% 的订单在下雪天送（200/250），而下雪天本来就难准时（两家合计：雪天 170/250 = 68%，晴天 227/250 = 90.8%）；FastBite 80% 的订单在晴天，总体准时率被晴天“抬高”了。总体准时率其实是各种天气准时率的加权平均：FastBite = 0.8 × 90% + 0.2 × 60% = 84%；QuickEat = 0.2 × 94% + 0.8 × 70% = 74.8%。④ 点名潜伏变量：天气（**lurking variable**），它既和“哪个 App”有关，也和“准不准时”有关。⑤ 结论：比较总体百分比不公平（not a fair comparison），应该在每种天气内部比较，也就是控制天气（**controlling for** weather），结论是 QuickEat 更可靠。"
+      },
+      "points": [
+        {
+          "en": "Names Simpson's paradox.",
+          "zh": "点名辛普森悖论。"
+        },
+        {
+          "en": "Compares the apps within each weather condition, with numbers: QuickEat is better in clear weather (94% vs 90%) and in snow (70% vs 60%).",
+          "zh": "在每种天气内部用数字比较：晴天 94% 对 90%，雪天 70% 对 60%，都是 QuickEat 更好。"
+        },
+        {
+          "en": "Explains the different mix of weather (80% of QuickEat's deliveries but only 20% of FastBite's were in snow) and that snow deliveries are harder.",
+          "zh": "解释两家的天气组合不同（QuickEat 80% 的订单在雪天，FastBite 只有 20%），而雪天更难准时。"
+        },
+        {
+          "en": "Names weather as the lurking variable, related to both the app and being on time.",
+          "zh": "点名天气是潜伏变量，它既和 App 有关，也和准时有关。"
+        },
+        {
+          "en": "Concludes that the overall comparison is not fair and that the apps should be compared within each weather condition (controlling for weather).",
+          "zh": "结论：总体比较不公平，应在每种天气内部比较（控制天气）。"
+        }
+      ],
+      "explain": {
+        "zh": "这道题对应课件第 50–53 页和 Module 2 Practice Q2 的答题思路：先说这是辛普森悖论；再用组内百分比说明结论反转；然后解释“两家的组合不同 + 某些组本来就更难”；点名潜伏变量；最后说总体比较不公平，要在每个水平内部比较（controlling for）。\n常见丢分：只说“数据有错”或“是运气”，没有点名潜伏变量（天气）；只给结论，不给组内的数字。\n同类题：Module 2 Practice Q2。",
+        "en": "Simpson's paradox: QuickEat wins within each weather condition but loses overall because most of its deliveries were in snow; weather is the lurking variable."
+      }
+    },
+    {
+      "id": "mod02-q46",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s24-simpsons-paradox",
+      "prompt": {
+        "en": "In the UC Berkeley graduate admissions data, about 44% of male applicants but only about 35% of female applicants were admitted overall. Yet within most departments, women were admitted at nearly the same rate as men or at a higher rate. What best explains this?",
+        "zh": "在 UC Berkeley 研究生录取数据里，总体上约 44% 的男性申请者被录取，而女性只有约 35%。可是在大多数院系内部，女性的录取率和男性差不多，甚至更高。下面哪项最能解释这一点？"
+      },
+      "options": [
+        {
+          "en": "Every department admitted men at a higher rate than women.",
+          "zh": "每个院系男性的录取率都比女性高。"
+        },
+        {
+          "en": "The overall percentages must contain a calculation error.",
+          "zh": "总体百分比一定算错了。"
+        },
+        {
+          "en": "Women applied to fewer departments in total.",
+          "zh": "女性申请的院系总数更少。"
+        },
+        {
+          "en": "The overall admission rate is the simple average of the department admission rates.",
+          "zh": "总体录取率就是各院系录取率的简单平均。"
+        },
+        {
+          "en": "Women applied mostly to departments with low admission rates, while men applied mostly to departments with high admission rates.",
+          "zh": "女性大多申请录取率低的院系，而男性大多申请录取率高的院系。"
+        }
+      ],
+      "answer": 4,
+      "explain": {
+        "zh": "选 E。课件第 51–52 页：女性大量申请录取率很低的院系，男性更多申请录取率超过 50% 的院系。看第 51 页的表：女性申请者大多集中在录取率只有 6%–37% 的 C–F 系，申请 A、B 系（录取率 62% 以上）的女性只有 108 + 25 = 133 人；男性申请 A、B 系的有 825 + 560 = 1385 人。合在一起看（**aggregated**，汇总数据），女性的总体录取率被那些难进的院系拉低；分院系看（**disaggregated**，拆开的数据），女性并不吃亏。这是辛普森悖论，潜伏变量是“院系（录取难度）”。\nA 错：和题目矛盾；6 个院系里，女性在 4 个院系（A、B、D、F）的录取率更高。\nB 错：反转是真实现象，不是算错了。\nC 错：关键不是申请了几个院系，而是申请到哪些院系（难度不同）。\nD 错：总体录取率是按各院系申请人数加权的平均，不是简单平均；正因为男女在各院系的申请人数分布不同，结论才会反转。\n补充：课件第 50 页把 44% − 35% 的差写成“9%”，按第 37 页的规则应该说“9 个百分点”（不先四舍五入是 44.28% − 34.58% = 9.70 个百分点）。",
+        "en": "Women mostly applied to departments that were hard to get into, so their overall rate was pulled down; department is the lurking variable (Simpson's paradox)."
+      }
+    },
+    {
+      "id": "mod02-q47",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s25-lurking-variable",
+      "prompt": {
+        "en": "Hospital A has a lower overall survival rate after surgery than Hospital B. However, for patients who arrive in good condition and for patients who arrive in poor condition, Hospital A has the higher survival rate. Most of Hospital A's patients arrive in poor condition, while most of Hospital B's patients arrive in good condition. Name the lurking variable and explain why the overall comparison is misleading.",
+        "zh": "A 医院术后的总体存活率比 B 医院低。但是，无论是入院时状况好的病人，还是入院时状况差的病人，A 医院的存活率都更高。A 医院的病人大多入院时状况差，B 医院的病人大多入院时状况好。说出潜伏变量，并解释为什么总体比较有误导性。"
+      },
+      "modelAnswer": {
+        "en": "The lurking variable is the patients' condition on arrival. Hospital A treats mostly patients in poor condition, who are less likely to survive at any hospital, so its overall survival rate is pulled down and the overall comparison is not a fair comparison. We should compare survival within each condition group (controlling for condition), and then Hospital A does better.",
+        "zh": "得分拆解：① 潜伏变量（**lurking variable**）：病人入院时的身体状况（condition on arrival）。② 它同时和两件事有关：和医院有关（A 医院的病人大多入院时状况差，B 医院大多状况好，两家医院的病人组合不同），也和存活有关（状况差的病人在哪家医院都更难存活）。③ 所以 A 医院的总体存活率被大量重病人拉低，总体比较不公平（not a fair comparison）。④ 应该在每个状况组内部比较，也就是控制状况（**controlling for** condition）；这样比，A 医院更好。这是辛普森悖论的典型情境。"
+      },
+      "points": [
+        {
+          "en": "Names the patients' condition on arrival as the lurking variable.",
+          "zh": "点名潜伏变量：病人入院时的状况。"
+        },
+        {
+          "en": "Explains that condition is linked to the hospital (a different mix of patients) and to survival.",
+          "zh": "说明它既和医院有关（病人组合不同），又和存活有关。"
+        },
+        {
+          "en": "States that the overall rate is therefore misleading (not a fair comparison).",
+          "zh": "指出总体存活率因此有误导性（比较不公平）。"
+        },
+        {
+          "en": "Says to compare within each condition group (controlling for condition), where Hospital A does better.",
+          "zh": "应该在每个状况组内部比较（控制状况），这样比 A 医院更好。"
+        }
+      ],
+      "explain": {
+        "zh": "课件第 53 页的寓意：问题常常在于我们不知不觉地把一个重要的、没有被发现的变量（潜伏变量）平均掉或合并掉了；要主动去想哪些变量可能改变我们对一个关系的理解，虽然这不一定容易。Module 2 Practice Q2 的“故事寓意”还强调：要在第二个变量的每个水平内部比较百分比，这叫控制（**controlling for**）这个变量。\n同类题：Module 2 Practice Q2。",
+        "en": "Condition on arrival is linked to both the hospital and survival; compare within condition groups, where Hospital A is better."
+      }
+    },
+    {
+      "id": "mod02-q48",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s18-association-vs-independence",
+      "prompt": {
+        "en": "A health survey of 1,350 adults recorded whether each person exercises at least three times a week and whether they usually sleep well. Do the results suggest an association between exercising and sleeping well? Answer Yes or No, justify your answer with percentages, and say whether we can conclude that exercising causes better sleep.",
+        "zh": "一项健康调查记录了 1,350 名成年人是否每周运动至少三次，以及是否通常睡得好。这些结果是否表明运动和睡得好之间有关联？回答 Yes 或 No，用百分比说明理由，并说出能不能下结论说运动“导致”睡得更好。"
+      },
+      "table": {
+        "headers": [
+          "Exercises 3+ times a week",
+          "Sleeps well: Yes",
+          "Sleeps well: No",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Yes",
+            315,
+            165,
+            480
+          ],
+          [
+            "No",
+            348,
+            522,
+            870
+          ],
+          [
+            "Total",
+            663,
+            687,
+            1350
+          ]
+        ]
+      },
+      "modelAnswer": {
+        "en": "Yes, there appears to be an association between exercising and sleeping well: about 65.6% (315/480) of adults who exercise at least three times a week usually sleep well, compared with only 40.0% (348/870) of adults who do not, and 49.1% (663/1350) of all adults. Knowing whether an adult exercises helps explain the differences in the percentage who sleep well. However, these are survey (observational) data, so we cannot conclude that exercising causes better sleep.",
+        "zh": "得分拆解：① 先给结论：Yes（看起来有关联）。② 用条件百分比说理：运动的人 315/480 = 65.6% 睡得好，不运动的人 348/870 = 40.0%，差 25.6 个百分点。③ 和边际（总体）百分比比较：全体是 663/1350 = 49.1%，两组都离它很远。④ 加一句因果提醒：调查数据是观察研究，只能说有关联，不能说运动“导致”睡得好（也许睡得好的人更有精力去运动，也可能有别的潜伏变量在起作用）。"
+      },
+      "points": [
+        {
+          "en": "States Yes and gives both conditional percentages (65.6% vs 40.0% sleep well).",
+          "zh": "结论是 Yes，并给出两组的条件百分比（65.6% 对 40.0% 睡得好）。"
+        },
+        {
+          "en": "Compares them with the overall (marginal) percentage, 49.1%.",
+          "zh": "和总体（边际）百分比 49.1% 比较。"
+        },
+        {
+          "en": "Says that knowing whether an adult exercises helps explain the difference, so there appears to be an association.",
+          "zh": "说明知道是否运动有助于解释差别，所以看起来有关联。"
+        },
+        {
+          "en": "States that survey (observational) data cannot show that exercising causes better sleep.",
+          "zh": "指出调查（观察）数据不能证明运动“导致”睡得更好。"
+        }
+      ],
+      "explain": {
+        "zh": "判断方法（课件第 34–35 页）：比较各组的条件分布，再和边际分布比。这里两组差 25.6 个百分点，和课件 Titanic 的例子一样答 Yes。官方练习 Q3E 的答案最后一句是因果提醒：只能说有关联，不能说教育程度“导致”心理健康更好；本题也要照样写一句。同类题：Module 2 Practice Q3E（Yes 加因果提醒）；Q1E（答 No 的写法）。",
+        "en": "65.6% vs 40.0% sleep well (49.1% overall), so there appears to be an association; survey data cannot show that exercising causes better sleep."
+      }
+    }
+  ]
+}

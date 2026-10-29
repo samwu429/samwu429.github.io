@@ -1,0 +1,517 @@
+{
+  "welcome": {
+    "zh": "欢迎！这门课叫 The Practice of Statistics I（统计学实践 I）。统计学（**statistics**）就是研究数据的科学：数据从哪里来，怎样用表格和图把它看清楚，怎样用几个数（平均数、中位数、标准差、相关系数……）把它说清楚；后半学期还会学怎样用一个样本去推断整个总体。\n这门课没有先修要求，课程描述也写明：课上用 R 软件，但不需要任何编程经验。到 Module 5 为止，用到的数学只有加减乘除、分数和百分比、平方和开根号、一个 Σ（“全部加起来”），以及把数代进 ŷ = b0 + b1x 这样的简单式子；每个符号第一次出现时，讲义都会先讲清楚。真正的难点是英文：所有考试都用英文出题，去年的期中是 25 道英文单选题。所以本站先用大白话中文把每个概念拆碎讲懂，再把考试要认、要写的英文句子单独给你背。本站目前有 Module 1–5（数据和描述统计部分）；Module 6（概率）和之后的内容还没有。一小节一小节来，你能学会。",
+    "en": "Welcome! The Practice of Statistics I is about **statistics**, the science of data: where data come from, how tables and graphs show them, and how a few numbers (mean, median, standard deviation, correlation and more) summarize them. Later in the term, you will learn to use a sample to draw conclusions about a whole population.\nThe course has no prerequisites, and its description says that R is used but no prior computing experience is assumed. Up to Module 5, the maths is arithmetic, fractions and percentages, squares and square roots, the symbol Σ ('add them all up') and plugging numbers into a simple formula such as ŷ = b0 + b1x; every symbol is explained the first time it appears. The real challenge is English: every test is written in English, and last year's midterm was 25 multiple-choice questions in English. So this site first explains each idea in plain Chinese, piece by piece, and then gives you the English sentences to recognize and write. The station covers Modules 1-5 (data and descriptive statistics) so far; Module 6 (probability) and later modules are not here yet. Go one small section at a time. You can do this."
+  },
+  "howToUse": [
+    {
+      "zh": "先看下面的「知识地图」。课程前半段讲数据从哪里来、怎样描述数据，分成四条线：数据与统计思维（Module 1）、分类变量（Module 2）、一个数值变量（Module 3–4）、两个数值变量（Module 5），再加一条贯穿全课的线：读懂 R 输出、像统计学家一样思考。做任何题，先问自己两件事：有几个变量？分别是什么类型？答案决定了该用哪一课的工具。",
+      "en": "Start with The big picture below. The first half of the course is about where data come from and how to describe them, in four branches: data and statistical thinking (Module 1), categorical variables (Module 2), one quantitative variable (Modules 3-4) and two quantitative variables (Module 5), plus a thread through every module: reading R output and thinking like a statistician. For any question, first ask two things: how many variables, and of what type? The answer tells you which module's tools to use."
+    },
+    {
+      "zh": "在「学习 Learn」里按顺序读讲义。每个概念都按“是什么 → 生活类比 → 课件原话 → 拆开讲 → 例子 → 易错点 → 小测验”一小步一小步讲，例子尽量用课件自己的数据（Titanic、Tim Hortons 甜甜圈……）。每节有一个标签：「高频考点 High-yield」最常考，「必会 Must know」是后面内容的基础，「了解 Background」是背景知识（这是本站根据课件和 2025 年期中做的判断，不是老师公布的考试范围）。时间紧就先跳过「了解」。读懂一节，就点「我学会了 Mark as learned」；每课最后的「考点清单 Exam focus」列出了这一课最可能怎么考。",
+      "en": "Read the lessons in order in Learn. Each idea goes in small steps: what it is, an everyday analogy, the course definition, a breakdown, an example (usually the slides' own data, such as the Titanic and the Tim Hortons donuts), common traps and a quick check. Each section has a badge: High-yield (often tested), Must know (later lessons build on it) or Background (context); this is the site's own judgement from the slides and the 2025 midterm, not the official test scope. Short on time? Skip Background first. When a section makes sense, press Mark as learned. The Exam focus list at the end of each lesson shows how it is most likely to be tested."
+    },
+    {
+      "zh": "讲义里的「考试这样写 Exam English」方框，是能直接用在考卷上的英文。要一字一句背熟的有两类：标着「课件原话」的定义，和老师的解释句型——平均数（On average, ...）、中位数（50% ... have at most M）、标准差（differ from the mean by about S）、散点图、用标准差单位解释 r、斜率、R² 和残差。选择题常常就是让你从五个句子里挑出说对的那一句。其他例句看懂、会照着改写就行。标着“补充（课件外）”的内容只是背景，考试以课件为准。",
+      "en": "The Exam English boxes hold English you can use on the test. Memorize two kinds word for word: the boxes labelled as course definitions or course wording, and the instructor's interpretation sentences for the mean ('On average, ...'), the median ('50% ... have at most M'), the standard deviation ('differ from the mean by about S'), a scatterplot, r in standard deviation units, the slope, R² and residuals. A multiple-choice question often asks you to pick the one correct sentence out of five. Use the other sentences as models to adapt. Notes marked as outside the slides are background only; for the test, the slides come first."
+    },
+    {
+      "zh": "符号和取整：ȳ（读作 y-bar）是样本平均数，μ 是总体平均数；S 是样本标准差（除以 n − 1），σ 是总体标准差；Σ 表示“全部加起来”，√ 是开根号，|r| 是 r 去掉正负号以后的大小（绝对值），ŷ（读作 y-hat）是回归直线算出的预测值。中间步骤保留全部小数，最后才取整：比例 2–4 位小数，百分比 1–2 位，z 两位，r 三到四位。去年期中的封面写着：算出的数不在选项里，就选最接近的（select the closest alternative）。计算器只能用批准的、不可编程的科学计算器，大纲还要求它只支持基本运算（加减乘除、开平方、阶乘），所以最稳妥的是大纲举例的 TI-30Xa 或 Casio fx-300MS Plus；先学会用它的统计模式算 ȳ 和 S，要按除以 n − 1 的那个标准差键（常标作 sx 或 σn−1）。",
+      "en": "Notation and rounding: ȳ (y-bar) is the sample mean and μ the population mean; S is the sample standard deviation (divide by n − 1) and σ the population one; Σ means add them all up; √ is the square root; |r| is the size of r without its sign (absolute value); ŷ (y-hat) is a value predicted by a regression line. Keep full precision until the final answer, then round as the course does: proportions to 2-4 decimals, percentages to 1-2, z to 2 and r to 3-4. Last year's midterm cover said: 'If your exact numeric answer is not listed, select the closest alternative.' Use only an approved non-programmable scientific calculator; the syllabus says it must support only basic operations (+, −, ×, ÷, square roots, factorial), so the TI-30Xa or Casio fx-300MS Plus it names is safest. Learn its statistics mode for ȳ and S: press the standard deviation key that divides by n − 1 (often labelled sx or σn−1)."
+    },
+    {
+      "zh": "R 输出：课程用 R（通过 RStudio）分析数据。2025 年期中没有考 R 代码，但官方练习题和辅导课都要读 R 的输出，所以讲义教的是“看懂输出里每个数是什么”，不用背代码：`table()` 和 `prop.table()` 给出个数和比例，`summary()` 给出五数概括和平均数，`favstats()` 再加上标准差 sd 和 n，`cor()` 给出 r。R 算的四分位数可能和手算的不一样（甜甜圈的 Q3：R 是 277.5，手算是 280），课件说不用担心，以 R 的结果为准。",
+      "en": "R output: the course analyses data in R (through RStudio). The 2025 midterm had no R code, but the official practice questions and the tutorials use R output, so the lessons teach you what each number in the output means instead of asking you to memorize code: `table()` and `prop.table()` give counts and proportions, `summary()` gives the five-number summary and the mean, `favstats()` adds the standard deviation (sd) and n, and `cor()` gives r. R's quartiles can differ from hand quartiles (donut Q3: 277.5 in R, 280 by hand); the slides say not to worry and to use R's values."
+    },
+    {
+      "zh": "每学完一课，点课末的「练习这一课」去「刷题 Practice」。题目和真实考试一样用英文出，单选题都有 5 个选项；看不懂就点「显示中文」。期中前在「题型筛选」里点「只做客观题 Objective only」，练单选、多选、判断和计算题；简答题（用英文写解释句）留到期末前练。答错的题会自动进「错题本」，答对后自动移出，所以每天花 10 分钟清一清错题本。",
+      "en": "After each lesson, press Practice this lesson at the end. Questions are in English, like the real test, and the multiple-choice ones have 5 options; tap Show Chinese when you are stuck. Before the midterm, press Objective only under Question types to drill multiple choice, select-all, true/false and calculations; keep the short answers (writing interpretation sentences in English) for the final. Wrong answers go to the mistake book automatically and leave once you get them right, so spend 10 minutes a day clearing it."
+    },
+    {
+      "zh": "考试只用英文，所以术语一定要认得、会写。在「术语 Glossary」里查英文定义；用「闪卡」来背：先练「英→中」（看到英文认得意思），再练「中→英」（自己想出英文），熟了以后勾选「只练不熟的卡」。最容易丢分的是长得像、意思却不同的词：parameter 和 statistic、stratified 和 cluster、percent 和 percentage points、r 和 R²。",
+      "en": "The tests use English only, so you must recognize and write every term. Look up definitions in the Glossary and drill them with Flashcards: first EN to ZH (recognize the meaning), then ZH to EN (recall the English), then tick Only unfamiliar cards. Pairs that look alike but mean different things cost the most marks: parameter and statistic, stratified and cluster, percent and percentage points, r and R²."
+    },
+    {
+      "zh": "考前用「速记 Cheat sheet」：每个 Module 最该记的英文要点一页看完，还有「公式总表」和「易混概念」，可以打印。公式总表也是你做 aid sheet 的清单：期中可以带一张 letter 大小（8.5 × 11 英寸）、两面都能写的 aid sheet，手写、打印都行，期末可以带两张。边学边把公式和解释句型抄上去。「答题 Exam English」工具箱里有题目指令词、答题模板、常用句型、常见英文错误和考试策略。",
+      "en": "Before a test, use the Cheat sheet: the key English points of each module on one page, plus the Formula sheet and the Easily confused pairs, and you can print it. The Formula sheet is also your aid sheet checklist: you may bring one letter-size (8.5 × 11 in) aid sheet to the midterm, both sides, handwritten or typed, and two to the final. Copy formulas and interpretation sentences onto it as you study. The Exam English toolkit has question verbs, answer templates, useful phrases, common English mistakes and exam strategy."
+    },
+    {
+      "zh": "用「模拟考」检验自己：默认设置就是照去年期中组卷——5 个 Module 全选、25 道单选题、90 分钟（平均每题 3.6 分钟）。像真考一样限时作答，不点“显示中文”，用上计算器和 aid sheet 草稿。交卷后自动判分，成绩单按单元告诉你哪里最弱，答过的题也会记进进度和错题本。题目是随机抽的，所以可以考好几套。不过题目和「刷题」来自同一个题库，刷完题库以后再考，主要练的是速度和推理：每道题都重新算，不要凭记忆选。",
+      "en": "Test yourself with the Mock exam. Its default settings copy last year's midterm: all five modules, 25 multiple-choice questions, 90 minutes (3.6 minutes per question). Work under the time limit without Show Chinese, using your calculator and aid sheet draft. The paper is graded when you hand it in, the report shows your weakest unit, and the questions you answered are saved to your progress and mistake book. Questions are drawn at random, so you can take several papers. They come from the same banks as Practice, though, so once you have done the banks, a mock trains speed and reasoning rather than showing new questions: work every question out again instead of answering from memory."
+    },
+    {
+      "zh": "跟着「学习计划」走，做完一项打一个勾。进度只保存在这台设备的浏览器里，换电脑或清理浏览器之前，先到「设置」导出备份。「设置」里还能换语言模式：刚开始用「中文优先」，平时用「中英平衡」，考前几天换成「英文练习」（中文先模糊，逼自己先读英文）。考试范围、日期、考场这些官方信息，永远以老师在 Quercus 上公布的为准；有问题就发到 Quercus 的讨论区，或者去 office hour。",
+      "en": "Follow a Study plan and tick each task when it is done. Progress is saved only in this browser on this device, so export a backup in Settings before you switch computers or clear the browser. Settings also has language modes: Chinese first when you start, Balanced for normal study, and English practice mode in the last days before a test (Chinese is blurred, so you read the English first). Official information such as the test coverage, dates and rooms always comes from the instructor on Quercus; ask questions on the Quercus discussion boards or at office hours."
+    }
+  ],
+  "bigPicture": {
+    "intro": {
+      "zh": "整门课在回答一个问题：怎样从数据里得出可靠的结论？到 Module 5 为止，学的都是描述统计（**descriptive statistics**）：把手上的数据用表格、图和几个数总结清楚。从 Module 6 开始，课程转向概率（**probability**，Module 6–8），再到抽样分布和推断统计（**inferential statistics**，Module 9–12）：用一个样本去推断整个总体。这些内容本站还没有。\n描述数据时，先数有几个变量、看清是什么类型，工具就定了：\n一个分类变量 → 频数表、条形图或饼图（Module 2）\n两个分类变量 → 列联表、条件百分比、比例之差和比例之比（Module 2）\n一个数值变量 → 直方图、平均数或中位数、标准差或 IQR、箱线图、z 分数（Module 3–4）\n一个数值变量按组比较 → 并排箱线图（Module 4）\n两个数值变量 → 散点图、相关系数 r、回归直线（Module 5）\n课程大纲列出了 10 条学习目标（**Course Learning Outcomes**）。本站已经覆盖：① 找出统计的基本要素、收集数据的方法和抽样中的问题 → Module 1；② 找出变量、它的类型和测量尺度 → Module 1；③ 展示和描述一个变量 → Module 2–4；④ 探索变量之间的关系 → Module 2 和 Module 5；⑩ 结合数据的情境解释和交流结果 → 每个 Module 都在练。⑨ 用 R 做合适的统计分析：本站只教看懂 R 的输出，自己动手跑 R 要在辅导课的 mini-R 活动里练。目标 ⑤–⑧（概率计算、正态模型、抽样分布、区间估计和假设检验）属于 Module 6 以后的内容。",
+      "en": "The whole course answers one question: how do we draw reliable conclusions from data? Up to Module 5, everything is **descriptive statistics**: summarizing the data we have with tables, graphs and a few numbers. From Module 6, the course turns to **probability** (Modules 6-8) and then to sampling distributions and **inferential statistics** (Modules 9-12), which use a sample to draw conclusions about a whole population; those modules are not in the station yet.\nTo describe data, count the variables and check their types; that picks the tool:\nOne categorical variable: frequency table, bar chart or pie chart (Module 2)\nTwo categorical variables: contingency table, conditional percentages, difference and ratio of proportions (Module 2)\nOne quantitative variable: histogram, mean or median, SD or IQR, boxplot, z-scores (Modules 3-4)\nOne quantitative variable compared across groups: side-by-side boxplots (Module 4)\nTwo quantitative variables: scatterplot, correlation r, regression line (Module 5)\nThe syllabus lists ten **Course Learning Outcomes**. This station covers (1) identify elements of statistics, methods of data collection and issues related to sampling: Module 1; (2) identify variables, their type and their scale of measurement: Module 1; (3) display and describe a single variable: Modules 2-4; (4) explore and examine relationships among variables: Modules 2 and 5; (10) interpret and communicate results in context: every module. For (9), using R for appropriate analyses, the station only teaches you to read R output; practise running R in the tutorials' mini-R activities. Outcomes 5-8 (probability calculations, the Normal model, sampling distributions, interval estimation and hypothesis testing) belong to Module 6 and later."
+    },
+    "branches": [
+      {
+        "id": "data",
+        "title": {
+          "zh": "数据与统计思维",
+          "en": "Data and statistical thinking"
+        },
+        "lessons": [
+          "mod01"
+        ],
+        "summary": {
+          "zh": "统计学是关于数据的科学（**Statistics is the science of data**），数据是“数值 + 背景”：谁、什么、为什么、何时、何地、怎样（Five W's 和 How）。这条线要分清几对概念：总体（**population**）和样本（**sample**）；参数（**parameter**，总体的真实值）和统计量（**statistic**，从样本算出来的数）；数值变量（**quantitative variable**，带单位，等距尺度）和分类变量（**categorical variable**，名义或顺序尺度）；描述统计和推断统计；设计实验（能给出因果证据）和观察性研究（不能）。最后是抽样方法（简单随机、分层、整群、系统、多阶段、自愿回应）和三种偏差（覆盖不足、无回应、回应偏差）。2025 年期中有 4 道题出自这里（Q7、Q8、Q19、Q20）。",
+          "en": "Statistics is the science of data, and data are values with their context: who, what, why, when, where and how (the Five W's and How). This branch is about telling pairs apart: **population** and **sample**; **parameter** (the true population value) and **statistic** (a number computed from the sample); **quantitative variables** (numbers with units, interval scale) and **categorical variables** (nominal or ordinal scale); descriptive and inferential statistics; designed experiments (which can give cause-and-effect evidence) and observational studies (which cannot). Then come the sampling methods (simple random, stratified, cluster, systematic, multistage, voluntary response) and three kinds of bias (undercoverage, nonresponse, response bias). Four questions of the 2025 midterm came from here (Q7, Q8, Q19, Q20)."
+        }
+      },
+      {
+        "id": "categorical",
+        "title": {
+          "zh": "分类变量：表格与图",
+          "en": "Categorical variables"
+        },
+        "lessons": [
+          "mod02"
+        ],
+        "summary": {
+          "zh": "一个分类变量：频数（**frequency**）、相对频数（**relative frequency**，也就是比例，在 0 和 1 之间）、百分比 = 比例 × 100，用条形图或饼图展示（直方图是给数值变量用的）。两个分类变量：放进列联表（**contingency table**）。同一格有三种百分比：行%（格子 ÷ 行合计）、列%（格子 ÷ 列合计）、占总数%（格子 ÷ 总合计）；行%和列%给出条件分布（**conditional distribution**），占总数%给出联合分布，合计 ÷ 总合计是边际分布。判断关联：在解释变量的每一组里看响应变量的条件分布，差不多一样就是独立，明显不同就是有关联。比较两组：比例之差用百分点（**percentage points**）说；比例之比（相对风险，**relative risk**）说“几倍”或“高／低百分之几”。最后小心辛普森悖论（**Simpson's paradox**）和潜伏变量。2025 年期中有 7 道题出自这里（Q1–Q6 共用一张 2×2 表，再加 Q21）。",
+          "en": "One categorical variable: **frequency**, **relative frequency** (a proportion, between 0 and 1) and percentage = proportion × 100, shown with a bar chart or a pie chart (histograms are for quantitative variables). Two categorical variables go into a **contingency table**. Each cell has three percentages: % of row (cell ÷ row total), % of column (cell ÷ column total) and % of overall total (cell ÷ grand total). Row and column percentages give **conditional distributions**, the % of overall total gives the joint distribution, and totals ÷ grand total give the marginal distributions. To judge association, compare the conditional distributions of the response within each group of the explanatory variable: about the same means independent, clearly different means associated. To compare two groups, give the difference of proportions in **percentage points** and the ratio of proportions (**relative risk**) as 'times as large' or as a percent higher or lower. Watch out for **Simpson's paradox** and lurking variables. Seven questions of the 2025 midterm came from here (Q1-Q6 on one 2×2 table, plus Q21)."
+        }
+      },
+      {
+        "id": "one-quantitative",
+        "title": {
+          "zh": "一个数值变量：形状、中心、离散",
+          "en": "One quantitative variable"
+        },
+        "lessons": [
+          "mod03",
+          "mod04"
+        ],
+        "summary": {
+          "zh": "描述一个数值变量，先画图再说数：直方图（R 的 `hist()` 分组是右闭区间 (a, b]）、茎叶图、点图或箱线图；然后说形状、中心、离散和离群值，带上情境和单位。偏斜按长尾巴的方向命名。中心：平均数 ȳ（不稳健）、中位数（排好序后第 0.5(n + 1) 个，稳健）和众数。离散：极差、样本方差 S² 和标准差 S（除以 n − 1）、IQR = Q3 − Q1（稳健）。经验法则（68%、95%、几乎全部）只适用于钟形数据，不是钟形就数出真实比例（2025 期中 Q17：62%，不是 68%）。Module 4 再加：百分位数和四分位数（手算和 R 可能不同）、五数概括和箱线图、内外栅栏（1.5 × IQR 和 3 × IQR）、z 分数 z = (y − ȳ)/S，以及平移和缩放对各种量的影响。偏斜数据报告中位数和 IQR，钟形对称的数据报告平均数和标准差。2025 年期中有 9 道题出自这里（Module 3 七道：Q11–Q17；Module 4 两道：Q9、Q10）。",
+          "en": "Describe one quantitative variable with a graph first: a histogram (R's `hist()` bins are right-closed, (a, b]), a stem-and-leaf display, a dotplot or a boxplot; then give its shape, centre, spread and outliers, with context and units. A skew is named after the longer tail. Centre: the mean ȳ (not resistant), the median (the sorted value at position 0.5(n + 1), resistant) and the mode. Spread: the range, the sample variance S² and standard deviation S (divide by n − 1) and IQR = Q3 − Q1 (resistant). The Empirical Rule (68%, 95%, almost all) holds only for bell-shaped data; otherwise count the actual share (2025 midterm Q17: 62%, not 68%). Module 4 adds percentiles and quartiles (hand and R results may differ), the five-number summary and boxplots, inner and outer fences (1.5 × IQR and 3 × IQR), z-scores z = (y − ȳ)/S, and what shifting and rescaling do. Report the median and IQR for skewed data, and the mean and SD for bell-shaped, symmetric data. Nine questions of the 2025 midterm came from here (seven from Module 3: Q11-Q17; two from Module 4: Q9, Q10)."
+        }
+      },
+      {
+        "id": "two-quantitative",
+        "title": {
+          "zh": "两个数值变量：散点图、相关、回归",
+          "en": "Two quantitative variables"
+        },
+        "lessons": [
+          "mod05"
+        ],
+        "summary": {
+          "zh": "两个数值变量：解释变量（预测变量）x 放横轴，响应变量 y 放纵轴，先画散点图（**scatterplot**），按方向、形态、强度（再加离群值）来描述。相关系数 r 只衡量直线关联：在 −1 和 1 之间，没有单位，换单位不变，容易被离群值影响；强度看 |r|：0.8 及以上为强，0.5 到 0.8 为中到强，0.3 到 0.5 为中等，小于 0.3 为弱。r = Σ z_x z_y / (n − 1)，还可以用标准差单位来解释。相关不等于因果（**correlation is not causation**），要能点名一个潜伏变量。回归直线 ŷ = b0 + b1x：会解释斜率和截距，会算预测值、残差 e = y − ŷ（观测值 − 预测值）和 R² = r²，知道外推不可靠，会看残差图（围着 0 随机、均匀地散开，说明线性和方差恒定成立）。回归部分没有课件可用，本站按官方练习答案和 2025 期中来教。2025 年期中有 5 道题出自这里（Q18、Q22–Q25）。",
+          "en": "Two quantitative variables: put the explanatory (predictor) variable x on the horizontal axis and the response y on the vertical axis, draw a **scatterplot**, and describe its direction, form and strength (and any outliers). The correlation r measures linear association only: it lies between −1 and 1, has no unit, does not change when the units change and is sensitive to outliers. Judge strength by |r|: strong at 0.8 or more, moderate to strong from 0.5 to 0.8, moderate from 0.3 to 0.5, weak below 0.3. r = Σ z_x z_y / (n − 1), and r can be interpreted in standard deviation units. **Correlation is not causation**: name a lurking variable. For the regression line ŷ = b0 + b1x, interpret the slope and the intercept, compute a predicted value, a residual e = y − ŷ (observed minus predicted) and R² = r², avoid extrapolation, and read a residual plot (random, even scatter around 0 supports linearity and constant variance). There were no regression slides to work from, so the station teaches regression from the official practice solutions and the 2025 midterm. Five questions of the 2025 midterm came from here (Q18, Q22-Q25)."
+        }
+      },
+      {
+        "id": "r-and-thinking",
+        "title": {
+          "zh": "贯穿全课：读懂 R 输出，像统计学家一样思考",
+          "en": "Throughout: reading R output and statistical thinking"
+        },
+        "lessons": [
+          "mod01",
+          "mod02",
+          "mod03",
+          "mod04",
+          "mod05"
+        ],
+        "summary": {
+          "zh": "读懂 R 输出：Module 2 用 `table()`、`addmargins()`、`prop.table()` 和 mosaic 包的 `tally()` 做频数表和比例；Module 3 用 `hist()`（分组右闭）、`mean()`、`median()`、`sd()`；Module 4 用 `summary()` 和 `favstats()` 读五数概括（R 的四分位数可能和手算不同，以 R 为准），用 `scale()` 算 z 分数；Module 5 用 `plot()` 画散点图、`cor()` 算 r。2025 年期中没有考 R 代码，但练习题要读输出，所以要认得输出里的每个数。\n统计思维（**statistical thinking**）：① 每个数都要带情境和单位；② 先看图再下结论（平均数接近中位数，不代表分布对称）；③ 用规则之前先查条件（经验法则要钟形数据，r 要直线关系）；④ 离群值要调查，不能随手删；⑤ 关联不等于因果，想想潜伏变量和辛普森悖论；⑥ 有偏差的样本，再大也没用；⑦ 不要外推。这些也正是选择题里最常见的陷阱。",
+          "en": "Reading R output: Module 2 uses `table()`, `addmargins()`, `prop.table()` and `tally()` from mosaic for frequency tables and proportions; Module 3 uses `hist()` (right-closed bins), `mean()`, `median()` and `sd()`; Module 4 reads the five-number summary from `summary()` and `favstats()` (R's quartiles may differ from hand quartiles; use R's) and computes z-scores with `scale()`; Module 5 draws scatterplots with `plot()` and computes r with `cor()`. The 2025 midterm had no R code, but the practice questions ask you to read output, so know what every number means.\n**Statistical thinking**: (1) every number needs its context and units; (2) look at the graph before you conclude (a mean close to the median does not prove symmetry); (3) check the conditions before using a rule (the Empirical Rule needs bell-shaped data, r needs a linear form); (4) investigate outliers, never just delete them; (5) association is not causation, so think of lurking variables and Simpson's paradox; (6) a biased sample stays biased however large it is; (7) do not extrapolate. These are also the most common traps in multiple-choice questions."
+        }
+      }
+    ]
+  },
+  "lessonLinks": [
+    {
+      "from": "mod01",
+      "to": "mod02",
+      "why": {
+        "zh": "Module 1 教你判断变量类型；Module 2 是分类变量（名义或顺序尺度）的全套工具：计数、比例、条形图、饼图和列联表。Titanic 数据文件里，每一行是一个个案（**case**，船上的一个人），每一列是一个变量（生还状态、船票等级……），正是 Module 1 的说法。练习题问解释变量和响应变量时，还会要你说出它们的类型和尺度。",
+        "en": "Module 1 teaches you to classify variables; Module 2 is the full toolkit for categorical ones (nominal or ordinal): counts, proportions, bar charts, pie charts and contingency tables. In the Titanic data file, each row is a **case** (one person aboard) and each column is a variable (survival status, ticket class...), exactly as Module 1 describes. When a practice question asks for the explanatory and response variables, it also wants their type and scale."
+      }
+    },
+    {
+      "from": "mod01",
+      "to": "mod03",
+      "why": {
+        "zh": "数值变量（**quantitative variable**）的取值是带单位、能加减的数，所以 Module 3 才能给它画直方图、算平均数和标准差，答案也一定要带单位（kcal、秒……）。Module 1 的参数和统计量在这里变成了符号：样本用 n、ȳ、S，总体用 N、μ、σ；ȳ 和 S 是统计量，μ 和 σ 是参数。S² 除以 n − 1，正是因为我们先用样本估计了平均数。",
+        "en": "A **quantitative variable** has numbers with units that can be added and subtracted, which is why Module 3 can draw its histogram and compute its mean and standard deviation, and why every answer needs units (kcal, seconds...). Module 1's parameter and statistic become symbols here: a sample has n, ȳ and S, a population has N, μ and σ; ȳ and S are statistics, μ and σ are parameters. S² divides by n − 1 precisely because we estimated the mean from the sample first."
+      }
+    },
+    {
+      "from": "mod01",
+      "to": "mod04",
+      "why": {
+        "zh": "Module 1 说：故意挑一个有偏差的样本来制造误导性的结果，是不道德的统计做法。Module 4 的离群值（**outlier**）规则要的是同一种诚实：栅栏外面的值要先调查（是记录错了，还是真实但少见？），不能为了让结果好看就删掉。",
+        "en": "Module 1 says that selecting a biased sample on purpose to produce misleading statistics is unethical. Module 4's **outlier** rule asks for the same honesty: investigate a value outside the fences (a recording error, or real but rare?) and never delete it just to make the results look better."
+      }
+    },
+    {
+      "from": "mod01",
+      "to": "mod05",
+      "why": {
+        "zh": "Module 1 说：想弄清因果，只有设计实验才能给出完全令人信服的证据；观察性研究不能，因为潜伏变量（**lurking variable**）可能才是原因。Module 5 一开头就把它用到散点图上：相关性研究（**correlational study**）就是观察性研究，r 再大也不能证明 x 导致 y，答题时要点名一个潜伏变量。另外，ρ（总体相关系数）是参数、r 是统计量，也是 Module 1 的概念。",
+        "en": "Module 1 says that designed experiments are the only fully convincing source of cause-and-effect evidence, and that observational studies cannot show causation because a **lurking variable** may explain the pattern. Module 5 applies this to scatterplots: a **correlational study** is an observational study, so even a large r does not prove that x causes y, and your answer should name a lurking variable. Also, ρ (the population correlation) is a parameter and r is a statistic, which are Module 1 ideas."
+      }
+    },
+    {
+      "from": "mod02",
+      "to": "mod03",
+      "why": {
+        "zh": "Module 2 的相对频数（比例）和百分比，在 Module 3 里接着用：从直方图算百分比 = 个数 ÷ n × 100%；从相对频数表求平均数 = Σ（值 × 相对频数），中位数是累计相对频数第一次 ≥ 0.50 的值，众数是相对频数最大的值（2025 期中 Q12–Q14）。还要分清条形图（**bar chart**，分类变量，柱子分开）和直方图（**histogram**，数值变量，柱子相连）。",
+        "en": "Module 2's relative frequencies (proportions) and percentages carry straight into Module 3: a percentage from a histogram is count ÷ n × 100%, and from a relative frequency table the mean is Σ(value × relative frequency), the median is the first value whose cumulative relative frequency is at least 0.50, and the mode has the largest relative frequency (2025 midterm Q12-Q14). Also keep a **bar chart** (categorical, separate bars) apart from a **histogram** (quantitative, touching bars)."
+      }
+    },
+    {
+      "from": "mod02",
+      "to": "mod04",
+      "why": {
+        "zh": "比较几组是同一个思路。Module 2 比较各组里分类响应变量的条件分布（看条件百分比）；Module 4 用并排箱线图（**side-by-side boxplots**）比较各组里一个数值变量的分布（比中位数、IQR 和离群值），比如按甜甜圈种类比较热量。两种情况下，用来分组的都是解释变量。",
+        "en": "Comparing groups is the same idea in both modules. Module 2 compares the conditional distributions of a categorical response across groups (conditional percentages); Module 4 compares a quantitative variable across groups with **side-by-side boxplots** (medians, IQRs and outliers), such as calories by type of donut. In both, the variable that forms the groups is the explanatory variable."
+      }
+    },
+    {
+      "from": "mod02",
+      "to": "mod05",
+      "why": {
+        "zh": "关联（**association**）、解释变量和响应变量、潜伏变量，这几个词 Module 2 用在分类变量上，Module 5 原样用在数值变量上：分类变量看条件百分比，数值变量看散点图和 r。辛普森悖论提醒我们：把几组合在一起，关系可能消失甚至反转；散点图里没画出来的分组变量（比如性别）也可能是潜伏变量。",
+        "en": "**Association**, explanatory and response variables, and lurking variables: Module 2 uses these words for categorical variables, and Module 5 uses them unchanged for quantitative ones. Categorical association shows in conditional percentages; quantitative association in a scatterplot and r. Simpson's paradox warns that combining groups can hide or reverse a relationship, and a grouping variable left out of a scatterplot (such as gender) can be a lurking variable too."
+      }
+    },
+    {
+      "from": "mod03",
+      "to": "mod04",
+      "why": {
+        "zh": "Module 4 接着用 Module 3 的 Tim Hortons 甜甜圈数据（n = 30）。中位数就是第 50 百分位数，Q1 和 Q3 是下半部分和上半部分的中位数（手算 Q1 = 210、Q3 = 280，IQR = 70）。Module 3 说偏斜数据报告中位数，Module 4 补上和它配对的离散度量 IQR。Module 3 的经验法则也变成了 z 分数（**z-score**）的离群值规则：钟形数据里 |z| > 3 是高度疑似离群值，2 < |z| ≤ 3 是疑似离群值。",
+        "en": "Module 4 keeps Module 3's Tim Hortons donut data (n = 30). The median is the 50th percentile, and Q1 and Q3 are the medians of the lower and upper halves (by hand Q1 = 210, Q3 = 280, IQR = 70). Module 3 says to report the median for skewed data; Module 4 adds its partner measure of spread, the IQR. Module 3's Empirical Rule also becomes the **z-score** outlier rule: in bell-shaped data, |z| > 3 is a highly suspect outlier and 2 < |z| ≤ 3 a suspect one."
+      }
+    },
+    {
+      "from": "mod03",
+      "to": "mod05",
+      "why": {
+        "zh": "Module 3 的离差 y − ȳ 和样本方差 S² = Σ(y − ȳ)²/(n − 1)，到 Module 5 变成两个变量一起算：协方差（**covariance**）S_xy = Σ(x − x̄)(y − ȳ)/(n − 1)，分母同样是 n − 1；再除以两个标准差 s_x 和 s_y，就得到 r。描述的思路也搬了过去：直方图说形状、中心、离散，散点图说方向、形态、强度，两者都要找整体模式之外的离群值。",
+        "en": "Module 3's deviations y − ȳ and sample variance S² = Σ(y − ȳ)²/(n − 1) get a two-variable version in Module 5: the **covariance** S_xy = Σ(x − x̄)(y − ȳ)/(n − 1) has the same n − 1, and dividing it by the two standard deviations s_x and s_y gives r. The way of describing carries over too: shape, centre and spread for a histogram; direction, form and strength for a scatterplot; and in both, outliers outside the overall pattern."
+      }
+    },
+    {
+      "from": "mod04",
+      "to": "mod05",
+      "why": {
+        "zh": "Module 4 的 z 分数给了 Module 5 另一种算 r 的方法：r = Σ z_x z_y / (n − 1)。z_x 和 z_y 同号的点让 r 变大，异号的点让 r 变小。r 也用标准差单位来解释：x 比平均高 1 个标准差，y 预计比平均高（或低）|r| 个标准差。换单位就是平移和缩放（Module 4），z 分数不变，所以 r 也不变。",
+        "en": "Module 4's z-scores give Module 5 another way to compute r: r = Σ z_x z_y / (n − 1). Points where z_x and z_y have the same sign push r up, and points with opposite signs pull it down. r is also interpreted in standard deviation units: if x is 1 SD above its mean, y is predicted to be |r| SDs above (or below) its mean. Changing units is shifting and rescaling (Module 4), which leaves z-scores unchanged, so r stays the same too."
+      }
+    }
+  ],
+  "studyPlans": [
+    {
+      "id": "midterm",
+      "title": {
+        "zh": "期中冲刺计划（11 月 2 日 周一 下午 3:15）",
+        "en": "Midterm sprint plan (Mon Nov 2, 3:15 PM)"
+      },
+      "note": {
+        "zh": "考试范围以老师在 Quercus 上公布的为准（大纲说至少提前一周公布），本站不替老师划范围，第 1 天先去确认。本站目前只有 Module 1–5。课程进度表把 Module 6（概率）排在期中之前（10 月 19 日和 21 日讲）；如果公布的范围包括它，本站还没有这部分，要用 Quercus 上的 Module 6 讲义、习题和答案自学，一共留 3–4 小时：第 1 天晚上开始，第 3 天学完，第 4 天限时做官方习题。省时间的办法：跳过所有「了解」小节，Module 1 和 Module 4 的刷题只做「随机」20 题（去年 Module 4 只考了 2 道）。计划按优先级排：每天先读「高频考点」小节、做客观题，再读「必会」小节，「了解」小节可以先放下。去年 25 道题的分布：Module 1 四道、Module 2 七道、Module 3 七道、Module 4 两道、Module 5 五道（今年可能不同）。每天大约 6–7 小时，第 2 天和加上 Module 6 的日子会多一点。每个 Module 的客观题都在 40 道以上，连看解析每题约 2 分钟，所以每次刷题按 1.5 小时安排。落后了，先跳过「了解」，再把「必会」小节改成只看「考试这样写」和小测验；但每个 Module 的「高频考点」和两次模拟考都别跳。",
+        "en": "The coverage is whatever the instructor posts on Quercus (the syllabus says at least one week before the test); this site does not guess it, so confirm it on Day 1. The station covers Modules 1-5 only. The course schedule puts Module 6 (probability) before the midterm (lectures on Oct 19 and 21); if the posted coverage includes it, study it from the Module 6 notes, problems and solutions on Quercus, because the station does not cover it yet. Give it about 3-4 hours in all: start on Day 1 evening, finish on Day 3 and do the official problems under time on Day 4. To make room, skip every Background section and do only Random (20 questions) for Module 1 and Module 4 practice (Module 4 had only 2 questions last year). The plan goes by priority: each day, read the High-yield sections and do the objective practice first, then the Must know sections; Background sections can wait. Last year's 25 questions: Module 1: 4, Module 2: 7, Module 3: 7, Module 4: 2, Module 5: 5 (this year may differ). Plan on about 6-7 hours a day, a little more on Day 2 or when Module 6 is added. Each module has more than 40 objective questions at about 2 minutes each with the explanations, so each practice block gets about 1.5 hours. If you fall behind, skip Background first, then read only the Exam English boxes and quick checks of Must know sections, but keep every High-yield section and both mock exams."
+      },
+      "days": [
+        {
+          "label": {
+            "zh": "第 1 天（10月29日 周四）：确认范围 + Module 1 + Module 2 前半",
+            "en": "Day 1 (Thu Oct 29): coverage, Module 1, first half of Module 2"
+          },
+          "tasks": [
+            {
+              "zh": "上 Quercus 找老师关于期中范围的通知，把范围抄下来。再核对考试信息：11 月 2 日周一下午 3:15 准时开考，考 90 分钟，迟到不补时间；考场以 Quercus 的通知为准。看清 Module 6（概率）在不在范围里：在的话，按上面的说明在第 1、3、4 天用官方材料补上。",
+              "en": "Find the instructor's midterm coverage announcement on Quercus and copy the coverage down. Check the test details: Monday Nov 2, starts exactly at 3:15 PM, 90 minutes, no extra time for late arrivals; the room is whatever the Quercus announcement says. Note whether Module 6 (probability) is included; if it is, Days 1, 3 and 4 add it from the official materials (see the note above)."
+            },
+            {
+              "zh": "读首页的「新手指南」和「知识地图」（10 分钟），到「设置」选语言模式：英文还很吃力就选「中文优先」。拿一张 letter 纸（8.5 × 11 英寸）当 aid sheet 草稿：两面分成每个 Module 一块，再留一块写解释句型（范围包括 Module 6 的话，再留一角给概率）。之后每学完一节就往上补。",
+              "en": "Read the guide and The big picture on the home page (10 minutes), then choose a language mode in Settings: Chinese first if English is still hard. Take a letter-size sheet (8.5 × 11 in) as your aid sheet draft: split its two sides into one box per module plus one box for the interpretation sentences (and a corner for probability if Module 6 is in the coverage). Add to it after every section."
+            },
+            {
+              "zh": "Module 1（约 2 小时）：前 6 节来自课程介绍课件，其中 5 节是「了解」，只读“统计学是什么？为什么要学？”这一节（「必会」）；然后从“数据是带背景的数值”读到最后。重点是这些「高频考点」：描述统计 vs 推断统计；样本、普查、参数和统计量；在一个研究里找出全部要素；变量类型和尺度（等距、名义、顺序）；实验 vs 观察性研究；简单随机、分层、整群、自愿回应抽样；覆盖不足和无回应偏差。",
+              "en": "Module 1 (about 2 hours): the first six sections come from the Course Introduction deck and five of them are Background, so read only 'What Is Statistics, and Why Study It?' (Must know) there. Then read from 'Data Are Values with Context' to the end, above all the High-yield sections: descriptive vs inferential statistics; sample, census, parameter and statistic; identifying the elements of a study; types of variables and scales (interval, nominal, ordinal); experiments vs observational studies; simple random, stratified, cluster and voluntary response sampling; undercoverage and nonresponse."
+            },
+            {
+              "zh": "Module 1 刷题（约 1.5 小时）：在「刷题」里点「只做客观题」，再点 Module 1 卡片上的「按课练习」，把题全部做一遍；答错的自动进错题本，做完到错题本里把 Module 1 的题重做到清空。范围包括 Module 6 的话，改成点「随机」只做 20 题（约 40 分钟），省下的时间晚上学 Module 6。同类的官方题：Module 1 练习题和 2025 期中 Q7、Q8、Q19、Q20，有时间就对照着再看一遍。",
+              "en": "Module 1 practice (about 1.5 hours): in Practice, press Objective only, then Practice on the Module 1 card, and do every question; wrong answers go to the mistake book, so then retry Module 1 there until it is clear. If Module 6 is in the coverage, press Random instead (20 questions, about 40 minutes) and use the time saved for Module 6 this evening. The official Module 1 practice questions and 2025 midterm Q7, Q8, Q19 and Q20 train the same skills; look at them again if you have time."
+            },
+            {
+              "zh": "Module 2 前半（约 1.5 小时，读到“行百分比，以及该用哪种百分比”那一节为止）：频数、相对频数和百分比；条形图 vs 饼图；解释变量和响应变量；列联表里同一格的三种百分比（行%、列%、占总数%）；边际、联合、条件分布；该用行%还是列%。在 Titanic 的二维表组件里切换行%、列%和总数%，再用它的练习模式多做几题，直到每次都能先说出分母。",
+              "en": "First half of Module 2 (about 1.5 hours, up to the section on row percentages and choosing the right percentages): frequency, relative frequency and percentage; bar chart vs pie chart; explanatory and response variables; the three percentages of one cell in a contingency table (% of row, % of column, % of overall total); marginal, joint and conditional distributions; choosing row or column percentages. In the Titanic two-way table demo, switch between the row, column and total views, then use its practice mode until you can name the denominator every time."
+            },
+            {
+              "zh": "只在范围包括 Module 6（概率）时做（晚上，约 1.5 小时）：用 Quercus 上的 Module 6 讲义开始自学前半部分（概率的基本概念），本站还没有这部分。可以先读 Module 1 里的“概率初印象”一节热身（概率在 0 和 1 之间、长期相对频率、odds）。",
+              "en": "Only if the coverage includes Module 6 (probability), evening, about 1.5 hours: start the first part of the Module 6 notes on Quercus (the basic probability ideas), because the station does not cover it yet. The 'A First Look at Probability' section of Module 1 is a warm-up (probabilities between 0 and 1, long-run relative frequency, odds)."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 2 天（10月30日 周五）：Module 2 后半 + Module 3",
+            "en": "Day 2 (Fri Oct 30): second half of Module 2, Module 3"
+          },
+          "tasks": [
+            {
+              "zh": "先安排好今天的 office hour（课程介绍课件写的是周五下午 1:10–3:00，DH 3031；这一周有没有、几点开，以 Quercus 为准）：把第 1 天没弄懂的题写下来，上午先做下面两项，下午 1:10–3:00 之间带去问。这周没有 office hour 的话，就把问题发到 Quercus 的讨论区。",
+              "en": "Plan today around office hours (the Course Introduction deck lists Fridays 1:10-3:00 PM in DH 3031; check Quercus for whether and when they run this week): write down what you could not solve on Day 1, do the next two tasks in the morning, and take your questions there between 1:10 and 3:00 PM. If there are no office hours this week, post your questions on the Quercus discussion boards."
+            },
+            {
+              "zh": "Module 2 后半（约 1 小时）：比较条件分布，判断有没有关联；比例之差用百分点（37 percentage points，不说 37%）；比例之比和相对风险的说法（2.48 times as large；在 1 和 2 之间说高百分之几，小于 1 说低百分之几）；三向表、辛普森悖论和潜伏变量。",
+              "en": "Second half of Module 2 (about 1 hour): judging association by comparing conditional distributions; the difference of proportions in percentage points (37 percentage points, not 37%); the ratio of proportions and relative risk wording (2.48 times as large; between 1 and 2, a percent higher; below 1, a percent lower); three-way tables, Simpson's paradox and lurking variables."
+            },
+            {
+              "zh": "Module 2 刷题（约 1.5 小时，只做客观题），再清错题本。去年期中 Q1–Q6 共用一张 2×2 表，连考 6 道题：做每道表格题之前，先写下分子是哪一格、分母是哪个合计。有时间就把 2025 期中的 Q1–Q6 和 Q21 再做一遍。",
+              "en": "Module 2 practice (about 1.5 hours, Objective only), then clear the mistake book. Last year, Q1-Q6 used one 2×2 table for six questions: before each table question, write down which cell is the numerator and which total is the denominator. If time allows, redo 2025 midterm Q1-Q6 and Q21."
+            },
+            {
+              "zh": "Module 3（约 2.5 小时）：直方图（R 的分组是右闭区间 (a, b]；at most 是 ≤，more than 是 >，at least 是 ≥）；形状的 5 个标准选项（偏斜按长尾巴命名）；平均数、中位数、众数，包括从相对频数表求（2025 期中 Q12–Q14）；哪些量稳健；极差、S² 和 S（除以 n − 1）；平均数、中位数、标准差的解释句；经验法则，以及数据不是钟形时怎样数出真实比例（Q17：62%）。",
+              "en": "Module 3 (about 2.5 hours): histograms (R's bins are right-closed, (a, b]; at most is ≤, more than is >, at least is ≥); the five standard shape options (a skew is named after the longer tail); mean, median and mode, also from a relative frequency table (2025 midterm Q12-Q14); which measures are resistant; range, S² and S (divide by n − 1); the interpretation sentences for the mean, median and SD; the Empirical Rule, and how to count the actual share when the data are not bell-shaped (Q17: 62%)."
+            },
+            {
+              "zh": "计算器练习（15 分钟）：用统计模式输入 2、3、7，应该得到 ȳ = 4、S ≈ 2.65；如果显示 2.16，说明按成了除以 n 的那个键（σn）。再拿它算两道 Module 3 的标准差题，并学会清空旧数据。",
+              "en": "Calculator drill (15 minutes): in statistics mode, enter 2, 3 and 7. You should get ȳ = 4 and S ≈ 2.65; if it shows 2.16, you pressed the key that divides by n (σn). Then use it on two Module 3 standard deviation questions, and learn how to clear old data."
+            },
+            {
+              "zh": "Module 3 刷题（约 1.5 小时，只做客观题），清错题本；有时间就把 2025 期中的 Q11–Q17 再做一遍。把今天的公式和解释句补到 aid sheet 上，再对照「速记」里的公式总表，看有没有漏。",
+              "en": "Module 3 practice (about 1.5 hours, Objective only), then clear the mistake book; if time allows, redo 2025 midterm Q11-Q17. Add today's formulas and interpretation sentences to your aid sheet, and check them against the Formula sheet in the Cheat sheet."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 3 天（10月31日 周六）：Module 4 + Module 5",
+            "en": "Day 3 (Sat Oct 31): Module 4, Module 5"
+          },
+          "tasks": [
+            {
+              "zh": "Module 4（约 2 小时）：百分位数和四分位数（手算 Q1 = 210、Q3 = 280；R 给出 Q3 = 277.5，课程以 R 为准）；IQR；五数概括和箱线图；从箱线图看形状（2025 期中 Q9、Q10）；内栅栏 1.5 × IQR、外栅栏 3 × IQR，疑似 vs 高度疑似离群值，须线停在哪里；z 分数（计算、比较、用 y = μ + zσ 倒推、|z| 规则）；平移和缩放。",
+              "en": "Module 4 (about 2 hours): percentiles and quartiles (by hand Q1 = 210 and Q3 = 280; R gives Q3 = 277.5, and the course uses R's value); the IQR; the five-number summary and boxplots; shape from a boxplot (2025 midterm Q9, Q10); inner fences at 1.5 × IQR and outer fences at 3 × IQR, suspect vs highly suspect outliers, where the whiskers stop; z-scores (compute, compare, reverse with y = μ + zσ, the |z| rule); shifting and rescaling."
+            },
+            {
+              "zh": "Module 4 刷题（约 1.5 小时，只做客观题），清错题本；有时间就把 2025 期中的 Q9、Q10 再做一遍。范围包括 Module 6 的话，改成点「随机」只做 20 题（约 40 分钟）：去年 Module 4 只考了 2 道。把栅栏公式、z 分数公式和 |z| 规则补进 aid sheet。",
+              "en": "Module 4 practice (about 1.5 hours, Objective only), then clear the mistake book; if time allows, redo 2025 midterm Q9 and Q10. If Module 6 is in the coverage, press Random instead (20 questions, about 40 minutes): Module 4 had only 2 questions last year. Add the fence formulas, the z-score formulas and the |z| rule to your aid sheet."
+            },
+            {
+              "zh": "Module 5 散点图和相关（约 2 小时）：哪个变量放哪个轴；方向、形态、强度（2025 期中 Q18：强的正向非线性关系）；r 的性质和强度分界（0.8、0.5、0.3）；r = Σ z_x z_y / (n − 1)；用标准差单位解释 r；相关不等于因果，要点名潜伏变量。",
+              "en": "Module 5, scatterplots and correlation (about 2 hours): which variable goes on which axis; direction, form and strength (2025 midterm Q18: a strong positive nonlinear relationship); the properties of r and the strength cut-offs (0.8, 0.5, 0.3); r = Σ z_x z_y / (n − 1); interpreting r in SD units; correlation is not causation, so name a lurking variable."
+            },
+            {
+              "zh": "Module 5 回归（约 1 小时，讲义最后 6 节）：斜率的解释句（x 每多 1 个单位，y 的平均值预计增加或减少 |b1|）；截距只有在 x = 0 落在数据范围内时才有意义；预测和外推；残差 e = y − ŷ（观测值 − 预测值，负数说明高估了）；R² = r²（Q25：0.77² ≈ 0.59，不是 0.77）；残差图。",
+              "en": "Module 5, regression (about 1 hour, the last six sections): the slope sentence (with every additional 1-unit increase in x, the mean y is estimated to increase or decrease by |b1|); the intercept means something only if x = 0 is within the observed range; prediction and extrapolation; the residual e = y − ŷ (observed minus predicted; negative means overestimated); R² = r² (Q25: 0.77² ≈ 0.59, not 0.77); residual plots."
+            },
+            {
+              "zh": "只在范围包括 Module 6（概率）时做（约 1.5 小时）：用 Quercus 上的 Module 6 讲义学完后半部分（概率规则、条件概率、独立），再对照答案做一遍官方习题。把概率规则抄进 aid sheet 留好的那一角。",
+              "en": "Only if the coverage includes Module 6 (probability), about 1.5 hours: finish the Module 6 notes on Quercus (probability rules, conditional probability, independence), then work through the official Module 6 problems with their solutions. Copy the probability rules into the corner you kept on your aid sheet."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 4 天（11月1日 周日）：两次模拟考 + 错题本 + aid sheet 定稿",
+            "en": "Day 4 (Sun Nov 1): two mock exams, mistakes, final aid sheet"
+          },
+          "tasks": [
+            {
+              "zh": "上午先做 Module 5 刷题（约 1.5 小时，只做客观题），清错题本；有时间就把 2025 期中的 Q18、Q22–Q25 再做一遍。提醒：今天凌晨 2 点夏令时结束，时钟拨回 1 小时；手机会自动调，手表和闹钟自己检查一下。",
+              "en": "Morning: Module 5 practice (about 1.5 hours, Objective only), then clear the mistake book; if time allows, redo 2025 midterm Q18 and Q22-Q25. Reminder: daylight saving time ends at 2 AM today and clocks go back 1 hour; phones adjust by themselves, but check any watch or alarm clock."
+            },
+            {
+              "zh": "第一次模拟考：打开「模拟考」，用默认设置（Module 1–5 全选、25 道单选题、90 分钟），语言换成「英文练习」，带上计算器和 aid sheet 草稿，像真考一样一口气做完，中途不翻讲义。题目来自做过的题库，所以每道都从头算、从头推理，不要凭记忆选；只因为记得答案才做对的题，也算一道错题。",
+              "en": "Mock exam 1: open the Mock exam with the default settings (all of Modules 1-5, 25 multiple-choice questions, 90 minutes), switch to English practice mode, use your calculator and aid sheet draft, and work straight through like the real test, without opening the lessons. Its questions come from the practice banks you have done, so work each one out from the start instead of answering from memory; count a question you only remembered as a mistake."
+            },
+            {
+              "zh": "看成绩单：按单元找出最弱的 Module，重读它的「高频考点」小节和课末的「考点清单」，再到错题本点「全部重练」。每道错题都问自己：是概念不会、分母选错、看错题，还是时间不够？",
+              "en": "Read the report: find your weakest module, reread its High-yield sections and the Exam focus list at the end of the lesson, then press Retry all in the mistake book. For each wrong answer, ask: did I not know the idea, pick the wrong denominator, misread the question, or run out of time?"
+            },
+            {
+              "zh": "只在范围包括 Module 6 时做（约 45 分钟）：不看答案，限时重做官方 Module 6 习题，再对答案；做错的规则在 aid sheet 上写大一点。",
+              "en": "Only if the coverage includes Module 6, about 45 minutes: redo the official Module 6 problems under time without the solutions, then check them and write the rules you got wrong larger on your aid sheet."
+            },
+            {
+              "zh": "aid sheet 定稿（约 1 小时）：对照「速记」的公式总表和易混概念，补上漏掉的公式、5 个形状选项、r 的强度分界、栅栏公式和全部解释句型；反复出错的地方写大一点。字可以小，但要看得清；两面都用上。",
+              "en": "Finish the aid sheet (about 1 hour): check it against the Formula sheet and the Easily confused pairs in the Cheat sheet, and add anything missing: the five shape options, the r strength cut-offs, the fence formulas and every interpretation sentence. Write your repeated mistakes larger. Small writing is fine if it is readable; use both sides."
+            },
+            {
+              "zh": "第二次模拟考（傍晚）：同样的设置，再随机抽一套卷子（可能和上午那套有几道重复），这次只用定稿的 aid sheet，同样每道题都重新算。做完清错题本，再读一遍「答题」工具箱里的考试策略。",
+              "en": "Mock exam 2 (early evening): the same settings for another randomly drawn paper (a few questions may repeat the first one), this time with only your final aid sheet; again, work every question out. Then clear the mistake book and reread the exam strategy in the Exam English toolkit."
+            },
+            {
+              "zh": "晚上收拾好考试用品：批准的计算器（确认能用）、aid sheet、学生卡（T-Card，去年监考用它核对身份）、几支 HB 铅笔和橡皮（Scantron 答题卡一般用铅笔涂）、水，然后早点睡。万一明天生病来不了：没有补考，但交 ACORN Absence Declaration（或其他认可的证明），并在 7 天内发邮件告诉 Prof. Asal，这 25% 会转到期末考试。",
+              "en": "Evening: pack an approved calculator (check that it works), your aid sheet, your T-Card (last year the invigilators checked it), a few HB pencils and an eraser (Scantron sheets are usually filled in with pencil) and water, then sleep early. If you are ill tomorrow: there is no make-up test, but with an ACORN Absence Declaration (or another accepted document) and an email to Prof. Asal within 7 days, the 25% moves to the final exam."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考试当天（11月2日 周一）：上午轻复习，下午 3:15 开考",
+            "en": "Test day (Mon Nov 2): light review, test at 3:15 PM"
+          },
+          "tasks": [
+            {
+              "zh": "上午（最多 2 小时，不学新东西）：把错题本里剩下的题再做一遍；「闪卡」勾选「只练不熟的卡」过一遍；「速记」的公式总表和易混概念各看 10 分钟；最后把 aid sheet 从头到尾读一遍。",
+              "en": "Morning (at most 2 hours, nothing new): redo what is left in the mistake book; run Flashcards with Only unfamiliar cards; spend 10 minutes each on the Formula sheet and the Easily confused pairs in the Cheat sheet; finally read your aid sheet from top to bottom."
+            },
+            {
+              "zh": "复习答题策略：90 分钟 25 题，每题平均约 3.6 分钟；先自己算出答案再看选项，算出的数不在选项里就选最接近的；选项不一定按大小排，五个都看完；拿不准就先标记，最后回来。去年只有 Scantron 答题卡计分，写在试卷上的过程不算分，所以边做边涂卡，别全留到最后。",
+              "en": "Review the strategy: 25 questions in 90 minutes is about 3.6 minutes each; work out your answer before reading the options, and choose the closest one if your number is not listed; options are not always in order, so read all five; flag doubtful questions and come back. Last year only the Scantron sheet was marked (work in the booklet was not), so fill it in as you go, not all at the end."
+            },
+            {
+              "zh": "提前出发，2:50 左右到考场（考场以 Quercus 的通知为准）：3:15 准时开考，迟到不补时间。拿到试卷，先核对 Scantron 答题卡上的试卷版本和试卷一致，再写好姓名、学号和签名（去年的规定是试卷封面和答题卡上都要写）。",
+              "en": "Leave early and be at the room (as announced on Quercus) by about 2:50 PM: the test starts exactly at 3:15 PM and late arrivals get no extra time. When you get the paper, check that the version on the Scantron sheet matches your booklet, then write your full name, student number and signature (last year's rules asked for them on the cover and on the Scantron sheet)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "title": {
+        "zh": "期末复习计划（本站已有的 Module 1–5）",
+        "en": "Final exam plan (Modules 1-5 in this station)"
+      },
+      "note": {
+        "zh": "期末考试在 12 月考试周（日期由教务处 Office of the Registrar 安排），3 小时，考全部课程内容，占 50%；可带两张 letter 大小、两面都能写的 aid sheet，考场提供统计表，只能用批准的计算器，考试时禁止使用生成式 AI。本站目前只有 Module 1–5，所以这个计划只安排这五个 Module；Module 6–12（概率、随机变量、正态模型、抽样分布、置信区间、假设检验、比较各组）先用课程讲义、习题和辅导课来学，等本站加上以后再补进计划。大纲没有写期末的题型：选择题和用英文写解释句都要准备。考试日期公布后，把下面几个阶段倒推到日历上；信息图项目 12 月 2 日截止（5%），课程问卷 12 月 8 日截止（2%），别让它们和复习撞车。",
+        "en": "The final exam is in the December exam period (the Office of the Registrar sets the date), lasts 3 hours, covers the entire course and is worth 50%. You may bring two letter-size aid sheets (both sides); statistical tables are provided; only an approved calculator; no generative AI. The station covers Modules 1-5 only, so this plan schedules those five. Learn Modules 6-12 (probability, random variables, the Normal model, sampling distributions, confidence intervals, hypothesis testing, comparing groups) from the course notes, problems and tutorials until they are added here. The syllabus does not describe the final's question format, so prepare for multiple choice and for writing interpretation sentences in English. Once the date is out, count these stages back on your calendar. The infographic project is due Dec 2 (5%) and the survey Dec 8 (2%), so plan around them."
+      },
+      "days": [
+        {
+          "label": {
+            "zh": "期中之后 · 每周例行",
+            "en": "After the midterm: every week"
+          },
+          "tasks": [
+            {
+              "zh": "期中发回后：对照答案（如果 Quercus 上有），找出每道错题属于哪个 Module 的哪一节，回「学习」重读那一节，再做它的练习。觉得判分有问题，按大纲先在发还后两周内找判分的人重新评估（重判可能加分，也可能减分）。",
+              "en": "When the midterm comes back, go through the solutions (if they are on Quercus), find the module and section of each wrong question, reread that section in Learn and redo its practice. If you think something was marked wrongly, the syllabus says to ask the person who marked it within two weeks of getting it back (a re-mark can raise or lower the mark)."
+            },
+            {
+              "zh": "每周照常上讲课和辅导课：12 次讲课里做满 10 次课堂小活动拿 2%，11 次辅导课取最好的 8 次（16%）。课前做练习题和 mini-R 活动，在 Quercus 上交 R 输出；每个新 Module 的公式和规则，随学随抄到第二张 aid sheet 的草稿上。",
+              "en": "Keep attending lectures and tutorials: the activity in 10 of the 12 lectures gives the full 2%, and the best 8 of 11 tutorials count for 16%. Before each tutorial, do the practice problems and the mini-R activity, and submit the R output on Quercus; copy each new module's formulas and rules onto a draft of your second aid sheet."
+            },
+            {
+              "zh": "每周两次、每次 15 分钟：「闪卡」只练不熟的卡（Module 1–5），再清一清错题本，让前五个 Module 不生疏。",
+              "en": "Twice a week, 15 minutes each: Flashcards with Only unfamiliar cards for Modules 1-5, then clear the mistake book, so the first five modules stay fresh."
+            },
+            {
+              "zh": "信息图项目（5%，12 月 2 日周三前在 Quercus 提交；两人一组或 3–5 人一组；只能用课上分析过的数据集）：正好练 Module 2–5 的本事——给每个变量选对的图，用英文写出带情境和单位的解释句。",
+              "en": "Infographic project (5%, due on Quercus by Wednesday Dec 2; pairs or groups of 3-5; only datasets analysed in the course): it practises Modules 2-5: choose the right graph for each variable and write interpretation sentences in English, with context and units."
+            },
+            {
+              "zh": "期末考试安排公布后，把日期、时间和考场记下来，按下面几个阶段倒推到日历上。大纲提醒：考试安排正式公布之前，不要订出行的票。",
+              "en": "When the final exam schedule is released, write down the date, time and room and count the stages below back on your calendar. The syllabus warns: do not make travel plans until the schedule is officially released."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前第 3 周 · 第一轮：Module 1–5 按顺序过一遍",
+            "en": "3 weeks before: round 1, Modules 1-5 in order"
+          },
+          "tasks": [
+            {
+              "zh": "每天一个 Module，按顺序读：先「高频考点」，再「必会」，这次「了解」也快速扫一遍；读懂一节就点「我学会了」。",
+              "en": "One module a day, in order: the High-yield sections first, then Must know, and this time skim Background too; press Mark as learned as you go."
+            },
+            {
+              "zh": "每读完一个 Module，在「刷题」里选「全部 All」题型，包括简答题和论述题：先自己用英文写，再对照参考答案和得分点。",
+              "en": "After each module, practise it in Practice with All question types, including the short and long answers: write your English answer first, then compare it with the model answer and the scoring points."
+            },
+            {
+              "zh": "在「术语」里把 Module 1–5 的术语全部过一遍：每个词都要能用英文写出来、拼对。",
+              "en": "Go through every Module 1-5 term in the Glossary: you should be able to write each one in English and spell it right."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前第 2 周 · 第二轮：串起来、写英文、做两张 aid sheet",
+            "en": "2 weeks before: round 2, connect, write English, two aid sheets"
+          },
+          "tasks": [
+            {
+              "zh": "打开首页「知识地图」里的“课与课怎么连起来”，每条连线用一句英文说出来，比如 r = Σ z_x z_y / (n − 1) 把 Module 4 和 Module 5 连在一起。",
+              "en": "Open How the lessons connect in The big picture on the home page and say each connection in one English sentence; for example, r = Σ z_x z_y / (n − 1) links Module 4 and Module 5."
+            },
+            {
+              "zh": "「答题」工具箱的答题模板每天写两个，直到全部写过一遍，比如：描述一个分布、用箱线图比较几组、用条件百分比说明二维表里的关联、描述散点图、用标准差单位解释 r、为什么相关不等于因果、解释斜率／截距／残差／R²、判断抽样方法和偏差、观察性研究还是实验。先默写，再对照范文。",
+              "en": "Write two answer templates from the Exam English toolkit a day until you have done them all, for example: describe a distribution; compare groups with boxplots; describe the association in a two-way table with conditional percentages; describe a scatterplot; interpret r in SD units; explain why correlation is not causation; interpret the slope, intercept, residual and R²; identify the sampling method and bias; observational study or experiment. Write from memory first, then compare with the model answer."
+            },
+            {
+              "zh": "做两张 aid sheet：第一张以期中那张为底稿，按「速记」的公式总表把 Module 1–5 补全；第二张给 Module 6–12。",
+              "en": "Make the two aid sheets: sheet 1 for Modules 1-5, starting from your midterm sheet and completed with the Formula sheet in the Cheat sheet; sheet 2 for Modules 6-12."
+            },
+            {
+              "zh": "到错题本点「全部重练」，一直做到清空。",
+              "en": "Press Retry all in the mistake book and keep going until it is empty."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前最后一周 · 模拟考",
+            "en": "Last week: mock exams"
+          },
+          "tasks": [
+            {
+              "zh": "模拟考 A：默认设置（Module 1–5 全选、25 道单选题、90 分钟），看成绩单，补最弱的 Module。",
+              "en": "Mock exam A: the default settings (all of Modules 1-5, 25 multiple-choice questions, 90 minutes); use the report to fix your weakest module."
+            },
+            {
+              "zh": "模拟考 B：Module 1–5，把「主观题数量」设成 3、「时间限制」选 120 分钟：选择题做完后用英文写简答，交卷后对照参考答案自评。",
+              "en": "Mock exam B: Modules 1-5 with Written questions set to 3 and a 120-minute time limit: after the multiple choice, write the short answers in English, then grade them against the model answers."
+            },
+            {
+              "zh": "Module 6–12：限时重做各 Module 的官方习题；再找一整块 3 小时连续做题，适应期末的长度。",
+              "en": "Modules 6-12: redo each module's official problems under a time limit, and once, work for a full 3-hour block to get used to the length of the final."
+            },
+            {
+              "zh": "每天：「速记」看一个 Module（可以打印），错题本清一次。",
+              "en": "Every day: one module of the Cheat sheet (you can print it) and one pass through the mistake book."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前 1–2 天",
+            "en": "1-2 days before"
+          },
+          "tasks": [
+            {
+              "zh": "「速记」全部单元过一遍，两张 aid sheet 从头读到尾，「闪卡」只练不熟的卡；不学新东西。",
+              "en": "Go through the Cheat sheet for all units, read both aid sheets from top to bottom and run Flashcards with Only unfamiliar cards; nothing new."
+            },
+            {
+              "zh": "再确认一次考场和时间，收拾好批准的计算器（确认能用）、两张 aid sheet、学生卡（T-Card）、铅笔和橡皮。",
+              "en": "Confirm the room and time again, and pack an approved calculator (check that it works), both aid sheets, your T-Card, pencils and an eraser."
+            },
+            {
+              "zh": "万一生病没法考：大纲规定要在错过考试后 72 小时内向教务处在线递交申请（petition），逾期不受理。",
+              "en": "If illness stops you from writing it: the syllabus says to file an online petition with the Office of the Registrar within 72 hours of the missed exam; late petitions are not considered."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考试当天",
+            "en": "Exam day"
+          },
+          "tasks": [
+            {
+              "zh": "提前到考场。3 小时要分配好：先做有把握的题，拿不准的先标记、最后回来；算出的数不在选项里就选最接近的；每个解释句都写上情境和单位。",
+              "en": "Arrive early. Pace the 3 hours: do the questions you are sure of first, flag the doubtful ones and come back; if your number is not among the options, choose the closest; give every interpretation sentence its context and units."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,893 @@
+{
+  "lessonId": "mod03",
+  "terms": [
+    {
+      "id": "distribution",
+      "en": "Distribution",
+      "zh": "分布",
+      "def": {
+        "en": "The pattern of variation of a variable is called its distribution. It shows which values (or categories) the variable takes and how often each one occurs.",
+        "zh": "一个变量的“变化模式”：这个变量出现了哪些取值（类别），每个取值各出现了多少次。分类变量的分布 = 每个类别各有多少个案（或占多少比例），可以列成表，也可以画成条形图、饼图。Module 3 讲数值变量时，还要描述分布的形状、中心和离散程度。"
+      },
+      "example": {
+        "zh": "Module 3 看的是数值变量的分布：Tim Hortons 30 个甜甜圈的热量从 180 到 400 kcal，R 直方图每组的个数是 6、11、10、2、1（p.9）。描述这样的分布要说三件事：形状（**shape**）、中心（**centre**）、离散程度（**spread**），有离群值也要提（p.7、p.68）。",
+        "en": "In Module 3 the variable is quantitative: the calories of the 30 Tim Hortons donuts run from 180 to 400 kcal, and R's histogram counts are 6, 11, 10, 2, 1 (p.9). Describe such a distribution by its shape, centre and spread, and mention any outliers (p.7, p.68)."
+      },
+      "slides": "7, 68",
+      "related": [
+        "overall-pattern",
+        "histogram",
+        "shape",
+        "centre",
+        "spread",
+        "relative-frequency",
+        "frequency-table"
+      ]
+    },
+    {
+      "id": "overall-pattern",
+      "en": "Overall pattern",
+      "zh": "整体模式",
+      "def": {
+        "en": "The general pattern that most of the data follow in a graph. In any graph of data, look for the overall pattern and for striking deviations from it, such as outliers; describe the pattern by its shape, centre and spread.",
+        "zh": "大部分数据在图上呈现出来的“大样子”。看任何一张数据图，先看整体模式，再找明显偏离它的地方（比如离群值）。描述整体模式要说三件事：形状、中心、离散程度（p.68）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量的直方图（6、11、10、2、1）：整体模式是单峰、右偏，中心大约 250 kcal，大多数在 180 到 340 之间。最右边的 400（Oreo Donut）离大部队比较远，是对整体模式的明显偏离，可能是离群值。",
+        "en": "Donut calories: the overall pattern is unimodal and right-skewed, centred near 250 kcal, with most values between 180 and 340. The 400-calorie Oreo Donut stands apart from that pattern, a possible outlier."
+      },
+      "slides": "7, 68",
+      "related": [
+        "distribution",
+        "outlier",
+        "shape",
+        "centre",
+        "spread"
+      ]
+    },
+    {
+      "id": "outlier",
+      "en": "Outlier",
+      "zh": "离群值（异常值）",
+      "def": {
+        "en": "An individual value that falls outside the overall pattern of the data; it is an important kind of deviation from that pattern.",
+        "zh": "离大部队很远、不符合整体模式的单个数据。Module 3 先用眼睛看图判断；Module 4 会教一个规则（栅栏 **fences**）来判断。最大的值不一定就是离群值，要看它是不是明显脱离了整体模式。离群值要先调查原因，不能随手删掉。"
+      },
+      "example": {
+        "zh": "甜甜圈热量：大多数在 180–340 kcal，Oreo Donut 的 400 孤零零地待在最右边（p.22 的图里，它前面 345–375 是一个空档），用眼睛看像一个可能的离群值。Module 3 的课件没有下结论；Module 4 用栅栏规则会把它判为疑似离群值（**suspect outlier**）。",
+        "en": "Donut calories: most values lie between 180 and 340 kcal, and the Oreo Donut's 400 sits alone on the right (on p.22 an empty bin at 345-375 comes before it), so by eye it is a possible outlier. Module 4's fence rule classifies it as a suspect outlier."
+      },
+      "slides": "7",
+      "related": [
+        "overall-pattern",
+        "gap",
+        "resistant",
+        "inner-fence",
+        "outer-fence",
+        "suspect-outlier",
+        "z-score"
+      ]
+    },
+    {
+      "id": "histogram",
+      "en": "Histogram",
+      "zh": "直方图",
+      "def": {
+        "en": "A graph that displays the entire distribution of a quantitative variable. The values are sliced into bins of equal width, and the height of each attached bar is the number of cases (frequency) in that bin.",
+        "zh": "专门画数值变量（**quantitative variable**）分布的图。做法：把数轴切成一样宽的组（**bin**），数一数每组里有几个个案，柱子高度 = 个数（频数）。柱子紧挨着、中间没有缝；如果有缝，说明那一组一个数据都没有（**gap**）。组数一般 5–30 个，R 会自动分组。条形图（**bar chart**）不一样：它画分类变量，柱子之间要留空。"
+      },
+      "example": {
+        "zh": "p.9、p.13：甜甜圈热量的 R 直方图，组宽 50：(150, 200] 有 6 个、(200, 250] 有 11 个、(250, 300] 有 10 个、(300, 350] 有 2 个、(350, 400] 有 1 个，一共 30 个。从图上读出：典型热量大约 250 kcal，形状右偏（p.14）。",
+        "en": "p.9 and p.13: R's histogram of donut calories uses bins 50 wide with counts 6, 11, 10, 2, 1 (total 30). It shows a typical value of about 250 kcal and a right-skewed shape (p.14)."
+      },
+      "slides": "9, 13-14",
+      "related": [
+        "bin",
+        "right-closed-bins",
+        "gap",
+        "shape",
+        "stem-and-leaf",
+        "dotplot",
+        "bar-chart",
+        "quantitative-variable"
+      ]
+    },
+    {
+      "id": "bin",
+      "en": "Bin",
+      "zh": "组（分组区间）",
+      "def": {
+        "en": "One of the equal-width intervals that the values are sliced into to build a histogram. Each bin is one bar, and the bar's height is the number of cases in that bin.",
+        "zh": "做直方图时，把数轴切成的一段段等宽的小区间，每一段叫一个组（bin），对应一根柱子。组数通常 5–30 个，取决于样本量：组太少看不出形状，太多又太零碎（p.9：not too little; not too many）。组宽或起点一变，同样的数据画出来的样子也会变。"
+      },
+      "example": {
+        "zh": "同样 30 个甜甜圈：p.9 的 R 直方图组宽 50，得到 5 根柱子 6、11、10、2、1；p.22 的 ggplot2 图组宽 30（从 165 开始），得到 8 根柱子 4、7、6、7、4、1、0、1。（p.21 的代码写着 binwidth = 50，但 p.22 的图实际是 30 宽，这是课件前后不一致。）",
+        "en": "The same 30 donuts: R's histogram on p.9 uses bins 50 wide (5 bars: 6, 11, 10, 2, 1), while the ggplot2 plot on p.22 uses bins 30 wide from 165 (8 bars: 4, 7, 6, 7, 4, 1, 0, 1). The p.21 code says binwidth = 50, but the plotted bars are 30 wide."
+      },
+      "slides": "9, 21-22",
+      "related": [
+        "histogram",
+        "right-closed-bins",
+        "gap",
+        "frequency"
+      ]
+    },
+    {
+      "id": "right-closed-bins",
+      "en": "Right-closed bins (a, b]",
+      "zh": "右闭区间分组 (a, b]",
+      "def": {
+        "en": "In R's hist(), each bin (a, b] holds the values more than a and at most b, so a value exactly on an edge counts in the bar to its left. 'At most b' and 'more than a' can then be read from the bars, but 'at least a' needs the raw data.",
+        "zh": "补充（课件外）：课件没有用文字写出这条规则，但 R 的 hist() 默认就这样分组，课件 p.13–20 的个数全都符合它。(a, b] 的意思是“大于 a，并且小于等于 b”：圆括号 ( 表示不含 a，方括号 ] 表示含 b。所以正好落在边界上的值（比如 200）算进边界左边那根柱子。（最左边的第一组连左端点也算进去。）"
+      },
+      "example": {
+        "zh": "甜甜圈：200 算在 (150, 200] 里，所以 at most 200（≤ 200）正好是第一根柱子 = 6 个 = 20%（p.14）。两个 300 在 (250, 300] 里，所以 at least 300（≥ 300）不能直接读柱子，要看原始数据：5 个，5/30 ≈ 16.67%（p.18）。对比：p.8 学生海报用的是 [a, b)（边界值算右边那根），同样的数据就画成了 4、9、12、4、0、1。",
+        "en": "Donuts: 200 falls in (150, 200], so 'at most 200' is exactly the first bar: 6 donuts = 20% (p.14). The two 300s are inside (250, 300], so 'at least 300' needs the raw data: 5 donuts, about 16.67% (p.18). The student poster on p.8 uses [a, b) instead and gets 4, 9, 12, 4, 0, 1."
+      },
+      "slides": "8-9, 13-20",
+      "related": [
+        "bin",
+        "histogram",
+        "at-most",
+        "more-than",
+        "at-least"
+      ]
+    },
+    {
+      "id": "gap",
+      "en": "Gap",
+      "zh": "空档（空组）",
+      "def": {
+        "en": "A gap in a histogram shows a bin with no cases in it.",
+        "zh": "直方图里某一组一个数据都没有，那根柱子高度是 0，看起来中间断开了一块。空档不是画错了，而是说明这一段数值里没有任何个案。空档后面孤零零的数据要特别留意，它可能是离群值。"
+      },
+      "example": {
+        "zh": "p.22 的 ggplot2 直方图（组宽 30）：345–375 这一组是 0，形成空档，后面 375–405 只有一个 400（Oreo Donut）。p.23 茎叶图里空着的那一行“3 |”是同一个空档：350 到 390 之间没有数据。",
+        "en": "On p.22 (bins 30 wide) the bin 345-375 is empty, a gap, and the lone 400-calorie Oreo Donut comes after it. The empty stem line '3 |' on p.23 shows the same gap: no values from 350 to 390."
+      },
+      "slides": "9, 22-23",
+      "related": [
+        "histogram",
+        "bin",
+        "outlier",
+        "stem-and-leaf"
+      ]
+    },
+    {
+      "id": "shape",
+      "en": "Shape",
+      "zh": "（分布的）形状",
+      "def": {
+        "en": "What the graph of a distribution looks like. Describe it by its peaks (unimodal, bimodal, multimodal or uniform) and by its symmetry or skewness (symmetric, skewed to the right or skewed to the left).",
+        "zh": "分布画出来的“长相”。看两件事：一、有几个峰（单峰、双峰、多峰，或没有峰的均匀分布）；二、左右对不对称（对称，还是右偏、左偏）。形状、中心、离散程度是描述分布的三要素。判断形状一定要看图，不能只靠均值和中位数（p.35）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量：单峰、右偏（p.14、p.25、p.35）。考试的形状选择题常用固定的五个选项：Bell-shaped and symmetric / Normal / Symmetric but not bell-shaped / Skewed to the right / Skewed to the left（2025 期中 Q11、Q16 都是这五个）。直方图是钟形时选 Bell-shaped and symmetric（本站建议，理由见 bell-shaped 词条）。",
+        "en": "Donut calories: unimodal and skewed to the right (p.14, p.35). Shape questions on the test often use five fixed options: Bell-shaped and symmetric, Normal, Symmetric but not bell-shaped, Skewed to the right, Skewed to the left. For a bell-shaped histogram, choose 'Bell-shaped and symmetric', the slides' wording for data."
+      },
+      "slides": "10-12, 68",
+      "related": [
+        "unimodal",
+        "bimodal",
+        "multimodal",
+        "uniform-distribution",
+        "symmetric",
+        "bell-shaped",
+        "tail",
+        "skewed-right",
+        "skewed-left"
+      ]
+    },
+    {
+      "id": "unimodal",
+      "en": "Unimodal",
+      "zh": "单峰",
+      "def": {
+        "en": "A histogram with one peak (one hump, or mode) is called unimodal.",
+        "zh": "直方图只有一个明显的“山峰”。相邻柱子之间小小的高低起伏不算新的峰，要看明显的驼峰。单峰的分布还要再看：是对称（比如钟形）、右偏，还是左偏。"
+      },
+      "example": {
+        "zh": "甜甜圈热量的 R 直方图（6、11、10、2、1）只有一个峰，在 200–250 那根柱子，所以是单峰（而且右偏）。p.11 的钟形、右偏、左偏三张图也都是单峰。",
+        "en": "The donut histogram (6, 11, 10, 2, 1) has one peak, at the 200-250 bar, so it is unimodal (and right-skewed). The bell-shaped, right-skewed and left-skewed panels on p.11 are all unimodal."
+      },
+      "slides": "10-11",
+      "related": [
+        "shape",
+        "bimodal",
+        "multimodal",
+        "mode",
+        "bell-shaped"
+      ]
+    },
+    {
+      "id": "bimodal",
+      "en": "Bimodal",
+      "zh": "双峰",
+      "def": {
+        "en": "A histogram with two peaks is called bimodal. Two peaks often suggest that the data contain two different groups.",
+        "zh": "直方图有两个明显的峰，中间夹着一个“谷”。两个峰常常说明数据里混着两类不同的个案。双峰数据不能用“均值 > 中位数就是右偏”这类规律判断形状，一定要看图（p.42）。注意：双峰说的是直方图有两个驼峰，不等于数据正好有两个众数（练习题 Q1 的直方图是双峰，table() 却找到三个众数）。"
+      },
+      "example": {
+        "zh": "p.12 麦片含糖量（Sugar %），组宽 10：各组频数大约 16、10、3、3、11、5、1（共 49 种麦片）。峰在 0–10 和 40–50，中间 20–40 是谷，所以是双峰：低糖的一类和高糖的一类。",
+        "en": "Cereal sugar content on p.12 (bins of 10%): frequencies of about 16, 10, 3, 3, 11, 5, 1 (49 cereals). The peaks at 0-10 and 40-50 with a valley at 20-40 make it bimodal: a low-sugar group and a high-sugar group."
+      },
+      "slides": "10, 12",
+      "related": [
+        "shape",
+        "unimodal",
+        "multimodal",
+        "mode"
+      ]
+    },
+    {
+      "id": "multimodal",
+      "en": "Multimodal",
+      "zh": "多峰",
+      "def": {
+        "en": "A histogram with three or more peaks is called multimodal.",
+        "zh": "直方图有三个或更多明显的峰。和双峰一样，多个峰往往说明数据里混着几类不同的个案。数峰时只数明显的驼峰，柱子之间的小起伏不算。"
+      },
+      "example": {
+        "zh": "数峰的规则（p.10）：1 个峰 = unimodal（单峰）；2 个峰 = bimodal（双峰）；3 个或更多 = multimodal（多峰）；没有明显的峰、柱子差不多一样高 = uniform distribution（均匀分布）。",
+        "en": "Counting peaks (p.10): one peak = unimodal; two peaks = bimodal; three or more = multimodal; no clear peak, with bars of about equal height = uniform distribution."
+      },
+      "slides": "10",
+      "related": [
+        "shape",
+        "unimodal",
+        "bimodal",
+        "uniform-distribution"
+      ]
+    },
+    {
+      "id": "uniform-distribution",
+      "en": "Uniform distribution",
+      "zh": "均匀分布",
+      "def": {
+        "en": "A histogram with no apparent peak (mode), in which all the bars are about the same height.",
+        "zh": "直方图没有明显的峰，所有柱子差不多一样高，说明每一段数值出现得差不多一样多。均匀分布是对称的，但不是钟形，所以在五个形状选项里它属于 Symmetric but not bell-shaped（对称但不是钟形）。"
+      },
+      "example": {
+        "zh": "p.11 图 (b)：数字 0 到 9 每个都出现了大约 1000 次，10 根柱子几乎一样高，课件标注为 No peak, Uniform Distribution。",
+        "en": "Panel (b) on p.11: each digit from 0 to 9 appears about 1000 times, so the 10 bars are almost equally tall: no peak, a uniform distribution."
+      },
+      "slides": "10-11",
+      "related": [
+        "shape",
+        "symmetric",
+        "unimodal",
+        "multimodal"
+      ]
+    },
+    {
+      "id": "symmetric",
+      "en": "Symmetric",
+      "zh": "对称",
+      "def": {
+        "en": "A distribution is symmetric if, when its histogram is folded along a vertical line in the middle, the two sides match closely (the right side mirrors the left). For a perfectly symmetric distribution, the mean and the median are the same.",
+        "zh": "把直方图沿中间一条竖线对折，左右两边差不多能重合（右边是左边的镜像）。完全对称时，均值 = 中位数，都在正中间；大致对称时，两者很接近。反过来不成立：均值和中位数接近，不能证明对称，要看图（p.35）。对称也不一定是钟形：均匀分布、左右对称的双峰也都是对称的。"
+      },
+      "example": {
+        "zh": "p.11 图 (a) 单峰、大致钟形且对称（中心约 100）；图 (b) 均匀分布也对称，但不是钟形。反例：甜甜圈热量的均值 251、中位数 250 几乎相等，但直方图是右偏的，并不对称（p.35）。",
+        "en": "Panel (a) on p.11 is unimodal, roughly bell-shaped and symmetric (centred near 100); the uniform panel (b) is symmetric but not bell-shaped. Counter-example: the donut mean (251) and median (250) are almost equal, yet the histogram is right-skewed (p.35)."
+      },
+      "slides": "10, 35, 41",
+      "related": [
+        "shape",
+        "bell-shaped",
+        "uniform-distribution",
+        "skewed-right",
+        "skewed-left",
+        "mean",
+        "median"
+      ]
+    },
+    {
+      "id": "bell-shaped",
+      "en": "Bell-shaped and symmetric",
+      "zh": "钟形且对称",
+      "def": {
+        "en": "A unimodal, symmetric shape like a bell: one peak in the middle and tails that thin out evenly on both sides. The slides describe such data as bell-shaped and symmetric (p.11, p.57, p.68). The p.11 axis caption adds '(Normal)', but the test's five shape options list 'Bell-shaped and symmetric' and 'Normal' separately; for a bell-shaped histogram of data, choose 'Bell-shaped and symmetric'. The Empirical Rule applies to roughly bell-shaped data.",
+        "zh": "长得像一口钟：中间一个峰，两边对称地慢慢变低。课件描述这种数据时说 bell-shaped and symmetric（p.11、p.57、p.68）。p.11 的横轴标签还写着 Bell-Shaped (Normal) Distribution，但考试的五个形状选项把 Bell-shaped and symmetric 和 Normal 分成两个选项；正态模型（Normal model）是 Module 8 才讲的理论模型。本站建议：数据的直方图是钟形时，选 Bell-shaped and symmetric。钟形、对称的数据报告均值和标准差（p.68），还可以用经验法则（68%、95%、几乎全部）。"
+      },
+      "example": {
+        "zh": "p.11 图 (a)：一个峰在 100 附近，数值大约从 50 到 150，两边对称。p.59–63 的海龟壳长（n = 76）大致是钟形：落在均值 1、2、3 个标准差以内的比例是 68.42%、94.74%、100%，和经验法则的 68%、95%、几乎全部很接近。",
+        "en": "Panel (a) on p.11: one peak near 100, values from about 50 to 150, even tails on both sides. The sea turtle shell lengths on p.59-63 (n = 76) are roughly bell-shaped: 68.42%, 94.74% and 100% lie within 1, 2 and 3 SD of the mean."
+      },
+      "slides": "11, 57-58",
+      "related": [
+        "symmetric",
+        "unimodal",
+        "empirical-rule",
+        "mean",
+        "standard-deviation"
+      ]
+    },
+    {
+      "id": "tail",
+      "en": "Tail",
+      "zh": "尾部（尾巴）",
+      "def": {
+        "en": "The thinner ends of a distribution, where the bars get short. If one tail stretches out farther than the other, the histogram is skewed toward the side of the longer tail.",
+        "zh": "直方图两头柱子变矮、变稀的部分，像动物的尾巴。比一比左右两条尾巴哪条更长：右尾更长 = 右偏；左尾更长 = 左偏。偏斜按“长尾巴”的方向命名，不是按峰或大多数数据所在的那一边。"
+      },
+      "example": {
+        "zh": "甜甜圈热量：大部分柱子在 150–300，右边 300–400 只有 2 个和 1 个，一条细尾巴一直拖到 400。右尾更长，所以右偏（p.14）。",
+        "en": "Donut calories: most bars are at 150-300, and a thin tail (counts 2 and 1) stretches to 400 on the right. The right tail is longer, so the distribution is right-skewed (p.14)."
+      },
+      "slides": "10-11",
+      "related": [
+        "skewed-right",
+        "skewed-left",
+        "shape",
+        "symmetric"
+      ]
+    },
+    {
+      "id": "skewed-right",
+      "en": "Skewed to the right (right-skewed)",
+      "zh": "右偏（正偏）",
+      "def": {
+        "en": "The tail to the right stretches out farther: most of the observations are on the left, and a long thin tail runs toward the large values (positive skew). The tail pulls the mean up, so the mean is usually larger than the median.",
+        "zh": "大多数数据堆在左边（数值小的一边），一条细长的尾巴拖向右边（数值大的一边），也叫正偏（**positive skew**）。少数很大的值把均值往上拉，所以通常 均值 > 中位数；三个集中趋势最可能的顺序（从小到大）是 Mode、Median、Mean（p.42）。这只是“最可能”，最后要看图确定。偏斜的数据报告中位数（**median**）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量是右偏的：直方图 6、11、10、2、1，尾巴拖到 400；均值 251 > 中位数 250。但众数 270 比两者都大，并不符合 Mode、Median、Mean 的顺序，所以课件说这个顺序只是“最可能”，要看图（p.35、p.42）。",
+        "en": "Donut calories are right-skewed: the histogram (6, 11, 10, 2, 1) has a tail to 400, and the mean 251 is larger than the median 250. But the mode, 270, is larger than both, so the 'most probable' order Mode, Median, Mean does not hold here; always check the graph (p.35, p.42)."
+      },
+      "slides": "11, 14, 35, 42",
+      "related": [
+        "tail",
+        "skewed-left",
+        "shape",
+        "mean",
+        "median",
+        "mode"
+      ]
+    },
+    {
+      "id": "skewed-left",
+      "en": "Skewed to the left (left-skewed)",
+      "zh": "左偏（负偏）",
+      "def": {
+        "en": "The tail to the left stretches out farther: most of the observations are on the right, and a long thin tail runs toward the small values (negative skew). The tail pulls the mean down, so the mean is usually smaller than the median.",
+        "zh": "大多数数据堆在右边（数值大的一边），一条细长的尾巴拖向左边（数值小的一边），也叫负偏（**negative skew**）。少数很小的值把均值往下拉，所以通常 中位数 > 均值；最可能的顺序（从小到大）是 Mean、Median、Mode（p.42）。注意：峰在右边恰恰是左偏，因为偏斜按尾巴的方向命名。"
+      },
+      "example": {
+        "zh": "p.11 右下图：峰在 80 附近，细尾巴向左一直拖到 50 左右，所以左偏。2025 期中 Q11（只看题号，自己去做原题）：相对频数随着数值增大一路升高，峰在最大的值，尾巴在左边，答案是 Skewed to the left。",
+        "en": "Bottom-right panel on p.11: the peak is near 80 and a thin tail stretches left to about 50, so it is left-skewed. On the 2025 midterm (Q11) the relative frequencies rose toward the largest value, so the tail was on the left: skewed to the left."
+      },
+      "slides": "11, 42",
+      "related": [
+        "tail",
+        "skewed-right",
+        "shape",
+        "mean",
+        "median",
+        "mode"
+      ]
+    },
+    {
+      "id": "at-most",
+      "en": "At most",
+      "zh": "最多（不超过，≤）",
+      "def": {
+        "en": "'At most b' means b or less, written ≤ b; the value b itself is included.",
+        "zh": "“最多 b”= b 或更少 = ≤ b，包括 b 本身。课件写法：at most 200 (200 or less)。用 R 的 (a, b] 分组时，如果 b 正好是柱子的边界，at most b 可以直接从直方图读：把以 b 结尾的那根柱子和它左边的所有柱子加起来。"
+      },
+      "example": {
+        "zh": "p.14、p.16：at most 200 calories → ≤ 200 → 第一根柱子 (150, 200]（里面包括两个 200）= 6 个，6/30 = 0.20，也就是 20%。R：`Calories[Calories <= 200]` 选出这些值，`length()` 数出来是 6。",
+        "en": "p.14 and p.16: 'at most 200 calories' means ≤ 200, the first bar (150, 200], which includes the two 200s: 6 donuts, 6/30 = 0.20 (20%). In R, `length(Calories[Calories <= 200])` gives 6."
+      },
+      "slides": "13-16",
+      "related": [
+        "more-than",
+        "at-least",
+        "right-closed-bins",
+        "relative-frequency"
+      ]
+    },
+    {
+      "id": "more-than",
+      "en": "More than",
+      "zh": "多于（大于，>）",
+      "def": {
+        "en": "'More than a' means strictly greater than a, written > a; the value a itself is not included.",
+        "zh": "“多于 a”= 严格大于 a = > a，不包括 a 本身。用 R 的 (a, b] 分组时，more than a 可以直接从直方图读：把 a 右边的柱子都加起来。别和 at least（≥，包括 a）搞混。"
+      },
+      "example": {
+        "zh": "p.14、p.16：more than 300 → > 300 → 柱子 (300, 350] 和 (350, 400]：2 + 1 = 3 个（310、340、400），3/30 = 0.10，也就是 10%。p.19–20：more than 250 to including 300 → 大于 250 并且 ≤ 300 → 正好是柱子 (250, 300] = 10 个，10/30 ≈ 33.33%。",
+        "en": "p.14 and p.16: 'more than 300' means > 300, the bars (300, 350] and (350, 400]: 2 + 1 = 3 donuts (310, 340, 400), 3/30 = 0.10 (10%). p.19-20: 'more than 250 to including 300' means x > 250 and x ≤ 300, exactly the (250, 300] bar: 10 donuts, about 33.33%."
+      },
+      "slides": "13-16, 19-20",
+      "related": [
+        "at-most",
+        "at-least",
+        "right-closed-bins",
+        "relative-frequency"
+      ]
+    },
+    {
+      "id": "at-least",
+      "en": "At least",
+      "zh": "至少（不少于，≥）",
+      "def": {
+        "en": "'At least a' means a or more, written ≥ a; the value a itself is included.",
+        "zh": "“至少 a”= a 或更多 = ≥ a，包括 a 本身。陷阱：用 R 的 (a, b] 分组时，正好等于 a 的值藏在 a 左边那根柱子里，所以只要可能有数据正好等于 a，at least a 就不能直接从直方图读，要回到原始数据去数。"
+      },
+      "example": {
+        "zh": "p.17–18：at least 300 calories → ≥ 300。两个 300 在 (250, 300] 柱子里，只加最后两根柱子得 3 个（10%）是错的。用原始数据：`Calories[Calories >= 300]` 得到 300、300、340、400、310，共 5 个，5/30 ≈ 0.1667，约 16.67%。",
+        "en": "p.17-18: 'at least 300' means ≥ 300. The two 300s sit inside the (250, 300] bar, so adding the last two bars (3 donuts, 10%) is wrong. The raw data give 300, 300, 340, 400, 310: 5 donuts, 5/30 ≈ 0.1667 (about 16.67%)."
+      },
+      "slides": "17-18",
+      "related": [
+        "at-most",
+        "more-than",
+        "right-closed-bins"
+      ]
+    },
+    {
+      "id": "relative-frequency",
+      "en": "Relative frequency (proportion)",
+      "zh": "相对频数（比例）",
+      "def": {
+        "en": "The frequency (count) of a category divided by the total count n. It is a proportion, so it is a number between 0 and 1, and the proportions of all categories add up to 1.",
+        "zh": "相对频数 = 这个类别的频数 ÷ 总数 n，也叫比例（**proportion**），中文课本也常叫“频率”。它表示这一类占全体的“几分之几”，一定在 0 到 1 之间（0 = 一个都没有，1 = 全部都是）；所有类别的比例加起来等于 1。算出来大于 1 或小于 0，一定是算错了。"
+      },
+      "example": {
+        "zh": "Module 3 把它用在数值变量上：直方图 (150, 200] 这一组有 6 个甜甜圈，相对频数 = 6/30 = 0.20，也就是 20%（p.14）；`table(Calories)` 里 270 出现 5 次，相对频数 = 5/30 ≈ 0.1667（p.38）。考试也会直接给“值 + 相对频数”的表（2025 期中 Q11–Q14）：这时均值 = Σ(值 × 相对频数)，不要再除以 n。",
+        "en": "Module 3 uses it for a quantitative variable: the (150, 200] bin holds 6 of the 30 donuts, a relative frequency of 6/30 = 0.20, or 20% (p.14); in table(Calories) the value 270 occurs 5 times, 5/30 ≈ 0.1667 (p.38). From a relative frequency table, the mean = Σ(value × relative frequency), with no extra division by n."
+      },
+      "slides": "14, 38",
+      "related": [
+        "frequency",
+        "percentage",
+        "frequency-table",
+        "cumulative-relative-frequency",
+        "distribution"
+      ]
+    },
+    {
+      "id": "stem-and-leaf",
+      "en": "Stem-and-leaf display",
+      "zh": "茎叶图",
+      "def": {
+        "en": "A display like a histogram that also shows the raw values in order from smallest to largest. Each value is split into a stem (its left part) and a leaf (its right part).",
+        "zh": "John W. Tukey 设计的图，像一个横过来的直方图，但每个原始数据都还在，而且从小到大排好。每个数拆成两半：左边是茎（**stem**），右边是叶（**leaf**）。先读比例尺那一行，才知道 1 | 8 代表几。把头向右歪着看，就能看出直方图的形状。茎可以重复（拆成两行：叶 0–4 一行，5–9 一行）。只用于数值变量。"
+      },
+      "example": {
+        "zh": "p.23 R 的 `stem(Calories, scale = 0.5)`：比例尺说小数点在 | 右边 2 位，所以 1 | 8999 = 180、190、190、190；最后一行 4 | 0 = 400；中间空着的“3 |”表示 350 到 390 没有数据。从图读出：最小值 180，最大值 400，形状右偏（p.25）。",
+        "en": "p.23, R's `stem(Calories, scale = 0.5)`: the decimal point is 2 digits to the right of the |, so 1 | 8999 means 180, 190, 190, 190 and 4 | 0 means 400; the empty line '3 |' means no values from 350 to 390. Minimum 180, maximum 400, right-skewed (p.25)."
+      },
+      "slides": "23-25",
+      "related": [
+        "histogram",
+        "dotplot",
+        "shape",
+        "gap"
+      ]
+    },
+    {
+      "id": "dotplot",
+      "en": "Dotplot",
+      "zh": "点图",
+      "def": {
+        "en": "A graph that puts one dot for each case above its value on a number line, so equal values stack up into a column.",
+        "zh": "在数轴上，每个个案画一个点，数值相同的点往上摞起来。摞得最高的那一列就是出现次数最多的值（众数）。课件 p.26 只给了 R 代码和图，没有文字定义。补充（课件外）：点图适合数据不太多的时候，每个点都看得清。"
+      },
+      "example": {
+        "zh": "p.26 甜甜圈热量的点图（ggplot2 的 `geom_dotplot(binwidth = 7)`）：270 那一列最高，有 5 个点（众数 270）；340 和 400 孤零零在右边，形成右尾。注意 ggplot2 点图的纵轴写着 count 0.00–1.00，那不是真实个数，要自己数点。",
+        "en": "p.26, dotplot of donut calories (`geom_dotplot(binwidth = 7)` in ggplot2): the tallest stack is at 270 with 5 dots (the mode), and 340 and 400 sit alone on the right. The y-axis labelled 'count' from 0.00 to 1.00 is not a real count; count the dots."
+      },
+      "slides": "26",
+      "related": [
+        "histogram",
+        "stem-and-leaf",
+        "mode"
+      ]
+    },
+    {
+      "id": "centre",
+      "en": "Centre",
+      "zh": "中心",
+      "def": {
+        "en": "A typical value in the data. It is measured by the mean, the median or the mode.",
+        "zh": "能代表这组数据的“典型值”，回答“一般是多少”。用均值、中位数或众数来衡量。注意：中心不是横轴的正中间。用数字描述分布时，中心要和离散程度一起报告（p.43）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量：从直方图看，典型热量大约 250 kcal（最高的两根柱子在 250 处相接，p.14）；算出来均值 251、中位数 250、众数 270 kcal。",
+        "en": "Donut calories: from the histogram the typical value appears to be around 250 kcal (p.14); the mean is 251, the median 250 and the mode 270 kcal."
+      },
+      "slides": "14, 27",
+      "related": [
+        "central-tendency",
+        "mean",
+        "median",
+        "mode",
+        "spread"
+      ]
+    },
+    {
+      "id": "central-tendency",
+      "en": "Central tendency",
+      "zh": "集中趋势",
+      "def": {
+        "en": "A measure that gives one single score to define the centre of a distribution, the score that is most typical or most representative of the whole group. The three measures of central tendency are the mean, the median and the mode.",
+        "zh": "用“一个数”来代表整组数据中心的度量，目标是找到最典型、最有代表性的那个数。一共三种：均值（**mean**）、中位数（**median**）、众数（**mode**）。三个数不一定相等；三个都看一看，对数据的了解更完整（p.36）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量的三种集中趋势：均值 251、中位数 250、众数 270 kcal，三个数各不相同（p.30、p.33、p.37）。",
+        "en": "Donut calories: mean 251, median 250 and mode 270 kcal, three different measures of central tendency (p.30, p.33, p.37)."
+      },
+      "slides": "27",
+      "related": [
+        "centre",
+        "mean",
+        "median",
+        "mode"
+      ]
+    },
+    {
+      "id": "mean",
+      "en": "Mean (sample mean ȳ)",
+      "zh": "均值（平均数）",
+      "def": {
+        "en": "The sum of all the observations divided by the number of cases: ȳ = Σyᵢ / n. It is the balance point of the data, and it is not resistant to extreme values.",
+        "zh": "把所有数加起来，再除以个数 n：ȳ = Σyᵢ / n（ȳ 读作 y-bar，也写作 x̄；Σ 表示“全部加起来”）。可以想成“总量平均分给每个人，每人分到多少”。均值是平衡点：在它下面的距离总和 = 上面的距离总和。均值不稳健（**not resistant**），会被特别大或特别小的值拉走。解释模板：On average, [cases] have [mean] [units]."
+      },
+      "example": {
+        "zh": "p.30：ȳ = (180 + 190 + ⋯ + 400)/30 = 7530/30 = 251 kcal。解释：On average, Tim Hortons donuts (in 2014) have 251 calories. R 里 `mean(Calories)` 也得 251（p.31）。补充（课件外）：如果把 400 换成 1000，均值会变成 8130/30 = 271，中位数还是 250。",
+        "en": "p.30: ȳ = (180 + 190 + ⋯ + 400)/30 = 7530/30 = 251 kcal. 'On average, Tim Hortons donuts (in 2014) have 251 calories.' If the 400 were 1000, the mean would jump to 8130/30 = 271 while the median would stay 250."
+      },
+      "slides": "28-31",
+      "related": [
+        "population-mean",
+        "summation-notation",
+        "median",
+        "mode",
+        "resistant",
+        "deviation",
+        "central-tendency"
+      ]
+    },
+    {
+      "id": "population-mean",
+      "en": "Population mean (μ)",
+      "zh": "总体均值 μ",
+      "def": {
+        "en": "The mean of all the values in a population, written μ (mu): μ = Σyᵢ / N, where N is the population size. The sample mean ȳ = Σyᵢ / n is computed from a sample and estimates μ.",
+        "zh": "整个总体（**population**）所有值的平均数，用希腊字母 μ（读作 mu）表示：μ = Σyᵢ / N，大写 N 是总体的个数。μ 是参数（**parameter**），通常不知道；从样本算出来的 ȳ（小写 n 是样本量）是统计量（**statistic**），用来估计 μ。"
+      },
+      "example": {
+        "zh": "p.29 两个公式对照：总体均值 μ = 总体所有值的和 / N；样本均值 ȳ = 样本所有值的和 / n。课件对甜甜圈数据用的是样本记号：ȳ = 7530/30 = 251（p.30）。",
+        "en": "p.29 compares the two formulas: population mean μ = (sum of all values in the population)/N; sample mean ȳ = (sum of the values in the sample)/n. The slides use the sample notation for the donuts: ȳ = 7530/30 = 251 (p.30)."
+      },
+      "slides": "29",
+      "related": [
+        "mean",
+        "summation-notation",
+        "population-variance",
+        "population",
+        "parameter",
+        "statistic"
+      ]
+    },
+    {
+      "id": "summation-notation",
+      "en": "Summation sign (Σ)",
+      "zh": "求和符号 Σ",
+      "def": {
+        "en": "Σ, the Greek capital letter sigma, means 'add up'. Σyᵢ taken over i = 1 to n means y₁ + y₂ + ⋯ + yₙ, the sum of all n observations.",
+        "zh": "Σ 是希腊大写字母 sigma，意思就是“全部加起来”。yᵢ 表示第 i 个数（i = 1, 2, …, n），所以 Σyᵢ = y₁ + y₂ + ⋯ + yₙ。STA220 里到处在用：ȳ = Σyᵢ / n，S² = Σ(yᵢ − ȳ)² / (n − 1)。看到 Σ 后面跟着括号，就是“先对每个数算括号里的东西，再全部加起来”。"
+      },
+      "example": {
+        "zh": "甜甜圈：Σyᵢ = 180 + 190 + ⋯ + 400 = 7530（i 从 1 到 30）。p.47 的小例子 2、3、7（ȳ = 4）：Σ(yᵢ − ȳ)² = (2 − 4)² + (3 − 4)² + (7 − 4)² = 4 + 1 + 9 = 14。",
+        "en": "Donuts: Σyᵢ = 180 + 190 + ⋯ + 400 = 7530 (i from 1 to 30). Small example 2, 3, 7 with ȳ = 4 (p.47): Σ(yᵢ − ȳ)² = (2 − 4)² + (3 − 4)² + (7 − 4)² = 4 + 1 + 9 = 14."
+      },
+      "slides": "29",
+      "related": [
+        "mean",
+        "population-mean",
+        "sum-of-squared-deviations",
+        "variance"
+      ]
+    },
+    {
+      "id": "median",
+      "en": "Median",
+      "zh": "中位数",
+      "def": {
+        "en": "The middle value of the data sorted from smallest to largest; it is the 50th percentile. Its rank position is 0.5 × (n + 1): for odd n take the middle value, and for even n average the two middle values.",
+        "zh": "先把数据从小到大排好，站在正中间的那个数。位置 = 0.5 × (n + 1)：n 是奇数，取第 (n + 1)/2 个；n 是偶数，取第 n/2 个和第 n/2 + 1 个的平均。中位数是第 50 百分位数（**50th percentile**）。它稳健（**resistant**），只看排序、不看大小，极端值影响不了它，所以偏斜的数据报告中位数。解释模板：The median [variable] is M. This means that 50% of [cases] have at most M (M or less), whereas 50% have more than M."
+      },
+      "example": {
+        "zh": "p.33：n = 30 是偶数，位置 0.5 × 31 = 15.5，取排序后第 15、16 个值的平均：(250 + 250)/2 = 250 kcal；R 里 `median(Calories)` 也得 250（p.34）。课件的解释句见下面的英文。小提示：数据里有 4 个 250 并列，严格说是 17 个 ≤ 250、13 个 > 250，“50%”是近似说法；考试照课程模板写就行。",
+        "en": "p.33: n = 30 is even, position 0.5 × 31 = 15.5, so average the 15th and 16th sorted values: (250 + 250)/2 = 250 kcal. 'The median calories of Tim Hortons donuts is 250. That is, 50% of Tim Hortons donuts had at most 250 calories (250 or less), whereas 50% have more than 250 calories.'"
+      },
+      "slides": "32-34",
+      "related": [
+        "mean",
+        "resistant",
+        "percentile",
+        "cumulative-relative-frequency",
+        "central-tendency",
+        "skewed-right"
+      ]
+    },
+    {
+      "id": "resistant",
+      "en": "Resistant",
+      "zh": "稳健（不敏感）",
+      "def": {
+        "en": "A measure is resistant if extremely large or small values do not affect it much. The median and the IQR are resistant; the mean, range, variance and standard deviation are not resistant (they are sensitive to extreme values).",
+        "zh": "一个统计量不怎么受极端值（特别大或特别小的数）影响，就叫稳健（课件也说 not sensitive）。中位数稳健，因为它只看数据的排序，不看具体有多大；均值、极差、方差、标准差都不稳健（**sensitive**），会被极端值大幅拉动（p.68 特意加粗了 are sensitive）。Module 4 的 IQR 也是稳健的。"
+      },
+      "example": {
+        "zh": "补充（课件外）计算：把甜甜圈里的 400 改成 1000，均值从 251 变成 271，极差从 220 变成 820，标准差从 50.06 变成约 143.78，可中位数还是 250。",
+        "en": "If the 400-calorie donut were 1000 calories, the mean would rise from 251 to 271, the range from 220 to 820 and S from 50.06 to about 143.78, but the median would stay 250."
+      },
+      "slides": "28, 32, 51, 68",
+      "related": [
+        "median",
+        "mean",
+        "range",
+        "variance",
+        "standard-deviation",
+        "outlier",
+        "iqr"
+      ]
+    },
+    {
+      "id": "mode",
+      "en": "Mode",
+      "zh": "众数",
+      "def": {
+        "en": "The value that occurs most frequently in the data; on a graph of the frequency distribution it is the location of the peak (or peaks). It is typically used for categorical variables and also for discrete variables.",
+        "zh": "出现次数最多的那个值，也就是分布图里峰所在的位置。常用于分类变量（比如最受欢迎的奶茶口味），也用于离散的数值变量（比如“几个”“几次”这种计数）。一组数据可以有好几个众数：几个值并列最多时，都要报出来。注意：众数是“值”（270），不是“次数”（5）。"
+      },
+      "example": {
+        "zh": "p.37–38：`table(Calories)` 显示 270 出现 5 次，比其他值都多，所以众数 = 270 kcal。R 一行求众数：`table(Calories)[table(Calories) == max(table(Calories))]`，有并列时会把所有众数都列出来；而 `max(freq.table$Freq)` 只给出最高的次数 5（p.39）。",
+        "en": "p.37-38: table(Calories) shows 270 five times, more than any other value, so the mode is 270 kcal: 'The most frequent (5 out of 30 Tim Hortons Donuts) calories is 270.' Note that max(freq.table$Freq) returns 5, the highest frequency, not the mode (p.39)."
+      },
+      "slides": "36-40",
+      "related": [
+        "central-tendency",
+        "mean",
+        "median",
+        "unimodal",
+        "bimodal",
+        "frequency"
+      ]
+    },
+    {
+      "id": "cumulative-relative-frequency",
+      "en": "Cumulative relative frequency",
+      "zh": "累积相对频率",
+      "def": {
+        "en": "The running total of the relative frequencies, from the smallest value up: the proportion of the data at or below each value. The median is the first value whose cumulative relative frequency is at least 0.50 (the rule in the 2025 midterm solution).",
+        "zh": "补充（课件外，方法来自 2025 期中官方解答）：把相对频数从最小的值开始一路往上加，加到某个值为止的总和，就是这个值的累积相对频率，意思是“小于等于这个值的数据占多少”。最后一个值的累积一定是 1。用它找中位数：第一个累积相对频率 ≥ 0.50 的值就是中位数（老师官方解答的规则）。"
+      },
+      "example": {
+        "zh": "甜甜圈（p.38 的 `table(Calories)`）：累积到 230 是 13/30 ≈ 0.4333，还不到一半；累积到 250 是 17/30 ≈ 0.5667，第一次 ≥ 0.50，所以中位数 = 250，和 p.33 排序找到的一样。别在 0.4333 这种“差一点到 0.5”的地方停下（2025 期中 Q13 的陷阱）。",
+        "en": "Donuts (table(Calories), p.38): the cumulative relative frequency is 13/30 ≈ 0.4333 at 230 and 17/30 ≈ 0.5667 at 250, the first value at or above 0.50, so the median is 250, the same as on p.33."
+      },
+      "slides": "38",
+      "related": [
+        "relative-frequency",
+        "median",
+        "frequency-table",
+        "percentile"
+      ]
+    },
+    {
+      "id": "spread",
+      "en": "Spread",
+      "zh": "离散程度",
+      "def": {
+        "en": "How much the data vary around their centre: how far from the mean or the median the values tend to be. The measures of spread are the range, the interquartile range (IQR), the variance and the standard deviation.",
+        "zh": "数据围绕中心“散开”了多少：数值通常离均值或中位数有多远。散得开 = 离散程度大；挤在一起 = 离散程度小。衡量它的有：极差（**range**）、四分位距（**IQR**，Module 4）、方差（**variance**）、标准差（**standard deviation**）。课件加粗强调：用数字描述分布时，一定要把离散程度和中心一起报告（p.43）。"
+      },
+      "example": {
+        "zh": "甜甜圈热量：从 180 到 400 kcal（极差 220，p.44），标准差 S = 50.06 kcal（p.53）。只说“均值 251”不够，还要配上一个离散程度。",
+        "en": "Donut calories run from 180 to 400 kcal (range 220, p.44), and S = 50.06 kcal (p.53). Reporting only the mean, 251, is not enough; give a measure of spread with it."
+      },
+      "slides": "43-44",
+      "related": [
+        "variability",
+        "range",
+        "variance",
+        "standard-deviation",
+        "iqr",
+        "centre"
+      ]
+    },
+    {
+      "id": "variability",
+      "en": "Variability",
+      "zh": "变异性（变异程度）",
+      "def": {
+        "en": "A quantitative measure of the differences between scores in a distribution: the degree to which the scores are spread out or clustered together. It also shows how well one score represents the whole group, and how much error to expect when a sample represents a population.",
+        "zh": "数据之间差别有多大的量化说法：数据是散开的，还是挤在一起的。变异性小，随便挑一个数据都挺能代表整组；变异性大，个体之间差别就大。用样本代表总体时，变异性也告诉我们大概会有多大误差。S 越大，变异性越大（p.52、p.55）。"
+      },
+      "example": {
+        "zh": "p.55：一个分布 S = 5，另一个 S = 3，前者的变异性更大。p.52：三个同学的测验分数都是 10（10、10、10），完全没有变异，S² = 0，S = 0。",
+        "en": "p.55: a distribution with S = 5 has greater variability than one with S = 3. p.52: quiz marks of 10, 10, 10 have no variation at all, so S² = 0 and S = 0."
+      },
+      "slides": "43, 52, 55",
+      "related": [
+        "spread",
+        "standard-deviation",
+        "variance",
+        "variation"
+      ]
+    },
+    {
+      "id": "range",
+      "en": "Range",
+      "zh": "极差（全距）",
+      "def": {
+        "en": "The difference between the largest and the smallest value: Range = Max − Min. It uses only the two most extreme values, so it is not resistant.",
+        "zh": "最大值减最小值，是最简单的离散程度。它只用了最两头的两个数，一个极端值就能让它变很多，所以不稳健（p.68）。注意：R 的 `range()` 输出的是两个数（最小值和最大值），不是它们的差，要自己相减（p.44）。"
+      },
+      "example": {
+        "zh": "p.44：甜甜圈热量 Range = 400 − 180 = 220 kcal。R 里 `range(Calories)` 打印 [1] 180 400；`max(Calories) - min(Calories)` 才得到 220。",
+        "en": "p.44: Range = 400 − 180 = 220 kcal for the donuts. In R, `range(Calories)` prints 180 400 (the min and the max); `max(Calories) - min(Calories)` gives 220."
+      },
+      "slides": "44",
+      "related": [
+        "spread",
+        "resistant",
+        "iqr",
+        "standard-deviation"
+      ]
+    },
+    {
+      "id": "deviation",
+      "en": "Deviation",
+      "zh": "离差",
+      "def": {
+        "en": "The distance of an observation from the sample mean, yᵢ − ȳ. Deviations are negative below the mean and positive above it, and together they always add up to 0.",
+        "zh": "每个数减去均值：yᵢ − ȳ，表示它离均值多远、在哪一边。比均值小的离差是负的，比均值大的是正的。因为均值是平衡点，所有离差加起来永远等于 0，所以不能直接拿离差的平均当离散程度，要先平方（这就引出了方差）。"
+      },
+      "example": {
+        "zh": "p.45：数据 2、3、7，ȳ = 12/3 = 4。离差：2 − 4 = −2，3 − 4 = −1，7 − 4 = +3；加起来 (−2) + (−1) + (+3) = 0。",
+        "en": "p.45: data 2, 3, 7 with ȳ = 12/3 = 4. Deviations: 2 − 4 = −2, 3 − 4 = −1, 7 − 4 = +3; their sum is (−2) + (−1) + (+3) = 0."
+      },
+      "slides": "45",
+      "related": [
+        "mean",
+        "sum-of-squared-deviations",
+        "variance",
+        "z-score"
+      ]
+    },
+    {
+      "id": "sum-of-squared-deviations",
+      "en": "Sum of squared deviations",
+      "zh": "离差平方和",
+      "def": {
+        "en": "Σ(yᵢ − ȳ)²: square each deviation from the mean, then add the squares. It is never negative, and dividing it by n − 1 gives the sample variance S².",
+        "zh": "把每个离差先平方（平方后都不会是负数，正负就不会互相抵消），再全部加起来：Σ(yᵢ − ȳ)²。它是方差的“分子”，除以 n − 1 就得到样本方差 S²。常见错误：先把离差加起来再平方（结果永远是 0），或者忘了平方。"
+      },
+      "example": {
+        "zh": "p.47：2、3、7 → (−2)² + (−1)² + 3² = 4 + 1 + 9 = 14。甜甜圈（p.53）：Σ(yᵢ − 251)² = 72670（可以按每个不同的值乘以它出现的次数来算），所以 S² = 72670/29 ≈ 2505.8621。",
+        "en": "p.47: for 2, 3, 7 the sum of squared deviations is 4 + 1 + 9 = 14. Donuts (p.53): Σ(yᵢ − 251)² = 72670, so S² = 72670/29 ≈ 2505.8621."
+      },
+      "slides": "47, 53",
+      "related": [
+        "deviation",
+        "variance",
+        "degrees-of-freedom",
+        "summation-notation"
+      ]
+    },
+    {
+      "id": "variance",
+      "en": "Variance (sample variance S²)",
+      "zh": "方差（样本方差 S²）",
+      "def": {
+        "en": "The sample variance S² is (almost) the average of the squared deviations from the sample mean: S² = Σ(yᵢ − ȳ)² / (n − 1). We divide by n − 1 because we estimated the mean, and S² is in squared units.",
+        "zh": "衡量离散程度的量：离差平方和除以 n − 1。为什么不除以 n？因为算之前先用样本估计了均值，自由度（**degrees of freedom**）只剩 n − 1。步骤：① 算 ȳ；② 每个数减 ȳ；③ 平方；④ 加起来；⑤ 除以 n − 1。方差的单位是数据单位的平方（比如 kcal²），不好解释，所以再开平方得到标准差。方差不稳健。"
+      },
+      "example": {
+        "zh": "p.47：2、3、7 → S² = 14/(3 − 1) = 7（错除以 n 会得到 14/3 ≈ 4.67）。甜甜圈 p.53–54：S² = 72670/29 ≈ 2505.8621 kcal²；R 的 `var(Calories)` 得 2505.862（R 也是除以 n − 1）。",
+        "en": "p.47: for 2, 3, 7, S² = 14/(3 − 1) = 7 (dividing by n would wrongly give 4.67). Donuts (p.53-54): S² ≈ 2505.8621 kcal², and R's `var(Calories)` gives 2505.862."
+      },
+      "slides": "46-47",
+      "related": [
+        "standard-deviation",
+        "population-variance",
+        "sum-of-squared-deviations",
+        "degrees-of-freedom",
+        "deviation",
+        "resistant"
+      ]
+    },
+    {
+      "id": "population-variance",
+      "en": "Population variance (σ²)",
+      "zh": "总体方差 σ²",
+      "def": {
+        "en": "The average of the squared deviations of the observations from the population (true) mean: σ² = Σ(yᵢ − μ)² / N. It uses μ and divides by N, while the sample variance S² uses ȳ and divides by n − 1.",
+        "zh": "整个总体里每个值与总体均值 μ 之差的平方，再取平均：σ² = Σ(yᵢ − μ)² / N（σ 是希腊小写字母 sigma）。和样本方差有两处不同：用 μ 而不是 ȳ；除以 N 而不是 n − 1。补充（课件外）：总体标准差 σ = √σ²，Module 4 的 z 分数会用到。"
+      },
+      "example": {
+        "zh": "p.46 两个公式对照：样本 S² = Σ(yᵢ − ȳ)² / (n − 1)，总体 σ² = Σ(yᵢ − μ)² / N。补充（课件外）：计算器统计模式里，算样本标准差 S 要按名字里带 n−1 的键（TI-30Xa 上是 σxn−1，Casio fx-300MS 上是 xσn−1；新款 Casio 和 TI-30XIIS 上叫 sx 或 Sx）。只以 n 结尾的 σxn、xσn，以及新款上单独的 σx，都是除以 n 的版本。用 2、3、7 检查：S 应该是 2.65。",
+        "en": "p.46: sample S² = Σ(yᵢ − ȳ)² / (n − 1) versus population σ² = Σ(yᵢ − μ)² / N. On a calculator, the sample SD key ends in n−1 (σxn−1 on the TI-30Xa, xσn−1 on the Casio fx-300MS) or is labelled sx or Sx on newer models; σxn, xσn and a plain σx divide by n. Check with 2, 3, 7: S should be 2.65."
+      },
+      "slides": "46",
+      "related": [
+        "variance",
+        "population-mean",
+        "standard-deviation",
+        "population",
+        "parameter"
+      ]
+    },
+    {
+      "id": "degrees-of-freedom",
+      "en": "Degrees of freedom (df)",
+      "zh": "自由度",
+      "def": {
+        "en": "The number of scores in a sample that are free to vary. Once the sample mean is fixed, the first n − 1 scores can be anything but the last one is determined, so the sample has n − 1 degrees of freedom, and S² divides by n − 1.",
+        "zh": "样本里能“自由取值”的数据个数。算方差前要先算 ȳ，而 ȳ 一旦定下来，总和也就定了（总和 = n × ȳ）：前 n − 1 个数可以随便取，最后一个数就没得选了。所以样本有 n − 1 个自由度，样本方差除以 n − 1。"
+      },
+      "example": {
+        "zh": "p.49：n = 3，y₁ = 2，y₂ = 3，ȳ = 4。总和必须是 4 × 3 = 12，所以 y₃ = 12 − 5 = 7，没得选；只有 2 个数是自由的，df = 3 − 1 = 2。p.50 课堂活动：n = 4，比如定均值 10、前三个数 8、12、5，第四个数只能是 40 − 25 = 15。",
+        "en": "p.49: with n = 3, y₁ = 2, y₂ = 3 and ȳ = 4, the total must be 12, so y₃ = 12 − 5 = 7; only 2 values are free, df = 3 − 1 = 2. With n = 4 and a mean of 10, if the first three values are 8, 12 and 5, the fourth must be 40 − 25 = 15."
+      },
+      "slides": "47-50",
+      "related": [
+        "variance",
+        "sum-of-squared-deviations",
+        "mean",
+        "standard-deviation"
+      ]
+    },
+    {
+      "id": "standard-deviation",
+      "en": "Standard deviation (sample SD, S)",
+      "zh": "标准差（样本标准差 S）",
+      "def": {
+        "en": "The square root of the sample variance, S = √S². It is the typical spread of the data, a typical distance of an observation from the mean, in the same units as the data; it is not resistant to extreme values.",
+        "zh": "方差开平方根：S = √S²（√ 是开平方根，比如 √49 = 7，因为 7 × 7 = 49）。开根号是为了回到和数据一样的单位，表示数据离均值的“典型距离”。性质：S ≥ 0；所有数都一样时 S = 0；越分散 S 越大；数据换单位（比如每个数都除以 1000），S 也同样除以 1000；不稳健。解释模板：We can expect [variable] to differ from the mean by about S [units], on average."
+      },
+      "example": {
+        "zh": "p.51：2、3、7 → S = √7 ≈ 2.65。甜甜圈 p.53–54：S = √2505.8621 ≈ 50.06 kcal（R 的 `sd(Calories)` 得 50.05859），解释句见下面的英文。注意：p.52 说收入从 dollars 换成 thousands of dollars 时标准差变化 100 倍，是课件笔误，应该是 1000 倍（11,800 → 11.8）。",
+        "en": "p.51: for 2, 3, 7, S = √7 ≈ 2.65. Donuts (p.53-54): S = √2505.8621 ≈ 50.06 kcal (R: `sd(Calories)` gives 50.05859). 'We can expect calories in Tim Hortons donuts to differ from the mean by about 50 calories, on average.'"
+      },
+      "slides": "51-56",
+      "related": [
+        "variance",
+        "population-variance",
+        "spread",
+        "degrees-of-freedom",
+        "empirical-rule",
+        "z-score",
+        "resistant"
+      ]
+    },
+    {
+      "id": "empirical-rule",
+      "en": "Empirical Rule",
+      "zh": "经验法则",
+      "def": {
+        "en": "If the histogram of the data is approximately bell-shaped, about 68% of the observations lie within 1 standard deviation of the mean, (ȳ − 1S, ȳ + 1S); about 95% lie within 2 SD; and all or about all lie within 3 SD.",
+        "zh": "只适用于大致钟形、对称、没有极端离群值的数据：大约 68% 的数据在 ȳ ± 1S 之内；大约 95% 在 ȳ ± 2S 之内；全部或几乎全部在 ȳ ± 3S 之内。叫“经验”法则，是因为实际中（**empirically**）见到的很多分布都大致是钟形。课件说 3S 是 all or about all，不说 99.7%。钟形对称的数据里，离均值超过 3 个 S 的值很少见（p.68）。检验时数一数区间里实际有几个（不含端点）；偏斜或双峰的数据不能直接套 68%。"
+      },
+      "example": {
+        "zh": "海龟壳长（大致钟形，p.61–63）：68.42%、94.74%、100%，很接近 68%、95%、全部。甜甜圈（右偏，p.65–67）：(200.94, 301.06) 里有 21 个 = 70%，2S 内 29 个 ≈ 96.67%，3S 内 30 个 = 100%，数字碰巧接近，但右偏数据不保证。2025 期中 Q17 的数据不是钟形，1S 内实际约 62%，不是 68%。",
+        "en": "Sea turtles (roughly bell-shaped, p.61-63): 68.42%, 94.74% and 100% lie within 1, 2 and 3 SD. Donuts (right-skewed, p.65-67): 21 of 30 values (70%) lie inside (200.94, 301.06), 96.67% within 2 SD and 100% within 3 SD. On the 2025 midterm (Q17) the data were not bell-shaped, and only about 62% lay within 1 SD."
+      },
+      "slides": "57-58, 61-68",
+      "related": [
+        "bell-shaped",
+        "standard-deviation",
+        "mean",
+        "symmetric",
+        "outlier",
+        "z-score"
+      ]
+    }
+  ]
+}

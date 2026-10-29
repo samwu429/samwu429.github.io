@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { hasWidget } from '../../engine/widgets/widget-registry.js';
+import { hasWidget, loadWidget } from '../../engine/widgets/widget-registry.js';
 import { parseProgram } from '../../engine/widgets/programming/turtle-sandbox/turtle-language.js';
 import { runProgram } from '../../engine/widgets/programming/turtle-sandbox/turtle-interpreter.js';
 import { getPreset } from '../../engine/widgets/programming/turtle-sandbox/turtle-presets.js';
@@ -29,15 +29,40 @@ import { computeNeuron, normalizeNeuronConfig } from '../../engine/widgets/neura
 import { DATASET_NAMES } from '../../engine/widgets/neural-networks/linear-separability/separability-logic.js';
 import { slashNotation, tokenize } from '../../engine/widgets/language-models/tokenizer-toy/tokenizer-logic.js';
 import { normalizeCandidates } from '../../engine/widgets/language-models/temperature-sampler/temperature-logic.js';
+import { normalizeTwoWayTableConfig } from '../../engine/widgets/statistics/two-way-table/two-way-table-logic.js';
+import { normalizeCategoryChartConfig } from '../../engine/widgets/statistics/category-chart/category-chart-logic.js';
+import { normalizeHistogramConfig } from '../../engine/widgets/statistics/histogram/histogram-logic.js';
+import {
+  formatDataText, normalizeCenterSpreadConfig, parseDataText,
+} from '../../engine/widgets/statistics/center-spread/center-spread-logic.js';
+import { normalizeBoxplotConfig } from '../../engine/widgets/statistics/boxplot/boxplot-logic.js';
+import { normalizeZScoreConfig } from '../../engine/widgets/statistics/z-score/z-score-logic.js';
+import { normalizeScatterConfig } from '../../engine/widgets/statistics/scatter-correlation/scatter-correlation-logic.js';
+import { normalizeLeastSquaresConfig } from '../../engine/widgets/statistics/least-squares-line/least-squares-line-logic.js';
 
-// Every widget block of the course lessons is read here with the same pure readers the widgets use,
-// so a renamed preset or config field fails in the test run instead of in the browser.
-// 这里用组件自己的纯逻辑读取课程讲义里的每一个交互组件块：预设或配置字段改了名，会在测试里报错，而不是到浏览器里才发现。
-const LESSONS = new URL('../../courses/csc105h5/lessons/', import.meta.url);
+// Every widget block of every course pack's lessons is read here with the same pure readers the widgets use,
+// so a renamed preset or config field fails in the test run instead of in the browser. A pack whose lessons
+// are not written yet simply adds no blocks.
+// 这里用组件自己的纯逻辑读取每个课程包讲义里的每一个交互组件块：预设或配置字段改了名，会在测试里报错，而不是到浏览器里才发现。
+// 讲义还没写好的课程包只是不贡献任何组件块。
+const COURSES = new URL('../../courses/', import.meta.url);
+
+function lessonFiles() {
+  const files = [];
+  const packs = readdirSync(fileURLToPath(COURSES), { withFileTypes: true }).filter((entry) => entry.isDirectory());
+  for (const pack of packs.map((entry) => entry.name).sort()) {
+    const lessons = new URL(`${pack}/lessons/`, COURSES);
+    if (!existsSync(fileURLToPath(lessons))) continue;
+    for (const name of readdirSync(fileURLToPath(lessons)).filter((file) => file.endsWith('.json')).sort()) {
+      files.push({ file: `${pack}/${name}`, url: new URL(name, lessons) });
+    }
+  }
+  return files;
+}
 
 function widgetBlocks() {
   const blocks = [];
-  for (const file of readdirSync(fileURLToPath(LESSONS)).filter((name) => name.endsWith('.json')).sort()) {
+  for (const { file, url } of lessonFiles()) {
     const walk = (node) => {
       if (Array.isArray(node)) {
         node.forEach(walk);
@@ -46,7 +71,7 @@ function widgetBlocks() {
         Object.values(node).forEach(walk);
       }
     };
-    walk(JSON.parse(readFileSync(new URL(file, LESSONS), 'utf8')));
+    walk(JSON.parse(readFileSync(url, 'utf8')));
   }
   return blocks;
 }
@@ -54,6 +79,31 @@ function widgetBlocks() {
 const BLOCKS = widgetBlocks();
 const configsOf = (name) => BLOCKS.filter((block) => block.name === name).map((block) => block.config);
 const counts = ({ tp, fp, fn, tn }) => ({ tp, fp, fn, tn });
+
+// The statistics widgets share their label fields, which the validator requires as Bi values with both languages,
+// and a plain-string unit; both must come through as written (surrounding spaces aside).
+// 统计组件共用这些标签字段（校验器要求两种语言都有的双语值）和纯文本单位；两者都必须原样读进来（首尾空格除外）。
+const LABEL_KEYS = ['title', 'variable', 'rowVariable', 'columnVariable', 'xLabel', 'yLabel', 'xName', 'yName'];
+const SUMMARY_KEYS = ['min', 'q1', 'median', 'q3', 'max'];
+const SUMMARY_STATISTICS = ['xbar', 'sx', 'ybar', 'sy', 'r'];
+const pointPair = ({ x, y }) => [x, y];
+
+function sameLabel(actual, expected, field) {
+  const trimmed = (value) => ({ zh: String(value?.zh ?? '').trim(), en: String(value?.en ?? '').trim() });
+  assert.deepEqual(trimmed(actual), trimmed(expected), `${field} is not read as written`);
+}
+
+function keepsLabels(model, config) {
+  for (const key of LABEL_KEYS) {
+    if (Object.hasOwn(config, key) && Object.hasOwn(model, key)) sameLabel(model[key], config[key], key);
+  }
+}
+
+function keepsUnit(model, config) {
+  if (!Object.hasOwn(config, 'unit')) return;
+  assert.equal(typeof config.unit, 'string', 'unit must be a plain string');
+  assert.equal(model.unit, config.unit.trim(), 'unit is not read as written');
+}
 
 // One reader per widget: the config must come through without anything dropped or replaced by a default.
 // 每个组件一个读取检查：配置必须原样读进来，不能有内容被丢掉或换成默认值。
@@ -124,6 +174,113 @@ const READS = {
     assert.equal(normalized.usedDefault, false);
     assert.equal(normalized.items.length, config.candidates.length);
   },
+  'two-way-table': (config) => {
+    const model = normalizeTwoWayTableConfig(config);
+    assert.equal(model.usedExample, false, 'no usable counts, the midterm table is shown instead');
+    assert.equal(model.rows.length, config.rows.length);
+    assert.equal(model.columns.length, config.columns.length);
+    model.rows.forEach((label, index) => sameLabel(label, config.rows[index], `rows[${index}]`));
+    model.columns.forEach((label, index) => sameLabel(label, config.columns[index], `columns[${index}]`));
+    assert.deepEqual(model.counts, config.counts);
+    if (Object.hasOwn(config, 'decimals')) assert.equal(model.decimals, config.decimals, 'decimals must be a whole number from 2 to 6');
+    assert.equal(model.start, config.start ?? 'counts');
+    keepsLabels(model, config);
+  },
+  'category-chart': (config) => {
+    const model = normalizeCategoryChartConfig(config);
+    assert.equal(model.usedDefault, false, 'fewer than two usable categories, the slide example is shown instead');
+    assert.equal(model.categories.length, config.categories.length);
+    model.categories.forEach((category, index) => {
+      sameLabel(category.label, config.categories[index].label, `categories[${index}].label`);
+      assert.equal(category.count, config.categories[index].count);
+    });
+    assert.equal(model.display, config.display ?? 'both');
+    keepsLabels(model, config);
+  },
+  histogram: (config) => {
+    const model = normalizeHistogramConfig(config);
+    assert.equal(model.usedDefault, false, 'no usable data, the slide example is shown instead');
+    assert.deepEqual(model.data, config.data);
+    if (Object.hasOwn(config, 'binWidth')) {
+      assert.equal(model.widthAdjusted, false, 'binWidth would draw more than 60 bars or a single bar');
+      assert.equal(model.binWidth, config.binWidth);
+    }
+    if (Object.hasOwn(config, 'start')) assert.equal(model.start, config.start);
+    assert.equal(model.closed, config.closed ?? 'right');
+    assert.deepEqual(model.views, [...new Set(config.views ?? ['histogram'])]);
+    if (Object.hasOwn(config, 'leafUnit')) {
+      assert.equal(model.leafUnitAdjusted, false, 'leafUnit must be a power of ten whose display fits');
+      assert.equal(model.leafUnit, config.leafUnit);
+    }
+    keepsUnit(model, config);
+    keepsLabels(model, config);
+  },
+  'center-spread': (config) => {
+    const model = normalizeCenterSpreadConfig(config);
+    assert.equal(model.usesExample, false, 'fewer than 3 usable values, the slide example is shown instead');
+    assert.deepEqual(model.data, config.data);
+    // The data box shows the values as text and reads them back, so that text must give the same numbers.
+    // 数据框把这些值写成文字、再读回来，所以这段文字必须给出同样的数。
+    assert.deepEqual(parseDataText(formatDataText(model.data)).values, config.data);
+    assert.equal(model.quartiles, config.quartiles ?? 'hand');
+    if (Object.hasOwn(config, 'transform')) assert.equal(model.transform, config.transform, 'transform must be true or false');
+    keepsUnit(model, config);
+    keepsLabels(model, config);
+  },
+  boxplot: (config) => {
+    const model = normalizeBoxplotConfig(config);
+    assert.equal(model.usedDefault, false, 'no usable group, the slide example is shown instead');
+    assert.equal(model.groups.length, config.groups.length);
+    model.groups.forEach((group, index) => {
+      const source = config.groups[index];
+      sameLabel(group.name, source.name, `groups[${index}].name`);
+      if (Object.hasOwn(source, 'data')) {
+        assert.equal(group.kind, 'data');
+        assert.deepEqual(group.values, source.data);
+      } else {
+        assert.equal(group.kind, 'summary');
+        assert.deepEqual(SUMMARY_KEYS.map((key) => group.summary[key]), SUMMARY_KEYS.map((key) => source.summary[key]));
+        assert.deepEqual(group.whiskers, source.whiskers ?? null, 'whiskers are not read as written');
+        assert.deepEqual(group.outliers, [...(source.outliers ?? [])].sort((a, b) => a - b));
+      }
+    });
+    assert.equal(model.quartiles, config.quartiles ?? 'hand');
+    keepsUnit(model, config);
+    keepsLabels(model, config);
+  },
+  'z-score': (config) => {
+    const model = normalizeZScoreConfig(config);
+    assert.equal(model.usedDefault, false, 'no usable distribution, the slide example is shown instead');
+    const numbers = ({ mean, sd, value }) => [mean, sd, value];
+    if (Object.hasOwn(config, 'compare')) {
+      assert.equal(model.mode, 'compare');
+      assert.deepEqual(model.entries.map(numbers), config.compare.map(numbers));
+      model.entries.forEach((entry, index) => sameLabel(entry.name, config.compare[index].name, `compare[${index}].name`));
+    } else {
+      assert.equal(model.mode, 'single');
+      assert.deepEqual([model.mean, model.sd, model.values], [config.mean, config.sd, config.values]);
+    }
+    keepsUnit(model, config);
+    keepsLabels(model, config);
+  },
+  'scatter-correlation': (config) => {
+    const model = normalizeScatterConfig(config);
+    assert.equal(model.usesDefaultData, false, 'r cannot be computed, the slide example is shown instead');
+    assert.deepEqual(model.points.map(pointPair), config.points);
+    keepsLabels(model, config);
+  },
+  'least-squares-line': (config) => {
+    const model = normalizeLeastSquaresConfig(config);
+    assert.equal(model.usedDefault, false, 'neither usable points nor a usable summary, the slide example is shown instead');
+    if (Object.hasOwn(config, 'points')) {
+      assert.equal(model.mode, 'data');
+      assert.deepEqual(model.points.map(pointPair), config.points);
+    } else {
+      assert.equal(model.mode, 'summary');
+      assert.deepEqual(model.summary, Object.fromEntries(SUMMARY_STATISTICS.map((key) => [key, config.summary[key]])));
+    }
+    keepsLabels(model, config);
+  },
 };
 
 test('the lessons contain widget blocks, and every one names a registered widget', () => {
@@ -131,6 +288,16 @@ test('the lessons contain widget blocks, and every one names a registered widget
   for (const block of BLOCKS) {
     assert.ok(hasWidget(block.name), `${block.file}: unknown widget ${block.name}`);
     assert.ok(Object.hasOwn(READS, block.name), `${block.file}: add a config check for ${block.name}`);
+  }
+});
+
+// Checked for every reader, so a widget no lesson uses yet is still known to load.
+// 对每一个读取检查都验证一遍，所以还没有讲义用到的组件也能确认可以加载。
+test('every widget with a config check is registered and its module exports mount', async () => {
+  for (const name of Object.keys(READS)) {
+    assert.ok(hasWidget(name), `${name} is not in the widget registry`);
+    const module = await loadWidget(name);
+    assert.equal(typeof module.mount, 'function', `${name} does not export mount`);
   }
 });
 

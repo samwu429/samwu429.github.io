@@ -3,7 +3,7 @@
  * choice of the section currently being read.
  * 单元列表与课程页共用的纯逻辑（不依赖 DOM）：标签、链接、排序，以及判断当前正在阅读的小节。
  */
-import { unitLabels, unitNumber } from '../../core/text/unit-labels.js';
+import { groupByKind, isKnownKind, kindGroupTitle, unitLabels, unitNumber } from '../../core/text/unit-labels.js';
 import { isRouteId } from '../../core/util/ids.js';
 
 export function lessonHref(unitId, sectionId) {
@@ -16,16 +16,28 @@ export function practiceHref(unitId) {
 }
 
 /**
- * "Lecture 3" / "Lab 2" label of a unit or lesson, as a bilingual value (see core/text/unit-labels.js);
- * a unit of an unknown kind is called "单元 n" / "Unit n" on lesson pages.
- * 单元或讲义的类别标签（如“第 3 讲 Lecture 3”“实验 2 Lab 2”，见 core/text/unit-labels.js），返回双语值；
- * 类型未知的单元在课程页上称为“单元 n”/“Unit n”。
+ * "Lecture 3" / "Module 3" / "Lab 2" label of a unit or lesson, as a bilingual value (see
+ * core/text/unit-labels.js); a unit of an unknown kind is called "单元 n" / "Unit n" on lesson pages.
+ * 单元或讲义的类别标签（如“第 3 讲 Lecture 3”“模块 3 Module 3”“实验 2 Lab 2”，见 core/text/unit-labels.js），
+ * 返回双语值；类型未知的单元在课程页上称为“单元 n”/“Unit n”。
  */
 export function unitKindLabel(unit) {
   const label = unitLabels(unit);
   if (label.known) return { zh: label.zh, en: label.en };
   const number = unitNumber(unit);
   return number === null ? { zh: '单元', en: 'Unit' } : { zh: `单元 ${number}`, en: `Unit ${number}` };
+}
+
+/**
+ * Kind label of an opened lesson: the lesson file's own kind and number when they are usable,
+ * otherwise those of its course.json unit.
+ * 打开的讲义的类别标签：讲义文件自己的类型与编号可用时优先，否则用 course.json 中对应单元的。
+ */
+export function lessonKindLabel(lesson, unit) {
+  return unitKindLabel({
+    kind: isKnownKind(lesson?.kind) ? lesson.kind : unit?.kind,
+    number: Number.isInteger(lesson?.number) ? lesson.number : unit?.number,
+  });
 }
 
 /**
@@ -51,28 +63,28 @@ export function displayTitle(title, kind) {
   return { ...title, zh: stripKindPrefix(title.zh, kind), en: stripKindPrefix(title.en, kind) };
 }
 
-const GROUPS = [
-  { kind: 'lecture', title: { zh: '讲课', en: 'Lectures' } },
-  { kind: 'lab', title: { zh: '实验', en: 'Labs' } },
-  { kind: 'other', title: { zh: '其他', en: 'Other' } },
-];
-
 /**
- * Splits units into lecture / lab / other groups, keeping course order and dropping empty groups.
- * 把单元分成讲课、实验与其他三组，保持课程顺序，并去掉空组。
+ * Splits units into one titled group per kind, in the display order of core/text/unit-labels.js
+ * (lectures, modules, labs, tutorials, workshops, then other), keeping course order inside a group
+ * and dropping empty groups. Returns [{ kind, title, units }].
+ * 按 core/text/unit-labels.js 的显示顺序把单元按类型分组并加上标题（讲课、模块、实验、辅导、工作坊，最后是其他），
+ * 组内保持课程顺序，并去掉空组。返回 [{ kind, title, units }]。
  */
 export function groupUnits(units) {
-  const groups = GROUPS.map((group) => ({ ...group, units: [] }));
-  for (const unit of Array.isArray(units) ? units : []) {
-    if (!unit || typeof unit !== 'object') continue;
-    const group = groups.find((candidate) => candidate.kind === unit.kind) || groups[groups.length - 1];
-    group.units.push(unit);
-  }
-  return groups.filter((group) => group.units.length > 0);
+  return groupByKind(units).map((group) => ({ kind: group.kind, title: kindGroupTitle(group.kind), units: group.units }));
 }
 
 /**
- * Previous and next unit in course order (lectures first, then labs, exactly as course.json lists them).
+ * Style variant of a unit card: labs keep their own look, while lectures, modules and every other
+ * kind share the main-unit look, whose class keeps its original name "lecture".
+ * 单元卡片的样式：实验保留自己的样式；讲课、模块及其他类型共用主要单元的样式，其类名沿用原来的 "lecture"。
+ */
+export function unitCardVariant(kind) {
+  return kind === 'lab' ? 'lab' : 'lecture';
+}
+
+/**
+ * Previous and next unit in course order, exactly as course.json lists them.
  * 按 course.json 中的课程顺序返回上一个与下一个单元。
  */
 export function neighbourUnits(units, unitId) {

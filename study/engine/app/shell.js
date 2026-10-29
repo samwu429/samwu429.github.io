@@ -5,6 +5,7 @@
 import { h } from '../core/dom/element.js';
 import { icon } from '../core/dom/icons.js';
 import { pickText } from '../core/text/bilingual.js';
+import { announcementChannels } from '../core/text/course-channels.js';
 import { segmented, setSegmentedValue } from '../components/controls/segmented.js';
 import { themeToggle } from '../components/controls/theme-toggle.js';
 import { revealToggle } from './language-reveal.js';
@@ -78,9 +79,10 @@ export function createShell(root, { course, studyRoot, preferences }) {
 
   const main = h('main', { id: 'main', class: 'shell-main', tabindex: '-1' });
 
+  const channels = announcementChannels(course);
   const footer = h('footer', { class: 'shell-footer' },
-    h('p', {}, '非官方复习资料，内容依据课程课件整理；考试安排以 Quercus / Piazza 为准。'),
-    h('p', { lang: 'en' }, 'Unofficial study notes based on the course slides. Always confirm test details on Quercus and Piazza.'),
+    h('p', {}, `非官方复习资料，内容依据课程课件整理；考试安排以 ${channels.zh} 为准。`),
+    h('p', { lang: 'en' }, `Unofficial study notes based on the course slides. Always confirm test details on ${channels.en}.`),
     h('p', { class: 'shell-footer__credit', lang: 'en' },
       'Built by Yihang (Sam) Wu · ',
       h('a', { href: 'https://topphi.com/' }, 'topphi.com')));

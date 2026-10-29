@@ -1,0 +1,520 @@
+/*
+ * Category-chart widget: frequency distribution table with selectable categories, worked steps, a bar chart and a
+ * pie chart of one categorical variable, the "Interpret the graph" sentence and notes on choosing a graph.
+ * 分类变量组件：可选择类别的频数分布表、计算步骤、条形图与饼图、读图结论句和选图提示。
+ */
+/* Full width keeps the size container from collapsing inside shrink-to-fit parents. 占满宽度，避免尺寸容器在自适应父元素中塌缩。 */
+.category-chart {
+  width: 100%;
+  container-type: inline-size;
+}
+
+/*
+ * Category tones: design tokens and mixes of tokens only, so dark mode follows the palette. Bars carry their names
+ * and slices their percentages, so no category is told apart by colour alone.
+ * 类别配色：只用设计变量及其混合，深色模式自动跟随。柱子下方有名称、扇形上有百分比，类别从不只靠颜色区分。
+ */
+.category-chart__tone--0 { --category-chart-tone: var(--color-accent); }
+.category-chart__tone--1 { --category-chart-tone: var(--color-signal); }
+.category-chart__tone--2 { --category-chart-tone: var(--color-highlight); }
+.category-chart__tone--3 { --category-chart-tone: var(--color-danger); }
+.category-chart__tone--4 { --category-chart-tone: color-mix(in srgb, var(--color-signal) 55%, var(--color-danger)); }
+.category-chart__tone--5 { --category-chart-tone: var(--color-ink-3); }
+.category-chart__tone--6 { --category-chart-tone: color-mix(in srgb, var(--color-accent) 60%, var(--color-signal)); }
+.category-chart__tone--7 { --category-chart-tone: color-mix(in srgb, var(--color-danger) 50%, var(--color-highlight)); }
+.category-chart__tone--8 { --category-chart-tone: color-mix(in srgb, var(--color-warn) 50%, var(--color-ink-3)); }
+.category-chart__tone--9 { --category-chart-tone: color-mix(in srgb, var(--color-signal) 40%, var(--color-panel)); }
+
+.category-chart__swatch {
+  display: inline-block;
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--category-chart-tone);
+}
+
+/* Sections and notes 分区与说明 */
+.category-chart__section {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.category-chart__section > .eval-subheading {
+  margin: 0;
+}
+
+.category-chart__hint,
+.category-chart__note,
+.category-chart__chart-note,
+.category-chart__tip {
+  font-size: var(--text-sm);
+}
+
+.category-chart__hint {
+  color: var(--color-ink-2);
+}
+
+/* Frequency distribution table 频数分布表 */
+.category-chart__table th,
+.category-chart__table td {
+  vertical-align: middle;
+}
+
+.category-chart__table thead th {
+  vertical-align: bottom;
+  white-space: normal;
+}
+
+.category-chart__table .category-chart__category {
+  min-width: 7em;
+  text-align: left;
+}
+
+.category-chart__table tbody th {
+  background: var(--color-panel);
+  white-space: normal;
+}
+
+/* Numbers line up on the right, as in the slide tables; the shared table styles align cells left. 数字靠右对齐，与课件表格一致；共享表格样式默认靠左。 */
+.category-chart__table .category-chart__num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.category-chart__table thead .category-chart__num {
+  white-space: normal;
+}
+
+.category-chart__symbol {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.category-chart__column {
+  display: block;
+  color: var(--color-ink-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.category-chart__row {
+  cursor: pointer;
+}
+
+.category-chart__row.is-selected th,
+.category-chart__row.is-selected td {
+  background: var(--color-highlight-soft);
+}
+
+.category-chart__table tfoot th,
+.category-chart__table tfoot td {
+  border-top: 2px solid var(--color-line);
+  background: var(--color-paper-2);
+  font-weight: 800;
+}
+
+.category-chart__pick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 100%;
+  min-height: 36px;
+  padding: var(--space-1) var(--space-2);
+  border: 2px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+
+.category-chart__pick:hover {
+  border-color: var(--color-line);
+}
+
+.category-chart__pick[aria-pressed="true"] {
+  border-color: var(--color-line);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Words stay whole, so the table never squeezes a category name below its longest word. 单词保持完整，表格不会把类别名称挤得比最长的单词还窄。 */
+.category-chart__pick-name {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/*
+ * Narrow widgets tighten the cells and set the English column names a little smaller, so the four columns fit a
+ * phone without scrolling; a very long category name still scrolls inside the table's own box.
+ * 窄屏时缩小单元格内边距，英文列名稍微缩小，让四列在手机上不用横向滚动；类别名称特别长时，表格仍在自己的框内滚动。
+ */
+@container (max-width: 480px) {
+  .category-chart__table th,
+  .category-chart__table td {
+    padding: var(--space-2) var(--space-1);
+  }
+
+  .category-chart__table .category-chart__category {
+    min-width: 0;
+  }
+
+  .category-chart__column .en {
+    font-size: 0.92em;
+  }
+
+  .category-chart__pick {
+    padding: var(--space-1);
+  }
+
+  /* The legend and the names under the bars still tie each colour to its category. 图例和柱子下方的名称仍然把颜色与类别对应起来。 */
+  .category-chart__pick .category-chart__swatch {
+    display: none;
+  }
+}
+
+/* Worked steps 计算步骤 */
+.category-chart__selected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+}
+
+.category-chart__selected-tag {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.category-chart__selected-name {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: 800;
+}
+
+.category-chart__steps {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category-chart__step {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.category-chart__step-title {
+  margin: 0;
+  font-weight: 800;
+}
+
+.category-chart__step-title .bi-title__en {
+  font-size: 0.85em;
+}
+
+.category-chart__sentence {
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+}
+
+/* Graphs: side by side when the widget is wide enough. 图表：组件够宽时并排。 */
+.category-chart__charts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+@container (min-width: 720px) {
+  .category-chart__charts--both {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: start;
+  }
+}
+
+.category-chart__chart {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.category-chart__chart-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.category-chart__chart-head .eval-subheading {
+  margin: 0;
+}
+
+.category-chart__mode-note {
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  background: var(--color-signal-soft);
+  font-size: var(--text-sm);
+}
+
+/* Bar chart 条形图 */
+.category-chart__bar-figure {
+  min-width: 0;
+}
+
+.category-chart__bar {
+  fill: var(--category-chart-tone);
+  stroke: var(--color-line);
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+
+.category-chart__bar.is-selected {
+  stroke: var(--color-ink);
+  stroke-width: 3.5;
+}
+
+.category-chart__hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.category-chart__value {
+  fill: var(--color-ink);
+  stroke: var(--color-panel);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.category-chart__value.is-selected {
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+/* The names sit in the empty band the plot frame keeps under its axis. 名称放在坐标框横轴下方留出的空白里。 */
+.category-chart__axis-labels {
+  display: grid;
+  align-items: start;
+  margin-top: calc(var(--space-5) * -1);
+}
+
+/* Words never break here (the page breaks long words by default), so a name too wide for its slot overflows and the
+   widget switches to numbered bars. 这里的单词不断开（页面默认会断开长单词），名称放不下时会溢出，组件随即改用编号。 */
+.category-chart__axis-label {
+  min-width: 0;
+  max-height: 4.6em;
+  overflow: hidden;
+  overflow-wrap: normal;
+  padding: 0 var(--space-1);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.category-chart__axis-name .zh,
+.category-chart__axis-name .en {
+  display: block;
+}
+
+.category-chart__axis-name .en {
+  color: var(--color-ink-3);
+}
+
+.category-chart__axis-label.is-selected,
+.category-chart__axis-label.is-selected .en {
+  color: var(--color-ink);
+  font-weight: 900;
+}
+
+.category-chart__axis-number {
+  display: none;
+  font-family: var(--font-mono);
+}
+
+.category-chart__axis-labels--numbered .category-chart__axis-name {
+  display: none;
+}
+
+.category-chart__axis-labels--numbered .category-chart__axis-number {
+  display: block;
+}
+
+.category-chart__axis-title {
+  margin-top: var(--space-2);
+}
+
+.category-chart__key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+.category-chart__key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.category-chart__key-item.is-selected {
+  color: var(--color-ink);
+  font-weight: 900;
+}
+
+.category-chart__key-number {
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
+/* Pie chart 饼图 */
+.category-chart__pie-figure {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.category-chart__pie {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.category-chart__slice {
+  fill: var(--category-chart-tone);
+  stroke: var(--color-panel);
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+
+.category-chart__slice-group.is-selected .category-chart__slice {
+  stroke: var(--color-ink);
+  stroke-width: 3;
+}
+
+.category-chart__pie-label {
+  fill: var(--color-ink);
+  stroke: var(--color-panel);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.category-chart__leader {
+  fill: none;
+  stroke: var(--color-ink-3);
+  stroke-width: 1;
+}
+
+.category-chart__legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.category-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.category-chart__legend-item.is-selected {
+  background: var(--color-highlight-soft);
+  font-weight: 800;
+}
+
+.category-chart__legend-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.category-chart__legend-value {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.category-chart__angle {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.category-chart__angle:empty {
+  display: none;
+}
+
+.category-chart__angle-title {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+/* Summary and notes 结论与提示 */
+.category-chart__summary {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.category-chart__notes {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-5);
+  font-size: var(--text-sm);
+}

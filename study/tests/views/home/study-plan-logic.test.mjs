@@ -22,6 +22,8 @@ const UNITS = [
   { id: 'lab04', kind: 'lab', number: 4 },
 ];
 
+const MODULES = [1, 2, 3, 4, 5].map((number) => ({ id: `mod0${number}`, kind: 'module', number }));
+
 const hrefs = (links) => links.map((link) => link.href);
 
 test('planStorageId follows the plan-<id> convention and stays safe', () => {
@@ -74,6 +76,32 @@ test('detectTaskLinks finds lectures and labs in English and Chinese', () => {
   assert.deepEqual(hrefs(detectTaskLinks({ en: 'Lectures 4 and 6' }, UNITS)), ['#/learn/lec04', '#/learn/lec06']);
   assert.deepEqual(hrefs(detectTaskLinks({ zh: '做实验 4 的题' }, UNITS)), ['#/learn/lab04']);
   assert.deepEqual(detectTaskLinks({ en: 'Lecture 5' }, UNITS)[0].label, { zh: '第 5 讲', en: 'Lecture 5' });
+});
+
+test('detectTaskLinks finds modules in English', () => {
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Reread Module 3' }, MODULES)), ['#/learn/mod03']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Redo Modules 1-3' }, MODULES)), ['#/learn/mod01', '#/learn/mod02', '#/learn/mod03']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Modules 1 and 2' }, MODULES)), ['#/learn/mod01', '#/learn/mod02']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Mod 3 slides, then mod05' }, MODULES)), ['#/learn/mod03', '#/learn/mod05']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Module 2 to Module 4' }, MODULES)), ['#/learn/mod02', '#/learn/mod03', '#/learn/mod04']);
+  assert.deepEqual(detectTaskLinks({ en: 'Module 4' }, MODULES)[0].label, { zh: '模块 4', en: 'Module 4' });
+});
+
+test('detectTaskLinks finds modules in Chinese', () => {
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '复习模块 3 的例题' }, MODULES)), ['#/learn/mod03']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '把模块 1–3 的公式抄一遍' }, MODULES)), ['#/learn/mod01', '#/learn/mod02', '#/learn/mod03']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '模块 2 和模块 4' }, MODULES)), ['#/learn/mod02', '#/learn/mod04']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '重读第 3 模块' }, MODULES)), ['#/learn/mod03']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '第 4 个模块' }, MODULES)), ['#/learn/mod04']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '第 1–2 模块' }, MODULES)), ['#/learn/mod01', '#/learn/mod02']);
+});
+
+test('module ranges, false ranges and other kinds behave like lectures', () => {
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Review Modules 1-5' }, MODULES)), ['#/learn']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Module 2 - 30 minutes' }, MODULES)), ['#/learn/mod02']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Fit the model 2 times; modes 3 and 4' }, MODULES)), []);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Lecture 3 and Lab 3', zh: '第 3 讲、实验 3' }, MODULES)), []);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Module 3, then Lecture 3', zh: '第 3 模块' }, UNITS)), ['#/learn/lec03']);
 });
 
 test('detectTaskLinks avoids false ranges and unknown units', () => {

@@ -1,0 +1,877 @@
+{
+  "lessonId": "mod02",
+  "terms": [
+    {
+      "id": "distribution",
+      "en": "Distribution",
+      "zh": "分布",
+      "def": {
+        "en": "The pattern of variation of a variable is called its distribution. It shows which values (or categories) the variable takes and how often each one occurs.",
+        "zh": "一个变量的“变化模式”：这个变量出现了哪些取值（类别），每个取值各出现了多少次。分类变量的分布 = 每个类别各有多少个案（或占多少比例），可以列成表，也可以画成条形图、饼图。Module 3 讲数值变量时，还要描述分布的形状、中心和离散程度。"
+      },
+      "example": {
+        "zh": "第 2、9 页：Titanic 上 2201 人的生还状态（`Survived`）只有两个类别：Alive（活下来）711 人，Dead（死亡）1490 人。“Alive 711、Dead 1490”这张清单就是 Survived 的分布。",
+        "en": "Slides 2 and 9: the distribution of Survived for the 2201 people aboard the Titanic is Alive 711 and Dead 1490."
+      },
+      "slides": "2, 9",
+      "related": [
+        "frequency-distribution",
+        "frequency",
+        "frequency-table",
+        "marginal-distribution",
+        "conditional-distribution",
+        "variable"
+      ]
+    },
+    {
+      "id": "frequency-distribution",
+      "en": "Frequency distribution",
+      "zh": "频数分布",
+      "def": {
+        "en": "An organized tabulation of the number of individuals (observations) in each category of the measurement scale. Whether it is a table or a graph, it shows two elements: the set of categories and the frequency (count) of each category.",
+        "zh": "把一堆乱糟糟的原始数据整理好，数一数每个类别里有多少个体（观测值）。不管做成表还是画成图，频数分布都只有两样东西：①有哪些类别；②每个类别的频数（人数）。它让人一眼看出数据在各个类别上是怎么“分”的。"
+      },
+      "example": {
+        "zh": "第 9 页：原始数据是一长列 Dead、Dead、Alive……（每人一个值）。`table(Survived)` 数完后得到 Alive 711、Dead 1490，这就是 Survived 的频数分布：类别（Alive、Dead）加上每类的人数。",
+        "en": "Slide 9: `table(Survived)` turns 2201 raw values into two counts, Alive 711 and Dead 1490: the categories and the frequency of each."
+      },
+      "slides": "2, 9",
+      "related": [
+        "distribution",
+        "frequency",
+        "frequency-table",
+        "bar-chart",
+        "pie-chart"
+      ]
+    },
+    {
+      "id": "frequency",
+      "en": "Frequency",
+      "zh": "频数",
+      "def": {
+        "en": "The count of cases (individuals or observations) that fall in a category. The frequencies of all categories add up to the total number of cases, n.",
+        "zh": "频数就是“数人头”：某个类别里有几个个案（几个人、几条观测值）。注意这里的 **frequency** 是“个数”，不是日常英语里“多常发生”的意思。所有类别的频数加起来 = 总个案数 n。"
+      },
+      "example": {
+        "zh": "第 9 页：Survived 的频数是 Alive 711、Dead 1490，711 + 1490 = 2201 = n。课件的解读句：“711 passengers and crew members survived.”（711 名乘客和船员活了下来。）",
+        "en": "Slide 9: the frequencies are Alive 711 and Dead 1490 (711 + 1490 = 2201). '711 passengers and crew members survived.'"
+      },
+      "slides": "3, 9",
+      "related": [
+        "relative-frequency",
+        "percentage",
+        "frequency-table",
+        "frequency-distribution"
+      ]
+    },
+    {
+      "id": "relative-frequency",
+      "en": "Relative frequency (proportion)",
+      "zh": "相对频数（比例）",
+      "def": {
+        "en": "The frequency (count) of a category divided by the total count n. It is a proportion, so it is a number between 0 and 1, and the proportions of all categories add up to 1.",
+        "zh": "相对频数 = 这个类别的频数 ÷ 总数 n，也叫比例（**proportion**），中文课本也常叫“频率”。它表示这一类占全体的“几分之几”，一定在 0 到 1 之间（0 = 一个都没有，1 = 全部都是）；所有类别的比例加起来等于 1。算出来大于 1 或小于 0，一定是算错了。"
+      },
+      "example": {
+        "zh": "第 14 页：活下来的比例 = 711 ÷ 2201 = 0.3230；死亡的比例 = 1490 ÷ 2201 = 0.6770；0.3230 + 0.6770 = 1。R：`prop.table(table(Survived))` 输出 0.323035 和 0.676965。",
+        "en": "Slide 14: 711/2201 = 0.3230 survived and 1490/2201 = 0.6770 did not; the two proportions add up to 1."
+      },
+      "slides": "3, 14",
+      "related": [
+        "frequency",
+        "percentage",
+        "frequency-table",
+        "r-prop-table",
+        "conditional-proportion"
+      ]
+    },
+    {
+      "id": "percentage",
+      "en": "Percentage",
+      "zh": "百分比",
+      "def": {
+        "en": "A proportion (relative frequency) multiplied by 100. The percentages of all categories add up to 100%.",
+        "zh": "百分比 = 比例 × 100，再写上 % 号（% 就是“每 100 个里有几个”）。0.3230 和 32.30% 是同一个量的两种写法；写成 0.3230% 就小了 100 倍，是错的。所有类别的百分比加起来是 100%（四舍五入后可能是 99.9% 或 100.1%，不算错）。"
+      },
+      "example": {
+        "zh": "第 14 页：0.3230 × 100 = 32.30%，“About 32% of passengers and crew members survived.”（大约 32% 的乘客和船员活了下来。）注意：课件这页把 0.3230 误写成 0.3203（两个数字写反了），正确的是 711 ÷ 2201 = 0.3230。",
+        "en": "Slide 14: 0.3230 × 100 = 32.30%, so about 32% of passengers and crew members survived. (The slide has a typo, 0.3203; the correct proportion is 711/2201 = 0.3230.)"
+      },
+      "slides": "3, 14",
+      "related": [
+        "relative-frequency",
+        "frequency",
+        "percentage-points",
+        "frequency-table"
+      ]
+    },
+    {
+      "id": "frequency-table",
+      "en": "Frequency distribution table",
+      "zh": "频数分布表",
+      "def": {
+        "en": "A table that lists each category of a variable with its frequency (count), and usually also its relative frequency (proportion) and percentage, plus a total. It describes the distribution of one categorical variable.",
+        "zh": "把一个分类变量整理成表：每个类别写出频数、相对频数（比例）和百分比，最后是合计（**Total**，R 的 `addmargins()` 叫它 Sum）。注意 Total 不是一个类别。课件第 3 页说还可以加累积百分比（**cumulative percentage**），但这份课件后面没有给出例子。"
+      },
+      "example": {
+        "zh": "第 16 页（船票等级 Ticket Class）：Crew 885（40.2%）、First 325（14.8%）、Second 285（12.9%）、Third 706（32.1%），Total 2201。课件解读句：“885 (40.2%) were crew members.”（885 人，即 40.2%，是船员。）",
+        "en": "Slide 16 (Ticket Class): Crew 885 (40.2%), First 325 (14.8%), Second 285 (12.9%), Third 706 (32.1%), Total 2201. '885 (40.2%) were crew members.'"
+      },
+      "slides": "3, 9, 14, 16",
+      "related": [
+        "frequency",
+        "relative-frequency",
+        "percentage",
+        "frequency-distribution",
+        "r-tally",
+        "r-table"
+      ]
+    },
+    {
+      "id": "bar-chart",
+      "en": "Bar chart (bar plot)",
+      "zh": "条形图",
+      "def": {
+        "en": "A graph that displays the distribution of a categorical variable: one bar for each category, and the height of the bar shows the count (or percent) of its category. The bars have the same width, with spaces between them.",
+        "zh": "分类变量最常用的图：每个类别画一根柱子，柱子高度 = 这个类别的频数（或百分比）。柱子一样宽（这样面积才公平，见面积原则），柱子之间要留空，表示类别是分开的、可以按任意顺序排。和直方图（**histogram**，Module 3）不同：直方图画的是数值变量，柱子紧挨着。"
+      },
+      "example": {
+        "zh": "第 11 页 `barplot(table(Survived))`：Alive 柱高约 711，Dead 柱高约 1490，Dead 柱大约是 Alive 的 2 倍高 → 课件解读句 “Majority of the passengers and crew members did not survive.”（大多数乘客和船员没有活下来。）同类题：2025 期中 Q21（给一个分类变量选图 → 条形图）。",
+        "en": "Slide 11: the Dead bar (1490) is about twice as tall as the Alive bar (711), so the majority of the passengers and crew members did not survive. A categorical variable such as favourite drink (coffee, tea, juice) is best shown with a bar chart."
+      },
+      "slides": "3, 10-11, 17",
+      "related": [
+        "pie-chart",
+        "area-principle",
+        "side-by-side-bar-chart",
+        "categorical-variable",
+        "histogram",
+        "frequency"
+      ]
+    },
+    {
+      "id": "area-principle",
+      "en": "Area Principle",
+      "zh": "面积原则",
+      "def": {
+        "en": "The area occupied by a part of the graph should correspond to the magnitude of the value it represents. A bar chart follows it: the bars have the same width, so their heights decide the areas, and the areas are proportional to the counts.",
+        "zh": "画图的公平规则：图里某一部分占的面积，要和它代表的数值大小相符——数大，面积就大；数小，面积就小。条形图符合这个原则：柱子一样宽，面积只由高度决定，所以面积和频数成正比。如果把某根柱子画得更宽，就会夸大这个类别，违反面积原则。"
+      },
+      "example": {
+        "zh": "第 10–11 页：Dead 有 1490 人，Alive 有 711 人，1490 ÷ 711 ≈ 2.1，所以 Dead 柱的面积大约是 Alive 柱的 2.1 倍，面积准确反映了人数。",
+        "en": "Slides 10-11: 1490/711 ≈ 2.1, so the Dead bar has about 2.1 times the area of the Alive bar, which matches the counts."
+      },
+      "slides": "10",
+      "related": [
+        "bar-chart",
+        "pie-chart"
+      ]
+    },
+    {
+      "id": "pie-chart",
+      "en": "Pie chart",
+      "zh": "饼图",
+      "def": {
+        "en": "A graph that displays the whole group of cases as a circle, sliced into pieces whose sizes are proportional to each category's fraction of the whole. It suits one categorical variable whose categories add up to 100% of the cases.",
+        "zh": "把全体个案画成一整个圆（像一整个披萨），按每个类别占全体的比例切块：占得多，那块就大。适合“部分占整体”的情况：一个分类变量，每个个案只属于一个类别，所有块加起来正好是 100%。类别很多、大小又差不多时，用条形图更容易比较。"
+      },
+      "example": {
+        "zh": "第 13 页 `pie(table(Survived))`：Alive 那块占 32.3%（大约三分之一个圆），Dead 占 67.7%（大约三分之二）。课件的解读句和条形图一样：“Majority of the passengers and crew members did not survive.”",
+        "en": "Slide 13: the Alive slice is 32.3% of the circle (about one third) and the Dead slice is 67.7% (about two thirds)."
+      },
+      "slides": "3, 12-13",
+      "related": [
+        "bar-chart",
+        "area-principle",
+        "relative-frequency",
+        "categorical-variable"
+      ]
+    },
+    {
+      "id": "explanatory-variable",
+      "en": "Explanatory variable (predictor variable)",
+      "zh": "解释变量（预测变量）",
+      "def": {
+        "en": "A variable that is proposed to explain the variation (the differences) in the response variable. It defines the groups (or values) that we compare. With two quantitative variables, it is the x variable, plotted on the x-axis.",
+        "zh": "用来“解释”结果为什么不一样的变量，也叫预测变量（**predictor variable**）。找它的方法：看研究问题是“按什么分组来比较”，分组的依据就是解释变量。到 Module 5（两个数值变量）它就是 x，画在横轴上。叫“解释”不代表证明了因果关系。"
+      },
+      "example": {
+        "zh": "第 20 页：问题是“船票等级和生还状态有没有关联？”我们按船票等级分组、比较各组的生还情况，所以 Ticket Class 是解释变量（分类变量，课件标为顺序尺度）。",
+        "en": "Slide 20: for 'Is there an association between ticket class and survival status?', Ticket Class is the explanatory variable (a categorical variable on an ordinal scale)."
+      },
+      "slides": "19-21",
+      "related": [
+        "response-variable",
+        "association",
+        "contingency-table",
+        "conditional-distribution",
+        "scatterplot"
+      ]
+    },
+    {
+      "id": "response-variable",
+      "en": "Response variable (outcome variable)",
+      "zh": "响应变量（结果变量）",
+      "def": {
+        "en": "A variable on which the comparisons are made at the levels of the other variable(s): the outcome that we compare across groups. With two quantitative variables, it is the y variable, plotted on the y-axis.",
+        "zh": "我们真正关心、拿来比较的“结果”，也叫结果变量（**outcome variable**）。在解释变量的每一组里看它的分布，再比较各组是否不同。到 Module 5（两个数值变量）它就是 y，画在纵轴上。"
+      },
+      "example": {
+        "zh": "第 20 页：Survival Status（Alive、Dead）是响应变量——我们比较的是各个船票等级里活下来的比例。它是名义尺度的分类变量，只有两个类别，所以也叫二元响应变量（**binary response variable**）。",
+        "en": "Slide 20: Survival Status (Alive, Dead) is the response variable: a categorical variable on a nominal scale, also called a binary response variable."
+      },
+      "slides": "19-21",
+      "related": [
+        "explanatory-variable",
+        "binary-variable",
+        "conditional-distribution",
+        "association",
+        "scatterplot"
+      ]
+    },
+    {
+      "id": "binary-variable",
+      "en": "Binary variable",
+      "zh": "二元变量",
+      "def": {
+        "en": "A categorical variable with exactly two categories, such as Alive/Dead or Yes/No. When it is the response, the slides call it a binary response variable.",
+        "zh": "只有两个类别的分类变量（活/死、是/否、会员/非会员）。当它是响应变量时，课件叫它二元响应变量（**binary response variable**）。它仍然是分类变量，就算用 0 和 1 来编码也一样。只要知道其中一类的比例 p，另一类就是 1 − p。"
+      },
+      "example": {
+        "zh": "第 20 页：Survival Status 只有 Alive 和 Dead 两类，是名义尺度的二元响应变量。头等舱活下来的比例约 0.62，死亡的比例就是 1 − 0.62 = 0.38（第 34 页的表）。",
+        "en": "Slide 20: Survival Status has only two categories, Alive and Dead, so it is a binary response variable. In first class about 0.62 survived, so 1 − 0.62 = 0.38 died (slide 34)."
+      },
+      "slides": "20",
+      "related": [
+        "response-variable",
+        "categorical-variable",
+        "nominal-scale"
+      ]
+    },
+    {
+      "id": "association",
+      "en": "Association",
+      "zh": "关联",
+      "def": {
+        "en": "Two variables are associated when certain values of one variable tend to go with certain values of the other. For two categorical variables, this means the conditional distributions of the response are not the same across the levels of the explanatory variable. Associated = related = dependent.",
+        "zh": "两个变量“有关联”：一个变量取某些值时，另一个变量也倾向于取某些值。两个分类变量的判断方法：在解释变量的每一组里算响应变量的条件分布，各组不全一样 → 有关联（也说 **related** 有关系、**dependent** 不独立）；全都一样 → 没有关联（独立）。Module 5 也用这个词描述两个数值变量。有关联不等于有因果。"
+      },
+      "example": {
+        "zh": "第 35 页：总体有 32.30% 的人活下来，但头等舱 62.46%、二等舱 41.40%、三等舱 25.21%、船员 23.95%，各组差很多 → “There appears to be an association between ticket class and survival status.”（课件这页把头等舱写成 62.15%，按同页 R 输出应为 62.46%。）",
+        "en": "Slide 35: overall 32.30% survived, but 62.46% of first-class, 41.40% of second-class and 25.21% of third-class passengers and 23.95% of crew members survived. So there appears to be an association between ticket class and survival status."
+      },
+      "slides": "18-19, 34-35",
+      "related": [
+        "independence",
+        "conditional-distribution",
+        "explanatory-variable",
+        "response-variable",
+        "causation",
+        "difference-of-proportions",
+        "ratio-of-proportions"
+      ]
+    },
+    {
+      "id": "independence",
+      "en": "Independence (no association)",
+      "zh": "独立（无关联）",
+      "def": {
+        "en": "Two categorical variables are independent (not associated, not related) when the distribution of one variable is the same for all categories of the other variable. Then the difference of two conditional proportions is 0 and their ratio is 1 (in practice, very close to 0 and 1).",
+        "zh": "两个变量“互不相干”：不管另一个变量是哪一类，这个变量的条件分布都一样（真实数据里是“几乎一样”）。这时任意两组的比例之差 ≈ 0，比例之比 ≈ 1，每组的条件分布也都接近边际分布。"
+      },
+      "example": {
+        "zh": "第 34 页的假想表：船员、头等舱、二等舱、三等舱的生还比例都是 0.30（死亡都是 0.70），四组完全一样 → 没有关联（独立）。比例之差 0.30 − 0.30 = 0，比例之比 0.30 ÷ 0.30 = 1。",
+        "en": "Slide 34 (hypothetical table): 0.30 survived in every class, so ticket class and survival status would be independent: difference 0.30 − 0.30 = 0 and ratio 0.30/0.30 = 1."
+      },
+      "slides": "34, 39-40",
+      "related": [
+        "association",
+        "conditional-distribution",
+        "marginal-distribution",
+        "difference-of-proportions",
+        "ratio-of-proportions"
+      ]
+    },
+    {
+      "id": "contingency-table",
+      "en": "Contingency table (two-way table)",
+      "zh": "列联表（二维表）",
+      "def": {
+        "en": "A table that classifies cases by two categorical variables. It shows how the cases are distributed along each variable, contingent upon (depending on) the value of the other variable. An r x c table has r rows and c columns of categories; the totals are not counted.",
+        "zh": "同时按两个分类变量给个案分类、数人数的表，也叫二维表（**two-way table**）：行是一个变量的类别，列是另一个变量的类别，每个格子（**cell**）是“既属于这一行、又属于这一列”的人数；边上是行合计、列合计，右下角是总数。“2 x 4 表”= 2 行 × 4 列，只数类别，不数 Total。"
+      },
+      "example": {
+        "zh": "第 21–23 页：行 = Survival Status（Alive、Dead），列 = Ticket Class（First、Second、Third、Crew），是一张 2 x 4 列联表。Alive 行 203、118、178、212（合计 711）；Dead 行 122、167、528、673（合计 1490）；列合计 325、285、706、885；总数 2201。",
+        "en": "Slides 21-23: Survival Status (2 rows) by Ticket Class (4 columns) is a 2 x 4 contingency table. Row totals 711 and 1490, column totals 325, 285, 706 and 885, grand total 2201."
+      },
+      "slides": "21-23",
+      "related": [
+        "cross-tabulation",
+        "cell",
+        "marginal-distribution",
+        "joint-distribution",
+        "conditional-distribution",
+        "r-table"
+      ]
+    },
+    {
+      "id": "cross-tabulation",
+      "en": "Cross-tabulation (crosstabs)",
+      "zh": "交叉表",
+      "def": {
+        "en": "Cross-tabulations (crosstabs) are the joint frequency distribution of two categorical variables, shown as a two-way table. One variable can be treated as the explanatory variable and the other as the response variable.",
+        "zh": "把两个分类变量“交叉”起来数人数：每一种组合（比如“头等舱且活下来”）各有多少人。做出来的就是列联表，所以 crosstabs 和 **contingency table** 说的基本是同一样东西。通常把一个变量当解释变量，另一个当响应变量。"
+      },
+      "example": {
+        "zh": "第 22 页 R：`table(Survived, Class)`，第一个变量做行、第二个做列；`addmargins()` 加上 Sum 行和 Sum 列。第 27 页 mosaic 包：`tally(~ Survived + Class, margin = TRUE, data = titanic)`。R 把等级按字母排（Crew、First、Second、Third），数字和课件手打的表一样，要按标签对数字。",
+        "en": "Slide 22: `table(Survived, Class)` cross-tabulates survival status (rows) by ticket class (columns), and `addmargins()` adds the totals."
+      },
+      "slides": "21-22, 27",
+      "related": [
+        "contingency-table",
+        "joint-distribution",
+        "r-table",
+        "r-tally"
+      ]
+    },
+    {
+      "id": "cell",
+      "en": "Cell",
+      "zh": "单元格",
+      "def": {
+        "en": "One box of a contingency table: the count of cases that are in one row category and one column category at the same time. For any cell there are three choices of percentages: % of row, % of column and % of overall total.",
+        "zh": "列联表里某一行和某一列交叉的格子，装的是“同时属于这一行类别和这一列类别”的人数。同一个格子可以除以三种分母：行合计（行百分比）、列合计（列百分比）、总数（占总数百分比）。分母不同，意思完全不同，所以先问自己：“是在哪一群人里算？”"
+      },
+      "example": {
+        "zh": "第 23 页：格子 203 = “活下来且是头等舱”的人数。203/711 = 28.6%：幸存者中头等舱乘客占 28.6%（行%）；203/325 = 62.5%：头等舱乘客中 62.5% 活下来（列%）；203/2201 = 9.2%：全船的人里 9.2% 是头等舱幸存者（占总数%）。",
+        "en": "Slide 23: the cell 203 (Alive and First). % of row: 203/711 = 28.6% of survivors were in first class. % of column: 203/325 = 62.5% of first-class passengers survived. % of overall total: 203/2201 = 9.2%."
+      },
+      "slides": "23",
+      "related": [
+        "contingency-table",
+        "row-percentage",
+        "column-percentage",
+        "joint-distribution"
+      ]
+    },
+    {
+      "id": "side-by-side-bar-chart",
+      "en": "Side-by-side bar chart",
+      "zh": "并排条形图",
+      "def": {
+        "en": "A bar chart for two categorical variables: for each category of one variable, the bars for the categories of the other variable stand next to each other (not stacked). It is also called a clustered bar chart.",
+        "zh": "两个分类变量一起画的条形图：横轴上每个类别（如每个船票等级）放一小组柱子，组里每根柱子代表另一个变量的一个类别（如活、死），并排放、不叠在一起，也叫簇状条形图（**clustered bar chart**）。柱高通常是人数；各组人数不同时，比较“比率”要看条件百分比，不能只看柱子高矮。"
+      },
+      "example": {
+        "zh": "第 25–26 页 ggplot2：`geom_bar(position = \"dodge\")` 把 Alive 和 Dead 柱并排放。船员 212 活、673 死；头等舱 203 活、122 死。船员活下来的人数（212）比头等舱（203）多，但生还率只有 212/885 = 23.95%，头等舱是 203/325 = 62.46%。第 48–49 页再加 `facet_wrap(~Sex, scales = \"free_x\")`，按性别分成两张图。",
+        "en": "Slides 25-26: `geom_bar(position = \"dodge\")` puts the Alive and Dead bars side by side for each ticket class. Crew has more survivors (212) than First (203) but a much lower survival rate (23.95% vs 62.46%)."
+      },
+      "slides": "25-26, 48-49",
+      "related": [
+        "bar-chart",
+        "contingency-table",
+        "conditional-distribution",
+        "column-percentage",
+        "three-way-table"
+      ]
+    },
+    {
+      "id": "marginal-distribution",
+      "en": "Marginal distribution",
+      "zh": "边际分布",
+      "def": {
+        "en": "The distribution of one variable on its own, read from the margins (the row totals or the column totals) of a contingency table. It can be expressed as counts or as percentages: marginal proportion = row (or column) total ÷ grand total. The official practice solutions also call marginal percentages unconditional percentages: the overall percentages before splitting into groups (not a cell's % of overall total, which is a joint percentage).",
+        "zh": "只看列联表“边上”的合计、不管另一个变量：行合计给出行变量的分布，列合计给出列变量的分布。可以用人数，也可以用比例或百分比：边际比例 = 行（或列）合计 ÷ 总数。题目问“所有人里有多少比例是 A”、没有 among 这类限定时，通常就是边际比例。官方练习答案也把边际百分比叫无条件百分比（**unconditional percentages**）：不分组、不管另一个变量的总体（overall）百分比，例如第 35 页 “Overall, about 32.30% … survived”。注意它不是第 23 页一个格子的 % of overall total（那是联合百分比）。"
+      },
+      "example": {
+        "zh": "第 28–29 页：Survived 的边际分布是 711/2201 = 32.30%（Alive）、1490/2201 = 67.70%（Dead）；Ticket Class 的边际分布是 Crew 40.21%、First 14.77%、Second 12.95%、Third 32.08%。R：`prop.table(margin.table(Contingency.Table, 1))`（1 = 行）。同类题：2025 期中 Q3。",
+        "en": "Slides 28-29: the marginal distribution of Survived is 711/2201 = 32.30% Alive and 1490/2201 = 67.70% Dead; that of Ticket Class is Crew 40.21%, First 14.77%, Second 12.95% and Third 32.08%."
+      },
+      "slides": "27-29",
+      "related": [
+        "joint-distribution",
+        "conditional-distribution",
+        "contingency-table",
+        "r-prop-table",
+        "frequency-table"
+      ]
+    },
+    {
+      "id": "joint-distribution",
+      "en": "Joint distribution",
+      "zh": "联合分布",
+      "def": {
+        "en": "The percent of all cases that belong to each combination of a row category and a column category: joint proportion = cell count ÷ grand total. All the joint proportions of a table add up to 1. On the slides this is the '% of overall total'.",
+        "zh": "每个格子都除以“全体总数”：全体里有多少比例的人“既是 A 又是 B”。整张表所有格子的联合比例加起来 = 1（100%）。课件也叫“占总数的百分比”（**% of overall total**）。遇到“A 且 B，或 C 且 D”这种两个格子的问题：先把两个格子的人数相加，再除以总数一次。"
+      },
+      "example": {
+        "zh": "第 30 页：头等舱幸存者占全船的百分比 = 203/2201 = 0.09223 × 100 ≈ 9.22%。R：`prop.table(Contingency.Table)`（不写 1 或 2）把 8 个格子都除以 2201，8 个数加起来 = 1。同类题：2025 期中 Q2。",
+        "en": "Slide 30: the percentage of first-class survivors = 203/2201 = 0.0922, about 9.22% of all the people aboard."
+      },
+      "slides": "23, 30",
+      "related": [
+        "marginal-distribution",
+        "conditional-distribution",
+        "cell",
+        "cross-tabulation",
+        "r-prop-table"
+      ]
+    },
+    {
+      "id": "conditional-distribution",
+      "en": "Conditional distribution",
+      "zh": "条件分布",
+      "def": {
+        "en": "The distribution of one variable for just the cases that satisfy a condition on another variable (for example, only the third-class passengers). To compare groups, we find the conditional distribution of the response within each level of the explanatory variable.",
+        "zh": "先“缩小范围”只看某一组（满足某个条件的个案），再看这一组里另一个变量的分布。比如只看三等舱乘客：他们中活下来的占多少、死亡的占多少。每个条件分布内部加起来 = 100%。解释变量在列上 → 算列百分比；在行上 → 算行百分比。比较各组的条件分布，就能判断有没有关联。"
+      },
+      "example": {
+        "zh": "第 31–32 页：三等舱乘客中活下来 178/706 = 25.21%，死亡 528/706 = 74.79%，加起来 100%。R：`prop.table(Contingency.Table, 2)`（2 = 按列）或 `tally(~ Survived | Class, format = \"percent\", data = titanic)`。",
+        "en": "Slides 31-32: among third-class passengers, 178/706 = 25.21% survived and 528/706 = 74.79% died. This is the conditional distribution of survival status for third class."
+      },
+      "slides": "31-35",
+      "related": [
+        "conditional-proportion",
+        "column-percentage",
+        "row-percentage",
+        "marginal-distribution",
+        "association",
+        "r-tally"
+      ]
+    },
+    {
+      "id": "conditional-proportion",
+      "en": "Conditional proportion",
+      "zh": "条件比例",
+      "def": {
+        "en": "The proportion of cases with a certain outcome within one group only: a cell count divided by the total of that group (the condition). 'Among A, what proportion are B?' means divide by the total of A. It can be written P(B | A), read 'B given A'.",
+        "zh": "只在某一组里面算的比例：格子人数 ÷ 这一组的合计。题目说 “Among A, what proportion are B?”（在 A 里面，B 占多少？）就用 A 的合计当分母。可以写成 P(B | A)，竖线 | 读作 “given”（在……的条件下）。比例之差和比例之比，比较的都是两个条件比例。"
+      },
+      "example": {
+        "zh": "第 32 页：P(Alive | Third) = 178/706 = 0.2521，“About 25.21% of third-class passengers survived.” 反过来 178/711 = 0.2504 是“幸存者中三等舱乘客的比例”，回答的是另一个问题。同类题：2025 期中 Q4、Q5。",
+        "en": "Slide 32: P(Alive | Third) = 178/706 = 0.2521, so about 25.21% of third-class passengers survived. Reversing the condition, 178/711 = 0.2504, answers a different question."
+      },
+      "slides": "32, 37",
+      "related": [
+        "conditional-distribution",
+        "difference-of-proportions",
+        "ratio-of-proportions",
+        "relative-risk",
+        "column-percentage",
+        "row-percentage"
+      ]
+    },
+    {
+      "id": "row-percentage",
+      "en": "Row percentage (% of row)",
+      "zh": "行百分比",
+      "def": {
+        "en": "A cell count divided by its row total, times 100. Row percentages add up to 100% across each row, and they give the conditional distribution of the column variable within each row category.",
+        "zh": "格子 ÷ 所在行的合计 × 100，每一行加起来 = 100%。它回答“在这一行的那群人里，各列类别各占多少”。要比较的分组（解释变量）放在行上时，就用行百分比。R：`prop.table(Contingency.Table, 1)`（1 = 行）。"
+      },
+      "example": {
+        "zh": "第 23、33 页：203/711 = 28.55%，“About 28.55% of survivors were first-class passengers.”（幸存者中有 28.55% 是头等舱乘客。）它和列百分比 203/325 = 62.46%（头等舱乘客中 62.46% 活下来）回答的是不同的问题。",
+        "en": "Slides 23 and 33: 203/711 = 28.55%, so about 28.55% of survivors were first-class passengers. This is not the same as '62.46% of first-class passengers survived'."
+      },
+      "slides": "23, 33",
+      "related": [
+        "column-percentage",
+        "conditional-distribution",
+        "cell",
+        "r-prop-table"
+      ]
+    },
+    {
+      "id": "column-percentage",
+      "en": "Column percentage (% of column)",
+      "zh": "列百分比",
+      "def": {
+        "en": "A cell count divided by its column total, times 100. Column percentages add up to 100% down each column, and they give the conditional distribution of the row variable within each column category.",
+        "zh": "格子 ÷ 所在列的合计 × 100，每一列加起来 = 100%。它回答“在这一列的那群人里，各行类别各占多少”。Titanic 的表把解释变量 Ticket Class 放在列上，所以比较各等级的生还率要用列百分比。R：`prop.table(Contingency.Table, 2)`（2 = 列）。"
+      },
+      "example": {
+        "zh": "第 23、32 页：203/325 = 62.46%，头等舱乘客中 62.46% 活下来；178/706 = 25.21%，三等舱乘客中 25.21% 活下来。同类题：2025 期中 Q1（要比较的两组在列上 → 用列百分比）。",
+        "en": "Slides 23 and 32: 203/325 = 62.46% of first-class passengers survived, and 178/706 = 25.21% of third-class passengers survived."
+      },
+      "slides": "23, 32",
+      "related": [
+        "row-percentage",
+        "conditional-distribution",
+        "cell",
+        "r-prop-table"
+      ]
+    },
+    {
+      "id": "difference-of-proportions",
+      "en": "Difference of proportions",
+      "zh": "比例之差",
+      "def": {
+        "en": "The difference between two conditional proportions of the same outcome in two groups (p1 − p2). We usually report it with percentages, in percentage points. No association means a difference of about 0; the larger the difference, the stronger the association.",
+        "zh": "两组里“同一个结果”的条件比例相减。解释时一般换成百分比，单位说“百分点”（**percentage points**），不能说“高百分之几”。没有关联时差 ≈ 0；差越大，关联越强（课件：差 50 个百分点算很大，说明关联很强）。"
+      },
+      "example": {
+        "zh": "第 37 页：三等舱生还比例 0.25，头等舱 0.62，0.62 − 0.25 = 0.37 → “The percentage of first-class passengers who survived is 37 percentage points higher than that of third-class passengers.” 不能说 “37% higher”。",
+        "en": "Slide 37: 0.62 − 0.25 = 0.37, so the percentage of first-class passengers who survived is 37 percentage points higher than that of third-class passengers (not '37% higher')."
+      },
+      "slides": "36-37, 40",
+      "related": [
+        "percentage-points",
+        "ratio-of-proportions",
+        "conditional-proportion",
+        "association",
+        "independence"
+      ]
+    },
+    {
+      "id": "percentage-points",
+      "en": "Percentage points",
+      "zh": "百分点",
+      "def": {
+        "en": "The unit for a difference between two percentages. If one percentage is 62% and another is 25%, the first is 37 percentage points higher. Saying '37% higher' would be wrong: that wording describes a ratio, not a difference.",
+        "zh": "两个百分比直接相减，差的单位叫“百分点”：62% − 25% = 37 个百分点。不能说“高 37%”，因为“高 37%”是按比例算的：25% × 1.37 = 34.25%，并不是 62%。课件第 37 页专门提醒过这一点。"
+      },
+      "example": {
+        "zh": "第 37 页：头等舱的生还率比三等舱高 37 个百分点（37 percentage points higher）。第 50 页伯克利例子写成 “difference of 9%”，按第 37 页的规则应说 9 个百分点（不四舍五入是 44.28% − 34.58% = 9.70 个百分点）。",
+        "en": "Slide 37: 62% − 25% = 37 percentage points. On slide 50, the gap 44% − 35% should also be read as 9 percentage points (9.70 points before rounding)."
+      },
+      "slides": "37",
+      "related": [
+        "difference-of-proportions",
+        "percentage",
+        "percent-increase",
+        "ratio-of-proportions"
+      ]
+    },
+    {
+      "id": "ratio-of-proportions",
+      "en": "Ratio of proportions",
+      "zh": "比例之比",
+      "def": {
+        "en": "One conditional proportion divided by another (p1/p2), usually with the larger proportion in the numerator. It tells how many times as large one group's proportion is. No association means a ratio of about 1.",
+        "zh": "两个条件比例相除，看一组是另一组的“几倍”。通常把大的放在分子上，比较好解释。说法规则：比值大于 2 → “… times larger / times more likely”（几倍）；在 1 和 2 之间 → 说“高百分之几”，即 (比值 − 1) × 100%；小于 1 → 说“低百分之几”，即 (1 − 比值) × 100%。没有关联时比值 ≈ 1。医学里叫相对风险（**relative risk**）。"
+      },
+      "example": {
+        "zh": "第 38 页：0.62/0.25 = 2.48 → “The proportion who survived is 2.48 times larger for first-class passengers than for third-class passengers.” 也常说 “2.48 times more likely”。",
+        "en": "Slide 38: 0.62/0.25 = 2.48: the proportion who survived is 2.48 times larger (2.48 times more likely) for first-class passengers than for third-class passengers."
+      },
+      "slides": "38-44",
+      "related": [
+        "relative-risk",
+        "difference-of-proportions",
+        "percent-increase",
+        "percent-decrease",
+        "conditional-proportion",
+        "independence"
+      ]
+    },
+    {
+      "id": "relative-risk",
+      "en": "Relative risk (risk ratio)",
+      "zh": "相对风险（风险比）",
+      "def": {
+        "en": "In medical, public health and psychology research, the ratio of proportions is called the risk ratio or relative risk: RR = proportion with the outcome in group A ÷ proportion with the outcome in group B. RR = 1 means the same proportion in both groups (no association).",
+        "zh": "就是比例之比，只是在医学、公共卫生、心理学里习惯叫“相对风险”或“风险比”（**risk ratio**）。题目说 “relative risk of [结果], comparing A to B”，就是 A 组的条件比例 ÷ B 组的条件比例（先提到的 A 放分子）。RR = 1 表示两组比例一样；RR = 3.5 读作 “3.5 times as large among A as among B”，不能说成 “times less”。"
+      },
+      "example": {
+        "zh": "第 41–42、45 页（阿司匹林研究）：老人心脏病发作的比例，安慰剂组 0.054，阿司匹林组 0.050。安慰剂组对阿司匹林组的相对风险 = 0.054/0.050 = 1.08 → 安慰剂组的心脏病比例高 8%。同类题：2025 期中 Q6。",
+        "en": "Slides 41-42 and 45: heart attack proportions were 0.054 (placebo) and 0.050 (aspirin), so the relative risk is 0.054/0.050 = 1.08: the proportion was 8% higher in the placebo group."
+      },
+      "slides": "41-42, 45",
+      "related": [
+        "ratio-of-proportions",
+        "percent-increase",
+        "percent-decrease",
+        "conditional-proportion"
+      ]
+    },
+    {
+      "id": "percent-increase",
+      "en": "Percent increase",
+      "zh": "增加的百分比",
+      "def": {
+        "en": "The usual way to state a ratio of proportions between 1 and 2: percent increase = (ratio − 1) × 100%. For example, a ratio of 1.23 means a 23% higher proportion.",
+        "zh": "比值在 1 和 2 之间时，常把它说成“高百分之几”：(比值 − 1) × 100%，比如比值 1.23 → 高 23%。注意这是相对的“高”（按比例算），和“高几个百分点”（两个百分比相减）不是一回事。比值大于 2 时改说“几倍”。"
+      },
+      "example": {
+        "zh": "第 42 页：0.054/0.050 = 1.08，(1.08 − 1) × 100% = 8% → “The proportion of heart attacks was 8% higher in the placebo group than in the aspirin group.” 但两组只差 5.4% − 5.0% = 0.4 个百分点。",
+        "en": "Slide 42: 0.054/0.050 = 1.08, so the proportion of heart attacks was 8% higher in the placebo group than in the aspirin group, although the difference is only 0.4 percentage points."
+      },
+      "slides": "42, 44",
+      "related": [
+        "ratio-of-proportions",
+        "percent-decrease",
+        "percentage-points",
+        "relative-risk"
+      ]
+    },
+    {
+      "id": "percent-decrease",
+      "en": "Percent decrease",
+      "zh": "减少的百分比",
+      "def": {
+        "en": "The usual way to state a ratio of proportions below 1: percent decrease = (1 − ratio) × 100%. For example, a ratio of 0.80 means a 20% lower proportion.",
+        "zh": "比值小于 1 时，常说成“低百分之几”：(1 − 比值) × 100%，比如比值 0.80 → 低 20%。注意“A 比 B 高 8%”反过来并不等于“B 比 A 低 8%”，因为基准（分母）换了。"
+      },
+      "example": {
+        "zh": "第 43 页（已更正）：0.050/0.054 = 0.926，(1 − 0.926) × 100% ≈ 7.4% → 阿司匹林组的心脏病比例比安慰剂组低约 7.4%。课件写成 0.92 和 “8% lower”，是把 0.9259 截断成了 0.92；正确约为 0.93，低约 7.4%。",
+        "en": "Slide 43 (corrected): 0.050/0.054 = 0.926, so the proportion of heart attacks was about 7.4% lower in the aspirin group than in the placebo group. The slide shows 0.92 and 8%, a rounding slip."
+      },
+      "slides": "43",
+      "related": [
+        "ratio-of-proportions",
+        "percent-increase",
+        "relative-risk"
+      ]
+    },
+    {
+      "id": "three-way-table",
+      "en": "Three-way table",
+      "zh": "三向表",
+      "def": {
+        "en": "A table of three categorical variables: a two-way table of two variables is made separately for each category of a third variable. It shows whether the relationship between the two variables stays the same within each level of the third variable (multivariate association).",
+        "zh": "加入第三个变量：按第三个变量（比如性别）的每个类别，各做一张两个变量的列联表。这样能看“在每一组内部”两个变量的关系是否一样，是发现潜伏变量和辛普森悖论的工具。表里每个百分比的分母，都是那一小组（比如“头等舱女性”）的合计。"
+      },
+      "example": {
+        "zh": "第 46–47 页：`tally(~ Survived | Class + Sex, margin = TRUE, data = titanic)` 按性别分开看各等级的生还情况。头等舱：女性 141/145 = 97.24% 活下来，男性 62/180 = 34.44%；三等舱：女性 90/196 = 45.92%，男性 88/510 = 17.25%。每个等级都是女性的生还率远高于男性。",
+        "en": "Slides 46-47: survival by ticket class, separately for each sex. First class: 141/145 = 97.24% of females vs 62/180 = 34.44% of males survived; third class: 45.92% vs 17.25%."
+      },
+      "slides": "46-49",
+      "related": [
+        "contingency-table",
+        "simpsons-paradox",
+        "lurking-variable",
+        "r-tally",
+        "side-by-side-bar-chart"
+      ]
+    },
+    {
+      "id": "simpsons-paradox",
+      "en": "Simpson's paradox",
+      "zh": "辛普森悖论",
+      "def": {
+        "en": "Simpson's paradox describes the problem of combining percentages over different groups: a comparison that holds within each group can disappear or even reverse when the groups are combined. It happens when a lurking variable is related to both the groups and the outcome.",
+        "zh": "把不同小组的数据“合在一起”算百分比时出的问题：在每个小组里 A 都不比 B 差（甚至更好），合并后却变成 A 比 B 差（或者反过来）。原因是有一个潜伏变量：它既和分组有关，又和结果有关，各组的“成分”不一样，合并后的总百分比就被扭曲了。对策：在潜伏变量的每一层里分别比较。"
+      },
+      "example": {
+        "zh": "第 50–52 页伯克利研究生录取：合并看，男生录取率约 44%（3738/8442），女生约 35%（1494/4321），像是歧视女生；按院系拆开看，6 个院系里有 4 个是女生录取率更高（例如 A 系：男 62%，女 82%）。原因是女生大多申请了很难进的院系。潜伏变量 = 院系。",
+        "en": "Slides 50-52 (Berkeley admissions): overall about 44% of men and 35% of women were admitted, but within departments women were admitted at nearly the same or higher rates (Department A: 62% of men vs 82% of women). The lurking variable is the department."
+      },
+      "slides": "50-53",
+      "related": [
+        "lurking-variable",
+        "aggregated-data",
+        "disaggregated-data",
+        "controlling-for-a-variable",
+        "three-way-table"
+      ]
+    },
+    {
+      "id": "aggregated-data",
+      "en": "Aggregated data",
+      "zh": "合并数据（汇总数据）",
+      "def": {
+        "en": "Data combined (pooled) over all the groups of another variable, for example over all departments. An overall percentage from aggregated data ignores that variable and can be misleading (Simpson's paradox).",
+        "zh": "把各个小组（比如各个院系）的数据加在一起，只看一个总的百分比。它忽略了分组变量；各组成分差别大时，总百分比可能误导人——辛普森悖论就出在这里。"
+      },
+      "example": {
+        "zh": "第 50 页：男生 3738/8442 = 44.28%（约 44%）被录取，女生 1494/4321 = 34.58%（约 35%），差 9.70 个百分点（课件四舍五入后写成 “9%”，应说 9 个百分点）。这是把所有院系合在一起的合并数据。",
+        "en": "Slide 50: 3738/8442 = 44.28% of men and 1494/4321 = 34.58% of women were admitted, aggregated over all departments."
+      },
+      "slides": "50-52",
+      "related": [
+        "disaggregated-data",
+        "simpsons-paradox",
+        "lurking-variable",
+        "controlling-for-a-variable"
+      ]
+    },
+    {
+      "id": "disaggregated-data",
+      "en": "Disaggregated data",
+      "zh": "拆分数据（分组数据）",
+      "def": {
+        "en": "Data broken down by the groups (levels) of another variable, for example by department, so that we can compare within each group.",
+        "zh": "把合并的数据按另一个变量（比如院系）拆开，一组一组地看、一组一组地比。这样就“控制”了那个变量，能看到合并数据里看不出来的真实关系。"
+      },
+      "example": {
+        "zh": "第 51 页：按 6 个院系拆开后，女生在 A、B、D、F 四个系的录取率更高（A 系 82% vs 62%）；而女生大多（1835 人中有 1702 人，约 92.8%）申请了录取率很低的 C–F 系。（课件把 F 系男生申请人数 373 误写成了 272。）",
+        "en": "Slide 51: broken down by department, women had the higher admission rate in 4 of the 6 departments (A, B, D and F), but most women (1702 of 1835) applied to departments C to F, which have low admission rates."
+      },
+      "slides": "51-52",
+      "related": [
+        "aggregated-data",
+        "simpsons-paradox",
+        "controlling-for-a-variable",
+        "three-way-table"
+      ]
+    },
+    {
+      "id": "lurking-variable",
+      "en": "Lurking variable",
+      "zh": "潜伏变量（隐藏变量）",
+      "def": {
+        "en": "An important variable that is not identified (not measured or not included in the analysis) but is buried in the data. Because it is related to the variables we study, it can create, hide or reverse the relationship we see. Lurking variables are one reason why association does not prove causation.",
+        "zh": "藏在数据里、没被注意到（没测量或没放进分析）的重要变量，也叫隐藏变量。它和我们研究的变量都有关系，所以能“制造”、掩盖甚至反转我们看到的关系。观察性研究不能证明因果，原因之一就是可能有潜伏变量。课件提醒：找出它并不总是容易。"
+      },
+      "example": {
+        "zh": "第 53 页伯克利例子：潜伏变量是院系（有多难进）。它既和性别有关（男女申请的院系不同），又和录取有关（各院系录取率差很多），所以合并数据扭曲了男女录取率的比较。",
+        "en": "Slide 53: in the Berkeley example, the lurking variable is the department. It is related to sex (men and women applied to different departments) and to admission (departments have very different admission rates)."
+      },
+      "slides": "53",
+      "related": [
+        "simpsons-paradox",
+        "controlling-for-a-variable",
+        "aggregated-data",
+        "association",
+        "causation",
+        "observational-study"
+      ]
+    },
+    {
+      "id": "controlling-for-a-variable",
+      "en": "Controlling for a variable",
+      "zh": "控制一个变量",
+      "def": {
+        "en": "Comparing groups within each level (category) of another variable, instead of using one overall (pooled) percentage. This removes that variable's effect from the comparison and protects against Simpson's paradox.",
+        "zh": "在另一个变量的每一层（每个类别）里面分别比较，而不是只看一个合并后的总百分比。这样那个变量就被“固定住”了，不会扭曲比较结果。注意：一个 overall（总体）百分比恰恰是没有控制这个变量的。"
+      },
+      "example": {
+        "zh": "第 51–53 页：控制院系 = 在每个院系里比较男女录取率（A 系：男 62%，女 82%），而不是比较合并后的 44% 和 35%。“controlling for” 这个说法出自 Module 2 Practice Q2 的答案（同类题）。",
+        "en": "Slides 51-53: controlling for department means comparing the admission rates of men and women within each department (Department A: 62% vs 82%), not the pooled 44% vs 35%."
+      },
+      "slides": "51-53",
+      "related": [
+        "lurking-variable",
+        "simpsons-paradox",
+        "disaggregated-data",
+        "three-way-table"
+      ]
+    },
+    {
+      "id": "r-table",
+      "en": "table() and addmargins() (R)",
+      "zh": "R 函数 table() 与 addmargins()",
+      "def": {
+        "en": "In R, `table()` counts the cases in each category: `table(Survived)` gives a frequency table, and `table(Survived, Class)` gives a contingency table (first variable = rows, second = columns). `addmargins()` adds the totals, labelled Sum.",
+        "zh": "`table()` 是 R 里“数人头”的函数：放一个变量得到频数分布表，放两个变量得到列联表（第一个变量做行，第二个做列）。`addmargins()` 给表加上合计，R 里叫 Sum。R 区分大小写：`Survived` 和 `survived` 是两个不同的名字。"
+      },
+      "example": {
+        "zh": "第 9 页：`table(Survived)` 输出 Alive 711、Dead 1490；`addmargins(table(Survived))` 多出 Sum 2201。第 22 页：`Contingency.Table <- table(Survived, Class)` 得到 2 x 4 列联表，`addmargins(Contingency.Table)` 加上 Sum 行和 Sum 列。",
+        "en": "Slide 9: `table(Survived)` gives Alive 711 and Dead 1490, and `addmargins()` adds Sum 2201. Slide 22: `table(Survived, Class)` gives the 2 x 4 contingency table."
+      },
+      "slides": "9, 22",
+      "related": [
+        "r-prop-table",
+        "r-tally",
+        "frequency-table",
+        "contingency-table",
+        "cross-tabulation"
+      ]
+    },
+    {
+      "id": "r-prop-table",
+      "en": "prop.table() and margin.table() (R)",
+      "zh": "R 函数 prop.table() 与 margin.table()",
+      "def": {
+        "en": "In R, `prop.table()` turns counts into proportions: `prop.table(tab)` divides every cell by the grand total (joint), `prop.table(tab, 1)` by the row totals and `prop.table(tab, 2)` by the column totals. `margin.table(tab, 1)` and `margin.table(tab, 2)` give the row and the column totals.",
+        "zh": "`prop.table()` 把人数变成比例，第二个参数决定分母：不写 → 除以总数（联合比例）；写 1 → 除以行合计（行比例，每行加起来 = 1）；写 2 → 除以列合计（列比例，每列加起来 = 1）。`margin.table(tab, 1)` 给行合计，`margin.table(tab, 2)` 给列合计，外面再套 `prop.table()` 就是边际比例。记法：1 = 行，2 = 列；再乘 100 就变成百分比。"
+      },
+      "example": {
+        "zh": "同一个格子（Alive 且 First = 203）三种分母：第 30 页 `prop.table(Contingency.Table)` 得 0.09223080（203/2201）；第 32 页 `prop.table(Contingency.Table, 2)` 得 0.6246154（203/325）；第 33 页 `prop.table(Contingency.Table, 1)` 得 0.28551336（203/711）。第 28 页：`prop.table(margin.table(Contingency.Table, 1))` 输出 0.323035、0.676965。（第 28–29 页两个对象名起反了：`Margin.Prop.TicketClass` 里装的其实是 Survived 的边际比例，数字没错。）",
+        "en": "Slide 30: `prop.table(Contingency.Table)` gives 0.09223080 for Alive and First (203/2201). Slide 32: `prop.table(Contingency.Table, 2)` gives 0.6246154 (203/325). Slide 33: `prop.table(Contingency.Table, 1)` gives 0.28551336 (203/711)."
+      },
+      "slides": "14, 28-33",
+      "related": [
+        "r-table",
+        "r-tally",
+        "joint-distribution",
+        "marginal-distribution",
+        "row-percentage",
+        "column-percentage"
+      ]
+    },
+    {
+      "id": "r-tally",
+      "en": "tally() (R, {mosaic})",
+      "zh": "R 函数 tally()（mosaic 包）",
+      "def": {
+        "en": "`tally()` from the {mosaic} package (load it with `library(mosaic)`) makes tables with a formula: `~ Class` for one variable, `~ Survived + Class` for a two-way table, and `~ Survived | Class` for the distribution of Survived within each class (`tally(~ A | B)` always prints the levels of B as columns; with `format = \"percent\"` each column adds to 100%). `margin = TRUE` adds a Total; `format = \"proportion\"` or `format = \"percent\"` changes the output.",
+        "zh": "mosaic 包里做表的函数，先用 `library(mosaic)` 加载。公式写法：`~ Class` → 一个变量的频数表；`~ Survived + Class` → 列联表（前面的做行）；`~ Survived | Class` → 竖线 | 表示“在……之内”，算每个等级里 Survived 的分布（条件分布，每列加起来 100%）。`tally(~ A | B)` 总是把 B 的各组印成列：这里 Class 本来就在 Contingency.Table 的列上，所以和列百分比一样；如果 B 在原表的行上（练习 Q3D 的 Education_Level），这些数就是原表的行百分比，只是行列对调了。`~ Survived | Class + Sex` → 三向表。`margin = TRUE` 加 Total；`format = \"proportion\"` 出比例，`format = \"percent\"` 出百分比。"
+      },
+      "example": {
+        "zh": "第 16 页：`tally(~ Class, margin = TRUE, data = titanic)` 输出 Crew 885、First 325、Second 285、Third 706、Total 2201。第 35 页：`tally(~ Survived | Class, format = \"percent\", data = titanic)` 的 Alive 行是 Crew 23.95480、First 62.46154、Second 41.40351、Third 25.21246。",
+        "en": "Slide 35: `tally(~ Survived | Class, format = \"percent\", data = titanic)` gives the percent who survived in each class: Crew 23.95, First 62.46, Second 41.40 and Third 25.21."
+      },
+      "slides": "15-16, 27, 35, 46-47",
+      "related": [
+        "r-table",
+        "r-prop-table",
+        "conditional-distribution",
+        "three-way-table",
+        "frequency-table"
+      ]
+    },
+    {
+      "id": "categorical-variable",
+      "en": "Categorical (qualitative) variable",
+      "zh": "分类变量（定性变量）",
+      "def": {
+        "en": "A variable whose measurement scale is a set of pre-determined categories; it tells which group or category each case belongs to. It is also called a qualitative variable, and counting is the natural way to summarize it.",
+        "zh": "分类变量（**categorical variable**）的取值是“类别”，回答“属于哪一组”，比如专业、省份、交通方式。类别事先定好；类别之间是性质不同，不是数量大小不同，所以又叫定性变量（**qualitative variable**）。最自然的汇总方法是数个数、算百分比，常用条形图（**bar chart**）或饼图（**pie chart**）展示。它分两种尺度：名义尺度（**nominal**，没顺序）和顺序尺度（**ordinal**，有顺序）。用数字当代码（比如 1 = 男，0 = 女）也还是分类变量。"
+      },
+      "example": {
+        "zh": "Module 2（第 3–4、20 页）：Titanic 的 4 个变量 Survived、Age、Sex、Class 都是分类变量。一个分类变量用频数、比例、百分比来描述（频数分布表），用条形图或饼图来展示；两个分类变量放进列联表。",
+        "en": "Module 2 (slides 3-4 and 20): all four Titanic variables (Survived, Age, Sex, Class) are categorical. We describe a categorical variable with counts, proportions and percentages and display it with a bar chart or a pie chart."
+      },
+      "slides": "3-4, 20",
+      "related": [
+        "quantitative-variable",
+        "nominal-scale",
+        "ordinal-scale",
+        "binary-variable",
+        "frequency-table",
+        "bar-chart",
+        "pie-chart"
+      ]
+    },
+    {
+      "id": "nominal-scale",
+      "en": "Nominal scale",
+      "zh": "名义尺度",
+      "def": {
+        "en": "A categorical scale whose categories simply have different names and no order. No category is 'bigger' or 'better' than another, and it makes no sense to average the categories.",
+        "zh": "名义尺度（**nominal scale**）：类别只是名字不同，没有先后、没有大小。哪个排前面都行，不能说哪个“更大”“更好”，求平均更没有意义。它是分类变量（**categorical variable**）的一种。"
+      },
+      "example": {
+        "zh": "Module 2 第 20 页：Survival Status（Alive、Dead）是名义尺度的分类变量，而且是二元变量。第 3 页：名义尺度的条形图柱子之间要留空，强调类别是分开的、彼此独立的。",
+        "en": "Module 2, slide 20: Survival Status (Alive, Dead) is a categorical variable measured on a nominal scale, and it is binary."
+      },
+      "slides": "3, 20",
+      "related": [
+        "ordinal-scale",
+        "categorical-variable",
+        "binary-variable",
+        "bar-chart"
+      ]
+    },
+    {
+      "id": "ordinal-scale",
+      "en": "Ordinal scale",
+      "zh": "顺序尺度",
+      "def": {
+        "en": "A categorical scale whose categories are organized in a meaningful order. It ranks observations by size or magnitude but reports order without natural units.",
+        "zh": "顺序尺度（**ordinal scale**）：类别之间有自然的先后顺序（低 → 高），可以排名，但相邻类别差多少没有单位，不能当数量相减或求平均。它仍然是分类变量，不是数值变量：像 poor、fair、good、excellent 这种等级，考试常拿来当陷阱。"
+      },
+      "example": {
+        "zh": "Module 2 第 20 页：Ticket Class（First、Second、Third、Crew）被课件标为顺序尺度的分类变量。（严格说 Crew 放不进“头等、二等、三等”的顺序，但考试按课件答 ordinal。）第 3 页：顺序尺度也用分开的柱子，因为不能假设各类别之间的“距离”相等。",
+        "en": "Module 2, slide 20: Ticket Class (First, Second, Third, Crew) is a categorical variable measured on an ordinal scale, as the course labels it."
+      },
+      "slides": "3, 20",
+      "related": [
+        "nominal-scale",
+        "categorical-variable",
+        "bar-chart"
+      ]
+    }
+  ]
+}

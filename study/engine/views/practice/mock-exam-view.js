@@ -5,13 +5,18 @@
  * 最后给出按单元的成绩单。
  *
  * A running exam lives in module memory, so leaving the route and coming back resumes it (the clock
- * keeps running). Results are written to progress only when the report is produced.
- * 进行中的考试保存在模块内存里：离开再回来可以继续（计时不停）；出成绩单时才写入答题记录。
+ * keeps running). Results are written to progress only when the report is produced. The builder's
+ * defaults, the objective types and the note on the real test come from course.json "mockExam"
+ * (logic/mock-config.js).
+ * 进行中的考试保存在模块内存里：离开再回来可以继续（计时不停）；出成绩单时才写入答题记录。组卷的默认值、客观题题型和
+ * 关于真实考试的说明来自 course.json 的 "mockExam"（logic/mock-config.js）。
  */
 import { h, replaceContent } from '../../core/dom/element.js';
 import { ensureStylesheet } from '../../core/dom/stylesheet.js';
 import { icon } from '../../core/dom/icons.js';
-import { biTitle } from '../../core/text/bilingual.js';
+import { biTitle, enNode, zhNode } from '../../core/text/bilingual.js';
+import { announcementChannels } from '../../core/text/course-channels.js';
+import { groupByKind, isMainKind, kindGroupTitle, whichUnitsZh } from '../../core/text/unit-labels.js';
 import { formatDuration } from '../../core/util/format.js';
 import { button, linkButton, setButtonLabel } from '../../components/controls/button.js';
 import { emptyState, loadingState, partialLoadNotice } from '../../components/feedback/states.js';
@@ -20,7 +25,6 @@ import { createQuestionCard, ensureQuestionCardStyles } from './components/quest
 import { kindLabel, unitKicker, unitsById } from './components/labels.js';
 import { ensureResultsStyles, lessonLink, questionList, scoreBoard, unitBreakdown } from './components/results.js';
 import {
-  MOCK_DEFAULTS,
   MOCK_LIMITS,
   composeMockExam,
   crossedMilestone,
@@ -28,11 +32,15 @@ import {
   normalizeMockSettings,
   remainingSeconds,
 } from './logic/mock-exam.js';
+import { defaultMockUnits, minuteChoices, mockExamConfig, objectiveHint } from './logic/mock-config.js';
 import { randomSeed } from './logic/rng.js';
 import { filterQuestions, sessionPath } from './logic/session.js';
 import { summarizeResults } from './logic/summary.js';
 
-const MINUTE_CHOICES = [30, 45, 60, 90, 120, 0];
+// The builder's subtitle follows the course's real test: with a written part, or objective questions only.
+// 组卷页的副标题跟随课程的真实考试：有主观题部分，或只有客观题。
+const SUBTITLE_WITH_WRITTEN = '像真实考试一样限时作答：先做选择题，再用英文写长答题。交卷后客观题自动判分，主观题对照参考答案自评。A timed paper like the real test: multiple choice first, then written answers in English. Objective questions are graded at hand-in; you grade the written ones against the model answers.';
+const SUBTITLE_OBJECTIVE_ONLY = '像真实考试一样限时作答，交卷后自动判分，每道题都有解析。A timed paper like the real test, graded automatically at hand-in, with an explanation for every question.';
 
 // Survive route changes while the page stays open. 页面打开期间跨路由保留。
 let activeExam = null;
@@ -54,6 +62,7 @@ export async function render(container, context) {
   if (!container.isConnected) return undefined;
   const bank = filterQuestions(loaded);
   const units = unitsById(context.course);
+  const config = mockExamConfig(context.course);
   const failedUnits = loaded.failedUnits || [];
   let mounted = null;
 
@@ -75,6 +84,8 @@ export async function render(container, context) {
     replaceContent(container, builderView({
       bank,
       units,
+      config,
+      channels: announcementChannels(context.course),
       notice,
       loadNotice: partialLoadNotice({
         unitIds: failedUnits,
@@ -85,7 +96,7 @@ export async function render(container, context) {
       onStart(settings) {
         activeExam?.dispose();
         lastSettings = settings;
-        activeExam = createExam({ context, bank, units, settings });
+        activeExam = createExam({ context, bank, units, settings, objectiveTypes: config.objectiveTypes });
         mount(activeExam);
         window.scrollTo({ top: 0 });
       },
@@ -108,19 +119,37 @@ export async function render(container, context) {
 }
 
 /**
- * Builder form: units (default every lecture that has questions), counts and time limit.
- * 组卷表单：单元（默认所有有题的讲课）、题量与时限。
+ * One line on the real test from course.json "mockExam.note", placed above the counts it explains;
+ * null when the course has no note.
+ * course.json 中 "mockExam.note" 对真实考试的一行说明，放在它所解释的题量上方；课程没有说明时返回 null。
  */
-function builderView({ bank, units, notice, loadNotice, onStart, onViewResults }) {
+function realTestNote(note) {
+  if (!note) return null;
+  return h('p', { class: 'mock-exam__real-test' },
+    h('span', { class: 'mock-exam__real-test-label' }, '真实考试 The real test'),
+    zhNode(note.zh, 'teach', 'span'),
+    enNode(note.en, 'span'));
+}
+
+/**
+ * Builder form: units (default every main unit, lecture or module, that has questions), counts and
+ * time limit, starting from the course's defaults.
+ * 组卷表单：单元（默认所有有题的主要单元，即讲课或模块）、题量与时限，初始值为课程的默认设置。
+ */
+function builderView({ bank, units, config, channels, notice, loadNotice, onStart, onViewResults }) {
+  const { defaults, objectiveTypes } = config;
+  const allUnits = [...units.values()];
+  const groups = groupByKind(allUnits);
+  const mainKinds = groups.map((group) => group.kind).filter(isMainKind);
   const header = pageHeader({
     eyebrow: '刷题 Practice',
     title: { zh: '模拟考试', en: 'Mock exam' },
-    subtitle: '像真实考试一样限时作答：先做选择题，再用英文写长答题。交卷后客观题自动判分，主观题对照参考答案自评。A timed paper like the real test: multiple choice first, then written answers in English. Objective questions are graded at hand-in; you grade the written ones against the model answers.',
+    subtitle: defaults.writtenCount > 0 ? SUBTITLE_WITH_WRITTEN : SUBTITLE_OBJECTIVE_ONLY,
   });
   const scope = h('div', { class: ['callout', 'callout--warn', 'mock-exam__scope'] },
     h('span', { class: 'callout__label' }, '考试范围 Test scope'),
-    h('p', {}, '真实测验考哪几讲，一定以老师在 Quercus / Piazza 上的通知为准；这里的范围由你自己选。'),
-    h('p', { lang: 'en' }, 'Always confirm the real test scope on Quercus / Piazza. Here you pick the units yourself.'));
+    h('p', {}, `真实测验考${whichUnitsZh(mainKinds[0])}，一定以老师在 ${channels.zh} 上的通知为准；这里的范围由你自己选。`),
+    h('p', { lang: 'en' }, `Always confirm the real test scope on ${channels.en}. Here you pick the units yourself.`));
   const noticeBox = notice ? h('p', { class: ['callout', 'callout--info', 'mock-exam__notice-box'] }, notice) : null;
 
   if (!bank.length) {
@@ -131,25 +160,21 @@ function builderView({ bank, units, notice, loadNotice, onStart, onViewResults }
     }));
   }
 
-  const allUnits = [...units.values()];
-  const availability = mockAvailability(bank, allUnits.map((unit) => unit.id)).perUnit;
+  const availability = mockAvailability(bank, allUnits.map((unit) => unit.id), { objectiveTypes }).perUnit;
   const usable = (unitId) => {
     const counts = availability.get(unitId);
     return Boolean(counts && counts.objective + counts.written > 0);
   };
-  const usableUnits = allUnits.filter((unit) => usable(unit.id));
-  const lectures = usableUnits.filter((unit) => unit.kind === 'lecture').map((unit) => unit.id);
+  // Settings from an earlier visit win over the course defaults. 上次的设置优先于课程默认值。
   const initial = normalizeMockSettings(lastSettings || {
-    units: lectures.length ? lectures : usableUnits.map((unit) => unit.id),
-    ...MOCK_DEFAULTS,
-  });
+    units: defaultMockUnits(allUnits.filter((unit) => usable(unit.id))),
+    ...defaults,
+  }, defaults);
 
   const checkboxes = new Map();
-  const kinds = [];
-  for (const unit of allUnits) if (!kinds.includes(unit.kind)) kinds.push(unit.kind);
-  const unitGroups = kinds.map((kind) => h('div', { class: 'mock-exam__unit-group' },
-    h('p', { class: 'mock-exam__group-title' }, kindLabel(kind)),
-    h('ul', { class: 'mock-exam__units' }, allUnits.filter((unit) => unit.kind === kind).map((unit) => {
+  const unitGroups = groups.map((group) => h('div', { class: 'mock-exam__unit-group' },
+    h('p', { class: 'mock-exam__group-title' }, kindLabel(group.kind)),
+    h('ul', { class: 'mock-exam__units' }, group.units.map((unit) => {
       const counts = availability.get(unit.id) || { objective: 0, written: 0 };
       const enabled = usable(unit.id);
       const input = h('input', {
@@ -177,12 +202,19 @@ function builderView({ bank, units, notice, loadNotice, onStart, onViewResults }
     update();
   };
 
+  // One quick button per main kind in the course, e.g. 全部讲课 All lectures or 全部模块 All modules.
+  // 课程中每种主要单元各一个快捷按钮，例如“全部讲课 All lectures”或“全部模块 All modules”。
+  const kindButtons = mainKinds.map((kind) => {
+    const title = kindGroupTitle(kind);
+    return button({ label: `全部${title.zh} All ${title.en.toLowerCase()}`, size: 'sm', onClick: () => selectWhere((unit) => unit?.kind === kind) });
+  });
+
   const objective = numberField('mock-exam-objective', '客观题数量 Objective questions',
-    '单选、多选、判断、计算 Multiple choice, select-all, true/false, calculation', initial.objectiveCount, MOCK_LIMITS.objectiveMax);
+    objectiveHint(objectiveTypes), initial.objectiveCount, MOCK_LIMITS.objectiveMax);
   const written = numberField('mock-exam-written', '主观题数量 Written questions',
     '简答、论述，用英文写 Short and long answers, written in English', initial.writtenCount, MOCK_LIMITS.writtenMax);
   const minutes = h('select', { class: 'select', id: 'mock-exam-minutes', onchange: update },
-    MINUTE_CHOICES.map((value) => h('option', { value: String(value), selected: value === initial.minutes },
+    minuteChoices(defaults.minutes, initial.minutes).map((value) => h('option', { value: String(value), selected: value === initial.minutes },
       value ? `${value} 分钟 minutes` : '不限时 No limit')));
 
   const availabilityText = h('p', { class: 'mock-exam__availability', 'aria-live': 'polite' });
@@ -198,13 +230,13 @@ function builderView({ bank, units, notice, loadNotice, onStart, onViewResults }
       objectiveCount: objective.input.value,
       writtenCount: written.input.value,
       minutes: minutes.value,
-    });
+    }, defaults);
   }
 
   function update() {
     for (const input of checkboxes.values()) input.closest('.mock-exam__unit')?.classList.toggle('is-checked', input.checked);
     const settings = currentSettings();
-    const counts = mockAvailability(bank, settings.units);
+    const counts = mockAvailability(bank, settings.units, { objectiveTypes });
     const short = [];
     if (settings.objectiveCount > counts.objective) short.push(`客观题只有 ${counts.objective} 道 only ${counts.objective} objective`);
     if (settings.writtenCount > counts.written) short.push(`主观题只有 ${counts.written} 道 only ${counts.written} written`);
@@ -221,7 +253,7 @@ function builderView({ bank, units, notice, loadNotice, onStart, onViewResults }
     onsubmit: (event) => {
       event.preventDefault();
       const settings = currentSettings();
-      const counts = mockAvailability(bank, settings.units);
+      const counts = mockAvailability(bank, settings.units, { objectiveTypes });
       if (!settings.units.length) {
         error.textContent = '先选至少一个单元 Choose at least one unit.';
       } else if (!settings.objectiveCount && !settings.writtenCount) {
@@ -236,19 +268,22 @@ function builderView({ bank, units, notice, loadNotice, onStart, onViewResults }
   h('fieldset', { class: 'mock-exam__fieldset' },
     h('legend', { class: 'mock-exam__legend' }, '考试范围 Units'),
     h('div', { class: 'mock-exam__quick' },
-      button({ label: '全部讲课 All lectures', size: 'sm', onClick: () => selectWhere((unit) => unit?.kind === 'lecture') }),
+      kindButtons,
       button({ label: '全选 All', size: 'sm', onClick: () => selectWhere(() => true) }),
       button({ label: '清空 None', size: 'sm', variant: 'ghost', onClick: () => selectWhere(() => false) })),
     unitGroups),
   h('fieldset', { class: 'mock-exam__fieldset' },
     h('legend', { class: 'mock-exam__legend' }, '题量与时间 Questions and time'),
+    realTestNote(config.note),
     h('div', { class: 'mock-exam__numbers' },
       objective.field,
       written.field,
       h('div', { class: 'field' },
         h('label', { class: 'field__label', for: 'mock-exam-minutes' }, '时间限制 Time limit'),
         minutes,
-        h('p', { class: 'mock-exam__field-hint' }, `默认 ${MOCK_DEFAULTS.minutes} 分钟 Default ${MOCK_DEFAULTS.minutes} minutes`)))),
+        h('p', { class: 'mock-exam__field-hint' }, defaults.minutes
+          ? `默认 ${defaults.minutes} 分钟 Default ${defaults.minutes} minutes`
+          : '默认不限时 Default: no limit')))),
   availabilityText,
   error,
   button({ label: '开始考试 Start exam', iconName: 'play', variant: 'primary', size: 'lg', type: 'submit', className: 'mock-exam__start' }));
@@ -288,11 +323,12 @@ function builderView({ bank, units, notice, loadNotice, onStart, onViewResults }
 }
 
 /**
- * One exam attempt: composes the paper and owns its DOM; attach() / detach() bind it to a route render.
- * 一次考试：组卷并持有试卷 DOM；attach() / detach() 把它挂到某次路由渲染上或取下。
+ * One exam attempt: composes the paper (objective questions only of the course's `objectiveTypes`)
+ * and owns its DOM; attach() / detach() bind it to a route render.
+ * 一次考试：组卷（客观题只取课程 objectiveTypes 中的题型）并持有试卷 DOM；attach() / detach() 把它挂到某次路由渲染上或取下。
  */
-function createExam({ context, bank, units, settings }) {
-  const composition = composeMockExam(bank, { ...settings, seed: randomSeed() });
+function createExam({ context, bank, units, settings, objectiveTypes }) {
+  const composition = composeMockExam(bank, { ...settings, objectiveTypes, seed: randomSeed() });
   const byId = new Map(bank.map((question) => [question.id, question]));
   const questions = composition.questionIds.map((id) => byId.get(id)).filter(Boolean);
   const objectiveCount = composition.objectiveIds.length;
@@ -339,15 +375,20 @@ function createExam({ context, bank, units, settings }) {
   const head = h('header', { class: 'mock-exam__head' },
     h('p', { class: 'page-header__eyebrow' }, '模拟考试 Mock exam'),
     h('h1', { class: 'mock-exam__title' }, `${courseCode} 模拟测验 Practice test`.trim()),
-    h('p', { class: 'mock-exam__meta' },
-      `${objectiveCount} 道客观题 + ${writtenCount} 道主观题 · ${objectiveCount} objective + ${writtenCount} written · ${minutesText}`),
+    h('p', { class: 'mock-exam__meta' }, writtenCount
+      ? `${objectiveCount} 道客观题 + ${writtenCount} 道主观题 · ${objectiveCount} objective + ${writtenCount} written · ${minutesText}`
+      : `${objectiveCount} 道客观题 · ${objectiveCount} objective · ${minutesText}`),
     h('p', { class: ['mock-exam__meta', 'mock-exam__meta--muted'] }, `范围 Scope: ${scopeText}`));
 
   const rules = h('div', { class: ['callout', 'callout--info', 'mock-exam__rules'] },
     h('span', { class: 'callout__label' }, '考试说明 Instructions'),
     h('ul', { class: 'mock-exam__rules-list' },
       h('li', {}, '题目和真实考试一样是英文；实在看不懂可以点“显示中文”。Questions are in English; use Show Chinese only when you are stuck.'),
-      h('li', {}, '主观题请用英文写。交卷后客观题自动判分，主观题对照参考答案自评。Write the written answers in English. Objective questions are graded at hand-in; you grade the written ones with the model answers.'),
+      // A paper without written questions (an objective-only test such as STA220H5's) has no self-grading step.
+      // 没有主观题的试卷（例如 STA220H5 这种只有客观题的考试）没有自评这一步。
+      writtenCount
+        ? h('li', {}, '主观题请用英文写。交卷后客观题自动判分，主观题对照参考答案自评。Write the written answers in English. Objective questions are graded at hand-in; you grade the written ones with the model answers.')
+        : h('li', {}, '交卷后自动判分，每道题都有解析。Every question is graded at hand-in, with an explanation.'),
       h('li', {}, '计时器在页面底部，时间到会自动交卷。The timer is at the bottom; the paper is submitted automatically when time runs out.')));
 
   const shortfall = composition.shortfall.objective || composition.shortfall.written
@@ -651,14 +692,20 @@ function createExam({ context, bank, units, settings }) {
         percent: totals.percent,
         stats: [
           { label: '客观题 Objective', value: totals.objectiveQuestions ? `${totals.objectiveCorrect} / ${totals.objectiveQuestions}` : '—' },
-          { label: '主观要点 Written points', value: totals.writtenPossible ? `${totals.writtenEarned} / ${totals.writtenPossible}` : '—' },
+          totals.writtenPossible
+            ? { label: '主观要点 Written points', value: `${totals.writtenEarned} / ${totals.writtenPossible}` }
+            : null,
           { label: '用时 Time used', value: formatDuration(used) },
           { label: '没做 Unanswered', value: summary.unansweredIds.length },
-        ],
+        ].filter(Boolean),
       }),
-      h('p', { class: 'mock-exam__note' },
-        '计分：客观题每题 1 分，主观题每个评分要点 1 分（按你的自评）。作答过的题已记入答题记录和错题本。',
-        h('span', { lang: 'en' }, ' Scoring: 1 mark per objective question and 1 per written point you covered. Answered questions are saved to your progress and mistake book.')),
+      totals.writtenPossible
+        ? h('p', { class: 'mock-exam__note' },
+          '计分：客观题每题 1 分，主观题每个评分要点 1 分（按你的自评）。作答过的题已记入答题记录和错题本。',
+          h('span', { lang: 'en' }, ' Scoring: 1 mark per objective question and 1 per written point you covered. Answered questions are saved to your progress and mistake book.'))
+        : h('p', { class: 'mock-exam__note' },
+          '计分：每题 1 分。作答过的题已记入答题记录和错题本。',
+          h('span', { lang: 'en' }, ' Scoring: 1 mark per question. Answered questions are saved to your progress and mistake book.')),
       h('h3', { class: 'mock-exam__report-heading' }, '按单元 By unit'),
       unitBreakdown(summary.byUnit, units),
       summary.wrongIds.length

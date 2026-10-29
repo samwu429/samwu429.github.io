@@ -21,6 +21,7 @@ import {
   displayTitle,
   isPlainClick,
   lessonHref,
+  lessonKindLabel,
   minutesLabel,
   neighbourUnits,
   normalizeSections,
@@ -246,10 +247,7 @@ function mountLesson(container, context, unit, lesson, sections, requestedSectio
   const { progress } = context;
   const unitId = unit.id;
   const units = Array.isArray(context.course?.units) ? context.course.units : [];
-  const kind = unitKindLabel({
-    kind: lesson.kind === 'lecture' || lesson.kind === 'lab' ? lesson.kind : unit.kind,
-    number: Number.isInteger(lesson.number) ? lesson.number : unit.number,
-  });
+  const kind = lessonKindLabel(lesson, unit);
   const title = displayTitle(asBi(lesson.title) || asBi(unit.title) || { en: unitId }, kind);
   const branch = (context.course?.branches || []).find((candidate) => candidate.id === unit.branch)?.title || null;
   const scope = createBlockScope(context, { unitId });

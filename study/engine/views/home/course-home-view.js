@@ -1,7 +1,8 @@
 /**
  * Course home (#/): hero with exam countdowns, continue card, newcomer guide, big-picture map,
- * lecture and lab cards, study tools, assessments and course links.
- * 课程首页（#/）：考试倒计时、继续学习、新手指南、知识地图、讲课与实验卡片、复习工具、考核方式与课程链接。
+ * unit cards grouped by kind (lectures or modules, labs...), study tools, assessments and course links.
+ * 课程首页（#/）：考试倒计时、继续学习、新手指南、知识地图、按类型分组的单元卡片（讲课或模块、实验等）、复习工具、
+ * 考核方式与课程链接。
  *
  * Everything comes from course.json; course-overview.json only adds texts and is optional.
  * 所有结构都来自 course.json；course-overview.json 只补充文字，缺失时页面照常可用。
@@ -12,7 +13,7 @@ import { ensureStylesheet } from '../../core/dom/stylesheet.js';
 import { PLAN_UNIT_PREFIX } from '../../core/state/progress-store.js';
 import { biTitle, enNode, toBi, zhNode } from '../../core/text/bilingual.js';
 import { renderInline } from '../../core/text/inline-markup.js';
-import { unitName } from '../../core/text/unit-labels.js';
+import { OTHER_KIND, kindGroupTitle, unitName } from '../../core/text/unit-labels.js';
 import { isRouteId } from '../../core/util/ids.js';
 import { linkButton } from '../../components/controls/button.js';
 import { badge } from '../../components/badges/badge.js';
@@ -28,6 +29,7 @@ import {
   resolveContinue,
   sectionIdsOf,
   splitUnits,
+  startUnit,
   totalWeight,
 } from './home-logic.js';
 import { normalizePlans, planTaskKeys } from './study-plan-logic.js';
@@ -54,6 +56,14 @@ const DEFAULT_GUIDE = [
 ];
 
 const BRANCH_TONES = 4;
+
+// The home page words two unit-group headings its own way: labs are 实验课 (lab sessions) and the
+// catch-all group is 其他内容 / More units. Every other heading is the kind's group title.
+// 首页有两个单元分组标题用自己的说法：实验叫“实验课”，其他单元叫“其他内容 / More units”；其余标题都是该类型的分组标题。
+const GROUP_HEADINGS = Object.freeze({
+  lab: Object.freeze({ zh: '实验课', en: 'Labs' }),
+  [OTHER_KIND]: Object.freeze({ zh: '其他内容', en: 'More units' }),
+});
 
 function list(value) {
   return Array.isArray(value) ? value : [];
@@ -131,7 +141,7 @@ function continueCard(context, units, now) {
   const { progress, repo } = context;
   const target = resolveContinue(progress.lastVisited(), units);
   const overall = overallProgress(units, (unitId, sectionIds) => progress.unitProgress(unitId, sectionIds));
-  const firstUnit = splitUnits(units).lectures[0] || units.find((unit) => unit && isRouteId(unit.id));
+  const firstUnit = startUnit(units);
 
   let body;
   if (target) {
@@ -294,6 +304,13 @@ function unitsSection(id, title, units, progress) {
   return section(id, title, h('ul', { class: 'course-home__units', role: 'list' }, units.map((unit) => unitCard(unit, progress))));
 }
 
+// Section ids are the English group titles in lower case: course-home-lectures, course-home-labs, course-home-other.
+// 分组区块的 id 使用小写的英文分组标题：course-home-lectures、course-home-labs、course-home-other。
+function unitGroupSection(group, progress) {
+  const title = kindGroupTitle(group.kind);
+  return unitsSection(`course-home-${title.en.toLowerCase()}`, GROUP_HEADINGS[group.kind] || title, group.units, progress);
+}
+
 function toolsSection(progress) {
   const mistakes = list(progress.mistakes()).length;
   return section('course-home-tools', { zh: '复习工具', en: 'Study tools' },
@@ -388,9 +405,7 @@ export async function render(container, context) {
       plansCard(plans, progress)),
     guideSection(overview, isNewcomer),
     bigPictureSection(course, overview, progress),
-    unitsSection('course-home-lectures', { zh: '讲课', en: 'Lectures' }, groups.lectures, progress),
-    unitsSection('course-home-labs', { zh: '实验课', en: 'Labs' }, groups.labs, progress),
-    unitsSection('course-home-other', { zh: '其他内容', en: 'More units' }, groups.others, progress),
+    groups.map((group) => unitGroupSection(group, progress)),
     toolsSection(progress),
     assessmentsSection(course, now),
     linksSection(course)));

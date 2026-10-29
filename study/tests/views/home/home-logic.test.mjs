@@ -10,6 +10,7 @@ import {
   relativeDay,
   resolveContinue,
   splitUnits,
+  startUnit,
   totalWeight,
 } from '../../../engine/views/home/home-logic.js';
 
@@ -83,11 +84,38 @@ test('totalWeight sums numeric weights only', () => {
 
 test('splitUnits groups and sorts without mutating the input', () => {
   const copy = UNITS.map((unit) => ({ ...unit }));
-  const { lectures, labs, others } = splitUnits([...UNITS, { id: 'extra-1', kind: 'review' }, { id: 'Bad Id', kind: 'lecture' }]);
-  assert.deepEqual(lectures.map((unit) => unit.id), ['lec01', 'lec02', 'lec03', 'lec04', 'lec06', 'lec07']);
-  assert.deepEqual(labs.map((unit) => unit.id), ['lab01', 'lab02', 'lab05']);
-  assert.deepEqual(others.map((unit) => unit.id), ['extra-1']);
+  const order = UNITS.map((unit) => unit.id);
+  const groups = splitUnits([...UNITS, { id: 'extra-1', kind: 'review' }, { id: 'Bad Id', kind: 'lecture' }]);
+  assert.deepEqual(groups.map((group) => group.kind), ['lecture', 'lab', 'other']);
+  assert.deepEqual(groups[0].units.map((unit) => unit.id), ['lec01', 'lec02', 'lec03', 'lec04', 'lec06', 'lec07']);
+  assert.deepEqual(groups[1].units.map((unit) => unit.id), ['lab01', 'lab02', 'lab05']);
+  assert.deepEqual(groups[2].units.map((unit) => unit.id), ['extra-1']);
   assert.deepEqual(UNITS, copy);
+  assert.deepEqual(UNITS.map((unit) => unit.id), order);
+});
+
+test('splitUnits gives modules their own group before labs, and other kinds keep course order', () => {
+  const groups = splitUnits([
+    { id: 'extra-b', kind: 'reading' },
+    { id: 'lab01', kind: 'lab', number: 1 },
+    { id: 'mod02', kind: 'module', number: 2 },
+    { id: 'extra-a' },
+    { id: 'mod01', kind: 'module', number: 1 },
+  ]);
+  assert.deepEqual(groups.map((group) => [group.kind, group.units.map((unit) => unit.id)]), [
+    ['module', ['mod01', 'mod02']],
+    ['lab', ['lab01']],
+    ['other', ['extra-b', 'extra-a']],
+  ]);
+  assert.deepEqual(splitUnits(undefined), []);
+});
+
+test('startUnit is the lowest-numbered lecture or module, else the first unit in course order', () => {
+  assert.equal(startUnit(UNITS).id, 'lec01');
+  assert.equal(startUnit([{ id: 'lab01', kind: 'lab', number: 1 }, { id: 'mod03', kind: 'module', number: 3 }, { id: 'mod01', kind: 'module', number: 1 }]).id, 'mod01');
+  assert.equal(startUnit([{ id: 'lab02', kind: 'lab', number: 2 }, { id: 'lab01', kind: 'lab', number: 1 }]).id, 'lab02');
+  assert.equal(startUnit([{ id: 'Bad Id', kind: 'lecture', number: 1 }]), null);
+  assert.equal(startUnit(undefined), null);
 });
 
 test('overallProgress sums only units that list their sections', () => {
