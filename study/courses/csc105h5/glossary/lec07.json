@@ -1,0 +1,824 @@
+{
+  "lessonId": "lec07",
+  "terms": [
+    {
+      "id": "neural-network",
+      "en": "Neural network (neural net)",
+      "zh": "神经网络",
+      "def": {
+        "en": "Neural networks (or neural nets) are a family of models composed of many interacting artificial neurons. They are organized into layers: an input layer, optionally any number of hidden layers, and an output layer.",
+        "zh": "由很多个互相作用的人工神经元组成的一类模型。它按“层”组织：输入层、任意多个隐藏层（也可以没有）、输出层。"
+      },
+      "example": {
+        "zh": "p.17 的网络：输入 x1、x2、x3 → LAYER 1（4 个神经元）→ LAYER 2（3 个）→ OUTPUT（1 个），一共 3 层。",
+        "en": "The slide 17 network: inputs x1, x2, x3, then 4 neurons, then 3 neurons, then 1 output neuron (3 layers)."
+      },
+      "slides": "5, 14-17",
+      "related": [
+        "artificial-neuron",
+        "input-layer",
+        "hidden-layer",
+        "output-layer",
+        "neural-network-architecture"
+      ]
+    },
+    {
+      "id": "artificial-neuron",
+      "en": "Artificial neuron",
+      "zh": "人工神经元",
+      "def": {
+        "en": "A structure coded to emulate (some of) the behaviour of the biological neurons found in the brain. It receives input features x1, x2, ..., multiplies them by weights, adds them up, and applies an activation function: f(w1x1 + w2x2 + ... + b). Its output may be an input for other neurons.",
+        "zh": "用代码写出来、模仿大脑中生物神经元（一部分）行为的结构：输入 x1、x2… 乘上权重 → 加起来 → 经过激活函数 f → 输出；输出可以再成为别的神经元的输入。"
+      },
+      "example": {
+        "zh": "p.5 图：f(w1x1 + w2x2 + ··· + b)。图里的 b 课件没有命名（补充（课件外）：通常叫 bias，偏置）。"
+      },
+      "slides": "5, 9-10",
+      "related": [
+        "neural-network",
+        "model-parameter",
+        "activation-function",
+        "synapse",
+        "cell-body",
+        "weighted-sum"
+      ]
+    },
+    {
+      "id": "action-potential",
+      "en": "Action potential",
+      "zh": "动作电位（神经元放电）",
+      "def": {
+        "en": "The firing of a biological neuron. A neuron does not just blindly pass along a signal; it 'decides' whether or not to fire based on its inputs. When enough excitatory input is received, an action potential is briefly fired, and then the axon returns to its rest potential. Biological action potentials fire or don't.",
+        "zh": "生物神经元的“放电”。神经元不会盲目传信号，而是根据输入决定放不放：兴奋性输入足够多时，短暂地放一次电，然后轴突回到静息电位。它是全有或全无的：要么放，要么不放。"
+      },
+      "slides": "6-7, 10",
+      "related": [
+        "excitatory-and-inhibitory-inputs",
+        "cell-body",
+        "axon",
+        "activation-function"
+      ]
+    },
+    {
+      "id": "excitatory-and-inhibitory-inputs",
+      "en": "Excitatory and inhibitory inputs",
+      "zh": "兴奋性输入与抑制性输入",
+      "def": {
+        "en": "Excitatory inputs push a neuron towards firing; inhibitory inputs reduce progress towards firing. In an artificial neuron, the weights determine whether each input is 'excitatory' or 'inhibitory', and by how much.",
+        "zh": "兴奋性输入：推动神经元去放电；抑制性输入：减慢、阻碍放电。在人工神经元里，由权重决定每个输入是“兴奋”还是“抑制”，以及影响有多大。"
+      },
+      "slides": "6, 9",
+      "related": [
+        "action-potential",
+        "model-parameter"
+      ]
+    },
+    {
+      "id": "dendrite",
+      "en": "Dendrites",
+      "zh": "树突",
+      "def": {
+        "en": "The branches that carry signals from other cells into the neuron. In the artificial neuron figure, the weighted inputs w1x1, w2x2, ... travel along the dendrites into the cell body.",
+        "zh": "把别的细胞传来的信号“带进”神经元的分支。在人工神经元图里，乘过权重的输入 w1x1、w2x2… 就画在树突的位置，流进细胞体。"
+      },
+      "slides": "5, 7",
+      "related": [
+        "cell-body",
+        "synapse",
+        "axon"
+      ]
+    },
+    {
+      "id": "cell-body",
+      "en": "Cell body",
+      "zh": "细胞体",
+      "def": {
+        "en": "The part of a neuron where signals converge; there they will either meet the threshold for an action potential, or they will not. In the artificial neuron, the cell body adds up the weighted inputs (w1x1 + w2x2 + ... + b).",
+        "zh": "信号汇合的地方：总量达到门槛（threshold）就放电，达不到就不放。在人工神经元里，细胞体负责把加权输入加起来。"
+      },
+      "slides": "5, 7",
+      "related": [
+        "dendrite",
+        "action-potential",
+        "activation-function"
+      ]
+    },
+    {
+      "id": "axon",
+      "en": "Axon",
+      "zh": "轴突",
+      "def": {
+        "en": "The long fibre along which outgoing signals travel to other cells, including the dendrites of other neurons. In the artificial neuron, the axon is the output line that carries f(w1x1 + w2x2 + ... + b) to other neurons.",
+        "zh": "把神经元发出的信号送到别的细胞（包括别的神经元的树突）的那条长纤维。在人工神经元里，它对应输出线，把 f(...) 送给别的神经元。"
+      },
+      "slides": "5, 7",
+      "related": [
+        "dendrite",
+        "cell-body",
+        "synapse"
+      ]
+    },
+    {
+      "id": "synapse",
+      "en": "Synapse",
+      "zh": "突触",
+      "def": {
+        "en": "A small gap between cells where information is transferred. In the artificial neuron figure, the weights w1, w2, w3 sit at the position of the synapses.",
+        "zh": "细胞与细胞之间传递信息的小缝隙。在人工神经元图里，权重 w1、w2、w3 正好画在突触的位置。"
+      },
+      "example": {
+        "zh": "p.10：人脑有几百万亿（100s of trillions）个突触，最大的新型神经网络约有 1 万亿（~1 trillion）个参数。",
+        "en": "A human brain has 100s of trillions of synapses; the largest recent neural nets have ~1 trillion parameters."
+      },
+      "slides": "5, 7, 10",
+      "related": [
+        "model-parameter",
+        "dendrite",
+        "axon"
+      ]
+    },
+    {
+      "id": "model-parameter",
+      "en": "Parameter (weight)",
+      "zh": "参数（权重）",
+      "def": {
+        "en": "The values w0, w1, w2, … in a model, also called weights. It's our job to choose a model; it's the machine's job to find the best parameter values during training. In an artificial neuron, the weights are multiplied with the inputs and determine whether each input is 'excitatory' or 'inhibitory', and by how much.",
+        "zh": "模型式子里的那些数 w0、w1、w2……，也叫权重（weights）。选模型是我们的事；在训练中找出这些参数的最佳数值是机器的事。在人工神经元里，权重乘在每个输入上，决定这个输入是“促进”还是“抑制”、影响多大。注意：和函数的参数（parameter，Lecture 2）不是一回事。"
+      },
+      "example": {
+        "en": "A neural net is trained by optimizing the values of the parameters/weights w1, w2, … (slide 12). The largest recent neural nets have about 1 trillion parameters (slide 10).",
+        "zh": "和其他模型一样，神经网络的训练就是优化这些参数/权重的值（p.12）。p.10：最大的新型神经网络约有 1 万亿个参数；加隐藏层就意味着要学的参数更多（p.20）。"
+      },
+      "slides": "9-10, 12, 20",
+      "related": [
+        "artificial-neuron",
+        "synapse",
+        "excitatory-and-inhibitory-inputs",
+        "backpropagation"
+      ]
+    },
+    {
+      "id": "activation-function",
+      "en": "Activation function",
+      "zh": "激活函数",
+      "def": {
+        "en": "A function applied to the sum of the weighted inputs to determine the strength of the neuron's output. Biological action potentials fire or don't, but artificial activation functions are not as all-or-nothing. Common choices are Sigmoid and Rectified Linear Unit (ReLU).",
+        "zh": "作用在“加权输入之和”上的函数，决定神经元输出有多强。生物的动作电位要么放、要么不放；人工激活函数不是全有或全无。常见的有 Sigmoid 和 ReLU。为什么不是全有或全无，课件说数学原因超出课程范围。"
+      },
+      "slides": "5, 9-11",
+      "related": [
+        "sigmoid",
+        "rectified-linear-unit",
+        "artificial-neuron",
+        "action-potential"
+      ]
+    },
+    {
+      "id": "sigmoid",
+      "en": "Sigmoid",
+      "zh": "Sigmoid（S 形激活函数）",
+      "def": {
+        "en": "A common activation function shown on slide 11. Its graph is a smooth S-shaped curve: the output stays between 0 and 1, close to 0 for very negative inputs, about 0.5 at input 0, and close to 1 for large inputs.",
+        "zh": "一种常见激活函数。图像是平滑的 S 形：输出总在 0 到 1 之间；输入很负时接近 0，输入为 0 时约 0.5，输入很大时接近 1。课件只给了图、没给公式，不用背公式。"
+      },
+      "slides": "11",
+      "related": [
+        "activation-function",
+        "rectified-linear-unit"
+      ]
+    },
+    {
+      "id": "rectified-linear-unit",
+      "en": "Rectified Linear Unit (ReLU)",
+      "zh": "修正线性单元（ReLU）",
+      "def": {
+        "en": "A common activation function shown on slide 11. Its output is 0 for every negative input; for positive inputs, the output rises in a straight line (on the graph, input 10 gives output 10).",
+        "zh": "一种常见激活函数：输入是负数时，输出都是 0；输入是正数时，输出沿一条直线往上走（图上输入 10 → 输出 10）。补充（课件外）：ReLU 是常见缩写，课件上只写了全名 Rectified Linear Unit，考试写全名最稳。"
+      },
+      "slides": "11",
+      "related": [
+        "activation-function",
+        "sigmoid"
+      ]
+    },
+    {
+      "id": "backpropagation",
+      "en": "Backpropagation",
+      "zh": "反向传播",
+      "def": {
+        "en": "A method for efficiently determining weight updates throughout the network. Neural nets are trained using a combination of gradient descent and backpropagation. The backpropagation algorithm, developed in the 1970s, unlocked multilayer networks.",
+        "zh": "一种高效算出“整个网络里每个权重该怎么更新”的方法，和梯度下降（gradient descent）一起用来训练神经网络。1970 年代出现，让多层网络终于能训练；在它之前多层网络训练不了，这是第一次 AI 寒冬的主要原因之一。"
+      },
+      "slides": "12, 26",
+      "related": [
+        "model-parameter",
+        "gradient-descent",
+        "first-ai-winter",
+        "hidden-layer",
+        "universal-function-approximator"
+      ]
+    },
+    {
+      "id": "first-ai-winter",
+      "en": "First AI Winter",
+      "zh": "第一次 AI 寒冬",
+      "def": {
+        "en": "A period where interest in AI crashed because it was seen to underdeliver on its promises. A major cause: neural nets (developed in the 1950s) were limited to one layer, because multilayer networks could not be trained before backpropagation was discovered.",
+        "zh": "一段大家对 AI 的兴趣崩盘的时期，因为 AI 被认为没有兑现承诺。主要原因之一：1950 年代的神经网络只能有一层，在反向传播出现之前，多层网络训练不了。课件没有给寒冬的具体年份。"
+      },
+      "slides": "12, 25",
+      "related": [
+        "backpropagation",
+        "perceptron",
+        "hidden-layer"
+      ]
+    },
+    {
+      "id": "input-layer",
+      "en": "Input layer",
+      "zh": "输入层",
+      "def": {
+        "en": "The layer every neural net has at the start. It is not actually composed of neurons; it passes input values (the feature vector) on to the next layer. It does not count when we count the layers.",
+        "zh": "每个神经网络开头都有的一层。它其实不是由神经元组成，只是把输入值（特征向量）传给下一层。数层数时它不算。"
+      },
+      "slides": "15, 17-18",
+      "related": [
+        "output-layer",
+        "hidden-layer",
+        "inference",
+        "feature-vector"
+      ]
+    },
+    {
+      "id": "output-layer",
+      "en": "Output layer",
+      "zh": "输出层",
+      "def": {
+        "en": "The layer every neural net has at the end. It is composed of actual neurons and outputs the final result: typically one node for binary (two-class) classification or scalar (single number) regression, and more nodes for more complex outputs. It counts as one layer.",
+        "zh": "每个神经网络最后都有的一层，由真正的神经元组成，输出最终结果。二分类或输出单个数字的回归通常只要 1 个节点；输出更复杂就要更多节点。数层数时它算一层。"
+      },
+      "slides": "15, 17-18",
+      "related": [
+        "input-layer",
+        "hidden-layer",
+        "inference",
+        "binary-classification",
+        "regression"
+      ]
+    },
+    {
+      "id": "hidden-layer",
+      "en": "Hidden layer",
+      "zh": "隐藏层",
+      "def": {
+        "en": "A layer between the input layer and the output layer. A neural net may contain any number of hidden layers. They are 'hidden' because they do not communicate with the outside world. Adding them means more parameters, more training time and more data, but they give the power to represent more complicated shapes in the data space.",
+        "zh": "夹在输入层和输出层中间的层，可以有任意多个（也可以没有）。叫“隐藏”，是因为它们不和外界交流。代价：参数更多，训练更慢、要更多数据；好处：能在数据空间里表示更复杂的形状。没有隐藏层的网络只能画直线决策边界。"
+      },
+      "example": {
+        "zh": "p.17 的网络有 2 个隐藏层（LAYER 1、LAYER 2），加上输出层一共 3 层；单层网络（single-layer network）没有隐藏层。"
+      },
+      "slides": "16-17, 20, 25",
+      "related": [
+        "input-layer",
+        "output-layer",
+        "linearly-separable",
+        "deep-learning"
+      ]
+    },
+    {
+      "id": "feed-forward",
+      "en": "Feed-forward neural net",
+      "zh": "前馈神经网络",
+      "def": {
+        "en": "A neural net in which communication always proceeds forward through the layers, from input to output.",
+        "zh": "信息永远一层一层往前传、从输入走到输出、从不往回走的神经网络。MLP 就是前馈网络。"
+      },
+      "slides": "19, 30",
+      "related": [
+        "recurrence",
+        "multilayer-perceptron",
+        "inference"
+      ]
+    },
+    {
+      "id": "recurrence",
+      "en": "Recurrence",
+      "zh": "循环（往回传）",
+      "def": {
+        "en": "Backwards communication through the layers, which some more sophisticated networks allow. It is the opposite of a purely feed-forward net.",
+        "zh": "一些更复杂的网络允许信息往回传（从后面的层传回前面的层），这叫 recurrence，和前馈相反。别和反向传播（backpropagation，一种训练方法）混淆。"
+      },
+      "slides": "19",
+      "related": [
+        "feed-forward",
+        "backpropagation"
+      ]
+    },
+    {
+      "id": "inference",
+      "en": "Inference",
+      "zh": "推理（使用训练好的模型）",
+      "def": {
+        "en": "The phase of Machine Learning in which the trained model is used to solve a problem ('using the trained model to solve a problem'), for example to make predictions about new data. Inference time is generally fast, although the Big Table notes that large models such as LLMs are often slower and costlier per call.",
+        "zh": "机器学习的推理阶段（在训练之后）：用训练好的模型解决新问题，比如对新数据做预测。通常很快；不过性质大表也提醒：LLM 这类很大的模型每次调用往往更慢、更贵。注意：中文也叫“推理”，但它不是符号 AI 里按逻辑规则的推理（reasoning）。"
+      },
+      "example": {
+        "en": "With a trained neural net: a feature vector enters at the input layer, information is transformed as it passes through hidden layers, and a final result is produced at the output layer.",
+        "zh": "神经网络推理三步（p.18）：特征向量从输入层进入 → 经过隐藏层时被变换 → 在输出层得到最终结果。"
+      },
+      "slides": "18",
+      "related": [
+        "training",
+        "feature-vector",
+        "input-layer",
+        "hidden-layer",
+        "output-layer",
+        "feed-forward"
+      ]
+    },
+    {
+      "id": "linearly-separable",
+      "en": "Linearly separable",
+      "zh": "线性可分",
+      "def": {
+        "en": "Describes data whose classes can be separated by a linear decision boundary (one straight line). Without at least one hidden layer, a neural network can only produce a linear decision boundary, so it won't work for data that is not linearly separable, like the XOR data from the activity.",
+        "zh": "两类数据能用一条直线（线性决策边界）分开，就叫线性可分（课件没给正式定义，意思由 p.22–25 推出）。没有隐藏层的网络只能画直线，所以对 XOR 这种线性不可分的数据不行。"
+      },
+      "example": {
+        "zh": "TensorFlow Playground 活动：两团分开的点线性可分，0 个隐藏层也能分好（loss 0.001 / 0.000）；XOR 四象限数据线性不可分，0 个隐藏层失败（loss 0.836 / 0.826）。",
+        "en": "Two separate clusters are linearly separable; the four-quadrant XOR data is not."
+      },
+      "slides": "21-25",
+      "related": [
+        "decision-boundary",
+        "hidden-layer",
+        "perceptron",
+        "universal-function-approximator"
+      ]
+    },
+    {
+      "id": "loss",
+      "en": "Loss",
+      "zh": "损失",
+      "def": {
+        "en": "A number that training tries to reduce; for example, the goal of an autoencoder is to reduce the loss. The slides do not define it; like the cost in Lecture 5, lower is better.",
+        "zh": "训练时想要减小的一个数，比如自编码器的目标就是减少损失（p.32）。课件没有给它下定义，可以按 Lecture 5 的 cost 来理解：越小越好，接近 0 就是几乎全对。"
+      },
+      "example": {
+        "zh": "TensorFlow Playground 截图：两团点 Test loss 0.001、Training loss 0.000（几乎全对）；XOR 数据、0 个隐藏层时 Test loss 0.836、Training loss 0.826（很差）。"
+      },
+      "slides": "21-24, 32",
+      "related": [
+        "cost-function",
+        "autoencoder",
+        "linearly-separable",
+        "error-function"
+      ]
+    },
+    {
+      "id": "universal-function-approximator",
+      "en": "Universal Function Approximator",
+      "zh": "万能函数逼近器",
+      "def": {
+        "en": "Multilayer neural networks are Universal Function Approximators, meaning that (with sufficient size) they can produce any decision boundary in the data space to arbitrary precision.",
+        "zh": "多层神经网络的性质：只要网络足够大，就能以任意精度画出数据空间里任何形状的决策边界。课件只说“可以证明”（It can be shown），没给证明。"
+      },
+      "slides": "26",
+      "related": [
+        "decision-boundary",
+        "hidden-layer",
+        "backpropagation",
+        "linearly-separable"
+      ]
+    },
+    {
+      "id": "neural-network-architecture",
+      "en": "Neural network architecture",
+      "zh": "神经网络架构",
+      "def": {
+        "en": "A pattern of neural network design. Every neural network has an input and output layer, but there is a lot of flexibility in designing everything in between. An architecture is often well-suited for one particular kind of task.",
+        "zh": "神经网络的“设计套路”。每个网络都有输入层和输出层，中间怎么搭很灵活；每种架构通常特别适合某一类任务。"
+      },
+      "example": {
+        "zh": "本课讲到的架构：Perceptron、MLP、深度学习网络、Autoencoder、GAN、Convolutional Network、Transformer。"
+      },
+      "slides": "28-37",
+      "related": [
+        "perceptron",
+        "multilayer-perceptron",
+        "autoencoder",
+        "generative-adversarial-network",
+        "convolutional-neural-network",
+        "transformer"
+      ]
+    },
+    {
+      "id": "perceptron",
+      "en": "Perceptron",
+      "zh": "感知机",
+      "def": {
+        "en": "A neural net with no hidden layers: all inputs connect directly to all outputs. It can only produce linear models.",
+        "zh": "没有隐藏层的神经网络：所有输入直接连到所有输出。它只能产生线性模型（只能画直线边界），所以分不开 XOR 数据。"
+      },
+      "example": {
+        "zh": "p.29：x1、x2、x3 三个输入直接连到 1 个输出神经元。"
+      },
+      "slides": "29",
+      "related": [
+        "multilayer-perceptron",
+        "linearly-separable",
+        "hidden-layer",
+        "linear-model"
+      ]
+    },
+    {
+      "id": "multilayer-perceptron",
+      "en": "Multilayer Perceptron (MLP)",
+      "zh": "多层感知机（MLP）",
+      "def": {
+        "en": "A feed-forward, fully-connected network (i.e. all nodes in adjacent layers are connected) with one or more hidden layers. MLPs are general-purpose networks that can solve a variety of regression and classification problems.",
+        "zh": "前馈 + 全连接（fully-connected：相邻两层的所有节点两两相连）+ 至少 1 个隐藏层的网络。通用型网络，能解决各种回归和分类问题。"
+      },
+      "example": {
+        "zh": "p.30：3 个输入 → 4 → 3 → 1，全连接，一共 3×4 + 4×3 + 3×1 = 27 条连线（由图推算）。"
+      },
+      "slides": "30",
+      "related": [
+        "perceptron",
+        "feed-forward",
+        "fully-connected",
+        "hidden-layer",
+        "deep-learning",
+        "classification",
+        "regression"
+      ]
+    },
+    {
+      "id": "fully-connected",
+      "en": "Fully-connected",
+      "zh": "全连接",
+      "def": {
+        "en": "All nodes in adjacent layers are connected, as in a Multilayer Perceptron (MLP).",
+        "zh": "相邻两层的所有节点两两相连，多层感知机（MLP）就是全连接的。注意：不是“所有层之间都连”，也不是“同一层内部也连”。"
+      },
+      "example": {
+        "zh": "p.30 的 MLP：3 个输入 → 4 → 3 → 1，相邻层两两相连，一共 3×4 + 4×3 + 3×1 = 27 根箭头（由图推算）。"
+      },
+      "slides": "30",
+      "related": [
+        "multilayer-perceptron",
+        "feed-forward"
+      ]
+    },
+    {
+      "id": "deep-learning",
+      "en": "Deep learning",
+      "zh": "深度学习",
+      "def": {
+        "en": "A general term for neural networks with many hidden layers (at least 2, but sometimes 10s or 100s).",
+        "zh": "统称：有很多隐藏层的神经网络（至少 2 个，有时几十、几百个）。"
+      },
+      "example": {
+        "zh": "p.31 的例子有 5 个隐藏层（4、4、4、3、3 个神经元），按数层规则一共 6 层。课件说示意图只是例子，真实网络可能深得多。"
+      },
+      "slides": "31",
+      "related": [
+        "hidden-layer",
+        "multilayer-perceptron",
+        "convolutional-neural-network",
+        "large-language-model"
+      ]
+    },
+    {
+      "id": "autoencoder",
+      "en": "Autoencoder",
+      "zh": "自编码器",
+      "def": {
+        "en": "A network that narrows to a bottleneck in the middle. To train it, we try to recreate the input at the output; because of the bottleneck, some information will be lost, and the goal is to reduce the loss. It can be used to reduce the size of data we need to transfer/store.",
+        "zh": "中间收窄成“瓶颈”（bottleneck）的网络。训练时让输出尽量还原输入（重建，reconstruction）；因为有瓶颈，一些信息会丢失，目标是让损失（loss）尽量小。用途：减小需要传输/存储的数据量。"
+      },
+      "example": {
+        "zh": "p.32：5 个输入 → 3 → 瓶颈 2 → 3 → 5 个重建输出。"
+      },
+      "slides": "32-33",
+      "related": [
+        "encoder",
+        "decoder",
+        "feature-embedding-space",
+        "loss",
+        "neural-network-architecture"
+      ]
+    },
+    {
+      "id": "encoder",
+      "en": "Encoder",
+      "zh": "编码器",
+      "def": {
+        "en": "The first part of an autoencoder: it shrinks the input into a smaller feature embedding space (in the figure, the narrow bottleneck layer).",
+        "zh": "自编码器的前半段：把输入压缩进更小的特征嵌入空间（feature embedding space；图里就是中间最窄的瓶颈层）。"
+      },
+      "slides": "32-33",
+      "related": [
+        "autoencoder",
+        "decoder",
+        "feature-embedding-space"
+      ]
+    },
+    {
+      "id": "decoder",
+      "en": "Decoder",
+      "zh": "解码器",
+      "def": {
+        "en": "The second part of an autoencoder: it reproduces the original input from the smaller feature embedding space.",
+        "zh": "自编码器的后半段：从压缩后的小空间重新还原出原始输入（重建，reconstruction）。"
+      },
+      "slides": "32-33",
+      "related": [
+        "autoencoder",
+        "encoder"
+      ]
+    },
+    {
+      "id": "feature-embedding-space",
+      "en": "Feature embedding space",
+      "zh": "特征嵌入空间",
+      "def": {
+        "en": "The smaller space that an autoencoder's encoder shrinks the input into; the decoder reproduces the original input from it.",
+        "zh": "自编码器里，编码器把输入压进去的那个更小的空间；解码器再从这里还原出原始输入。课件加粗了这个词（p.33），但没有把它和后面 LLM 的嵌入空间（embedding space）联系起来，别混着用。"
+      },
+      "example": {
+        "zh": "p.32–33 的图：5 个输入被压成中间瓶颈的 2 个数，再还原成 5 个数。"
+      },
+      "slides": "33",
+      "related": [
+        "autoencoder",
+        "encoder",
+        "decoder"
+      ]
+    },
+    {
+      "id": "generative-adversarial-network",
+      "en": "Generative Adversarial Network (GAN)",
+      "zh": "生成对抗网络（GAN）",
+      "def": {
+        "en": "A network that consists of two pieces: a generator that attempts to produce convincing fake data (e.g. images) and a discriminator that attempts to differentiate real from fake data produced by the generator. The models train together, both getting better at their tasks.",
+        "zh": "由两部分组成：生成器（努力造出以假乱真的数据）和判别器（努力分辨真假）。两个模型一起训练，都越来越强。训练结束后，生成器成为有用的生成模型。"
+      },
+      "slides": "34-35",
+      "related": [
+        "generator",
+        "discriminator",
+        "generative-model"
+      ]
+    },
+    {
+      "id": "generator",
+      "en": "Generator",
+      "zh": "生成器",
+      "def": {
+        "en": "The part of a GAN that attempts to produce convincing fake data (e.g. images). The noise input just gives it a random starting point. At the end of training, the generator becomes a useful generative model.",
+        "zh": "GAN 里负责“造假”的部分：努力做出以假乱真的数据（比如图片）。噪声输入（noise）只是给它一个随机起点。训练结束后，它成为有用的生成模型。"
+      },
+      "slides": "34-35",
+      "related": [
+        "generative-adversarial-network",
+        "discriminator",
+        "generative-model"
+      ]
+    },
+    {
+      "id": "discriminator",
+      "en": "Discriminator",
+      "zh": "判别器",
+      "def": {
+        "en": "The part of a GAN that attempts to differentiate real data from fake data produced by the generator. In the slide figure, its output is labelled REAL / FAKE.",
+        "zh": "GAN 里负责“鉴定”的部分：分辨数据是真的，还是生成器造的假数据。图里它的输出写着 REAL / FAKE。"
+      },
+      "slides": "34-35",
+      "related": [
+        "generative-adversarial-network",
+        "generator"
+      ]
+    },
+    {
+      "id": "generative-model",
+      "en": "Generative model",
+      "zh": "生成模型",
+      "def": {
+        "en": "A model that learns the characteristics of real data and is able to produce original data that resembles it. A trained GAN generator becomes a generative model, and an LLM is a generative model trained on internet-scale text data.",
+        "zh": "学会真实数据的特点，能产生“像真的一样”的新数据的模型。训练好的 GAN 生成器是生成模型；LLM 也是生成模型（生成文字）。"
+      },
+      "slides": "35, 39",
+      "related": [
+        "generator",
+        "large-language-model",
+        "generative-ai"
+      ]
+    },
+    {
+      "id": "convolutional-neural-network",
+      "en": "Convolutional Network",
+      "zh": "卷积网络（卷积神经网络）",
+      "def": {
+        "en": "A deep neural net specialized for domains where the spatial relationship between input features is important. This applies most commonly to the pixels of an image, but also to domains like board games. Localized clusters of features are fed to a convolution layer, where higher-level features like edges are detected.",
+        "zh": "专门处理“位置关系很重要”的数据的深度神经网络，最常见的是图像像素，也可以是棋盘游戏。相邻的一小团特征被送进卷积层（convolution layer），检测出“边”（edges）这样的更高级特征。补充（课件外）：常缩写为 CNN，Lecture 1 的 AI 地图里写的 CNNs 就是它。"
+      },
+      "example": {
+        "zh": "p.36：16 个像素分成 4 个 2×2 小团，每团连到 1 个卷积神经元 → 3 个隐藏神经元 → 1 个输出。"
+      },
+      "slides": "36",
+      "related": [
+        "deep-learning",
+        "neural-network-architecture",
+        "pixel"
+      ]
+    },
+    {
+      "id": "transformer",
+      "en": "Transformer",
+      "zh": "Transformer 架构",
+      "def": {
+        "en": "The neural network architecture that is the basis for Large Language Models. Under the hood, modern LLMs are deep neural networks that use the Transformer architecture.",
+        "zh": "大语言模型的基础架构。现代 LLM 本质上就是使用 Transformer 架构的深度神经网络。"
+      },
+      "example": {
+        "zh": "p.37 图：“When Ann grew her ___” → 分词 → 嵌入 → 注意力 → 大量计算 → 预测下一个 token（confidence 38%、business 20%、career 15%、fame 10%……）。"
+      },
+      "slides": "37, 39",
+      "related": [
+        "large-language-model",
+        "tokenization",
+        "embedding",
+        "attention"
+      ]
+    },
+    {
+      "id": "large-language-model",
+      "en": "Large Language Model (LLM)",
+      "zh": "大语言模型（LLM）",
+      "def": {
+        "en": "'Large Language Models (LLMs) are a specific type of ML model.' An LLM is a generative model trained on internet-scale text data; because of the enormous quantity and breadth of data, it is able to produce text in response to a wide variety of inputs, generally without additional training. LLMs are interacted with via prompting in plain text (not code), and modern LLMs are deep neural networks that use the Transformer architecture.",
+        "zh": "一种特定的机器学习模型：在互联网规模的海量文本上训练出来的生成模型；数据又多又广，所以能回应各种各样的输入。用普通文字写 prompt 来使用，不用写代码，一般不需要额外训练。现代 LLM 是使用 Transformer 架构的深度神经网络。"
+      },
+      "example": {
+        "en": "Microsoft Copilot is a commercial LLM. Because of their generality, LLMs are called foundation models (slide 39).",
+        "zh": "Microsoft Copilot 是一个商用 LLM，U of T 学生可以免费使用（p.43）。因为通用，LLM 也被称为基础模型（foundation model，p.39）。"
+      },
+      "slides": "39, 43",
+      "related": [
+        "foundation-model",
+        "transformer",
+        "generative-model",
+        "prompting",
+        "hallucination"
+      ]
+    },
+    {
+      "id": "foundation-model",
+      "en": "Foundation model",
+      "zh": "基础模型",
+      "def": {
+        "en": "A model that can be applied to many different tasks with little or no additional training. Due to their generality, LLMs are called foundation models.",
+        "zh": "几乎不用（或只用很少）额外训练，就能用于很多不同任务的模型。LLM 因为通用，被称为基础模型。"
+      },
+      "slides": "39",
+      "related": [
+        "large-language-model"
+      ]
+    },
+    {
+      "id": "prompting",
+      "en": "Prompting",
+      "zh": "提示（写 prompt）",
+      "def": {
+        "en": "Describing a task for the machine in natural language. LLMs are interacted with via prompting in plain text (not code), so users can direct an LLM without needing to know any coding. But prompts are not quite the same as coded instructions: they can be ambiguous, leading to variability in outcomes, and prompting doesn't technically force the LLM to do anything, in the way that calling a function would.",
+        "zh": "用自然语言（普通的话，不是代码）向机器描述任务；prompt 就是你写给 LLM 的那段话。不会编程也能指挥 LLM；但 prompt 和代码指令不完全一样：可能有歧义、结果会变，而且技术上并不强制 LLM 做任何事，不像调用函数那样。"
+      },
+      "example": {
+        "en": "Prompts are entered into the LLM's context, which is the LLM's memory of the conversation so far (slide 41).",
+        "zh": "prompt 会被放进 LLM 的上下文（context）里，也就是它对这次对话的“记忆”；会话结束，上下文就消失（p.41）。"
+      },
+      "slides": "40-41",
+      "related": [
+        "large-language-model",
+        "context-window",
+        "function-call"
+      ]
+    },
+    {
+      "id": "context-window",
+      "en": "Context (context window)",
+      "zh": "上下文（上下文窗口）",
+      "def": {
+        "en": "The LLM's memory of the conversation so far. Prompts are entered into the context, and at the end of a session, the context disappears. Each new token of a response is appended to the end of the context window. (The slides define 'context' on p.41; 'context window' is used on p.50 and p.54 without a separate definition.)",
+        "zh": "LLM 对这段对话到目前为止的“记忆”。prompt 会进入上下文；会话结束时，上下文就消失。每生成一个新 token，就把它接到上下文窗口的末尾。（课件在 p.41 定义了 context；context window 在 p.50、p.54 出现，没有单独定义。）"
+      },
+      "slides": "41, 50, 54",
+      "related": [
+        "prompting",
+        "attention",
+        "next-token-prediction"
+      ]
+    },
+    {
+      "id": "pre-training",
+      "en": "Pre-training (pre-trained)",
+      "zh": "预训练",
+      "def": {
+        "en": "Pre-training means training an LLM on internet-scale data to predict the text that comes next. Usually, an answer follows a question. Commercial LLMs have also been trained to act as helpful assistants, so they usually try to answer your questions or complete your tasks.",
+        "zh": "LLM 事先在互联网规模的数据上训练过，学会预测接下来会出现的文字（问题后面通常跟着答案）。商用 LLM 还被训练成乐于助人的助手，所以通常会努力回答你，但这挡不住它犯错。"
+      },
+      "slides": "41-42",
+      "related": [
+        "large-language-model",
+        "next-token-prediction"
+      ]
+    },
+    {
+      "id": "tokenization",
+      "en": "Tokenization (token)",
+      "zh": "分词（tokenization）/ 词块（token）",
+      "def": {
+        "en": "The first step in responding to a prompt. It breaks up words into smaller pieces (tokens) that still convey meaning. This allows the machine to easily notice the similarity in closely-related words.",
+        "zh": "LLM 回答 prompt 的第一步：把词切成更小、但仍能表达意思的块，每一块叫一个 token。好处：机器容易看出近亲词（jump、jump/s、jump/ing、jump/ed）之间的相似。"
+      },
+      "example": {
+        "zh": "“daydreamed” → day/dream/ed；“The student daydreamed in class.” → The/student/day/dream/ed/in/class/.（8 个 token，句号也算一个）。",
+        "en": "'daydreamed' becomes day/dream/ed."
+      },
+      "slides": "45-46",
+      "related": [
+        "embedding",
+        "transformer"
+      ]
+    },
+    {
+      "id": "embedding",
+      "en": "Embedding (embedding space)",
+      "zh": "嵌入（嵌入空间）",
+      "def": {
+        "en": "An embedding is a vector of hundreds (or more) of numbers that represents a token and captures as much of its meaning as possible. Tokens with similar meanings should be close together in the embedding space. Embeddings are found via Machine Learning.",
+        "zh": "把 token 变成数字的方法：每个 token 用一个由几百个（或更多）数字组成的向量表示，尽可能装下它的意思。意思相近的 token 在嵌入空间里应该靠得近。每个 token 的嵌入是用机器学习找到的。"
+      },
+      "example": {
+        "zh": "p.48：one（−1.82, 0.13, …）和 all（−1.85, 0.11, …）的数字几乎一样，teacher 很不一样。Semantle 游戏用来比较词语相似度的 Word2vec 就是一种嵌入空间（p.49）。"
+      },
+      "slides": "47-49",
+      "related": [
+        "tokenization",
+        "attention",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "attention",
+      "en": "Attention",
+      "zh": "注意力（机制）",
+      "def": {
+        "en": "A mechanism that allows the embedding vector of a token to be modified by other tokens in the context window.",
+        "zh": "一种机制：让一个 token 的嵌入向量可以被上下文窗口里的其他 token 修改，这样词的意思就能结合上下文来理解。"
+      },
+      "example": {
+        "zh": "“Make a simple plot of y=3x+1 for me. Label its axes height and width.”：plot 被形容词 simple 修饰；its 关注（attends to）plot，所以能推断出 its 的意思（p.51）。",
+        "en": "'plot' is modified by 'simple', and 'its' attends to 'plot'."
+      },
+      "slides": "37, 50-51",
+      "related": [
+        "embedding",
+        "context-window",
+        "transformer"
+      ]
+    },
+    {
+      "id": "next-token-prediction",
+      "en": "Next-token prediction (probability distribution)",
+      "zh": "预测下一个 token（概率分布）",
+      "def": {
+        "en": "At the output of the LLM, we get a prediction of the next token in the form of a probability distribution. Always choosing the most likely token would produce no diversity in answers. After one token is chosen, it is appended to the end of the context window and the whole process starts again.",
+        "zh": "LLM 输出端给出“下一个 token 是哪个”的概率分布（每个候选一个百分比）。如果总选第一名，回答就没有多样性。选出一个 token 后，把它接到上下文窗口末尾，整个过程再来一遍，一次一个 token。"
+      },
+      "example": {
+        "zh": "课件例子 “For lunch, let's order ___”（午饭我们点___）：sandwiches 25.1%、a 20.5%、some 15.2%、pizza 10.2%、soup 8.4% …… 最后是 nothing 1.2%（p.52）。"
+      },
+      "slides": "52-54",
+      "related": [
+        "temperature",
+        "context-window",
+        "large-language-model"
+      ]
+    },
+    {
+      "id": "temperature",
+      "en": "Temperature",
+      "zh": "温度（Temperature）",
+      "def": {
+        "en": "A (sometimes hidden) LLM setting that controls how the next token is picked from the probability distribution. At a low temperature, the top answer is more likely. At higher temperatures, answers farther down the list are more likely to be picked.",
+        "zh": "LLM 的一个（有时隐藏的）设置，决定怎样从概率分布里挑下一个 token。低温：第一名更容易被选中；高温：列表下面的答案更容易被选中，回答更多样。"
+      },
+      "slides": "52",
+      "related": [
+        "next-token-prediction"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+/*
+ * Formula: the shared dashed .formula box, then a two-column "symbol: meaning" list that stacks on phones.
+ * 公式：沿用共享的虚线 .formula 框，下方是“符号：含义”两栏列表，手机上改为上下排列。
+ */
+.formula-block .formula-block__expr {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-4);
+  border: 2px dashed var(--color-line);
+  color: var(--color-ink);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.formula-block__zh {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.formula-block__where {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.formula-block__where-title {
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.formula-block__terms {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.formula-block__term {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 var(--space-3);
+}
+
+.formula-block__symbol {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.formula-block__meaning {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.formula-block__meaning-zh,
+.formula-block__meaning-en {
+  display: block;
+}
+
+.formula-block__meaning-en {
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 560px) {
+  .formula-block__term {
+    grid-template-columns: minmax(6em, max-content) minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,381 @@
+/*
+ * Tree growth: sliders, headline numbers, per-depth table with bars, a small tree drawing and a "deeper" table.
+ * 状态树增长：滑块、关键数字、带条形的每层节点表、小树图以及“再往下搜”表格。
+ */
+.tree-growth {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.tree-growth__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.tree-growth__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.tree-growth__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.tree-growth__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.tree-growth__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tree-growth__intro p,
+.tree-growth__pair p,
+.tree-growth__takeaway p,
+.tree-growth__tree-note p {
+  margin: 0;
+}
+
+.tree-growth__intro,
+.tree-growth__pair,
+.tree-growth__tree-note {
+  display: grid;
+  gap: 2px;
+  font-size: var(--text-sm);
+}
+
+.tree-growth__intro .zh,
+.tree-growth__pair .zh,
+.tree-growth__tree-note .zh {
+  color: var(--color-ink-2);
+}
+
+.tree-growth__intro .en,
+.tree-growth__pair .en,
+.tree-growth__tree-note .en,
+.tree-growth__label .en,
+.tree-growth__stat-label .en,
+.tree-growth__stat-note .en,
+.tree-growth__rate-label .en,
+.tree-growth__approx .en {
+  color: var(--color-ink-3);
+}
+
+/* Sliders: one card per control, side by side when there is room.
+   滑块：每个控件一张卡片，空间够时并排。 */
+.tree-growth__controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-3);
+}
+
+.tree-growth__field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.tree-growth__label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.tree-growth__slider-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.tree-growth__range {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.tree-growth__value {
+  flex: none;
+  min-width: 4.2em;
+  padding: 2px var(--space-2);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Headline numbers.
+   关键数字卡片。 */
+.tree-growth__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: var(--space-3);
+}
+
+.tree-growth__stat {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.tree-growth__stat--time {
+  background: var(--color-highlight-soft);
+}
+
+.tree-growth__stat-label {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.tree-growth__stat-value {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: 900;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.tree-growth__stat-value--time {
+  display: grid;
+  gap: 2px;
+}
+
+.tree-growth__time-en {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.tree-growth__stat-value--time .tree-growth__time-en {
+  font-size: var(--text-md);
+}
+
+.tree-growth__stat-note {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  overflow-wrap: anywhere;
+}
+
+.tree-growth__formula {
+  font-family: var(--font-mono);
+}
+
+.tree-growth__approx,
+.tree-growth__universe {
+  display: block;
+  font-size: var(--text-xs);
+}
+
+.tree-growth__universe {
+  margin-top: 2px;
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.tree-growth__rate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.tree-growth__rate-label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.tree-growth__section {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.tree-growth__subheading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.tree-growth__subheading .bi-title__en {
+  font-size: 0.75em;
+}
+
+/* Per-depth table: numbers plus a bar scaled to the deepest level.
+   每层表格：数字加上按最深一层缩放的条形。 */
+.tree-growth__table td,
+.tree-growth__table th {
+  vertical-align: middle;
+}
+
+.tree-growth__table thead th {
+  white-space: normal;
+}
+
+.tree-growth__table tbody th {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.tree-growth__count {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 9em;
+}
+
+.tree-growth__count-number {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.tree-growth__bar {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+}
+
+.tree-growth__bar-fill {
+  display: block;
+  min-width: 2px;
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.tree-growth__growth {
+  color: var(--color-accent-strong);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.tree-growth__row--deepest {
+  background: var(--color-accent-soft);
+}
+
+.tree-growth__row--total th,
+.tree-growth__row--total td {
+  border-top: 2px solid var(--color-line);
+  background: var(--color-paper-2);
+}
+
+.tree-growth__time-zh {
+  display: block;
+  font-weight: 800;
+}
+
+.tree-growth__table .tree-growth__time-en {
+  display: block;
+  font-size: var(--text-xs);
+}
+
+/* Tree drawing: drawn at 1:1 so labels stay readable; wide trees scroll inside their box.
+   树图按 1:1 绘制，标签清晰；树太宽时在自己的框内横向滚动。 */
+.tree-growth__tree-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: var(--space-2);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.tree-growth__tree {
+  display: block;
+  max-width: none;
+  margin: 0 auto;
+}
+
+.tree-growth__depth-label {
+  fill: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.tree-growth__edge {
+  fill: none;
+  stroke: var(--color-ink-3);
+  stroke-width: 1.5;
+}
+
+.tree-growth__more {
+  fill: none;
+  stroke: var(--color-ink-3);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 4;
+}
+
+.tree-growth__node {
+  fill: var(--color-panel);
+  stroke: var(--color-line);
+  stroke-width: 1.5;
+}
+
+.tree-growth__node--root {
+  fill: var(--color-highlight);
+}
+
+.tree-growth__node--deepest {
+  fill: var(--color-accent);
+}
+
+.tree-growth__takeaway {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-warn);
+  border-radius: var(--radius-sm);
+  background: var(--color-warn-soft);
+  font-size: var(--text-sm);
+}
+
+.tree-growth__takeaway .en {
+  color: var(--color-ink-2);
+}
+
+@media (max-width: 600px) {
+  .tree-growth {
+    padding: var(--space-3);
+  }
+
+  .tree-growth__stat-value {
+    font-size: var(--text-lg);
+  }
+}

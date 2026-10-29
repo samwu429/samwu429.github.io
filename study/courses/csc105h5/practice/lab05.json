@@ -1,0 +1,382 @@
+{
+  "lessonId": "lab05",
+  "questions": [
+    {
+      "id": "lab05-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-hiring-grid",
+      "prompt": {
+        "en": "On the hiring model cards, rows are Qualified/Unqualified and columns are Hire/No hire. Which count is in the cell for unqualified applicants who are hired?",
+        "zh": "招聘模型卡上，行是 Qualified / Unqualified（合格 / 不合格），列是 Hire / No hire（录用 / 不录用）。“不合格但被录用”的那个格子是哪个计数？"
+      },
+      "options": [
+        {
+          "en": "True positives (TP)",
+          "zh": "真阳性（TP）"
+        },
+        {
+          "en": "False positives (FP)",
+          "zh": "假阳性（FP）"
+        },
+        {
+          "en": "False negatives (FN)",
+          "zh": "假阴性（FN）"
+        },
+        {
+          "en": "True negatives (TN)",
+          "zh": "真阴性（TN）"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "被录用 = 模型说 yes（positive）；不合格 = 模型说错了（false）。所以是 False Positive（FP），讲义写作 “FP unqualified, hired”。TP 是合格且录用；FN 是合格却没录用；TN 是不合格也没录用。注意：模型卡上 FP 在左下角，而第 3 页 / Lecture 6 的表里 FP 在右上角，靠标签判断，别背位置。",
+        "en": "Hired is a positive prediction, and it is wrong because the applicant is unqualified: a false positive."
+      }
+    },
+    {
+      "id": "lab05-q02",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s04-five-metrics",
+      "prompt": {
+        "en": "Model 7, Group B: TP = 63, FN = 237, FP = 7, TN = 693 (N = 1,000). What is Group B's hiring rate? Give a percentage to one decimal place.",
+        "zh": "Model 7 的 B 组：TP = 63、FN = 237、FP = 7、TN = 693（N = 1,000）。B 组录用率是多少？用百分比表示，保留一位小数。"
+      },
+      "answer": 7.0,
+      "tolerance": 0.05,
+      "unit": "%",
+      "explain": {
+        "zh": "录用率 = (TP + FP) / N = (63 + 7) / 1,000 = 70/1,000 = 7.0%，和卡片一致。常见错误：只算 TP / N = 6.3%，漏了被错误录用的 FP；或者算成 TP / (TP + FN) = 21.0%，那是真阳性率。",
+        "en": "Hiring rate = (63 + 7) / 1,000 = 70/1,000 = 7.0%."
+      }
+    },
+    {
+      "id": "lab05-q03",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s04-five-metrics",
+      "prompt": {
+        "en": "Model 4, Group B: TP = 180, FN = 120, FP = 28, TN = 672. What is Group B's precision? Give a percentage to one decimal place.",
+        "zh": "Model 4 的 B 组：TP = 180、FN = 120、FP = 28、TN = 672。B 组精确率是多少？用百分比表示，保留一位小数。"
+      },
+      "answer": 86.5,
+      "tolerance": 0.1,
+      "unit": "%",
+      "explain": {
+        "zh": "精确率 = TP / (TP + FP) = 180 / (180 + 28) = 180/208 ≈ 0.8654，即 86.5%，和卡片一致。如果算成 180 / (180 + 120) = 60.0%，那是真阳性率（分母是合格的人），不是精确率。",
+        "en": "Precision = 180 / (180 + 28) = 180/208 = 86.5%."
+      }
+    },
+    {
+      "id": "lab05-q04",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s05-overall-and-gap",
+      "prompt": {
+        "en": "Model 8: Group A has TP = 320 and FP = 80; Group B has TP = 180 and FP = 140. Group A's precision is 80.0% and Group B's is 56.3%. What is the Overall precision? Give a percentage to one decimal place.",
+        "zh": "Model 8：A 组 TP = 320、FP = 80；B 组 TP = 180、FP = 140。A 组精确率 80.0%，B 组 56.3%。总体精确率是多少？用百分比表示，保留一位小数。"
+      },
+      "answer": 69.4,
+      "tolerance": 0.1,
+      "unit": "%",
+      "explain": {
+        "zh": "先加计数：总体 TP = 320 + 180 = 500，总体 FP = 80 + 140 = 220。精确率 = 500 / (500 + 220) = 500/720 ≈ 0.6944，即 69.4%，和卡片一致。如果把 80.0% 和 56.3% 直接平均，会得到约 68.2%，这是错的：两组被录用的人数不同（A 组 400，B 组 320）。第 12 页说 “Add the counts every time.”",
+        "en": "Add the counts: 500 / (500 + 220) = 500/720 = 69.4%. Averaging the two percentages is wrong."
+      }
+    },
+    {
+      "id": "lab05-q05",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s05-overall-and-gap",
+      "prompt": {
+        "en": "For Model 1, Group A's precision is 80.0% and Group B's is 63.2%, but the Overall precision is 72.7%, not their average of 71.6%. Why?",
+        "zh": "Model 1 中，A 组精确率 80.0%，B 组 63.2%，但总体精确率是 72.7%，不是两者的平均数 71.6%。为什么？"
+      },
+      "options": [
+        {
+          "en": "The two groups hired different numbers of people (500 and 380), so precision must be computed from the summed counts (640/880).",
+          "zh": "两组被录用的人数不同（500 和 380），所以精确率必须用相加后的计数算（640/880）。"
+        },
+        {
+          "en": "Group B's precision is ignored because Group B has more unqualified applicants.",
+          "zh": "因为 B 组不合格的人更多，所以忽略 B 组的精确率。"
+        },
+        {
+          "en": "Overall precision is always higher than the precision of every group.",
+          "zh": "总体精确率总是比每一组都高。"
+        },
+        {
+          "en": "The Overall column uses N = 2,000 as the denominator for precision.",
+          "zh": "总体一栏的精确率用 N = 2,000 作分母。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "精确率的分母是被录用的人数（TP + FP）：A 组 500，B 组 380，不一样大，所以不能简单平均，要用 640/880 = 72.7%。B 组的数据并没有被忽略；总体精确率 72.7% 比 A 组的 80.0% 低，所以“总是更高”不对；用 2,000 作分母的是准确率和录用率，不是精确率。",
+        "en": "Precision's denominator (the number hired) differs between the groups, so the counts must be added."
+      }
+    },
+    {
+      "id": "lab05-q06",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s05-overall-and-gap",
+      "prompt": {
+        "en": "Model 3: Group A's accuracy is (300 + 400) / 1,000 and Group B's accuracy is (210 + 630) / 1,000. What is the accuracy gap (Group A − Group B) in percentage points?",
+        "zh": "Model 3：A 组准确率 = (300 + 400) / 1,000，B 组准确率 = (210 + 630) / 1,000。准确率差距（A 组 − B 组）是多少个百分点？"
+      },
+      "answer": -14,
+      "tolerance": 0.05,
+      "unit": "pp",
+      "explain": {
+        "zh": "A 组 = 700/1,000 = 70.0%，B 组 = 840/1,000 = 84.0%。Gap = 70.0 − 84.0 = -14.0 pp，和卡片一致。负号表示 B 组更高。别写成 +14.0：Gap 的方向固定是 A 减 B。",
+        "en": "70.0% − 84.0% = -14.0 pp; the minus sign means Group B is higher."
+      }
+    },
+    {
+      "id": "lab05-q07",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s06-fairness-on-cards",
+      "prompt": {
+        "en": "Model 7's model card shows these gaps: hiring rate +23.0 pp, precision +0.0 pp, true positive rate +33.0 pp, false positive rate +5.0 pp. Which fairness definition does Model 7 satisfy?",
+        "zh": "Model 7 的模型卡差距：录用率 +23.0 pp，精确率 +0.0 pp，真阳性率 +33.0 pp，假阳性率 +5.0 pp。Model 7 满足哪种公平定义？"
+      },
+      "options": [
+        {
+          "en": "Demographic parity",
+          "zh": "人口统计均等"
+        },
+        {
+          "en": "Predictive parity",
+          "zh": "预测均等"
+        },
+        {
+          "en": "Equalized odds",
+          "zh": "均等几率"
+        },
+        {
+          "en": "None of these",
+          "zh": "都不满足"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "预测均等看精确率，差距 +0.0 pp（两组都是 90.0%），所以成立。人口统计均等看录用率，差 +23.0 pp（30.0% 对 7.0%），不成立。均等几率要 TPR 和 FPR 两个差距都是 0，这里是 +33.0 pp 和 +5.0 pp，也不成立。既然有一个成立，“都不满足”也不对。",
+        "en": "Predictive parity compares precision, and the precision gap is +0.0 pp."
+      }
+    },
+    {
+      "id": "lab05-q08",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s06-fairness-on-cards",
+      "prompt": {
+        "en": "Which measures on the model card must be equal in both groups for a model to satisfy equalized odds? Select all that apply.",
+        "zh": "要满足均等几率，模型卡上哪些指标必须在两组相等？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "True positive rate (recall)",
+          "zh": "真阳性率（召回率）"
+        },
+        {
+          "en": "False positive rate",
+          "zh": "假阳性率"
+        },
+        {
+          "en": "Hiring rate",
+          "zh": "录用率"
+        },
+        {
+          "en": "Precision",
+          "zh": "精确率"
+        },
+        {
+          "en": "Accuracy",
+          "zh": "准确率"
+        }
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explain": {
+        "zh": "讲义页脚：true positive rate (recall) 和 false positive rate “together, for equalized odds”，两个都要相等。录用率对应人口统计均等；精确率对应预测均等；准确率相等不属于这几种公平定义（例如 Model 8 两组准确率都是 74.0%，但哪种群体公平都不满足）。",
+        "en": "Equalized odds needs the true positive rate and the false positive rate, together."
+      }
+    },
+    {
+      "id": "lab05-q09",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s06-fairness-on-cards",
+      "prompt": {
+        "en": "Individual fairness can be calculated from the TP, FP, FN and TN counts on a model card.",
+        "zh": "个体公平可以用模型卡上的 TP、FP、FN、TN 计数算出来。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。讲义页脚原话：Individual fairness asks whether similar applicants receive the same decision. The grid does not determine it. 个体公平要看模型怎么做决定：所有人同一条分数线是 High；每组不同分数线或组内随机抽签是 Low。所以卡片单独给出等级。",
+        "en": "False. The grid does not determine individual fairness."
+      }
+    },
+    {
+      "id": "lab05-q10",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s04-five-metrics",
+      "prompt": {
+        "en": "Model 6, Group B: TP = 240, FN = 60, FP = 350, TN = 350. What is Group B's false positive rate? Give a percentage to one decimal place.",
+        "zh": "Model 6 的 B 组：TP = 240、FN = 60、FP = 350、TN = 350。B 组假阳性率是多少？用百分比表示，保留一位小数。"
+      },
+      "answer": 50.0,
+      "tolerance": 0.05,
+      "unit": "%",
+      "explain": {
+        "zh": "假阳性率 = FP / (FP + TN) = 350 / (350 + 350) = 350/700 = 50.0%，和卡片一致。分母是不合格的人（700）。用被录用的人作分母（350/590 ≈ 59.3%）或用总人数（350/1,000 = 35.0%）都不对。",
+        "en": "FPR = 350 / (350 + 350) = 350/700 = 50.0%."
+      }
+    },
+    {
+      "id": "lab05-q11",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-stakeholder-ranking",
+      "prompt": {
+        "en": "Company counsel ranks models by equalized odds first and individual fairness second. Models 1 and 5 both have TPR and FPR gaps of +0.0 pp. Which model does counsel rank first, and why?",
+        "zh": "公司法务先看均等几率，再看个体公平。Model 1 和 Model 5 的 TPR、FPR 差距都是 +0.0 pp。法务把哪个模型排第一？为什么？"
+      },
+      "options": [
+        {
+          "en": "Model 1, because its individual fairness is High and Model 5's is Low",
+          "zh": "Model 1，因为它的个体公平是 High，Model 5 是 Low"
+        },
+        {
+          "en": "Model 5, because its hiring-rate gap is +0.0 pp",
+          "zh": "Model 5，因为它的录用率差距是 +0.0 pp"
+        },
+        {
+          "en": "Model 4, because it has the highest overall accuracy",
+          "zh": "Model 4，因为它的总体准确率最高"
+        },
+        {
+          "en": "Model 5, because a random draw treats everyone the same",
+          "zh": "Model 5，因为随机抽签对每个人都一样"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "首要关注点（均等几率）打平时，看次要关注点（个体公平）：Model 1 是 High（同一条分数线），Model 5 是 Low（组内随机抽签）。录用率对应人口统计均等，准确率也不是法务的关注点。随机抽签恰恰会让相似的人得到不同结果，所以个体公平低。",
+        "en": "The tie on equalized odds is broken by individual fairness: High beats Low."
+      }
+    },
+    {
+      "id": "lab05-q12",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s06-fairness-on-cards",
+      "prompt": {
+        "en": "Model 5 satisfies both demographic parity and equalized odds. Explain why it may still be a poor choice.",
+        "zh": "Model 5 同时满足人口统计均等和均等几率。解释为什么它仍然可能是个糟糕的选择。"
+      },
+      "modelAnswer": {
+        "en": "Model 5 hires at random inside each group, so its overall accuracy is only 52.0% and its individual fairness is Low: similar applicants can get different decisions. It also fails predictive parity, with a precision gap of +20.0 pp. Meeting a fairness metric does not make a model useful or fair in every sense.",
+        "zh": "Model 5 在组内随机抽签，所以总体准确率只有 52.0%，个体公平是 Low：相似的人可能得到不同决定。它的精确率差距是 +20.0 pp，不满足预测均等。满足某个公平指标，不代表模型有用，也不代表在所有意义上都公平。"
+      },
+      "points": [
+        {
+          "en": "Hires are a random draw inside each group, so individual fairness is Low.",
+          "zh": "组内随机抽签，个体公平低。"
+        },
+        {
+          "en": "Overall accuracy is only 52.0%.",
+          "zh": "总体准确率只有 52.0%。"
+        },
+        {
+          "en": "It fails predictive parity (precision gap +20.0 pp).",
+          "zh": "不满足预测均等（精确率差 +20.0 pp）。"
+        },
+        {
+          "en": "A fairness metric alone does not guarantee a good model; demographic parity ignores individual qualifications (Lecture 6).",
+          "zh": "公平指标本身保证不了模型好；人口统计均等不看个人资格（Lecture 6）。"
+        }
+      ],
+      "explain": {
+        "zh": "这题考“公平指标 ≠ 好模型”。答出随机抽签、准确率 52.0%、个体公平低、预测均等不成立中的两三点即可，数字要和卡片一致。"
+      }
+    },
+    {
+      "id": "lab05-q13",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s04-five-metrics",
+      "prompt": {
+        "en": "Using Group B of Model 1 (TP 240, FP 140, FN 60, TN 560), explain the difference between precision and the true positive rate.",
+        "zh": "用 Model 1 的 B 组（TP 240、FP 140、FN 60、TN 560）解释精确率和真阳性率的区别。"
+      },
+      "modelAnswer": {
+        "en": "Precision is the percentage of hired applicants who are qualified: 240/(240 + 140) = 240/380 = 63.2%. The true positive rate is the percentage of qualified applicants who are hired: 240/(240 + 60) = 240/300 = 80.0%. They have the same numerator (TP) but different denominators, because 380 people were hired but 300 applicants were qualified.",
+        "zh": "精确率在“被录用的人”里看合格的比例（240/380 = 63.2%）；真阳性率在“合格的人”里看被录用的比例（240/300 = 80.0%）。分子都是 TP，分母不同：录用了 380 人，合格的有 300 人。"
+      },
+      "points": [
+        {
+          "en": "Precision = TP / (TP + FP) = 240/380 = 63.2% (among the hired).",
+          "zh": "精确率 = 240/380 = 63.2%（在被录用的人里算）。"
+        },
+        {
+          "en": "True positive rate = TP / (TP + FN) = 240/300 = 80.0% (among the qualified).",
+          "zh": "真阳性率 = 240/300 = 80.0%（在合格的人里算）。"
+        },
+        {
+          "en": "Same numerator, different denominators (380 hires vs 300 qualified).",
+          "zh": "分子相同，分母不同（380 vs 300）。"
+        }
+      ],
+      "explain": {
+        "zh": "第 10 页原话：Precision and true positive rate now differ: 380 people were hired, and 300 applicants were qualified. 写出两个公式、代入数字、点明分母不同即可。"
+      }
+    },
+    {
+      "id": "lab05-q14",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s07-stakeholder-ranking",
+      "prompt": {
+        "en": "Five stakeholder groups ranked the eight hiring model cards. Choose two groups that picked different first choices. For each group, state its primary and secondary priorities, which model it prefers and why, using numbers from the cards. Then explain what this shows about fairness.",
+        "zh": "五种利益相关者给 8 张招聘模型卡排了名。选两个首选不同的群体：分别写出它们的首要和次要关注点、偏好哪个模型、为什么（用卡片上的数字）。最后说明这说明了公平的什么特点。"
+      },
+      "modelAnswer": {
+        "en": "Hiring managers care most about overall accuracy and then predictive parity, so they prefer Model 4, which has the highest overall accuracy (90.6%) and a fairly small precision gap (+9.5 pp). The equity office cares most about demographic parity and then equalized odds, so it prefers Model 5: its hiring-rate gap is +0.0 pp and its TPR and FPR gaps are also +0.0 pp. However, Model 5 hires at random inside each group and is only 52.0% accurate, while Model 4 has the largest hiring-rate gap of all eight models (+29.2 pp). This shows that different forms of fairness are often at odds with each other and with overall accuracy. There is no single right answer to fairness; the model designers must choose what to prioritize and which costs are worth paying, based on the needs of the stakeholders.",
+        "zh": "示范选了招聘经理和公平事务办公室。结构：两个群体各写一句“关注点 → 首选 → 数字理由”，再用一句话对比两个选择的代价，最后用第 6 页原话收尾。也可以选求职者（Model 1）、法务（Model 1）或团队主管（Model 3），但两个群体的首选要不同。"
+      },
+      "points": [
+        {
+          "en": "States each group's primary and secondary priorities correctly.",
+          "zh": "正确写出两个群体的首要和次要关注点。"
+        },
+        {
+          "en": "Names each group's preferred model with supporting numbers from the cards.",
+          "zh": "说出各自的首选模型，并用卡片上的数字支持。"
+        },
+        {
+          "en": "Points out the cost of each choice, such as low accuracy or a large gap.",
+          "zh": "指出每个选择的代价，比如准确率低或差距大。"
+        },
+        {
+          "en": "Explains that fairness definitions conflict with each other and with accuracy.",
+          "zh": "说明公平定义之间、公平和准确率之间互相冲突。"
+        },
+        {
+          "en": "Concludes that there is no single right answer; designers choose based on stakeholders' needs.",
+          "zh": "结论：没有唯一正确答案，设计者要按利益相关者的需求取舍。"
+        }
+      ],
+      "explain": {
+        "zh": "长答题按评分点写：关注点、首选、数字、代价、结论。卡片数字一定要引用准确。"
+      }
+    }
+  ]
+}

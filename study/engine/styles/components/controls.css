@@ -1,0 +1,126 @@
+/*
+ * Buttons, segmented controls and the read-aloud button.
+ * 按钮、分段选择器与朗读按钮。
+ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: 6px var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-hard-sm);
+  font-weight: 800;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.btn--ghost {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  border-color: var(--color-line-soft);
+  background: var(--color-paper-2);
+  box-shadow: none;
+  transform: none;
+}
+
+.btn--danger {
+  color: var(--color-danger);
+}
+
+.btn--sm {
+  min-height: 32px;
+  padding: 4px var(--space-3);
+  font-size: var(--text-xs);
+}
+
+.btn--lg {
+  min-height: 48px;
+  padding: 10px var(--space-5);
+  font-size: var(--text-md);
+}
+
+.btn[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 2px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.segmented__option {
+  min-height: 34px;
+  padding: 4px var(--space-3);
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--color-ink-2);
+  font-weight: 800;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+}
+
+.segmented--sm .segmented__option {
+  min-height: 28px;
+  padding: 2px var(--space-2);
+  font-size: var(--text-xs);
+}
+
+.segmented__option[aria-checked="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.speak-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-left: var(--space-1);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  color: var(--color-signal);
+  vertical-align: middle;
+}
+
+.speak-btn:hover {
+  border-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}

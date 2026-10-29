@@ -1,0 +1,42 @@
+/*
+ * Pitfalls: a red-edged strip with square markers, so traps read as "stop and check".
+ * 易错点：红色边条加方形标记，让陷阱一眼看出是“停下来检查”。
+ */
+.pitfall-block {
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-left: 6px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background: var(--color-danger-soft);
+}
+
+.pitfall-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pitfall-block__item {
+  position: relative;
+  padding-left: var(--space-5);
+}
+
+.pitfall-block__item::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: var(--space-1);
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--color-danger);
+  background: var(--color-panel);
+  transform: rotate(45deg);
+}
+
+.pitfall-block__zh {
+  margin: 0;
+  line-height: 1.8;
+}

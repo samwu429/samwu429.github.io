@@ -1,0 +1,448 @@
+/*
+ * Neuron widget: framed panel, scalable diagram, slider rows and the activation plot.
+ * 神经元组件：外框面板、可缩放的示意图、滑块行与激活函数小图。
+ */
+/* Full width keeps the size container from collapsing inside shrink-to-fit parents. 占满宽度，避免尺寸容器在自适应父元素中塌缩。 */
+.neuron {
+  container-type: inline-size;
+  width: 100%;
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.neuron__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.neuron__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.neuron__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.neuron__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.neuron__pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.neuron__zh,
+.neuron__en {
+  margin: 0;
+}
+
+.neuron__en {
+  color: var(--color-ink-3);
+  font-size: 0.92em;
+}
+
+.neuron__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Diagram 示意图 */
+.neuron__stage {
+  margin: 0;
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.neuron__diagram {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* The narrower drawing replaces the wide one on small widths, so its text stays at least 11px on screen.
+   宽度较小时换成更窄的那张图，屏幕上的文字因此保持在 11px 以上。 */
+.neuron__diagram--compact {
+  display: none;
+  max-width: 400px;
+}
+
+@container (max-width: 479px) {
+  .neuron__diagram--wide {
+    display: none;
+  }
+
+  .neuron__diagram--compact {
+    display: block;
+  }
+}
+
+.neuron__diagram text,
+.neuron__plot text {
+  font-family: var(--font-sans);
+}
+
+.neuron__column-zh {
+  fill: var(--color-ink-2);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.neuron__column-en {
+  fill: var(--color-ink-3);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.neuron__diagram--compact .neuron__column-zh {
+  font-size: 14px;
+}
+
+.neuron__diagram--compact .neuron__column-en,
+.neuron__diagram--compact .neuron__caption {
+  font-size: 13px;
+}
+
+.neuron__node {
+  fill: var(--color-panel);
+  stroke: var(--color-line);
+  stroke-width: 2;
+}
+
+.neuron__node--sum {
+  fill: var(--color-highlight-soft);
+}
+
+.neuron__node--activation {
+  fill: var(--color-signal-soft);
+}
+
+.neuron__node--bias {
+  stroke-dasharray: 4 3;
+}
+
+.neuron__node-text {
+  fill: var(--color-ink);
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.neuron__value-text {
+  fill: var(--color-ink);
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.neuron__sigma {
+  fill: var(--color-ink);
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.neuron__caption {
+  fill: var(--color-ink-2);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.neuron__mini-curve {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.neuron__level {
+  fill: var(--color-accent-soft);
+}
+
+.neuron__edge {
+  fill: none;
+}
+
+.neuron__edge--positive {
+  stroke: var(--color-accent);
+}
+
+.neuron__edge--negative {
+  stroke: var(--color-danger);
+  stroke-dasharray: 8 5;
+}
+
+.neuron__edge--zero {
+  stroke: var(--color-ink-3);
+  stroke-dasharray: 2 5;
+}
+
+.neuron__edge--flow {
+  stroke: var(--color-ink-2);
+  stroke-width: 2;
+}
+
+.neuron__arrow--positive {
+  fill: var(--color-accent);
+}
+
+.neuron__arrow--negative {
+  fill: var(--color-danger);
+}
+
+.neuron__arrow--zero {
+  fill: var(--color-ink-3);
+}
+
+.neuron__arrow--flow {
+  fill: var(--color-ink-2);
+}
+
+/* A paper-coloured halo keeps labels readable on top of the edges. 纸色描边让标签压在连线上也清晰可读。 */
+.neuron__edge-label {
+  fill: var(--color-ink);
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  paint-order: stroke;
+  stroke: var(--color-paper);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.neuron__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin-top: var(--space-2);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.neuron__legend-item {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.neuron__legend-line {
+  flex: none;
+  width: 36px;
+  height: 12px;
+}
+
+/* Written-out computation 完整算式 */
+.neuron__formula {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.neuron__formula-steps {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.neuron__formula-text {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+/* Sliders and activation panel 滑块与激活函数面板 */
+.neuron__workbench {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+@container (min-width: 620px) {
+  .neuron__workbench {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.neuron__controls,
+.neuron__activation {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.neuron__subheading {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.neuron__subheading .bi-title__en {
+  font-size: 0.8em;
+}
+
+.neuron__pair-group {
+  display: grid;
+  gap: var(--space-1);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-line-soft);
+}
+
+.neuron__slider {
+  display: grid;
+  grid-template-columns: 5.2rem minmax(0, 1fr) 3rem;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.neuron__label {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.neuron__symbol {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.neuron__hint {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.neuron__range {
+  width: 100%;
+  min-width: 0;
+  min-height: 32px;
+  margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.neuron__value {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.neuron__reset {
+  justify-self: start;
+}
+
+.neuron__activation-switch {
+  justify-self: start;
+  max-width: 100%;
+}
+
+.neuron__plot {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+}
+
+.neuron__plot-frame {
+  fill: none;
+  stroke: var(--color-line);
+  stroke-width: 1.5;
+}
+
+.neuron__grid {
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.neuron__axis {
+  stroke: var(--color-ink-3);
+  stroke-width: 1.5;
+}
+
+.neuron__tick {
+  fill: var(--color-ink-3);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.neuron__axis-title {
+  fill: var(--color-ink-2);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.neuron__curve {
+  fill: none;
+  stroke: var(--color-signal);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.neuron__guide {
+  stroke: var(--color-ink-3);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.neuron__point {
+  fill: var(--color-accent);
+  stroke: var(--color-line);
+  stroke-width: 2;
+}
+
+.neuron__point--clamped {
+  fill: var(--color-panel);
+  stroke-dasharray: 3 2;
+}
+
+.neuron__activation-note,
+.neuron__bias-note {
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 480px) {
+  .neuron {
+    padding: var(--space-3);
+  }
+
+  .neuron__stage {
+    padding: var(--space-2);
+  }
+
+  .neuron__formula-text {
+    font-size: var(--text-sm);
+  }
+}

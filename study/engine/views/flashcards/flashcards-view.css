@@ -1,0 +1,612 @@
+/*
+ * Flashcards page: deck setup, the flip card with its 3D turn, and the round summary.
+ * 闪卡页面：卡组设置、带 3D 翻转的卡片，以及本轮小结。
+ */
+
+/* Overview tiles, also used on the summary screen. 数据块，小结页同样使用。 */
+.flashcards-overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--content-width);
+  margin-bottom: var(--space-5);
+}
+
+.flashcards-overview__tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  gap: var(--space-3);
+}
+
+.flashcards-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.flashcards-stat__value {
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.flashcards-stat__label {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.flashcards-stat--good {
+  background: var(--color-success-soft);
+}
+
+.flashcards-stat--good .flashcards-stat__value {
+  color: var(--color-success);
+}
+
+.flashcards-stat--warn {
+  background: var(--color-warn-soft);
+}
+
+.flashcards-stat--warn .flashcards-stat__value {
+  color: var(--color-warn);
+}
+
+/* Deck setup 卡组设置 */
+.flashcards-setup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: var(--content-width);
+  padding: var(--space-5);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.flashcards-setup__group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.flashcards-setup__group > * + * {
+  margin-top: var(--space-3);
+}
+
+.flashcards-setup__legend {
+  padding: 0;
+  font-size: var(--text-md);
+  font-weight: 900;
+}
+
+.flashcards-setup__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-3);
+}
+
+.flashcards-setup__option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  box-shadow: var(--shadow-hard-sm);
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.flashcards-setup__option:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.flashcards-setup__option:has(input:checked) {
+  background: var(--color-accent-soft);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.flashcards-setup__option:has(input:focus-visible) {
+  box-shadow: var(--focus-ring), var(--shadow-hard-md);
+}
+
+.flashcards-setup__radio {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  accent-color: var(--color-accent);
+}
+
+.flashcards-setup__option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.flashcards-setup__option-title {
+  font-weight: 900;
+}
+
+.flashcards-setup__option-hint {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.flashcards-setup__count {
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+.flashcards-setup__size {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.flashcards-setup__size-label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.flashcards-setup__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 2px dashed var(--color-line-soft);
+}
+
+.flashcards-setup__summary {
+  flex: 1 1 240px;
+  margin: 0;
+  color: var(--color-ink-2);
+  font-weight: 800;
+}
+
+.flashcards-setup__start {
+  flex: none;
+}
+
+/* Session 翻卡 */
+.flashcards-session {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.flashcards-session__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.flashcards-session__title {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.flashcards-session__mode {
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.flashcards-session__count {
+  margin: 0 0 0 auto;
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.flashcards-session__count strong {
+  font-weight: 900;
+}
+
+.flashcards-session__count-label {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.flashcards-session__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.flashcards-session__flip {
+  grid-column: 1 / -1;
+}
+
+.flashcards-session__again {
+  background: var(--color-warn-soft);
+  color: var(--color-ink);
+}
+
+.flashcards-session__key,
+.flashcards-session__keys kbd {
+  min-width: 1.6em;
+  padding: 0 4px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.flashcards-session__key {
+  opacity: 0.75;
+}
+
+.flashcards-session__keys {
+  margin: 0;
+  text-align: center;
+}
+
+/* The flip card 翻转卡片 */
+.flashcards-card {
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  perspective: 1400px;
+  -webkit-tap-highlight-color: transparent;
+  animation: flashcards-card-in 220ms ease-out;
+}
+
+.flashcards-card:focus {
+  outline: none;
+}
+
+.flashcards-card:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.flashcards-card__inner {
+  display: grid;
+  min-height: 300px;
+  transform-style: preserve-3d;
+  transition: transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.flashcards-card.is-flipped .flashcards-card__inner {
+  transform: rotateY(180deg);
+}
+
+/* Both faces share one grid cell, so the card is as tall as its longer side. 两面叠在同一个网格单元中，卡片高度取较长的一面。 */
+.flashcards-card__face {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  grid-area: 1 / 1;
+  min-width: 0;
+  padding: var(--space-5);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-lg);
+  overflow-wrap: anywhere;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flashcards-card__face--front {
+  justify-content: space-between;
+}
+
+.flashcards-card__face--back {
+  background: var(--color-paper);
+  transform: rotateY(180deg);
+}
+
+.flashcards-card__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.flashcards-card__units {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flashcards-card__prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin: auto 0;
+  text-align: center;
+}
+
+.flashcards-card__ask {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.flashcards-card__term-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.flashcards-card__term {
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.flashcards-card__term--zh {
+  font-size: clamp(1.4rem, 5.5vw, 2rem);
+}
+
+.flashcards-card__clue {
+  max-width: 36em;
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+.flashcards-card__tap {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+.flashcards-card__speak {
+  flex: none;
+}
+
+.flashcards-card__term-row .flashcards-card__speak {
+  margin-left: 0;
+}
+
+.flashcards-card__answer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.flashcards-card__answer .flashcards-card__term-row {
+  justify-content: flex-start;
+}
+
+.flashcards-card__answer .flashcards-card__term {
+  font-size: clamp(1.35rem, 5vw, 1.9rem);
+}
+
+.flashcards-card__zh {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-lg);
+  font-weight: 800;
+}
+
+.flashcards-card__def {
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+}
+
+.flashcards-card__label {
+  margin: 0 0 var(--space-1);
+  color: var(--color-exam);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flashcards-card__def-en {
+  margin: 0 0 var(--space-2);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.flashcards-card__def-zh {
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+@keyframes flashcards-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Reduced motion: no turn, the visible face simply swaps. 减少动态效果：不翻转，直接切换显示的一面。 */
+@media (prefers-reduced-motion: reduce) {
+  .flashcards-card {
+    animation: none;
+  }
+
+  .flashcards-card__inner {
+    transition: none;
+  }
+
+  .flashcards-card.is-flipped .flashcards-card__inner,
+  .flashcards-card__face--back {
+    transform: none;
+  }
+
+  .flashcards-card:not(.is-flipped) .flashcards-card__face--back,
+  .flashcards-card.is-flipped .flashcards-card__face--front {
+    visibility: hidden;
+  }
+}
+
+/* Round summary 本轮小结 */
+.flashcards-done {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: var(--content-width);
+}
+
+.flashcards-done__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+}
+
+.flashcards-done__head .page-header__eyebrow {
+  margin-bottom: 0;
+}
+
+.flashcards-done__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.flashcards-done__title:focus {
+  outline: none;
+}
+
+.flashcards-done__lead {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-lg);
+}
+
+.flashcards-done__overall {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.flashcards-done__overall-text {
+  margin: 0;
+  font-weight: 800;
+}
+
+.flashcards-done__subtitle {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-lg);
+}
+
+.flashcards-done__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flashcards-done__item {
+  display: flex;
+  min-width: 0;
+}
+
+.flashcards-done__link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+a.flashcards-done__link:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.flashcards-done__term {
+  font-weight: 900;
+}
+
+.flashcards-done__zh {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.flashcards-done__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Keyboard hints are noise on touch screens. 触屏设备上不显示键盘提示。 */
+@media (hover: none) and (pointer: coarse) {
+  .flashcards-session__key,
+  .flashcards-session__keys {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .flashcards-setup {
+    padding: var(--space-4);
+  }
+
+  .flashcards-setup__start,
+  .flashcards-done__actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .flashcards-session__actions .btn {
+    padding-inline: var(--space-3);
+  }
+
+  .flashcards-card__inner {
+    min-height: 260px;
+  }
+
+  .flashcards-card__face {
+    padding: var(--space-4);
+  }
+}

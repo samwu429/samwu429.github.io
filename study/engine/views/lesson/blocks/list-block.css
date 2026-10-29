@@ -1,0 +1,68 @@
+/*
+ * Lists: square accent bullets or bold numbers, with roomy spacing between items.
+ * 列表：方形强调色项目符号或加粗编号，条目之间留足间距。
+ */
+.list-block__title {
+  margin: 0 0 var(--space-2);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.list-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-block__item {
+  position: relative;
+  line-height: 1.75;
+}
+
+.list-block__list--bullet > .list-block__item {
+  padding-left: var(--space-5);
+}
+
+.list-block__list--bullet > .list-block__item::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: var(--space-1);
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--color-line);
+  background: var(--color-accent);
+}
+
+.list-block__list--number {
+  counter-reset: list-block;
+}
+
+.list-block__list--number > .list-block__item {
+  padding-left: var(--space-6);
+  counter-increment: list-block;
+}
+
+.list-block__list--number > .list-block__item::before {
+  content: counter(list-block) ".";
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 1.6em;
+  color: var(--color-accent-strong);
+  font-weight: 900;
+  text-align: right;
+}
+
+.list-block__zh,
+.list-block__en {
+  display: block;
+}
+
+.list-block__en--secondary {
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}

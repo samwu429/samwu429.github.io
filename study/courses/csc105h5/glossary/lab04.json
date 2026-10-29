@@ -1,0 +1,410 @@
+{
+  "lessonId": "lab04",
+  "terms": [
+    {
+      "id": "teachable-machine",
+      "en": "Teachable Machine",
+      "zh": "Teachable Machine（网页版模型训练工具）",
+      "def": {
+        "en": "A web tool (teachablemachine.withgoogle.com) that trains a model from example images without any coding. In Lab 4 we chose an Image Project and a Standard image model (224x224px color images).",
+        "zh": "一个不用写代码的网页工具：给它看分好类的示例图片，它就训练出一个模型。Lab 4 用的是 Image Project 里的 Standard image model（224×224 像素彩色图）。"
+      },
+      "example": {
+        "zh": "Class 1 放剪刀图，Class 2 放布图，点 Train Model，再在 Preview 里试新图。",
+        "en": "Put SCISSORS images in Class 1 and PAPER images in Class 2, click Train Model, then try new images in Preview."
+      },
+      "slides": "8-9",
+      "related": [
+        "image-classifier",
+        "training",
+        "inference"
+      ]
+    },
+    {
+      "id": "machine-learning-pipeline",
+      "en": "Machine learning pipeline",
+      "zh": "机器学习流程",
+      "def": {
+        "en": "A common workflow for producing useful models from data: 1. Data Preparation, 2. Model Training, 3. Model Evaluation, 4. Inference/Deployment.",
+        "zh": "从数据做出有用模型的通用四步：数据准备 → 模型训练 → 模型评估 → 推理/部署。"
+      },
+      "example": {
+        "zh": "Lab 4：录制或上传图片（准备）→ 点 Train Model（训练）→ 用朋友的手测准确率（评估）→ 用模型预测新图（推理）。",
+        "en": "Lab 4: collect images, click Train Model, test on friends' hands, then predict new images."
+      },
+      "slides": "3",
+      "related": [
+        "training",
+        "inference",
+        "accuracy"
+      ]
+    },
+    {
+      "id": "supervised-learning",
+      "en": "Supervised Learning",
+      "zh": "监督学习",
+      "def": {
+        "en": "In Supervised Learning, we want to predict the value of a feature in the data space (called the target feature). We learn from a labelled training dataset, then use the resulting model to make predictions about the target feature for unlabelled data. The two kinds of task are classification and regression.",
+        "zh": "先用“带答案”的例子（带标签的训练数据）训练模型，再让模型给“没答案”的新数据（无标签数据）预测答案。要预测的那个特征叫目标特征。分两种任务：分类和回归。"
+      },
+      "example": {
+        "zh": "用标好剪刀 / 布的手势图训练，再预测新的手势图。",
+        "en": "Train on hand images labelled SCISSORS or PAPER, then predict new hand images."
+      },
+      "slides": "4-5",
+      "related": [
+        "target-feature",
+        "labelled-data",
+        "unlabelled-data",
+        "classification"
+      ]
+    },
+    {
+      "id": "target-feature",
+      "en": "Target feature",
+      "zh": "目标特征",
+      "def": {
+        "en": "The feature in the data space whose value we want to predict in Supervised Learning.",
+        "zh": "监督学习里要预测的那个特征，也就是要猜的“答案”。它的类型决定任务是分类还是回归。"
+      },
+      "example": {
+        "zh": "Lab 4 的目标特征是手势类别：SCISSORS 还是 PAPER。",
+        "en": "In Lab 4 the target feature is the gesture: SCISSORS or PAPER."
+      },
+      "slides": "4",
+      "related": [
+        "supervised-learning",
+        "class"
+      ]
+    },
+    {
+      "id": "labelled-data",
+      "en": "Labelled training dataset (labelled data)",
+      "zh": "带标签的训练数据集（带标签的数据）",
+      "def": {
+        "en": "A training dataset in which the target feature's value is known for every piece of data, i.e. the correct answer is given for every example.",
+        "zh": "每一条数据的目标特征值（正确答案）都已知的训练数据，比如每张照片都标好了“有狗”或“没狗”。"
+      },
+      "example": {
+        "zh": "放进 Class 1 的图都标成 SCISSORS，放进 Class 2 的图都标成 PAPER。",
+        "en": "Images in Class 1 are labelled SCISSORS; images in Class 2 are labelled PAPER."
+      },
+      "slides": "4, 11-12, 17-18",
+      "related": [
+        "unlabelled-data",
+        "training-set",
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "unlabelled-data",
+      "en": "Unlabelled data",
+      "zh": "无标签数据",
+      "def": {
+        "en": "Data where the target value is not known. Once training is complete, we use the model to make predictions about the target feature for unlabelled data.",
+        "zh": "目标值（答案）未知的数据。训练完成后，用模型去预测它的目标值。"
+      },
+      "example": {
+        "zh": "在 Preview 里给模型看的新手势图（模型拿不到它的答案）。",
+        "en": "A new hand image shown in the Preview panel."
+      },
+      "slides": "4",
+      "related": [
+        "labelled-data",
+        "inference"
+      ]
+    },
+    {
+      "id": "training",
+      "en": "Training (learning)",
+      "zh": "训练（学习）",
+      "def": {
+        "en": "The phase of Machine Learning in which a model learns from data ('training a model (learning from data)'). In Supervised Learning, the model learns from a labelled training dataset: it's the machine's job to find the best parameter values (weights), and that's what it does during training. Training can take a long time.",
+        "zh": "机器学习的训练阶段（在推理之前）：模型从数据中学习规律。监督学习里，模型从带标签的训练数据中学习：机器在训练中找出最好的参数值（权重）。训练可能要花很长时间。"
+      },
+      "example": {
+        "en": "In Teachable Machine, clicking Train Model starts training: the panel shows Training... and then Model Trained.",
+        "zh": "在 Teachable Machine 里点 Train Model 就开始训练：先显示 Training...，结束时显示 Model Trained。"
+      },
+      "slides": "4, 14, 19",
+      "related": [
+        "inference",
+        "training-set"
+      ]
+    },
+    {
+      "id": "inference",
+      "en": "Inference",
+      "zh": "推理（使用训练好的模型）",
+      "def": {
+        "en": "The phase of Machine Learning in which the trained model is used to solve a problem ('using the trained model to solve a problem'), for example to make predictions about new data. Inference time is generally fast, although the Big Table notes that large models such as LLMs are often slower and costlier per call.",
+        "zh": "机器学习的推理阶段（在训练之后）：用训练好的模型解决新问题，比如对新数据做预测。通常很快；不过性质大表也提醒：LLM 这类很大的模型每次调用往往更慢、更贵。注意：中文也叫“推理”，但它不是符号 AI 里按逻辑规则的推理（reasoning）。"
+      },
+      "example": {
+        "zh": "训练完后，在 Preview 里上传 scissors.jpg，看模型预测哪一类。",
+        "en": "Uploading scissors.jpg in the Preview panel to see the predicted class."
+      },
+      "slides": "3, 15, 20",
+      "related": [
+        "training",
+        "machine-learning-pipeline"
+      ]
+    },
+    {
+      "id": "classification",
+      "en": "Classification",
+      "zh": "分类",
+      "def": {
+        "en": "A kind of Supervised Learning task in which the target value is categorical. In a classification problem, the model forms a decision boundary between classes.",
+        "zh": "监督学习的一种任务：要预测的目标值是类别型的（比如橡树还是枫树）。模型在数据空间里画出决策边界，把不同的类别分开。"
+      },
+      "example": {
+        "zh": "预测手势是 SCISSORS 还是 PAPER。（目标值是连续数值时，叫回归 regression。）",
+        "en": "Predicting SCISSORS or PAPER. If the target value is continuous, the task is regression."
+      },
+      "slides": "5",
+      "related": [
+        "class",
+        "image-classifier",
+        "supervised-learning",
+        "regression"
+      ]
+    },
+    {
+      "id": "regression",
+      "en": "Regression",
+      "zh": "回归",
+      "def": {
+        "en": "A kind of Supervised Learning task in which the target value is continuous. In a regression problem, we want to predict a continuous value.",
+        "zh": "监督学习的一种任务：要预测的目标值是连续型的数（小数也有意义），比如叶子有多高。"
+      },
+      "example": {
+        "zh": "预测身高（cm）是回归；预测 SCISSORS 还是 PAPER 是分类。",
+        "en": "Predicting height in cm is regression; predicting SCISSORS or PAPER is classification."
+      },
+      "slides": "5",
+      "related": [
+        "classification",
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "class",
+      "en": "Class",
+      "zh": "类别",
+      "def": {
+        "en": "One of the categories that a classification model (classifier) predicts. A decision boundary forms between classes: on one side of the boundary, we predict one class, and on the other side, we predict a different class.",
+        "zh": "分类模型（分类器）要预测的某一个类别。决策边界把不同的类别分开：一边预测一个类别，另一边预测另一个类别。"
+      },
+      "example": {
+        "zh": "Lab 4 里 Class 1 = SCISSORS，Class 2 = PAPER。",
+        "en": "In Lab 4, Class 1 is SCISSORS and Class 2 is PAPER."
+      },
+      "slides": "9",
+      "related": [
+        "classification",
+        "majority-class"
+      ]
+    },
+    {
+      "id": "image-classifier",
+      "en": "Image classifier",
+      "zh": "图像分类器",
+      "def": {
+        "en": "A model that, given a new image, predicts which class it belongs to.",
+        "zh": "给它一张新图，它预测这张图属于哪一类的模型。"
+      },
+      "example": {
+        "zh": "Lab 4 的模型：给一张手的图，预测属于 Class 1（Scissors）还是 Class 2（Paper）。",
+        "en": "Given a new image, it predicts whether it belongs to Class 1 (Scissors) or Class 2 (Paper)."
+      },
+      "slides": "14, 19",
+      "related": [
+        "classification",
+        "teachable-machine"
+      ]
+    },
+    {
+      "id": "training-set",
+      "en": "Training set (training data)",
+      "zh": "训练集（训练数据）",
+      "def": {
+        "en": "The data used to train the model: the examples the model learns from, to find its parameters such as the weights. In Supervised Learning it is a labelled training dataset, and we generally want the training set to contain the most data.",
+        "zh": "用来训练模型的数据：模型从这些例子里学习，找出参数（比如权重）。监督学习用的是带标签的训练数据集。一般希望训练集包含最多的数据。"
+      },
+      "example": {
+        "zh": "每种手势录制或上传的约 20 张图，就是 Lab 4 的训练集。",
+        "en": "In Lab 4, the training set was the images we recorded or uploaded: about 20 of each gesture."
+      },
+      "slides": "11-12",
+      "related": [
+        "test-set",
+        "labelled-data"
+      ]
+    },
+    {
+      "id": "test-set",
+      "en": "Test set",
+      "zh": "测试集",
+      "def": {
+        "en": "A test set is a segment of the dataset not used for training or validation. After a model is selected, we use the test set to report its final accuracy (how it performs on new data), so that we avoid overreporting it.",
+        "zh": "数据集中既不用于训练、也不用于验证的一部分。模型选定后，用它报告最终准确率（看模型对新数据的表现），避免把成绩报高。"
+      },
+      "example": {
+        "en": "In Lab 4, friends' hands or other people's 03-test images played this role.",
+        "zh": "Lab 4 里，朋友的手或 tm_data 里其他人 03-test 的图，起到测试集的作用（定义来自 Lecture 6 第 27 页；Lab 4 第 22 页用到这个想法）。验证集（validation set）是 Lecture 6 讲的另一份不参与训练、用来挑选模型的数据；这个 lab 没用到。"
+      },
+      "slides": "22",
+      "related": [
+        "training-set",
+        "generalization",
+        "accuracy"
+      ]
+    },
+    {
+      "id": "accuracy",
+      "en": "Accuracy",
+      "zh": "准确率",
+      "def": {
+        "en": "Accuracy is the number of correct predictions divided by the total number of predictions: accuracy = number of correct predictions / total number of predictions. For binary classification, Accuracy = (TP + TN) / (TP + TN + FP + FN).",
+        "zh": "预测对的个数 ÷ 预测的总个数，就是猜对的比例（0 到 1，也可以写成 0% 到 100%）。二分类时：Accuracy = (TP + TN) / (TP + TN + FP + FN)。分类错误率 = 1 − 准确率。"
+      },
+      "example": {
+        "zh": "8 张测试图对了 7 张：7/8 = 87.5%。",
+        "en": "7 correct out of 8: 7/8 = 87.5%."
+      },
+      "slides": "6, 22",
+      "related": [
+        "classification-error",
+        "test-set"
+      ]
+    },
+    {
+      "id": "classification-error",
+      "en": "Classification error (error rate)",
+      "zh": "分类错误率（错误率）",
+      "def": {
+        "en": "The classification error (or error rate) is 1 − accuracy, the proportion of predictions that are wrong. It is a simple error function.",
+        "zh": "1 − 准确率，也就是预测错的比例。它是一个简单的误差函数（error function），训练时要让它尽量小。"
+      },
+      "example": {
+        "zh": "准确率 87.5%，错误率 = 1 − 0.875 = 12.5%。",
+        "en": "If accuracy is 87.5%, the error rate is 12.5%."
+      },
+      "slides": "6",
+      "related": [
+        "accuracy"
+      ]
+    },
+    {
+      "id": "generalization",
+      "en": "Generalization (generalize)",
+      "zh": "泛化",
+      "def": {
+        "en": "How well a model performs on new data that it did not see during training (the slides use the word without a formal definition). Models with low error on the training set do not always generalize well, and we can find this using a validation set.",
+        "zh": "模型在训练时没见过的新数据上表现得好不好（课件没给正式定义）。训练集上误差低的模型不一定泛化得好，可以用验证集发现这一点。"
+      },
+      "example": {
+        "zh": "Model A 认训练用的那只手很准，认朋友的手却可能出错，说明泛化不够好。（定义里“训练集上误差低的模型不一定泛化得好”这句出自 Lecture 6 第 14 页。）",
+        "en": "Model A may be accurate on the hand it was trained on but make mistakes on friends' hands."
+      },
+      "slides": "22",
+      "related": [
+        "test-set",
+        "out-of-distribution"
+      ]
+    },
+    {
+      "id": "majority-class",
+      "en": "Majority class",
+      "zh": "多数类",
+      "def": {
+        "en": "The class that has most of the training examples. In Part 3 the groups were called majority paper and majority scissors; a model trained this way tends to predict the majority class.",
+        "zh": "训练数据里例子最多的那一类。Part 3 的分组叫 majority paper 和 majority scissors；这样训练出的模型容易偏向多数类。"
+      },
+      "example": {
+        "zh": "majority paper 组：PAPER 约 20 张、SCISSORS 只有 2 张，模型容易把剪刀认成布。",
+        "en": "Majority paper group: about 20 PAPER images and only 2 SCISSORS images."
+      },
+      "slides": "24",
+      "related": [
+        "underrepresentation",
+        "class",
+        "bias"
+      ]
+    },
+    {
+      "id": "underrepresentation",
+      "en": "Underrepresentation",
+      "zh": "代表性不足",
+      "def": {
+        "en": "When specific groups (or classes) have too few examples in the training dataset. Underrepresentation of specific groups in the training dataset is a possible cause of bias in ML: the model learns them less well and makes more errors for them.",
+        "zh": "某些群体（或类别）在训练数据里例子太少。某些群体代表性不足是 ML 产生偏见的可能原因之一：模型对他们学得差，错误更多。"
+      },
+      "example": {
+        "en": "In Model B, the class with only 2 images is underrepresented and gets most of the errors.",
+        "zh": "Model B 里只剩 2 张图的那一类代表性不足，错误大多落在它身上。注意：Lab 4 里太少的是一个类别（剪刀或布），Lecture 6 第 38 页说的是一群人。"
+      },
+      "slides": "24",
+      "related": [
+        "majority-class",
+        "bias"
+      ]
+    },
+    {
+      "id": "bias",
+      "en": "Bias",
+      "zh": "偏见",
+      "def": {
+        "en": "Bias means that an AI system or model unfairly discriminates against certain groups. 'Trained models inherit the biases of the data they were trained on.' Possible causes of bias in ML include biased historical data, underrepresentation of specific groups in the training dataset, proxy variables, and the incompatibility of different definitions of fairness.",
+        "zh": "AI 系统或模型对某些群体不公平（歧视某些群体）。训练好的模型会继承训练数据里的偏见。ML 里偏见的可能原因：有偏见的历史数据、某些群体在训练数据中代表性不足、代理变量、不同的公平定义互相冲突。"
+      },
+      "example": {
+        "zh": "Lab 4 里类似的现象：majority paper 组的 Model B 偏向猜 PAPER，剪刀图常被认错（预期结果）。现实中的偏见针对的是人群，比如 Lecture 6 的人脸识别：深肤色女性的错误率比浅肤色男性最多高 34%。（“模型会继承数据偏见”出自 Lecture 1；“代表性不足是可能原因之一”出自 Lecture 6 第 38 页。）",
+        "en": "In Lab 4, a majority paper Model B leans toward PAPER and often gets SCISSORS images wrong (expected result). Real-world bias affects groups of people, as in the facial recognition example in Lecture 6."
+      },
+      "slides": "24",
+      "related": [
+        "underrepresentation",
+        "majority-class"
+      ]
+    },
+    {
+      "id": "out-of-distribution",
+      "en": "Out-of-distribution input",
+      "zh": "分布外输入",
+      "def": {
+        "en": "An input that is very different from the data the model was trained on (the slides do not define the term; SPOCK is the course example). A classifier still predicts one of its known classes for it, so the prediction can be unreliable; for SPOCK, which is neither SCISSORS nor PAPER, it cannot be correct.",
+        "zh": "和训练数据差别很大、训练时没见过的输入（课件没有正式定义，SPOCK 是课上的例子）。分类器仍会把它预测成某个已知类别，所以预测不可靠；像 SPOCK 这样既不是剪刀也不是布的输入，预测不可能是对的。"
+      },
+      "example": {
+        "zh": "只学过剪刀和布的模型看到 SPOCK 手势，课件截图里给出 SCISSORS 87%。",
+        "en": "A model trained on SCISSORS and PAPER saw the SPOCK hand and said SCISSORS with 87%."
+      },
+      "slides": "25-26",
+      "related": [
+        "confidence",
+        "generalization",
+        "distribution-shift"
+      ]
+    },
+    {
+      "id": "confidence",
+      "en": "Confidence",
+      "zh": "把握度（置信度）",
+      "def": {
+        "en": "How sure a model is about its prediction (the slides do not define it precisely). Roughly, when gradient descent is used for classification, the goal is to maximize confidence in correct classifications. High confidence does not mean the prediction is correct.",
+        "zh": "模型对自己的预测有多大把握（课件没有给精确定义）。分类问题里，梯度下降大致是让模型对正确分类的把握尽量大。注意：把握度高不代表预测正确。"
+      },
+      "example": {
+        "en": "Teachable Machine shows a percentage for each class, and the percentages add up to 100%. On p. 15 a SCISSORS hand got Class 1 34% and Class 2 66%.",
+        "zh": "Teachable Machine 给每一类显示一个百分比，加起来是 100%。第 15 页：剪刀手势得到 Class 1 34%、Class 2 66%，模型更倾向布，其实猜错了。"
+      },
+      "slides": "15, 26",
+      "related": [
+        "accuracy",
+        "out-of-distribution"
+      ]
+    }
+  ]
+}

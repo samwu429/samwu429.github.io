@@ -1,0 +1,411 @@
+/*
+ * Dice-max widget: SVG dice tray, round of rolls, two aligned histograms, stats and the lesson.
+ * 骰子最大值组件：SVG 骰子、每轮的点数、两张对齐的分布图、统计与结论。
+ */
+.dice-max__step {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.dice-max__step .eval-subheading,
+.dice-max__charts .eval-subheading,
+.dice-max__lesson .eval-subheading {
+  margin: 0;
+}
+
+.dice-max__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.dice-max__expect {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.dice-max__expect strong {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  color: var(--color-ink);
+}
+
+.dice-max__tray {
+  --dice-columns: var(--dice-half, 4);
+  display: grid;
+  grid-template-columns: repeat(var(--dice-columns), minmax(0, 56px));
+  gap: var(--space-2);
+  justify-content: start;
+  padding: var(--space-3);
+  border: 2px dashed var(--color-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.dice-max__die {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: visible;
+  filter: drop-shadow(2px 2px 0 var(--color-shadow));
+}
+
+.dice-max__die-body {
+  fill: var(--color-panel);
+  stroke: var(--color-line);
+  stroke-width: 5;
+}
+
+.dice-max__die.is-blank {
+  filter: none;
+}
+
+.dice-max__die.is-blank .dice-max__die-body {
+  fill: transparent;
+  stroke: var(--color-ink-3);
+  stroke-dasharray: 10 8;
+}
+
+.dice-max__pip {
+  fill: var(--color-ink);
+}
+
+.dice-max__die-number {
+  fill: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 44px;
+  font-weight: 800;
+}
+
+.dice-max__tray.is-rolling .dice-max__die {
+  animation: dice-max-tumble 450ms ease-out;
+}
+
+.dice-max__tray.is-rolling .dice-max__die:nth-child(even) {
+  animation-direction: reverse;
+}
+
+@keyframes dice-max-tumble {
+  0% { transform: rotate(0deg) translateY(0); }
+  30% { transform: rotate(-14deg) translateY(-4px); }
+  60% { transform: rotate(10deg) translateY(1px); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+
+.dice-max__sum {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.dice-max__sum-label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--color-ink-2);
+}
+
+.dice-max__sum-terms {
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+.dice-max__sum-value {
+  padding: 0 var(--space-2);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-highlight-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+}
+
+.dice-max__round {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dice-max__roll {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-family: var(--font-mono);
+}
+
+.dice-max__roll-index {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.dice-max__roll-sum {
+  font-weight: 800;
+}
+
+.dice-max__roll.is-max {
+  border: 2px solid var(--color-line);
+  background: var(--color-highlight-soft);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.dice-max__round-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.dice-max__round-max {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+}
+
+.dice-max__counters {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.dice-max__charts {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.dice-max__charts-intro {
+  font-size: var(--text-sm);
+}
+
+.dice-max__chart {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.dice-max__chart-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+}
+
+.dice-max__chart-title {
+  font-weight: 800;
+}
+
+.dice-max__chart-title .bi-title__en {
+  font-size: 0.8em;
+}
+
+.dice-max__chart-stats {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+/* Bars and markers share one coordinate system: value v sits at (v - min + 0.5) / span of the width. */
+/* 柱子与竖线共用同一坐标：数值 v 位于宽度的 (v - min + 0.5) / span 处。 */
+.dice-max__plot {
+  position: relative;
+  height: 140px;
+  margin: var(--space-5) var(--space-2) 0;
+  border-bottom: 2px solid var(--color-line);
+}
+
+.dice-max__bars {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.dice-max__bar {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 0;
+  border-radius: 2px 2px 0 0;
+  background: var(--color-signal);
+  transition: height 200ms ease;
+}
+
+.dice-max__bar.has-data {
+  min-height: 2px;
+}
+
+.dice-max__chart--max .dice-max__bar {
+  background: var(--color-accent);
+}
+
+.dice-max__marker {
+  position: absolute;
+  top: calc(-1 * var(--space-4));
+  bottom: 0;
+  width: 0;
+  border-left: 2px dashed var(--color-ink-2);
+  transform: translateX(-1px);
+  pointer-events: none;
+}
+
+.dice-max__marker--max {
+  border-left-color: var(--color-danger);
+}
+
+.dice-max__marker-label {
+  position: absolute;
+  top: 0;
+  left: var(--space-1);
+  padding: 0 var(--space-1);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+  color: var(--color-ink-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.dice-max__marker--max .dice-max__marker-label {
+  color: var(--color-danger);
+}
+
+.dice-max__empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.dice-max__axis {
+  position: relative;
+  height: 1.6em;
+  margin: 0 var(--space-2);
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.dice-max__tick {
+  position: absolute;
+  top: 2px;
+  transform: translateX(-50%);
+}
+
+.dice-max__details summary {
+  width: fit-content;
+  color: var(--color-signal);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dice-max__table {
+  max-height: 260px;
+  margin-top: var(--space-2);
+  overflow-y: auto;
+}
+
+.dice-max__table-empty {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+.dice-max__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 136px), 1fr));
+  gap: var(--space-2);
+}
+
+.dice-max__stat {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.dice-max__stat-label {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.dice-max__stat-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.dice-max__stat-value.is-max {
+  color: var(--color-danger);
+}
+
+.dice-max__stat-note {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.dice-max__lesson {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-line);
+}
+
+.dice-max__steps {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-5);
+  font-size: var(--text-sm);
+}
+
+.dice-max__takeaway {
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 560px) {
+  .dice-max__tray {
+    --dice-columns: var(--dice-count, 8);
+  }
+}

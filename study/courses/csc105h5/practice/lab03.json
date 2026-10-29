@@ -1,0 +1,403 @@
+{
+  "lessonId": "lab03",
+  "questions": [
+    {
+      "id": "lab03-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-search-minimax",
+      "prompt": {
+        "en": "According to the course, what is search?",
+        "zh": "按课程的定义，搜索（**search**）是什么？"
+      },
+      "options": [
+        {
+          "en": "A method for a computer to learn patterns from a large set of labelled data.",
+          "zh": "电脑从大量带标签的数据里学习规律的方法。"
+        },
+        {
+          "en": "The rules of a game, which say what actions can be taken in each state.",
+          "zh": "游戏规则：说明每个状态下能做哪些动作。"
+        },
+        {
+          "en": "A method for a computer to 'look ahead' by using the game's dynamics to generate possible future states.",
+          "zh": "电脑利用游戏规则（**dynamics**）生成未来可能的状态，从而“往前看”的方法。"
+        },
+        {
+          "en": "A numerical score for estimating how good a state is from our perspective.",
+          "zh": "从我们的角度估计状态好坏的数字分数。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C：这是 lab 第 3 页（也是 Lecture 3）的原话。A 说的是机器学习（从数据里学），不是 search；B 是 dynamics（规则）的意思，search 要“用”规则，但 search 本身不是规则；D 是 heuristic 的定义。",
+        "en": "Search uses the game's dynamics to generate possible future states. A is machine learning, B is dynamics, D is a heuristic."
+      }
+    },
+    {
+      "id": "lab03-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-search-minimax",
+      "prompt": {
+        "en": "According to the handout, what does Minimax normally have to do?",
+        "zh": "按讲义，Minimax 正常情况下必须做什么？"
+      },
+      "options": [
+        {
+          "en": "Look only one move ahead and pick the best-looking move",
+          "zh": "只往前看一步，选看起来最好的那一步"
+        },
+        {
+          "en": "Exhaustively search from the current state until the end of the game",
+          "zh": "从当前状态一直穷举搜索到游戏结束"
+        },
+        {
+          "en": "Use a heuristic to score every state in the tree",
+          "zh": "用 heuristic 给树里的每个状态打分"
+        },
+        {
+          "en": "Choose a random legal move on every turn",
+          "zh": "每一回合随机选一步合法的走法"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "第 5 页原话：Normally, Minimax has to exhaustively search from the current state until the end of the game。A 不对：Minimax 要一直看到终局；C 不对：heuristic 只在搜不到终局时，给深度上限那一层的状态打分，不是“正常情况”；D 随机走法和 Minimax 无关。",
+        "en": "Page 5: Minimax normally searches exhaustively until the end of the game."
+      }
+    },
+    {
+      "id": "lab03-q03",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s03-search-minimax",
+      "prompt": {
+        "en": "This tree is from the lab handout (page 5). We are X and it is our turn at the root, so we maximize. We have 3 possible moves: A, B and C. After each one, it is O's turn, and O has 2 possible moves (O minimizes our reward). After that, X has only one move left, which ends the game. The final rewards are: after A, +100 or 0; after B, 0 or 0; after C, 0 or +100. Using Minimax, what is the value of the root?",
+        "zh": "这棵树来自讲义第 5 页。我们是 X，根节点轮到我们（取最大）。我们有 A、B、C 三种走法；每种走完轮到 O，O 有 2 种走法（O 会让我们的奖励最小）；之后 X 只剩一步，走完游戏结束。终局奖励：A 之后是 +100 或 0；B 之后是 0 或 0；C 之后是 0 或 +100。用 Minimax 算，根的值是多少？"
+      },
+      "answer": 0,
+      "tolerance": 0,
+      "explain": {
+        "zh": "第 1 步：X 最后只有一种走法，终局的值直接往上抄。第 2 步：O 取最小：A = min(+100, 0) = 0，B = min(0, 0) = 0，C = min(0, +100) = 0。第 3 步：根（X）取最大：max(0, 0, 0) = 0。常见错误：看到有 +100 就填 100，但 O 不会让你走到 +100 那一支。这和 Lecture 3 第 40 页一致：对手也理性时，我们最多只能保证平局。",
+        "en": "O minimizes: 0, 0, 0. X maximizes: max(0, 0, 0) = 0, so the best we can guarantee is a draw."
+      }
+    },
+    {
+      "id": "lab03-q04",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s04-depth-heuristics",
+      "prompt": {
+        "en": "A heuristic gives the exact, guaranteed value of a game state.",
+        "zh": "heuristic 给出的是游戏状态确切的、有保证的值。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。第 9 页：heuristic 是用来“估计”（**estimating**）状态好坏的数字分数。Lecture 3 还说：heuristic 不能反映局面的全部，也不一定准确；依赖它就失去了对奖励的保证。只有真正搜到终局时，+100 / 0 / -100 才是确定的。",
+        "en": "False: a heuristic only estimates the 'goodness' of a state, so it may not be accurate."
+      }
+    },
+    {
+      "id": "lab03-q05",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s04-depth-heuristics",
+      "prompt": {
+        "en": "Which statement follows the course's conventions for reward values?",
+        "zh": "哪一句符合课程关于奖励值的约定？"
+      },
+      "options": [
+        {
+          "en": "A guaranteed win is +1, a guaranteed loss is 0, and an equal position is 0.5.",
+          "zh": "确定赢是 +1，确定输是 0，双方一样是 0.5。"
+        },
+        {
+          "en": "A guaranteed win is +100, and a position that looks very good can have a value above +100.",
+          "zh": "确定赢是 +100，看起来很好的局面可以超过 +100。"
+        },
+        {
+          "en": "An equal position has no value, because nobody has won yet.",
+          "zh": "双方一样的局面没有分值，因为还没人赢。"
+        },
+        {
+          "en": "A guaranteed win is +100, a guaranteed loss is -100, and an equal position is 0.",
+          "zh": "确定赢是 +100，确定输是 -100，双方一样是 0。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "第 9 页：确定赢 +100，确定输 -100，双方一样 0，其他情况必须在 -100 和 +100 之间。A 用的是另一套数字；B 错在“超过 +100”，其他情况必须在 -100 到 +100 之间；C 错在“没有分值”，equal position 的值就是 0。",
+        "en": "Win +100, loss -100, equal position 0, and anything else between -100 and +100."
+      }
+    },
+    {
+      "id": "lab03-q06",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s04-depth-heuristics",
+      "prompt": {
+        "en": "The number of states in a game tree grows exponentially with depth, so searching one level deeper can make the search much slower.",
+        "zh": "游戏树里的状态数随深度指数增长，所以多搜一层可能让搜索慢很多。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。Lecture 3（The Difficulty with Search）：状态数随深度指数增长，每生成一个状态都要花时间。Connect Four 每步最多 7 种下法，多看一层，状态数最多再乘 7。这正是 lab 里要选搜索深度、要用 heuristic 的原因。",
+        "en": "True: each extra level can multiply the number of states (up to 7 times in Connect Four)."
+      }
+    },
+    {
+      "id": "lab03-q07",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s05-weighted-sum",
+      "prompt": {
+        "en": "In a weighted-sum heuristic, why do we subtract the opponent's feature value from ours?",
+        "zh": "加权和 heuristic 里，为什么要用我们的特征值减去对手的特征值？"
+      },
+      "options": [
+        {
+          "en": "Because subtraction keeps every heuristic value positive.",
+          "zh": "因为做减法能让 heuristic 的值永远是正数。"
+        },
+        {
+          "en": "Because the opponent's features are always more important than ours.",
+          "zh": "因为对手的特征总是比我们的更重要。"
+        },
+        {
+          "en": "Because it is the difference in the feature value that determines who has an advantage.",
+          "zh": "因为决定谁占优势的是特征值的差。"
+        },
+        {
+          "en": "Because the weight can only be applied to the opponent's value.",
+          "zh": "因为权重只能乘在对手的值上。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "第 13 页原话：it's the difference in the feature value that determines who has an advantage。A 错：差值可以是负数（对手更多时就是负的），负数正好表示对我们不利；B 错：减法和“谁更重要”无关，重要性由权重决定；D 错：权重乘的是整个差值。",
+        "en": "The difference decides who has the advantage; it can be negative."
+      }
+    },
+    {
+      "id": "lab03-q08",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s05-weighted-sum",
+      "prompt": {
+        "en": "Use the Material Advantage heuristic from the handout: 1*[(# W pawns) – (# B pawns)] + 3*[(# W knights) – (# B knights)] + 3*[(# W bishops) – (# B bishops)] + 5*[(# W rooks) – (# B rooks)] + 9*[(# W queens) – (# B queens)]. White has 6 pawns, 2 knights, 1 bishop, 2 rooks and 1 queen. Black has 7 pawns, 1 knight, 2 bishops, 1 rook and 1 queen. What is the Material Advantage?",
+        "zh": "用讲义里的子力优势公式。白方：6 兵、2 马、1 象、2 车、1 后。黑方：7 兵、1 马、2 象、1 车、1 后。子力优势（**Material Advantage**）是多少？"
+      },
+      "answer": 4,
+      "tolerance": 0,
+      "explain": {
+        "zh": "逐项算（永远是白 − 黑）：兵 1 × (6 − 7) = -1；马 3 × (2 − 1) = 3；象 3 × (1 − 2) = -3；车 5 × (2 − 1) = 5；后 9 × (1 − 1) = 0。合计 -1 + 3 - 3 + 5 + 0 = 4，对白方有利。常见错误：减反顺序（得到 -4），或者忘了乘权重（得到 0）。",
+        "en": "-1 + 3 - 3 + 5 + 0 = 4."
+      }
+    },
+    {
+      "id": "lab03-q09",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s05-weighted-sum",
+      "prompt": {
+        "en": "Using pawns in the Material Advantage heuristic as your example, explain what a feature, a difference and a weight are. Answer in 1-3 sentences.",
+        "zh": "以子力优势公式里的“兵”为例，解释 feature、difference 和 weight 分别是什么。用 1–3 句英文回答。"
+      },
+      "modelAnswer": {
+        "en": "A feature is something that indicates how good a state is, such as the number of White pawns. We take the difference between our value and our opponent's, (# W pawns) – (# B pawns), because the difference decides who has the advantage. We multiply this difference by a weight that shows how important the feature is, so pawns get a weight of 1 because they are less important than knights, which get 3.",
+        "zh": "feature（特征）是能指示局面好不好的东西，比如白方兵的数量；difference（差值）是“我的 − 对手的”，也就是 (# W pawns) – (# B pawns)，因为决定谁占优势的是差值；weight（权重）乘在差值前面，表示这个特征有多重要：兵没有马重要，所以兵的权重是 1，马是 3。"
+      },
+      "points": [
+        {
+          "en": "A feature is something that can be used as an indicator of how good a state is (e.g. the number of White pawns).",
+          "zh": "feature 的定义：能指示局面好不好的东西（例：白方兵的数量）"
+        },
+        {
+          "en": "The difference is our value minus the opponent's value, and it determines who has the advantage.",
+          "zh": "difference 是“我的 − 对手的”，它决定谁占优势"
+        },
+        {
+          "en": "The weight shows how important the feature is compared with every other feature (pawn 1 < knight 3).",
+          "zh": "weight 表示这个特征相对其他特征的重要性（兵 1 < 马 3）"
+        }
+      ],
+      "explain": {
+        "zh": "这题考第 12–14 页的三句话：feature 是 an indicator of how good a state is；差值（**difference**）决定谁占优势；权重（**weight**）决定这个特征和其他特征比有多重要。三个词都要用兵的例子说清楚，差值的顺序一定是“我的 − 对手的”（白 − 黑）。"
+      }
+    },
+    {
+      "id": "lab03-q10",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s06-connect-four-heuristic",
+      "prompt": {
+        "en": "Which of the following are named features that you can choose in the lab's Connect Four heuristic editor? (Select all that apply.)",
+        "zh": "下面哪些是 lab 的 Connect Four heuristic 编辑器里可以选的具名特征？（多选）"
+      },
+      "options": [
+        {
+          "en": "chips",
+          "zh": "chips（棋子数）"
+        },
+        {
+          "en": "win_threat",
+          "zh": "win_threat（致胜威胁）"
+        },
+        {
+          "en": "material_advantage",
+          "zh": "material_advantage（子力优势）"
+        },
+        {
+          "en": "stacked_threats",
+          "zh": "stacked_threats（叠加威胁）"
+        },
+        {
+          "en": "count_column",
+          "zh": "count_column（在某一列里数）"
+        },
+        {
+          "en": "three_in_a_row",
+          "zh": "three_in_a_row（三连）"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "explain": {
+        "zh": "第 19 页列了五个具名特征：chips、two_in_a_row、three_in_a_row、win_threat、stacked_threats。material_advantage 来自国际象棋的例子（第 11 页），app 里没有这个特征。count_column 是第 18 页“在哪里数”的类型（**types of features**），不是第 19 页的具名特征；它要搭配一个具名特征才能用。",
+        "en": "Page 19 lists chips, two_in_a_row, three_in_a_row, win_threat and stacked_threats. material_advantage is a chess heuristic, and count_column is a type of feature (page 18), not a named feature."
+      }
+    },
+    {
+      "id": "lab03-q11",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s06-connect-four-heuristic",
+      "prompt": {
+        "en": "In the lab, what does the feature win_threat count?",
+        "zh": "lab 里，特征 win_threat 数的是什么？"
+      },
+      "options": [
+        {
+          "en": "The number of chips placed by the given player",
+          "zh": "该玩家已经下了的棋子数"
+        },
+        {
+          "en": "The number of spaces that are currently empty, but would win the game for the given player if filled",
+          "zh": "现在空着、但该玩家下进去就能赢的格子数"
+        },
+        {
+          "en": "The number of times one win threat appears in the space directly above another one",
+          "zh": "一个 win threat 正好在另一个 win threat 正上方的次数"
+        },
+        {
+          "en": "The number of games the player has won against classmates",
+          "zh": "该玩家赢同学的盘数"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "第 19 页的原话就是 B。A 是 chips 的定义；C 是 stacked_threats 的定义（最容易混）；D 不是棋盘上的特征，heuristic 只看当前这个状态。",
+        "en": "B is the page 19 definition; A is chips; C is stacked_threats."
+      }
+    },
+    {
+      "id": "lab03-q12",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s06-connect-four-heuristic",
+      "prompt": {
+        "en": "The lab's example heuristic 'Combined' is 3 × [(my three_in_a_row) − (opponent's three_in_a_row)] + 1 × [(my chips in column 3) − (opponent's chips in column 3)]. On a board, I have 1 three-in-a-row and 2 chips in column 3. My opponent has 2 three-in-a-rows and 1 chip in column 3. What is the heuristic value?",
+        "zh": "lab 的例子 'Combined' = 3 × [(我的三连) − (对手的三连)] + 1 × [(我在 column 3 的棋子) − (对手在 column 3 的棋子)]。某个棋盘上：我有 1 个三连、column 3 里有 2 个棋子；对手有 2 个三连、column 3 里有 1 个棋子。heuristic 的值是多少？"
+      },
+      "answer": -2,
+      "tolerance": 0,
+      "explain": {
+        "zh": "第一项：3 × (1 − 2) = -3。第二项：1 × (2 − 1) = 1。合计 -3 + 1 = -2，总体对我们略微不利。常见错误：减反顺序（得到 +2），或者两项都忘了乘权重（得到 0）。",
+        "en": "3 × (1 − 2) + 1 × (2 − 1) = -3 + 1 = -2."
+      }
+    },
+    {
+      "id": "lab03-q13",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s07-model-answers",
+      "prompt": {
+        "en": "Why does the Minimax player in the Connect Four lab search only to a fixed depth and use a heuristic? Answer in 1-3 sentences.",
+        "zh": "为什么 Connect Four lab 里的 Minimax 玩家只搜到固定深度并使用 heuristic？用 1–3 句英文回答。"
+      },
+      "modelAnswer": {
+        "en": "Searching until the end of a Connect Four game is too time-consuming, because the number of states grows exponentially with depth. So Minimax searches to a fixed depth and uses a heuristic to estimate how good the states at that depth are.",
+        "zh": "一直搜到游戏结束太费时间，因为状态数随深度指数增长。所以 Minimax 只搜到固定深度，再用 heuristic 估计那一层状态的好坏。"
+      },
+      "points": [
+        {
+          "en": "Exhaustive search to the end of the game is too time-consuming.",
+          "zh": "穷举到游戏结束太费时间"
+        },
+        {
+          "en": "The number of states grows exponentially with depth.",
+          "zh": "状态数随深度指数增长"
+        },
+        {
+          "en": "Minimax searches only to a fixed depth.",
+          "zh": "只搜到固定深度"
+        },
+        {
+          "en": "A heuristic estimates the value of the states at that depth.",
+          "zh": "用 heuristic 估计那一层状态的值"
+        }
+      ],
+      "explain": {
+        "zh": "这题考第 9 页那句：When exhaustive search is too time-consuming, we can instead search to a more reasonable fixed depth and evaluate states with a heuristic。要写出“为什么”（太费时间、指数增长）和“怎么做”（固定深度 + heuristic）两部分才完整。"
+      }
+    },
+    {
+      "id": "lab03-q14",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s07-model-answers",
+      "prompt": {
+        "en": "In Lab 3 you built your own heuristic for Connect Four. Explain how a weighted-sum heuristic works, give one example, and describe one advantage and one limitation of using Minimax with a heuristic.",
+        "zh": "Lab 3 里你为 Connect Four 做了自己的 heuristic。请解释加权和 heuristic 是怎么工作的，举一个例子，并说出“Minimax + heuristic”的一个优点和一个局限。"
+      },
+      "modelAnswer": {
+        "en": "A heuristic is a numerical score for estimating the 'goodness' of a state from our perspective. A weighted-sum heuristic uses features, which are things that indicate how good a state is. For each feature, we subtract the opponent's value from ours, because the difference shows who has the advantage. Then we multiply each difference by a weight that shows how important the feature is, and we add everything up. For example, the lab's 'Combined' heuristic is 3 × (my three-in-a-rows − the opponent's three-in-a-rows) + 1 × (my chips in column 3 − the opponent's chips in column 3). One advantage is that Minimax can stop at a fixed depth and still choose a move in a reasonable time, instead of searching to the end of the game. One limitation is that a heuristic is only an estimate, so it may not be accurate, and we lose the guarantee about the reward we will receive.",
+        "zh": "结构：① 定义 heuristic（从我们角度估计状态好坏的数字分数）；② 讲机制：feature → 算“我 − 对手”的差 → 乘 weight（重要性）→ 相加；③ 例子：'Combined' = 3 × 三连差 + 1 × 中间列棋子差；④ 优点：只要搜到固定深度，时间可接受；⑤ 局限：只是估计，可能不准，失去对奖励的保证。"
+      },
+      "points": [
+        {
+          "en": "Defines a heuristic as a numerical score that estimates how good a state is from our perspective.",
+          "zh": "定义 heuristic：从我们角度估计状态好坏的数字分数"
+        },
+        {
+          "en": "Explains features and the difference (ours minus the opponent's).",
+          "zh": "讲清 feature 和“我 − 对手”的差值"
+        },
+        {
+          "en": "Explains weights (importance) and adding up the weighted differences.",
+          "zh": "讲清 weight 表示重要性，加权后相加"
+        },
+        {
+          "en": "Gives a concrete example, such as 'Combined' or Material Advantage.",
+          "zh": "举出具体例子（'Combined' 或子力优势）"
+        },
+        {
+          "en": "Advantage: Minimax only needs a fixed depth, so it chooses a move in reasonable time.",
+          "zh": "优点：只需搜到固定深度，时间可以接受"
+        },
+        {
+          "en": "Limitation: a heuristic is only an estimate, may be inaccurate, and we lose guarantees.",
+          "zh": "局限：只是估计，可能不准，失去保证"
+        }
+      ],
+      "explain": {
+        "zh": "长答题要“定义 + 机制 + 例子 + 优缺点”四块都有。例子最好用课件里的（'Combined' 或 Material Advantage），数字和权重要写对；优缺点要和“固定深度”“只是估计”这两个关键词挂钩。"
+      }
+    }
+  ]
+}

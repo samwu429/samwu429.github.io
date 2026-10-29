@@ -1,0 +1,814 @@
+{
+  "lessonId": "lec06",
+  "terms": [
+    {
+      "id": "overfitting",
+      "en": "Overfitting (overfitted)",
+      "zh": "过拟合",
+      "def": {
+        "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns. An overfitted model can reach a very low error on the training set (even an MSE of 0) but make poor predictions about new data: it does not generalize well.",
+        "zh": "模型把训练数据里的随机噪声也“背”了下来，而不是学到真正的规律。样子是：训练误差很低（甚至 MSE 为 0），但在新数据上误差很高，泛化得不好。"
+      },
+      "example": {
+        "zh": "p.5-8：高次多项式（7 个参数 w0～w6）穿过全部 7 个训练点，训练 MSE = 0；但在新数据上 MSE = 190.27，而一条简单直线只有 5.77。",
+        "en": "A higher-order polynomial with 7 parameters had training MSE 0 but MSE 190.27 on new data; a straight line had 5.77."
+      },
+      "slides": "5-8, 14, 16",
+      "related": [
+        "generalization",
+        "training-set",
+        "validation-set",
+        "mean-squared-error"
+      ]
+    },
+    {
+      "id": "training-set",
+      "en": "Training set (training data)",
+      "zh": "训练集（训练数据）",
+      "def": {
+        "en": "The data used to train the model: the examples the model learns from, to find its parameters such as the weights. In Supervised Learning it is a labelled training dataset, and we generally want the training set to contain the most data.",
+        "zh": "用来训练模型的数据：模型从这些例子里学习，找出参数（比如权重）。监督学习用的是带标签的训练数据集。一般希望训练集包含最多的数据。"
+      },
+      "example": {
+        "zh": "常见的 60/20/20 划分里，训练集约占 60%。训练误差低不代表模型好（看 p.16 的高次多项式）。"
+      },
+      "slides": "5, 13-17, 27",
+      "related": [
+        "validation-set",
+        "test-set",
+        "train-validation-test-split",
+        "overfitting"
+      ]
+    },
+    {
+      "id": "mean-squared-error",
+      "en": "Mean squared error (MSE)",
+      "zh": "均方误差（MSE）",
+      "def": {
+        "en": "The mean squared error (MSE) is one possible cost function, used in regression. It is the average of the squared errors (y − t)² over all data points. A lower MSE means a better fit.",
+        "zh": "一种代价函数，用于回归（预测一个数字）：把每个点的误差（预测值 y − 真实值 t）平方，再对所有点求平均。越低越好。课件说符号公式不用背。"
+      },
+      "example": {
+        "zh": "MSE 的定义在 Lecture 5；Lecture 6 用它比较模型在训练数据、新数据和验证数据上的表现。p.16：二次模型训练 MSE = 4.68，验证 MSE = 1.38；高次多项式训练 MSE = 1.67，验证 MSE = 8.07。",
+        "en": "Lecture 6 uses MSE to compare models on training, new and validation data: the quadratic model has training MSE 4.68 and validation MSE 1.38."
+      },
+      "slides": "5-8, 14, 16",
+      "related": [
+        "overfitting",
+        "validation-set",
+        "cost-function",
+        "regression"
+      ]
+    },
+    {
+      "id": "generalization",
+      "en": "Generalization (generalize)",
+      "zh": "泛化",
+      "def": {
+        "en": "How well a model performs on new data that it did not see during training (the slides use the word without a formal definition). Models with low error on the training set do not always generalize well, and we can find this using a validation set.",
+        "zh": "模型在训练时没见过的新数据上表现得好不好（课件没给正式定义）。训练集上误差低的模型不一定泛化得好，可以用验证集发现这一点。"
+      },
+      "slides": "6, 14",
+      "related": [
+        "overfitting",
+        "validation-set",
+        "test-set"
+      ]
+    },
+    {
+      "id": "model-selection",
+      "en": "Model selection",
+      "zh": "模型选择",
+      "def": {
+        "en": "Choosing which model to use. Sometimes we have strong theoretical reasons, because we know something about the process that generated the data. Most of the time in ML we don't, so we try several models and take the one that works best empirically (i.e. based on real data), usually judged on a validation set. The model with the lowest cost on the training set is not necessarily the best one.",
+        "zh": "决定用哪个模型。有时有很强的理论理由（我们了解产生数据的过程）；但 ML 里大多数时候没有，就多试几个模型，选在真实数据上（empirically，实证地）效果最好的，通常看验证集。训练集上代价最低的模型不一定最好。"
+      },
+      "example": {
+        "zh": "理论：理想气体定律说 P 和 T 是直线关系，所以选线性模型，求出 R ≈ 0.414 × 1.00 / 0.050 = 8.28 L·kPa/(mol·K)。实证：叶子数据试了线性、二次、高次多项式，二次模型验证 MSE 最低（1.38）。"
+      },
+      "slides": "10-16",
+      "related": [
+        "validation-set",
+        "model-family",
+        "overfitting"
+      ]
+    },
+    {
+      "id": "validation-set",
+      "en": "Validation set",
+      "zh": "验证集",
+      "def": {
+        "en": "A validation set is a part of our dataset that we do not use for training. When we first receive a dataset, we usually split off a validation set (smaller than the training set) and set it aside. Good performance on the validation set is a strong reason to prefer one model over another.",
+        "zh": "数据集中不用来训练的那一部分。刚拿到数据时就先分出来、放在一边（比训练集小）。用它比较模型：验证集上表现好，是选这个模型的有力理由。"
+      },
+      "example": {
+        "zh": "p.16：高次多项式训练 MSE 最低（1.67），验证 MSE 却是 8.07；二次模型验证 MSE 最低（1.38），所以选二次模型。"
+      },
+      "slides": "14-18, 22",
+      "related": [
+        "training-set",
+        "test-set",
+        "model-selection",
+        "overreporting"
+      ]
+    },
+    {
+      "id": "model-family",
+      "en": "Model family",
+      "zh": "模型家族",
+      "def": {
+        "en": "For some methods, we can get multiple related models by varying a set of key values before training. Such methods define a model family. The key values are called hyperparameters.",
+        "zh": "有些方法可以在训练前改变一组关键数值（超参数），得到多个相关的模型；这样的方法就定义了一个模型家族。"
+      },
+      "example": {
+        "zh": "决策树家族：最大深度 1 和最大深度 3 是同一家族里的两个不同模型（p.20）。p.19 说，在这之前的模型（线性、二次、多项式）都是“完全不同类型的函数”（a completely different type of function）。"
+      },
+      "slides": "19-20",
+      "related": [
+        "hyperparameter",
+        "decision-tree",
+        "model-selection"
+      ]
+    },
+    {
+      "id": "hyperparameter",
+      "en": "Hyperparameter",
+      "zh": "超参数",
+      "def": {
+        "en": "A key value that we vary before training to get different models from the same model family. Unlike a parameter (weight), it is not learned during training.",
+        "zh": "训练之前定好的关键数值，改变它就得到同一模型家族里的不同模型。和参数（权重，例如 w0、w1）不同：参数是训练中学出来的，超参数不是。"
+      },
+      "example": {
+        "zh": "p.20：决策树的最大深度（maximum depth）是一个超参数。深度 1 只问一个问题；深度 3 最多问三层。",
+        "en": "The maximum depth of a decision tree is a hyperparameter."
+      },
+      "slides": "19-20",
+      "related": [
+        "model-family",
+        "decision-tree",
+        "model-parameter"
+      ]
+    },
+    {
+      "id": "decision-tree",
+      "en": "Decision tree",
+      "zh": "决策树",
+      "def": {
+        "en": "A model that makes a prediction by asking a series of yes/no questions about the features (for example, 'Width ≤ 10.5 cm?') until it reaches a leaf that gives the answer. The lecture uses it only as an example of a model family.",
+        "zh": "一连串关于特征的“是/否”问题（例如“宽度 ≤ 10.5 cm 吗？”），一路问下去，落到末端（叶节点）给出预测。课件只拿它当模型家族的例子，原话：(We are not going to talk about decision trees in detail.)"
+      },
+      "example": {
+        "zh": "最大深度 1 的树：宽度 ≤ 10.5 cm → Oak（4 O, 1 M）；否则 → Maple（2 M）。"
+      },
+      "slides": "20",
+      "related": [
+        "model-family",
+        "hyperparameter"
+      ]
+    },
+    {
+      "id": "overreporting",
+      "en": "Overreporting (the final accuracy)",
+      "zh": "把最终准确率报高",
+      "def": {
+        "en": "Reporting a final accuracy that is higher than the model's true performance. If we report the validation accuracy of the model we selected, we are likely to overreport, because we chose the maximum of several noisy results. We can avoid overreporting our final accuracy by using a test set.",
+        "zh": "报出来的最终准确率比模型的真实表现高。拿选中模型的验证准确率当最终成绩，很可能报高，因为我们是在几个带噪声的结果里挑了最大的。用测试集可以避免。"
+      },
+      "example": {
+        "zh": "掷骰子活动：8 个六面骰子（D6）掷一次，最可能的总数是 28；掷 10 次取最大值，期望是 35.4（p.24-26）。p.26：真实表现很可能更差！"
+      },
+      "slides": "22-27",
+      "related": [
+        "validation-set",
+        "test-set"
+      ]
+    },
+    {
+      "id": "test-set",
+      "en": "Test set",
+      "zh": "测试集",
+      "def": {
+        "en": "A test set is a segment of the dataset not used for training or validation. After a model is selected, we use the test set to report its final accuracy (how it performs on new data), so that we avoid overreporting it.",
+        "zh": "数据集中既不用于训练、也不用于验证的一部分。模型选定后，用它报告最终准确率（看模型对新数据的表现），避免把成绩报高。"
+      },
+      "example": {
+        "zh": "常见的 60/20/20 划分里，测试集约占 20%。如果拿测试集挑模型，它就变成了另一个验证集。"
+      },
+      "slides": "27",
+      "related": [
+        "training-set",
+        "validation-set",
+        "train-validation-test-split",
+        "overreporting"
+      ]
+    },
+    {
+      "id": "train-validation-test-split",
+      "en": "Training/validation/test split (60/20/20)",
+      "zh": "训练/验证/测试划分（60/20/20）",
+      "def": {
+        "en": "Splitting the original dataset into a training set, a validation set and a test set. Since we generally want the training set to contain the most data, a split of something like 60/20/20 for training/validation/test is common.",
+        "zh": "把原始数据分成训练集、验证集、测试集三份。因为一般希望训练集的数据最多，所以大约 60/20/20 的划分很常见（是常见做法，不是固定规定）。"
+      },
+      "example": {
+        "zh": "举例：1000 个例子 → 训练 600、验证 200、测试 200。"
+      },
+      "slides": "27",
+      "related": [
+        "training-set",
+        "validation-set",
+        "test-set"
+      ]
+    },
+    {
+      "id": "binary-classification",
+      "en": "Binary classification",
+      "zh": "二分类",
+      "def": {
+        "en": "A classification problem with only two classes, positive and negative. For binary (two-class) problems, we can name the four quadrants of the results: TP, FP, FN and TN.",
+        "zh": "只有两个类别（正类和负类）的分类问题。二分类的结果可以分成 TP、FP、FN、TN 四个格子。"
+      },
+      "example": {
+        "en": "A test for a medical condition: positive (has the condition) or negative (does not).",
+        "zh": "例如医学检查：有这种病（正）/ 没有（负），对应 p.31 的讨论。"
+      },
+      "slides": "30",
+      "related": [
+        "confusion-matrix",
+        "true-positive",
+        "false-positive"
+      ]
+    },
+    {
+      "id": "confusion-matrix",
+      "en": "Confusion matrix (TP/FP/FN/TN table)",
+      "zh": "混淆矩阵（四格表）",
+      "def": {
+        "en": "For a binary (two-class) classification problem, a 2×2 table that counts the results in four quadrants: True Positives, False Positives, False Negatives and True Negatives. Evaluation metrics are defined from these counts. In the course's layout, the rows show the PREDICTED class and the columns show the ACTUAL class: TP top-left, FP top-right, FN bottom-left, TN bottom-right. The Lab 5 hiring model cards use the opposite layout (ACTUAL rows, PREDICTED columns: FN top-right, FP bottom-left), so always read the row and column labels first; TP is top-left and TN bottom-right in both layouts. ('Confusion matrix' is a common name; the course slides do not use it.)",
+        "zh": "二分类结果的 2×2 计数表：TP、FP、FN、TN 四个格子，各种指标都从这四个数算。课件布局：行是预测（PREDICTED），列是真实（ACTUAL）；TP 左上、FP 右上、FN 左下、TN 右下。Lab 5 的招聘模型卡方向相反（行 = 真实，列 = 预测：右上 FN、左下 FP），所以先看行列标题；两种布局里 TP 都在左上、TN 都在右下。注意：课件没有用 “confusion matrix” 这个名字，它是课件外的通用叫法；考试时写 the TP/FP/FN/TN table 更稳妥。"
+      },
+      "example": {
+        "zh": "课件里两个模型的四格计数（p.29）：Model 1 是 TP = 28，FP = 12，FN = 2，TN = 18；Model 2 是 TP = 18，FP = 2，FN = 12，TN = 28。"
+      },
+      "slides": "29-31",
+      "related": [
+        "true-positive",
+        "false-positive",
+        "false-negative",
+        "true-negative",
+        "binary-classification"
+      ]
+    },
+    {
+      "id": "true-positive",
+      "en": "True positive (TP)",
+      "zh": "真阳性（TP）",
+      "def": {
+        "en": "A case that is predicted positive and is actually positive: a correct positive prediction. It is the top-left cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is also the top-left cell: qualified and hired.",
+        "zh": "预测为正，真实也为正（预测对了）。课件表格（行 = 预测，列 = 真实）的左上格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上也在左上：合格且被录用。"
+      },
+      "example": {
+        "zh": "Model 1 的 TP = 28。"
+      },
+      "slides": "30",
+      "related": [
+        "false-positive",
+        "false-negative",
+        "true-negative",
+        "precision",
+        "recall"
+      ]
+    },
+    {
+      "id": "false-positive",
+      "en": "False positive (FP)",
+      "zh": "假阳性（FP，误报）",
+      "def": {
+        "en": "A case that is predicted positive but is actually negative: a false alarm. It is the top-right cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is the bottom-left cell: unqualified but hired.",
+        "zh": "预测为正，真实却为负（误报）。课件表格（行 = 预测，列 = 真实）的右上格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上它在左下：不合格却被录用。"
+      },
+      "example": {
+        "zh": "Model 1 的 FP = 12：12 个真实为负的例子被错报成正。复查很贵时，最怕的就是 FP。"
+      },
+      "slides": "30",
+      "related": [
+        "true-positive",
+        "precision",
+        "false-positive-rate"
+      ]
+    },
+    {
+      "id": "false-negative",
+      "en": "False negative (FN)",
+      "zh": "假阴性（FN，漏报）",
+      "def": {
+        "en": "A case that is predicted negative but is actually positive: a missed case. It is the bottom-left cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is the top-right cell: qualified but not hired.",
+        "zh": "预测为负，真实却为正（漏报）。课件表格（行 = 预测，列 = 真实）的左下格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上它在右上：合格却没被录用。"
+      },
+      "example": {
+        "zh": "Model 2 的 FN = 12：漏掉了 12 个真实为正的例子。病很严重时，最怕的就是 FN。"
+      },
+      "slides": "30",
+      "related": [
+        "true-positive",
+        "recall"
+      ]
+    },
+    {
+      "id": "true-negative",
+      "en": "True negative (TN)",
+      "zh": "真阴性（TN）",
+      "def": {
+        "en": "A case that is predicted negative and is actually negative: a correct negative prediction. It is the bottom-right cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is also the bottom-right cell: unqualified and not hired.",
+        "zh": "预测为负，真实也为负（预测对了）。课件表格（行 = 预测，列 = 真实）的右下格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上也在右下：不合格也没被录用。"
+      },
+      "example": {
+        "zh": "Model 2 的 TN = 28。"
+      },
+      "slides": "30",
+      "related": [
+        "false-positive",
+        "false-positive-rate",
+        "accuracy"
+      ]
+    },
+    {
+      "id": "accuracy",
+      "en": "Accuracy",
+      "zh": "准确率",
+      "def": {
+        "en": "Accuracy is the number of correct predictions divided by the total number of predictions: accuracy = number of correct predictions / total number of predictions. For binary classification, Accuracy = (TP + TN) / (TP + TN + FP + FN).",
+        "zh": "预测对的个数 ÷ 预测的总个数，就是猜对的比例（0 到 1，也可以写成 0% 到 100%）。二分类时：Accuracy = (TP + TN) / (TP + TN + FP + FN)。分类错误率 = 1 − 准确率。"
+      },
+      "example": {
+        "zh": "在训练集上算的叫训练准确率，在验证集上算的叫验证准确率。Model A：训练准确率 6/7 ≈ 86%，训练错误率 1 − 6/7 = 1/7 ≈ 14%（p.17）。Model 1 和 Model 2 的准确率都是 46/60 ≈ 77%，但犯的错误种类不同（p.31）。",
+        "en": "Training or validation accuracy is accuracy measured on the training or validation set. Model 1 and Model 2 both have accuracy 46/60 ≈ 77% (slide 31)."
+      },
+      "slides": "17-18, 22, 30-31",
+      "related": [
+        "precision",
+        "recall",
+        "f1-score",
+        "confusion-matrix",
+        "classification-error"
+      ]
+    },
+    {
+      "id": "precision",
+      "en": "Precision",
+      "zh": "精确率",
+      "def": {
+        "en": "Precision = TP / (TP + FP): of all cases the model predicted positive, the fraction that are actually positive. High precision means few false positives. Predictive parity compares precision across groups.",
+        "zh": "Precision = TP / (TP + FP)：模型说“是”的例子里，真正是的比例。精确率高 = 误报（FP）少。预测均等（predictive parity）比较的就是各组的精确率。"
+      },
+      "example": {
+        "zh": "Model 1：28/40 = 70%；Model 2：18/20 = 90%（p.31）。进一步检查很贵时，更看重精确率。"
+      },
+      "slides": "30-31, 41",
+      "related": [
+        "recall",
+        "f1-score",
+        "false-positive",
+        "predictive-parity"
+      ]
+    },
+    {
+      "id": "recall",
+      "en": "Recall (true positive rate, TPR)",
+      "zh": "召回率（真阳性率）",
+      "def": {
+        "en": "Recall = TP / (TP + FN): of all cases that are actually positive, the fraction the model predicted positive. The same formula is called the true positive rate (TPR) in equalized odds. High recall means few false negatives.",
+        "zh": "Recall = TP / (TP + FN)：真实为正的例子里，被模型找出来的比例。均等几率里叫真阳性率（TPR），公式相同。召回率高 = 漏报（FN）少。"
+      },
+      "example": {
+        "zh": "Model 1：28/30 ≈ 93%；Model 2：18/30 = 60%（p.31）。病很严重、必须早发现时，更看重召回率。"
+      },
+      "slides": "30-31, 42",
+      "related": [
+        "precision",
+        "f1-score",
+        "false-negative",
+        "equalized-odds"
+      ]
+    },
+    {
+      "id": "f1-score",
+      "en": "F1 score",
+      "zh": "F1 分数",
+      "def": {
+        "en": "F1 Score = 2(Precision)(Recall) / (Precision + Recall). It combines precision and recall into one number, and it is high only when both are high.",
+        "zh": "F1 = 2 × 精确率 × 召回率 ÷（精确率 + 召回率）。把精确率和召回率合成一个数：两个都高，F1 才高。它不是简单平均。"
+      },
+      "example": {
+        "zh": "Model 2：2 × 0.9 × 0.6 / (0.9 + 0.6) = 0.72 = 72%（简单平均会是 75%，不对）；Model 1：80%（p.31）。"
+      },
+      "slides": "30-31",
+      "related": [
+        "precision",
+        "recall",
+        "accuracy"
+      ]
+    },
+    {
+      "id": "false-positive-rate",
+      "en": "False positive rate (FPR)",
+      "zh": "假阳性率",
+      "def": {
+        "en": "FPR = FP / (FP + TN): of all cases that are actually negative, the fraction wrongly predicted positive. Equalized odds requires it, together with the true positive rate, to be the same for every group.",
+        "zh": "FPR = FP / (FP + TN)：真实为负的例子里，被错误预测为正的比例。均等几率要求它（和真阳性率一起）在每个群体都相同。"
+      },
+      "example": {
+        "zh": "Model 1：12 / (12 + 18) = 40%（课件没算，是按 p.42 的公式自己算的）。"
+      },
+      "slides": "42",
+      "related": [
+        "false-positive",
+        "equalized-odds",
+        "recall"
+      ]
+    },
+    {
+      "id": "inference",
+      "en": "Inference",
+      "zh": "推理（使用训练好的模型）",
+      "def": {
+        "en": "The phase of Machine Learning in which the trained model is used to solve a problem ('using the trained model to solve a problem'), for example to make predictions about new data. Inference time is generally fast, although the Big Table notes that large models such as LLMs are often slower and costlier per call.",
+        "zh": "机器学习的推理阶段（在训练之后）：用训练好的模型解决新问题，比如对新数据做预测。通常很快；不过性质大表也提醒：LLM 这类很大的模型每次调用往往更慢、更贵。注意：中文也叫“推理”，但它不是符号 AI 里按逻辑规则的推理（reasoning）。"
+      },
+      "example": {
+        "en": "Under Speed/Cost, the lecture asks: How costly is it to train the model? How costly is it to perform inference using a trained model?",
+        "zh": "选模型时的“速度/成本”（Speed/Cost）问两件事：训练模型要花多少成本？用训练好的模型做推理要花多少成本？（p.32）"
+      },
+      "slides": "32",
+      "related": [
+        "explainability",
+        "bias"
+      ]
+    },
+    {
+      "id": "explainability",
+      "en": "Explainability",
+      "zh": "可解释性",
+      "def": {
+        "en": "How easy it is to explain why the model (or system) gave the result it gave. Symbolic AI and algorithmic solutions are generally explainable, explanations are difficult for complex ML models, and LLM prompting is rarely explainable.",
+        "zh": "说清楚“模型（或系统）为什么给出这个结果”有多容易。符号 AI 和算法解法一般都能解释；复杂的机器学习模型很难解释；LLM 很少能解释。"
+      },
+      "example": {
+        "en": "Explainability is one of the reasons for selecting a model that are not directly related to performance, together with Speed/Cost and Bias and Fairness.",
+        "zh": "它是选模型时“和表现没有直接关系”的三个理由之一（另外两个：速度/成本、偏见与公平，p.32）。"
+      },
+      "slides": "32",
+      "related": [
+        "inference",
+        "bias"
+      ]
+    },
+    {
+      "id": "bias",
+      "en": "Bias",
+      "zh": "偏见",
+      "def": {
+        "en": "Bias means that an AI system or model unfairly discriminates against certain groups. 'Trained models inherit the biases of the data they were trained on.' Possible causes of bias in ML include biased historical data, underrepresentation of specific groups in the training dataset, proxy variables, and the incompatibility of different definitions of fairness.",
+        "zh": "AI 系统或模型对某些群体不公平（歧视某些群体）。训练好的模型会继承训练数据里的偏见。ML 里偏见的可能原因：有偏见的历史数据、某些群体在训练数据中代表性不足、代理变量、不同的公平定义互相冲突。"
+      },
+      "example": {
+        "zh": "Amazon 的简历打分模型给含 “women’s” 等词的简历扣分（p.34）。补充（课件外）：神经元里的 bias（偏置项）是另一个意思，别混。"
+      },
+      "slides": "32-38",
+      "related": [
+        "algorithmic-fairness",
+        "biased-historical-data",
+        "underrepresentation",
+        "proxy-variable"
+      ]
+    },
+    {
+      "id": "algorithmic-fairness",
+      "en": "Algorithmic fairness (fairness metrics)",
+      "zh": "算法公平（公平指标）",
+      "def": {
+        "en": "Whether a model's decisions treat people and groups fairly. The lecture gives different definitions of fairness as fairness metrics (demographic parity, predictive parity, equalized odds and individual fairness). We can use them to evaluate existing models, and we can also intervene in model creation to try to improve fairness.",
+        "zh": "模型的决定对个人和群体是否公平。课件把几种不同的公平定义写成公平指标：人口统计均等、预测均等、均等几率、个体公平。它们可以用来评估已有模型；我们也可以介入建模过程，尽量提高公平。"
+      },
+      "slides": "33, 39-47",
+      "related": [
+        "demographic-parity",
+        "predictive-parity",
+        "equalized-odds",
+        "individual-fairness",
+        "fairness-trade-offs"
+      ]
+    },
+    {
+      "id": "recidivism",
+      "en": "Recidivism (COMPAS)",
+      "zh": "再犯（COMPAS）",
+      "def": {
+        "en": "Recidivism means committing another crime. COMPAS is a model for predicting recidivism that is used in several US states to inform judges' decisions regarding sentencing and parole.",
+        "zh": "再犯：再次犯罪。COMPAS 是预测再犯的模型，美国多个州用它辅助法官做判刑和假释决定。"
+      },
+      "example": {
+        "zh": "ProPublica（2016）：没有再犯的人里，黑人被告被错判为高风险的比例是 44.9%，白人是 23.5%；公司则说在任何风险分数上，各族群再犯的可能性大致相同（p.37）。"
+      },
+      "slides": "37, 44",
+      "related": [
+        "bias",
+        "fairness-trade-offs",
+        "false-positive-rate",
+        "predictive-parity"
+      ]
+    },
+    {
+      "id": "biased-historical-data",
+      "en": "Biased historical data",
+      "zh": "有偏见的历史数据",
+      "def": {
+        "en": "A cause of bias: the historical data used in training is itself biased, for example because it records unfair past decisions, so the model learns to copy the unfair pattern.",
+        "zh": "偏见的原因之一：训练用的历史数据本身有偏见（例如记录的是过去不公平的决定），模型就学着照做。"
+      },
+      "example": {
+        "zh": "Amazon 的简历打分模型用 10 年的招聘数据训练，2015 年被发现给含 “women’s” 等词或女子学院名字的简历扣分（p.34）。（这个对应是按 p.38 的原因清单推断的；课件只明确说了 COMPAS 的对应，p.44。）"
+      },
+      "slides": "34, 38",
+      "related": [
+        "bias",
+        "underrepresentation",
+        "proxy-variable"
+      ]
+    },
+    {
+      "id": "underrepresentation",
+      "en": "Underrepresentation",
+      "zh": "代表性不足",
+      "def": {
+        "en": "When specific groups (or classes) have too few examples in the training dataset. Underrepresentation of specific groups in the training dataset is a possible cause of bias in ML: the model learns them less well and makes more errors for them.",
+        "zh": "某些群体（或类别）在训练数据里例子太少。某些群体代表性不足是 ML 产生偏见的可能原因之一：模型对他们学得差，错误更多。"
+      },
+      "example": {
+        "zh": "2018 年的研究：商业人脸识别对深肤色女性的错误率比浅肤色男性最多高 34%；警察用它认错人会导致错误逮捕（p.36）。（这个对应是按 p.38 的原因清单推断的；课件只明确说了 COMPAS 的对应，p.44。）"
+      },
+      "slides": "36, 38",
+      "related": [
+        "bias",
+        "biased-historical-data"
+      ]
+    },
+    {
+      "id": "proxy-variable",
+      "en": "Proxy variable",
+      "zh": "代理变量",
+      "def": {
+        "en": "A variable that is not itself sensitive but is related to a sensitive feature. Proxy variables, in combination, can reveal the original sensitive features, so simply removing a sensitive feature is often not enough.",
+        "zh": "本身不是敏感信息，但和敏感特征有关的变量。几个代理变量组合起来，能把被删掉的敏感特征“还原”出来，所以只删敏感特征常常不够。"
+      },
+      "example": {
+        "zh": "美国房贷（2012-2018）：模型训练时没用族裔这个特征，黑人和拉丁裔借款人仍比条件相当的白人借款人多付约 0.08%（p.35）。（这个对应是按 p.38 的原因清单推断的；课件只明确说了 COMPAS 的对应，p.44。）"
+      },
+      "slides": "35, 38, 46",
+      "related": [
+        "sensitive-feature",
+        "pre-processing",
+        "bias"
+      ]
+    },
+    {
+      "id": "sensitive-feature",
+      "en": "Sensitive feature (protected or sensitive group)",
+      "zh": "敏感特征（受保护 / 敏感群体）",
+      "def": {
+        "en": "Information about a person's membership in a protected or sensitive group, such as ethnicity, which is forbidden or should not be used to make decisions. Pre-processing tries to remove information about sensitive features.",
+        "zh": "关于一个人属于哪个受保护或敏感群体的信息（例如族裔），被禁止或不应该拿来做决定。前处理就是试图去掉敏感特征的信息。（课件没给正式定义。）"
+      },
+      "slides": "38-39, 46",
+      "related": [
+        "proxy-variable",
+        "disparate-treatment",
+        "pre-processing"
+      ]
+    },
+    {
+      "id": "disparate-treatment",
+      "en": "Disparate treatment",
+      "zh": "差别对待",
+      "def": {
+        "en": "Disparate treatment means making decisions that explicitly consider a person's membership in a protected or sensitive group.",
+        "zh": "做决定时明确考虑一个人属于哪个受保护或敏感群体。看的是“过程”：规则里有没有直接用群体身份。"
+      },
+      "example": {
+        "zh": "对已知被模型歧视的群体把分数往上调（p.47）直接用了群体身份，所以是差别对待，但目的是减少差别影响。"
+      },
+      "slides": "39",
+      "related": [
+        "disparate-impact",
+        "sensitive-feature",
+        "post-processing"
+      ]
+    },
+    {
+      "id": "disparate-impact",
+      "en": "Disparate impact",
+      "zh": "差别影响",
+      "def": {
+        "en": "Disparate impact means making decisions that disproportionately harm people from certain sensitive groups. It is often not possible to avoid both disparate treatment and disparate impact.",
+        "zh": "做出的决定不成比例地伤害某些敏感群体的人。看的是“结果”。差别对待和差别影响常常不能同时避免。"
+      },
+      "example": {
+        "zh": "所有群体都要求同一个固定信用分：不是差别对待，但让历史上信用分偏低的群体吃亏，是差别影响（p.39）。"
+      },
+      "slides": "39",
+      "related": [
+        "disparate-treatment",
+        "bias"
+      ]
+    },
+    {
+      "id": "demographic-parity",
+      "en": "Demographic parity",
+      "zh": "人口统计均等",
+      "def": {
+        "en": "Outcomes are predicted at the same rates for every group. Pros: each group is selected at the same rate, and the rule is easy to explain and to check. Cons: it ignores individual qualifications (one group could be admitted at random), and equal rates can reject stronger applicants from one group.",
+        "zh": "每个群体被预测出某种结果（例如被录取）的比例相同。优点：各组被选中的比例相同；规则容易解释、容易检查。缺点：忽略个人条件（某组甚至可以随机录取）；为了比例相同，可能拒掉某组里更强的申请人。"
+      },
+      "example": {
+        "zh": "大学录取 A 组 30% 的申请人，也录取 B 组 30% 的申请人。"
+      },
+      "slides": "40",
+      "related": [
+        "predictive-parity",
+        "equalized-odds",
+        "individual-fairness"
+      ]
+    },
+    {
+      "id": "predictive-parity",
+      "en": "Predictive parity",
+      "zh": "预测均等",
+      "def": {
+        "en": "Outcomes have the same predictive meaning (TP / (TP + FP), the precision formula) for every group. Pros: admission means the same chance of success in every group, and a positive decision is equally reliable across groups. Cons: groups can still be admitted at very different rates, and matching those rates usually means unequal error rates when groups differ.",
+        "zh": "结果在每个群体里有相同的预测含义，即 TP/(TP+FP)（精确率的公式）相同。优点：被录取在每组都代表同样的成功机会；“正”的决定在各组同样可靠。缺点：各组录取率仍可能差很多；各组情况不同时，让这些比率一致通常意味着错误率不相等。"
+      },
+      "example": {
+        "zh": "在大学录取的学生中，A 组有 80% 成功，B 组也有 80% 成功。"
+      },
+      "slides": "41",
+      "related": [
+        "precision",
+        "demographic-parity",
+        "equalized-odds"
+      ]
+    },
+    {
+      "id": "equalized-odds",
+      "en": "Equalized odds",
+      "zh": "均等几率",
+      "def": {
+        "en": "The true positive rate (TP / (TP + FN)) and the false positive rate (FP / (FP + TN)) are the same for every group; both rates must match. Pros: the model is equally accurate for every group, and unlike demographic parity, a correct decision is required at the same rate. Cons: there is no notion of different priority between different kinds of errors, and if one group has fewer qualified applicants, fewer of them are admitted.",
+        "zh": "每个群体的真阳性率 TP/(TP+FN) 和假阳性率 FP/(FP+TN) 都相同，两个都要一样。优点：模型对每个群体同样准确；和人口统计均等不同，它要求正确的决定以相同比例出现。缺点：不区分不同错误的轻重；如果某组合格的人少，被录取的也少。"
+      },
+      "example": {
+        "zh": "两组都录取 90% 的合格申请人、10% 的不合格申请人。"
+      },
+      "slides": "42",
+      "related": [
+        "recall",
+        "false-positive-rate",
+        "demographic-parity",
+        "predictive-parity"
+      ]
+    },
+    {
+      "id": "individual-fairness",
+      "en": "Individual fairness",
+      "zh": "个体公平",
+      "def": {
+        "en": "Similar individuals across different groups receive similar outcomes. Pros: similar people are treated similarly, whichever group they are in, and the decision follows the person, not only the group average. Cons: deciding which applicants count as similar can itself carry bias, and group admission rates can still come out unequal.",
+        "zh": "不同群体中相似的个人得到相似的结果。优点：相似的人得到相似对待，决定跟着个人走，不只看群体平均。缺点：判断谁算“相似”本身可能带偏见；各组录取率仍可能不相等。"
+      },
+      "example": {
+        "zh": "两个成绩和准备情况相似的申请人，不管在哪一组，都得到相同的决定。"
+      },
+      "slides": "43",
+      "related": [
+        "demographic-parity",
+        "predictive-parity",
+        "equalized-odds"
+      ]
+    },
+    {
+      "id": "fairness-trade-offs",
+      "en": "Trade-offs in fairness",
+      "zh": "公平的取舍",
+      "def": {
+        "en": "Although we might like to optimize for all forms of fairness, they are often at odds with each other, and they typically come at some cost to overall accuracy. There is no single right answer to fairness: the model designers must choose what to prioritize and what costs are worth paying to best align with the needs of the model's stakeholders.",
+        "zh": "各种公平常常互相冲突，追求公平通常还要付出一些总体准确率的代价。公平没有唯一正确答案：模型设计者要决定优先什么、哪些代价值得付，以最符合利益相关者的需要。"
+      },
+      "example": {
+        "zh": "COMPAS：公司说同一风险分数在各族群含义相同；ProPublica 说没再犯的黑人被错判高风险的比例高得多（44.9% 对 23.5%）。p.44：This was the case for the COMPAS example."
+      },
+      "slides": "44",
+      "related": [
+        "stakeholder",
+        "demographic-parity",
+        "predictive-parity",
+        "equalized-odds"
+      ]
+    },
+    {
+      "id": "stakeholder",
+      "en": "Stakeholder",
+      "zh": "利益相关者",
+      "def": {
+        "en": "A stakeholder is a person or group with an interest in the model; someone who will be affected by it.",
+        "zh": "和模型有利害关系、会被模型影响的人或群体。"
+      },
+      "example": {
+        "zh": "大学录取的例子里：申请人、各申请群体、大学、社会等（p.45 是课堂活动，课件没给答案，这里是参考）。"
+      },
+      "slides": "44-45, 48",
+      "related": [
+        "fairness-trade-offs",
+        "model-auditing"
+      ]
+    },
+    {
+      "id": "pre-processing",
+      "en": "Pre-processing",
+      "zh": "前处理",
+      "def": {
+        "en": "Pre-Processing: remove information about sensitive features. Simple removal is often not enough due to proxy variables, so more sophisticated methods do feature engineering to try to remove this information while preserving other info.",
+        "zh": "去掉关于敏感特征的信息（训练之前处理数据）。简单删除常常不够，因为有代理变量；更高级的方法用特征工程（feature engineering）尽量去掉这些信息，同时保留其他信息。"
+      },
+      "slides": "46",
+      "related": [
+        "in-processing",
+        "post-processing",
+        "proxy-variable",
+        "sensitive-feature",
+        "feature-engineering"
+      ]
+    },
+    {
+      "id": "in-processing",
+      "en": "In-processing",
+      "zh": "中处理",
+      "def": {
+        "en": "In-Processing: instead of optimizing just for low error, also optimize for fairness. This often involves adding an extra mathematical term to the cost function, called a regularizer.",
+        "zh": "训练过程中，不只为低误差优化，也同时为公平优化。常常是在代价函数里加一个额外的数学项，叫正则项（regularizer）。"
+      },
+      "slides": "46",
+      "related": [
+        "regularizer",
+        "pre-processing",
+        "post-processing",
+        "cost-function"
+      ]
+    },
+    {
+      "id": "post-processing",
+      "en": "Post-processing",
+      "zh": "后处理",
+      "def": {
+        "en": "Post-Processing: adjust the decisions we make based on the model's output.",
+        "zh": "根据模型的输出，调整我们最后做出的决定（模型本身不改）。"
+      },
+      "example": {
+        "zh": "模型给申请打 10 分制的分数，对已知被模型歧视的群体把分数往上调（p.47）。课件没说调多少。"
+      },
+      "slides": "47",
+      "related": [
+        "pre-processing",
+        "in-processing",
+        "disparate-treatment"
+      ]
+    },
+    {
+      "id": "regularizer",
+      "en": "Regularizer",
+      "zh": "正则项",
+      "def": {
+        "en": "An extra mathematical term added to the cost function. In in-processing, it makes training optimize for fairness as well as for low error.",
+        "zh": "加进代价函数（cost function，训练时要尽量变小的那个数）的额外数学项。在中处理里，它让训练不只追求低误差，也照顾公平。"
+      },
+      "slides": "46",
+      "related": [
+        "in-processing",
+        "cost-function"
+      ]
+    },
+    {
+      "id": "model-auditing",
+      "en": "Model auditing (model audit)",
+      "zh": "模型审计",
+      "def": {
+        "en": "Model auditing is a comprehensive final check of a model before deployment, often performed by an independent party. A model audit can check metrics related to performance, fairness, security, and anything else important to stakeholders. It can be the last chance to find problems before contact with users.",
+        "zh": "部署（上线）之前对模型做的全面最终检查，常由独立的第三方进行。可以检查表现、公平、安全以及利益相关者在乎的其他任何方面；它可能是模型接触用户之前发现问题的最后机会。"
+      },
+      "slides": "48",
+      "related": [
+        "stakeholder",
+        "algorithmic-fairness",
+        "test-set"
+      ]
+    }
+  ]
+}

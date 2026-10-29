@@ -1,0 +1,62 @@
+/*
+ * Code listing: a labelled bar, a monospace body that scrolls sideways on its own, and the explanation below.
+ * 代码块：带标签的顶栏、可独立横向滚动的等宽正文，以及下方的解释。
+ */
+.code-block {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.code-block__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-bottom: 2px solid var(--color-line);
+  background: var(--color-paper-2);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.code-block__lang {
+  margin-left: auto;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+}
+
+.code-block__pre {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-paper);
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+/* The block clips its overflow, so the outline is drawn inside the code area. 内容块会裁掉溢出部分，因此把焦点框画在代码区域内侧。 */
+.code-block__pre:focus-visible {
+  outline-offset: -4px;
+}
+
+.code-block__code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  white-space: pre;
+}
+
+.code-block__caption {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px dashed var(--color-line-soft);
+}
+
+.code-block__zh {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.75;
+}

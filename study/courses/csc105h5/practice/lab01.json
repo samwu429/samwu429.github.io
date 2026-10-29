@@ -1,0 +1,459 @@
+{
+  "lessonId": "lab01",
+  "questions": [
+    {
+      "id": "lab01-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-symbolic-ai",
+      "prompt": {
+        "en": "According to the course definition, how does Symbolic AI find problem solutions?",
+        "zh": "根据课程定义，符号 AI 是怎样找到问题的解的？"
+      },
+      "options": [
+        {
+          "en": "By automatically inferring patterns from data",
+          "zh": "从数据中自动推断规律"
+        },
+        {
+          "en": "By encoding knowledge as symbols and then reasoning with those symbols",
+          "zh": "把知识编码成符号，再用这些符号推理"
+        },
+        {
+          "en": "By learning from enormous quantities of text data",
+          "zh": "从海量文字数据中学习"
+        },
+        {
+          "en": "By trying random answers until one looks correct",
+          "zh": "随机尝试答案，直到有一个看起来是对的"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B：这是第 3 页的原话定义。A 是机器学习的定义（第 6 页），最容易混。C 描述的是 LLM（第 8 页）。D 不是课件里任何方法的定义；符号 AI 按逻辑规则推理，不是乱试。",
+        "en": "Symbolic AI encodes knowledge as symbols and reasons with them; inferring patterns from data is ML."
+      }
+    },
+    {
+      "id": "lab01-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s04-machine-learning",
+      "prompt": {
+        "en": "Which phrase completes the course definition? 'Machine Learning (ML) is a separate sub-field of Artificial Intelligence in which problem solutions are found by ...'",
+        "zh": "下面哪一项能补全课程定义？“机器学习是人工智能中一个独立的子领域，它找到问题的解的方式是……”"
+      },
+      "options": [
+        {
+          "en": "encoding knowledge as symbols and reasoning with those symbols",
+          "zh": "把知识编码成符号并用这些符号推理"
+        },
+        {
+          "en": "following a step-by-step solution written by the programmer",
+          "zh": "照着程序员写好的步骤执行"
+        },
+        {
+          "en": "searching every possible state in a search tree",
+          "zh": "在搜索树里搜遍所有可能的状态"
+        },
+        {
+          "en": "automatically inferring patterns from data",
+          "zh": "从数据中自动推断规律"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D（第 6 页原话）。A 是符号 AI 的定义。B 是纯算法：Lecture 2 说程序员写好每一步的解法就不算 AI。C 是符号 AI 里的搜索方法（Lecture 3），也不是 ML。",
+        "en": "ML finds solutions by automatically inferring patterns from data."
+      }
+    },
+    {
+      "id": "lab01-q03",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s05-llms",
+      "prompt": {
+        "en": "Large Language Models (LLMs) are a specific type of Machine Learning (ML) model.",
+        "zh": "大语言模型（LLM）是一种特定类型的机器学习（ML）模型。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。第 8 页原话：“Large Language Models (LLMs) are a specific type of ML model.” 常见错误是以为 LLM 和 ML 是并列的两个子领域。大表单独给 LLM 一列，是因为它的用法（写 prompt）不同，不是因为它不属于 ML。",
+        "en": "True: the slide says LLMs are a specific type of ML model."
+      }
+    },
+    {
+      "id": "lab01-q04",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s06-big-table",
+      "prompt": {
+        "en": "According to the Big Table, how do you specify the task for Machine Learning?",
+        "zh": "根据大表，用机器学习时，怎么告诉电脑要做的任务？"
+      },
+      "options": [
+        {
+          "en": "Write rules by hand",
+          "zh": "手写规则"
+        },
+        {
+          "en": "Write a prompt",
+          "zh": "写提示词"
+        },
+        {
+          "en": "Provide labeled examples or feedback",
+          "zh": "提供带标签的例子或反馈"
+        },
+        {
+          "en": "No task needs to be specified",
+          "zh": "不需要告诉它任务"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C（大表 How you specify the task 一行）：ML 从例子里学，所以要提供带标签的例子或反馈。A 是 Symbolic/ Algorithmic 的做法（手写规则）；B 是 LLM Prompting 的做法（写 prompt）。D 不对：三种方法都要用某种方式告诉电脑任务，ML 用的是例子。",
+        "en": "ML: provide labeled examples or feedback. Rules by hand is Symbolic/Algorithmic; a prompt is LLM prompting."
+      }
+    },
+    {
+      "id": "lab01-q05",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s03-symbolic-ai",
+      "prompt": {
+        "en": "If the programmer specifies a step-by-step solution to the problem, the program is Symbolic AI.",
+        "zh": "如果程序员把解决问题的每一步都写好了，这个程序就是符号 AI。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。Lecture 2 第 34 页：“if the programmer specifies a step-by-step solution to the problem, it isn't AI”——这是纯算法（**algorithm**），不是 AI。Lecture 3 第 62 页：纯算法是人写好解法、电脑照做（We specify the solution, the computer just follows it）；符号 AI 是人给出找解的方法，电脑自己找出解并执行（We specify a way to find a solution, the computer then finds and executes the solution）。大表把两者放在同一列（Symbolic/ Algorithmic），是因为它们有很多共同性质，不是因为它们是同一个东西。",
+        "en": "False: a step-by-step solution written by the programmer is a pure algorithm, which is not AI."
+      }
+    },
+    {
+      "id": "lab01-q06",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s04-machine-learning",
+      "prompt": {
+        "en": "Which of the following are weaknesses of Machine Learning listed in the lab slides? Select all that apply.",
+        "zh": "下面哪些是课件列出的机器学习的弱点？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "Trained models apply narrowly to the problem they were trained on",
+          "zh": "训练好的模型只适用于它训练时的那个问题"
+        },
+        {
+          "en": "Trained models inherit the biases of the data they were trained on",
+          "zh": "训练好的模型会继承训练数据的偏见"
+        },
+        {
+          "en": "Knowledge can be difficult to distill into symbols",
+          "zh": "知识可能很难提炼成符号"
+        },
+        {
+          "en": "Solutions are likely correct, but not guaranteed to be correct",
+          "zh": "解大概率对，但不保证对"
+        },
+        {
+          "en": "Generally low explainability",
+          "zh": "一般可解释性低"
+        },
+        {
+          "en": "Solutions are provably correct when they are found",
+          "zh": "找到的解可以被证明是正确的"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "explain": {
+        "zh": "选 A、B、D、E，都是第 7 页的原话。C 是符号 AI 的弱点（第 4 页）；ML 恰恰不需要把知识提炼成符号，所以能用在更多问题上。F 是符号 AI 的特点（第 3 页），而且是优点，不是弱点。",
+        "en": "Narrow, inherits bias, only likely correct, low explainability."
+      }
+    },
+    {
+      "id": "lab01-q07",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s05-llms",
+      "prompt": {
+        "en": "An LLM confidently gives you the title and author of a book that does not exist. What is this weakness called?",
+        "zh": "一个 LLM 很自信地告诉你一本书的书名和作者，但这本书根本不存在。这个弱点叫什么？"
+      },
+      "options": [
+        {
+          "en": "Distribution shift",
+          "zh": "分布偏移"
+        },
+        {
+          "en": "Cognitive offloading",
+          "zh": "认知卸载"
+        },
+        {
+          "en": "Hallucination",
+          "zh": "幻觉"
+        },
+        {
+          "en": "Inference",
+          "zh": "推理（使用模型的阶段）"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C：第 10 页说 LLM “prone to confidently stating falsehoods (hallucination)”，就是很自信地说出假内容。A 是大表里 ML 的主要失败方式。B 是 LLM 的一个伦理问题（人把思考交给 AI），不是“说假话”。D 是 ML 里“用训练好的模型解决问题”的阶段，根本不是弱点。",
+        "en": "Confidently stating falsehoods is hallucination."
+      }
+    },
+    {
+      "id": "lab01-q08",
+      "type": "multi",
+      "difficulty": 1,
+      "sectionId": "s05-llms",
+      "prompt": {
+        "en": "Which of the following are ethical issues of LLMs listed in the lab slides? Select all that apply.",
+        "zh": "下面哪些是课件列出的 LLM 伦理问题？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "Environmental impact",
+          "zh": "环境影响"
+        },
+        {
+          "en": "Job displacement",
+          "zh": "工作被取代"
+        },
+        {
+          "en": "Copyright",
+          "zh": "版权"
+        },
+        {
+          "en": "Cognitive offloading",
+          "zh": "认知卸载"
+        },
+        {
+          "en": "Prompt sensitivity",
+          "zh": "对提示词敏感"
+        },
+        {
+          "en": "Distribution shift",
+          "zh": "分布偏移"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explain": {
+        "zh": "选 A、B、C、D：第 10 页列出的四个伦理问题。E 是大表里 LLM 的主要失败方式之一，F 是 ML 的主要失败方式，都不是伦理问题。",
+        "en": "Environmental impact, job displacement, copyright and cognitive offloading."
+      }
+    },
+    {
+      "id": "lab01-q09",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-choosing-practice",
+      "prompt": {
+        "en": "A school wants to schedule its exams so that no two exams in the same room overlap. The rules are known and stable, and every decision must be explainable. Which method is most appropriate?",
+        "zh": "一所学校要排考试，保证同一教室里的考试时间不重叠。规则已知且稳定，而且每个决定都要能解释。哪种方法最合适？"
+      },
+      "options": [
+        {
+          "en": "Symbolic AI",
+          "zh": "符号 AI"
+        },
+        {
+          "en": "Machine Learning trained on photos of exam rooms",
+          "zh": "用考场照片训练的机器学习"
+        },
+        {
+          "en": "An LLM that is asked in a plain-text prompt",
+          "zh": "用普通文字 prompt 去问 LLM"
+        },
+        {
+          "en": "No method can solve this problem",
+          "zh": "没有任何方法能解决这个问题"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A。Lecture 3 第 6 页把 “Scheduling a collection of tasks so that none of them overlap” 列为适合符号 AI 的问题；大表说规则已知且稳定时选 Symbolic，它的可解释性是 Generally, Yes。B 错：这里没有要从例子里学的复杂规律，而且 ML 一般可解释性低。C 错：LLM 可能 hallucination，而且很少能解释（Rarely）。D 错：规则清楚的排程问题正是符号 AI 擅长的。",
+        "en": "Known, stable rules plus a need for explanations point to Symbolic AI."
+      }
+    },
+    {
+      "id": "lab01-q10",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-choosing-practice",
+      "prompt": {
+        "en": "You have 1000 photos of dogs and many photos without dogs. You want to decide whether a new photo contains a dog. Which method fits best?",
+        "zh": "你有 1000 张狗的照片和很多没有狗的照片，想判断一张新照片里有没有狗。哪种方法最合适？"
+      },
+      "options": [
+        {
+          "en": "Symbolic AI, by writing rules about pixel values",
+          "zh": "符号 AI：手写关于像素值的规则"
+        },
+        {
+          "en": "A pure algorithm written step by step by a programmer",
+          "zh": "程序员一步步写好的纯算法"
+        },
+        {
+          "en": "Exhaustive search with a search tree",
+          "zh": "用搜索树做穷举搜索"
+        },
+        {
+          "en": "Machine Learning, by learning patterns from the example photos",
+          "zh": "机器学习：从示例照片中学习规律"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。第 6 页：ML 从数据中自动推断规律，例子正是“一组有狗的照片和一组没狗的照片”；大表：规律复杂但有例子时选 ML。A 错：电脑只看到原始像素值，“狗”的知识很难提炼成符号（第 4-5 页）。B 错：同样要人先写出每一步，而“认狗”的步骤很难写出来。C 是符号 AI 的搜索方法，也需要清楚的规则，不适合认狗。",
+        "en": "Complex pattern plus many examples points to Machine Learning."
+      }
+    },
+    {
+      "id": "lab01-q11",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-choosing-practice",
+      "prompt": {
+        "en": "A student help desk wants a tool that can respond to many different kinds of questions written in plain English. They have almost no labeled data. According to the Big Table, which method fits best, and what is its main failure mode?",
+        "zh": "学生服务台想要一个能回应各种普通英文问题的工具，但几乎没有带标签的数据。根据大表，哪种方法最合适？它的主要失败方式是什么？"
+      },
+      "options": [
+        {
+          "en": "Symbolic/Algorithmic; edge cases outside the rules",
+          "zh": "符号/算法；规则之外的边缘情况"
+        },
+        {
+          "en": "Machine Learning; distribution shift",
+          "zh": "机器学习；分布偏移"
+        },
+        {
+          "en": "LLM prompting; hallucination and prompt sensitivity",
+          "zh": "LLM 提示；幻觉和对提示词敏感"
+        },
+        {
+          "en": "LLM prompting; it needs lots of labeled data",
+          "zh": "LLM 提示；需要大量带标签的数据"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C。大表：任务灵活开放、或带标签数据很少时，LLM prompting 最合适；它的主要失败方式是 Hallucination; prompt sensitivity。A 不行：开放的问题写不出全部规则。B 不行：ML 通常需要很多带标签数据（Often lots）。D 方法选对了，但理由错：LLM 需要的带标签数据是 Can be minimal（可以很少）。",
+        "en": "Open-ended task with scarce labeled data: LLM prompting, which can hallucinate."
+      }
+    },
+    {
+      "id": "lab01-q12",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s07-choosing-practice",
+      "prompt": {
+        "en": "Explain why 'Does this image contain a dog?' is a difficult problem for Symbolic AI, and name a method that fits better.",
+        "zh": "解释为什么“这张图里有狗吗？”对符号 AI 来说是个难题，并说出一种更合适的方法。"
+      },
+      "modelAnswer": {
+        "en": "Symbolic AI needs knowledge written as symbols and rules, but the computer just sees a sequence of raw pixel values. It is very hard to distill the idea of a dog into rules about pixels. Machine Learning fits better because it learns patterns from example photos with and without dogs.",
+        "zh": "符号 AI 要先把知识写成符号和规则；但图片对电脑来说只是一串原始像素值，很难把“狗”写成关于像素的规则。ML 更合适，因为它能从有狗和没狗的示例照片中学到规律。"
+      },
+      "points": [
+        {
+          "en": "Symbolic AI needs knowledge encoded as symbols and rules.",
+          "zh": "符号 AI 需要把知识编码成符号和规则。"
+        },
+        {
+          "en": "The computer only sees a sequence of raw pixel values.",
+          "zh": "电脑只看到一串原始像素值。"
+        },
+        {
+          "en": "Knowledge of what a dog looks like is difficult to distill into symbols.",
+          "zh": "“狗长什么样”的知识很难提炼成符号。"
+        },
+        {
+          "en": "ML can learn the pattern from data (photos with and without dogs).",
+          "zh": "ML 能从数据（有狗和没狗的照片）中学到规律。"
+        }
+      ],
+      "explain": {
+        "zh": "这是课件第 4-6 页的主线。只写“因为很难”拿不到分，要点出 raw pixel values 和 difficult to distill into symbols 这两个课件词，再说出 ML 为什么更合适。"
+      }
+    },
+    {
+      "id": "lab01-q13",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s04-machine-learning",
+      "prompt": {
+        "en": "Explain the difference between training and inference in Machine Learning.",
+        "zh": "解释机器学习中训练（training）和推理（inference）的区别。"
+      },
+      "modelAnswer": {
+        "en": "Training is the phase where a model learns from data. Inference is the phase where we use the trained model to solve a problem. Training can take a long time, but inference is generally fast.",
+        "zh": "训练是模型从数据中学习的阶段；推理是用训练好的模型去解决问题的阶段。训练可能要很久，推理一般很快。"
+      },
+      "points": [
+        {
+          "en": "Training means learning from data.",
+          "zh": "训练 = 从数据中学习。"
+        },
+        {
+          "en": "Inference means using the trained model to solve a problem.",
+          "zh": "推理 = 用训练好的模型解决问题。"
+        },
+        {
+          "en": "Training can take a long time; inference is generally fast.",
+          "zh": "训练可能很慢；推理一般很快。"
+        }
+      ],
+      "explain": {
+        "zh": "来自第 6 页：“Distinct phases of training a model (learning from data) and inference (using the trained model to solve a problem)”。最常见的扣分是把速度说反。"
+      }
+    },
+    {
+      "id": "lab01-q14",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s07-choosing-practice",
+      "prompt": {
+        "en": "Compare Symbolic AI, Machine Learning and LLMs. For each method, give one strength, one weakness, and the kind of problem it is best for.",
+        "zh": "比较符号 AI、机器学习和 LLM。每种方法各写一个优点、一个弱点，以及它最适合的问题类型。"
+      },
+      "modelAnswer": {
+        "en": "Symbolic AI encodes knowledge as symbols and reasons with them. Its solutions are provably correct when they are found and generally explainable, but for large problems the computation can be infeasibly long, and some knowledge is hard to distill into symbols. It is best when rules are known and stable, such as finding the best move in a puzzle.\nMachine Learning automatically infers patterns from data, so it can be applied to a wider variety of problems, but its models apply narrowly, inherit the biases of their data, and are only likely correct. It is best when patterns are complex but examples exist, such as recognizing dogs in photos.\nLLMs are a specific type of ML model trained on enormous text data. They can respond to a wide range of prompts without additional training, but they can hallucinate and need huge data centers. They are best when the task is open-ended or labeled data is scarce.",
+        "zh": "结构：三段，每段 = 方法是什么 + 一个优点 + 一个弱点 + 最适合的情况。全部用课件原话。最后可以加一句总结：选方法要看规则、数据和任务开放度。"
+      },
+      "points": [
+        {
+          "en": "Symbolic AI: provably correct when solutions are found, and explainable; weakness: infeasibly long computation or knowledge hard to distill into symbols; best when rules are known and stable.",
+          "zh": "符号 AI：找到的解可证明正确（when they are found）、可解释；弱点：计算可能久到不可行，或知识难写成符号；最适合规则已知且稳定的问题。"
+        },
+        {
+          "en": "ML: learns patterns from data and fits a wider variety of problems; weakness: narrow, inherits bias, only likely correct, low explainability; best when patterns are complex but examples exist.",
+          "zh": "ML：从数据学规律、适用面广；弱点：只适用于训练过的问题、继承偏见、只是大概率对、可解释性低；最适合规律复杂但有例子的问题。"
+        },
+        {
+          "en": "LLMs: a type of ML that responds to many prompts without additional training; weakness: hallucination, huge data centers or ethical issues; best when the task is open-ended or labeled data is scarce.",
+          "zh": "LLM：一种 ML，不用额外训练就能回应各种提示；弱点：幻觉、巨大的数据中心或伦理问题；最适合任务开放或带标签数据很少的情况。"
+        },
+        {
+          "en": "Uses accurate course terminology in a clear, organized comparison.",
+          "zh": "术语用对，比较的结构清楚。"
+        }
+      ],
+      "explain": {
+        "zh": "评分看三件事是否齐全（优点、弱点、最适合），以及术语是否用对。最常见的扣分：把 provably correct 写给 ML，或者说 LLM 不属于 ML。"
+      }
+    }
+  ]
+}

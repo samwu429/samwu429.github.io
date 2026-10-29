@@ -1,0 +1,1312 @@
+{
+  "lessonId": "lec02",
+  "questions": [
+    {
+      "id": "lec02-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s01-roadmap",
+      "prompt": {
+        "en": "Which statement matches the lecture?",
+        "zh": "下面哪一句符合课件内容？"
+      },
+      "options": [
+        {
+          "en": "Functions and loops make the computer execute fewer instructions.",
+          "zh": "函数和循环让电脑执行的指令变少。"
+        },
+        {
+          "en": "Following a programmer's step-by-step solution is normally AI.",
+          "zh": "照着程序员写好的一步步解法执行，通常算 AI。"
+        },
+        {
+          "en": "Every instruction executed costs time.",
+          "zh": "每执行一条指令都要花时间。"
+        },
+        {
+          "en": "An algorithm must be written in a programming language.",
+          "zh": "算法必须用编程语言来写。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "正确答案：Every instruction executed costs time. 是第 37 页的粗体句，课件说这个事实在很大程度上定义了计算机科学这门学科。\n“函数和循环让电脑执行的指令变少”错：它们省的是程序员“写”的行数；画 3 个机器人，`draw_robot` 里的指令照样要执行 3 遍（第 17、27 页）。\n“照着程序员的解法执行，通常算 AI”错：第 34 页说 Simply following an algorithm is not normally considered to be AI。\n“算法必须用编程语言写”错：第 5 页做吐司的算法就是用英文写的。",
+        "en": "p.37: every instruction executed costs time. Functions and loops save writing, not executing; following a programmer's steps is not normally AI (p.34); algorithms can be written in English (p.5)."
+      }
+    },
+    {
+      "id": "lec02-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-what-is-an-algorithm",
+      "prompt": {
+        "en": "Which of the following is the best example of an algorithm, according to the course definition?",
+        "zh": "按照课程的定义，下面哪一项最能算作一个算法（**algorithm**）？"
+      },
+      "options": [
+        {
+          "en": "The one-line request 'Make me two pieces of buttered toast, please.'",
+          "zh": "一句话的请求：“请给我做两片抹黄油的吐司。”"
+        },
+        {
+          "en": "A list of the things needed for toast (bread, butter, a toaster), in no particular order",
+          "zh": "做吐司要用的东西清单（面包、黄油、烤面包机），没有先后顺序"
+        },
+        {
+          "en": "A photo that shows two pieces of buttered toast on a plate",
+          "zh": "一张照片，拍的是盘子里两片抹好黄油的吐司"
+        },
+        {
+          "en": "Five numbered steps that say exactly what to do, in order, to make buttered toast",
+          "zh": "五个编了号的步骤，按顺序准确地说明怎样做出抹黄油的吐司"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "算法 = 一系列（**series**）精确的（**precise**）指令，可以一步一步（**step-by-step**）、按顺序（**in order**）执行，用来达成一个目标（**goal**）。只有“五个编号步骤”同时满足这几点，它就是第 5 页做吐司的例子。一句话的请求只有目标，没有一步步的指令；材料清单没有顺序，也不是要去做的动作；照片只展示结果，里面没有任何指令。",
+        "en": "Only the numbered steps are a series of precise instructions that can be followed in order to reach a goal."
+      }
+    },
+    {
+      "id": "lec02-q03",
+      "type": "multi",
+      "difficulty": 1,
+      "sectionId": "s02-what-is-an-algorithm",
+      "prompt": {
+        "en": "Select ALL the phrases that are part of the course definition of an algorithm.",
+        "zh": "选出所有属于课程中“算法”（**algorithm**）定义的说法。"
+      },
+      "options": [
+        {
+          "en": "a series of precise instructions",
+          "zh": "一系列精确的指令"
+        },
+        {
+          "en": "instructions that can be done in any order",
+          "zh": "可以按任意顺序完成的指令"
+        },
+        {
+          "en": "followed step-by-step, in order",
+          "zh": "一步一步、按顺序执行"
+        },
+        {
+          "en": "learned from training data",
+          "zh": "从训练数据中学来的"
+        },
+        {
+          "en": "to achieve a goal",
+          "zh": "为了达成一个目标"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "explain": {
+        "zh": "第 5 页定义：An algorithm is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal.\n正确的三项都是定义的一部分：“一系列精确的指令”“一步一步、按顺序执行”“为了达成一个目标”。\n“可以按任意顺序完成”错：正好违反了 in order；顺序乱了（比如先抹黄油、再放进烤面包机），结果就可能不对。\n“从训练数据中学来”错：第 36 页说算法解法的优点之一恰恰是不需要训练数据（No need for training data）。",
+        "en": "p.5: a series of precise instructions, followed step-by-step, in order, to achieve a goal. Order matters, and no training data is needed."
+      }
+    },
+    {
+      "id": "lec02-q04",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s02-what-is-an-algorithm",
+      "prompt": {
+        "en": "According to the course, an algorithm must be written in a programming language such as Python.",
+        "zh": "根据课程内容，算法必须用 Python 这样的编程语言来写。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。算法可以用普通英文写：第 5 页做吐司的算法就是英文步骤，第 2 页的学习目标也要求你会 write your own algorithms in English。用编程语言写成、让电脑执行的一串指令叫做程序（**program**，第 8 页）：电脑要执行算法时，才需要把它写成程序。",
+        "en": "False. The toast algorithm is written in English. A series of instructions in a programming language is called a program."
+      }
+    },
+    {
+      "id": "lec02-q05",
+      "type": "short",
+      "difficulty": 1,
+      "sectionId": "s02-what-is-an-algorithm",
+      "prompt": {
+        "en": "Define 'algorithm' as it was defined in the lecture, and give the lecture's example.",
+        "zh": "按课件给“算法”（**algorithm**）下定义，并写出课件里用的例子。"
+      },
+      "modelAnswer": {
+        "en": "An algorithm is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal. For example, the lecture's algorithm for making toast is: remove two slices of bread from the bag, place them into the toaster slots, press down the lever, wait for the bread to pop out, and butter each piece.",
+        "zh": "得分点拆解：定义要包含 series（一系列）、precise instructions（精确的指令）、step-by-step（一步一步）、in order（按顺序）、to achieve a goal（达成一个目标）；例子用第 5 页做吐司的 5 个步骤。"
+      },
+      "points": [
+        {
+          "en": "Says an algorithm is a series of precise instructions.",
+          "zh": "写出“一系列精确的指令”。"
+        },
+        {
+          "en": "Says the instructions are followed step-by-step, in order.",
+          "zh": "写出“一步一步、按顺序执行”。"
+        },
+        {
+          "en": "Says the instructions are used to achieve a goal.",
+          "zh": "写出“为了达成一个目标”。"
+        },
+        {
+          "en": "Gives a correct example, such as the toast steps.",
+          "zh": "给出正确的例子，比如做吐司的步骤。"
+        }
+      ],
+      "explain": {
+        "zh": "定义题按关键词给分，一个都别漏。常见丢分：只写“一些步骤”（漏了 precise 和 in order）；把算法写成“电脑程序”或“会学习的 AI”。例子不一定要把 5 步全写出来，但要看得出是“按顺序的精确步骤”。",
+        "en": "Use every key word of the p.5 definition and give the toast example."
+      }
+    },
+    {
+      "id": "lec02-q06",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s03-precision-evil-genie",
+      "prompt": {
+        "en": "The lecture's toast algorithm is: 1. Remove two slices of bread from the bag. 2. Place the slices into the slots in the toaster. 3. Press down the lever on the toaster. 4. Wait for the bread to pop back out of the toaster. 5. Butter each piece of toast. An 'evil genie' follows every step literally but looks for missing instructions. Which bad result is possible because an instruction is missing?",
+        "zh": "课件里做吐司的算法是：1. 从袋子里拿出两片面包。2. 把面包片放进烤面包机的槽里。3. 按下烤面包机的拉杆。4. 等面包从烤面包机里弹出来。5. 给每片吐司抹黄油。一个“邪恶精灵”（**evil genie**）每一步都照字面做，但专挑漏写的地方。因为少写了一条指令，它可能造成哪种坏结果？"
+      },
+      "options": [
+        {
+          "en": "Use three slices of bread instead of two",
+          "zh": "用三片面包而不是两片"
+        },
+        {
+          "en": "Press the lever before putting the bread into the toaster",
+          "zh": "还没放面包，就先按下拉杆"
+        },
+        {
+          "en": "Butter the toast while it is still sitting in the toaster slots",
+          "zh": "吐司还留在烤面包机的槽里，就直接在槽里抹黄油"
+        },
+        {
+          "en": "Skip the waiting and butter the bread straight away",
+          "zh": "不等了，直接给面包抹黄油"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "正确答案：第 4 步只说等面包弹出来，第 5 步就直接抹黄油，中间没有“把吐司从烤面包机里拿出来”这一步。精灵每一步都照做，却可以让吐司留在槽里、直接在槽里抹黄油。这正是第 6 页说的：If our instructions are not precise enough, we might fail to achieve our goal.\n“用三片面包”不可能：第 1 步写明了 two slices（两片）。\n“还没放面包就按拉杆”不可能：第 2 步（放面包）排在第 3 步（按拉杆）前面，顺序已经定好。\n“不等了直接抹黄油”不可能：第 4 步明确写了 Wait（要等）。\n课件没有给这道讨论题的标准答案，这是按第 6 页的讨论推出的一种曲解。",
+        "en": "No step says to take the toast out, so the genie could leave it in the slots and butter it there. Steps 1-4 block the other three moves."
+      }
+    },
+    {
+      "id": "lec02-q07",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s03-precision-evil-genie",
+      "prompt": {
+        "en": "In a lecture activity, you wrote an algorithm for an everyday task and a classmate played the 'evil genie'. Write an algorithm of at least 5 steps for an everyday task. Then explain how an evil genie could misinterpret one of your steps, how you would update that step, and whether your new instructions are longer or shorter.",
+        "zh": "课上有一个活动：为一件日常小事写算法，再请同学扮演“邪恶精灵”（**evil genie**）。请为一件日常小事写一个至少 5 步的算法。然后说明邪恶精灵可以怎样曲解其中一步、你会怎样修改这一步，以及修改后的指令变长了还是变短了。"
+      },
+      "modelAnswer": {
+        "en": "Task: making a cup of instant noodles. 1. Boil 500 mL of water in a kettle. 2. Open the lid of the noodle cup halfway. 3. Put the seasoning in the cup. 4. Pour the hot water into the cup up to the line. 5. Close the lid, wait three minutes, and then eat. An evil genie could misinterpret step 3: it never says to open the seasoning packet, so the genie could drop the whole closed packet into the cup. To avoid this, I would change step 3 to: 'Tear open the seasoning packet, pour all of the powder onto the noodles, and throw the empty packet away.' My new step is longer than the old one. In general, my new instructions are longer, and I often need more of them, because every detail must be written down precisely. If our instructions are not precise enough, we might fail to achieve our goal.",
+        "zh": "答题结构：1）先写出至少 5 个编号步骤（日常小事随便选，泡面只是示范）；2）指出精灵可以曲解的具体哪一步、怎样曲解（照字面做也能办砸）；3）写出修改后的步骤；4）直接回答“变长了、变多了”，并说明原因：每个细节都要写精确；5）最后用第 6 页的原话点题。"
+      },
+      "points": [
+        {
+          "en": "Writes at least 5 clear, numbered steps for an everyday task.",
+          "zh": "写出至少 5 个清楚、编号的步骤。"
+        },
+        {
+          "en": "Names one specific step and describes how an evil genie could misinterpret it.",
+          "zh": "指出具体哪一步，并说明精灵怎样曲解它。"
+        },
+        {
+          "en": "Rewrites that step so the misinterpretation is no longer possible.",
+          "zh": "把这一步改写得更精确，让这种曲解不再可能。"
+        },
+        {
+          "en": "States that the updated instructions are longer and/or more numerous, and explains why.",
+          "zh": "说明修改后的指令更长或更多，并说明原因。"
+        },
+        {
+          "en": "Links to the idea that imprecise instructions might fail to achieve the goal.",
+          "zh": "联系课件观点：指令不够精确，就可能达不到目标。"
+        }
+      ],
+      "explain": {
+        "zh": "这道题对应第 7 页的活动和讨论题（Discuss: What kinds of changes did you have to make? Are your new instructions longer or shorter? Do you have more or fewer of them?）。课件没有给标准答案。\n阅卷看这几点：\n1）步骤够不够 5 步、有没有顺序；\n2）曲解是否具体，是否真的“照字面执行也能办砸”；\n3）修改后是否更精确；\n4）有没有直接回答“变长还是变短、变多还是变少”。\n只写“精灵会乱来”而不指出具体哪一步，会丢分。",
+        "en": "Based on the p.7 activity and Discuss prompt. Be specific about the step, the misinterpretation and the fix."
+      }
+    },
+    {
+      "id": "lec02-q08",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s04-programming-language-program",
+      "prompt": {
+        "en": "Which statement best describes the difference between an algorithm and a program in this lecture?",
+        "zh": "根据本课，下面哪一句最能说明算法（**algorithm**）和程序（**program**）的区别？"
+      },
+      "options": [
+        {
+          "en": "An algorithm can be in plain English for a person; a program is a series of instructions in a programming language that a computer performs unambiguously.",
+          "zh": "算法可以用普通英文写给人去执行；程序是用编程语言写成的一串指令，电脑会无歧义地执行它。"
+        },
+        {
+          "en": "There is no difference: both must be written in a programming language, and both can only be followed by a computer, never by a person.",
+          "zh": "没有区别：两者都必须用编程语言写，也都只能由电脑执行，人不能执行。"
+        },
+        {
+          "en": "A program is always a form of AI, while an algorithm is just a list of ideas that can be followed in any order you like.",
+          "zh": "程序一定是一种 AI，而算法只是一串想法，想按什么顺序执行都可以。"
+        },
+        {
+          "en": "An algorithm can only run on a computer, while a program is written in plain English so that a person can follow it.",
+          "zh": "算法只能在电脑上运行，而程序是用普通英文写的，好让人去执行。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "正确答案：第 5 页的做吐司算法是用英文写给人看的；第 8 页说，电脑通过执行一串用编程语言写成的指令来执行算法，这串指令叫程序；编程语言里的指令，电脑可以“无歧义地”（**unambiguously**）执行。\n“没有区别”错：算法不一定用编程语言写，也不一定由电脑执行（做吐司就是人在做）。\n“程序一定是 AI”错：第 34 页说单纯照着算法执行通常不算 AI，画机器人脸的程序就不是 AI；而且算法要按顺序（**in order**）执行，不是任意顺序。\n“算法只能在电脑上运行、程序用普通英文写”那一项把算法和程序正好说反了。",
+        "en": "An algorithm can be in English (the toast example); a program is a series of instructions in a programming language that a computer performs unambiguously (p.8)."
+      }
+    },
+    {
+      "id": "lec02-q09",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s04-programming-language-program",
+      "prompt": {
+        "en": "The lecture says that its short Python countdown program will produce the same output, regardless of which computer runs it.",
+        "zh": "课件说，那段倒数的 Python 小程序无论在哪台电脑上运行，都会产生同样的输出。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。第 8 页原话：It will produce the same output, regardless of which computer runs it.\n这和同一页的定义相呼应：编程语言规定的指令，电脑可以“无歧义地”（**unambiguously**）执行，不会像人一样理解出不同的意思。\n另外，课件说不需要看懂这段 Python 的语法（Don't worry, you don't have to understand the Python syntax.）。",
+        "en": "True (p.8). Instructions in a programming language are performed unambiguously."
+      }
+    },
+    {
+      "id": "lec02-q10",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s05-turtle-sequence",
+      "prompt": {
+        "en": "A turtle program draws a square using the instructions `fd 100` and `rt 90`. Which plain-English actions do these two instructions stand for?",
+        "zh": "一个海龟程序用 `fd 100` 和 `rt 90` 两条指令画正方形。这两条指令分别代表什么动作？"
+      },
+      "options": [
+        {
+          "en": "`fd 100` = draw 100 squares; `rt 90` = repeat 90 times",
+          "zh": "`fd 100` = 画 100 个正方形；`rt 90` = 重复 90 次"
+        },
+        {
+          "en": "`fd 100` = move forward 100 units; `rt 90` = turn right 90 degrees",
+          "zh": "`fd 100` = 向前走 100 个单位；`rt 90` = 向右转 90 度"
+        },
+        {
+          "en": "`fd 100` = wait 100 seconds; `rt 90` = return to the start",
+          "zh": "`fd 100` = 等 100 秒；`rt 90` = 回到起点"
+        },
+        {
+          "en": "`fd 100` = move forward 100 times; `rt 90` = turn right 90 times",
+          "zh": "`fd 100` = 向前走 100 次；`rt 90` = 向右转 90 次"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "正确答案：第 35 页用英文描述画正方形：repeating the following 4 times: move forward 100 units, then turn right 90 degrees，对应第 20、39 页 square 函数里的 `fd 100` 和 `rt 90`。所以 `fd` 后面的数是要走的距离（100 个单位），`rt` 后面的数是要转的角度（90 度）。\n“向前走 100 次、向右转 90 次”错：把距离和角度当成了次数。\n“画 100 个正方形、重复 90 次”和“等 100 秒、回到起点”在课件里都没有依据。",
+        "en": "p.35 describes the square as 'move forward 100 units, then turn right 90 degrees', which matches fd 100 and rt 90."
+      }
+    },
+    {
+      "id": "lec02-q11",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s06-first-program-reuse",
+      "prompt": {
+        "en": "After making a simple drawing with individual turtle instructions, the class discussed: 'How long do you think it would take to draw something more complex this way, like a whole scene?' Answer this question, and explain what modern programming languages give us to solve this problem.",
+        "zh": "用一条条海龟指令画完一幅简单的画后，课上讨论了：“如果用这种方式画更复杂的东西，比如一整个场景，你觉得要花多久？”请回答这个问题，并说明现代编程语言提供了什么来解决这个问题。"
+      },
+      "modelAnswer": {
+        "en": "It would take a very long time, because every movement must be written as its own instruction, and a whole scene would need hundreds of instructions, many of them repeated. We would never be able to do anything complex if we had to specify every instruction individually. Fortunately, modern programming languages give us ways to package and reuse instructions, such as functions and loops.",
+        "zh": "要点：1）会花很久：每个动作都要单独写一条指令，整个场景要成百上千条，而且很多是重复的；2）引用第 12 页：如果每条指令都要单独写，就做不出任何复杂的东西；3）解决办法：编程语言能打包、复用指令——函数（**functions**）和循环（**loops**）。"
+      },
+      "points": [
+        {
+          "en": "Says it would take a very long time (it is not practical).",
+          "zh": "回答：会花非常久（几乎不现实）。"
+        },
+        {
+          "en": "Explains why: every instruction must be specified individually, and many are repeated.",
+          "zh": "说明原因：每条指令都要单独写，而且很多是重复的。"
+        },
+        {
+          "en": "Names the solution: packaging and reusing instructions with functions and loops.",
+          "zh": "说出解决办法：用函数和循环打包、复用指令。"
+        }
+      ],
+      "explain": {
+        "zh": "第 11 页的讨论题课件没有给答案，但第 12 页紧接着说：We would never be able to do anything complex if we had to specify every instruction individually. 所以答案一定要落到“打包和复用指令（函数、循环）”上。只说“很久”而不说原因和解决办法，拿不到全分。",
+        "en": "p.12 gives the conclusion to the p.11 question: without reuse nothing complex is possible; functions and loops let us package and reuse instructions."
+      }
+    },
+    {
+      "id": "lec02-q12",
+      "type": "short",
+      "difficulty": 1,
+      "sectionId": "s04-programming-language-program",
+      "prompt": {
+        "en": "Define 'programming language' and 'program' as they were defined in the lecture.",
+        "zh": "按课件给“编程语言”（**programming language**）和“程序”（**program**）下定义。"
+      },
+      "modelAnswer": {
+        "en": "A programming language defines a set of instructions that a computer can perform unambiguously. A program is a series of instructions written in a programming language; a computer can execute an algorithm by following it.",
+        "zh": "得分点拆解：编程语言 = 规定了一套电脑能无歧义地（**unambiguously**）执行的指令；程序 = 用编程语言写成的一串指令（**a series of instructions**），电脑照着它来执行算法。两个定义都在第 8 页。"
+      },
+      "points": [
+        {
+          "en": "A programming language defines a set of instructions that a computer can perform unambiguously.",
+          "zh": "编程语言规定了一套电脑能无歧义地执行的指令。"
+        },
+        {
+          "en": "A program is a series of instructions written in a programming language.",
+          "zh": "程序是用编程语言写成的一串指令。"
+        },
+        {
+          "en": "A computer executes an algorithm by following the program.",
+          "zh": "电脑照着程序来执行算法。"
+        }
+      ],
+      "explain": {
+        "zh": "两个定义都在第 8 页，关键词是 unambiguously（无歧义地）和 a series of instructions（一串指令）。\n常见丢分：把编程语言说成“更快、更聪明的语言”；把程序和算法混为一谈——算法可以用英文写给人看（第 5 页做吐司），程序是用编程语言写给电脑执行的。",
+        "en": "p.8: a programming language's instructions can be performed unambiguously; a program is a series of instructions written in a programming language."
+      }
+    },
+    {
+      "id": "lec02-q13",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s07-functions",
+      "prompt": {
+        "en": "If a function is defined but never called, its instructions are still executed once when we press Play.",
+        "zh": "如果一个函数只定义、从没被调用，按下 Play 时它里面的指令仍然会执行一次。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。第 15 页：画机器人的指令放进函数定义以后，If we push Play now, nothing happens to the turtle（按 Play，海龟什么也不做）。第 16 页加了一行 `draw_robot()` 调用之后，才画出 1 张脸。定义（**define**）只是告诉电脑“这个名字代表这些指令”，调用（**call**）才会执行它们。",
+        "en": "False. p.15: with only the definition, nothing happens to the turtle. The call added on p.16 executes it."
+      }
+    },
+    {
+      "id": "lec02-q14",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s07-functions",
+      "prompt": {
+        "en": "Select ALL the statements about functions that match the lecture.",
+        "zh": "选出所有符合课件内容的关于函数（**function**）的说法。"
+      },
+      "options": [
+        {
+          "en": "A function is a named block of instructions.",
+          "zh": "函数是一个有名字的指令块。"
+        },
+        {
+          "en": "We define a function once and can then reuse it as many times as we want by calling it by name.",
+          "zh": "函数定义一次，之后可以按名字调用，想用多少次就用多少次。"
+        },
+        {
+          "en": "Two different functions in the same program can have the same name.",
+          "zh": "同一个程序里的两个不同函数可以同名。"
+        },
+        {
+          "en": "Executing a call line executes everything inside the function definition.",
+          "zh": "执行一行调用，就会执行函数定义里的全部指令。"
+        },
+        {
+          "en": "Every function must have at least one parameter.",
+          "zh": "每个函数都必须至少有一个参数。"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explain": {
+        "zh": "正确的三项：\n1）a named block of instructions（第 14 页）；\n2）define once … reuse … by calling it by name（第 14 页）；\n3）executing that line executes everything inside our function definition（第 16 页）。\n“两个函数可以同名”错：第 18 页说 You can have several different functions, but they all must have different names。\n“每个函数都必须至少有一个参数”错：第 20 页的 `square = () ->` 和第 15–17 页的 `draw_robot = () ->` 都没有参数，第 23 页也说函数可以 with or without parameters（有没有参数都行）。",
+        "en": "True: named block and define once, call by name (p.14); a call runs everything inside (p.16). False: functions need different names (p.18); parameters are optional (p.20, 23)."
+      }
+    },
+    {
+      "id": "lec02-q15",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s08-parameters",
+      "prompt": {
+        "en": "A function is defined as `rectangle = (length, width) ->`. It is called as `rectangle(200, 100)`. What are the values of length and width in this call?",
+        "zh": "函数定义为 `rectangle = (length, width) ->`，调用写成 `rectangle(200, 100)`。这次调用中 length 和 width 的值各是多少？"
+      },
+      "options": [
+        {
+          "en": "length = 100, width = 200",
+          "zh": "length 是 100，width 是 200"
+        },
+        {
+          "en": "length = 200, width = 100",
+          "zh": "length 是 200，width 是 100"
+        },
+        {
+          "en": "length = 300, width = 300",
+          "zh": "length 和 width 都是 300"
+        },
+        {
+          "en": "It depends on which computer runs the program",
+          "zh": "取决于哪台电脑运行这个程序"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "正确答案：第 22 页：The order tells us which is which（顺序决定谁是谁）。第 1 个值给第 1 个参数（**parameter**）length，第 2 个值给第 2 个参数 width，所以 length = 200、width = 100。\n“length = 100、width = 200”错：那是第 22 页原来的调用 `rectangle(100, 200)`，这里顺序反过来了。\n“length 和 width 都是 300”错：这是把两个数加起来了，参数不会相加。\n“取决于哪台电脑运行这个程序”错：程序没有歧义，在哪台电脑上运行结果都一样（第 8 页）。",
+        "en": "The order tells us which is which (p.22): the first value goes to length and the second to width."
+      }
+    },
+    {
+      "id": "lec02-q16",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s08-parameters",
+      "prompt": {
+        "en": "The function `rectangle = (length, width) ->` contains these instructions in order: `fd length`, `rt 90`, `fd width`, `rt 90`, `fd length`, `rt 90`, `fd width`, `rt 90`. The program calls `rectangle(100, 200)`. In total, how many units does the turtle move forward during this call?",
+        "zh": "函数 `rectangle = (length, width) ->` 里依次是：`fd length`、`rt 90`、`fd width`、`rt 90`、`fd length`、`rt 90`、`fd width`、`rt 90`。程序调用 `rectangle(100, 200)`。这次调用中，海龟一共向前走了多少个单位？"
+      },
+      "answer": 600,
+      "tolerance": 0,
+      "unit": "units",
+      "explain": {
+        "zh": "第 1 步：按顺序对应参数：length = 100，width = 200（第 22 页：The order tells us which is which）。\n第 2 步：函数里有 2 个 `fd length` 和 2 个 `fd width`。\n第 3 步：100 + 200 + 100 + 200 = 600 个单位。\n`rt 90` 只转身、不前进，不算距离。常见错误：答 300（只算了 100 + 200 两条边）；答 400（以为四条边都是 100）。",
+        "en": "length = 100 and width = 200, so 100 + 200 + 100 + 200 = 600 units."
+      }
+    },
+    {
+      "id": "lec02-q17",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s09-abstraction-emergence",
+      "prompt": {
+        "en": "A student writes `draw_robot()` three times in a program. She does not think about the 23 drawing instructions inside the function; she only thinks about where each robot should go. Which idea from the lecture does this show?",
+        "zh": "一位同学在程序里写了 3 次 `draw_robot()`。她不去想函数里那 23 条画图指令，只考虑每个机器人该画在哪里。这体现了课件里的哪个概念？"
+      },
+      "options": [
+        {
+          "en": "Emergent behaviour",
+          "zh": "涌现行为"
+        },
+        {
+          "en": "Iteration",
+          "zh": "迭代"
+        },
+        {
+          "en": "Abstraction",
+          "zh": "抽象"
+        },
+        {
+          "en": "Training data",
+          "zh": "训练数据"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "正确答案：第 24 页：Once we have defined a function, we are freed from needing to think about all of its instructions every time we want to call it. This is called abstraction. 她用一个函数名代表一大串指令，只关心整体怎么安排，这就是抽象（**abstraction**）。\n“涌现行为”错：涌现行为（**emergent behaviour**）是大量底层执行加起来出现新的高层行为（例如 LLM 的语言能力），不是“不用想细节”。\n“迭代”错：迭代（**iteration**）是循环的代码块执行一次，这里根本没有循环。\n“训练数据”与本题无关。",
+        "en": "Not having to think about a function's instructions when calling it is abstraction (p.24)."
+      }
+    },
+    {
+      "id": "lec02-q18",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s09-abstraction-emergence",
+      "prompt": {
+        "en": "Explain the difference between abstraction and emergent behaviour. Give the lecture's example of emergent behaviour.",
+        "zh": "解释抽象（**abstraction**）和涌现行为（**emergent behaviour**）的区别，并写出课件里涌现行为的例子。"
+      },
+      "modelAnswer": {
+        "en": "Abstraction means that once a function is defined, we can call it without thinking about all of its instructions. Emergent behaviour is different: it is new high-level behaviour that results from the sum effect of many low-level function executions, for example language in LLMs, which emerges from the low-level mathematics of the neural network. So abstraction is a way for us to hide details, while emergent behaviour is something new that appears from many executions.",
+        "zh": "要点：抽象 = 调用函数时不用再想它里面的全部指令（是程序员“看问题、搭东西”的方式）；涌现行为 = 很多底层执行加在一起，出现新的高层行为（是很多执行加起来“冒出来”的结果）；例子：大语言模型（LLM）的语言能力，是从神经网络底层的数学运算中涌现出来的。"
+      },
+      "points": [
+        {
+          "en": "Defines abstraction: calling a function without thinking about all of its instructions.",
+          "zh": "写出抽象：调用函数时不用想它的全部指令。"
+        },
+        {
+          "en": "Defines emergent behaviour: the sum effect of many low-level executions gives new high-level behaviour.",
+          "zh": "写出涌现行为：大量底层执行的总效果产生新的高层行为。"
+        },
+        {
+          "en": "Gives the LLM example: language emerges from the low-level mathematics of the neural network.",
+          "zh": "给出 LLM 的例子：语言能力从神经网络底层的数学中涌现出来。"
+        }
+      ],
+      "explain": {
+        "zh": "第 24 页说两者是“相关的概念”（a related idea），不是同一个东西。最常见的错误是把两者写反，或者把涌现行为说成“函数里早就写好的高层行为”——涌现的关键是：“新的”行为来自很多底层执行的总效果（**sum effect**）。",
+        "en": "Abstraction hides a function's details from the caller; emergent behaviour is new high-level behaviour from many low-level executions (p.24)."
+      }
+    },
+    {
+      "id": "lec02-q19",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s10-loops-definition",
+      "prompt": {
+        "en": "According to the lecture, what is one iteration of a loop?",
+        "zh": "根据课件，循环的一次迭代（**iteration**）是什么？"
+      },
+      "options": [
+        {
+          "en": "Each time the loop's block of code is executed",
+          "zh": "循环的代码块每被执行一次"
+        },
+        {
+          "en": "One instruction inside the loop",
+          "zh": "循环里的一条指令"
+        },
+        {
+          "en": "The name that we give to the loop",
+          "zh": "我们给循环起的名字"
+        },
+        {
+          "en": "A value given to the loop to customize its behaviour",
+          "zh": "交给循环、用来定制它的行为的一个值"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "第 26 页：Each time the block is executed is called one iteration of the loop. 一次迭代是整个代码块执行一遍，不是“其中一条指令”。循环本来就没有名字（**unnamed**），所以不存在“循环的名字”；“交给它、用来定制行为的值”是函数参数（**parameter**）的说法（第 19 页）。",
+        "en": "p.26: each time the block is executed is one iteration of the loop."
+      }
+    },
+    {
+      "id": "lec02-q20",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s10-loops-definition",
+      "prompt": {
+        "en": "This course looks at only one kind of loop: the definite for-loop. What makes it 'definite'?",
+        "zh": "本课只学一种循环：definite for-loop（确定次数的 for 循环）。它为什么叫 definite（确定的）？"
+      },
+      "options": [
+        {
+          "en": "It always runs exactly once, so its block is executed a single time.",
+          "zh": "它总是只运行一次，所以代码块只执行一遍。"
+        },
+        {
+          "en": "It keeps running until the computer decides by itself that the goal is reached.",
+          "zh": "它一直运行，直到电脑自己认为目标已经达成。"
+        },
+        {
+          "en": "It iterates a fixed (definite) number of times, such as 3 times for `for [1..3]`.",
+          "zh": "它迭代固定（确定）的次数，比如 `for [1..3]` 就是 3 次。"
+        },
+        {
+          "en": "It must be given a name and then called by that name before it can run.",
+          "zh": "必须先给它起名字，再按这个名字调用，它才能运行。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "第 26 页：the definite for-loop, which iterates a fixed (definite) number of times。第 29 页还说，把 3 换成别的数就能调整迭代次数。“只运行一次”错：`[1..3]` 是 3 次，`[1..9]` 是 9 次。“直到电脑认为达成目标”错：次数是事先定好的，不是电脑自己决定的。“先起名字”错：循环是没有名字的（**unnamed**），要按名字调用的是函数。",
+        "en": "p.26: a definite for-loop iterates a fixed (definite) number of times."
+      }
+    },
+    {
+      "id": "lec02-q21",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s11-loops-robot-example",
+      "prompt": {
+        "en": "In lecture, two programs both drew three robot faces. Program 1 had no loop: it called `draw_robot()` three times, with `pu()` and `fd 100` between the calls (32 lines in total). Program 2 put `draw_robot()`, `pu()` and `fd 100` inside `for [1..3]` (29 lines in total). Which statement is correct?",
+        "zh": "课上有两个程序都画出了 3 张机器人脸。程序 1 不用循环：调用 3 次 `draw_robot()`，每两次调用之间用 `pu()` 和 `fd 100`（共 32 行）。程序 2 把 `draw_robot()`、`pu()`、`fd 100` 放进 `for [1..3]` 里（共 29 行）。下面哪个说法正确？"
+      },
+      "options": [
+        {
+          "en": "Program 2 draws the same three faces with fewer lines, because the loop executes its block 3 times.",
+          "zh": "程序 2 用更少的行数画出同样的 3 张脸，因为循环把它的代码块执行了 3 次。"
+        },
+        {
+          "en": "Program 2 draws only one face, because `draw_robot()` is written only once inside the loop.",
+          "zh": "程序 2 只画出 1 张脸，因为循环里的 `draw_robot()` 只写了一次。"
+        },
+        {
+          "en": "Program 2 needs three copies of the draw_robot function definition, one for each face.",
+          "zh": "程序 2 需要把 draw_robot 的函数定义复制 3 份，每张脸一份。"
+        },
+        {
+          "en": "Program 2 makes the computer execute fewer instructions inside draw_robot, so it saves time.",
+          "zh": "程序 2 让电脑在 draw_robot 里少执行了一些指令，所以更省时间。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "正确答案：第 27 页原话：Both draw the robot face 3 times（两个程序都画 3 张脸）；不用循环的版本 32 行，用循环的版本 29 行。\n“只画 1 张”错：`draw_robot()` 虽然只写了一次，但它在循环里，3 次迭代就执行 3 次。\n“需要复制 3 份定义”错：两个程序都只定义了一次 draw_robot。\n“少执行指令、更省时间”错：两个程序都调用 draw_robot 3 次，函数里的 23 条指令一共都要执行 3 × 23 = 69 次——循环省的是“写”的行数，不是电脑“执行”的指令。",
+        "en": "Both draw 3 faces (p.27). The loop version has fewer lines, but draw_robot is still called 3 times, so its 23 instructions still run 3 × 23 = 69 times in both programs. The loop saves writing, not executing."
+      }
+    },
+    {
+      "id": "lec02-q22",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s11-loops-robot-example",
+      "prompt": {
+        "en": "The function draw_robot contains 23 instructions. A program runs `for [1..9]`, and each iteration calls `draw_robot()` once. In total, how many times are instructions inside draw_robot executed? (Count every execution of any of the 23 instructions.)",
+        "zh": "函数 draw_robot 里有 23 条指令。程序运行 `for [1..9]`，每次迭代调用一次 `draw_robot()`。draw_robot 里的指令一共被执行了多少次？（23 条指令中任何一条每执行一次都算一次。）"
+      },
+      "answer": 207,
+      "tolerance": 0,
+      "unit": "times",
+      "explain": {
+        "zh": "第 1 步：`[1..9]` 是 9 次迭代，每次迭代调用 draw_robot 一次 → 一共调用 9 次。\n第 2 步：每调用一次，函数里的 23 条指令各执行 1 次 → 每次调用执行 23 条。\n第 3 步：23 × 9 = 207。\n常见错误：答 23（只算了一次调用）；答 9（那是调用次数，也就是“每一条”指令各自执行的次数）；答 32（把 23 和 9 加起来了）。这对应第 28 页画 9 个机器人头的程序；207 是算出来的，课件上没有写。",
+        "en": "9 calls × 23 instructions = 207 executions."
+      }
+    },
+    {
+      "id": "lec02-q23",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s17-counting-executions",
+      "prompt": {
+        "en": "The function square contains 8 instructions. A program first calls `square()` once on its own. Then it runs `for count in [1..10]`, and the body of this loop calls `square()`. In total, how many times is EACH instruction of square executed?",
+        "zh": "函数 square 里有 8 条指令。程序先单独调用一次 `square()`，然后运行 `for count in [1..10]`，循环体里调用 `square()`。square 的“每一条”指令一共被执行多少次？"
+      },
+      "answer": 11,
+      "tolerance": 0,
+      "unit": "times",
+      "explain": {
+        "zh": "第 1 步：单独调用 1 次 → 每条指令执行 1 次（第 39 页的规律：A single call to square → Executed one time each）。\n第 2 步：循环调用 10 次 → 每条指令再执行 10 次（第 40 页的规律：Executed 10 times each）。\n第 3 步：1 + 10 = 11 次。\n这两段是先后执行的，所以次数相加；只有循环套在循环里面时，次数才相乘。课件没有这道题，它把第 39、40 页的两个例子合在了一起。\n常见错误：答 10（漏了第一次单独调用）；答 88（那是 8 条指令一共执行的次数：8 × 11 = 88）；答 80（漏了单独调用，又算成了总数）。",
+        "en": "1 (the single call) + 10 (the calls inside the loop) = 11 times each."
+      }
+    },
+    {
+      "id": "lec02-q24",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s12-loop-activities",
+      "prompt": {
+        "en": "You draw a square with a for-loop that has 4 iterations and 2 instructions inside it (move forward 100 units, then turn right 90 degrees). In total, how many instruction executions happen inside the loop?",
+        "zh": "你用一个迭代 4 次、里面放 2 条指令（前进 100 个单位，再右转 90 度）的 for 循环画正方形。循环里的指令一共被执行多少次？"
+      },
+      "answer": 8,
+      "tolerance": 0,
+      "unit": "times",
+      "explain": {
+        "zh": "第 1 步：每次迭代，循环里的 2 条指令各执行 1 次 → 每次迭代执行 2 条。\n第 2 步：一共 4 次迭代 → 2 × 4 = 8 次。\n这 8 次正好是正方形的 4 次“前进”和 4 次“右转 90 度”，和第 20 页 square 函数里写出来的 8 条指令一样多——循环只是让我们少写，电脑并没有少做。常见错误：答 4（只数了迭代次数）；答 6（把 4 和 2 加起来了）。",
+        "en": "2 instructions × 4 iterations = 8 executions."
+      }
+    },
+    {
+      "id": "lec02-q25",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s13-algorithmic-thinking",
+      "prompt": {
+        "en": "Which statement about large language models (LLMs) matches the lecture?",
+        "zh": "下面关于大语言模型（**LLM**）的说法，哪一项符合课件？"
+      },
+      "options": [
+        {
+          "en": "LLMs are not computer programs, so unlike a robot-face-drawer they do not use any instructions.",
+          "zh": "LLM 不是电脑程序，所以和画机器人脸的程序不同，它不用任何指令。"
+        },
+        {
+          "en": "Like the simplest robot-face-drawer, even the fanciest LLM is built from a set of basic instructions.",
+          "zh": "和最简单的画机器人脸程序一样，即使最高级的 LLM 也是由一套基本指令搭起来的。"
+        },
+        {
+          "en": "LLMs are built only from training data, so no basic instructions are involved in them at all.",
+          "zh": "LLM 只由训练数据构成，里面完全没有基本指令。"
+        },
+        {
+          "en": "LLMs follow instructions, so they must be an example of a purely algorithmic approach.",
+          "zh": "LLM 执行指令，所以它一定是纯算法方法的例子。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "正确答案：第 33 页：All computer programs, from the fanciest LLM to the simplest robot-face-drawer, are built from a set of basic instructions. 所以 LLM 也是程序，也由基本指令搭成。\n“LLM 不是程序、不用指令”和“只由训练数据构成”都与这句话矛盾。\n“LLM 执行指令，所以一定是纯算法方法”那一项错在推理：所有程序都由指令组成，但是不是 AI，要看步骤是程序员写好的、还是电脑自己找的（第 34 页）；第 24 页还说 LLM 的语言能力是从神经网络底层的数学中“涌现”出来的，并不是程序员一步一步写好的解法。",
+        "en": "p.33: all programs, from the fanciest LLM to the simplest robot-face-drawer, are built from a set of basic instructions."
+      }
+    },
+    {
+      "id": "lec02-q26",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s13-algorithmic-thinking",
+      "prompt": {
+        "en": "Explain how programs are built from instructions.",
+        "zh": "解释程序是怎样由指令搭建起来的。"
+      },
+      "modelAnswer": {
+        "en": "A program is a series of instructions written in a programming language, and the computer can perform each instruction unambiguously. The computer follows the instructions from top to bottom, in order, so by stacking the right instructions we can make it do a task, such as drawing a robot face. By using functions and loops to package and reuse instructions, we can build complex programs. In this way, all programs, from the fanciest LLM to the simplest robot-face-drawer, are built from a set of basic instructions.",
+        "zh": "要点：1）程序 = 用编程语言写成的一串指令，电脑能无歧义地执行（第 8 页）；2）指令从上到下、按顺序执行，叠起来就能完成任务，比如画机器人脸（第 10 页）；3）函数和循环打包、复用指令（第 12 页）；4）所有程序（从 LLM 到画机器人脸的小程序）都由一套基本指令搭成（第 33 页）。"
+      },
+      "points": [
+        {
+          "en": "A program is a series of instructions written in a programming language.",
+          "zh": "程序是用编程语言写成的一串指令。"
+        },
+        {
+          "en": "The computer follows the instructions from top to bottom, in order.",
+          "zh": "电脑从上到下、按顺序执行指令。"
+        },
+        {
+          "en": "Functions and loops package and reuse instructions to build complex programs.",
+          "zh": "函数和循环打包、复用指令，搭出复杂的程序。"
+        },
+        {
+          "en": "All programs, even LLMs, are built from a set of basic instructions.",
+          "zh": "所有程序（包括 LLM）都由一套基本指令搭成。"
+        }
+      ],
+      "explain": {
+        "zh": "这是第 2 页的学习目标 2（Explain how programs are built from instructions）。课件没有专门一页讲它，答案分散在第 8、10、12、33 页，把这几句串起来就是完整的答案。",
+        "en": "Learning outcome 2: combine p.8, p.10, p.12 and p.33."
+      }
+    },
+    {
+      "id": "lec02-q27",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s14-algorithms-vs-ai",
+      "prompt": {
+        "en": "A programmer gives a computer a goal, 'get from home to school', and a list of the possible moves on a street map. The computer works out a route by itself. According to the lecture's general rule, is this AI?",
+        "zh": "程序员给电脑一个目标——“从家到学校”，再给它街道地图上所有可走的动作。电脑自己算出一条路线。按课件的一般规则，这算 AI 吗？"
+      },
+      "options": [
+        {
+          "en": "No, because it runs on a computer, and everything a computer does is just an algorithm.",
+          "zh": "不算，因为它在电脑上运行，电脑做的一切都只是算法。"
+        },
+        {
+          "en": "No, because the computer can only use the moves on the street map that the programmer gave it.",
+          "zh": "不算，因为电脑只能使用程序员给它的地图上的那些动作。"
+        },
+        {
+          "en": "Yes, because the program is long and complicated, and it runs on a fast computer.",
+          "zh": "算，因为程序又长又复杂，而且在很快的电脑上运行。"
+        },
+        {
+          "en": "Yes, because the programmer specifies a goal and the computer finds a way to achieve it.",
+          "zh": "算，因为程序员只给了目标，由电脑自己找到达成目标的方法。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "正确答案：第 34 页的一般规则：If the programmer specifies a goal and the computer finds a way to achieve the goal, it is AI. 本题程序员只给了目标和可用的动作，路线是电脑自己找的，所以是 AI，和第 35 页“Find a sequence of actions to draw a square”是同一类。\n“在电脑上运行就只是算法”错：判断标准是谁想出步骤，不是用没用电脑。\n“只能用程序员给的动作”也不能说明不是 AI：第 35 页的 AI 例子同样给出了可用的动作（**available actions**），关键是动作的顺序由电脑自己去找。\n“程序又长又复杂、电脑很快”都不是标准：第 10 页 24 行的机器人程序很长，但步骤全是程序员写好的，不是 AI。",
+        "en": "The programmer gives a goal and the computer finds the way, so by the general rule (p.34) it is AI."
+      }
+    },
+    {
+      "id": "lec02-q28",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s14-algorithms-vs-ai",
+      "prompt": {
+        "en": "According to the lecture's general rule, if the programmer specifies a step-by-step solution to the problem and the computer simply follows it, it isn't AI.",
+        "zh": "按课件的一般规则，如果程序员给出了一步一步的解法、电脑只是照着执行，那就不是 AI。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。第 34 页：Simply following an algorithm is not normally considered to be AI. As a general rule, if the programmer specifies a step-by-step solution to the problem, it isn't AI.\n注意课件用的是 normally、as a general rule（通常、一般规则），答题时不要写成绝对的 always / never。",
+        "en": "True (p.34). It is a general rule, so avoid 'always' or 'never' wording."
+      }
+    },
+    {
+      "id": "lec02-q29",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s14-algorithms-vs-ai",
+      "prompt": {
+        "en": "Using the lecture's square-drawing example, explain the difference between an algorithmic (Not-AI) approach and an AI approach.",
+        "zh": "用课件里画正方形的例子，解释算法方法（不是 AI）和 AI 方法的区别。"
+      },
+      "modelAnswer": {
+        "en": "In the algorithmic approach, the programmer specifies the step-by-step solution: 'Draw a square by repeating the following 4 times: move forward 100 units, then turn right 90 degrees.' In the AI approach, the programmer only gives the goal and the available actions, 'move forward 100 units' and 'turn right 90 degrees', and the computer must find a sequence of actions to draw a square by itself. Both can produce the same square; the difference is who finds the steps.",
+        "zh": "要点：1）算法方法：程序员写好完整步骤（重复 4 次：前进 100 个单位、右转 90 度），电脑照做；2）AI 方法：程序员只给目标（画正方形）和可用的动作，电脑自己找出动作序列；3）结论：结果可以一样，区别在于步骤是谁想出来的。"
+      },
+      "points": [
+        {
+          "en": "Algorithmic approach: the programmer specifies the step-by-step solution (repeat 4 times: forward 100 units, turn right 90 degrees).",
+          "zh": "算法方法：程序员写好一步步的解法（重复 4 次：前进 100、右转 90 度）。"
+        },
+        {
+          "en": "AI approach: the programmer gives a goal and the available actions, and the computer finds a sequence of actions.",
+          "zh": "AI 方法：程序员给目标和可用的动作，电脑自己找动作序列。"
+        },
+        {
+          "en": "The key difference is who finds the steps, not the result.",
+          "zh": "关键区别是谁找出步骤，而不是结果。"
+        }
+      ],
+      "explain": {
+        "zh": "第 35 页的两个例子要会背。常见丢分：只说“AI 更聪明”，却没说清楚“程序员给目标、电脑找方法”；或者以为两个例子画出的东西不同——其实画出的是同一个正方形。",
+        "en": "p.34-35: who specifies the steps decides whether it is AI."
+      }
+    },
+    {
+      "id": "lec02-q30",
+      "type": "multi",
+      "difficulty": 1,
+      "sectionId": "s15-algorithm-pros-cons",
+      "prompt": {
+        "en": "Select ALL the advantages that the lecture lists for an algorithmic solution (when one exists).",
+        "zh": "选出所有课件列出的算法解法（在存在的情况下）的优点。"
+      },
+      "options": [
+        {
+          "en": "It never contains bugs, because computers do not make mistakes.",
+          "zh": "它从来不会有 bug，因为电脑不会犯错。"
+        },
+        {
+          "en": "Stable results, often guaranteed to be correct",
+          "zh": "结果稳定，常常能保证正确"
+        },
+        {
+          "en": "Explainable solutions",
+          "zh": "解法可以解释"
+        },
+        {
+          "en": "The computer finds the solution by itself.",
+          "zh": "电脑自己找到解法。"
+        },
+        {
+          "en": "No need for training data",
+          "zh": "不需要训练数据"
+        },
+        {
+          "en": "Often fast, with low resource usage",
+          "zh": "通常很快，占用资源少"
+        }
+      ],
+      "answer": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "explain": {
+        "zh": "第 36 页列出的四个优点：\n1）Stable results, often guaranteed to be correct；\n2）Explainable solutions；\n3）No need for training data；\n4）Often fast, with low resource usage。\n“从来不会有 bug”错：同一页说纯算法方法 Vulnerable to human error (e.g. missed edge cases, bugs)——步骤是人写的，人会出错。\n“电脑自己找到解法”错：这是 AI 方法的特点（第 34 页），纯算法是程序员把解法写好。",
+        "en": "The four listed advantages are stable results, explainable solutions, no need for training data, and speed with low resource usage. Bugs are a weakness; finding the solution by itself describes AI."
+      }
+    },
+    {
+      "id": "lec02-q31",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s15-algorithm-pros-cons",
+      "prompt": {
+        "en": "The lecture says that a pure algorithmic solution is 'vulnerable to human error'. Which examples does it give?",
+        "zh": "课件说纯算法解法“容易受人为错误影响”（**vulnerable to human error**）。它举了哪些例子？"
+      },
+      "options": [
+        {
+          "en": "Missing training data and too few labels",
+          "zh": "缺少训练数据、标签太少"
+        },
+        {
+          "en": "The computer guessing what the programmer means",
+          "zh": "电脑去猜程序员的意思"
+        },
+        {
+          "en": "Missed edge cases and bugs",
+          "zh": "漏掉的边缘情况和 bug（程序错误）"
+        },
+        {
+          "en": "Emergent behaviour and abstraction",
+          "zh": "涌现行为和抽象"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "正确答案：第 36 页：Vulnerable to human error (e.g. missed edge cases, bugs)。因为所有困难的解题工作都由程序员完成（All the hard problem solving is done by the programmer），程序员可能漏想某种特殊情况（**edge case**，边缘情况），或者把代码写错（**bug**）。\n“缺少训练数据”错：纯算法根本不需要训练数据。\n“电脑去猜程序员的意思”错：电脑不会猜，编程语言的指令是无歧义的（第 8 页）；而且这说的是电脑，不是人犯的错。\n“涌现行为和抽象”错：它们是第 24 页的概念，和人为错误无关。",
+        "en": "p.36: vulnerable to human error, e.g. missed edge cases and bugs."
+      }
+    },
+    {
+      "id": "lec02-q32",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s15-algorithm-pros-cons",
+      "prompt": {
+        "en": "According to the lecture, it is always possible to find a pure algorithmic solution to a problem.",
+        "zh": "根据课件，任何问题总是能找到纯算法的解法。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。第 36 页原话：It may not always be possible to find a pure algorithmic solution to a problem.（不一定总能为一个问题找到纯算法的解法。）\n题目里的 always 正好和课件的 may not always 相反。\n（课件没有明说找不到时怎么办；结合第 34 页可以推出：这时可以考虑 AI 方法，即程序员只给目标，让电脑自己去找方法。）",
+        "en": "False. p.36: it may not always be possible to find a pure algorithmic solution."
+      }
+    },
+    {
+      "id": "lec02-q33",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s15-algorithm-pros-cons",
+      "prompt": {
+        "en": "A school wants a program that sorts students' test scores from highest to lowest. A teacher suggests using AI, but a programmer suggests writing a purely algorithmic solution. Using ideas from the lecture, explain which approach you would choose and why. Include at least one possible weakness of your choice.",
+        "zh": "一所学校想要一个把学生考试分数从高到低排序的程序。一位老师建议用 AI，一位程序员建议写一个纯算法的解法。用课件里的观点说明你会选哪种方法、为什么，并至少指出你所选方法的一个可能的弱点。"
+      },
+      "modelAnswer": {
+        "en": "I would choose a purely algorithmic approach, because the programmer can specify a step-by-step solution: find the highest score, put it first, and repeat with the remaining scores until the list is in order. When an algorithmic solution exists, there are typically advantages. The results are stable and often guaranteed to be correct, which matters for students' grades. The solution is explainable, so the school can show a student exactly why the list is in this order. It needs no training data, and it is often fast, with low resource usage. However, a pure algorithm is vulnerable to human error, because all the hard problem solving is done by the programmer. For example, the programmer might miss an edge case, such as two students with the same score or a student with no score, or the program might contain a bug. So the program should be tested carefully before it is used.",
+        "zh": "答题结构：1）表明选择：纯算法（因为排序的步骤程序员能完整写出来，符合第 34 页“程序员给出一步步解法”）；2）用第 36 页的优点支撑：结果稳定、常常能保证正确；可以解释；不需要训练数据；通常很快、资源占用少；3）联系情景：成绩关系到学生，正确、能解释很重要；4）写出弱点：难题全靠程序员，容易出人为错误（漏掉边缘情况，比如同分、缺考；写出 bug）；5）结论：用之前要认真测试。情景是练习用的，判断依据全部来自第 34–36 页。"
+      },
+      "points": [
+        {
+          "en": "Chooses an approach and links it to the general rule: here the programmer can specify a step-by-step solution.",
+          "zh": "表明选择，并联系一般规则：这里程序员能写出一步步的解法。"
+        },
+        {
+          "en": "Uses at least two listed advantages (stable and often guaranteed correct, explainable, no training data, often fast).",
+          "zh": "至少用上两个课件列出的优点（稳定且常常保证正确、可解释、不需要训练数据、通常很快）。"
+        },
+        {
+          "en": "Explains why these advantages matter in this situation (for example, a student can be shown why the order is correct).",
+          "zh": "说明这些优点在本情景中为什么重要（例如能向学生解释排序为什么是对的）。"
+        },
+        {
+          "en": "Names a weakness: vulnerable to human error such as missed edge cases or bugs, because the programmer does all the hard problem solving.",
+          "zh": "指出弱点：程序员承担全部难题，容易出人为错误（漏掉边缘情况、bug）。"
+        },
+        {
+          "en": "Gives a concrete edge case (such as equal scores or a missing score) or a sensible conclusion (test carefully).",
+          "zh": "举出具体的边缘情况（如同分、缺考），或给出合理的结论（认真测试）。"
+        }
+      ],
+      "explain": {
+        "zh": "这类“选方法”的题没有唯一答案，阅卷看你能不能把第 34–36 页的内容用到新情景里。选纯算法最好写，因为排序的步骤能写清楚。如果你主张用 AI，也必须说明理由（比如问题太难、写不出完整的步骤），并承认可能失去第 36 页列出的那些优点。注意保留课件的保留词：typically、often guaranteed、often fast，不要写成 always correct。",
+        "en": "Apply p.34-36: justify the choice with the listed advantages and name the human-error weakness."
+      }
+    },
+    {
+      "id": "lec02-q34",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s16-computation-time",
+      "prompt": {
+        "en": "What does the lecture say about time complexity?",
+        "zh": "关于时间复杂度（**time complexity**），课件是怎么说的？"
+      },
+      "options": [
+        {
+          "en": "The class won't get into the details of time complexity, but it is important to be aware that time limits how much work a computer can do.",
+          "zh": "本课不讲时间复杂度的细节，但要意识到：时间限制了电脑能做多少工作。"
+        },
+        {
+          "en": "Students must memorize the time complexity of every program, because it is covered in detail in this class.",
+          "zh": "学生必须背下每个程序的时间复杂度，因为本课会详细讲。"
+        },
+        {
+          "en": "Time complexity only matters for programs that use AI, because purely algorithmic programs take no time to run.",
+          "zh": "只有用到 AI 的程序才需要考虑时间复杂度，因为纯算法程序运行不花时间。"
+        },
+        {
+          "en": "Modern computers are so fast that time complexity and computation time no longer matter to programmers.",
+          "zh": "现代电脑已经快到程序员不用再考虑时间复杂度和计算时间了。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "正确答案：第 38 页原话：We won't get into the details of time complexity in this class, but it's important to be aware that time limits how much work a computer can do. 所以不用学细节，但要知道时间是一种限制。\n“必须背下每个程序的时间复杂度、本课会详细讲”错：与原话相反，本课不讲细节。\n“只有 AI 才需要、纯算法不花时间”错：第 37 页说每执行一条指令都花时间；画正方形的纯算法程序放进循环里，也会执行很多指令（第 39–41 页）。\n“电脑太快、不用考虑”错：第 42 页说，只用我们这点有限的工具，就能让电脑工作长得离谱的时间。",
+        "en": "p.38: the class skips the details of time complexity, but time limits how much work a computer can do."
+      }
+    },
+    {
+      "id": "lec02-q35",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s16-computation-time",
+      "prompt": {
+        "en": "Even with only basic instructions, functions and loops, we can make a computer work for an unreasonably long time.",
+        "zh": "即使只用基本指令、函数和循环，我们也能让电脑工作长得离谱的时间。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。第 42 页：Even with our limited toolset, we can make the computer work for an unreasonably long time. 原因：每执行一条指令都要花时间（第 37 页），而循环套循环会让执行次数成倍增加（第 41 页：10 × 10 = 100 次）。",
+        "en": "True (p.42): nested loops multiply executions, and every instruction executed costs time."
+      }
+    },
+    {
+      "id": "lec02-q36",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s16-computation-time",
+      "prompt": {
+        "en": "Explain why computation time is a concern for programmers.",
+        "zh": "解释为什么程序员必须关心计算时间（**computation time**）。"
+      },
+      "modelAnswer": {
+        "en": "Every instruction executed costs time, and time limits how much work a computer can do. With functions and loops, a few lines of code can make the computer execute a huge number of instructions; for example, a loop of 10 iterations inside another loop of 10 iterations executes each instruction of square 100 times. So even with a limited toolset, a program can run for an unreasonably long time, and programmers must think about how many instructions their program will execute.",
+        "zh": "要点：1）每执行一条指令都花时间（第 37 页）；2）时间限制了电脑能做多少工作（第 38 页）；3）函数和循环让少量代码执行海量指令，比如 10 × 10 = 100 次（第 41 页）；4）所以程序可能运行长得离谱的时间（第 42 页），程序员必须考虑会执行多少条指令。"
+      },
+      "points": [
+        {
+          "en": "Every instruction executed costs time.",
+          "zh": "每执行一条指令都花时间。"
+        },
+        {
+          "en": "Time limits how much work a computer can do.",
+          "zh": "时间限制了电脑能做多少工作。"
+        },
+        {
+          "en": "Loops and functions, especially a loop inside another loop, multiply the number of executed instructions (e.g. 10 × 10 = 100).",
+          "zh": "循环和函数（特别是循环里再套循环）让执行次数成倍增加（例如 10 × 10 = 100）。"
+        },
+        {
+          "en": "So a program can run for an unreasonably long time.",
+          "zh": "所以程序可能运行长得离谱的时间。"
+        }
+      ],
+      "explain": {
+        "zh": "这是第 2 页的学习目标 5（Explain why computation time is a concern for programmers）。常见丢分：写“程序行数越多越慢”——决定时间的是“执行了多少条指令”，不是写了多少行；或者写“电脑很快，所以不重要”，这和第 37 页的粗体句相反。",
+        "en": "Learning outcome 5: count executed instructions, not lines of code."
+      }
+    },
+    {
+      "id": "lec02-q37",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s17-counting-executions",
+      "prompt": {
+        "en": "A function square contains 8 instructions. A program has a loop `for count in [1..10]`, and inside it another loop `for count in [1..10]` that calls `square()`. How many times is EACH instruction of square executed?",
+        "zh": "函数 square 里有 8 条指令。程序里有一个 `for count in [1..10]` 循环，它里面又有一个 `for count in [1..10]` 循环，里层调用 `square()`。square 的“每一条”指令被执行多少次？"
+      },
+      "answer": 100,
+      "tolerance": 0,
+      "unit": "times",
+      "explain": {
+        "zh": "第 1 步：外层循环迭代 10 次。\n第 2 步：外层每迭代一次，里层循环就完整跑一遍，调用 square 10 次。\n第 3 步：一共调用 10 × 10 = 100 次；每调用一次，square 的每条指令执行 1 次 → 每条执行 100 次。\n这就是第 41 页课堂提问的答案（课件写的是 Executed ?? times each，100 是算出来的）。常见错误：答 20（把两层相加）；答 800（那是 8 条指令一共执行的次数，题目问的是“每一条”）。",
+        "en": "10 outer iterations × 10 inner iterations = 100 calls, so each instruction runs 100 times."
+      }
+    },
+    {
+      "id": "lec02-q38",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s17-counting-executions",
+      "prompt": {
+        "en": "A function square contains 8 instructions. It is called inside a loop `for count in [1..10]`. In TOTAL, how many instruction executions happen inside square?",
+        "zh": "函数 square 里有 8 条指令。它在 `for count in [1..10]` 循环里被调用。square 里面的指令“一共”被执行多少次？"
+      },
+      "answer": 80,
+      "tolerance": 0,
+      "unit": "times",
+      "explain": {
+        "zh": "第 1 步：循环迭代 10 次，每次调用 square 一次 → 调用 10 次（第 40 页：Loop calls square 10 times）。\n第 2 步：所以每条指令执行 10 次（第 40 页：Executed 10 times each）。\n第 3 步：8 条指令 × 10 次 = 80 次。\n注意区分“每一条”（10 次，课件给出）和“一共”（80 次，算出来的）。常见错误：答 10（那是每条的次数）；答 18（把 8 和 10 加起来了）。",
+        "en": "8 instructions × 10 calls = 80 executions in total."
+      }
+    },
+    {
+      "id": "lec02-q39",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-counting-executions",
+      "prompt": {
+        "en": "Why does placing a loop inside another loop make the number of executions grow so quickly?",
+        "zh": "为什么把一个循环放进另一个循环里，执行次数会增长得这么快？"
+      },
+      "options": [
+        {
+          "en": "Because the computer copies the inner loop's instructions into new lines of code every time it runs",
+          "zh": "因为每跑一次，电脑都会把里层循环的指令复制成新的代码行"
+        },
+        {
+          "en": "Because the counts add up: the outer loop's 10 iterations plus the inner loop's 10 iterations make 20",
+          "zh": "因为次数相加：外层的 10 次加上里层的 10 次，一共 20 次"
+        },
+        {
+          "en": "Because loops inside loops need training data, and processing training data takes a lot of time",
+          "zh": "因为循环里套循环需要训练数据，而处理训练数据很花时间"
+        },
+        {
+          "en": "Because every iteration of the outer loop runs the whole inner loop, so the counts multiply: 10 × 10 = 100",
+          "zh": "因为外层循环的每一次迭代都会把里层循环完整跑一遍，所以次数相乘：10 × 10 = 100"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "外层 10 次，每次都把里层的 10 次完整执行一遍，所以是 10 × 10 = 100（第 41 页课堂提问的答案）。“复制成新的代码行”错：程序的行数一直没变（第 41 页的程序只有 14 行），变多的是执行次数；“相加得 20”是最常见的错误；“需要训练数据”与循环无关——循环只是普通的程序结构，纯算法本来就不需要训练数据（第 36 页）。",
+        "en": "Each outer iteration runs the whole inner loop, so the counts multiply (10 × 10 = 100)."
+      }
+    },
+    {
+      "id": "lec02-q40",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s18-exam-review",
+      "prompt": {
+        "en": "Explain the role of functions and loops in programs. In your answer, define both, explain how they are different, and use the robot-face drawings from the lecture as an example.",
+        "zh": "解释函数（**function**）和循环（**loop**）在程序中的作用。答案中要给两者下定义、说明它们的区别，并用课上画机器人脸的例子来说明。"
+      },
+      "modelAnswer": {
+        "en": "We would never be able to do anything complex if we had to specify every instruction individually, so programming languages give us ways to package and reuse instructions: functions and loops. A function is a named block of instructions that we define once and can reuse as many times as we want by calling it by name. In lecture, the instructions for one robot face were put inside a function called draw_robot. Defining it alone drew nothing, but each call drew one face, so three calls drew three faces. A loop is an unnamed block of code that is executed repeatedly and immediately, and each execution is one iteration. The definite for-loop for [1..3] called draw_robot() three times, and changing 3 to 9 drew nine faces. So a function is named and runs when it is called, while a loop is unnamed and repeats immediately. Both let us specify instructions once and let the computer execute them many times.",
+        "zh": "答题结构：1）开头：为什么需要复用（第 12 页）；2）函数的定义 + draw_robot 例子（只定义什么也不画，调用 3 次画 3 张）；3）循环和迭代的定义 + `for [1..3]` 例子（改成 9 只改一个数）；4）区别：有名字、被调用才运行 vs 没名字、立刻重复；5）总结：指令写一次，让电脑执行多次（第 17 页）。"
+      },
+      "points": [
+        {
+          "en": "Explains the purpose: functions and loops package and reuse instructions, so we do not specify every instruction individually.",
+          "zh": "说明作用：函数和循环打包、复用指令，不用把每条指令都单独写出来。"
+        },
+        {
+          "en": "Defines a function: a named block of instructions, defined once and reused by calling it by name.",
+          "zh": "写出函数的定义：有名字的指令块，定义一次，按名字调用来复用。"
+        },
+        {
+          "en": "Defines a loop and an iteration: an unnamed block executed repeatedly and immediately; each execution is one iteration.",
+          "zh": "写出循环和迭代的定义：没名字、立刻重复执行的代码块；每执行一次是一次迭代。"
+        },
+        {
+          "en": "States the difference: named and runs when called vs. unnamed and runs immediately.",
+          "zh": "说清区别：有名字、被调用才运行 vs 没名字、立刻运行。"
+        },
+        {
+          "en": "Uses the robot example correctly (draw_robot called 3 times; for [1..3]; change 3 to 9).",
+          "zh": "正确使用机器人例子（调用 3 次；`for [1..3]`；把 3 改成 9）。"
+        },
+        {
+          "en": "Concludes: specify instructions once and let the computer execute them many times.",
+          "zh": "总结：指令写一次，让电脑执行多次。"
+        }
+      ],
+      "explain": {
+        "zh": "这是第 2 页的学习目标 3（Explain the role of functions and loops in programs），也可以结合第 30 页的讨论题（How might you use for-loops to help produce a more complex drawing?）。阅卷最看重：两个定义写对、区别写对、例子写对。最常见的错误是把 named 和 unnamed 写反，或者以为只定义函数就会画出图。",
+        "en": "Learning outcome 3: give both definitions, the difference, and the robot example."
+      }
+    },
+    {
+      "id": "lec02-q41",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s13-algorithmic-thinking",
+      "prompt": {
+        "en": "According to the lecture, what is algorithmic thinking?",
+        "zh": "根据课件，什么是算法思维（**algorithmic thinking**）？"
+      },
+      "options": [
+        {
+          "en": "Letting the computer choose its own goal and then find a way to reach it",
+          "zh": "让电脑自己选目标，再自己想办法达成"
+        },
+        {
+          "en": "Learning the steps of a solution by itself from a large amount of training data",
+          "zh": "从大量训练数据中自己学出解题步骤"
+        },
+        {
+          "en": "Solving a problem step-by-step using the low-level instructions that are available",
+          "zh": "用现有的底层指令，一步一步地解决问题"
+        },
+        {
+          "en": "Writing every instruction of a program in plain English rather than in code",
+          "zh": "把程序的每条指令都用普通英文写，而不用代码"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "正确答案：第 33 页：algorithmic thinking: solving a problem step-by-step using the low-level instructions that are available.\n“让电脑自己选目标、自己想办法”错：本课的 AI 是程序员给目标、电脑找方法（第 34 页），电脑并不自己选目标，而且这说的也不是算法思维。\n“从大量训练数据中学出步骤”错：算法思维是用现有的指令一步步解题；纯算法解法根本不需要训练数据（第 36 页）。\n“用普通英文代替代码”错：定义说的是用“现有的底层指令”解题，和用英文还是代码无关。",
+        "en": "p.33: algorithmic thinking is solving a problem step-by-step using the low-level instructions that are available."
+      }
+    },
+    {
+      "id": "lec02-q42",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s05-turtle-sequence",
+      "prompt": {
+        "en": "A turtle program has three instructions stacked from top to bottom: `fd 100`, then `rt 90`, then `fd 200`. According to the lecture, how will the turtle follow them?",
+        "zh": "一个海龟程序从上到下依次叠着三条指令：`fd 100`、`rt 90`、`fd 200`。根据课件，海龟会怎样执行它们？"
+      },
+      "options": [
+        {
+          "en": "It turns right first, because turning is always done before moving forward",
+          "zh": "先右转，因为转身总是在前进之前做"
+        },
+        {
+          "en": "It moves forward 100, then turns right 90 degrees, then moves forward 200",
+          "zh": "先向前走 100，再右转 90 度，再向前走 200"
+        },
+        {
+          "en": "The computer chooses whichever order of the three instructions draws best",
+          "zh": "电脑自己挑一个画得最好的顺序来执行这三条指令"
+        },
+        {
+          "en": "It runs the last instruction first, because instructions go from bottom to top",
+          "zh": "先执行最后一条，因为指令是从下往上执行的"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "正确答案：第 10 页：Instructions are followed from top to bottom, in order.（指令从上到下、按顺序执行。）所以先前进 100，再右转 90 度，再前进 200。\n“转身总是在前进之前”错：没有这条规则，写在上面的指令先执行。\n“电脑自己挑顺序”错：电脑不会自己改顺序，它严格按程序写好的顺序执行；自己找出动作序列是 AI 方法的说法（第 34–35 页），这里程序员已经把步骤写好了。\n“从下往上执行”错：正好说反了。",
+        "en": "p.10: instructions are followed from top to bottom, in order."
+      }
+    },
+    {
+      "id": "lec02-q43",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s08-parameters",
+      "prompt": {
+        "en": "In `square = (length) ->`, the word `length` is a parameter. According to the lecture, what is a parameter?",
+        "zh": "在 `square = (length) ->` 里，`length` 是一个参数。根据课件，参数（**parameter**）是什么？"
+      },
+      "options": [
+        {
+          "en": "The name of the function, which we can change by clicking on the 'f' icon",
+          "zh": "函数的名字，点“f”就可以修改"
+        },
+        {
+          "en": "The number of times that a for-loop in the program calls the function, such as 3",
+          "zh": "程序里的 for 循环调用这个函数的次数，比如 3 次"
+        },
+        {
+          "en": "A fixed number that is written inside the function and can never be changed",
+          "zh": "写在函数里面、永远不能改的一个固定数字"
+        },
+        {
+          "en": "A value that we can give to the function when it is called, to customize its behaviour",
+          "zh": "调用函数时可以交给它的一个值，用来定制函数的行为"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "正确答案：第 19 页：A parameter is a value that we can give to the function when it is called to customize the function's behaviour. 比如 `square(100)` 和 `square(200)` 画出大小不同的正方形（第 21 页）。\n“函数的名字”错：点“f”改的是函数名（第 18 页），不是参数。\n“for 循环调用函数的次数”错：那是循环的迭代次数，和参数无关。\n“写在函数里、永远不能改的固定数字”错：正好相反，参数的值要等调用时才给，每次调用都可以不同；直接写在函数里的固定数字（比如第 20 页的 `fd 100`）才每次都一样。",
+        "en": "p.19: a parameter is a value that we can give to a function when it is called, to customize its behaviour."
+      }
+    },
+    {
+      "id": "lec02-q44",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s10-loops-definition",
+      "prompt": {
+        "en": "According to the lecture, what is a loop?",
+        "zh": "根据课件，什么是循环（**loop**）？"
+      },
+      "options": [
+        {
+          "en": "An unnamed block of code that is executed repeatedly and immediately",
+          "zh": "一个没有名字、被立刻重复执行的代码块"
+        },
+        {
+          "en": "A named block of instructions that runs only when we call it by its name",
+          "zh": "一个有名字的指令块，只有按名字调用它时才运行"
+        },
+        {
+          "en": "A list of instructions that the computer runs once, from top to bottom",
+          "zh": "电脑从上到下只执行一遍的一串指令"
+        },
+        {
+          "en": "A block of code that keeps running until the computer reaches a goal",
+          "zh": "一直运行、直到电脑达成某个目标为止的代码块"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "正确答案：第 26 页：A loop is an unnamed block of code that is executed repeatedly and immediately.\n“有名字、按名字调用才运行”错：这说的是函数（第 14 页）。\n“从上到下只执行一遍”错：这只是普通的按顺序执行（第 10 页），没有“重复”。\n“一直运行到电脑达成目标”错：本课只学 definite for-loop，它迭代固定的次数（第 26 页）；“电脑自己想办法达成目标”是 AI 方法的说法（第 34 页）。",
+        "en": "p.26: a loop is an unnamed block of code that is executed repeatedly and immediately."
+      }
+    }
+  ]
+}

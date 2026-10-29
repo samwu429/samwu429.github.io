@@ -1,0 +1,531 @@
+/*
+ * Turtle sandbox: toolbar, code listing with per-line execution counters, editor and the SVG canvas.
+ * 海龟沙盒：工具栏、带每行执行次数的代码列表、代码编辑框与 SVG 画布。
+ */
+.turtle-sandbox {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.turtle-sandbox__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.turtle-sandbox__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.turtle-sandbox__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.turtle-sandbox__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.turtle-sandbox__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.turtle-sandbox__intro p {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.turtle-sandbox__intro .zh {
+  color: var(--color-ink-2);
+}
+
+.turtle-sandbox__intro .en {
+  color: var(--color-ink-3);
+}
+
+/* Toolbar: run controls and the speed switch wrap onto new lines on narrow screens.
+   工具栏：窄屏时运行按钮与速度切换自动换行。 */
+.turtle-sandbox__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.turtle-sandbox__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.turtle-sandbox__speed {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.turtle-sandbox__speed-label {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.turtle-sandbox__status {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-highlight);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.turtle-sandbox__now {
+  margin: 0;
+  min-height: 1.75em;
+  font-size: var(--text-sm);
+}
+
+.turtle-sandbox__now .en,
+.turtle-sandbox__executed .en,
+.turtle-sandbox__legend .en,
+.turtle-sandbox__pose .en,
+.turtle-sandbox__hint .en {
+  color: var(--color-ink-3);
+}
+
+.turtle-sandbox__now-line {
+  display: inline-block;
+  margin-right: var(--space-1);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.turtle-sandbox__meter {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.turtle-sandbox__executed {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.turtle-sandbox__alert:empty {
+  display: none;
+}
+
+.turtle-sandbox__message {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background: var(--color-danger-soft);
+}
+
+.turtle-sandbox__message--limit {
+  border-left-color: var(--color-warn);
+  background: var(--color-warn-soft);
+}
+
+.turtle-sandbox__message p {
+  margin: 0;
+}
+
+.turtle-sandbox__message .en {
+  color: var(--color-ink-2);
+}
+
+.turtle-sandbox__message-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  color: var(--color-danger);
+}
+
+.turtle-sandbox__message--limit .turtle-sandbox__message-head {
+  color: var(--color-warn);
+}
+
+/* Panels: code on the left and canvas on the right when there is room, stacked on phones.
+   面板：空间够时代码在左、画布在右，手机上上下排列。 */
+.turtle-sandbox__panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.turtle-sandbox__panel {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.turtle-sandbox__panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.turtle-sandbox__panel-title {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.turtle-sandbox__panel-title .bi-title__en {
+  font-size: 0.78em;
+}
+
+.turtle-sandbox__panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.turtle-sandbox__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-ink-2);
+}
+
+/* Code listing: line number, code, execution counter; the box scrolls on its own.
+   代码列表：行号、代码、执行次数；列表框自己滚动。 */
+.turtle-sandbox__code {
+  position: relative;
+  max-height: 440px;
+  margin: 0;
+  padding: var(--space-2) 0;
+  overflow: auto;
+  list-style: none;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.turtle-sandbox__line {
+  display: grid;
+  grid-template-columns: 2.4em minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-2);
+  min-height: 1.6em;
+  padding: 1px var(--space-2) 1px 0;
+  border-left: 4px solid transparent;
+}
+
+.turtle-sandbox__line.is-current {
+  border-left-color: var(--color-highlight);
+  background: var(--color-highlight-soft);
+}
+
+.turtle-sandbox__line.is-error {
+  border-left-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.turtle-sandbox__ln {
+  color: var(--color-ink-3);
+  text-align: right;
+  user-select: none;
+}
+
+.turtle-sandbox__src {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--color-ink);
+  font-size: 1em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Token colours follow the block colours of the course app: Move blue, Art purple, functions green, loops orange.
+   代码着色沿用课程应用的积木颜色：移动蓝、绘画紫、函数绿、循环橙。 */
+.turtle-sandbox__tok--move {
+  color: var(--color-signal);
+  font-weight: 700;
+}
+
+.turtle-sandbox__tok--art {
+  color: color-mix(in srgb, var(--color-signal) 50%, var(--color-danger));
+  font-weight: 700;
+}
+
+.turtle-sandbox__tok--func {
+  color: var(--color-accent-strong);
+  font-weight: 700;
+}
+
+.turtle-sandbox__tok--control {
+  color: var(--color-warn);
+  font-weight: 700;
+}
+
+.turtle-sandbox__tok--number,
+.turtle-sandbox__tok--value {
+  color: var(--color-ink);
+}
+
+.turtle-sandbox__tok--comment {
+  color: var(--color-ink-3);
+  font-style: italic;
+}
+
+/* Execution counter: the fill grows with how often the line ran (log scale).
+   执行次数徽标：底色填充随执行次数增长（对数刻度）。 */
+.turtle-sandbox__count {
+  --turtle-heat: 0;
+  min-width: 3.4em;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+  background: linear-gradient(90deg,
+    var(--color-accent-soft) calc(var(--turtle-heat) * 100%),
+    var(--color-paper-2) calc(var(--turtle-heat) * 100%));
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.75;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.turtle-sandbox__count.is-idle {
+  border-color: var(--color-line-soft);
+  color: var(--color-ink-3);
+  font-weight: 600;
+}
+
+.turtle-sandbox__count--define {
+  border-style: dashed;
+  background: var(--color-panel);
+  color: var(--color-accent-ink);
+}
+
+/* A loop counts iterations, not executed instructions, so it gets the loop colour and no heat fill.
+   循环这一行数的是圈数而不是执行的指令，所以用循环的颜色，也不做执行次数的填充。 */
+.turtle-sandbox__count--loop {
+  border-style: dashed;
+  background: var(--color-panel);
+  color: var(--color-warn);
+}
+
+/* Editor
+   代码编辑框 */
+.turtle-sandbox__editor-panel {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.turtle-sandbox__editor {
+  min-height: 180px;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  white-space: pre;
+  overflow: auto;
+  tab-size: 2;
+}
+
+.turtle-sandbox__hint {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-ink-2);
+}
+
+.turtle-sandbox__editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Canvas
+   画布 */
+.turtle-sandbox__stage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.turtle-sandbox__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.turtle-sandbox__grid {
+  fill: none;
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.turtle-sandbox__axes {
+  fill: none;
+  stroke: var(--color-ink-3);
+  stroke-width: 1;
+  opacity: 0.55;
+  vector-effect: non-scaling-stroke;
+}
+
+.turtle-sandbox__stroke {
+  fill: none;
+  stroke: var(--turtle-ink, var(--color-ink));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.turtle-sandbox__fill {
+  fill: var(--turtle-ink, var(--color-ink));
+  stroke: none;
+}
+
+/* Pen colours come from the design tokens, so drawings adapt to dark mode.
+   画笔颜色来自设计变量，深色模式下自动适配。 */
+.turtle-sandbox__ink--black { --turtle-ink: var(--color-ink); }
+.turtle-sandbox__ink--white { --turtle-ink: var(--color-paper); }
+.turtle-sandbox__ink--gray { --turtle-ink: var(--color-ink-3); }
+.turtle-sandbox__ink--red { --turtle-ink: var(--color-danger); }
+.turtle-sandbox__ink--orange { --turtle-ink: color-mix(in srgb, var(--color-warn) 70%, var(--color-highlight)); }
+.turtle-sandbox__ink--yellow { --turtle-ink: var(--color-highlight); }
+.turtle-sandbox__ink--green { --turtle-ink: var(--color-accent); }
+.turtle-sandbox__ink--blue { --turtle-ink: var(--color-signal); }
+.turtle-sandbox__ink--purple { --turtle-ink: color-mix(in srgb, var(--color-signal) 55%, var(--color-danger)); }
+.turtle-sandbox__ink--pink { --turtle-ink: color-mix(in srgb, var(--color-danger) 70%, var(--color-signal)); }
+.turtle-sandbox__ink--brown { --turtle-ink: color-mix(in srgb, var(--color-warn) 65%, var(--color-ink)); }
+.turtle-sandbox__ink--cyan { --turtle-ink: color-mix(in srgb, var(--color-accent) 50%, var(--color-signal)); }
+
+.turtle-sandbox__turtle-shell {
+  fill: var(--color-accent);
+  stroke: var(--color-line);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.turtle-sandbox__turtle-skin {
+  fill: var(--color-accent-soft);
+  stroke: var(--color-line);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.turtle-sandbox__turtle-mark {
+  fill: none;
+  stroke: var(--color-accent-ink);
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.turtle-sandbox__turtle.is-hidden {
+  display: none;
+}
+
+.turtle-sandbox__pose {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--space-3);
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.turtle-sandbox__pose-xy {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.turtle-sandbox__ink-note {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+.turtle-sandbox__ink-note .en {
+  color: var(--color-ink-3);
+}
+
+/* What the numbers mean
+   “看懂这些数字”说明区 */
+.turtle-sandbox__insights {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+}
+
+.turtle-sandbox__insight-list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.turtle-sandbox__insight p {
+  margin: 0;
+}
+
+.turtle-sandbox__insight .en {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 600px) {
+  .turtle-sandbox {
+    padding: var(--space-3);
+  }
+
+  .turtle-sandbox__code {
+    max-height: 300px;
+  }
+
+  .turtle-sandbox__toolbar {
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,455 @@
+/*
+ * Exam English toolkit: verb cards, answer templates with highlighted blanks, phrase groups,
+ * wrong-versus-right mistakes and strategy tips.
+ * 英文答题工具箱：指令词卡片、带高亮空格的答题模板、句型分组、错误与正确对照、考试策略。
+ */
+.exam-toolkit {
+  display: flex;
+  flex-direction: column;
+}
+
+.exam-toolkit .page-header {
+  margin-bottom: var(--space-4);
+}
+
+.exam-toolkit__panel {
+  min-width: 0;
+}
+
+.exam-toolkit__intro {
+  max-width: var(--content-width);
+  margin-bottom: var(--space-5);
+  color: var(--color-ink-2);
+}
+
+.exam-toolkit__label {
+  margin: 0 0 var(--space-1);
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.exam-toolkit__field {
+  min-width: 0;
+}
+
+.exam-toolkit__pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exam-toolkit__pair p {
+  margin: 0;
+}
+
+.exam-toolkit__en {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+/* In English practice mode the English line becomes the main text. 英文练习模式下英文升为正文样式。 */
+:root[data-lang-mode="en-practice"] .exam-toolkit__en {
+  color: var(--color-ink);
+  font-size: var(--text-md);
+}
+
+.exam-toolkit__line {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.exam-toolkit__line-en {
+  margin: 0;
+  font-weight: 700;
+}
+
+.exam-toolkit__line-zh {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Verbs 指令词 */
+.exam-toolkit__verbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exam-toolkit__verb {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.exam-toolkit__verb-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px dashed var(--color-line-soft);
+}
+
+.exam-toolkit__verb-word {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.exam-toolkit__verb-zh {
+  margin-left: auto;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-accent-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-ink);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.exam-toolkit__starter {
+  padding: var(--space-3);
+  border-left: 4px solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  background: var(--color-signal-soft);
+}
+
+/* Templates 答题模板 */
+.exam-toolkit__templates {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exam-toolkit__template-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 920px;
+  padding: var(--space-5);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.exam-toolkit__template-head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.exam-toolkit__template-index {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-highlight-soft);
+  font-weight: 900;
+}
+
+.exam-toolkit__template-title {
+  min-width: 0;
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.exam-toolkit__frames {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+.exam-toolkit__frame::marker {
+  color: var(--color-ink-3);
+  font-weight: 900;
+}
+
+.exam-toolkit__frame-en {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.9;
+}
+
+.exam-toolkit__frame-zh {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.exam-toolkit__blank {
+  display: inline-block;
+  min-width: 3.5em;
+  padding: 0 var(--space-1);
+  border-bottom: 2px solid var(--color-warn);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--color-highlight-soft);
+  color: var(--color-warn);
+  font-weight: 900;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.exam-toolkit__example {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 2px dashed var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.exam-toolkit__question {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.exam-toolkit__question-en {
+  margin: 0;
+  font-weight: 700;
+}
+
+.exam-toolkit__question-zh {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+/* Chinese-first mode already shows every translation, so the toggle is redundant there. 中文优先模式已显示全部翻译，无需切换按钮。 */
+:root[data-lang-mode="zh-first"] .exam-toolkit__assist-toggle {
+  display: none;
+}
+
+.exam-toolkit__answer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-left: 6px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.exam-toolkit__answer[hidden] {
+  display: none;
+}
+
+.exam-toolkit__answer-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.exam-toolkit__answer-head .exam-toolkit__label {
+  margin: 0;
+}
+
+.exam-toolkit__answer-en {
+  margin: 0 0 var(--space-2);
+  line-height: 1.8;
+}
+
+.exam-toolkit__answer-zh {
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+/* Phrases 常用句型 */
+.exam-toolkit__phrase-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exam-toolkit__phrase-group {
+  display: flex;
+  min-width: 0;
+}
+
+.exam-toolkit__phrase-group > section {
+  width: 100%;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.exam-toolkit__group-title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-lg);
+}
+
+.exam-toolkit__phrases {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exam-toolkit__phrases > li {
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-line-soft);
+}
+
+.exam-toolkit__phrases > li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Mistakes 常见错误 */
+.exam-toolkit__mistakes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exam-toolkit__mistake {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.exam-toolkit__wrong,
+.exam-toolkit__right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.exam-toolkit__mark {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 2px;
+  padding: 0 var(--space-2);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+.exam-toolkit__mark--wrong {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.exam-toolkit__mark--right {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.exam-toolkit__wrong-text {
+  color: var(--color-ink-3);
+  text-decoration-color: var(--color-danger);
+  text-decoration-thickness: 2px;
+}
+
+.exam-toolkit__right-text {
+  font-weight: 700;
+}
+
+.exam-toolkit__reason {
+  margin: 0;
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-line-soft);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Strategy 考试策略 */
+.exam-toolkit__strategy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--content-width);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: exam-toolkit-tip;
+}
+
+.exam-toolkit__tip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  counter-increment: exam-toolkit-tip;
+}
+
+.exam-toolkit__tip::before {
+  content: counter(exam-toolkit-tip);
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-ink);
+  font-size: var(--text-sm);
+  font-weight: 900;
+}
+
+.exam-toolkit__empty-actions {
+  justify-content: center;
+}
+
+@media (max-width: 520px) {
+  .exam-toolkit__template-card {
+    padding: var(--space-4);
+  }
+
+  .exam-toolkit__example {
+    padding: var(--space-3);
+  }
+
+  .exam-toolkit__answer {
+    padding: var(--space-3);
+  }
+}

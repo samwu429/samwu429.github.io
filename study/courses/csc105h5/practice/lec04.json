@@ -1,0 +1,1189 @@
+{
+  "lessonId": "lec04",
+  "questions": [
+    {
+      "id": "lec04-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s01-why-data",
+      "prompt": {
+        "en": "A programmer gives a computer a collection of photos that contain dogs and a collection of photos that do not. The programmer writes no rules about what a dog looks like and no step-by-step solution. According to the lecture, which approach is this?",
+        "zh": "一位程序员给电脑一批有狗的照片和一批没有狗的照片，既没有写“狗长什么样”的规则，也没有写一步一步的解法。根据课件，这是哪种方法？"
+      },
+      "options": [
+        {
+          "en": "A purely algorithmic approach",
+          "zh": "纯算法方法（purely algorithmic approach）"
+        },
+        {
+          "en": "Symbolic AI",
+          "zh": "符号 AI（Symbolic AI）"
+        },
+        {
+          "en": "Machine Learning",
+          "zh": "机器学习（Machine Learning）"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "课件第 5 页的三句话只差一个词：纯算法 = 人把**解法**（solution）详细写好；符号 AI = 人把**问题知识**（knowledge of the problem）详细写好；机器学习 = 两样都不写，而是给电脑**训练数据**（training data）。题目里程序员只给了例子照片，规则和解法都没写，所以是机器学习。纯算法需要写解法，符号 AI 需要写知识，都不符合题目。",
+        "en": "In Machine Learning we specify neither the solution nor knowledge of the problem; we provide training data, such as photos with and without dogs."
+      }
+    },
+    {
+      "id": "lec04-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s01-why-data",
+      "prompt": {
+        "en": "According to the lecture, what data do we need if we want to predict the number of active forest fires based on outdoor temperature?",
+        "zh": "根据课件，如果想根据室外温度预测正在燃烧的森林火灾数量，需要什么样的数据？"
+      },
+      "options": [
+        {
+          "en": "Many examples of natural-sounding text",
+          "zh": "大量自然流畅的文字"
+        },
+        {
+          "en": "A list of pairs (outdoor temperature, # forest fires)",
+          "zh": "一张成对的清单：(室外温度, 森林火灾数量)"
+        },
+        {
+          "en": "Only photos that contain forest fires",
+          "zh": "只要有森林火灾的照片"
+        },
+        {
+          "en": "A detailed list of rules that explain how forest fires start",
+          "zh": "一份详细说明森林火灾怎样发生的规则"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "课件第 6 页：数据是供学习规律的一组例子，而且数据的形式取决于要学什么（**The form of data depends on what is being learned**）。要从“温度”学出“火灾数量”的规律，每个例子都必须同时有温度和对应的火灾数量，所以是一对一对的 (outdoor temperature, # forest fires)。“自然流畅的文字”是生成文字任务需要的数据；只有火灾照片，既没有温度也没有数量；写规则是人在给知识（符号 AI 的做法），不是机器学习要的数据。",
+        "en": "The form of data depends on what is being learned. Each example must pair an outdoor temperature with a number of forest fires."
+      }
+    },
+    {
+      "id": "lec04-q03",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s02-data-sources-provenance",
+      "prompt": {
+        "en": "According to the lecture, which of the following is NOT part of a dataset's data provenance?",
+        "zh": "根据课件，以下哪一项**不属于**数据集的数据溯源（data provenance）？"
+      },
+      "options": [
+        {
+          "en": "When and where the data was collected",
+          "zh": "数据是什么时候、在哪里收集的"
+        },
+        {
+          "en": "How the data was collected",
+          "zh": "数据是怎么收集的"
+        },
+        {
+          "en": "How the data has been transformed since it was collected",
+          "zh": "数据收集之后被怎样转换（处理）过"
+        },
+        {
+          "en": "The accuracy of a model that was trained on the data",
+          "zh": "用这些数据训练出来的模型的准确率"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "课件第 9 页：**Data Provenance is the documented history of a dataset**（数据集有记录的历史），包括三项：何时何地收集（when and where）、怎么收集（how）、收集后怎么被转换（how transformed）。前三个选项正好是这三项。模型的准确率是训练、评估之后才得到的结果，属于模型评估（Model Evaluation），不是数据集本身的历史。",
+        "en": "Provenance is the documented history of the dataset itself: when and where, how it was collected, and how it has been transformed. The accuracy of a trained model is not part of it."
+      }
+    },
+    {
+      "id": "lec04-q04",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s10-unstructured-images-video",
+      "prompt": {
+        "en": "Describe the difference between structured and unstructured data. Give one example of each, and explain how one kind of unstructured data is reduced to numbers.",
+        "zh": "描述结构化数据和非结构化数据的区别，各举一个例子，并说明一种非结构化数据是怎样变成数字的。"
+      },
+      "modelAnswer": {
+        "en": "Structured data follows a predefined, predictable format called a schema, so every piece of data has the same information in the same order, like the rows of the leaf table. Unstructured data, such as images, audio and freeform text, does not follow a schema, so the computer has to do extra processing to find important information. All data must be reduced to numbers; for example, an image is represented by pixel values, with one value per pixel for monochrome and typically three for colour.",
+        "zh": "结构化数据：遵循 schema，每条数据信息相同、顺序相同（如叶子表的每一行）。非结构化数据：图像、音频、自由文本，没有 schema，电脑要额外处理才能找到重要信息。所有数据最终都要变成数字，例如图像用像素值表示：单色每个像素 1 个数，彩色通常 3 个数。"
+      },
+      "points": [
+        {
+          "en": "Structured data follows a schema: the same information in the same order",
+          "zh": "结构化数据遵循 schema：信息相同、顺序相同"
+        },
+        {
+          "en": "A correct example of each (tabular data; images, audio or freeform text)",
+          "zh": "各举一个正确例子（表格数据；图像、音频或自由文本）"
+        },
+        {
+          "en": "Unstructured data has no schema, so the computer needs extra processing",
+          "zh": "非结构化数据没有 schema，电脑要额外处理"
+        },
+        {
+          "en": "All data is reduced to numbers, with one correct mechanism (pixel values, amplitude or character encoding)",
+          "zh": "所有数据都变成数字，并说出一种方式（像素值、振幅或字符编码）"
+        }
+      ],
+      "explain": {
+        "zh": "对应学习目标 3（Describe different forms of data）。课件出处：结构化数据和 schema 在第 24 页，非结构化数据在第 27 页，图像、音频、文本怎么变成数字在第 28–30 页。第三问也可以写音频（每秒很多次记录声波的振幅）或文本（每个字符用字符编码方案变成一个数，如 Hello! = 0048 0065 006c 006c 006f 0021）。常见失分：只说“非结构化 = 乱”，没提 schema；或忘了“所有数据最终都要变成数字”。"
+      }
+    },
+    {
+      "id": "lec04-q05",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s02-data-sources-provenance",
+      "prompt": {
+        "en": "A start-up wants to train an ML model to predict which UTM students will like its new campus app. Instead of collecting its own data, it plans to use a survey dataset that someone else collected. Explain what data provenance is and how the start-up can use it to decide whether this dataset is appropriate to use. Include the legal issue of copyright in your answer.",
+        "zh": "一家初创公司想训练一个 ML 模型，预测哪些 UTM 学生会喜欢它新做的校园 App。它不打算自己收集数据，而是想用别人收集好的一份问卷数据集。请解释什么是数据溯源（data provenance），以及公司可以怎样用它判断这个数据集是否适合使用。答案中要包括版权这个法律问题。"
+      },
+      "modelAnswer": {
+        "en": "Acquiring data already collected by someone else is generally less costly than collecting it yourself, but the data may not exactly fit your purpose, and data provenance can help to determine the fit. Data provenance is the documented history of a dataset: when and where the data was collected, how it was collected, and how it has been transformed since it was collected. The start-up can use this history to answer three questions. First, does the population surveyed match the population it is interested in? A survey of high school students would not match UTM students. Second, is there bias in the collection of the data, for example if only one small group of students was asked? Third, is it legally permitted to use the data in the way it intends? Datasets can be protected by copyright, so the start-up normally needs a license from the copyright holder and must follow its conditions. If the population does not match, the collection is biased, or the use is not permitted, the dataset is not appropriate.",
+        "zh": "答题结构：①先说取舍：别人的数据通常便宜，但不一定合用，用数据溯源来判断；②溯源的定义 + 三项内容（何时何地、怎么收集、收集后怎么转换）；③三个判断问题：人群对不对、有没有偏差、法律上能不能这样用；④展开法律问题：数据集也受版权保护，通常要有版权持有人的许可证（license），并遵守它的条件；⑤结论：任何一项不过关，就不适合用。"
+      },
+      "points": [
+        {
+          "en": "Someone else's data is generally less costly but may not fit the purpose; provenance helps to determine the fit",
+          "zh": "别人的数据通常便宜但不一定合用；溯源帮助判断合不合用"
+        },
+        {
+          "en": "Defines data provenance as the documented history of a dataset",
+          "zh": "定义：数据溯源是数据集有记录的历史"
+        },
+        {
+          "en": "Lists what it includes: when and where, how the data was collected, how it has been transformed",
+          "zh": "列出三项：何时何地、怎么收集、收集后怎么转换"
+        },
+        {
+          "en": "Asks whether the population surveyed matches the population of interest (UTM students)",
+          "zh": "问：被调查的人群和关心的人群（UTM 学生）是否一致"
+        },
+        {
+          "en": "Asks whether there is bias in the collection of the data",
+          "zh": "问：数据收集过程中有没有偏差"
+        },
+        {
+          "en": "Legal question: datasets can be copyrighted, so a license is normally needed and its conditions must be followed",
+          "zh": "法律问题：数据集可以受版权保护，通常需要许可证并遵守其条件"
+        }
+      ],
+      "explain": {
+        "zh": "这是学习目标 1（Explain data provenance and its importance）和目标 2（copyright）的综合题。最容易漏的是溯源第 3 项“收集后怎么被转换”，以及“数据集本身也受版权保护”（including datasets）。还可以补一句：在美国，如果用法是“转化性的”（transformative），可能属于合理使用（fair use）。"
+      }
+    },
+    {
+      "id": "lec04-q06",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s03-copyright-basics",
+      "prompt": {
+        "en": "A dataset comes with a license that says: 'Free to use for non-profit or educational purposes only. You must credit the author.' Which use follows this license?",
+        "zh": "一个数据集附带的许可证写着：“仅限非营利或教育用途免费使用，必须注明作者。”以下哪种用法符合这个许可证？"
+      },
+      "options": [
+        {
+          "en": "Training a model for a paid commercial app and crediting the author",
+          "zh": "用它训练一个收费商业 App 的模型，并注明作者"
+        },
+        {
+          "en": "Using it in a class project without crediting the author",
+          "zh": "在课堂项目中使用，但不注明作者"
+        },
+        {
+          "en": "Using it in a class project and crediting the author",
+          "zh": "在课堂项目中使用，并注明作者"
+        },
+        {
+          "en": "Copying it and selling the copies, because it is only data",
+          "zh": "复制后出售副本，因为它只是数据"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "课件第 11 页：通常，没有版权持有人的许可证（**license**），就不能合法地复制、修改或分发受版权保护的作品；许可证可以对使用加条件，例如必须注明作者、只限非营利或教育用途免费。课堂项目是教育用途，又注明了作者，两个条件都满足。收费商业 App 违反了“非营利或教育用途”这个条件；不注明作者违反了“必须署名”；数据集本身也受版权保护（including datasets），复制出售更不行。",
+        "en": "The license may place conditions on use. Using the data in a class project and crediting the author meets both conditions; every other use breaks at least one condition."
+      }
+    },
+    {
+      "id": "lec04-q07",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s04-copyright-ai-court",
+      "prompt": {
+        "en": "Which of the following questions does the lecture describe as 'still in the courts'?",
+        "zh": "课件把以下哪个问题描述为“还在法庭上”（still in the courts）？"
+      },
+      "options": [
+        {
+          "en": "Who owns the copyright on work produced by AI?",
+          "zh": "AI 生成的作品，版权归谁？"
+        },
+        {
+          "en": "Does training an AI model constitute fair use?",
+          "zh": "训练 AI 模型算不算合理使用（fair use）？"
+        },
+        {
+          "en": "Can a selfie taken by a monkey be copyrighted?",
+          "zh": "猴子拍的自拍能不能受版权保护？"
+        },
+        {
+          "en": "Can a dataset be protected by copyright?",
+          "zh": "数据集能不能受版权保护？"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "课件第 14 页：Does training an AI model constitute fair use? This is **still in the courts**，媒体版权方正在起诉 AI 公司，例如 Disney et al. vs. Midjourney。“谁拥有 AI 作品的版权”是 **mostly settled**（基本定了：没有人拥有）；猴子自拍法院已经判了（不能受版权保护）；数据集能受版权保护是第 11 页的定义（including datasets），也不是悬而未决的问题。",
+        "en": "Whether training an AI model is fair use is still in the courts (e.g. Disney et al. vs. Midjourney). Who owns AI-produced work is mostly settled, and the monkey selfie was already ruled on."
+      }
+    },
+    {
+      "id": "lec04-q08",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s04-copyright-ai-court",
+      "prompt": {
+        "en": "Select ALL statements that match the lecture's discussion of copyright and AI.",
+        "zh": "选出**所有**符合课件中“版权与 AI”内容的说法。"
+      },
+      "options": [
+        {
+          "en": "Nobody owns the copyright on work produced by AI.",
+          "zh": "AI 生成的作品没有人拥有版权。"
+        },
+        {
+          "en": "Writing a very detailed prompt is sufficient to own the copyright on an AI-generated image.",
+          "zh": "只要提示词写得足够详细，就能拥有 AI 生成图片的版权。"
+        },
+        {
+          "en": "Copyright can only be applied to work produced by humans.",
+          "zh": "版权只能用于人类创作的作品。"
+        },
+        {
+          "en": "Disney et al. vs. Midjourney is an example of a lawsuit from media copyright holders against an AI company.",
+          "zh": "Disney 等公司诉 Midjourney，是媒体版权方起诉 AI 公司的一个例子。"
+        },
+        {
+          "en": "Courts have settled that training an AI model is always fair use.",
+          "zh": "法院已经认定：训练 AI 模型永远属于合理使用。"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explain": {
+        "zh": "对的三条：第 13 页 Nobody owns the copyright；Copyright can only be applied to work produced by humans；第 14 页 Disney et al. vs. Midjourney 是 active lawsuits from media copyright holders against AI companies 的例子。错的两条：第 13 页明确说 **Prompting is not sufficient for ownership**（只写提示词不够拥有版权），写得再详细也不行；训练是否算 fair use 还在法庭上（still in the courts），没有定论，更不是“永远属于合理使用”。",
+        "en": "Prompting is not sufficient for ownership, and whether training is fair use is still in the courts."
+      }
+    },
+    {
+      "id": "lec04-q09",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s05-copyright-ethics-debate",
+      "prompt": {
+        "en": "Select ALL arguments that the lecture lists in the case IN FAVOUR of training (generative) AI on copyrighted work.",
+        "zh": "选出课件列在“支持”用受版权保护的作品训练（生成式）AI 一方的**所有**论点。"
+      },
+      "options": [
+        {
+          "en": "Most work used in training was published with the understanding that it would be seen by humans.",
+          "zh": "训练用的大多数作品，发表时默认是给人看的。"
+        },
+        {
+          "en": "AI doesn't copy from existing work; it synthesizes it into its internal model.",
+          "zh": "AI 不是照抄已有作品，而是把它们综合消化进自己的内部模型。"
+        },
+        {
+          "en": "AI models can produce an infinite amount of work for the sole profit of tech companies.",
+          "zh": "AI 模型能无限量地产出作品，利润只归科技公司。"
+        },
+        {
+          "en": "Human creatives don't have to cite every work that they were influenced by.",
+          "zh": "人类创作者也不必注明每一部影响过他们的作品。"
+        },
+        {
+          "en": "Copyright can only be applied to work produced by humans.",
+          "zh": "版权只能用于人类创作的作品。"
+        }
+      ],
+      "answer": [
+        1,
+        3
+      ],
+      "explain": {
+        "zh": "课件第 15 页支持方（**The case in favour**）两条：AI 不是照抄，而是综合进内部模型（synthesizes it into its internal model）；人类创作者也不必注明每一部影响过他们的作品。“发表时默认是给人看的”和“无限量产出、利润只归科技公司（pillaging of the commons）”是**反对方**（The case against）的论点。“版权只能用于人类作品”是第 13 页关于“谁拥有 AI 作品版权”的法律结论，不是这场道德辩论里的论点。",
+        "en": "In favour: AI synthesizes work into its internal model, and human creatives don't cite every influence. The other two arguments are against; the human-only rule is about ownership."
+      }
+    },
+    {
+      "id": "lec04-q10",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s05-copyright-ethics-debate",
+      "prompt": {
+        "en": "Is it ethical to train (generative) AI on copyrighted work? Describe at least one argument in favour and one argument against from the lecture. Then explain which argument holds more weight with you and why.",
+        "zh": "用受版权保护的作品训练（生成式）AI，道德吗？写出课件中至少一条支持方论点和一条反对方论点，然后说明哪一方的论点对你更有说服力，以及为什么。"
+      },
+      "modelAnswer": {
+        "en": "The question is whether it is ethical to train generative AI on copyrighted work. The case in favour says that AI doesn't copy from existing work; it synthesizes it into its internal model. Also, human creatives don't have to cite every work that they were influenced by. The case against says that most work used in training was published with the understanding that it would be seen by humans. It also says that AI models can produce an infinite amount of work for the sole profit of tech companies, which is a pillaging of the commons. For me, the case in favour holds more weight. Human artists also learn by studying many works, and we do not call this stealing when the new work is not a copy. However, the case against is serious, because AI works at a huge scale and the profit goes to tech companies. Legally, whether training is fair use is still in the courts.",
+        "zh": "这里示范“支持方更有说服力”。结构：①点题；②支持方两条（synthesizes it into its internal model；human creatives don't have to cite）；③反对方两条（seen by humans；sole profit of tech companies / pillaging of the commons）；④表态 + 自己的理由；⑤承认对方 + 法律现状（fair use 还在法庭）。选反对方也完全可以：把第④步换成 For me, the case against holds more weight，理由用“作者发表时只想给人看”和“利润全归科技公司”。"
+      },
+      "points": [
+        {
+          "en": "States the ethical question clearly",
+          "zh": "点明这是一个道德问题"
+        },
+        {
+          "en": "Gives an argument in favour from the lecture (synthesizes into its internal model, or human creatives don't cite every influence)",
+          "zh": "写出课件的支持方论点（综合进内部模型，或人类创作者不必注明所有影响）"
+        },
+        {
+          "en": "Gives an argument against from the lecture (published to be seen by humans, or infinite work for the sole profit of tech companies)",
+          "zh": "写出课件的反对方论点（发表时是给人看的，或无限产出、利润只归科技公司）"
+        },
+        {
+          "en": "Takes a clear position and supports it with a reason",
+          "zh": "明确表态，并给出理由"
+        },
+        {
+          "en": "Acknowledges the other side or notes that the fair use question is still in the courts",
+          "zh": "承认对方观点，或提到 fair use 问题还在法庭上"
+        }
+      ],
+      "explain": {
+        "zh": "这是课件第 16 页的讨论题（Which argument holds more weight with you?），没有标准答案。评分看三点：论点是否来自课件、是否归对了边、是否表态并说明理由。最常见的失分：把支持方的论点写到反对方，或者只写个人感受、不引用课件论点。"
+      }
+    },
+    {
+      "id": "lec04-q11",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s06-invasion-of-privacy",
+      "prompt": {
+        "en": "According to the lecture, which of the following is an example of data that companies can PURCHASE, even though they wouldn't normally have it?",
+        "zh": "根据课件，以下哪一项是公司本来没有、但可以**买到**的数据的例子？"
+      },
+      "options": [
+        {
+          "en": "Purchase history",
+          "zh": "购买记录"
+        },
+        {
+          "en": "Pregnancy",
+          "zh": "怀孕"
+        },
+        {
+          "en": "Support calls",
+          "zh": "客服电话"
+        },
+        {
+          "en": "Family status",
+          "zh": "家庭状况"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "课件第 18 页分三层：①公司追踪你和它的每次互动：购买记录、客服电话、问卷回答；②公司还能买到本来没有的数据：种族（ethnicity）、**家庭状况**（family status）、上网活动（online activity）；③ML 能推断出你从没给过的细节：政治倾向、成瘾、**怀孕**（pregnancy）。所以家庭状况是“买来的”；购买记录和客服电话是公司自己追踪到的；怀孕是 ML 推断出来的（Target 案例就是这一层）。",
+        "en": "Family status is purchased data. Purchase history and support calls are tracked interactions, and pregnancy is a detail that ML can infer."
+      }
+    },
+    {
+      "id": "lec04-q12",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s06-invasion-of-privacy",
+      "prompt": {
+        "en": "According to the lecture, even data that was legally acquired can pose ethical problems related to privacy.",
+        "zh": "根据课件，即使是合法获得的数据，也可能带来与隐私有关的道德问题。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。课件第 17 页原话：**Legally acquired data can also pose ethical problems related to privacy**，并讲了两种情况：侵犯隐私（invasion of privacy）和信息泄露（information leakage）。“合法”不等于“没有道德问题”，Target 的怀孕预测模型就是例子。",
+        "en": "True. Legally acquired data can also pose ethical problems related to privacy, such as invasion of privacy and information leakage."
+      }
+    },
+    {
+      "id": "lec04-q13",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s06-invasion-of-privacy",
+      "prompt": {
+        "en": "In 2012, The New York Times Magazine published an article about Target's pregnancy prediction model. Describe what Target did and why. Do you feel that this was an unethical invasion of privacy? Give one other way that companies or governments could act unethically on similarly obtained information.",
+        "zh": "2012 年，《纽约时报杂志》（The New York Times Magazine）发表了一篇关于 Target 怀孕预测模型的文章。描述 Target 做了什么、为什么这样做。你认为这是不道德的侵犯隐私吗？再举一个公司或政府利用类似方式获得的信息、做出不道德行为的例子。"
+      },
+      "modelAnswer": {
+        "en": "Target realized that new parents are particularly valuable customers. It used ML to detect expectant mothers in their second trimester and sent them targeted ads for baby-related products. I feel that this was an unethical invasion of privacy. Many companies track every interaction you have with them, such as your purchase history, and they can also purchase data they wouldn't normally have. ML goes further, because it can infer details you have never given to a company, such as pregnancy. These customers never told Target that they were pregnant, but Target acted on this very personal detail. The data may have been legally acquired, but legally acquired data can still pose ethical problems related to privacy. Similarly obtained information could be misused in other ways. For example, a company could infer that someone has an addiction and target them with harmful ads, or a government could infer people's political leanings and treat them unfairly.",
+        "zh": "答题结构：①案例：动机是新手父母是特别有价值的顾客；做法是用 ML 找出孕中期（second trimester）的准妈妈，推送婴儿用品的定向广告；②表态；③理由：课件第 18 页的三层（追踪、购买、推断），重点是 ML 推断出了顾客从没告诉过公司的信息；④合法不等于道德（第 17 页）；⑤另举一例：成瘾、政治倾向（这两个也是第 18 页列出的可推断信息）。"
+      },
+      "points": [
+        {
+          "en": "Describes the case: Target used ML to detect expectant mothers in their second trimester and sent targeted ads for baby-related products",
+          "zh": "描述案例：Target 用 ML 找出孕中期的准妈妈，推送婴儿用品定向广告"
+        },
+        {
+          "en": "Gives Target's reason: new parents are particularly valuable customers",
+          "zh": "说出动机：新手父母是特别有价值的顾客"
+        },
+        {
+          "en": "Takes a clear position on whether it was an unethical invasion of privacy",
+          "zh": "明确表态：是否属于不道德的侵犯隐私"
+        },
+        {
+          "en": "Explains that ML inferred a detail (pregnancy) that customers never gave, even if the data was legally acquired",
+          "zh": "说明 ML 推断出了顾客从没给过的信息（怀孕），即使数据是合法获得的"
+        },
+        {
+          "en": "Gives another realistic example of misuse by a company or a government",
+          "zh": "再举一个公司或政府滥用类似信息的例子"
+        }
+      ],
+      "explain": {
+        "zh": "也可以表态“不算不道德”（例如认为这只是推荐商品），但必须给出理由，并回应“ML 推断出顾客没说过的敏感信息”这一点。另举的例子最好用课件第 18 页列的可推断信息：political leanings（政治倾向）、addiction（成瘾）。注意：课件只给了一段摘要，不要编造文章里的其他细节。"
+      }
+    },
+    {
+      "id": "lec04-q14",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s07-information-leakage",
+      "prompt": {
+        "en": "Which of the following best describes information leakage, as defined in the lecture?",
+        "zh": "以下哪一项最符合课件对信息泄露（information leakage）的描述？"
+      },
+      "options": [
+        {
+          "en": "An ML model memorizes parts of its training data, and attackers can detect this data.",
+          "zh": "ML 模型记住了训练数据的一部分，攻击者能把这些数据检测出来。"
+        },
+        {
+          "en": "A company purchases data that it wouldn't normally have, such as online activity.",
+          "zh": "公司买来本来没有的数据，比如上网活动。"
+        },
+        {
+          "en": "ML infers details that you have never given to a company, such as political leanings.",
+          "zh": "ML 推断出你从没告诉过公司的细节，比如政治倾向。"
+        },
+        {
+          "en": "Randomness is strategically inserted into the training process.",
+          "zh": "在训练过程中有策略地加入随机性。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件第 21 页：ML 模型有时会“记住”（**memorize**）训练数据集的一部分，其中可能有敏感内容；被记住的数据是最终模型的一部分；研究表明，攻击者即使没有开发者权限（without developer access）也能检测出这些数据。买数据、推断细节属于第一种隐私问题：侵犯隐私（invasion of privacy，第 18 页）。加入随机性是**差分隐私**（Differential Privacy），它是防止泄露的办法，不是泄露本身。",
+        "en": "Information leakage: memorized training data, possibly sensitive, can be detected by attackers. Buying and inferring data are invasion of privacy; inserting randomness is Differential Privacy."
+      }
+    },
+    {
+      "id": "lec04-q15",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s07-information-leakage",
+      "prompt": {
+        "en": "Select ALL statements about Differential Privacy that are TRUE according to the lecture.",
+        "zh": "根据课件，选出关于差分隐私（Differential Privacy）的**所有**正确说法。"
+      },
+      "options": [
+        {
+          "en": "It strategically inserts randomness into the training process.",
+          "zh": "它在训练过程中有策略地加入随机性。"
+        },
+        {
+          "en": "It guarantees that the model changes very little when a single piece of data is removed from the training set.",
+          "zh": "它保证：从训练集中去掉一条数据时，模型变化很小。"
+        },
+        {
+          "en": "It provides complete protection, so information leakage becomes impossible.",
+          "zh": "它提供完全的保护，信息泄露变得不可能。"
+        },
+        {
+          "en": "It comes at some cost to model performance.",
+          "zh": "它会让模型性能付出一些代价。"
+        },
+        {
+          "en": "It works by giving attackers developer access to the model.",
+          "zh": "它的做法是给攻击者开发者权限。"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explain": {
+        "zh": "课件第 22 页三要点：①有策略地加入随机性（strategically inserting randomness into the training process）；②保证去掉单条数据时模型几乎不变（changes very little when a single piece of data is removed）；③代价是模型性能下降（comes at some cost to model performance）。错的两条：课件说的是 provides **some** protection（一定程度的保护），不是完全保护；“给攻击者开发者权限”完全不对，第 21 页说的是攻击者**不需要**开发者权限就能检测被记住的数据。",
+        "en": "Differential Privacy inserts randomness, guarantees little change when one data point is removed, and costs some model performance. It gives only some protection."
+      }
+    },
+    {
+      "id": "lec04-q16",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s07-information-leakage",
+      "prompt": {
+        "en": "What is information leakage in Machine Learning? How does Differential Privacy help, and what is its cost?",
+        "zh": "机器学习中的信息泄露（information leakage）是什么？差分隐私（Differential Privacy）怎样起作用？它的代价是什么？"
+      },
+      "modelAnswer": {
+        "en": "Information leakage happens because ML models sometimes 'memorize' parts of their training dataset, which may include sensitive material, and attackers can detect this data without developer access to the model. Differential Privacy provides some protection by strategically inserting randomness into the training process, so the model changes very little when a single piece of data is removed from the training set. However, it comes at some cost to model performance.",
+        "zh": "信息泄露：模型“记住”了训练数据的一部分（可能是敏感信息），攻击者不需要开发者权限也能检测出来。差分隐私：训练时有策略地加入随机性，使得去掉任何一条数据时模型几乎不变。代价：模型性能会下降一些。"
+      },
+      "points": [
+        {
+          "en": "ML models can memorize parts of their training data, which may be sensitive",
+          "zh": "模型会记住训练数据的一部分，可能是敏感信息"
+        },
+        {
+          "en": "Attackers can detect the memorized data without developer access to the model",
+          "zh": "攻击者不需要开发者权限就能检测出被记住的数据"
+        },
+        {
+          "en": "Differential Privacy strategically inserts randomness into training, so removing one piece of data changes the model very little",
+          "zh": "差分隐私在训练中有策略地加入随机性，去掉一条数据模型几乎不变"
+        },
+        {
+          "en": "Cost: some loss of model performance (it gives only some protection)",
+          "zh": "代价：模型性能下降一些（而且只是部分保护）"
+        }
+      ],
+      "explain": {
+        "zh": "三句话就够：泄露是什么 → 差分隐私怎么做、保证什么 → 代价。别把信息泄露和侵犯隐私（Target 那种“推断”）混在一起；也别写“差分隐私能完全防止泄露”，课件说的是 some protection。"
+      }
+    },
+    {
+      "id": "lec04-q17",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s08-structured-data",
+      "prompt": {
+        "en": "Freeform text, such as a student's essay, is structured data because it is an ordered sequence of characters.",
+        "zh": "自由文本（比如学生的一篇作文）是结构化数据，因为它是一串按顺序排列的字符。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。结构化数据（**structured data**）的关键是遵循 schema：每条数据都有相同的信息、相同的顺序（第 24 页）。作文虽然是“按顺序排列的字符”（第 30 页），但没有固定格式，每篇的长短和内容都不一样，所以课件把自由文本（freeform text）列为**非结构化数据**（第 27 页）。“有顺序”不等于“有 schema”。",
+        "en": "False. Structured data follows a schema. Freeform text is listed as unstructured data; being ordered does not mean it follows a schema."
+      }
+    },
+    {
+      "id": "lec04-q18",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s09-column-types",
+      "prompt": {
+        "en": "A university records each student's year of study (1st year, 2nd year, 3rd year or 4th year). Using the lecture's definitions, which type is this column?",
+        "zh": "大学记录每个学生的年级（大一、大二、大三或大四）。按课件的定义，这一列是什么类型？"
+      },
+      "options": [
+        {
+          "en": "Ordinal",
+          "zh": "有序型（ordinal）"
+        },
+        {
+          "en": "Continuous",
+          "zh": "连续型（continuous）"
+        },
+        {
+          "en": "Categorical",
+          "zh": "类别型（categorical）"
+        },
+        {
+          "en": "Unstructured",
+          "zh": "非结构化（unstructured）"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件第 25 页：**Ordinal** = 一种类别（可以是数字，也可以不是），顺序有意义，但小数没有意义（例：赛跑名次）。年级有先后顺序（大一、大二、大三、大四），但不存在“2.5 年级”，所以是 ordinal。不是 continuous，因为小数没有意义；不是 categorical，因为顺序有意义；unstructured 是数据的形式（没有 schema），不是表格列的类型。",
+        "en": "Ordering is meaningful but decimal values don't make sense, so the year of study is ordinal."
+      }
+    },
+    {
+      "id": "lec04-q19",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s09-column-types",
+      "prompt": {
+        "en": "Imagine the information that the university keeps about each student. Give one example of a continuous value, one ordinal value and one categorical value, and briefly explain each choice.",
+        "zh": "想象大学为每个学生保存的信息。各举一个连续型、有序型、类别型取值的例子，并简单说明理由。"
+      },
+      "modelAnswer": {
+        "en": "A continuous value is a student's GPA (for example 3.67), because ordering is meaningful and decimal values make sense. An ordinal value is the year of study (1st, 2nd, 3rd or 4th year), because ordering is meaningful but decimal values don't make sense. A categorical value is the program of study (for example Biology or Economics), because ordering is not meaningful.",
+        "zh": "连续型：GPA（如 3.67），有顺序，小数也有意义；有序型：年级（大一到大四），有顺序，但没有“2.5 年级”；类别型：专业（如生物、经济），没有谁大谁小。"
+      },
+      "points": [
+        {
+          "en": "A correct continuous example with the reason: ordering is meaningful and decimal values make sense",
+          "zh": "连续型例子 + 理由：顺序有意义，小数有意义"
+        },
+        {
+          "en": "A correct ordinal example with the reason: ordering is meaningful but decimal values don't make sense",
+          "zh": "有序型例子 + 理由：顺序有意义，但小数没意义"
+        },
+        {
+          "en": "A correct categorical example with the reason: ordering is not meaningful",
+          "zh": "类别型例子 + 理由：顺序没有意义"
+        }
+      ],
+      "explain": {
+        "zh": "这是课件第 26 页的讨论题，课件没有给答案，例子不唯一：年龄、课程平均分也可以算连续型；字母等级成绩也可以算有序型；国籍、家乡也可以算类别型。关键是每个例子都要配上课件定义里的理由（顺序有没有意义、小数有没有意义）。"
+      }
+    },
+    {
+      "id": "lec04-q20",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s10-unstructured-images-video",
+      "prompt": {
+        "en": "According to the lecture, why does a computer have to do extra processing to find important information in unstructured data?",
+        "zh": "根据课件，为什么电脑需要做额外的处理，才能从非结构化数据中找到重要信息？"
+      },
+      "options": [
+        {
+          "en": "Because unstructured data can never be reduced to numbers",
+          "zh": "因为非结构化数据永远不能变成数字"
+        },
+        {
+          "en": "Because unstructured data is always smaller than structured data",
+          "zh": "因为非结构化数据总是比结构化数据小"
+        },
+        {
+          "en": "Because unstructured data does not follow a schema",
+          "zh": "因为非结构化数据不遵循 schema"
+        },
+        {
+          "en": "Because unstructured data is always protected by copyright",
+          "zh": "因为非结构化数据总是受版权保护"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "课件第 27 页：**Unstructured data does not follow a schema, so the computer has to do extra processing to find important information.** 没有固定格式，电脑就不知道重要信息在哪里，只能多做处理。同一页还说 all data must be reduced to numbers：非结构化数据也要、也能变成数字（像素值、振幅、字符编码），所以“永远不能变成数字”是错的；数据大小、版权都和“要不要额外处理”无关。",
+        "en": "Unstructured data does not follow a schema. All data, including unstructured data, is ultimately reduced to numbers."
+      }
+    },
+    {
+      "id": "lec04-q21",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s10-unstructured-images-video",
+      "prompt": {
+        "en": "The handwritten digit on slide 28 is a monochrome image of 28 × 28 pixels. Suppose a colour image has the same size (28 × 28 pixels). Using the lecture's rule for colour images, how many values are typically needed to represent it?",
+        "zh": "第 28 页的手写数字是一张 28 × 28 像素的单色图。假设有一张同样大小（28 × 28 像素）的彩色图。按课件对彩色图的规则，通常需要多少个数来表示它？"
+      },
+      "answer": 2352,
+      "tolerance": 0,
+      "explain": {
+        "zh": "第 1 步：像素个数 = 28 × 28 = 784。第 2 步：课件第 28 页：单色（monochrome）每个像素 1 个数，彩色（colour）通常每个像素 3 个数（红、绿、蓝）。第 3 步：784 × 3 = 2,352。常见错误：写 784（那是单色图需要的个数），或写 28 × 3 = 84（忘了图片有 28 行 × 28 列个像素）。",
+        "en": "28 × 28 = 784 pixels; colour typically needs 3 values per pixel, so 784 × 3 = 2352."
+      }
+    },
+    {
+      "id": "lec04-q22",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s11-unstructured-audio-text",
+      "prompt": {
+        "en": "Slide 29 shows a sound wave. A vertical line marks one moment, and a readout says 'time: 1077 ms, amplitude: −0.392'. What does this readout represent?",
+        "zh": "第 29 页有一条声波，一条竖线标出某一个时刻，旁边的读数是“time: 1077 ms, amplitude: −0.392”。这个读数表示什么？"
+      },
+      "options": [
+        {
+          "en": "The recording is 1077 ms long, and −0.392 is its average loudness",
+          "zh": "整段录音长 1077 毫秒，−0.392 是它的平均响度"
+        },
+        {
+          "en": "At the moment 1077 ms, the amplitude of the sound wave is −0.392",
+          "zh": "在 1077 毫秒这一时刻，声波的振幅是 −0.392"
+        },
+        {
+          "en": "−0.392 is the pixel intensity of the waveform picture at position 1077",
+          "zh": "−0.392 是这张波形图在第 1077 个位置的像素亮度"
+        },
+        {
+          "en": "1077 is the hexadecimal character code of the sound",
+          "zh": "1077 是这段声音的十六进制字符编码"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "课件第 29 页：**Audio is represented by the ordered amplitude/loudness of a sound wave, recorded many times per second.** 竖线只标出**一个时刻**（1077 ms，约 1.077 秒），读数 −0.392 就是这一时刻声波的振幅，一个数字（负号表示在零线下方）。音频就是每秒按顺序记录的很多个这样的数。竖线两边还有很多波形，所以 1077 ms 不是录音总长，−0.392 也不是平均值。像素亮度是图像的表示方法，字符编码是文本的表示方法，都不是音频。",
+        "en": "The line marks one moment: the amplitude at 1077 ms is −0.392. Audio is the ordered amplitude of a sound wave, recorded many times per second."
+      }
+    },
+    {
+      "id": "lec04-q23",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s11-unstructured-audio-text",
+      "prompt": {
+        "en": "A character encoding scheme converts each character of freeform text to one numeric value. How many numeric values does the text 'Hi there!' become? (Do not count the quotation marks.)",
+        "zh": "字符编码方案会把自由文本的每个字符变成一个数值。文本“Hi there!”会变成多少个数值？（引号不算。）"
+      },
+      "answer": 9,
+      "tolerance": 0,
+      "explain": {
+        "zh": "课件第 30 页：text 是一串按顺序排列的字符（**characters**），字符包括字母、标点、空格等（letters, punctuation, spaces, etc.），每个字符都变成一个数值。逐个数：H、i、空格、t、h、e、r、e、! → 9 个。常见错误：写 7（只数了字母），或写 8（漏了空格或感叹号）。对照课件例子：Hello! 有 6 个字符，就是 6 个数 0048 0065 006c 006c 006f 0021，感叹号也有自己的数 0021。",
+        "en": "Letters, the space and the '!' are all characters: H, i, space, t, h, e, r, e, ! = 9 values."
+      }
+    },
+    {
+      "id": "lec04-q24",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s12-feature-vectors",
+      "prompt": {
+        "en": "Using the lecture's encoding (1 for oak, 2 for maple) and the order [width, height, type], what is the feature vector for the maple leaf that is 11.0 cm wide and 9.0 cm tall?",
+        "zh": "按课件的编码（oak 记 1，maple 记 2）和顺序 [宽, 高, 种类]，宽 11.0 cm、高 9.0 cm 的枫叶（maple），特征向量是什么？"
+      },
+      "options": [
+        {
+          "en": "[11.0, 9.0, 1]",
+          "zh": "特征向量 [11.0, 9.0, 1]"
+        },
+        {
+          "en": "[11.0, 9.0, 2]",
+          "zh": "特征向量 [11.0, 9.0, 2]"
+        },
+        {
+          "en": "[9.0, 11.0, 2]",
+          "zh": "特征向量 [9.0, 11.0, 2]"
+        },
+        {
+          "en": "[2, 11.0, 9.0]",
+          "zh": "特征向量 [2, 11.0, 9.0]"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "课件第 32 页的例子：第 3 行变成 [10.0, 18.0, 1]，1 代表 oak，maple 记作 2。按同样的顺序：宽 11.0，高 9.0，种类 maple = 2，得到 [11.0, 9.0, 2]（这就是表格第 6 行）。[11.0, 9.0, 1] 把 maple 错写成了 oak 的编码；[9.0, 11.0, 2] 把宽和高的顺序弄反了；[2, 11.0, 9.0] 把种类放到了最前面。特征向量里每个值的位置，都要和列的顺序一致。",
+        "en": "Width first, then height, then type (maple = 2): [11.0, 9.0, 2]."
+      }
+    },
+    {
+      "id": "lec04-q25",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s12-feature-vectors",
+      "prompt": {
+        "en": "One feature engineering example in the lecture adds a new feature for leaf height multiplied by leaf width. For the leaf with feature vector [10.0, 18.0, 1] (width 10.0 cm, height 18.0 cm), what is the value of this new feature?",
+        "zh": "课件里一个特征工程的例子：新增一个特征 = 叶高 × 叶宽。对特征向量为 [10.0, 18.0, 1] 的叶子（宽 10.0 cm，高 18.0 cm），这个新特征的值是多少？"
+      },
+      "answer": 180,
+      "tolerance": 0.1,
+      "unit": "cm²",
+      "explain": {
+        "zh": "第 1 步：找出宽 = 10.0，高 = 18.0（顺序是 [宽, 高, 种类]，最后的 1 是种类 oak，不参与计算）。第 2 步：高 × 宽 = 18.0 × 10.0 = 180.0。第 3 步：新的特征向量可以写成 [10.0, 18.0, 180.0, 1]。把几个特征组合成新特征，就是特征工程（**feature engineering**，第 34 页）。常见错误：把种类的 1 也乘进去，或写成 28（那是相加）。",
+        "en": "18.0 × 10.0 = 180.0. Combining features into a new feature is feature engineering."
+      }
+    },
+    {
+      "id": "lec04-q26",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s13-data-space",
+      "prompt": {
+        "en": "Each leaf starts as the feature vector [(leaf width), (leaf height), (leaf type)]. Using feature engineering, we add one new feature: leaf height multiplied by leaf width. How many dimensions does the data space of the new feature vectors have?",
+        "zh": "每片叶子原来的特征向量是 [(叶宽), (叶高), (叶子种类)]。通过特征工程，我们新增一个特征：叶高 × 叶宽。新的特征向量所在的数据空间是几维？"
+      },
+      "answer": 4,
+      "tolerance": 0,
+      "explain": {
+        "zh": "课件第 35 页：**Feature vectors with N dimensions live in an N-dimensional data space**（有 N 个特征，就是 N 维）。原来 3 个特征（宽、高、种类）是 3 维；新增 1 个特征后，3 + 1 = 4 个特征，所以是 4 维数据空间。常见错误：答 3（忘了新特征也算一维），或答 2（只数了宽和高）。",
+        "en": "N features means an N-dimensional data space: 3 + 1 = 4."
+      }
+    },
+    {
+      "id": "lec04-q27",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s13-data-space",
+      "prompt": {
+        "en": "Using the leaf example from the lecture, explain what a feature vector, a feature and a data space are.",
+        "zh": "用课件中叶子的例子，解释什么是特征向量（feature vector）、特征（feature）和数据空间（data space）。"
+      },
+      "modelAnswer": {
+        "en": "A feature vector is a list of values that represents one piece of data, and each value within it is a feature. For example, the oak leaf that is 10.0 cm wide and 18.0 cm tall becomes [10.0, 18.0, 1], and 10.0 (its width) is one feature. Feature vectors with N dimensions live in an N-dimensional data space (also called feature space), so each leaf is one point in a 3-dimensional data space.",
+        "zh": "特征向量 = 表示一条数据的数值列表；特征 = 列表里的每一个值；数据空间（也叫特征空间）= 把特征向量画成点的空间，有 N 个特征就是 N 维。例：[10.0, 18.0, 1] 是 3 维数据空间里的一个点。"
+      },
+      "points": [
+        {
+          "en": "Feature vector: a list of values that represents one piece of data",
+          "zh": "特征向量：表示一条数据的数值列表"
+        },
+        {
+          "en": "Feature: each value in the vector, e.g. the leaf width 10.0",
+          "zh": "特征：列表里的每个值，例如叶宽 10.0"
+        },
+        {
+          "en": "A correct leaf example, e.g. [10.0, 18.0, 1] where 1 means oak",
+          "zh": "正确的叶子例子：[10.0, 18.0, 1]，1 代表 oak"
+        },
+        {
+          "en": "N features give an N-dimensional data space (feature space), and each vector is one point in it",
+          "zh": "N 个特征对应 N 维数据空间（特征空间），每个向量是其中一个点"
+        }
+      ],
+      "explain": {
+        "zh": "常见错误：把“特征”和“特征向量”说反；忘了 oak = 1、maple = 2 只是编号；把 [宽, 高, 种类] 说成 2 维。data space 和 feature space 是同一个东西，写一个、括号里补另一个就好。"
+      }
+    },
+    {
+      "id": "lec04-q28",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s14-plotting-activities",
+      "prompt": {
+        "en": "In the activity on slide 37, you plot each leaf in the data space for [(leaf height), (leaf type)], using 1 for oak and 2 for maple. Where is the point for the maple leaf that is 13.0 cm wide and 11.0 cm tall?",
+        "zh": "第 37 页的活动：把每片叶子画进 [(叶高), (叶子种类)] 的数据空间，oak 记 1，maple 记 2。宽 13.0 cm、高 11.0 cm 的枫叶（maple），对应的点在哪里？"
+      },
+      "options": [
+        {
+          "en": "(13, 2)",
+          "zh": "点 (13, 2)"
+        },
+        {
+          "en": "(11, 1)",
+          "zh": "点 (11, 1)"
+        },
+        {
+          "en": "(13, 11)",
+          "zh": "点 (13, 11)"
+        },
+        {
+          "en": "(11, 2)",
+          "zh": "点 (11, 2)"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "这个数据空间只有两个特征：横轴是叶高（leaf height），纵轴是叶子种类（leaf type）。所以只取高 = 11 和种类 maple = 2，得到 (11, 2)。(13, 2) 用的是叶宽，那是另一张图 [(leaf width), (leaf type)] 上的点；(11, 1) 把 maple 错记成了 oak 的 1；(13, 11) 是 [(leaf width), (leaf height)] 数据空间里的点（第 35 页那张图）。",
+        "en": "Only height and type are used: (11, 2). The point (13, 2) belongs to the width-type plot, and (13, 11) to the width-height plot."
+      }
+    },
+    {
+      "id": "lec04-q29",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s15-ml-pipeline-supervised",
+      "prompt": {
+        "en": "In the Machine Learning Pipeline, Model Evaluation comes before Model Training.",
+        "zh": "在机器学习流程（Machine Learning Pipeline）中，模型评估（Model Evaluation）在模型训练（Model Training）之前。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。课件第 40 页的顺序是：1. Data Preparation（数据准备）→ 2. Model Training（模型训练）→ 3. Model Evaluation（模型评估）→ 4. Inference/Deployment（推理/部署）。先要有训练好的模型，才能评估它好不好。课件还说，本课前半部分讲的内容（数据的形式、特征向量、特征工程）都属于第 1 步 Data Preparation。",
+        "en": "False. The order is Data Preparation, Model Training, Model Evaluation, Inference/Deployment."
+      }
+    },
+    {
+      "id": "lec04-q30",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s15-ml-pipeline-supervised",
+      "prompt": {
+        "en": "In Supervised Learning, a model trained on a labelled training dataset is then used to make predictions about the target feature for unlabelled data.",
+        "zh": "在监督学习中，用有标签的训练数据集训练出的模型，随后被用来对无标签数据预测目标特征。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。课件第 41 页：先从有标签的训练数据集（**labelled training dataset**，每条数据的目标特征值都已知）中学习；训练完成后，用得到的模型对无标签数据（**unlabelled data**，目标值未知）预测目标特征。易错：别反过来说成“用无标签数据训练、对有标签数据预测”。",
+        "en": "True. We learn from a labelled training dataset, then predict the target feature for unlabelled data."
+      }
+    },
+    {
+      "id": "lec04-q31",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s15-ml-pipeline-supervised",
+      "prompt": {
+        "en": "Describe the basic objective of Supervised Learning. Use the terms target feature, labelled training dataset and unlabelled data in your answer.",
+        "zh": "描述监督学习（Supervised Learning）的基本目标。答案中要用到 target feature、labelled training dataset 和 unlabelled data 这三个术语。"
+      },
+      "modelAnswer": {
+        "en": "In Supervised Learning, we want to predict the value of a feature in the data space, called the target feature. We learn from a labelled training dataset, in which the target feature's value is known for every piece of data. Once training is complete, we use the resulting model to make predictions about the target feature for unlabelled data, where the target value is not known.",
+        "zh": "监督学习：要预测的那个特征叫目标特征；先从有标签的训练数据集学习（每条数据的目标值都已知）；训练完成后，用得到的模型给无标签数据（目标值未知）预测目标特征。"
+      },
+      "points": [
+        {
+          "en": "The goal is to predict the value of the target feature",
+          "zh": "目标：预测目标特征的值"
+        },
+        {
+          "en": "Training uses a labelled training dataset, where the target value is known for every piece of data",
+          "zh": "训练用有标签的训练数据集，每条数据的目标值都已知"
+        },
+        {
+          "en": "The trained model predicts the target feature for unlabelled data, where the target value is not known",
+          "zh": "训练好的模型对无标签数据（目标值未知）预测目标特征"
+        }
+      ],
+      "explain": {
+        "zh": "这三句几乎就是课件第 41 页的原文，建议背下来。如果还有时间，可以加一句例子：For example, we can predict whether a new leaf is oak or maple from its width and height。"
+      }
+    },
+    {
+      "id": "lec04-q32",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s16-classification-regression",
+      "prompt": {
+        "en": "A model uses today's weather data to predict tomorrow's outdoor temperature in degrees Celsius (for example 12.5). Which kind of Supervised Learning task is this, and why?",
+        "zh": "一个模型用今天的天气数据预测明天的室外温度（单位是摄氏度，比如 12.5）。这是哪种监督学习任务？为什么？"
+      },
+      "options": [
+        {
+          "en": "Regression, because the target value is continuous",
+          "zh": "回归，因为目标值是连续型"
+        },
+        {
+          "en": "Classification, because the input features are numbers",
+          "zh": "分类，因为输入特征是数字"
+        },
+        {
+          "en": "Classification, because the target value is categorical",
+          "zh": "分类，因为目标值是类别型"
+        },
+        {
+          "en": "Regression, because there is more than one input feature",
+          "zh": "回归，因为输入特征不止一个"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件第 42 页：看**目标值**的类型来分：目标是 categorical → 分类（classification）；目标是 continuous → 回归（regression）。温度是数值，有大小顺序，12.5 这样的小数也有意义，是连续型，所以是回归。输入是不是数字、有几个输入特征，都不决定任务类型；温度也不是类别型。",
+        "en": "The target (temperature) is continuous, so the task is regression. The task type depends on the target value, not on the inputs."
+      }
+    },
+    {
+      "id": "lec04-q33",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-decision-boundary-parameters",
+      "prompt": {
+        "en": "A student decides to use the quadratic model w0 + w1x1 + w2x2 + w3x2² = 0. During training, the computer finds w0 = −29.5, w1 = 1, w2 = 3.5 and w3 = −0.14. According to the lecture, which statement is correct?",
+        "zh": "一个学生决定使用二次模型 w0 + w1x1 + w2x2 + w3x2² = 0。训练时，电脑找到了 w0 = −29.5、w1 = 1、w2 = 3.5、w3 = −0.14。根据课件，哪种说法正确？"
+      },
+      "options": [
+        {
+          "en": "The student chose the model; the machine found the weights during training.",
+          "zh": "学生选了模型，机器在训练中找到了权重。"
+        },
+        {
+          "en": "The machine chose the model, and the student found the parameter values by hand.",
+          "zh": "机器选了模型，学生手算出了参数值。"
+        },
+        {
+          "en": "The numbers −29.5, 1, 3.5 and −0.14 are the features of one leaf.",
+          "zh": "−29.5、1、3.5、−0.14 是一片叶子的特征。"
+        },
+        {
+          "en": "After training, the model has become a straight line.",
+          "zh": "训练之后，这个模型变成了一条直线。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "课件第 44 页：**It's our job to choose a model. It's the machine's job to find the best parameter values (w0, w1, w2, …), also called weights. That's what it does during training.** 学生选了“二次”这种模型形式，机器找 w 的具体数字。把分工说反就错了；这些数字是参数（权重），不是特征，特征是输入 x1（叶宽）和 x2（叶高）；训练只是把字母换成数字，模型的形式不变，二次模型训练后仍是曲线（Trained: −29.5 + x1 + 3.5x2 − 0.14x2² = 0）。",
+        "en": "We choose the model; the machine finds the parameter values (weights) during training. Weights are not features, and training does not change the form of the model."
+      }
+    },
+    {
+      "id": "lec04-q34",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s17-decision-boundary-parameters",
+      "prompt": {
+        "en": "On slide 44, the untrained higher-order polynomial model is w0 + w1x1 + w2x2 + w3x2² + w4x2³ + w5x2⁴ = 0. How many parameters (weights) must the machine find during training?",
+        "zh": "第 44 页未训练的高阶多项式模型是 w0 + w1x1 + w2x2 + w3x2² + w4x2³ + w5x2⁴ = 0。训练时机器要找多少个参数（权重）？"
+      },
+      "answer": 6,
+      "tolerance": 0,
+      "explain": {
+        "zh": "参数就是 w0、w1、w2……（课件第 44 页：parameter values (w0, w1, w2, …), also called weights）。数一数：w0、w1、w2、w3、w4、w5，一共 6 个（从 w0 开始数，别漏了 w0）。对比：直线模型 3 个（w0–w2），二次模型 4 个（w0–w3）。x1、x2 是输入特征（叶宽、叶高），不是参数。常见错误：答 5（漏了 w0）。",
+        "en": "w0, w1, w2, w3, w4 and w5: 6 parameters. Do not forget w0; x1 and x2 are input features, not parameters."
+      }
+    },
+    {
+      "id": "lec04-q35",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s18-accuracy-error",
+      "prompt": {
+        "en": "Machine Learning is an optimization problem. A classification model is being trained on 7 leaves. Which change is training trying to make?",
+        "zh": "机器学习是一个优化问题。一个分类模型正在 7 片叶子上训练。训练想做到以下哪种变化？"
+      },
+      "options": [
+        {
+          "en": "Raise the classification error from 1/7 to 2/7",
+          "zh": "把分类错误率从 1/7 提高到 2/7"
+        },
+        {
+          "en": "Lower the accuracy from 6/7 to 5/7",
+          "zh": "把准确率从 6/7 降到 5/7"
+        },
+        {
+          "en": "Lower the classification error from 2/7 to 1/7",
+          "zh": "把分类错误率从 2/7 降到 1/7"
+        },
+        {
+          "en": "Remove the target feature from the training data",
+          "zh": "从训练数据中删掉目标特征"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "课件第 45 页：**Machine Learning is an optimization problem, where we are typically looking for parameter values that minimize an error function**，而分类错误率（classification error）就是一个简单的误差函数。所以训练要让错误率**变小**：从 2/7 降到 1/7（同时准确率从 5/7 升到 6/7）。提高错误率、降低准确率都是往坏的方向走；删掉目标特征就没有答案可学了，监督学习根本做不成。",
+        "en": "Training looks for parameter values that minimize an error function such as the classification error, so it tries to lower the error."
+      }
+    },
+    {
+      "id": "lec04-q36",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s18-accuracy-error",
+      "prompt": {
+        "en": "A model makes 20 predictions, and 15 of them are correct. What is its classification error, as a percentage?",
+        "zh": "一个模型做了 20 次预测，其中 15 次正确。它的分类错误率是多少（百分比）？"
+      },
+      "answer": 25,
+      "tolerance": 0.1,
+      "unit": "%",
+      "explain": {
+        "zh": "第 1 步：accuracy = 正确预测数 / 预测总数 = 15 / 20 = 0.75 = 75%。第 2 步：classification error = 1 − accuracy = 1 − 0.75 = 0.25 = 25%。检查：75% + 25% = 100%。常见错误：写 75%（那是准确率），或写 5（那是错了几个，不是比例）。",
+        "en": "accuracy = 15/20 = 0.75; classification error = 1 − 0.75 = 0.25 = 25%."
+      }
+    },
+    {
+      "id": "lec04-q37",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s19-accuracy-activity",
+      "prompt": {
+        "en": "On slide 47, Model A (the line from (6, 20) to (12, 0)) classifies 6 of the 7 leaves correctly. What is Model A's accuracy, as a percentage? (Round to one decimal place.)",
+        "zh": "第 47 页中，Model A（从 (6, 20) 到 (12, 0) 的那条直线）把 7 片叶子中的 6 片分类正确。Model A 的准确率是多少（百分比，保留一位小数）？"
+      },
+      "answer": 85.7,
+      "tolerance": 0.5,
+      "unit": "%",
+      "explain": {
+        "zh": "accuracy = 正确预测数 / 预测总数 = 6 / 7 = 0.857… ≈ 85.7%（Lecture 6 第 17 页四舍五入写作 ≈ 86%，两种写法都对）。Model A 唯一的错：(10, 18) 的 oak 落在了 Predict maple 区域。常见错误：写 6%（把个数当成百分比），或写 14.3%（那是错误率 1/7）。",
+        "en": "accuracy = 6/7 ≈ 0.857 ≈ 85.7% (about 86%)."
+      }
+    },
+    {
+      "id": "lec04-q38",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s19-accuracy-activity",
+      "prompt": {
+        "en": "On slide 47, Model C misclassifies two leaves: the oak at (9, 6) and the maple at (9, 14). Every other leaf is classified correctly. What is Model C's classification error on the 7 leaves, as a percentage? (Round to one decimal place.)",
+        "zh": "第 47 页中，Model C 分错了两片叶子：(9, 6) 的 oak 和 (9, 14) 的 maple，其余叶子都分对了。Model C 在这 7 片叶子上的分类错误率是多少（百分比，保留一位小数）？"
+      },
+      "answer": 28.6,
+      "tolerance": 0.5,
+      "unit": "%",
+      "explain": {
+        "zh": "第 1 步：正确数 = 7 − 2 = 5，accuracy = 5/7 ≈ 0.714 ≈ 71.4%。第 2 步：classification error = 1 − 5/7 = 2/7 ≈ 0.286 ≈ 28.6%（Lecture 6 写作 ≈ 29%）。检查：71.4% + 28.6% = 100%。常见错误：写 2（那是错了几个），或写 71.4%（那是准确率）。",
+        "en": "accuracy = 5/7 ≈ 71.4%; classification error = 1 − 5/7 = 2/7 ≈ 28.6% (about 29%)."
+      }
+    },
+    {
+      "id": "lec04-q39",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s19-accuracy-activity",
+      "prompt": {
+        "en": "On slide 47, Model A's boundary is the straight line from (6, 20) to (12, 0), where each point is (leaf width, leaf height). Points to the left of the line are predicted oak, and points to the right are predicted maple. Which leaf does Model A misclassify?",
+        "zh": "第 47 页中，Model A 的边界是从 (6, 20) 到 (12, 0) 的直线，每个点的坐标是 (叶宽, 叶高)。直线左边预测 oak，右边预测 maple。Model A 把哪片叶子分错了？"
+      },
+      "options": [
+        {
+          "en": "The oak at (5, 10)",
+          "zh": "(5, 10) 的 oak"
+        },
+        {
+          "en": "The maple at (9, 14)",
+          "zh": "(9, 14) 的 maple"
+        },
+        {
+          "en": "The maple at (13, 11)",
+          "zh": "(13, 11) 的 maple"
+        },
+        {
+          "en": "The oak at (10, 18)",
+          "zh": "(10, 18) 的 oak"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "把叶子代入第 44 页训练好的式子 −12 + x1 + 0.3x2（x1 = 叶宽，x2 = 叶高）：结果 > 0 在 maple 一侧，< 0 在 oak 一侧（课件没直接写这条规则，是从第 47 页的涂色看出来的）。(10, 18)：−12 + 10 + 5.4 = 3.4 > 0 → 判 maple，但它是 oak → 错。(5, 10)：−12 + 5 + 3 = −4 < 0 → 判 oak，对。(9, 14)：−12 + 9 + 4.2 = 1.2 > 0 → 判 maple，对。(13, 11)：−12 + 13 + 3.3 = 4.3 > 0 → 判 maple，对。所以 Model A 只错了 (10, 18) 这一片，7 片判对 6 片。看图做题时，直接看点在直线左边还是右边即可：(10, 18) 在直线右边。",
+        "en": "Plug each leaf into −12 + x1 + 0.3x2: (10, 18) gives 3.4 > 0, the maple side, but it is an oak. The other three listed leaves are on the side of their own class."
+      }
+    },
+    {
+      "id": "lec04-q40",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s19-accuracy-activity",
+      "prompt": {
+        "en": "On slide 47, three models (Model A, Model B and Model C) classify the 7 training leaves as oak or maple. Model A misclassifies 1 leaf, Model B misclassifies none, and Model C misclassifies 2 leaves. Explain what a decision boundary is, calculate the accuracy and classification error of each model, and explain which model is best on these leaves.",
+        "zh": "第 47 页中，三个模型（Model A、Model B、Model C）把 7 片训练叶子分成 oak 或 maple。Model A 分错 1 片，Model B 一片都没错，Model C 分错 2 片。请解释什么是决策边界，计算每个模型的准确率和分类错误率，并说明在这些叶子上哪个模型最好。"
+      },
+      "modelAnswer": {
+        "en": "In a classification problem, the model generates a shape in the data space that forms a decision boundary between classes: on one side of the boundary we predict one class (oak), and on the other side we predict a different class (maple). A leaf is classified correctly if it falls on the side of its actual class. Accuracy is the number of correct predictions divided by the total number of predictions, and classification error is 1 − accuracy. Model A gets 6 of the 7 leaves right, so its accuracy is 6/7 ≈ 86% and its classification error is 1/7 ≈ 14%. Model B gets all 7 right, so its accuracy is 7/7 = 100% and its error is 0%. Model C gets 5 right, so its accuracy is 5/7 ≈ 71% and its error is 2/7 ≈ 29%. Machine Learning looks for parameter values that minimize an error function, so Model B is the best on these training leaves because it has the lowest classification error.",
+        "zh": "答题结构：①决策边界的定义（课件第 43 页原话）；②判对的标准：点落在自己真实类别那一侧；③两个公式；④三个模型逐个计算（先写分数，再写约等的百分数）；⑤结论：按“让误差函数最小”的标准，Model B 最好。"
+      },
+      "points": [
+        {
+          "en": "Defines a decision boundary: a shape in the data space with one class predicted on each side",
+          "zh": "决策边界：数据空间里的形状，两边各预测一个类别"
+        },
+        {
+          "en": "accuracy = correct predictions / total predictions; classification error = 1 − accuracy",
+          "zh": "准确率 = 正确数 / 总数；分类错误率 = 1 − 准确率"
+        },
+        {
+          "en": "Model A: accuracy 6/7 ≈ 86%, classification error 1/7 ≈ 14%",
+          "zh": "Model A：准确率 6/7 ≈ 86%，错误率 1/7 ≈ 14%"
+        },
+        {
+          "en": "Model B: accuracy 7/7 = 100%, classification error 0%",
+          "zh": "Model B：准确率 7/7 = 100%，错误率 0%"
+        },
+        {
+          "en": "Model C: accuracy 5/7 ≈ 71%, classification error 2/7 ≈ 29%",
+          "zh": "Model C：准确率 5/7 ≈ 71%，错误率 2/7 ≈ 29%"
+        },
+        {
+          "en": "Model B is best on these leaves because ML minimizes an error function and Model B has the lowest classification error",
+          "zh": "Model B 最好：ML 要让误差函数最小，而 Model B 的错误率最低"
+        }
+      ],
+      "explain": {
+        "zh": "官方数字见 Lecture 6 第 17 页（Model A ≈ 86% / 14%，Model B = 100% / 0%，Model C ≈ 71% / 29%）。Lecture 6 把这些叫 training accuracy（训练准确率），之后还会用新数据再检验这三个模型，所以这里只说“在这些训练叶子上 Model B 最好”。先写分数（6/7）再写约等的百分数最稳妥；错误率要写成比例（1/7），不要只写“错了 1 个”。"
+      }
+    },
+    {
+      "id": "lec04-q41",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s16-classification-regression",
+      "prompt": {
+        "en": "A model predicts a leaf's type, stored as 1 (oak) or 2 (maple), from its width and height. Because the target is stored as a number, this is a regression task.",
+        "zh": "一个模型用叶宽和叶高预测叶子种类，种类存成 1（oak）或 2（maple）。因为目标存成了数字，所以这是回归任务。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。判断任务类型看的是目标值的类型（p.42）：叶子种类是 categorical，1 和 2 只是编号（p.32），顺序没有意义，所以是分类（classification）。存成数字不会让它变成 continuous：回归要求目标是连续型（小数有意义），而“1.5 种叶子”没有意义。",
+        "en": "False. Leaf type is categorical even though it is stored as 1 or 2, so this is classification."
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+/*
+ * Discussion prompt: a quiet paper card; the revealed model answer reads like a written exam answer.
+ * 讨论题：安静的纸色卡片；展开的参考答案排版得像一段写在考卷上的答案。
+ */
+.discuss-block {
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.discuss-block__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.discuss-block__head .lesson-block__tag {
+  margin: 0;
+}
+
+.discuss-block__prompt-en {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.discuss-block .discuss-block__prompt-text {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.discuss-block__prompt-zh {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
+
+.discuss-block__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.discuss-block__hint {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.discuss-block__answer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.discuss-block__answer .lesson-block__tag {
+  margin-bottom: var(--space-1);
+}
+
+.discuss-block__model-en {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.discuss-block .discuss-block__model-text {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
+  line-height: 1.75;
+}
+
+.discuss-block__explain {
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-line-soft);
+}
+
+.discuss-block__explain-zh {
+  margin: 0;
+  line-height: 1.8;
+}

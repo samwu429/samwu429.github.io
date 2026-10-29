@@ -1,0 +1,414 @@
+{
+  "lessonId": "lab02",
+  "questions": [
+    {
+      "id": "lab02-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-algorithm-concept",
+      "prompt": {
+        "en": "According to the course, what is an algorithm?",
+        "zh": "根据课程的定义，什么是算法（algorithm）？"
+      },
+      "options": [
+        {
+          "en": "A computer program that finds patterns in data by itself",
+          "zh": "一个能自己从数据中找规律的计算机程序"
+        },
+        {
+          "en": "Any list of instructions written in the Python language",
+          "zh": "任何用 Python 语言写的指令列表"
+        },
+        {
+          "en": "A series of precise instructions that can be followed step-by-step, in order, to achieve a goal",
+          "zh": "一系列精确的指令，可以一步步、按顺序执行，以达成一个目标"
+        },
+        {
+          "en": "A goal that the computer must find its own way to achieve",
+          "zh": "一个需要计算机自己想办法去达成的目标"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "选 C：这是讲义第 3 页（也是 Lecture 2 第 5 页）的原话定义。A 描述的是机器学习（从数据中找规律），不是算法的定义；B 错在“必须用 Python”——算法可以用任何语言写，做吐司的例子就是用英文写的；D 是 Lecture 2 第 34 页对 AI 的描述（只给目标、计算机自己找办法），也不是算法的定义。",
+        "en": "C is the course definition. A describes machine learning, B wrongly requires Python, and D describes AI."
+      }
+    },
+    {
+      "id": "lab02-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-lab-steps",
+      "prompt": {
+        "en": "The turtle starts facing up. A program runs these instructions from top to bottom: pen blue, fd 100, rt 90, fd 200, rt 90, fd 100, rt 90, fd 200. What does the turtle draw?",
+        "zh": "小海龟一开始朝上。程序从上到下执行这些指令：pen blue、fd 100、rt 90、fd 200、rt 90、fd 100、rt 90、fd 200。小海龟画出了什么？"
+      },
+      "options": [
+        {
+          "en": "A blue rectangle, 100 high and 200 wide",
+          "zh": "一个蓝色长方形，高 100、宽 200"
+        },
+        {
+          "en": "A blue square with side length 100",
+          "zh": "一个边长 100 的蓝色正方形"
+        },
+        {
+          "en": "One straight blue line, 600 long",
+          "zh": "一条长 600 的蓝色直线"
+        },
+        {
+          "en": "A blue triangle",
+          "zh": "一个蓝色三角形"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "选 A（这就是讲义第 4 页的程序）。从上到下一条一条读：fd 100 向上画出左边（高 100）；rt 90 右转，fd 200 画出上边（宽 200）；再右转、fd 100 画出右边；再右转、fd 200 画出底边，回到起点。所以是高 100、宽 200 的长方形。B 错在忽略了两条 200 的边；C 错在忘了 rt 90 会转弯，把 100 + 200 + 100 + 200 = 600 当成了一条直线；D 错：程序有 4 个 fd，画出 4 条边，不是 3 条（最后一条边画完就结束，所以只需要 3 个 rt 90）。",
+        "en": "A. Read top to bottom: four sides (100, 200, 100, 200) with right turns between them make a rectangle 100 high and 200 wide."
+      }
+    },
+    {
+      "id": "lab02-q03",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s04-functions",
+      "prompt": {
+        "en": "Which definition describes a function?",
+        "zh": "下面哪个定义描述的是函数（function）？"
+      },
+      "options": [
+        {
+          "en": "An unnamed block of code that is executed repeatedly and immediately",
+          "zh": "一段没有名字、立刻重复执行的代码"
+        },
+        {
+          "en": "A named block of instructions that we define once and can reuse many times by calling it by name",
+          "zh": "一组有名字的指令，定义一次，可以按名字调用、重复使用很多次"
+        },
+        {
+          "en": "A value that we give to a function when it is called",
+          "zh": "调用函数时交给它的一个值"
+        },
+        {
+          "en": "One execution of the block inside a loop",
+          "zh": "循环里那段代码执行一次"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B（讲义第 6 页）。A 是循环（loop）的定义——关键词 unnamed（没名字）；C 是参数（parameter）的定义；D 是迭代（iteration）。这四个定义很容易混在一起考，要分清：function 有名字、loop 没名字、parameter 是一个值、iteration 是循环跑一次。",
+        "en": "B defines a function. A is a loop, C is a parameter and D is an iteration."
+      }
+    },
+    {
+      "id": "lab02-q04",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s04-functions",
+      "prompt": {
+        "en": "If a program only contains a function definition and never calls the function, the turtle still draws the picture when you press play.",
+        "zh": "如果程序里只有函数定义、从来没有调用这个函数，按下播放键后，小海龟仍然会画出函数里的图。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错误。函数要被调用（call）才会执行：讲义第 8 页说，调用积木放在定义下面，才会执行这个函数；Lecture 2 第 15 页也说，只有定义时按 Play，小海龟什么都不做。定义只是“写好、起名”，调用才是“执行”。",
+        "en": "False. A function runs only when it is called; a definition alone does nothing."
+      }
+    },
+    {
+      "id": "lab02-q05",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s05-parameters",
+      "prompt": {
+        "en": "A program defines square = (length) -> with the instructions fd length and rt 90 repeated 4 times. Then it runs square(100) and square(200). What is length, and what is drawn?",
+        "zh": "程序定义了 square = (length) ->，里面把 fd length 和 rt 90 重复写了 4 遍。然后执行 square(100) 和 square(200)。length 是什么？画出了什么？"
+      },
+      "options": [
+        {
+          "en": "length is a loop; one square is drawn 100 times and then 200 times",
+          "zh": "length 是循环；一个正方形先画 100 次，再画 200 次"
+        },
+        {
+          "en": "length is the function's name; one square with side length 300 is drawn",
+          "zh": "length 是函数名；画出一个边长 300 的正方形"
+        },
+        {
+          "en": "length is an iteration; only one square with side length 100 is drawn",
+          "zh": "length 是一次迭代；只画出一个边长 100 的正方形"
+        },
+        {
+          "en": "length is a parameter; two squares are drawn, with side lengths 100 and 200",
+          "zh": "length 是参数；画出两个正方形，边长分别是 100 和 200"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D（讲义第 10 页）。length 是参数：调用 square(100) 时边长是 100，调用 square(200) 时边长是 200，所以画出一小一大两个正方形。A 把参数的值当成了次数；B 错在函数名是 square，而且两次调用不会把 100 和 200 加起来；C 错在 square 被调用了 2 次，会画 2 个正方形。",
+        "en": "length is a parameter, so the two calls draw squares with sides 100 and 200."
+      }
+    },
+    {
+      "id": "lab02-q06",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s03-algorithm-concept",
+      "prompt": {
+        "en": "A turtle program that draws a robot face, in which the programmer writes every step of the solution, is an example of a Not-AI (algorithmic) approach.",
+        "zh": "画机器人脸的小海龟程序，每一步解法都是程序员写好的。它是一个“不是 AI（算法式）”的做法。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "正确。Lecture 2 第 34 页：Simply following an algorithm is not normally considered to be AI。一般规则：程序员把一步一步的解法（step-by-step solution）写好 → 不是 AI；程序员只给目标（goal）、计算机自己找到办法 → 才是 AI。第 35 页把“重复 4 次：前进 100、右转 90 度”画正方形叫作 Not-AI (Algorithmic) approach。画机器人脸的程序每一步也都是程序员写好的，所以是算法式做法。常见错误：以为“计算机会自己画图”就是 AI。注意：这不等于“AI 不用指令”——第 33 页说，所有程序（包括 LLM）都由基本指令组成，区别在于“谁想出解法”。",
+        "en": "True. If the programmer specifies a step-by-step solution to the problem, it isn't AI (Lecture 2, p34-35)."
+      }
+    },
+    {
+      "id": "lab02-q07",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s06-loops",
+      "prompt": {
+        "en": "Which statement correctly compares a function and a loop?",
+        "zh": "下面哪句话正确地比较了函数和循环？"
+      },
+      "options": [
+        {
+          "en": "A function is unnamed; a loop must be called by its name.",
+          "zh": "函数没有名字；循环要按名字调用。"
+        },
+        {
+          "en": "A function is named and runs when it is called; a loop is unnamed and runs repeatedly right away.",
+          "zh": "函数有名字、被调用时才执行；循环没有名字、立刻重复执行。"
+        },
+        {
+          "en": "A function can only be used once; a loop can be used many times.",
+          "zh": "函数只能用一次；循环可以用很多次。"
+        },
+        {
+          "en": "A function and a loop are two names for the same thing.",
+          "zh": "函数和循环是同一个东西的两个名字。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "选 B。函数：named block，定义一次、按名字调用（讲义第 6 页）；循环：unnamed block，executed repeatedly and immediately（第 11 页）。A 把两者正好说反了；C 错，函数的意义就是可以调用很多次（draw_robot 调用了 3 次）；D 错，两者都能重复使用指令，但工作方式不同。",
+        "en": "Functions are named and run when called; loops are unnamed and run repeatedly right away."
+      }
+    },
+    {
+      "id": "lab02-q08",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s06-loops",
+      "prompt": {
+        "en": "Handout page 13 shows two programs: 'No loops' and 'Loop 3 times'. Select ALL statements that are true.",
+        "zh": "讲义第 13 页有两个程序：No loops 和 Loop 3 times。选出所有正确的说法。"
+      },
+      "options": [
+        {
+          "en": "Both programs draw the robot face 3 times.",
+          "zh": "两个程序都画出 3 张机器人脸。"
+        },
+        {
+          "en": "Both programs define the draw_robot function once.",
+          "zh": "两个程序都只定义了一次 draw_robot 函数。"
+        },
+        {
+          "en": "In the loop version, draw_robot() is written 3 separate times.",
+          "zh": "循环版里，draw_robot() 被分开手写了 3 次。"
+        },
+        {
+          "en": "In the loop version, the instructions inside the loop are executed once in each of the 3 iterations.",
+          "zh": "循环版里，循环里的指令在 3 次迭代中每次各执行一次。"
+        },
+        {
+          "en": "The loop version has more lines than the version without loops.",
+          "zh": "循环版的行数比没有循环的版本多。"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explain": {
+        "zh": "A、B、D 正确。A：讲义原话 Both draw the robot face 3 times。B：两个程序第 2-25 行都是同一个 draw_robot 定义。D：for [1..3] 有 3 次迭代，每次都执行 draw_robot()、pu()、fd 100。C 错：循环版里 draw_robot() 只写了 1 次（在循环里），是循环让它执行 3 次。E 错：循环版 29 行，没有循环的版本 32 行，循环版更短。",
+        "en": "A, B and D are true. The loop version writes draw_robot() once and is shorter (29 vs 32 lines)."
+      }
+    },
+    {
+      "id": "lab02-q09",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s06-loops",
+      "prompt": {
+        "en": "In the loop version of the robot program, what is the simplest change that makes it draw 9 robot faces instead of 3?",
+        "zh": "在循环版机器人程序里，想画 9 张脸而不是 3 张，最简单的改法是什么？"
+      },
+      "options": [
+        {
+          "en": "Copy the draw_robot definition 9 times.",
+          "zh": "把 draw_robot 的定义复制 9 遍。"
+        },
+        {
+          "en": "Rename the function to draw_robot9.",
+          "zh": "把函数改名为 draw_robot9。"
+        },
+        {
+          "en": "Add a second function definition with the same name.",
+          "zh": "再加一个同名的函数定义。"
+        },
+        {
+          "en": "Replace 3 with 9 in the for-loop block.",
+          "zh": "把 for 循环积木里的 3 改成 9。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "选 D。讲义第 12 页：把 3 换成别的数就能改变迭代次数；Lecture 2 第 28 页：画 9 个机器人头只需要改一个值。A 复制定义不会多画（定义本身不执行），而且函数名不能重复；B 改名不会改变执行次数；C 不同函数必须有不同的名字（讲义第 8 页）。",
+        "en": "Changing the number of iterations from 3 to 9 is the only change needed."
+      }
+    },
+    {
+      "id": "lab02-q10",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s05-parameters",
+      "prompt": {
+        "en": "The function square = (length) -> contains fd length and rt 90, each written 4 times. The program then calls square(100) and square(200). Counting all four fd length lines together, how many times in total is an fd length instruction executed?",
+        "zh": "函数 square = (length) -> 里面 fd length 和 rt 90 各写了 4 次。程序随后调用 square(100) 和 square(200)。把 4 行 fd length 加在一起算，fd length 指令一共被执行了几次？"
+      },
+      "answer": 8,
+      "tolerance": 0,
+      "explain": {
+        "zh": "第 1 步：每调用一次 square，函数里的 4 个 fd length 都执行一遍 → 4 次。\n第 2 步：一共调用了 2 次（100 一次，200 一次）。\n第 3 步：4 × 2 = 8 次。\n常见错误：答 4（只算了一次调用）；答 300（把参数的值 100 + 200 当成了次数——参数是边长，不是次数）。\n注意：如果问的是“每一行 fd length 各执行几次”，答案是 2（调用 2 次，每行每次执行 1 次）。",
+        "en": "4 fd length per call × 2 calls = 8."
+      }
+    },
+    {
+      "id": "lab02-q11",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s08-exam-takeaways",
+      "prompt": {
+        "en": "The function draw_robot contains 23 instructions. A for-loop for [1..3] contains draw_robot(), pu() and fd 100. When the loop finishes, what is the total number of instruction executions inside draw_robot? (Count every time any of its 23 instructions runs.)",
+        "zh": "函数 draw_robot 里有 23 条指令。for [1..3] 循环里放着 draw_robot()、pu() 和 fd 100。循环结束时，draw_robot 里面的指令一共执行了多少次？（23 条指令每执行一次都算一次。）"
+      },
+      "answer": 69,
+      "tolerance": 0,
+      "explain": {
+        "zh": "第 1 步：for [1..3] 有 3 次迭代，每次迭代调用 draw_robot 一次 → 调用 3 次。\n第 2 步：每次调用，函数里的 23 条指令各执行一次 → 23 次。\n第 3 步：23 × 3 = 69。\n常见错误：答 23（只算一次调用，或者把“有几条不同的指令”当成了执行次数）；答 9（3 条循环指令 × 3 次迭代，那是循环嘴巴里那 3 条指令的执行次数，不是函数里面的）。",
+        "en": "3 iterations call draw_robot 3 times; 23 × 3 = 69."
+      }
+    },
+    {
+      "id": "lab02-q12",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s04-functions",
+      "prompt": {
+        "en": "Explain the difference between a function definition and a function call.",
+        "zh": "解释函数定义（function definition）和函数调用（function call）的区别。"
+      },
+      "modelAnswer": {
+        "en": "A function definition gives a name to a block of instructions, for example draw_robot, and holds those instructions inside it. Defining a function does not run it. A function call, such as draw_robot(), executes all the instructions in the definition, and we can call the function many times.",
+        "zh": "范文要点：定义 = 起名字 + 把指令放进去（只写一次），本身不执行；调用 = 写出函数名，执行里面的全部指令，可以调用很多次。"
+      },
+      "points": [
+        {
+          "en": "A definition gives a name to a block of instructions (written once).",
+          "zh": "定义：给一组指令起名字，只写一次。"
+        },
+        {
+          "en": "Defining alone does not execute the instructions.",
+          "zh": "只定义不会执行。"
+        },
+        {
+          "en": "A call uses the name to execute all the instructions inside the definition.",
+          "zh": "调用：用名字执行定义里的全部指令。"
+        },
+        {
+          "en": "A function can be called many times, e.g. draw_robot was called 3 times.",
+          "zh": "可以调用很多次，例如 draw_robot 调用了 3 次。"
+        }
+      ],
+      "explain": {
+        "zh": "评分看 4 点：定义是什么、定义本身不执行、调用做什么、可以多次调用。最好带上 lab 的例子 draw_robot。别把调用说成“再定义一次”，也别说“定义一写好就会画”。",
+        "en": "Say what each one is, that a definition alone does not run, and that a function can be called many times."
+      }
+    },
+    {
+      "id": "lab02-q13",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s05-parameters",
+      "prompt": {
+        "en": "What is a parameter? Give an example of a parameter from Lab 2.",
+        "zh": "什么是参数（parameter）？举出 Lab 2 里参数的例子。"
+      },
+      "modelAnswer": {
+        "en": "A parameter is a value that we give to a function when it is called, to customize the function's behaviour. In Lab 2, the function square has a parameter called length, so square(100) draws a square with side length 100 and square(200) draws a square with side length 200.",
+        "zh": "范文要点：参数 = 调用时交给函数的值，用来定制函数的行为；例子：square 的参数 length，square(100) 和 square(200) 分别画出边长 100 和 200 的正方形。"
+      },
+      "points": [
+        {
+          "en": "A parameter is a value given to a function when it is called.",
+          "zh": "参数是在调用时交给函数的值。"
+        },
+        {
+          "en": "It customizes the function's behaviour.",
+          "zh": "它用来定制函数的行为。"
+        },
+        {
+          "en": "Example: square(length); square(100) and square(200) draw squares with sides 100 and 200.",
+          "zh": "例子：square(length)；square(100)、square(200) 画出边长 100、200 的正方形。"
+        }
+      ],
+      "explain": {
+        "zh": "定义里一定要写出 when it is called（调用时给）和 customize（定制）这两个关键点。注意：100 是边长，不是“画 100 次”。",
+        "en": "Include 'when it is called' and 'customize', plus the square example."
+      }
+    },
+    {
+      "id": "lab02-q14",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s08-exam-takeaways",
+      "prompt": {
+        "en": "Explain how functions and loops help a programmer reuse instructions. Use the robot-face programs from Lab 2 as your example.",
+        "zh": "解释函数和循环如何帮助程序员重复使用指令。用 Lab 2 的机器人脸程序作例子。"
+      },
+      "modelAnswer": {
+        "en": "A function is a named block of instructions that we define once and can reuse many times by calling it by name. In Lab 2, the 23 instructions that draw one robot face were put inside a function called draw_robot. Calling draw_robot() three times drew three faces, so the instructions were written once but executed three times. A loop is an unnamed block of code that is executed repeatedly and immediately, and each repeat is one iteration. The definite for-loop for [1..3] runs a fixed number of iterations. When draw_robot(), pu() and fd 100 are put inside this loop, the program draws the same three faces with fewer lines. To draw nine faces, we only replace 3 with 9. Together, functions and loops let the programmer specify instructions once and let the computer execute them many times.",
+        "zh": "结构：1）函数的定义 + draw_robot 例子（写一次、执行 3 次）；2）循环和迭代的定义；3）for [1..3] 例子，改成 9 只改一个数；4）总结：写一次、执行多次。"
+      },
+      "points": [
+        {
+          "en": "Defines a function: a named block, defined once, reused by calling it by name.",
+          "zh": "写出函数的定义：有名字、定义一次、按名字调用来重复使用。"
+        },
+        {
+          "en": "Uses the example: draw_robot holds the face instructions and is called 3 times.",
+          "zh": "用例子：draw_robot 装着画脸的指令，调用 3 次画 3 张脸。"
+        },
+        {
+          "en": "Defines a loop and an iteration: unnamed, executed repeatedly and immediately; each repeat is one iteration.",
+          "zh": "写出循环和迭代的定义：没名字、立刻重复执行；每重复一次是一次迭代。"
+        },
+        {
+          "en": "Uses the example: for [1..3] with draw_robot(), pu() and fd 100; change 3 to 9 to draw nine faces.",
+          "zh": "用例子：for [1..3] 循环；把 3 改成 9 就画 9 张。"
+        },
+        {
+          "en": "Concludes that instructions are written once but executed many times.",
+          "zh": "总结：指令写一次，执行多次。"
+        }
+      ],
+      "explain": {
+        "zh": "长答题按“定义 + 例子 + 总结”来写最稳：函数和循环各写一个定义、各配一个 lab 的例子，最后一句点明“写一次、执行多次”。只写定义没有例子，或者把 function 和 loop 的定义写反（named / unnamed），都会丢分。",
+        "en": "Give both definitions, one lab example for each, and a one-sentence conclusion."
+      }
+    }
+  ]
+}

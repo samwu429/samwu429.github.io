@@ -1,0 +1,68 @@
+/*
+ * Exam English card: blue, with each sentence large in a serif "written answer" face and the
+ * Chinese gloss small underneath.
+ * 考试英文卡片：蓝色调，每句英文用较大的衬线字体（像手写答案），中文释义小字放在下方。
+ */
+.exam-block {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+  border: 2px solid var(--color-line);
+  border-left: 6px solid var(--color-exam);
+  border-radius: var(--radius-md);
+  background: var(--color-exam-soft);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.exam-block__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 var(--space-3);
+}
+
+.exam-block__label {
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.exam-block__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exam-block__item {
+  padding: var(--space-3) 0;
+  border-top: 1px dashed var(--color-exam);
+}
+
+.exam-block__item:first-child {
+  padding-top: var(--space-1);
+  border-top: 0;
+}
+
+.exam-block__en {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-1);
+}
+
+.exam-block .exam-block__sentence {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.exam-block__zh {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}

@@ -1,0 +1,811 @@
+{
+  "lessonId": "lec05",
+  "terms": [
+    {
+      "id": "supervised-learning",
+      "en": "Supervised Learning",
+      "zh": "监督学习",
+      "def": {
+        "en": "In Supervised Learning, we want to predict the value of a feature in the data space (called the target feature). We learn from a labelled training dataset, then use the resulting model to make predictions about the target feature for unlabelled data. The two kinds of task are classification and regression.",
+        "zh": "先用“带答案”的例子（带标签的训练数据）训练模型，再让模型给“没答案”的新数据（无标签数据）预测答案。要预测的那个特征叫目标特征。分两种任务：分类和回归。"
+      },
+      "example": {
+        "zh": "用 7 片已经量好宽度和高度的叶子训练出一条直线，再用它预测新叶子的高度。",
+        "en": "Train a line on 7 measured leaves, then predict the height of a new leaf from its width."
+      },
+      "slides": "5-6",
+      "related": [
+        "target-feature",
+        "labelled-data",
+        "unlabelled-data",
+        "classification",
+        "regression"
+      ]
+    },
+    {
+      "id": "target-feature",
+      "en": "Target feature",
+      "zh": "目标特征",
+      "def": {
+        "en": "The feature in the data space whose value we want to predict in Supervised Learning.",
+        "zh": "监督学习里要预测的那个特征，也就是要猜的“答案”。它的类型决定任务是分类还是回归。"
+      },
+      "example": {
+        "zh": "回归例子里，目标特征是叶子高度（用叶子宽度来预测）；分类例子里，目标特征是叶子种类（O 或 M）。",
+        "en": "Leaf height in the regression example; leaf type (O or M) in the classification example."
+      },
+      "slides": "5, 10",
+      "related": [
+        "supervised-learning",
+        "target-value",
+        "labelled-data"
+      ]
+    },
+    {
+      "id": "labelled-data",
+      "en": "Labelled training dataset (labelled data)",
+      "zh": "带标签的训练数据集（带标签的数据）",
+      "def": {
+        "en": "A training dataset in which the target feature's value is known for every piece of data, i.e. the correct answer is given for every example.",
+        "zh": "每一条数据的目标特征值（正确答案）都已知的训练数据，比如每张照片都标好了“有狗”或“没狗”。"
+      },
+      "example": {
+        "zh": "图上的 7 个绿点：每片叶子的宽度和高度都已经量好了。",
+        "en": "The 7 green training points, where the height of every leaf is known."
+      },
+      "slides": "5",
+      "related": [
+        "unlabelled-data",
+        "training-set",
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "unlabelled-data",
+      "en": "Unlabelled data",
+      "zh": "无标签数据",
+      "def": {
+        "en": "Data where the target value is not known. Once training is complete, we use the model to make predictions about the target feature for unlabelled data.",
+        "zh": "目标值（答案）未知的数据。训练完成后，用模型去预测它的目标值。"
+      },
+      "example": {
+        "zh": "一片只量了宽度、不知道高度的新叶子。",
+        "en": "A new leaf whose width is known but whose height is not."
+      },
+      "slides": "5",
+      "related": [
+        "labelled-data",
+        "predicted-value",
+        "new-data"
+      ]
+    },
+    {
+      "id": "training",
+      "en": "Training (learning)",
+      "zh": "训练（学习）",
+      "def": {
+        "en": "The phase of Machine Learning in which a model learns from data ('training a model (learning from data)'). In Supervised Learning, the model learns from a labelled training dataset: it's the machine's job to find the best parameter values (weights), and that's what it does during training. Training can take a long time.",
+        "zh": "机器学习的训练阶段（在推理之前）：模型从数据中学习规律。监督学习里，模型从带标签的训练数据中学习：机器在训练中找出最好的参数值（权重）。训练可能要花很长时间。"
+      },
+      "example": {
+        "en": "Before training: y = w0 + w1x1. After training: y = 8.65 + 0.464x1. The machine finds these values by making the cost function as small as possible.",
+        "zh": "训练前：y = w0 + w1x1；训练后：y = 8.65 + 0.464x1。机器找这些值的办法是让代价函数（比如 MSE）尽量小，例如用梯度下降。"
+      },
+      "slides": "5, 8, 12, 16",
+      "related": [
+        "model-parameter",
+        "cost-function",
+        "gradient-descent",
+        "fitting"
+      ]
+    },
+    {
+      "id": "model",
+      "en": "Model",
+      "zh": "模型",
+      "def": {
+        "en": "In ML, a model is learned from data during training and then used to solve problems (inference). Models are just functions of the input features, and they can be interpreted as shapes in the data space. It's our job to choose a model; it's the machine's job to find the best values of its parameters during training.",
+        "zh": "机器学习从数据中学出来、用来做预测的东西。模型就是输入特征的函数（公式），可以看成数据空间里的形状（比如决策边界）。选哪种模型是我们的工作；公式里参数的具体数值由机器在训练中找。"
+      },
+      "example": {
+        "zh": "线性回归模型 y = w0 + w1x1：输入叶子宽度 x1，输出预测高度 y。",
+        "en": "y = w0 + w1x1 takes leaf width x1 and outputs a predicted height y."
+      },
+      "slides": "5, 8, 12",
+      "related": [
+        "input-feature",
+        "model-parameter",
+        "trained-model",
+        "linear-model"
+      ]
+    },
+    {
+      "id": "input-feature",
+      "en": "Input features (x1, x2)",
+      "zh": "输入特征",
+      "def": {
+        "en": "The features that a model takes as input; models are just functions of the input features. In the leaf examples, x1 is leaf width and x2 is leaf height.",
+        "zh": "喂给模型的信息。模型就是输入特征的函数。叶子例子里 x1 是宽度，x2 是高度（回归例子只用宽度 x1 来预测高度）。"
+      },
+      "example": {
+        "zh": "分类边界 −12 + x1 + 0.3x2 = 0 用了两个输入特征：宽度 x1 和高度 x2。",
+        "en": "The boundary −12 + x1 + 0.3x2 = 0 uses two input features: width x1 and height x2."
+      },
+      "slides": "8, 10",
+      "related": [
+        "model",
+        "model-parameter",
+        "target-feature"
+      ]
+    },
+    {
+      "id": "data-space",
+      "en": "Data space (feature space)",
+      "zh": "数据空间（特征空间）",
+      "def": {
+        "en": "The space in which we visualize feature vectors as points (also called the feature space). Feature vectors with N dimensions live in an N-dimensional data space, with one axis for each feature. Geometric relationships in data space are important: models can be interpreted as shapes in the data space.",
+        "zh": "把特征向量当“坐标”画成点的空间，也叫特征空间（feature space）。有 N 个特征就是 N 维，每个特征是一根轴。模型可以看成数据空间里的形状；分类时，这个形状就是决策边界。"
+      },
+      "example": {
+        "zh": "横轴是叶子宽度、竖轴是叶子高度的散点图，每片叶子是一个点。",
+        "en": "A plot with leaf width on one axis and leaf height on the other; each leaf is one point."
+      },
+      "slides": "5, 7",
+      "related": [
+        "decision-boundary",
+        "input-feature"
+      ]
+    },
+    {
+      "id": "classification",
+      "en": "Classification",
+      "zh": "分类",
+      "def": {
+        "en": "A kind of Supervised Learning task in which the target value is categorical. In a classification problem, the model forms a decision boundary between classes.",
+        "zh": "监督学习的一种任务：要预测的目标值是类别型的（比如橡树还是枫树）。模型在数据空间里画出决策边界，把不同的类别分开。"
+      },
+      "example": {
+        "zh": "根据叶子的宽度和高度，判断它是 O（橡树）还是 M（枫树）。",
+        "en": "Predicting whether a leaf is an oak (O) or a maple (M) from its width and height."
+      },
+      "slides": "6-8, 32",
+      "related": [
+        "regression",
+        "categorical",
+        "decision-boundary"
+      ]
+    },
+    {
+      "id": "regression",
+      "en": "Regression",
+      "zh": "回归",
+      "def": {
+        "en": "A kind of Supervised Learning task in which the target value is continuous. In a regression problem, we want to predict a continuous value.",
+        "zh": "监督学习的一种任务：要预测的目标值是连续型的数（小数也有意义），比如叶子有多高。"
+      },
+      "example": {
+        "zh": "用叶子宽度预测叶子高度：y = 8.65 + 0.464x1。",
+        "en": "Predicting leaf height from leaf width with y = 8.65 + 0.464x1."
+      },
+      "slides": "6, 10-13",
+      "related": [
+        "classification",
+        "continuous",
+        "linear-regression",
+        "predicted-value"
+      ]
+    },
+    {
+      "id": "categorical",
+      "en": "Categorical",
+      "zh": "类别型",
+      "def": {
+        "en": "A category where ordering is not meaningful (e.g. hair colour, or oak vs maple). If the target value is categorical, the Supervised Learning task is classification.",
+        "zh": "是一种类别，类别之间没有大小顺序（比如发色、叶子种类）。就算用数字编码（oak = 1、maple = 2），也仍是类别型。目标值是类别型时，监督学习任务就是分类。"
+      },
+      "example": {
+        "zh": "叶子种类 O／M。就算用 1 表示 oak、2 表示 maple，它仍然是类别型（Lecture 4）。",
+        "en": "Leaf type: oak or maple."
+      },
+      "slides": "6",
+      "related": [
+        "continuous",
+        "classification"
+      ]
+    },
+    {
+      "id": "continuous",
+      "en": "Continuous",
+      "zh": "连续型",
+      "def": {
+        "en": "A numeric value where ordering is meaningful and decimal values make sense (e.g. height in cm). If the target value is continuous, the Supervised Learning task is regression.",
+        "zh": "是数值，有大小顺序，小数也有意义（比如以厘米计的身高）。目标值是连续型时，监督学习任务就是回归。"
+      },
+      "example": {
+        "zh": "叶子高度 15.5 cm、明天的气温 21.3 度。",
+        "en": "Leaf height in cm."
+      },
+      "slides": "6, 10",
+      "related": [
+        "categorical",
+        "regression"
+      ]
+    },
+    {
+      "id": "decision-boundary",
+      "en": "Decision boundary",
+      "zh": "决策边界",
+      "def": {
+        "en": "In a classification problem, our model generates a shape in the data space that forms a decision boundary between classes: on one side of the boundary, we predict one class, and on the other side, we predict a different class.",
+        "zh": "分类问题里，模型在数据空间中画出的分界线（直线或曲线）：线的一边预测一个类别，另一边预测另一个类别。"
+      },
+      "example": {
+        "zh": "训练好的直线 −12 + x1 + 0.3x2 = 0 把图分成 O 的一边和 M 的一边。",
+        "en": "The trained line −12 + x1 + 0.3x2 = 0 separates the O side from the M side."
+      },
+      "slides": "7-8, 32",
+      "related": [
+        "classification",
+        "data-space",
+        "model"
+      ]
+    },
+    {
+      "id": "model-parameter",
+      "en": "Parameter (weight)",
+      "zh": "参数（权重）",
+      "def": {
+        "en": "The values w0, w1, w2, … in a model, also called weights. It's our job to choose a model; it's the machine's job to find the best parameter values during training. In an artificial neuron, the weights are multiplied with the inputs and determine whether each input is 'excitatory' or 'inhibitory', and by how much.",
+        "zh": "模型式子里的那些数 w0、w1、w2……，也叫权重（weights）。选模型是我们的事；在训练中找出这些参数的最佳数值是机器的事。在人工神经元里，权重乘在每个输入上，决定这个输入是“促进”还是“抑制”、影响多大。注意：和函数的参数（parameter，Lecture 2）不是一回事。"
+      },
+      "example": {
+        "zh": "直线模型 y = w0 + w1x1 有 2 个参数；训练后 w0 = 8.65，w1 = 0.464。",
+        "en": "y = w0 + w1x1 has 2 parameters; after training, w0 = 8.65 and w1 = 0.464."
+      },
+      "slides": "8, 12, 25, 34-35",
+      "related": [
+        "model",
+        "training",
+        "gradient-descent",
+        "trained-model"
+      ]
+    },
+    {
+      "id": "trained-model",
+      "en": "Untrained vs trained model",
+      "zh": "未训练／训练后的模型",
+      "def": {
+        "en": "An untrained model is written with unknown parameters (w0, w1, …). After training, each parameter has been replaced by the number the machine found, which gives the trained model.",
+        "zh": "未训练：公式里的参数还是字母 w；训练后：每个 w 都换成了机器找到的具体数字。"
+      },
+      "example": {
+        "zh": "未训练：y = w0 + w1x1 → 训练后：y = 8.65 + 0.464x1。",
+        "en": "Untrained: y = w0 + w1x1. Trained: y = 8.65 + 0.464x1."
+      },
+      "slides": "8, 10-13",
+      "related": [
+        "model-parameter",
+        "training",
+        "fitting"
+      ]
+    },
+    {
+      "id": "linear-model",
+      "en": "Linear model",
+      "zh": "线性模型（直线）",
+      "def": {
+        "en": "A model whose shape is a straight line, for example y = w0 + w1x1 in regression or the boundary w0 + w1x1 + w2x2 = 0 in classification.",
+        "zh": "画出来是一条直线的模型，例如回归里的 y = w0 + w1x1，或分类里的边界 w0 + w1x1 + w2x2 = 0。"
+      },
+      "example": {
+        "zh": "训练好的回归直线 y = 8.65 + 0.464x1，训练 MSE = 11.92。",
+        "en": "The trained regression line y = 8.65 + 0.464x1 has a training MSE of 11.92."
+      },
+      "slides": "8, 10-13, 34",
+      "related": [
+        "quadratic-model",
+        "higher-order-polynomial",
+        "linear-regression"
+      ]
+    },
+    {
+      "id": "quadratic-model",
+      "en": "Quadratic model",
+      "zh": "二次模型",
+      "def": {
+        "en": "A model whose equation also has a squared term, such as w2x1² in regression or w3x2² in classification, so its shape is a curve instead of a straight line.",
+        "zh": "公式里多了一个平方项（比如 x1²）的模型，画出来是一条曲线，不再是直线。"
+      },
+      "example": {
+        "zh": "回归：x2 = −0.603 + 3.55x1 − 0.193x1²，训练 MSE = 4.68（第 34 页）。",
+        "en": "x2 = −0.603 + 3.55x1 − 0.193x1², with a training MSE of 4.68."
+      },
+      "slides": "8, 10, 34",
+      "related": [
+        "linear-model",
+        "higher-order-polynomial"
+      ]
+    },
+    {
+      "id": "higher-order-polynomial",
+      "en": "Higher-order polynomial (model)",
+      "zh": "高阶多项式（模型）",
+      "def": {
+        "en": "A model whose equation also has higher powers of a feature, such as x1³ and x1⁴, or even up to x1⁶. It has many parameters, so its curve can bend many times and fit the training data very closely, which can lead to overfitting.",
+        "zh": "公式里有更高次方（x1³、x1⁴，甚至 x1⁶）的模型。参数多，曲线能弯很多次，可以非常贴近训练数据，但也容易过拟合。"
+      },
+      "example": {
+        "zh": "第 34 页的 5 参数版本训练 MSE = 1.67；第 35 页的 7 参数版本训练 MSE = 0，在新数据上却是 190.27。",
+        "en": "The 7-parameter version on slide 35 has a training MSE of 0 but an MSE of 190.27 on new data."
+      },
+      "slides": "8, 10, 34-38",
+      "related": [
+        "quadratic-model",
+        "overfitting",
+        "model-parameter"
+      ]
+    },
+    {
+      "id": "predicted-value",
+      "en": "Predicted value (y)",
+      "zh": "预测值（y）",
+      "def": {
+        "en": "The value predicted by the model. By convention, the predicted value is called y. In regression, the shape made by the model represents the predicted value instead of a decision boundary.",
+        "zh": "模型猜出来的值，按惯例记作 y。回归里，模型画出的线上的高度就是预测值（不是决策边界）。"
+      },
+      "example": {
+        "zh": "y = 8.65 + 0.464x1：宽 3 cm → 预测 10.0 cm；宽 12 cm → 预测 14.2 cm（第 11 页）。",
+        "en": "When x1 (width) is 3 cm, we predict y (height) will be 10.0 cm."
+      },
+      "slides": "5, 11, 18",
+      "related": [
+        "target-value",
+        "error",
+        "regression",
+        "prediction"
+      ]
+    },
+    {
+      "id": "prediction",
+      "en": "Prediction",
+      "zh": "预测",
+      "def": {
+        "en": "The model's guess for the target value of a piece of data. Once training is complete, we use the resulting model to make predictions about the target feature for unlabelled data.",
+        "zh": "模型对目标值给出的猜测。训练完成后，用得到的模型去预测无标签数据的目标特征。"
+      },
+      "example": {
+        "zh": "第 11 页：宽 3 cm 的叶子，用 y = 8.65 + 0.464x1 预测高度是 10.0 cm。",
+        "en": "When x1 (width) is 3 cm, we predict y (height) will be 10.0 cm."
+      },
+      "slides": "5, 11",
+      "related": [
+        "predicted-value",
+        "unlabelled-data",
+        "model",
+        "new-data"
+      ]
+    },
+    {
+      "id": "target-value",
+      "en": "Target value (t)",
+      "zh": "目标值（t）",
+      "def": {
+        "en": "The actual value of the target feature for a data point, written t (for example, the actual height of a leaf). The error compares the predicted value y with the target value t.",
+        "zh": "某个数据点目标特征的真实值（数据里量出来的“答案”），记作 t。误差就是拿预测值 y 和它比。"
+      },
+      "example": {
+        "zh": "宽度 x = 6 的那片叶子，真实高度 t = 15.5。",
+        "en": "For the point at x = 6, t = 15.5."
+      },
+      "slides": "18-20",
+      "related": [
+        "predicted-value",
+        "error",
+        "target-feature"
+      ]
+    },
+    {
+      "id": "fitting",
+      "en": "Fitting (the data)",
+      "zh": "拟合（数据）",
+      "def": {
+        "en": "Once we have chosen a model type, it is the machine's job to find the parameters (w0, w1, …) that best match our data. This is called fitting the data.",
+        "zh": "选好模型类型后，机器去找最贴合数据的参数，这就叫拟合。"
+      },
+      "example": {
+        "zh": "选直线 y = w0 + w1x1，机器找到 w0 = 8.65、w1 = 0.464。",
+        "en": "For the linear model, the machine finds w0 = 8.65 and w1 = 0.464."
+      },
+      "slides": "12",
+      "related": [
+        "training",
+        "model-parameter",
+        "overfitting"
+      ]
+    },
+    {
+      "id": "linear-regression",
+      "en": "Linear regression",
+      "zh": "线性回归",
+      "def": {
+        "en": "Regression with a straight-line model, y = w0 + w1x1, which is the equation of a line y = mx + b (b = w0, m = w1). Linear regression is simple enough that it can be solved exactly.",
+        "zh": "用直线做回归：y = w0 + w1x1，也就是直线方程 y = mx + b（b 对应 w0，m 对应 w1）。线性回归足够简单，可以直接精确求解。"
+      },
+      "example": {
+        "zh": "y = 8.65 + 0.464x1：用叶子宽度预测叶子高度。",
+        "en": "y = 8.65 + 0.464x1 predicts leaf height from leaf width."
+      },
+      "slides": "13-14, 24",
+      "related": [
+        "regression",
+        "slope",
+        "y-intercept",
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "slope",
+      "en": "Slope (m = rise / run)",
+      "zh": "斜率",
+      "def": {
+        "en": "In y = mx + b, m is the slope of the line: m = rise / run. In y = w0 + w1x1, the slope is w1.",
+        "zh": "直线有多陡：竖直升高（rise）÷ 水平移动（run）。正数表示往右上升，负数表示往右下降。在 y = w0 + w1x1 里，斜率是 w1。"
+      },
+      "example": {
+        "zh": "第 13 页：rise = 4.64，run = 10，m = 4.64 / 10 = 0.464。",
+        "en": "m = 4.64 / 10 = 0.464"
+      },
+      "slides": "13-14, 29",
+      "related": [
+        "y-intercept",
+        "linear-regression"
+      ]
+    },
+    {
+      "id": "y-intercept",
+      "en": "y-intercept (b)",
+      "zh": "y 轴截距",
+      "def": {
+        "en": "In y = mx + b, b is the y-intercept: the height of the line where x = 0, where it crosses the vertical axis. In y = w0 + w1x1, the y-intercept is w0.",
+        "zh": "直线和竖轴（x = 0）相交处的高度。在 y = w0 + w1x1 里，截距是 w0。"
+      },
+      "example": {
+        "zh": "第 13 页：b = 8.65。",
+        "en": "b = 8.65"
+      },
+      "slides": "13-14, 29",
+      "related": [
+        "slope",
+        "linear-regression"
+      ]
+    },
+    {
+      "id": "line-of-best-fit",
+      "en": "Line of best fit",
+      "zh": "最佳拟合线",
+      "def": {
+        "en": "A straight line drawn through plotted data so that it fits the data as well as possible. In the slide 14 activity, you draw one with a straight edge and read its slope m and y-intercept b.",
+        "zh": "最能代表一组点整体走向、离各点都尽量近的一条直线。"
+      },
+      "example": {
+        "zh": "第 14 页活动：用直尺为 12 个点画一条最佳拟合线，再从线上读出 m 和 b。",
+        "en": "Slide 14 activity: draw a line of best fit with a straight edge, then read m and b."
+      },
+      "slides": "14",
+      "related": [
+        "linear-regression",
+        "slope",
+        "y-intercept",
+        "cost-function"
+      ]
+    },
+    {
+      "id": "cost-function",
+      "en": "Cost function",
+      "zh": "代价函数",
+      "def": {
+        "en": "A cost function measures the 'wrongness' of a line for a dataset. You can use human intuition to place a line, but the machine needs a cost function to minimize during training.",
+        "zh": "给一条线对一组数据“错得有多厉害”打分的函数，越低越好。人可以凭直觉放线，机器要靠把代价函数降到最小。第 4 课叫 error function，第 5 课叫 cost function：都是训练时要变小的那个数（课件没把两者明说成同一个词）。"
+      },
+      "example": {
+        "zh": "MSE 就是一种代价函数：y = 8.65 + 0.464x1 的 MSE 是 11.92，另一条坏线是 37.52。",
+        "en": "The MSE is one possible cost function: 11.92 for the good line, 37.52 for the bad line."
+      },
+      "slides": "16-17, 21-22",
+      "related": [
+        "mean-squared-error",
+        "minimize",
+        "training",
+        "gradient-descent",
+        "error-function",
+        "loss"
+      ]
+    },
+    {
+      "id": "minimize",
+      "en": "Minimize",
+      "zh": "最小化",
+      "def": {
+        "en": "To make a value as small as possible. During training, the machine tries to minimize the cost.",
+        "zh": "让一个数尽量变小。训练时，机器要把代价（cost）最小化。"
+      },
+      "example": {
+        "zh": "梯度下降把 MSE 从 37.52 一步步降到 11.92。",
+        "en": "Gradient descent reduced the MSE from 37.52 to 11.92."
+      },
+      "slides": "16",
+      "related": [
+        "maximize",
+        "cost-function",
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "error",
+      "en": "Error (y − t)",
+      "zh": "误差",
+      "def": {
+        "en": "For each point in the dataset, the error is the difference between the predicted value, y, and the actual value, t (called the target value): error = y − t.",
+        "zh": "对每个数据点：预测值 y 减去真实值 t。负数表示预测偏低，正数表示预测偏高。"
+      },
+      "example": {
+        "zh": "x = 6：y ≈ 11.4，t = 15.5，error = 11.4 − 15.5 = −4.1（第 18 页）。",
+        "en": "At x = 6: error = 11.4 − 15.5 = −4.1"
+      },
+      "slides": "18-20",
+      "related": [
+        "squared-error",
+        "predicted-value",
+        "target-value"
+      ]
+    },
+    {
+      "id": "squared-error",
+      "en": "Squared error",
+      "zh": "平方误差",
+      "def": {
+        "en": "The squared error is just the difference squared: (y − t)². It is never negative.",
+        "zh": "把误差自己乘自己：(y − t)²。结果不会是负数。"
+      },
+      "example": {
+        "zh": "(11.4 − 15.5)² = (−4.1)² = 16.81（第 19 页）。",
+        "en": "(−4.1)² = 16.81"
+      },
+      "slides": "19-20",
+      "related": [
+        "error",
+        "mean-squared-error"
+      ]
+    },
+    {
+      "id": "mean-squared-error",
+      "en": "Mean squared error (MSE)",
+      "zh": "均方误差（MSE）",
+      "def": {
+        "en": "The mean squared error (MSE) is one possible cost function, used in regression. It is the average of the squared errors (y − t)² over all data points. A lower MSE means a better fit.",
+        "zh": "一种代价函数，用于回归（预测一个数字）：把每个点的误差（预测值 y − 真实值 t）平方，再对所有点求平均。越低越好。课件说符号公式不用背。"
+      },
+      "example": {
+        "zh": "第 20 页：[26.01 + 4.00 + 16.81 + 1.96 + 10.24 + 3.24 + 21.16] / 7 = 83.42 / 7 ≈ 11.92。（第 17 页还给了符号公式 MSE = (1/N) Σᵢ (y⁽ⁱ⁾ − t⁽ⁱ⁾)²，课件说不用背。）",
+        "en": "Slide 20: MSE = 83.42 / 7 ≈ 11.92. (Slide 17 also shows MSE = (1/N) Σᵢ (y⁽ⁱ⁾ − t⁽ⁱ⁾)²; you don't need to memorize this formula.)"
+      },
+      "slides": "17, 20-22",
+      "related": [
+        "cost-function",
+        "squared-error",
+        "error"
+      ]
+    },
+    {
+      "id": "gradient-descent",
+      "en": "Gradient descent",
+      "zh": "梯度下降",
+      "def": {
+        "en": "An algorithm that slowly approaches a good solution: 1. Start with all parameters set randomly. 2. Check the cost using every point in the training set. 3. For each parameter, decide if it should be increased or decreased to reduce cost. 4. Increase or decrease each parameter by a small amount. 5. Repeat from Step 2 until the parameters are close to correct.",
+        "zh": "一点点改参数、让代价慢慢变小的算法：随机开始 → 用全部训练点算代价 → 判断每个参数该增大还是减小 → 改一点点 → 回到第 2 步重复，直到参数接近正确。线性回归可以精确求解，更复杂的模型往往不行，所以用它。"
+      },
+      "example": {
+        "zh": "第 26–31 页：从 w0 = 19.00、w1 = −0.800（MSE 37.52）走到 w0 = 8.65、w1 = 0.464（MSE 11.92）。",
+        "en": "From w0 = 19.00, w1 = −0.800 (MSE 37.52) to w0 = 8.65, w1 = 0.464 (MSE 11.92)."
+      },
+      "slides": "24-32",
+      "related": [
+        "cost-function",
+        "model-parameter",
+        "training-set",
+        "minimize",
+        "solved-exactly"
+      ]
+    },
+    {
+      "id": "solved-exactly",
+      "en": "Solved exactly",
+      "zh": "精确求解",
+      "def": {
+        "en": "Linear regression is simple enough that it can be solved exactly, but this is often not the case for more complex models. Instead, we can use gradient descent to slowly approach a good solution.",
+        "zh": "直接算出最好的参数，不用一步步慢慢试（课件没讲具体怎么算）。线性回归够简单，可以这样做；更复杂的模型往往不行，就用梯度下降慢慢接近好答案。"
+      },
+      "example": {
+        "zh": "直线 y = w0 + w1x1 可以精确求解；第 26–31 页仍然用这条直线来演示梯度下降，因为直线最好看懂（这是推断，课件没明说）。",
+        "en": "Linear regression can be solved exactly; for more complex models this is often not possible, so we can use gradient descent instead."
+      },
+      "slides": "24-25",
+      "related": [
+        "linear-regression",
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "training-set",
+      "en": "Training set (training data)",
+      "zh": "训练集（训练数据）",
+      "def": {
+        "en": "The data used to train the model: the examples the model learns from, to find its parameters such as the weights. In Supervised Learning it is a labelled training dataset, and we generally want the training set to contain the most data.",
+        "zh": "用来训练模型的数据：模型从这些例子里学习，找出参数（比如权重）。监督学习用的是带标签的训练数据集。一般希望训练集包含最多的数据。"
+      },
+      "example": {
+        "en": "The 7 green points in the regression example. Gradient descent checks the cost using every point in the training set.",
+        "zh": "本课回归例子里的 7 个绿点。梯度下降每一轮都用训练集里的每一个点来算代价。"
+      },
+      "slides": "25, 34-35, 37-38",
+      "related": [
+        "labelled-data",
+        "new-data",
+        "overfitting"
+      ]
+    },
+    {
+      "id": "maximize",
+      "en": "Maximize",
+      "zh": "最大化",
+      "def": {
+        "en": "To make a value as large as possible. Roughly, when gradient descent is used for classification, the goal is to maximize confidence in correct classifications.",
+        "zh": "让一个数尽量变大，和 minimize（最小化）相反。"
+      },
+      "example": {
+        "zh": "分类时，梯度下降大致是要让“正确分类的把握”最大（第 32 页）。",
+        "en": "Maximize confidence in correct classifications (slide 32)."
+      },
+      "slides": "32",
+      "related": [
+        "minimize",
+        "confidence",
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "confidence",
+      "en": "Confidence",
+      "zh": "把握度（置信度）",
+      "def": {
+        "en": "How sure a model is about its prediction (the slides do not define it precisely). Roughly, when gradient descent is used for classification, the goal is to maximize confidence in correct classifications. High confidence does not mean the prediction is correct.",
+        "zh": "模型对自己的预测有多大把握（课件没有给精确定义）。分类问题里，梯度下降大致是让模型对正确分类的把握尽量大。注意：把握度高不代表预测正确。"
+      },
+      "example": {
+        "zh": "希望模型不只是把叶子分对，而且是“很有把握地”分对。",
+        "en": "We want the model to classify a leaf correctly and to be sure about it."
+      },
+      "slides": "32",
+      "related": [
+        "maximize",
+        "classification",
+        "decision-boundary"
+      ]
+    },
+    {
+      "id": "model-selection",
+      "en": "Model selection",
+      "zh": "模型选择",
+      "def": {
+        "en": "Choosing which model to use. Sometimes we have strong theoretical reasons, because we know something about the process that generated the data. Most of the time in ML we don't, so we try several models and take the one that works best empirically (i.e. based on real data), usually judged on a validation set. The model with the lowest cost on the training set is not necessarily the best one.",
+        "zh": "决定用哪个模型。有时有很强的理论理由（我们了解产生数据的过程）；但 ML 里大多数时候没有，就多试几个模型，选在真实数据上（empirically，实证地）效果最好的，通常看验证集。训练集上代价最低的模型不一定最好。"
+      },
+      "example": {
+        "zh": "第 34 页：训练 MSE 依次是 11.92、4.68、1.67。问题是：最低的就最好吗？",
+        "en": "Slide 34: training MSEs of 11.92, 4.68 and 1.67. Is the lowest the best?"
+      },
+      "slides": "34",
+      "related": [
+        "overfitting",
+        "new-data",
+        "training-set",
+        "optimal-weights"
+      ]
+    },
+    {
+      "id": "optimal-weights",
+      "en": "Optimal weights",
+      "zh": "最优权重",
+      "def": {
+        "en": "The parameter values that give the lowest cost on the training set; with gradient descent the machine can find optimal weights for a wide variety of models (slide 34).",
+        "zh": "在训练集上让代价最低的那组参数（权重）。第 34 页：有了梯度下降，机器能在训练集上为各种各样的模型找到最优权重。注意：训练集上最优，不等于对新数据最好。"
+      },
+      "example": {
+        "zh": "第 34 页的三个模型都训练好了，训练 MSE 分别是 11.92、4.68、1.67；接着课件就问：MSE 最低的就是最好的模型吗？",
+        "en": "Slide 34: the three trained models have training MSEs of 11.92, 4.68 and 1.67. Is the one with the lowest MSE the best?"
+      },
+      "slides": "34",
+      "related": [
+        "model-parameter",
+        "gradient-descent",
+        "model-selection",
+        "training-set"
+      ]
+    },
+    {
+      "id": "new-data",
+      "en": "New data",
+      "zh": "新数据",
+      "def": {
+        "en": "Data that the model did not see during training. We want a model to make predictions about new data, so a good model must also work well on new data, not only on the training set. To measure a model's cost on new data, we still need to know the target values of the new data; they are just not used for training.",
+        "zh": "训练时没见过的数据。我们训练模型就是为了预测新数据，所以好模型在新数据上也要表现好。要在新数据上算 MSE，就得知道这些数据的真实答案 t，只是它们不拿来训练（这一点是从课件能算出 MSE 推出来的）。"
+      },
+      "example": {
+        "zh": "第 36 页的 8 个红点：高阶多项式 MSE = 190.27，直线 MSE = 5.77。",
+        "en": "On the 8 new red points: an MSE of 190.27 for the polynomial and 5.77 for the line."
+      },
+      "slides": "36-38",
+      "related": [
+        "overfitting",
+        "training-set",
+        "unlabelled-data"
+      ]
+    },
+    {
+      "id": "overfitting",
+      "en": "Overfitting (overfitted)",
+      "zh": "过拟合",
+      "def": {
+        "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns. An overfitted model can reach a very low error on the training set (even an MSE of 0) but make poor predictions about new data: it does not generalize well.",
+        "zh": "模型把训练数据里的随机噪声也“背”了下来，而不是学到真正的规律。样子是：训练误差很低（甚至 MSE 为 0），但在新数据上误差很高，泛化得不好。"
+      },
+      "example": {
+        "zh": "7 个参数的高阶多项式：训练 MSE = 0，新数据 MSE = 190.27；简单直线在新数据上只有 5.77（第 35–38 页）。",
+        "en": "A model with a training MSE of 0 had an MSE of 190.27 on new data, while a straight line had 5.77."
+      },
+      "slides": "35-38",
+      "related": [
+        "random-noise",
+        "genuine-patterns",
+        "new-data",
+        "model-selection"
+      ]
+    },
+    {
+      "id": "random-noise",
+      "en": "Random noise",
+      "zh": "随机噪声",
+      "def": {
+        "en": "Random ups and downs in the training data that happen by chance and are not part of the genuine patterns. An overfitted model memorizes this random noise.",
+        "zh": "训练数据里偶然的、没有规律的上下波动，不属于真正的规律。过拟合的模型连它也记住了。"
+      },
+      "example": {
+        "zh": "第 35 页那条曲线为了穿过每一个训练点而剧烈上下摆动，就是把随机噪声也记住了。",
+        "en": "The wiggly curve on slide 35 bends up and down to pass through every training point."
+      },
+      "slides": "38",
+      "related": [
+        "overfitting",
+        "genuine-patterns"
+      ]
+    },
+    {
+      "id": "genuine-patterns",
+      "en": "Genuine patterns",
+      "zh": "真正的规律",
+      "def": {
+        "en": "The real trends in the data, which also hold for new data. A good model learns genuine patterns rather than memorizing random noise.",
+        "zh": "数据背后真实存在、对新数据也成立的趋势。好的模型学的是它，而不是随机噪声。"
+      },
+      "example": {
+        "zh": "第 36 页：只有 2 个参数的直线在新数据上 MSE = 5.77；把 7 个训练点全部穿过的 7 参数曲线却是 190.27——它把训练数据里的小波动也记住了。课件没有具体说这组叶子的“真正规律”是什么。",
+        "en": "On new data (slide 36), the simple line has an MSE of 5.77, while the curve that passes through every training point has an MSE of 190.27. The slides do not say exactly what the genuine pattern is."
+      },
+      "slides": "38",
+      "related": [
+        "random-noise",
+        "overfitting"
+      ]
+    }
+  ]
+}

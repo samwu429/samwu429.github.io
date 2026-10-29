@@ -1,0 +1,13 @@
+/*
+ * Shared stylesheet of the study station. View- and widget-specific CSS lives next to each
+ * module and is loaded on demand through core/dom/stylesheet.js.
+ * 复习工作站的共享样式表。视图与交互组件的专属样式与各自模块放在一起，通过 core/dom/stylesheet.js 按需加载。
+ */
+@import url("./foundation/tokens.css");
+@import url("./foundation/base.css");
+@import url("./foundation/language-modes.css");
+@import url("./layout/shell.css");
+@import url("./layout/page.css");
+@import url("./components/controls.css");
+@import url("./components/surfaces.css");
+@import url("./components/content.css");

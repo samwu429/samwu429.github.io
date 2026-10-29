@@ -1,0 +1,50 @@
+/*
+ * Language-mode behaviour driven by <html data-lang-mode>. See core/text/bilingual.js for roles.
+ * 由 <html data-lang-mode> 驱动的语言模式规则，各角色定义见 core/text/bilingual.js。
+ *
+ * balanced (default): teaching Chinese visible, question translations hidden until requested.
+ * zh-first: every translation visible.
+ * en-practice: Chinese blurred until tapped (or revealed from the keyboard, see app/language-reveal.js);
+ * question translations hidden until requested.
+ * balanced（默认）：讲解中文可见，题目翻译按需显示；zh-first：所有翻译可见；
+ * en-practice：中文模糊，点击（或用键盘，见 app/language-reveal.js）才显示，题目翻译按需显示。
+ */
+.zh-assist {
+  display: none;
+}
+
+:root[data-lang-mode="zh-first"] .zh-assist,
+.show-assist .zh-assist {
+  display: revert;
+}
+
+.zh-assist {
+  color: var(--color-ink-2);
+}
+
+:root[data-lang-mode="en-practice"]:not(.reveal-zh) .zh-teach:not(.is-revealed),
+:root[data-lang-mode="en-practice"]:not(.reveal-zh) .zh-gloss:not(.is-revealed) {
+  filter: blur(5px);
+  cursor: pointer;
+  user-select: none;
+  transition: filter 160ms ease;
+}
+
+:root[data-lang-mode="en-practice"]:not(.reveal-zh) .zh-teach:not(.is-revealed):hover,
+:root[data-lang-mode="en-practice"]:not(.reveal-zh) .zh-gloss:not(.is-revealed):hover {
+  filter: blur(3.5px);
+}
+
+/* SVG <tspan> cannot be filtered, so Chinese runs inside diagram labels fade out instead. SVG 的 <tspan> 无法使用滤镜，图中标签里的中文段改为淡出。 */
+:root[data-lang-mode="en-practice"]:not(.reveal-zh) tspan.zh-teach:not(.is-revealed),
+:root[data-lang-mode="en-practice"]:not(.reveal-zh) tspan.zh-gloss:not(.is-revealed) {
+  fill-opacity: 0.12;
+}
+
+@media print {
+  :root[data-lang-mode] .zh-teach,
+  :root[data-lang-mode] .zh-gloss {
+    filter: none !important;
+    fill-opacity: 1 !important;
+  }
+}

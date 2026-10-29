@@ -1,0 +1,360 @@
+/*
+ * Decision-boundary widget: shaded predicted regions, class markers, misclassified rings, sliders, metrics.
+ * 决策边界组件：预测区域着色、类别标记、分错的圈、滑块与指标。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.decision-boundary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+/* Equation panel 方程面板 */
+.decision-boundary__equation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.decision-boundary__equation-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px var(--space-2);
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+.decision-boundary__equation-line--now {
+  color: var(--color-ink);
+  font-size: var(--text-lg);
+  font-weight: 800;
+}
+
+.decision-boundary__tag {
+  flex: none;
+  min-width: 4.5em;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.decision-boundary__rules {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: var(--space-2) 0 0;
+  padding: var(--space-2) 0 0;
+  border-top: 1px dashed var(--color-line-soft);
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.decision-boundary__rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px var(--space-2);
+}
+
+.decision-boundary__arrow {
+  color: var(--color-ink-3);
+}
+
+.decision-boundary__swatch {
+  stroke: var(--color-line);
+  stroke-width: 1.5;
+}
+
+/* Layout: plot beside the controls when the widget is wide enough. 宽度足够时图与控件并排。 */
+.decision-boundary__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+@container (min-width: 640px) {
+  .decision-boundary__body {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: start;
+  }
+}
+
+.decision-boundary__figure {
+  padding: var(--space-3);
+}
+
+.decision-boundary__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* Plot marks 图形元素 */
+.decision-boundary__region {
+  stroke: none;
+}
+
+.decision-boundary__region--a { fill: var(--color-signal-soft); }
+.decision-boundary__region--b { fill: var(--color-warn-soft); }
+.decision-boundary__region--c { fill: var(--color-accent-soft); }
+.decision-boundary__region--d { fill: var(--color-paper-2); }
+
+.decision-boundary__line {
+  stroke: var(--color-ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.decision-boundary__marker {
+  stroke: var(--color-line);
+  stroke-width: 1.5;
+}
+
+.decision-boundary__marker--a { fill: var(--color-signal); }
+.decision-boundary__marker--b { fill: var(--color-warn); }
+.decision-boundary__marker--c { fill: var(--color-accent); }
+.decision-boundary__marker--d { fill: var(--color-ink-3); }
+
+.decision-boundary__point {
+  cursor: pointer;
+  outline: none;
+}
+
+.decision-boundary__hit {
+  fill: transparent;
+}
+
+.decision-boundary__wrong-ring {
+  fill: none;
+  stroke: var(--color-danger);
+  stroke-width: 2.5;
+  stroke-dasharray: 4 3;
+  opacity: 0;
+}
+
+.decision-boundary__point.is-wrong .decision-boundary__wrong-ring,
+.decision-boundary__wrong-ring--legend {
+  opacity: 1;
+}
+
+.decision-boundary__focus-ring {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 3;
+  opacity: 0;
+}
+
+.decision-boundary__point:focus-visible .decision-boundary__focus-ring,
+.decision-boundary__point.is-shown .decision-boundary__focus-ring {
+  opacity: 1;
+}
+
+.decision-boundary__tag-bg {
+  fill: var(--color-ink);
+}
+
+.decision-boundary__tag-text {
+  fill: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Point readout 点的详情 */
+.decision-boundary__readout {
+  min-height: 5.5em;
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.decision-boundary__hint {
+  color: var(--color-ink-2);
+}
+
+.decision-boundary__readout-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-1);
+}
+
+.decision-boundary__facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 var(--space-3);
+  margin: 0;
+}
+
+.decision-boundary__facts dt {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.decision-boundary__facts dd {
+  margin: 0 0 var(--space-1);
+  min-width: 0;
+}
+
+@container (min-width: 460px) {
+  .decision-boundary__facts {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+
+  .decision-boundary__facts dt {
+    padding-top: 2px;
+  }
+}
+
+/* Metrics 指标 */
+.decision-boundary__note {
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-warn);
+  border-radius: var(--radius-sm);
+  background: var(--color-warn-soft);
+  font-size: var(--text-sm);
+}
+
+.decision-boundary__counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.decision-boundary__counts strong {
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-md);
+}
+
+.decision-boundary__metrics {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.decision-boundary__metric {
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-left-width: 6px;
+  border-left-color: var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.decision-boundary__metric--error {
+  border-left-color: var(--color-danger);
+}
+
+.decision-boundary__metric-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.decision-boundary__metric-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.decision-boundary__definition {
+  margin: var(--space-1) 0 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.decision-boundary__metric-work {
+  margin: 2px 0 0;
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.decision-boundary__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.decision-boundary__best {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+  font-size: var(--text-sm);
+}
+
+/* Per-point table 逐点检查表 */
+.decision-boundary__details {
+  min-width: 0;
+}
+
+.decision-boundary__summary {
+  width: fit-content;
+  max-width: 100%;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.decision-boundary__summary:hover {
+  background: var(--color-paper-2);
+}
+
+.decision-boundary__details[open] > .decision-boundary__summary {
+  margin-bottom: var(--space-2);
+}
+
+.decision-boundary__table th,
+.decision-boundary__table td {
+  white-space: nowrap;
+}
+
+.decision-boundary__num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.decision-boundary__table tr.is-wrong td {
+  background: var(--color-danger-soft);
+}
+
+.decision-boundary__verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 800;
+}
+
+.decision-boundary__verdict.is-correct {
+  color: var(--color-success);
+}
+
+.decision-boundary__verdict.is-wrong {
+  color: var(--color-danger);
+}

@@ -1,0 +1,54 @@
+/*
+ * Term chips: small cards in an auto-filling grid that collapses to one column on phones.
+ * 术语卡片：自动填充的网格，在手机上收成一列。
+ */
+.terms-block__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.terms-block__chip {
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.terms-block__en {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.terms-block .terms-block__term {
+  min-width: 0;
+  font-size: var(--text-md);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.terms-block__en .speak-btn {
+  margin-left: 0;
+}
+
+.terms-block__zh {
+  margin: var(--space-1) 0 0;
+  color: var(--color-accent-ink);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.terms-block__hint {
+  margin: var(--space-1) 0 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}

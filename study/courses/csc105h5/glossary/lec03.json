@@ -1,0 +1,890 @@
+{
+  "lessonId": "lec03",
+  "terms": [
+    {
+      "id": "symbolic-ai",
+      "en": "Symbolic AI",
+      "zh": "符号 AI",
+      "def": {
+        "en": "A sub-field of Artificial Intelligence in which problem solutions are found by encoding knowledge as symbols and then reasoning with those symbols. It is characterized by problems that have well-defined rules, reasoning that follows rules of logic, solutions that are provably correct when they are found, and generally high explainability.",
+        "zh": "AI 的一个子领域：先把知识写成符号和规则，再按逻辑一步步推理，找出问题的解。四个特点：规则明确、按逻辑推理、找到的解能被证明是对的、可解释性通常高。符号 AI 要靠规则才能工作；机器学习要靠数据。"
+      },
+      "example": {
+        "zh": "适合：找谜题或游戏的最佳一步、安排任务互不重叠、根据传感器读数判断机器人最可能的位置。不适合：预测股票、看 1000 张狗的照片后判断新照片里有没有狗、扮演客服聊天。它的子领域有 Search、Constraint Satisfaction、Logical Reasoning、Bayesian Reasoning，本课只讲 Search。",
+        "en": "Well-suited: finding the best move in a puzzle or game. Not well-suited: given 1000 photos of dogs, determining if there is a dog in a new picture."
+      },
+      "slides": "5-7, 62-63",
+      "related": [
+        "search",
+        "machine-learning",
+        "explainability",
+        "purely-algorithmic-approach"
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "en": "Machine Learning (ML)",
+      "zh": "机器学习",
+      "def": {
+        "en": "'Machine Learning (ML) is a separate sub-field of Artificial Intelligence in which problem solutions are found by automatically inferring patterns from data.' It is characterized by problems where data can be acquired, distinct phases of training a model (learning from data) and inference (using the trained model to solve a problem), and generally fast inference time (though training can take a long time). Symbolic AI needs rules to work, while Machine Learning needs data.",
+        "zh": "AI 里另一个独立的子领域：不靠人写规则，而是给电脑很多例子（数据），让它自动找出规律。特点：问题能拿到数据；分训练（从数据中学习）和推理（用训练好的模型解决问题）两个阶段；推理通常很快，训练可能很久。符号 AI 要规则，机器学习要数据。"
+      },
+      "example": {
+        "en": "Symbolic AI needs rules to work, while Machine Learning needs data. Heuristics may also be learned autonomously through Machine Learning (slide 54).",
+        "zh": "本课里机器学习出现两次：一是和符号 AI 对比（符号 AI 要规则，机器学习要数据）；二是启发式的一种来源（可以用机器学习自动学出来，p.54）。例：“看过 1000 张狗的照片后，判断新照片里有没有狗”不适合符号 AI，要靠数据。"
+      },
+      "slides": "6, 54",
+      "related": [
+        "symbolic-ai",
+        "heuristic",
+        "expert-knowledge"
+      ]
+    },
+    {
+      "id": "explainability",
+      "en": "Explainability",
+      "zh": "可解释性",
+      "def": {
+        "en": "How easy it is to explain why the model (or system) gave the result it gave. Symbolic AI and algorithmic solutions are generally explainable, explanations are difficult for complex ML models, and LLM prompting is rarely explainable.",
+        "zh": "说清楚“模型（或系统）为什么给出这个结果”有多容易。符号 AI 和算法解法一般都能解释；复杂的机器学习模型很难解释；LLM 很少能解释。"
+      },
+      "example": {
+        "en": "One characteristic of Symbolic AI is 'generally high explainability' (slide 5).",
+        "zh": "符号 AI 每一步推理都看得见，所以可解释性通常很高（p.5 的第四个特点）。"
+      },
+      "slides": "5",
+      "related": [
+        "symbolic-ai",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "single-player-puzzle",
+      "en": "Single-player puzzle",
+      "zh": "单人谜题",
+      "def": {
+        "en": "A puzzle with no opponent, such as Sokoban, where we are in control of every step, so a goal state found by search gives a solution that is guaranteed to be correct.",
+        "zh": "没有对手的谜题（如推箱子），每一步都由我们自己控制，所以搜索找到目标状态后，解保证正确。"
+      },
+      "example": {
+        "zh": "推箱子（Sokoban）是课件里的单人谜题。p.32 拿它和井字棋这样的多人游戏对比：Unlike in single-player puzzles, we are no longer in control of every step of the game."
+      },
+      "slides": "13-28, 32, 51",
+      "related": [
+        "multiplayer-game",
+        "sokoban",
+        "solution-path"
+      ]
+    },
+    {
+      "id": "sokoban",
+      "en": "Sokoban",
+      "zh": "Sokoban（推箱子）",
+      "def": {
+        "en": "A single-player puzzle in which a person moves up, down, left or right and pushes boxes; the puzzle is solved when every box is on a goal square. The lecture uses it to explain state, dynamics, state trees and exhaustive search.",
+        "zh": "单人谜题：人上下左右走，把箱子推到目标点上，所有箱子都到目标点就解开了。课件没有把规则写成文字，是从图里看出来的：一次走一格；走向箱子就把它推一格（箱子后面要有空位）；不能拉箱子；箱子不能推出边界，也不能推进另一个箱子。"
+      },
+      "example": {
+        "zh": "p.13 活动的一个解（p.14）：up, right, right, down, up, left, left, down, down, right, up, left, up, right（14 步）。p.24 小题的解：up, right, down。",
+        "en": "A solution to the p.24 puzzle: up, right, down."
+      },
+      "slides": "12-26, 63",
+      "related": [
+        "state",
+        "dynamics",
+        "dead-end",
+        "state-tree"
+      ]
+    },
+    {
+      "id": "dead-end",
+      "en": "Dead end (dead-end)",
+      "zh": "死路（走进死局）",
+      "def": {
+        "en": "A state from which the puzzle can no longer be solved, whatever moves are made next. The Sokoban activity shows an example ('A dead-end'), but the slides do not give a formal definition.",
+        "zh": "走到这一步以后，不管再怎么走都解不出来了。课件 p.15 画了一个例子（最后打了 “???”），没有给正式定义。注意：死路不等于终止状态（terminal state），游戏并没有结束，人还能走，只是永远到不了目标。"
+      },
+      "example": {
+        "zh": "p.15：up, right, down, left, down, right 之后，一个箱子被推进右下角的目标点；另一个箱子在中间一行最右边，要把它推上右上角的目标点，人必须站在它正下方，可那一格被角落里的箱子占着，而角落里的箱子再也推不动。"
+      },
+      "slides": "13, 15",
+      "related": [
+        "sokoban",
+        "state",
+        "terminal-state"
+      ]
+    },
+    {
+      "id": "state",
+      "en": "State (game state)",
+      "zh": "状态（游戏状态）",
+      "def": {
+        "en": "A game's state is a snapshot of the game at a particular moment in time. It's the answer to the question: 'What information would I have to save in order to put this game away and resume it later?'",
+        "zh": "游戏在某一时刻的“快照”。判断方法：要把游戏收起来、下次接着玩，必须记下哪些信息？那些信息就是状态。在状态树里，每个状态就是一个节点。"
+      },
+      "example": {
+        "zh": "Sokoban：人在哪一格、每个箱子在哪一格（墙和目标点固定不动）。井字棋：9 个格子里分别是 X、O 还是空。"
+      },
+      "slides": "17",
+      "related": [
+        "dynamics",
+        "initial-state",
+        "node",
+        "state-tree"
+      ]
+    },
+    {
+      "id": "dynamics",
+      "en": "Dynamics (of a game)",
+      "zh": "动态（游戏规则）",
+      "def": {
+        "en": "A game's dynamics are the rules of the game. For any given state, they tell us what actions can be taken and how the state changes when they are.",
+        "zh": "就是游戏规则：在任何一个状态下，能做哪些行动（动作），做完以后状态会怎么变。搜索就是用这些规则往前推演、生成未来可能的状态。"
+      },
+      "example": {
+        "zh": "Sokoban：人可以上下左右走一格；走向箱子时，如果箱子后面有空位，就把箱子推一格；不能拉箱子（规则是从课件的图里看出来的）。"
+      },
+      "slides": "17",
+      "related": [
+        "state",
+        "action",
+        "search"
+      ]
+    },
+    {
+      "id": "action",
+      "en": "Action",
+      "zh": "行动（动作）",
+      "def": {
+        "en": "Something an agent performs, such as making a move in a game. In a game, the dynamics tell us what actions can be taken in each state and how the state changes; in a state tree, each action connecting nodes is called an edge.",
+        "zh": "智能体做出的一步事情，比如走一步棋。在游戏里，规则（动态，dynamics）决定每个状态下能做哪些行动（动作）、做完以后状态怎么变；在状态树里，连接两个节点的动作叫边（edge）。课件没有单独给 action 下定义。"
+      },
+      "example": {
+        "zh": "Sokoban 里的 up / down / left / right；井字棋里在某个空格画 X。穷举搜索的第 2 步要考虑所有合法动作（all legal actions）。"
+      },
+      "slides": "13, 17, 21, 23",
+      "related": [
+        "dynamics",
+        "edge",
+        "state",
+        "legal-action"
+      ]
+    },
+    {
+      "id": "legal-action",
+      "en": "Legal action",
+      "zh": "合法动作",
+      "def": {
+        "en": "An action that the rules of the game (its dynamics) allow in the current state. Exhaustive search considers all legal actions at each node and draws the resulting states as children.",
+        "zh": "规则允许做的动作（这里的“合法”是“按游戏规则可以做”，不是“守法”）。不合法的动作（比如走出格子、推不动的箱子）不画进状态树。"
+      },
+      "example": {
+        "zh": "p.24 的根：up 和 down 合法；right 会把箱子推出格子，left 会让人走出格子，都不合法。"
+      },
+      "slides": "23",
+      "related": [
+        "action",
+        "dynamics",
+        "exhaustive-search",
+        "child-node"
+      ]
+    },
+    {
+      "id": "initial-state",
+      "en": "Initial state",
+      "zh": "初始状态",
+      "def": {
+        "en": "The initial state answers the question 'How does the game begin?' Together with the state, the dynamics and a goal test, it is something a computer needs to know before it can search.",
+        "zh": "游戏一开始是什么样子。电脑要做搜索，需要知道四样东西：状态、动态、初始状态、目标测试。"
+      },
+      "example": {
+        "zh": "p.13 的 Sokoban 题：人在中间一行最左边，右边并排两个箱子，右上角和右下角各有一个目标点。"
+      },
+      "slides": "18",
+      "related": [
+        "state",
+        "goal-test",
+        "root-node"
+      ]
+    },
+    {
+      "id": "goal-test",
+      "en": "Goal test",
+      "zh": "目标测试",
+      "def": {
+        "en": "A goal test answers the question 'For a given state, has the game been won?' It gives a T/F (True/False) result for any state we give it.",
+        "zh": "给它任何一个状态，它只回答 T（赢了）或 F（没赢）。"
+      },
+      "example": {
+        "zh": "Sokoban：所有箱子都在目标点上 → T；否则 → F。"
+      },
+      "slides": "18",
+      "related": [
+        "goal-state",
+        "state",
+        "terminal-state"
+      ]
+    },
+    {
+      "id": "goal-state",
+      "en": "Goal state",
+      "zh": "目标状态",
+      "def": {
+        "en": "Winning states (states where the goal test gives T) are called goal states.",
+        "zh": "目标测试给出 T 的状态，也就是“赢了”的状态。单人谜题里找到它，从根到它的动作路径就是解；两人游戏里找到它不保证能赢。"
+      },
+      "example": {
+        "zh": "p.25 的树里标着 “Goal!” 的节点：up, right, down 之后，箱子被推到了目标点上。"
+      },
+      "slides": "18, 25-26, 31-32",
+      "related": [
+        "goal-test",
+        "solution-path",
+        "terminal-state"
+      ]
+    },
+    {
+      "id": "search",
+      "en": "Search",
+      "zh": "搜索",
+      "def": {
+        "en": "Search is a method for a computer to 'look ahead' by using the game's dynamics to generate possible future states. It is one of the sub-fields of Symbolic AI.",
+        "zh": "电脑先不真走，而是按游戏规则（动态）把以后可能出现的状态一个个生成出来，先“往前看”，再决定怎么走。它是符号 AI 的一个子领域。"
+      },
+      "example": {
+        "zh": "从 Sokoban 的当前局面出发，生成 up、down 之后的局面，再生成它们之后的局面……画成一棵状态树。"
+      },
+      "slides": "7, 17-28",
+      "related": [
+        "exhaustive-search",
+        "state-tree",
+        "dynamics",
+        "symbolic-ai"
+      ]
+    },
+    {
+      "id": "exhaustive-search",
+      "en": "Exhaustive search",
+      "zh": "穷举搜索",
+      "def": {
+        "en": "An exhaustive search is the most basic kind of search. It considers all possibilities from the current game state until the end of the game. Exhaustive search is simple, but inefficient: for large games it is too time-consuming.",
+        "zh": "最基本的搜索：从当前状态开始，把所有可能一个不漏地列出来，一直搜到游戏结束。简单，但效率低；游戏太大时太费时间，搜不完。"
+      },
+      "example": {
+        "zh": "步骤（p.23）：当前状态作根 → 画出所有合法动作的结果作孩子 → 对每个孩子重复 → 找到目标状态或没有孩子可生成时停止。p.24 活动：用穷举搜索把 Sokoban 小题画到深度 3，一共 1 + 2 + 4 + 8 = 15 个节点，其中一个是 Goal!。"
+      },
+      "slides": "19, 23-28",
+      "related": [
+        "search",
+        "state-tree",
+        "exponential-growth",
+        "goal-state"
+      ]
+    },
+    {
+      "id": "state-tree",
+      "en": "State tree (game tree, search tree)",
+      "zh": "状态树（游戏树、搜索树）",
+      "def": {
+        "en": "A state tree (also called a game tree or search tree) is a way to visualize search: each state in the tree is a node, each action connecting nodes is an edge, and the root node is the current game state.",
+        "zh": "把搜索画成一棵倒着长的树：每个状态是一个节点（node），连接节点的每个动作是一条边（edge），最上面的根节点（root）是当前状态，往下每一层是多走一步之后的状态。game tree、state tree、search tree 说的是同一个东西。"
+      },
+      "example": {
+        "zh": "p.20 / p.22 的部分状态树：根往下有 up、down 两条边；深度 1 有 2 个节点，深度 2 有 4 个节点，最下面的 ⋮ 表示还没画完。"
+      },
+      "slides": "19-26",
+      "related": [
+        "node",
+        "edge",
+        "root-node",
+        "depth",
+        "exhaustive-search",
+        "partial-state-tree"
+      ]
+    },
+    {
+      "id": "partial-state-tree",
+      "en": "Partial state tree",
+      "zh": "部分状态树",
+      "def": {
+        "en": "A state tree that shows only the first few levels; the ⋮ marks show that the tree keeps growing below.",
+        "zh": "只画了前几层的状态树；最下面的 ⋮ 表示树还会继续往下长，只是没画完。课件 p.20 的标题就是 A Partial State Tree。"
+      },
+      "example": {
+        "zh": "p.20 / p.22：p.13 推箱子题的部分状态树，只画到深度 2。"
+      },
+      "slides": "20, 22",
+      "related": [
+        "state-tree",
+        "depth",
+        "node"
+      ]
+    },
+    {
+      "id": "node",
+      "en": "Node (in a state tree)",
+      "zh": "节点",
+      "def": {
+        "en": "Each state in the tree is also called a node. The root node is the first (topmost) node in the tree.",
+        "zh": "状态树里的每一个状态（每一张局面图）就是一个节点。最上面的那个是根节点（root node），也就是现在的局面。"
+      },
+      "example": {
+        "zh": "p.25 的树里，每一张 3 行 2 列的小格子图都是一个节点，一共 15 个。"
+      },
+      "slides": "21-22",
+      "related": [
+        "edge",
+        "root-node",
+        "parent-node",
+        "child-node"
+      ]
+    },
+    {
+      "id": "edge",
+      "en": "Edge (in a state tree)",
+      "zh": "边",
+      "def": {
+        "en": "Each action connecting nodes is also called an edge. Each edge goes from a parent node to a child node.",
+        "zh": "连接两个节点的每个动作就叫一条边，也就是树里的箭头。边从父节点（parent node）指向子节点（child node），上面通常写着动作名。"
+      },
+      "example": {
+        "zh": "p.20 的树里写着 up、down、right 的箭头就是边。井字棋的树（p.31）箭头上没写字，因为从棋盘上就能看出走了哪一步。"
+      },
+      "slides": "21, 31",
+      "related": [
+        "node",
+        "action",
+        "parent-node",
+        "child-node"
+      ]
+    },
+    {
+      "id": "root-node",
+      "en": "Root node",
+      "zh": "根节点",
+      "def": {
+        "en": "The root node is the first (topmost) node in the tree. Exhaustive search adds the current game state as the root node, and its depth is 0.",
+        "zh": "树最上面的第一个节点，也就是搜索开始时的当前状态。根的深度是 0。"
+      },
+      "example": {
+        "zh": "p.22 的树上，根旁边写着 Root Node 和 Depth 0。"
+      },
+      "slides": "21-23",
+      "related": [
+        "node",
+        "depth",
+        "state-tree"
+      ]
+    },
+    {
+      "id": "parent-node",
+      "en": "Parent node",
+      "zh": "父节点",
+      "def": {
+        "en": "Each edge goes from a parent node to a child node. The parent node is the node the edge starts from, one level higher in the tree.",
+        "zh": "边出发的那个节点，在上面一层。一个父节点可以有好几个孩子。"
+      },
+      "example": {
+        "zh": "p.22 里，根节点是 up 那张图和 down 那张图的父节点。"
+      },
+      "slides": "21",
+      "related": [
+        "child-node",
+        "edge",
+        "node"
+      ]
+    },
+    {
+      "id": "child-node",
+      "en": "Child node",
+      "zh": "子节点（孩子）",
+      "def": {
+        "en": "Each edge goes from a parent node to a child node. A child node is the state that results from taking one legal action in its parent's state, one level deeper in the tree.",
+        "zh": "边指向的那个节点：在父节点的状态下做一个动作后得到的新状态，在下一层。终止状态永远没有孩子。"
+      },
+      "example": {
+        "zh": "穷举搜索第 2 步：考虑根的所有合法动作，把得到的状态画成根的孩子（children）。"
+      },
+      "slides": "21, 23",
+      "related": [
+        "parent-node",
+        "edge",
+        "terminal-state"
+      ]
+    },
+    {
+      "id": "terminal-state",
+      "en": "Terminal state",
+      "zh": "终止状态",
+      "def": {
+        "en": "A terminal state is a node in which the game is over. Terminal states never have children and may or may not be goal states.",
+        "zh": "游戏已经结束的节点，下面不会再有孩子。它不一定是赢：结局可能是赢、输或平局。Minimax 就是从终止状态开始往上传值的。"
+      },
+      "example": {
+        "zh": "井字棋例子（p.31 / p.34）最底下 6 个棋盘都是终止状态：2 个是 X 赢（+100），4 个是平局（0）。那 4 个平局是终止状态，但不是目标状态。"
+      },
+      "slides": "21, 34",
+      "related": [
+        "goal-state",
+        "non-terminal-state",
+        "minimax",
+        "reward-value"
+      ]
+    },
+    {
+      "id": "depth",
+      "en": "Depth (of a node)",
+      "zh": "深度（节点的深度）",
+      "def": {
+        "en": "The depth of a node is the number of edges between it and the root. The root is at depth 0.",
+        "zh": "从根走到这个节点要经过几条边。根 = 0，根的孩子 = 1，孩子的孩子 = 2……"
+      },
+      "example": {
+        "zh": "p.25 里经过 up, right, down 走到的 Goal! 节点，和根之间隔了 3 条边，深度是 3。"
+      },
+      "slides": "21-22, 24-27",
+      "related": [
+        "root-node",
+        "edge",
+        "exponential-growth",
+        "search-depth"
+      ]
+    },
+    {
+      "id": "solution-path",
+      "en": "Solution (path of actions from the root to a goal state)",
+      "zh": "解（从根到目标状态的动作路径）",
+      "def": {
+        "en": "When a goal state is found, the path of actions from the root to the goal state gives the solution to the puzzle. Importantly, this solution is guaranteed to be correct.",
+        "zh": "找到目标状态后，从根一路走到它所经过的动作，按顺序读出来就是解。单人谜题里这个解保证正确。"
+      },
+      "example": {
+        "zh": "p.26：up → right → down 到达 Goal!，所以解是 up, right, down。"
+      },
+      "slides": "26",
+      "related": [
+        "goal-state",
+        "exhaustive-search",
+        "root-node"
+      ]
+    },
+    {
+      "id": "exponential-growth",
+      "en": "Exponential growth (of a state tree)",
+      "zh": "指数增长",
+      "def": {
+        "en": "The number of nodes grows exponentially with depth. Since 2 actions were possible from every state in the lecture's tree, the number of nodes grew by a factor of 2 at each depth. Each state generated costs the computer time, and this exponential growth is what makes Search hard.",
+        "zh": "每往下一层，节点数就乘一个固定的倍数（课件的例子是 ×2），所以层数一多，节点数就爆炸。每生成一个状态都要花时间，这就是搜索难的原因；时间用完还没找到目标状态，就只能放弃。"
+      },
+      "example": {
+        "zh": "每个状态 2 个动作：深度 3 有 8 个节点；深度 10 有 2^10 = 1,024 个（约一千）；深度 20 约一百万；深度 40 约一万亿。（课件 p.27 只提了问题，这些数是按 ×2 的规律算出来的。）"
+      },
+      "slides": "27-28, 51",
+      "related": [
+        "depth",
+        "exhaustive-search",
+        "heuristic",
+        "search-depth"
+      ]
+    },
+    {
+      "id": "multiplayer-game",
+      "en": "Multiplayer game (two-player game)",
+      "zh": "多人游戏（两人游戏）",
+      "def": {
+        "en": "A game with an opponent, such as Tic-Tac-Toe. Unlike in single-player puzzles, we are no longer in control of every step of the game, so finding a goal state no longer guarantees a win.",
+        "zh": "有对手的游戏。和单人谜题不同，我们不再控制每一步（对手自己选怎么走），所以在树里找到目标状态不保证赢，需要一种考虑对手目标的搜索（Minimax）。"
+      },
+      "example": {
+        "zh": "井字棋的树（p.31）里有两个 Goal!，但对手 O 会堵我们，最后最好只能保证平局。"
+      },
+      "slides": "29-32, 51",
+      "related": [
+        "single-player-puzzle",
+        "tic-tac-toe",
+        "adversarial-search",
+        "minimax",
+        "goal-state"
+      ]
+    },
+    {
+      "id": "tic-tac-toe",
+      "en": "Tic-Tac-Toe",
+      "zh": "Tic-Tac-Toe（井字棋）",
+      "def": {
+        "en": "A two-player game on a 3x3 board, where one player plays X and the other plays O. A player wins by getting three of their marks in a row (across, down or diagonally); a full board with no line is a draw. The lecture uses it (we are X) to show that finding a goal state no longer guarantees a win, and to walk through the Minimax algorithm.",
+        "zh": "两人轮流在 3×3 的格子里画 X 和 O 的游戏（课件里 X 在一列连成三个时标 Goal!）。课件用它说明“找到目标状态不保证赢”，并一步步演示 Minimax。补充（课件外）：谁先把三个自己的符号连成一条线（横、竖、斜都行）谁赢；格子填满还没人连成线就是平局。"
+      },
+      "example": {
+        "zh": "p.30 的根局面：第一行 O _ _，第二行 X X O，第三行 O _ X，轮到我们（X）。minimax 算出根的值是 0：对手也理性时，我们最多保证平局。"
+      },
+      "slides": "30-41",
+      "related": [
+        "multiplayer-game",
+        "minimax",
+        "reward-value"
+      ]
+    },
+    {
+      "id": "adversarial-search",
+      "en": "Adversarial search",
+      "zh": "对抗搜索",
+      "def": {
+        "en": "A version of Search that takes our opponent's goals into account. The lecture outline calls this part 'Adversarial Search and Minimax'.",
+        "zh": "考虑对手目标的搜索。课件大纲里叫 Adversarial Search，正文里讲的具体方法就是 Minimax。"
+      },
+      "slides": "3, 32",
+      "related": [
+        "minimax",
+        "multiplayer-game",
+        "search"
+      ]
+    },
+    {
+      "id": "reward-value",
+      "en": "Reward values",
+      "zh": "奖励值",
+      "def": {
+        "en": "Numerical values assigned to all of the ways that a game can end. The course conventions are: a win is +100, a loss is -100, a draw is 0, and any other outcome must be between -100 and +100. Heuristics follow the same conventions: a guaranteed win is +100, a guaranteed loss is -100 and an equal position is 0.",
+        "zh": "给游戏的每种结局打一个数：赢 +100，输 -100，平局 0，其他结局在 -100 和 +100 之间。这样电脑就能区分输和平局，也能比较哪个结局更好。启发式估分也用同一套刻度：保证赢 +100，保证输 -100，势均力敌 0。"
+      },
+      "example": {
+        "zh": "井字棋例子：X 赢的两个终止状态标 +100，四个平局标 0。启发式沿用同一套刻度：保证赢 +100，保证输 -100，势均力敌 0。"
+      },
+      "slides": "32-34, 52",
+      "related": [
+        "rational-agent",
+        "zero-sum-game",
+        "minimax",
+        "heuristic"
+      ]
+    },
+    {
+      "id": "rational-agent",
+      "en": "Rational agent",
+      "zh": "理性智能体",
+      "def": {
+        "en": "'A rational agent is one that acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome.' In games with reward values, a rational agent always chooses actions that maximize the reward it will earn.",
+        "zh": "行动是为了取得最好结果的智能体；如果结果说不准（有不确定性），就选“平均来看”最好的做法，也就是最好的期望结果。注意：不保证每次结果都最好。在有奖励值的游戏里，理性智能体总是选能让自己得到最多奖励的行动。"
+      },
+      "example": {
+        "zh": "Minimax 里轮到我们（▲）就取最大值，这就是按理性智能体的方式行动；共享牧场例子里，两个理性的农夫都选了过度放牧。注意：理性不等于符合人类价值观，这正是对齐（Alignment）问题。"
+      },
+      "slides": "33, 64",
+      "related": [
+        "reward-value",
+        "minimax",
+        "alignment"
+      ]
+    },
+    {
+      "id": "zero-sum-game",
+      "en": "Zero sum game",
+      "zh": "零和游戏",
+      "def": {
+        "en": "In many games (called zero sum games), our opponent's reward is the negation of ours.",
+        "zh": "对手的奖励 = 我们奖励的相反数：我们 +100，对手就是 -100；我们 -40，对手就是 +40。所以对手想让自己的奖励最大，就等于让我们的奖励最小。"
+      },
+      "example": {
+        "zh": "共享牧场的例子就不是零和游戏：比如结局 (2,2)，邻居的 2 并不是我们的 2 的相反数。"
+      },
+      "slides": "33, 65",
+      "related": [
+        "reward-value",
+        "minimax",
+        "rational-agent"
+      ]
+    },
+    {
+      "id": "minimax",
+      "en": "Minimax (Minimax algorithm)",
+      "zh": "Minimax（极小化极大算法）",
+      "def": {
+        "en": "An algorithm for multiplayer games that decides what move to play. Minimax starts at terminal states and carries values upwards, assuming: on our turn, we always maximize our reward; on our opponent's turn, they will always minimize our reward. When a value gets carried up to the root, we know what move to play and the reward we should get for playing it.",
+        "zh": "两人对战时决定下哪一步的算法：从终止状态（最底下）开始，一层一层往上传值：轮到我们（▲）取孩子里的最大值，轮到对手（▼）取最小值。传到根时，就知道该走哪一步、能拿到多少奖励。"
+      },
+      "example": {
+        "zh": "井字棋例子：终止值 +100, 0, 0, 0, 0, +100 → O 取最小，得到 0, 0, 0 → 根取最大 = 0（对手也理性时，最多保证平局）。"
+      },
+      "slides": "34-50, 57, 66-70",
+      "related": [
+        "abstract-minimax-tree",
+        "terminal-state",
+        "reward-value",
+        "heuristic",
+        "search-depth"
+      ]
+    },
+    {
+      "id": "abstract-minimax-tree",
+      "en": "Abstract minimax state tree (▲ / ▼)",
+      "zh": "抽象 minimax 状态树（▲ / ▼）",
+      "def": {
+        "en": "A Minimax state tree drawn for a non-specific game. An upward pointing triangle (▲) means that it's our turn, and we should maximize reward. A downward pointing triangle (▼) means that it's our opponent's turn, and they should minimize reward. Values of terminal states are given.",
+        "zh": "不画具体棋盘，只用三角形表示轮到谁：▲（尖朝上）= 轮到我们，取最大；▼（尖朝下）= 轮到对手，取最小。最底下终止状态的值直接给出。"
+      },
+      "example": {
+        "zh": "p.42：叶子 2, 3, 5, -9, 7, 5, 0, -1 → ▲ 层 3, 5, 7, 0 → ▼ 层 3, 0 → 根 3，走左边。p.47 活动：根 = 7，走右边。"
+      },
+      "slides": "42-50, 57",
+      "related": [
+        "minimax",
+        "terminal-state",
+        "leaf"
+      ]
+    },
+    {
+      "id": "leaf",
+      "en": "Leaf (leaf node)",
+      "zh": "叶子（叶节点）",
+      "def": {
+        "en": "A node at the bottom of a tree that has no children. The slides do not use this word: in the abstract minimax trees, the leaves are the terminal states, whose values are given (or, at a fixed depth, the bottom row of heuristic values).",
+        "zh": "树最底下、没有孩子的节点。这是一般说法，课件用的词是 terminal state（终止状态）或 bottom row（最底一排）。考试写英文时用课件的词。"
+      },
+      "example": {
+        "zh": "p.42 的抽象树最底下 8 个数 2, 3, 5, -9, 7, 5, 0, -1 就是叶子，也就是给定的终止状态的值。"
+      },
+      "slides": "42, 47, 57",
+      "related": [
+        "terminal-state",
+        "abstract-minimax-tree",
+        "node"
+      ]
+    },
+    {
+      "id": "non-terminal-state",
+      "en": "Non-terminal state",
+      "zh": "非终止状态",
+      "def": {
+        "en": "A state in which the game is not over yet, so it has no final reward. If there isn't enough time to generate all terminal states, one option is to guess the value of non-terminal states using heuristics.",
+        "zh": "游戏还没结束的状态，还没有真正的结局奖励。时间不够、搜不到终局时，就用启发式去“猜”它的值。"
+      },
+      "slides": "51, 57",
+      "related": [
+        "terminal-state",
+        "heuristic",
+        "search-depth"
+      ]
+    },
+    {
+      "id": "heuristic",
+      "en": "Heuristic (heuristic evaluation function)",
+      "zh": "启发式（启发式评估函数）",
+      "def": {
+        "en": "A heuristic (or heuristic evaluation function) is a numerical score for estimating the 'goodness' of a state from our perspective. Following the reward conventions: a guaranteed win is +100, a guaranteed loss is -100, an equal position is 0, and any other outcome must be between -100 and +100.",
+        "zh": "从我们这边看，给一个状态（局面）估一个“好坏分”：越高对我们越好。来源有两种：用机器学习自动学，或者用人类专家知识手工设计。它只是估计，不能完整反映局面，也不一定准；依赖它就会失去对奖励的保证。"
+      },
+      "example": {
+        "zh": "国际象棋的评估条显示白方有 +2.1 的优势（p.53）；子力优势公式（p.55）；lab 里的 '3-in-a-rows' = 我的三连数 - 对手的三连数（p.60）。"
+      },
+      "slides": "51-58, 60",
+      "related": [
+        "expert-knowledge",
+        "material-advantage",
+        "non-terminal-state",
+        "search-depth",
+        "heuristic-feature",
+        "heuristic-weight"
+      ]
+    },
+    {
+      "id": "expert-knowledge",
+      "en": "Expert knowledge",
+      "zh": "专家知识",
+      "def": {
+        "en": "Expert knowledge is the intuition and reasoning of human experts distilled for use by AI. Heuristics may be crafted manually, using human expert knowledge (or learned autonomously through Machine Learning).",
+        "zh": "把人类专家的直觉和推理“提炼”出来交给 AI 用。手工设计启发式靠的就是它（另一条路是用机器学习自动学）。"
+      },
+      "example": {
+        "zh": "国际象棋的“子力优势”（兵 1、马 3、象 3、车 5、后 9）就是专家知识。"
+      },
+      "slides": "54-55",
+      "related": [
+        "heuristic",
+        "material-advantage",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "material-advantage",
+      "en": "Material advantage (chess)",
+      "zh": "子力优势（国际象棋）",
+      "def": {
+        "en": "In Chess, 'material advantage' is expert knowledge that can be used as a heuristic: `Material Advantage = 1*[(# W pawns) - (# B pawns)] + 3*[(# W knights) - (# B knights)] + 3*[(# W bishops) - (# B bishops)] + 5*[(# W rooks) - (# B rooks)] + 9*[(# W queens) - (# B queens)]`. This is a simple, common format for a heuristic (a weighted sum).",
+        "zh": "国际象棋的加权和启发式：每种棋子算“白方个数 - 黑方个数”，乘上它的权重，最后全部加起来；正数表示白方占优。权重：兵 pawn 1、马 knight 3、象 bishop 3、车 rook 5、后 queen 9。"
+      },
+      "example": {
+        "zh": "按 p.53 截图数出来（课件没算，是我们自己数的）：兵 7 比 6、马 1 比 1、象 0 比 1、车 2 比 1、后 1 比 1 → 1×1 + 3×0 + 3×(-1) + 5×1 + 9×0 = +3。截图里的评估条是 +2.1：不同的启发式对同一个局面可以给出不同的分数。"
+      },
+      "slides": "53, 55",
+      "related": [
+        "heuristic",
+        "expert-knowledge",
+        "heuristic-feature",
+        "heuristic-weight",
+        "weighted-sum"
+      ]
+    },
+    {
+      "id": "heuristic-feature",
+      "en": "Feature (in a heuristic)",
+      "zh": "特征（启发式里的）",
+      "def": {
+        "en": "In a heuristic, something that can be used as an indicator of how good a state is, such as # pawns or # knights. In the simple, common format for a heuristic, a set of features is compared for each player, and their importance is weighted.",
+        "zh": "局面里能用来指示“局面好不好”的东西，可以数一数、比一比，比如兵的个数、马的个数。每个特征都用“我方 - 对方”来比，再乘上权重。"
+      },
+      "example": {
+        "zh": "子力优势里的 # pawns、# knights、# bishops、# rooks、# queens；lab 例子里的 three_in_a_row（三连的个数）。"
+      },
+      "slides": "55, 60",
+      "related": [
+        "heuristic-weight",
+        "heuristic",
+        "material-advantage",
+        "weighted-sum"
+      ]
+    },
+    {
+      "id": "heuristic-weight",
+      "en": "Weight (in a heuristic)",
+      "zh": "权重（启发式里的）",
+      "def": {
+        "en": "A value that multiplies a feature's difference. It determines the importance of this feature against every other feature; in material advantage, pawns have weight 1, knights 3, bishops 3, rooks 5 and queens 9.",
+        "zh": "乘在特征差值前面的数，表示这个特征比别的特征重要多少：越重要，乘的数越大。注意：Lab 3 里权重由人定、靠调（**tuning**）；Lecture 3 p.54 也说 heuristic 可以用机器学习自动学出来，那时权重就像 Lecture 4–5 的模型参数，由机器来找。"
+      },
+      "example": {
+        "zh": "子力优势里后（queen）的权重是 9，最大；兵（pawn）是 1，最小。lab 例子 '3-in-a-rows' 只有一个特征，相当于权重是 1。"
+      },
+      "slides": "55",
+      "related": [
+        "heuristic-feature",
+        "material-advantage",
+        "weighted-sum",
+        "model-parameter"
+      ]
+    },
+    {
+      "id": "search-depth",
+      "en": "Search depth (fixed depth)",
+      "zh": "搜索深度（固定深度）",
+      "def": {
+        "en": "How many levels below the current state the search generates. To ensure we don't run out of time, we can generate states to a fixed depth and calculate heuristic values for the bottom row, then use Minimax as if they were terminal states. Since heuristics are only estimates, we lose guarantees about the reward we will receive.",
+        "zh": "搜索从当前状态往下生成几层。为了不超时，只搜到固定深度：最底一排用启发式打分，再把它们当成终止状态做 Minimax。省时间，但启发式只是估计，所以失去对奖励的保证；不过终止状态太深、找不到时，用估计总比什么都没有好。"
+      },
+      "example": {
+        "zh": "lab 应用里可以设置 Search depth（截图里两个玩家都是 4），观察不同深度下 Minimax 怎么下。"
+      },
+      "slides": "57-58, 60-61",
+      "related": [
+        "heuristic",
+        "minimax",
+        "depth",
+        "exponential-growth"
+      ]
+    },
+    {
+      "id": "connect-four",
+      "en": "Connect Four",
+      "zh": "Connect Four（四子棋）",
+      "def": {
+        "en": "A two-player game that the course's lab application plays in its Connect Four mode. In the lab, you watch Minimax at different depths of search and create your own heuristics to see how they play.",
+        "zh": "课程 lab 应用里的一个模式（在右上角和 Turtle 模式之间切换）。lab 里用它观察不同搜索深度下的 Minimax，并自己设计启发式来对战。补充（课件外）：规则是两人轮流往竖着的 7 列里投棋子，谁先把自己的 4 个棋子连成一条线（横、竖、斜都行）谁赢。"
+      },
+      "example": {
+        "zh": "例子启发式 '3-in-a-rows' = count_board('three_in_a_row', 'me') - count_board('three_in_a_row', 'opponent')。"
+      },
+      "slides": "59-61",
+      "related": [
+        "minimax",
+        "heuristic",
+        "search-depth"
+      ]
+    },
+    {
+      "id": "purely-algorithmic-approach",
+      "en": "Purely algorithmic approach (pure algorithm)",
+      "zh": "纯算法方法",
+      "def": {
+        "en": "An approach in which the programmer specifies the solution to a problem in detail (a step-by-step solution, using instructions the computer can understand), and the computer just follows it. Simply following an algorithm is not normally considered to be AI. It is usually fast, and its time depends entirely on how long the solution takes to execute.",
+        "zh": "人（程序员）把一步一步的解法详细写好，电脑只负责照做。按一般规则，这不算 AI。通常很快，花多少时间完全取决于执行这个解要多久。对比：符号 AI 给的是“找解的方法”（关于问题的知识），机器学习给的是训练数据。"
+      },
+      "example": {
+        "en": "Pure Algorithm: we specify the solution, the computer just follows it. Symbolic AI: we specify a way to find a solution, the computer then finds and executes the solution.",
+        "zh": "p.62–63 对比：纯算法是我们直接给出解、电脑照着执行，通常很快；符号 AI 是我们给出找解的方法、电脑自己找到解再执行，执行很快但找解可能要很久。例：Sokoban 照着写好的 14 步走一遍很快，但用搜索去找出这 14 步可能要很久。两者有很多共同性质，所以 Lecture 1 的大表把它们放在一起。"
+      },
+      "slides": "62-63",
+      "related": [
+        "symbolic-ai",
+        "algorithm",
+        "search"
+      ]
+    },
+    {
+      "id": "alignment",
+      "en": "Alignment",
+      "zh": "对齐（Alignment）",
+      "def": {
+        "en": "Rational agents pursue outcomes that maximize their reward, but that reward may not match the actual intentions, goals, and ethics valued by humans. Alignment is the problem of trying to make AI behaviour match these values.",
+        "zh": "让 AI 的行为符合人类真正看重的意图、目标和伦理。难点在于：理性智能体只追求让自己的奖励最大，可这个奖励不一定和我们真正想要的东西一致。"
+      },
+      "example": {
+        "zh": "共享牧场例子：两个只顾自己奖励的农夫都过度放牧，结果是 (1,1)，比都可持续放牧的 (2,2) 对两人都差（p.69）。"
+      },
+      "slides": "64-71",
+      "related": [
+        "rational-agent",
+        "reward-value",
+        "prisoners-dilemma",
+        "tragedy-of-the-commons"
+      ]
+    },
+    {
+      "id": "game-theory",
+      "en": "Game Theory",
+      "zh": "博弈论",
+      "def": {
+        "en": "The field that the Prisoner's Dilemma comes from: the lecture calls the Prisoner's Dilemma 'a classic problem in Game Theory'. The lecture only names this field and does not define it.",
+        "zh": "课件只提到名字（p.65）：囚徒困境是博弈论里的经典问题。补充（课件外）：博弈论研究“几个人的决定会互相影响”时，每个人会怎么选。"
+      },
+      "slides": "65",
+      "related": [
+        "prisoners-dilemma",
+        "tragedy-of-the-commons",
+        "rational-agent"
+      ]
+    },
+    {
+      "id": "prisoners-dilemma",
+      "en": "Prisoner's Dilemma",
+      "zh": "囚徒困境",
+      "def": {
+        "en": "A classic problem in Game Theory. The lecture uses a variant, framed as a Tragedy of the Commons: two farmers each pursue their own reward and end up overgrazing, even though there was an option better for both farmers.",
+        "zh": "博弈论（Game Theory）里的经典问题。课件只提到名字，用的是它的一个变体：两个农夫共用牧场，各顾各的奖励，结果都过度放牧，比都可持续放牧更差。"
+      },
+      "slides": "65-70",
+      "related": [
+        "tragedy-of-the-commons",
+        "alignment",
+        "rational-agent",
+        "game-theory"
+      ]
+    },
+    {
+      "id": "tragedy-of-the-commons",
+      "en": "Tragedy of the Commons",
+      "zh": "公地悲剧",
+      "def": {
+        "en": "The framing of the lecture's Prisoner's Dilemma variant: you and a neighbouring farmer share a pasture, and each of you can choose to graze sustainably or to overgraze. Both overgrazing gives (1,1), although both grazing sustainably would give (2,2).",
+        "zh": "课件给囚徒困境变体套的“故事”：你和邻居共用一块牧场，各自选可持续放牧或过度放牧。课件只提到这个名字，没有单独定义。补充（课件外）：公地悲剧一般指大家共用的资源被每个人过度使用，最后大家都更差。"
+      },
+      "example": {
+        "zh": "奖励写成（我们，邻居）：都可持续 (2,2)；我们可持续、邻居过度 (0,3)；我们过度、邻居可持续 (3,0)；都过度 (1,1)。minimax 的结果是 (1,1)。"
+      },
+      "slides": "65-70",
+      "related": [
+        "prisoners-dilemma",
+        "alignment"
+      ]
+    }
+  ]
+}

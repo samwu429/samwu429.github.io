@@ -1,0 +1,1787 @@
+{
+  "id": "lab03",
+  "kind": "lab",
+  "number": 3,
+  "title": {
+    "en": "Lab 3: Search and Game-Playing (with Connect Four!)",
+    "zh": "Lab 3：搜索与博弈（Connect Four 四子棋）"
+  },
+  "sources": [
+    {
+      "file": "lab03_connect_four.pdf",
+      "pages": 22
+    }
+  ],
+  "estimatedMinutes": 55,
+  "oneLiner": {
+    "zh": "用 Connect Four 这个游戏，亲眼看电脑怎么用 Minimax “往前看几步”，再自己用加权和（**weighted sum**）做一个 heuristic 给局面打分。",
+    "en": "You watch Minimax play Connect Four and build your own weighted-sum heuristic."
+  },
+  "outcomes": [
+    {
+      "en": "Use the lab application's Connect Four mode to watch (or play) games where players use Minimax at different search depths.",
+      "zh": "会用 lab app 的 Connect Four 模式，看（或亲手玩）用 Minimax 在不同搜索深度下下棋的对局。"
+    },
+    {
+      "en": "Explain why Minimax searches to a fixed depth and evaluates states with a heuristic when exhaustive search is too time-consuming.",
+      "zh": "能解释：穷举搜索太费时间时，为什么 Minimax 只搜到固定深度，再用 heuristic 给状态打分。"
+    },
+    {
+      "en": "Build a heuristic as a weighted sum of features, where each feature is our value minus the opponent's value, times a weight.",
+      "zh": "会把 heuristic 写成特征的加权和：每个特征算“我的 − 对手的”，再乘权重。"
+    },
+    {
+      "en": "Test a heuristic on specific boards and compare it against other players.",
+      "zh": "会在具体棋盘上测试 heuristic 的分数，并让它和别的玩家对战比较。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-lab-goal",
+      "title": {
+        "zh": "这个 lab 是干什么的",
+        "en": "What this lab is for"
+      },
+      "slides": "1-2, 6-8, 20, 22",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "Lab 3 的全名是 **Lab #3: Search and Game-Playing (with Connect Four!)**。一句话：把 Lecture 3（**Search and Rationality**）学的搜索（**search**）、**Minimax** 和启发式（**heuristic**）放进一个真的游戏里，亲眼看电脑怎么“往前看几步”再下棋。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：课件没讲 Connect Four 的规则，这里简单说一下。两个人轮流把自己颜色的棋子（**chip**）丢进 7 列中的某一列，棋子会掉到这一列最下面的空格。谁先让自己的 4 个棋子连成一条直线（横、竖、斜都算）谁就赢；棋盘下满还没人连成 4 个，就是平局。"
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "Lab 分成两大块",
+            "en": "The two parts of the lab"
+          },
+          "items": [
+            {
+              "zh": "**Parts 1 & 2：Search and Minimax**（第 2–7 页）：给红方、黄方各选“谁来下”（人或电脑），看（或亲手玩）电脑用 Minimax 下棋，还可以改搜索深度（**search depth**）。",
+              "en": "Parts 1 & 2: Search and Minimax"
+            },
+            {
+              "zh": "**Part 3：Heuristics**（第 8–22 页）：用加权和（**weighted sum**）自己搭一个 heuristic，让电脑用它下棋，测一测它的分数，再和同学的 heuristic 对战。",
+              "en": "Part 3: Heuristics"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像你和朋友下五子棋：厉害的人落子前会想“我下这里，他会怎么堵，我再怎么下……”。这种“先在脑子里推几步”就是 search；“假设对手每一步都走对他最好的棋”就是 Minimax 的想法。",
+          "limit": "人会凭经验只想几步好棋；Lecture 3 里的 Minimax 不靠感觉，而是按规则把可能的走法一层一层列出来算。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "先认识一下游戏界面（第 7 / 22 页截图）",
+            "en": "Getting to know the game screen (pages 7 and 22)"
+          },
+          "headers": [
+            "东西 Item",
+            "截图里是什么 In the screenshot"
+          ],
+          "rows": [
+            [
+              "棋盘 board",
+              "7 列（column 0–6，从左到右）× 6 行（row 0–5，从下往上）"
+            ],
+            [
+              "Player 1 (Red) 红方",
+              "选了 Minimax - With Heuristic，Search depth = 4，Heuristic = 3-in-a-rows"
+            ],
+            [
+              "Player 2 (Yellow) 黄方",
+              "选了 Student Crusher 3000，Search depth = 4"
+            ],
+            [
+              "中心列 center column",
+              "column 3，课件第 20 页叫它 valuable center column（很有价值的中间列）"
+            ],
+            [
+              "两边的小面板 side panels",
+              "各有 Stop / Continue 按钮和一棵画出来的树，旁边一列数字（左边、红方旁边那个是 1、7、48、154、632）。课件没有解释它们是什么，这里不展开。"
+            ]
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "Connect Four",
+              "zh": "Connect Four（游戏名，中文常叫“四子棋”）",
+              "hint": "本 lab 用的两人棋类游戏"
+            },
+            {
+              "en": "chip",
+              "zh": "棋子",
+              "hint": "红色或黄色的圆形棋子"
+            },
+            {
+              "en": "column / row",
+              "zh": "列 / 行",
+              "hint": "竖着的一条叫 column，横着的一条叫 row"
+            },
+            {
+              "en": "me / opponent",
+              "zh": "我 / 对手",
+              "hint": "app 里算分时，me 是我方，opponent 是对方"
+            },
+            {
+              "en": "lab application",
+              "zh": "lab 应用程序",
+              "hint": "和 Lab 2（Turtle）用的是同一个网页 app"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Write it like this"
+          },
+          "items": [
+            {
+              "en": "In Lab 3, we used the lab application in Connect Four mode to watch Minimax play at different search depths.",
+              "zh": "Lab 3 里，我们用 lab app 的 Connect Four 模式，看 Minimax 在不同搜索深度下怎么下棋。"
+            },
+            {
+              "en": "Connect Four is a two-player game, so we need a kind of search that takes our opponent's goals into account, like Minimax.",
+              "zh": "Connect Four 是两人游戏，所以需要一种会考虑对手目标的搜索，比如 Minimax。"
+            },
+            {
+              "en": "In Part 3, we built our own heuristics as weighted sums of features.",
+              "zh": "Part 3 里，我们用特征的加权和做了自己的 heuristic。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is the main purpose of Lab 3?",
+            "zh": "Lab 3 的主要目的是什么？"
+          },
+          "options": [
+            {
+              "en": "To train a neural network on photos of Connect Four boards",
+              "zh": "用 Connect Four 棋盘照片训练神经网络"
+            },
+            {
+              "en": "To apply Search, Minimax and heuristics to the game Connect Four",
+              "zh": "把搜索、Minimax 和启发式用到 Connect Four 游戏上"
+            },
+            {
+              "en": "To write Python code for a new game website",
+              "zh": "为一个新游戏网站写 Python 代码"
+            },
+            {
+              "en": "To collect data about how students play games",
+              "zh": "收集学生玩游戏的数据"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "lab 的标题就是 Search and Game-Playing：Parts 1 & 2 看 Minimax，Part 3 做 heuristic。这次没有训练模型（那是机器学习），不写 Python（用的是积木式编辑器），也不是收集数据。",
+            "en": "The lab applies Search, Minimax and heuristics; it does not train a model, write Python or collect data."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-lab-steps",
+      "title": {
+        "zh": "一步一步：你在 lab 里做了什么",
+        "en": "Step by step: what you did in the lab"
+      },
+      "slides": "6-7, 15-17, 20-22",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "下面按顺序把 lab 的操作拆开。有些步骤后面写了“→ 练的是……”，告诉你这个按钮背后是哪一个概念，复习时不会只记住“点了什么”。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "Parts 1 & 2：看 Minimax 下棋（第 6–7 页）",
+            "en": "Parts 1 & 2: watching Minimax play (pages 6-7)"
+          },
+          "items": [
+            {
+              "en": "Open the lab application (the same app as in Lab 2).",
+              "zh": "打开 lab app：`mcs.utm.utoronto.ca/~jungjosh/csc105/labapp`（和 Lab 2 是同一个 app）。"
+            },
+            {
+              "en": "Click 'Connect Four' at the top-right of the screen to switch modes.",
+              "zh": "点屏幕右上角的 Connect Four 按钮，切换到 Connect Four 模式。"
+            },
+            {
+              "en": "For each player, choose Human, Minimax - No Heuristic, Minimax - With Heuristic or Student Crusher 3000.",
+              "zh": "给红方（Player 1）和黄方（Player 2）各选一个：Human（人）、Minimax - No Heuristic、Minimax - With Heuristic 或 Student Crusher 3000。"
+            },
+            {
+              "en": "Choose the search depth, and a heuristic if the player uses one.",
+              "zh": "选搜索深度（**search depth**）；用 heuristic 的玩家还要选一个 heuristic。→ 练的是“往前看几步”。"
+            },
+            {
+              "en": "Press 'New game' and watch (or play) the game.",
+              "zh": "按 New game 开局，然后看（或亲手玩）这盘棋。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：课件没解释 Student Crusher 3000 是什么，也没解释两个 Minimax 选项内部的区别。按 Lecture 3 的思路可以这样理解：No Heuristic 只能认出搜索深度以内真的出现的输、赢、平；With Heuristic 会在深度上限那一层用你选的 heuristic 打分。这只是帮你理解的推测。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "Part 3：做自己的 heuristic（第 16–22 页）",
+            "en": "Part 3: building your own heuristic (pages 16-22)"
+          },
+          "items": [
+            {
+              "en": "Start using the block-programming editor (it is only needed from Part 3).",
+              "zh": "从 Part 3 开始用积木式编程编辑器（**block-programming editor**）。"
+            },
+            {
+              "en": "Inside a purple frame, name your heuristic, pick features and type in weights.",
+              "zh": "在紫色框（**purple frame**）里：给 heuristic 起名字、选特征（**feature**）、填权重（**weight**）。→ 练的是加权和。"
+            },
+            {
+              "en": "Build the example 'Combined': three-in-a-rows on the whole board plus chips in the center column.",
+              "zh": "跟着第 20 页一起搭例子 'Combined'：整个棋盘上的三连 + 中间那列的棋子。"
+            },
+            {
+              "en": "Press the play button in the center of the app to send your heuristics to the game board on the right.",
+              "zh": "按 app 中间的播放按钮（蓝色三角），把 heuristic 送到右边的棋盘那边。"
+            },
+            {
+              "en": "Choose your heuristic for a player and press 'New game' to see how it plays.",
+              "zh": "给某个玩家选上你的 heuristic，按 New game，看它下得怎么样。"
+            },
+            {
+              "en": "Set up a board in Human vs. Human mode, choose a Heuristic and a Me color next to Test heuristic, and press it to see the actual number your heuristic gives that board.",
+              "zh": "先用 Human vs. Human 模式摆好棋盘；在 Test heuristic 旁边选 Heuristic（用哪个 heuristic）和 Me（站在红方还是黄方的角度算分），再按 Test heuristic 看分数。→ 练的是“heuristic 是从‘我’的角度打的一个数字分数”。"
+            },
+            {
+              "en": "Copy the output of 'Share code' and send it to classmates to pit your heuristics against each other.",
+              "zh": "复制 Share code 的输出发给同学（比如用 email），让你们的 heuristic 互相对战。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "课件里的三个提醒：① 编辑器里可以有好几个 heuristic（好几个紫色框），但紫色框外面不能放任何东西；② `count_board`、`count_column`、`count_row` 必须从下拉菜单选一个具名特征才能工作；③ Append Code 只是把粘贴的代码加到最后，Replace Code 会把原来的全部替换掉！"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "描述 lab 过程的英文句子",
+            "en": "Sentences to describe the lab"
+          },
+          "items": [
+            {
+              "en": "We chose a setting for each player, such as Human or Minimax, chose a search depth, and pressed New game.",
+              "zh": "我们给每个玩家选了设置（比如人或 Minimax），选了搜索深度，然后按 New game。"
+            },
+            {
+              "en": "We built a heuristic in the block editor, sent it to the game board, and checked its values with Test heuristic.",
+              "zh": "我们在积木编辑器里做了一个 heuristic，把它送到棋盘，再用 Test heuristic 查看它的分数。"
+            },
+            {
+              "en": "We shared our heuristic code with classmates and let our heuristics play against each other.",
+              "zh": "我们把 heuristic 代码分享给同学，让各自的 heuristic 互相对战。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the lab app, how can you see the actual numerical value that your heuristic gives to a specific board?",
+            "zh": "在 lab app 里，怎样看到你的 heuristic 给某个具体棋盘打了几分？"
+          },
+          "options": [
+            {
+              "en": "Press Share code",
+              "zh": "按 Share code"
+            },
+            {
+              "en": "Press Replace Code",
+              "zh": "按 Replace Code"
+            },
+            {
+              "en": "Press Undo",
+              "zh": "按 Undo"
+            },
+            {
+              "en": "Use Test heuristic, after setting up the board in Human vs. Human mode",
+              "zh": "先用 Human vs. Human 模式摆好棋盘，再用 Test heuristic"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 22 页：Test heuristic 可以测出 heuristic 在具体棋盘上的实际数值，棋盘用 Human vs. Human 模式来摆。Share code 是分享代码，Replace Code 会替换代码，Undo 是撤销，它们都不显示分数。",
+            "en": "Page 22: Test heuristic shows the actual value for a board set up in Human vs. Human mode."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-search-minimax",
+      "title": {
+        "zh": "Parts 1 & 2 的概念：搜索、状态树和 Minimax",
+        "en": "Concepts in Parts 1 & 2: search, state trees and Minimax"
+      },
+      "slides": "2-5",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节对应 **Lecture 3 – Search and Rationality** 的两部分：Introducing Search 和 Minimax and Multiplayer Games。lab 第 3–5 页就是把这两部分快速复习一遍。"
+        },
+        {
+          "type": "text",
+          "zh": "搜索（**search**）是什么？电脑在真的走棋之前，先按游戏规则，在“脑子里”把以后可能出现的局面一个个生成出来看看。注意：只是“想”，不是真的走。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像用导航 app：出发前它先把几条可能的路线都算一遍，再告诉你走哪条。search 就是“先在脑子里试走”。",
+          "limit": "导航时路不会故意跟你作对；下棋时对手会，所以两人游戏还需要 Minimax。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "Search is a method for a computer to 'look ahead' by using the game's dynamics to generate possible future states.",
+              "zh": "搜索：电脑利用游戏的规则（**dynamics**）生成未来可能的状态，从而“往前看”的方法。"
+            },
+            {
+              "en": "We can visualize search using a game tree (also called a state tree).",
+              "zh": "我们可以用游戏树（也叫状态树）把搜索画出来。"
+            },
+            {
+              "en": "A terminal state is a node in which the game is over.",
+              "zh": "（Lecture 3）终局状态是游戏已经结束的节点。"
+            },
+            {
+              "en": "The depth of a node is the number of edges between it and the root.",
+              "zh": "（Lecture 3）节点的深度是它和根之间隔着的边的数量。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "look ahead",
+              "zh": "往前看",
+              "hint": "还没真走，先想以后会发生什么"
+            },
+            {
+              "en": "dynamics",
+              "zh": "动态（游戏规则）",
+              "hint": "Lecture 3：每个状态下能做哪些动作，做了以后状态怎么变"
+            },
+            {
+              "en": "state",
+              "zh": "状态",
+              "hint": "Lecture 3：游戏在某一刻的“快照”，比如棋盘现在的样子"
+            },
+            {
+              "en": "possible future states",
+              "zh": "未来可能的状态",
+              "hint": "再走几步以后可能出现的各种局面"
+            },
+            {
+              "en": "game tree / state tree",
+              "zh": "游戏树 / 状态树",
+              "hint": "状态画成节点（**node**），动作画成边（**edge**）"
+            },
+            {
+              "en": "terminal state",
+              "zh": "终止状态（终局状态）",
+              "hint": "Lecture 3：游戏已经结束的节点，永远没有子节点（在完整的树里就是最底下的叶子）"
+            },
+            {
+              "en": "depth",
+              "zh": "深度",
+              "hint": "Lecture 3：节点和根之间隔了几条边；根是 depth 0"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 4 页：一棵部分状态树（Sokoban 推箱子）",
+            "en": "Page 4: a partial state tree (Sokoban)"
+          },
+          "steps": [
+            {
+              "zh": "最上面是根节点（**root node**）：现在的局面，小人站在中间一行的最左边，右边挨着两个箱子。"
+            },
+            {
+              "zh": "从根往下有两条边（**edge**）：`up` 和 `down`。每条边是一个动作，走完得到一个新状态。"
+            },
+            {
+              "zh": "`up` 那个状态再往下：`down`（走回原位）和 `right`；`down` 那个状态再往下：`up` 和 `right`。"
+            },
+            {
+              "zh": "数一数深度（**depth**）：根是 depth 0，up / down 走到的两个状态是 depth 1，最下面四个是 depth 2。节点的深度 = 它和根之间隔了几条边（Lecture 3 第 21–22 页）。"
+            },
+            {
+              "zh": "最底下的 ⋮ 表示树还会继续长下去，所以叫“部分”状态树（**partial state tree**）。"
+            }
+          ],
+          "answer": {
+            "zh": "每往下一层，就是“再走一步”以后可能出现的状态。",
+            "en": "Each level down shows the possible states after one more move."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "**Minimax** 用在两人（或多人）对战游戏。核心假设只有两条：轮到我们时，我们选让自己奖励（**reward**）最大的走法；轮到对手时，假设对手选让我们奖励最小的走法。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "For multiplayer games, we can use the Minimax algorithm to decide what move to play.",
+              "zh": "多人游戏中，可以用 Minimax 算法决定下哪一步。"
+            },
+            {
+              "en": "Normally, Minimax has to exhaustively search from the current state until the end of the game.",
+              "zh": "正常情况下，Minimax 必须从当前状态一直穷举搜索到游戏结束。"
+            },
+            {
+              "en": "On our turn, we always maximize our reward. On our opponent's turn, they will always minimize our reward.",
+              "zh": "（Lecture 3）轮到我们时，总是最大化我们的奖励；轮到对手时，他们总是最小化我们的奖励。"
+            }
+          ]
+        },
+        {
+          "type": "tree",
+          "caption": {
+            "zh": "第 5 页的井字棋树（我们是 X）。▲ = 轮到我们，取最大；▼ = 轮到对手 O，取最小。叶子的值来自课件，上面几层是按 Minimax 算出来的，和 Lecture 3 第 40 页一致。",
+            "en": "Page 5 tic-tac-toe tree with Minimax values (we are X)."
+          },
+          "root": {
+            "label": "Root",
+            "shape": "max",
+            "value": "0",
+            "children": [
+              {
+                "label": "A",
+                "edge": "X top-middle",
+                "shape": "min",
+                "value": "0",
+                "children": [
+                  {
+                    "label": "A1",
+                    "edge": "O top-right",
+                    "shape": "max",
+                    "value": "+100",
+                    "children": [
+                      {
+                        "label": "X wins",
+                        "edge": "X bottom-middle",
+                        "shape": "leaf",
+                        "value": "+100"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "A2",
+                    "edge": "O bottom-middle",
+                    "shape": "max",
+                    "value": "0",
+                    "children": [
+                      {
+                        "label": "Draw",
+                        "edge": "X top-right",
+                        "shape": "leaf",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "edge": "X top-right",
+                "shape": "min",
+                "value": "0",
+                "children": [
+                  {
+                    "label": "B1",
+                    "edge": "O top-middle",
+                    "shape": "max",
+                    "value": "0",
+                    "children": [
+                      {
+                        "label": "Draw",
+                        "edge": "X bottom-middle",
+                        "shape": "leaf",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "B2",
+                    "edge": "O bottom-middle",
+                    "shape": "max",
+                    "value": "0",
+                    "children": [
+                      {
+                        "label": "Draw",
+                        "edge": "X top-middle",
+                        "shape": "leaf",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "C",
+                "edge": "X bottom-middle",
+                "shape": "min",
+                "value": "0",
+                "children": [
+                  {
+                    "label": "C1",
+                    "edge": "O top-middle",
+                    "shape": "max",
+                    "value": "0",
+                    "children": [
+                      {
+                        "label": "Draw",
+                        "edge": "X top-right",
+                        "shape": "leaf",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "C2",
+                    "edge": "O top-right",
+                    "shape": "max",
+                    "value": "+100",
+                    "children": [
+                      {
+                        "label": "X wins",
+                        "edge": "X top-middle",
+                        "shape": "leaf",
+                        "value": "+100"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步一步算第 5 页的 Minimax",
+            "en": "Minimax on the page 5 tree, step by step"
+          },
+          "steps": [
+            {
+              "zh": "第 1 步：看最底下的终局状态（**terminal state**，也就是叶子）。从左到右是 +100、0、0、0、0、+100（+100 = 我们 X 赢，0 = 平局）。",
+              "en": "Terminal states (leaves): +100, 0, 0, 0, 0, +100."
+            },
+            {
+              "zh": "第 2 步：倒数第二层轮到 X，但每个局面只剩 1 个空格、只有一种走法，所以把叶子的值直接往上抄。",
+              "en": "X has only one move, so copy the values up."
+            },
+            {
+              "zh": "第 3 步：再上一层轮到对手 O（▼），O 选让我们最小的：A = min(+100, 0) = 0，B = min(0, 0) = 0，C = min(0, +100) = 0。",
+              "en": "O minimizes: 0, 0, 0."
+            },
+            {
+              "zh": "第 4 步：根节点轮到我们 X（▲），取最大：max(0, 0, 0) = 0。三个选择都是 0，所以 X 走哪一步都一样（Lecture 3 第 39 页）。",
+              "en": "X maximizes: max(0, 0, 0) = 0. All three moves give 0, so it does not matter which one X plays."
+            }
+          ],
+          "answer": {
+            "zh": "根的值是 0：如果对手也走得很理性，我们最多只能保证平局；三种走法的值都是 0，走哪一步都一样。",
+            "en": "Root value = 0: if the opponent also plays rationally, the best we can guarantee is a draw. All three moves are worth 0, so any of them is fine."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "minimax-tree",
+          "config": {
+            "leaves": [
+              2,
+              3,
+              5,
+              -9,
+              7,
+              5,
+              0,
+              -1
+            ],
+            "branching": 2,
+            "rootPlayer": "max"
+          },
+          "caption": {
+            "zh": "这是 Lecture 3 第 42–46 页的抽象 Minimax 树（答案：根 = 3，应该走左边）。先一步一步看，再用练习模式给新的叶子自己算。",
+            "en": "Lecture 3 abstract Minimax tree: root = 3, so play left."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "找到一个“赢”的叶子，不等于一定能赢：对手不会配合你。上面的树里明明有 +100，根的值却是 0。"
+            },
+            {
+              "zh": "▲ 是我们的回合（取最大），▼ 是对手的回合（取最小），别搞反。"
+            },
+            {
+              "zh": "Minimax 的值是从叶子往上（往根）算的，不是从根往下算。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In a Minimax state tree, what does a downward-pointing triangle (▼) mean?",
+            "zh": "Minimax 状态树里，朝下的三角形（▼）表示什么？"
+          },
+          "options": [
+            {
+              "en": "It is our turn, and we should maximize reward.",
+              "zh": "轮到我们，我们要最大化奖励。"
+            },
+            {
+              "en": "The game is over and the result is a draw.",
+              "zh": "游戏结束了，结果是平局。"
+            },
+            {
+              "en": "It is our opponent's turn, and they should minimize reward.",
+              "zh": "轮到对手，他们要最小化（我们的）奖励。"
+            },
+            {
+              "en": "The state must be evaluated with a heuristic.",
+              "zh": "这个状态必须用 heuristic 打分。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "Lecture 3 第 42 页：朝下的三角形表示对手的回合，对手会最小化（我们的）奖励；朝上的三角形 ▲ 才是我们的回合、取最大。三角形的方向和“游戏结束”“要用 heuristic”都没有关系。",
+            "en": "▼ means the opponent's turn (they minimize our reward); ▲ means our turn (we maximize)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-depth-heuristics",
+      "title": {
+        "zh": "Part 3 的概念：固定深度搜索 + 启发式",
+        "en": "Concepts in Part 3: fixed-depth search and heuristics"
+      },
+      "slides": "8-10",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节对应 **Lecture 3 – Search and Rationality** 的 Searching with Heuristics 部分（Lecture 3 第 51–58 页），讲固定深度（**fixed depth**）和启发式（**heuristic**）。先说问题：为什么不能一直搜到游戏结束？"
+        },
+        {
+          "type": "text",
+          "zh": "按 Connect Four 的规则（第一节的课件外补充），每一步是选一列下，而棋盘有 7 列，所以每一步最多 7 种下法。每多看一步，局面数最多再乘 7。这就是 Lecture 3 说的指数增长（**exponential growth**）：深度一层层加下去，局面数就暴涨；要一直搜到游戏结束，就太费时间了（**too time-consuming**）。"
+        },
+        {
+          "type": "widget",
+          "name": "tree-growth",
+          "config": {
+            "branching": 7,
+            "depth": 4
+          },
+          "caption": {
+            "zh": "每一层就是一步，而且双方轮流：Search depth = 4 就是“我、对手、我、对手”各走一步。每步最多 7 种下法，所以第 4 层最多有 7 × 7 × 7 × 7 = 2401 个局面。把深度再加几层，看看会怎样。",
+            "en": "Each level is one move, and the players take turns. With up to 7 moves per turn, depth 4 has up to 2401 states."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "When exhaustive search is too time-consuming, we can instead search to a more reasonable fixed depth and evaluate states with a heuristic.",
+              "zh": "穷举搜索太费时间时，可以改为只搜到一个更合理的固定深度，再用启发式给状态打分。"
+            },
+            {
+              "en": "A heuristic (or heuristic evaluation function) is a numerical score for estimating the 'goodness' of a state from our perspective.",
+              "zh": "启发式（启发式评估函数）是一个数字分数，用来从我们的角度估计一个状态有多“好”。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "exhaustive search",
+              "zh": "穷举搜索",
+              "hint": "把所有可能一直搜到游戏结束"
+            },
+            {
+              "en": "fixed depth",
+              "zh": "固定深度",
+              "hint": "只往下搜固定的几层（比如 4 层）就停"
+            },
+            {
+              "en": "numerical score",
+              "zh": "数字分数",
+              "hint": "heuristic 的结果就是一个数"
+            },
+            {
+              "en": "estimating",
+              "zh": "估计",
+              "hint": "是估出来的，不是保证"
+            },
+            {
+              "en": "'goodness' of a state",
+              "zh": "状态有多“好”",
+              "hint": "这个局面对我们有多有利"
+            },
+            {
+              "en": "from our perspective",
+              "zh": "从我们的角度",
+              "hint": "对我们有利是正数，对对手有利是负数"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像考完试估分：成绩还没出来（游戏还没结束），你按“会做的题有几道”给自己估个分。估分不一定准，但比完全不知道强。",
+          "limit": "估分只看你自己；heuristic 通常要比较双方，看谁更占优势。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "第 9 页：奖励值的约定（heuristic 也要遵守）",
+            "en": "Page 9: conventions for reward values"
+          },
+          "headers": [
+            "局面 Position",
+            "值 Value"
+          ],
+          "rows": [
+            [
+              "A guaranteed win（确定赢）",
+              "+100"
+            ],
+            [
+              "A guaranteed loss（确定输）",
+              "-100"
+            ],
+            [
+              "An equal position（双方一样好）",
+              "0"
+            ],
+            [
+              "Any other outcome（其他情况）",
+              "between -100 and +100（在 -100 和 +100 之间）"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 10 页：国际象棋里的 heuristic",
+            "en": "Page 10: a heuristic in Chess"
+          },
+          "steps": [
+            {
+              "zh": "第 10 页是一盘国际象棋，棋盘左边有一条竖着的条（bar）。"
+            },
+            {
+              "zh": "课件说：这条 bar 表示白方（White）有 +2.1 的优势。"
+            },
+            {
+              "zh": "+2.1 就是一个 heuristic 分数：正数表示对白方有利。"
+            },
+            {
+              "zh": "它只是估计：白方占优，但不代表白方一定赢。"
+            }
+          ],
+          "answer": {
+            "zh": "+2.1 = 估计白方占优势",
+            "en": "+2.1 means White has an estimated advantage."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：国际象棋网站的评估条用的是它自己的刻度（大约以“一个兵”为 1 分），不是课程的 ±100 约定，所以 +2.1 不是“几乎平手”。课件只是用它说明：heuristic 就是一个数字分数。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "heuristic 是估计（**estimate**），不是保证。Lecture 3 第 58 页：依赖 heuristic 时，我们就失去了对最终奖励的保证。"
+            },
+            {
+              "zh": "+100 和 -100 只留给“确定赢”和“确定输”；还没分出胜负的局面，分数要在 -100 和 +100 之间。"
+            },
+            {
+              "zh": "equal position（双方一样好）是 0，不是“没有分数”。"
+            },
+            {
+              "zh": "固定深度不是搜到游戏结束。搜到深度上限后，用 heuristic 给最底下那一层打分，再把它们当成终局一样做 Minimax（Lecture 3 第 57 页）。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：为什么其他局面必须在 -100 和 +100 之间？因为 +100 / -100 留给“确定赢 / 确定输”。如果一个只是“看起来不错”的局面得分超过 +100，Minimax 可能放着确定的赢不走，反而去选它。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "Lecture 3 原话（Searching with Heuristics）",
+            "en": "Lecture 3 wording"
+          },
+          "items": [
+            {
+              "en": "Heuristics don't give a full picture of the game state, and may not always be accurate.",
+              "zh": "heuristic 不能反映局面的全部，也不一定总是准确。"
+            },
+            {
+              "en": "A good heuristic should rank states from best to worst as accurately as possible.",
+              "zh": "好的 heuristic 应该尽量准确地把状态从最好排到最差。"
+            },
+            {
+              "en": "Since heuristics are only estimates, when we rely on them, we lose guarantees about the reward we receive. But if terminal states are too far down the tree to find, it is better to use estimates than nothing at all.",
+              "zh": "heuristic 只是估计，依赖它就失去了对奖励的保证；但如果终局在树里太深、找不到，用估计总比什么都没有好。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Following the course's conventions, which value could a heuristic give to a position that is not yet a guaranteed win or loss?",
+            "zh": "按课程约定，一个还不是“确定赢/确定输”的局面，heuristic 可以给哪个值？"
+          },
+          "options": [
+            {
+              "en": "+150"
+            },
+            {
+              "en": "-100"
+            },
+            {
+              "en": "+35"
+            },
+            {
+              "en": "+100"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 9 页：确定赢 = +100，确定输 = -100，其他情况必须在 -100 和 +100 之间。+35 在范围内；+150 超出范围；+100 和 -100 只留给确定的输赢。",
+            "en": "+35 is between -100 and +100; +100 and -100 are only for guaranteed results; +150 is out of range."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-weighted-sum",
+      "title": {
+        "zh": "加权和：feature、差值和 weight",
+        "en": "Weighted sums: features, differences and weights"
+      },
+      "slides": "11-14",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "heuristic 怎么造？第 11 页给了最常见的格式：加权和（**weighted sum**）。分三步：① 挑几个能说明局面好坏的特征（**feature**）；② 每个特征算“我的 − 对手的”；③ 乘上表示重要程度的权重（**weight**），再全部加起来。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像算综合成绩：期末 × 0.5 + 期中 × 0.3 + 作业 × 0.2。每一项就是一个 feature，0.5、0.3、0.2 就是 weight，越重要的项权重越大。",
+          "limit": "算成绩只看你一个人；heuristic 的每一项都要先算“我 − 对手”的差，因为比的是谁占优势。另外，成绩的权重加起来正好是 1；heuristic 的权重不用加起来等于 1，可以是 1、3、3、5、9 这样的整数。"
+        },
+        {
+          "type": "formula",
+          "expr": "Material Advantage = 1*[(# W pawns) – (# B pawns)] + 3*[(# W knights) – (# B knights)] + 3*[(# W bishops) – (# B bishops)] + 5*[(# W rooks) – (# B rooks)] + 9*[(# W queens) – (# B queens)]",
+          "zh": "第 11 页：国际象棋的子力优势（**material advantage**）。W = 白方（我们），B = 黑方（对手），# = “……的数量”。",
+          "where": [
+            {
+              "symbol": "# W pawns",
+              "zh": "白方兵（pawn）的数量",
+              "en": "number of White pawns"
+            },
+            {
+              "symbol": "# B pawns",
+              "zh": "黑方兵的数量",
+              "en": "number of Black pawns"
+            },
+            {
+              "symbol": "1, 3, 3, 5, 9",
+              "zh": "权重：兵 1、马（knight）3、象（bishop）3、车（rook）5、后（queen）9",
+              "en": "weights of pawns, knights, bishops, rooks, queens"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "In Chess, 'material advantage' is expert knowledge that can be used as a heuristic.",
+              "zh": "国际象棋里，“子力优势”是可以当作 heuristic 用的专家知识（**expert knowledge**）。"
+            },
+            {
+              "en": "A set of features is compared for each player, and their importance is weighted. This structure is called a weighted sum.",
+              "zh": "对每个玩家比较一组特征，并按重要性加权。这种结构叫加权和。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "专家知识（**expert knowledge**）= 人类专家的直觉和推理，整理出来给 AI 用（Lecture 3 第 54 页）。下棋高手早就知道“后比兵值钱得多”，权重 9 和 1 就是这么来的。Lecture 3 还说：heuristic 也可以用机器学习自动学出来；这次 lab 是手工做的。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "Lecture 3 原话",
+            "en": "Lecture 3 wording"
+          },
+          "items": [
+            {
+              "en": "Expert knowledge is the intuition and reasoning of human experts distilled for use by AI.",
+              "zh": "专家知识是人类专家的直觉和推理，整理出来给 AI 用。"
+            },
+            {
+              "en": "Heuristics may be learned autonomously through Machine Learning, or crafted manually using human expert knowledge.",
+              "zh": "heuristic 可以通过机器学习自动学出来，也可以靠人类专家知识手工设计。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "拆开讲：公式里的三个零件（第 12–14 页）",
+            "en": "Three parts of the formula (pages 12-14)"
+          },
+          "items": [
+            {
+              "zh": "**feature（特征）**：比如“白方兵的数量”。它能用来指示局面好不好；一般来说有兵是好事，所以我们数兵。",
+              "en": "Feature: something that can be used as an indicator of how good a state is."
+            },
+            {
+              "zh": "**difference（差值）**：(# W pawns) – (# B pawns)，也就是“我的 − 对手的”。决定谁占优势的是差值，不是某一方单独的数量。",
+              "en": "Difference: it is the difference in the feature value that determines who has an advantage."
+            },
+            {
+              "zh": "**weight（权重）**：差值前面乘的数，决定这个特征和其他特征比有多重要。兵没有马重要，所以兵的权重是 1，马是 3。",
+              "en": "Weight: it determines the importance of this feature against every other feature."
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "可以直接背的句子",
+            "en": "Sentences to memorize"
+          },
+          "items": [
+            {
+              "en": "A feature is something that can be used as an indicator of how good a state is.",
+              "zh": "特征是能用来指示一个状态有多好的东西。"
+            },
+            {
+              "en": "We take the difference of the feature for us and our opponent, because the difference determines who has an advantage.",
+              "zh": "我们取“我方 − 对方”的差值，因为差值决定谁占优势。"
+            },
+            {
+              "en": "We multiply the difference by a weight, which determines the importance of this feature against every other feature.",
+              "zh": "差值乘以权重，权重决定这个特征相对其他特征有多重要。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "自己算一次（数量是假设的）",
+            "en": "Worked example (made-up counts)"
+          },
+          "steps": [
+            {
+              "zh": "假设白方：8 兵、2 马、2 象、2 车、1 后；黑方：7 兵、2 马、1 象、2 车、1 后。"
+            },
+            {
+              "zh": "兵：1 × (8 − 7) = 1"
+            },
+            {
+              "zh": "马：3 × (2 − 2) = 0"
+            },
+            {
+              "zh": "象：3 × (2 − 1) = 3"
+            },
+            {
+              "zh": "车：5 × (2 − 2) = 0；后：9 × (1 − 1) = 0"
+            },
+            {
+              "zh": "加起来：1 + 0 + 3 + 0 + 0 = 4，白方的子力优势是 +4。"
+            }
+          ],
+          "answer": {
+            "zh": "Material Advantage = 4（对白方有利）",
+            "en": "Material Advantage = 4 (good for White)"
+          }
+        },
+        {
+          "type": "widget",
+          "name": "heuristic-score",
+          "config": {
+            "title": {
+              "zh": "国际象棋子力优势（数量是假设的）",
+              "en": "Chess material advantage (made-up counts)"
+            },
+            "players": [
+              {
+                "zh": "白方 W（我们）",
+                "en": "White (us)"
+              },
+              {
+                "zh": "黑方 B（对手）",
+                "en": "Black (opponent)"
+              }
+            ],
+            "features": [
+              {
+                "name": {
+                  "zh": "兵 pawns",
+                  "en": "pawns"
+                },
+                "weight": 1,
+                "counts": [
+                  8,
+                  7
+                ]
+              },
+              {
+                "name": {
+                  "zh": "马 knights",
+                  "en": "knights"
+                },
+                "weight": 3,
+                "counts": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "name": {
+                  "zh": "象 bishops",
+                  "en": "bishops"
+                },
+                "weight": 3,
+                "counts": [
+                  2,
+                  1
+                ]
+              },
+              {
+                "name": {
+                  "zh": "车 rooks",
+                  "en": "rooks"
+                },
+                "weight": 5,
+                "counts": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "name": {
+                  "zh": "后 queens",
+                  "en": "queens"
+                },
+                "weight": 9,
+                "counts": [
+                  1,
+                  1
+                ]
+              }
+            ]
+          },
+          "caption": {
+            "zh": "数字和上面的例子一样。改改两边的数量或权重，看总分怎么变。",
+            "en": "Same numbers as the example; change counts or weights and watch the score."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "往后看：加权和是整门课反复出现的结构。Lecture 4–5 的模型 w0 + w1x1 + w2x2 是“一个常数 + 加权和”；Lecture 7 的人工神经元先算 w1x1 + w2x2 + …，再交给激活函数。区别在权重从哪来：这次 lab 由人定、靠调；模型和神经元的权重由机器在训练中找（Lecture 3 第 54 页也说 heuristic 可以用机器学习学出来）。",
+          "en": "Weighted sums return in Lectures 4-5 (models) and Lecture 7 (artificial neurons). In this lab, people set the weights; in those models, the machine learns them."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "顺序不能反：永远是“我的 − 对手的”。反过来减，正负号就全反了。"
+            },
+            {
+              "zh": "weight 乘的是差值，不是只乘我方的数量。"
+            },
+            {
+              "zh": "某一项的差值是 0，不管 weight 多大，这一项都贡献 0。"
+            },
+            {
+              "zh": "子力多不等于一定赢：heuristic 只是估计（Lecture 3：heuristic 不能反映局面的全部，也不一定准确）。"
+            },
+            {
+              "zh": "这里的 weight 是人自己定、自己调（**tuning**）的；Lecture 5 里模型的 weights（w0, w1, …）是机器在训练（**training**）中自己找的。名字一样，来源不同。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "White has 3 more pawns than Black, and all other pieces are equal. Using the Material Advantage formula, what is the Material Advantage?",
+            "zh": "白方比黑方多 3 个兵，其他棋子一样多。用子力优势公式算，子力优势是多少？"
+          },
+          "options": [
+            {
+              "en": "+1"
+            },
+            {
+              "en": "-3"
+            },
+            {
+              "en": "+9"
+            },
+            {
+              "en": "+3"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "兵的权重是 1：1 × 3 = 3，其他项差值都是 0。+9 是把兵的权重错用成 3（马、象的权重）：3 × 3 = 9；-3 是减反了（黑 − 白）；+1 是只写了权重，没乘差值。",
+            "en": "Pawn weight 1 × difference 3 = +3; every other term is 0. +9 uses weight 3 (the knight/bishop weight) instead of 1: 3 × 3 = 9; -3 subtracts the wrong way (Black − White); +1 is the weight alone, not multiplied by the difference."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-connect-four-heuristic",
+      "title": {
+        "zh": "在 app 里搭 Connect Four 的 heuristic",
+        "en": "Building a Connect Four heuristic in the app"
+      },
+      "slides": "7, 16-22",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "Part 3 里，你用积木把同样的加权和（**weighted sum**）格式搬到 Connect Four 上。第 16 和 20 页的例子叫 **'Combined'**，它数两样东西：整个棋盘上的三连（**three-in-a-row**），以及中间那一列（**center column**，也就是 column 3）里的棋子。"
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "heuristic 'Combined', ->\n  (3 * ((count_board 'three_in_a_row', 'me') -\n        (count_board 'three_in_a_row', 'opponent'))) +\n  (1 * ((count_column 'chips', 'me', 3) -\n        (count_column 'chips', 'opponent', 3)))",
+          "zh": "第 16 / 20 页的积木程序（去掉了下拉箭头）。紫色框（**purple frame**）= 一个 heuristic；里面绿色的部分就是加权和。"
+        },
+        {
+          "type": "formula",
+          "expr": "Combined = 3 × [(# three_in_a_row, me) − (# three_in_a_row, opponent)] + 1 × [(# chips in column 3, me) − (# chips in column 3, opponent)]",
+          "zh": "把积木翻译成算式：三连的权重是 3，中间列棋子的权重是 1。和国际象棋的子力优势是同一个格式。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "第 17 页：积木各部分的作用",
+            "en": "Page 17: the parts of the block"
+          },
+          "headers": [
+            "积木的部分 Part",
+            "作用 What it does"
+          ],
+          "rows": [
+            [
+              "'Combined'",
+              "heuristic 的名字（name），自己输入文字"
+            ],
+            [
+              "3 和 1",
+              "feature weights（权重）：按你觉得哪个特征更重要来填数字。课件说调好权重是做好 heuristic 的一大关键"
+            ],
+            [
+              "count_board / count_column",
+              "features（特征）：注意永远是“我的值 − 对手的值”"
+            ],
+            [
+              "+1 / -1",
+              "增加一个 feature 或去掉一个 feature 的按钮"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "第 18 页：三种“在哪里数”",
+            "en": "Page 18: types of features"
+          },
+          "headers": [
+            "名字 Name",
+            "课件定义 Handout definition",
+            "中文意思"
+          ],
+          "rows": [
+            [
+              "count_board",
+              "count the number of occurrences for the given player over the entire game board",
+              "在整个棋盘上数"
+            ],
+            [
+              "count_column",
+              "count the number of occurrences for the given player in a specific column",
+              "只在某一列里数"
+            ],
+            [
+              "count_row",
+              "count the number of occurrences for the given player in a specific row",
+              "只在某一行里数"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "第 19 页：五个具名特征（数什么）",
+            "en": "Page 19: specific features"
+          },
+          "headers": [
+            "名字 Name",
+            "课件定义 Handout definition",
+            "中文意思"
+          ],
+          "rows": [
+            [
+              "chips",
+              "The number of chips placed by the given player.",
+              "这个玩家下了几个棋子"
+            ],
+            [
+              "two_in_a_row",
+              "The number of occurrences of chips placed two-in-a-row (in any direction) by the given player.",
+              "二连出现了几次（任何方向）"
+            ],
+            [
+              "three_in_a_row",
+              "The number of occurrences of chips placed three-in-a-row (in any direction) by the given player.",
+              "三连出现了几次（任何方向）"
+            ],
+            [
+              "win_threat",
+              "The number of spaces that are currently empty, but would win the game for the given player if filled.",
+              "现在空着、但这个玩家一下进去就赢的格子数"
+            ],
+            [
+              "stacked_threats",
+              "The number of times one win threat appears in the space directly above another one.",
+              "一个 win threat 正好在另一个 win threat 正上方的次数"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "第 18 页提醒：`count_board`、`count_column`、`count_row` 必须从下拉菜单里选一个具名特征（比如 chips）才能工作。column 编号从左到右是 0–6，row 编号从下往上是 0–5（第 18 页说“看右边的图”，但 PDF 那一页没有图；编号可以在第 7 / 22 页的截图里看到）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用第 7 / 22 页的截图算第二项（Me = Red）",
+            "en": "The center-column term on the screenshot board (Me = Red)"
+          },
+          "steps": [
+            {
+              "zh": "截图上方写着 Me: Red，所以 me = 红方，opponent = 黄方。"
+            },
+            {
+              "zh": "看 column 3（中间那列），从下往上：黄、黄、黄、红，再上面两格是空的。"
+            },
+            {
+              "zh": "`(count_column 'chips', 'me', 3)` = 1（红 1 个）；`(count_column 'chips', 'opponent', 3)` = 3（黄 3 个）。"
+            },
+            {
+              "zh": "第二项 = 1 × (1 − 3) = -2：中间列这一项对红方不利。"
+            },
+            {
+              "zh": "第一项（三连）这里不算：课件没说 app 具体怎么数三连（比如 4 个连在一起算几个三连）。"
+            },
+            {
+              "zh": "注意：截图里黄方已经在 row 1 的 column 1–4 连成 4 个，这盘其实已经结束、黄方赢了。真正的终局在 Minimax 里直接用奖励值（对红方是 -100），不用 heuristic；这里只是借这个棋盘练习数 column 3 的棋子。"
+            }
+          ],
+          "answer": {
+            "zh": "中间列这一项 = 1 × (1 − 3) = -2",
+            "en": "Center-column term = 1 × (1 − 3) = -2"
+          }
+        },
+        {
+          "type": "widget",
+          "name": "heuristic-score",
+          "config": {
+            "title": {
+              "zh": "'Combined' heuristic（数量是假设的）",
+              "en": "'Combined' heuristic (made-up counts)"
+            },
+            "players": [
+              {
+                "zh": "我（me）",
+                "en": "Me"
+              },
+              {
+                "zh": "对手（opponent）",
+                "en": "Opponent"
+              }
+            ],
+            "features": [
+              {
+                "name": {
+                  "zh": "三连 three_in_a_row（整个棋盘）",
+                  "en": "three_in_a_row (whole board)"
+                },
+                "weight": 3,
+                "counts": [
+                  2,
+                  1
+                ]
+              },
+              {
+                "name": {
+                  "zh": "中间列棋子 chips（column 3）",
+                  "en": "chips in column 3"
+                },
+                "weight": 1,
+                "counts": [
+                  1,
+                  3
+                ]
+              }
+            ]
+          },
+          "caption": {
+            "zh": "初始数字是假设的：三连 2 比 1，中间列棋子 1 比 3，所以 3 × (2 − 1) + 1 × (1 − 3) = 1。试着改 weight，看分数怎么变。",
+            "en": "Made-up counts: 3 × (2 − 1) + 1 × (1 − 3) = 1."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：为什么中间那列 valuable？课件没解释。常见的说法是：穿过中间那列的“四连”路线最多，所以中间的棋子能参与更多连线。stacked_threats 为什么有用课件也没讲：一般认为两个威胁上下叠在一起时，对手堵住下面那个，反而让你能下上面那个。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Write it like this"
+          },
+          "items": [
+            {
+              "en": "The example heuristic 'Combined' counts three-in-a-rows anywhere on the board and chips placed in the valuable center column.",
+              "zh": "例子 'Combined' 数的是整个棋盘上的三连，以及放在很有价值的中间列里的棋子。"
+            },
+            {
+              "en": "For each feature, we always subtract our opponent's value from ours.",
+              "zh": "每个特征都是用我们的值减去对手的值。"
+            },
+            {
+              "en": "A big part of making a good heuristic is tuning the weights appropriately.",
+              "zh": "做好 heuristic 的一大关键是把权重调合适。"
+            },
+            {
+              "en": "win_threat counts the spaces that are currently empty but would win the game for the given player if filled.",
+              "zh": "win_threat 数的是现在空着、但该玩家下进去就能赢的格子。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "`count_board` / `count_column` / `count_row` 管“在哪里数”；chips、three_in_a_row 这些管“数什么”。两个要搭配着用。"
+            },
+            {
+              "zh": "me 和 opponent 别放反，不然 heuristic 的正负号就反了。"
+            },
+            {
+              "zh": "column 3 是中间那一列（编号从 0 开始），不是从左往右数的第 3 列。"
+            },
+            {
+              "zh": "weight 没有唯一正确答案，要靠测试和调整（**tuning**）。"
+            },
+            {
+              "zh": "win_threat（一个空格能让你赢）和 stacked_threats（两个威胁上下叠着）不是一回事。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the example heuristic 'Combined', which feature is given the larger weight?",
+            "zh": "例子 'Combined' 里，哪个特征的权重更大？"
+          },
+          "options": [
+            {
+              "en": "Three-in-a-rows anywhere on the board",
+              "zh": "整个棋盘上的三连"
+            },
+            {
+              "en": "Chips in column 3",
+              "zh": "column 3 里的棋子"
+            },
+            {
+              "en": "Both features have the same weight",
+              "zh": "两个特征权重一样"
+            },
+            {
+              "en": "Win threats",
+              "zh": "致胜威胁（**win threats**）"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "'Combined' = 3 × (三连的差) + 1 × (中间列棋子的差)，三连的权重 3 更大。两个权重不一样；这个例子里也根本没有用 win_threat。",
+            "en": "Three-in-a-rows have weight 3 and center-column chips have weight 1; win_threat is not used."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-model-answers",
+      "title": {
+        "zh": "自拟讨论题与参考答案（不是讲义原题）",
+        "en": "Practice discussion questions (not from the handout) with model answers"
+      },
+      "slides": "5, 7, 9, 16-22",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "注意：这份 PDF 里没有 worksheet 上的题目，也没有 Discuss 提示。课程大纲说：worksheet 带二维码，只在 lab 现场发，lab 结束时交。下面的题是按这次 lab 的任务整理的练习题（不是原题），答案只用课件里的概念。",
+          "en": "The handout PDF contains no worksheet questions; these prompts are built from the lab's tasks."
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Watch Minimax play Connect Four at different search depths. How does the search depth change how it plays, and what does a deeper search cost?",
+            "zh": "看 Minimax 在不同搜索深度下下 Connect Four。深度怎么影响它的下法？搜得更深要付出什么代价？"
+          },
+          "answer": {
+            "en": "A deeper search lets Minimax look further ahead, so it can see wins and losses that a shallow search cannot see. However, the number of states grows exponentially with depth, so a deeper search takes much more time. At any fixed depth that stops before the end of the game, Minimax has to rely on heuristic estimates at the depth limit. With a small depth, these estimates are made only a few moves ahead, so Minimax may miss wins or losses that come later.",
+            "zh": "得分点：① 深度大 = 看得更远，能发现浅搜索看不到的输赢；② 状态数随深度指数增长，所以更慢（Lecture 3 The Difficulty with Search）；③ 不管深度多少，深度上限那层都要靠 heuristic 估计；深度小 = 估得太早，可能看不到后面的输赢。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why does the lab's Minimax player stop at a fixed depth and use a heuristic, instead of searching until the end of the game?",
+            "zh": "为什么 lab 里的 Minimax 玩家只搜到固定深度并使用 heuristic，而不是一直搜到游戏结束？"
+          },
+          "answer": {
+            "en": "Normally, Minimax has to exhaustively search from the current state until the end of the game. In Connect Four, the state tree is too large, so exhaustive search is too time-consuming. Instead, Minimax searches to a fixed depth and uses a heuristic to estimate how good the states at that depth are. Then it carries these values up as if they were terminal states. We lose the guarantee about the final reward, but an estimate is better than nothing.",
+            "zh": "得分点：① 正常的 Minimax 要穷举到游戏结束；② 状态树太大 → 太费时间；③ 改成固定深度 + heuristic 估分，再当终局一样往上做 Minimax；④ 代价：失去保证，但有估计总比没有强（Lecture 3 第 57–58 页）。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "In the lab app, a player can use Minimax - No Heuristic or Minimax - With Heuristic. Why might the player with a heuristic play better at the same search depth?",
+            "zh": "lab app 里的玩家可以选 Minimax - No Heuristic 或 Minimax - With Heuristic。在同样的搜索深度下，为什么用 heuristic 的玩家可能下得更好？"
+          },
+          "answer": {
+            "en": "At a fixed depth, the search usually cannot reach the end of the game, so most states at the depth limit are not terminal states. Without a heuristic, Minimax cannot tell which of these states are better. With a heuristic, it can estimate how good each state at the depth limit is and prefer moves that lead to better positions. The estimates may not always be accurate, but they are better than nothing.",
+            "zh": "得分点：① 固定深度通常到不了终局；② 没有 heuristic 就分不出这些非终局状态哪个好；③ 有 heuristic 就能给深度上限的状态估分；④ 估计不一定准，但比什么都没有好（Lecture 3 第 51、57–58 页）。注意：课件没说 app 里 No Heuristic 具体怎么打分，这是按 Lecture 3 推出来的。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Explain the example heuristic 'Combined'. What are its features and weights, and why does it subtract the opponent's value?",
+            "zh": "解释例子 'Combined'：它的特征和权重是什么？为什么要减去对手的值？"
+          },
+          "answer": {
+            "en": "'Combined' is a weighted sum of two features. The first feature is the number of three-in-a-rows on the whole board, with a weight of 3. The second feature is the number of chips in the center column (column 3), with a weight of 1. For each feature, it subtracts the opponent's count from ours, because the difference decides who has the advantage. The weights mean that one three-in-a-row counts three times as much as one chip in the center column.",
+            "zh": "得分点：① 说出它是 weighted sum；② 两个特征 + 各自的权重（3 和 1）；③ 解释“我 − 对手”：差值决定谁占优势；④ 解释权重的意思：表示重要性。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Design your own Connect Four heuristic using the features in the lab app. Which features and weights would you choose, and why?",
+            "zh": "用 app 里的特征设计你自己的 Connect Four heuristic。你选哪些特征和权重？为什么？"
+          },
+          "answer": {
+            "en": "One possible heuristic is: 10 × (my win_threat − opponent's win_threat) + 3 × (my three_in_a_row − opponent's three_in_a_row) + 1 × (my chips in column 3 − opponent's chips in column 3). Win threats get the largest weight because they are empty spaces that would win the game if filled. Three-in-a-rows get a medium weight because they are close to four in a row, and center-column chips get a small weight. Then I would test the heuristic in games and tune the weights.",
+            "zh": "这题没有唯一答案。得分点：① 写出完整的加权和（每一项都是“我 − 对手”）；② 每个权重都说出理由（越接近赢越重要）；③ 提到要测试、调权重（**tuning**）。注意：这里的 10、3、1 是自己定的，不是课件给的。另外，按课件约定，非终局的分数要在 -100 和 +100 之间，所以权重不要设得太大。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Use 'Test heuristic' on a board you set up. Does the number always match who is really winning? Why or why not?",
+            "zh": "用 Test heuristic 测你摆的棋盘。分数总能反映谁真的占上风吗？为什么？"
+          },
+          "answer": {
+            "en": "Not always. A heuristic is only an estimate of how good a state is from our perspective. It does not give a full picture of the game state, so it may not always be accurate. A good heuristic should rank states from best to worst as accurately as possible, so if the numbers look wrong, we should change the features or tune the weights.",
+            "zh": "得分点：① 不一定；② heuristic 只是估计，不能反映局面的全部；③ 好的 heuristic 要尽量把局面从好到坏排准；④ 改进办法：换特征、调权重。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Your heuristic keeps losing to a classmate's heuristic (or to Student Crusher 3000). What could you change to make your player stronger?",
+            "zh": "你的 heuristic 总是输给同学的（或 Student Crusher 3000）。可以改什么让它更强？"
+          },
+          "answer": {
+            "en": "I could tune the weights so that the more important features count more. I could add useful features, such as win_threat, or remove features that do not help. I could also increase the search depth so that Minimax looks further ahead, but then each move takes more time.",
+            "zh": "得分点：① 调权重；② 加有用的特征、去掉没用的特征；③ 加大搜索深度（看得更远，但更慢）。尽量三点都写，并说明原因。"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "写长答题的万能句",
+            "en": "Useful sentences for long answers"
+          },
+          "items": [
+            {
+              "en": "Minimax searches to a fixed depth and uses a heuristic to estimate the value of the states at that depth.",
+              "zh": "Minimax 搜到固定深度，再用 heuristic 估计那一层状态的值（有多好）。"
+            },
+            {
+              "en": "A deeper search sees further ahead, but it takes much more time because the number of states grows exponentially with depth.",
+              "zh": "搜得更深看得更远，但因为状态数随深度指数增长，会慢很多。"
+            },
+            {
+              "en": "A heuristic is only an estimate, so it may not always be accurate.",
+              "zh": "heuristic 只是估计，所以不一定总是准确。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s08-exam-takeaways",
+      "title": {
+        "zh": "考试要点总结",
+        "en": "Takeaways for the exam"
+      },
+      "slides": "1-22",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "必须记住的 6 件事",
+            "en": "Six things to remember"
+          },
+          "items": [
+            {
+              "zh": "搜索（**search**）：利用游戏规则（**dynamics**）生成未来可能的状态，“往前看”；可以画成游戏树 / 状态树（**game tree / state tree**）。",
+              "en": "Search looks ahead by generating possible future states."
+            },
+            {
+              "zh": "**Minimax**：▲ 我们的回合取最大，▼ 对手的回合取最小；正常要一直穷举到游戏结束。",
+              "en": "Minimax: maximize on our turn, minimize on the opponent's turn."
+            },
+            {
+              "zh": "固定深度（**fixed depth**）：穷举太费时间时，只搜到固定深度，用 heuristic 给那一层的状态打分。",
+              "en": "Search to a fixed depth and evaluate states with a heuristic."
+            },
+            {
+              "zh": "启发式（**heuristic**）：从我们的角度估计状态“好坏”的数字分数。+100 确定赢，-100 确定输，0 双方一样，其他在 -100 和 +100 之间。",
+              "en": "A heuristic estimates how good a state is from our perspective."
+            },
+            {
+              "zh": "加权和（**weighted sum**）：每个 feature 算“我的 − 对手的”，乘 weight，再相加。例：Material Advantage（兵 1、马 3、象 3、车 5、后 9）；Connect Four 的 'Combined'（三连 × 3、中间列棋子 × 1）。",
+              "en": "Weighted sum = sum of weight × (our feature − opponent's feature)."
+            },
+            {
+              "zh": "代价：heuristic 只是估计，依赖它就失去保证；但终局太深找不到时，有估计总比什么都没有强。",
+              "en": "Heuristics are estimates: we lose guarantees, but when terminal states are too far down the tree to find, estimates are better than nothing."
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考前背这几句",
+            "en": "Memorize these"
+          },
+          "items": [
+            {
+              "en": "Search lets a computer look ahead by using the game's dynamics to generate possible future states.",
+              "zh": "搜索让电脑利用游戏规则生成未来可能的状态，从而往前看。"
+            },
+            {
+              "en": "Minimax maximizes our reward on our turn and assumes the opponent minimizes our reward on their turn.",
+              "zh": "Minimax 在我们的回合最大化奖励，并假设对手在他的回合最小化我们的奖励。"
+            },
+            {
+              "en": "When exhaustive search is too time-consuming, we search to a fixed depth and evaluate states with a heuristic.",
+              "zh": "穷举搜索太费时间时，我们搜到固定深度，再用 heuristic 给状态打分。"
+            },
+            {
+              "en": "A heuristic is a numerical score for estimating the 'goodness' of a state from our perspective.",
+              "zh": "heuristic 是从我们的角度估计状态好坏的数字分数。"
+            },
+            {
+              "en": "A weighted-sum heuristic multiplies the difference in each feature (ours minus the opponent's) by a weight and adds the results.",
+              "zh": "加权和 heuristic：每个特征的差值（我的减对手的）乘以权重，再把结果加起来。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "heuristic 的值（估计）≠ 终局的奖励值（确定的 +100 / 0 / -100）。"
+            },
+            {
+              "zh": "feature 是“数什么”，weight 是“有多重要”，别混。"
+            },
+            {
+              "zh": "搜得越深不一定越划算：看得更远，但时间按指数增长。"
+            },
+            {
+              "zh": "单人谜题的 search 找到目标状态就行；两人游戏要用 Minimax 把对手考虑进去（Lecture 3 第 31–32 页）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A Connect Four heuristic is 2 × (my two_in_a_row − opponent's two_in_a_row) + 5 × (my win_threat − opponent's win_threat). I have 3 two-in-a-rows and 1 win threat. My opponent has 4 two-in-a-rows and 0 win threats. What is the heuristic value?",
+            "zh": "某个 Connect Four heuristic = 2 × (我的二连 − 对手的二连) + 5 × (我的 win_threat − 对手的 win_threat)。我有 3 个二连、1 个 win threat；对手有 4 个二连、0 个 win threat。heuristic 的值是多少？"
+          },
+          "options": [
+            {
+              "en": "3"
+            },
+            {
+              "en": "7"
+            },
+            {
+              "en": "-3"
+            },
+            {
+              "en": "13"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "2 × (3 − 4) = -2；5 × (1 − 0) = 5；合计 -2 + 5 = 3。7 是第一项减反了（4 − 3）；-3 是两项都减反了；13 是把对手的二连数 4 直接乘 2 再加 5，没有算差值。",
+            "en": "2 × (3 − 4) + 5 × (1 − 0) = -2 + 5 = 3."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "复习建议：先做到能用英文默写 search 和 heuristic 的定义；再练 Minimax 树（▲ / ▼）和加权和的计算。这些在 Lecture 3 和本 lab 里都出现过，练习题里也有。"
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "Lab 3 applied Search, Minimax and heuristics to the game Connect Four in the lab application.",
+      "zh": "Lab 3 在 lab app 里把搜索、Minimax 和启发式用到 Connect Four 游戏上。"
+    },
+    {
+      "en": "Search is a method for a computer to 'look ahead' by using the game's dynamics to generate possible future states.",
+      "zh": "搜索是电脑利用游戏规则生成未来可能的状态、从而往前看的方法。"
+    },
+    {
+      "en": "Normally, Minimax has to exhaustively search from the current state until the end of the game.",
+      "zh": "正常情况下，Minimax 要从当前状态一直穷举搜索到游戏结束。"
+    },
+    {
+      "en": "When exhaustive search is too time-consuming, we search to a more reasonable fixed depth and evaluate states with a heuristic.",
+      "zh": "穷举搜索太费时间时，只搜到更合理的固定深度，再用 heuristic 给状态打分。"
+    },
+    {
+      "en": "A heuristic is a numerical score for estimating the 'goodness' of a state from our perspective: a guaranteed win is +100, a guaranteed loss is -100, and an equal position is 0.",
+      "zh": "heuristic 是从我们的角度估计状态好坏的数字分数：确定赢 +100，确定输 -100，双方一样 0。"
+    },
+    {
+      "en": "A weighted-sum heuristic compares features for each player (ours minus the opponent's), multiplies each difference by a weight that shows its importance, and adds the results.",
+      "zh": "加权和 heuristic：每个特征算“我的 − 对手的”，乘以表示重要性的权重，再全部加起来。"
+    },
+    {
+      "en": "The example heuristic 'Combined' is 3 × (three-in-a-row difference) + 1 × (center-column chip difference).",
+      "zh": "例子 'Combined' = 3 × (三连的差) + 1 × (中间列棋子的差)。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Possible question: define search and Minimax, or find the Minimax value of a small tree.",
+      "zh": "这是 Parts 1 & 2 和 Lecture 3 的核心：要会用英文写定义，也要会用 ▲ / ▼ 一层层往上算树的值。",
+      "sectionId": "s03-search-minimax"
+    },
+    {
+      "en": "Possible question: define a heuristic and state the reward conventions (+100, -100, 0).",
+      "zh": "heuristic 的定义和 ±100 / 0 的约定是 Part 3 的基础，选择题和简答题都能用到。",
+      "sectionId": "s04-depth-heuristics"
+    },
+    {
+      "en": "Possible question: explain why Minimax searches to a fixed depth with a heuristic, and what we lose by doing so.",
+      "zh": "要能说清“为什么要固定深度”（指数增长、太费时间）和“代价是什么”（失去保证）。",
+      "sectionId": "s04-depth-heuristics"
+    },
+    {
+      "en": "Possible question: calculate a weighted-sum heuristic such as Material Advantage, and explain features, differences and weights.",
+      "zh": "加权和是可以出计算题的地方：注意“我 − 对手”的顺序和每项乘对权重。",
+      "sectionId": "s05-weighted-sum"
+    },
+    {
+      "en": "Possible question: describe a Connect Four heuristic built from the lab's features and justify its weights.",
+      "zh": "要能用英文描述 'Combined' 或你自己的 heuristic，并解释每个权重。",
+      "sectionId": "s06-connect-four-heuristic"
+    },
+    {
+      "en": "Possible long answer: the trade-off between search depth and time, and why heuristics may be inaccurate.",
+      "zh": "长答题素材：深度 vs 时间的取舍、heuristic 不一定准确。直接用 s07 的参考答案练习。",
+      "sectionId": "s07-model-answers"
+    }
+  ]
+}

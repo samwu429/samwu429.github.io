@@ -1,0 +1,3509 @@
+{
+  "id": "lec05",
+  "kind": "lecture",
+  "number": 5,
+  "title": {
+    "en": "Training Models",
+    "zh": "训练模型"
+  },
+  "sources": [
+    {
+      "file": "lec05_training_.pdf",
+      "pages": 38
+    }
+  ],
+  "estimatedMinutes": 115,
+  "oneLiner": {
+    "zh": "训练模型＝我们先选好模型的样子，机器用代价函数（比如 MSE）给参数打分，再（例如用梯度下降）一点点调参数让代价变小；但训练集上代价最低的模型不一定最好，因为它可能过拟合。",
+    "en": "Training means the machine finds parameter values that make the cost small, for example with gradient descent, but a very low training cost can mean overfitting."
+  },
+  "outcomes": [
+    {
+      "en": "Describe the training goal in a regression problem.",
+      "zh": "描述回归问题中训练的目标。"
+    },
+    {
+      "en": "Explain the relationship between cost, the model parameters, and training.",
+      "zh": "解释代价（cost）、模型参数和训练三者之间的关系。"
+    },
+    {
+      "en": "Describe the rough algorithm for gradient descent.",
+      "zh": "描述梯度下降的大致算法步骤。"
+    },
+    {
+      "en": "Define overfitting and explain why it is troublesome.",
+      "zh": "给出过拟合的定义，并解释它为什么麻烦。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-lecture-map",
+      "title": {
+        "zh": "这一课的地图：训练模型讲什么",
+        "en": "Lecture map: what Training Models is about"
+      },
+      "slides": "1-3",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一课叫“训练模型”（**Training Models**），老师是 Joshua Jung。Lecture 4 讲了监督学习（**supervised learning**），最后留了一句：下次讲怎么找到最好的参数值。这一课就来回答它。"
+        },
+        {
+          "type": "analogy",
+          "zh": "整课可以想成“调一道菜的味道”：\n① 决定做哪道菜＝选模型类型（**model type**），这是我们的工作\n② 盐和糖各放多少＝参数（**parameters**），也叫权重（**weights**），是机器要找的数\n③ 试吃后打“差多少分”＝代价函数（**cost function**），越低越好\n④ 尝一口、调一点、再尝＝梯度下降（**gradient descent**）\n⑤ 照着一位试吃员当天的怪口味调到“完美”，新客人却吃不惯＝过拟合（**overfitting**）",
+          "limit": "类比的局限：机器不会“尝”，它是用数学公式在训练数据上算出代价；而且它要同时调很多个参数。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "本课的五个部分（第 3 页 Outline）",
+            "en": "Outline (slide 3)"
+          },
+          "items": [
+            {
+              "en": "Review: Supervised Learning",
+              "zh": "复习监督学习：用带标签的数据训练模型，再预测新数据"
+            },
+            {
+              "en": "Regression",
+              "zh": "回归：预测一个连续的数；机器负责找参数（拟合）"
+            },
+            {
+              "en": "Cost and Error",
+              "zh": "代价与误差：用代价函数（比如 MSE）衡量一条线有多“错”"
+            },
+            {
+              "en": "Gradient Descent",
+              "zh": "梯度下降：一点点改参数，让代价变小"
+            },
+            {
+              "en": "Overfitting",
+              "zh": "过拟合：训练集上代价最低的模型不一定最好"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Learning outcome（学习目标，课件原话）",
+            "主要在哪几页",
+            "一句话答案"
+          ],
+          "rows": [
+            [
+              "Describe the training goal in a regression problem.",
+              "第 10–12、16 页",
+              "找到最贴合训练数据的参数，也就是让代价最小（拟合 fitting）"
+            ],
+            [
+              "Explain the relationship between cost, the model parameters, and training.",
+              "第 16–22、25–31 页",
+              "参数决定线；代价给这条线打分；训练＝改参数让代价变小"
+            ],
+            [
+              "Describe the rough algorithm for gradient descent.",
+              "第 24–31 页",
+              "随机开始 → 用训练集算代价 → 判断每个参数该增还是减 → 改一点点 → 重复"
+            ],
+            [
+              "Define overfitting and explain why it is troublesome.",
+              "第 34–38 页",
+              "模型记住了随机噪声而不是真正的规律；对新数据预测很差"
+            ]
+          ],
+          "caption": {
+            "zh": "第 2 页的四个学习目标。复习时可以把每一条都当成一道问答题来练。",
+            "en": "The four learning outcomes on slide 2."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "整课三句话",
+            "en": "The lecture in three sentences"
+          },
+          "items": [
+            {
+              "en": "Training means the machine finds the best parameter values (weights) for the model we chose.",
+              "zh": "训练＝机器为我们选好的模型找到最好的参数值（权重）。"
+            },
+            {
+              "en": "A cost function, such as the mean squared error (MSE), measures how wrong the model is. Gradient descent changes the parameters step by step to reduce the cost.",
+              "zh": "代价函数（比如均方误差 MSE）衡量模型有多错。梯度下降一步步改参数，让代价变小。"
+            },
+            {
+              "en": "The model with the lowest cost on the training set is not always the best, because it may be overfitted.",
+              "zh": "训练集上代价最低的模型不一定最好，因为它可能过拟合了。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Lecture 4 ended with a promise. Which question does this lecture answer?",
+            "zh": "Lecture 4 最后留了一个预告。这一课回答的是哪个问题？"
+          },
+          "options": [
+            {
+              "en": "How do we turn images and text into numbers?",
+              "zh": "怎样把图片和文字变成数字？"
+            },
+            {
+              "en": "How do we collect a dataset for training?",
+              "zh": "怎样收集用来训练的数据集？"
+            },
+            {
+              "en": "How does the machine find the best parameter values?",
+              "zh": "机器怎样找到最好的参数值？"
+            },
+            {
+              "en": "How do we decide between classification and regression?",
+              "zh": "怎样判断是分类还是回归？"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "Lecture 4 第 45 页最后说：“We will talk about how to find the best parameter values next time.” 这一课用代价函数和梯度下降回答它。\n其他三项 Lecture 4 前面已经讲过：收集数据集（第 8 页）、把图片和文字变成数字（第 27–30 页）、分类还是回归由目标值的类型决定（第 42 页，本课第 6 页又复习了一次）。",
+            "en": "Lecture 4 promised to explain how to find the best parameter values; this lecture does it with cost functions and gradient descent."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "学习建议：这一课数字很多（8.65、0.464、11.92、37.52、190.27、5.77……）。重点是知道每个数“代表什么”，并会按课件的例子一步步算。第 17 页的 MSE 符号公式，课件明确说不用背。"
+        }
+      ]
+    },
+    {
+      "id": "s02-supervised-learning",
+      "title": {
+        "zh": "复习：监督学习（Supervised Learning）",
+        "en": "Review: Supervised Learning"
+      },
+      "slides": "4-5",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：监督学习（**supervised learning**）＝先看“带答案”的例子学会规律，再去猜“没答案”的新例子。这一页和 Lecture 4 讲的一样，是复习。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像刷题备考：练习册每道题后面都有标准答案（带标签的训练数据）。你对着答案练习、总结方法（训练）。考试时拿到没有答案的新题（无标签数据），用学到的方法写出答案（预测）。",
+          "limit": "类比的局限：学生会真正理解题目；模型只是学到一个数学函数，它并不“懂”叶子是什么。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "In Supervised Learning, we want to predict the value of a feature in the data space (called the target feature).",
+              "zh": "监督学习中，我们想预测数据空间里某个特征的值（这个特征叫目标特征）。"
+            },
+            {
+              "en": "We will learn from a labelled training dataset, in which the target feature's value is known for every piece of data.",
+              "zh": "我们从带标签的训练数据集中学习：里面每条数据的目标特征值都是已知的。"
+            },
+            {
+              "en": "Once this learning (or training) is complete, we can use the resulting model to make predictions about the target feature for unlabelled data, where the target value is not known.",
+              "zh": "学习（也叫训练）完成后，就能用得到的模型，去预测无标签数据（目标值未知）的目标特征。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "feature",
+              "zh": "特征",
+              "hint": "数据的一项信息，比如叶子的宽度、高度、种类。"
+            },
+            {
+              "en": "data space",
+              "zh": "数据空间",
+              "hint": "把每条数据按特征画成点的“坐标图”，每个特征是一根轴（Lecture 4 讲过）。"
+            },
+            {
+              "en": "target feature",
+              "zh": "目标特征",
+              "hint": "我们想预测的那个特征；本课回归例子里是叶子高度。"
+            },
+            {
+              "en": "labelled training dataset",
+              "zh": "带标签的训练数据集",
+              "hint": "每条数据的目标值都已知，也就是有“答案”。"
+            },
+            {
+              "en": "training (learning)",
+              "zh": "训练（学习）",
+              "hint": "从带标签的数据中学出模型的过程。"
+            },
+            {
+              "en": "model",
+              "zh": "模型",
+              "hint": "训练得到的结果，用来做预测。"
+            },
+            {
+              "en": "unlabelled data",
+              "zh": "无标签数据",
+              "hint": "目标值未知的数据，要靠模型来预测。"
+            },
+            {
+              "en": "prediction",
+              "zh": "预测",
+              "hint": "模型对目标值给出的猜测。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用本课的叶子例子把这些词串起来",
+            "en": "Putting the terms together with the leaf example"
+          },
+          "steps": [
+            {
+              "zh": "目标特征（**target feature**）＝叶子高度：这是我们想猜的。"
+            },
+            {
+              "zh": "带标签的训练数据集（**labelled training dataset**）＝图上的 7 个绿点：每片叶子的宽度和高度都量好了，高度就是“答案”。"
+            },
+            {
+              "zh": "训练（**training**）＝机器从这 7 个点学出一条线，这条线就是模型（**model**）。"
+            },
+            {
+              "zh": "无标签数据（**unlabelled data**）＝一片新叶子：只知道宽度，不知道高度。"
+            },
+            {
+              "zh": "预测（**prediction**）＝把新叶子的宽度代进模型算出高度。例如宽 3 cm → 预测高 10.0 cm（第 11 页）。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“带标签（**labelled**）”的意思是：目标值已知。不是“数据很整齐”或“有名字”。"
+            },
+            {
+              "zh": "训练用的是带标签的数据；预测针对的是无标签的数据。别说反。"
+            },
+            {
+              "zh": "模型不是数据本身，而是从数据里学出来的规则（函数）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In supervised learning, what is a labelled training dataset?",
+            "zh": "监督学习中，什么是带标签的训练数据集？"
+          },
+          "options": [
+            {
+              "en": "A dataset where the target value is not known yet",
+              "zh": "目标值还不知道的数据集"
+            },
+            {
+              "en": "The list of predictions made by a trained model",
+              "zh": "训练好的模型给出的预测"
+            },
+            {
+              "en": "A dataset where every target value is known",
+              "zh": "每条数据的目标值都已知的数据集"
+            },
+            {
+              "en": "A dataset with only one feature, so it is easy to label",
+              "zh": "只有一个特征、所以很好标注的数据集"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 5 页：labelled training dataset 里 “the target feature's value is known for every piece of data”。\n“target value is not known yet” 说的是无标签数据（**unlabelled data**）。\n“predictions made by a trained model” 是训练之后才有的。\n“only one feature” 错：特征有几个和“有没有标签”无关。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-classification-vs-regression",
+      "title": {
+        "zh": "分类还是回归？看目标值的类型",
+        "en": "Classification vs Regression"
+      },
+      "slides": "6, 10",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：要猜的是“哪一类”（橡树还是枫树）→ 分类（**classification**）；要猜的是“一个可以取任何小数的数”（比如 15.5 cm）→ 回归（**regression**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像天气预报：“明天下不下雨？”答案只有“下”和“不下”两类 → 分类。“明天多少度？”可以是 21.3 度、21.35 度…… → 回归。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "Depending on the type of the target value, there are two kinds of Supervised Learning task: Classification, if the target value is categorical; Regression, if the target value is continuous.",
+              "zh": "根据目标值的类型，监督学习任务分两种：目标值是类别型的 → 分类；目标值是连续的 → 回归。"
+            },
+            {
+              "en": "In a regression problem, we want to predict a continuous value.",
+              "zh": "在回归问题中，我们想预测一个连续的数值。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "categorical",
+              "zh": "类别型的",
+              "hint": "类别之间没有大小顺序（ordering is not meaningful），比如 oak、maple（Lecture 4 第 25 页）。"
+            },
+            {
+              "en": "continuous",
+              "zh": "连续型的",
+              "hint": "数值，有大小顺序，而且小数有意义（ordering is meaningful and decimal values make sense），比如 15.5 cm。"
+            },
+            {
+              "en": "Classification",
+              "zh": "分类",
+              "hint": "目标值是类别 → 分类任务。"
+            },
+            {
+              "en": "Regression",
+              "zh": "回归",
+              "hint": "目标值是连续的数 → 回归任务。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "同一批叶子，两种任务",
+            "en": "Same leaves, two tasks"
+          },
+          "steps": [
+            {
+              "zh": "第 7–8 页：用宽度和高度判断叶子是 O 还是 M（Lecture 4 说明过：O＝oak 橡树，M＝maple 枫树）。目标值是类别 → 分类。"
+            },
+            {
+              "zh": "第 10 页：“we no longer care about leaf species”——不再关心种类，改为用叶子宽度预测叶子高度。目标值是连续的数 → 回归。"
+            },
+            {
+              "zh": "判断口诀：只看“要预测的那个值”是什么类型，不看输入是什么。"
+            }
+          ],
+          "answer": {
+            "zh": "猜种类 → 分类；猜高度 → 回归",
+            "en": "Species → classification; height → regression."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "注意：第 6 页最后一句 “We will focus on classification for the time being.”（暂时先关注分类）和 Lecture 4 的复习页一字不差，是复习时带过来的。这一课从第 9 页起主要讲回归，别被这句话带偏。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "输入是数字 ≠ 回归。分类的输入也可以是数字（宽度、高度）；只看目标值的类型。"
+            },
+            {
+              "zh": "类别就算写成数字代号还是类别：Lecture 4 用 1 表示 oak、2 表示 maple，预测它仍然是分类。"
+            },
+            {
+              "zh": "continuous 在这里是“取值连续”（可以是任何小数），不是“连续不断地做”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A model predicts how many centimetres tall a leaf is from its width. What kind of task is this?",
+            "zh": "一个模型用叶子宽度预测叶子有多少厘米高。这是什么任务？"
+          },
+          "options": [
+            {
+              "en": "Classification, because the target value is categorical",
+              "zh": "分类，因为目标值是类别型"
+            },
+            {
+              "en": "Regression, because the target value is continuous",
+              "zh": "回归，因为目标值是连续的"
+            },
+            {
+              "en": "Classification, because the input is a number",
+              "zh": "分类，因为输入是数字"
+            },
+            {
+              "en": "Regression, because there are two classes",
+              "zh": "回归，因为有两个类别"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "高度（cm）可以是任何小数 → 连续 → 回归。高度不是类别，所以不是分类；输入是不是数字不决定任务类型；“有两个类别”是分类的说法，不是回归的理由。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which target value would make the task a classification task?",
+            "zh": "预测下面哪个目标值属于分类任务？"
+          },
+          "options": [
+            {
+              "en": "The species of a leaf (oak or maple)",
+              "zh": "叶子的种类（橡树或枫树）"
+            },
+            {
+              "en": "The height of a leaf in cm",
+              "zh": "叶子的高度（厘米）"
+            },
+            {
+              "en": "Tomorrow's temperature in degrees",
+              "zh": "明天的温度（度）"
+            },
+            {
+              "en": "How many minutes a delivery will take",
+              "zh": "外卖要送多少分钟"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "种类只有几个固定类别 → 类别型 → 分类。高度、温度、分钟数都是可以取小数的数 → 回归。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-models-and-parameters",
+      "title": {
+        "zh": "模型和参数：我们选模型，机器找参数",
+        "en": "Models and Parameters"
+      },
+      "slides": "7-8",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：模型（**model**）就像一个留了空格的公式。我们决定用哪种公式（直线还是曲线），机器负责把空格里的数字填到最好——这个“填数字”的过程就是训练（**training**）。"
+        },
+        {
+          "type": "text",
+          "zh": "先补两个词：函数（**function**）＝输入一些数，按固定规则算出一个结果，像计算器上的一个按钮。变量（**variable**）＝会变的数，比如 x1 代表叶子宽度，每片叶子的 x1 都不一样。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像填空题：`□ + □ × 宽度 + □ × 高度 = 0`。选哪种题型（直线？曲线？）是我们的事；把每个 □ 填上最合适的数字是机器的事。这些 □ 就是参数（**parameters**），也叫权重（**weights**）。",
+          "limit": "类比的局限：机器不是“想”出这些数字的，而是用代价函数和梯度下降一点点算出来的（第 16–31 页）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "In a classification problem, our model generates a shape in the data space that forms a decision boundary between classes: on one side of the boundary, we predict one class, and on the other side, we predict a different class.",
+              "zh": "在分类问题中，模型会在数据空间里画出一个形状，这个形状就是类别之间的决策边界：边界一边预测一类，另一边预测另一类。"
+            },
+            {
+              "en": "Models are just functions of the input features.",
+              "zh": "模型就是输入特征的函数。"
+            },
+            {
+              "en": "It's our job to choose a model. It's the machine's job to find the best parameter values (w0, w1, w2, …), also called weights. That's what it does during training.",
+              "zh": "选模型是我们的工作；找最好的参数值（w0, w1, w2, …，也叫权重）是机器的工作。这就是机器在训练中做的事。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "符号怎么读：w0 读 “w zero”，x1 读 “x one”。课件里这些小数字写在右下角（下标），只是编号：x1＝第 1 个特征（宽度），x2＝第 2 个特征（高度）。网页上为了方便，直接写成 x1、x2。"
+        },
+        {
+          "type": "text",
+          "zh": "两个东西挨着写＝相乘：w1x1 就是 w1 × x1，0.3x2 就是 0.3 × x2；前面没写数字（比如 x1）就是乘 1。右上角的小数字是次方（**power**），表示自己乘自己几次：x2² = x2 × x2（读作“x2 的平方”），x1³ = x1 × x1 × x1。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "decision boundary",
+              "zh": "决策边界",
+              "hint": "数据空间里分开两类的线或曲线：一边预测 O，另一边预测 M。"
+            },
+            {
+              "en": "input features (x1, x2)",
+              "zh": "输入特征",
+              "hint": "喂给模型的信息：这里的分类例子中 x1＝叶子宽度，x2＝叶子高度（回归例子只用 x1 当输入）。"
+            },
+            {
+              "en": "parameters / weights (w0, w1, …)",
+              "zh": "参数／权重",
+              "hint": "公式里由机器找出最佳数值的那些数。"
+            },
+            {
+              "en": "untrained / trained",
+              "zh": "未训练／训练后",
+              "hint": "未训练：公式里还是字母 w；训练后：w 都换成了具体数字。"
+            },
+            {
+              "en": "linear",
+              "zh": "线性",
+              "hint": "画出来是一条直线。"
+            },
+            {
+              "en": "quadratic",
+              "zh": "二次",
+              "hint": "公式里有平方（比如 x2²），画出来是一条弯一次的曲线。"
+            },
+            {
+              "en": "polynomial",
+              "zh": "多项式",
+              "hint": "几项加在一起的式子，每一项是“一个数 × x 的几次方”，比如 w0 + w1x1 + w2x1²。"
+            },
+            {
+              "en": "higher-order polynomial",
+              "zh": "高阶多项式",
+              "hint": "公式里有 x³、x⁴ 等更高次方，曲线能弯好几次。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model（模型）",
+            "Untrained（未训练）",
+            "Trained（训练后）",
+            "参数个数"
+          ],
+          "rows": [
+            [
+              "Linear（线性）",
+              "w0 + w1x1 + w2x2 = 0",
+              "−12 + x1 + 0.3x2 = 0",
+              "3（w0–w2）"
+            ],
+            [
+              "Quadratic（二次）",
+              "w0 + w1x1 + w2x2 + w3x2² = 0",
+              "−29.5 + x1 + 3.5x2 − 0.14x2² = 0",
+              "4（w0–w3）"
+            ],
+            [
+              "Higher-order polynomial（高阶多项式）",
+              "w0 + w1x1 + w2x2 + w3x2² + w4x2³ + w5x2⁴ = 0",
+              "−456 + x1 + 169x2 − 23.3x2² + 1.39x2³ − 0.0303x2⁴ = 0",
+              "6（w0–w5）"
+            ]
+          ],
+          "caption": {
+            "zh": "第 8 页的三个分类模型（x1＝叶子宽度，x2＝叶子高度）。参数个数是数 w 数出来的，课件没有直接写。",
+            "en": "The three classification models on slide 8."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "先认识坐标图：横轴（x 轴）是叶子宽度，竖轴（y 轴）是叶子高度。图上每个点（这里是一个字母 O 或 M）＝一片叶子。（宽 10，高 18）的意思是：在横轴上找到 10，再往上走到高度 18，那里就是这片叶子。宽度为 0 的那条竖线就是 y 轴。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "看懂训练前后（以直线为例）",
+            "en": "Untrained vs trained: the linear model"
+          },
+          "steps": [
+            {
+              "zh": "未训练：w0 + w1x1 + w2x2 = 0。三个参数 w0、w1、w2 还是未知的字母。"
+            },
+            {
+              "zh": "训练后：−12 + x1 + 0.3x2 = 0。对照位置：w0 = −12，w1 = 1（x1 前面的 1 省略没写），w2 = 0.3。"
+            },
+            {
+              "zh": "画线（我们自己算的，课件没写）：令高度 x2 = 0：−12 + x1 + 0 = 0，所以 x1 = 12，线经过（宽 12，高 0）；令 x2 = 20：−12 + x1 + 0.3 × 20 = 0，即 −12 + x1 + 6 = 0，所以 x1 = 6，线经过（宽 6，高 20）。两点连起来就是第 7 页左图的蓝线。"
+            },
+            {
+              "zh": "直线左边的区域预测 O，右边预测 M（Lecture 4 第 47 页的阴影图标出了这两边；本课没有写）——这条线就是决策边界（**decision boundary**）。"
+            },
+            {
+              "zh": "怎么分类（我们自己算的）：把一片叶子的宽、高代进左边算一个数。等于 0 → 正好在线上；大于 0 → 线的右边，预测 M；小于 0 → 线的左边，预测 O。例：O（宽 5，高 10）：−12 + 5 + 0.3 × 10 = −4，小于 0 → 预测 O，分对了；O（宽 10，高 18）：−12 + 10 + 0.3 × 18 = 3.4，大于 0 → 预测 M，分错了。"
+            },
+            {
+              "zh": "结果：7 片叶子里只有（宽 10，高 18）那个 O 落在了 M 那一边，所以直线分对 6 片、分错 1 片。"
+            }
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "decision-boundary",
+          "config": {
+            "xLabel": {
+              "zh": "叶子宽度 x1（cm）",
+              "en": "Leaf Width x1 (cm)"
+            },
+            "yLabel": {
+              "zh": "叶子高度 x2（cm）",
+              "en": "Leaf Height x2 (cm)"
+            },
+            "classes": [
+              {
+                "id": "oak",
+                "label": {
+                  "zh": "O：橡树（oak）",
+                  "en": "O (oak)"
+                }
+              },
+              {
+                "id": "maple",
+                "label": {
+                  "zh": "M：枫树（maple）",
+                  "en": "M (maple)"
+                }
+              }
+            ],
+            "points": [
+              {
+                "x": 5,
+                "y": 10,
+                "class": "oak"
+              },
+              {
+                "x": 7,
+                "y": 12,
+                "class": "oak"
+              },
+              {
+                "x": 9,
+                "y": 6,
+                "class": "oak"
+              },
+              {
+                "x": 10,
+                "y": 18,
+                "class": "oak"
+              },
+              {
+                "x": 9,
+                "y": 14,
+                "class": "maple"
+              },
+              {
+                "x": 11,
+                "y": 9,
+                "class": "maple"
+              },
+              {
+                "x": 13,
+                "y": 11,
+                "class": "maple"
+              }
+            ],
+            "boundary": {
+              "w0": -12,
+              "w1": 1,
+              "w2": 0.3
+            },
+            "positiveClass": "maple"
+          },
+          "caption": {
+            "zh": "第 7–8 页的 7 片叶子（4 片 O、3 片 M；位置从图上读出，和 Lecture 4 的叶子表一致）和训练好的直线 −12 + x1 + 0.3x2 = 0。式子大于 0 的一边预测为 M。看看哪片叶子被分错了，再试着移动直线：你能找到一条把 7 片全分对的直线吗？\n答案：找不到。M（宽 9，高 14）被 O（宽 5，高 10）、O（宽 9，高 6）、O（宽 10，高 18）三片 O 围在中间，所以任何一条直线最多分对 6 片；第 7–8 页中间和右边会拐弯的二次、高阶边界才能把 7 片全分对。（这是我们自己验证的，课件没有写。）这种“一条直线分不开”的数据叫线性不可分（not **linearly separable**）；Lecture 7 会用这个概念解释神经网络为什么需要隐藏层。",
+            "en": "The 7 leaves from slides 7-8 and the trained linear boundary −12 + x1 + 0.3x2 = 0. No straight line can classify all 7 leaves correctly; the best is 6 of 7 (our own check, not on the slides). Such data is not linearly separable, a term used in Lecture 7."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：把 7 片叶子代进第 8 页的二次和高阶式子，O 全是负数、M 全是正数，所以这两条曲线把 7 片全分对了；课件没写这个结论。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "分工别说反：我们选模型（类型），机器找参数（数值）。课件第 8 页和第 12 页都强调了。"
+            },
+            {
+              "zh": "参数（**parameters**）和权重（**weights**）在本课是同一个东西（also called）。"
+            },
+            {
+              "zh": "x 是数据给的输入特征，w 是训练要找的参数。别把 x 和 w 搞混。"
+            },
+            {
+              "zh": "分类时，高度 x2 是输入特征（写在 = 0 的式子里）；到了回归（第 10 页），高度变成要预测的值，所以写成 x2 = w0 + w1x1，第 11 页起多改叫 y。同一个量，角色变了。"
+            },
+            {
+              "zh": "第 8 页的 “Higher-order polynomial” 是分类边界（6 个参数）；第 10 页回归里的高阶多项式有 5 个参数，第 35 页那个有 7 个参数。名字一样，模型不同。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is the machine's job?",
+            "zh": "根据课件，机器的工作是什么？"
+          },
+          "options": [
+            {
+              "en": "To choose the type of model, such as linear or quadratic",
+              "zh": "选择模型类型，比如直线或二次"
+            },
+            {
+              "en": "To find the best parameter values (weights) during training",
+              "zh": "在训练中找到最好的参数值（权重）"
+            },
+            {
+              "en": "To measure the width and height of each leaf",
+              "zh": "测量每片叶子的宽和高"
+            },
+            {
+              "en": "To decide which feature is the target feature",
+              "zh": "决定哪个特征是目标特征"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "第 8 页：It's our job to choose a model. It's the machine's job to find the best parameter values。选模型类型是我们的工作；量叶子、决定目标特征也是人来做的。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the trained linear model −12 + x1 + 0.3x2 = 0, what is the value of w2?",
+            "zh": "训练好的直线模型 −12 + x1 + 0.3x2 = 0 中，w2 的值是多少？"
+          },
+          "options": [
+            {
+              "en": "−12"
+            },
+            {
+              "en": "1"
+            },
+            {
+              "en": "0.3"
+            },
+            {
+              "en": "0"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "对照未训练形式 w0 + w1x1 + w2x2 = 0：w0 = −12，w1 = 1（省略不写），w2 = 0.3（x2 前面的数）。0 不对：x2 前面明明写着 0.3。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-regression-predicted-value",
+      "title": {
+        "zh": "回归：模型的线代表“预测值 y”",
+        "en": "Regression: the line shows the predicted value y"
+      },
+      "slides": "9-11",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：在回归（**regression**）里，模型画出的线不是“分界线”，而是“答案线”：给一个宽度，线上对应的高度就是模型的预测值（**predicted value**），记作 y。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像打车计价：路程（输入）放进公式，就算出车费（输出）。公式＝模型，算出来的车费＝预测值 y。",
+          "limit": "类比的局限：车费公式是公司定的；回归模型公式里的数字（参数）是机器从数据里学出来的。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写 + 课件原话",
+            "en": "Exam sentences and slide wording"
+          },
+          "items": [
+            {
+              "en": "In the regression example, we predict leaf height from leaf width; we no longer care about leaf species.",
+              "zh": "（考试这样写）回归的例子里，我们用叶子宽度预测叶子高度，不再关心叶子种类。"
+            },
+            {
+              "en": "We interpret the shape made by our model differently. Instead of a decision boundary, it represents the value predicted by our model. By convention, the predicted value is called y.",
+              "zh": "我们换一种方式理解模型画出的形状：它不再是决策边界，而是表示模型的预测值。按惯例，预测值叫 y。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "叶子宽度 x1（cm）",
+            "2",
+            "4",
+            "6",
+            "8",
+            "10",
+            "12",
+            "14"
+          ],
+          "rows": [
+            [
+              "实际高度（cm）",
+              "4.5",
+              "12.5",
+              "15.5",
+              "11.0",
+              "16.5",
+              "16.0",
+              "10.5"
+            ]
+          ],
+          "caption": {
+            "zh": "从第 10 页起一直用的 7 个绿色训练点。课件只直接写出了宽 6 处的高度 15.5；其他高度是从图上读出来的，并且和第 20 页的平方误差完全对得上。",
+            "en": "The 7 green training points (heights read from the plots)."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model（模型）",
+            "Untrained（未训练）",
+            "Trained（训练后）",
+            "参数个数"
+          ],
+          "rows": [
+            [
+              "Linear（线性）",
+              "x2 = w0 + w1x1",
+              "x2 = 8.65 + 0.464x1",
+              "2"
+            ],
+            [
+              "Quadratic（二次）",
+              "x2 = w0 + w1x1 + w2x1²",
+              "x2 = −0.603 + 3.55x1 − 0.193x1²",
+              "3"
+            ],
+            [
+              "Higher-order polynomial（高阶多项式）",
+              "x2 = w0 + w1x1 + w2x1² + w3x1³ + w4x1⁴",
+              "x2 = −26.1 + 23.6x1 − 4.95x1² + 0.434x1³ − 0.0134x1⁴",
+              "5"
+            ]
+          ],
+          "caption": {
+            "zh": "第 10 页：同样 7 个点，三种回归模型。模型越复杂（参数越多），曲线越贴近这些点。",
+            "en": "Slide 10: three regression models for the same 7 points."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "注意符号变化：第 10 页和第 34 页把输出写成 x2（叶子高度）；第 11–13、26–31、35 页写成 y（预测值）；第 18–19 页把宽度写成 x（就是 x1）。x2 = 8.65 + 0.464x1 和 y = 8.65 + 0.464x1 说的是同一条线。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 11 页：用训练好的直线做预测",
+            "en": "Slide 11: making predictions with the trained line"
+          },
+          "steps": [
+            {
+              "zh": "模型：y = 8.65 + 0.464x1（x1＝宽度，y＝预测的高度）。"
+            },
+            {
+              "zh": "宽度 3 cm：先算乘法 0.464 × 3 = 1.392，再加：8.65 + 1.392 = 10.042 ≈ 10.0 cm。",
+              "en": "y = 8.65 + 0.464 × 3 = 10.042 ≈ 10.0 cm"
+            },
+            {
+              "zh": "宽度 12 cm：0.464 × 12 = 5.568，8.65 + 5.568 = 14.218 ≈ 14.2 cm。",
+              "en": "y = 8.65 + 0.464 × 12 = 14.218 ≈ 14.2 cm"
+            },
+            {
+              "zh": "在图上：从横轴的 3（或 12）往上找到蓝线，那一点的高度就是预测值——课件用两个红箭头指着它们。"
+            }
+          ],
+          "answer": {
+            "zh": "宽 3 cm → 预测高 10.0 cm；宽 12 cm → 预测高 14.2 cm（和课件一致）",
+            "en": "When x1 (width) is 3 cm, we predict y (height) will be 10.0 cm; when x1 is 12 cm, y will be 14.2 cm."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "分类里的线＝决策边界（分开两类）；回归里的线＝预测值（线上的高度就是答案）。都是“线”，意思完全不同。"
+            },
+            {
+              "zh": "y 是模型猜的预测值，不是真实值；真实值后面叫 t（**target**，第 18 页）。"
+            },
+            {
+              "zh": "先乘后加：8.65 + 0.464 × 3 要先算 0.464 × 3。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Using the trained model y = 8.65 + 0.464x1, what height does the model predict for a leaf that is 12 cm wide?",
+            "zh": "用训练好的模型 y = 8.65 + 0.464x1，宽 12 cm 的叶子预测高度是多少？"
+          },
+          "options": [
+            {
+              "en": "8.65 cm"
+            },
+            {
+              "en": "10.0 cm"
+            },
+            {
+              "en": "14.2 cm"
+            },
+            {
+              "en": "16.0 cm"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "0.464 × 12 = 5.568，加 8.65 得 14.218 ≈ 14.2 cm。8.65 是宽度为 0 时的高度；10.0 是宽 3 cm 的预测；16.0 大约是宽 12 那个训练点的真实高度，不是预测值。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In a regression problem, what does the line drawn by the model represent?",
+            "zh": "在回归问题中，模型画出的线表示什么？"
+          },
+          "options": [
+            {
+              "en": "The value predicted by the model",
+              "zh": "模型的预测值"
+            },
+            {
+              "en": "A decision boundary between two classes",
+              "zh": "两类之间的决策边界"
+            },
+            {
+              "en": "The labels of the training data",
+              "zh": "训练数据的标签"
+            },
+            {
+              "en": "The cost of the model",
+              "zh": "模型的代价"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 11 页：Instead of a decision boundary, it represents the value predicted by our model。“决策边界”是分类里线的意思。训练数据的标签（真实高度 t）是绿点本身，不是线；代价是给整条线打分得到的一个数，也不是线本身。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-fitting-training-goal",
+      "title": {
+        "zh": "回归的训练目标：拟合数据（fitting）",
+        "en": "The training goal: fitting the data"
+      },
+      "slides": "12",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：拟合（**fitting**）＝在选好的模型类型里，机器去找一组参数，让模型的线和训练数据贴得最好。这就是回归问题中训练的目标。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像改衣服：款式（模型类型，比如直线）你已经选好了；裁缝（机器）去调腰围、裤长（参数），让衣服最贴合你的身材（数据）。",
+          "limit": "类比的局限：改得“过分贴身”也会出问题——比如照着你某一天口袋里鼓起的手机去改，换一天就不合身了。这就是第 35–38 页的过拟合。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "Once we have chosen a model type (here, linear), it is the machine's job to find the parameters (w0, w1, …) that best match our data. This is called fitting the data.",
+              "zh": "一旦我们选好了模型类型（这里是直线），机器的工作就是找到最贴合数据的参数（w0, w1, …）。这叫做拟合数据。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 12 页的红字：训练把字母变成数字",
+            "en": "Slide 12: training turns letters into numbers"
+          },
+          "steps": [
+            {
+              "zh": "我们选模型类型：直线（**linear**），y = w0 + w1x1。"
+            },
+            {
+              "zh": "训练前：w0、w1 是未知的字母（课件里标成红色）。"
+            },
+            {
+              "zh": "机器拟合数据后：w0 = 8.65，w1 = 0.464（红色数字）。"
+            },
+            {
+              "zh": "得到训练好的模型 y = 8.65 + 0.464x1，就是图上那条蓝线。"
+            }
+          ]
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "谁做什么",
+            "en": "Who does what"
+          },
+          "items": [
+            {
+              "en": "We choose the model type (here, linear).",
+              "zh": "我们：选模型类型（这里是直线）。"
+            },
+            {
+              "en": "The machine finds the parameters that best match the data (fitting).",
+              "zh": "机器：找最贴合数据的参数（拟合）。"
+            },
+            {
+              "en": "Result: a trained model, y = 8.65 + 0.464x1.",
+              "zh": "结果：得到训练好的模型。"
+            },
+            {
+              "en": "We use the model to predict the height of new leaves.",
+              "zh": "用途：预测新叶子的高度。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "“贴得最好（**best match**）”怎么衡量？机器不能靠眼睛看，需要一个打分规则——代价函数（**cost function**），第 16 页开始讲。所以训练目标也可以说成：找到让代价最小的参数。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "学习目标 1 怎么答",
+            "en": "Learning outcome 1"
+          },
+          "items": [
+            {
+              "en": "In a regression problem, we want to predict a continuous value, such as leaf height from leaf width.",
+              "zh": "回归问题要预测一个连续的数，比如用叶子宽度预测叶子高度。"
+            },
+            {
+              "en": "The training goal is to find the parameter values (weights) that best match the training data. This is called fitting the data.",
+              "zh": "训练目标是找到最贴合训练数据的参数值（权重），这叫拟合数据。"
+            },
+            {
+              "en": "To do this, the machine tries to make the cost, such as the MSE, as small as possible.",
+              "zh": "为此，机器要让代价（比如 MSE）尽量小。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "拟合（**fitting**）不是“选模型类型”，而是“在选好的类型里找参数”。"
+            },
+            {
+              "zh": "拟合用的是训练数据。贴合训练数据 ≠ 一定能预测好新数据（第 35–38 页）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does 'fitting the data' mean in this lecture?",
+            "zh": "这一课里“拟合数据”是什么意思？"
+          },
+          "options": [
+            {
+              "en": "Finding the parameters that best match the data",
+              "zh": "找到最贴合数据的参数"
+            },
+            {
+              "en": "Choosing whether to use a linear or a quadratic model",
+              "zh": "选择用直线还是二次模型"
+            },
+            {
+              "en": "Collecting more labelled data before training starts",
+              "zh": "训练开始前收集更多带标签的数据"
+            },
+            {
+              "en": "Drawing a decision boundary between two classes by hand",
+              "zh": "用手在两类之间画一条决策边界"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 12 页：选好模型类型后，机器去找 “the parameters that best match our data”，这叫 fitting。\n“Choosing whether to use a linear or a quadratic model” 是我们的工作，发生在拟合之前，不叫拟合。\n“Collecting more labelled data” 是训练前的准备。\n“Drawing a decision boundary … by hand” 是人手画线，而拟合是机器的工作。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-slope-and-intercept",
+      "title": {
+        "zh": "直线方程 y = mx + b：斜率和截距",
+        "en": "Linear Regression: slope and y-intercept"
+      },
+      "slides": "13",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：一条直线只要两个数就能定下来：它有多陡——斜率（**slope**）m；它在宽度为 0 的地方有多高——y 轴截距（**y-intercept**）b。"
+        },
+        {
+          "type": "text",
+          "zh": "复习坐标图（“模型和参数”一节讲过）：横轴（x 轴）是叶子宽度，竖轴（y 轴）是叶子高度，每个点＝一片叶子；宽度为 0 的那条竖线就是 y 轴。"
+        },
+        {
+          "type": "text",
+          "zh": "再认识方程（**equation**）：用等号连起来的式子，比如 y = mx + b。它告诉你 x 和 y 的关系：给一个 x，就能算出对应的 y。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打车：起步价 b（一上车就要付）＝截距；每多走 1 公里多付 m 元＝斜率。车费 y = m × 公里数 + b。",
+          "limit": "类比的局限：打车的 m、b 是公司定的；回归里的 m、b 是机器从数据里找出来的。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（来自第 13 页）",
+            "en": "Exam sentence (slide 13)"
+          },
+          "items": [
+            {
+              "en": "The equation for a line is y = mx + b, where m is the slope (rise / run) of the line and b is its y-intercept.",
+              "zh": "直线方程是 y = mx + b：m 是直线的斜率（rise / run，上升量 ÷ 水平移动量），b 是它的 y 轴截距。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "y = mx + b",
+          "zh": "直线方程：m 管“多陡”，b 管“从多高开始”。",
+          "where": [
+            {
+              "symbol": "m",
+              "zh": "斜率（**slope**）＝ rise / run"
+            },
+            {
+              "symbol": "b",
+              "zh": "y 轴截距（**y-intercept**）：x = 0 时线的高度"
+            },
+            {
+              "symbol": "x",
+              "zh": "输入（这里是叶子宽度）"
+            },
+            {
+              "symbol": "y",
+              "zh": "输出（这里是预测的叶子高度）"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "rise",
+              "zh": "上升量",
+              "hint": "沿着线走时，竖直方向升高了多少。"
+            },
+            {
+              "en": "run",
+              "zh": "水平移动量",
+              "hint": "沿着线走时，水平方向走了多少。"
+            },
+            {
+              "en": "slope (m = rise / run)",
+              "zh": "斜率",
+              "hint": "往右走 1 格，线升高多少；负数表示线往右下降。"
+            },
+            {
+              "en": "y-intercept (b)",
+              "zh": "y 轴截距",
+              "hint": "线和竖轴（x = 0）相交处的高度。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 13 页：从图上读出 m 和 b",
+            "en": "Slide 13: reading m and b from the plot"
+          },
+          "steps": [
+            {
+              "zh": "找 b：线在宽度 0 处碰到竖轴，高度是 8.65，所以 b = 8.65（图上的红点）。"
+            },
+            {
+              "zh": "找 m：在线下面画一个直角三角形（课件的红色三角形）：水平走 run = 10，竖直升 rise = 4.64。"
+            },
+            {
+              "zh": "算 m：m = rise / run = 4.64 / 10 = 0.464。",
+              "en": "m = rise / run = 4.64 / 10 = 0.464"
+            },
+            {
+              "zh": "写出直线：y = 0.464x + 8.65。加法换顺序结果不变，而且这里的 x 就是宽度 x1，所以它和训练好的模型 y = 8.65 + 0.464x1 是同一条线。"
+            },
+            {
+              "zh": "对应关系：b ↔ w0 = 8.65，m ↔ w1 = 0.464。"
+            }
+          ],
+          "answer": {
+            "zh": "斜率 m = 0.464，截距 b = 8.65",
+            "en": "m = 0.464, b = 8.65"
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "y = mx + b",
+            "y = w0 + w1x1",
+            "本例的值",
+            "意思"
+          ],
+          "rows": [
+            [
+              "b",
+              "w0",
+              "8.65",
+              "截距：宽度为 0 时线的高度"
+            ],
+            [
+              "m",
+              "w1",
+              "0.464",
+              "斜率：宽度每多 1 cm，预测高度多 0.464 cm"
+            ],
+            [
+              "x",
+              "x1",
+              "输入",
+              "叶子宽度"
+            ],
+            [
+              "y",
+              "y",
+              "输出",
+              "预测的叶子高度"
+            ]
+          ],
+          "caption": {
+            "zh": "两种写法的对应关系",
+            "en": "Matching the two ways of writing a line"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "斜率 = rise / run（竖直变化 ÷ 水平变化），别倒过来算成 run / rise。"
+            },
+            {
+              "zh": "截距 b 是线碰到竖轴（x = 0）时的高度，不是线碰到横轴的地方。"
+            },
+            {
+              "zh": "w0 对应 b（单独的常数），w1 对应 m（乘在 x1 前面的数）。w0 虽然写在前面，但它不是斜率。"
+            },
+            {
+              "zh": "斜率为正：线往右上升；斜率为负：线往右下降。第 26–31 页会看到斜率从负变正。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On slide 13, the red triangle shows rise = 4.64 and run = 10. What is the slope m?",
+            "zh": "第 13 页的红色三角形：rise = 4.64，run = 10。斜率 m 是多少？"
+          },
+          "options": [
+            {
+              "en": "2.16"
+            },
+            {
+              "en": "4.64"
+            },
+            {
+              "en": "14.64"
+            },
+            {
+              "en": "0.464"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "m = rise / run = 4.64 / 10 = 0.464。2.16 是倒过来算的 10 / 4.64；4.64 只是 rise；14.64 是把两个数加起来。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the model y = w0 + w1x1, which parameter plays the role of the y-intercept b?",
+            "zh": "在模型 y = w0 + w1x1 中，哪个参数相当于 y 轴截距 b？"
+          },
+          "options": [
+            {
+              "en": "w0"
+            },
+            {
+              "en": "w1"
+            },
+            {
+              "en": "x1"
+            },
+            {
+              "en": "y"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "w0 = 8.65 = b（宽度为 0 时的高度）；w1 = 0.464 = m（斜率）；x1 是输入，y 是输出，它们都不是参数。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-activity-line-of-best-fit",
+      "title": {
+        "zh": "课堂活动：用直尺手画最佳拟合线",
+        "en": "Activity: Linear Regression by hand"
+      },
+      "slides": "14",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 14 页是课堂活动：一张新的散点图（**scatter plot**，把每条数据画成一个点的图），12 个绿点，整体往右上升，不是前面那 7 个点。用直尺画一条最佳拟合线（**line of best fit**），再从你画的线上读出 m 和 b。"
+        },
+        {
+          "type": "text",
+          "zh": "活动要求：用直尺画一条最佳拟合线，再从你画的线上读出斜率 m 和截距 b。（课件还问了一个 Discuss，见下面的讨论题。）",
+          "en": "Using a straight edge, draw a line of best fit for the plotted data, then record the values of m and b by reading the slope and y-intercept off of the line you have drawn."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "line of best fit",
+              "zh": "最佳拟合线",
+              "hint": "最能代表这些点整体走向的一条直线。"
+            },
+            {
+              "en": "straight edge",
+              "zh": "直尺",
+              "hint": "用来画直线的工具。"
+            },
+            {
+              "en": "trend",
+              "zh": "趋势",
+              "hint": "点整体往哪个方向走（这里是往右上升）。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "手画并读出 m、b 的步骤",
+            "en": "Steps for drawing the line and reading m and b"
+          },
+          "steps": [
+            {
+              "zh": "看趋势：点整体从左下走到右上，所以线要往右上升（m 是正数）。"
+            },
+            {
+              "zh": "放直尺：让线从点群“中间”穿过——线上方和下方的点差不多一样多，而且尽量离每个点都近。"
+            },
+            {
+              "zh": "读 b：看你的线在宽度 0 处碰到竖轴的高度。"
+            },
+            {
+              "zh": "读 m：在你画的线上挑两个好读的位置，算 rise / run。"
+            },
+            {
+              "zh": "写出 y = mx + b。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：课件没有给这个活动的标准答案。如果想对一下：按图上读出的点粗略计算，一条合理的线大约是 m ≈ 0.8、b ≈ 4。每个人画得略有不同，很正常。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（描述你怎么画线）",
+            "en": "Exam sentences: how I drew my line"
+          },
+          "items": [
+            {
+              "en": "I drew the line to follow the overall trend of the points and to stay close to all of them.",
+              "zh": "我让线跟着点的整体趋势走，并尽量靠近所有点。"
+            },
+            {
+              "en": "Then I read the y-intercept b where my line crosses the vertical axis, and the slope m as rise / run.",
+              "zh": "然后读出截距 b（我的线碰到竖轴的高度），再用 rise / run 算出斜率 m。"
+            },
+            {
+              "en": "A person can use intuition to place the line, but the machine needs a cost function.",
+              "zh": "人可以凭直觉放线，但机器需要一个代价函数。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: How did you decide where to draw your line?",
+            "zh": "讨论：你是怎么决定线画在哪里的？"
+          },
+          "answer": {
+            "en": "I drew the line so that it follows the overall upward trend of the points. I tried to keep the line as close as possible to all the points, with about the same number of points above and below it. I did not try to pass through every point, because the points go up and down a little at random. This is human intuition; a machine cannot judge by eye, so it needs a cost function that measures how wrong a line is.",
+            "zh": "得分点：①跟着整体趋势（往右上升）；②让线尽量靠近所有点，上下两边的点差不多一样多，也就是误差小；③不追求穿过每一个点，因为数据有随机的上下波动；④点出关键：人靠直觉，机器需要代价函数来衡量线有多“错”——这正是第 16 页接下来讲的。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "读 m 要用你画的线上的两点，不要用数据点（数据点通常不在线上）。"
+            },
+            {
+              "zh": "最佳拟合线不必穿过任何一个点，更不必穿过所有点。"
+            },
+            {
+              "zh": "这个活动的 12 个点和前面 7 片叶子不是同一组数据。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "When you draw a line of best fit by hand, which idea is the most sensible?",
+            "zh": "手画最佳拟合线时，哪种想法最合理？"
+          },
+          "options": [
+            {
+              "en": "The line should follow the trend and stay close to the points",
+              "zh": "线要跟着整体趋势，并尽量靠近所有点"
+            },
+            {
+              "en": "The line must pass through every data point, with none missed",
+              "zh": "线必须穿过每一个点，一个都不能漏"
+            },
+            {
+              "en": "The line must start at (0, 0), like every line on a graph",
+              "zh": "线必须从 (0, 0) 出发，就像图上所有的线一样"
+            },
+            {
+              "en": "The line should be as steep as possible to show the trend",
+              "zh": "线越陡越好，这样更能显示趋势"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "为什么对：最佳拟合线要代表整体趋势、离点都近。\n“pass through every data point” 错：做不到，也没必要。\n“start at (0, 0)” 错：截距不一定是 0（第 13 页那条线的截距是 8.65）。\n“as steep as possible” 错：陡不陡由数据决定，不是越陡越好。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-cost-function",
+      "title": {
+        "zh": "代价函数：给一条线的“错误程度”打分",
+        "en": "Cost function: measuring the 'wrongness' of a line"
+      },
+      "slides": "15-16",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：代价函数（**cost function**）是一个打分规则：给它一条线和一组数据，它算出一个数，表示这条线“错得有多厉害”。这个数越小越好。"
+        },
+        {
+          "type": "text",
+          "zh": "为什么需要它？人看一眼图，凭直觉（**intuition**）就能大概放好一条线（就像第 14 页的活动）。机器没有这种直觉，它需要一个算得出来的数字来判断好坏，并在训练中把这个数尽量变小——叫最小化（**minimize**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像作文扣分：老师不只说“好”或“不好”，而是数出“扣了几分”。扣分越少，作文越好。代价函数就是机器的“扣分表”：代价越低，线越好。",
+          "limit": "类比的局限：作文扣分有老师的主观判断；代价函数是固定的数学公式，同一条线、同一组数据，算出来永远是同一个数。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "You can use human intuition to determine where to place the line, but the machine needs a cost function to minimize during training.",
+              "zh": "人可以凭直觉决定线放在哪里，但机器在训练中需要一个可以最小化的代价函数。"
+            },
+            {
+              "en": "A cost function measures the \"wrongness\" of a line for a dataset.",
+              "zh": "代价函数衡量一条线对一个数据集的“错误程度”。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "cost function",
+              "zh": "代价函数",
+              "hint": "给模型的“错误程度”打分的函数，输出一个数。"
+            },
+            {
+              "en": "wrongness",
+              "zh": "错误程度",
+              "hint": "线和数据点整体差得有多远。"
+            },
+            {
+              "en": "minimize",
+              "zh": "最小化",
+              "hint": "让一个数尽量变小。"
+            },
+            {
+              "en": "dataset",
+              "zh": "数据集",
+              "hint": "一组数据，比如那 7 个绿点。"
+            },
+            {
+              "en": "human intuition",
+              "zh": "人的直觉",
+              "hint": "不用计算、凭感觉判断。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "代价和参数的关系：换一组参数（w0、w1）就是换一条线，代价也跟着变。所以每组参数都有自己的“扣分”，训练就是去找扣分最少（代价最小）的那组参数。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "代价越低越好，不是越高越好。cost 本来就是“花费”的意思，当然越少越好。"
+            },
+            {
+              "zh": "代价是对整个数据集打分（for a dataset），不是只看一个点。"
+            },
+            {
+              "zh": "MSE 只是代价函数的“一种”（one possible cost function），代价函数 ≠ MSE。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does the machine need a cost function during training?",
+            "zh": "为什么机器在训练中需要代价函数？"
+          },
+          "options": [
+            {
+              "en": "It labels the training data, so the machine knows each target value",
+              "zh": "它给训练数据贴标签，让机器知道每个目标值"
+            },
+            {
+              "en": "It chooses the model type (linear or quadratic) for us before training",
+              "zh": "它在训练前替我们选模型类型（直线还是二次）"
+            },
+            {
+              "en": "It makes the line pass through every point, so the error is 0",
+              "zh": "它让线穿过每一个点，使误差为 0"
+            },
+            {
+              "en": "It measures how wrong a line is, so the machine can minimize it",
+              "zh": "它衡量线有多错，机器就能把它降到最小"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "为什么对：第 16 页：机器没有人的直觉，需要一个 cost function to minimize during training，它衡量线的 wrongness。\n“labels the training data” 错：标签（目标值）本来就在数据里，代价函数不负责贴标签。\n“chooses the model type” 错：选模型类型是我们的工作。\n“pass through every point” 错：代价函数只给线打分，不会强迫线穿过每个点。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On the same data, line A has a cost (MSE) of 24.04 and line B has a cost (MSE) of 13.66. Which line fits the data better?",
+            "zh": "在同一组数据上，直线 A 的代价（MSE）是 24.04，直线 B 是 13.66。哪条线拟合得更好？"
+          },
+          "options": [
+            {
+              "en": "Line A, because its cost is higher",
+              "zh": "A，因为它的代价更高"
+            },
+            {
+              "en": "Line B, because its cost is lower",
+              "zh": "B，因为它的代价更低"
+            },
+            {
+              "en": "We cannot tell without knowing the slopes of the lines",
+              "zh": "不知道两条线的斜率，就没法判断"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "代价衡量“有多错”，越低越好，所以 B 更好（这两个数来自第 27 页和第 29 页的梯度下降过程）。训练的目标就是把代价最小化（**minimize**）。\n“Line A, because its cost is higher” 错：方向反了，代价高说明错得多。\n“We cannot tell without knowing the slopes” 错：比较 MSE 不需要知道斜率，代价这一个数就够了。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-error-and-squared-error",
+      "title": {
+        "zh": "误差 error = y − t 与平方误差",
+        "en": "Error and squared error"
+      },
+      "slides": "18-19",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：对每一个点，误差（**error**）＝模型猜的值 − 真实的值；平方误差（**squared error**）＝把这个误差自己乘自己。"
+        },
+        {
+          "type": "text",
+          "zh": "两个符号：y＝预测值（线上的高度，模型猜的）；t＝目标值（**target value**），也就是这个点真实的高度（数据里量出来的“答案”）。"
+        },
+        {
+          "type": "text",
+          "zh": "平方（**square**）＝一个数乘它自己，比如 3² = 3 × 3 = 9。负数乘负数得正数，所以平方的结果不会是负数。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像外卖 App 预计 30 分钟送到（y），实际 35 分钟才到（t）。误差 = 30 − 35 = −5，负号表示“猜少了”。平方误差 = (−5)² = 25。",
+          "limit": "类比的局限：一单外卖只有一个误差；训练时每个数据点都有自己的误差，要合起来看（下一步的 MSE）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "For each point in the dataset, the error is the difference between the predicted value, y, and the actual height value, t (called the target value).",
+              "zh": "对数据集中的每个点，误差是预测值 y 和实际高度 t（叫做目标值）之间的差。"
+            },
+            {
+              "en": "The squared error is just the difference squared.",
+              "zh": "平方误差就是这个差的平方。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "error = y − t",
+          "zh": "误差 = 预测值 − 目标值。课件的顺序是 y 减 t。",
+          "where": [
+            {
+              "symbol": "y",
+              "zh": "预测值（模型线上的高度）"
+            },
+            {
+              "symbol": "t",
+              "zh": "目标值 target（这个点真实的高度）"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "squared error = (y − t)²",
+          "zh": "平方误差：把误差平方，结果不会是负数。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 18–19 页：宽度 x = 6 的那个点",
+            "en": "Slides 18-19: the point at x = 6"
+          },
+          "steps": [
+            {
+              "zh": "算预测值：y = 8.65 + 0.464 × 6 = 8.65 + 2.784 = 11.434 ≈ 11.4",
+              "en": "y = 8.65 + 0.464 × 6 ≈ 11.4"
+            },
+            {
+              "zh": "读目标值：t = 15.5（这个点真实的高度）",
+              "en": "t = 15.5"
+            },
+            {
+              "zh": "算误差：error = y − t = 11.4 − 15.5 = −4.1",
+              "en": "error = y − t = 11.4 − 15.5 = −4.1"
+            },
+            {
+              "zh": "看负号：预测比真实值低了 4.1 cm（这个点在线的上方）。"
+            },
+            {
+              "zh": "算平方误差：(y − t)² = (11.4 − 15.5)² = (−4.1)² = 16.81",
+              "en": "squared error = (y − t)² = (11.4 − 15.5)² = (−4.1)² = 16.81"
+            },
+            {
+              "zh": "看图：红色竖线从线上的 y 连到点 t，它的长度就是误差的大小。"
+            }
+          ],
+          "answer": {
+            "zh": "误差 error = −4.1，平方误差 squared error = 16.81",
+            "en": "error = −4.1, squared error = 16.81"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "顺序：课件写 error = y − t（预测减目标），不是 t − y。按课件算，答案是 −4.1。"
+            },
+            {
+              "zh": "(−4.1)² = +16.81，不是 −16.81：负负得正。"
+            },
+            {
+              "zh": "用计算器时要把负号一起放进括号：(−4.1)²。只按 −4.1² 会先平方再加负号，得到 −16.81。"
+            },
+            {
+              "zh": "y 在线上（猜的），t 是点本身（真的）。"
+            },
+            {
+              "zh": "名字别搞混：竖轴叫 y 轴，但绿点的高度是真实值 t；只有模型那条线上的高度才叫 y（预测值）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "For the point at x = 6, y ≈ 11.4 and t = 15.5. Using the lecture's definition, what is the error?",
+            "zh": "宽度 x = 6 的点：y ≈ 11.4，t = 15.5。按课件的定义，误差是多少？"
+          },
+          "options": [
+            {
+              "en": "4.1"
+            },
+            {
+              "en": "−4.1"
+            },
+            {
+              "en": "16.81"
+            },
+            {
+              "en": "26.9"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "error = y − t = 11.4 − 15.5 = −4.1。4.1 是把顺序弄反（t − y）；16.81 是平方误差；26.9 是把两个数加起来。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "For the same point, what is the squared error?",
+            "zh": "同一个点的平方误差是多少？"
+          },
+          "options": [
+            {
+              "en": "−16.81"
+            },
+            {
+              "en": "8.2"
+            },
+            {
+              "en": "16.81"
+            },
+            {
+              "en": "4.1"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "(−4.1)² = (−4.1) × (−4.1) = 16.81。平方的结果不会是负数；8.2 是 4.1 × 2（乘 2 不是平方）；4.1 只是误差的大小，没有平方。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-mean-squared-error",
+      "title": {
+        "zh": "均方误差 MSE：平方误差的平均",
+        "en": "Mean squared error (MSE)"
+      },
+      "slides": "17, 20",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：均方误差（**mean squared error, MSE**）＝每个点的平方误差全部加起来，再除以点的个数。也就是“平方误差的平均数”。"
+        },
+        {
+          "type": "text",
+          "zh": "先补一个词：平均数（**average / mean**）＝全部加起来 ÷ 个数。例如 2、4、6 的平均数 = (2 + 4 + 6) ÷ 3 = 4。MSE 里的 mean 就是“平均”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像算全班平均分：每个同学一个分数（每个点一个平方误差），加起来再除以人数（点数），得到一个能代表全班的数。",
+          "limit": "类比的局限：平均分越高越好，MSE 却是越低越好，方向相反。"
+        },
+        {
+          "type": "exam",
+          "items": [
+            {
+              "en": "The mean squared error (MSE) is one possible cost function.",
+              "zh": "（课件原话）均方误差（MSE）是一种可用的代价函数。"
+            },
+            {
+              "en": "The mean squared error is the average over all data points.",
+              "zh": "（课件原话）均方误差是对所有数据点取平均。"
+            },
+            {
+              "en": "To compute the MSE, we square the error of each point, add them up, and divide by the number of points.",
+              "zh": "（考试这样写）算 MSE：把每个点的误差平方，加起来，再除以点的个数。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "先说好：下面第 17 页的符号公式，课件原话是 “(This is included for completeness. You don't need to memorize this formula.)”——这个符号公式不用背！但要能用文字说出 MSE 是什么，并会像第 20 页那样一步步算。"
+        },
+        {
+          "type": "formula",
+          "expr": "MSE = (1/N) Σᵢ (y⁽ⁱ⁾ − t⁽ⁱ⁾)²",
+          "zh": "第 17 页的数学写法：对每个点 i 算 (y − t)²，用 Σ 全部加起来，再乘 1/N（也就是除以 N）。",
+          "en": "Where i indexes over every point in the dataset.",
+          "where": [
+            {
+              "symbol": "Σᵢ",
+              "zh": "求和：把每个点 i 的值都加起来"
+            },
+            {
+              "symbol": "i",
+              "zh": "点的编号；i 会走遍数据集里的每一个点"
+            },
+            {
+              "symbol": "y⁽ⁱ⁾",
+              "zh": "第 i 个点的预测值"
+            },
+            {
+              "symbol": "t⁽ⁱ⁾",
+              "zh": "第 i 个点的目标值"
+            },
+            {
+              "symbol": "N",
+              "zh": "点的个数（课件没写明；第 20 页的例子里 N = 7）"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 20 页：直线 y = 8.65 + 0.464x1 的 MSE",
+            "en": "Slide 20: the MSE of y = 8.65 + 0.464x1"
+          },
+          "steps": [
+            {
+              "zh": "第 1 步：对每个点算预测值 y（保留一位小数），再算误差 y − t（见下表）。"
+            },
+            {
+              "zh": "第 2 步：每个误差平方，得到 7 个平方误差：26.01、4.00、16.81、1.96、10.24、3.24、21.16。"
+            },
+            {
+              "zh": "第 3 步：全部加起来：26.01 + 4.00 + 16.81 + 1.96 + 10.24 + 3.24 + 21.16 = 83.42。",
+              "en": "26.01 + 4.00 + 16.81 + 1.96 + 10.24 + 3.24 + 21.16 = 83.42"
+            },
+            {
+              "zh": "第 4 步：除以点的个数 N = 7：83.42 / 7 ≈ 11.92。",
+              "en": "MSE = 83.42 / 7 ≈ 11.92"
+            }
+          ],
+          "answer": {
+            "zh": "MSE ≈ 11.92（课件原值）",
+            "en": "MSE = [26.01 + 4.00 + 16.81 + 1.96 + 10.24 + 3.24 + 21.16] / 7 = 83.42 / 7 ≈ 11.92"
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "宽度 x",
+            "目标值 t",
+            "预测值 y",
+            "error = y − t",
+            "squared error"
+          ],
+          "rows": [
+            [
+              "2",
+              "4.5",
+              "9.6",
+              "+5.1",
+              "26.01"
+            ],
+            [
+              "4",
+              "12.5",
+              "10.5",
+              "−2.0",
+              "4.00"
+            ],
+            [
+              "6",
+              "15.5",
+              "11.4",
+              "−4.1",
+              "16.81"
+            ],
+            [
+              "8",
+              "11.0",
+              "12.4",
+              "+1.4",
+              "1.96"
+            ],
+            [
+              "10",
+              "16.5",
+              "13.3",
+              "−3.2",
+              "10.24"
+            ],
+            [
+              "12",
+              "16.0",
+              "14.2",
+              "−1.8",
+              "3.24"
+            ],
+            [
+              "14",
+              "10.5",
+              "15.1",
+              "+4.6",
+              "21.16"
+            ],
+            [
+              "合计",
+              "—",
+              "—",
+              "—",
+              "83.42"
+            ],
+            [
+              "÷ 7",
+              "—",
+              "—",
+              "—",
+              "MSE ≈ 11.92"
+            ]
+          ],
+          "caption": {
+            "zh": "最后一列的 7 个平方误差、t = 15.5 和 83.42 / 7 ≈ 11.92 是课件原值；其他 t 是从图上读出的，y 是用公式算的（取一位小数），刚好对上课件的每个平方误差。",
+            "en": "Squared errors and the MSE are from slide 20; the other targets are read from the plot."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "regression-mse",
+          "config": {
+            "points": [
+              [
+                2,
+                4.5
+              ],
+              [
+                4,
+                12.5
+              ],
+              [
+                6,
+                15.5
+              ],
+              [
+                8,
+                11
+              ],
+              [
+                10,
+                16.5
+              ],
+              [
+                12,
+                16
+              ],
+              [
+                14,
+                10.5
+              ]
+            ],
+            "start": {
+              "w0": 8.65,
+              "w1": 0.464
+            },
+            "xLabel": {
+              "zh": "叶子宽度 x1（cm）",
+              "en": "Leaf Width (cm)"
+            },
+            "yLabel": {
+              "zh": "叶子高度（cm）",
+              "en": "Leaf Height (cm)"
+            }
+          },
+          "caption": {
+            "zh": "第 20 页的 7 个点和直线 y = 8.65 + 0.464x1，红线是每个点的误差 (y − t)。演示程序默认不先四舍五入，所以 MSE 显示约 11.89；课件先把每个 y 取一位小数，得到 11.92——考试写 11.92。勾选“像课件一样：先把每个 y 取一位小数”，就会看到和第 20 页一样的 26.01、4.00……和 11.92。试着改变直线，看 MSE 怎么变。",
+            "en": "The 7 points and the line from slide 20. By default the demo does not round, so it shows about 11.89. Tick 'Like the slides: round each y to 1 decimal first' to see the slide's 26.01, 4.00, … and 11.92."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：为什么要平方，而不直接把误差加起来？看上表的误差：5.1 − 2.0 − 4.1 + 1.4 − 3.2 − 1.8 + 4.6 = 0.0，正负刚好抵消，直接相加会误以为“完全没错”。平方之后全是正数，不会抵消；而且大误差会被放大、重罚。课件没有讲这个原因。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "先平方，再平均（mean of the squared errors），顺序不能反。"
+            },
+            {
+              "zh": "除以的是点的个数 N（这里是 7）。"
+            },
+            {
+              "zh": "MSE 要用到数据集里的每一个点，不能只挑几个。"
+            },
+            {
+              "zh": "11.92 不是“平均每个点差 11.92 cm”——它是平方之后的平均。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which description of the MSE matches the lecture?",
+            "zh": "哪种说法符合课件对 MSE 的描述？"
+          },
+          "options": [
+            {
+              "en": "The largest error among all the points in the dataset",
+              "zh": "数据集所有点里最大的那个误差"
+            },
+            {
+              "en": "The sum of all the errors, added up without squaring",
+              "zh": "把所有误差直接相加，不平方"
+            },
+            {
+              "en": "The average of the squared errors over all points",
+              "zh": "所有数据点平方误差的平均"
+            },
+            {
+              "en": "The error of a single point, such as x = 6",
+              "zh": "单个点的误差，比如 x = 6 那个点"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "为什么对：第 20 页：The mean squared error is the average over all data points（对平方误差取平均）。\n“The largest error” 错：MSE 要用到每一个点，不是只看最大的那个。\n“without squaring” 错：要先平方，再平均。\n“a single point” 错：一个点只有一个误差；MSE 是所有点合起来的平均。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Three points have squared errors of 4, 9 and 2. What is their MSE?",
+            "zh": "三个点的平方误差分别是 4、9、2。它们的 MSE 是多少？"
+          },
+          "options": [
+            {
+              "en": "15"
+            },
+            {
+              "en": "5"
+            },
+            {
+              "en": "3"
+            },
+            {
+              "en": "45"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "(4 + 9 + 2) / 3 = 15 / 3 = 5。15 是只加不除；3 是点的个数；45 是乘了 3 而不是除以 3。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-comparing-lines-by-cost",
+      "title": {
+        "zh": "比较两条线：参数一变，代价就变",
+        "en": "Comparing two lines: cost, parameters and training"
+      },
+      "slides": "21-22",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：同一组数据，不同的参数（**parameters**）画出不同的线，算出来的代价（**cost**）也不同。MSE 越小，拟合得越好（**a good fit**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像两位射箭选手：A 的箭都落在靶心附近（误差都小）；B 有一支箭偏得特别远（一个大误差）。平方会把这支“特别远”的重重扣分，所以 B 的总扣分（代价）高很多。",
+          "limit": "类比的局限：射箭看的是平面上的距离；这里的误差只看竖直方向的差（y − t）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 21–22 页：两条线比一比",
+            "en": "Slides 21-22: comparing two lines"
+          },
+          "steps": [
+            {
+              "zh": "左图：往右上升的直线 y = 8.65 + 0.464x1，MSE = 11.92。红色误差线都比较短。"
+            },
+            {
+              "zh": "右图：往右下降的直线（左端高度 19，到右边降到大约 7），MSE = 37.52。宽度 2 那个点的红线特别长。"
+            },
+            {
+              "zh": "37.52 比 11.92 大很多 → 右边那条线“错”得多，左边那条拟合得更好。"
+            },
+            {
+              "zh": "右边这条坏线就是第 26 页梯度下降的起点：w0 = 19.00，w1 = −0.800。"
+            },
+            {
+              "zh": "第 22 页：“Now we can recognize a good fit when we have one. But how do we get one?”——好线我们能认出来了，可是怎么找到它？答案是梯度下降（第 24 页起）。"
+            }
+          ],
+          "answer": {
+            "zh": "MSE 更低的左边那条线（11.92）拟合得更好",
+            "en": "The left line has the lower MSE (11.92), so it is the better fit."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：用图上读出的数据算一下，右边那条线在宽度 2 处预测 17.4，真实高度约 4.5，误差 +12.9，平方后是 166.41——这一个点就占了总和 262.65 的约 63%。262.65 / 7 = 37.52，正好对上课件。"
+        },
+        {
+          "type": "exam",
+          "items": [
+            {
+              "en": "The line y = 8.65 + 0.464x1 has an MSE of 11.92. The falling line y = 19.00 − 0.800x1 has an MSE of 37.52.",
+              "zh": "（考试这样写）直线 y = 8.65 + 0.464x1 的 MSE 是 11.92；往下斜的直线 y = 19.00 − 0.800x1 的 MSE 是 37.52。"
+            },
+            {
+              "en": "The model with the lower MSE is the better fit, because it is less wrong on this dataset.",
+              "zh": "（考试这样写）MSE 更低的模型拟合得更好，因为它在这组数据上错得更少。"
+            },
+            {
+              "en": "The cost depends on the parameters: different parameter values give a different line and a different cost. Training changes the parameters to make the cost as small as possible.",
+              "zh": "（考试这样写）代价取决于参数：参数不同，线就不同，代价也不同。训练就是改参数，让代价尽量小。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Learning outcome: Explain the relationship between cost, the model parameters, and training.",
+            "zh": "（练习题，不是课件上的 Discuss）学习目标：解释代价、模型参数和训练之间的关系。"
+          },
+          "answer": {
+            "en": "The model parameters (weights such as w0 and w1) decide where the line is. The cost function, such as the MSE, measures how wrong that line is for the training data, so every set of parameter values has its own cost. For example, the line with w0 = 8.65 and w1 = 0.464 has an MSE of 11.92, while the line with w0 = 19.00 and w1 = −0.800 has an MSE of 37.52. Training means changing the parameters, for example with gradient descent, to make the cost as small as possible.",
+            "zh": "得分点：①参数决定线的位置；②代价衡量这条线在训练数据上有多错 → 每组参数对应一个代价；③举课件的例子：11.92 对比 37.52；④训练＝调整参数（比如用梯度下降），把代价降到最小。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "比较 MSE 要在同一组数据上比才公平（这里两条线用的是同样 7 个点）。"
+            },
+            {
+              "zh": "MSE 低只说明在“这组数据”上拟合得好，不保证预测新数据也好（第 34–38 页）。"
+            },
+            {
+              "zh": "参数变 → 线变 → 代价变。数据点本身一直不变。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Model A has an MSE of 11.92 and model B has an MSE of 37.52 on the same training data. Which statement is correct?",
+            "zh": "在同一组训练数据上，模型 A 的 MSE 是 11.92，模型 B 是 37.52。哪句话正确？"
+          },
+          "options": [
+            {
+              "en": "Model B fits this data better, because a higher MSE is better",
+              "zh": "B 拟合得更好，因为 MSE 越高越好"
+            },
+            {
+              "en": "Both models fit the data equally well, because they use the same data",
+              "zh": "两个模型拟合得一样好，因为它们用的是同一组数据"
+            },
+            {
+              "en": "MSE cannot be used to compare two lines, only to score one",
+              "zh": "MSE 不能用来比较两条线，只能给一条线打分"
+            },
+            {
+              "en": "Model A fits this data better, because its MSE is lower",
+              "zh": "A 对这组数据拟合得更好，因为它的 MSE 更低"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "为什么对：代价衡量“错误程度”，越低越好，所以 A 更好。课件第 21–22 页正是用 11.92 和 37.52 来比较两条线、认出好的拟合。\n“a higher MSE is better” 错：方向反了。\n“equally well” 错：两者 MSE 不同，所以不是“一样好”。\n“MSE cannot be used to compare two lines” 错：MSE 正是用来比较两条线的工具。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What happens when the machine changes the parameters w0 and w1 of a linear model?",
+            "zh": "机器改变直线模型的参数 w0 和 w1 时，会发生什么？"
+          },
+          "options": [
+            {
+              "en": "The training data points move to follow the line",
+              "zh": "训练数据点会跟着线移动"
+            },
+            {
+              "en": "The target values t change to match the new line",
+              "zh": "目标值 t 会改变，去配合新的线"
+            },
+            {
+              "en": "The line changes, so the cost changes too",
+              "zh": "线变了，所以代价也变了"
+            },
+            {
+              "en": "Nothing changes, because the cost depends only on the data",
+              "zh": "什么都不变，因为代价只取决于数据"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "为什么对：参数决定线的位置（截距和斜率），线一变，每个点的误差就变，代价也跟着变。\n“data points move” 和 “target values t change” 错：数据点和目标值 t 是数据本身，训练不会改它们。\n“Nothing changes” 错：代价既取决于数据，也取决于线（参数）；参数一变，代价就变。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-gradient-descent-algorithm",
+      "title": {
+        "zh": "梯度下降：一小步一小步把代价降下来",
+        "en": "Gradient descent: the rough algorithm"
+      },
+      "slides": "23-25",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：梯度下降（**gradient descent**）是一种“慢慢试、慢慢改”的方法：先随便猜一组参数，然后反复做“看代价 → 判断每个参数该变大还是变小 → 改一点点”，直到参数差不多对了。"
+        },
+        {
+          "type": "text",
+          "zh": "为什么需要它？课件说：线性回归（**linear regression**）够简单，可以直接精确算出答案（**solved exactly**）；但更复杂的模型往往做不到。这时就用梯度下降，慢慢接近一个好答案。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像调洗澡水：一开始随手拧到一个位置（随机参数）。用手试试水温（检查代价）。太烫就往冷的方向拧一点，太凉就往热的方向拧一点（判断增还是减，只改一点点）。再试、再拧……直到水温刚好（参数接近正确）。",
+          "limit": "类比的局限：洗澡水只有一个旋钮；模型可能有很多参数，每一轮要把每个参数都调一点。机器也不是“用手感觉”，而是用全部训练数据算出代价。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "From the slides"
+          },
+          "items": [
+            {
+              "en": "Linear regression is simple enough that it can be solved exactly, but this is often not the case for more complex models.",
+              "zh": "线性回归足够简单，可以精确求解；但对更复杂的模型，往往做不到。"
+            },
+            {
+              "en": "Instead, we can use gradient descent to slowly approach a good solution.",
+              "zh": "于是我们可以用梯度下降，慢慢接近一个好的解。"
+            }
+          ]
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "梯度下降算法（第 25 页原话）",
+            "en": "Essentially, the algorithm for gradient descent is:"
+          },
+          "items": [
+            {
+              "en": "1. Start with all parameters (w0, w1, …) set randomly.",
+              "zh": "先把所有参数（w0, w1, …）随便设一个值（随机设定）。"
+            },
+            {
+              "en": "2. Check the cost using every point in the training set.",
+              "zh": "用训练集里的每一个点检查代价（比如算 MSE）。"
+            },
+            {
+              "en": "3. For each parameter, decide if it should be increased or decreased to reduce cost.",
+              "zh": "对每个参数，判断它应该增大还是减小，才能降低代价。"
+            },
+            {
+              "en": "4. Increase or decrease each parameter by a small amount.",
+              "zh": "把每个参数增大或减小一点点。"
+            },
+            {
+              "en": "5. Repeat from Step 2 until the parameters are close to correct.",
+              "zh": "回到第 2 步重复，直到参数接近正确。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "学习目标 3 怎么答（背下来）",
+            "en": "Learning outcome 3"
+          },
+          "items": [
+            {
+              "en": "Gradient descent slowly approaches a good solution by changing the parameters a little at a time.",
+              "zh": "梯度下降每次把参数改一点点，慢慢接近一个好的解。"
+            },
+            {
+              "en": "First, it starts with all parameters (w0, w1, …) set randomly.",
+              "zh": "第一步：把所有参数随机设定。"
+            },
+            {
+              "en": "Next, it checks the cost using every point in the training set.",
+              "zh": "然后用训练集里的每一个点检查代价。"
+            },
+            {
+              "en": "For each parameter, it decides if the parameter should be increased or decreased to reduce the cost.",
+              "zh": "对每个参数，判断它该增大还是减小才能降低代价。"
+            },
+            {
+              "en": "It increases or decreases each parameter by a small amount.",
+              "zh": "把每个参数增大或减小一点点。"
+            },
+            {
+              "en": "It repeats from Step 2 until the parameters are close to correct.",
+              "zh": "回到第 2 步重复，直到参数接近正确。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "gradient descent",
+              "zh": "梯度下降",
+              "hint": "一点点调整参数、让代价慢慢变小的方法。"
+            },
+            {
+              "en": "algorithm",
+              "zh": "算法",
+              "hint": "一步一步的固定做法，像菜谱。"
+            },
+            {
+              "en": "set randomly",
+              "zh": "随机设定",
+              "hint": "随便取一个开始值，不需要一开始就对。"
+            },
+            {
+              "en": "training set",
+              "zh": "训练集",
+              "hint": "用来训练的数据，这里是那 7 个绿点。"
+            },
+            {
+              "en": "solved exactly",
+              "zh": "精确求解",
+              "hint": "直接算出最好的答案，不用慢慢试；课件说线性回归可以这样。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：gradient 大致是“坡度”的意思，descent 是“下降”。可以想象在雾里下山：看不到山脚，只能感觉脚下哪边往下，就往那边迈一小步——“山的高度”就是代价。课件没解释这个名字，也没讲每一步具体怎么算；学习目标只要求 “the rough algorithm”（大致算法），重点就是上面 5 步。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "第 1 步是“随机”开始（randomly），不是从正确答案开始。"
+            },
+            {
+              "zh": "第 2 步用训练集里“每一个”点算代价（every point in the training set），不是只用一个点。"
+            },
+            {
+              "zh": "第 4 步每次只改“一点点”（a small amount），所以是 slowly approach，不是一步跳到答案。"
+            },
+            {
+              "zh": "第 5 步是回到第 2 步，不是回到第 1 步重新随机。"
+            },
+            {
+              "zh": "停下来的条件是参数“接近正确”（close to correct），不是“代价等于 0”。"
+            },
+            {
+              "zh": "两句话不矛盾：直线可以直接精确求解（第 24 页），但梯度下降对直线也能用——第 26–31 页就是用直线演示，因为直线最好看懂（这一点是推断，课件没明说）。梯度下降真正派上用场的，是更复杂、往往不能精确求解的模型。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Slide 22 asks: \"Now we can recognize a good fit when we have one. But how do we get one?\"",
+            "zh": "（练习题，不是课件上的 Discuss）第 22 页的问题：我们已经能认出好的拟合了，可是怎么得到它？"
+          },
+          "answer": {
+            "en": "We let the machine minimize a cost function, such as the MSE. Linear regression is simple enough to be solved exactly, but more complex models often cannot be, so we use gradient descent. Gradient descent starts with random parameters, checks the cost using every point in the training set, and changes each parameter by a small amount to reduce the cost. It repeats this until the parameters are close to correct.",
+            "zh": "得分点：①让机器把代价函数（如 MSE）降到最小；②线性回归可以精确求解，但复杂模型往往不行，所以用梯度下降；③说出梯度下降的步骤：随机开始 → 用全部训练点算代价 → 每个参数往降低代价的方向改一点点 → 重复直到接近正确。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is the first step of gradient descent?",
+            "zh": "按课件，梯度下降的第一步是什么？"
+          },
+          "options": [
+            {
+              "en": "Set all parameters to their correct values",
+              "zh": "把所有参数设成正确的值"
+            },
+            {
+              "en": "Choose the model with the lowest MSE",
+              "zh": "选 MSE 最低的模型"
+            },
+            {
+              "en": "Start with all parameters set randomly",
+              "zh": "先把所有参数随机设定"
+            },
+            {
+              "en": "Remove the points with large errors",
+              "zh": "删掉误差大的点"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 25 页第 1 步：Start with all parameters (w0, w1, …) set randomly。一开始不可能知道正确值（知道就不用训练了）；选模型类型是我们的工作；梯度下降也不会删数据点。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Step 5, gradient descent repeats from which step?",
+            "zh": "第 5 步说从哪一步开始重复？"
+          },
+          "options": [
+            {
+              "en": "Step 1"
+            },
+            {
+              "en": "Step 2"
+            },
+            {
+              "en": "Step 3"
+            },
+            {
+              "en": "Step 4"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "Repeat from Step 2：回到“用训练集检查代价”，不是回到第 1 步重新随机设定参数。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why do we use gradient descent instead of always solving for the parameters exactly?",
+            "zh": "为什么要用梯度下降，而不总是直接精确求出参数？"
+          },
+          "options": [
+            {
+              "en": "Because linear regression can never be solved exactly",
+              "zh": "因为线性回归永远无法精确求解"
+            },
+            {
+              "en": "Because gradient descent always makes the MSE equal to 0",
+              "zh": "因为梯度下降总能让 MSE 等于 0"
+            },
+            {
+              "en": "Because gradient descent does not need any training data",
+              "zh": "因为梯度下降不需要训练数据"
+            },
+            {
+              "en": "Because more complex models often cannot be solved exactly",
+              "zh": "因为更复杂的模型往往无法精确求解"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 24 页：线性回归够简单，可以精确求解；但 “this is often not the case for more complex models”。梯度下降不保证 MSE = 0（例子里停在 11.92），而且第 2 步就要用训练集。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-gradient-descent-in-action",
+      "title": {
+        "zh": "看梯度下降一步步跑起来",
+        "en": "Watching gradient descent unfold"
+      },
+      "slides": "26-31",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 26–31 页用同样 7 个点，从一条很差的线出发，演示梯度下降（**gradient descent**）怎么把它慢慢“掰正”。模型一直是 y = w0 + w1x1，每页显示当时的 w0、w1 和 MSE。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "页码",
+            "课件的话",
+            "w0",
+            "w1",
+            "MSE"
+          ],
+          "rows": [
+            [
+              "26",
+              "Suppose we start by guessing this line. Let's watch gradient descent unfold.（先猜这条线，看梯度下降一步步怎么走）",
+              "19.00",
+              "−0.800",
+              "37.52"
+            ],
+            [
+              "27",
+              "After a few steps, the slope is already less steep.（几步之后，坡已经没那么陡了）",
+              "16.41",
+              "−0.353",
+              "24.04"
+            ],
+            [
+              "28",
+              "After more steps, the line is almost flat.（又走了更多步，线几乎平了）",
+              "14.27",
+              "−0.128",
+              "18.27"
+            ],
+            [
+              "29",
+              "The slope has turned positive, and the intercept keeps dropping.（斜率变成正的，截距继续下降）",
+              "11.60",
+              "0.153",
+              "13.66"
+            ],
+            [
+              "30",
+              "The weights are getting close to a good solution.（权重越来越接近好答案）",
+              "9.46",
+              "0.378",
+              "12.12"
+            ],
+            [
+              "31",
+              "Gradient descent has found the good line from earlier.（找到了前面那条好线）",
+              "8.65",
+              "0.464",
+              "11.92"
+            ]
+          ],
+          "caption": {
+            "zh": "第 26–31 页的课件原值。",
+            "en": "Values from slides 26-31."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一行一行读懂这张表",
+            "en": "Reading the table step by step"
+          },
+          "steps": [
+            {
+              "zh": "起点（第 26 页）：w0 = 19.00，w1 = −0.800，MSE = 37.52。这正是第 21 页右边那条往下斜的坏线。"
+            },
+            {
+              "zh": "看 w1，也就是斜率（**slope**）：−0.800 → −0.353 → −0.128 → 0.153 → 0.378 → 0.464，一直在变大；在第 28 页和第 29 页之间从负变成正，线从“往右下斜”变成“往右上斜”。"
+            },
+            {
+              "zh": "看 w0，也就是截距（**intercept**）：19.00 → 16.41 → 14.27 → 11.60 → 9.46 → 8.65，一直在变小（the intercept keeps dropping）。"
+            },
+            {
+              "zh": "看 MSE：37.52 → 24.04 → 18.27 → 13.66 → 12.12 → 11.92，每一页都比上一页低，最后停在 11.92（不是 0）。两页之间隔了几步课件没说，所以别拿相邻两页的差来比“降得快不快”。"
+            },
+            {
+              "zh": "终点（第 31 页）：w0 = 8.65，w1 = 0.464，MSE = 11.92，就是第 11–20 页一直在用的那条好线。"
+            }
+          ],
+          "answer": {
+            "zh": "梯度下降把 MSE 从 37.52 降到 11.92，找到了 y = 8.65 + 0.464x1",
+            "en": "Gradient descent reduced the MSE from 37.52 to 11.92 and found y = 8.65 + 0.464x1."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "像一块跷跷板慢慢转：左端（截距）一直往下压，右端一直往上抬，线从“往右下斜”转成“往右上斜”，最后停在最贴近这些点的位置。"
+        },
+        {
+          "type": "widget",
+          "name": "regression-mse",
+          "config": {
+            "points": [
+              [
+                2,
+                4.5
+              ],
+              [
+                4,
+                12.5
+              ],
+              [
+                6,
+                15.5
+              ],
+              [
+                8,
+                11
+              ],
+              [
+                10,
+                16.5
+              ],
+              [
+                12,
+                16
+              ],
+              [
+                14,
+                10.5
+              ]
+            ],
+            "start": {
+              "w0": 19,
+              "w1": -0.8
+            },
+            "xLabel": {
+              "zh": "叶子宽度 x1（cm）",
+              "en": "Leaf Width (cm)"
+            },
+            "yLabel": {
+              "zh": "叶子高度（cm）",
+              "en": "Leaf Height (cm)"
+            }
+          },
+          "caption": {
+            "zh": "从第 26 页的起点（w0 = 19.00，w1 = −0.800，MSE = 37.52）开始。按“梯度下降一步”看前几步（斜率很快变缓），再按“自动（Auto run）”看完整过程：斜率由负变正、截距一直下降、MSE 一直变小。演示最后停在 w0 ≈ 8.64、MSE ≈ 11.89（它不先把 y 取一位小数）；课件写 8.65、0.464、11.92——考试写课件的数。",
+            "en": "Start from slide 26 (w0 = 19.00, w1 = −0.800, MSE = 37.52). Press 'One gradient-descent step' a few times, then 'Auto run'. The demo ends near w0 ≈ 8.64 and MSE ≈ 11.89 because it does not round y; the slides give 8.65, 0.464 and 11.92."
+          }
+        },
+        {
+          "type": "exam",
+          "items": [
+            {
+              "en": "During gradient descent, the cost goes down step by step. In the lecture example, the MSE drops from 37.52 to 11.92.",
+              "zh": "梯度下降中，代价一步步下降。课件例子里 MSE 从 37.52 降到 11.92。"
+            },
+            {
+              "en": "The parameters change by small amounts until they are close to good values, w0 = 8.65 and w1 = 0.464.",
+              "zh": "参数每次改一点点，直到接近好的值 w0 = 8.65、w1 = 0.464。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "注意：课件相邻两页之间隔了好几步（a few steps／more steps），具体多少步没说。所以表里相邻两行的差，不是“一步”改变的量。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "梯度下降改的是参数（w0、w1），不是数据点。7 个绿点从头到尾一动不动。"
+            },
+            {
+              "zh": "斜率从负变正，是 w1 一点点变大造成的，不是一下子跳过去的。"
+            },
+            {
+              "zh": "这个例子里 MSE 每一页都在下降，最后停在 11.92，而不是 0。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On slide 29, \"the slope has turned positive\". Which parameter changed from negative to positive?",
+            "zh": "第 29 页说“斜率变成正的”。是哪个参数从负变成了正？"
+          },
+          "options": [
+            {
+              "en": "w0"
+            },
+            {
+              "en": "w1"
+            },
+            {
+              "en": "The MSE",
+              "zh": "代价 MSE"
+            },
+            {
+              "en": "The target value t",
+              "zh": "目标值 t"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "在 y = w0 + w1x1 里，w1 是斜率：第 28 页 w1 = −0.128，第 29 页 w1 = 0.153，从负变正。w0 是截距，一直是正数并且在下降；MSE 一直是正数；t 是数据，不会变。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the slide example, what happens to the MSE as gradient descent runs?",
+            "zh": "在课件的例子里，梯度下降运行时 MSE 怎么变？"
+          },
+          "options": [
+            {
+              "en": "It goes up, from 11.92 to 37.52",
+              "zh": "上升，从 11.92 升到 37.52"
+            },
+            {
+              "en": "It stays at 37.52",
+              "zh": "一直是 37.52"
+            },
+            {
+              "en": "It reaches 0",
+              "zh": "降到 0"
+            },
+            {
+              "en": "It goes down, from 37.52 to 11.92",
+              "zh": "下降，从 37.52 降到 11.92"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "梯度下降的目的就是降低代价：37.52 → 24.04 → 18.27 → 13.66 → 12.12 → 11.92。它停在最好的直线附近，MSE 是 11.92，不是 0。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s15-gradient-descent-classification",
+      "title": {
+        "zh": "梯度下降也能用于分类",
+        "en": "Gradient Descent and Classification"
+      },
+      "slides": "32",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：梯度下降（**gradient descent**）不只用在回归上，也可以用来找分类问题里的决策边界（**decision boundary**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像做选择题：不光要选对，还希望是“很有把握地选对”，而不是蒙对。分类里的训练目标，大致就是让模型对正确答案越来越有把握。",
+          "limit": "类比的局限：课件只说了大致目标（Roughly），没有讲具体怎么算。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "From the slides"
+          },
+          "items": [
+            {
+              "en": "Gradient descent can also be used to find decision boundaries in classification problems.",
+              "zh": "梯度下降也可以用来找分类问题中的决策边界。"
+            },
+            {
+              "en": "Mathematically, it is a little more complex.",
+              "zh": "数学上会稍微复杂一些。"
+            },
+            {
+              "en": "Roughly, the goal is to maximize confidence in correct classifications.",
+              "zh": "大致来说，目标是让模型对正确分类的把握度尽量大。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "maximize",
+              "zh": "最大化",
+              "hint": "让一个数尽量大，和 minimize（最小化）相反。"
+            },
+            {
+              "en": "confidence",
+              "zh": "把握度",
+              "hint": "模型对自己的判断有多确定（课件没有给精确定义）。Lab 4 的 Teachable Machine 给每个类别显示的百分比，就是这种“把握”。"
+            },
+            {
+              "en": "correct classification",
+              "zh": "正确分类",
+              "hint": "把叶子分到它真正所属的类别。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "第 32 页配的图是第 7 页那条分类直线（−12 + x1 + 0.3x2 = 0）和 7 片 O/M 叶子，用来说明：决策边界的参数，也可以用梯度下降来找。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件说 “Mathematically, it is a little more complex.”，只给了大致目标，没有展开数学。复习时先把上面三句课件原话记牢。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "梯度下降不是只给回归用的，分类也能用。"
+            },
+            {
+              "zh": "按课件的说法：回归里机器要把代价最小化（minimize the cost）；分类里大致是把正确分类的把握最大化（maximize confidence in correct classifications）。别把 minimize 和 maximize 套错地方。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is roughly the goal of gradient descent in a classification problem?",
+            "zh": "按课件，分类问题里梯度下降的大致目标是什么？"
+          },
+          "options": [
+            {
+              "en": "To make the MSE as large as possible",
+              "zh": "让 MSE 尽量大"
+            },
+            {
+              "en": "To choose the model type for us",
+              "zh": "替我们选模型类型"
+            },
+            {
+              "en": "To maximize confidence in correct classifications",
+              "zh": "让模型对正确分类的把握度最大"
+            },
+            {
+              "en": "To remove the decision boundary",
+              "zh": "去掉决策边界"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 32 页：Roughly, the goal is to maximize confidence in correct classifications。代价（如 MSE）应该越小越好，不是越大；选模型类型是我们的工作；梯度下降是用来“找”决策边界，不是去掉它。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s16-model-selection",
+      "title": {
+        "zh": "选模型：训练代价最低就最好吗？",
+        "en": "Model Selection: is the lowest cost the best?"
+      },
+      "slides": "33-34",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：有了梯度下降，机器能给很多种模型都找到最好的参数。那我们该选哪种模型——模型选择（**model selection**）——是不是选训练代价（MSE）最低的那个就行？答案是：不一定。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像考前准备：A 同学理解了方法，练习册上错了几题；B 同学把练习册每道题的答案都背了下来，练习册几乎全对。练习册的分数（训练 MSE）B 更好看，但考试换了新题，谁考得好？不一定是 B。",
+          "limit": "类比的局限：模型没有“理解”或“背诵”的意识；这里只是比喻它对训练数据贴得太紧。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "From the slides"
+          },
+          "items": [
+            {
+              "en": "With gradient descent, we now have a way for the machine to find optimal weights for a wide variety of models on our training set.",
+              "zh": "有了梯度下降，机器就能在训练集上为各种各样的模型找到最优权重。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "课件接着问：“Is the best model the one with the lowest cost (MSE)?”（代价最低的模型就是最好的模型吗？）先把这个问题记住，第 35–38 页会给出答案。",
+          "en": "Is the best model the one with the lowest cost (MSE)?"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "model selection",
+              "zh": "模型选择",
+              "hint": "在几种模型类型中挑一个来用；这是“我们”的工作。"
+            },
+            {
+              "en": "optimal weights",
+              "zh": "最优权重",
+              "hint": "在训练集上让代价最小的那组参数。"
+            },
+            {
+              "en": "training set",
+              "zh": "训练集",
+              "hint": "用来训练的数据（那 7 个绿点）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model（模型）",
+            "参数个数",
+            "Training MSE（训练集上的 MSE）"
+          ],
+          "rows": [
+            [
+              "Linear（线性）",
+              "2",
+              "11.92"
+            ],
+            [
+              "Quadratic（二次）",
+              "3",
+              "4.68"
+            ],
+            [
+              "Higher-order polynomial（高阶多项式，到 x1⁴）",
+              "5",
+              "1.67"
+            ]
+          ],
+          "caption": {
+            "zh": "第 34 页：同样 7 个训练点。模型越复杂、参数越多，训练 MSE 越低。参数个数是数 w 得来的。",
+            "en": "Slide 34: training MSE of the three regression models."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "看第 34 页的三张图：直线离点比较远；二次曲线弯一下，更近；高阶曲线弯好几下，离这些点最近（但还没有穿过每个点；第 35 页的 7 参数曲线才是真的穿过每个点）。所以训练 MSE 依次是 11.92 → 4.68 → 1.67。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "训练 MSE 最低 ≠ 最好的模型。训练 MSE 只说明模型对“已经见过的数据”贴得有多紧。"
+            },
+            {
+              "zh": "这里比的是不同的模型类型（线性／二次／高阶）。选模型类型是我们的工作；每种类型里的参数才由机器（梯度下降）去找。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On slide 34, which model has the lowest training MSE?",
+            "zh": "第 34 页里，哪个模型的训练 MSE 最低？"
+          },
+          "options": [
+            {
+              "en": "Linear (MSE = 11.92)",
+              "zh": "直线（MSE = 11.92）"
+            },
+            {
+              "en": "Quadratic (MSE = 4.68)",
+              "zh": "二次（MSE = 4.68）"
+            },
+            {
+              "en": "Higher-order polynomial (MSE = 1.67)",
+              "zh": "高阶多项式（MSE = 1.67）"
+            },
+            {
+              "en": "They all have the same MSE",
+              "zh": "三个一样"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "1.67 最小，所以高阶多项式的训练 MSE 最低。但注意：这只说明它最贴训练数据，不代表它就是最好的模型（第 35–38 页）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In this example, as the model gets more complex (more parameters), what happens to the training MSE?",
+            "zh": "这个例子里，模型越复杂（参数越多），训练 MSE 怎么变？"
+          },
+          "options": [
+            {
+              "en": "It gets lower",
+              "zh": "变低"
+            },
+            {
+              "en": "It gets higher",
+              "zh": "变高"
+            },
+            {
+              "en": "It stays the same",
+              "zh": "不变"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "2 个参数 11.92 → 3 个参数 4.68 → 5 个参数 1.67，第 35 页 7 个参数甚至是 0。参数越多，曲线越能贴着训练点走。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s17-mse-zero-and-new-data",
+      "title": {
+        "zh": "训练 MSE = 0 的模型，遇到新数据就露馅",
+        "en": "A training MSE of 0 vs new data"
+      },
+      "slides": "35-37",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：参数很多的模型，可以把训练集上的 MSE 降到 0（曲线穿过每一个训练点）；但换成新数据（**new data**），它的 MSE 反而高得吓人。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "From the slides"
+          },
+          "items": [
+            {
+              "en": "It turns out that it is not hard for a model with many parameters to reach an MSE of 0 on the training set.",
+              "zh": "事实上，参数很多的模型要在训练集上达到 MSE = 0 并不难。"
+            },
+            {
+              "en": "But remember why we are here: we want a model to make predictions about new data.",
+              "zh": "但别忘了我们的目的：我们要模型对新数据做预测。"
+            },
+            {
+              "en": "We say that the model on the left has been overfitted to the training data.",
+              "zh": "我们说左边的模型对训练数据过拟合（**overfitted**）了。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "y = w0 + w1x1 + w2x1² + w3x1³ + w4x1⁴ + w5x1⁵ + w6x1⁶",
+          "zh": "第 35 页的高阶多项式：7 个参数（w0 到 w6），最高到 x1 的 6 次方。训练后，训练集上的 MSE = 0。"
+        },
+        {
+          "type": "text",
+          "zh": "训练后的参数（课件原值，用来说明“参数很多”）：w0 = 171.5，w1 = −203.85，w2 = 91.014，w3 = −19.102，w4 = 2.0499，w5 = −0.10872，w6 = 0.002257。重点看懂：7 个参数 → 训练集上 MSE = 0。曲线正好穿过 7 个绿点，但在点和点之间疯狂地上下摆动。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：这个模型有 7 个参数，训练点也正好是 7 个，所以曲线有足够的“自由”去穿过每一个点。课件没有这样解释，只说参数多的模型做到 MSE = 0 “not hard”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像背答案：把练习册 7 道题的答案（连印错的答案也算）一字不差背下来，练习册上拿满分（训练 MSE = 0）；可考试换了新题，就答得一塌糊涂（新数据 MSE = 190.27）。",
+          "limit": "类比的局限：模型没有“背”的意识，这里只是说它对训练数据贴得太紧。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 36–37 页：在 8 个新数据点上比一比",
+            "en": "Slides 36-37: comparing on 8 new data points"
+          },
+          "steps": [
+            {
+              "zh": "红点＝8 片新叶子：它们没有参加训练，但它们的真实高度 t 是知道的（就是图上红点的高度），所以能算出模型在它们上面的误差和 MSE。这里的“新”是“模型没见过”，不是“没有答案”。"
+            },
+            {
+              "zh": "左边：训练 MSE = 0 的高阶多项式。在新数据上 MSE = 190.27——很多红点离曲线很远，两端的曲线甚至冲出了图的顶部。"
+            },
+            {
+              "zh": "右边：简单直线 y = 8.65 + 0.464x1（训练 MSE = 11.92）。在新数据上 MSE = 5.77——每个红点都离线不远。"
+            },
+            {
+              "zh": "结论：训练时“完美”的模型，在新数据上反而差得多。课件说左边的模型被过拟合了（**overfitted** to the training data）。"
+            }
+          ],
+          "answer": {
+            "zh": "新数据上：高阶多项式 190.27，直线 5.77 → 直线更好",
+            "en": "On new data: 190.27 for the polynomial and 5.77 for the line, so the line is better."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "MSE",
+            "高阶多项式（7 个参数）",
+            "直线（2 个参数）"
+          ],
+          "rows": [
+            [
+              "训练集 training set",
+              "0",
+              "11.92"
+            ],
+            [
+              "新数据 new data",
+              "190.27",
+              "5.77"
+            ]
+          ],
+          "caption": {
+            "zh": "数字来自课件第 20、31、35–37 页。训练集上谁更好，和新数据上谁更好，结论正好相反。",
+            "en": "Training MSE vs new-data MSE (slides 20, 31, 35-37)."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Slide 34 asks: Is the best model the one with the lowest cost (MSE)?",
+            "zh": "（练习题，不是课件上的 Discuss）第 34 页的问题：代价（MSE）最低的模型就是最好的模型吗？"
+          },
+          "answer": {
+            "en": "Not necessarily. The cost on slide 34 is measured on the training set, and a model with many parameters can make the training cost very low, even 0. But we want a model that makes good predictions about new data. On new data, the higher-order polynomial with a training MSE of 0 had an MSE of 190.27, while the simple line had an MSE of 5.77. So the lowest training cost can be a sign of overfitting, not of the best model.",
+            "zh": "得分点：①先表态：不一定；②训练集上的代价可以被参数多的模型压得很低，甚至为 0；③模型的目的：预测新数据；④用课件数字举证：新数据上 190.27 对比 5.77；⑤结论：训练代价最低可能是过拟合的信号。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "训练 MSE = 0 不是好消息，反而可能是过拟合的信号。"
+            },
+            {
+              "zh": "判断模型好不好，要看它对新数据（**new data**）的预测，而不是只看训练数据。"
+            },
+            {
+              "zh": "分清是哪组数据上的 MSE：直线的 11.92 是训练集上的，5.77 是新数据上的。"
+            },
+            {
+              "zh": "用来检验模型的“新数据”必须知道答案 t，否则算不出 MSE；真正使用模型时遇到的无标签数据才不知道答案。（课件没专门讲这一点，是从“能算出 MSE”推出来的；Lecture 6 的验证集就是这种留出来、有答案、但不用来训练的数据。）"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "The higher-order polynomial has a training MSE of 0 but an MSE of 190.27 on new data. The straight line has 11.92 and 5.77. Which model should we prefer for predicting new leaves?",
+            "zh": "高阶多项式：训练 MSE 为 0，新数据 MSE 为 190.27；直线：分别为 11.92 和 5.77。要预测新叶子，应该选哪个？"
+          },
+          "options": [
+            {
+              "en": "The higher-order polynomial, because its training MSE is 0, which is perfect",
+              "zh": "高阶多项式，因为它的训练 MSE 是 0，很完美"
+            },
+            {
+              "en": "Either one, because only the training MSE matters for choosing a model",
+              "zh": "都行，因为选模型只看训练 MSE"
+            },
+            {
+              "en": "Neither, because the MSE cannot be computed on new data",
+              "zh": "都不行，因为新数据上不能算 MSE"
+            },
+            {
+              "en": "The straight line, because it predicts new data much better",
+              "zh": "直线，因为它对新数据预测得好得多"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "我们要的是预测新数据（we want a model to make predictions about new data）。新数据上直线 5.77 远好于 190.27。\n训练 MSE = 0 不是“完美”，恰恰可能是过拟合的信号；选模型也不能只看训练 MSE。\n新数据上当然能算 MSE：因为红点的真实高度是知道的，课件第 36 页就算出了 190.27 和 5.77。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s18-overfitting-definition",
+      "title": {
+        "zh": "过拟合的定义：记住了噪声，而不是规律",
+        "en": "Overfitting: definition and why it is troublesome"
+      },
+      "slides": "37-38",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句话：过拟合（**overfitting**）＝模型把训练数据里偶然的、随机的小波动——随机噪声（**random noise**）——也“背”了下来，却没学到真正的规律（**genuine patterns**），所以对新数据预测得很差。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像只听一位试吃员调菜：那天他正好感冒，觉得什么都淡，你就照着他把盐加到他觉得“刚好”。结果新客人都说太咸。那天的感冒＝随机噪声（**random noise**），大多数人的口味＝真正的规律（**genuine patterns**）。",
+          "limit": "类比的局限：课件没有讲噪声具体从哪里来；这个比喻只帮你理解“学到了偶然的东西”。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns.",
+              "zh": "当模型记住了训练数据中的随机噪声，而不是真正的规律时，就发生了过拟合。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "overfitting / overfitted",
+              "zh": "过拟合",
+              "hint": "模型对训练数据贴得太紧，连噪声都学了。"
+            },
+            {
+              "en": "memorizes",
+              "zh": "死记硬背",
+              "hint": "原样记住，而不是学到背后的规律。"
+            },
+            {
+              "en": "random noise",
+              "zh": "随机噪声",
+              "hint": "数据里偶然的、没有规律的上下波动。"
+            },
+            {
+              "en": "genuine patterns",
+              "zh": "真正的规律",
+              "hint": "数据背后真实存在、对新数据也成立的规律（课件没有具体说这组叶子的规律是什么）。"
+            },
+            {
+              "en": "new data",
+              "zh": "新数据",
+              "hint": "训练时没见过的数据；模型的真正用途是预测它们。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开看定义：① a model memorizes——模型“背”；② random noise in the training data——背的是训练数据里偶然的波动；③ rather than genuine patterns——而不是真正的规律。一句话：学偏了。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：举个例子帮助理解（这是我们的解读，课件没指明哪个点是噪声）：宽 8 cm 的那片训练叶子只有 11.0 cm 高，比旁边宽 6 cm（15.5）和宽 10 cm（16.5）的都矮，可能只是碰巧长矮了——这种偶然就是噪声。第 35 页的曲线为了穿过它，在宽 8 附近专门往下弯；直线不会为了一个点专门拐弯。"
+        },
+        {
+          "type": "text",
+          "zh": "为什么麻烦？我们训练模型就是为了预测新数据。过拟合的模型在训练数据上看起来很完美（MSE 甚至是 0），会骗过我们；可一用到新数据就错得离谱（190.27，而简单直线只有 5.77）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "学习目标 4 怎么答",
+            "en": "Learning outcome 4"
+          },
+          "items": [
+            {
+              "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns.",
+              "zh": "过拟合：模型记住了训练数据里的随机噪声，而不是真正的规律。"
+            },
+            {
+              "en": "It is troublesome because we want the model to make predictions about new data, and an overfitted model predicts new data poorly.",
+              "zh": "麻烦在于：我们要模型预测新数据，而过拟合的模型对新数据预测很差。"
+            },
+            {
+              "en": "Its low training cost can fool us. A higher-order polynomial had a training MSE of 0, but its MSE on new data was 190.27. A simple line had an MSE of only 5.77 on the same new data.",
+              "zh": "很低的训练代价会骗人：高阶多项式训练 MSE 为 0，新数据上却是 190.27；同样的新数据上，简单直线只有 5.77。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件说：Next time, we will learn how to detect overfitting.（下节课学怎么发现过拟合。）"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外，来自 Lecture 6）：Lecture 6 开头会复习过拟合，然后引入验证集（**validation set**）。课件会说，训练集上误差低的模型不一定泛化（**generalize**）得好——泛化好＝对没见过的新数据也预测得准。验证集就用来发现这种问题，并帮我们选模型。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "过拟合不是“训练得不够”，恰恰是对训练数据贴得太紧。"
+            },
+            {
+              "zh": "参数越多，越容易把训练 MSE 压到 0，也就越要小心过拟合。"
+            },
+            {
+              "zh": "定义里的两个词组 random noise（随机噪声）和 genuine patterns（真正的规律）建议背熟，写定义时原样用上。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement best describes overfitting?",
+            "zh": "哪句话最能描述过拟合？"
+          },
+          "options": [
+            {
+              "en": "A model is too simple to fit the training data",
+              "zh": "模型太简单，连训练数据都拟合不好"
+            },
+            {
+              "en": "A model has not been trained yet, so its weights are random",
+              "zh": "模型还没有训练，所以权重还是随机的"
+            },
+            {
+              "en": "A model has a very high cost on the training set",
+              "zh": "模型在训练集上代价很高"
+            },
+            {
+              "en": "A model memorizes random noise in the training data, rather than genuine patterns",
+              "zh": "模型记住了训练数据中的随机噪声，而不是真正的规律"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "为什么对：第 38 页原话：Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns。\n“too simple” 和 “a very high cost on the training set” 错：过拟合的模型恰恰在训练集上代价很低（甚至是 0）。\n“has not been trained yet” 错：过拟合是训练后对训练数据贴得太紧，不是还没训练。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why is overfitting troublesome? Choose the best description of an overfitted model.",
+            "zh": "为什么过拟合是个麻烦？选出对过拟合模型最好的描述。"
+          },
+          "options": [
+            {
+              "en": "Its training MSE becomes very large, so it cannot even fit the training data",
+              "zh": "它的训练 MSE 变得很大，连训练数据都拟合不好"
+            },
+            {
+              "en": "It predicts new data poorly, even though it looks good on the training data",
+              "zh": "它对新数据预测很差，尽管在训练数据上看起来很好"
+            },
+            {
+              "en": "Gradient descent can no longer be used to train the model",
+              "zh": "不能再用梯度下降来训练这个模型"
+            },
+            {
+              "en": "It has too few parameters to follow the genuine patterns",
+              "zh": "它的参数太少，跟不上真正的规律"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "为什么对：我们要的是预测新数据。过拟合模型训练 MSE 很低（例子里是 0），新数据 MSE 却很高（190.27）。\n“training MSE becomes very large” 错：过拟合模型的训练 MSE 恰恰很低。\n“Gradient descent can no longer be used” 错：过拟合说的是对新数据预测差，和能不能用梯度下降无关。\n“too few parameters” 错：课件例子里过拟合的模型参数是“多”（7 个），不是“少”。"
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "In supervised learning, we learn from a labelled training dataset and then predict the target feature for unlabelled data.",
+      "zh": "监督学习：从带标签的训练数据中学习，再预测无标签数据的目标特征。"
+    },
+    {
+      "en": "Classification predicts a categorical target value; regression predicts a continuous target value.",
+      "zh": "分类预测类别型的目标值；回归预测连续的目标值。"
+    },
+    {
+      "en": "It is our job to choose a model; it is the machine's job to find the best parameter values (weights) during training.",
+      "zh": "选模型是我们的工作；在训练中找最好的参数值（权重）是机器的工作。"
+    },
+    {
+      "en": "In regression, the model's line represents the predicted value y, and the training goal is to fit the data: find the parameters that best match it.",
+      "zh": "回归里，模型的线代表预测值 y；训练目标是拟合数据，也就是找到最贴合数据的参数。"
+    },
+    {
+      "en": "A line y = mx + b has slope m = rise / run and y-intercept b; in y = w0 + w1x1, w0 is the intercept and w1 is the slope.",
+      "zh": "直线 y = mx + b：斜率 m = rise / run，截距 b；在 y = w0 + w1x1 中，w0 是截距，w1 是斜率。"
+    },
+    {
+      "en": "A cost function measures the \"wrongness\" of a line for a dataset, and the machine minimizes it during training.",
+      "zh": "代价函数衡量一条线对数据集的“错误程度”，机器在训练中把它最小化。"
+    },
+    {
+      "en": "Error = y − t, squared error = (y − t)², and the MSE is the average of the squared errors over all data points.",
+      "zh": "误差 = y − t，平方误差 = (y − t)²，MSE 是所有数据点平方误差的平均。"
+    },
+    {
+      "en": "Gradient descent starts with random parameters and repeatedly changes each parameter by a small amount to reduce the cost.",
+      "zh": "梯度下降从随机参数开始，反复把每个参数改一点点来降低代价。"
+    },
+    {
+      "en": "A model with many parameters can reach a training MSE of 0 but still predict new data badly.",
+      "zh": "参数很多的模型可以让训练 MSE 变成 0，但对新数据仍然可能预测得很差。"
+    },
+    {
+      "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns.",
+      "zh": "过拟合：模型记住了训练数据里的随机噪声，而不是真正的规律。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Decide whether a task is classification or regression from the type of the target value (categorical vs continuous).",
+      "zh": "给一个场景问是哪种任务：只看要预测的值是类别还是连续的数，不看输入。",
+      "sectionId": "s03-classification-vs-regression"
+    },
+    {
+      "en": "Explain the division of labour: we choose the model; the machine finds the best parameter values (weights) during training.",
+      "zh": "“我们选模型、机器找参数”和“参数也叫权重”，适合出选择题和简答题。",
+      "sectionId": "s04-models-and-parameters"
+    },
+    {
+      "en": "Use the trained line y = 8.65 + 0.464x1 to predict a height (3 cm gives 10.0 cm; 12 cm gives 14.2 cm) and explain that in regression the line shows the predicted value y.",
+      "zh": "会代入算预测值，并说清回归里的线代表预测值 y，而不是决策边界。",
+      "sectionId": "s05-regression-predicted-value"
+    },
+    {
+      "en": "Describe the training goal in a regression problem: find the parameters that best match the training data (fitting), so that the cost is as small as possible.",
+      "zh": "学习目标 1：回归的训练目标＝拟合数据＝找让代价最小的参数。",
+      "sectionId": "s06-fitting-training-goal"
+    },
+    {
+      "en": "Read the slope and intercept of a line: m = rise / run = 4.64 / 10 = 0.464 and b = 8.65; b matches w0 and m matches w1.",
+      "zh": "会用 rise / run 算斜率、读截距，并知道 w0 对应 b、w1 对应 m。",
+      "sectionId": "s07-slope-and-intercept"
+    },
+    {
+      "en": "Explain what a cost function is and why the machine needs one: it measures the \"wrongness\" of a line for a dataset and is minimized during training.",
+      "zh": "代价函数的定义和作用；记住“越低越好”，以及 MSE 只是其中一种。",
+      "sectionId": "s09-cost-function"
+    },
+    {
+      "en": "Compute error = y − t and squared error = (y − t)² for one point (x = 6: error = −4.1, squared error = 16.81).",
+      "zh": "计算题：注意顺序是 y − t，平方后不会是负数。",
+      "sectionId": "s10-error-and-squared-error"
+    },
+    {
+      "en": "Compute an MSE as the average of the squared errors (83.42 / 7 ≈ 11.92); the symbol formula does not need to be memorized.",
+      "zh": "会一步步算 MSE；符号公式课件说不用背，但要会用文字解释。",
+      "sectionId": "s11-mean-squared-error"
+    },
+    {
+      "en": "Explain the relationship between cost, the model parameters, and training, using the two lines with MSE 11.92 and 37.52.",
+      "zh": "学习目标 2：参数决定线，代价给线打分，训练就是改参数降低代价。适合简答或长答。",
+      "sectionId": "s12-comparing-lines-by-cost"
+    },
+    {
+      "en": "Describe the rough algorithm for gradient descent in five steps, in the right order.",
+      "zh": "学习目标 3：5 步顺序要背熟，尤其是“随机开始”“每个参数改一点点”“回到第 2 步重复”。",
+      "sectionId": "s13-gradient-descent-algorithm"
+    },
+    {
+      "en": "Describe how w0, w1 and the MSE change in the gradient descent example (MSE from 37.52 to 11.92; the slope turns positive; the intercept keeps dropping).",
+      "zh": "看懂演示表：MSE 一直下降，斜率由负变正，截距一直下降。",
+      "sectionId": "s14-gradient-descent-in-action"
+    },
+    {
+      "en": "Explain why the model with the lowest training MSE is not necessarily the best (training MSE 0 but 190.27 on new data, vs 5.77 for a simple line).",
+      "zh": "第 34 页的问题怎么答：要看模型在新数据上的表现。",
+      "sectionId": "s17-mse-zero-and-new-data"
+    },
+    {
+      "en": "Define overfitting and explain why it is troublesome.",
+      "zh": "学习目标 4：定义要会写 memorizes random noise in the training data, rather than genuine patterns，并说明它对新数据预测差。",
+      "sectionId": "s18-overfitting-definition"
+    }
+  ]
+}

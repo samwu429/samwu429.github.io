@@ -1,0 +1,4088 @@
+{
+  "id": "lec01",
+  "kind": "lecture",
+  "number": 1,
+  "title": {
+    "en": "What is AI? (+ Syllabus)",
+    "zh": "什么是 AI？（+ 课程大纲）"
+  },
+  "sources": [
+    {
+      "file": "lec01_what_is_ai.pdf",
+      "pages": 58
+    }
+  ],
+  "estimatedMinutes": 135,
+  "oneLiner": {
+    "zh": "AI 有很多互相竞争的定义。本课程的定义：AI 是一个研究领域，研究会观察环境、会执行行动的智能体（agent），目标是设计出行为理性的智能体。本课还介绍了三种 AI 方法：符号 AI、机器学习，以及属于机器学习的大语言模型。",
+    "en": "There are many competing definitions of AI. In this course, AI is a field of study concerned with agents that observe their environment and perform actions; the goal is to design agents that behave rationally. The lecture also introduces Symbolic AI, Machine Learning and LLMs (a type of ML)."
+  },
+  "outcomes": [
+    {
+      "en": "The syllabus and course structure.",
+      "zh": "课程大纲和课程结构（评分、测验、期末考试、GenAI 规定）。"
+    },
+    {
+      "en": "Definitions of AI, including our definition of AI for this course.",
+      "zh": "AI 的各种定义，包括本课程自己的 AI 定义。"
+    },
+    {
+      "en": "Several important branches of AI, to be discussed in detail in future lectures.",
+      "zh": "几种重要的 AI 分支（符号 AI、机器学习、大语言模型），后面的课会详细讲。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-ai-means-to-you",
+      "title": {
+        "zh": "开场：AI 对你意味着什么？",
+        "en": "Introductions: What AI Means to You"
+      },
+      "slides": "3-7",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第一课做三件事：认识老师、讲课程大纲（**Syllabus**）、回答“人工智能（**Artificial Intelligence, AI**）到底是什么”。课件目录（**Outline**，第 3 页）列了四项：Introductions、What is AI?、Syllabus、Overview of AI Methods。其中 Overview of AI Methods 就是后面的 Types of AI 部分。"
+        },
+        {
+          "type": "text",
+          "zh": "老师是 Joshua Jung（Josh Jung）：来自加拿大 Winnipeg，University of Waterloo 计算机博士，现在是 UTM 的 Assistant Professor, Teaching Stream。他的研究方向是通用博弈（**General Game Playing**，字面意思：通用的玩游戏），课件说它和本课内容直接相关。"
+        },
+        {
+          "type": "text",
+          "zh": "第 5 页最后一句是 “Here’s what AI means to me…”（这就是 AI 对我的意义……）。接着第 6 页放了五张没有标题的图片。图里能看清的内容见下表：大部分都是“AI 玩游戏、参加比赛”的名场面。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "图片内容",
+            "图里能看到的文字"
+          ],
+          "rows": [
+            [
+              "国际象棋（chess）比赛：一个人边走边做手势，另一个人俯身看棋盘",
+              "GARRY KASPAROV、DEEP BLUE、the rematch"
+            ],
+            [
+              "围棋（Go）比赛：一位棋手手扶额头在思考",
+              "背景屏幕只看得清 “…HAGO”"
+            ],
+            [
+              "跳棋（checkers）棋盘，有些棋子上画着皇冠",
+              "没有文字"
+            ],
+            [
+              "一个即时战略电子游戏的画面",
+              "AlphaStar、LiquidTLO"
+            ],
+            [
+              "电视问答节目的舞台，中间的选手位置是一台电脑",
+              "WATSON；底部写着 Question Answering、Machine Learning 等"
+            ]
+          ],
+          "caption": {
+            "zh": "第 6 页的图片拼贴（课件没有任何说明文字）",
+            "en": "Slide 6 photo collage (the slide has no captions)"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：这些一般被认为是 AI 的著名里程碑：IBM 的国际象棋程序 Deep Blue 对战棋手 Garry Kasparov；围棋照片里的 “…HAGO” 很可能是 AlphaGo；游戏画面像是《星际争霸 II》（StarCraft II）；问答节目像是 Jeopardy!。课件的照片里只看得到 GARRY KASPAROV、DEEP BLUE、AlphaStar、LiquidTLO、WATSON 这些字；IBM、AlphaGo、StarCraft II、Jeopardy! 这些名字以及年份和结果，课件都没有写，考试不要靠这些细节。"
+        },
+        {
+          "type": "analogy",
+          "zh": "第 7 页的活动就像开学第一天的“破冰”：每个人先说说自己心里的 AI 是什么样，再和旁边的同学比一比，看看大家想的一不一样。",
+          "limit": "破冰只是聊天，没有标准答案；但下面参考答案里用到的词都来自本课课件，可以直接用在考试里。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity: Think about what Artificial Intelligence (AI) means to you. What are its defining technologies? What are its most important accomplishments? What are its biggest ethical issues? How does it affect your daily life?",
+            "zh": "活动：想一想人工智能（AI）对你意味着什么。它的标志性技术有哪些？它最重要的成就是什么？它最大的伦理问题是什么？它怎样影响你的日常生活？"
+          },
+          "answer": {
+            "en": "To me, AI means computer systems that can make good decisions, such as game-playing programs and chatbots. Its defining technologies include search, reasoning, machine learning, neural networks, deep learning and large language models (LLMs). Important accomplishments include programs that play chess, Go and checkers, and a computer that competed on a TV quiz show. Its biggest ethical issues include environmental impact, job displacement, copyright and cognitive offloading, and models can also learn bias from data. In my daily life, I use LLMs such as ChatGPT or Claude to ask questions and get explanations.",
+            "zh": "四个小问题各答一句就够。得分点：（1）技术：用第 8 页大伞图里的词：搜索（**search**）、推理（**reasoning**）、机器学习（**machine learning**）、神经网络（**neural networks**）、深度学习（**deep learning**）、大语言模型（**LLMs**）；（2）成就：第 6 页的下棋程序和问答节目里的电脑；（3）伦理：第 56 页列出的环境影响（**environmental impact**）、工作被取代（**job displacement**）、版权（**copyright**）、认知卸载（**cognitive offloading**）；第 52 页的偏见（**bias**，模型会继承数据里的偏见）也可以写。注意：幻觉（**hallucination**）是 LLM 的弱点，不在第 56 页的伦理问题列表里；（4）日常生活：第 9 页提到的 ChatGPT、Claude。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Introduce yourself to the people nearest to you. How do your answers compare to theirs? Do you agree on all points?",
+            "zh": "讨论：向离你最近的同学介绍自己。你们的答案有什么相同和不同？你们在所有观点上都一致吗？"
+          },
+          "answer": {
+            "en": "My classmates and I agreed that machine learning and LLMs are important AI technologies today. However, we did not agree on everything. For example, I think environmental impact is the biggest ethical issue, but my classmate thinks job displacement is bigger. This shows that people understand AI in different ways, which is why there are many competing definitions of AI.",
+            "zh": "这是课堂讨论，没有标准答案。好答案的结构：先说相同点 → 再举一个具体的不同点 → 最后联系第 35 页的结论 “There are many competing definitions of AI.”（AI 有很多互相竞争的定义）。"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "可以直接写进答案的句子",
+            "en": "Sentences you can use"
+          },
+          "items": [
+            {
+              "en": "There are many competing definitions of AI.",
+              "zh": "AI 有很多互相竞争的定义。（第 35 页原话）"
+            },
+            {
+              "en": "Important AI technologies include search, reasoning, machine learning, neural networks, deep learning and LLMs.",
+              "zh": "重要的 AI 技术包括搜索、推理、机器学习、神经网络、深度学习和大语言模型。"
+            },
+            {
+              "en": "LLMs raise ethical issues such as environmental impact, job displacement, copyright and cognitive offloading.",
+              "zh": "LLM 带来的伦理问题包括：环境影响、工作被取代、版权、认知卸载（第 56 页的列表）。"
+            },
+            {
+              "en": "AI also has weaknesses: trained models inherit the biases of the data they were trained on, and LLMs are prone to confidently stating falsehoods (hallucination).",
+              "zh": "AI 还有弱点：训练好的模型会继承训练数据里的偏见；LLM 容易很自信地说错话（幻觉）。注意：幻觉是弱点，不在第 56 页的伦理问题列表里。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "这个活动的四个问题是：技术（**technologies**）、成就（**accomplishments**）、伦理问题（**ethical issues**）、日常生活（**daily life**）。如果长答题问 “What does AI mean to you?”，按这四点各写一句，结构最清楚。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "AI 不等于“机器人”。第 6 页的成就几乎都是程序（下棋、打游戏、答题）。第 35 页的宽定义也说 “especially intelligent computer programs”（尤其是智能的计算机程序）。"
+            },
+            {
+              "zh": "第 6 页的图片没有任何文字说明。写答案时可以说“下棋程序”“问答节目里的电脑”，但不要编造年份、比分等细节。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "The Activity on slide 7 asks four questions about AI. Which of the following is NOT one of them?",
+            "zh": "第 7 页的活动问了关于 AI 的四个问题。下面哪一个不是其中之一？"
+          },
+          "options": [
+            {
+              "en": "What are its defining technologies?",
+              "zh": "它的标志性技术有哪些？"
+            },
+            {
+              "en": "What are its biggest ethical issues?",
+              "zh": "它最大的伦理问题是什么？"
+            },
+            {
+              "en": "Which programming language is it written in?",
+              "zh": "它是用哪种编程语言写的？"
+            },
+            {
+              "en": "How does it affect your daily life?",
+              "zh": "它怎样影响你的日常生活？"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 7 页的四问是：defining technologies（标志性技术）、most important accomplishments（最重要的成就）、biggest ethical issues（最大的伦理问题）、how it affects your daily life（怎样影响日常生活）。“Which programming language is it written in?” 不在里面，这门课也不要求会编程（第 14 页）。长答题可以按这四点各写一句。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-ai-umbrella",
+      "title": {
+        "zh": "AI 大伞：一张图看懂 AI 家族",
+        "en": "The Broad Umbrella of AI"
+      },
+      "slides": "8-9, 34",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "AI 不是一种技术，而是一大家子技术。第 8 页（第 34 页又放了一次）用一张“圈套圈”的图，把 AI 画成一把大伞（**umbrella**）：大圈里套着小圈，小圈里还有更小的圈。（英文 umbrella 常用来比喻“一个大名字下面罩着很多小领域”。）"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "Symbolic AI",
+              "zh": "符号 AI",
+              "hint": "人先把知识写成符号和规则，电脑再按逻辑推理（第 48 页，第 11 节细讲）"
+            },
+            {
+              "en": "Machine Learning (ML)",
+              "zh": "机器学习",
+              "hint": "电脑从大量例子（数据）里自己找规律（第 51 页，第 13 节细讲）"
+            },
+            {
+              "en": "Neural Networks",
+              "zh": "神经网络",
+              "hint": "机器学习圈里的一块；第 1 课只给了名字，Lecture 7 讲"
+            },
+            {
+              "en": "Deep Learning",
+              "zh": "深度学习",
+              "hint": "神经网络圈里的一块；第 1 课只给了名字，Lecture 7 讲"
+            },
+            {
+              "en": "LLMs (Large Language Models)",
+              "zh": "大语言模型",
+              "hint": "像 ChatGPT、Claude 这样的 AI：用海量文字训练出来，你用普通文字提问，它就能回答（第 54 页，第 15 节细讲）"
+            },
+            {
+              "en": "Search / Reasoning / Constraint Satisfaction",
+              "zh": "搜索 / 推理 / 约束满足",
+              "hint": "符号 AI 圈里的三块（图里只给了名字）；搜索在 Lecture 3 讲"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像写地址：中国 → 广东省 → 深圳市 → 南山区，后面的都在前面的里面。AI 大伞也一样：AI → 机器学习（**Machine Learning**）→ 神经网络（**Neural Networks**）→ 深度学习（**Deep Learning**）→ 大语言模型（**LLMs**，比如 ChatGPT）。倒过来说：LLMs 在 Deep Learning 里面，Deep Learning 在 Neural Networks 里面，Neural Networks 在 Machine Learning 里面，Machine Learning 在 AI 里面。",
+          "limit": "地址是完整的，这张图却不是。课件写着 “Note: These topics are just a sample”：图里只是部分例子，不是 AI 的完整清单。"
+        },
+        {
+          "type": "tree",
+          "root": {
+            "label": "AI",
+            "shape": "node",
+            "children": [
+              {
+                "label": "Symbolic AI 符号 AI",
+                "shape": "node",
+                "children": [
+                  {
+                    "label": "Search 搜索",
+                    "shape": "node",
+                    "children": [
+                      {
+                        "label": "Uninformed",
+                        "shape": "leaf"
+                      },
+                      {
+                        "label": "Heuristic",
+                        "shape": "leaf"
+                      },
+                      {
+                        "label": "Game-tree",
+                        "shape": "leaf"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Reasoning 推理",
+                    "shape": "node",
+                    "children": [
+                      {
+                        "label": "Bayes Nets",
+                        "shape": "leaf"
+                      },
+                      {
+                        "label": "Markov Decision Processes",
+                        "shape": "leaf"
+                      },
+                      {
+                        "label": "First-Order Logic",
+                        "shape": "leaf"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Constraint Satisfaction",
+                    "shape": "leaf"
+                  }
+                ]
+              },
+              {
+                "label": "Machine Learning 机器学习（见下图）",
+                "shape": "node"
+              },
+              {
+                "label": "AI Ethics",
+                "shape": "leaf"
+              },
+              {
+                "label": "AI Philosophy",
+                "shape": "leaf"
+              }
+            ]
+          },
+          "caption": {
+            "zh": "网页把第 8 页“圈套圈”的图画成一棵树：上面的点包含下面连着的点。第一张：AI 大圈 + 左半边的符号 AI（Symbolic AI）；Machine Learning 里面有什么，见下一张。颜色（黑、灰、红、紫圈）请对照课件 PDF 第 8 页。",
+            "en": "AI and the Symbolic AI half of the umbrella (slide 8), drawn as a tree: each node contains the nodes below it."
+          }
+        },
+        {
+          "type": "tree",
+          "root": {
+            "label": "Machine Learning 机器学习",
+            "shape": "node",
+            "children": [
+              {
+                "label": "Neural Networks 神经网络",
+                "shape": "node",
+                "children": [
+                  {
+                    "label": "Deep Learning 深度学习",
+                    "shape": "node",
+                    "children": [
+                      {
+                        "label": "LLMs",
+                        "shape": "leaf"
+                      },
+                      {
+                        "label": "CNNs",
+                        "shape": "leaf"
+                      },
+                      {
+                        "label": "GANs",
+                        "shape": "leaf"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "Regression",
+                "shape": "leaf"
+              },
+              {
+                "label": "Support Vector Machines",
+                "shape": "leaf"
+              },
+              {
+                "label": "Evolutionary Algorithms",
+                "shape": "leaf"
+              },
+              {
+                "label": "Clustering",
+                "shape": "leaf"
+              },
+              {
+                "label": "Decision Trees",
+                "shape": "leaf"
+              }
+            ]
+          },
+          "caption": {
+            "zh": "第二张：右半边的机器学习（Machine Learning）。最里面的圈是 Deep Learning，LLMs 就写在这个圈里。",
+            "en": "The Machine Learning half of the umbrella; LLMs are written inside the innermost circle, Deep Learning."
+          }
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "读图四步",
+            "en": "How to read the diagram"
+          },
+          "items": [
+            {
+              "zh": "先看最大的黑圈：**AI**。所有东西都在它里面。"
+            },
+            {
+              "zh": "再看左右两个大圈：左边灰圈是符号 AI（**Symbolic AI**），右边红圈是机器学习（**Machine Learning**）。两个圈中间有空隙，互不重叠。"
+            },
+            {
+              "zh": "往里看：符号 AI 里有搜索（**Search**）、推理（**Reasoning**）和约束满足（**Constraint Satisfaction**）；机器学习里有神经网络，再往里是深度学习，最里面写着 LLMs、CNNs、GANs。"
+            },
+            {
+              "zh": "大圈里、左右两半之外，还有 AI 伦理（**AI Ethics**）和 AI 哲学（**AI Philosophy**）。第 16 页也说伦理贯穿整门课（Ethics at all levels）。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "根据大伞图和第 9 页可以写的句子",
+            "en": "Facts from slides 8-9"
+          },
+          "items": [
+            {
+              "en": "AI is a broad umbrella. Symbolic AI and Machine Learning are two separate sub-fields of AI.",
+              "zh": "AI 是一把大伞。符号 AI 和机器学习是 AI 的两个分开的子领域。"
+            },
+            {
+              "en": "Search, Reasoning and Constraint Satisfaction belong to Symbolic AI.",
+              "zh": "搜索、推理和约束满足属于符号 AI。"
+            },
+            {
+              "en": "LLMs are inside Deep Learning, Deep Learning is inside Neural Networks, and Neural Networks are inside Machine Learning.",
+              "zh": "LLM 在深度学习里面，深度学习在神经网络里面，神经网络在机器学习里面。"
+            },
+            {
+              "en": "AI Ethics and AI Philosophy are also part of AI.",
+              "zh": "AI 伦理和 AI 哲学也是 AI 的一部分。"
+            },
+            {
+              "en": "This course spends a lot of time on LLMs, but it is not all about LLMs.",
+              "zh": "这门课会花很多时间讲 LLM，但不只讲 LLM。（改写自第 9 页）"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "图里很多词第 1 课只给了名字，没有解释，比如 Uninformed、Heuristic、Bayes Nets、CNNs、GANs、Clustering。现在不用懂意思，只要知道它们在哪个圈里。其中一部分后面会讲：搜索在 Lecture 3，神经网络、深度学习和 LLM 在 Lecture 7。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件写着 “Note: These topics are just a sample”：图里只是部分例子，不是 AI 的完整清单（课件并没有说这些词不用记）。先记大结构：AI 包含 Symbolic AI 和 Machine Learning；Machine Learning 包含 Neural Networks，Neural Networks 包含 Deep Learning，Deep Learning 包含 LLMs。小词不用懂意思，但要知道它们在哪个圈里（下面的小测验就这样考）。"
+        },
+        {
+          "type": "text",
+          "zh": "第 9 页（**LLMs and the Bigger Picture**）：课上会花很多时间讲 LLM（比如 ChatGPT、Claude），但这门课不只讲 LLM。等讲到 LLM 时，你已经有足够的背景，能理解它们怎么工作、为什么会失败。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“AI = ChatGPT”是错的。LLM 只是大伞最里面那个圈（Deep Learning）里的一项（第 9 页：this class is not all about LLMs）。"
+            },
+            {
+              "zh": "Search（搜索）属于 Symbolic AI，不属于 Machine Learning。"
+            },
+            {
+              "zh": "包含关系别弄反：Neural Networks 包含 Deep Learning，不是 Deep Learning 包含 Neural Networks。"
+            },
+            {
+              "zh": "Symbolic AI 和 Machine Learning 是分开的两个圈，不是一个包含另一个。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the umbrella diagram, which statement is correct?",
+            "zh": "根据 AI 大伞图，哪句话是对的？"
+          },
+          "options": [
+            {
+              "en": "Search is a type of Machine Learning, just like Deep Learning.",
+              "zh": "搜索是一种机器学习，和深度学习一样。"
+            },
+            {
+              "en": "LLMs are inside Deep Learning, which is inside Machine Learning.",
+              "zh": "LLM 在深度学习里面，深度学习在机器学习里面。"
+            },
+            {
+              "en": "Machine Learning is inside Symbolic AI, which is inside AI.",
+              "zh": "机器学习在符号 AI 里面，符号 AI 在 AI 里面。"
+            },
+            {
+              "en": "Deep Learning contains Neural Networks, which contain LLMs.",
+              "zh": "深度学习包含神经网络，神经网络里面有 LLM。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "图里最里面的圈是 Deep Learning（圈里写着 LLMs、CNNs、GANs），往外依次是 Neural Networks、Machine Learning、AI，所以 “LLMs are inside Deep Learning, which is inside Machine Learning” 是对的。“Search is a type of Machine Learning” 不对：Search 在 Symbolic AI 里；“Machine Learning is inside Symbolic AI” 不对：两个是分开的圈；“Deep Learning contains Neural Networks” 说反了：是 Neural Networks 包含 Deep Learning。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the umbrella diagram, Bayes Nets, Markov Decision Processes and First-Order Logic are listed under which area?",
+            "zh": "在大伞图中，Bayes Nets、Markov Decision Processes 和 First-Order Logic 属于哪一块？"
+          },
+          "options": [
+            {
+              "en": "Search, inside Symbolic AI",
+              "zh": "搜索（Search），在符号 AI 里"
+            },
+            {
+              "en": "Deep Learning, inside Machine Learning",
+              "zh": "深度学习，在机器学习里"
+            },
+            {
+              "en": "AI Ethics",
+              "zh": "AI 伦理"
+            },
+            {
+              "en": "Reasoning, inside Symbolic AI",
+              "zh": "推理（Reasoning），在符号 AI 里"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "课件第 8 页的 Reasoning 圈里写的就是这三个，Reasoning 在符号 AI 里。Search 圈里写的是 Uninformed、Heuristic、Game-tree；Deep Learning 圈里写的是 LLMs、CNNs、GANs；AI Ethics 写在 AI 大圈底部，不是一个装着这些方法的圈。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-broad-vs-narrow",
+      "title": {
+        "zh": "AI 的两种定义：宽定义 vs 窄定义",
+        "en": "Definitions of AI: Broad vs Narrower"
+      },
+      "slides": "35",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "什么是 AI？专家们也没有统一答案。第 35 页第一句：“There are many competing definitions of AI.”——AI 有很多互相竞争的定义。课件举了两个例子：一个宽定义（**broad definition**），一个窄定义（**narrower definition**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像定义“好学生”：宽的说法是“学习好、品德好的学生”，一句话说清大方向；窄的说法像奖学金评选规则，一条一条列出具体条件，可以拿来逐条检查某个人算不算。",
+          "limit": "这个类比只帮你记住：宽 = 大方向，窄 = 具体条件。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：课件没有解释为什么一个叫“宽”、一个叫“窄”。可以这样理解：宽定义说的是一整个“科学与工程”领域；窄定义只描述一个具体的“系统”要满足哪些条件，范围更小、更具体。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：宽定义 + 出处",
+            "en": "Course slide: a broad definition and its source"
+          },
+          "items": [
+            {
+              "en": "A broad definition of AI: “The science and engineering of making intelligent machines, especially intelligent computer programs.”",
+              "zh": "宽定义：制造智能机器（尤其是智能计算机程序）的科学与工程。"
+            },
+            {
+              "en": "This broad definition comes from the 1956 Dartmouth proposal (McCarthy, Minsky, Rochester and Shannon).",
+              "zh": "这个宽定义出自 1956 年的达特茅斯（Dartmouth）夏季人工智能研究项目提案，作者是 McCarthy、Minsky、Rochester 和 Shannon 四人。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "拆开宽定义",
+            "en": "Breaking down the broad definition"
+          },
+          "items": [
+            {
+              "en": "science and engineering",
+              "zh": "科学和工程（**science and engineering**）：既研究原理，也动手造东西"
+            },
+            {
+              "en": "making intelligent machines",
+              "zh": "制造智能机器：让机器能“聪明地”做事"
+            },
+            {
+              "en": "especially intelligent computer programs",
+              "zh": "尤其是智能的计算机程序：重点是软件，不一定是机器人"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：窄定义 + 出处 + 简化版",
+            "en": "Course slide: a narrower definition, its source and a short version"
+          },
+          "items": [
+            {
+              "en": "A narrower definition of AI: “A machine-based system that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments. Different AI systems vary in their levels of autonomy and adaptiveness after deployment.”",
+              "zh": "窄定义：一个基于机器的系统，为了明确的或隐含的目标，从它收到的输入中推断出如何生成输出（例如预测、内容、推荐或决定），这些输出可以影响现实环境或虚拟环境。不同的 AI 系统在部署后的自主程度和适应能力各不相同。"
+            },
+            {
+              "en": "This narrower definition comes from the OECD (2019).",
+              "zh": "这个窄定义出自经合组织（OECD）2019 年的《理事会关于人工智能的建议》。"
+            },
+            {
+              "en": "In simple words, an AI system infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions.",
+              "zh": "简单说：AI 系统从收到的输入中推断怎样生成输出，比如预测、内容、推荐或决定。（这是把原话缩短后的版本，方便写进答案）"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "窄定义里的词",
+            "中文",
+            "大白话"
+          ],
+          "rows": [
+            [
+              "machine-based system",
+              "基于机器的系统",
+              "它是机器/电脑系统，不是人"
+            ],
+            [
+              "for explicit or implicit objectives",
+              "为了明确或隐含的目标",
+              "它有目标：可能写明了（explicit），也可能没写明（implicit）"
+            ],
+            [
+              "infers, from the input it receives",
+              "从收到的输入中推断",
+              "先看输入，再自己推断该怎么做"
+            ],
+            [
+              "outputs such as predictions, content, recommendations, or decisions",
+              "输出：预测、内容、推荐、决定",
+              "它产出的东西，课件举了这四类"
+            ],
+            [
+              "can influence physical or virtual environments",
+              "能影响现实或虚拟环境",
+              "它的输出会改变真实世界或网络世界"
+            ],
+            [
+              "autonomy and adaptiveness after deployment",
+              "部署后的自主性和适应性",
+              "部署 = 做好后正式拿去用。用起来以后能自己做多少决定、会不会继续变化，每个系统不一样"
+            ]
+          ],
+          "caption": {
+            "zh": "一块一块拆开 OECD 的窄定义",
+            "en": "The OECD definition, piece by piece"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用窄定义检查课件里的例子：AI 聊天助手 Copilot 回答“这是狗吗？”（第 55 页截图，第 15 节还会讲）",
+            "en": "Checking a slide example against the OECD definition (slide 55)"
+          },
+          "steps": [
+            {
+              "zh": "machine-based system：Copilot 是在电脑上运行的 AI 聊天助手程序，所以是“基于机器的系统”。"
+            },
+            {
+              "zh": "objective：它的目标是回答用户的问题。用户明确地问了 “is this a dog?”。"
+            },
+            {
+              "zh": "input：它收到的输入是一张狗的照片，加上一句话 “Hi Copilot, is this a dog?”。"
+            },
+            {
+              "zh": "infers → output：它从输入推断出该怎么回答，生成的输出是一段文字（content，内容），开头是 “Yes, it appears to be a dog.”。"
+            },
+            {
+              "zh": "influence environment：这段回答出现在聊天窗口里，聊天窗口就是一个虚拟环境（virtual environment）。"
+            }
+          ],
+          "answer": {
+            "zh": "每一块都对得上，所以按 OECD 的窄定义，Copilot 是一个 AI 系统。",
+            "en": "Copilot fits every part of the OECD definition, so it is an AI system under that definition."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：OECD 是 Organisation for Economic Co-operation and Development（经济合作与发展组织）的缩写，是一个国际组织。Dartmouth 是美国的达特茅斯学院。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "出处别搞反：宽定义 = 1956 年 Dartmouth 提案（McCarthy 等四人）；窄定义 = 2019 年 OECD。"
+            },
+            {
+              "zh": "宽定义的关键词是 “science and engineering”；窄定义的关键词是 “machine-based system”。"
+            },
+            {
+              "zh": "OECD 定义列了四类输出：predictions、content、recommendations、decisions。训练数据（**training data**）不是它列的输出。"
+            },
+            {
+              "zh": "“vary in their levels of autonomy and adaptiveness” 是说不同 AI 系统“程度不一样”，不是说所有 AI 都完全自主、都会自己改变。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which definition of AI comes from the OECD (2019)?",
+            "zh": "哪个 AI 定义出自 OECD（2019）？"
+          },
+          "options": [
+            {
+              "en": "The science and engineering of making intelligent machines, especially intelligent computer programs.",
+              "zh": "制造智能机器（尤其是智能计算机程序）的科学与工程。"
+            },
+            {
+              "en": "A machine-based system that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs.",
+              "zh": "一个基于机器的系统，为了明确或隐含的目标，从收到的输入中推断如何生成输出。"
+            },
+            {
+              "en": "A field of study concerned with agents that observe their environment and perform actions.",
+              "zh": "一个研究会观察环境、会执行行动的智能体的领域。"
+            },
+            {
+              "en": "If the interrogator cannot distinguish the entity from a human, the entity is considered intelligent.",
+              "zh": "如果提问者分不出被测对象和真人，被测对象就被认为有智能。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "OECD 的窄定义以 “A machine-based system” 开头。“The science and engineering…” 是 1956 年 Dartmouth 提案的宽定义；“A field of study concerned with agents…” 是本课程自己的定义（第 46 页）；“If the interrogator…” 是图灵测试（第 40 页）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is NOT listed in the OECD definition as an example of an output of an AI system?",
+            "zh": "以下哪一项不是 OECD 定义里列出的 AI 系统输出？"
+          },
+          "options": [
+            {
+              "en": "Predictions",
+              "zh": "预测"
+            },
+            {
+              "en": "Content",
+              "zh": "内容"
+            },
+            {
+              "en": "Training data",
+              "zh": "训练数据"
+            },
+            {
+              "en": "Decisions",
+              "zh": "决定"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "OECD 定义列的输出是 predictions、content、recommendations、decisions 四类。训练数据（training data）是机器学习用来学习的东西，不是定义里列出的输出。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-russell-norvig-grid",
+      "title": {
+        "zh": "Russell 和 Norvig 的四格表",
+        "en": "The Russell and Norvig Grid"
+      },
+      "slides": "36-37, 42, 45",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "定义 AI 的另一种办法：回答两个问题。第一，看 AI 怎么“想”（**think**），还是看它怎么“做”（**act**）？第二，标准是“像人一样”（**like humans**），还是“理性”（**rationally**，也就是做对的事）？每个问题有两种答案，组合起来就是 4 种定义。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像评价一位厨师：可以看他“怎么想”（脑子里的做菜思路），也可以只看他“做出来的菜”。标准可以是“像我妈做的一样”，也可以是“客观上做得最好”。2 种看法 × 2 种标准 = 4 种评价方式。",
+          "limit": "厨师只是帮你记住两个问题；课件的格子讲的是“系统”（**systems**），不是人。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 36 页；第一句稍作改写，方便写进答案）",
+            "en": "Course slide (slide 36; first sentence slightly reworded)"
+          },
+          "items": [
+            {
+              "en": "In their book Artificial Intelligence: A Modern Approach, Russell and Norvig suggest a grid of four kinds of AI definitions.",
+              "zh": "Russell 和 Norvig 在他们的书《Artificial Intelligence: A Modern Approach》（人工智能：一种现代方法）里提出了一个四格表，列出四种 AI 定义。"
+            },
+            {
+              "en": "Systems that think like humans",
+              "zh": "像人一样思考的系统（左上）"
+            },
+            {
+              "en": "Systems that think rationally",
+              "zh": "理性思考的系统（右上）"
+            },
+            {
+              "en": "Systems that act like humans",
+              "zh": "像人一样行动的系统（左下）"
+            },
+            {
+              "en": "Systems that act rationally",
+              "zh": "理性行动的系统（右下）"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "想还是做？",
+            "像人一样（like humans）",
+            "理性（rationally）"
+          ],
+          "rows": [
+            [
+              "思考（think）",
+              "Systems that think like humans → Cognitive Modeling (Thinking Humanly)",
+              "Systems that think rationally → Logical Thought (Thinking Rationally)"
+            ],
+            [
+              "行动（act）",
+              "Systems that act like humans → Turing Test (Acting Humanly)",
+              "Systems that act rationally → Logical Actions (Acting Rationally)"
+            ]
+          ],
+          "caption": {
+            "zh": "课件的格子没有写行名和列名，表头是根据格子里的字整理的。箭头后面是后面几页的标题。",
+            "en": "The slide grid has no row or column labels; they are added here from the cell wording."
+          }
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "课件怎么一步步讲这张表（看绿框）",
+            "en": "How the slides walk through the grid"
+          },
+          "items": [
+            {
+              "zh": "第 37 页：绿框框住左边一列（两个 like humans），旁边写 “Let’s start with these.”，先讲“像人”。"
+            },
+            {
+              "zh": "第 42 页：绿框框住右边一列（两个 rationally），旁边写 “Now let’s think about these.”，再讲“理性”。"
+            },
+            {
+              "zh": "第 45 页：绿框只框住右下角 “Systems that act rationally”，旁边写 “Russel and Norvig argue for this definition.”：Russell 和 Norvig 支持“理性地行动”。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开记：思考（**think**）关心“脑子里怎么想”；行动（**act**）只看“做了什么”。像人（**like humans**）拿人当标准；理性（**rationally**）拿“做对的事”当标准，不管人会不会这样做。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "把本课出现的例子放进格子",
+            "en": "Placing this lecture's examples in the grid"
+          },
+          "steps": [
+            {
+              "zh": "认知科学研究人脑怎么想（第 38 页）→ 左上：think like humans。"
+            },
+            {
+              "zh": "图灵测试只看机器的表现像不像人（第 39-40 页）→ 左下：act like humans。"
+            },
+            {
+              "zh": "用三段论推出 “Socrates is mortal”（第 43 页）→ 右上：think rationally。"
+            },
+            {
+              "zh": "只看智能体能不能选出理性的行动（第 44 页）→ 右下：act rationally。本课程的 AI 定义也建立在这一格上（第 46 页）。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "第 45 页把名字拼成了 “Russel”（少一个 l），第 36 页和第 46 页是 “Russell”。考试写 Russell and Norvig。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“rationally”（理性）不等于“像人”。人常常不理性；理性是“做对的事”这个理想标准（第 41 页）。"
+            },
+            {
+              "zh": "Russell 和 Norvig 支持的是 “act rationally”（右下），不是 “think like humans”。"
+            },
+            {
+              "zh": "图灵测试属于 “act like humans”（看行为），不属于 “think like humans”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which definition of AI do Russell and Norvig argue for?",
+            "zh": "Russell 和 Norvig 支持哪一种 AI 定义？"
+          },
+          "options": [
+            {
+              "en": "Systems that think like humans",
+              "zh": "像人一样思考的系统"
+            },
+            {
+              "en": "Systems that think rationally",
+              "zh": "理性思考的系统"
+            },
+            {
+              "en": "Systems that act like humans",
+              "zh": "像人一样行动的系统"
+            },
+            {
+              "en": "Systems that act rationally",
+              "zh": "理性行动的系统"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 45 页的绿框只框住右下角 “Systems that act rationally”，旁边写 “Russel and Norvig argue for this definition.”。其他三格是课上讨论过、但他们没有选的定义。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the Russell and Norvig grid, which cell does the Turing Test belong to?",
+            "zh": "在 Russell 和 Norvig 的四格表里，图灵测试属于哪一格？"
+          },
+          "options": [
+            {
+              "en": "Systems that think like humans",
+              "zh": "像人一样思考的系统"
+            },
+            {
+              "en": "Systems that think rationally",
+              "zh": "理性思考的系统"
+            },
+            {
+              "en": "Systems that act like humans",
+              "zh": "像人一样行动的系统"
+            },
+            {
+              "en": "Systems that act rationally",
+              "zh": "理性行动的系统"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 39-40 页的标题就是 “Turing Test (Acting Humanly)”：图灵测试只看机器的行为像不像人，不管它内部怎么想，所以是 act like humans，不是 think like humans。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-thinking-humanly",
+      "title": {
+        "zh": "像人一样思考：认知建模",
+        "en": "Cognitive Modeling (Thinking Humanly)"
+      },
+      "slides": "38",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第一条路：让 AI 像人一样“想问题”。要做到这一点，先得弄清楚人脑到底是怎么想的。这条路叫认知建模（**Cognitive Modeling**），对应四格表的左上角（**Thinking Humanly**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像模仿学霸的解题思路：你不只抄他的答案，还要弄清楚他脑子里每一步是怎么想的，然后照着想。难点是：你看不见他脑子里在想什么。",
+          "limit": "类比里你模仿的是某一个人；认知科学研究的是一般的人类心智（**human mind**，就是人脑怎么想、怎么理解事情）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 38 页，第二句稍作改写，方便写进答案）",
+            "en": "Course slide (slide 38; second sentence slightly reworded)"
+          },
+          "items": [
+            {
+              "en": "Why humans? Humans are one of a few examples of intelligence.",
+              "zh": "为什么以人为标准？因为人是少数几个“智能”的例子之一。"
+            },
+            {
+              "en": "The goal of cognitive science is to develop precise and testable theories of the human mind using theoretical models and experiments.",
+              "zh": "认知科学的目标：用理论模型和实验，建立关于人类心智的精确、可检验的理论。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "怎么知道人在想什么？（课件原句 “How can tell what humans think?” 少了一个 we）",
+            "en": "How can (we) tell what humans think?"
+          },
+          "items": [
+            {
+              "en": "Introspection",
+              "zh": "内省（**Introspection**）：自己观察自己的想法，比如做完题问自己“我刚才是怎么想的？”"
+            },
+            {
+              "en": "Psychological experiments",
+              "zh": "心理学实验（**Psychological experiments**）：设计实验，观察很多人在某种情况下怎么反应。"
+            },
+            {
+              "en": "Brain imaging (MRI)",
+              "zh": "脑成像（**Brain imaging (MRI)**）：用 MRI 机器给大脑拍图像。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "拆开认知科学（cognitive science）的目标",
+            "en": "Breaking down the goal of cognitive science"
+          },
+          "items": [
+            {
+              "en": "precise",
+              "zh": "精确：说得具体、不含糊"
+            },
+            {
+              "en": "testable",
+              "zh": "可检验：能用实验验证对不对"
+            },
+            {
+              "en": "theories of the human mind",
+              "zh": "关于人类心智的理论：解释“人怎么想”的说法"
+            },
+            {
+              "en": "theoretical models and experiments",
+              "zh": "理论模型和实验：一边建模型，一边做实验检验"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "举个例子：想弄清楚“人是怎么认出一只狗的”",
+            "en": "Example: how do people recognize a dog?"
+          },
+          "steps": [
+            {
+              "zh": "内省：看照片时问自己“我先注意到了什么？耳朵？毛？”"
+            },
+            {
+              "zh": "心理学实验：给很多人看照片，记录他们多快认出狗、在哪些照片上会认错。"
+            },
+            {
+              "zh": "脑成像（MRI）：在人看狗照片的时候，给大脑拍图像。"
+            },
+            {
+              "zh": "认知科学把这些结果整理成精确、可检验的理论，再用新的实验去检验。"
+            },
+            {
+              "zh": "如果真弄清楚了“人怎么认狗”，就可以照着这个过程，设计一个“像人一样思考”的 AI。"
+            }
+          ],
+          "answer": {
+            "zh": "难点：人的想法看不见，只能用这三种方法间接地去了解。",
+            "en": "Human thinking cannot be seen directly; we can only study it indirectly."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：MRI 是 Magnetic Resonance Imaging（磁共振成像）的缩写，是医院常用的一种拍摄身体内部图像的机器。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Cognitive Modeling 关心的是“想的过程”像不像人，不只是最后的答案。"
+            },
+            {
+              "zh": "课件只列了 3 种了解人类思维的方法：Introspection、Psychological experiments、Brain imaging (MRI)。图灵测试不是其中之一。"
+            },
+            {
+              "zh": "Cognitive science 的目标是 “precise and testable theories of the human mind”（精确、可检验的人类心智理论），不是“造机器人”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is NOT listed on the slides as a way to tell what humans think?",
+            "zh": "以下哪一项不是课件列出的“了解人在想什么”的方法？"
+          },
+          "options": [
+            {
+              "en": "Introspection",
+              "zh": "内省"
+            },
+            {
+              "en": "Psychological experiments",
+              "zh": "心理学实验"
+            },
+            {
+              "en": "Brain imaging (MRI)",
+              "zh": "脑成像（MRI）"
+            },
+            {
+              "en": "The Turing Test",
+              "zh": "图灵测试"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 38 页只列了三种：Introspection、Psychological experiments、Brain imaging (MRI)。图灵测试是用来判断机器的“行为”像不像人（acting humanly），不是用来研究人怎么想的。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the slides, what is the goal of cognitive science?",
+            "zh": "根据课件，认知科学的目标是什么？"
+          },
+          "options": [
+            {
+              "en": "To develop precise and testable theories of the human mind",
+              "zh": "建立关于人类心智的精确、可检验的理论"
+            },
+            {
+              "en": "To build machines that pass the Turing Test",
+              "zh": "造出能通过图灵测试的机器"
+            },
+            {
+              "en": "To express all knowledge in the form of logic",
+              "zh": "把所有知识写成逻辑形式"
+            },
+            {
+              "en": "To train models on enormous quantities of text data",
+              "zh": "用海量文本数据训练模型"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 38 页原话：认知科学的目标是 “develop precise and testable theories of the human mind using theoretical models and experiments”。“pass the Turing Test” 是图灵测试的思路（第 40 页）；“express all knowledge in the form of logic” 是逻辑主义传统（第 43 页）；“train models on enormous quantities of text data” 是 LLM 的特点（第 54 页）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-turing-test",
+      "title": {
+        "zh": "像人一样行动：图灵测试",
+        "en": "Turing Test (Acting Humanly)"
+      },
+      "slides": "39-40",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二条路：不管机器脑子里怎么想，只看它的表现像不像人。如果你分不出它是人还是机器，就认为它有智能。这就是图灵测试（**Turing Test**），对应四格表的左下角（**Acting Humanly**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像在网上和“客服”聊天：你聊了半天，完全分不出对面是真人还是机器人。如果真的分不出来，按图灵测试的标准，这个机器人就“通过了”。",
+          "limit": "类比只说明“分不出来就算通过”这个核心。真正的测试是专门安排的：有一个负责提问和判断的人，还有一堵墙挡住视线（见下面第 39 页的图）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "看懂第 39 页的图（图上没有文字，下面按第 40 页的定义来理解）",
+            "en": "Reading the Turing Test drawing (slide 39)"
+          },
+          "steps": [
+            {
+              "zh": "左边：一个人坐在电脑前打字。他是负责提问和判断的人，第 40 页叫他 **interrogator**（提问者/审问者）。"
+            },
+            {
+              "zh": "中间：一堵大墙挡住视线，提问者看不见墙后面是谁。"
+            },
+            {
+              "zh": "墙后面：一台大电脑（顶上画着一个亮着的灯泡），旁边还有另一个真人，坐在另一台电脑前。提问者的电脑有一根线穿过墙，通到墙后面。"
+            },
+            {
+              "zh": "提问者只能通过打字聊天来判断：哪个是真人，哪个是机器？"
+            },
+            {
+              "zh": "如果提问者分不出机器（被测试的对象，第 40 页叫 **entity**）和真人，机器就通过测试，被认为有智能。"
+            }
+          ],
+          "answer": {
+            "zh": "分不出来 = 通过测试 = 被认为有智能。",
+            "en": "Cannot tell it apart from a human = passes the test = considered intelligent."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 40 页）",
+            "en": "Course definition (slide 40)"
+          },
+          "items": [
+            {
+              "en": "The Turing Test is an operational definition: If the interrogator cannot distinguish the entity from a human, the entity passes the test and is considered intelligent.",
+              "zh": "图灵测试是一个操作性定义：如果提问者无法把被测对象和真人区分开，被测对象就通过测试，并被认为是有智能的。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "可以这样写",
+            "en": "You can write"
+          },
+          "items": [
+            {
+              "en": "The Turing Test judges a machine only by how it acts (acting humanly), not by how it thinks.",
+              "zh": "图灵测试只看机器怎么“做”（像人一样行动），不看它怎么“想”。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "定义里的词",
+            "意思"
+          ],
+          "rows": [
+            [
+              "operational definition",
+              "操作性定义：用一个能实际去做的测试来定义“智能”，做测试、看结果就能判断"
+            ],
+            [
+              "interrogator",
+              "提问者/审问者：负责提问并做判断的人"
+            ],
+            [
+              "entity",
+              "被测试的对象（这里指机器）"
+            ],
+            [
+              "cannot distinguish ... from a human",
+              "没法把它和真人区分开"
+            ],
+            [
+              "passes the test",
+              "通过测试"
+            ],
+            [
+              "is considered intelligent",
+              "被认为是有智能的"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：图灵测试以英国科学家艾伦·图灵（Alan Turing）的名字命名。第 39 页右边那张黑白人像照片很可能就是他，但课件没有写名字。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Are either “systems that think like a human” or “systems that act like a human” useful definitions of AI? Can you think of examples of AI that don’t fit these definitions?",
+            "zh": "讨论：“像人一样思考的系统”或“像人一样行动的系统”，是有用的 AI 定义吗？你能想到不符合这些定义的 AI 例子吗？"
+          },
+          "answer": {
+            "en": "Both definitions are only partly useful. “Think like a human” is hard to use, because we cannot see how humans think directly; we can only use introspection, psychological experiments or brain imaging. “Act like a human” (the Turing Test) is easier to test, but it only checks whether a machine seems human, not whether it makes good decisions. Many AI systems do not fit these definitions: for example, a chess program that searches for the best move does not think or talk like a human, but it is still AI. So rationality, an abstract ideal rather than “whatever humans do”, is a more useful standard.",
+            "zh": "得分点：（1）先表态：两个定义都只有部分用处；（2）think like a human 的问题：人的想法看不见，只能靠内省、心理学实验、脑成像间接了解（第 38 页）；（3）act like a human 的问题：只看“像不像人”，不看决定好不好；（4）举反例：下棋程序（第 6 页、第 8 页的 Search 和 Game-tree）是 AI，但不像人那样思考或说话；（5）引出第 41 页：理性（rationality）是更好的标准（理性在下一节讲）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "图灵测试判断的是“行为像不像人”（acting humanly），不是“思考像不像人”（thinking humanly）。"
+            },
+            {
+              "zh": "通过的条件是提问者“分不出来”（cannot distinguish），不是“机器答对了所有问题”。"
+            },
+            {
+              "zh": "课件把图灵测试叫 “an operational definition”（操作性定义），考试可以直接用这个词。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the slides, when does an entity pass the Turing Test?",
+            "zh": "根据课件，被测对象什么时候算通过图灵测试？"
+          },
+          "options": [
+            {
+              "en": "When it answers every question correctly",
+              "zh": "当它答对所有问题时"
+            },
+            {
+              "en": "When it thinks in the same way as a human brain",
+              "zh": "当它和人脑用同样的方式思考时"
+            },
+            {
+              "en": "When it always chooses the rational action",
+              "zh": "当它总是选择理性的行动时"
+            },
+            {
+              "en": "When the interrogator cannot distinguish it from a human",
+              "zh": "当提问者无法把它和真人区分开时"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 40 页：“If the interrogator cannot distinguish the entity from a human, the entity passes the test.” 关键是“分不出来”。答对所有问题不是条件；“像人脑一样思考”是 thinking humanly；“总是选理性的行动”是 acting rationally。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the Turing Test, who tries to tell the machine apart from a human?",
+            "zh": "在图灵测试中，谁负责分辨机器和真人？"
+          },
+          "options": [
+            {
+              "en": "The entity",
+              "zh": "被测对象（entity）"
+            },
+            {
+              "en": "The interrogator",
+              "zh": "提问者（interrogator）"
+            },
+            {
+              "en": "The hidden human behind the wall",
+              "zh": "墙后面那个看不见的真人"
+            },
+            {
+              "en": "A judge who reads the chat log afterwards",
+              "zh": "事后才读聊天记录的裁判"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "第 40 页：“If the interrogator cannot distinguish the entity from a human…”，做分辨的是 interrogator（提问者）：他一边提问，一边判断。entity 是被测试的对象（机器），不是做判断的人；墙后面的真人只是拿来比较的对象，也不做判断；课件里也没有“事后读聊天记录的裁判”，提问和判断都由 interrogator 完成。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-rationality",
+      "title": {
+        "zh": "理性（Rationality）：做“对的事”",
+        "en": "Rationality"
+      },
+      "slides": "41",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "理性（**rationality**）就是：用你手上已有的信息，选一个最能达到目标的做法。一句话：在你知道的范围内，做“对的事”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像用导航 App：目标是最快到学校。导航根据它现在知道的路况，选了最快的路线，这就是理性。就算后来发生一场谁也预料不到的车祸，路堵了，它当时的选择仍然是理性的，因为它用好了当时能拿到的信息。",
+          "limit": "真实的导航还会考虑很多别的东西；这里只用它说明“已有信息 + 最好地达成目标”这两个关键点。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 41 页，第三句稍作改写，方便写进答案）",
+            "en": "Course slide (slide 41; third sentence slightly reworded)"
+          },
+          "items": [
+            {
+              "en": "Rationality is an abstract “ideal” of intelligence, rather than “whatever humans do”.",
+              "zh": "理性是智能的一种抽象“理想标准”，而不是“人怎么做都算”。"
+            },
+            {
+              "en": "Definition: Rationality means acting in a way that best achieves a goal using the information that is available.",
+              "zh": "定义：理性是指利用可获得的信息，以最能实现目标的方式行动。"
+            },
+            {
+              "en": "In other words, rationality means always doing “the right thing” given one’s knowledge.",
+              "zh": "换句话说：理性就是根据自己所知道的，总是做“对的事”。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "课件里的词",
+            "中文",
+            "大白话"
+          ],
+          "rows": [
+            [
+              "acting in a way",
+              "以某种方式行动",
+              "看的是怎么“做”"
+            ],
+            [
+              "best achieves a goal",
+              "最好地实现目标",
+              "先有目标，再选最能达成目标的做法"
+            ],
+            [
+              "using the information that is available",
+              "利用可获得的信息",
+              "只用当时能拿到的信息，不要求未卜先知"
+            ],
+            [
+              "abstract “ideal”",
+              "抽象的“理想标准”",
+              "一个完美的标准，不是某个具体的人"
+            ],
+            [
+              "rather than “whatever humans do”",
+              "而不是“人怎么做都算”",
+              "人做的不一定理性，所以不拿人当标准"
+            ],
+            [
+              "“the right thing” given one’s knowledge",
+              "根据所知做“对的事”",
+              "在你知道的范围内，做最对的选择"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用课件的定义判断：这是理性吗？",
+            "en": "Is this rational?"
+          },
+          "steps": [
+            {
+              "zh": "情境 1：明天考试，你的目标是考高分。你知道复习比打游戏更有用，于是选择复习。→ 用已有信息最好地达成目标 → 理性。"
+            },
+            {
+              "zh": "情境 2：同样的情况，你选择通宵打游戏。→ 很多人可能真会这样做（whatever humans do），但这不能最好地达成目标 → 不理性。说明“人会这样做”不等于理性。"
+            },
+            {
+              "zh": "情境 3：导航按当时的路况选了最快路线，后来发生意外堵车。→ 仍然理性，因为它用好了当时可获得的信息（the information that is available）。"
+            }
+          ],
+          "answer": {
+            "zh": "判断理性看三样：目标、已有信息、是不是最好的做法。不看“人通常怎么做”，也不看“事后运气好不好”。",
+            "en": "To judge rationality, look at the goal, the available information and whether the action is the best one."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "理性 ≠ 像人。人经常不理性，所以课件说理性是一个 “ideal”，而不是 “whatever humans do”。"
+            },
+            {
+              "zh": "理性 ≠ 结果一定最好。当时信息不够、但做了当时最好的选择，也算理性（given one’s knowledge）。"
+            },
+            {
+              "zh": "理性一定和“目标”（goal）有关：没有目标，就谈不上 “best achieves a goal”。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "这个定义一定要会默写英文。第 46 页的“理性智能体”定义，以及 Lecture 3 搜索和下棋里的“理性”，都建立在它上面。"
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement best matches the slide's definition of rationality?",
+            "zh": "哪一项最符合课件对“理性”的定义？"
+          },
+          "options": [
+            {
+              "en": "Doing whatever most humans would do in the same situation",
+              "zh": "做大多数人在同样情况下会做的事"
+            },
+            {
+              "en": "Always getting the best possible result, even when information is missing",
+              "zh": "就算信息不全，也总能得到最好的结果"
+            },
+            {
+              "en": "Acting in a way that best achieves a goal using the information that is available",
+              "zh": "利用可获得的信息，以最能实现目标的方式行动"
+            },
+            {
+              "en": "Thinking in the same way as a human brain",
+              "zh": "和人脑用同样的方式思考"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "“Acting in a way that best achieves a goal using the information that is available” 是第 41 页原话。“Doing whatever most humans would do” 正是课件说的 “whatever humans do”，理性不是这个；“Always getting the best possible result” 不对，理性只要求用好“可获得的信息”，不要求未卜先知；“Thinking in the same way as a human brain” 是 thinking humanly。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "The weather forecast says there is a 90% chance of rain, so you take an umbrella to class. In the end, it does not rain. Was taking the umbrella rational?",
+            "zh": "天气预报说有 90% 的可能下雨，所以你带伞去上课。结果一整天都没下雨。带伞这个决定理性吗？"
+          },
+          "options": [
+            {
+              "en": "Yes, because you acted in the way that best achieves the goal using the information that was available",
+              "zh": "理性，因为你利用当时可获得的信息，以最能实现目标的方式行动"
+            },
+            {
+              "en": "No, because the umbrella turned out to be useless, so the decision was a mistake",
+              "zh": "不理性，因为伞最后没用上，所以这个决定是错的"
+            },
+            {
+              "en": "No, because many people would not carry an umbrella in the same situation",
+              "zh": "不理性，因为在同样情况下很多人不会带伞"
+            },
+            {
+              "en": "It cannot be judged, because only humans can be rational",
+              "zh": "没法判断，因为只有人才能理性"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "理性看的是目标（不被雨淋湿）和当时可获得的信息（预报说很可能下雨），不看事后运气。带伞正是“用已有信息、最能达成目标”的做法，所以是理性的；后来没下雨，不代表当时的决定不理性。“伞最后没用上”是拿结果来评价，课件的定义不看结果；“很多人不会带伞”是 whatever humans do，不是理性的标准；理性是一种抽象的理想标准，不是只有人才能做到，本课程要设计的正是行为理性的智能体（第 46 页）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-thinking-rationally",
+      "title": {
+        "zh": "理性地思考：逻辑和三段论",
+        "en": "Logical Thought (Thinking Rationally)"
+      },
+      "slides": "42-43",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第三条路：让 AI 按照逻辑规则（**rules of logic**）正确地推理，从已知的事实推出新的结论。对应四格表的右上角（**Thinking Rationally**），课件叫逻辑思维（**Logical Thought**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像侦探破案：已知线索摆在那里，一步一步按规则推理，最后得出“凶手是谁”。只要线索是真的、每一步推理都对，结论就一定对。",
+          "limit": "现实中很多问题没有这么清楚的“线索”和“规则”。第 49 页也会讲到：知识常常很难变成符号。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 43 页，第二句稍作改写，方便写进答案）",
+            "en": "Course slide (slide 43; second sentence slightly reworded)"
+          },
+          "items": [
+            {
+              "en": "It is possible to reason using the rules of logic.",
+              "zh": "我们可以用逻辑规则来推理。"
+            },
+            {
+              "en": "For example, the Greek philosopher Aristotle defined syllogisms.",
+              "zh": "例如，古希腊哲学家亚里士多德（Aristotle）定义了三段论（syllogism）。"
+            },
+            {
+              "en": "The logicist tradition: express our knowledge in the form of logic, derive new knowledge using the rules of logic, and solve any problem using new knowledge.",
+              "zh": "逻辑主义传统：把知识写成逻辑形式，用逻辑规则推出新知识，再用新知识解决任何问题。"
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "All men are mortal.\nSocrates is a man.\nTherefore, Socrates is mortal.",
+          "zh": "第 43 页的三段论（**syllogism**）原文。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一句一句看懂三段论",
+            "en": "The syllogism, line by line"
+          },
+          "steps": [
+            {
+              "zh": "第一句：All men are mortal. = 所有人都会死。这是一条一般规则（对所有人都成立）。",
+              "en": "All men are mortal."
+            },
+            {
+              "zh": "第二句：Socrates is a man. = 苏格拉底是人。这是一个具体事实。",
+              "en": "Socrates is a man."
+            },
+            {
+              "zh": "第三句：Therefore, Socrates is mortal. = 所以，苏格拉底会死。这是推出来的新结论。",
+              "en": "Therefore, Socrates is mortal."
+            },
+            {
+              "zh": "只要前两句是真的，第三句就一定是真的。这就是“用逻辑规则推出新知识”。"
+            }
+          ],
+          "answer": {
+            "zh": "一般规则 + 具体事实 → 一定成立的新结论。",
+            "en": "General rule + specific fact → a new conclusion that must be true."
+          }
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "逻辑主义传统（The logicist tradition）的三步",
+            "en": "The logicist tradition"
+          },
+          "items": [
+            {
+              "en": "Express our knowledge in the form of logic",
+              "zh": "把我们的知识写成逻辑形式"
+            },
+            {
+              "en": "Derive new knowledge using the rules of logic",
+              "zh": "用逻辑规则推出新知识"
+            },
+            {
+              "en": "Solve any problem using new knowledge",
+              "zh": "用新知识解决任何问题"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "用三段论对照这三步：第 1 步，把“所有人都会死”“苏格拉底是人”写成逻辑形式；第 2 步，用逻辑规则推出新知识“苏格拉底会死”；第 3 步，用新知识回答问题，比如“苏格拉底会死吗？”——会。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "可以对照后面第 48 页的符号 AI（**Symbolic AI**）：“把知识写成符号，再按逻辑推理”，和这里的想法很像。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Thinking Rationally 关心“推理过程”是否合乎逻辑；Acting Rationally 只看“行动”（第 44 页）。"
+            },
+            {
+              "zh": "人名别搞混：三段论是 Aristotle（亚里士多德）定义的；例子里的人物是 Socrates（苏格拉底）。"
+            },
+            {
+              "zh": "逻辑主义传统的三步顺序：表达知识 → 推出新知识 → 解决问题。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the syllogism on the slide, which line is the new knowledge that is derived?",
+            "zh": "课件的三段论里，哪一句是推出来的新知识？"
+          },
+          "options": [
+            {
+              "en": "All men are mortal.",
+              "zh": "所有人都会死。"
+            },
+            {
+              "en": "Socrates is a man.",
+              "zh": "苏格拉底是人。"
+            },
+            {
+              "en": "Therefore, Socrates is mortal.",
+              "zh": "所以，苏格拉底会死。"
+            },
+            {
+              "en": "Aristotle defined syllogisms.",
+              "zh": "亚里士多德定义了三段论。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "“All men are mortal.”（一条一般规则）和 “Socrates is a man.”（一个具体事实）是已知的知识；“Therefore, Socrates is mortal.” 是用逻辑规则推出来的新知识。“Aristotle defined syllogisms.” 是课件的介绍句，不是三段论的一部分。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which is the correct order of the steps in the logicist tradition?",
+            "zh": "逻辑主义传统的正确步骤顺序是哪一个？"
+          },
+          "options": [
+            {
+              "en": "Collect data -> train a model -> make predictions",
+              "zh": "收集数据 → 训练模型 → 做预测"
+            },
+            {
+              "en": "Write a prompt -> get a response -> check it",
+              "zh": "写提示 → 得到回答 → 检查回答"
+            },
+            {
+              "en": "Observe humans -> run experiments -> build a brain",
+              "zh": "观察人 → 做实验 → 造一个大脑"
+            },
+            {
+              "en": "Express knowledge in logic -> derive new knowledge -> solve problems",
+              "zh": "把知识写成逻辑 → 推出新知识 → 解决问题"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 43 页：Express our knowledge in the form of logic → Derive new knowledge using the rules of logic → Solve any problem using new knowledge。“Collect data -> train a model” 更像机器学习的流程；“Write a prompt -> get a response” 是使用 LLM 的方式；“Observe humans -> run experiments” 是第 38 页认知建模（研究人怎么想）的思路，不是逻辑主义传统，课件也没说过“造一个大脑”。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-acting-rationally",
+      "title": {
+        "zh": "理性地行动：只看行动",
+        "en": "Logical Actions (Acting Rationally)"
+      },
+      "slides": "44-45",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第四条路：和图灵测试一样，只看智能体（**agent**，会观察环境、会采取行动的“做事者”，第 46 页细讲）做了什么行动（**action**），不管它脑子里怎么想。但标准不是“像不像人”，而是“是不是理性的行动”。对应四格表的右下角（**Acting Rationally**），课件叫逻辑行动（**Logical Actions**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像看高手打游戏：你看不到他脑子里在想什么，只能看他每一步操作。评价他打得好不好，就看他每一步是不是选了最可能赢的操作。",
+          "limit": "游戏里还有运气；理性只要求在已知信息下选最好的行动，不保证每次都赢（见第 46 页的 best expected outcome，下一节细讲）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 44-45 页）",
+            "en": "Course slides (slides 44-45)"
+          },
+          "items": [
+            {
+              "en": "Similar to the Turing Test, we judge agents based only on their actions.",
+              "zh": "和图灵测试一样，我们只根据智能体的行动来评价它。"
+            },
+            {
+              "en": "Intelligence means choosing the rational action.",
+              "zh": "智能就是选择理性的行动。"
+            },
+            {
+              "en": "Russell and Norvig argue for this definition: systems that act rationally.",
+              "zh": "Russell 和 Norvig 支持这个定义：理性行动的系统。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "比较",
+            "Acting Humanly（图灵测试）",
+            "Acting Rationally（理性行动）"
+          ],
+          "rows": [
+            [
+              "看什么？",
+              "只看行动（actions）",
+              "只看行动（actions）"
+            ],
+            [
+              "标准是什么？",
+              "像不像人：提问者分不分得出来",
+              "是不是理性的行动：能不能最好地达成目标"
+            ],
+            [
+              "例子",
+              "聊天时让人分不出它是机器",
+              "下棋程序选出最能帮它赢的一步"
+            ]
+          ],
+          "caption": {
+            "zh": "共同点：都只看行动。不同点：标准不一样。",
+            "en": "Same: both judge only actions. Different: the standard."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "拆开两句原话：“**judge agents based only on their actions**”（只根据行动来评价智能体）= 不看内部想法，这一点和图灵测试一样。“**choosing the rational action**”（选择理性的行动）= 回到第 41 页：用已有信息，最好地达成目标。"
+        },
+        {
+          "type": "text",
+          "zh": "第 45 页：四格表里绿框只框住右下角 “Systems that act rationally”，旁边写 “Russel and Norvig argue for this definition.”。第 46 页又说本课程的定义 “closely based on Russell and Norvig’s”。所以本课程也站在“理性行动”这一边。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Which of these (“systems that think rationally” or “systems that act rationally”) is a more useful definition of AI?",
+            "zh": "讨论：“理性思考的系统”和“理性行动的系统”，哪一个是更有用的 AI 定义？"
+          },
+          "answer": {
+            "en": "I think “systems that act rationally” is a more useful definition. We can judge an agent based only on its actions, and actions are easy to observe, just like in the Turing Test. “Thinking rationally” needs our knowledge to be written in the form of logic, but knowledge can be difficult to distill into symbols, for example when we ask whether an image contains a dog. Also, when there is uncertainty, logic may not give a certain answer, but a rational agent can still choose the action with the best expected outcome. This is why Russell and Norvig, and this course, use the “act rationally” definition.",
+            "zh": "得分点：（1）明确表态：选 act rationally；（2）理由一：行动可以观察，像图灵测试一样好判断（第 44 页）；（3）理由二：think rationally 要把知识写成逻辑，但知识常常很难变成符号，比如认图片里的狗（第 49 页）；（4）理由三：有不确定性时，仍然能选 best expected outcome（第 46 页，下一节细讲）；（5）结尾：Russell 和 Norvig、本课程都选它（第 45-46 页）。也可以写另一面：think rationally 的推理过程清楚、容易解释（对照第 48 页符号 AI 的 high explainability），只要理由充分就行。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Acting Rationally 和图灵测试的共同点：都只看行动。不同点：标准不同（理性 vs 像人）。"
+            },
+            {
+              "zh": "Russell 和 Norvig 支持的是 “act rationally”，不是 “think rationally”。"
+            },
+            {
+              "zh": "“Intelligence means choosing the rational action.” 里的 rational 指第 41 页的理性，不是“像人一样”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What do “acting rationally” and the Turing Test have in common?",
+            "zh": "“理性地行动”和图灵测试有什么共同点？"
+          },
+          "options": [
+            {
+              "en": "Both require the agent to think like a human",
+              "zh": "都要求智能体像人一样思考"
+            },
+            {
+              "en": "Both judge an agent based only on its actions",
+              "zh": "都只根据行动来评价智能体"
+            },
+            {
+              "en": "Both require knowledge written in the form of logic",
+              "zh": "都要求把知识写成逻辑形式"
+            },
+            {
+              "en": "Both measure how similar a machine is to a human brain",
+              "zh": "都衡量机器和人脑有多像"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "第 44 页：“Similar to the Turing Test, we judge agents based only on their actions.” 两者都只看行动；但标准不同：图灵测试看像不像人，acting rationally 看是不是理性的行动。其他选项说的都是“思考”或“逻辑”，不对。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Complete the slide: “Intelligence means ___.”",
+            "zh": "补全课件原话：“Intelligence means ___.”"
+          },
+          "options": [
+            {
+              "en": "choosing the rational action",
+              "zh": "选择理性的行动"
+            },
+            {
+              "en": "being impossible to distinguish from a human",
+              "zh": "让人分不出它和真人"
+            },
+            {
+              "en": "having a brain like a human",
+              "zh": "拥有像人一样的大脑"
+            },
+            {
+              "en": "knowing every rule of logic",
+              "zh": "知道所有逻辑规则"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 44 页（Acting Rationally）：“Intelligence means choosing the rational action.” “being impossible to distinguish from a human” 是图灵测试的想法（acting humanly）；“having a brain like a human” 和 “knowing every rule of logic” 都不是课件原话。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-course-definition",
+      "title": {
+        "zh": "本课程的 AI 定义：理性智能体",
+        "en": "A Definition of AI for this Class"
+      },
+      "slides": "46",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这是本课最重要的一页，一定要会默写！本课程说：AI 是一门研究智能体（**agent**）的学科。智能体会观察环境、会采取行动；我们的目标是设计出“行为理性”的智能体：它的行动是为了取得最好的结果；有不确定性时，是为了取得最好的期望结果。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像一个外卖骑手：他观察环境（**environment**：订单、地图、路况），然后采取行动（**action**：选路线、决定先送哪一单）。理性的骑手会选结果最好的做法，比如准时送到。如果路况说不准（**uncertainty**，不确定性），他就选“预计下来”最好的路线。",
+          "limit": "骑手是真人；本课程要“设计”（design）的 agent 是 AI 系统，不是人。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 46 页）：必背",
+            "en": "Course definition (slide 46): memorize"
+          },
+          "items": [
+            {
+              "en": "Artificial Intelligence (AI) is a field of study concerned with agents that observe their environment and perform actions.",
+              "zh": "人工智能（AI）是一个研究领域，它关注会观察环境、会执行行动的智能体。"
+            },
+            {
+              "en": "The goal is to design agents that “behave rationally”.",
+              "zh": "目标是设计出“行为理性”的智能体。"
+            },
+            {
+              "en": "A rational agent is one that acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome.",
+              "zh": "理性智能体：它的行动是为了取得最好的结果；如果存在不确定性，就是为了取得最好的期望结果。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "把定义拆成 6 块，按顺序记",
+            "en": "The definition in 6 pieces"
+          },
+          "items": [
+            {
+              "en": "AI is a field of study",
+              "zh": "AI 是一个研究领域（不是某一个产品）"
+            },
+            {
+              "en": "concerned with agents",
+              "zh": "研究对象：智能体（agent）"
+            },
+            {
+              "en": "that observe their environment",
+              "zh": "智能体会观察环境"
+            },
+            {
+              "en": "and perform actions",
+              "zh": "并执行行动"
+            },
+            {
+              "en": "Goal: design agents that “behave rationally”",
+              "zh": "目标：设计行为理性的智能体"
+            },
+            {
+              "en": "Rational agent: the best outcome, or the best expected outcome under uncertainty",
+              "zh": "理性智能体：行动是为了取得最好结果；不确定时，是为了取得最好的期望结果"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "field of study",
+              "zh": "研究领域",
+              "hint": "一门学科，像“物理学”一样，不是一个软件"
+            },
+            {
+              "en": "agent",
+              "zh": "智能体",
+              "hint": "会观察环境、会采取行动的东西；我们要设计的 AI 系统"
+            },
+            {
+              "en": "environment",
+              "zh": "环境",
+              "hint": "智能体周围、能被它观察到的情况，比如一盘棋的棋盘"
+            },
+            {
+              "en": "observe",
+              "zh": "观察",
+              "hint": "从环境中获取信息"
+            },
+            {
+              "en": "action",
+              "zh": "行动",
+              "hint": "智能体做出的事，比如走一步棋、回答一句话"
+            },
+            {
+              "en": "behave rationally",
+              "zh": "行为理性",
+              "hint": "用已有信息，选最能达成目标的做法（第 41 页）"
+            },
+            {
+              "en": "rational agent",
+              "zh": "理性智能体",
+              "hint": "行动是为了取得最好结果的智能体；结果说不准时追求最好的期望结果（不保证每次都最好）"
+            },
+            {
+              "en": "uncertainty",
+              "zh": "不确定性",
+              "hint": "事先没法确定会发生什么"
+            },
+            {
+              "en": "best expected outcome",
+              "zh": "最好的期望结果",
+              "hint": "结果说不准时，综合各种可能后“预计”最好的结果"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "最后一句分两种情况。如果每个行动会带来什么结果是确定的，理性智能体就选结果最好的那个：**best outcome**（最好结果）。如果有不确定性（**uncertainty**），结果没法保证，就选“预计下来”最好的那个：**best expected outcome**（最好的期望结果）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：“expected（期望的）”可以理解为“把各种可能发生的情况都考虑进去，平均来看”。第 1 课没有给计算方法，也没有数字例子；考试写定义时，照原话写 “the best expected outcome” 就行。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "补充（课件外）举例：best outcome 和 best expected outcome",
+            "en": "Best outcome vs best expected outcome (illustration, not from the slides)"
+          },
+          "steps": [
+            {
+              "zh": "目标：外卖骑手要尽快把餐送到。"
+            },
+            {
+              "zh": "没有不确定性：A 路一定 20 分钟，B 路一定 25 分钟。结果是确定的，选 A → 这就是 best outcome（最好的结果）。"
+            },
+            {
+              "zh": "有不确定性：A 路一定 20 分钟；B 路不堵车 10 分钟、堵车 40 分钟，大约一半的时候会堵。"
+            },
+            {
+              "zh": "B 路平均要多久？平均 = 把各种情况加起来，再除以情况的个数：(10 + 40) ÷ 2 = 25 分钟，比 A 路的 20 分钟慢。"
+            },
+            {
+              "zh": "理性的选择是 A：平均来看结果最好 → 这就是 best expected outcome（最好的期望结果）。就算某天 B 路正好不堵，选 A 在当时也仍然是理性的。"
+            }
+          ],
+          "answer": {
+            "zh": "结果确定 → 选最好的结果；结果说不准 → 选平均来看最好的结果。",
+            "en": "With certainty, choose the best outcome; with uncertainty, choose the best expected outcome."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "把定义套到下棋 AI 上（第 6 页的国际象棋，第 8 页的 Game-tree search）",
+            "en": "Applying the definition to a chess-playing AI"
+          },
+          "steps": [
+            {
+              "zh": "agent（智能体）：下棋程序。"
+            },
+            {
+              "zh": "observe their environment（观察环境）：看棋盘，知道现在每个棋子在哪里。"
+            },
+            {
+              "zh": "perform actions（执行行动）：走一步棋。"
+            },
+            {
+              "zh": "behave rationally（行为理性）：根据它知道的信息，选最能帮它赢棋（达成目标）的那一步。"
+            },
+            {
+              "zh": "如果环境里有事先说不准的东西（比如有些游戏要掷骰子），结果没法保证，理性的 agent 就选 best expected outcome（预计最好的结果）。"
+            }
+          ],
+          "answer": {
+            "zh": "下棋程序 = 观察棋盘（environment）+ 走棋（action）+ 选最好的一步（rational）。",
+            "en": "A chess program observes the board (environment), makes moves (actions) and tries to choose the best move (rational)."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "Lecture 3（搜索和下棋）会再用到这个想法。那一讲的课件写：“A rational agent always chooses actions that maximizes the reward it will earn.”（理性智能体总是选择能让自己获得最大奖励的行动。）课件原文如此；自己写时用 maximize：A rational agent always chooses actions that maximize the reward it will earn."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "这里的 AI 是 “a field of study”（一个研究领域），不是某一个程序或产品。"
+            },
+            {
+              "zh": "智能体做两件事：observe their environment（观察环境）+ perform actions（执行行动）。考试两样都要写。"
+            },
+            {
+              "zh": "“behave rationally” 是目标（goal），意思是理性，不是“像人一样”。"
+            },
+            {
+              "zh": "有不确定性时是 “the best expected outcome”，不是 “the best outcome”。完整写法：“the best outcome or, when there is uncertainty, the best expected outcome”。"
+            },
+            {
+              "zh": "这里的期望（**expected**）不是“希望”的意思，而是“把各种可能都算进去、平均来看”。best expected outcome = 平均来看最好的结果，不是“最希望得到的结果”。考试照原话写 the best expected outcome，不用写计算。"
+            },
+            {
+              "zh": "本课程定义 “closely based on Russell and Norvig’s”，属于四格表右下角 act rationally 这一格。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the course definition, what is the goal of AI?",
+            "zh": "根据本课程的定义，AI 的目标是什么？"
+          },
+          "options": [
+            {
+              "en": "To build machines that think exactly like humans",
+              "zh": "造出和人想法完全一样的机器"
+            },
+            {
+              "en": "To pass the Turing Test",
+              "zh": "通过图灵测试"
+            },
+            {
+              "en": "To train models on as much data as possible",
+              "zh": "用尽可能多的数据训练模型"
+            },
+            {
+              "en": "To design agents that behave rationally",
+              "zh": "设计行为理性的智能体"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 46 页：“The goal is to design agents that “behave rationally”.” “think exactly like humans” 和 “pass the Turing Test” 是“像人”的思路，本课程没有选；“train models on as much data as possible” 不是定义里的内容。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the course definition, when there is uncertainty, a rational agent acts so as to achieve ...",
+            "zh": "根据本课程的定义，存在不确定性时，理性智能体的行动是为了取得……"
+          },
+          "options": [
+            {
+              "en": "the best expected outcome",
+              "zh": "最好的期望结果"
+            },
+            {
+              "en": "the outcome that most humans would choose",
+              "zh": "大多数人会选的结果"
+            },
+            {
+              "en": "a guaranteed outcome",
+              "zh": "有保证的结果"
+            },
+            {
+              "en": "the fastest outcome",
+              "zh": "最快的结果"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "原话：“the best outcome or, when there is uncertainty, the best expected outcome”。有不确定性时结果没法保证，所以不是 a guaranteed outcome；“大多数人会选的”是 whatever humans do，不是理性的标准。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the course definition, agents do two things. What are they?",
+            "zh": "本课程的定义里，智能体做哪两件事？"
+          },
+          "options": [
+            {
+              "en": "Collect data and train models",
+              "zh": "收集数据，训练模型"
+            },
+            {
+              "en": "Observe their environment and perform actions",
+              "zh": "观察环境，执行行动"
+            },
+            {
+              "en": "Write prompts and generate text",
+              "zh": "写提示，生成文字"
+            },
+            {
+              "en": "Think like humans and talk like humans",
+              "zh": "像人一样思考，像人一样说话"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "原话：“agents that observe their environment and perform actions”。“Collect data and train models” 是机器学习的做法，“Write prompts and generate text” 是使用 LLM 的说法，“Think like humans and talk like humans” 是“像人”的思路，都不在这个定义里。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-symbolic-ai",
+      "title": {
+        "zh": "符号 AI：用符号和逻辑解题",
+        "en": "Symbolic AI"
+      },
+      "slides": "47-48",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "从第 47 页开始讲 AI 的类型（**Types of AI**）。第一类：符号 AI（**Symbolic AI**）。做法是：人先把知识写成符号（比如规则、事实），电脑再按逻辑规则一步步推理，找到答案。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像拿着一本写得清清楚楚的规则书下棋：棋盘、棋子、怎么走全都写明白了，电脑照着规则一步步推，找出好的走法。",
+          "limit": "只有规则能写清楚时才好用。“这张照片里有没有狗？”这种问题，就很难写成规则（见下一节）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 48 页）",
+            "en": "Course definition (slide 48)"
+          },
+          "items": [
+            {
+              "en": "Symbolic AI is a sub-field of Artificial Intelligence in which problem solutions are found by encoding knowledge as symbols and then reasoning with those symbols.",
+              "zh": "符号 AI 是人工智能的一个子领域：先把知识编码成符号，再用这些符号进行推理，从而找到问题的解。"
+            },
+            {
+              "en": "It is characterized by: problems that have well-defined rules, reasoning that follows rules of logic, solutions that are provably correct when they are found, and generally high explainability.",
+              "zh": "它的特点：问题有定义清楚的规则；推理遵循逻辑规则；找到的解可以被证明是正确的；可解释性通常很高。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "课件里的词",
+            "中文",
+            "大白话"
+          ],
+          "rows": [
+            [
+              "sub-field of Artificial Intelligence",
+              "AI 的一个子领域",
+              "AI 大伞下面的一块（第 8 页左边的灰圈）"
+            ],
+            [
+              "problem solutions are found",
+              "找到问题的解",
+              "目标是把问题解决掉"
+            ],
+            [
+              "encoding knowledge as symbols",
+              "把知识编码成符号",
+              "把人知道的东西写成电脑能处理的记号，比如规则 “All men are mortal”"
+            ],
+            [
+              "reasoning with those symbols",
+              "用这些符号推理",
+              "按逻辑规则一步步推出答案"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "符号 AI 的四个特点（It is characterized by）",
+            "en": "Four characteristics of Symbolic AI"
+          },
+          "items": [
+            {
+              "en": "Problems that have well-defined rules",
+              "zh": "问题有定义清楚的规则，比如棋类游戏的规则"
+            },
+            {
+              "en": "Reasoning that follows rules of logic",
+              "zh": "推理遵循逻辑规则"
+            },
+            {
+              "en": "Solutions that are provably correct when they are found",
+              "zh": "一旦找到解，这个解可以被证明是正确的"
+            },
+            {
+              "en": "Generally high explainability",
+              "zh": "可解释性通常很高：能说清楚答案是怎么来的"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "可解释性（**explainability**）第 1 课没有正式定义。后面 Lecture 6 的课件这样问：“How easy is it to explain why the model gave the result it gave?”——能多容易地解释“为什么得出这个结果”。符号 AI 每一步推理都写得清清楚楚，所以通常容易解释。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用第 43 页的三段论看符号 AI 的特点",
+            "en": "Seeing Symbolic AI's characteristics in the syllogism"
+          },
+          "steps": [
+            {
+              "zh": "把知识写成符号：“All men are mortal.” “Socrates is a man.”"
+            },
+            {
+              "zh": "well-defined rules（规则清楚）：“所有人都会死”这条规则没有任何含糊。"
+            },
+            {
+              "zh": "reasoning follows rules of logic（按逻辑推理）：推出 “Therefore, Socrates is mortal.”"
+            },
+            {
+              "zh": "provably correct（可证明正确）：只要前两句是真的，结论一定正确。"
+            },
+            {
+              "zh": "high explainability（容易解释）：有人问“为什么？”，把三句话摆出来就能解释。"
+            }
+          ],
+          "answer": {
+            "zh": "三段论可以看成一个最简单的“用符号推理”的小例子。",
+            "en": "A syllogism is a tiny example of reasoning with symbols."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“provably correct when they are found” 是说：一旦找到解，它一定正确。但不保证一定能很快找到（见下一节：大问题可能算太久）。"
+            },
+            {
+              "zh": "符号 AI 的可解释性是 “generally high”（通常高）；机器学习是 “generally low”（通常低）。别搞反。"
+            },
+            {
+              "zh": "符号 AI 要靠人先把知识写成符号；机器学习是从数据中自动找规律。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is a characteristic of Symbolic AI?",
+            "zh": "以下哪一项是符号 AI 的特点？"
+          },
+          "options": [
+            {
+              "en": "Solutions that are likely correct, but not guaranteed to be correct",
+              "zh": "解很可能正确，但不保证正确"
+            },
+            {
+              "en": "Generally low explainability",
+              "zh": "可解释性通常很低"
+            },
+            {
+              "en": "Solutions that are provably correct when they are found",
+              "zh": "找到的解可以被证明是正确的"
+            },
+            {
+              "en": "Distinct phases of training a model and inference",
+              "zh": "训练模型和推理是两个分开的阶段"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 48 页列的符号 AI 特点包括 “provably correct when they are found”。另外三项都是机器学习的特点或弱点（第 51-52 页），是最常见的混淆。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Symbolic AI, how are problem solutions found?",
+            "zh": "在符号 AI 中，问题的解是怎么找到的？"
+          },
+          "options": [
+            {
+              "en": "By encoding knowledge as symbols and then reasoning with those symbols",
+              "zh": "把知识编码成符号，再用这些符号推理"
+            },
+            {
+              "en": "By automatically inferring patterns from data",
+              "zh": "从数据中自动推断出规律"
+            },
+            {
+              "en": "By prompting a model in plain text",
+              "zh": "用普通文字给模型写提示"
+            },
+            {
+              "en": "By asking an interrogator to judge the answer",
+              "zh": "请提问者来判断答案"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "“By encoding knowledge as symbols and then reasoning with those symbols” 是第 48 页定义的原话。“By automatically inferring patterns from data” 是机器学习的定义（第 51 页）；“By prompting a model in plain text” 是使用 LLM 的方式（第 54 页）；“By asking an interrogator to judge the answer” 用的是图灵测试里的角色。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-symbolic-weaknesses",
+      "title": {
+        "zh": "符号 AI 的弱点：狗狗照片难题",
+        "en": "Weaknesses of Symbolic AI"
+      },
+      "slides": "49-50",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "符号 AI 有两个重要弱点（**weaknesses**）：一是问题太大时，算的时间长到没法接受；二是很多知识很难写成符号，比如“这张照片里有狗吗？”。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 49-50 页）",
+            "en": "Course slides (slides 49-50)"
+          },
+          "items": [
+            {
+              "en": "For “large” problems, computation can be infeasibly long.",
+              "zh": "对于“大”问题，计算时间可能长到不可行。"
+            },
+            {
+              "en": "Knowledge can be difficult to distill into symbols. E.g. Does this image contain a dog?",
+              "zh": "知识可能很难提炼成符号。例如：这张图里有狗吗？"
+            },
+            {
+              "en": "The computer just sees a sequence of raw pixel values. How do we reason with those?",
+              "zh": "电脑只看到一串原始的像素值。我们怎么用它们来推理呢？"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "弱点一拆开看：计算（**computation**）= 电脑一步步地算；长到不可行（**infeasibly long**）= 时间长到根本等不起，不是“慢一点”，而是实际上算不完。原因是：可能的情况太多，每多想一步，要检查的情况就成倍增加（Lecture 3 搜索会细讲）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像试手机密码：4 位数字的密码，一个一个试，最多试 10000 次；如果密码有 20 位，就算电脑试得很快，也可能要试到天荒地老。",
+          "limit": "这只是说明“情况数会爆炸”；真正的搜索问题（比如下棋），Lecture 3 会用状态树来讲。"
+        },
+        {
+          "type": "widget",
+          "name": "tree-growth",
+          "config": {
+            "branching": 3,
+            "depth": 4
+          },
+          "caption": {
+            "zh": "预告 Lecture 3：假设每一步有 3 种选择。增加深度看看：每多想一步，要考虑的情况数就乘以 3。这就是“大问题算不完”的原因。",
+            "en": "Preview of search: with 3 choices per step, the number of states is multiplied by 3 at each new level."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "弱点二：知识很难提炼成符号（**distill into symbols**）。课件的例子：“Does this image contain a dog?”。人一眼就能认出来，但你能写出一条清楚的规则吗？“有四条腿”——桌子也有；“有毛”——猫也有。照片里的狗还趴着、戴着保护圈，身体被挡住一部分。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 49-50 页：电脑眼中的狗狗照片",
+            "en": "The dog photo through a computer's eyes (slides 49-50)"
+          },
+          "steps": [
+            {
+              "zh": "照片：一只毛茸茸的狗趴在木地板上，脖子上戴着一个灰色的充气保护圈（cone）。"
+            },
+            {
+              "zh": "人看：一眼就知道是狗。"
+            },
+            {
+              "zh": "电脑看：第 50 页说 “The computer just sees a sequence of raw pixel values.”。像素（**pixel**）是组成图片的小点，每个点的颜色用数字表示。所以电脑看到的只是一长串数字。"
+            },
+            {
+              "zh": "问题：“How do we reason with those?”——拿着一堆数字，怎么写出“这是狗”的逻辑规则？非常难。"
+            },
+            {
+              "zh": "结论：这类问题很难用符号 AI 解决，需要另一种方法：机器学习（下一节）。"
+            }
+          ],
+          "answer": {
+            "zh": "符号 AI 卡在“知识写不成符号”：电脑只看到像素数字，不知道“狗”是什么。",
+            "en": "Symbolic AI gets stuck because the computer only sees raw pixel values, and 'dog' is hard to write as symbols."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "弱点一说的是“大”问题（“large” problems）会算太久，不是说符号 AI 总是慢。小问题它可以很快（第 57 页：Can be fast if the problem is small）。"
+            },
+            {
+              "zh": "弱点二的例子是“图片里有没有狗”：电脑看到的只是像素数字，不是“狗”这个概念。"
+            },
+            {
+              "zh": "这两个弱点和第 48 页的 “provably correct” 不矛盾：找到的解一定对，但可能找太久，或者根本没法把知识写成符号。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why is “Does this image contain a dog?” hard for Symbolic AI?",
+            "zh": "为什么“这张图里有狗吗？”对符号 AI 很难？"
+          },
+          "options": [
+            {
+              "en": "Symbolic AI has low explainability, so it cannot explain its answer.",
+              "zh": "符号 AI 的可解释性低，所以说不清答案是怎么来的。"
+            },
+            {
+              "en": "Symbolic AI needs enormous quantities of text data before it can reason.",
+              "zh": "符号 AI 要先有海量文本数据才能推理。"
+            },
+            {
+              "en": "Dog photos are always too large to store in a computer's memory.",
+              "zh": "狗的照片总是太大，电脑内存存不下。"
+            },
+            {
+              "en": "The computer just sees raw pixel values, and this knowledge is difficult to distill into symbols.",
+              "zh": "电脑只看到原始像素值，这种知识很难提炼成符号。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 49-50 页：知识很难提炼成符号，电脑只看到一串原始像素值。“low explainability” 说反了，符号 AI 的可解释性其实很高；海量文本数据是 LLM 的特点；难点也不是照片太大存不下，而是电脑只看到一串像素数字，没法把“狗”写成符号规则。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is a weakness of Symbolic AI listed on the slides?",
+            "zh": "以下哪一项是课件列出的符号 AI 的弱点？"
+          },
+          "options": [
+            {
+              "en": "Trained models inherit the biases of the data they were trained on",
+              "zh": "训练好的模型会继承训练数据的偏见"
+            },
+            {
+              "en": "For “large” problems, computation can be infeasibly long",
+              "zh": "对于“大”问题，计算时间可能长到不可行"
+            },
+            {
+              "en": "It is prone to confidently stating falsehoods",
+              "zh": "容易自信地说出错误内容"
+            },
+            {
+              "en": "It needs a lot of labeled data",
+              "zh": "需要大量带标签的数据"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "“computation can be infeasibly long”（大问题的计算时间可能长到不可行）是第 49 页原话。“inherit the biases of the data” 是机器学习的弱点（第 52 页）；“confidently stating falsehoods” 是 LLM 的幻觉（第 56 页）；“needs a lot of labeled data” 在第 57 页大表里属于机器学习（Often lots），符号 AI 那一格是 None。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-machine-learning",
+      "title": {
+        "zh": "机器学习：从数据里自动找规律",
+        "en": "Machine Learning (ML)"
+      },
+      "slides": "51",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二类 AI：机器学习（**Machine Learning, ML**）。它不用人写规则，而是给电脑看大量例子，也就是数据（**data**），让电脑自己找出规律。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像教小朋友认狗：你不会给他讲“狗的定义”，而是给他看很多“这是狗”和“这不是狗”的照片。看多了，他自己就会认了。",
+          "limit": "小朋友是真的理解；ML 模型只是从数据里找出规律（patterns），所以它也有自己的弱点（第 52 页）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 51 页）",
+            "en": "Course definitions (slide 51)"
+          },
+          "items": [
+            {
+              "en": "Machine Learning (ML) is a separate sub-field of Artificial Intelligence in which problem solutions are found by automatically inferring patterns from data.",
+              "zh": "机器学习（ML）是人工智能中一个独立的子领域：通过从数据中自动推断出规律来找到问题的解。"
+            },
+            {
+              "en": "Data are examples to learn from (e.g. a set of photos with dogs and a set without dogs).",
+              "zh": "数据就是用来学习的例子（例如一组有狗的照片和一组没有狗的照片）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "课件里的词",
+            "中文",
+            "大白话"
+          ],
+          "rows": [
+            [
+              "separate sub-field",
+              "独立的子领域",
+              "和符号 AI 是分开的两个圈（第 8 页）"
+            ],
+            [
+              "automatically",
+              "自动地",
+              "不用人手写规则"
+            ],
+            [
+              "inferring patterns",
+              "推断出规律",
+              "从例子里总结出规律（这就是训练 training 在做的事，不是 inference 阶段）"
+            ],
+            [
+              "from data",
+              "从数据中",
+              "数据 = 用来学习的例子"
+            ],
+            [
+              "data",
+              "数据",
+              "比如一组有狗的照片 + 一组没有狗的照片"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "ML 的三个特点（ML is characterized by）",
+            "en": "Three characteristics of ML"
+          },
+          "items": [
+            {
+              "en": "Problems where data can be acquired",
+              "zh": "适合能拿到数据的问题"
+            },
+            {
+              "en": "Distinct phases of training a model (learning from data) and inference (using the trained model to solve a problem)",
+              "zh": "训练模型（从数据中学习）和推理（用训练好的模型解决问题）是两个分开的阶段"
+            },
+            {
+              "en": "Generally fast inference time (though training can take a long time)",
+              "zh": "推理通常很快（但训练可能要很久）"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "模型（**model**）是什么？可以理解为训练完以后得到的“规律总结”，之后拿它来做判断。训练（**training**）= 从数据中学出模型；推理（**inference**）= 用训练好的模型去解决新问题。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "ML 的两个阶段（用课件的狗狗例子）",
+            "en": "The two phases of ML (dog example)"
+          },
+          "items": [
+            {
+              "en": "Data: photos with dogs and photos without dogs",
+              "zh": "数据：有狗的照片 + 没狗的照片"
+            },
+            {
+              "en": "Training: learn patterns from the data (can take a long time)",
+              "zh": "训练（training）：从数据中学规律（可能很慢）"
+            },
+            {
+              "en": "Trained model",
+              "zh": "得到一个训练好的模型（model）"
+            },
+            {
+              "en": "Inference: use the trained model on a new photo (generally fast)",
+              "zh": "推理（inference）：把新照片交给模型判断（通常很快）"
+            },
+            {
+              "en": "Answer: dog or no dog",
+              "zh": "输出：有狗 / 没狗"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "训练和推理像“备考”和“考试”：训练 = 考前刷大量练习题（很花时间）；推理 = 考试时用学会的方法答新题（很快）。",
+          "limit": "学生在考试时还可能边考边学；模型在推理阶段只是“使用”已经训练好的结果。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "推理（**inference**）在这里是“用训练好的模型解决问题”，不是第 43 页的逻辑推理（reasoning）。中文都可能叫“推理”，英文完全不同！"
+            },
+            {
+              "zh": "别被 infer 这个词绕晕：定义里的 “automatically inferring patterns from data”（从数据中自动推断规律）说的是“从数据中学习”，发生在训练（**training**）阶段；“inference”（推理）这个阶段才是“用训练好的模型解决问题”。两个词长得像，指的不是同一件事。"
+            },
+            {
+              "zh": "训练慢、推理快：“Generally fast inference time (though training can take a long time)”。别说反。"
+            },
+            {
+              "zh": "ML 是 “a separate sub-field”，和符号 AI 分开，不是符号 AI 的一部分。"
+            },
+            {
+              "zh": "数据（data）的课件定义是 “examples to learn from”，课件的例子是有狗、没狗的两组照片。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Machine Learning, what is inference?",
+            "zh": "在机器学习中，inference（推理）是什么？"
+          },
+          "options": [
+            {
+              "en": "Using the trained model to solve a problem",
+              "zh": "用训练好的模型解决问题"
+            },
+            {
+              "en": "Learning patterns from data",
+              "zh": "从数据中学习规律"
+            },
+            {
+              "en": "Encoding knowledge as symbols",
+              "zh": "把知识编码成符号"
+            },
+            {
+              "en": "Collecting photos with and without dogs",
+              "zh": "收集有狗和没狗的照片"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 51 页：inference = “using the trained model to solve a problem”。“Learning patterns from data” 是 training（定义里的 inferring patterns 也是这个意思，别和 inference 搞混）；“Encoding knowledge as symbols” 是符号 AI；“Collecting photos” 是在准备数据。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the slides, which phase of ML can take a long time?",
+            "zh": "根据课件，机器学习的哪个阶段可能要很长时间？"
+          },
+          "options": [
+            {
+              "en": "Inference",
+              "zh": "推理（inference）"
+            },
+            {
+              "en": "Training",
+              "zh": "训练（training）"
+            },
+            {
+              "en": "Prompting, because writing a good prompt takes time",
+              "zh": "写提示（prompting），因为写好一个提示要花时间"
+            },
+            {
+              "en": "Encoding knowledge as symbols, because rules must be written by hand",
+              "zh": "把知识编码成符号，因为规则要人手写"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "原话：“Generally fast inference time (though training can take a long time)”。推理（inference）通常很快，训练（training）可能很久。课件说 ML 的两个阶段是 training 和 inference；写提示（prompting）是使用 LLM 的方式，把知识编码成符号是符号 AI 的做法，它们都不是 ML 的阶段。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-ml-strengths-weaknesses",
+      "title": {
+        "zh": "机器学习的优点、弱点和三种类型",
+        "en": "ML: Strength, Weaknesses and Types"
+      },
+      "slides": "52-53",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "ML 的最大优点：不需要把知识变成符号，所以能用在更多种类的问题上，比如认出照片里的狗。但它也有四个重要弱点（**weaknesses**）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 52 页，后两句稍作改写，方便写进答案）",
+            "en": "Course slide (slide 52; last two sentences slightly reworded)"
+          },
+          "items": [
+            {
+              "en": "Unlike Symbolic AI, ML does not require distilling knowledge into symbols, so it can be applied to a wider variety of problems.",
+              "zh": "和符号 AI 不同，机器学习不需要把知识提炼成符号，所以能用在更多种类的问题上。"
+            },
+            {
+              "en": "Trained models apply narrowly to the problem they were trained on.",
+              "zh": "训练好的模型只适用于它被训练的那个问题。"
+            },
+            {
+              "en": "Trained models inherit the biases of the data they were trained on.",
+              "zh": "训练好的模型会继承训练数据中的偏见。"
+            },
+            {
+              "en": "ML solutions are likely correct, but not guaranteed to be correct.",
+              "zh": "机器学习的解很可能是正确的，但不保证正确。"
+            },
+            {
+              "en": "ML generally has low explainability.",
+              "zh": "机器学习的可解释性通常很低。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像一个只刷过某一本练习册的学生：（1）换一种题型就不会了（narrow，很窄）；（2）练习册里有偏见，他也一起学进去（biases）；（3）他答题“大概率对”，但不能保证（likely correct）；（4）问他为什么选这个，他说不清楚（low explainability）。",
+          "limit": "类比只帮你记住四个弱点；模型并不会“说话解释”，意思是它的判断过程很难被人看懂。"
+        },
+        {
+          "type": "text",
+          "zh": "偏见（**bias**）：如果训练数据本身就不公平、不全面，模型学到的规律也会不公平。课件原话 “inherit the biases of the data” 说明：偏见来自数据。后面 Lecture 6 会专门讲公平性（**fairness**）。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "比较",
+            "Symbolic AI 符号 AI",
+            "Machine Learning 机器学习"
+          ],
+          "rows": [
+            [
+              "怎么找到解",
+              "encoding knowledge as symbols and then reasoning",
+              "automatically inferring patterns from data"
+            ],
+            [
+              "适合的问题",
+              "Problems that have well-defined rules",
+              "Problems where data can be acquired"
+            ],
+            [
+              "解对不对",
+              "provably correct when they are found",
+              "likely correct, but not guaranteed to be correct"
+            ],
+            [
+              "可解释性",
+              "Generally high explainability",
+              "Generally low explainability"
+            ],
+            [
+              "时间",
+              "大问题可能算到不可行（infeasibly long）",
+              "训练可能很久，推理通常很快"
+            ],
+            [
+              "其他弱点",
+              "Knowledge can be difficult to distill into symbols",
+              "apply narrowly; inherit the biases of the data"
+            ]
+          ],
+          "caption": {
+            "zh": "第 48-52 页的对比，考试最爱考",
+            "en": "Symbolic AI vs ML (slides 48-52)"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "对比题这样写",
+            "en": "How to write a comparison"
+          },
+          "items": [
+            {
+              "en": "Symbolic AI finds solutions by reasoning with symbols, while ML finds solutions by automatically inferring patterns from data.",
+              "zh": "符号 AI 用符号推理找到解，而机器学习通过从数据中自动推断规律找到解。"
+            },
+            {
+              "en": "Symbolic AI solutions are provably correct when they are found, but ML solutions are only likely correct.",
+              "zh": "符号 AI 找到的解可以证明是正确的，而机器学习的解只是很可能正确。"
+            },
+            {
+              "en": "Symbolic AI generally has high explainability, while ML generally has low explainability.",
+              "zh": "符号 AI 的可解释性通常高，机器学习通常低。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "第 53 页：ML 常见的三种类型（Common types of ML）",
+            "en": "Common types of ML (slide 53)"
+          },
+          "items": [
+            {
+              "en": "Supervised Learning",
+              "zh": "监督学习：本课程主要讲这一种"
+            },
+            {
+              "en": "Unsupervised Learning",
+              "zh": "无监督学习：第 1 课只给了名字"
+            },
+            {
+              "en": "Reinforcement Learning",
+              "zh": "强化学习：第 1 课只给了名字"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "课件原话：“In this course, we talk mostly about Supervised Learning (and also LLMs).”——本课程主要讲监督学习（**Supervised Learning**），另外还讲 LLM。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "预告：Lecture 4 会正式讲 Supervised Learning：从带标签（labelled）的训练数据中学习（每个例子的答案都已知），然后对没有标签的新数据做预测。第 1 课只要记住三种类型的名字，以及本课程主要讲 Supervised Learning（还有 LLM）。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“apply narrowly” 是弱点：一个认狗的模型，不能直接拿去下棋。"
+            },
+            {
+              "zh": "偏见来自训练数据（“inherit the biases of the data they were trained on”）。"
+            },
+            {
+              "zh": "Symbolic AI：provably correct；ML：likely correct, but not guaranteed。这是最常考的对比之一。"
+            },
+            {
+              "zh": "三种 ML 类型：Supervised、Unsupervised、Reinforcement。本课程主要讲 Supervised Learning（还有 LLM）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is a weakness of Machine Learning listed on the slides?",
+            "zh": "以下哪一项是课件列出的机器学习的弱点？"
+          },
+          "options": [
+            {
+              "en": "Knowledge must be distilled into symbols before it can be used",
+              "zh": "知识必须先提炼成符号才能用"
+            },
+            {
+              "en": "Solutions are provably correct when they are found",
+              "zh": "找到的解可以被证明是正确的"
+            },
+            {
+              "en": "Generally high explainability, so answers are easy to explain",
+              "zh": "可解释性通常很高，答案很容易解释"
+            },
+            {
+              "en": "Trained models inherit the biases of the data they were trained on",
+              "zh": "训练好的模型会继承训练数据的偏见"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "“Trained models inherit the biases of the data they were trained on” 是第 52 页原话。“Knowledge must be distilled into symbols” 说的是符号 AI 的难处，ML 恰恰不需要这样做；“provably correct” 和 “Generally high explainability” 是符号 AI 的特点，而且是优点，不是弱点。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which type of ML does this course talk about most?",
+            "zh": "本课程主要讲哪一种机器学习？"
+          },
+          "options": [
+            {
+              "en": "Supervised Learning",
+              "zh": "监督学习"
+            },
+            {
+              "en": "Unsupervised Learning",
+              "zh": "无监督学习"
+            },
+            {
+              "en": "Reinforcement Learning",
+              "zh": "强化学习"
+            },
+            {
+              "en": "Evolutionary Algorithms",
+              "zh": "进化算法"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 53 页：“In this course, we talk mostly about Supervised Learning (and also LLMs).” 另外两种类型只给了名字；Evolutionary Algorithms 是大伞图 ML 圈里的一个方法名，不是这三种类型之一。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Compared with Symbolic AI, why can ML be applied to a wider variety of problems?",
+            "zh": "和符号 AI 相比，为什么机器学习能用在更多种类的问题上？"
+          },
+          "options": [
+            {
+              "en": "Because ML solutions are provably correct when they are found",
+              "zh": "因为机器学习找到的解可以被证明是正确的"
+            },
+            {
+              "en": "Because ML does not require distilling knowledge into symbols",
+              "zh": "因为机器学习不需要把知识提炼成符号"
+            },
+            {
+              "en": "Because ML has higher explainability",
+              "zh": "因为机器学习的可解释性更高"
+            },
+            {
+              "en": "Because ML generally has fast training time",
+              "zh": "因为机器学习的训练通常很快"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "第 52 页原话：“ML does not require distilling knowledge into symbols, so it can be applied to a wider variety of problems.” 其他三项都和课件不符：“provably correct” 是符号 AI 的特点，ML 的解只是 likely correct；ML 的可解释性通常低；第 51 页说的是推理（inference）通常快，训练（training）可能要很久。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s15-llms",
+      "title": {
+        "zh": "大语言模型 LLM：定义和特点",
+        "en": "Large Language Models (LLMs)"
+      },
+      "slides": "54-55",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "Types of AI 部分讲的第三个：大语言模型（**Large Language Models, LLMs**），比如 ChatGPT、Claude（第 9 页）。它其实是机器学习模型的一种：用海量文字训练出来；你用普通的话（不用写代码）跟它说，它就能回答各种各样的问题。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像一个读过海量文字的“超级笔友”：你用微信打字问它任何问题，它都能马上回你一段话，不需要为你的新问题专门再学一遍。",
+          "limit": "它会很自信地说错话（hallucination，见下一节），也不是真人。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 54 页）",
+            "en": "Course slide (slide 54)"
+          },
+          "items": [
+            {
+              "en": "Large Language Models (LLMs) are a specific type of ML model.",
+              "zh": "大语言模型（LLM）是一种特定类型的机器学习模型。"
+            },
+            {
+              "en": "LLMs are trained on enormous quantities of text data and interacted with via prompting in plain text (not code).",
+              "zh": "LLM 用海量文本数据训练，人们通过用普通文字（不是代码）写提示（prompting）来使用它。"
+            },
+            {
+              "en": "LLMs are generally able to respond to a wide range of prompts without additional training.",
+              "zh": "LLM 通常能回应各种各样的提示，不需要额外训练。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "LLMs are（第 54 页的四个特点）",
+            "en": "LLMs are:"
+          },
+          "items": [
+            {
+              "en": "Trained on enormous quantities of text data",
+              "zh": "用海量的文本数据训练"
+            },
+            {
+              "en": "Interacted with via prompting in plain text (not code)",
+              "zh": "通过用普通文字写提示（prompting）来使用，不用写代码"
+            },
+            {
+              "en": "Generally able to respond to a wide range of prompts without additional training",
+              "zh": "通常能回应各种各样的提示，不需要额外训练"
+            },
+            {
+              "en": "For better or for worse, a defining technology of the modern world",
+              "zh": "不管是好是坏，它都是现代世界的标志性技术"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "prompt / prompting",
+              "zh": "提示 / 写提示",
+              "hint": "你输入给 LLM 的那段普通文字，比如一个问题或一个要求"
+            },
+            {
+              "en": "plain text (not code)",
+              "zh": "普通文字（不是代码）",
+              "hint": "像聊天一样打字就行，不需要会编程"
+            },
+            {
+              "en": "text data",
+              "zh": "文本数据",
+              "hint": "由文字组成的数据"
+            },
+            {
+              "en": "without additional training",
+              "zh": "不需要额外训练",
+              "hint": "遇到新问题，不用重新训练模型就能回答"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "回到第 8 页的大伞：LLMs 在 Deep Learning 里面，Deep Learning 在 Neural Networks 里面，Neural Networks 在 Machine Learning 里面。所以 LLM 也是一种 ML：先用文字数据训练（training），再在你提问时做推理（inference）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 55 页：问 Copilot “这是狗吗？”（截图，课件没有文字说明）",
+            "en": "Slide 55: asking Copilot 'is this a dog?'"
+          },
+          "steps": [
+            {
+              "zh": "用户上传第 49 页那张狗狗照片，并打字：“Hi Copilot, is this a dog?”。这就是一个 prompt（普通文字，不是代码）。"
+            },
+            {
+              "zh": "Copilot 先回答：“Yes, it appears to be a dog.”（是的，看起来是一只狗。）"
+            },
+            {
+              "zh": "它接着猜了可能的品种，并列出看到的特征（口鼻、耳朵、厚毛、身体形状），还注意到狗戴着保护圈（cone）。"
+            },
+            {
+              "zh": "最后它说：只凭一张图，没法确定具体品种，但可以很有把握地说它看起来是一只狗。"
+            },
+            {
+              "zh": "对比：第 49-50 页说这个问题对符号 AI 很难（电脑只看到像素）；而这个 LLM 助手轻松回答了。（这个对比是根据页面顺序理解的。）"
+            }
+          ],
+          "answer": {
+            "zh": "符号 AI 很难回答的问题，现代 LLM 助手用一句普通的提问就能回答。",
+            "en": "A question that is hard for Symbolic AI can be answered by a modern LLM assistant from a plain-text prompt."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "LLM 是 “a specific type of ML model”：它属于机器学习，不是和 ML 并列的另一类。"
+            },
+            {
+              "zh": "使用 LLM 靠的是 prompting（普通文字），不是写代码。"
+            },
+            {
+              "zh": "“without additional training” 是说遇到新问题不用重新训练；不是说 LLM 没被训练过：它是用海量文本训练出来的。"
+            },
+            {
+              "zh": "Copilot 的回答里也带着“不确定”：它说 “appears to be”，还说不能确定具体品种。"
+            },
+            {
+              "zh": "“推理一般很快”（第 51 页）说的是一般的 ML 模型；第 57 页大表里 ML 一栏写的是 “Can be fast if the model is small”，LLM 一栏写的是 “Often slower / costlier per call”，第 56 页还说最流行的 LLM 要用巨大的数据中心。所以别写 “LLM responses are fast because ML inference is generally fast”。（Lecture 7 会讲到：LLM 一次只生成一个 token，每个 token 都要把整个过程重跑一遍，这有助于理解它为什么每次调用往往更慢。）"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the slides, what is an LLM?",
+            "zh": "根据课件，LLM 是什么？"
+          },
+          "options": [
+            {
+              "en": "A type of Symbolic AI that reasons with logic",
+              "zh": "一种用逻辑推理的符号 AI"
+            },
+            {
+              "en": "A search algorithm for playing games",
+              "zh": "一种下棋用的搜索算法"
+            },
+            {
+              "en": "A specific type of ML model",
+              "zh": "一种特定类型的机器学习模型"
+            },
+            {
+              "en": "A test of whether a machine acts like a human",
+              "zh": "一个判断机器行为像不像人的测试"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 54 页原话：“Large Language Models (LLMs) are a specific type of ML model.” 在大伞图里，LLMs 也在 Machine Learning 圈里面，不在 Symbolic AI 里；搜索（Search）属于符号 AI，也不是 LLM；“A test of whether a machine acts like a human” 说的是图灵测试。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "How do people interact with LLMs, according to the slides?",
+            "zh": "根据课件，人们怎样和 LLM 交互？"
+          },
+          "options": [
+            {
+              "en": "Via prompting in plain text (not code)",
+              "zh": "用普通文字写提示（不是代码）"
+            },
+            {
+              "en": "By writing rules by hand in code",
+              "zh": "用代码亲手写规则"
+            },
+            {
+              "en": "By retraining the model for every new question",
+              "zh": "每个新问题都重新训练模型"
+            },
+            {
+              "en": "Through brain imaging (MRI)",
+              "zh": "通过脑成像（MRI）"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 54 页：“Interacted with via prompting in plain text (not code)”。亲手写规则是符号 AI 的做法（第 57 页）；LLM “without additional training” 就能回应新提示；MRI 是研究人脑的方法。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s16-llm-weaknesses",
+      "title": {
+        "zh": "LLM 的弱点和伦理问题",
+        "en": "Weaknesses of LLMs"
+      },
+      "slides": "56",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "LLM 很强，但也有几个重要弱点（**weaknesses**）：训练和使用最流行的 LLM 需要巨大的数据中心；LLM 容易很自信地说出错误内容（幻觉）；还有很多伦理问题（**ethical issues**）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 56 页，稍作改写，方便写进答案）",
+            "en": "Course slide (slide 56; slightly reworded)"
+          },
+          "items": [
+            {
+              "en": "Training and using the most popular LLMs requires the use of huge data centers.",
+              "zh": "训练和使用最流行的 LLM 都需要用到巨大的数据中心。"
+            },
+            {
+              "en": "LLMs are prone to confidently stating falsehoods (hallucination).",
+              "zh": "LLM 容易很自信地说出错误的内容（这叫幻觉）。"
+            },
+            {
+              "en": "LLMs also raise numerous ethical issues, including environmental impact, job displacement, copyright and cognitive offloading.",
+              "zh": "LLM 还带来很多伦理问题，包括：环境影响、工作被取代、版权、认知卸载。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "数据中心（**data center**）：放满大量电脑的大楼。最流行的 LLM 不管是训练（training）还是使用（using），都要靠这种巨大的数据中心。第 57 页大表也说 LLM 的成本（Cost and capacity）“Can be very high”（可能非常高）。"
+        },
+        {
+          "type": "text",
+          "zh": "幻觉（**hallucination**）：LLM 有时会说出错误的内容，而且说得非常肯定、像真的一样。两个关键词：**confidently**（很自信地）+ **falsehoods**（错误的内容）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像一个不懂装懂的同学：你问他一个他不会的问题，他不说“我不知道”，而是一本正经地编一个答案，听起来还特别有道理。",
+          "limit": "课件只说 LLM “prone to”（容易）这样做，没说它是故意的。它为什么会这样，后面讲 LLM 时会解释（第 9 页：why they fail）。"
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "课件列出的四个伦理问题（**ethical issues**；including 表示不止这四个）",
+            "en": "Ethical issues named on slide 56"
+          },
+          "items": [
+            {
+              "en": "Environmental impact",
+              "zh": "环境影响"
+            },
+            {
+              "en": "Job displacement",
+              "zh": "工作被取代"
+            },
+            {
+              "en": "Copyright",
+              "zh": "版权"
+            },
+            {
+              "en": "Cognitive offloading",
+              "zh": "认知卸载"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：第 1 课只列了名字。大白话理解：环境影响 = 巨大的数据中心消耗大量能源和资源；工作被取代 = 有些工作可能被 AI 代替；版权 = 训练用的文字和生成的内容可能涉及别人的作品；认知卸载 = 把思考交给 AI，自己动脑的机会变少。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "hallucination 的关键是 “confidently”（很自信）+ “falsehoods”（错误内容）。不是“回答很慢”，也不是“拒绝回答”。"
+            },
+            {
+              "zh": "需要 “huge data centers” 的是训练和使用（training and using）两个阶段，不只是训练。"
+            },
+            {
+              "zh": "四个伦理问题要能写出英文：Environmental impact、Job displacement、Copyright、Cognitive offloading。"
+            },
+            {
+              "zh": "hallucination 在第 56 页是“弱点”（weakness），不在四个 ethical issues 里；考试问“课件列出的伦理问题”时不要选它。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the slides, what is hallucination in LLMs?",
+            "zh": "根据课件，LLM 的幻觉（hallucination）是什么？"
+          },
+          "options": [
+            {
+              "en": "Refusing to answer any question",
+              "zh": "拒绝回答任何问题"
+            },
+            {
+              "en": "Needing a lot of labeled data",
+              "zh": "需要大量带标签的数据"
+            },
+            {
+              "en": "Confidently stating falsehoods",
+              "zh": "很自信地说出错误内容"
+            },
+            {
+              "en": "Running slowly on small problems",
+              "zh": "在小问题上运行得很慢"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 56 页：“They are prone to confidently stating falsehoods (hallucination).” 其他三项都不是课件对幻觉的描述；而且第 57 页说 LLM 需要的带标签数据 “Can be minimal”（可以很少）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is NOT listed on the slides as an ethical issue of LLMs?",
+            "zh": "以下哪一项不是课件列出的 LLM 伦理问题？"
+          },
+          "options": [
+            {
+              "en": "Environmental impact",
+              "zh": "环境影响"
+            },
+            {
+              "en": "Job displacement",
+              "zh": "工作被取代"
+            },
+            {
+              "en": "Cognitive offloading",
+              "zh": "认知卸载"
+            },
+            {
+              "en": "Provable correctness",
+              "zh": "可证明的正确性"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 56 页列的伦理问题是 Environmental impact、Job displacement、Copyright、Cognitive offloading。“Provable correctness” 不是伦理问题，它是符号 AI 的特点（第 48 页）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s17-big-table",
+      "title": {
+        "zh": "三种方法大对比表（不用背）",
+        "en": "The Big Table of Properties"
+      },
+      "slides": "57-58",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 57 页把三种方法放进一张大表比较：符号/算法（**Symbolic/ Algorithmic**）、机器学习/深度学习（**Machine Learning/ Deep Learning**）、LLM 提示/智能体 AI（**LLM Prompting/ Agent AI**）。一共 12 行属性。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件原话：“Don’t try to memorize this table. As we go through each topic, you will learn why each method has these properties.”——不要死背这张表！后面每讲一个主题，你会明白为什么每种方法有这些特点。现在只要看懂大方向，会用 “Best when” 这一行选方法。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像让别人帮你做饭，有三种交代方式：（1）符号 AI：你亲手写一本详细菜谱（规则），对方严格照做；（2）机器学习：你不写菜谱，而是给对方尝很多道菜，并告诉他每道“好吃/不好吃”，让他自己摸索规律；（3）LLM：你直接说一句“帮我做一顿清淡的晚饭”（prompt）。",
+          "limit": "这个类比只对应表里 “How you specify the task”（你怎么交代任务）这一行。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Property 属性",
+            "Symbolic/ Algorithmic",
+            "Machine Learning/ Deep Learning",
+            "LLM Prompting/ Agent AI"
+          ],
+          "rows": [
+            [
+              "Task openness?（任务开放度）",
+              "Low",
+              "Medium",
+              "High"
+            ],
+            [
+              "How you specify the task（怎么交代任务）",
+              "Write rules by hand",
+              "Provide labeled examples or feedback",
+              "Write a prompt"
+            ],
+            [
+              "Labeled data needed?（需要带标签的数据吗）",
+              "None",
+              "Often lots",
+              "Can be minimal"
+            ],
+            [
+              "Speed（速度）",
+              "Can be fast if the problem is small (but can be slow, e.g., for a large search problem)",
+              "Can be fast if the model is small",
+              "Often slower / costlier per call"
+            ],
+            [
+              "Main failure mode（主要失败方式）",
+              "Edge cases outside the rules; search can be slow",
+              "Distribution shift; needs retraining",
+              "Hallucination; prompt sensitivity"
+            ],
+            [
+              "Explainability（可解释性）",
+              "Generally, Yes",
+              "Difficult for complex models",
+              "Rarely"
+            ],
+            [
+              "Fairness / subgroup risk（公平/子群体风险）",
+              "Bias can be written into rules",
+              "Bias can be learned from data",
+              "Can reproduce stereotypes"
+            ],
+            [
+              "Security（安全）",
+              "Exploitable once the rules are known",
+              "Vulnerable to adversarial examples",
+              "Vulnerable to prompt injection"
+            ],
+            [
+              "Privacy（隐私）",
+              "Risk is generally low",
+              "Training data can sometimes be leaked",
+              "Training data sometimes regurgitated; data sent to external APIs"
+            ],
+            [
+              "Cost and capacity（成本）",
+              "Usually low",
+              "Medium to high",
+              "Can be very high"
+            ],
+            [
+              "Sustainability（可持续性）",
+              "Typically low footprint",
+              "Medium to high footprint (esp. training)",
+              "High footprint (training and often inference)"
+            ],
+            [
+              "Best when（最适合什么时候用）",
+              "Rules are known and stable",
+              "Patterns are complex but examples exist",
+              "Task is flexible/open-ended, or labeled data is scarce"
+            ]
+          ],
+          "caption": {
+            "zh": "第 57 页原表（来源：Lisa Zhang）。英文单元格是课件原文。不用背！",
+            "en": "Slide 57 (source: Lisa Zhang). Don't try to memorize this table."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "属性",
+            "符号/算法",
+            "机器学习/深度学习",
+            "LLM 提示/智能体 AI"
+          ],
+          "rows": [
+            [
+              "任务开放度",
+              "低",
+              "中",
+              "高"
+            ],
+            [
+              "怎么交代任务",
+              "亲手写规则",
+              "提供带标签的例子或反馈",
+              "写一段提示（prompt）"
+            ],
+            [
+              "需要带标签的数据吗",
+              "不需要",
+              "常常需要很多",
+              "可以很少"
+            ],
+            [
+              "速度",
+              "问题小时可以很快（大的搜索问题可能很慢）",
+              "模型小时可以很快",
+              "每次调用往往更慢、更贵"
+            ],
+            [
+              "主要失败方式",
+              "规则之外的边缘情况；搜索可能很慢",
+              "分布偏移（数据变了）；需要重新训练",
+              "幻觉；对提示很敏感"
+            ],
+            [
+              "可解释性",
+              "通常可以",
+              "复杂模型很难解释",
+              "很少能解释"
+            ],
+            [
+              "公平/子群体风险",
+              "偏见可能被写进规则",
+              "偏见可能从数据中学到",
+              "可能重复刻板印象"
+            ],
+            [
+              "安全",
+              "规则一旦被知道就可能被利用",
+              "容易受对抗样本攻击",
+              "容易受提示注入攻击"
+            ],
+            [
+              "隐私",
+              "风险通常较低",
+              "训练数据有时会泄露",
+              "训练数据有时会被原样吐出；数据会发到外部 API"
+            ],
+            [
+              "成本",
+              "通常低",
+              "中到高",
+              "可能非常高"
+            ],
+            [
+              "可持续性",
+              "环境足迹通常低",
+              "中到高（尤其是训练）",
+              "高（训练，往往还有推理）"
+            ],
+            [
+              "最适合",
+              "规则已知且稳定",
+              "规律复杂，但有例子",
+              "任务灵活/开放，或者带标签的数据很少"
+            ]
+          ],
+          "caption": {
+            "zh": "同一张表的中文意思（帮你读懂，不是课件原文）",
+            "en": "Chinese version of the same table"
+          }
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "task openness",
+              "zh": "任务开放度",
+              "hint": "任务有多“开放”：答案范围固定（低），还是什么都可能问（高）"
+            },
+            {
+              "en": "labeled data",
+              "zh": "带标签的数据",
+              "hint": "每个例子都标好了答案，比如每张照片都标了“有狗/没狗”"
+            },
+            {
+              "en": "edge cases",
+              "zh": "边缘情况",
+              "hint": "规则没考虑到的少见情况"
+            },
+            {
+              "en": "distribution shift",
+              "zh": "分布偏移",
+              "hint": "实际遇到的数据和训练时的数据不一样了"
+            },
+            {
+              "en": "prompt sensitivity",
+              "zh": "对提示词敏感",
+              "hint": "提示改几个字，回答就可能变"
+            },
+            {
+              "en": "adversarial examples",
+              "zh": "对抗样本",
+              "hint": "故意设计来骗过模型的输入"
+            },
+            {
+              "en": "prompt injection",
+              "zh": "提示注入",
+              "hint": "在输入里藏指令，骗 LLM 做不该做的事"
+            },
+            {
+              "en": "footprint",
+              "zh": "（环境）足迹",
+              "hint": "消耗的能源和资源有多少"
+            },
+            {
+              "en": "Agent AI",
+              "zh": "智能体 AI",
+              "hint": "表头里的名字，第 1 课没有定义"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：上面这些词第 1 课只给了名字，没有解释。卡片里的 hint 是帮助理解的大白话；其中一部分后面的课会讲到（比如 Lecture 4 的带标签数据，Lecture 6 的公平性）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用 “Best when” 这一行选方法（练习；Lab 1 的标题就是 “Selecting a Method”）",
+            "en": "Choosing a method with the 'Best when' row"
+          },
+          "steps": [
+            {
+              "zh": "问题 A：下井字棋。规则清楚、不会变（Rules are known and stable）→ 选 Symbolic/ Algorithmic（比如搜索）。"
+            },
+            {
+              "zh": "问题 B：判断照片里有没有狗。规则写不出来，但能找到很多有狗、没狗的照片（Patterns are complex but examples exist）→ 选 Machine Learning。"
+            },
+            {
+              "zh": "问题 C：回答顾客各种各样、事先想不到的问题。任务开放，也很难准备带标签的数据（Task is flexible/open-ended, or labeled data is scarce）→ 选 LLM Prompting。"
+            },
+            {
+              "zh": "选完还要看代价：比如 LLM 每次调用往往更慢更贵（Often slower / costlier per call），还可能出现幻觉（Hallucination）。"
+            }
+          ],
+          "answer": {
+            "zh": "规则清楚 → 符号；有很多例子 → 机器学习；任务开放、标签数据少 → LLM。",
+            "en": "Known rules -> Symbolic; many examples -> ML; open-ended task or scarce labeled data -> LLM."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "选方法题这样写（“Best when” 这一行）",
+            "en": "Choosing a method (the 'Best when' row)"
+          },
+          "items": [
+            {
+              "en": "Symbolic/Algorithmic AI is best when the rules are known and stable.",
+              "zh": "规则已知且稳定时，符号/算法方法最合适。"
+            },
+            {
+              "en": "Machine Learning is best when patterns are complex but examples exist.",
+              "zh": "规律复杂但有例子时，机器学习最合适。"
+            },
+            {
+              "en": "LLM prompting is best when the task is flexible or open-ended, or labeled data is scarce.",
+              "zh": "任务灵活开放，或者带标签的数据很少时，LLM 提示最合适。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "不用背整张表，但要懂大方向：从左到右，任务开放度 Low → Medium → High；可解释性 Generally, Yes → Difficult for complex models → Rarely。"
+            },
+            {
+              "zh": "主要失败方式不用死背，但 LLM 的幻觉（**hallucination**）一定要认识，因为第 56 页也把它列为 LLM 的弱点。三种方法分别是：符号 = edge cases outside the rules；ML = distribution shift；LLM = hallucination, prompt sensitivity。"
+            },
+            {
+              "zh": "安全（**Security**）、隐私（**Privacy**）这些行现在不用记，知道“每种方法都有自己的风险”就够了，后面的课会讲。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "第 58 页总结：本课讲了三件事：课程大纲和结构（The syllabus and course structure）；AI 的各种定义，包括本课程自己的定义；几种重要的 AI 分支，后面的课会详细讲。"
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the Big Table, when is Machine Learning/ Deep Learning the best choice?",
+            "zh": "根据大表，什么时候最适合用机器学习/深度学习？"
+          },
+          "options": [
+            {
+              "en": "When rules are known and stable",
+              "zh": "规则已知且稳定时"
+            },
+            {
+              "en": "When patterns are complex but examples exist",
+              "zh": "规律复杂，但有例子时"
+            },
+            {
+              "en": "When the task is flexible/open-ended, or labeled data is scarce",
+              "zh": "任务灵活开放，或者带标签的数据很少时"
+            },
+            {
+              "en": "When no examples or data exist at all",
+              "zh": "完全没有例子和数据时"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "大表 “Best when” 一行：ML = “Patterns are complex but examples exist”。“Rules are known and stable” 是符号/算法；“Task is flexible/open-ended, or labeled data is scarce” 是 LLM 提示；“no examples or data” 不对，ML 必须有数据。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the Big Table, what is the main failure mode of LLM Prompting/ Agent AI?",
+            "zh": "大表中，LLM 提示/智能体 AI 的主要失败方式是什么？"
+          },
+          "options": [
+            {
+              "en": "Edge cases outside the rules; search can be slow",
+              "zh": "规则之外的边缘情况；搜索可能很慢"
+            },
+            {
+              "en": "Distribution shift; needs retraining",
+              "zh": "分布偏移；需要重新训练"
+            },
+            {
+              "en": "Hallucination; prompt sensitivity",
+              "zh": "幻觉；对提示敏感"
+            },
+            {
+              "en": "Bias can be learned from data",
+              "zh": "偏见可能从数据中学到"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "大表 “Main failure mode” 一行：符号 = Edge cases outside the rules; search can be slow；ML = Distribution shift; needs retraining；LLM = Hallucination; prompt sensitivity。“Bias can be learned from data” 是机器学习那一列在 “Fairness / subgroup risk”（公平/子群体风险）这一行的内容，不是 LLM 的主要失败方式。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s18-course-logistics",
+      "title": {
+        "zh": "课程安排：评分、考试和 GenAI 规定",
+        "en": "Syllabus: Grading, Tests and GenAI Policy"
+      },
+      "slides": "2, 10-32",
+      "level": "extra",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节是课程规定，不是 AI 知识点；课件没有说考试会不会考它。但它决定你怎么拿分、怎么备考，一定要看懂。"
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "这门课讲什么（第 15-16 页 Major Topics Covered）",
+            "en": "Major Topics Covered"
+          },
+          "items": [
+            {
+              "en": "Algorithms and Symbolic AI: What is an algorithm? Search and game-playing",
+              "zh": "算法与符号 AI：什么是算法？搜索与下棋（对应 Lecture 2-3）"
+            },
+            {
+              "en": "Supervised Machine Learning: How do computers learn a model? Model evaluation",
+              "zh": "监督式机器学习：电脑怎么学出一个模型？模型评估（对应 Lecture 4-6）"
+            },
+            {
+              "en": "Generative AI and Large Language Models (LLMs): How do LLMs work? How should you use them? Failure modes",
+              "zh": "生成式 AI（GenAI）与大语言模型：LLM 怎么工作？应该怎么用？会怎么失败？（从 Lecture 7 开始）"
+            },
+            {
+              "en": "Ethics at all levels",
+              "zh": "伦理贯穿所有部分：第 16 页的箭头同时指向上面三大主题"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "先修要求（**Prerequisites**）：没有！这是一年级课程，面向非计算机专业，“You are not expected to know how to code.”（不要求会编程）。阅读材料（**Readings**）放在 Quercus 首页，是选读的，但建议在对应的课之前读。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "部分 Component",
+            "占比 Weight",
+            "要点（第 18-22 页）"
+          ],
+          "rows": [
+            [
+              "Labs（实验课）",
+              "20%",
+              "每周 2 小时，从开学第二周开始，必须参加；去自己注册的那一节；最低的两次 lab 分数不算；必须到场才能拿到 lab 作业"
+            ],
+            [
+              "Tests（课堂测验）",
+              "30%",
+              "两次课堂测验（Oct. 6 和 Nov. 10），每次 1 小时、各占 15%；在讲课的第二个小时进行；选择题 + 长答题，不考编程"
+            ],
+            [
+              "Final Paper（期末论文）",
+              "10%",
+              "课程后期写一篇自选题目的论文；细节以后公布"
+            ],
+            [
+              "Final Exam（期末考试）",
+              "40%",
+              "2 小时，由 Registrar’s Office 安排时间；考全部课程内容；必须考到至少 40% 才能通过这门课"
+            ]
+          ],
+          "caption": {
+            "zh": "评分方案：20% + 30% + 10% + 40% = 100%；两次测验 2 × 15% = 30%",
+            "en": "Grading scheme: 20% + 30% + 10% + 40% = 100%"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "期末考试规则（第 22 页，粗体）：“To pass the course, you must receive at least 40% on the final exam. The highest mark you will receive if your grade on the final exam is less than 40% is 47%.” 也就是：期末低于 40%，总评最高只有 47%，过不了这门课。注意有两个不同的 40%：一个是期末占总评的比重，一个是期末本身的最低线。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "两个 40% 怎么算（假设的分数，只为演示规则，不是课件数据）",
+            "en": "The two 40% rules (made-up scores)"
+          },
+          "steps": [
+            {
+              "zh": "假设：Labs 90 分，Tests 平均 80 分，Final Paper 85 分，Final Exam 35 分（满分都是 100）。"
+            },
+            {
+              "zh": "加权总分 = 每部分分数 × 它的占比，再加起来：0.20 × 90 = 18；0.30 × 80 = 24；0.10 × 85 = 8.5；0.40 × 35 = 14；合计 18 + 24 + 8.5 + 14 = 64.5。"
+            },
+            {
+              "zh": "但期末 35 分低于 40%，规则说总评最高只能是 47%。47 比 64.5 小，所以最后总评是 47%。"
+            },
+            {
+              "zh": "同一个学生如果期末考 40 分：0.40 × 40 = 16，合计 18 + 24 + 8.5 + 16 = 66.5。期末达到 40%，总评就是 66.5%。"
+            }
+          ],
+          "answer": {
+            "zh": "期末至少考 40%，否则前面分数再高，总评也最多 47%。",
+            "en": "You need at least 40% on the final exam; otherwise your course mark is at most 47%."
+          }
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "学术诚信和 GenAI 规定（第 23-24 页），一定要遵守",
+            "en": "Academic integrity and GenAI policy"
+          },
+          "items": [
+            {
+              "en": "Cheating only cheats yourself!",
+              "zh": "作弊只会骗了你自己。要遵守 U of T 的 Code of Behaviour on Academic Matters（学术行为守则）。"
+            },
+            {
+              "en": "You are free to discuss lab questions with other students, but should write your own answers.",
+              "zh": "可以和同学讨论 lab 题，但答案要自己写。"
+            },
+            {
+              "en": "There is a difference between using GenAI in order to study it, and using GenAI as a shortcut in other work.",
+              "zh": "为了学习 GenAI 而用它，和把 GenAI 当作业捷径，是两回事。"
+            },
+            {
+              "en": "Parts of labs that require the use of GenAI will tell you so explicitly. GenAI may not be used outside of these parts or for purposes outside of what is intended.",
+              "zh": "Lab 里只有明确要求用 GenAI 的部分才能用；其他部分、其他用途都不行。"
+            },
+            {
+              "en": "Some limited use of GenAI may be permitted for the final paper.",
+              "zh": "Final Paper 可能允许有限使用 GenAI；怎么用、怎么注明，会和论文细节一起公布。"
+            },
+            {
+              "en": "Tests and the final exam will not allow the use of GenAI.",
+              "zh": "测验和期末考试都不允许用 GenAI。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "什么事",
+            "去哪里（第 26-28 页）"
+          ],
+          "rows": [
+            [
+              "课程大纲、讲课课件、阅读材料、测验答案（Solutions）",
+              "Quercus（找不到东西时，先去 Quercus）"
+            ],
+            [
+              "课程公告（建议每天看）、关于讲课和测验的问题",
+              "Piazza（课程留言板，可以从 Quercus 进入；发帖要互相尊重）"
+            ],
+            [
+              "分数（Marks）",
+              "Crowdmark（在 Quercus 的 Modules -> Crowdmark LTI）"
+            ],
+            [
+              "Lab 说明 / 关于 lab 的问题",
+              "在 lab 上发 / 问 lab 助教（TA）"
+            ],
+            [
+              "行政问题、重新评分申请（remark requests）",
+              "发邮件给老师（邮箱在 syllabus 里）"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "其他规定和信息（第 2、11-12、29-32 页）",
+            "en": "Other rules and information"
+          },
+          "items": [
+            {
+              "zh": "重新评分（**Remark Requests**）：收到成绩后一周内申请；整份作业会重新评，分数可能上升、下降或不变。"
+            },
+            {
+              "zh": "特殊情况（**Special Consideration**）：因特殊情况错过考核，给老师发邮件并附上证明材料。可以接受的理由：晚选课、医疗原因、家庭或个人紧急情况。不接受的理由：课多、几个作业或考试撞在一起、时间管理问题。最低两次 lab 不算分，就是为了照顾你的前两次缺席。"
+            },
+            {
+              "zh": "需要无障碍支持（Accessibility）的同学：照 Accessibility 文件里列出的安排执行。"
+            },
+            {
+              "zh": "办公时间（**Office Hours**）：Josh Jung 每周三 3:00-5:00 pm 在 DH 3024 面对面答疑；助教（**TA**）的办公时间每周在 Piazza 公布。"
+            },
+            {
+              "zh": "学校还有校内资源、学生心理健康、无障碍服务、学生生活等支持资源（第 32 页有链接）。"
+            },
+            {
+              "zh": "第 2、11 页：UTM Accessibility Services 招募志愿笔记员（**volunteer note-taker**），为有障碍的同学记笔记并上传；为 2 门或以上半学年课程、或 1 门全年课程提供笔记，可获得 CCR 认可；详情见 Quercus。第 12 页：在 Quercus 的课程列表里找“看书的机器人”图标，就是这门课。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "备考提醒：Test 2 在 Nov. 10（2026-11-10），课堂上进行，1 小时，占 15%；期末考试 2 小时，考全部内容，占 40%。课件没有说每次测验具体考哪几讲，所以不要猜，按全部内容复习。第 1 课的定义（尤其第 46 页的 AI 定义）期末一定要会。"
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "If your grade on the final exam is less than 40%, what is the highest course mark you can receive?",
+            "zh": "如果期末考试成绩低于 40%，你这门课最高能拿多少分？"
+          },
+          "options": [
+            {
+              "en": "40%"
+            },
+            {
+              "en": "47%"
+            },
+            {
+              "en": "50%"
+            },
+            {
+              "en": "There is no limit",
+              "zh": "没有上限"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "第 22 页：“The highest mark you will receive if your grade on the final exam is less than 40% is 47%.” 40% 是期末的最低线（也正好是期末的占比），不是总评上限。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is allowed by the course GenAI policy?",
+            "zh": "根据课程的 GenAI 规定，以下哪一项是允许的？"
+          },
+          "options": [
+            {
+              "en": "Using GenAI in a part of a lab that explicitly requires it",
+              "zh": "在明确要求使用 GenAI 的 lab 部分使用它"
+            },
+            {
+              "en": "Using GenAI during Test 2",
+              "zh": "在 Test 2 中使用 GenAI"
+            },
+            {
+              "en": "Using GenAI during the final exam",
+              "zh": "在期末考试中使用 GenAI"
+            },
+            {
+              "en": "Using GenAI as a shortcut to answer any lab question",
+              "zh": "把 GenAI 当捷径，用来回答任何 lab 题"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 24 页：只有 lab 里明确要求的部分才能用 GenAI；“Tests and the final exam will not allow the use of GenAI.”；把 GenAI 当捷径是不允许的。"
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "There are many competing definitions of AI.",
+      "zh": "AI 有很多互相竞争的定义。"
+    },
+    {
+      "en": "A broad definition (Dartmouth proposal, 1956): AI is the science and engineering of making intelligent machines, especially intelligent computer programs.",
+      "zh": "宽定义（1956 年 Dartmouth 提案）：AI 是制造智能机器（尤其是智能计算机程序）的科学与工程。"
+    },
+    {
+      "en": "A narrower definition (OECD, 2019): a machine-based system that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments.",
+      "zh": "窄定义（2019 年 OECD）：一个基于机器的系统，为了明确或隐含的目标，从收到的输入中推断如何生成预测、内容、推荐或决定等输出，这些输出能影响现实或虚拟环境。"
+    },
+    {
+      "en": "Russell and Norvig's grid has four kinds of definitions: systems that think like humans, act like humans, think rationally, and act rationally. They argue for “act rationally”.",
+      "zh": "Russell 和 Norvig 的四格表有四种定义：像人一样思考、像人一样行动、理性思考、理性行动。他们支持“理性行动”。"
+    },
+    {
+      "en": "Thinking humanly is cognitive modeling; acting humanly is the Turing Test; thinking rationally uses logic, such as syllogisms; acting rationally judges agents only by their actions, and intelligence means choosing the rational action.",
+      "zh": "像人思考 = 认知建模；像人行动 = 图灵测试；理性思考 = 用逻辑（比如三段论）推理；理性行动 = 只根据行动评价智能体，智能就是选择理性的行动。"
+    },
+    {
+      "en": "Turing Test: if the interrogator cannot distinguish the entity from a human, the entity passes the test and is considered intelligent.",
+      "zh": "图灵测试：如果提问者分不出被测对象和真人，被测对象就通过测试，被认为有智能。"
+    },
+    {
+      "en": "Rationality means acting in a way that best achieves a goal using the information that is available.",
+      "zh": "理性：利用可获得的信息，以最能实现目标的方式行动。"
+    },
+    {
+      "en": "Course definition: AI is a field of study concerned with agents that observe their environment and perform actions. The goal is to design agents that “behave rationally”.",
+      "zh": "本课程定义：AI 是研究会观察环境、会执行行动的智能体的领域，目标是设计行为理性的智能体。"
+    },
+    {
+      "en": "A rational agent acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome.",
+      "zh": "理性智能体的行动是为了取得最好的结果；有不确定性时，是为了取得最好的期望结果。"
+    },
+    {
+      "en": "Symbolic AI finds solutions by encoding knowledge as symbols and reasoning with them. Its solutions are provably correct when found and it generally has high explainability, but large problems can take infeasibly long and knowledge can be hard to distill into symbols.",
+      "zh": "符号 AI 把知识编码成符号再推理；找到的解可证明正确，可解释性通常高；但大问题可能算太久，知识也很难提炼成符号。"
+    },
+    {
+      "en": "Machine Learning finds solutions by automatically inferring patterns from data. It has separate training and inference phases and works on a wider variety of problems, but its models apply narrowly, inherit biases from data, are not guaranteed to be correct, and generally have low explainability.",
+      "zh": "机器学习从数据中自动推断规律；训练和推理是两个阶段；能用于更多种问题，但模型适用面窄、会继承数据偏见、不保证正确、可解释性通常低。"
+    },
+    {
+      "en": "LLMs are a specific type of ML model, trained on enormous quantities of text data and used via prompting in plain text. Training and using the most popular LLMs requires huge data centers, and LLMs are prone to hallucination and raise ethical issues.",
+      "zh": "LLM 是一种特定的机器学习模型，用海量文本训练，用普通文字提示来使用；训练和使用最流行的 LLM 需要巨大的数据中心；LLM 还容易产生幻觉，并带来伦理问题。"
+    },
+    {
+      "en": "Do not memorize the Big Table, but know when each approach is best: known rules (Symbolic), complex patterns with examples (ML), open-ended tasks or scarce labeled data (LLMs).",
+      "zh": "大表不用背，但要知道各方法什么时候最合适：规则清楚用符号，有例子用机器学习，任务开放或标签数据少用 LLM。"
+    },
+    {
+      "en": "Grading: Labs 20%, Tests 30%, Final Paper 10%, Final Exam 40%; you must get at least 40% on the final exam to pass the course.",
+      "zh": "评分：Labs 20%、Tests 30%、Final Paper 10%、Final Exam 40%；期末至少考 40% 才能通过这门课。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Write the course definition of AI from memory: agents, environment, actions, behave rationally, best (expected) outcome.",
+      "zh": "第 46 页的定义是本课最重要的考点：选择题考关键词，长答题可能要求默写和解释。",
+      "sectionId": "s10-course-definition"
+    },
+    {
+      "en": "Define rationality and explain why it is an ideal rather than 'whatever humans do'.",
+      "zh": "理性的定义是“理性智能体”的基础，常和“像人”对比着考。",
+      "sectionId": "s07-rationality"
+    },
+    {
+      "en": "Place an approach in the Russell and Norvig grid, and say which definition Russell and Norvig argue for.",
+      "zh": "四格表很适合出选择题：某个方法属于哪一格？他们支持哪一格？",
+      "sectionId": "s04-russell-norvig-grid"
+    },
+    {
+      "en": "Explain the Turing Test: interrogator, entity, 'cannot distinguish', operational definition.",
+      "zh": "图灵测试是经典考点，要能用英文说清楚通过的条件。",
+      "sectionId": "s06-turing-test"
+    },
+    {
+      "en": "Long answer: are human-based definitions of AI useful? Give an example of AI that does not fit them.",
+      "zh": "第 40 页的讨论题是天然的长答题：要表态、给理由、举反例。",
+      "sectionId": "s06-turing-test"
+    },
+    {
+      "en": "Long answer: is 'think rationally' or 'act rationally' a more useful definition of AI?",
+      "zh": "第 44 页的讨论题：选 act rationally，并给出 2-3 个理由。",
+      "sectionId": "s09-acting-rationally"
+    },
+    {
+      "en": "Compare the broad (Dartmouth, 1956) and narrower (OECD, 2019) definitions of AI.",
+      "zh": "两个定义的出处和关键词容易被拿来出选择题。",
+      "sectionId": "s03-broad-vs-narrow"
+    },
+    {
+      "en": "Compare Symbolic AI and ML: how solutions are found, provably vs likely correct, high vs low explainability.",
+      "zh": "符号 AI 和机器学习的对比是最常见的选择题和短答题。",
+      "sectionId": "s14-ml-strengths-weaknesses"
+    },
+    {
+      "en": "Explain why 'Does this image contain a dog?' is hard for Symbolic AI (raw pixel values).",
+      "zh": "狗狗照片在课件里出现了三次（第 49、50、55 页），很可能被考。",
+      "sectionId": "s12-symbolic-weaknesses"
+    },
+    {
+      "en": "Define ML and data; explain the difference between training and inference.",
+      "zh": "training 和 inference 的区别是后面机器学习各讲的基础。",
+      "sectionId": "s13-machine-learning"
+    },
+    {
+      "en": "Define LLMs as a specific type of ML model and explain prompting in plain text.",
+      "zh": "LLM 属于机器学习，这一点常被做成选择题。",
+      "sectionId": "s15-llms"
+    },
+    {
+      "en": "Explain hallucination and name the ethical issues of LLMs listed on the slides.",
+      "zh": "hallucination 的英文定义和四个伦理问题都适合出选择题。",
+      "sectionId": "s16-llm-weaknesses"
+    },
+    {
+      "en": "Read the umbrella diagram: LLMs are inside Deep Learning, inside Neural Networks, inside ML, inside AI.",
+      "zh": "包含关系常被做成“哪句话正确”的选择题。",
+      "sectionId": "s02-ai-umbrella"
+    },
+    {
+      "en": "Choose an AI method for a problem using the 'Best when' row of the Big Table.",
+      "zh": "Lab 1（Selecting a Method）就是练这个；不用背整张表。",
+      "sectionId": "s17-big-table"
+    }
+  ]
+}

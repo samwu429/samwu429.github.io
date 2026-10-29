@@ -1,0 +1,142 @@
+/*
+ * Flow: steps stacked top to bottom with a down arrow in each gap. A container query turns short
+ * flows into one left-to-right row (with right arrows) once the box can fit every step; the arrow
+ * geometry lives in custom properties so each breakpoint only flips variables.
+ * 流程：步骤从上到下排列，每个间隔里有向下的箭头。容器查询在宽度足够放下全部步骤时，把短流程改成一行从左到右（向右箭头）；
+ * 箭头的几何参数放在自定义属性里，每个断点只需切换变量。
+ */
+.flow-block {
+  --flow-gap: var(--space-6);
+  container-type: inline-size;
+}
+
+.flow-block__title {
+  margin: 0 0 var(--space-3);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.flow-block__steps {
+  --stem-top: calc(100% + 2px);
+  --stem-left: 50%;
+  --stem-width: 2px;
+  --stem-height: calc(var(--flow-gap) - 6px);
+  --stem-shift: translateX(-50%);
+  --head-top: calc(100% + var(--flow-gap) - 12px);
+  --head-left: 50%;
+  --head-turn: translateX(-50%) rotate(45deg);
+  --step-flex: none;
+  --step-columns: 28px minmax(0, 1fr);
+  --step-font: var(--text-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--flow-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-block__step {
+  position: relative;
+  display: grid;
+  flex: var(--step-flex);
+  grid-template-columns: var(--step-columns);
+  align-items: start;
+  gap: var(--space-2) var(--space-3);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.flow-block__step:not(:last-child)::before,
+.flow-block__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+}
+
+.flow-block__step:not(:last-child)::before {
+  top: var(--stem-top);
+  left: var(--stem-left);
+  width: var(--stem-width);
+  height: var(--stem-height);
+  background: var(--color-line);
+  transform: var(--stem-shift);
+}
+
+.flow-block__step:not(:last-child)::after {
+  top: var(--head-top);
+  left: var(--head-left);
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--color-line);
+  border-bottom: 2px solid var(--color-line);
+  transform: var(--head-turn);
+}
+
+.flow-block__num {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-ink);
+  font-size: var(--text-sm);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.flow-block__body {
+  min-width: 0;
+}
+
+.flow-block__en {
+  margin: 0;
+  font-size: var(--step-font);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.flow-block__zh {
+  margin: var(--space-1) 0 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+@container (min-width: 520px) {
+  .flow-block--row-short .flow-block__steps {
+    flex-direction: row;
+    --stem-top: 50%;
+    --stem-left: calc(100% + 2px);
+    --stem-width: calc(var(--flow-gap) - 6px);
+    --stem-height: 2px;
+    --stem-shift: translateY(-50%);
+    --head-top: 50%;
+    --head-left: calc(100% + var(--flow-gap) - 12px);
+    --head-turn: translateY(-50%) rotate(-45deg);
+    --step-flex: 1 1 0;
+    --step-columns: minmax(0, 1fr);
+  }
+}
+
+@container (min-width: 680px) {
+  .flow-block--row-long .flow-block__steps {
+    flex-direction: row;
+    --stem-top: 50%;
+    --stem-left: calc(100% + 2px);
+    --stem-width: calc(var(--flow-gap) - 6px);
+    --stem-height: 2px;
+    --stem-shift: translateY(-50%);
+    --head-top: 50%;
+    --head-left: calc(100% + var(--flow-gap) - 12px);
+    --head-turn: translateY(-50%) rotate(-45deg);
+    --step-flex: 1 1 0;
+    --step-columns: minmax(0, 1fr);
+    --step-font: var(--text-sm);
+  }
+}

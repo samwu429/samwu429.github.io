@@ -1,0 +1,1308 @@
+{
+  "verbs": [
+    {
+      "en": "Define",
+      "zh": "下定义",
+      "meaning": {
+        "zh": "老师要的是这个术语的**准确意思**，最好用课件原话。只要说清“它是什么”，不需要长篇讨论。",
+        "en": "Give the exact meaning of a term, ideally in the course's own words."
+      },
+      "howTo": {
+        "zh": "① 用“X is …”或“X occurs when …”开头，写出背好的课件定义；② 分值多时再加一句“This means …”，用自己的话解释；③ 可以再补一个课件例子。",
+        "en": "Start with 'X is ...' or 'X occurs when ...' and write the course definition. If the question is worth more marks, add 'This means ...' in your own words and one course example."
+      },
+      "starter": {
+        "en": "**Overfitting** occurs when a model memorizes random noise in the training data, rather than genuine patterns.",
+        "zh": "过拟合（**overfitting**）是指模型记住了训练数据里的随机噪声，而不是真正的规律。"
+      }
+    },
+    {
+      "en": "Describe",
+      "zh": "描述",
+      "meaning": {
+        "zh": "老师想看你把**是什么、由哪些部分组成、按什么顺序发生**写清楚。重点是“什么”（what），不用深挖“为什么”。",
+        "en": "Say what something is like or what happens: its main parts or steps. The focus is on 'what', not mainly on 'why'."
+      },
+      "howTo": {
+        "zh": "先用一句话总述，再按顺序写 2–4 个要点（First, … Then, … Finally, …），每个要点一句话，尽量用课件术语。",
+        "en": "Give a one-sentence overview, then 2-4 key parts or steps in order (First, ... Then, ... Finally, ...), one sentence each, using course terms."
+      },
+      "starter": {
+        "en": "The machine learning pipeline has four steps: data preparation, model training, model evaluation, and inference/deployment.",
+        "zh": "机器学习流程（**ML pipeline**）有四步：数据准备、模型训练、模型评估、推理/部署。"
+      }
+    },
+    {
+      "en": "Explain",
+      "zh": "解释（讲清为什么、怎么样）",
+      "meaning": {
+        "zh": "老师想看**原因或机制**：不只说“是什么”，还要说“为什么会这样”“它怎样起作用”。关键词是 because、so、this means。",
+        "en": "Show the reason or the mechanism: not only what happens, but why or how it happens."
+      },
+      "howTo": {
+        "zh": "① 先给出要点或定义；② 用 because / so 把因果链写出来（A 导致 B，B 导致 C）；③ 用一个课件例子或数字支撑；④ 最后一句回扣题目。",
+        "en": "State the point, explain the chain of causes with 'because' and 'so', support it with a course example or number, then link back to the question."
+      },
+      "starter": {
+        "en": "Hidden layers are important because, without at least one hidden layer, a neural network can only produce a linear decision boundary.",
+        "zh": "隐藏层（**hidden layers**）很重要，因为没有至少一个隐藏层，神经网络只能画出直线（线性）的决策边界。"
+      }
+    },
+    {
+      "en": "Compare",
+      "zh": "比较（相同点和不同点都写）",
+      "meaning": {
+        "zh": "**相同点和不同点都要写**。老师最想看到：在同一个方面（例如速度、可解释性、需要什么数据）上，两者分别怎么样。",
+        "en": "Show both similarities and differences, point by point, on the same aspects."
+      },
+      "howTo": {
+        "zh": "① 一句话说两者是什么；② 写 1 个相同点（Both …）；③ 在同一个方面逐条对比（X …, whereas Y …），写 2–3 条；④ 结论：什么情况下用哪个更好。",
+        "en": "Introduce both, give one similarity ('Both ...'), compare them on 2-3 aspects ('X ..., whereas Y ...'), and end with when each one is better."
+      },
+      "starter": {
+        "en": "Both Symbolic AI and Machine Learning are sub-fields of AI, but Symbolic AI needs rules to work, whereas Machine Learning needs data.",
+        "zh": "符号 AI 和机器学习都是 AI 的子领域，但符号 AI 要靠规则才能工作，机器学习要靠数据。"
+      }
+    },
+    {
+      "en": "Contrast",
+      "zh": "对比（只写不同点）",
+      "meaning": {
+        "zh": "**只写不同点**，而且要针锋相对：同一个方面，X 是这样，Y 是那样。不要把两个东西分别介绍完就结束。",
+        "en": "Focus on the differences only, and describe the same aspect for both things."
+      },
+      "howTo": {
+        "zh": "每个不同点用一个句型：X …, whereas Y … 或 Unlike X, Y …。写 2–3 个不同点，每个都配课件证据或数字。",
+        "en": "Use one frame per difference: 'X ..., whereas Y ...' or 'Unlike X, Y ...'. Give 2-3 differences, each with course evidence."
+      },
+      "starter": {
+        "en": "Precision measures how many of the predicted positives are actually positive, whereas recall measures how many of the actual positives the model finds.",
+        "zh": "精确率（**precision**）看“预测为正的里面有多少真的是正”，召回率（**recall**）看“真正的正例里模型找出了多少”。"
+      }
+    },
+    {
+      "en": "Give an example",
+      "zh": "举例说明",
+      "meaning": {
+        "zh": "用一个**具体的例子**证明你真的懂这个概念。课件里的例子最安全：名字、数字、场景都要写对。",
+        "en": "Show the idea in a concrete case. Examples from the course are the safest choice."
+      },
+      "howTo": {
+        "zh": "① 点名例子（For example, in …）；② 写出例子的关键细节（数字、场景）；③ 用一句话把例子和概念连起来（This shows that …）。",
+        "en": "Name the example ('For example, in ...'), give its key details, then link it to the idea ('This shows that ...')."
+      },
+      "starter": {
+        "en": "For example, in chess, material advantage is a heuristic: each type of piece has a weight (pawn 1, knight 3, bishop 3, rook 5, queen 9), and the weighted differences between the two players are added up.",
+        "zh": "例如在国际象棋里，子力优势（**material advantage**）就是一个启发式：每种棋子有权重（兵 1、马 3、象 3、车 5、后 9），把双方数量之差乘上权重再加起来。"
+      }
+    },
+    {
+      "en": "Calculate",
+      "zh": "计算",
+      "meaning": {
+        "zh": "要**过程 + 结果**：公式、代入、答案都写出来。很多题还要求你**解释结果的意思**，只写一个数字会丢分。",
+        "en": "Show the formula, the substitution and the result. Often you must also say what the result means."
+      },
+      "howTo": {
+        "zh": "四步：① 写公式（Precision = TP / (TP + FP)）；② 代入（= 28 / (28 + 12)）；③ 写结果，分数和百分比都写（= 28/40 = 70%）；④ 一句话解释（This means 70% of the predicted positives are actually positive.）。",
+        "en": "Write the formula, the substitution and the result (as a fraction and a percentage), then one sentence that says what the number means."
+      },
+      "starter": {
+        "en": "Accuracy = number of correct predictions / total number of predictions = 6/7 ≈ 86%, so the classification error = 1 − 6/7 = 1/7 ≈ 14%.",
+        "zh": "准确率 = 正确预测数 / 总预测数 = 6/7 ≈ 86%，所以分类错误率 = 1 − 6/7 = 1/7 ≈ 14%。"
+      }
+    },
+    {
+      "en": "Identify / Name / State",
+      "zh": "指出 / 说出",
+      "meaning": {
+        "zh": "只要你**准确说出**答案（名称、类别、哪一个）。通常很短；分值较多时，加半句理由。",
+        "en": "Pick out or name the correct item. The answer is usually short; add a short reason if the question has more marks."
+      },
+      "howTo": {
+        "zh": "直接回答，用题目里的词组成完整句子；题目要几个就写几个，不多写也不少写。",
+        "en": "Answer directly in a full sentence that uses the question's words. Give exactly as many items as the question asks for."
+      },
+      "starter": {
+        "en": "This is a regression problem, because the target value (leaf height) is continuous.",
+        "zh": "这是一个回归（**regression**）问题，因为目标值（叶子高度）是连续值。"
+      }
+    },
+    {
+      "en": "Justify",
+      "zh": "论证（给出理由和证据）",
+      "meaning": {
+        "zh": "你做了一个选择（或题目给了一个说法），老师要看你**用证据支撑**：课件里的性质、数字、例子。光写 I think 不够。",
+        "en": "Support a choice or a claim with evidence: course facts, numbers or examples."
+      },
+      "howTo": {
+        "zh": "① 先亮出选择（I would choose …）；② 给 2 个理由，每个都是 because + 课件证据；③ 承认一个弱点或风险，并说明为什么仍然这样选。",
+        "en": "State your choice, give two reasons with course evidence ('because ...'), then admit one weakness and explain why your choice is still better."
+      },
+      "starter": {
+        "en": "For a condition that is very serious if not caught early, I would choose Model 1, because its recall is higher (28/30 ≈ 93%), so it misses only 2 actual positives.",
+        "zh": "对于“如果不及早发现就很严重”的病，我会选模型 1，因为它的召回率更高（28/30 ≈ 93%），只漏掉 2 个真正的阳性。"
+      }
+    },
+    {
+      "en": "Evaluate",
+      "zh": "评价（权衡利弊，再下判断）",
+      "meaning": {
+        "zh": "要**权衡优点和缺点**，最后给出一个明确的判断（好不好、值不值得、适不适合）。",
+        "en": "Weigh the strengths and weaknesses, then give a clear judgement."
+      },
+      "howTo": {
+        "zh": "① 一句话说要评价什么；② 写 1–2 个优点（One strength is …）；③ 写 1–2 个缺点（However, one weakness is …）；④ 结论：Overall, …，并说明在什么条件下成立。",
+        "en": "Say what you are evaluating, give 1-2 strengths and 1-2 weaknesses, then end with 'Overall, ...' and the condition for your judgement."
+      },
+      "starter": {
+        "en": "One strength of demographic parity is that the rule is easy to explain and to check; however, it ignores individual qualifications.",
+        "zh": "人口统计均等（**demographic parity**）的一个优点是规则容易解释、容易检查；但它忽略了个人的资质。"
+      }
+    },
+    {
+      "en": "Discuss",
+      "zh": "讨论",
+      "meaning": {
+        "zh": "开放题：老师要看你**从多个角度想问题**（正反两面、不同的利益相关者、利弊权衡），最后有自己的结论。往往没有唯一答案，有理有据就能得分。",
+        "en": "Look at the question from more than one side, use course ideas, and reach a reasoned conclusion. There is often no single right answer."
+      },
+      "howTo": {
+        "zh": "① 重述问题；② On the one hand + 理由/例子；③ On the other hand + 理由/例子；④ 你的结论（Overall, I believe … because …）。",
+        "en": "Restate the issue, give one side with a reason and an example, then the other side, then your own conclusion with a reason."
+      },
+      "starter": {
+        "en": "On the one hand, prompting lets users direct an LLM without knowing any coding; on the other hand, prompts can be ambiguous, which leads to variability in outcomes.",
+        "zh": "一方面，提示（**prompting**）让用户不懂编程也能指挥 LLM；另一方面，提示可能有歧义，导致结果不稳定。"
+      }
+    },
+    {
+      "en": "Why ...?",
+      "zh": "为什么……？",
+      "meaning": {
+        "zh": "问的是**原因**。核心句一定要有 because（或 This is because …），而且原因要具体，不能只是把题目换个说法。",
+        "en": "Give the reason. Your key sentence must contain 'because', and the reason must be specific."
+      },
+      "howTo": {
+        "zh": "第一句直接回答（X … because …），第二句展开原因链，第三句用课件例子或数字证明。不要把“Because …”单独写成一句。",
+        "en": "Answer in the first sentence ('X ... because ...'), explain the chain in the second, and prove it with a course example in the third. Never write 'Because ...' as a sentence on its own."
+      },
+      "starter": {
+        "en": "Search is hard because the number of nodes grows exponentially with depth, and each state generated costs the computer time.",
+        "zh": "搜索之所以难，是因为节点数随深度指数增长（**grows exponentially**），而每生成一个状态都要花计算机的时间。"
+      }
+    },
+    {
+      "en": "How ...?",
+      "zh": "怎样……？/ 如何……？",
+      "meaning": {
+        "zh": "问的是**过程或方法**：按顺序写步骤，说清每一步做什么，用 First / Next / Then / Finally 串起来。",
+        "en": "Give the process or method: the steps in order, and what happens at each step."
+      },
+      "howTo": {
+        "zh": "① 一句话说这个过程的目标；② 按顺序写 3–6 步；③ 说明什么时候停止、得到什么结果；④ 配一个课件例子。",
+        "en": "Say the goal of the process, list 3-6 steps in order, say when it stops or what it produces, and add a course example."
+      },
+      "starter": {
+        "en": "First, gradient descent starts with all parameters set randomly; then it checks the cost using every point in the training set.",
+        "zh": "首先，梯度下降（**gradient descent**）把所有参数随机设定；然后用训练集里的每一个点计算代价。"
+      }
+    },
+    {
+      "en": "Draw / Fill in",
+      "zh": "画图 / 填值",
+      "meaning": {
+        "zh": "要你**画出**一个图（例如状态树），或在图上**填数**（例如 minimax 树的值）。图要整齐、标签要全，最后用一句英文写结论。",
+        "en": "Draw a diagram (such as a state tree) or fill in values (such as minimax values). Label everything and add a one-sentence conclusion."
+      },
+      "howTo": {
+        "zh": "画状态树：根节点是当前状态（depth 0），每个合法动作画一条边并写上动作名，一层一层画到题目要求的深度，标出目标状态。填 minimax：从最底层往上，▲ 取最大，▼ 取最小，最后写出该走哪一步。",
+        "en": "For a state tree, put the current state at the root (depth 0), draw one labelled edge for each legal action, go level by level to the required depth, and mark goal states. For minimax, work from the bottom up: maximum at ▲, minimum at ▼, then state the move."
+      },
+      "starter": {
+        "en": "For the leaves 2, 3, 5, −9, 7, 5, 0 and −1, the ▲ level gives 3, 5, 7 and 0, the ▼ level gives 3 and 0, and the root ▲ gives 3, so we should play the left move.",
+        "zh": "叶子是 2、3、5、−9、7、5、0、−1 时：▲ 层得到 3、5、7、0，▼ 层得到 3 和 0，根节点 ▲ 得到 3，所以应该走左边。"
+      }
+    }
+  ],
+  "templates": [
+    {
+      "id": "compare-two-methods",
+      "title": {
+        "zh": "比较两种方法或概念",
+        "en": "Compare two methods or concepts"
+      },
+      "whenToUse": {
+        "zh": "题目出现 compare、contrast、What is the difference between X and Y? 时用。常考的成对概念：符号 AI vs 机器学习、纯算法 vs 符号 AI、分类 vs 回归、验证集 vs 测试集、精确率 vs 召回率、差别对待 vs 差别影响。",
+        "en": "Use it for 'compare', 'contrast' or 'What is the difference between X and Y?' questions, such as Symbolic AI vs Machine Learning, or a validation set vs a test set."
+      },
+      "skeleton": [
+        {
+          "en": "___ and ___ are both ___.",
+          "zh": "开头一句：两者的共同点或共同类别，先给老师定位。"
+        },
+        {
+          "en": "___ is ___.",
+          "zh": "第一个概念的定义（尽量用课件原话）。"
+        },
+        {
+          "en": "In contrast, ___ is ___.",
+          "zh": "第二个概念的定义，用 In contrast 引出。"
+        },
+        {
+          "en": "The main difference is that ___, whereas ___.",
+          "zh": "核心区别：在同一个方面，一个怎样、另一个怎样。"
+        },
+        {
+          "en": "One strength of ___ is ___, but one weakness is ___.",
+          "zh": "题目要优缺点时，每个对象各写一句。"
+        },
+        {
+          "en": "For example, ___ suits ___, but ___ suits ___.",
+          "zh": "各举一个课件例子。"
+        },
+        {
+          "en": "Therefore, ___ is better when ___, and ___ is better when ___.",
+          "zh": "结论：什么情况下用哪个。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Compare Symbolic AI and Machine Learning. Explain how each one finds solutions, give one strength and one weakness of each, and give one problem that suits each method.",
+          "zh": "比较符号 AI 和机器学习：说明各自怎样找到解，各给出一个优点和一个缺点，并各举一个适合它的问题。"
+        },
+        "answer": {
+          "en": "Symbolic AI and Machine Learning (ML) are both sub-fields of Artificial Intelligence. In Symbolic AI, problem solutions are found by encoding knowledge as symbols and then reasoning with those symbols. In contrast, ML finds solutions by automatically inferring patterns from data. The main difference is that Symbolic AI needs rules to work, whereas ML needs data. One strength of Symbolic AI is that its solutions are provably correct when they are found, but one weakness is that, for large problems, computation can be infeasibly long. One strength of ML is that it does not require distilling knowledge into symbols, so it can be applied to a wider variety of problems, but one weakness is that trained models inherit the biases of the data they were trained on. For example, finding the best move in a puzzle suits Symbolic AI, but detecting a dog in a new photo suits ML. Therefore, Symbolic AI is better when the rules are known and stable, and ML is better when patterns are complex but examples exist.",
+          "zh": "大意：两者都是 AI 的子领域；符号 AI 靠符号和推理，机器学习靠从数据中自动学规律；各有优缺点和适合的问题。\n得分点：① 开头定位（都是 AI 的子领域）；② 两个课件定义；③ 核心区别一句话：needs rules vs needs data；④ 题目要“各一个优点、各一个缺点”，就用 One strength of … / one weakness is … 各写一句，不多不少；⑤ 各举一个课件例子（谜题的最佳走法 vs 判断新照片里有没有狗）；⑥ 结论借用大表（**Big Table of Properties**）的 “Best when” 一行。题目分几个小问，答案就按同样的顺序写，阅卷老师最好找分。"
+        }
+      }
+    },
+    {
+      "id": "choose-a-method",
+      "title": {
+        "zh": "为一个问题选择 AI 方法",
+        "en": "Choose an AI method for a problem"
+      },
+      "whenToUse": {
+        "zh": "题目描述一个具体问题（排课、识别照片、写产品介绍、下棋……），问哪种方法最合适（题目常写 if any：有时纯算法就够）。对应课程目标 “Analyze a problem to determine which AI method (if any) is most appropriate to use.” 依据是第 1 讲的大表（**Big Table of Properties**）：课件说不用背整张表，但要懂每种方法为什么有这些性质。也可以顺带回答课程目标 2（CLO 2）：这种 AI 怎样开发 / 训练，要付出什么代价（时间、数据、算力、能耗）。",
+        "en": "Use it when a question describes a real problem and asks which method (if any) fits best: a pure algorithm or Symbolic AI, Machine Learning, or LLM prompting. It also covers CLO 2: how each kind of AI is developed or trained, and what that costs."
+      },
+      "skeleton": [
+        {
+          "en": "The most appropriate method for this problem is ___.",
+          "zh": "第一句直接给答案，不要绕。"
+        },
+        {
+          "en": "This is because the problem ___, and the Big Table says this method is best when ___.",
+          "zh": "理由一：问题的特点 + 大表 “Best when” 一行（规则已知且稳定 → 符号/算法；模式复杂但有例子 → 机器学习；任务开放或标注数据少 → LLM）。"
+        },
+        {
+          "en": "In addition, this method ___.",
+          "zh": "理由二：再选大表里的一个方面（要不要标注数据、可解释性、速度、成本）。"
+        },
+        {
+          "en": "To develop it, we would need ___, which costs ___.",
+          "zh": "课程目标 2：怎样开发（手写规则 / 收集带标签数据再训练 / 写 prompt）、代价是什么（大表的 Cost and capacity、Sustainability 两行）。"
+        },
+        {
+          "en": "___ would be less suitable, because ___.",
+          "zh": "排除另一种方法，说明你比较过。"
+        },
+        {
+          "en": "However, one risk is ___.",
+          "zh": "承认一个风险（大表的 Main failure mode，或公平、隐私、安全几行）。"
+        },
+        {
+          "en": "To reduce this risk, ___.",
+          "zh": "给一个具体办法（测试、人工检查、审计等）。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A small company wants a system that schedules 30 staff meetings each week so that no two meetings for the same person overlap. A manager suggests using an LLM, while a colleague suggests Symbolic AI. Which approach is most appropriate? Use properties from the course to justify your answer, explain what it would cost to develop, and mention one risk.",
+          "zh": "一家小公司每周要安排 30 个员工会议，并保证同一个人的两个会议不重叠。经理建议用 LLM，同事建议用符号 AI。哪种方法最合适？用课程中的性质来论证，说明开发它要付出什么代价，并指出一个风险。"
+        },
+        "answer": {
+          "en": "The most appropriate method for this problem is Symbolic AI. This is because the problem has well-defined rules: two meetings for the same person must not overlap. The lecture lists scheduling tasks so that none of them overlap as a problem well-suited to Symbolic AI, and the Big Table says this method is best when rules are known and stable. Its solutions are provably correct when they are found, and it is generally explainable. It is also cheap to develop: we write the rules by hand, so no labelled data or training is needed, and the Big Table rates its cost as usually low. An LLM would be less suitable, because it is prone to hallucination, rarely explainable, and often slower and costlier per call. However, one risk is that edge cases outside the rules can cause failures, and for large problems the computation can be infeasibly long. To reduce this risk, the company should test the system before using it.",
+          "zh": "大意：排会议有明确规则（同一个人的会议不能重叠），所以选符号 AI，而不是 LLM；它开发起来也便宜。\n得分点：① 第一句直接给答案；② 理由一：问题有明确规则——第 3 讲原话把“安排一组任务，使它们互不重叠”列为适合符号 AI 的问题，对上大表 “Best when: Rules are known and stable”；③ 理由二：找到的解可证明正确、一般可解释；④ 开发代价（课程目标 2）：规则靠人手写，不需要标注数据和训练，大表的 Cost and capacity 一行是 Usually low；⑤ 排除 LLM：容易幻觉（**hallucination**）、很少能解释、每次调用更慢更贵；⑥ 风险：规则之外的边界情况（**edge cases**）、大问题的计算时间可能长到不可行；⑦ 应对办法。“结论 → 理由 → 代价 → 排除 → 风险 → 对策”这个结构适用于所有选方法题。"
+        }
+      }
+    },
+    {
+      "id": "explain-an-algorithm",
+      "title": {
+        "zh": "按步骤解释一个算法（以 minimax 为例）",
+        "en": "Explain how an algorithm works (minimax)"
+      },
+      "whenToUse": {
+        "zh": "题目问 Describe / Explain how ___ works，对象可能是 minimax、穷举搜索（**exhaustive search**）或梯度下降（**gradient descent**）；也常和“用 minimax 填树并选动作”一起考。课件要求“at a high level”（高层次）描述：不用数学细节，但步骤顺序和每一步做什么必须对。",
+        "en": "Use it for 'Describe/explain how ___ works' questions about minimax, exhaustive search or gradient descent, especially when a tree or numbers are given."
+      },
+      "skeleton": [
+        {
+          "en": "___ is an algorithm that ___.",
+          "zh": "一句话说算法是什么、目标是什么。"
+        },
+        {
+          "en": "It starts from ___ and assumes that ___.",
+          "zh": "起点和前提（minimax：从终止状态开始，假设双方都理性；梯度下降：从随机参数开始）。"
+        },
+        {
+          "en": "First, ___. Next, ___. Finally, ___.",
+          "zh": "按顺序写步骤，每步一句，能带数字就带数字。"
+        },
+        {
+          "en": "As a result, ___, so we should ___.",
+          "zh": "得到什么结果，因此应该怎么做。"
+        },
+        {
+          "en": "This result is guaranteed only if ___; if ___, we lose this guarantee.",
+          "zh": "保证与局限（对手是否理性、是否用了启发式、时间够不够）。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "An abstract minimax tree has a ▲ root, two ▼ nodes, four ▲ nodes and eight leaves with the values 2, 3, 5, −9, 7, 5, 0, −1 (from left to right); every node has two children. Explain step by step how minimax decides which move to play. Then explain what changes if the eight bottom values are heuristic estimates instead of terminal rewards.",
+          "zh": "一棵抽象的 minimax 树：根节点 ▲，下面有两个 ▼ 节点、四个 ▲ 节点，八个叶子的值从左到右是 2、3、5、−9、7、5、0、−1。逐步解释 minimax 如何决定走哪一步；再说明如果这八个底层数值是启发式估计值而不是终局奖励，会有什么变化。"
+        },
+        "answer": {
+          "en": "Minimax is a version of search for two-player games that takes the opponent's goals into account. It starts at the terminal states, whose values are given, and carries values upwards one level at a time. It assumes that on our turn (▲) we always maximize our reward, and on our opponent's turn (▼) they always minimize our reward. First, each ▲ node takes the maximum of its children: max(2, 3) = 3, max(5, −9) = 5, max(7, 5) = 7 and max(0, −1) = 0. Next, each ▼ node takes the minimum: min(3, 5) = 3 and min(7, 0) = 0. Finally, the root takes max(3, 0) = 3. So we should play the left move and, if the opponent plays rationally, get a reward of 3. The largest leaf (7) is on the right, but the opponent would steer that branch down to 0. If the bottom values are heuristic estimates at a fixed depth, minimax works in the same way, but we lose the guarantee about the reward, because heuristics are only estimates.",
+          "zh": "大意：从叶子往上算，▲ 取最大、▼ 取最小，根节点得到 3，所以走左边；换成启发式估值后算法不变，但失去保证。\n得分点：① minimax 的目标（双人游戏、考虑对手的目标）；② 从终止状态（**terminal states**）往上传值；③ ▲ 是我们的回合取最大，▼ 是对手的回合取最小；④ 每一层的数字都写出来（3、5、7、0 → 3、0 → 3）；⑤ 结论：走左边，奖励 3（前提是对手也理性）；⑥ 加分点：最大的叶子 7 在右边，但对手会把右边压到 0——只盯最大叶子是最常见的错误；⑦ 用启发式（**heuristic**）估值时步骤一样，但失去对奖励的保证。"
+        }
+      }
+    },
+    {
+      "id": "explain-a-programming-idea",
+      "title": {
+        "zh": "解释一个编程概念（函数、循环、计算时间）",
+        "en": "Explain a programming idea (functions, loops, computation time)"
+      },
+      "whenToUse": {
+        "zh": "题目考第 2 讲的学习目标：定义算法并用英文写自己的算法、程序怎样由指令构成、函数和循环在程序里的作用、为什么计算时间是程序员要关心的问题（第 2 页）。结构：课件定义 → 小海龟例子 → 为什么有用（复用、少写指令）→ 数执行次数（每条指令都花时间）。",
+        "en": "Use it for Lecture 2 questions: define an algorithm, explain how programs are built from instructions, explain the role of functions and loops, or explain why computation time matters."
+      },
+      "skeleton": [
+        {
+          "en": "A ___ is ___.",
+          "zh": "先写课件原话定义（algorithm、function、loop、parameter）。"
+        },
+        {
+          "en": "For example, in the turtle program, ___.",
+          "zh": "用课件的小海龟例子（画正方形、画机器人脸）。"
+        },
+        {
+          "en": "This helps programmers because ___.",
+          "zh": "作用：把指令打包、复用，不用每条都单独写。"
+        },
+        {
+          "en": "In contrast, a ___ is ___.",
+          "zh": "函数 vs 循环：有名字、被调用才执行 vs 没名字、当场立刻重复。"
+        },
+        {
+          "en": "However, every instruction executed costs time, so ___ runs ___ times.",
+          "zh": "计算时间：数一数每条指令执行了几次，嵌套循环要相乘。"
+        },
+        {
+          "en": "Therefore, ___.",
+          "zh": "结论：回答题目问的那一句。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Explain the role of functions and loops in programs. Use the turtle examples from the lecture, and explain how many times each instruction of square runs when square is called by a 10-iteration loop that sits inside another 10-iteration loop.",
+          "zh": "解释函数和循环在程序里的作用。用课件里小海龟的例子，并说明：一个 10 次的循环调用 square，而这个循环又套在另一个 10 次的循环里时，square 里的每条指令执行几次。"
+        },
+        "answer": {
+          "en": "Functions and loops are both ways to package and reuse instructions; we would never be able to do anything complex if we had to specify every instruction individually. A function is a named block of instructions that we define once and can then reuse as many times as we want by calling it by name. For example, after we define a function that draws a robot face, calling it 3 times draws 3 robot faces. A function can also take a parameter, a value given when it is called to customize its behaviour, as in square(100) and square(200). In contrast, a loop is an unnamed block of code that is executed repeatedly and immediately, and each repetition is one iteration. With a for-loop, drawing 9 robot heads instead of 3 only needs one value changed. However, every instruction executed costs time. If a loop calls square 10 times, each instruction inside square runs 10 times, and if that loop sits inside another 10-iteration loop, each instruction runs 10 × 10 = 100 times.",
+          "zh": "大意：函数和循环都是打包、复用指令的办法；函数有名字、定义一次、按名字调用（可以带参数）；循环没名字、当场立刻重复；每条指令都要花时间，嵌套循环的次数要相乘。\n得分点：① 为什么要复用（第 12 页：每条指令都单独写，就做不出复杂的东西）；② 函数的课件定义（第 14 页）+ 机器人脸调用 3 次（第 17 页）；③ 参数：调用时给的值（定义在第 19 页），如 square(100) 和 square(200)（第 21 页）；④ 循环的课件定义（第 26 页）+ 改一个数就从 3 个变成 9 个（第 28 页）；⑤ 计算时间：调用 1 次 → 每条 1 次，循环 10 次 → 每条 10 次（第 39–40 页）；嵌套 10 × 10 → 每条 100 次（第 41 页只问不答，100 是按图算出来的）。"
+        }
+      }
+    },
+    {
+      "id": "ethics-take-a-position",
+      "title": {
+        "zh": "伦理题：表明立场并论证",
+        "en": "Ethics: take a position and argue it"
+      },
+      "whenToUse": {
+        "zh": "题目问 Is it ethical …? / Do you feel …? / Which argument holds more weight with you? 例如：用受版权保护的作品训练 AI、Target 的怀孕预测是否侵犯隐私、LLM 带来的问题（环境影响、工作替代、版权、认知卸载 **cognitive offloading**）。这类题没有唯一答案：两边论据都来自课件、立场清楚、理由充分，就能拿高分。\n也用于对齐（**Alignment**，第 3 讲）题：先写课件定义（让 AI 的行为符合人类看重的意图、目标和伦理），再说理性智能体只最大化自己的奖励、奖励漏掉了什么价值、造成什么后果、怎样改（改奖励、加规则、人工监督）。课件的共享牧场例子：双方都只顾自己的奖励，结果都过度放牧得 (1,1)，而都可持续放牧的 (2,2) 对双方都更好；完整的参考答案见第 3 讲“对齐”一节。",
+        "en": "Use it for opinion questions on ethics, such as copyright, privacy or the costs of LLMs. Show both sides, take a clear position and give reasons. It also works for alignment questions (Lecture 3): define alignment, explain that a rational agent maximizes its own reward, show what the reward leaves out, and suggest a fix."
+      },
+      "skeleton": [
+        {
+          "en": "The question is whether ___.",
+          "zh": "重述问题，不需要长篇背景。"
+        },
+        {
+          "en": "On the one hand, supporters argue that ___.",
+          "zh": "支持方的课件论据。"
+        },
+        {
+          "en": "On the other hand, critics argue that ___.",
+          "zh": "反对方的课件论据。"
+        },
+        {
+          "en": "In my opinion, the argument that ___ holds more weight, because ___.",
+          "zh": "表明立场 + 理由（最关键的一句）。"
+        },
+        {
+          "en": "For example, ___.",
+          "zh": "用例子支撑你的理由。"
+        },
+        {
+          "en": "However, I accept that ___.",
+          "zh": "承认对方有道理的地方，显得思考全面。"
+        },
+        {
+          "en": "Overall, I believe ___.",
+          "zh": "结论（可以提出折中办法）。"
+        },
+        {
+          "en": "For alignment questions: Alignment is the problem of trying to make AI behaviour match ___. Here the reward ___ ignores ___, so ___. To reduce this misalignment, we could ___.",
+          "zh": "对齐题换用这一组句子：课件定义 + 奖励漏掉了什么 + 后果 + 改进办法（共享牧场：都过度放牧得 (1,1)，而 (2,2) 对双方都更好）。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Is it ethical to train generative AI on copyrighted work? Describe one argument in favour and one argument against from the lecture. Then explain which argument holds more weight with you and why.",
+          "zh": "用受版权保护的作品训练生成式 AI 是否道德？描述课件中一个支持的论据和一个反对的论据，然后说明你觉得哪一方更有分量、为什么。"
+        },
+        "answer": {
+          "en": "The question is whether it is ethical to train generative AI on copyrighted work. On the one hand, supporters argue that AI doesn't copy from existing work; it synthesizes it into its internal model, just as human creatives learn from many works without citing them all. On the other hand, critics argue that most work used in training was published with the understanding that it would be seen by humans. In my opinion, the argument against holds more weight, because AI models can produce an infinite amount of work for the sole profit of tech companies, which is a pillaging of the commons. For example, a model trained on an artist's work could produce many similar images, and the profit would go to the company, not to the artist. However, I accept that learning from others is not wrong in itself. Legally, whether training counts as fair use is still in the courts. Overall, I believe this training is only ethical when creators give permission, for example through a license.",
+          "zh": "大意：正方说 AI 是“综合”而不是复制；反方说作品原本是给人看的，而且利润只归科技公司；我支持反方，但承认学习本身没有错。\n得分点：① 重述问题；② 一个正方论据（课件：synthesizes it into its internal model；人类创作者也不用引用所有影响过他们的作品）；③ 一个反方论据（published with the understanding that it would be seen by humans）；④ 立场 + because（再用一条课件反方论据：pillaging of the commons）；⑤ 具体例子；⑥ 让步句 However, I accept that …；⑦ 课件事实：训练是否属于合理使用（**fair use**）仍在法庭审理；⑧ 结论（许可 **license**）。选正方也完全可以，关键是两边都用课件论据、理由清楚。"
+        }
+      }
+    },
+    {
+      "id": "explain-model-training",
+      "title": {
+        "zh": "解释模型怎样训练（代价、参数、梯度下降）",
+        "en": "Explain how a model is trained (cost, parameters, gradient descent)"
+      },
+      "whenToUse": {
+        "zh": "题目问回归（**regression**）的训练目标、代价函数（**cost function**）/ MSE、参数（**parameters**）和训练的关系，或梯度下降的大致步骤（第 5 讲学习目标）。注意：课件说 MSE 的数学公式不用背，但“误差 → 平方 → 平均”的意思和课件数字要会。",
+        "en": "Use it when a question asks how training works: the role of the cost function (MSE), the parameters (weights) and gradient descent."
+      },
+      "skeleton": [
+        {
+          "en": "In a regression problem, we want to predict ___, such as ___.",
+          "zh": "交代任务：回归 = 预测连续值。"
+        },
+        {
+          "en": "We choose the type of model, such as ___, and the machine finds the parameters ___.",
+          "zh": "分工：人选模型类型，机器找参数。"
+        },
+        {
+          "en": "A cost function measures ___, and training tries to ___ it.",
+          "zh": "代价函数的作用：衡量“错误程度”，训练要让它最小。"
+        },
+        {
+          "en": "For each point, the error is ___, and the MSE is ___.",
+          "zh": "说清 MSE 怎么算（误差 → 平方 → 平均）。"
+        },
+        {
+          "en": "Different parameters give different costs: ___ has an MSE of ___, while ___ has an MSE of ___.",
+          "zh": "用课件数字证明：参数决定代价。"
+        },
+        {
+          "en": "Gradient descent finds good parameters step by step: ___.",
+          "zh": "梯度下降的 5 步。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Explain the relationship between cost, the model parameters and training in a regression problem. Describe the rough algorithm for gradient descent, and use the lecture's leaf example (MSE 37.52 and 11.92) in your answer.",
+          "zh": "解释回归问题中代价、模型参数和训练之间的关系。描述梯度下降的大致步骤，并在答案中使用课件的叶子例子（MSE 37.52 和 11.92）。"
+        },
+        "answer": {
+          "en": "In a regression problem, we want to predict a continuous value, such as leaf height from leaf width. We choose the type of model, for example a line y = w0 + w1x1, and the machine finds the parameters (w0 and w1) that best match the data. A cost function measures the 'wrongness' of a line for a dataset, and training tries to minimize it. For each point, the error is y − t (prediction minus target), and the mean squared error (MSE) is the average of the squared errors. Different parameters give different costs: the line with w0 = 19.00 and w1 = −0.800 has an MSE of 37.52, while the line with w0 = 8.65 and w1 = 0.464 has an MSE of only 11.92. Gradient descent finds good parameters step by step: start with random parameters, check the cost using every training point, decide whether each parameter should increase or decrease to reduce the cost, change it by a small amount, and repeat until the parameters are close to correct.",
+          "zh": "大意：人选模型类型，机器找参数；代价函数（MSE）衡量一条线有多“错”，训练就是找让代价最小的参数，梯度下降一步一步地做到这一点。\n得分点：① 回归 = 预测连续值；② 分工：人选模型，机器找参数（**parameters**，也叫 **weights**）；③ 代价函数衡量“错误程度”，训练要把它降到最小；④ 误差 = y − t（预测减目标），MSE = 平方误差的平均；⑤ 用课件两组数字证明参数决定代价：37.52 vs 11.92；⑥ 梯度下降 5 步写全：随机开始 → 用所有训练点算代价 → 每个参数决定增大还是减小 → 小幅调整 → 重复直到接近正确。"
+        }
+      }
+    },
+    {
+      "id": "overfitting-validation-test",
+      "title": {
+        "zh": "过拟合与验证集、测试集",
+        "en": "Overfitting and the role of validation and test sets"
+      },
+      "whenToUse": {
+        "zh": "题目问：什么是过拟合（**overfitting**）、为什么训练误差最低的模型不一定最好、验证集（**validation set**）和测试集（**test set**）各干什么、为什么不能把验证准确率当作最终准确率。",
+        "en": "Use it for questions about overfitting, model selection, and why we split a dataset into training, validation and test sets."
+      },
+      "skeleton": [
+        {
+          "en": "Overfitting occurs when ___.",
+          "zh": "背课件定义。"
+        },
+        {
+          "en": "A model with many parameters can ___ on the training set, but ___ on new data.",
+          "zh": "用数字说明：训练集上很好，新数据上很差。"
+        },
+        {
+          "en": "To choose a model, we use a validation set, which is ___.",
+          "zh": "验证集的定义和用途（选模型）。"
+        },
+        {
+          "en": "For example, ___ has the lowest training error, but ___ has the lowest validation error, so we choose ___.",
+          "zh": "课件例子：按验证集选模型。"
+        },
+        {
+          "en": "However, the true performance of the chosen model is likely to be ___, because ___.",
+          "zh": "为什么验证结果偏乐观（挑最大值的后果）。"
+        },
+        {
+          "en": "Therefore, we report the final accuracy on a test set, which is ___.",
+          "zh": "测试集定义 + 常见划分。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "What is overfitting, and why is the model with the lowest training error not always the best? Explain how validation and test sets help, using numbers from the lectures.",
+          "zh": "什么是过拟合？为什么训练误差最低的模型不一定最好？用课件中的数字，解释验证集和测试集各起什么作用。"
+        },
+        "answer": {
+          "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns. A model with many parameters can reach an MSE of 0 on the training set, but in the lecture such a model had an MSE of 190.27 on new data, while a straight line had 5.77. To choose a model, we use a validation set, which is a part of our dataset that we do not use for training. For example, among three models, the higher-order polynomial had the lowest training MSE (1.67), but the quadratic model had the lowest validation MSE (1.38), so we should prefer the quadratic model. However, the chosen model's true performance is likely to be worse than its validation accuracy, because we picked the best of several noisy results. If we roll eight dice 10 times and keep the highest total, we expect about 35.4, although the most likely single total is 28. Therefore, we report the final accuracy on a test set, which is not used for training or validation. A 60/20/20 split is common.",
+          "zh": "大意：过拟合 = 记住噪声；训练误差最低不等于最好，要用验证集选模型；但被选中模型的验证结果偏乐观，所以最终准确率要在测试集上报告。\n得分点：① 背出过拟合定义；② 证据：训练 MSE = 0 的模型，在新数据上 MSE = 190.27，直线只有 5.77；③ 验证集的定义（不参与训练）+ 用途（选模型）：按验证 MSE 选二次模型（1.38），而不是训练 MSE 最低的高阶多项式（1.67）。注意：训练 MSE = 0 的是另一个有 7 个参数的多项式，和训练 MSE 1.67 的高阶多项式不是同一个模型；④ 为什么还要测试集：从多个带噪声的结果里挑最好的会高估（骰子：单次最可能 28，10 次取最大约 35.4）；⑤ 测试集的定义 + 60/20/20（训练/验证/测试）划分。"
+        }
+      }
+    },
+    {
+      "id": "calculate-and-interpret-metrics",
+      "title": {
+        "zh": "计算并解释评估指标",
+        "en": "Calculate and interpret evaluation metrics"
+      },
+      "whenToUse": {
+        "zh": "题目给出 TP、FP、FN、TN（混淆矩阵 **confusion matrix**），要你算 accuracy、precision、recall、F1，再判断哪个模型更适合某个场景。课件的矩阵：行是 PREDICTED，列是 ACTUAL，TP 左上、FP 右上、FN 左下、TN 右下。但 Lab 5 的招聘模型卡反过来：行是真实（qualified / unqualified），列是预测（hire / no hire），所以右上是 FN、左下是 FP。抄数之前先看清行和列！",
+        "en": "Use it when you are given TP, FP, FN and TN and must calculate accuracy, precision, recall or F1, then explain which model is better for a situation. Read the row and column labels first: Lecture 6 puts PREDICTED in the rows, but Lab 5's model cards put ACTUAL (qualified/unqualified) in the rows."
+      },
+      "skeleton": [
+        {
+          "en": "From the table, TP = ___, FP = ___, FN = ___ and TN = ___.",
+          "zh": "先把四个数抄对（看清行和列）。"
+        },
+        {
+          "en": "Accuracy = (TP + TN) / (TP + TN + FP + FN) = ___ ≈ ___.",
+          "zh": "公式 → 代入 → 结果。"
+        },
+        {
+          "en": "Precision = TP / (TP + FP) = ___ = ___, which means that ___.",
+          "zh": "每算一个指标，后面跟一句它的意思。"
+        },
+        {
+          "en": "Recall = TP / (TP + FN) = ___ = ___, which means that ___.",
+          "zh": "同上。"
+        },
+        {
+          "en": "F1 = 2 × Precision × Recall / (Precision + Recall) = ___.",
+          "zh": "题目要求时再算 F1。"
+        },
+        {
+          "en": "In this situation, a ___ is the worst error, because ___, so I prefer ___.",
+          "zh": "结合场景：哪种错误代价最大，所以选哪个模型。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Model 1 has TP = 28, FP = 12, FN = 2 and TN = 18. Model 2 has TP = 18, FP = 2, FN = 12 and TN = 28. Calculate the accuracy, precision, recall and F1 score of Model 1, and compare it with Model 2 (accuracy 46/60 ≈ 77%, precision 90%, recall 60%, F1 72%). Which model is better for a serious disease that must be caught early?",
+          "zh": "模型 1：TP = 28、FP = 12、FN = 2、TN = 18。模型 2：TP = 18、FP = 2、FN = 12、TN = 28。计算模型 1 的准确率、精确率、召回率和 F1，并与模型 2（准确率 46/60 ≈ 77%、精确率 90%、召回率 60%、F1 72%）比较。对于一种必须及早发现的严重疾病，哪个模型更好？"
+        },
+        "answer": {
+          "en": "For Model 1, TP = 28, FP = 12, FN = 2 and TN = 18. Accuracy = (TP + TN) / (TP + TN + FP + FN) = 46/60 ≈ 77%. Precision = TP / (TP + FP) = 28/40 = 70%, which means that 70% of the patients predicted positive are actually positive. Recall = TP / (TP + FN) = 28/30 ≈ 93%, which means that the model finds about 93% of the patients who are actually positive. F1 = 2 × 0.70 × 0.933 / (0.70 + 0.933) ≈ 0.80 = 80%. Model 2 has the same accuracy, so accuracy alone cannot tell us which model is better. However, Model 2's recall is only 60%, because it has 12 false negatives. For a serious disease that must be caught early, a false negative is the worst error, because a sick patient is not caught. Therefore, Model 1 is better: it misses only 2 actual positives. The cost is 12 false positives, so some healthy people will need further testing.",
+          "zh": "大意：模型 1 的准确率约 77%、精确率 70%、召回率约 93%、F1 80%；两个模型准确率相同，但严重疾病最怕漏诊，所以选召回率高的模型 1。\n得分点：① 每个指标都按“公式 → 代入 → 结果（分数 + 百分比）”写；② 每算完一个就跟一句 which means …，说出它的意思；③ 点出“准确率相同，所以光看准确率选不出来”——这正是课件要讲其他指标的原因；④ 严重疾病最怕假阴性（**FN**，漏诊）→ 要高召回率；如果病不严重、后续检查很贵，就最怕假阳性（**FP**，误报）→ 选精确率高的模型 2；⑤ 最后写出代价（12 个假阳性），显示你在权衡。"
+        }
+      }
+    },
+    {
+      "id": "analyse-fairness",
+      "title": {
+        "zh": "用公平性指标分析一个模型",
+        "en": "Analyse a model with fairness metrics"
+      },
+      "whenToUse": {
+        "zh": "题目给出两个群体的 TP/FP/FN/TN 或百分比（招聘、录取），问模型满足哪种公平定义、哪个利益相关者（**stakeholder**）会满意、怎样取舍。四个定义：人口统计均等（**demographic parity**，录用率相同）、预测均等（**predictive parity**，精确率相同）、均等几率（**equalized odds**，TPR 和 FPR 都相同）、个体公平（**individual fairness**，相似的人得到相似的结果）。\n也用于第 6 讲的偏见案例题（Amazon 简历打分、美国房贷、人脸识别、COMPAS）：问“偏见最可能的原因是什么”时，从第 38 页的四个原因里选一个（有偏的历史数据、某些群体代表性不足、代理变量 **proxy variables**、不同公平定义互不兼容），说明它怎样导致偏见，再给一个改进办法（前处理、中处理、后处理、部署前的模型审计）。课件只明确写了 COMPAS 对应“公平定义互相冲突”（第 44 页），其他案例用 One likely reason is … 来写；完整的参考答案见第 6 讲“偏见的四个真实案例”一节。",
+        "en": "Use it when you are given counts or rates for two groups and must decide which fairness definitions hold, who would object, and what the trade-offs are. It also works for the bias cases (Amazon, mortgages, facial recognition, COMPAS): name one cause from the slide list, explain how it leads to bias, and suggest a way to reduce it."
+      },
+      "skeleton": [
+        {
+          "en": "For Group A, the ___ is ___ = ___, and for Group B it is ___ = ___.",
+          "zh": "逐组代入公式计算（每个指标都这样写）。"
+        },
+        {
+          "en": "Demographic parity (equal selection rates) holds / does not hold, because ___.",
+          "zh": "逐个定义下判断，并给出数字（招聘题里 selection rate 就是 hiring rate）。"
+        },
+        {
+          "en": "Predictive parity (equal precision) holds / does not hold, because ___.",
+          "zh": "预测均等看精确率。"
+        },
+        {
+          "en": "Equalized odds (equal TPR and FPR) holds / does not hold, because ___.",
+          "zh": "均等几率要 TPR 和 FPR 两个都相等。"
+        },
+        {
+          "en": "This shows that fairness definitions are often at odds with each other, because ___.",
+          "zh": "点出取舍：为什么不能同时满足。"
+        },
+        {
+          "en": "___ would prefer ___, because ___.",
+          "zh": "结合一个利益相关者及其优先级。"
+        },
+        {
+          "en": "There is no single right answer, so the designers must ___.",
+          "zh": "用课件结论句收尾。"
+        },
+        {
+          "en": "For a bias case: One likely reason for this bias is ___, because ___. To reduce it, the designers could use ___.",
+          "zh": "偏见案例题换用这一组句子：原因（四选一，用 One likely reason 写）+ 怎样导致偏见 + 改进办法（前处理 / 中处理加正则项 / 后处理 / 模型审计）。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A hiring model screens two groups of 1,000 applicants each. Group A: TP = 400, FP = 100, FN = 100, TN = 400. Group B: TP = 240, FP = 140, FN = 60, TN = 560. Which fairness definitions does the model satisfy? Use calculations, and explain what this shows about fairness.",
+          "zh": "一个招聘模型用于两组各 1,000 名申请者。A 组：TP = 400、FP = 100、FN = 100、TN = 400。B 组：TP = 240、FP = 140、FN = 60、TN = 560。这个模型满足哪些公平定义？请给出计算，并说明这反映了公平的什么特点。"
+        },
+        "answer": {
+          "en": "First, I calculate the metrics for each group. The hiring rate, (TP + FP) / N, is 500/1,000 = 50.0% for Group A but 380/1,000 = 38.0% for Group B, so demographic parity does not hold. Precision, TP / (TP + FP), is 400/500 = 80.0% for Group A but 240/380 = 63.2% for Group B, so predictive parity does not hold either. The true positive rate, TP / (TP + FN), is 80.0% in both groups, and the false positive rate, FP / (FP + TN), is 20.0% in both groups, so equalized odds holds. Individual fairness cannot be judged from these counts. This shows that fairness definitions are often at odds with each other: Group B has fewer qualified applicants (300 versus 500), so equal error rates still lead to unequal hiring rates. An equity office would object to the 12.0 percentage-point gap in hiring rates, while company counsel could defend the equal error rates. There is no single right answer, so the designers must choose what to prioritize.",
+          "zh": "大意：录用率 50% vs 38%、精确率 80% vs 63.2% 都不相等；TPR（80%）和 FPR（20%）两组相同，所以只满足均等几率。\n得分点：① 每个定义先写公式再代入两组数字；② 人口统计均等看录用率 (TP + FP) / N；预测均等看精确率 TP / (TP + FP)；均等几率要 TPR = TP / (TP + FN) 和 FPR = FP / (FP + TN) 都相等；个体公平看“相似的人是否得到相似结果”，四格表算不出来；③ 关键洞察：B 组合格的人更少（300 vs 500），所以即使错误率相同，录用率也会不同——公平定义之间常常互相冲突；④ 结合利益相关者：平等办公室（equity office）看录用率差距，公司律师（company counsel）要为错误率辩护；⑤ 用课件结论收尾：公平没有唯一正确答案。"
+        }
+      }
+    },
+    {
+      "id": "describe-data",
+      "title": {
+        "zh": "描述数据：来源、形式和特征向量",
+        "en": "Describe data: provenance, forms and feature vectors"
+      },
+      "whenToUse": {
+        "zh": "题目考第 4 讲关于数据的学习目标（第 2 页）：解释数据溯源（**data provenance**）和它为什么重要、描述数据的不同形式（结构化 / 非结构化、列的三种类型）、解释特征向量和数据空间、描述监督学习的基本目标。结构：数据从哪来 → 合不合用 → 是什么形式 → 怎样变成数字（特征向量）→ 拿来预测什么。",
+        "en": "Use it for Lecture 4 data questions: data provenance and why it matters, forms of data, feature vectors and data spaces, and the basic objectives of Supervised Learning."
+      },
+      "skeleton": [
+        {
+          "en": "Data provenance is the documented history of a dataset: ___.",
+          "zh": "课件定义 + 三项内容：何时何地收集、怎么收集、之后怎么转换过。"
+        },
+        {
+          "en": "It matters here because ___; for example, we should ask whether ___.",
+          "zh": "为什么重要：用第 10 页的三个问题（人群对不对得上、收集有没有偏见、法律上能不能这样用）。"
+        },
+        {
+          "en": "This is ___ data, because ___.",
+          "zh": "数据形式：结构化（有 schema，如表格）还是非结构化（图像、音频、文本）；列是连续型、有序型还是类别型。"
+        },
+        {
+          "en": "Each piece of data can be written as a feature vector, such as ___, where ___.",
+          "zh": "特征向量：一条数据 = 一串数，每个值是一个特征。"
+        },
+        {
+          "en": "In Supervised Learning, the target feature is ___, so this is a ___ problem.",
+          "zh": "监督学习：要预测的叫目标特征；目标值是类别型 → 分类，连续型 → 回归。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "A student wants to train a model that predicts whether a leaf is oak or maple, using a table of leaf measurements that another university collected. Explain what data provenance is and why it matters here, describe the form of the data, and show how one leaf can be written as a feature vector.",
+          "zh": "一个学生想用另一所大学收集的叶子测量表，训练一个判断叶子是 oak 还是 maple 的模型。解释什么是数据溯源、它在这里为什么重要；描述这份数据的形式；并说明一片叶子怎样写成特征向量。"
+        },
+        "answer": {
+          "en": "Data provenance is the documented history of a dataset: when and where the data was collected, how it was collected, and how it has been transformed since. It matters here because the data was collected by someone else. Acquiring existing data is generally less costly than collecting it ourselves, but it may not exactly fit our purpose, and provenance helps us decide if it is appropriate. For example, we should ask whether the leaves that were measured match the leaves we are interested in, whether there was bias in the collection, and whether we are legally permitted to use the data in the way we intend. The data is structured data: it is a table that follows a schema, and each row is one leaf. Leaf width and leaf height are continuous columns, and leaf type is categorical. Each leaf can be written as a feature vector, such as [10.0, 18.0, 1], where 1 represents oak. In Supervised Learning, leaf type is the target feature, so this is a classification problem.",
+          "zh": "大意：溯源 = 数据集有记录的历史；别人收集的数据要靠溯源判断合不合用；叶子表是结构化（表格）数据；一片叶子写成 [10.0, 18.0, 1]；要预测的叶子种类是类别型，所以是分类问题。\n得分点：① 课件定义 + 三项内容（第 9 页）；② 为什么重要：别人收集的数据一般更便宜，但不一定合用（第 8 页），用第 10 页的三个问题判断；③ 数据形式：结构化的表格数据，每行一条数据（第 24 页）；叶宽、叶高是连续型，种类是类别型（第 25 页）；④ 特征向量 [10.0, 18.0, 1]，1 代表 oak（第 32–33 页）；⑤ 监督学习：目标特征是叶子种类，类别型 → 分类（第 41–42 页）。题目里“另一所大学”的情景是练习用的，课件数字照写即可。"
+        }
+      }
+    },
+    {
+      "id": "neural-network-basics",
+      "title": {
+        "zh": "神经网络基础：人工神经元与隐藏层",
+        "en": "Neural network basics: artificial neurons and hidden layers"
+      },
+      "whenToUse": {
+        "zh": "题目问生物神经元和人工神经元的关系、类比在哪里失效、隐藏层（**hidden layers**）为什么重要，或某个架构（感知机、MLP、自编码器、GAN、卷积网络）是什么。结构：部件对应 → 怎样工作 → 为什么重要 → 局限。",
+        "en": "Use it for questions on biological and artificial neurons, hidden layers, linear separability and network architectures."
+      },
+      "skeleton": [
+        {
+          "en": "Neural networks are ___.",
+          "zh": "定义。"
+        },
+        {
+          "en": "Like a biological neuron, an artificial neuron ___.",
+          "zh": "相似点：都从很多来源接收输入。"
+        },
+        {
+          "en": "The ___ play the role of ___, and the ___ plays the role of ___.",
+          "zh": "部件逐一对应（突触 ↔ 权重，轴突 ↔ 输出……）。"
+        },
+        {
+          "en": "An activation function is applied to ___ to decide ___.",
+          "zh": "激活函数的作用。"
+        },
+        {
+          "en": "However, the analogy breaks down because ___ and ___.",
+          "zh": "两点类比失效。"
+        },
+        {
+          "en": "Hidden layers matter because ___; for example, ___.",
+          "zh": "隐藏层的意义 + XOR 例子。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Explain the relationship between a biological neuron and an artificial neuron, give two ways in which the analogy breaks down, and explain why hidden layers are important.",
+          "zh": "解释生物神经元和人工神经元之间的关系，给出这个类比失效的两个方面，并解释隐藏层为什么重要。"
+        },
+        "answer": {
+          "en": "Neural networks are a family of models composed of many interacting artificial neurons, which emulate some of the behaviour of biological neurons. A biological neuron receives signals through its dendrites, the signals converge in the cell body, and when enough excitatory input is received, it fires an action potential along its axon. Similarly, an artificial neuron receives input features x1, x2 and so on, and multiplies each one by a weight. The weights play the role of synapses: they decide whether each input is excitatory or inhibitory, and by how much. An activation function is applied to the sum of the weighted inputs to decide the strength of the output, which may be an input for other neurons. However, the analogy breaks down. Biological action potentials fire or don't, but artificial activation functions are not as all-or-nothing, and artificial neural networks require much more power to run. Hidden layers matter because, without at least one hidden layer, a network can only produce a linear decision boundary, so it cannot separate XOR data.",
+          "zh": "大意：人工神经元模仿生物神经元：输入乘权重（像突触），在“细胞体”里加起来，经过激活函数输出（像轴突）；类比在激活方式和耗电上失效；隐藏层让网络能画出非直线的边界。\n得分点：① 定义神经网络；② 部件对应：树突（**dendrites**）把信号带进来、细胞体（**cell body**）汇总 ↔ 加权求和、突触（**synapses**）↔ 权重（**weights**）、是否发放动作电位（**action potential**）↔ 激活函数（**activation function**）、轴突（**axon**）↔ 输出；③ 至少两条类比失效（还可以写：速度快很多、连接数量不同、可塑性、训练方式在生物学上不太可信（**biologically implausible**））；④ 隐藏层：没有隐藏层只能画直线边界，XOR 数据分不开。注意课件说人工激活函数 not as all-or-nothing，别写反。"
+        }
+      }
+    },
+    {
+      "id": "how-an-llm-responds",
+      "title": {
+        "zh": "解释 LLM 怎样生成回答",
+        "en": "Explain how an LLM produces a response"
+      },
+      "whenToUse": {
+        "zh": "题目问 Explain the steps an LLM follows to respond to a prompt（第 7 讲学习目标，at a high level 即可），或单独问分词（**tokenization**）、嵌入（**embedding**）、注意力（**attention**）、温度（**temperature**）的作用；也适用于“为什么同一个问题会得到不同回答”“为什么不能盲目相信 LLM”这类题。",
+        "en": "Use it to explain, at a high level, how an LLM turns a prompt into a response, or the role of tokenization, embeddings, attention and temperature."
+      },
+      "skeleton": [
+        {
+          "en": "An LLM is ___, and it builds its response one token at a time.",
+          "zh": "一句话定义 + 一次生成一个 token。"
+        },
+        {
+          "en": "First, tokenization breaks ___; for example, ___.",
+          "zh": "第 1 步分词 + 例子。"
+        },
+        {
+          "en": "Next, each token is mapped to ___, where ___.",
+          "zh": "第 2 步嵌入：意思相近的 token 靠得近。"
+        },
+        {
+          "en": "Then, attention allows ___; for example, ___.",
+          "zh": "第 3 步注意力 + 例子。"
+        },
+        {
+          "en": "At the output, the LLM gives ___, and the temperature setting ___.",
+          "zh": "第 4 步：下一个 token 的概率分布 + 温度。"
+        },
+        {
+          "en": "Finally, the new token is ___, and ___.",
+          "zh": "第 5 步：接到上下文末尾，整个过程重来。"
+        }
+      ],
+      "example": {
+        "question": {
+          "en": "Explain, at a high level, the steps an LLM follows to respond to a prompt, and explain why the same prompt can produce different answers. Use examples from the lecture.",
+          "zh": "在高层次上解释 LLM 回应一个提示时依次经历的步骤，并解释为什么同一个提示可能得到不同的回答。请使用课件中的例子。"
+        },
+        "answer": {
+          "en": "A Large Language Model (LLM) is a generative model trained on internet-scale text data, and it builds its response one token at a time. First, tokenization breaks the prompt into smaller pieces that still convey meaning; for example, 'daydreamed' becomes day/dream/ed. Next, each token is mapped to a vector of hundreds of numbers in an embedding space, where tokens with similar meanings are close together. Then, attention allows the embedding vector of a token to be modified by other tokens in the context window; for example, 'its' attends to 'plot'. At the output, the LLM gives a probability distribution for the next token: for 'For lunch, let's order', the token 'sandwiches' gets 25.1%. Temperature affects the choice: at a low temperature the top answer is more likely, while at higher temperatures tokens farther down the list are more likely to be picked. Finally, the new token is appended to the end of the context window, and the whole process starts again. Because of temperature, the same prompt can give different answers.",
+          "zh": "大意：分词 → 嵌入 → 注意力 → 下一个 token 的概率分布（温度影响怎么选）→ 把新 token 接到上下文末尾，重复。\n得分点：① 定义 LLM，并点出“一次只生成一个 token”；② 五步按顺序写，每步配课件例子：分词（day/dream/ed）、嵌入（几百个数字组成的向量，意思相近的靠得近）、注意力（“its”关注“plot”）、概率分布（“sandwiches” 25.1%）、追加并重复；③ 温度：低温时更常选概率最高的 token，高温时排在后面的 token 更容易被选中；④ 回答第二问：模型不总是选概率最高的 token，所以同一个提示可能得到不同回答。课件还提醒：商业 LLM 通常会尽力回答，但这并不能阻止它犯错，重要信息要核对。"
+        }
+      }
+    }
+  ],
+  "phrases": [
+    {
+      "group": {
+        "zh": "下定义",
+        "en": "Defining"
+      },
+      "items": [
+        {
+          "en": "**A heuristic is** a numerical score for the 'goodness' of a state from our perspective.",
+          "zh": "**X is …**：最基本的定义句。启发式是从我方角度给状态“好坏”打的数值分数。"
+        },
+        {
+          "en": "**Prompting refers to** describing a task for the machine in natural language.",
+          "zh": "**refers to**：指的是……。提示指用自然语言给机器描述任务。"
+        },
+        {
+          "en": "**A validation set is a part of our dataset that** we do not use for training.",
+          "zh": "**X is a part of … that …**：用 that 从句把定义说完整。"
+        },
+        {
+          "en": "**Overfitting occurs when** a model memorizes random noise in the training data, rather than genuine patterns.",
+          "zh": "**occurs when**：用来定义一种现象或情况。"
+        },
+        {
+          "en": "**In this course, Artificial Intelligence is defined as** a field of study concerned with agents that observe their environment and perform actions.",
+          "zh": "**In this course, X is defined as**：强调这是本课程的定义。"
+        },
+        {
+          "en": "**The term 'foundation model' means** a model that can be applied to many different tasks with little or no additional training.",
+          "zh": "**The term … means**：解释一个术语。基础模型 = 不用（或很少）额外训练就能用于很多任务的模型。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "举例",
+        "en": "Giving examples"
+      },
+      "items": [
+        {
+          "en": "**For example,** 'daydreamed' becomes day/dream/ed after tokenization.",
+          "zh": "**For example,**：最常用的举例开头，后面接完整句子。"
+        },
+        {
+          "en": "**A good example of this is** Target's pregnancy prediction model, which was used to send targeted ads for baby-related products.",
+          "zh": "**A good example of this is**：引出一个完整案例。"
+        },
+        {
+          "en": "Puzzles **such as** Sudoku and Sokoban are well-suited to Symbolic AI.",
+          "zh": "**such as**：在句子中间列举，后面跟名词。"
+        },
+        {
+          "en": "**This is illustrated by** the XOR data, which a network with no hidden layers cannot separate.",
+          "zh": "**This is illustrated by**：……就说明了这一点（更正式的说法）。"
+        },
+        {
+          "en": "**In the lecture's example,** the line y = 8.65 + 0.464x1 had an MSE of 11.92.",
+          "zh": "**In the lecture's example,**：明确告诉老师你用的是课件例子。"
+        },
+        {
+          "en": "**Take COMPAS as an example:** Black defendants who did not reoffend were incorrectly classified as high risk at a rate of 44.9%, compared to 23.5% for White defendants.",
+          "zh": "**Take … as an example:**：以……为例。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "比较与对比",
+        "en": "Comparing and contrasting"
+      },
+      "items": [
+        {
+          "en": "**Both** pure algorithms **and** Symbolic AI solutions are usually fast to execute.",
+          "zh": "**Both … and …**：写相同点。"
+        },
+        {
+          "en": "Symbolic AI needs rules to work, **whereas** Machine Learning needs data.",
+          "zh": "**whereas**：而……（同一句里对比两边，最好用的连接词）。"
+        },
+        {
+          "en": "**Unlike** a pure algorithm, Symbolic AI is given a way to find a solution, not the solution itself.",
+          "zh": "**Unlike X, Y …**：和 X 不同，Y……"
+        },
+        {
+          "en": "Model 2 has a **higher** precision (90%) **than** Model 1 (70%), but a lower recall (60% **compared with** about 93%).",
+          "zh": "**higher … than** / **compared with**：比较两个数字。"
+        },
+        {
+          "en": "Classification predicts a categorical value. **In contrast,** regression predicts a continuous value.",
+          "zh": "**In contrast,**：相比之下（放在第二句句首）。"
+        },
+        {
+          "en": "**The main difference between** a validation set **and** a test set **is that** the validation set is used to choose a model, while the test set is used to report the final accuracy.",
+          "zh": "**The main difference between A and B is that …**：直接点出核心区别。"
+        },
+        {
+          "en": "**Similarly,** an artificial neuron receives input from many sources, like a biological neuron.",
+          "zh": "**Similarly,**：同样地（写相似点）。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "因果关系",
+        "en": "Cause and effect"
+      },
+      "items": [
+        {
+          "en": "**Because** the number of nodes grows exponentially with depth, exhaustive search can take too long for large problems.",
+          "zh": "**Because …,**：因为……（后面不能再加 so）。"
+        },
+        {
+          "en": "Trained models inherit the biases of their data. **As a result,** a biased dataset can produce an unfair model.",
+          "zh": "**As a result,**：结果是……（放在第二句句首）。"
+        },
+        {
+          "en": "Heuristics are only estimates, **so** we lose the guarantees about the reward.",
+          "zh": "**so**：所以（连接两个分句，前面用逗号）。"
+        },
+        {
+          "en": "Adding hidden layers **leads to** more parameters, **which means that** training takes more time and requires more data.",
+          "zh": "**leads to** / **which means that**：导致…… / 这意味着……"
+        },
+        {
+          "en": "The validation accuracy is likely to overreport true performance. **This is because** the validation set was used to choose the model.",
+          "zh": "**This is because …**：这是因为……（解释上一句）。"
+        },
+        {
+          "en": "**Due to** proxy variables, simply removing a sensitive feature is often not enough.",
+          "zh": "**Due to + 名词**：由于……（后面跟名词，不跟完整句子）。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "利弊与权衡",
+        "en": "Advantages, disadvantages and trade-offs"
+      },
+      "items": [
+        {
+          "en": "**One advantage of** gradient descent **is that** it can be used when a model is too complex to be solved exactly.",
+          "zh": "**One advantage of X is that …**：X 的一个优点是……"
+        },
+        {
+          "en": "**The main drawback is that** LLMs are prone to confidently stating falsehoods.",
+          "zh": "**The main drawback is that …**：主要缺点是……"
+        },
+        {
+          "en": "**There is a trade-off between** fairness **and** overall accuracy.",
+          "zh": "**There is a trade-off between A and B**：A 和 B 之间要取舍。"
+        },
+        {
+          "en": "Differential privacy gives some protection against information leakage, **but it comes at some cost to** model performance.",
+          "zh": "**comes at some cost to**：以……为代价（课件原话）。"
+        },
+        {
+          "en": "**On the one hand,** a heuristic lets us stop searching at a fixed depth; **on the other hand,** we lose the guarantees about the reward.",
+          "zh": "**On the one hand … on the other hand …**：一方面……另一方面……"
+        },
+        {
+          "en": "**It is still worth it, because** when terminal states are too far down the tree to find, it is better to use estimates than nothing at all.",
+          "zh": "**It is still worth it, because …**：虽然有代价，但仍然值得。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "谨慎表达（不把话说死）",
+        "en": "Hedging (being careful)"
+      },
+      "items": [
+        {
+          "en": "The validation accuracy **is likely to** overreport the model's true performance.",
+          "zh": "**is likely to**：很可能（不说死）。"
+        },
+        {
+          "en": "ML solutions are **likely correct, but not guaranteed to be correct**.",
+          "zh": "**likely … but not guaranteed**：课件原话，表达“不保证正确”。"
+        },
+        {
+          "en": "**One possible reason for** the bias **is** underrepresentation of specific groups in the training dataset.",
+          "zh": "**One possible reason for X is …**：案例题问 likely reason 时最稳的开头。"
+        },
+        {
+          "en": "Simple removal of sensitive features **is often not enough**.",
+          "zh": "**often**：经常（避免用 always 把话说死）。"
+        },
+        {
+          "en": "**In most cases,** neurons only communicate with the previous layer and the next layer.",
+          "zh": "**In most cases,**：在大多数情况下。"
+        },
+        {
+          "en": "A heuristic **may not always be** accurate, because it does not give a full picture of the game state.",
+          "zh": "**may not always be**：不一定总是……"
+        },
+        {
+          "en": "**Generally,** Symbolic AI has high explainability.",
+          "zh": "**Generally,**：一般来说（课件常用的说法）。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "按顺序写步骤",
+        "en": "Sequencing steps"
+      },
+      "items": [
+        {
+          "en": "**First,** the prompt is broken into tokens.",
+          "zh": "**First,**：第一步。"
+        },
+        {
+          "en": "**Next,** each token is mapped to an embedding vector.",
+          "zh": "**Next,**：接着。"
+        },
+        {
+          "en": "**After that,** attention lets other tokens in the context window modify each embedding.",
+          "zh": "**After that,**：在那之后。"
+        },
+        {
+          "en": "**Finally,** the new token is appended to the end of the context window, and the process starts again.",
+          "zh": "**Finally,**：最后一步。"
+        },
+        {
+          "en": "**This process is repeated until** the parameters are close to correct.",
+          "zh": "**This process is repeated until …**：重复直到……（写循环、迭代）。"
+        },
+        {
+          "en": "**At each step,** gradient descent increases or decreases each parameter by a small amount.",
+          "zh": "**At each step,**：每一步都……"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "引用课程内容",
+        "en": "Referring to the course"
+      },
+      "items": [
+        {
+          "en": "**As the lecture explained,** there is no single right answer to fairness.",
+          "zh": "**As the lecture explained,**：正如课上讲的。"
+        },
+        {
+          "en": "**According to the course definition,** a rational agent is one that acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome.",
+          "zh": "**According to the course definition,**：根据课程定义。"
+        },
+        {
+          "en": "**In Lab 4,** we retrained the model with only 2 images of one class and compared the types of errors it made.",
+          "zh": "**In Lab …,**：引用实验课内容，显示你做过、懂原理。"
+        },
+        {
+          "en": "**The slides give the example of** the Amazon resume-scoring model, which penalized resumes including words like 'women's'.",
+          "zh": "**The slides give the example of …**：课件举了……的例子。"
+        },
+        {
+          "en": "**Using the Big Table of Properties,** LLM prompting fits best when the task is open-ended or labelled data is scarce.",
+          "zh": "**Using the Big Table of Properties,**：用大表来支撑选方法。"
+        },
+        {
+          "en": "In-processing adds a regularizer to the cost function. **This connects to Lecture 5,** where training meant minimizing a cost function.",
+          "zh": "**This connects to Lecture …,**：把不同讲的内容连起来，是高分答案的标志。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "表达观点",
+        "en": "Giving your opinion"
+      },
+      "items": [
+        {
+          "en": "**In my opinion,** the case against training on copyrighted work holds more weight.",
+          "zh": "**In my opinion,**：我认为（后面不要再加 I think）。"
+        },
+        {
+          "en": "**I would choose** Model 1, **because** missing a serious disease is the worst error.",
+          "zh": "**I would choose …, because …**：决策题的标准句。"
+        },
+        {
+          "en": "**I agree that** prompting is easy to use, **but** prompts can be ambiguous.",
+          "zh": "**I agree that …, but …**：部分同意。"
+        },
+        {
+          "en": "**From the point of view of** applicants, individual fairness matters most, because two people with the same qualifications should receive the same decision.",
+          "zh": "**From the point of view of …**：从……的角度（适合写利益相关者）。"
+        },
+        {
+          "en": "**It is reasonable to argue that** Target's model invaded privacy, because it inferred a detail that customers had never given to the company.",
+          "zh": "**It is reasonable to argue that …**：可以合理地认为……（比 I think 更学术）。"
+        },
+        {
+          "en": "**However, I accept that** human creatives also learn from many works without citing them all.",
+          "zh": "**However, I accept that …**：让步，承认对方观点。"
+        }
+      ]
+    },
+    {
+      "group": {
+        "zh": "总结",
+        "en": "Concluding"
+      },
+      "items": [
+        {
+          "en": "**In conclusion,** the most appropriate method for this problem is Machine Learning.",
+          "zh": "**In conclusion,**：总之（长答题最后一句）。"
+        },
+        {
+          "en": "**Overall,** using heuristics is worth the loss of guarantees when the terminal states are too far down the tree to find.",
+          "zh": "**Overall,**：总体来看。"
+        },
+        {
+          "en": "**Therefore,** we should report the final accuracy on the test set, not the validation set.",
+          "zh": "**Therefore,**：因此（得出结论）。"
+        },
+        {
+          "en": "**This shows that** accuracy alone is not enough to compare models.",
+          "zh": "**This shows that …**：这说明……（把例子和观点连起来）。"
+        },
+        {
+          "en": "**To sum up,** there is no single right answer to fairness; the designers must choose what to prioritize.",
+          "zh": "**To sum up,**：总结一下。"
+        }
+      ]
+    }
+  ],
+  "mistakes": [
+    {
+      "wrong": "Although the two models have the same accuracy, but Model 1 has a higher recall.",
+      "right": "Although the two models have the same accuracy, Model 1 has a higher recall.",
+      "zh": "中文“虽然……但是……”成对出现，英文 although 和 but 只能用一个。",
+      "en": "Use either 'although' or 'but', never both."
+    },
+    {
+      "wrong": "Because the training data is biased, so the model is biased too.",
+      "right": "Because the training data is biased, the model is biased too.",
+      "zh": "“因为……所以……”在英文里只能留一个：because 或 so 二选一。也可以写 The training data is biased, so the model is biased too.",
+      "en": "Use 'because' or 'so', not both."
+    },
+    {
+      "wrong": "We use the verification set to choose the best model.",
+      "right": "We use the validation set to choose the best model.",
+      "zh": "“验证集”的课程术语是 **validation set**，不是 verification set；“训练集”是 **training set**，“测试集”是 **test set**。术语写错，得分点就对不上。",
+      "en": "The course term is 'validation set'."
+    },
+    {
+      "wrong": "The correct rate of Model A is 6/7.",
+      "right": "The accuracy of Model A is 6/7 ≈ 86%.",
+      "zh": "“正确率”要写 **accuracy**，“错误率”写 **classification error**（或 **error rate**）。用课件术语，并把分数和百分比都写出来。",
+      "en": "Use the course terms: accuracy and classification error."
+    },
+    {
+      "wrong": "We need more datas to train the model.",
+      "right": "We need more data to train the model.",
+      "zh": "data 和 information 一般当不可数名词用，不加 s；“很多数据”写 a lot of data 或 large amounts of data。",
+      "en": "'Data' and 'information' take no -s."
+    },
+    {
+      "wrong": "LLM can generate text, but it have hallucination.",
+      "right": "An LLM can generate text, but it is prone to hallucination.",
+      "zh": "三个错：① 单数名词要加冠词；LLM 的读音 el-el-em 以元音开头，所以用 an（同理 an ML model，但 a heuristic）；② it 后面不能用 have；③ “有幻觉”不要直译成 have hallucination，课件说法是 prone to hallucination（容易自信地说出错误信息）。",
+      "en": "Add 'an', fix the verb, and use the course phrase 'prone to hallucination'."
+    },
+    {
+      "wrong": "Overfitting is the model memorize the noise.",
+      "right": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns.",
+      "zh": "“过拟合就是模型记住了噪声”直译后，句子缺连接词，动词也没变形。定义一种现象用 **X occurs when …**，最好直接背课件原句。",
+      "en": "Define a situation with 'X occurs when ...'."
+    },
+    {
+      "wrong": "Algorithm is steps to do something.",
+      "right": "An algorithm is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal.",
+      "zh": "两个问题：① 可数名词单数前要加 a / an；② 定义太模糊，丢了关键词 precise（精确）、in order（按顺序）、goal（目标）。定义题请背课件原话，关键词就是得分点。",
+      "en": "Add the article and keep the key words of the course definition."
+    },
+    {
+      "wrong": "Minimax let the computer to choose the best move.",
+      "right": "Minimax lets the computer choose the best move.",
+      "zh": "① 主语是单数，动词要加 s：lets；② let 后面直接跟动词原形，不加 to（let sb do，make sb do；但 allow sb to do）。",
+      "en": "'Let' takes a bare verb, and a singular subject needs -s."
+    },
+    {
+      "wrong": "The recall of Model 1 is more higher than Model 2.",
+      "right": "The recall of Model 1 is higher than that of Model 2.",
+      "zh": "① more 和 -er 不能叠加，“更高”就是 higher；② 比较的对象要对等：是“模型 1 的召回率”比“模型 2 的召回率”，所以写 than that of Model 2（或 than Model 2's）。",
+      "en": "Do not use 'more' with '-er', and compare like with like."
+    },
+    {
+      "wrong": "There have three kinds of AI in this course.",
+      "right": "This course compares three kinds of AI approaches: Symbolic AI, Machine Learning and LLMs (a specific type of ML model).",
+      "zh": "表示“有……”（存在）时用 there is / there are，不是 there have；也可以像改正句那样换成 compare 当动词。内容上也要准确：LLM 本身是一种特定的 ML 模型（Lecture 1 第 54 页），课程把 “LLM 提示”当作第三种用法来比较。",
+      "en": "Use 'there are', not 'there have'."
+    },
+    {
+      "wrong": "The opponent chooses the minimum value, it minimizes our reward.",
+      "right": "The opponent chooses the minimum value, because this minimizes our reward.",
+      "zh": "中文习惯用逗号把两个完整句子连起来，英文不行（叫 comma splice）。改法：加连词（because、so、and），或者用句号分开。",
+      "en": "Two full sentences cannot be joined by a comma alone."
+    },
+    {
+      "wrong": "Neural network have many hide layers.",
+      "right": "A neural network can have many hidden layers.",
+      "zh": "① 单数名词前加 a；② 主谓一致；③ “隐藏层”是 **hidden layer**（hidden 是形容词），不是 hide layer。",
+      "en": "Use 'a', make the verb agree, and write 'hidden layers'."
+    },
+    {
+      "wrong": "A heuristic estimates how good is the state.",
+      "right": "A heuristic estimates how good the state is.",
+      "zh": "句子中间的疑问部分（间接疑问句）要用陈述语序：how good the state is，不是 how good is the state。同理写 explain why the model is biased，不写 why is the model biased。",
+      "en": "Inside a sentence, a question part uses normal word order."
+    },
+    {
+      "wrong": "In 2015, Amazon find that the model penalize women's resumes.",
+      "right": "In 2015, Amazon's model was found to penalize resumes including words like 'women's'.",
+      "zh": "已经发生的案例要用过去时：find → found（被动就是 was found）。注意这里的 to 后面要用动词原形（不定式 to + 动词原形），所以改正句是 was found to penalize，不能写 to penalized；如果改用 that 从句，才写过去时：It was found that the model penalized such resumes。中文动词没有时态变化，写案例题时一定要检查动词。",
+      "en": "Use the past tense for past events (was found), but keep the base form after 'to' (to penalize, not to penalized)."
+    },
+    {
+      "wrong": "The model was trained by biased data, so it is unfair for Group B.",
+      "right": "The model was trained on biased data, so it is unfair to Group B.",
+      "zh": "介词搭配：train on data（在数据上训练）、evaluate on a test set、unfair to sb、biased against sb（对某人有偏见）。by 表示“被谁做”，不表示用什么数据。",
+      "en": "Say 'trained on' data and 'unfair to' a group."
+    },
+    {
+      "wrong": "Because the opponent will minimize our reward.",
+      "right": "We cannot guarantee a win, because the opponent will choose the move that minimizes our reward.",
+      "zh": "只写 Because … 是半句话（sentence fragment），在英文里不算完整句子。回答 why 题时先写结论，再接 because。",
+      "en": "A 'because' clause alone is not a full sentence."
+    },
+    {
+      "wrong": "If we use heuristics, we will loss the guarantee.",
+      "right": "If we use heuristics, we lose the guarantees about the reward.",
+      "zh": "lose 是动词（失去），loss 是名词（损失；游戏里的“输”，课件中 loss = −100）。同类易混：affect（动词，影响）/ effect（名词，效果）。",
+      "en": "'Lose' is a verb; 'loss' is a noun."
+    },
+    {
+      "wrong": "In this answer, I will discuss about the trade-offs of fairness.",
+      "right": "In this answer, I will discuss the trade-offs in fairness.",
+      "zh": "discuss、explain、describe 后面直接跟宾语，不加 about。",
+      "en": "'Discuss', 'explain' and 'describe' take no 'about'."
+    },
+    {
+      "wrong": "The result is depend on the training data.",
+      "right": "The result depends on the training data.",
+      "zh": "受中文“是……的”句式影响，很多同学会多写 is。depend 本身就是动词，前面不要加 is；类似错误还有 is affect、is mean，应写 affects、means。",
+      "en": "'Depend' is already a verb; do not add 'is'."
+    }
+  ],
+  "strategy": [
+    {
+      "zh": "先弄清考试形式：Test 2 在 11 月 10 日，1 小时，在讲课的第二个小时进行（第一个小时照常上课），占总成绩 15%；题型是选择题加长答题，不考编程，也不能用生成式 AI。考试范围以老师在 Quercus / Piazza 上公布的为准，复习时优先 Test 1 之后讲的内容。",
+      "en": "Know the format: Test 2 is on Nov 10, takes place in the second hour of lecture, lasts 1 hour and is worth 15%. It mixes multiple choice and long-answer questions, with no coding and no GenAI. Check the scope on Quercus or Piazza, and focus first on what was taught after Test 1."
+    },
+    {
+      "zh": "时间按分值分：开考先花 1–2 分钟浏览全卷，看每题几分。一道题占全卷多少比例的分，就给它多少比例的时间（例如占 20% 的题，在 60 分钟里给约 12 分钟）。最后留 5 分钟检查。某题超时就先跳过，最后再回来。",
+      "en": "Plan your time by marks: skim the whole test for 1-2 minutes, give each question the same share of time as its share of marks (20% of the marks is about 12 of 60 minutes), and keep 5 minutes to check. If a question takes too long, move on and come back later."
+    },
+    {
+      "zh": "读题三步：① 圈出指令词（define、explain、compare、calculate……），它决定你要写什么；② 圈出题目里的课程术语（如 precision、validation set、heuristic），判断考的是哪个知识点；③ 数一数题目有几个小问，保证每个小问都有对应的句子。",
+      "en": "Read each question in three steps: circle the instruction verb, circle the course terms to find the topic, and count the parts of the question so that every part gets an answer."
+    },
+    {
+      "zh": "选择题技巧：先自己想答案再看选项；读完所有选项再选；用排除法；特别留意 NOT、always、only、guaranteed 这类词——很多课件区别就在这里（例如符号 AI 的解“找到时可证明正确”，机器学习的解只是“可能正确、不保证正确”）。不会的先做记号，最后回来；除非考卷写明答错倒扣分，否则不要留空。",
+      "en": "For multiple choice, think of the answer first, read every option and eliminate wrong ones. Watch words like NOT, always, only and guaranteed. Mark hard questions and come back to them; unless wrong answers lose marks, never leave one blank."
+    },
+    {
+      "zh": "长答题结构：按题目小问的顺序写；第一句直接回答问题（用题目里的词）；然后“定义 → 解释（because）→ 课件例子或数字 → 结论”。一句话只讲一个意思，每句 15–20 个词就够。没把握时就用本页的答题模板。",
+      "en": "For long answers, follow the order of the question. Answer directly in the first sentence, then give the definition, the explanation, a course example or number, and a conclusion. Keep one idea per sentence."
+    },
+    {
+      "zh": "计算题照格式写：公式 → 代入 → 结果（分数和百分比都写，如 46/60 ≈ 77%）→ 一句解释。注意课件约定：误差 error = y − t（预测减目标）；minimax 中 ▲ 取最大、▼ 取最小；奖励赢 +100、输 −100、平局 0。TP/FP/FN/TN 表先看行列标题再抄数：Lecture 6 是行 = PREDICTED（预测），Lab 5 的模型卡却是行 = ACTUAL（真实的 qualified / unqualified），两张表的 FP 和 FN 位置正好相反。",
+      "en": "For calculations, write the formula, the substitution, the result (fraction and percentage) and one sentence of meaning. Keep the course conventions: error = y − t, ▲ maximize and ▼ minimize, win +100, loss −100, draw 0. For TP/FP/FN/TN tables, read the row and column labels first: Lecture 6 puts PREDICTED in the rows, but Lab 5's model cards put ACTUAL (qualified/unqualified) in the rows."
+    },
+    {
+      "zh": "用课件原词，不要自己翻译：validation set（不是 verification set）、terminal state、decision boundary、hidden layer、cost function。定义题直接写背好的课件原话，原话里的关键词往往就是得分点。",
+      "en": "Use the exact course terms and definitions; the key words of a slide definition are often the scoring points."
+    },
+    {
+      "zh": "英文写简单句最安全：主语 + 动词 + 宾语。想不起某个词，就用简单的话描述它，例如忘了 underrepresentation，可以写 there were fewer examples of this group in the training data。宁可简单正确，也不要复杂出错。",
+      "en": "Write simple sentences: subject, verb, object. If you forget a word, describe it with simple words, for example 'there were fewer examples of this group in the training data'."
+    },
+    {
+      "zh": "卡住也不要空着：至少写出相关定义和一个课件例子，常常能拿到部分分。时间快到时，把剩下的意思用要点（bullet points）列出来，也比空白强。",
+      "en": "Never leave a long answer blank: write the definition and one course example for partial marks. If time is short, list your remaining points as bullet points."
+    },
+    {
+      "zh": "最后 5 分钟检查清单：动词三单加 -s（the model learns）；a / an / the；名词复数；案例题用过去时；百分号和单位；每个小问都答了；没有“虽然……但是”“因为……所以”连用。",
+      "en": "In the last 5 minutes, check -s on verbs, articles, plurals, the past tense in case studies, % signs, that every part is answered, and that you never wrote 'although ... but' or 'because ... so'."
+    },
+    {
+      "zh": "考前练习方法：每天限时写 1–2 道长答题（每题 8–10 分钟），写完对照参考答案找漏掉的得分点；点喇叭跟读模板句和课件定义，读到能默写为止。考试不允许用生成式 AI，所以练习时也要自己写，不要让 AI 代写。",
+      "en": "Before the test, write 1-2 timed long answers a day (8-10 minutes each) and compare them with the model answers. Read the frames and definitions aloud until you can write them from memory. Practise without AI help, because GenAI is not allowed in tests."
+    },
+    {
+      "zh": "期末考试 2 小时、覆盖全部课程内容、占 40%；而且期末必须拿到至少 40% 才能通过这门课，否则总评最高只有 47%。所以每一讲的定义、核心例子和计算都要会，不要只押某一讲。",
+      "en": "The final exam is 2 hours long, covers all course material and is worth 40%. You must get at least 40% on it to pass the course (otherwise your course mark is at most 47%), so revise every lecture."
+    }
+  ]
+}

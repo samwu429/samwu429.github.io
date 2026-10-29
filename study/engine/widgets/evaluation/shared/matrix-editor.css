@@ -1,0 +1,244 @@
+/*
+ * Editable confusion matrix (PREDICTED rows x ACTUAL columns) shared by the evaluation widgets.
+ * 评估类组件共用的可编辑四格表（行 = 预测，列 = 实际）。
+ */
+.eval-matrix {
+  min-width: 0;
+}
+
+/* The grid keeps a minimum width and scrolls inside its own box on very narrow screens. */
+/* 表格保留最小宽度，屏幕过窄时在自身容器内横向滚动。 */
+.eval-matrix__scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.eval-matrix__table {
+  width: 100%;
+  min-width: 268px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: var(--space-1);
+}
+
+.eval-matrix__col-head {
+  width: 26%;
+}
+
+.eval-matrix__col-cell {
+  width: 28%;
+}
+
+.eval-matrix__col-total {
+  width: 18%;
+}
+
+.eval-matrix__caption {
+  caption-side: top;
+  padding: 0 var(--space-1) var(--space-1);
+  text-align: left;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: var(--color-ink-2);
+}
+
+.eval-matrix__caption > * {
+  margin-right: var(--space-2);
+}
+
+.eval-matrix__caption-zh {
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.eval-matrix__head {
+  padding: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.eval-matrix__head--col {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.eval-matrix__head--row {
+  text-align: right;
+  vertical-align: middle;
+}
+
+.eval-matrix__head-en,
+.eval-matrix__head-zh {
+  display: block;
+}
+
+.eval-matrix__head-zh {
+  margin-top: 2px;
+  color: var(--color-ink-2);
+  font-weight: 700;
+}
+
+.eval-matrix__head--total {
+  color: var(--color-ink-3);
+}
+
+.eval-matrix__cell {
+  padding: var(--space-2) var(--space-1);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  vertical-align: top;
+  transition: opacity 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.eval-matrix__cell.is-correct {
+  background: var(--color-success-soft);
+}
+
+.eval-matrix__cell.is-error {
+  background: var(--color-danger-soft);
+}
+
+.eval-matrix__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-1);
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.eval-matrix__abbr {
+  font-size: var(--text-lg);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.eval-matrix__name {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-ink-2);
+}
+
+.eval-matrix__zh {
+  font-size: var(--text-xs);
+  color: var(--color-ink-2);
+}
+
+.eval-matrix__input {
+  width: 100%;
+  max-width: 8ch;
+  min-height: 38px;
+  padding: var(--space-1);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-md);
+  font-weight: 800;
+  text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* Spinner arrows steal width on narrow cells; arrow keys still step the value. */
+/* 微调箭头会挤占窄格子的宽度；键盘上下键仍可增减数值。 */
+.eval-matrix__input::-webkit-inner-spin-button,
+.eval-matrix__input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.eval-matrix__input:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.eval-matrix__total {
+  padding: var(--space-1);
+  border: 1px dashed var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  vertical-align: middle;
+  transition: opacity 160ms ease, box-shadow 160ms ease;
+}
+
+.eval-matrix__total-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.eval-matrix__total-formula {
+  display: block;
+  font-size: var(--text-xs);
+  line-height: 1.2;
+  color: var(--color-ink-3);
+  overflow-wrap: anywhere;
+}
+
+.eval-matrix__total--all {
+  border-style: solid;
+  border-color: var(--color-line-soft);
+  background: var(--color-paper-2);
+}
+
+/* Highlight mode: cells a metric does not use fade, numerator cells glow, denominator cells get a ring. */
+/* 高亮模式：未用到的格子变淡，分子格高亮填充，分母格加一圈描边。 */
+.eval-matrix.is-highlighting .eval-matrix__cell,
+.eval-matrix.is-highlighting .eval-matrix__total {
+  opacity: 0.4;
+}
+
+.eval-matrix.is-highlighting .is-numerator,
+.eval-matrix.is-highlighting .is-denominator {
+  opacity: 1;
+}
+
+.eval-matrix .is-denominator {
+  box-shadow: inset 0 0 0 3px var(--color-signal);
+}
+
+.eval-matrix .eval-matrix__cell.is-numerator {
+  background: var(--color-highlight-soft);
+  box-shadow: inset 0 0 0 3px var(--color-signal), var(--shadow-hard-sm);
+}
+
+.eval-matrix--compact .eval-matrix__table {
+  min-width: 236px;
+  border-spacing: 3px;
+}
+
+.eval-matrix--compact .eval-matrix__head {
+  font-size: calc(var(--text-xs) * 0.92);
+}
+
+.eval-matrix--compact .eval-matrix__abbr {
+  font-size: var(--text-md);
+}
+
+/* Inputs keep 16px text: iOS Safari zooms the page into any smaller field that gets focus.
+   Width comes from tighter padding instead.
+   输入框保持 16px 字号：iOS Safari 会在聚焦更小字号的输入框时放大页面；改为收紧内边距来腾出宽度。 */
+.eval-matrix--compact .eval-matrix__cell {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.eval-matrix--compact .eval-matrix__input {
+  min-height: 34px;
+  padding-right: 2px;
+  padding-left: 2px;
+  font-size: var(--text-md);
+}
+
+@media (max-width: 420px) {
+  .eval-matrix__head,
+  .eval-matrix__name {
+    font-size: calc(var(--text-xs) * 0.92);
+  }
+}

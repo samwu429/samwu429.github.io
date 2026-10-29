@@ -1,0 +1,59 @@
+/*
+ * Unit filter chips shared by the glossary and flashcards views. Chips wrap onto new lines
+ * so the row never widens the page on narrow screens.
+ * 术语表与闪卡共用的单元筛选标签；窄屏时自动换行，不会撑宽页面。
+ */
+.unit-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.unit-filter__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px var(--space-2) 4px var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-hard-sm);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.unit-filter__chip:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.unit-filter__chip:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.unit-filter__chip[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.unit-filter__count {
+  min-width: 1.75em;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.unit-filter__chip[aria-pressed="true"] .unit-filter__count {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}

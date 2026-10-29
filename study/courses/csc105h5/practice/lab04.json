@@ -1,0 +1,437 @@
+{
+  "lessonId": "lab04",
+  "questions": [
+    {
+      "id": "lab04-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-supervised-learning",
+      "prompt": {
+        "en": "After training, you use Model A to predict the gesture in a new photo whose correct answer you do not know. Which step of the machine learning pipeline is this?",
+        "zh": "训练完成后，你用 Model A 预测一张新照片里的手势，而你并不知道它的正确答案。这属于机器学习流程的哪一步？"
+      },
+      "options": [
+        {
+          "en": "Data Preparation",
+          "zh": "数据准备"
+        },
+        {
+          "en": "Model Training",
+          "zh": "模型训练"
+        },
+        {
+          "en": "Model Evaluation",
+          "zh": "模型评估"
+        },
+        {
+          "en": "Inference/Deployment",
+          "zh": "推理/部署"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "真正拿训练好的模型来用、给答案未知的新照片做预测，属于第 4 步 Inference/Deployment（第 3 页：让模型对新数据做预测，就叫 inference）。Data Preparation 是收集图片；Model Training 是点 Train Model；Model Evaluation 也要让模型预测，但目的是在知道正确答案的测试图上数对错、算准确率。这里答案未知，也不是在给模型打分，所以不是评估。",
+        "en": "Using the trained model on new data whose answer is unknown is the Inference/Deployment step. Evaluation also makes predictions, but on test data with known answers, so that we can count the correct ones."
+      }
+    },
+    {
+      "id": "lab04-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-lab-steps",
+      "prompt": {
+        "en": "What happens when you click Train Model in Teachable Machine?",
+        "zh": "在 Teachable Machine 里点 Train Model 会发生什么？"
+      },
+      "options": [
+        {
+          "en": "It downloads a ready-made model that already knows every hand gesture",
+          "zh": "下载一个已经认识所有手势的现成模型"
+        },
+        {
+          "en": "It learns from the labelled example images to build an image classifier for Class 1 and Class 2",
+          "zh": "从带标签的示例图片中学习，建立一个区分 Class 1 和 Class 2 的图像分类器"
+        },
+        {
+          "en": "It tests the model on your friends' hands and reports the accuracy",
+          "zh": "在朋友的手上测试模型，并报告准确率"
+        },
+        {
+          "en": "It sorts the uploaded images into Class 1 and Class 2 by itself",
+          "zh": "自己把上传的图片分到 Class 1 和 Class 2"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "第 14、19 页：Train Model 训练一个图像分类器，给它一张新图，它预测属于 Class 1（Scissors）还是 Class 2（Paper）。它是从你放进各个 Class 的图片（带标签的训练数据）里学的。第一项错：模型只学你给的两类。第三项错：测试朋友的手是 Part 2，要你自己记对错、算准确率。第四项错：图片放进哪个 Class 是你决定的（这就是贴标签），不是模型自己分。",
+        "en": "Train Model trains an image classifier from the images you put in each class. Testing and labelling are done by you, not by the Train Model button."
+      }
+    },
+    {
+      "id": "lab04-q03",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s03-supervised-learning",
+      "prompt": {
+        "en": "Which of these prediction tasks is a regression task, not a classification task?",
+        "zh": "下面哪个预测任务是回归任务，而不是分类任务？"
+      },
+      "options": [
+        {
+          "en": "Predicting whether a hand image shows SCISSORS or PAPER",
+          "zh": "预测一张手的图片是剪刀还是布"
+        },
+        {
+          "en": "Predicting the hair colour of a person in a photo",
+          "zh": "预测照片里的人是什么发色"
+        },
+        {
+          "en": "Predicting a person's height in cm from a photo",
+          "zh": "根据照片预测一个人的身高（cm）"
+        },
+        {
+          "en": "Predicting whether a photo contains a dog",
+          "zh": "预测一张照片里有没有狗"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "第 5 页：目标值是连续型（continuous）就是回归（regression），类别型（categorical）就是分类（classification）。身高（cm）可以取小数，是 Lecture 4 举的连续型例子，所以第三项是回归。第一项（剪刀 / 布）和第四项（有狗 / 没狗）的答案是类别，是分类。第二项也是分类：头发颜色是 Lecture 4 举的类别型例子。四个选项的输入都是照片，所以输入不决定任务类型，要看目标值。",
+        "en": "Height in cm is continuous, so predicting it is regression. SCISSORS or PAPER, hair colour, and dog or no dog are categorical, so they are classification. Every option uses a photo as input, so the input does not decide the task type."
+      }
+    },
+    {
+      "id": "lab04-q04",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s03-supervised-learning",
+      "prompt": {
+        "en": "In Lab 4, the images placed under Class 1 and Class 2 form a labelled training dataset, because the correct gesture is known for every image.",
+        "zh": "在 Lab 4 里，放进 Class 1 和 Class 2 的图片构成一个带标签的训练数据集，因为每张图的正确手势都是已知的。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对。带标签的训练数据集（labelled training dataset）就是每条数据的目标值都已知。图放进 Class 1 就等于标成 SCISSORS，放进 Class 2 就等于标成 PAPER，所以每张图的答案都已知。",
+        "en": "True. Putting an image in a class gives it a label, so the target value is known for every training image."
+      }
+    },
+    {
+      "id": "lab04-q05",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s04-accuracy-testing",
+      "prompt": {
+        "en": "In Part 3, you combine your Model B results with 2 peers from your group. Together, your 3 models made 24 predictions, and 18 were correct. What is the combined accuracy, as a percentage?",
+        "zh": "Part 3 里，你和同组 2 位同学把 Model B 的结果合起来。你们 3 个模型一共做了 24 次预测，其中 18 次正确。合起来的准确率是多少（百分比）？"
+      },
+      "answer": 75,
+      "tolerance": 0.5,
+      "unit": "%",
+      "explain": {
+        "zh": "24 次预测 = 3 个人 × 每人 8 张测试图。accuracy = 正确预测数 / 预测总数 = 18 / 24 = 0.75 = 75%。常见错误：写成 18%（把张数当成百分比），或写成 25%（那是错误率：6 次错 / 24 = 25%）。",
+        "en": "accuracy = 18/24 = 0.75 = 75% (3 people x 8 images = 24 predictions)"
+      }
+    },
+    {
+      "id": "lab04-q06",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s04-accuracy-testing",
+      "prompt": {
+        "en": "Model B is tested on the same 8 images and is correct on only 5 of them. What is Model B's classification error (error rate), as a percentage?",
+        "zh": "Model B 用同样的 8 张图测试，只对了 5 张。Model B 的分类错误率（error rate）是多少（百分比）？"
+      },
+      "answer": 37.5,
+      "tolerance": 0.5,
+      "unit": "%",
+      "explain": {
+        "zh": "先算 accuracy = 5 / 8 = 0.625 = 62.5%；再算 classification error = 1 − 0.625 = 0.375 = 37.5%。也可以直接数错的：3 张错 / 8 张 = 37.5%。别把 62.5%（准确率）当成答案。写 37.5% 最准确；像 Lecture 6 那样四舍五入写 ≈ 38% 也算对。",
+        "en": "accuracy = 5/8 = 62.5%, so classification error = 1 − 0.625 = 0.375 = 37.5%."
+      }
+    },
+    {
+      "id": "lab04-q07",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s04-accuracy-testing",
+      "prompt": {
+        "en": "Why did the lab test Model A on hands it was not trained on?",
+        "zh": "为什么这个 lab 要用 Model A 没训练过的手来测试它？"
+      },
+      "options": [
+        {
+          "en": "To make the training run faster",
+          "zh": "让训练跑得更快"
+        },
+        {
+          "en": "To see how well the model works on new data it has not seen",
+          "zh": "看看模型在没见过的新数据上表现如何"
+        },
+        {
+          "en": "Because the Preview panel cannot show training images",
+          "zh": "因为 Preview 面板不能显示训练图片"
+        },
+        {
+          "en": "To add more images to the training set",
+          "zh": "给训练集增加更多图片"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "我们关心模型遇到新数据时的表现（能不能泛化，generalize）。用训练图测会偏高，因为模型见过它们。第一项错：测试不影响训练速度。第三项错：Preview 可以上传任何图，包括训练图；问题不在能不能显示，而在于用训练图测会把成绩算高。第四项错：测试图不会加进训练集；加进去就不能再当测试数据了（Lecture 6：test set 不用于训练）。",
+        "en": "Testing on unseen hands shows how well the model generalizes. Training images would over-report performance, and test data must not be used for training."
+      }
+    },
+    {
+      "id": "lab04-q08",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-lab-steps",
+      "prompt": {
+        "en": "In Part 3, a student is placed in the majority paper group. What do they do before retraining?",
+        "zh": "Part 3 中，某同学被分到 majority paper 组。重新训练之前，他要做什么？"
+      },
+      "options": [
+        {
+          "en": "Delete all but 2 of their SCISSORS images",
+          "zh": "把 SCISSORS 图片删到只剩 2 张"
+        },
+        {
+          "en": "Delete all but 2 of their PAPER images",
+          "zh": "把 PAPER 图片删到只剩 2 张"
+        },
+        {
+          "en": "Delete all the images in the 03-test folder",
+          "zh": "删掉 03-test 文件夹里的所有图片"
+        },
+        {
+          "en": "Add 20 SPOCK images as a third class",
+          "zh": "加 20 张 SPOCK 图片作为第三类"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "第 24 页：Majority paper group: delete all but 2 of your SCISSORS images, keeping your ~20 PAPER images。“majority paper”是说留下的大多数是 PAPER，所以删的是 SCISSORS。第二项是 majority scissors 组的做法；第三、四项课件都没有要求。",
+        "en": "The majority paper group keeps about 20 PAPER images and deletes all but 2 SCISSORS images."
+      }
+    },
+    {
+      "id": "lab04-q09",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s05-majority-class-errors",
+      "prompt": {
+        "en": "A model is trained with about 20 SCISSORS images but only 2 PAPER images. Which mistake is it most likely to make?",
+        "zh": "一个模型用约 20 张 SCISSORS 图、只有 2 张 PAPER 图训练。它最可能犯哪种错？"
+      },
+      "options": [
+        {
+          "en": "Predicting SCISSORS for a PAPER image",
+          "zh": "把 PAPER 图认成 SCISSORS"
+        },
+        {
+          "en": "Predicting PAPER for a SCISSORS image",
+          "zh": "把 SCISSORS 图认成 PAPER"
+        },
+        {
+          "en": "Refusing to make a prediction for PAPER images",
+          "zh": "对 PAPER 图拒绝做预测"
+        },
+        {
+          "en": "Predicting a third class that it was never trained on",
+          "zh": "预测出一个从没训练过的第三类"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "SCISSORS 是多数类，模型更倾向猜 SCISSORS；PAPER 只有 2 张，模型没学好布的样子，所以常把布认成剪刀。第二项是 majority paper 组的典型错误。第三、四项不可能：模型总会在已知的两类里选一个。",
+        "en": "SCISSORS is the majority class, so the model leans toward SCISSORS and often misclassifies PAPER images as SCISSORS."
+      }
+    },
+    {
+      "id": "lab04-q10",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s05-majority-class-errors",
+      "prompt": {
+        "en": "Model B was trained after one gesture was reduced to only 2 images. Select ALL statements that are reasonable conclusions from Part 3 of the lab.",
+        "zh": "Model B 是在把一种手势删到只剩 2 张后训练的。选出所有从 Part 3 能合理得出的结论。"
+      },
+      "options": [
+        {
+          "en": "Model B's errors tend to fall on the class that has only 2 training images",
+          "zh": "Model B 的错误往往落在只有 2 张训练图的那一类上"
+        },
+        {
+          "en": "Two models can have the same accuracy but make different types of errors",
+          "zh": "两个模型的准确率可以相同，但错误类型不同"
+        },
+        {
+          "en": "Accuracy alone tells us which class a model gets wrong",
+          "zh": "只看准确率，就能知道模型错在哪一类"
+        },
+        {
+          "en": "Underrepresentation of a class or group in the training data can make a model biased",
+          "zh": "某个类别或群体在训练数据中代表性不足，会让模型产生偏见"
+        },
+        {
+          "en": "Deleting training images always makes a model more accurate",
+          "zh": "删除训练图片总会让模型更准确"
+        }
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "explain": {
+        "zh": "对的：A，少数类学得不好，错误集中在它身上；B，Lecture 6 第 29 页的两个模型准确率都是 46/60 ≈ 77%，但一个多 FP、一个多 FN；D，Lecture 6 把 underrepresentation 列为偏见原因之一。错的：C，准确率只是一个总比例，看不出错在哪一类；E，删掉训练数据通常让模型更差，Model B 正是例子。",
+        "en": "A, B and D are correct. Accuracy is one overall number and hides the type of error, and removing training data usually makes a model worse, not better."
+      }
+    },
+    {
+      "id": "lab04-q11",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s02-lab-steps",
+      "prompt": {
+        "en": "In Part 3, the handout says to test Model B the same way you tested Model A (same friends or files). Why?",
+        "zh": "Part 3 里，讲义要求用测试 Model A 的同样方式（同样的朋友或文件）来测试 Model B。为什么？"
+      },
+      "options": [
+        {
+          "en": "So that Model B can also learn from the test images",
+          "zh": "让 Model B 也能从测试图里学习"
+        },
+        {
+          "en": "Because the friends' hands are part of Model B's training set",
+          "zh": "因为朋友的手是 Model B 训练集的一部分"
+        },
+        {
+          "en": "So that only the training data changes, and the results of Model A and Model B can be compared fairly",
+          "zh": "这样变的只有训练数据，Model A 和 Model B 的结果才能公平比较"
+        },
+        {
+          "en": "Because accuracy cannot be computed on new images",
+          "zh": "因为在新图上算不出准确率"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "第 24 页：Test it the same way you tested Model A (same friends or files)。测试条件不变，两个模型的差别就只来自训练数据，比较才公平（课件只给了做法，这是做法背后的道理）。第一项错：测试时模型不学习，测试数据也不能拿去训练（Lecture 6：test set 不用于训练）。第二项错：朋友的手从没放进 Class 1 / Class 2，它们是测试数据，不是训练数据。第四项错：准确率正是在新图上算的（第 22 页）。",
+        "en": "Keeping the test the same means the only difference between Model A and Model B is the training data, so their results can be compared fairly. Test data is never used for training."
+      }
+    },
+    {
+      "id": "lab04-q12",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s03-supervised-learning",
+      "prompt": {
+        "en": "In Lab 4, what is the target feature that the model learns to predict?",
+        "zh": "在 Lab 4 里，模型要学着预测的目标特征（target feature）是什么？"
+      },
+      "options": [
+        {
+          "en": "The number of images in each class",
+          "zh": "每一类有多少张图"
+        },
+        {
+          "en": "The pixel values of the image",
+          "zh": "图片的像素值"
+        },
+        {
+          "en": "The percentage shown in the Preview panel",
+          "zh": "Preview 面板里显示的百分比"
+        },
+        {
+          "en": "The gesture in the image: SCISSORS or PAPER",
+          "zh": "图片里的手势：SCISSORS 还是 PAPER"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "第 4 页：target feature 是我们想预测的那个特征，这里就是手势。像素值是输入，不是要预测的答案；图片数量只是训练数据的多少；Preview 里的百分比是模型的把握（confidence），是输出，不是目标特征。",
+        "en": "The target feature is the value we want to predict: the gesture (SCISSORS or PAPER). Pixel values are the input, and the Preview percentage is the model's confidence."
+      }
+    },
+    {
+      "id": "lab04-q13",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s06-out-of-distribution",
+      "prompt": {
+        "en": "What is an out-of-distribution input? Use the SPOCK hand from Lab 4 as an example.",
+        "zh": "什么是分布外输入？用 Lab 4 的 SPOCK 手势举例说明。"
+      },
+      "modelAnswer": {
+        "en": "An out-of-distribution input is very different from the data a model was trained on. In Lab 4, the model was trained only on SCISSORS and PAPER, so the SPOCK hand is out of distribution. The model still has to predict SCISSORS or PAPER, so its answer is not meaningful, even when its confidence is high.",
+        "zh": "分布外输入：和训练数据差别很大、训练时没见过的输入。Lab 4 的模型只学过剪刀和布，SPOCK 不在其中；模型仍然只能在两类里选，所以它的预测没有意义，即使把握度很高。"
+      },
+      "points": [
+        {
+          "en": "Defines it: an input very different from the training data, never seen in training",
+          "zh": "定义：和训练数据差别很大，训练时没见过"
+        },
+        {
+          "en": "Applies it: the model was trained only on SCISSORS and PAPER, not SPOCK",
+          "zh": "应用：模型只训练过剪刀和布，没有 SPOCK"
+        },
+        {
+          "en": "The model must still choose one of its known classes",
+          "zh": "模型仍然必须选一个已知类别"
+        },
+        {
+          "en": "High confidence does not mean the prediction is correct or meaningful",
+          "zh": "把握度高不代表预测正确或有意义"
+        }
+      ],
+      "explain": {
+        "zh": "按这四个得分点写。别写成“模型坏了”：在剪刀 / 布的范围内它可能很好；问题在于输入超出了训练数据的范围。"
+      }
+    },
+    {
+      "id": "lab04-q14",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s07-model-answers",
+      "prompt": {
+        "en": "Lab 4 was called Evaluating the Role of Data in Teachable Machine. Using Model A, Model B and the SPOCK hand, explain what the lab shows about the role of data in machine learning.",
+        "zh": "Lab 4 的标题是 Evaluating the Role of Data in Teachable Machine。结合 Model A、Model B 和 SPOCK 手势，说明这个 lab 揭示了数据在机器学习中的什么作用。"
+      },
+      "modelAnswer": {
+        "en": "In Lab 4, we trained an image classifier in Teachable Machine with about 20 labelled images each of SCISSORS and PAPER (Model A). We tested it on hands it was not trained on and computed its accuracy as the number of correct predictions divided by the total number of predictions. Testing on new data shows how well the model generalizes. Next, we kept only 2 images of one gesture and retrained (Model B). Model B tends to predict the majority class, so most of its errors are on the underrepresented class. Two models can have similar accuracy but make different types of errors, so accuracy alone is not enough. Finally, the SPOCK hand was out of distribution: the model had never seen it, but it still had to choose SCISSORS or PAPER, sometimes with high confidence. Overall, a model learns only from its training data, so it inherits the gaps and biases of that data.",
+        "zh": "结构：Model A（训练 + 用新手测试 + 准确率公式 + 泛化）→ Model B（只剩 2 张 → 偏向多数类 → 错误集中在少数类 → 准确率看不出错误类型）→ SPOCK（分布外 → 只能在两类里选 → 把握度高也没意义）→ 总结（模型只从训练数据学，会继承数据的缺口和偏见）。"
+      },
+      "points": [
+        {
+          "en": "Model A: trained on labelled images of each class and tested on hands it was not trained on",
+          "zh": "Model A：用每类带标签的图训练，用没训练过的手测试"
+        },
+        {
+          "en": "Accuracy = correct predictions / total predictions; testing on new data shows generalization",
+          "zh": "准确率 = 正确数 / 总数；用新数据测试才能看出泛化能力"
+        },
+        {
+          "en": "Model B: with only 2 images of one class, the model favours the majority class and the underrepresented class gets most errors",
+          "zh": "Model B：一类只剩 2 张，模型偏向多数类，少数类错得最多"
+        },
+        {
+          "en": "Same accuracy can hide different types of errors",
+          "zh": "准确率相同也可能错误类型不同"
+        },
+        {
+          "en": "SPOCK is out of distribution: the model must still pick a known class, and its confidence is not reliable",
+          "zh": "SPOCK 是分布外输入：模型仍必须选已知类别，把握度不可靠"
+        },
+        {
+          "en": "Conclusion: a model inherits the limits and biases of its training data",
+          "zh": "结论：模型会继承训练数据的局限和偏见"
+        }
+      ],
+      "explain": {
+        "zh": "长答题按“三个实验 + 一个结论”写，每个实验都要说清“做了什么、看到什么、说明什么”。可以加一句 Lecture 1 原话：Trained models inherit the biases of the data they were trained on。"
+      }
+    }
+  ]
+}

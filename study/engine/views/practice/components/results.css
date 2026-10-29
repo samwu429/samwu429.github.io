@@ -1,0 +1,197 @@
+/*
+ * Score board, per-unit table and review list shared by the session summary and the mock-exam report.
+ * 练习总结与模拟考成绩单共用的总分板、单元得分表与回看列表。
+ */
+.practice-results__score {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.practice-results__score-label {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.practice-results__score-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.practice-results__score-value {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 10vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.practice-results__score-total {
+  color: var(--color-ink-2);
+  font-size: var(--text-xl);
+  font-weight: 800;
+}
+
+.practice-results__score-percent {
+  margin-left: auto;
+  padding: calc(var(--space-1) / 2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-highlight-soft);
+  box-shadow: var(--shadow-hard-sm);
+  font-size: var(--text-lg);
+  font-weight: 900;
+}
+
+.practice-results__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr));
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.practice-results__stat {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.practice-results__stat dt {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.practice-results__stat dd {
+  margin: 0;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.practice-results__table th[scope="row"] {
+  white-space: normal;
+  min-width: 9rem;
+  background: var(--color-panel);
+}
+
+.practice-results__table td {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.practice-results__unit-kicker {
+  display: block;
+  font-weight: 900;
+}
+
+.practice-results__unit-title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-ink-2);
+}
+
+.practice-results__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 120px;
+}
+
+.practice-results__bar-track {
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+}
+
+.practice-results__bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.practice-results__bar-fill.is-mid {
+  background: var(--color-warn);
+}
+
+.practice-results__bar-fill.is-low {
+  background: var(--color-danger);
+}
+
+.practice-results__bar-text {
+  min-width: 3em;
+  font-weight: 800;
+  text-align: right;
+}
+
+.practice-results__list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.practice-results__item {
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line-soft);
+  border-left-width: 5px;
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.practice-results__item.is-wrong {
+  border-left-color: var(--color-danger);
+}
+
+.practice-results__item.is-skipped {
+  border-left-color: var(--color-warn);
+}
+
+.practice-results__item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.practice-results__item-number {
+  color: var(--color-ink);
+}
+
+.practice-results__item-prompt {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.practice-results__item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.practice-results__lesson {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}

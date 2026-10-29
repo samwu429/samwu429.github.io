@@ -1,0 +1,440 @@
+/*
+ * Cheat sheet page and its print layout (one column, no controls, monochrome, Chinese never blurred).
+ * 考前速记页及其打印版式（单栏、去掉控件、黑白、中文不模糊）。
+ */
+.cheatsheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.cheatsheet .page-header {
+  margin-bottom: 0;
+}
+
+.cheatsheet__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3) var(--space-5);
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.cheatsheet__filter {
+  flex: 1 1 260px;
+  min-width: 0;
+  max-width: 460px;
+}
+
+.cheatsheet__select {
+  font-weight: 700;
+}
+
+.cheatsheet__toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.cheatsheet__section {
+  min-width: 0;
+}
+
+.cheatsheet .section-heading {
+  margin-top: var(--space-4);
+}
+
+.cheatsheet__heading:focus-visible {
+  border-radius: var(--radius-sm);
+}
+
+.cheatsheet__section-note {
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+.cheatsheet__none {
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+/* Shared English-first text with a Chinese gloss. 英文在前、中文释义在后的共用文本。 */
+.cheatsheet__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cheatsheet__en {
+  margin: 0;
+  font-weight: 600;
+}
+
+.cheatsheet__zh {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+/* Unit cards 单元卡片 */
+.cheatsheet__units {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.cheatsheet__unit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.cheatsheet__unit-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px dashed var(--color-line-soft);
+}
+
+.cheatsheet__unit-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cheatsheet__unit-label {
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cheatsheet__unit-title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.cheatsheet__unit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.cheatsheet__points {
+  margin: 0;
+  padding-left: 1.6em;
+}
+
+.cheatsheet__point {
+  margin-bottom: var(--space-3);
+  padding-left: var(--space-1);
+  break-inside: avoid;
+}
+
+.cheatsheet__point::marker {
+  color: var(--color-accent-strong);
+  font-weight: 900;
+}
+
+.cheatsheet__point .cheatsheet__en {
+  font-weight: 500;
+}
+
+@media (min-width: 960px) {
+  .cheatsheet__points {
+    columns: 2;
+    column-gap: var(--space-7);
+  }
+}
+
+.cheatsheet__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.cheatsheet__group-title {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Formulas 公式 */
+.cheatsheet__formulas,
+.cheatsheet__sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cheatsheet__formula {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  break-inside: avoid;
+}
+
+.cheatsheet__sheet .cheatsheet__formula {
+  border: 2px solid var(--color-line);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.cheatsheet__expr {
+  max-width: 100%;
+  padding: var(--space-2) var(--space-3);
+  overflow-x: auto;
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.cheatsheet__formula-text {
+  font-size: var(--text-sm);
+}
+
+.cheatsheet__formula-tag {
+  align-self: flex-start;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.cheatsheet__formula-tag:hover {
+  background: var(--color-signal-soft);
+}
+
+/* Must-know term chips 必会术语 */
+.cheatsheet__terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cheatsheet__term {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-2);
+  max-width: 100%;
+  padding: 2px var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-exam-soft);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+a.cheatsheet__term:hover {
+  box-shadow: var(--shadow-hard-sm);
+  transform: translate(-1px, -1px);
+}
+
+.cheatsheet__term-en {
+  font-weight: 800;
+}
+
+.cheatsheet__term-zh {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+/* Confusable pairs 易混概念 */
+.cheatsheet__pairs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cheatsheet__pair {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+  break-inside: avoid;
+}
+
+.cheatsheet__versus {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.cheatsheet__side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.cheatsheet__side:last-child {
+  text-align: right;
+}
+
+.cheatsheet__side-zh {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.cheatsheet__vs {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-highlight-soft);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cheatsheet__diff {
+  font-size: var(--text-sm);
+}
+
+.cheatsheet__empty-actions {
+  justify-content: center;
+}
+
+@media (max-width: 520px) {
+  .cheatsheet__unit {
+    padding: var(--space-4);
+  }
+
+  .cheatsheet__controls {
+    padding: var(--space-3);
+  }
+}
+
+/* Print: one column, no controls, ink on paper whatever the theme. 打印：单栏、无控件、不论主题都是白纸黑字。 */
+@media print {
+  .cheatsheet__controls,
+  .cheatsheet__unit-link,
+  .cheatsheet .page-header__actions,
+  .cheatsheet__section-note,
+  .cheatsheet__none {
+    display: none !important;
+  }
+
+  .cheatsheet,
+  .cheatsheet * {
+    color: inherit !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .cheatsheet {
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+
+  .cheatsheet .page-header__subtitle {
+    display: none;
+  }
+
+  .cheatsheet__units,
+  .cheatsheet__formulas,
+  .cheatsheet__sheet,
+  .cheatsheet__pairs {
+    display: block;
+  }
+
+  .cheatsheet__points {
+    columns: 1;
+  }
+
+  .cheatsheet__unit,
+  .cheatsheet__pair,
+  .cheatsheet__sheet .cheatsheet__formula {
+    margin-bottom: var(--space-3);
+    padding: var(--space-3);
+    border: 1px solid currentColor;
+    border-radius: 0;
+  }
+
+  .cheatsheet__formulas .cheatsheet__formula {
+    margin-bottom: var(--space-2);
+    padding: var(--space-2) 0;
+    border: 0;
+  }
+
+  .cheatsheet__expr,
+  .cheatsheet__term,
+  .cheatsheet__vs,
+  .cheatsheet__formula-tag {
+    border-color: currentColor;
+  }
+
+  .cheatsheet__unit-head {
+    border-bottom-color: currentColor;
+    break-after: avoid;
+  }
+
+  .cheatsheet__heading {
+    border-bottom-color: currentColor;
+    break-after: avoid;
+  }
+
+  .cheatsheet a {
+    text-decoration: none;
+  }
+}

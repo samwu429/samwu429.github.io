@@ -1,0 +1,378 @@
+/*
+ * Fairness-groups widget: per-group matrices and rates, tolerance slider, criterion verdicts.
+ * 分组公平组件：各组四格表与比例、容差滑块、各项标准的结论。
+ */
+.fairness-groups__groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-3);
+}
+
+.fairness-groups__group {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.fairness-groups__group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.fairness-groups__group-title .bi-title__en {
+  font-size: 0.75em;
+}
+
+.fairness-groups__letter,
+.fairness-groups__chip-letter {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.fairness-groups__letter {
+  width: 28px;
+  height: 28px;
+  font-size: var(--text-sm);
+}
+
+.fairness-groups__rates {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.fairness-groups__rate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--color-line-soft);
+}
+
+.fairness-groups__rate:last-child {
+  border-bottom: 0;
+}
+
+.fairness-groups__rate-name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.fairness-groups__rate-name .bi-title__en,
+.fairness-groups__comparison-name .bi-title__en {
+  font-size: 0.85em;
+}
+
+.fairness-groups__rate-formula {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.fairness-groups__rate-result {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  margin-left: auto;
+}
+
+.fairness-groups__rate-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--color-accent-strong);
+}
+
+.fairness-groups__rate-value.is-undefined {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-warn);
+}
+
+.fairness-groups__rate-fraction {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.fairness-groups__extra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.fairness-groups__rate-note {
+  font-size: var(--text-sm);
+}
+
+.fairness-groups__criteria-area {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.fairness-groups__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.fairness-groups__tolerance {
+  display: grid;
+  gap: var(--space-1);
+  flex: 1 1 260px;
+  min-width: 0;
+  max-width: 520px;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.fairness-groups__tolerance-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.fairness-groups__tolerance-label {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.fairness-groups__tolerance-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 900;
+}
+
+.fairness-groups__slider {
+  width: 100%;
+  min-height: 32px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.fairness-groups__tolerance-help {
+  font-size: var(--text-xs);
+}
+
+.fairness-groups__criteria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-3);
+}
+
+.fairness-groups__criterion {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-left-width: 6px;
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+}
+
+.fairness-groups__criterion[data-status="pass"] {
+  border-left-color: var(--color-success);
+}
+
+.fairness-groups__criterion[data-status="fail"] {
+  border-left-color: var(--color-danger);
+}
+
+.fairness-groups__criterion[data-status="unknown"] {
+  border-left-color: var(--color-warn);
+}
+
+.fairness-groups__criterion--individual,
+.fairness-groups__criterion[data-status="insufficient"] {
+  border-left-color: var(--color-line-soft);
+  background: var(--color-paper-2);
+}
+
+.fairness-groups__criterion-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.fairness-groups__criterion-title {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.fairness-groups__criterion-title .bi-title__en {
+  font-size: 0.85em;
+}
+
+.fairness-groups__definition {
+  font-size: var(--text-sm);
+}
+
+.fairness-groups__comparisons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.fairness-groups__comparison {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.fairness-groups__comparison-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.fairness-groups__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fairness-groups__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2) 2px 2px;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.fairness-groups__chip-letter {
+  width: 22px;
+  height: 22px;
+  border-width: 1px;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+}
+
+.fairness-groups__chip.is-high,
+.fairness-groups__chip.is-low {
+  border-color: var(--color-line);
+}
+
+.fairness-groups__gap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.fairness-groups__gap-value {
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
+.fairness-groups__gap-limit {
+  font-weight: 700;
+}
+
+.fairness-groups__comparison.is-within .fairness-groups__gap-limit {
+  color: var(--color-success);
+}
+
+.fairness-groups__comparison.is-outside .fairness-groups__gap-limit {
+  color: var(--color-danger);
+}
+
+.fairness-groups__comparison.is-undefined .fairness-groups__gap {
+  color: var(--color-warn);
+  font-weight: 700;
+}
+
+.fairness-groups__verdict {
+  font-size: var(--text-sm);
+}
+
+.fairness-groups__tradeoff {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-line);
+}
+
+.fairness-groups__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.fairness-groups__summary-count {
+  padding: 0 var(--space-2);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-highlight-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 900;
+}
+
+@media (max-width: 480px) {
+  .fairness-groups__group,
+  .fairness-groups__criterion,
+  .fairness-groups__tolerance {
+    padding: var(--space-2);
+  }
+}

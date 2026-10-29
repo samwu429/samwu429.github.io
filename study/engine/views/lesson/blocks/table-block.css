@@ -1,0 +1,32 @@
+/*
+ * Tables reuse .table-scroll and .data-table; cells keep a readable minimum width so a phone
+ * scrolls the table sideways instead of crushing the text.
+ * 表格沿用 .table-scroll 与 .data-table；单元格保留可读的最小宽度，手机上横向滚动而不是把文字挤扁。
+ */
+.table-block {
+  margin: 0;
+  min-width: 0;
+}
+
+.table-block__caption {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.table-block__scroll {
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.table-block__table td {
+  min-width: 7.5em;
+}
+
+.table-block__table td:first-child {
+  font-weight: 700;
+}
+
+.table-block__table tbody tr:nth-child(even) td {
+  background: var(--color-paper);
+}

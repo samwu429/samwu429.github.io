@@ -1,0 +1,227 @@
+/*
+ * Application chrome: sticky header, scrollable navigation, main container, footer.
+ * 应用外壳：吸顶页头、可横向滚动的导航、主内容容器与页脚。
+ */
+.shell-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+  backdrop-filter: saturate(1.4) blur(8px);
+  -webkit-backdrop-filter: saturate(1.4) blur(8px);
+  border-bottom: 2px solid var(--color-line);
+}
+
+.shell-header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-4);
+}
+
+.shell-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink);
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.shell-brand__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border: 2px solid var(--color-line);
+  box-shadow: var(--shadow-hard-sm);
+  font-family: var(--font-serif);
+  font-size: 16px;
+}
+
+.shell-brand__text {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+}
+
+.shell-course {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: 2px var(--space-2);
+  border-left: 2px solid var(--color-line-soft);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.shell-course__code {
+  font-weight: 900;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.shell-course__title {
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shell-header__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.shell-tool {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.shell-tool:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+/* "Reveal all Chinese" only matters while Chinese is blurred. “显示全部中文”只在中文被模糊时才有意义。 */
+.shell-reveal {
+  display: none;
+}
+
+:root[data-lang-mode="en-practice"] .shell-reveal {
+  display: inline-grid;
+}
+
+.shell-reveal[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.shell-nav {
+  border-top: 1px solid var(--color-line-soft);
+}
+
+.shell-nav__inner {
+  display: flex;
+  gap: var(--space-1);
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: var(--space-1) var(--space-3);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.shell-nav__inner::-webkit-scrollbar {
+  display: none;
+}
+
+.shell-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 6px var(--space-3);
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  color: var(--color-ink-2);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.shell-nav__link:hover {
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+}
+
+.shell-nav__link[aria-current="page"] {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.shell-nav__en {
+  font-weight: 600;
+  opacity: 0.7;
+  font-size: var(--text-xs);
+}
+
+.shell-main {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4) var(--space-8);
+  outline: none;
+}
+
+.shell-footer {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4) var(--space-7);
+  border-top: 2px dashed var(--color-line-soft);
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+.shell-footer p {
+  margin-bottom: var(--space-1);
+}
+
+.shell-footer__credit {
+  margin-top: var(--space-2);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .shell-header__bar {
+    flex-wrap: wrap;
+    row-gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .shell-brand__text {
+    display: none;
+  }
+
+  .shell-course__title {
+    display: none;
+  }
+
+  .shell-nav__en {
+    display: none;
+  }
+
+  .shell-main {
+    padding: var(--space-4) var(--space-3) var(--space-7);
+  }
+}
+
+@media print {
+  .shell-header,
+  .shell-footer,
+  .skip-link {
+    display: none;
+  }
+
+  .shell-main {
+    max-width: none;
+    padding: 0;
+  }
+}

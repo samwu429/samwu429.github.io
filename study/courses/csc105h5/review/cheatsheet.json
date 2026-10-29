@@ -1,0 +1,1653 @@
+{
+  "title": {
+    "zh": "考前速记",
+    "en": "Exam Cheat Sheet"
+  },
+  "units": [
+    {
+      "lessonId": "lec01",
+      "title": {
+        "zh": "什么是 AI？（+ 课程大纲）",
+        "en": "What is AI? (+ Syllabus)"
+      },
+      "points": [
+        {
+          "en": "Course definition: **AI** is a field of study concerned with agents that observe their environment and perform actions. The goal is to design agents that 'behave rationally'.",
+          "zh": "本课程的 AI 定义（第 46 页，必背）：研究会观察环境、会执行行动的智能体（**agent**）的学科；目标是设计“行为理性”的智能体。"
+        },
+        {
+          "en": "A **rational agent** acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome.",
+          "zh": "理性智能体（**rational agent**）：行动是为了最好的结果；有不确定性时，是为了最好的期望结果。和课程定义一起背。"
+        },
+        {
+          "en": "**Rationality** means acting in a way that best achieves a goal using the information that is available.",
+          "zh": "理性（**rationality**）：利用可获得的信息，用最能达成目标的方式行动。它是智能的抽象“理想”，不是“人类怎么做就算什么”。"
+        },
+        {
+          "en": "Russell and Norvig's grid: think humanly, act humanly, think rationally, act rationally. They argue for 'act rationally', and so does our course definition.",
+          "zh": "Russell 和 Norvig 四格表：像人一样思考 / 像人一样行动 / 理性地思考 / 理性地行动。他们主张“理性地行动”，本课程的定义也一样。"
+        },
+        {
+          "en": "The **Turing Test** (acting humanly) is an operational definition: if the interrogator cannot distinguish the entity from a human, it passes.",
+          "zh": "图灵测试（**Turing Test**）= 像人一样行动，是操作性定义：提问者分不出被测对象和真人，就算通过。"
+        },
+        {
+          "en": "Acting rationally also judges agents only by their actions, but intelligence means choosing the rational action, not seeming human.",
+          "zh": "理性地行动：和图灵测试一样只看行动，但标准是“选出理性的行动”，不是“像不像人”。"
+        },
+        {
+          "en": "Thinking humanly is **cognitive modeling** (introspection, psychological experiments, brain imaging). Thinking rationally uses the rules of logic, such as syllogisms.",
+          "zh": "像人一样思考 = 认知建模（内省、心理学实验、脑成像）；理性地思考 = 用逻辑规则推理，如亚里士多德的三段论（**syllogism**）。"
+        },
+        {
+          "en": "**Symbolic AI** encodes knowledge as symbols and reasons with them: well-defined rules, logic, provably correct solutions when found, generally high explainability.",
+          "zh": "符号 AI（**Symbolic AI**）：把知识编码成符号再推理。特点：规则明确、按逻辑推理、找到的解可证明正确、可解释性通常高。"
+        },
+        {
+          "en": "Symbolic AI weaknesses: computation can be infeasibly long for large problems, and knowledge can be hard to distill into symbols ('Does this image contain a dog?').",
+          "zh": "符号 AI 的弱点：问题大时，计算可能长到不可行；知识难以提炼成符号（“这张图里有狗吗？”电脑只看到原始像素值）。"
+        },
+        {
+          "en": "**Machine Learning (ML)** finds solutions by automatically inferring patterns from data, in two phases: **training** (learning from data) and **inference** (using the trained model).",
+          "zh": "机器学习（**ML**）：从数据中自动推断规律来找解。两个阶段：训练（**training**，从数据中学）和推理（**inference**，用训练好的模型解决问题）。"
+        },
+        {
+          "en": "ML inference is generally fast, though training can take a long time. But the Big Table says LLM prompting is often slower and costlier per call.",
+          "zh": "ML 推理一般很快，训练可能很慢。但大表提醒：LLM 提示每次调用往往更慢、更贵（LLM 很大，第 56 页说要用巨大的数据中心）。"
+        },
+        {
+          "en": "ML weaknesses: models apply narrowly, inherit the biases of their data, are likely but not guaranteed to be correct, and have generally low explainability.",
+          "zh": "ML 的弱点：只适用于训练时的那个问题；继承训练数据的偏见；大概率对、但不保证对；可解释性通常低。优点：不用把知识提炼成符号，适用面更广。"
+        },
+        {
+          "en": "**LLMs** are a specific type of ML model: trained on enormous text data, used via plain-text prompts, able to respond to many prompts without additional training.",
+          "zh": "大语言模型（**LLM**）是一种特定的 ML 模型：用海量文本训练；用普通文字写 prompt 来用，不用写代码；一般不用额外训练就能回应各种 prompt。"
+        },
+        {
+          "en": "LLM weaknesses: huge data centers, **hallucination** (confidently stating falsehoods), and ethical issues: environmental impact, job displacement, copyright, cognitive offloading.",
+          "zh": "LLM 的弱点：要用巨大的数据中心；幻觉（**hallucination**，很自信地说错）；伦理问题：环境影响、工作被取代、版权、认知卸载。"
+        },
+        {
+          "en": "The course compares three kinds of AI approaches: Symbolic AI, ML and LLM prompting. In the umbrella diagram, LLMs sit inside Deep Learning, inside Neural Networks, inside ML.",
+          "zh": "课程比较三类 AI 方法：符号 AI、机器学习、LLM 提示。但大伞图里 LLM ⊂ 深度学习 ⊂ 神经网络 ⊂ 机器学习，所以 LLM 也是 ML，不是独立的子领域。"
+        },
+        {
+          "en": "Big Table, 'Best when': Symbolic when rules are known and stable; ML when patterns are complex but examples exist; LLMs when the task is open-ended or labeled data is scarce.",
+          "zh": "性质大表的 “Best when”（课件说表不用背）：规则已知且稳定 → 符号 / 算法；规律复杂但有例子 → 机器学习；任务开放或带标签数据少 → LLM 提示。"
+        },
+        {
+          "en": "Big Table failure modes: Symbolic - edge cases outside the rules; ML - distribution shift, needs retraining; LLMs - hallucination and prompt sensitivity.",
+          "zh": "大表的主要失败方式：符号——规则之外的边缘情况（**edge case**）；ML——数据分布变化（**distribution shift**），要重新训练；LLM——幻觉、对 prompt 措辞敏感。"
+        },
+        {
+          "en": "Common types of ML: Supervised, Unsupervised and Reinforcement Learning. This course talks mostly about **Supervised Learning** (and also LLMs).",
+          "zh": "机器学习的常见类型：监督学习、无监督学习、强化学习。本课主要讲监督学习（还有 LLM）。另有宽、窄两种 AI 定义（Dartmouth 1956、OECD 2019），见第 1 讲。"
+        }
+      ],
+      "formulas": [],
+      "mustKnowTerms": [
+        "artificial-intelligence",
+        "agent",
+        "rational-agent",
+        "rationality",
+        "russell-norvig-grid",
+        "turing-test",
+        "acting-rationally",
+        "symbolic-ai",
+        "machine-learning",
+        "training",
+        "inference",
+        "large-language-model",
+        "hallucination",
+        "explainability",
+        "bias",
+        "supervised-learning"
+      ]
+    },
+    {
+      "lessonId": "lab01",
+      "title": {
+        "zh": "Lab 1：选择合适的方法",
+        "en": "Lab 1: Selecting a Method"
+      },
+      "points": [
+        {
+          "en": "A course learning outcome: analyze a problem to determine which AI method (if any) is most appropriate. Lab 1 practises this.",
+          "zh": "课程学习目标之一：分析一个问题，判断哪种 AI 方法最合适，也可能哪种都不需要（if any）。Lab 1 就是练这个。"
+        },
+        {
+          "en": "Justify a choice with Big Table rows: how you specify the task, how much labeled data is needed, and 'Best when'. Do not memorize the table.",
+          "zh": "用大表说理由（顺序都是 符号 · ML · LLM）：怎么告诉电脑任务——手写规则 / 给带标签的例子 / 写 prompt；要多少带标签数据——不要 / 常常很多 / 可以很少；再看 Best when。表不用背，会用就行。"
+        },
+        {
+          "en": "'Does this image contain a dog?' is hard for Symbolic AI (raw pixel values), but ML can learn it from photos with and without dogs.",
+          "zh": "经典例子：“这张图里有狗吗？”对符号 AI 很难（电脑只看到原始像素值）；机器学习可以从一组有狗、一组没狗的照片里学会。"
+        },
+        {
+          "en": "Weigh weaknesses too: Symbolic AI can be infeasibly slow on large problems; ML inherits bias and is not guaranteed; LLMs hallucinate and need huge data centers.",
+          "zh": "还要权衡弱点：符号 AI 遇到大问题可能算到不可行；ML 会继承数据偏见、不保证正确；LLM 会幻觉，还要巨大的数据中心。"
+        },
+        {
+          "en": "How each kind of AI is developed (CLO 2): Symbolic AI - write rules by hand; ML - collect labeled examples, then train; LLMs - trained on enormous text, then prompted.",
+          "zh": "课程目标 2 前半句（怎样开发 / 训练）：符号 AI 靠人手写规则；机器学习要先收集带标签的例子再训练；LLM 先用海量文本训练好，使用时只写 prompt。"
+        },
+        {
+          "en": "What it costs (CLO 2): the Big Table rates cost as usually low for Symbolic AI, medium to high for ML, and possibly very high for LLMs.",
+          "zh": "课程目标 2 后半句（代价）：大表 Cost and capacity 一行：符号 Usually low，ML Medium to high，LLM Can be very high（最流行的 LLM 训练和使用都要巨大的数据中心，Lecture 1 p.56）。各讲提到的代价：每条指令都花时间（Lecture 2 p.37）；搜索的指数增长（Lecture 3 p.27–28）；自己收集数据一般更贵（Lecture 4 p.8）；差分隐私牺牲一点性能（Lecture 4 p.22）；训练和推理的成本（Lecture 6 p.32）；公平通常要牺牲一些准确率（Lecture 6 p.44）；隐藏层要更多时间和数据（Lecture 7 p.20）；人工神经网络耗电多得多（Lecture 7 p.10）。"
+        }
+      ],
+      "formulas": [],
+      "mustKnowTerms": [
+        "symbolic-ai",
+        "machine-learning",
+        "large-language-model",
+        "labelled-data",
+        "task-openness",
+        "edge-case",
+        "distribution-shift",
+        "hallucination",
+        "prompt-sensitivity"
+      ]
+    },
+    {
+      "lessonId": "lec02",
+      "title": {
+        "zh": "算法：算法思维入门",
+        "en": "Algorithms: An Introduction to Algorithmic Thinking"
+      },
+      "points": [
+        {
+          "en": "An **algorithm** is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal (e.g. making toast).",
+          "zh": "算法（**algorithm**）：一系列精确的指令，可以一步一步、按顺序执行，来达成一个目标。关键词 series、precise、step-by-step、in order、goal 一个都别漏。"
+        },
+        {
+          "en": "If instructions are not precise enough, we might fail to achieve our goal (the evil genie activity). Number your steps, keep them in order, and make each precise.",
+          "zh": "指令不够精确，就可能达不成目标（邪恶精灵 **evil genie** 活动：同学故意曲解含糊的一步）。自己用英文写算法时：编号、按顺序、每一步都写精确。"
+        },
+        {
+          "en": "A **programming language** defines instructions a computer can perform unambiguously; a series of instructions written in one is a **program**.",
+          "zh": "编程语言（**programming language**）规定电脑能无歧义执行的指令；用它写成的一串指令叫程序（**program**）。"
+        },
+        {
+          "en": "Instructions run from top to bottom, in order. All programs, from the fanciest LLM to the simplest robot-face-drawer, are built from basic instructions.",
+          "zh": "指令从上到下按顺序执行。所有程序，从最厉害的 LLM 到最简单的画机器人脸程序，都由一套基本指令搭起来（学习目标 2）。"
+        },
+        {
+          "en": "A **function** is a named block of instructions that we define once and reuse by calling it by name. A definition alone does nothing.",
+          "zh": "函数（**function**）：有名字的一组指令，定义一次，按名字调用多少次都行。只定义、不调用，什么都不会发生；调用 3 次就画 3 个机器人。"
+        },
+        {
+          "en": "A **parameter** is a value given to a function when it is called, to customize its behaviour: square(100) and square(200) draw different sizes.",
+          "zh": "参数（**parameter**）：调用函数时给它的值，用来定制行为。`square(100)` 画边长 100 的正方形，100 是边长，不是“画 100 次”。"
+        },
+        {
+          "en": "A **loop** is an unnamed block of code executed repeatedly and immediately; each repetition is one **iteration**. A definite **for-loop** runs a fixed number of times.",
+          "zh": "循环（**loop**）：没有名字、当场立刻重复执行的一段代码；每执行一次叫一次迭代（**iteration**）。确定次数的 for 循环迭代固定的次数。"
+        },
+        {
+          "en": "Function vs loop: a function is named and runs when called; a loop is unnamed and repeats immediately. Both let us reuse instructions.",
+          "zh": "函数 vs 循环：函数有名字、被调用才执行；循环没名字、当场重复。两者都是复用指令的办法；用循环画 9 个机器人脸只要改一个数（第 28 页）。"
+        },
+        {
+          "en": "Why functions and loops: we could never do anything complex if we had to specify every instruction individually.",
+          "zh": "为什么需要函数和循环（学习目标 3）：每条指令都单独写，就永远做不出复杂的东西。"
+        },
+        {
+          "en": "**Abstraction**: once a function is defined, we no longer need to think about all of its instructions every time we call it.",
+          "zh": "抽象（**abstraction**）：函数定义好后，每次调用都不用再想它里面的全部指令，可以专心搭更复杂的东西。"
+        },
+        {
+          "en": "**Emergent behaviour**: many low-level function executions add up to new high-level behaviour, e.g. language in LLMs emerges from low-level mathematics.",
+          "zh": "涌现行为（**emergent behaviour**）：大量底层执行加在一起，产生新的高层行为。例：LLM 的语言能力从神经网络底层的数学中涌现（Lecture 7 讲了这些底层步骤）。"
+        },
+        {
+          "en": "**Algorithmic thinking** is solving a problem step-by-step using the low-level instructions that are available.",
+          "zh": "算法思维（**algorithmic thinking**）：用手上现有的底层指令，一步一步地解决问题。"
+        },
+        {
+          "en": "General rule: if the programmer specifies a step-by-step solution, it isn't AI; if the programmer specifies a goal and the computer finds a way, it is AI.",
+          "zh": "算法 vs AI 的一般规则（学习目标 4）：程序员写好一步步的解法 → 不是 AI；程序员只给目标、电脑自己找办法 → 是 AI。"
+        },
+        {
+          "en": "Square example: 'repeat 4 times: forward 100, turn right 90' is algorithmic; 'find a sequence of actions that draws a square' is AI.",
+          "zh": "正方形例子（第 35 页）：直接写“重复 4 次：前进 100、右转 90 度”是纯算法；只给可用动作，让电脑自己找出动作序列，才是 AI。"
+        },
+        {
+          "en": "Limits of pure algorithms: one may not exist, all hard problem solving is done by the programmer, and it is vulnerable to human error (edge cases, bugs).",
+          "zh": "纯算法的局限：不一定找得到；难的部分全靠程序员；容易出人为错误（漏掉边缘情况 **edge case**、程序错误 **bug**）。"
+        },
+        {
+          "en": "When an algorithmic solution exists, it typically gives stable, often guaranteed results, explainable solutions, no need for training data, and fast, low-resource runs.",
+          "zh": "能找到纯算法时通常的优点：结果稳定、常常保证正确；可解释；不需要训练数据；常常很快、资源占用少。保留 typically、often 这些词。"
+        },
+        {
+          "en": "**Computation time**: every instruction executed costs time, so time limits how much work a computer can do.",
+          "zh": "计算时间（**computation time**）：每执行一条指令都要花时间，所以时间限制了电脑能做多少工作（学习目标 5）。"
+        },
+        {
+          "en": "Counting executions: one call to square runs each instruction once; a 10-iteration loop, 10 times; a 10-loop inside a 10-loop, 10 × 10 = 100 times.",
+          "zh": "数执行次数（第 39–41 页）：调用 1 次 → 每条 1 次；循环调用 10 次 → 每条 10 次；10 次里套 10 次（嵌套循环 **nested loop**）→ 每条 100 次（第 41 页只问不答，100 是按图算的）。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "executions per instruction = outer loop iterations × inner loop iterations = 10 × 10 = 100",
+          "zh": "嵌套循环的次数要相乘，不是相加：调用 1 次 → 每条指令 1 次；循环调用 10 次 → 10 次；10 次里套 10 次 → 100 次。课件没写成公式，这是从第 39–41 页总结的。",
+          "en": "Nested loops multiply: 1 call gives 1 time each, a loop of 10 gives 10 times each, and 10 inside 10 gives 100 times each."
+        }
+      ],
+      "mustKnowTerms": [
+        "algorithm",
+        "precise",
+        "programming-language",
+        "program",
+        "function",
+        "function-definition",
+        "function-call",
+        "parameter",
+        "abstraction",
+        "emergent-behaviour",
+        "loop",
+        "iteration",
+        "for-loop",
+        "nested-loop",
+        "algorithmic-thinking",
+        "purely-algorithmic-approach",
+        "computation-time"
+      ]
+    },
+    {
+      "lessonId": "lec03",
+      "title": {
+        "zh": "搜索",
+        "en": "Search"
+      },
+      "points": [
+        {
+          "en": "**Symbolic AI** reasons with symbols and needs rules; Machine Learning needs data. Its sub-fields include Search, Constraint Satisfaction, Logical Reasoning and Bayesian Reasoning.",
+          "zh": "符号 AI（**Symbolic AI**）：把知识编码成符号再推理，靠规则；机器学习靠数据。子领域：搜索、约束满足、逻辑推理、贝叶斯推理；这一课只讲搜索。"
+        },
+        {
+          "en": "Suits Symbolic AI: the best move in a puzzle, scheduling tasks without overlap, a robot's likely position. Not suited: stock prediction, finding a dog in a photo, chatting.",
+          "zh": "适合符号 AI（规则明确）：谜题找最佳一步、安排任务互不重叠、判断机器人最可能的位置。不适合：预测股票、从照片里认狗、当客服聊天。"
+        },
+        {
+          "en": "A **state** is a snapshot of the game at one moment. The **dynamics** are the rules: which actions can be taken and how the state changes.",
+          "zh": "状态（**state**）：游戏某一时刻的快照（收起游戏要存下的信息）。动态（**dynamics**）：游戏规则，告诉我们能做哪些动作、做完状态怎么变。"
+        },
+        {
+          "en": "Search also needs the **initial state** and a **goal test**, which gives T/F for any state; states that give T are **goal states**.",
+          "zh": "还需要初始状态（**initial state**）和目标测试（**goal test**）：目标测试对任何状态都给出 T/F，结果为 T 的叫目标状态（**goal state**）。"
+        },
+        {
+          "en": "**Search** lets a computer 'look ahead' by using the dynamics to generate future states. **Exhaustive search** considers all possibilities until the end of the game.",
+          "zh": "搜索（**Search**）：用游戏规则生成未来可能的状态，让电脑“往前看”。穷举搜索（**exhaustive search**）：从当前状态起考虑所有可能，直到游戏结束。"
+        },
+        {
+          "en": "State tree terms: states are **nodes**, actions are **edges**, the **root** is the top node, and **depth** counts the edges from the root (root = depth 0).",
+          "zh": "状态树术语：状态 = 节点（**node**），动作 = 边（**edge**），最上面是根节点（**root**）；深度（**depth**）= 离根有几条边，根的深度是 0。"
+        },
+        {
+          "en": "A **terminal state** is a node where the game is over; it never has children and may or may not be a goal state.",
+          "zh": "终止状态（**terminal state**）：游戏结束的节点，永远没有子节点，不一定是目标状态（也可能是输或平）。"
+        },
+        {
+          "en": "Exhaustive search: add the current state as the root; draw each legal action's result as a child; repeat for every child; stop at a goal state or when no children remain.",
+          "zh": "穷举搜索画树：① 当前状态作为根；② 把每个合法动作（**legal action**）的结果画成子节点；③ 对每个子节点重复；找到目标状态、或再也生成不出子节点时停止。"
+        },
+        {
+          "en": "In a single-player puzzle, the path of actions from the root to a goal state is the solution, and it is guaranteed to be correct.",
+          "zh": "单人谜题：从根到目标状态的那条动作路径就是解，而且保证正确（**guaranteed to be correct**），因为每一步都由我们控制。"
+        },
+        {
+          "en": "The number of nodes grows exponentially with depth (with 2 actions per state, it doubles at each depth), so exhaustive search is simple, but inefficient.",
+          "zh": "搜索的难点：节点数随深度指数增长（**exponential growth**）；每生成一个状态都花时间，所以穷举搜索简单但低效；时间到了还没找到目标，只能放弃。"
+        },
+        {
+          "en": "In multiplayer games, finding a goal state no longer guarantees a win. Rewards: win +100, loss −100, draw 0; a **rational agent** maximizes its reward.",
+          "zh": "多人游戏：我们不再控制每一步，找到目标状态也不再保证赢。奖励约定：赢 +100、输 −100、平 0；理性智能体总是让自己的奖励最大。"
+        },
+        {
+          "en": "**Minimax** carries values up from the terminal states: on our turn (▲) we maximize; on the opponent's turn (▼) they minimize our reward.",
+          "zh": "Minimax：从终止状态把值一层层往上传。▲ 我们的回合取最大；▼ 对手的回合取最小（对手让我们的奖励最小）。值传到根，就知道走哪步、能得多少。"
+        },
+        {
+          "en": "Slide tree 2, 3, 5, −9, 7, 5, 0, −1: ▲ gives 3, 5, 7, 0; ▼ gives 3, 0; the root is 3, so play left. In the activity tree, the root is 7 (choose right).",
+          "zh": "课件的树：▲ 层 3, 5, 7, 0 → ▼ 层 3, 0 → 根 3，走左边。课堂活动树根值 7，选右边。井字棋：对手也理性时，最好只能保证平局 0。"
+        },
+        {
+          "en": "A **heuristic** scores how good a state is from our perspective (win +100, loss −100, equal 0). It may be learned through ML or crafted from **expert knowledge**.",
+          "zh": "启发式（**heuristic**）：从我们的角度给状态打的分（确定赢 +100、确定输 −100、均势 0）。可以用机器学习学出来，也可以用专家知识（**expert knowledge**）手工设计。"
+        },
+        {
+          "en": "Chess **material advantage**: for each piece type, White's count minus Black's, times a weight (1, 3, 3, 5, 9), all added up: features compared, importance weighted.",
+          "zh": "子力优势（**material advantage**）：每种棋子算“白 − 黑”，乘权重（兵 1、马 3、象 3、车 5、后 9）再相加。这就是加权和：每个特征对双方作比较，再按重要性加权。"
+        },
+        {
+          "en": "Fixed depth: score the bottom row with a heuristic and run minimax as if those were terminal states. Heuristics are only estimates, so we lose the guarantees.",
+          "zh": "固定深度：最底一排用启发式打分，当作终止状态做 minimax。启发式只是估计，所以失去对奖励的保证；但终局太远时，有估计总比没有好。"
+        },
+        {
+          "en": "Guarantees: single-player exhaustive search (a found solution is guaranteed to be correct); full minimax (the root value, if the opponent is rational); fixed depth plus heuristic (no guarantee, because heuristics are only estimates); ML (no guarantee: likely correct, but not guaranteed).",
+          "zh": "保证对比：单人穷举搜索（找到的解一定对，p.26）；完整 minimax（对手理性时保证根的值，p.40–41）；固定深度 + 启发式（没有保证，启发式只是估计，p.58）；机器学习（也没有保证，解只是大概率对，Lecture 1 p.52）。“provably correct when found” 指真正搜到了目标 / 终止状态。"
+        },
+        {
+          "en": "**Alignment**: making AI behaviour match human intentions, goals and ethics. In the shared pasture, minimax leads both farmers to overgraze (1, 1), although (2, 2) was better.",
+          "zh": "对齐（**Alignment**）：让 AI 的行为符合人类看重的意图、目标和伦理。共享牧场：每人只顾自己的奖励，用 minimax 推演，结果都过度放牧 (1, 1)，其实都可持续放牧 (2, 2) 对双方都更好。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "depth of a node = number of edges between it and the root (root = depth 0)",
+          "zh": "深度：数它到根节点之间有几条边；根节点的深度是 0。",
+          "en": "Count the edges from the root."
+        },
+        {
+          "expr": "nodes at depth d = b^d   (b = number of actions possible from every state; slide example: b = 2, so 2^10 = 1,024)",
+          "zh": "指数增长：每深一层，节点数乘 b。课件例子 b = 2：2^10 = 1,024，2^20 约 100 万，2^40 约 1 万亿（课件只问不答，这是按“每层乘 2”算出来的）。问的是“第 d 层”有几个节点，不是从第 0 层加到第 d 层。每步 3 种动作 → 第 4 层 3^4 = 81；Connect Four 每步最多 7 种下法（Lab 3 棋盘有 7 列）→ 最多 7^d。",
+          "en": "Exponential growth: with b actions from every state, each depth has b times as many nodes as the one above."
+        },
+        {
+          "expr": "win = +100,  loss = −100,  draw = 0  (any other outcome between −100 and +100)",
+          "zh": "奖励值约定；启发式也用同一个尺度：确定赢 +100，确定输 −100，均势 0。",
+          "en": "Reward values, also used as the scale for heuristics."
+        },
+        {
+          "expr": "▲ node = max(children);   ▼ node = min(children)",
+          "zh": "Minimax：从终止状态往上一层层算；▲ 是我们的回合取最大，▼ 是对手的回合取最小；只有一个孩子时直接照抄。",
+          "en": "Work upwards from the terminal states, one level at a time."
+        },
+        {
+          "expr": "zero sum game: opponent's reward = −(our reward)",
+          "zh": "零和游戏：对手的奖励是我们奖励的相反数。",
+          "en": "In a zero sum game, the two rewards are negations of each other."
+        },
+        {
+          "expr": "Material Advantage = 1×[(# W pawns) − (# B pawns)] + 3×[(# W knights) − (# B knights)] + 3×[(# W bishops) − (# B bishops)] + 5×[(# W rooks) − (# B rooks)] + 9×[(# W queens) − (# B queens)]",
+          "zh": "子力优势：每种棋子“白方个数 − 黑方个数”，乘权重后相加；W = 白方（我们），B = 黑方（对手），# = 个数。",
+          "en": "A weighted sum of piece-count differences, from White's perspective."
+        }
+      ],
+      "mustKnowTerms": [
+        "symbolic-ai",
+        "state",
+        "dynamics",
+        "goal-test",
+        "goal-state",
+        "search",
+        "exhaustive-search",
+        "state-tree",
+        "node",
+        "edge",
+        "terminal-state",
+        "depth",
+        "exponential-growth",
+        "reward-value",
+        "zero-sum-game",
+        "minimax",
+        "heuristic",
+        "expert-knowledge",
+        "material-advantage",
+        "search-depth",
+        "alignment"
+      ]
+    },
+    {
+      "lessonId": "lab03",
+      "title": {
+        "zh": "Lab 3：搜索与博弈（Connect Four 四子棋）",
+        "en": "Lab 3: Search and Game-Playing (with Connect Four!)"
+      },
+      "points": [
+        {
+          "en": "When exhaustive search is too time-consuming, Minimax searches to a fixed depth and scores states with a heuristic, which loses the guarantees about the reward.",
+          "zh": "穷举搜索太费时间时，Minimax 只搜到固定深度（**search depth**），用启发式给那一层打分；启发式只是估计，所以失去对奖励的保证。搜得越深越费时间（指数增长）。"
+        },
+        {
+          "en": "A **weighted sum** heuristic: for each feature, take our value minus the opponent's, multiply by a **weight** for its importance, then add everything up.",
+          "zh": "加权和（**weighted sum**）启发式：每个特征（**feature**，说明局面好坏的指标）算“我的 − 对手的”（差值决定谁占优），乘上表示重要程度的权重（**weight**），再全部相加。"
+        },
+        {
+          "en": "Lab example: 'Combined' = 3 × (three-in-a-row difference) + 1 × (center-column chip difference).",
+          "zh": "lab 的例子 'Combined' = 3 ×（三连数的差）+ 1 ×（中间列棋子数的差）。把权重调好是做好启发式的关键。"
+        },
+        {
+          "en": "App features: chips, two_in_a_row, three_in_a_row, win_threat and stacked_threats, counted over the whole board, one column or one row.",
+          "zh": "app 里的特征：`chips`、`two_in_a_row`、`three_in_a_row`、`win_threat`（填上就能赢的空格）、`stacked_threats`（两个致胜威胁上下叠着）；按全盘（`count_board`）、某一列（`count_column`）或某一行（`count_row`）来数。"
+        },
+        {
+          "en": "In Lab 3, people set and tune the weights. Lecture 4-7 models and neurons also use weighted sums, but the machine learns their weights in training.",
+          "zh": "往后连：Lab 3 的权重由人定、靠调；Lecture 4–5 的模型（w0 + w1x1 + w2x2）和 Lecture 7 的人工神经元也是加权和，但权重由机器在训练中找（Lecture 3 p.54 也说 heuristic 可以用机器学习学出来）。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "heuristic = Σ weight × (our feature value − opponent's feature value)",
+          "zh": "加权和启发式的通用格式：每个特征先算“我 − 对手”，乘权重，再相加。",
+          "en": "The weighted sum format used in the lab."
+        },
+        {
+          "expr": "Combined = 3 × [(# three_in_a_row, me) − (# three_in_a_row, opponent)] + 1 × [(# chips in center column, me) − (# chips in center column, opponent)]",
+          "zh": "lab 的例子：三连的权重是 3，中间列棋子的权重是 1。",
+          "en": "The example heuristic built in the lab."
+        }
+      ],
+      "mustKnowTerms": [
+        "weighted-sum",
+        "heuristic-feature",
+        "feature-difference",
+        "heuristic-weight",
+        "search-depth",
+        "three-in-a-row",
+        "win-threat",
+        "stacked-threats"
+      ]
+    },
+    {
+      "lessonId": "lec04",
+      "title": {
+        "zh": "数据与机器学习入门",
+        "en": "Data and an Introduction to Machine Learning"
+      },
+      "points": [
+        {
+          "en": "Why data: algorithms specify the solution, Symbolic AI specifies knowledge, and ML provides **training data**: the examples from which patterns are learned.",
+          "zh": "为什么要数据：纯算法给电脑解法；符号 AI 给问题的知识；机器学习两样都不给，而是给训练数据（**training data**），也就是供学习规律的一组例子。"
+        },
+        {
+          "en": "**Data provenance** is the documented history of a dataset: when and where it was collected, how it was collected, and how it has been transformed.",
+          "zh": "数据溯源（**data provenance**）：数据集有记录的历史——何时何地收集、怎么收集、收集后怎么转换过。"
+        },
+        {
+          "en": "Provenance helps us decide if a dataset fits: does the population match ours? Is there bias in the collection? Are we legally permitted to use it?",
+          "zh": "溯源帮我们判断能不能用：调查的人群和我们关心的一致吗？收集过程有偏见吗？法律上允许我们这样用吗？"
+        },
+        {
+          "en": "A **dataset** can be collected yourself (costly, but customized) or acquired from others (less costly, but it may not fit your purpose).",
+          "zh": "数据集（**dataset**）两种来源：自己收集（一般贵，但能按用途定制）；用别人收集好的（一般便宜，但不一定合用，靠溯源判断）。"
+        },
+        {
+          "en": "**Copyright** protects creative work, including datasets. Normally you need a **license**; in the US, 'transformative' use may be allowed under **fair use**.",
+          "zh": "版权（**copyright**）保护创作作品（包括数据集）。通常要有许可证（**license**）才能复制、修改、分发；在美国，“转化性”使用按合理使用（**fair use**）可以不用许可证。"
+        },
+        {
+          "en": "Courts: work produced by AI belongs to nobody (mostly settled: copyright needs human work). Whether training AI is fair use is still in the courts.",
+          "zh": "两个法庭问题：AI 生成的作品版权归谁？基本已定：没有人（写 prompt 不足以拥有版权）。训练 AI 算合理使用吗？还在法庭上（如 Disney 等 vs. Midjourney）。别记反。"
+        },
+        {
+          "en": "Ethics debate on training with copyrighted work: AI synthesizes rather than copies, vs work was published for humans and the profit goes to tech companies.",
+          "zh": "用版权作品训练 AI 道德吗：支持方——AI 是综合而不是照抄；反对方——作品本来是给人看的，利润只归科技公司（**pillaging of the commons**）。长答题：表态 + 课件论点 + 承认对方。"
+        },
+        {
+          "en": "**Invasion of privacy**: ML can infer details you never gave a company. Target used ML to detect expectant mothers and sent them baby-product ads.",
+          "zh": "侵犯隐私（**invasion of privacy**）：ML 能推断出你从没告诉过公司的信息（政治倾向、成瘾、怀孕）。例：Target 找出怀孕中期的准妈妈，推送婴儿用品广告。"
+        },
+        {
+          "en": "**Information leakage**: models may memorize sensitive training data that attackers can detect. **Differential Privacy** adds randomness in training: some protection, some cost to performance.",
+          "zh": "信息泄露（**information leakage**）：模型可能记住敏感训练数据，攻击者不需要开发者权限就能探测出来。差分隐私（**Differential Privacy**）：训练时有策略地加入随机性，提供一定保护，代价是性能下降一些。"
+        },
+        {
+          "en": "**Structured data** follows a **schema**; **tabular data** is the most common kind (one row per piece of data). Images, video, audio and text are **unstructured**.",
+          "zh": "结构化数据（**structured data**）遵循 schema，最常见的是表格数据（**tabular data**），一行一条数据；图像、视频、音频、自由文本是非结构化数据（**unstructured data**）。"
+        },
+        {
+          "en": "Column types: **continuous** (order and decimals meaningful: height), **ordinal** (order meaningful, decimals not: race position), **categorical** (no meaningful order: hair colour).",
+          "zh": "列的三种类型：连续型（顺序、小数都有意义，如身高）；有序型（顺序有意义、小数没意义，如名次）；类别型（顺序没意义，如发色）。"
+        },
+        {
+          "en": "All data must be reduced to numbers: pixel values for images, frames for video, amplitudes for audio, and character codes for text ('Hello!' = 0048 0065 ...).",
+          "zh": "所有数据最终都要变成数字：图像 = 像素值（彩色通常 3 个数）；视频 = 一串帧；音频 = 声波振幅；文本 = 每个字符用字符编码变成数字（a–f 在十六进制里是 10–15）。"
+        },
+        {
+          "en": "A **feature vector** lists one piece of data as numbers, e.g. [10.0, 18.0, 1] (1 = oak); each value is a **feature**.",
+          "zh": "特征向量（**feature vector**）：一条数据写成一串数，如 [10.0, 18.0, 1]（1 = oak，maple 记 2）；每个值是一个特征（**feature**）。"
+        },
+        {
+          "en": "**Feature engineering** removes or combines features (e.g. height × width) and can have a large impact. N features give an N-dimensional **data space**.",
+          "zh": "特征工程（**feature engineering**）：删掉没用的特征或组合特征（如高 × 宽），影响可能很大。有几个特征，数据空间（**data space**）就是几维。"
+        },
+        {
+          "en": "**Supervised Learning** predicts the **target feature**: learn from a labelled training set, then predict for unlabelled data. Categorical target: **classification**; continuous: **regression**.",
+          "zh": "监督学习（**Supervised Learning**）：要预测的叫目标特征；先用带标签的训练数据学，再对无标签数据预测。目标值类别型 → 分类，连续型 → 回归（不看输入的类型）。"
+        },
+        {
+          "en": "The ML pipeline: Data Preparation, Model Training, Model Evaluation, Inference/Deployment.",
+          "zh": "机器学习流程四步：数据准备 → 模型训练 → 模型评估 → 推理/部署。"
+        },
+        {
+          "en": "A classification model draws a **decision boundary** in the data space. We choose the model; the machine finds the **parameters** (weights) w0, w1, w2 during training.",
+          "zh": "分类模型在数据空间画出决策边界（**decision boundary**），两边预测不同的类。选模型是我们的事；训练时找参数（权重 w0、w1、w2）是机器的事。w0 + w1x1 + w2x2 也是一个加权和。"
+        },
+        {
+          "en": "**Accuracy** = correct / total predictions; **classification error** = 1 − accuracy. Activity: Model A 6/7 ≈ 86%, Model B 7/7 = 100%, Model C 5/7 ≈ 71%.",
+          "zh": "准确率（**accuracy**）= 预测对的个数 ÷ 总数；分类错误率（**classification error**）= 1 − 准确率。第 47 页活动答案（Lecture 6 第 17 页）：A 6/7 ≈ 86%（错误率 1/7 ≈ 14%），B 7/7，C 5/7 ≈ 71%。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "accuracy = number of correct predictions / total number of predictions",
+          "zh": "准确率 = 预测正确的个数 ÷ 预测的总个数；先写分数，再写百分比，如 6/7 ≈ 86%。",
+          "en": "Write the fraction first, then the percentage."
+        },
+        {
+          "expr": "classification error = 1 − accuracy",
+          "zh": "分类错误率（也叫 error rate）= 1 − 准确率，如 1 − 6/7 = 1/7 ≈ 14%；不是 1 ÷ 准确率。",
+          "en": "Also called the error rate."
+        },
+        {
+          "expr": "w0 + w1x1 + w2x2 = 0   (trained: −12 + x1 + 0.3x2 = 0)",
+          "zh": "线性决策边界（x1 = 叶宽，x2 = 叶高）：线的一边预测一类，另一边预测另一类；w0、w1、w2 是机器在训练中找的参数（权重）。",
+          "en": "A linear decision boundary; the machine finds w0, w1 and w2 during training."
+        },
+        {
+          "expr": "N features in a feature vector → N-dimensional data space",
+          "zh": "特征向量里有几个值（特征），数据空间就是几维：`[(leaf width), (leaf height)]` → 2 维，`[(leaf width), (leaf height), (leaf type)]` → 3 维。",
+          "en": "Count the features to get the number of dimensions."
+        }
+      ],
+      "mustKnowTerms": [
+        "data-provenance",
+        "copyright",
+        "fair-use",
+        "invasion-of-privacy",
+        "information-leakage",
+        "differential-privacy",
+        "continuous",
+        "ordinal",
+        "categorical",
+        "feature-vector",
+        "feature-engineering",
+        "data-space",
+        "machine-learning-pipeline",
+        "supervised-learning",
+        "target-feature",
+        "labelled-data",
+        "classification",
+        "regression",
+        "decision-boundary",
+        "model-parameter",
+        "accuracy",
+        "classification-error"
+      ]
+    },
+    {
+      "lessonId": "lab04",
+      "title": {
+        "zh": "在 Teachable Machine 中评估数据的作用",
+        "en": "Evaluating the Role of Data in Teachable Machine"
+      },
+      "points": [
+        {
+          "en": "We trained a SCISSORS vs PAPER image classifier in Teachable Machine: supervised learning, and classification, because the target (the gesture) is categorical.",
+          "zh": "用 Teachable Machine 训练剪刀 / 布的图像分类器（**image classifier**），每种约 20 张图。这是监督学习；目标值（手势）是类别型，所以是分类任务。"
+        },
+        {
+          "en": "The lab's pipeline: Data Preparation (images), Model Training (Train Model), Model Evaluation (new hands), Inference (predictions in the Preview panel).",
+          "zh": "lab 里的机器学习流程：数据准备（录制或上传图片）→ 模型训练（Train Model）→ 模型评估（用没见过的手测试）→ 推理（Preview 面板里预测新数据）。"
+        },
+        {
+          "en": "Test on hands the model was not trained on. Accuracy = correct / total, as a percentage; classification error = 1 − accuracy.",
+          "zh": "要用没训练过的手来测试，只用训练图看不出它对新数据的表现。准确率 = 对的个数 ÷ 总数，写成百分比；错误率 = 1 − 准确率。"
+        },
+        {
+          "en": "Model B kept only 2 training images of one gesture. Compare the types of errors, not only accuracy: two models can have the same accuracy but different errors.",
+          "zh": "Model B：一种手势只剩 2 张训练图，再比较错误的类型（**types of errors**）：准确率相同，错误也可能不同（Lecture 6 第 29 页提到 Lab 4）。按原理，错误多落在少的那一类，对应偏见原因“代表性不足”。"
+        },
+        {
+          "en": "Out of distribution: the SPOCK hand still gets SCISSORS or PAPER, because the model only knows those classes; high confidence does not mean correct.",
+          "zh": "分布外（**out of distribution**）：SPOCK 手势仍被判成剪刀或布，因为模型只认识这两类；把握度（**confidence**）高也不代表对。联系 Lecture 1：模型只适用于它被训练的问题。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "accuracy = number of correct predictions / total number of predictions   (as a percentage)",
+          "zh": "Lab 4 要把准确率写成百分比；分类错误率 = 1 − 准确率。",
+          "en": "Write the accuracy as a percentage."
+        }
+      ],
+      "mustKnowTerms": [
+        "teachable-machine",
+        "image-classifier",
+        "machine-learning-pipeline",
+        "classification",
+        "inference",
+        "accuracy",
+        "classification-error",
+        "test-set",
+        "majority-class",
+        "underrepresentation",
+        "out-of-distribution",
+        "confidence"
+      ]
+    },
+    {
+      "lessonId": "lec05",
+      "title": {
+        "zh": "训练模型",
+        "en": "Training Models"
+      },
+      "points": [
+        {
+          "en": "Training goal in regression: after we choose a model type, the machine finds the parameters (w0, w1, ...) that best match the data. This is **fitting** the data.",
+          "zh": "回归的训练目标（学习目标 1）：选好模型类型后，机器找最贴合数据的参数（w0, w1, …），这叫拟合（**fitting**）；“最贴合”就是代价最小。"
+        },
+        {
+          "en": "In **regression**, the line shows the predicted value y, not a decision boundary: y = 8.65 + 0.464x1 predicts 10.0 cm at width 3 cm.",
+          "zh": "回归（**regression**）预测连续数值；线表示预测值 y，不是决策边界。y = 8.65 + 0.464x1：叶宽 3 cm 预测 10.0 cm，12 cm 预测 14.2 cm。"
+        },
+        {
+          "en": "In y = mx + b, m is the slope (rise / run) and b is the y-intercept; in y = w0 + w1x1, w0 is the intercept and w1 is the slope.",
+          "zh": "y = mx + b：m 是斜率（**slope**，rise ÷ run），b 是 y 轴截距（**y-intercept**）。课件 b = 8.65，m = 4.64 / 10 = 0.464；所以 w0 是截距，w1 是斜率。"
+        },
+        {
+          "en": "A **cost function** measures the 'wrongness' of a line for a dataset, and training minimizes it. **MSE** is one possible cost function.",
+          "zh": "代价函数（**cost function**）衡量一条线对数据集有多“错”；训练要把它降到最小。均方误差（**MSE**）只是其中一种，越低越好。"
+        },
+        {
+          "en": "Error = y − t (predicted minus target); squared error = (y − t)². At x = 6: 11.4 − 15.5 = −4.1, and (−4.1)² = 16.81.",
+          "zh": "误差（**error**）= 预测值 y − 目标值 t，顺序别反；平方误差 = (y − t)²，不会是负数。课件 x = 6：11.4 − 15.5 = −4.1，平方 16.81。"
+        },
+        {
+          "en": "**MSE** is the average of the squared errors: 83.42 / 7 ≈ 11.92. You don't need to memorize the symbol formula, but you must be able to calculate it.",
+          "zh": "MSE = 所有点平方误差的平均：7 个平方误差加起来 83.42，除以 7 ≈ 11.92。课件说符号公式不用背，但要会一步步算。"
+        },
+        {
+          "en": "Parameters decide the line, and the cost scores it: w0 = 19.00, w1 = −0.800 gives MSE 37.52; w0 = 8.65, w1 = 0.464 gives 11.92.",
+          "zh": "代价、参数和训练（学习目标 2）：参数决定线，代价给线打分。19.00 / −0.800 的线 MSE 37.52；8.65 / 0.464 的线 MSE 11.92，更好。训练就是改参数，把代价降到最低。"
+        },
+        {
+          "en": "**Gradient descent**: 1. random parameters; 2. check the cost on every training point; 3. decide up or down for each; 4. change each a little; 5. repeat.",
+          "zh": "梯度下降（**gradient descent**）5 步（学习目标 3，顺序要背）：随机初值 → 用每个训练点算代价 → 每个参数判断增大还是减小 → 各改一小点 → 从第 2 步重复，直到接近正确。"
+        },
+        {
+          "en": "Linear regression can be solved exactly, but complex models often cannot, so gradient descent slowly approaches a good solution.",
+          "zh": "线性回归可以直接精确求解，复杂模型往往不行，这时用梯度下降一点点逼近好的解。"
+        },
+        {
+          "en": "Gradient descent demo: MSE 37.52 → 24.04 → 18.27 → 13.66 → 12.12 → 11.92 as the line improves.",
+          "zh": "课件演示：从 w0 = 19.00、w1 = −0.800 出发，MSE 一路下降，最后到 w0 = 8.65、w1 = 0.464（MSE 11.92）；途中斜率由负变正，截距一直下降。"
+        },
+        {
+          "en": "Gradient descent also finds decision boundaries in classification; roughly, the goal is to maximize confidence in correct classifications.",
+          "zh": "梯度下降也能找分类的决策边界；大致目标是让正确分类的把握（**confidence**）最大。注意回归里是让代价最小。"
+        },
+        {
+          "en": "Training MSE: linear 11.92, quadratic 4.68, higher-order polynomial 1.67. The model with the lowest training cost is not necessarily the best.",
+          "zh": "选模型（**model selection**）：训练集上直线 11.92、二次 4.68、高次多项式 1.67。训练代价最低的不一定最好（Lecture 6 用验证集来选）。"
+        },
+        {
+          "en": "A model with 7 parameters reached MSE 0 on the training set, but MSE 190.27 on new data; a straight line had 5.77.",
+          "zh": "参数很多的模型（w0 到 w6 共 7 个）在训练集上 MSE = 0，在新数据上却是 190.27；简单直线只有 5.77。"
+        },
+        {
+          "en": "**Overfitting** occurs when a model memorizes random noise in the training data, rather than genuine patterns. It is troublesome because we want good predictions on new data.",
+          "zh": "过拟合（**overfitting**）：模型记住了训练数据里的随机噪声，而不是真正的规律（学习目标 4，定义必背）。麻烦在于：训练代价可以很低，对新数据却预测得很差。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "y = w0 + w1x1   (trained: y = 8.65 + 0.464x1)",
+          "zh": "线性回归模型：y 是预测值，x1 是叶宽；w0 是截距，w1 是斜率。x1 = 3 → y ≈ 10.0；x1 = 12 → y ≈ 14.2。",
+          "en": "The linear regression model; y is the predicted value."
+        },
+        {
+          "expr": "y = mx + b,   m = rise / run",
+          "zh": "直线方程：m 是斜率（rise ÷ run），b 是 y 轴截距；课件 m = 4.64 / 10 = 0.464，b = 8.65。",
+          "en": "Slope m and y-intercept b."
+        },
+        {
+          "expr": "error = y − t",
+          "zh": "误差 = 预测值 y − 目标值 t（顺序别反）；x = 6：11.4 − 15.5 = −4.1。",
+          "en": "Predicted value minus target value."
+        },
+        {
+          "expr": "squared error = (y − t)²",
+          "zh": "平方误差，永远不会是负数；(−4.1)² = 16.81。",
+          "en": "The error, squared."
+        },
+        {
+          "expr": "MSE = (1/N) Σᵢ (y⁽ⁱ⁾ − t⁽ⁱ⁾)²",
+          "zh": "均方误差 = 所有点平方误差的平均：83.42 / 7 ≈ 11.92。课件说这个符号公式不用背，会用文字说清楚、会算就行。",
+          "en": "The average of the squared errors over all N points; the symbols do not need to be memorized."
+        },
+        {
+          "expr": "gradient descent: random start → check cost → decide up or down for each parameter → change each by a small amount → repeat",
+          "zh": "梯度下降 5 步的速记版：从第 2 步起一直重复，直到参数接近正确。",
+          "en": "Repeat from step 2 until the parameters are close to correct."
+        }
+      ],
+      "mustKnowTerms": [
+        "regression",
+        "model-parameter",
+        "predicted-value",
+        "target-value",
+        "fitting",
+        "slope",
+        "y-intercept",
+        "cost-function",
+        "error",
+        "squared-error",
+        "mean-squared-error",
+        "gradient-descent",
+        "model-selection",
+        "overfitting",
+        "random-noise",
+        "genuine-patterns"
+      ]
+    },
+    {
+      "lessonId": "lec06",
+      "title": {
+        "zh": "模型评估与算法公平",
+        "en": "Model Evaluation and Algorithmic Fairness"
+      },
+      "points": [
+        {
+          "en": "A **validation set** is part of the dataset that is not used for training, so it acts as new data. Good validation performance is a strong reason to prefer a model.",
+          "zh": "验证集（**validation set**）：不用来训练的一部分数据，对模型来说是“新数据”。训练误差低不代表泛化得好；验证集上表现好，才是选它的有力理由。所以验证集绝不能拿来训练。"
+        },
+        {
+          "en": "Choose by validation MSE: linear 9.75, quadratic 1.38, higher-order polynomial 8.07, so choose the quadratic, although the polynomial had the lowest training MSE (1.67).",
+          "zh": "用验证 MSE 挑模型（第 16 页）：直线 训练 11.92 / 验证 9.75；二次 4.68 / 1.38；高次多项式 1.67 / 8.07。选验证 MSE 最低的二次模型；多项式训练最低、验证却高，是过拟合的信号。"
+        },
+        {
+          "en": "Leaf activity: Model B had 7/7 training accuracy, but Model A had the best validation accuracy (6/6 = 100%), so we prefer Model A.",
+          "zh": "树叶分类活动：Model B 训练 7/7 = 100%，但验证准确率最高的是 Model A（6/6 = 100%），所以选 A（B、C 的验证结果课件没印，按图数是 3/6 和 4/6）。"
+        },
+        {
+          "en": "The chosen model's validation accuracy overreports, because we picked the best of noisy results. Dice: one roll of 8 dice is most likely 28; the expected maximum of 10 rolls is 35.4.",
+          "zh": "为什么验证准确率会偏高：挑的是很多结果里最好的那个，真实表现很可能更差。掷骰子：8 个骰子掷一次最可能 28；掷 10 次取最大，期望 35.4。"
+        },
+        {
+          "en": "A **test set** is used for neither training nor validation; it reports the final accuracy without overreporting. A 60/20/20 split is common.",
+          "zh": "测试集（**test set**）：既不训练也不验证，用来报最终准确率、避免报高。常见划分 60/20/20。分工：训练集学参数，验证集挑模型，测试集报成绩。"
+        },
+        {
+          "en": "A **model family** comes from varying **hyperparameters** before training, e.g. a decision tree's maximum depth (1 or 3). Parameters (weights) are learned during training.",
+          "zh": "模型家族（**model family**）：训练前改超参数（**hyperparameter**）得到的一组相关模型，例如决策树的最大深度（1 和 3）。超参数训练前定；参数（权重）训练中学。"
+        },
+        {
+          "en": "Lecture 6 grid: PREDICTED rows, ACTUAL columns: TP top-left, FP top-right, FN bottom-left, TN bottom-right. Lab 5's cards flip it, so read the labels first.",
+          "zh": "第 6 讲的四格表：行 = 预测，列 = 实际；左上 TP、右上 FP、左下 FN、右下 TN。Lab 5 的模型卡正好反过来，先看行列标题。记法：P/N 是预测结果，T/F 说预测对不对。"
+        },
+        {
+          "en": "**Precision** = TP / (TP + FP); **Recall** = TP / (TP + FN); **F1** = 2 × P × R / (P + R); Accuracy = (TP + TN) / (TP + TN + FP + FN).",
+          "zh": "公式（学习目标 2）：精确率分母是“预测为正”的；召回率分母是“实际为正”的；F1 把两者合成一个数；准确率 = 对的 ÷ 全部。"
+        },
+        {
+          "en": "Model 1 (TP 28, FP 12, FN 2, TN 18): accuracy 46/60 ≈ 77%, precision 28/40 = 70%, recall 28/30 ≈ 93%, F1 80%.",
+          "zh": "Model 1：准确率 ≈ 77%，精确率 70%，召回率 ≈ 93%，F1 80%（FN 少，漏诊少）。"
+        },
+        {
+          "en": "Model 2 (TP 18, FP 2, FN 12, TN 28): same accuracy, precision 90%, recall 60%, F1 72%. Serious disease: prefer recall; costly follow-up tests: prefer precision.",
+          "zh": "Model 2：准确率也 ≈ 77%，精确率 90%，召回率 60%，F1 72%。病很严重 → 要召回率高（Model 1）；进一步检查很贵 → 要精确率高（Model 2）。"
+        },
+        {
+          "en": "Other priorities: speed/cost (of training and of inference), explainability, and bias and fairness.",
+          "zh": "和表现没有直接关系的选模型理由（第 32 页）：速度 / 成本（训练和推理两种）、可解释性、偏见与公平。"
+        },
+        {
+          "en": "Possible causes of bias (non-exhaustive): biased historical data, **underrepresentation** of groups, **proxy variables**, and incompatible definitions of fairness.",
+          "zh": "偏见的可能原因（不完整的清单）：① 有偏见的历史数据；② 某些群体代表性不足（**underrepresentation**）；③ 代理变量（**proxy variable**）还原被禁止的敏感信息；④ 公平定义互不相容。"
+        },
+        {
+          "en": "Case facts: Amazon's model penalized 'women's'; Black and Latinx borrowers paid ~0.08% more; facial recognition errors were up to 34% higher; COMPAS: 44.9% vs 23.5%.",
+          "zh": "四个案例的事实：Amazon 简历模型给含 “women's” 的简历扣分；房贷（2012–2018）多付约 0.08%（模型没用族裔）；人脸识别深肤色女性错误率最多高 34%；COMPAS：没再犯的被错判高风险 44.9% 对 23.5%。"
+        },
+        {
+          "en": "Likely reasons (our answers to the slide Discuss questions): Amazon - biased historical data; mortgages - proxy variables; facial recognition - underrepresentation. COMPAS - incompatible fairness definitions (the slides say so on p.44).",
+          "zh": "可能的原因（讨论题的参考答案，课件只给了原因清单）：Amazon → 有偏见的历史数据；房贷 → 代理变量；人脸识别 → 代表性不足。只有 COMPAS 是课件明确写的（p.44：公平定义互相冲突）。考试写 One likely reason is …。"
+        },
+        {
+          "en": "**Disparate treatment** explicitly considers group membership (the process); **disparate impact** disproportionately harms certain groups (the result). Often both cannot be avoided.",
+          "zh": "差别对待（**disparate treatment**）看过程：决定时明确考虑群体身份；差别影响（**disparate impact**）看结果：不成比例地伤害某些群体。例：同一个信用分门槛不是差别对待，却可能造成差别影响。"
+        },
+        {
+          "en": "**Demographic parity**: same positive rate per group. **Predictive parity**: same TP / (TP + FP). **Equalized odds**: same TPR and FPR. **Individual fairness**: similar people, similar outcomes.",
+          "zh": "四种公平：人口统计均等——各组被选中的比例相同；预测均等——各组精确率相同；均等几率——各组 TPR 和 FPR 都相同；个体公平——相似的人得到相似的结果。"
+        },
+        {
+          "en": "Fairness definitions are often at odds (COMPAS) and cost some accuracy. There is no single right answer; designers prioritize for the model's **stakeholders**.",
+          "zh": "公平的取舍（学习目标 3）：各种公平常常冲突，通常还要牺牲一些准确率；没有唯一正确答案，由设计者按利益相关者（**stakeholder**，会受模型影响的人或群体）的需要来取舍。"
+        },
+        {
+          "en": "Improving fairness: **pre-processing** (remove sensitive information; proxies make simple removal not enough), **in-processing** (a **regularizer** in the cost), **post-processing**, and **model auditing** before deployment.",
+          "zh": "提高公平：前处理（删敏感信息，但有代理变量，只删不够）；中处理（代价函数里加正则项，同时为公平优化）；后处理（调整根据模型输出做的决定）；部署前的模型审计（常由独立第三方做）。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "Accuracy = (TP + TN) / (TP + TN + FP + FN)",
+          "zh": "准确率：所有例子里预测对的比例；Model 1：(28 + 18) / 60 = 46/60 ≈ 77%。",
+          "en": "All correct predictions over all predictions."
+        },
+        {
+          "expr": "Precision = TP / (TP + FP)",
+          "zh": "精确率：预测为正的里面，真的为正的比例；Model 1：28/40 = 70%。",
+          "en": "Of everything predicted positive, the share that is really positive."
+        },
+        {
+          "expr": "Recall = TP / (TP + FN)",
+          "zh": "召回率（也就是真阳性率 true positive rate）：真正为正的里面，被找出来的比例；Model 1：28/30 ≈ 93%。",
+          "en": "Of everything actually positive, the share the model finds (the true positive rate)."
+        },
+        {
+          "expr": "F1 Score = 2(Precision)(Recall) / (Precision + Recall)",
+          "zh": "F1：把精确率和召回率合成一个数；Model 2：2 × 0.9 × 0.6 ÷ 1.5 = 0.72 = 72%。",
+          "en": "Combines precision and recall into one number."
+        },
+        {
+          "expr": "False positive rate = FP / (FP + TN)",
+          "zh": "假阳性率：真正为负的里面，被错判为正的比例；和真阳性率一起用来判断均等几率。",
+          "en": "Of everything actually negative, the share wrongly predicted positive."
+        },
+        {
+          "expr": "Demographic parity: (TP + FP) / N is the same for every group",
+          "zh": "人口统计均等：各组被预测为正（如被录取）的比例相同；N = 这一组的总人数。",
+          "en": "The same rate of positive outcomes in every group."
+        },
+        {
+          "expr": "Predictive parity: TP / (TP + FP) is the same for every group",
+          "zh": "预测均等：各组的精确率相同。",
+          "en": "The same precision in every group."
+        },
+        {
+          "expr": "Equalized odds: TP / (TP + FN) and FP / (FP + TN) are both the same for every group",
+          "zh": "均等几率：各组的真阳性率和假阳性率都相同，两个都要满足。",
+          "en": "The same true positive rate and the same false positive rate in every group."
+        },
+        {
+          "expr": "training / validation / test ≈ 60 / 20 / 20",
+          "zh": "常见的数据划分；训练集占最多。",
+          "en": "A common split; the training set gets the most data."
+        },
+        {
+          "expr": "PV = nRT  →  slope m = nR / V  →  R = mV / n = 0.414 × 1.00 / 0.050 = 8.28 L·kPa/(mol·K)",
+          "zh": "按理论选直线模型的例子：n = 0.050 mol，V = 1.00 L，斜率 m = 0.414 kPa/K。",
+          "en": "Choosing a linear model for theoretical reasons."
+        }
+      ],
+      "mustKnowTerms": [
+        "validation-set",
+        "test-set",
+        "generalization",
+        "overreporting",
+        "model-family",
+        "hyperparameter",
+        "confusion-matrix",
+        "true-positive",
+        "false-positive",
+        "false-negative",
+        "true-negative",
+        "precision",
+        "recall",
+        "f1-score",
+        "disparate-treatment",
+        "disparate-impact",
+        "demographic-parity",
+        "predictive-parity",
+        "equalized-odds",
+        "individual-fairness",
+        "stakeholder",
+        "proxy-variable",
+        "underrepresentation",
+        "pre-processing",
+        "in-processing",
+        "post-processing",
+        "model-auditing"
+      ]
+    },
+    {
+      "lessonId": "lab05",
+      "title": {
+        "zh": "模型评估与公平性（招聘模型卡）",
+        "en": "Model Evaluation and Fairness (Hiring Model Cards)"
+      },
+      "points": [
+        {
+          "en": "Hiring model cards put ACTUAL in the rows and PREDICTED in the columns: FN is top-right and FP bottom-left, the opposite of Lecture 6. Read the labels first.",
+          "zh": "招聘模型卡（**model card**）：行 = 实际（合格 / 不合格），列 = 预测（Hire / No hire）。TP = 合格且录用，FN = 合格没录用（右上），FP = 不合格却录用（左下），TN = 不合格没录用。和第 6 讲方向相反。"
+        },
+        {
+          "en": "Per group: accuracy (TP + TN) / N; hiring rate (TP + FP) / N; precision TP / (TP + FP); TPR TP / (TP + FN); FPR FP / (FP + TN).",
+          "zh": "每组 5 个指标：准确率；录用率（**hiring rate**）→ 人口统计均等；精确率 → 预测均等；真阳性率 TPR 和假阳性率 FPR → 两个一起判断均等几率。"
+        },
+        {
+          "en": "Model 1: accuracy 80.0%, TPR 80.0% and FPR 20.0% in both groups, so equalized odds holds; hiring rate (50.0% vs 38.0%) and precision (80.0% vs 63.2%) differ.",
+          "zh": "Model 1：A 组（400、100、100、400）和 B 组（240、140、60、560）准确率、TPR、FPR 都相同 → 满足均等几率（差距 +0.0 pp）；录用率差 +12.0 pp、精确率差 +16.8 pp → 另外两种不满足。"
+        },
+        {
+          "en": "Overall: add the counts first, then compute: Model 1's precision is 640/880 = 72.7%, not the 71.6% average. Gap = A − B in percentage points (pp).",
+          "zh": "总体值先加计数再算百分比：640/880 = 72.7%，不是 80.0% 和 63.2% 的平均 71.6%。差距 = A 组 − B 组，单位百分点（**pp**）；差距为 0.0 pp，对应的群体公平才成立。"
+        },
+        {
+          "en": "Model 5 meets demographic parity and equalized odds, but hires at random within each group: individual fairness is Low and accuracy only 52.0%.",
+          "zh": "Model 5 满足人口统计均等和均等几率，但每组内部随机抽人录用：个体公平 Low，总体准确率只有 52.0%。只看群体指标不够。"
+        },
+        {
+          "en": "Individual fairness cannot be read from the counts (one shared cutoff is High). Stakeholders rank models by their own priorities: no single right answer.",
+          "zh": "个体公平看计数表看不出来，卡片单独标出（所有人同一个门槛 **cutoff** → High）。五类利益相关者按各自的首要 / 次要优先级排名，结果不同：公平没有唯一正确答案。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "Hiring rate = (TP + FP) / N",
+          "zh": "录用率：被说 Hire 的人数 ÷ 这一组的总人数；Model 1 的 A 组 500/1,000 = 50.0%，B 组 380/1,000 = 38.0%。",
+          "en": "Used for demographic parity."
+        },
+        {
+          "expr": "Overall: add the counts of all groups first, then compute the percentage",
+          "zh": "总体值先加计数、再算百分比：640/880 = 72.7%，不是两组百分比的平均 71.6%。",
+          "en": "Add the counts every time; do not average the group percentages."
+        },
+        {
+          "expr": "Gap = Group A − Group B   (in percentage points, pp)",
+          "zh": "差距用百分点表示：50.0% − 38.0% = +12.0 pp；差距为 0.0 pp 时对应的公平定义成立。",
+          "en": "A group fairness definition holds when its gap is 0.0 pp."
+        }
+      ],
+      "mustKnowTerms": [
+        "model-card",
+        "hiring-rate",
+        "precision",
+        "true-positive",
+        "false-positive-rate",
+        "percentage-point",
+        "demographic-parity",
+        "predictive-parity",
+        "equalized-odds",
+        "individual-fairness",
+        "stakeholder",
+        "cutoff"
+      ]
+    },
+    {
+      "lessonId": "lec07",
+      "title": {
+        "zh": "神经网络与大语言模型（LLM）入门",
+        "en": "Neural Networks and an Introduction to LLMs"
+      },
+      "points": [
+        {
+          "en": "**Neural networks** are a family of models made of many interacting **artificial neurons**, which emulate (some of) the behaviour of biological neurons.",
+          "zh": "神经网络（**neural network**）：由许多互相作用的人工神经元（**artificial neuron**）组成的一类模型；人工神经元用代码模仿大脑中生物神经元的（部分）行为。"
+        },
+        {
+          "en": "An artificial neuron multiplies inputs x1, x2, ... by weights w1, w2, ..., adds them, and applies an **activation function**: f(w1x1 + w2x2 + ··· + b).",
+          "zh": "人工神经元：输入乘权重 → 相加 → 激活函数（**activation function**）决定输出有多强；输出还可以成为别的神经元的输入。"
+        },
+        {
+          "en": "Weights decide whether each input is 'excitatory' or 'inhibitory', and by how much. Like a Lab 3 heuristic, a neuron computes a weighted sum, but its weights are learned.",
+          "zh": "权重决定每个输入是“兴奋”还是“抑制”、程度多大。和 Lab 3 的 heuristic 一样都是加权和；区别是神经元的权重在训练中学出来，heuristic 的权重是人定的。"
+        },
+        {
+          "en": "A biological neuron fires an **action potential** when excitatory inputs reach a threshold. Mapping: synapses ↔ weights, dendrites ↔ weighted inputs, cell body ↔ sum, axon ↔ output.",
+          "zh": "生物神经元：兴奋性输入推动放电，抑制性输入阻碍；在细胞体汇合，达到阈值才放电（动作电位）。对应（学习目标 1）：突触 ↔ 权重，树突 ↔ 加权输入，细胞体 ↔ 求和，轴突 ↔ 输出。"
+        },
+        {
+          "en": "Where the analogy ends: speed, connection density, plasticity, activation function (Sigmoid and ReLU are not all-or-nothing), training, and cost (much more power).",
+          "zh": "类比的终点（6 点）：速度（人工快几百万倍）；连接密度（几百万亿个突触 vs 约 1 万亿个参数）；可塑性；激活函数（人工的不是全有或全无）；训练（人工网络的训练方式在生物学上不太可信，biologically implausible）；成本（耗电多得多）。"
+        },
+        {
+          "en": "Layers: the input layer passes values on and is not counted; the output layer counts; hidden layers do not communicate with the outside world, and a net may contain any number of them, including none.",
+          "zh": "层：输入层不是神经元，只把输入传下去，不算层数；输出层算一层（二分类通常 1 个节点）；隐藏层不和外界交流，个数任意，也可以一个都没有（optional, any number）。"
+        },
+        {
+          "en": "Number of layers = hidden layers + 1, so a network with two hidden layers has 3 layers. A **feed-forward** net passes information only forward; backwards communication is **recurrence**.",
+          "zh": "数层数：2 个隐藏层的网络是 3 层，不是 4 层。推理时特征向量从输入层进、经隐藏层变换、在输出层出结果；前馈（**feed-forward**）只往前传，往回传叫循环（**recurrence**）。"
+        },
+        {
+          "en": "Hidden layers add neurons and parameters, so training takes more time and data, but they can represent more complicated shapes in the data space.",
+          "zh": "为什么要隐藏层（学习目标 2）：坏处是参数更多，训练更慢、要更多数据；好处是能在数据空间里表示更复杂的形状。"
+        },
+        {
+          "en": "Without a hidden layer, a network can only produce a linear decision boundary, so it fails on data that is not **linearly separable**, such as XOR.",
+          "zh": "没有隐藏层只能画直线（线性）决策边界，处理不了线性不可分（not **linearly separable**）的数据，比如 XOR；Lecture 4 的 7 片叶子也一样，直线最多分对 6 片（本站自己验证的）。"
+        },
+        {
+          "en": "Training uses gradient descent plus **backpropagation**. Multilayer nets could not be trained in the 1950s, a major cause of the **First AI Winter**; backpropagation (1970s) unlocked them.",
+          "zh": "训练：梯度下降 + 反向传播（**backpropagation**，高效算出每个权重怎么更新）。1950 年代多层网络训练不了，是第一次 AI 寒冬（**First AI Winter**）的主要原因之一；1970 年代的反向传播解锁了多层网络。"
+        },
+        {
+          "en": "With sufficient size, multilayer networks are **Universal Function Approximators**: they can produce any decision boundary to arbitrary precision.",
+          "zh": "万能函数逼近器（**Universal Function Approximator**）：多层网络规模够大，就能以任意精度画出任何决策边界。"
+        },
+        {
+          "en": "**Perceptron**: no hidden layers, linear models only. **MLP**: feed-forward, fully-connected, one or more hidden layers. **Deep learning**: at least 2 hidden layers.",
+          "zh": "架构：感知机（**Perceptron**）没有隐藏层，只能产生线性模型；多层感知机（**MLP**）前馈、全连接、有一个或多个隐藏层；深度学习（**deep learning**）隐藏层至少 2 个，有时几十、几百个。"
+        },
+        {
+          "en": "**Autoencoder**: narrows to a bottleneck and recreates its input. **GAN**: a generator against a discriminator. **Convolutional Network**: spatial relationships, e.g. image pixels.",
+          "zh": "自编码器：中间收窄成瓶颈，编码器压缩、解码器还原，可减小要传输 / 存储的数据量；GAN：生成器造假、判别器辨真假，最后生成器成为生成模型；卷积网络：输入之间空间关系重要的领域（图像像素、棋盘游戏）。"
+        },
+        {
+          "en": "An **LLM** is a generative model trained on internet-scale text: a deep network using the **Transformer** architecture, and a **foundation model** usable for many tasks with little extra training.",
+          "zh": "大语言模型（**LLM**）：在互联网规模文本上训练的生成模型，底层是 **Transformer** 架构的深度神经网络；因为通用，被称为基础模型（**foundation model**），几乎不用额外训练就能做很多任务。"
+        },
+        {
+          "en": "**Prompting** describes a task in natural language. Prompts can be ambiguous and do not force the LLM; the **context** disappears at the end of a session.",
+          "zh": "提示（**prompting**）：用自然语言描述任务，不用编程；但 prompt 可能有歧义、结果会变，也不能强制 LLM（不像调用函数）。prompt 进入上下文（**context**），会话结束就消失。"
+        },
+        {
+          "en": "LLM steps (LO4): tokenize, map tokens to embeddings, apply attention, predict a probability distribution, choose a token (temperature), append it and repeat.",
+          "zh": "LLM 回答 prompt（学习目标 4）：分词 → 嵌入（几百个数字的向量）→ 注意力 → 下一个 token 的概率分布 → 选一个（温度影响）→ 接到上下文窗口末尾，整个过程再来一遍。"
+        },
+        {
+          "en": "**Temperature**: a low temperature makes the top token more likely; a high one makes tokens farther down the list more likely. Always picking the top token gives no diversity.",
+          "zh": "温度（**temperature**）：低温 → 更常选排第一的 token；高温 → 排在后面的更容易被选中。总选最可能的 token，回答就毫无多样性。"
+        },
+        {
+          "en": "Examples: daydreamed → day/dream/ed; 'its' attends to 'plot'; tokens with similar meanings have close embeddings, which are found via Machine Learning.",
+          "zh": "例子：daydreamed → day/dream/ed（拆成单个字母就不表达意思了）；“its” 关注（attends to）“plot” 才有意思；意思相近的 token 嵌入靠得近，嵌入由机器学习找出来。"
+        }
+      ],
+      "formulas": [
+        {
+          "expr": "output = f(w1x1 + w2x2 + ··· + b)",
+          "zh": "人工神经元：输入乘权重、相加，再用激活函数 f 决定输出强度；图里多出的 b 课件没有解释。",
+          "en": "Multiply each input by its weight, add them up, then apply the activation function f."
+        },
+        {
+          "expr": "number of layers = number of hidden layers + 1 (the output layer)",
+          "zh": "数层数：输出层算，输入层不算；2 个隐藏层 → 3 层。",
+          "en": "Count the output layer, but not the input layer."
+        },
+        {
+          "expr": "Perceptron: 0 hidden layers;   MLP: 1 or more hidden layers;   deep learning: at least 2 hidden layers",
+          "zh": "按隐藏层的个数认架构；没有隐藏层只能产生线性模型。",
+          "en": "Identify the architecture by its hidden layers."
+        }
+      ],
+      "mustKnowTerms": [
+        "neural-network",
+        "artificial-neuron",
+        "activation-function",
+        "hidden-layer",
+        "feed-forward",
+        "linearly-separable",
+        "backpropagation",
+        "first-ai-winter",
+        "universal-function-approximator",
+        "perceptron",
+        "multilayer-perceptron",
+        "deep-learning",
+        "autoencoder",
+        "generative-adversarial-network",
+        "convolutional-neural-network",
+        "transformer",
+        "large-language-model",
+        "foundation-model",
+        "prompting",
+        "context-window",
+        "tokenization",
+        "embedding",
+        "attention",
+        "temperature"
+      ]
+    }
+  ],
+  "formulaSheet": [
+    {
+      "expr": "executions per instruction = outer loop iterations × inner loop iterations",
+      "zh": "嵌套循环要相乘：调用 1 次 → 每条指令 1 次；循环调用 10 次 → 10 次；10 次里套 10 次 → 10 × 10 = 100 次。",
+      "en": "Nested loops multiply: 1, then 10, then 10 × 10 = 100 times each.",
+      "lessonId": "lec02"
+    },
+    {
+      "expr": "depth of a node = number of edges between it and the root (root = depth 0)",
+      "zh": "状态树的深度：数到根节点的边数。",
+      "en": "Count the edges from the root.",
+      "lessonId": "lec03"
+    },
+    {
+      "expr": "nodes at depth d = b^d   (b = number of actions possible from every state; slide example: b = 2, so 2^10 = 1,024)",
+      "zh": "指数增长：每深一层乘 b。课件 b = 2：2^10 = 1,024，2^20 约 100 万，2^40 约 1 万亿（按“每层乘 2”算出，课件只问不答）。问“第 d 层”的节点数，不是 0 到 d 层加起来；3 种动作 → 第 4 层 3^4 = 81；Connect Four 最多 7 种下法 → 最多 7^d。",
+      "en": "Exponential growth: with b actions from every state, each depth has b times as many nodes.",
+      "lessonId": "lec03"
+    },
+    {
+      "expr": "win = +100,  loss = −100,  draw = 0  (any other outcome between −100 and +100)",
+      "zh": "奖励值约定；启发式也用同一尺度（确定赢 +100，确定输 −100，均势 0）。",
+      "en": "Reward values, also the scale for heuristics.",
+      "lessonId": "lec03"
+    },
+    {
+      "expr": "▲ node = max(children);   ▼ node = min(children)",
+      "zh": "Minimax：从终止状态往上一层层算；▲ 我们取最大，▼ 对手取最小。",
+      "en": "Work upwards from the terminal states, one level at a time.",
+      "lessonId": "lec03"
+    },
+    {
+      "expr": "zero sum game: opponent's reward = −(our reward)",
+      "zh": "零和游戏：对手的奖励是我们奖励的相反数。",
+      "en": "The two rewards are negations of each other.",
+      "lessonId": "lec03"
+    },
+    {
+      "expr": "Material Advantage = 1×[(# W pawns) − (# B pawns)] + 3×[(# W knights) − (# B knights)] + 3×[(# W bishops) − (# B bishops)] + 5×[(# W rooks) − (# B rooks)] + 9×[(# W queens) − (# B queens)]",
+      "zh": "国际象棋子力优势：每种棋子“白 − 黑”，乘权重 1、3、3、5、9 后相加。",
+      "en": "A weighted sum of piece-count differences.",
+      "lessonId": "lec03"
+    },
+    {
+      "expr": "heuristic = Σ weight × (our feature value − opponent's feature value)",
+      "zh": "加权和启发式的通用格式：每个特征“我 − 对手”，乘权重，再相加。",
+      "en": "The weighted sum format.",
+      "lessonId": "lab03"
+    },
+    {
+      "expr": "Combined = 3 × [(# three_in_a_row, me) − (# three_in_a_row, opponent)] + 1 × [(# chips in center column, me) − (# chips in center column, opponent)]",
+      "zh": "Lab 3 的例子：三连权重 3，中间列棋子权重 1。",
+      "en": "The Connect Four example heuristic.",
+      "lessonId": "lab03"
+    },
+    {
+      "expr": "accuracy = number of correct predictions / total number of predictions",
+      "zh": "准确率；先写分数，再写百分比，如 6/7 ≈ 86%。",
+      "en": "Write the fraction, then the percentage.",
+      "lessonId": "lec04"
+    },
+    {
+      "expr": "classification error = 1 − accuracy",
+      "zh": "分类错误率（error rate）；如 1 − 6/7 = 1/7 ≈ 14%。",
+      "en": "Also called the error rate.",
+      "lessonId": "lec04"
+    },
+    {
+      "expr": "w0 + w1x1 + w2x2 = 0   (trained: −12 + x1 + 0.3x2 = 0)",
+      "zh": "线性决策边界：线的两边预测不同的类；w0、w1、w2 是训练中找的参数（权重）。",
+      "en": "A linear decision boundary in a 2-D data space.",
+      "lessonId": "lec04"
+    },
+    {
+      "expr": "N features in a feature vector → N-dimensional data space",
+      "zh": "有几个特征，数据空间就是几维。",
+      "en": "Count the features to get the dimensions.",
+      "lessonId": "lec04"
+    },
+    {
+      "expr": "y = w0 + w1x1   (trained: y = 8.65 + 0.464x1)",
+      "zh": "线性回归：y 是预测值；w0 是截距，w1 是斜率；x1 = 3 → y ≈ 10.0，x1 = 12 → y ≈ 14.2。",
+      "en": "The linear regression model.",
+      "lessonId": "lec05"
+    },
+    {
+      "expr": "y = mx + b,   m = rise / run",
+      "zh": "斜率 m = 4.64 / 10 = 0.464，截距 b = 8.65。",
+      "en": "Slope and y-intercept.",
+      "lessonId": "lec05"
+    },
+    {
+      "expr": "error = y − t",
+      "zh": "误差 = 预测值 − 目标值（顺序别反）；11.4 − 15.5 = −4.1。",
+      "en": "Predicted value minus target value.",
+      "lessonId": "lec05"
+    },
+    {
+      "expr": "squared error = (y − t)²",
+      "zh": "平方误差，不会是负数；(−4.1)² = 16.81。",
+      "en": "The error, squared.",
+      "lessonId": "lec05"
+    },
+    {
+      "expr": "MSE = (1/N) Σᵢ (y⁽ⁱ⁾ − t⁽ⁱ⁾)²",
+      "zh": "均方误差 = 平方误差的平均：83.42 / 7 ≈ 11.92；符号公式不用背，但要会算。",
+      "en": "The average of the squared errors.",
+      "lessonId": "lec05"
+    },
+    {
+      "expr": "gradient descent: random start → check cost → decide up or down for each parameter → change each by a small amount → repeat",
+      "zh": "梯度下降 5 步：一直重复，直到参数接近正确。",
+      "en": "Repeat from step 2 until the parameters are close to correct.",
+      "lessonId": "lec05"
+    },
+    {
+      "expr": "Accuracy = (TP + TN) / (TP + TN + FP + FN)",
+      "zh": "准确率；Model 1：46/60 ≈ 77%。",
+      "en": "All correct predictions over all predictions.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "Precision = TP / (TP + FP)",
+      "zh": "精确率：预测为正的里面真的为正的比例；Model 1：28/40 = 70%。",
+      "en": "Of everything predicted positive, the share that is really positive.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "Recall = TP / (TP + FN)",
+      "zh": "召回率（真阳性率）：真正为正的里面被找出来的比例；Model 1：28/30 ≈ 93%。",
+      "en": "Of everything actually positive, the share the model finds.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "F1 Score = 2(Precision)(Recall) / (Precision + Recall)",
+      "zh": "F1 分数；Model 1 是 80%，Model 2 是 18/25 = 72%。",
+      "en": "Combines precision and recall.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "False positive rate = FP / (FP + TN)",
+      "zh": "假阳性率：真正为负的里面被错判为正的比例。",
+      "en": "Of everything actually negative, the share wrongly predicted positive.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "Demographic parity: (TP + FP) / N is the same for every group",
+      "zh": "人口统计均等：各组被预测为正的比例相同。",
+      "en": "The same rate of positive outcomes in every group.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "Predictive parity: TP / (TP + FP) is the same for every group",
+      "zh": "预测均等：各组精确率相同。",
+      "en": "The same precision in every group.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "Equalized odds: TP / (TP + FN) and FP / (FP + TN) are both the same for every group",
+      "zh": "均等几率：各组真阳性率和假阳性率都相同。",
+      "en": "The same true positive rate and false positive rate in every group.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "training / validation / test ≈ 60 / 20 / 20",
+      "zh": "常见的数据划分，训练集占最多。",
+      "en": "A common split.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "PV = nRT  →  slope m = nR / V  →  R = mV / n = 0.414 × 1.00 / 0.050 = 8.28 L·kPa/(mol·K)",
+      "zh": "按理论选直线模型的例子（n = 0.050 mol，V = 1.00 L，m = 0.414 kPa/K）。",
+      "en": "Choosing a linear model for theoretical reasons.",
+      "lessonId": "lec06"
+    },
+    {
+      "expr": "Hiring rate = (TP + FP) / N",
+      "zh": "录用率，用来判断人口统计均等；Model 1：A 组 50.0%，B 组 38.0%。",
+      "en": "Used for demographic parity.",
+      "lessonId": "lab05"
+    },
+    {
+      "expr": "Overall: add the counts of all groups first, then compute the percentage",
+      "zh": "总体精确率 640/880 = 72.7%，不是平均数 71.6%。",
+      "en": "Add the counts every time.",
+      "lessonId": "lab05"
+    },
+    {
+      "expr": "Gap = Group A − Group B   (in percentage points, pp)",
+      "zh": "差距为 0.0 pp 时，对应的群体公平定义成立；50.0% − 38.0% = +12.0 pp。",
+      "en": "A group fairness definition holds when its gap is 0.0 pp.",
+      "lessonId": "lab05"
+    },
+    {
+      "expr": "output = f(w1x1 + w2x2 + ··· + b)",
+      "zh": "人工神经元：乘权重 → 相加 → 激活函数 f。",
+      "en": "Weighted sum, then the activation function.",
+      "lessonId": "lec07"
+    },
+    {
+      "expr": "number of layers = number of hidden layers + 1 (the output layer)",
+      "zh": "输出层算一层，输入层不算；2 个隐藏层 → 3 层。",
+      "en": "The input layer is not counted.",
+      "lessonId": "lec07"
+    },
+    {
+      "expr": "Perceptron: 0 hidden layers;   MLP: 1 or more hidden layers;   deep learning: at least 2 hidden layers",
+      "zh": "按隐藏层个数认架构。",
+      "en": "Identify the architecture by its hidden layers.",
+      "lessonId": "lec07"
+    }
+  ],
+  "confusables": [
+    {
+      "a": {
+        "en": "Validation set",
+        "zh": "验证集"
+      },
+      "b": {
+        "en": "Test set",
+        "zh": "测试集"
+      },
+      "difference": {
+        "en": "A validation set is used to choose between models; a test set is kept apart from both training and validation and is used to report the final accuracy without overreporting.",
+        "zh": "验证集用来“挑模型”，测试集用来“报成绩”，两者都不参与训练。挑出来的模型在验证集上的成绩会偏高，所以最终成绩看测试集。口诀：训练集学参数，验证集挑模型，测试集报分数。"
+      }
+    },
+    {
+      "a": {
+        "en": "Training",
+        "zh": "训练"
+      },
+      "b": {
+        "en": "Inference",
+        "zh": "推理"
+      },
+      "difference": {
+        "en": "Training is learning from data to produce a model; inference is using the trained model to solve a problem, e.g. predicting new data. Training can take a long time, but inference is generally fast (though the Big Table says LLM prompting is often slower and costlier per call).",
+        "zh": "训练（**training**）= 从数据中学、造出模型；推理（**inference**）= 用训练好的模型解决问题（如预测新数据）。训练可能很慢，推理一般很快；但大表说 LLM 提示每次调用往往更慢、更贵。"
+      }
+    },
+    {
+      "a": {
+        "en": "Classification",
+        "zh": "分类"
+      },
+      "b": {
+        "en": "Regression",
+        "zh": "回归"
+      },
+      "difference": {
+        "en": "Classification predicts a categorical target value (e.g. oak or maple); regression predicts a continuous target value (e.g. leaf height in cm). Decide by the type of the target value, not by the inputs.",
+        "zh": "只看要预测的目标值：类别型 → 分类（如橡树/枫树、剪刀/布）；连续型 → 回归（如叶高多少 cm）。不看输入是什么类型。"
+      }
+    },
+    {
+      "a": {
+        "en": "Decision boundary (classification)",
+        "zh": "决策边界（分类）"
+      },
+      "b": {
+        "en": "Regression line (predicted value y)",
+        "zh": "回归线（预测值 y）"
+      },
+      "difference": {
+        "en": "In classification, the model's shape is a decision boundary with a different class predicted on each side; in regression, the shape represents the value y that the model predicts for each input.",
+        "zh": "同样画一条线，意义不同：分类里它是决策边界，线的两边预测不同的类；回归里它就是预测值 y，在 x1 处线有多高，就预测多少。"
+      }
+    },
+    {
+      "a": {
+        "en": "Parameter (weight)",
+        "zh": "参数（权重）"
+      },
+      "b": {
+        "en": "Hyperparameter",
+        "zh": "超参数"
+      },
+      "difference": {
+        "en": "Parameters (weights such as w0 and w1) are found by the machine during training; hyperparameters (such as the maximum depth of a decision tree) are key values set before training to get different models in a model family.",
+        "zh": "参数（**parameter**，权重 w0、w1…）是训练中机器自己找的；超参数（**hyperparameter**，如决策树最大深度）是训练前定好的，改它能得到同一模型家族里的不同模型。（Lecture 2 函数的 parameter 是另一个意思，见下面“函数参数 vs 模型参数”。）"
+      }
+    },
+    {
+      "a": {
+        "en": "Precision",
+        "zh": "精确率"
+      },
+      "b": {
+        "en": "Recall",
+        "zh": "召回率"
+      },
+      "difference": {
+        "en": "Precision = TP / (TP + FP): of everything predicted positive, how much is really positive. Recall = TP / (TP + FN): of everything actually positive, how much the model found.",
+        "zh": "精确率看“预测为正”的格子：说“是”的里面有多少真的是；召回率看“实际为正”的格子：真正“是”的里面找回来多少。Lecture 6 的表（行 = 预测）里，“预测为正”是上面那一行（TP、FP），“实际为正”是左边那一列（TP、FN）；Lab 5 的招聘表格方向相反：“预测为正”是 Hire 那一列，“实际为正”是 Qualified 那一行，先看标签。漏诊（FN）代价大 → 看召回率；误报（FP）代价大 → 看精确率。"
+      }
+    },
+    {
+      "a": {
+        "en": "Lecture 6 confusion matrix",
+        "zh": "Lecture 6 的四格表"
+      },
+      "b": {
+        "en": "Lab 5 hiring grid",
+        "zh": "Lab 5 的招聘表格"
+      },
+      "difference": {
+        "en": "Lecture 6 puts PREDICTED in the rows and ACTUAL in the columns (FP top-right, FN bottom-left); Lab 5 puts actual (qualified / unqualified) in the rows and predicted (hire / no hire) in the columns (FN top-right, FP bottom-left). TP is top-left and TN is bottom-right in both.",
+        "zh": "两张表方向相反：Lecture 6 行 = 预测、列 = 实际，右上是 FP、左下是 FN；Lab 5 行 = 实际（合格/不合格）、列 = 预测（录用/不录用），右上是 FN、左下是 FP。TP 都在左上，TN 都在右下。先看标签再填数。"
+      }
+    },
+    {
+      "a": {
+        "en": "Disparate treatment",
+        "zh": "差别对待"
+      },
+      "b": {
+        "en": "Disparate impact",
+        "zh": "差别影响"
+      },
+      "difference": {
+        "en": "Disparate treatment is about the process: decisions explicitly consider membership in a sensitive group. Disparate impact is about the result: decisions disproportionately harm certain sensitive groups, even without using group membership (e.g. one fixed credit score requirement for everyone).",
+        "zh": "差别对待看“过程”：决定时直接看了你属于哪个敏感群体；差别影响看“结果”：即使没看群体身份，结果也不成比例地伤害某些群体（例：所有人同一个信用分门槛）。两者常常无法同时避免。"
+      }
+    },
+    {
+      "a": {
+        "en": "Predictive parity",
+        "zh": "预测均等"
+      },
+      "b": {
+        "en": "Equalized odds",
+        "zh": "均等几率"
+      },
+      "difference": {
+        "en": "Predictive parity compares precision, TP / (TP + FP), across groups; equalized odds compares both the true positive rate, TP / (TP + FN), and the false positive rate, FP / (FP + TN), across groups.",
+        "zh": "预测均等比的是各组的精确率（被录取的人里有多少真的合格）；均等几率比的是各组的真阳性率和假阳性率两个（合格者被录取的比例、不合格者被误录的比例）。分母不同：预测均等按“预测为正”的人算，均等几率按“实际情况”分开算。"
+      }
+    },
+    {
+      "a": {
+        "en": "Demographic parity",
+        "zh": "人口统计均等"
+      },
+      "b": {
+        "en": "Individual fairness",
+        "zh": "个体公平"
+      },
+      "difference": {
+        "en": "Demographic parity is a group rule: every group receives positive outcomes at the same rate. Individual fairness is about people: similar individuals in different groups receive similar outcomes. One can hold while the other fails.",
+        "zh": "人口统计均等看群体：各组被选中的比例一样；个体公平看个人：条件相似的人不管在哪组，结果都相似。一个成立、另一个可能不成立：Lab 5 的 Model 5 满足人口统计均等，但组内随机录用，个体公平为 Low。"
+      }
+    },
+    {
+      "a": {
+        "en": "Pure algorithm",
+        "zh": "纯算法"
+      },
+      "b": {
+        "en": "Symbolic AI",
+        "zh": "符号 AI"
+      },
+      "difference": {
+        "en": "In a pure algorithm, we specify the solution and the computer just follows it; in Symbolic AI, we specify a way to find a solution, and the computer finds and executes the solution, so finding it can take a long time.",
+        "zh": "纯算法：人写好解法，电脑照做（一般规则：不算 AI），通常很快；符号 AI：人写好“找解的方法”（规则、搜索），电脑自己找到解再执行——执行快，但找解可能很慢。"
+      }
+    },
+    {
+      "a": {
+        "en": "Symbolic AI",
+        "zh": "符号 AI"
+      },
+      "b": {
+        "en": "Machine Learning",
+        "zh": "机器学习"
+      },
+      "difference": {
+        "en": "Symbolic AI needs rules: it reasons with symbols, and its solutions are provably correct when found, with generally high explainability. Machine Learning needs data: it infers patterns from data, and its solutions are likely correct but not guaranteed, with generally low explainability.",
+        "zh": "符号 AI 靠规则：用符号推理，找到的解可证明正确，可解释性通常高；机器学习靠数据：从数据里推断规律，解大概率对但不保证，可解释性通常低。"
+      }
+    },
+    {
+      "a": {
+        "en": "Machine Learning (ML)",
+        "zh": "机器学习"
+      },
+      "b": {
+        "en": "Large Language Model (LLM)",
+        "zh": "大语言模型"
+      },
+      "difference": {
+        "en": "LLMs are a specific type of ML model, not a sub-field separate from ML; the course treats LLM prompting as a third approach because we use LLMs differently (plain-text prompts, no extra training).",
+        "zh": "LLM 属于机器学习：它是一种特定的 ML 模型（LLM ⊂ 深度学习 ⊂ 神经网络 ⊂ 机器学习），不是和 ML 并列的另一个子领域。课程（和性质大表）把 “LLM 提示” 单独当作第三种方法来比较，是因为用法不同：普通 ML 模型要用带标签的例子来训练，LLM 不用额外训练，用普通文字写 prompt 就能用。所以说“三类 AI 方法”可以，说“LLM 不是 ML”就错了。"
+      }
+    },
+    {
+      "a": {
+        "en": "Function",
+        "zh": "函数"
+      },
+      "b": {
+        "en": "Loop",
+        "zh": "循环"
+      },
+      "difference": {
+        "en": "A function is a named block of instructions that runs only when it is called by name; a loop is an unnamed block of code that is executed repeatedly and immediately. Both let us reuse instructions.",
+        "zh": "函数有名字，定义后要被调用才执行，可以在不同地方反复调用；循环没名字，写在哪里就在哪里立刻重复执行。两者都是复用指令的办法。"
+      }
+    },
+    {
+      "a": {
+        "en": "Goal state",
+        "zh": "目标状态"
+      },
+      "b": {
+        "en": "Terminal state",
+        "zh": "终止状态"
+      },
+      "difference": {
+        "en": "A goal state is a state where the goal test gives T (the game has been won). A terminal state is any node where the game is over; it never has children and may or may not be a goal state.",
+        "zh": "目标状态：目标测试结果为 T（赢了）的状态；终止状态：游戏结束了的节点，永远没有子节点，可能是赢，也可能是输或平。所以终止状态不一定是目标状态。"
+      }
+    },
+    {
+      "a": {
+        "en": "▲ node (our turn)",
+        "zh": "▲ 节点（我们的回合）"
+      },
+      "b": {
+        "en": "▼ node (opponent's turn)",
+        "zh": "▼ 节点（对手的回合）"
+      },
+      "difference": {
+        "en": "At a ▲ node it is our turn, so we take the maximum of the children's values; at a ▼ node it is the opponent's turn, so they take the minimum of our reward.",
+        "zh": "▲ 尖朝上 = 我们的回合，取孩子里的最大值；▼ 尖朝下 = 对手的回合，取最小值（对手让我们的奖励最小）。最常见的错：在 ▼ 层取了最大值。"
+      }
+    },
+    {
+      "a": {
+        "en": "Reward value",
+        "zh": "奖励值"
+      },
+      "b": {
+        "en": "Heuristic value",
+        "zh": "启发式值"
+      },
+      "difference": {
+        "en": "A reward value is the true outcome of a terminal state (win +100, loss −100, draw 0); a heuristic value is only an estimate of how good a non-terminal state is, so relying on heuristics loses the guarantees about the reward.",
+        "zh": "奖励值是终止状态的真实结果（赢 +100、输 −100、平 0）；启发式值只是对还没结束的状态的估计（用同一尺度），所以依赖启发式就失去了对奖励的保证。"
+      }
+    },
+    {
+      "a": {
+        "en": "Thinking rationally",
+        "zh": "理性地思考"
+      },
+      "b": {
+        "en": "Acting rationally",
+        "zh": "理性地行动"
+      },
+      "difference": {
+        "en": "Thinking rationally means reasoning with the rules of logic (e.g. syllogisms); acting rationally means judging agents only by their actions, where intelligence is choosing the rational action. Like the Turing Test (acting humanly), it judges only actions, but it asks whether the action best achieves the goal, not whether it seems human. Russell and Norvig argue for acting rationally, and so does our course definition.",
+        "zh": "理性地思考：用逻辑规则推理（如三段论），看“想得对不对”；理性地行动：只看行动，选择理性的行动就是智能。图灵测试（像人一样行动）也只看行动，但标准是“分不分得出它和真人”；理性地行动的标准是“有没有选出最能达成目标的行动”，像不像人无所谓。Russell 和 Norvig 主张“理性地行动”，本课程的定义也是。"
+      }
+    },
+    {
+      "a": {
+        "en": "State tree (Lecture 3, Search)",
+        "zh": "状态树（第 3 讲，搜索）"
+      },
+      "b": {
+        "en": "Decision tree (Lecture 6, an ML model)",
+        "zh": "决策树（第 6 讲，机器学习模型）"
+      },
+      "difference": {
+        "en": "In a state tree, nodes are game states and depth counts the edges from the root (Lecture 3 p.19-21). A decision tree is an ML model: each node asks a yes/no question, its leaves give predictions, and its maximum depth is a hyperparameter (Lecture 6 p.20).",
+        "zh": "都叫“树”、都有 depth，意思完全不同：状态树（搜索）的节点是游戏状态，深度 = 离根有几条边（走了几步），游戏结束的节点叫终止状态；决策树（机器学习模型）每个节点问一个是 / 否问题，叶节点给出预测，最大深度是训练前定的超参数。第三种 “deep”：深度学习指隐藏层多。"
+      }
+    },
+    {
+      "a": {
+        "en": "Error y − t (regression, one point)",
+        "zh": "误差 y − t（回归，一个点）"
+      },
+      "b": {
+        "en": "Classification error (1 − accuracy)",
+        "zh": "分类错误率（1 − 准确率）"
+      },
+      "difference": {
+        "en": "In regression, the error of one point is y − t and can be negative (e.g. −4.1); the MSE averages the squared errors over all points (83.42 / 7 ≈ 11.92). In classification, the classification error is 1 − accuracy, the share of wrong predictions (1 − 6/7 = 1/7 ≈ 14%).",
+        "zh": "同一个词 error 两种用法：回归里 error = y − t，是一个点差多少，可以是负数（−4.1）；MSE 是所有点平方误差的平均，不会是负数（83.42 / 7 ≈ 11.92），给整条线打分，是一种代价（cost）。分类里 classification error = 1 − 准确率，是错的比例（1 − 6/7 = 1/7 ≈ 14%）。"
+      }
+    },
+    {
+      "a": {
+        "en": "Continuous",
+        "zh": "连续型"
+      },
+      "b": {
+        "en": "Ordinal",
+        "zh": "有序型"
+      },
+      "difference": {
+        "en": "Both have a meaningful order, but decimal values make sense only for continuous data (height in cm), not for ordinal data (position in a race). Categorical data has no meaningful order (hair colour).",
+        "zh": "两者顺序都有意义，区别在小数：连续型的小数有意义（身高 170.5 cm），有序型的小数没意义（比赛没有第 2.5 名）。顺序都没意义的是类别型（发色）。"
+      }
+    },
+    {
+      "a": {
+        "en": "Invasion of privacy",
+        "zh": "侵犯隐私"
+      },
+      "b": {
+        "en": "Information leakage",
+        "zh": "信息泄露"
+      },
+      "difference": {
+        "en": "Invasion of privacy: ML infers private details you never gave (e.g. Target's pregnancy prediction). Information leakage: a model memorizes sensitive training data that attackers can detect; Differential Privacy provides some protection.",
+        "zh": "侵犯隐私：模型“推断”出你从没给过的信息（Target 预测怀孕）；信息泄露：模型“记住”了训练数据里的敏感内容，被攻击者探测出来，差分隐私可以提供一定保护。"
+      }
+    },
+    {
+      "a": {
+        "en": "Perceptron",
+        "zh": "感知机"
+      },
+      "b": {
+        "en": "Multilayer Perceptron (MLP)",
+        "zh": "多层感知机"
+      },
+      "difference": {
+        "en": "A Perceptron has no hidden layers and can only produce linear models; a Multilayer Perceptron is a feed-forward, fully-connected network with one or more hidden layers, so it can represent more complicated shapes.",
+        "zh": "感知机没有隐藏层，只能产生线性模型（画直线），解决不了 XOR；多层感知机有一个或多个隐藏层（前馈、全连接），能表示更复杂的形状。"
+      }
+    },
+    {
+      "a": {
+        "en": "Heuristic weight (Lecture 3, Lab 3)",
+        "zh": "启发式里的权重（第 3 讲、Lab 3）"
+      },
+      "b": {
+        "en": "Model weight / parameter (Lectures 4-7)",
+        "zh": "模型的权重 / 参数（第 4–7 讲）"
+      },
+      "difference": {
+        "en": "Both multiply a feature inside a weighted sum, but in Lab 3 people choose and tune a heuristic's weights (e.g. pawn 1, knight 3; Lecture 3 p.55), while the machine finds a model's weights during training (Lecture 4 p.44; Lecture 7 p.12).",
+        "zh": "两种 weight 都是“乘在特征前面的数”，结构都是加权和。区别在谁来定：Lab 3 的 heuristic 权重由人定、靠调（Lecture 3 p.54 也说 heuristic 可以用机器学习学出来）；w0、w1、w2 和神经元的权重由机器在训练中找。feature 也有两种用法：heuristic 的特征是“说明局面好坏的指标”，Lecture 4 的特征是特征向量里的一个值。"
+      }
+    },
+    {
+      "a": {
+        "en": "Function parameter (Lecture 2)",
+        "zh": "函数参数（第 2 讲）"
+      },
+      "b": {
+        "en": "Model parameter (Lecture 4 onwards)",
+        "zh": "模型参数（第 4 讲起）"
+      },
+      "difference": {
+        "en": "A function parameter is a value given when the function is called, like the 100 in square(100) (Lecture 2 p.19 and p.21); a model parameter (weight) is a number the machine learns during training (Lecture 4 p.44), like w1 = 0.464 in y = 8.65 + 0.464x1 (Lecture 5 p.11).",
+        "zh": "同一个词 parameter：Lecture 2 里是“调用函数时给的值”（square(100) 的 100）；Lecture 4 起是“机器在训练中找出来的数”（权重 w0、w1……）。function 也换了意思：Lecture 2 的函数是一组有名字的指令；Lecture 4 说 “Models are just functions of the input features”，指数学上“输入 → 输出”的规则。"
+      }
+    }
+  ]
+}

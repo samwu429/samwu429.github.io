@@ -1,0 +1,522 @@
+/*
+ * minimax-tree widget: triangle game tree with a walkthrough mode and a practice mode.
+ * minimax-tree 组件：三角形博弈树，包含“看演示”和“自己算”两种模式。
+ *
+ * Colours follow the slides: green for our turn (maximize), red for the opponent (minimize).
+ * 配色沿用课件：绿色是我们的回合（取最大），红色是对手的回合（取最小）。
+ */
+.minimax-tree {
+  /* Inline-size containment: a wide tree can never stretch the lesson column. 内联尺寸隔离：再宽的树也撑不开课程栏。 */
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.minimax-tree__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* The two mode buttons may stack on very narrow screens instead of overflowing. 极窄屏幕上两个模式按钮可以换行，而不是溢出。 */
+.minimax-tree__modes {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.minimax-tree__modes .segmented__option {
+  flex: 1 1 auto;
+}
+
+.minimax-tree__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-ink-2);
+}
+
+.minimax-tree__legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.minimax-tree__legend-item .en {
+  color: var(--color-ink-3);
+}
+
+.minimax-tree__swatch {
+  flex: none;
+  margin-top: 3px;
+  overflow: visible;
+}
+
+.minimax-tree__swatch .minimax-tree__tri {
+  stroke-width: 1.5;
+}
+
+/* Tree box: scrolls sideways on small screens instead of shrinking the drawing. 树形框：小屏幕上横向滚动，而不是缩小图形。 */
+.minimax-tree__scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.minimax-tree__scroll:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.minimax-tree__stage {
+  position: relative;
+  margin-inline: auto;
+}
+
+.minimax-tree__svg {
+  display: block;
+  max-width: none;
+}
+
+.minimax-tree__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  margin: calc(-1 * var(--space-2)) 0 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+/* SVG parts. SVG 图形部分。 */
+.minimax-tree__band {
+  fill: var(--color-highlight-soft);
+  stroke: var(--color-highlight);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.minimax-tree__edge {
+  stroke: var(--color-ink-3);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.minimax-tree__edge.is-chosen {
+  stroke: var(--color-ink);
+  stroke-width: 4;
+}
+
+.minimax-tree__edge.is-path {
+  stroke: var(--color-accent);
+  stroke-width: 6;
+}
+
+.minimax-tree__shadow {
+  fill: var(--color-shadow);
+}
+
+.minimax-tree__tri {
+  stroke: var(--color-line);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.minimax-tree__node--max .minimax-tree__tri {
+  fill: var(--color-accent-soft);
+}
+
+.minimax-tree__node--min .minimax-tree__tri {
+  fill: var(--color-danger-soft);
+}
+
+.minimax-tree__node--leaf .minimax-tree__tri {
+  fill: var(--color-panel);
+}
+
+.minimax-tree__node.is-new .minimax-tree__tri {
+  stroke: var(--color-ink);
+  stroke-width: 3;
+}
+
+.minimax-tree__node.is-path .minimax-tree__tri {
+  stroke: var(--color-accent-strong);
+  stroke-width: 3.5;
+}
+
+.minimax-tree__value {
+  fill: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-md);
+  font-weight: 800;
+}
+
+.minimax-tree__value--long {
+  font-size: var(--text-xs);
+}
+
+/* Practice inputs placed over the internal nodes. 盖在内部节点上的练习输入框。 */
+.minimax-tree__inputs {
+  position: absolute;
+  inset: 0;
+}
+
+.minimax-tree__input {
+  position: absolute;
+  margin: 0;
+  padding: 0 2px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  /* 16px stops iOS from zooming into the box on focus. 16px 可避免 iOS 聚焦时自动放大页面。 */
+  font-size: var(--text-md);
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.minimax-tree__input::-webkit-outer-spin-button,
+.minimax-tree__input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.minimax-tree__input:focus {
+  outline: none;
+  border-color: var(--color-accent-strong);
+  box-shadow: var(--focus-ring);
+}
+
+.minimax-tree__input.is-right {
+  border-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.minimax-tree__input.is-wrong {
+  border-color: var(--color-danger);
+  border-width: 3px;
+  background: var(--color-danger-soft);
+}
+
+.minimax-tree__input.is-empty {
+  border-style: dashed;
+  border-color: var(--color-warn);
+}
+
+.minimax-tree__input.is-revealed {
+  border-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+.minimax-tree__badge {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-panel);
+  border-radius: var(--radius-pill);
+  color: var(--color-panel);
+  pointer-events: none;
+}
+
+.minimax-tree__badge--right {
+  background: var(--color-success);
+}
+
+.minimax-tree__badge--wrong {
+  background: var(--color-danger);
+}
+
+/* Panels below the tree. 树下方的面板。 */
+.minimax-tree__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.minimax-tree__controls {
+  gap: var(--space-2);
+}
+
+.minimax-tree .btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.minimax-tree .btn[aria-disabled="true"]:hover,
+.minimax-tree .btn[aria-disabled="true"]:active {
+  transform: none;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.minimax-tree__counter {
+  margin-left: auto;
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.minimax-tree__explain {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-highlight);
+  border-radius: var(--radius-sm);
+  background: var(--color-highlight-soft);
+}
+
+.minimax-tree__step-title {
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.minimax-tree__sentence {
+  margin: 0 0 var(--space-2);
+  line-height: 1.6;
+}
+
+.minimax-tree__sentence:last-child {
+  margin-bottom: 0;
+}
+
+.minimax-tree__sentence .zh,
+.minimax-tree__sentence .en {
+  display: block;
+}
+
+.minimax-tree__sentence .en {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.minimax-tree__sentence--lead .zh {
+  font-weight: 800;
+}
+
+.minimax-tree__sentence--lead .en {
+  font-weight: 700;
+}
+
+.minimax-tree__sentence--compact {
+  margin-bottom: var(--space-1);
+}
+
+.minimax-tree__calcs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.minimax-tree__calcs:last-child {
+  margin-bottom: 0;
+}
+
+.minimax-tree__calcs li {
+  max-width: 100%;
+}
+
+.minimax-tree__calcs code {
+  display: inline-block;
+  max-width: 100%;
+  padding: 2px var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-weight: 700;
+}
+
+.minimax-tree__quote {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.minimax-tree__quote-label {
+  color: var(--color-exam);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.minimax-tree__quote .en {
+  font-weight: 700;
+}
+
+.minimax-tree__quote .zh {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Practice: move choice, tip and feedback. 练习：走法选择、提示与反馈。 */
+.minimax-tree__task {
+  margin: 0;
+}
+
+.minimax-tree__moves {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.minimax-tree__moves-legend {
+  margin-bottom: var(--space-2);
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.minimax-tree__moves-legend .en {
+  color: var(--color-ink-2);
+}
+
+.minimax-tree__move-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.minimax-tree__move {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: 4px var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.minimax-tree__move input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.minimax-tree__move:has(input:checked) {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-strong);
+}
+
+.minimax-tree__move:has(input:focus-visible) {
+  box-shadow: var(--focus-ring);
+}
+
+.minimax-tree__moves.is-right .minimax-tree__move:has(input:checked) {
+  border-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.minimax-tree__moves.is-wrong .minimax-tree__move:has(input:checked) {
+  border-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+/* After "Show answer" the move is locked and coloured like the revealed boxes.
+   看过参考答案后，走法被锁定，颜色和公布答案的格子一样。 */
+.minimax-tree__moves:disabled .minimax-tree__move {
+  box-shadow: none;
+  cursor: default;
+}
+
+.minimax-tree__moves:disabled .minimax-tree__move:has(input:checked) {
+  border-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+.minimax-tree__tip {
+  margin: calc(-1 * var(--space-1)) 0 0;
+}
+
+.minimax-tree__message {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  background: var(--color-signal-soft);
+}
+
+.minimax-tree__message--success {
+  border-left-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.minimax-tree__message--error {
+  border-left-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.minimax-tree__answer-step {
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px dashed var(--color-line-soft);
+}
+
+.minimax-tree__answer-step .minimax-tree__calcs {
+  margin-bottom: 0;
+}
+
+/* Config problem notice. 配置错误提示。 */
+.minimax-tree--problem {
+  border-color: var(--color-warn);
+  background: var(--color-warn-soft);
+}
+
+.minimax-tree__problem-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--color-warn);
+  font-weight: 800;
+}
+
+@media (max-width: 480px) {
+  .minimax-tree {
+    padding: var(--space-3);
+  }
+
+  .minimax-tree__explain,
+  .minimax-tree__message {
+    padding: var(--space-3);
+  }
+}

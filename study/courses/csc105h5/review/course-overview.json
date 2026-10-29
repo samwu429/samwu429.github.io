@@ -1,0 +1,733 @@
+{
+  "welcome": {
+    "zh": "欢迎！这门课叫 Artificial Intelligence Literacy（人工智能素养）。它讲 AI 到底是什么；符号 AI、机器学习、大语言模型这三类 AI 方法（LLM 本身是一种机器学习模型）怎么做出来、各有什么长处和弱点；遇到一个问题该选哪种方法（有时根本不需要 AI）；以及 AI 会怎样出错、带来哪些伦理问题。\n课程大纲写明，这门课是为没有编程背景的同学设计的，测验也不考写代码；要算的题（准确率、MSE、精确率……）基本只用到加减乘除、分数、百分比、平方和乘方、平均数，再加上读懂 y = w0 + w1x1 这样的简单式子（下面“新手指南”里有一条专讲符号和取整）。真正的难点是英文：测验和期末都用英文出题、用英文作答。所以这里先用大白话中文把每个概念拆碎讲懂，再把考试要写的英文句子单独给你背。一小节一小节来，你能学会。",
+    "en": "Welcome! Artificial Intelligence Literacy explains what AI is; how three kinds of AI approaches (Symbolic AI, Machine Learning and Large Language Models, which are a type of ML) are built and where each is strong or weak; how to choose a method for a problem (sometimes no AI is needed); and how AI fails and raises ethical issues.\nThe syllabus says the course is designed for students without a programming background, and the tests have no coding. The calculations (accuracy, MSE, precision and so on) use basic maths: arithmetic, fractions, percentages, squares and powers, averages, and reading simple equations such as y = w0 + w1x1 (the guide below has a notation and rounding item). The real challenge is English: every test and the final exam are written and answered in English. So this site first explains each idea in plain Chinese, piece by piece, and then gives you the English sentences to write on the exam. Go one small section at a time. You can do this."
+  },
+  "howToUse": [
+    {
+      "zh": "先看下面的「知识地图」：整门课比较三类 AI 方法：符号 AI（**Symbolic AI**）、机器学习（**Machine Learning**）、大语言模型（**LLM**，它本身是一种特定的机器学习模型），再加一条贯穿所有部分的伦理主线。心里有了地图，学到哪一课都知道它在哪儿、和谁有关。",
+      "en": "Start with The big picture below: the course compares three kinds of AI approaches (**Symbolic AI**, **Machine Learning** and **LLMs**, which are a specific type of ML model), plus ethics, which runs through all of them. With the map in mind, you always know where a lesson fits and what it connects to."
+    },
+    {
+      "zh": "在「学习 Learn」里按顺序读讲义。概念大多按“是什么 → 生活类比 → 课件原话 → 拆开讲 → 例子 → 易错点 → 小测验”一小步一小步讲。每一节都有一个标签：「高频考点 High-yield」最常考，「必会 Must know」是后面内容的基础，「了解 Background」是背景知识（这是本站按课件做的判断，不是老师公布的考试范围）。第一次学就按顺序读，时间紧先跳过「了解」；考前复习先重读「高频考点」。读懂一节，就点「我学会了 Mark as learned」。",
+      "en": "Read the lessons in order in Learn. Most ideas go in small steps: what it is, an everyday analogy, the course definition, a breakdown, an example, common traps and a quick check. Each section has a badge: High-yield (often tested), Must know (later lessons build on it) or Background (context, lower priority); this is the site's own judgement from the slides, not the official test scope. The first time through, read in order and skip Background sections first if you fall behind; before a test, reread the High-yield sections first. When a section makes sense, press Mark as learned."
+    },
+    {
+      "zh": "讲义里的「考试这样写」方框都是能写进考卷的英文句子，但不用全背。要一字一句背下来的只有两样：标着「课件原话」（Course definition / Course wording）的方框，和「速记」里的要点；「闪卡」背面的“考试定义”也属于这一类。其他「考试这样写」的句子当作范文：看懂、会照着改写就行。遇到「讨论题」，先自己用英文答一遍，再展开参考答案对照，这是练长答题的好材料。标着“课件外”的补充内容只是背景知识，考试以课件为准。",
+      "en": "The Exam English boxes hold English sentences you can use on the exam, but you do not need to memorize them all. Memorize word for word only the boxes labelled 课件原话 (Course definition / Course wording) and the Cheat sheet points; the exam definitions on the Flashcards belong to the same list. Use the other Exam English sentences as models to adapt. For each Discuss question, answer it in English yourself before you open the model answer: it is good long-answer practice. Notes marked as outside the slides are only background; for the exam, the slides come first."
+    },
+    {
+      "zh": "符号和取整（全课通用）：x1、w0 里的小数字是编号（下标），不是乘；w1x1 表示 w1 × x1；x² = x × x，2^10 表示 10 个 2 相乘；≈ 表示约等于；y = mx + b 里 m 是斜率、b 是截距；Σ 表示全部加起来（MSE 的符号公式课件说不用背）；十六进制里 a–f 代表 10–15。算百分比先写分数再写百分数，取整照课件：讲课取整到整数（6/7 ≈ 86%、28/30 ≈ 93%），Lab 5 保留一位小数（240/380 = 63.2%）；第 5 讲算 MSE 时，每个预测值 y 先取一位小数再平方，所以是 83.42 / 7 ≈ 11.92。",
+      "en": "Notation and rounding: the small numbers in x1 or w0 are labels (subscripts), not multiplication; w1x1 means w1 × x1; x² = x × x, and 2^10 means ten 2s multiplied; ≈ means approximately; in y = mx + b, m is the slope and b is the intercept; Σ means add them all up; in hexadecimal, a-f mean 10-15. Write the fraction, then the percentage, rounded as the slides do: whole percents in the lectures (6/7 ≈ 86%), one decimal place in Lab 5 (240/380 = 63.2%). The Lecture 5 MSE example rounds each y to one decimal place before squaring, which gives 83.42 / 7 ≈ 11.92."
+    },
+    {
+      "zh": "每学完一课，点课末的「练习这一课」去「刷题 Practice」。题目和真实考试一样用英文出，看不懂就点「显示中文」。答错的题会自动进「错题本 Mistakes」，之后答对就自动移出，所以每天花 10 分钟清一清错题本。",
+      "en": "After each lesson, press Practice this lesson at the end. Questions are in English, like the real test; tap Show Chinese when you are stuck. Wrong answers go to Mistakes automatically and leave once you get them right, so spend 10 minutes a day clearing it."
+    },
+    {
+      "zh": "考试只用英文，所以术语一定要会认、会写。在「术语 Glossary」里查英文定义；用「闪卡 Flashcards」来背：先练「英→中」（看到英文认得意思），再练「中→英」（考试要自己写出英文），熟了以后勾选「只练不熟的卡」。",
+      "en": "The exams use English only, so you must recognize and write every term. Look up English definitions in the Glossary and drill them with Flashcards: first EN to ZH (recognize the meaning), then ZH to EN (write the English yourself, as on the exam), then tick Only unfamiliar cards."
+    },
+    {
+      "zh": "考前用「速记 Cheat sheet」：每课最该记的英文要点一页看完，还有「公式总表」和「易混概念」，可以打印。写长答题之前先看「答题 Exam English」工具箱：指令词（explain、compare 各要你写什么）、答题模板、常用句型、常见错误和考试策略。",
+      "en": "Before a test, use the Cheat sheet: the key English points of each lesson on one page, plus the Formula sheet and the Easily confused pairs, and you can print it. Before writing long answers, open the Exam English toolkit: question verbs (what explain or compare ask for), answer templates, useful phrases, common mistakes and exam strategy."
+    },
+    {
+      "zh": "用「模拟考 Mock exam」检验自己：选好单元和时间（Test 2 是 1 小时，期末是 2 小时），像真考一样限时作答。交卷后客观题自动判分，长答题对照参考答案自己打分；成绩单按单元告诉你哪里最弱，再回「学习」补上。",
+      "en": "Test yourself with the Mock exam: choose the units and the time (Test 2 is 1 hour, the final is 2 hours) and answer under a time limit, like the real thing. Objective questions are graded automatically, you self-grade written answers against the model answers, and the report shows your weakest unit so you can go back to Learn."
+    },
+    {
+      "zh": "跟着「学习计划」走，做完一项打一个勾。进度只保存在这台设备的浏览器里，换电脑或清理浏览器之前，先到「设置」导出备份。「设置」里还能换语言模式：刚开始用「中文优先」，平时用「中英平衡」，考前一两周换成「英文练习」（中文先模糊，逼自己先读英文）。",
+      "en": "Follow a Study plan and tick each task when it is done. Progress is saved only in this browser on this device, so export a backup in Settings before you switch computers or clear the browser. Settings also has language modes: Chinese first when you start, Balanced for normal study, and English practice in the last week or two before a test (Chinese is blurred so you read the English first)."
+    },
+    {
+      "zh": "考试范围、日期这些官方信息，永远以老师在 Quercus 和 Piazza 上公布的为准（课程建议每天看 Piazza）。有问题就发到 Piazza，或者去老师的 office hour：周三下午 3–5 点，DH 3024。",
+      "en": "Official information such as test scope and dates always comes from the instructor on Quercus and Piazza (the course recommends checking Piazza daily). Ask questions on Piazza or at office hours: Wednesdays 3-5 pm, DH 3024."
+    }
+  ],
+  "bigPicture": {
+    "intro": {
+      "zh": "整门课都在回答一个问题：怎样让电脑解决问题？第 4 讲开头把三条路排在一起：纯算法（**purely algorithmic**）是人把解法一步步写好，一般不算 AI；符号 AI（**Symbolic AI**）是人把问题的知识和规则写好，电脑自己推理、搜索出解法；机器学习（**Machine Learning**）是人只给训练数据（**training data**），电脑自己从数据里找规律。大语言模型（**LLM**）是一种特定的机器学习模型。伦理不是单独的一章，课件说要在每一层都讲（Ethics at all levels）。\n课程大纲列出了 5 个课程学习目标（**Course Learning Outcomes**），也就是学完这门课应该会做的事。目标和对应的课：① 解释怎样使用不同种类的 AI（符号、机器学习、生成式），包括它们各自相对的长处和弱点 → 第 1、3–7 讲和 Lab 1；② 解释这些 AI 怎样开发 / 训练、要付出什么代价 → 第 2–7 讲各有一部分，「速记」Lab 1 一栏有汇总；③ 分析一个问题，判断哪种 AI 方法最合适（也可能都不需要）→ 第 1 讲的性质大表、Lab 1、第 7 讲最后一节；④ 在学业中负责任地使用 AI → 第 1 讲的 GenAI 规定；⑤ 思考在不同情境下使用 AI 的伦理影响 → 第 1、3、4、6 讲和 Lab 5。",
+      "en": "The whole course answers one question: how can a computer solve a problem? Lecture 4 opens by lining up three routes. In **purely algorithmic** approaches, we specify the solution step by step; as a general rule, that is not AI. In **Symbolic AI**, we specify knowledge of the problem, and the computer reasons and searches for a solution. In **Machine Learning**, we provide **training data**, and the computer infers patterns from it. **LLMs** are a specific type of ML model. Ethics is not a separate chapter: the slides put it at all levels.\nThe syllabus lists five **Course Learning Outcomes**. (1) Explain how to use different kinds of AI (symbolic, machine learning, generative) and their strengths and weaknesses: Lectures 1 and 3-7, Lab 1. (2) Explain how they are developed or trained and the costs of doing so: parts of Lectures 2-7, summarised in the Lab 1 cheat sheet. (3) Analyze a problem to choose the most appropriate AI method, if any: the Big Table, Lab 1 and the last section of Lecture 7. (4) Use AI responsibly in an academic environment: the GenAI policy in Lecture 1. (5) Consider the ethical implications of AI: Lectures 1, 3, 4 and 6, and Lab 5."
+    },
+    "branches": [
+      {
+        "id": "foundations",
+        "title": {
+          "zh": "AI 是什么 · 怎么选方法",
+          "en": "What AI is and how to choose a method"
+        },
+        "lessons": [
+          "lec01",
+          "lab01"
+        ],
+        "summary": {
+          "zh": "AI 有很多种定义。本课程的定义：AI 是研究会观察环境、会做行动的智能体（**agent**）的学科，目标是设计“行为理性”的智能体；Russell 和 Norvig 的四格表里，他们主张“理性地行动”（**act rationally**）。这里还第一次认识三类 AI 方法（LLM 是一种特定的机器学习模型）和「性质大表」（**Big Table of Properties**）：课件说不用背，但要会判断每种方法什么时候最合适。Lab 1 就是练给问题选方法。",
+          "en": "There are many competing definitions of AI. The course definition: AI is a field of study concerned with **agents** that observe their environment and perform actions, and the goal is to design agents that behave rationally. In Russell and Norvig's grid, they argue for **act rationally**. You also meet the three kinds of AI approaches (LLMs are a specific type of ML model) and the **Big Table of Properties**: do not memorize it, but know when each method is best. Lab 1 practises choosing a method."
+        }
+      },
+      {
+        "id": "symbolic",
+        "title": {
+          "zh": "算法与符号 AI（搜索、博弈）",
+          "en": "Algorithms and Symbolic AI"
+        },
+        "lessons": [
+          "lec02",
+          "lec03",
+          "lab02",
+          "lab03"
+        ],
+        "summary": {
+          "zh": "算法（**algorithm**）是一串精确的、按顺序一步步执行、用来达成目标的指令；函数和循环让指令能复用，而每执行一条指令都要花时间。符号 AI 按规则推理：搜索（**Search**）用状态树往前看，单人谜题里找到的解保证正确，但节点数随深度指数增长；两人游戏用 **minimax**（▲ 我们取最大，▼ 对手取最小）；树太大就只搜到固定深度、用 **heuristic** 打分，但会失去保证。伦理话题是对齐（**Alignment**）。",
+          "en": "An **algorithm** is a series of precise instructions followed step-by-step, in order, to achieve a goal; functions and loops reuse instructions, and every instruction executed costs time. Symbolic AI reasons with rules: **Search** looks ahead through a state tree, and in a single-player puzzle its solution is guaranteed to be correct, but the number of nodes grows exponentially with depth. Two-player games use **Minimax** (▲ we maximize, ▼ the opponent minimizes); when the tree is too big, we search to a fixed depth and use a **heuristic**, but lose the guarantees. The ethics topic is **Alignment**."
+        }
+      },
+      {
+        "id": "ml",
+        "title": {
+          "zh": "监督学习（数据、训练、评估、公平）",
+          "en": "Supervised Machine Learning"
+        },
+        "lessons": [
+          "lec04",
+          "lec05",
+          "lec06",
+          "lab04",
+          "lab05"
+        ],
+        "summary": {
+          "zh": "机器学习不靠人写规则，而是从数据里学规律。第 4 讲：数据从哪来（溯源、版权、隐私），怎样变成特征向量（**feature vector**）；分类（**classification**）预测类别，回归（**regression**）预测连续数值；我们选模型，机器在训练中找参数。第 5 讲：用代价函数（如 **MSE**）衡量错误，用梯度下降把它降下来，但要小心过拟合（**overfitting**）。第 6 讲：验证集挑模型、测试集报成绩，再看精确率、召回率、F1 和算法公平。",
+          "en": "Machine Learning learns patterns from data instead of hand-written rules. Lecture 4: where data comes from (provenance, copyright, privacy) and how it becomes a **feature vector**; **classification** predicts a category and **regression** a continuous value; we choose the model, and the machine finds the parameters during training. Lecture 5: a cost function such as **MSE** measures the error and gradient descent lowers it, but watch out for **overfitting**. Lecture 6: a validation set chooses the model, a test set reports the result, and precision, recall, F1 and fairness go beyond accuracy."
+        }
+      },
+      {
+        "id": "llm",
+        "title": {
+          "zh": "神经网络与大语言模型",
+          "en": "Neural Networks and LLMs"
+        },
+        "lessons": [
+          "lec07"
+        ],
+        "summary": {
+          "zh": "神经网络由很多人工神经元组成：输入乘权重、加起来，再经过激活函数。没有隐藏层（**hidden layer**）的网络只能画线性（直的）决策边界，分不开 XOR；训练靠梯度下降加反向传播。大语言模型（**LLM**）是用互联网规模文本训练的生成式模型，底层是 **Transformer** 架构的深度神经网络。它回答 prompt 时：分词 → 嵌入 → 注意力 → 预测下一个 token → 按温度（**temperature**）选一个 → 接到后面再来一遍。第 1 讲列的主题里还有“怎么用 LLM”和“失败模式”，这条线后面还会继续。",
+          "en": "A neural network is made of many artificial neurons: inputs are multiplied by weights, added up and passed through an activation function. Without a **hidden layer**, a network can only produce a linear decision boundary, so it fails on XOR; training uses gradient descent with backpropagation. An **LLM** is a generative model trained on internet-scale text data, a deep neural network built on the **Transformer** architecture. To respond to a prompt, it tokenizes the text, maps tokens to embeddings, applies attention, predicts the next token, picks one using the **temperature**, appends it and repeats. Lecture 1's topic list also includes how to use LLMs and their failure modes, so this branch continues."
+        }
+      },
+      {
+        "id": "ethics",
+        "title": {
+          "zh": "贯穿全课：伦理与负责任地使用 AI",
+          "en": "Throughout: ethics and responsible use of AI"
+        },
+        "lessons": [
+          "lec01",
+          "lec03",
+          "lec04",
+          "lec06",
+          "lab04",
+          "lab05"
+        ],
+        "summary": {
+          "zh": "课件说伦理要在每一层都讲（**Ethics at all levels**）。第 1 讲：LLM 的伦理问题（环境影响、工作岗位被替代、版权、认知外包）；第 3 讲：对齐，奖励和人类价值观对不上；第 4 讲：数据的版权、合理使用和隐私；第 6 讲：偏见的案例和原因、差别对待 vs 差别影响、四种公平指标、取舍与利益相关者；Lab 4 看到训练数据一边倒的后果，Lab 5 体会到公平没有唯一正确答案。负责任地用 AI 也包括课程自己的规定：测验和期末都不能用 GenAI。",
+          "en": "The slides put **ethics at all levels**. Lecture 1: the ethical issues of LLMs (environmental impact, job displacement, copyright, cognitive offloading). Lecture 3: Alignment, when the reward does not match human values. Lecture 4: copyright, fair use and privacy in data. Lecture 6: bias cases and causes, disparate treatment vs disparate impact, four fairness metrics, trade-offs and stakeholders. Lab 4 shows what lopsided training data does, and Lab 5 shows there is no single right answer to fairness. Responsible use also means the course's own rule: no GenAI on tests or the final exam."
+        }
+      }
+    ]
+  },
+  "lessonLinks": [
+    {
+      "from": "lec01",
+      "to": "lab01",
+      "why": {
+        "zh": "Lab 1 把第 1 讲的三类 AI 方法（符号 AI、机器学习、LLM 提示；LLM 本身是一种机器学习模型）和「性质大表」（**Big Table of Properties**）拿来实战：给一个问题，选最合适的方法（也可能根本不需要 AI），再用各自的长处和弱点说明理由。",
+        "en": "Lab 1 puts Lecture 1's three kinds of AI approaches (Symbolic AI, ML and LLM prompting; LLMs are a type of ML) and the **Big Table of Properties** into practice: given a problem, choose the most appropriate method (if any) and justify it with strengths and weaknesses."
+      }
+    },
+    {
+      "from": "lec02",
+      "to": "lec03",
+      "why": {
+        "zh": "第 2 讲最后说：下次讲一种“计算时间是主要限制”的 AI。这就是第 3 讲的搜索（**Search**）：状态树的节点数随深度指数增长。第 3 讲还回头对比：纯算法是我们给出解法，电脑照做；符号 AI 是我们给出找解法的方法，电脑自己去找，所以找解可能很花时间。",
+        "en": "Lecture 2 ends by promising a kind of AI where computation time is one of the main limiting factors: **Search** in Lecture 3, where the number of nodes grows exponentially with depth. Lecture 3 then compares the two: in a Pure Algorithm we specify the solution and the computer follows it; in Symbolic AI we specify a way to find a solution, so finding it can take a long time."
+      }
+    },
+    {
+      "from": "lec01",
+      "to": "lec03",
+      "why": {
+        "zh": "第 1 讲的课程定义说，AI 要设计“行为理性”的智能体。第 3 讲把它变具体：理性智能体（**rational agent**）总是选能让自己奖励最大的行动，minimax 就是这样算的。最后的对齐（**Alignment**）再追问：这个奖励真的符合人类的价值观吗？",
+        "en": "Lecture 1 defines AI as designing agents that behave rationally. Lecture 3 makes it concrete: a **rational agent** always chooses actions that maximize the reward it will earn, which is what Minimax computes. **Alignment** then asks whether that reward really matches human values."
+      }
+    },
+    {
+      "from": "lec03",
+      "to": "lab03",
+      "why": {
+        "zh": "Lab 3 在 Connect Four（四子棋）里看 minimax 用不同深度下棋：穷举搜索太费时间时，只搜到固定深度，再用 heuristic 打分。你还自己做了一个加权和（**weighted sum**）heuristic：每个特征算“我的 − 对手的”，乘上权重再相加，和第 3 讲的子力优势是同一个思路。",
+        "en": "Lab 3 shows Minimax playing Connect Four at different depths: when exhaustive search is too time-consuming, it searches to a fixed depth and scores states with a heuristic. You built a **weighted sum** heuristic (ours minus the opponent's for each feature, times a weight, added up), the same idea as material advantage in Lecture 3."
+      }
+    },
+    {
+      "from": "lec03",
+      "to": "lec04",
+      "why": {
+        "zh": "第 3 讲说：符号 AI 需要规则，机器学习需要数据；heuristic 也可以用机器学习自动学出来。第 4 讲开头把三种做法排在一起：纯算法是人写好解法，符号 AI 是人写好问题的知识，机器学习两样都不给，只给训练数据（**training data**）。",
+        "en": "Lecture 3 says Symbolic AI needs rules, while Machine Learning needs data, and that heuristics may be learned through Machine Learning. Lecture 4 opens by lining up all three: purely algorithmic approaches specify the solution, Symbolic AI specifies knowledge of the problem, and ML does neither and provides **training data** instead."
+      }
+    },
+    {
+      "from": "lec04",
+      "to": "lab04",
+      "why": {
+        "zh": "Lab 4 在 Teachable Machine 里走了一遍第 4 讲的机器学习流程（数据准备 → 训练 → 评估 → 推理）：训练一个分 SCISSORS 和 PAPER 的分类器，用没见过的手算准确率，再让一类只剩 2 张图（Model B），最后用 SPOCK 手势看分布外（**out of distribution**）输入。",
+        "en": "Lab 4 runs Lecture 4's Machine Learning pipeline (data preparation, training, evaluation, inference) in Teachable Machine: you trained a SCISSORS vs PAPER classifier, measured its accuracy on new hands, cut one class down to 2 images (Model B), and tried an **out of distribution** SPOCK hand."
+      }
+    },
+    {
+      "from": "lec04",
+      "to": "lec05",
+      "why": {
+        "zh": "第 4 讲留了一句：“怎样找到最好的参数值，下次讲。”第 5 讲回答：用代价函数（**cost function**，比如 MSE）给参数打分，再用梯度下降（**gradient descent**）一小步一小步调参数，让代价变小。第 5 讲还沿用叶子这个例子，但换了一组新的 7 片叶子：不再管种类，改成用叶宽预测叶高（回归）。",
+        "en": "Lecture 4 says: 'We will talk about how to find the best parameter values next time.' Lecture 5 answers: a **cost function** (such as MSE) scores the parameter values, and **gradient descent** changes them a little at a time to lower the cost. It keeps the leaf example but uses a new set of 7 leaves: it ignores species and predicts leaf height from leaf width (regression)."
+      }
+    },
+    {
+      "from": "lec05",
+      "to": "lec06",
+      "why": {
+        "zh": "第 5 讲结尾说：“下次讲怎样发现过拟合。”第 6 讲的办法是留一份不参与训练的验证集（**validation set**）：二次模型的验证 MSE 最低（1.38），而训练 MSE 最低的高次多项式，验证 MSE 却是 8.07。最后再用测试集（**test set**）诚实地报告成绩。",
+        "en": "Lecture 5 ends with: 'Next time, we will learn how to detect overfitting.' Lecture 6 does it with a **validation set** that is not used for training: the quadratic model has the lowest validation MSE (1.38), while the higher-order polynomial with the lowest training MSE has a validation MSE of 8.07. A **test set** then reports the final result honestly."
+      }
+    },
+    {
+      "from": "lec04",
+      "to": "lec06",
+      "why": {
+        "zh": "第 4 讲说 ML 能推断出你从没告诉过公司的信息（Target 预测怀孕）；第 6 讲的代理变量（**proxy variables**）靠的就是这种能力：删掉“族裔”这一列，别的特征组合起来仍能把它还原，所以只删敏感特征往往不够。第 4 讲数据溯源问的“收集数据的过程有偏见吗？”，也是在提前防第 6 讲说的偏见。",
+        "en": "Lecture 4 says ML can infer details you have never given to a company (Target's pregnancy prediction). Lecture 6's **proxy variables** use the same ability: after ethnicity is removed, other features in combination can still reveal it, so simple removal is often not enough. Lecture 4's provenance question 'Is there bias in the collection of the data?' also guards against the causes of bias in Lecture 6."
+      }
+    },
+    {
+      "from": "lab04",
+      "to": "lec06",
+      "why": {
+        "zh": "第 6 讲直接说：“在 Lab 4 里，我们让你比较过这样的结果。”它的例子里两个模型准确率都是 46/60 ≈ 77%，犯的错却不一样，所以要看精确率（**precision**）、召回率（**recall**）和 F1。Lab 4 里训练数据一边倒、错误集中在少的那一类，和第 6 讲的偏见原因“训练数据里某些群体太少”（**underrepresentation**）是同一个道理。",
+        "en": "Lecture 6 says: 'In Lab 4, we asked you to compare results like the following.' In its example, two models both have accuracy 46/60 ≈ 77% but make different errors, which is why we need **precision**, **recall** and F1. Lab 4's lopsided training data, with the errors piling up on the smaller class, is the same idea as a cause of bias in Lecture 6: **underrepresentation** of specific groups in the training dataset."
+      }
+    },
+    {
+      "from": "lec06",
+      "to": "lab05",
+      "why": {
+        "zh": "Lab 5 把第 6 讲的两半用在一个招聘模型上：先用每组的 TP、FP、FN、TN 算录用率、精确率、TPR、FPR，再判断人口统计均等、预测均等、均等几率是否成立，最后替不同的利益相关者（**stakeholder**）排名。注意：招聘模型卡的表格是行=实际、列=预测，和第 6 讲（行=预测、列=实际）正好反过来。",
+        "en": "Lab 5 applies both halves of Lecture 6 to a hiring model: compute each group's hiring rate, precision, TPR and FPR from TP, FP, FN and TN, check demographic parity, predictive parity and equalized odds, then rank the models for different **stakeholders**. Careful: the hiring model cards put actual in the rows and predicted in the columns, the opposite of Lecture 6."
+      }
+    },
+    {
+      "from": "lec04",
+      "to": "lec07",
+      "why": {
+        "zh": "第 4 讲的特征向量、数据空间和决策边界，在第 7 讲全都回来了：特征向量从输入层进入神经网络；没有隐藏层只能画线性决策边界（第 4 讲那 7 片叶子就是线性不可分的）；网络和其他模型一样，训练就是找参数（权重），用梯度下降加反向传播。文字也一样要变成数字：第 4 讲是一个字符一个编码，LLM 则先切成有意义的 token，再变成嵌入（**embedding**）向量。",
+        "en": "Lecture 4's feature vectors, data space and decision boundaries all return in Lecture 7: a feature vector enters at the input layer; without hidden layers, a network can only produce a linear decision boundary (Lecture 4's 7 leaves are not linearly separable); and, like the other models, a network is trained by finding its parameters (weights) with gradient descent and backpropagation. Text must also become numbers: Lecture 4 encodes each character, while an LLM splits text into meaningful tokens and maps each token to an **embedding** vector."
+      }
+    },
+    {
+      "from": "lab03",
+      "to": "lec07",
+      "why": {
+        "zh": "Lab 3 的 heuristic 是加权和（**weighted sum**）：每个特征算“我的 − 对手的”，乘上权重再相加，权重由人定、靠调。第 7 讲的人工神经元做的是同一件事：输入乘权重、相加，再交给激活函数；区别是神经元的权重在训练中用梯度下降 + 反向传播找出来。第 3 讲第 54 页也说 heuristic 可以用机器学习学出来。",
+        "en": "Lab 3's heuristics are a **weighted sum**: ours minus the opponent's for each feature, times a weight, added up, with the weights chosen and tuned by hand. Lecture 7's artificial neuron does the same thing (weighted inputs added up, then an activation function), but its weights are learned during training with gradient descent and backpropagation. Lecture 3 (p.54) also says heuristics may be learned through Machine Learning."
+      }
+    },
+    {
+      "from": "lec01",
+      "to": "lec07",
+      "why": {
+        "zh": "第 1 讲给了 LLM 的定义（一种特定的机器学习模型，用海量文本训练，用普通文字的 prompt 来用，容易幻觉），还说性质大表不用背，学完每个主题就知道原因。第 7 讲兑现了：LLM 是基础模型，所以任务开放度高、只要写 prompt；它是一次只加一个 token、每加一个都重跑整个过程的深度神经网络，这有助于解释为什么每次调用往往更慢更贵、而且很少能解释（第 7 讲最后一节）。",
+        "en": "Lecture 1 defines LLMs as a specific type of ML model, trained on enormous text data, used through **prompting** in plain text, and prone to hallucination, and it says the Big Table need not be memorized because each topic will explain it. Lecture 7 delivers: LLMs are foundation models, so task openness is high and we just write a prompt; they are deep networks that add one token at a time and repeat the whole process, which helps explain why they are often slower and costlier per call and rarely explainable (the last section of Lecture 7)."
+      }
+    },
+    {
+      "from": "lec02",
+      "to": "lec07",
+      "why": {
+        "zh": "第 2 讲讲涌现行为（**emergent behaviour**）时举的例子就是：LLM 的语言能力是从神经网络底层的数学里涌现出来的。它还说，从最复杂的 LLM 到最简单的画机器人脸程序，都是由基本指令搭起来的。第 7 讲让你看到这些底层步骤具体是什么。",
+        "en": "Lecture 2's example of **emergent behaviour** is that language in LLMs emerges from the low-level mathematics of the neural network, and it says every program, from the fanciest LLM to the simplest robot-face-drawer, is built from basic instructions. Lecture 7 shows what those low-level steps are."
+      }
+    }
+  ],
+  "studyPlans": [
+    {
+      "id": "test2",
+      "title": {
+        "zh": "Test 2 冲刺计划（11 月 10 日）",
+        "en": "Test 2 sprint plan (Nov 10)"
+      },
+      "note": {
+        "zh": "考试范围以老师在 Quercus / Piazza 公布的为准，本站不替老师划范围。第 1 天先去确认，把单元分成两组：A 组 = Test 1（10 月 6 日）之后讲的课和 lab，B 组 = 之前的。第 2–8 天只学 A 组，按课程顺序来（后面的课要用到前面的内容，比如第 7 讲用到第 4–5 讲的特征向量和权重）；第 9–10 天用速记、闪卡和错题本快速过一遍 B 组，只有确认在范围内的 B 组单元才回到「学习」细读；第 11 天和第 13 天做模拟考，第 12 天专练长答题、看「速记」。每天大约 2–3 小时；落后了就先跳过标着「了解 Background」的小节，但两次模拟考别跳。",
+        "en": "The scope is whatever the instructor announces on Quercus / Piazza; this site does not guess it. Confirm it on Day 1 and sort the units into two tracks: Track A = the lectures and labs taught after Test 1 (Oct 6), Track B = the earlier ones. Days 2-8 cover Track A only, in course order, because later lectures build on earlier ones (Lecture 7 uses Lecture 4-5 feature vectors and weights). Days 9-10 review Track B quickly with the Cheat sheet, Flashcards and Mistakes; open a Track B unit in Learn only if it is confirmed in scope. Days 11 and 13 are mock exams, with long-answer practice and the Cheat sheet on Day 12. Plan on about 2-3 hours a day; if you fall behind, skip Background sections first, but keep both mock exams."
+      },
+      "days": [
+        {
+          "label": {
+            "zh": "第 1 天（10月28日 周三）：定范围、分两组",
+            "en": "Day 1 (Wed Oct 28): scope and two tracks"
+          },
+          "tasks": [
+            {
+              "zh": "上 Quercus 和 Piazza 找老师关于 Test 2 范围的通知，抄在一张纸上。再把单元分两组写下来：Test 1（10 月 6 日）之后讲的课和 lab 是 A 组，之前的是 B 组。不确定就在 Piazza 上问。",
+              "en": "Find the instructor's Test 2 scope announcement on Quercus and Piazza and copy it onto a sheet of paper. Then write the units in two lists: the lectures and labs taught after Test 1 (Oct 6) are Track A, the earlier ones are Track B. If unsure, ask on Piazza."
+            },
+            {
+              "zh": "在 Crowdmark 看 Test 1 的分数；如果 Quercus 上已经有 Test 1 的答案（solutions），对照着看一遍，熟悉选择题和长答题的样子。",
+              "en": "Check your Test 1 marks on Crowdmark. If the Test 1 solutions are on Quercus, go through them to see what the multiple-choice and long-answer questions look like."
+            },
+            {
+              "zh": "读首页的「新手指南」和「知识地图」，再到「设置」选语言模式（英文还很吃力就选「中文优先」）。",
+              "en": "Read the guide and The big picture on the home page, then choose a language mode in Settings (Chinese first if English is still hard)."
+            },
+            {
+              "zh": "把 A 组按课程顺序排好（每个 lab 紧跟在它对应的讲后面），写出第 2–8 天每天学哪一个：一讲大约一天，lab 短，可以和下一个单元放在同一天。",
+              "en": "Put Track A in course order (each lab right after its lecture) and write which unit you will study on each of Days 2-8: about one lecture a day; a lab is short and can share a day with the next unit."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 2 天（10月29日 周四）：A 组第 1 个单元",
+            "en": "Day 2 (Thu Oct 29): Track A, unit 1"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "在「学习」里打开 A 组的第 1 个单元，按顺序读；时间不够就先跳过标着「了解 Background」的小节。",
+              "en": "Open the first unit on your Track A list in Learn and read it in order; if you run short of time, skip Background sections first."
+            },
+            {
+              "zh": "读完点「练习这一课」去刷题，这个单元的计算题一定要全对。",
+              "en": "Press Practice this lesson at the end and get every calculation question of the unit right."
+            },
+            {
+              "zh": "用「闪卡」复习这个单元的术语（英→中）。如果它是一个很短的 lab，接着开始 A 组的下一个单元。",
+              "en": "Review the unit's terms with Flashcards (EN to ZH). If it was a short lab, start the next Track A unit."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 3 天（10月30日 周五）：A 组第 2 个单元",
+            "en": "Day 3 (Fri Oct 30): Track A, unit 2"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "学习 A 组的下一个单元。讲义里有小工具（minimax 树、决策边界、回归、混淆矩阵、神经元……）的地方，一直动手试，直到数字和课件对上。",
+              "en": "Learn the next Track A unit. Wherever the lesson has a widget (minimax tree, decision boundary, regression, confusion matrix, neuron), keep trying it until the numbers match the slides."
+            },
+            {
+              "zh": "去「刷题」做这个单元的题，再用「闪卡」复习它的术语（英→中）。",
+              "en": "Do the unit's questions in Practice, then review its terms with Flashcards (EN to ZH)."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 4 天（10月31日 周六）：A 组第 3 个单元",
+            "en": "Day 4 (Sat Oct 31): Track A, unit 3"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "学习 A 组的下一个单元，按顺序读，读懂一节就点「我学会了」。",
+              "en": "Learn the next Track A unit in order, and press Mark as learned after each section that makes sense."
+            },
+            {
+              "zh": "去「刷题」做这个单元的题；长答题先自己用英文写，再看参考答案和得分点。",
+              "en": "Do the unit's questions in Practice; for long answers, write your own English answer before reading the model answer and the scoring points."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 5 天（11月1日 周日）：A 组第 4 个单元 + 答题工具箱",
+            "en": "Day 5 (Sun Nov 1): Track A, unit 4 + the toolkit"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "学习 A 组的下一个单元，再去「刷题」做它的题。",
+              "en": "Learn the next Track A unit, then do its Practice questions."
+            },
+            {
+              "zh": "打开「答题」英文答题工具箱，读「指令词」和「答题模板」：explain、describe、compare 各要你写什么。",
+              "en": "Open the Exam English toolkit and read Question verbs and Answer templates: what explain, describe and compare each ask you to write."
+            },
+            {
+              "zh": "用「闪卡」把到目前为止学过的 A 组术语过一遍（英→中）。",
+              "en": "Go through the Track A terms you have learned so far with Flashcards (EN to ZH)."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 6 天（11月2日 周一）：A 组第 5 个单元",
+            "en": "Day 6 (Mon Nov 2): Track A, unit 5"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "学习 A 组的下一个单元，再去「刷题」做它的题。",
+              "en": "Learn the next Track A unit, then do its Practice questions."
+            },
+            {
+              "zh": "把这个单元里标着「课件原话」的定义各抄三遍、读出声，背到能默写（比如第 5 讲的 Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns.）。",
+              "en": "Copy each definition in the unit's boxes labelled 课件原话 (Course definition) three times and read it aloud until you can write it from memory (for example, Lecture 5's 'Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns.')."
+            },
+            {
+              "zh": "用「闪卡」复习 A 组的术语，这次练「中→英」：能自己写出英文才算会。",
+              "en": "Review the Track A terms with Flashcards, this time ZH to EN: a term counts as known only when you can write the English yourself."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 7 天（11月3日 周二）：A 组第 6 个单元 + 新课",
+            "en": "Day 7 (Tue Nov 3): Track A, unit 6 + new lecture"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "学习 A 组的下一个单元，再去「刷题」做它的题。如果 A 组已经学完，就用「刷题」的「只做主观题」练 A 组的长答题。",
+              "en": "Learn the next Track A unit, then do its Practice questions. If Track A is finished, use the Written only filter in Practice to do the Track A long answers."
+            },
+            {
+              "zh": "周二是讲课日。如果今天上了新课，今晚就把新课件过一遍（本站可能还没有这一讲），并在 Piazza 留意它考不考。",
+              "en": "Tuesday is lecture day. If there was a new lecture today, go through its slides tonight (this site may not have it yet) and watch Piazza for whether it is on Test 2."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 8 天（11月4日 周三）：A 组收尾 + office hour",
+            "en": "Day 8 (Wed Nov 4): finish Track A + office hours"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "把 A 组剩下的单元学完。都学完了，就在「刷题」里把 A 组的计算题再全部做一遍。",
+              "en": "Finish any Track A units that are left. If they are all done, redo every Track A calculation question in Practice."
+            },
+            {
+              "zh": "今天周三，老师下午 3–5 点在 DH 3024 有 office hour。把还没懂的地方列出来去问，或者发到 Piazza。",
+              "en": "It is Wednesday: office hours are 3-5 pm in DH 3024. List what you still do not understand and ask there, or post it on Piazza."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 9 天（11月5日 周四）：B 组快速复习",
+            "en": "Day 9 (Thu Nov 5): Track B review"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "B 组（Test 1 之前讲的单元）不用重读整课：在「速记」里读它们的要点，再看「公式总表」里它们的那几行。",
+              "en": "Do not reread whole Track B lessons (the units taught before Test 1): read their points in the Cheat sheet and their lines in the Formula sheet."
+            },
+            {
+              "zh": "用「闪卡」把 B 组的术语过一遍（中→英）。",
+              "en": "Go through the Track B terms with Flashcards (ZH to EN)."
+            },
+            {
+              "zh": "只有当你的纸上写明某个 B 组单元在 Test 2 范围内时，才回「学习」读它标着「高频考点 High-yield」的小节，再做它的刷题。",
+              "en": "Only if your sheet says a Track B unit is on Test 2: open its High-yield sections in Learn, then do its Practice questions."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 10 天（11月6日 周五）：B 组练习 + 把课连起来",
+            "en": "Day 10 (Fri Nov 6): Track B practice + connections"
+          },
+          "tasks": [
+            {
+              "zh": "热身 10 分钟：重做「错题本」里的题。",
+              "en": "Warm-up, 10 minutes: redo the questions on the Mistakes page."
+            },
+            {
+              "zh": "在「刷题」里选你范围内的全部单元（A 组 + B 组），只做计算题。",
+              "en": "In Practice, choose every unit in your scope (Track A and Track B) and do only the calculation questions."
+            },
+            {
+              "zh": "读首页的「课与课怎么连起来」和「速记」里的「易混概念」，每一对用一句英文说出区别。",
+              "en": "Read How the lessons connect on the home page and the Easily confused pairs in the Cheat sheet; state each difference in one English sentence."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 11 天（11月7日 周六）：第一次模拟考",
+            "en": "Day 11 (Sat Nov 7): mock exam 1"
+          },
+          "tasks": [
+            {
+              "zh": "到「设置」把语言模式换成「英文练习」：中文先模糊，点一下才显示。",
+              "en": "In Settings, switch to English practice mode: Chinese stays blurred until you tap it."
+            },
+            {
+              "zh": "做第一次「模拟考」：只勾你纸上写的 Test 2 范围内的单元，限时 60 分钟。",
+              "en": "Take your first Mock exam: tick only the units in the Test 2 scope on your sheet and set 60 minutes."
+            },
+            {
+              "zh": "看成绩单：分数最低的单元，回「学习」重读它标着「高频考点 High-yield」的小节，再把「错题本」清零。",
+              "en": "Read the report: for your lowest unit, reread its High-yield sections in Learn, then clear the Mistakes page."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 12 天（11月8日 周日）：长答题 + 速记",
+            "en": "Day 12 (Sun Nov 8): long answers + cheat sheet"
+          },
+          "tasks": [
+            {
+              "zh": "长答题专练：在「刷题」里用「只做主观题」筛选，先选 Test 1 之后讲的单元；每题先套「答题」工具箱的模板用英文写，再对照参考答案和得分点。",
+              "en": "Long-answer practice: in Practice, use the Written only filter, starting with the units taught after Test 1. Write each answer in English with a template from the Exam English toolkit, then compare it with the model answer and scoring points."
+            },
+            {
+              "zh": "读「速记」里你范围内每一课的要点，再看「公式总表」和「易混概念」，把老记不住的抄到那张纸上。",
+              "en": "Read the Cheat sheet points for every unit in your scope, then the Formula sheet and the Easily confused pairs; copy whatever you keep forgetting onto your sheet of paper."
+            },
+            {
+              "zh": "读「答题」工具箱里的「常见错误」和「考试策略」，想好 1 小时里选择题和长答题怎么分时间。",
+              "en": "Read Common mistakes and Exam strategy in the Exam English toolkit and decide how to split the hour between multiple choice and long answers."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "第 13 天（11月9日 周一）：第二次模拟考 + 收尾",
+            "en": "Day 13 (Mon Nov 9): mock exam 2 + wrap-up"
+          },
+          "tasks": [
+            {
+              "zh": "做第二次「模拟考」（60 分钟，题目会重新抽一套），交卷后把每道错题都弄懂。",
+              "en": "Take a second Mock exam (60 minutes, with a freshly drawn set of questions) and make sure you understand every wrong answer."
+            },
+            {
+              "zh": "「闪卡」勾上「只练不熟的卡」，把范围内的术语过一遍（中→英）。",
+              "en": "In Flashcards, tick Only unfamiliar cards and go through the terms in your scope (ZH to EN)."
+            },
+            {
+              "zh": "晚上不学新东西，只看那张纸和「速记」，早点睡。",
+              "en": "No new material tonight: just your sheet of paper and the Cheat sheet. Go to bed early."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考试当天（11月10日 周二）",
+            "en": "Test day (Tue Nov 10)"
+          },
+          "tasks": [
+            {
+              "zh": "早上花 10 分钟看「速记」和那张纸就够了。",
+              "en": "In the morning, 10 minutes with the Cheat sheet and your sheet of paper is enough."
+            },
+            {
+              "zh": "测验在讲课的第二个小时（第一个小时照常上课）：1 小时，选择题 + 长答题，不能用 GenAI。",
+              "en": "The test is in the second hour of lecture (the first hour is regular lecture time): 1 hour, multiple choice and long answer, no GenAI."
+            },
+            {
+              "zh": "先做有把握的题。长答题用英文：先写定义，再举课上的例子，最后一句回答题目问的。卡住就先跳过，回头再来。",
+              "en": "Do the questions you are sure about first. Write long answers in English: the definition, then an example from class, then one sentence that answers the question. If you get stuck, skip it and come back."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "title": {
+        "zh": "期末复习计划（覆盖全部内容）",
+        "en": "Final exam plan (all material)"
+      },
+      "note": {
+        "zh": "期末考试 2 小时，覆盖全部课程内容（包括 Test 2 之后的新课），占总评 40%；期末必须至少拿到 40% 才能通过这门课，低于 40% 时总评最高只有 47%。考试日期由教务处（Registrar's Office）安排，公布后把下面几个阶段倒推到日历上。期末论文 12 月 8 日截止（占 10%），别让它和复习撞车。",
+        "en": "The final exam is 2 hours, covers all course material (including the lectures after Test 2) and is worth 40%. You must get at least 40% on it to pass the course; below 40%, the highest course mark is 47%. The Registrar's Office schedules the date: once it is out, count these stages back on your calendar. The final paper is due Dec 8 (10%), so plan around it."
+      },
+      "days": [
+        {
+          "label": {
+            "zh": "Test 2 之后 · 每周例行",
+            "en": "After Test 2: every week"
+          },
+          "tasks": [
+            {
+              "zh": "Test 2 发回后：在 Crowdmark 看分数、在 Quercus 看答案，把错的知识点回到对应的课重学。觉得判分有问题，收到成绩一周内发邮件申请重判（re-mark）。",
+              "en": "When Test 2 is returned, check your marks on Crowdmark and the solutions on Quercus, and relearn each point you missed in its lesson. If something seems wrongly marked, email a re-mark request within one week of getting your grade."
+            },
+            {
+              "zh": "每上完一节新课，当周就学：本站有这一讲，就用「学习」和「刷题」；还没有的话，先看课件和笔记，把课件上的 Discuss 题用英文答一遍。",
+              "en": "After each new lecture, study it the same week: if this site has it, use Learn and Practice; if not, use the slides and your notes and answer the Discuss prompts in English."
+            },
+            {
+              "zh": "lab 每周照常去：lab 占总评 20%，worksheet 只能在 lab 现场拿到。",
+              "en": "Keep going to your weekly lab: labs are worth 20%, and the worksheet is only available in the lab."
+            },
+            {
+              "zh": "每周两次、每次 15 分钟：「闪卡」只练不熟的卡，再清一清「错题本」。",
+              "en": "Twice a week, 15 minutes each: Flashcards with Only unfamiliar cards, then clear the Mistakes page."
+            },
+            {
+              "zh": "期末论文 12 月 8 日截止（占 10%），早点开始写，把论文和期末复习的时间错开。",
+              "en": "The final paper is due Dec 8 (10%); start early so it does not collide with exam review."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前第 3 周 · 第一轮：按顺序全过一遍",
+            "en": "3 weeks before: round 1, everything in order"
+          },
+          "tasks": [
+            {
+              "zh": "第 1–3 讲（AI 的定义和三类 AI 方法、算法、搜索和 minimax）：每讲先读「高频考点 High-yield」小节，再补上没把握的「必会 Must know」小节，然后做「刷题」。",
+              "en": "Lectures 1-3 (definitions and the three kinds of AI approaches, algorithms, search and Minimax): read the High-yield sections of each, then the Must know sections you are unsure of, then do its Practice questions."
+            },
+            {
+              "zh": "实验 1–3：每个 lab 先读「考试要点」那一节，再做它的刷题。",
+              "en": "Labs 1-3: read the exam takeaways section of each lab, then do its Practice questions."
+            },
+            {
+              "zh": "第 4–6 讲（数据、训练、评估与公平）：同样先读「高频考点」小节，再补「必会」，然后做「刷题」，计算题一道都别跳。",
+              "en": "Lectures 4-6 (data, training, evaluation and fairness): High-yield sections first, then the Must know ones, then Practice, without skipping a single calculation question."
+            },
+            {
+              "zh": "实验 4–5 和第 7 讲（神经网络和 LLM）：读完就去「刷题」。",
+              "en": "Labs 4-5 and Lecture 7 (neural networks and LLMs): read them, then do their Practice questions."
+            },
+            {
+              "zh": "Test 2 之后的新课：本站有的话照样做；还没有的话，用课件把每个定义和例子用英文写一遍。",
+              "en": "Lectures after Test 2: do the same if this site has them; if not, write out each definition and example from the slides in English."
+            },
+            {
+              "zh": "每学完一讲，就用「闪卡」把它的术语过一遍（英→中）。",
+              "en": "After each lecture, go through its terms with Flashcards (EN to ZH)."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前第 2 周 · 第二轮：串主线、练长答题",
+            "en": "2 weeks before: round 2, connect the branches and practise long answers"
+          },
+          "tasks": [
+            {
+              "zh": "回首页看「知识地图」和「课与课怎么连起来」，用英文说出：纯算法、符号 AI、机器学习里，分别是人给什么、电脑做什么。",
+              "en": "Go back to The big picture and How the lessons connect on the home page, and say in English what the human gives and what the computer does in purely algorithmic approaches, Symbolic AI and Machine Learning."
+            },
+            {
+              "zh": "计算题日：把「速记」的「公式总表」逐条过一遍，再到「刷题」的题型筛选里只勾「计算」，所有单元一起练。",
+              "en": "Calculation day: go through the Formula sheet in the Cheat sheet line by line, then in Practice tick only Calculation in the type filter and practise all units together."
+            },
+            {
+              "zh": "长答题：「刷题」里选「只做主观题」，每天 3–4 道。先套「答题」工具箱的模板用英文写，再对照参考答案和得分点。",
+              "en": "Long answers: in Practice choose Written only and do 3-4 a day. Write in English with a template from the Exam English toolkit, then compare with the model answer and scoring points."
+            },
+            {
+              "zh": "伦理专题：对齐（第 3 讲）、版权与隐私（第 4 讲）、偏见与公平（第 6 讲）、LLM 的伦理问题（第 1 讲），每个话题用英文写一段，正反两面都要有。",
+              "en": "Ethics topics: Alignment (Lecture 3), copyright and privacy (Lecture 4), bias and fairness (Lecture 6) and the ethical issues of LLMs (Lecture 1). Write one English paragraph on each, covering both sides."
+            },
+            {
+              "zh": "「速记」的「易混概念」：每一对都用一句英文说出区别。",
+              "en": "Easily confused pairs in the Cheat sheet: state each difference in one English sentence."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前最后一周 · 模拟考",
+            "en": "Last week: mock exams"
+          },
+          "tasks": [
+            {
+              "zh": "到「设置」换成「英文练习」语言模式。",
+              "en": "In Settings, switch to English practice mode."
+            },
+            {
+              "zh": "「模拟考」全选所有单元，限时 120 分钟（期末是 2 小时）；至少做两次，中间隔两三天。",
+              "en": "Take a Mock exam with all units and a 120-minute limit (the final is 2 hours); do at least two, a few days apart."
+            },
+            {
+              "zh": "每次看成绩单：最弱的单元回「学习」重读「高频考点」小节，再把「错题本」清零。",
+              "en": "After each one, reread the High-yield sections of your weakest unit in Learn and clear the Mistakes page."
+            },
+            {
+              "zh": "重读「答题」工具箱的「考试策略」，定好两小时怎么分。",
+              "en": "Reread Exam strategy in the Exam English toolkit and plan how to split the 2 hours."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考前 1–2 天",
+            "en": "1-2 days before"
+          },
+          "tasks": [
+            {
+              "zh": "只复习、不学新东西：「速记」每课要点 + 你自己的手写纸。",
+              "en": "Review only, nothing new: the Cheat sheet points for each lesson and your handwritten sheet."
+            },
+            {
+              "zh": "「闪卡」只练不熟的卡（中→英），能自己写出英文术语才算会。",
+              "en": "Flashcards with Only unfamiliar cards (ZH to EN): a term counts as known only when you can write the English yourself."
+            },
+            {
+              "zh": "确认考试的时间和地点（以教务处公布的为准），早点睡。",
+              "en": "Confirm the exam time and room (as published by the Registrar's Office) and go to bed early."
+            }
+          ]
+        },
+        {
+          "label": {
+            "zh": "考试当天",
+            "en": "Exam day"
+          },
+          "tasks": [
+            {
+              "zh": "两小时，用英文作答，不能用 GenAI。先做有把握的题；长答题先写定义，再举课上的例子，最后一句回答题目问的。",
+              "en": "2 hours, answered in English, no GenAI. Do the questions you are sure about first; for long answers, write the definition, then an example from class, then one sentence that answers the question."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

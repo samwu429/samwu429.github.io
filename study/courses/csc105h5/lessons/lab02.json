@@ -1,0 +1,1472 @@
+{
+  "id": "lab02",
+  "kind": "lab",
+  "number": 2,
+  "title": {
+    "en": "Algorithms with Turtles",
+    "zh": "用小海龟学算法"
+  },
+  "sources": [
+    {
+      "file": "lab02_turtle_algorithms.pdf",
+      "pages": 13
+    }
+  ],
+  "estimatedMinutes": 45,
+  "oneLiner": {
+    "zh": "这个 lab 用 Turtle 小海龟程序复习 Lecture 2：算法是按顺序执行的精确指令；函数和循环让我们把指令写一次、用很多次。",
+    "en": "This lab uses the Turtle app to review Lecture 2: an algorithm is a list of precise instructions done in order, and functions and loops let us write instructions once and use them many times."
+  },
+  "outcomes": [
+    {
+      "en": "Define algorithm, function, parameter, loop and iteration in the course's words.",
+      "zh": "能用课程的英文原话定义 algorithm、function、parameter、loop 和 iteration。"
+    },
+    {
+      "en": "Read a short Turtle program and explain, step by step, what the turtle does.",
+      "zh": "能读懂一段简短的 Turtle 程序，一步一步说出小海龟做了什么。"
+    },
+    {
+      "en": "Explain the difference between defining a function and calling it.",
+      "zh": "能说清“定义函数”和“调用函数”的区别。"
+    },
+    {
+      "en": "Explain how function calls and for-loops let us reuse instructions.",
+      "zh": "能解释函数调用和 for 循环怎样让我们重复使用指令。"
+    },
+    {
+      "en": "Count how many times instructions run when a function is called or a loop iterates.",
+      "zh": "能数出函数被调用、循环迭代时，指令一共执行了几次。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-lab-goal",
+      "title": {
+        "zh": "这个 lab 是干什么的",
+        "en": "What this lab is for"
+      },
+      "slides": "1-2, 4",
+      "level": "extra",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "Lab 2 的标题是 **Algorithms with Turtles**（用小海龟学算法）。第 2 页写着 “Review: Turtles and Algorithms”——这份讲义是一份**复习材料**。"
+        },
+        {
+          "type": "text",
+          "zh": "它复习的是 Lecture 2 - Algorithms（课件标题 An Introduction to Algorithmic Thinking，算法思维入门）里的算法定义和“用小海龟编程”（函数、参数、循环）部分。"
+        },
+        {
+          "type": "text",
+          "zh": "讲义第 3-13 页基本都是 Lecture 2 的原页（第 4、7 页的说明文字改写过），所以本 lab 不是新内容，而是动手把 Lecture 2 练一遍。"
+        },
+        {
+          "type": "text",
+          "zh": "做法：在网页上拖积木，拼出程序（**program**）；按播放键，看小海龟照着指令（**instruction**）画图。边做边理解算法（**algorithm**）、函数（**function**）、参数（**parameter**）和循环（**loop**）。"
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "讲义路线图（13 页）",
+            "en": "Handout roadmap (13 pages)"
+          },
+          "items": [
+            {
+              "zh": "第 1-2 页：标题页；“Review: Turtles and Algorithms”（复习：小海龟与算法）",
+              "en": "Pages 1-2: title, then 'Review: Turtles and Algorithms'"
+            },
+            {
+              "zh": "第 3 页：算法的定义 + 做吐司的例子",
+              "en": "Page 3: definition of algorithm and the making-toast example"
+            },
+            {
+              "zh": "第 4-5 页：Turtle 工具怎么用；指令从上到下按顺序执行",
+              "en": "Pages 4-5: using the Turtle app; instructions run from top to bottom"
+            },
+            {
+              "zh": "第 6-8 页：函数——定义一次，按名字调用",
+              "en": "Pages 6-8: functions - define once, call by name"
+            },
+            {
+              "zh": "第 9-10 页：函数参数（高级功能）",
+              "en": "Pages 9-10: function parameters (an advanced feature)"
+            },
+            {
+              "zh": "第 11-13 页：循环——definite for-loop",
+              "en": "Pages 11-13: loops - the definite for-loop"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "工具：课程自己的 Turtle 网页应用（网址在讲义第 4 页），改编自开源项目 PencilCode。讲义说 “once again”（再一次），因为 Lecture 2 课上已经用过它。"
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "讲义里没有印出 lab 当场要做的题。按 syllabus，每次 lab 会发一张带二维码的 worksheet，当场填、当场交，课外拿不到。所以第 7 节的讨论题是根据讲义和 Lecture 2 课堂活动整理的练习，不是 worksheet 原题。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "讲义没有列学习目标，本页顶部的目标是根据讲义内容整理的。考试是选择题 + 长答题，不需要写代码（no coding）。复习重点：用英文说清概念，并理解程序是怎样一步一步执行的。"
+        }
+      ]
+    },
+    {
+      "id": "s02-lab-steps",
+      "title": {
+        "zh": "讲义演示：一步一步做了什么",
+        "en": "The handout's demos, step by step"
+      },
+      "slides": "4-5, 7, 10, 13",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "下面按讲义的顺序，把讲义演示的操作拆成小步（lab 当场 worksheet 的具体题目我们拿不到）。每一步后面的 p 是讲义页码。程序（**program**）就是一串指令（**instruction**），每块积木是一条指令；按播放键，计算机就执行（**execute**）这些指令。"
+        },
+        {
+          "type": "text",
+          "zh": "先记住三个词，后面细讲：函数（**function**）= 有名字的一组指令；参数（**parameter**）= 调用（**call**）函数时交给它的值；循环（**loop**）= 让一段指令重复执行。第 4-6 节会一个一个拆开讲。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "讲义演示流程",
+            "en": "Handout demo sequence"
+          },
+          "items": [
+            {
+              "en": "Open the Turtle app (adapted from PencilCode).",
+              "zh": "打开 Turtle 网页工具（改编自 PencilCode）。p4"
+            },
+            {
+              "en": "Drag and drop blocks on the left side to build a program.",
+              "zh": "在左边拖放积木，拼出程序。p4"
+            },
+            {
+              "en": "Press the play button. The turtle executes the program on the right side.",
+              "zh": "按播放键，右边的小海龟执行程序、画出图。p4"
+            },
+            {
+              "en": "Stack instructions from top to bottom to draw a robot face.",
+              "zh": "从上到下堆叠指令，画出一张机器人脸。p5"
+            },
+            {
+              "en": "Put the robot instructions in a function, draw_robot, and call it 3 times.",
+              "zh": "把画脸的指令放进函数 draw_robot，调用 3 次。p7"
+            },
+            {
+              "en": "Use a parameter: square(100) and square(200) draw two squares.",
+              "zh": "用参数：square(100) 和 square(200) 画出两个大小不同的正方形。p10"
+            },
+            {
+              "en": "Replace the repeated calls with a for-loop that runs 3 times.",
+              "zh": "用跑 3 次的 for 循环代替重复的调用。p13"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "`fd 100`",
+              "zh": "向前走 100",
+              "hint": "fd = forward，朝小海龟面对的方向走 100 个单位；笔放下时边走边画线"
+            },
+            {
+              "en": "`rt 90` / `lt 90`",
+              "zh": "右转 90 度 / 左转 90 度",
+              "hint": "rt = right turn，lt = left turn。只写角度（如 `rt 90`）时，原地转身、不移动、不画线。"
+            },
+            {
+              "en": "`rt 180, 25`",
+              "zh": "沿弧线右转半圈",
+              "hint": "第二个数 25 是半径（圆心到圆边的距离）：小海龟边转边走，画出半个圆——机器人的嘴巴就是它画的"
+            },
+            {
+              "en": "`pen blue` / `pen green, 10`",
+              "zh": "设定笔的颜色（和粗细），并落笔",
+              "hint": "设定笔的颜色（`pen green, 10` 里的 10 是粗细），并把笔放下开始画。所以 p7 里 `pu()` 之后再调用 draw_robot，第一条 `pen blue` 又让小海龟开始画线。"
+            },
+            {
+              "en": "`pu()` / `pd()`",
+              "zh": "抬笔 / 落笔",
+              "hint": "pu = pen up（抬笔），移动不留线；pd = pen down（落笔），又开始画线"
+            },
+            {
+              "en": "`box green, 25`",
+              "zh": "画一个绿色小方块",
+              "hint": "机器人的两只眼睛就是它画的"
+            },
+            {
+              "en": "`speed 10`",
+              "zh": "画图速度",
+              "hint": "只影响动画快慢，不改变画出来的图"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：讲义没有逐个解释这些积木。fd、rt 的意思可从 Lecture 2 第 35 页 “move forward 100 units, then turn right 90 degrees” 看出；lt、`rt 180, 25`（画弧线）、pen（同时落笔）、pu()、pd()、box、speed 的解释来自 PencilCode 的常见用法，并和讲义图里画出来的结果对得上。Lecture 2 第 11 页说：鼠标停在侧边栏的指令上，就能看到说明。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "读懂第一个程序：画长方形（p4）",
+            "en": "Reading the first program: a rectangle (p4)"
+          },
+          "steps": [
+            {
+              "zh": "`pen blue`：把笔设成蓝色（同时落笔）。",
+              "en": "pen blue: use a blue pen (the pen goes down)."
+            },
+            {
+              "zh": "`fd 100`：向前走 100（小海龟一开始朝上），画出左边。",
+              "en": "fd 100: move forward 100 (the turtle starts facing up)."
+            },
+            {
+              "zh": "`rt 90`：右转 90 度，现在朝右。",
+              "en": "rt 90: turn right 90 degrees."
+            },
+            {
+              "zh": "`fd 200`：向右走 200，画出上边。",
+              "en": "fd 200: draw the top side."
+            },
+            {
+              "zh": "`rt 90`、`fd 100`：再右转，朝下走 100，画出右边。",
+              "en": "rt 90, fd 100: draw the right side."
+            },
+            {
+              "zh": "`rt 90`、`fd 200`：再右转，朝左走 200，回到起点。",
+              "en": "rt 90, fd 200: draw the bottom side and return to the start."
+            }
+          ],
+          "answer": {
+            "zh": "8 条指令从上到下依次执行，画出一个高 100、宽 200 的蓝色长方形。",
+            "en": "8 instructions, run top to bottom, draw a blue rectangle, 100 high and 200 wide."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第 5 页把长方形当成“脸”，在后面继续加指令：用 `pu()` 抬笔、挪到眼睛的位置，用 `box` 画两只绿色眼睛；再挪到嘴巴的位置，换上粗绿笔 `pen green, 10`，用 `pd()` 落笔、用 `rt 180, 25` 画一段弧线当嘴巴。整个程序 24 行，画出一张机器人脸。"
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "sequence"
+          },
+          "caption": {
+            "zh": "试一试：一个从上到下按顺序执行的程序。看看每条指令执行了几次（都只执行 1 次）。",
+            "en": "Try it: a program that runs from top to bottom. Each instruction runs once."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "Programs can be created by drag-and-drop. Press the play button to see the program execute.",
+              "zh": "程序可以靠拖放积木拼成；按播放键，就能看到程序被执行。"
+            },
+            {
+              "en": "Instructions are followed from top to bottom, in order.",
+              "zh": "指令从上到下、按顺序执行。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "顺序很重要：同样几条指令换个顺序，图可能完全不同。比如先 `rt 90` 再 `fd 100`，第一条边就会往右画。"
+            },
+            {
+              "zh": "`rt 90` 只转身、不走路，所以不画线；直线靠 `fd` 画。例外：`rt 180, 25` 多了第二个数（半径），小海龟会沿弧线走半圈，画出嘴巴。"
+            },
+            {
+              "zh": "第 5 页还没用函数或循环：画一张脸要 23 条画图指令。想画 3 张脸，就得把它们抄 3 遍——这正是接下来要学函数和循环的原因。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the Turtle app, in what order are the instructions of a program followed?",
+            "zh": "在 Turtle 工具里，程序的指令按什么顺序执行？"
+          },
+          "options": [
+            {
+              "en": "From bottom to top",
+              "zh": "从下到上"
+            },
+            {
+              "en": "All at the same time",
+              "zh": "全部同时执行"
+            },
+            {
+              "en": "From top to bottom, in order",
+              "zh": "从上到下，按顺序"
+            },
+            {
+              "en": "In a random order",
+              "zh": "随机顺序"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "讲义第 5 页原话：Instructions are followed from top to bottom, in order. 不是倒着、不是同时、也不是随机。所以顺序一变，画出来的图也会变。",
+            "en": "The handout says instructions are followed from top to bottom, in order."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-algorithm-concept",
+      "title": {
+        "zh": "概念一：算法——精确、按顺序、有目标",
+        "en": "Concept 1: Algorithm - precise steps, in order, to a goal"
+      },
+      "slides": "3",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "对应 Lecture 2 - Algorithms 的第一个概念：算法（**algorithm**）。讲义第 3 页的定义和例子，和 Lecture 2 第 5 页一模一样。"
+        },
+        {
+          "type": "text",
+          "zh": "是什么：算法就是一份写得很清楚的“步骤清单”。照着一步一步做，就能完成一个目标。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像菜谱里的番茄炒蛋：1 打蛋，2 炒蛋盛出，3 炒番茄，4 倒回鸡蛋，5 加盐。每一步都要说清楚，顺序也不能乱。",
+          "limit": "人做菜会自己“脑补”（比如看火候）；计算机不会，它只按指令字面去做。所以写给计算机的算法必须更精确。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "An algorithm is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal.",
+              "zh": "算法是一系列精确的指令，可以一步一步、按顺序执行，从而达成一个目标。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "把定义拆成小块",
+            "en": "The definition, word by word"
+          },
+          "headers": [
+            "英文 / English",
+            "意思 / Meaning"
+          ],
+          "rows": [
+            [
+              "a series of instructions",
+              "一串指令（**instruction**），不止一步"
+            ],
+            [
+              "precise",
+              "精确：说得清清楚楚，不会被理解成别的意思"
+            ],
+            [
+              "step-by-step",
+              "一步一步来，做完一步再做下一步"
+            ],
+            [
+              "in order",
+              "按顺序：先第 1 步，再第 2 步……"
+            ],
+            [
+              "to achieve a goal",
+              "有明确目标，比如做好吐司、画出长方形"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "课件例子：做吐司（Making toast）",
+            "en": "Course example: making toast"
+          },
+          "steps": [
+            {
+              "zh": "从袋子里拿出两片面包。",
+              "en": "Remove two slices of bread from the bag."
+            },
+            {
+              "zh": "把两片面包放进烤面包机的槽里。",
+              "en": "Place the slices into the slots in the toaster."
+            },
+            {
+              "zh": "按下烤面包机的拉杆。",
+              "en": "Press down the lever on the toaster."
+            },
+            {
+              "zh": "等面包从烤面包机里弹出来。",
+              "en": "Wait for the bread to pop back out of the toaster."
+            },
+            {
+              "zh": "给每片吐司抹上黄油。",
+              "en": "Butter each piece of toast."
+            }
+          ],
+          "answer": {
+            "zh": "5 个精确的步骤，按顺序做，目标是一份抹好黄油的吐司——这就是一个算法。",
+            "en": "Five precise steps, done in order, reach a clear goal: buttered toast."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "在本 lab 里，小海龟程序就是写给计算机的算法：每块积木是一条精确的指令，小海龟从上到下按顺序执行，目标是画出想要的图。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "关键词 precise（精确）：Lecture 2 第 6 页说，指令不够精确，就可能达不成目标（课上用“邪恶精灵（evil genie）故意曲解指令”来演示）。"
+            },
+            {
+              "zh": "关键词 in order（按顺序）：先抹黄油再烤，结果就不对了。"
+            },
+            {
+              "zh": "算法 ≠ 程序（**program**）。算法是步骤本身，可以用中文或英文写；程序是用编程语言写成、让计算机执行的指令（Lecture 2 第 8 页）。"
+            },
+            {
+              "zh": "“只是照着写好的算法做” ≠ AI。Lecture 2 第 34 页：程序员把一步一步的解法写好 → 不是 AI；程序员只给目标、计算机自己找办法 → 才是 AI。AI 程序本身也由指令组成（第 33 页），区别在于“谁想出解法”。本 lab 的画图程序属于前者。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Write this on the exam"
+          },
+          "items": [
+            {
+              "en": "A computer executes an algorithm by following a program: a series of instructions written in a programming language.",
+              "zh": "计算机通过执行程序来执行算法；程序就是用编程语言写成的一串指令。"
+            },
+            {
+              "en": "Simply following an algorithm is not normally considered to be AI.",
+              "zh": "只是照着算法做，通常不算 AI（Lecture 2 原话）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is NOT part of the course definition of an algorithm?",
+            "zh": "下面哪一项不属于课程对“算法”的定义？"
+          },
+          "options": [
+            {
+              "en": "The instructions are precise.",
+              "zh": "指令是精确的。"
+            },
+            {
+              "en": "The instructions are followed step-by-step, in order.",
+              "zh": "指令一步一步、按顺序执行。"
+            },
+            {
+              "en": "The instructions achieve a goal.",
+              "zh": "指令用来达成一个目标。"
+            },
+            {
+              "en": "The instructions are learned automatically from data.",
+              "zh": "指令是从数据中自动学出来的。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "定义里有 precise、step-by-step、in order、to achieve a goal，所以前三项都属于定义。“从数据中自动学习规律”是机器学习（**Machine Learning**）的做法（见 Lab 1 讲义），不是算法定义的一部分。",
+            "en": "Learning from data describes machine learning, not the definition of an algorithm."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-functions",
+      "title": {
+        "zh": "概念二：函数——定义一次，按名字调用",
+        "en": "Concept 2: Functions - define once, call by name"
+      },
+      "slides": "6-8",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "对应 Lecture 2 - Algorithms 的 Functions 部分（Lecture 2 第 14-18 页）。是什么：函数（**function**）就是给一组指令起个名字；以后喊这个名字——也就是调用（**call**）它——这组指令就全部执行（**execute**）一遍。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像手机里的“快捷指令”：先把一长串操作录好，起名叫“回家模式”（定义一次）；以后点一下“回家模式”（按名字调用），整串操作自动做完，想点几次就点几次。",
+          "limit": "类比只说明“定义一次、用很多次”。真正的函数还能带参数（**parameter**，下一节讲），每次调用可以有不同的效果。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "A function is a named block of instructions that we define once, and can then reuse as many times as we want by calling it by name.",
+              "zh": "函数是一组有名字的指令。我们只定义一次，之后想用几次就用几次，方法是按名字调用它。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "定义拆开讲 + 讲义例子",
+            "en": "The definition, with the handout example"
+          },
+          "headers": [
+            "英文 / English",
+            "意思 / Meaning",
+            "讲义例子 / Handout example"
+          ],
+          "rows": [
+            [
+              "named",
+              "有名字",
+              "draw_robot"
+            ],
+            [
+              "block of instructions",
+              "一组指令打包在一起",
+              "第 3-25 行：画一张机器人脸的 23 条指令"
+            ],
+            [
+              "define once",
+              "只写一遍，叫函数定义（**function definition**）",
+              "第 2 行 draw_robot = () ->，指令放在它的 mouth（嘴巴）里"
+            ],
+            [
+              "calling it by name",
+              "按名字调用，叫函数调用（**function call**）",
+              "第 26、29、32 行 draw_robot()"
+            ],
+            [
+              "reuse as many times as we want",
+              "想用几次用几次",
+              "调用 3 次，画出 3 张脸"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：怎么读 `draw_robot = () ->`：等号左边是函数名；`()` 是空的，表示没有参数（Lecture 2 第 20 页的 `square = () ->` 就是“没有参数”的函数；对比第 5 节的 `(length)`）；`->` 后面（嘴巴里）就是函数要做的指令。调用时写 `draw_robot()`。",
+          "en": "In draw_robot = () ->, the name is on the left, the empty () means no parameters, and the instructions go inside, after ->. To call it, write draw_robot()."
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "讲义例子：调用 3 次，画出 3 张机器人脸（p7）",
+            "en": "Handout example: call draw_robot 3 times (p7)"
+          },
+          "steps": [
+            {
+              "zh": "第 1 行 `speed 10`；第 2 行定义函数 `draw_robot = () ->`。"
+            },
+            {
+              "zh": "第 3-25 行在函数的“嘴巴”里：就是第 5 页画一张脸的那 23 条指令。到这里还什么都没画。"
+            },
+            {
+              "zh": "第 26 行 `draw_robot()`：第 1 次调用 → 画出第 1 张脸。"
+            },
+            {
+              "zh": "第 27-28 行 `pu()`、`fd 100`：挪到新位置。"
+            },
+            {
+              "zh": "第 29 行：第 2 次调用 → 第 2 张脸；第 30-31 行再挪一次。"
+            },
+            {
+              "zh": "第 32 行：第 3 次调用 → 第 3 张脸。"
+            }
+          ],
+          "answer": {
+            "zh": "画脸的 23 条指令只写了 1 次，却执行了 3 次——每调用一次，就执行一遍。",
+            "en": "The 23 face instructions are written once but executed 3 times: once per call."
+          }
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "Turtle 工具里的函数积木（p8）",
+            "en": "Function blocks in the app (p8)"
+          },
+          "items": [
+            {
+              "zh": "函数定义积木 `f = (x) ->`：放好后，把别的指令拖进它的 “mouth”（嘴巴）里。",
+              "en": "Definition block: drag other instructions inside its 'mouth'."
+            },
+            {
+              "zh": "函数调用积木 `f(x)`：放在定义**下面**的任何位置，就会执行这个函数。",
+              "en": "Call block: place it anywhere below the definition to execute the function."
+            },
+            {
+              "zh": "点一下 “f” 就能改名。可以有好几个函数，但名字必须各不相同。",
+              "en": "Click the 'f' to rename it. You can have several functions, but they all need different names."
+            },
+            {
+              "zh": "Lecture 2 第 15 页补充：定义积木在 “Operators” 标签下；只有定义、没有调用时，按 Play 小海龟什么都不做。",
+              "en": "Lecture 2: with only a definition and no call, pressing Play does nothing to the turtle."
+            }
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "function-call"
+          },
+          "caption": {
+            "zh": "试一试：定义一个函数，再调用几次，数一数函数里每条指令执行了几次。",
+            "en": "Try it: define a function, call it several times, and count how often each instruction inside runs."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "只定义、不调用 = 什么都不发生。定义像“录好快捷指令”，调用才是“按下去”。"
+            },
+            {
+              "zh": "调用积木要放在定义的下面（讲义：anywhere below the definition）。"
+            },
+            {
+              "zh": "同一个程序里，不同的函数不能同名。"
+            },
+            {
+              "zh": "别把函数和循环（**loop**）搞混：函数**有名字**、要调用才执行；循环**没名字**、写在哪儿就立刻重复执行（见第 6 节）。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Write this on the exam"
+          },
+          "items": [
+            {
+              "en": "A function lets us write instructions once and reuse them by calling the function by name.",
+              "zh": "函数让我们把指令写一次，然后按名字调用、重复使用。"
+            },
+            {
+              "en": "Defining a function does not run it. Calling the function executes all the instructions inside it.",
+              "zh": "定义函数不会运行它；调用函数才会执行里面的全部指令。"
+            },
+            {
+              "en": "In the lab, draw_robot was defined once and called 3 times, so the robot face was drawn 3 times.",
+              "zh": "lab 里 draw_robot 定义了 1 次、调用了 3 次，所以画出 3 张机器人脸。"
+            },
+            {
+              "en": "Once a function is defined, we do not need to think about all of its instructions every time we call it. This is called abstraction.",
+              "zh": "函数定义好以后，调用时不用再想里面的每条指令——这叫抽象（**abstraction**），是 Lecture 2 第 24 页的概念。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the lab's program, the line draw_robot() appears 3 times below the function definition. What does each of these lines do?",
+            "zh": "lab 的程序里，函数定义下面出现了 3 次 draw_robot()。每一行做了什么？"
+          },
+          "options": [
+            {
+              "en": "It executes all the instructions inside draw_robot once.",
+              "zh": "把 draw_robot 里的全部指令执行一遍。"
+            },
+            {
+              "en": "It defines a new function called draw_robot.",
+              "zh": "定义一个叫 draw_robot 的新函数。"
+            },
+            {
+              "en": "It runs the whole program again from the top.",
+              "zh": "从头把整个程序再跑一遍。"
+            },
+            {
+              "en": "Nothing; only the definition draws the robot.",
+              "zh": "什么也不做，只有定义才会画机器人。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "draw_robot() 是函数调用（function call）：把定义里的全部指令执行一遍，所以 3 次调用画出 3 张脸。定义只在第 2 行写了 1 次；只定义不调用什么都不画；调用也不会让整个程序从头再跑。",
+            "en": "Each call executes the instructions inside the definition once."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-parameters",
+      "title": {
+        "zh": "概念三：参数——调用时给一个值，定制函数",
+        "en": "Concept 3: Parameters - customizing a function"
+      },
+      "slides": "9-10",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "对应 Lecture 2 - Algorithms 的 Function Parameters 部分（Lecture 2 第 19-22 页）。讲义标题写着 “an Advanced Feature”（高级功能）。"
+        },
+        {
+          "type": "text",
+          "zh": "是什么：参数（**parameter**）就是调用（**call**）函数（**function**）时顺便告诉它一个值（比如一个数字），让同一个函数每次做出不一样的结果。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像点奶茶：“做奶茶”是函数，“几分糖”是参数。流程一样，你说“三分糖”就做三分糖，说“全糖”就做全糖。",
+          "limit": "店员可能听错；计算机不会——你给 100，它就严格按 100 来画。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "A parameter is a value that we can give to the function when it is called to customize the function's behaviour.",
+              "zh": "参数是调用函数时我们可以交给它的一个值，用来定制这个函数的行为。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "拆开讲",
+            "en": "Break it down"
+          },
+          "items": [
+            {
+              "zh": "第 8-9 页积木 `f = (x) ->` 里的 “x” 就是参数，也可以改名（比如改成 length）。"
+            },
+            {
+              "zh": "a value：一个值，比如数字 100。"
+            },
+            {
+              "zh": "when it is called：在**调用**的时候给，不是在定义的时候。"
+            },
+            {
+              "zh": "customize the function's behaviour：这次函数具体怎么做，由这个值决定。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "讲义例子：能画任意大小正方形的函数（p10）",
+            "en": "Handout example: a square of any size (p10)"
+          },
+          "steps": [
+            {
+              "zh": "第 1-2 行：`speed 2`、`pen red`（红笔）。"
+            },
+            {
+              "zh": "第 3 行定义函数 `square = (length) ->`，参数名叫 `length`（边长）。"
+            },
+            {
+              "zh": "第 4-11 行：`fd length` + `rt 90` 写了 4 遍——走一条边、右转 90 度，4 次就是一个正方形。"
+            },
+            {
+              "zh": "第 12 行 `square(100)`：这次 length = 100，画出边长 100 的正方形。"
+            },
+            {
+              "zh": "第 13 行 `square(200)`：这次 length = 200，画出边长 200 的正方形。"
+            }
+          ],
+          "answer": {
+            "zh": "同一个函数调用 2 次，参数不同，画出一小一大两个红色正方形（共用左下角）。",
+            "en": "One function, called twice with different values, draws a small square (100) and a big square (200)."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "function-param"
+          },
+          "caption": {
+            "zh": "试一试：改变调用时传进去的数字，看正方形的大小怎么变。",
+            "en": "Try it: change the value in the call and watch the square change size."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "Lecture 2 还有两个对照例子（不在 lab 讲义里）：第 20 页没有参数的 `square()` 永远画边长 100 的正方形；第 22 页 `rectangle = (length, width) ->` 有两个参数，用逗号隔开，调用 `rectangle(100, 200)` 时“顺序决定哪个是哪个”（The order tells us which is which）。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "参数的值是在**调用时**给的。定义里只写名字 `length`；调用 `square(100)` 时，它才变成 100。"
+            },
+            {
+              "zh": "`square(100)` 不是“画 100 次”，而是“边长 = 100”，只画 1 个正方形。"
+            },
+            {
+              "zh": "没有参数的函数每次做的事都一样；有了参数，一个函数就能做出不同的结果。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Write this on the exam"
+          },
+          "items": [
+            {
+              "en": "A parameter is a value we give to a function when we call it. It customizes what the function does.",
+              "zh": "参数是调用函数时交给它的值，用来定制函数做的事。"
+            },
+            {
+              "en": "For example, square(100) draws a square with side length 100, and square(200) draws a square with side length 200.",
+              "zh": "例如 square(100) 画边长 100 的正方形，square(200) 画边长 200 的正方形。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A program defines square = (length) -> and then runs square(200). What does the 200 do?",
+            "zh": "程序定义了 square = (length) ->，然后执行 square(200)。这里的 200 起什么作用？"
+          },
+          "options": [
+            {
+              "en": "It makes the turtle draw 200 squares.",
+              "zh": "让小海龟画 200 个正方形。"
+            },
+            {
+              "en": "It renames the function to 200.",
+              "zh": "把函数改名为 200。"
+            },
+            {
+              "en": "It makes a loop run 200 iterations.",
+              "zh": "让一个循环迭代 200 次。"
+            },
+            {
+              "en": "It sets the side length of the square to 200.",
+              "zh": "把正方形的边长设为 200。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "200 是传给参数 length 的值，函数里每个 `fd length` 都变成走 200，所以画出边长 200 的正方形。它不是次数（square 只调用了 1 次），也不是名字；这个程序里也没有循环。",
+            "en": "200 is the value of the parameter length, so each side is 200 long."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-loops",
+      "title": {
+        "zh": "概念四：循环——没有名字、立刻重复",
+        "en": "Concept 4: Loops - repeat a block right away"
+      },
+      "slides": "11-13",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "对应 Lecture 2 - Algorithms 的 Loops 部分（Lecture 2 第 26-30 页）。是什么：循环（**loop**）就是让一段指令原地重复执行（**execute**）很多次，不用复制粘贴。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像体育课跑圈：老师说“跑 3 圈”。你不用听 3 次命令，跑完一圈接着跑下一圈，满 3 圈就停。每跑一圈就是一次迭代（**iteration**）。",
+          "limit": "人跑累了可能中途停下；definite for-loop 不会——次数一开始就定好了（fixed），一定跑满。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definitions"
+          },
+          "items": [
+            {
+              "en": "A loop is an unnamed block of code that is executed repeatedly and immediately.",
+              "zh": "循环是一段没有名字的代码，会被立刻、重复地执行。"
+            },
+            {
+              "en": "Each time the block is executed is called one iteration of the loop.",
+              "zh": "这段代码每执行一次，叫作循环的一次迭代。"
+            },
+            {
+              "en": "The definite for-loop iterates a fixed (definite) number of times.",
+              "zh": "definite for-loop（定次 for 循环）会迭代固定（确定）的次数。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "定义拆开讲",
+            "en": "The definitions, word by word"
+          },
+          "headers": [
+            "英文 / English",
+            "意思 / Meaning"
+          ],
+          "rows": [
+            [
+              "unnamed",
+              "没有名字（函数有名字，循环没有）"
+            ],
+            [
+              "block of code",
+              "一组指令，放在循环积木的 mouth（嘴巴）里"
+            ],
+            [
+              "executed repeatedly",
+              "重复执行很多次"
+            ],
+            [
+              "immediately",
+              "程序执行到它就马上开始，不需要调用"
+            ],
+            [
+              "iteration",
+              "循环里的代码执行一次 = 一次迭代"
+            ],
+            [
+              "definite (fixed)",
+              "次数事先定好，比如 3 次"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "for-loop 积木怎么用（p12）",
+            "en": "Using the for-loop block (p12)"
+          },
+          "items": [
+            {
+              "zh": "积木长这样：`for [1..3]`，在 “Control” 标签下。",
+              "en": "The block looks like for [1..3]; it is under the 'Control' tab."
+            },
+            {
+              "zh": "把指令拖进它的 “mouth”（嘴巴），这些指令就成了循环的一部分。",
+              "en": "Instructions dragged into the 'mouth' become part of the loop."
+            },
+            {
+              "zh": "把 3 换成别的数，就能改变迭代次数。",
+              "en": "Replace 3 with a different value to change the number of iterations."
+            },
+            {
+              "zh": "编程语言通常有好几种循环，这门课只讲一种：definite for-loop。",
+              "en": "Languages often have several kinds of loops; the course looks at just one: the definite for-loop."
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：`[1..3]` 读作“从 1 到 3”：数 1、2、3，所以迭代 3 次；`[1..9]` 就是 9 次。讲义说改迭代次数时，换的是 3 这个数（replacing 3 with a different value）。",
+          "en": "[1..3] means 'from 1 to 3', so the loop iterates 3 times."
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "讲义例子：没有循环 vs 用循环（p13）",
+            "en": "Handout example: no loops vs a loop (p13)"
+          },
+          "steps": [
+            {
+              "zh": "两个程序的第 1-25 行完全一样：`speed 10` + 定义函数 `draw_robot`。"
+            },
+            {
+              "zh": "没有循环（No loops）：第 26-32 行把 `draw_robot()` 手写 3 次，中间用 `pu()`、`fd 100` 挪位置，共 32 行。"
+            },
+            {
+              "zh": "用循环（Loop 3 times）：第 26 行 `for [1..3]`，嘴巴里只有 3 条指令：`draw_robot()`、`pu()`、`fd 100`，共 29 行。"
+            },
+            {
+              "zh": "循环跑 3 次迭代：每次迭代先画一张脸，再挪 100 换位置。"
+            },
+            {
+              "zh": "结果：两个程序都画出 3 张机器人脸。"
+            },
+            {
+              "zh": "细节：循环版每次迭代都执行 `pu()`、`fd 100`，第 3 张脸画完还会再挪一次。所以第 13 页图里，小海龟停在最上面那张脸的上方。"
+            }
+          ],
+          "answer": {
+            "zh": "想画 9 张脸？循环版只要把 3 改成 9（Lecture 2 第 28 页：only need to change one value）。",
+            "en": "To draw 9 faces, the loop version only needs one change: replace 3 with 9."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "loop"
+          },
+          "caption": {
+            "zh": "试一试：改变循环次数，看循环里的每条指令执行了几次。",
+            "en": "Try it: change the number of iterations and count how often each instruction in the loop runs."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "loop-calls-function"
+          },
+          "caption": {
+            "zh": "试一试：循环里调用函数——循环跑几次，函数里的每条指令就执行几次。",
+            "en": "Try it: a loop that calls a function. Each instruction in the function runs once per iteration."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "循环 vs 函数（**function**）：循环**没名字**、**立刻**执行；函数**有名字**、要**调用**才执行。两者都能让我们重复使用指令。"
+            },
+            {
+              "zh": "迭代次数 ≠ 循环里的指令条数。比如 Lecture 2 第 30 页的活动（画正方形）：`for [1..4]` 里只放 2 条指令（比如 `fd 100`、`rt 90`），却有 4 次迭代；每次迭代这 2 条都执行一遍，一共执行 2 × 4 = 8 次指令。"
+            },
+            {
+              "zh": "definite 是“确定的、固定的”，别和 definitely（“一定”）混了。definite for-loop = 次数固定的 for 循环。也别和 definition（函数定义）混：definite for-loop 是循环，function definition 是函数。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Write this on the exam"
+          },
+          "items": [
+            {
+              "en": "A loop repeats a block of instructions. Each repeat is one iteration.",
+              "zh": "循环重复执行一组指令，每重复一次就是一次迭代。"
+            },
+            {
+              "en": "A definite for-loop runs a fixed number of times. For example, for [1..3] runs 3 iterations.",
+              "zh": "definite for-loop 跑固定次数，比如 for [1..3] 跑 3 次迭代。"
+            },
+            {
+              "en": "With a loop, we only need to change one value to draw 9 robot faces instead of 3.",
+              "zh": "用了循环，只改一个数就能画 9 张脸而不是 3 张。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A for-loop for [1..3] contains draw_robot(), pu() and fd 100. How many times is draw_robot called?",
+            "zh": "for [1..3] 循环里放了 draw_robot()、pu() 和 fd 100。draw_robot 一共被调用几次？"
+          },
+          "options": [
+            {
+              "en": "1",
+              "zh": "1 次"
+            },
+            {
+              "en": "3",
+              "zh": "3 次"
+            },
+            {
+              "en": "9",
+              "zh": "9 次"
+            },
+            {
+              "en": "29",
+              "zh": "29 次"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "循环有 3 次迭代，每次迭代调用 draw_robot() 一次，所以是 3 次。1 次是忘了循环会重复；9 是把 3 条指令 × 3 次迭代当成了调用次数；29 是程序的行数，不是次数。",
+            "en": "3 iterations, one call per iteration: 3 calls."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-discuss-model-answers",
+      "title": {
+        "zh": "讨论题与范文答案",
+        "en": "Discussion questions with model answers"
+      },
+      "slides": "6-13",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "lab 讲义本身没有 Discuss 题（worksheet 只在 lab 现场发）。下面前 3 题来自 Lecture 2 第 30、23 页（课件原题，但不在 lab 讲义里），和本 lab 用同一个工具、练同一批概念，很可能是长答题素材。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity (Lecture 2, slide 30): Draw a square using a for-loop with 4 iterations. Hint: you should only need two instructions inside the for-loop.",
+            "zh": "Lecture 2 第 30 页课堂活动：用一个迭代 4 次的 for 循环（**for-loop**）画正方形。提示：循环里只需要两条指令。"
+          },
+          "answer": {
+            "en": "Use a for-loop with 4 iterations, for [1..4], and put two instructions inside it: fd 100 and rt 90. In each iteration the turtle draws one side and turns right 90 degrees. After 4 iterations it has drawn 4 equal sides, so the drawing is a square.",
+            "zh": "要点：循环 4 次（把 3 改成 4）；嘴巴里放 `fd 100`（画一条边）和 `rt 90`（转弯）。每次迭代画一条边，4 次就是 4 条边 = 正方形。这正是 Lecture 2 第 35 页说的算法式做法：重复 4 次“前进 100、右转 90 度”。边长 100 只是举例，换成别的数也行。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss (Lecture 2, slide 30): How might you use for-loops to help produce a more complex drawing?",
+            "zh": "Lecture 2 第 30 页讨论：你会怎样用 for 循环来帮你画更复杂的图？"
+          },
+          "answer": {
+            "en": "A for-loop repeats part of a drawing without copying the instructions. For example, I can put draw_robot(), pu() and fd 100 inside a for-loop, so each iteration draws one more robot face in a new place. To draw more copies, I only change one number, for example from 3 to 9. Loops can also repeat simple shapes, like the 4 sides of a square.",
+            "zh": "得分点：1）循环让一段画图指令重复，不用复制粘贴；2）举例：循环里调用 draw_robot() 再挪位置，每次迭代多画一张脸；3）改一个数（3 → 9）就能画更多；4）简单图形（正方形的 4 条边）也能用循环画。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss (Lecture 2, slide 23): What do you think makes for a useful function?",
+            "zh": "Lecture 2 第 23 页讨论：你觉得什么样的函数（**function**）才是“有用的函数”？"
+          },
+          "answer": {
+            "en": "A useful function packages a group of instructions that we need many times, like the instructions that draw one robot face. It has a clear name, so we can call it by name without thinking about every instruction inside it. A parameter can make it even more useful, because one function can then do slightly different jobs, like square(100) and square(200).",
+            "zh": "得分点：1）把会反复用到的一组指令打包（比如画一张脸）；2）名字清楚，调用时不用再想里面的细节（Lecture 2 第 24 页的 abstraction）；3）有参数更灵活（square(100)、square(200)）。这是开放题，言之有理即可，以上是一种写法。"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：下面 3 题是根据讲义内容整理的复习题，不是课件原题，用来练长答题。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Review question: Compare the two programs on handout page 13, 'No loops' and 'Loop 3 times'. What is the same, what is different, and which one is easier to change?",
+            "zh": "复习题：比较讲义第 13 页的两个程序（No loops 和 Loop 3 times）：哪里一样、哪里不同、哪个更容易修改？"
+          },
+          "answer": {
+            "en": "Both programs define draw_robot once and draw the robot face 3 times. The first program writes the call draw_robot() three times by hand, with pu() and fd 100 in between. The second program puts draw_robot(), pu() and fd 100 inside a for-loop with 3 iterations. The loop version is shorter (29 lines instead of 32) and easier to change: to draw 9 faces, we only replace 3 with 9.",
+            "zh": "得分点：1）相同：都只定义一次 draw_robot、都画 3 张脸；2）不同：一个手写 3 次调用，一个用 3 次迭代的 for 循环；3）循环版更短（29 行 vs 32 行）；4）更容易改：画 9 张只改一个数。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Review question: Explain the difference between defining a function and calling a function. Use draw_robot as your example.",
+            "zh": "复习题：用 draw_robot 举例，解释“定义函数”和“调用函数”的区别。"
+          },
+          "answer": {
+            "en": "Defining a function means giving a name to a block of instructions. For example, draw_robot = () -> holds the instructions that draw one robot face. The definition alone does not make the turtle draw anything. Calling the function, by writing draw_robot() below the definition, executes all of its instructions. In the lab, draw_robot was defined once and called 3 times, so 3 faces were drawn.",
+            "zh": "得分点：1）定义 = 给一组指令起名字，指令放在定义积木的嘴巴里；2）只定义不调用，什么都不发生；3）调用 = 写函数名，执行里面全部指令，要放在定义下面；4）定义 1 次、调用 3 次 → 3 张脸。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Review question: Is the turtle program that draws a robot face an example of AI? Explain.",
+            "zh": "复习题：画机器人脸的小海龟程序算不算 AI？请解释。"
+          },
+          "answer": {
+            "en": "No. The programmer wrote every step of the solution: each instruction tells the turtle exactly how to move and what to draw. Simply following an algorithm is not normally considered to be AI. It would be AI only if the programmer gave a goal and the computer found a way to achieve that goal by itself.",
+            "zh": "得分点：1）结论：不算 AI；2）理由：每一步都是程序员写好的（step-by-step solution）；3）引用 Lecture 2 第 34 页：程序员给出一步一步的解法 → 不是 AI；只给目标、计算机自己找办法 → 才是 AI。"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "长答题好用句型",
+            "en": "Useful sentences for long answers"
+          },
+          "items": [
+            {
+              "en": "Both functions and loops let us reuse instructions instead of writing them again.",
+              "zh": "函数和循环都能让我们重复使用指令，而不用重新写一遍。"
+            },
+            {
+              "en": "A function is defined once and can be called many times by its name.",
+              "zh": "函数定义一次，可以按名字调用很多次。"
+            },
+            {
+              "en": "A definite for-loop repeats its block a fixed number of times, and each repeat is one iteration.",
+              "zh": "definite for-loop（定次 for 循环）把它里面的指令重复固定次数，每重复一次是一次迭代。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s08-exam-takeaways",
+      "title": {
+        "zh": "考试要点总结",
+        "en": "Takeaways for the exam"
+      },
+      "slides": "3, 6, 9, 11-13",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "把整个 lab 压缩成考试能写的几句话。所有概念都来自 Lecture 2 - Algorithms，复习时把两份材料对照着看。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "概念对照表",
+            "en": "Concept summary"
+          },
+          "headers": [
+            "Concept",
+            "一句话中文",
+            "Lab 例子 / Lab example",
+            "Lecture 2 页码 / pages"
+          ],
+          "rows": [
+            [
+              "algorithm",
+              "精确、按顺序、有目标的步骤",
+              "做吐司；画长方形",
+              "5-7"
+            ],
+            [
+              "function",
+              "有名字；定义一次，按名字调用多次",
+              "draw_robot() 调用 3 次",
+              "14-18"
+            ],
+            [
+              "parameter",
+              "调用时给的值，用来定制函数",
+              "square(100)、square(200)",
+              "19-22"
+            ],
+            [
+              "loop",
+              "没名字；立刻、重复执行",
+              "for [1..3] 里放 draw_robot()",
+              "26-30"
+            ],
+            [
+              "iteration",
+              "循环里的代码执行一次",
+              "for [1..3] = 3 次迭代",
+              "26"
+            ],
+            [
+              "definite for-loop",
+              "次数固定的循环",
+              "把 3 改成 9 → 9 张脸",
+              "26-29"
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（建议背下来）",
+            "en": "Write this on the exam (memorize)"
+          },
+          "items": [
+            {
+              "en": "An algorithm is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal.",
+              "zh": "算法：一系列精确的指令，可以一步步、按顺序执行，以达成目标。"
+            },
+            {
+              "en": "A function is a named block of instructions. We define it once and reuse it by calling it by name.",
+              "zh": "函数：有名字的一组指令，定义一次，按名字调用来重复使用。"
+            },
+            {
+              "en": "A parameter is a value we give to a function when we call it, to customize its behaviour.",
+              "zh": "参数：调用函数时给它的值，用来定制它的行为。"
+            },
+            {
+              "en": "A loop is an unnamed block of code that is executed repeatedly and immediately. Each execution is one iteration.",
+              "zh": "循环：没有名字、立刻重复执行的一段代码；每执行一次是一次迭代。"
+            },
+            {
+              "en": "Functions and loops let us specify instructions once and let the computer execute them more than once.",
+              "zh": "函数和循环让我们把指令只写一次，却让计算机执行很多次（Lecture 2 第 17 页的思想）。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：下面的“数法”是根据 Lecture 2 第 39-40 页的例子总结的（调用 1 次 → 每条执行 1 次；循环调用 10 次 → 每条执行 10 次），课件里没有这个公式。"
+        },
+        {
+          "type": "formula",
+          "expr": "total executions = (instructions inside) × (number of calls or iterations)",
+          "zh": "数一数：调用 1 次，函数里每条指令执行 1 次；调用（或迭代）n 次，每条就执行 n 次。",
+          "en": "Each call or iteration runs every instruction inside once.",
+          "where": [
+            {
+              "symbol": "instructions inside",
+              "zh": "函数或循环里的指令条数，例如 draw_robot 里有 23 条",
+              "en": "number of instructions inside the function or loop"
+            },
+            {
+              "symbol": "number of calls or iterations",
+              "zh": "调用次数或迭代次数，例如 for [1..3] 是 3",
+              "en": "how many times it is called or how many iterations"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用数法算一算（讲义里的程序）",
+            "en": "Counting with the handout programs"
+          },
+          "steps": [
+            {
+              "zh": "draw_robot 里有 23 条指令（p7 第 3-25 行），被调用 3 次。",
+              "en": "draw_robot has 23 instructions and is called 3 times."
+            },
+            {
+              "zh": "每条指令各执行 3 次，一共 23 × 3 = 69 次。",
+              "en": "23 × 3 = 69 executions in total."
+            },
+            {
+              "zh": "square(length) 里有 8 条指令（p10 第 4-11 行），调用 2 次（100 和 200）：每条执行 2 次，一共 8 × 2 = 16 次。",
+              "en": "square has 8 instructions and is called twice: 8 × 2 = 16."
+            }
+          ],
+          "answer": {
+            "zh": "程序写得很短，计算机做的工作却可能很多。",
+            "en": "A short program can make the computer do a lot of work."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "联系 Lecture 2（不在 lab 讲义里）：Every instruction executed costs time（每执行一条指令都要花时间，第 37 页）。循环和函数让程序很短，却能让计算机执行非常多条指令——这就是计算时间（**computation time**）要关心的问题。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "把 function 和 loop 的定义写反：function 是 **named**（有名字），loop 是 **unnamed**（没名字）。"
+            },
+            {
+              "zh": "以为定义函数就会执行——要调用才执行。"
+            },
+            {
+              "zh": "以为 square(100) 是“画 100 次”——100 是参数（边长）。"
+            },
+            {
+              "zh": "以为小海龟画图程序是 AI——它只是在执行程序员写好的算法。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the loop version of the robot program, you change for [1..3] to for [1..9]. How many times is each instruction inside draw_robot executed?",
+            "zh": "在循环版机器人程序里，把 for [1..3] 改成 for [1..9]。draw_robot 里的每条指令各执行几次？"
+          },
+          "options": [
+            {
+              "en": "3",
+              "zh": "3 次"
+            },
+            {
+              "en": "9",
+              "zh": "9 次"
+            },
+            {
+              "en": "23",
+              "zh": "23 次"
+            },
+            {
+              "en": "207",
+              "zh": "207 次"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "9 次迭代，每次迭代调用 draw_robot 一次，所以函数里的每条指令各执行 9 次。207 = 23 × 9 是所有指令加起来的总次数，不是“每条”的次数；3 是改之前的次数；23 是指令条数。",
+            "en": "9 iterations, one call each, so each instruction runs 9 times."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "An algorithm is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal.",
+      "zh": "算法是一系列精确的指令，可以一步步、按顺序执行，以达成目标。"
+    },
+    {
+      "en": "In the Turtle app, programs are built by drag-and-drop, and instructions are followed from top to bottom, in order.",
+      "zh": "在 Turtle 工具里，程序靠拖放积木拼成，指令从上到下按顺序执行。"
+    },
+    {
+      "en": "A function is a named block of instructions that we define once and reuse by calling it by name.",
+      "zh": "函数是有名字的一组指令，定义一次，按名字调用来重复使用。"
+    },
+    {
+      "en": "A parameter is a value given to a function when it is called, to customize its behaviour, for example square(100) and square(200).",
+      "zh": "参数是调用函数时给的值，用来定制函数的行为，例如 square(100) 和 square(200)。"
+    },
+    {
+      "en": "A loop is an unnamed block of code that is executed repeatedly and immediately; each execution is one iteration.",
+      "zh": "循环是没有名字、立刻重复执行的一段代码；每执行一次是一次迭代。"
+    },
+    {
+      "en": "A definite for-loop runs a fixed number of iterations, so changing one number (3 to 9) changes how many robot faces are drawn.",
+      "zh": "definite for-loop 迭代固定次数，所以只改一个数（3 改成 9）就能改变画出的机器人脸数量。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Write the course definitions of algorithm, function, parameter, loop and iteration.",
+      "zh": "这五个是本 lab 的核心定义，选择题和长答题都可能用到，要能用英文写出来。",
+      "sectionId": "s08-exam-takeaways"
+    },
+    {
+      "en": "Explain the difference between defining a function and calling it.",
+      "zh": "常见误区：只定义、不调用，函数不会执行。",
+      "sectionId": "s04-functions"
+    },
+    {
+      "en": "Explain what a parameter does, using square(100) and square(200).",
+      "zh": "100 是边长（参数的值），不是“画 100 次”。",
+      "sectionId": "s05-parameters"
+    },
+    {
+      "en": "Compare a function with a loop, and a program with and without a loop.",
+      "zh": "抓住 named vs unnamed；循环版只改一个数就能多画。",
+      "sectionId": "s06-loops"
+    },
+    {
+      "en": "Count how many times instructions run when a function is called or a loop iterates.",
+      "zh": "数法：每条指令执行次数 = 调用次数或迭代次数。",
+      "sectionId": "s08-exam-takeaways"
+    },
+    {
+      "en": "Explain why a turtle drawing program is an algorithm and not AI.",
+      "zh": "联系 Lecture 2：只是照着算法做，通常不算 AI。",
+      "sectionId": "s03-algorithm-concept"
+    }
+  ]
+}

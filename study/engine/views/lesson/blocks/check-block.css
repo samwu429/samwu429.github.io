@@ -1,0 +1,195 @@
+/*
+ * Quick check: exam-style English question with big tappable options; after a choice the right
+ * answer turns green, a wrong pick turns red and the rest fade (icons keep it readable without colour).
+ * 小测验：考试风格的英文题，选项按钮大、好点；作答后正确答案变绿、选错的变红、其余淡化（同时有图标，不只靠颜色）。
+ */
+.check-block {
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.check-block__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.check-block__head .lesson-block__tag {
+  margin: 0;
+}
+
+.check-block__question {
+  margin-bottom: var(--space-3);
+}
+
+.check-block__question-en {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.check-block .check-block__question-text {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.check-block__question-zh {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.check-block__options {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.check-block__option {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 20px;
+  align-items: start;
+  gap: var(--space-2) var(--space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-hard-sm);
+  text-align: left;
+  line-height: 1.5;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.check-block__option:hover:not([aria-disabled="true"]) {
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  transform: translate(-1px, -1px);
+}
+
+.check-block__option:active:not([aria-disabled="true"]) {
+  box-shadow: none;
+  transform: translate(1px, 1px);
+}
+
+.check-block__option[aria-disabled="true"] {
+  box-shadow: none;
+  cursor: default;
+}
+
+.check-block__letter {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  font-size: var(--text-sm);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Flex items are blockified, so the translation drops onto its own line once it is shown. 弹性子项会被块级化，翻译显示时自动另起一行。 */
+.check-block__option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.check-block__option-zh {
+  font-size: var(--text-sm);
+}
+
+.check-block__mark {
+  display: inline-grid;
+  place-items: center;
+  padding-top: var(--space-1);
+}
+
+.check-block__option[data-state="correct"] {
+  border-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.check-block__option[data-state="correct"] .check-block__letter {
+  border-color: var(--color-success);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.check-block__option[data-state="correct"] .check-block__mark {
+  color: var(--color-success);
+}
+
+.check-block__option[data-state="wrong"] {
+  border-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.check-block__option[data-state="wrong"] .check-block__letter {
+  border-color: var(--color-danger);
+  background: var(--color-danger);
+  color: var(--color-panel);
+}
+
+.check-block__option[data-state="wrong"] .check-block__mark {
+  color: var(--color-danger);
+}
+
+.check-block__option[data-state="chosen"] {
+  border-color: var(--color-signal);
+}
+
+.check-block__option[data-state="dimmed"] {
+  opacity: 0.6;
+}
+
+.check-block__verdict {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  font-weight: 800;
+}
+
+.check-block__verdict:empty {
+  margin: 0;
+}
+
+.check-block[data-result="correct"] .check-block__verdict { color: var(--color-success); }
+.check-block[data-result="wrong"] .check-block__verdict { color: var(--color-danger); }
+
+.check-block__explain {
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.check-block__explain .lesson-block__tag {
+  margin-bottom: var(--space-1);
+}
+
+.check-block__explain-zh {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.check-block__retry {
+  margin-top: var(--space-2);
+}

@@ -1,0 +1,3628 @@
+{
+  "id": "lec02",
+  "kind": "lecture",
+  "number": 2,
+  "title": {
+    "en": "Algorithms: An Introduction to Algorithmic Thinking",
+    "zh": "算法：算法思维入门"
+  },
+  "sources": [
+    {
+      "file": "lec02_algorithms.pdf",
+      "pages": 43
+    }
+  ],
+  "estimatedMinutes": 135,
+  "oneLiner": {
+    "zh": "算法就是一串精确的、按顺序一步步执行、用来达成目标的指令；函数和循环让我们把指令打包复用；一般来说，步骤由程序员写好的不算 AI，程序员只给目标、由电脑自己找步骤的算 AI；而电脑每执行一条指令都要花时间。",
+    "en": "An algorithm is a series of precise instructions followed step-by-step, in order, to achieve a goal; functions and loops let us reuse instructions; as a general rule, it is AI when the programmer gives a goal and the computer finds the steps; and every instruction executed costs time."
+  },
+  "outcomes": [
+    {
+      "en": "Define algorithm and write your own algorithms in English",
+      "zh": "给“算法”下定义，并能用英文写出你自己的算法"
+    },
+    {
+      "en": "Explain how programs are built from instructions",
+      "zh": "解释程序是怎样由一条条指令搭建起来的"
+    },
+    {
+      "en": "Explain the role of functions and loops in programs",
+      "zh": "解释函数和循环在程序中的作用"
+    },
+    {
+      "en": "Identify AI and purely algorithmic approaches",
+      "zh": "分辨哪些是 AI 方法、哪些是纯算法方法"
+    },
+    {
+      "en": "Explain why computation time is a concern for programmers",
+      "zh": "解释为什么程序员必须关心计算时间"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-roadmap",
+      "title": {
+        "zh": "本课地图：从做吐司到画机器人",
+        "en": "Lecture Roadmap"
+      },
+      "slides": "1-3, 43",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一课的标题是 **An Introduction to Algorithmic Thinking**（算法思维入门），讲课老师是 Joshua Jung。"
+        },
+        {
+          "type": "text",
+          "zh": "它回答一个最基础的问题：电脑到底是怎么“做事”的？答案很朴素：电脑只会一条一条地执行指令（**instruction**）。"
+        },
+        {
+          "type": "text",
+          "zh": "AI 课为什么要先学算法（**algorithm**）？课件第 33 页说：所有程序，从最厉害的大语言模型（**LLM**，一种会生成文字的 AI，课程后面会专门讲）到最简单的画机器人脸的小程序，都是由基本指令搭起来的。先看懂指令，才分得清什么是 AI、什么只是普通算法。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "本课四个部分（Outline，第 3 页）",
+            "en": "Outline (p.3)"
+          },
+          "items": [
+            {
+              "en": "What is an algorithm?",
+              "zh": "什么是算法：定义、做吐司的例子、编程语言与程序、海龟画图"
+            },
+            {
+              "en": "Functions",
+              "zh": "函数：把一串指令打包、起名字、反复调用"
+            },
+            {
+              "en": "Loops",
+              "zh": "循环：让一段指令立刻重复固定的次数"
+            },
+            {
+              "en": "Algorithms, AI, and Computation Time",
+              "zh": "算法和 AI 的区别，以及“每条指令都要花时间”"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Learning outcome（第 2 页）",
+            "中文意思",
+            "在本课哪里学"
+          ],
+          "rows": [
+            [
+              "Define **algorithm** and write your own algorithms in English",
+              "给算法下定义，并能用英文写自己的算法",
+              "第 2–3 节"
+            ],
+            [
+              "Explain how programs are built from instructions",
+              "解释程序怎样由一条条指令搭成",
+              "第 4、5、13 节"
+            ],
+            [
+              "Explain the role of **functions** and **loops** in programs",
+              "解释函数和循环在程序里的作用",
+              "第 6–12 节"
+            ],
+            [
+              "Identify AI and purely algorithmic approaches",
+              "分辨 AI 方法和纯算法方法",
+              "第 14–15 节"
+            ],
+            [
+              "Explain why computation time is a concern for programmers",
+              "解释程序员为什么要关心计算时间",
+              "第 16–17 节"
+            ]
+          ],
+          "caption": {
+            "zh": "第 18 节把这 5 个目标都写成了可以直接背的英文答案。",
+            "en": "Section 18 turns each outcome into an exam-ready English answer."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "学习建议：第 1 课说过，测试是选择题加长答题，不考写代码（**no coding**）。学习目标用的动词是 Define（下定义）、write（写）、Explain（解释）、Identify（辨认）。"
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "所以复习本课时重点练四件事",
+            "en": "Four things to practise"
+          },
+          "items": [
+            {
+              "zh": "用英文下定义。"
+            },
+            {
+              "zh": "用英文写自己的算法（至少 5 步，见第 3 节）。"
+            },
+            {
+              "zh": "用英文讲清原因。"
+            },
+            {
+              "zh": "判断一个方法是不是 AI。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "先背这 4 句：全课骨架",
+            "en": "Four sentences to remember"
+          },
+          "items": [
+            {
+              "en": "An **algorithm** is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal.",
+              "zh": "算法是一系列精确的指令，可以一步一步、按顺序执行，用来达成一个目标。"
+            },
+            {
+              "en": "Modern programming languages give us ways to package and reuse instructions; we look at two of these: **functions** and **loops**.",
+              "zh": "现代编程语言给了我们打包、复用指令的办法；本课学其中两种：函数和循环。"
+            },
+            {
+              "en": "As a general rule, if the programmer specifies a step-by-step solution to the problem, it isn't AI. If the programmer specifies a goal and the computer finds a way to achieve the goal, it is AI.",
+              "zh": "一般规则：程序员把步骤写好 → 不是 AI；程序员只给目标、电脑自己找方法 → 是 AI。"
+            },
+            {
+              "en": "**Every instruction executed costs time.**",
+              "zh": "每执行一条指令都要花时间。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what do functions and loops let us do?",
+            "zh": "根据课件，函数和循环让我们能做什么？"
+          },
+          "options": [
+            {
+              "en": "Package and reuse instructions",
+              "zh": "打包、复用指令"
+            },
+            {
+              "en": "Learn steps from training data",
+              "zh": "从训练数据中学出步骤"
+            },
+            {
+              "en": "Make instructions take no time",
+              "zh": "让指令执行时不花时间"
+            },
+            {
+              "en": "Turn any algorithm into AI",
+              "zh": "把任何算法变成 AI"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 12 页：modern programming languages give us ways to package and reuse instructions……We will look at two of these: functions and loops。“从训练数据中学”与函数、循环无关（训练数据 = 让 AI 学习用的大量例子，第 15 节会讲）；“不花时间”错：每条被执行的指令都花时间（第 37 页）；“变成 AI”错：是不是 AI 要看步骤是谁想出来的（第 34 页），和用没用函数、循环无关。",
+            "en": "p.12: functions and loops are two ways to package and reuse instructions."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-what-is-an-algorithm",
+      "title": {
+        "zh": "算法是什么：定义 + 做吐司",
+        "en": "What Is an Algorithm?"
+      },
+      "slides": "4-6",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "一句大白话：算法（**algorithm**）就是“为了完成一件事，写给别人照着做的一串步骤”。这个“别人”可以是人，也可以是电脑。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像菜谱：番茄炒蛋的菜谱告诉你先打蛋、再切番茄、再下锅……照着做就能做出这道菜。导航告诉你“前方 200 米右转，再直行 1 公里”，也是一种算法。",
+          "limit": "类比的边界：人看菜谱会自己补上没写的步骤（比如知道要先开火）；但只按字面办事的执行者不会帮你补。所以算法必须写得足够精确（下一节细讲）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 5 页）",
+            "en": "Course definition (p.5)"
+          },
+          "items": [
+            {
+              "en": "**Definition**: An **algorithm** is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal.",
+              "zh": "定义：算法是一系列精确的指令，可以一步一步、按顺序地执行，用来达成一个目标。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "关键词 Key words",
+            "中文",
+            "大白话解释"
+          ],
+          "rows": [
+            [
+              "a series of",
+              "一系列",
+              "不止一条，而是一串指令，有先有后。"
+            ],
+            [
+              "precise instructions",
+              "精确的指令",
+              "每条指令都说得清清楚楚，不会被理解成别的意思。"
+            ],
+            [
+              "followed step-by-step",
+              "一步一步执行",
+              "做完一步，再做下一步。"
+            ],
+            [
+              "in order",
+              "按顺序",
+              "顺序是定好的。顺序乱了（比如先抹黄油再放进烤面包机），结果就可能不对。"
+            ],
+            [
+              "to achieve a goal",
+              "达成一个目标",
+              "算法是有目的的，比如“得到两片抹好黄油的吐司”。"
+            ]
+          ],
+          "caption": {
+            "zh": "考试写定义时，这 5 个关键词一个都别漏。",
+            "en": "Do not miss any of these key words in the definition."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "课件例子：做吐司（Making toast，第 5 页）",
+            "en": "Slide example: Making toast (p.5)"
+          },
+          "steps": [
+            {
+              "zh": "从袋子里拿出两片面包。",
+              "en": "Remove two slices of bread from the bag."
+            },
+            {
+              "zh": "把面包片放进烤面包机的槽里。",
+              "en": "Place the slices into the slots in the toaster."
+            },
+            {
+              "zh": "按下烤面包机的拉杆。",
+              "en": "Press down the lever on the toaster."
+            },
+            {
+              "zh": "等面包从烤面包机里弹出来。",
+              "en": "Wait for the bread to pop back out of the toaster."
+            },
+            {
+              "zh": "给每片吐司抹上黄油。",
+              "en": "Butter each piece of toast."
+            }
+          ],
+          "answer": {
+            "zh": "对照定义检查：5 条指令（a series），一条接一条（step-by-step），顺序固定（in order），目标是做好抹了黄油的吐司（goal）。但它真的够“精确”（precise）吗？下一节请“邪恶精灵”来挑毛病。",
+            "en": "5 instructions, in a fixed order, with a clear goal."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "算法不一定是电脑代码。用英文写给人看的做吐司步骤，也是算法。",
+              "en": "An algorithm does not have to be code; it can be written in English."
+            },
+            {
+              "zh": "光有步骤还不够：还必须“精确”并且“按顺序”。"
+            },
+            {
+              "zh": "算法一定有目标（goal）。随便列几句话、没有要达成的结果，不算算法。"
+            },
+            {
+              "zh": "不要把算法说成“会思考的程序”。本课后面会讲：单纯照着算法执行，通常不算 AI。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following best matches the course definition of an algorithm?",
+            "zh": "下面哪一项最符合课程对“算法”的定义？"
+          },
+          "options": [
+            {
+              "en": "A computer program that learns from training data how to achieve a goal by itself",
+              "zh": "一个从训练数据中学会自己达成目标的电脑程序"
+            },
+            {
+              "en": "A series of instructions that can be followed in any order, as long as the goal is reached",
+              "zh": "一串指令，只要最后达成目标，按任意顺序执行都行"
+            },
+            {
+              "en": "A series of precise instructions that can be followed step-by-step, in order, to achieve a goal",
+              "zh": "一系列精确的指令，可以一步一步、按顺序执行，用来达成一个目标"
+            },
+            {
+              "en": "A machine that can think like a human and decide for itself how to reach a goal",
+              "zh": "一台能像人一样思考、自己决定怎样达成目标的机器"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "正确答案就是第 5 页的原话。“从训练数据中学习”不是算法的定义（训练数据 = 让 AI 学习用的大量例子，第 15 节会讲）；“按任意顺序都行”缺了 precise，又违反了 in order；“像人一样思考的机器”是对 AI 的想象，不是算法。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the course definition of an algorithm, which word tells us that vague instructions are not good enough?",
+            "zh": "在课程对算法的定义里，哪个词告诉我们：含糊的指令是不行的？"
+          },
+          "options": [
+            {
+              "en": "goal",
+              "zh": "目标"
+            },
+            {
+              "en": "series",
+              "zh": "一系列"
+            },
+            {
+              "en": "order",
+              "zh": "顺序"
+            },
+            {
+              "en": "precise",
+              "zh": "精确的"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "precise（精确）就是说得清清楚楚。goal 是目标，series 是“一串”，order 是顺序，它们都不表示“清楚”。注意：编程语言的定义（第 8 页）用的是另一个词 unambiguously（无歧义地），别把两个定义的用词混在一起。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-precision-evil-genie",
+      "title": {
+        "zh": "指令要够精确：邪恶精灵游戏",
+        "en": "Precision and the Evil Genie"
+      },
+      "slides": "6-7",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 6 页在做吐司的例子旁边加了一句关键的话：如果指令不够精确（**precise**），我们可能就达不到目标（**goal**）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 6 页）",
+            "en": "Slide sentence (p.6)"
+          },
+          "items": [
+            {
+              "en": "If our instructions are not precise enough, we might fail to achieve our goal.",
+              "zh": "如果我们的指令不够精确，我们可能无法达成目标。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "邪恶精灵（**evil genie**）就像一个专门“抬杠”的人：你说“帮我带杯奶茶”，他带回一杯常温、无糖、没有珍珠的——你没说清楚，他也没违反你的话。精灵会严格按字面执行，但专挑你没写清楚的地方钻空子。",
+          "limit": "类比的边界：电脑不是故意使坏，它只是严格照着指令做、不会猜你的意思——效果和精灵差不多。"
+        },
+        {
+          "type": "text",
+          "zh": "邪恶精灵游戏怎么玩：一个人写算法，另一个人扮演精灵，故意曲解（**misinterpret**）其中一步，让结果变糟；写的人再修改算法，把漏洞堵上。这个游戏专门用来找出“不精确”的地方。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss (p.6): Imagine that you are an evil genie. How might you misinterpret these instructions (making toast) to give a bad result?",
+            "zh": "讨论（第 6 页）：想象你是一个邪恶精灵。你会怎样曲解做吐司的这些指令，让结果变糟？"
+          },
+          "answer": {
+            "en": "As an evil genie, I can follow every step literally and still ruin the toast. Step 1 never says to open the bag, so I could tear the bag apart. In step 2, I could push both slices into one slot, or put them in sideways. Step 4 never says to take the toast out, so in step 5 I could butter the toast while it is still inside the toaster. This shows that if our instructions are not precise enough, we might fail to achieve our goal.",
+            "zh": "得分点：1）具体指出哪一步、怎么曲解（越具体越好）；2）说明“按字面执行”也能把事办砸；3）最后点题：指令不够精确，就可能达不到目标。课件没有给标准答案，上面的曲解方式只是示范，你也可以写别的（比如第 5 步没说用什么抹、抹多少）。"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第 7 页的课堂活动 **Your First Algorithm**：选一件日常小事，用至少 5 步写出算法；请同学当精灵，创造性地曲解其中一步；然后修改算法，避免被这样曲解。"
+        },
+        {
+          "type": "text",
+          "zh": "这正好练习学习目标 1：用英文（**in English**）写你自己的算法。下面先看一个示范，再学几个好用的英文句型。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "示范：用英文写“泡方便面”的算法（自编练习，不是课件原例）",
+            "en": "Practice: an algorithm for cup noodles (not from the slides)"
+          },
+          "steps": [
+            {
+              "zh": "第一版，5 步。",
+              "en": "(1) Open the cup. (2) Add the seasoning. (3) Pour hot water into the cup. (4) Wait three minutes. (5) Eat the noodles."
+            },
+            {
+              "zh": "精灵来捣乱：第 1 步把整个杯子撕烂来“打开”；第 3 步倒温水，而且一直倒到溢出来。",
+              "en": "Evil genie: tears the whole cup apart; pours warm water until it overflows."
+            },
+            {
+              "zh": "修改：把模糊的词换成精确的说法——撕开多少？什么水？倒到哪里？调料包要先撕开再倒；再补上漏掉的步骤（盖上盖子、搅拌）。",
+              "en": "(1) Peel the lid back halfway. (2) Tear open the seasoning packet and pour the powder onto the noodles. (3) Pour boiling water up to the line inside the cup. (4) Close the lid and wait three minutes. (5) Stir the noodles with a fork. (6) Eat the noodles."
+            },
+            {
+              "zh": "对比：除了最后一步“吃面”没变，其他步骤都变长了；还多了一步“搅拌”，步骤从 5 步变成了 6 步。",
+              "en": "Most of the new instructions are longer, and there are more of them."
+            }
+          ],
+          "answer": {
+            "zh": "体会：想让指令更精确，通常就要写得更长、更多。这也解释了为什么电脑需要“没有歧义”的编程语言（下一节）。",
+            "en": "More precise usually means longer and more instructions."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "句型 Pattern",
+            "例句 Example",
+            "作用"
+          ],
+          "rows": [
+            [
+              "动作动词开头（祈使句，不写 you）",
+              "Remove two slices of bread from the bag.（课件第 5 页）",
+              "每一步就是一个命令"
+            ],
+            [
+              "写清哪个、多少、在哪里",
+              "Pour boiling water up to the line inside the cup.",
+              "堵住精灵钻空子的地方"
+            ],
+            [
+              "等待要写清等什么、等多久",
+              "Wait for the bread to pop back out of the toaster.（课件第 5 页）/ Wait three minutes.",
+              "wait for = 等到……发生；也可以写 wait until（直到）"
+            ],
+            [
+              "给步骤编号，按顺序排好",
+              "1. ... 2. ... 3. ...",
+              "对应定义里的 step-by-step, in order"
+            ]
+          ],
+          "caption": {
+            "zh": "用英文写算法的 4 个句型",
+            "en": "Four patterns for writing an algorithm in English"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "这些句型是学习建议，不是课件原话（只有标了“课件第 5 页”的两个例句来自做吐司的算法）。考试要你写自己的算法时，照这几个句型写，就不容易被“精灵”钻空子。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity (p.7): Write an algorithm for an everyday task using at least 5 steps, ask a classmate to play the evil genie, and update your algorithm. Discuss: What kinds of changes did you have to make? Are your new instructions longer or shorter? Do you have more or fewer of them?",
+            "zh": "活动（第 7 页）：为一件日常小事写至少 5 步的算法，请同学当精灵来曲解，再修改算法。讨论：你做了哪些修改？新指令变长了还是变短了？变多了还是变少了？"
+          },
+          "answer": {
+            "en": "I had to make my instructions more precise. I added missing steps, such as closing the lid, and I added details like how much, which object and where. I also replaced words that could be understood in two ways. My new instructions are longer, and I have more of them. This is because the person or computer following them does not guess what I mean, so every detail must be written down.",
+            "zh": "得分点：1）改了什么：补上漏掉的步骤、加细节（多少、哪个、在哪里）、换掉有歧义的词；2）直接回答：更长、更多；3）原因：执行的人（或电脑）不会替你猜意思，所以细节都要写出来。课件没有给标准答案，这是合理的示范回答。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“精确”不等于“越短越好”。短而模糊的指令最容易被曲解。"
+            },
+            {
+              "zh": "精灵并没有“不听话”：它每一步都照做了，问题出在指令本身没写清楚。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the 'evil genie' activity, what kind of problem in an algorithm is the genie trying to expose?",
+            "zh": "在“邪恶精灵”活动中，精灵想暴露算法的什么问题？"
+          },
+          "options": [
+            {
+              "en": "Instructions that run too fast",
+              "zh": "指令执行得太快"
+            },
+            {
+              "en": "Instructions that are not precise enough",
+              "zh": "指令不够精确"
+            },
+            {
+              "en": "Instructions written in English instead of Python",
+              "zh": "指令是用英文而不是 Python 写的"
+            },
+            {
+              "en": "Algorithms that have a goal",
+              "zh": "算法有目标"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "精灵专挑没说清楚的地方曲解，暴露的是“不够精确”。“执行太快”与本活动无关；“用英文写”不是问题，第 2 页的学习目标本来就要求用英文写自己的算法（write your own algorithms in English），第 5 页做吐司的算法也是用英文写的；“有目标”也不是问题，算法本来就应该有目标。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-programming-language-program",
+      "title": {
+        "zh": "编程语言与程序",
+        "en": "Programming Languages and Programs"
+      },
+      "slides": "8",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "人用中文或英文写的算法难免有歧义，上一节的精灵就是钻了这个空子。电脑需要一种“只有一种理解”的语言来接收指令（**instruction**），这就是编程语言（**programming language**）。用编程语言写好的一串指令，叫程序（**program**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像外卖 App 里的辣度按钮：只有“不辣 / 微辣 / 中辣”几个固定选项，每个按钮意思都很明确，商家不会理解错。如果你在备注里写“稍微辣一点点”，就可能被理解成各种程度。编程语言就像那几个固定按钮：一套数量有限、意思唯一的指令；人话就像备注，容易有歧义。",
+          "limit": "类比的边界：点外卖只选一次；程序是成百上千条指令按顺序排在一起。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 8 页）",
+            "en": "Course definitions (p.8)"
+          },
+          "items": [
+            {
+              "en": "A **programming language** defines a set of instructions that a computer can perform **unambiguously**.",
+              "zh": "编程语言规定了一套电脑可以“无歧义地”执行的指令。（课件在 unambiguously 两边加了星号表示强调；考试时直接写这个词，不要写星号。）"
+            },
+            {
+              "en": "A computer can execute algorithms by following a series of instructions written in a programming language. This series of instructions is called a **program**.",
+              "zh": "电脑通过执行一串用编程语言写成的指令来执行算法。这一串指令就叫程序。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Word",
+            "中文",
+            "解释"
+          ],
+          "rows": [
+            [
+              "instruction",
+              "指令",
+              "一个最小的命令，比如“前进 100”“右转 90 度”。算法和程序都由指令组成。"
+            ],
+            [
+              "a set of instructions",
+              "一套指令",
+              "编程语言提前规定好电脑会哪些指令，你只能用这些。"
+            ],
+            [
+              "unambiguously",
+              "无歧义地",
+              "每条指令只有一种意思，电脑不会理解错，也不会去猜。"
+            ],
+            [
+              "execute",
+              "执行",
+              "电脑真的去做这条指令。"
+            ],
+            [
+              "program",
+              "程序",
+              "用编程语言写成的一串指令，可以理解为“写给电脑的算法”。"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "算法（**algorithm**）和程序的关系：算法是“做事的步骤”，可以用英文写给人看（比如做吐司）；程序是把步骤用编程语言写出来，交给电脑执行。英文可能有歧义，编程语言没有。"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "if __name__ == \"__main__\":\n    for x in range(10, -1, -1):\n        print(x)\n    print(\"We have liftoff!\")",
+          "zh": "课件例子：一段 Python 程序，作用是从 10 开始倒数（counting down from 10）。课件说：不管哪台电脑运行它，输出都一样（It will produce the same output, regardless of which computer runs it.）——这就是“无歧义”带来的结果。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件原话：Don't worry, you don't have to understand the Python syntax. 也就是说，不需要看懂 Python 的语法（**syntax**，即写法规则）。你只要知道：这是一段程序，在任何电脑上输出都一样。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：这段程序运行后，每行输出一个数：10、9、8……1、0，最后输出 We have liftoff!（发射！）。课件没有展示输出结果。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "算法 ≠ 程序。算法可以用英文写给人看；程序是用编程语言写给电脑执行的一串指令。"
+            },
+            {
+              "zh": "编程语言的关键是 unambiguously（无歧义），不是“更快”或“更聪明”。"
+            },
+            {
+              "zh": "“同样的输出”是说同一个程序在哪台电脑上运行，结果都一样；不是说所有程序的输出都一样。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why can a computer follow a program written in a programming language without misunderstanding it?",
+            "zh": "为什么电脑能执行用编程语言写的程序，而不会理解错？"
+          },
+          "options": [
+            {
+              "en": "Because the computer guesses what the programmer most likely means",
+              "zh": "因为电脑会猜程序员最可能是什么意思"
+            },
+            {
+              "en": "Because programs are always shorter and simpler than English instructions",
+              "zh": "因为程序总是比英文指令更短、更简单"
+            },
+            {
+              "en": "Because every program has learned from a large amount of training data",
+              "zh": "因为每个程序都从大量训练数据中学习过"
+            },
+            {
+              "en": "Because its instructions are ones a computer can perform unambiguously",
+              "zh": "因为它的指令是电脑能无歧义地执行的指令"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 8 页：A programming language defines a set of instructions that a computer can perform unambiguously. 编程语言定义的指令可以被“无歧义地”执行。“电脑会猜”正好说反了，电脑不会猜；“程序更短、更简单”没有依据；“从训练数据中学习”与这个定义无关。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is a program?",
+            "zh": "根据课件，什么是程序（program）？"
+          },
+          "options": [
+            {
+              "en": "A goal that the computer must find a way to achieve by itself",
+              "zh": "电脑必须自己想办法达成的一个目标"
+            },
+            {
+              "en": "A series of instructions written in a programming language",
+              "zh": "用编程语言写成的一串指令"
+            },
+            {
+              "en": "Any idea about how to solve a problem, written in plain English",
+              "zh": "任何用普通英文写的解题想法"
+            },
+            {
+              "en": "The picture that the turtle draws on the right side of the app",
+              "zh": "海龟在 App 右边画出来的图"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "第 8 页：This series of instructions is called a program. 程序就是用编程语言写成的一串指令。“电脑自己去达成的目标”说的是 AI 方法里程序员给的目标（第 34 页）；“用普通英文写的想法”最多算用英文写的算法，而且算法还要精确、按顺序；海龟画出的图是程序运行的结果，不是程序本身。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-turtle-sequence",
+      "title": {
+        "zh": "海龟画图：指令从上到下按顺序执行",
+        "en": "Turtle Time: Instructions Run in Order"
+      },
+      "slides": "9-10",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "从第 9 页开始，课堂用小海龟（**turtle**）来编程：你给海龟下指令，它就走路、转弯，走过的地方会画出线。"
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "App 怎么用（第 9、11 页）",
+            "en": "How to use the app (p.9, 11)"
+          },
+          "items": [
+            {
+              "zh": "这个 App 改编自开源项目（**open-source project**）**PencilCode**（原版在 `pencilcode.net`）。补充（课件外）：开源 = 程序的代码公开，谁都可以免费使用和修改。课程版网址是 `mcs.utm.utoronto.ca/~jungjosh/csc105/labapp`，Lab 2 也用它。",
+              "en": "This app is adapted from the open-source project PencilCode."
+            },
+            {
+              "zh": "左边：用拖拽（**drag-and-drop**）积木的方式拼出程序。",
+              "en": "Programs can be created on the left side of the application by drag-and-drop."
+            },
+            {
+              "zh": "右边：按播放键（**play button**），程序在右边运行，海龟开始画。",
+              "en": "Press the play button to see the program execute on the right side of the application."
+            },
+            {
+              "zh": "积木按类别放在不同标签页（**tab**）里：Move（移动）、Art（画画）、Sound（声音），以及后面会用到的 Operators（函数定义积木）和 Control（for 循环）。",
+              "en": "Tabs: Move, Art, Sound, Operators, Control."
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像跟着导航走路：“直走 100 米，右转，再直走 200 米，右转……”每一句都从你“现在站的位置和朝向”开始算。顺序一换，你就走到别的地方去了。海龟就是这样一句一句照做的。",
+          "limit": "类比的边界：人听导航会自己纠正错误，海龟不会——写错一步，就画错一步。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 10 页）",
+            "en": "Slide sentences (p.10)"
+          },
+          "items": [
+            {
+              "en": "Instructions are followed from top to bottom, in order.",
+              "zh": "指令从上到下、按顺序执行。"
+            },
+            {
+              "en": "By stacking the right instructions, we can draw something fun!",
+              "zh": "把正确的指令一条条叠起来，就能画出有趣的东西！"
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": "1  pen blue\n2  fd 100\n3  rt 90\n4  fd 200\n5  rt 90\n6  fd 100\n7  rt 90\n8  fd 200",
+          "zh": "第 9 页的程序（左边的数字是行号，不是代码）。按播放键后，右边画出一个蓝色长方形，海龟停在左下角。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步跟踪第 9 页的程序",
+            "en": "Trace the p.9 program step by step"
+          },
+          "steps": [
+            {
+              "zh": "第 1 行 `pen blue`：换上蓝色的笔。海龟在起点，头朝上。"
+            },
+            {
+              "zh": "第 2 行 `fd 100`：向前（向上）走 100，画出左边，高 100。"
+            },
+            {
+              "zh": "第 3 行 `rt 90`：原地右转 90 度，现在头朝右。只转身，不走路。"
+            },
+            {
+              "zh": "第 4 行 `fd 200`：向右走 200，画出上边，宽 200。"
+            },
+            {
+              "zh": "第 5–6 行 `rt 90`、`fd 100`：头朝下，向下走 100，画出右边。"
+            },
+            {
+              "zh": "第 7–8 行 `rt 90`、`fd 200`：头朝左，向左走 200，回到起点，画出下边。"
+            }
+          ],
+          "answer": {
+            "zh": "结果：宽 200、高 100 的长方形，和课件的图一样（宽是高的 2 倍）。每一步都从上一步结束的位置和方向出发，所以顺序非常重要。（逐行解释是我们根据图推出来的，课件没有逐行讲。）",
+            "en": "A rectangle 200 units wide and 100 units tall."
+          }
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": " 1  speed 10\n 2  pen blue\n 3  fd 100\n 4  rt 90\n 5  fd 200\n 6  rt 90\n 7  fd 100\n 8  rt 90\n 9  fd 200\n10  pu()\n11  rt 90\n12  fd 62.5\n13  rt 90\n14  fd 37.5\n15  box green, 25\n16  fd 125\n17  box green, 25\n18  rt 180\n19  fd 37.5\n20  lt 90\n21  fd 25\n22  pen green, 10\n23  pd()\n24  rt 180, 25",
+          "zh": "第 10 页把更多指令叠在一起（共 24 行），画出一张机器人脸（**robot face**）：蓝色长方形的脸、两个绿色方块眼睛、一条绿色弧线笑脸。第 1–9 行和第 9 页几乎一样（只多了第 1 行 `speed 10`）。不用背代码，只要看出：它就是很多条简单指令从上到下排在一起。"
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "把 24 行分成几段看",
+            "en": "The 24 lines in parts"
+          },
+          "items": [
+            {
+              "zh": "第 1–9 行：`speed 10`、`pen blue`，然后画 200 × 100 的蓝色长方形（脸）。"
+            },
+            {
+              "zh": "第 10–14 行：`pu()` 抬笔，再走到左眼的位置（走路但不画线）。"
+            },
+            {
+              "zh": "第 15–17 行：`box green, 25` 画左眼，`fd 125` 向右移动，再画右眼。"
+            },
+            {
+              "zh": "第 18–21 行：转身、移动，走到嘴巴的起点。"
+            },
+            {
+              "zh": "第 22–24 行：`pen green, 10` 换成粗的绿笔，`pd()` 落笔，`rt 180, 25` 画出半圆形的笑脸。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "指令",
+            "出现在",
+            "意思"
+          ],
+          "rows": [
+            [
+              "`fd 100`",
+              "p.9, 10, 20 等",
+              "move forward 100 units：向前走 100 个单位（第 35 页的英文说法）"
+            ],
+            [
+              "`rt 90`",
+              "p.9, 10, 20 等",
+              "turn right 90 degrees：向右转 90 度（第 35 页）"
+            ],
+            [
+              "`lt 90`",
+              "p.10",
+              "向左转 90 度"
+            ],
+            [
+              "`pen blue`、`pen green, 10`",
+              "p.9, 10",
+              "换成某种颜色的笔；第二个数是笔的粗细"
+            ],
+            [
+              "`pu()`、`pd()`",
+              "p.10",
+              "抬笔（走路不画线）、落笔（走路画线）"
+            ],
+            [
+              "`box green, 25`",
+              "p.10",
+              "画一个大小为 25 的绿色实心方块"
+            ],
+            [
+              "`rt 180, 25`",
+              "p.10",
+              "一边右转一边走，画出一段弧线"
+            ],
+            [
+              "`speed 10`、`speed 2`",
+              "p.10, 15-17, 27-28；p.20-22, 39-41",
+              "海龟画画的动画速度"
+            ],
+            [
+              "`jumpto -500, -500`",
+              "p.28",
+              "直接跳到某个位置"
+            ]
+          ],
+          "caption": {
+            "zh": "海龟指令速查。只有 fd 和 rt 的意思在课件第 35 页用英文说过，其余见下方说明。",
+            "en": "Turtle instructions seen in the slides."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件只在第 35 页用英文说了 `fd`、`rt` 的意思（move forward / turn right）。其他指令，第 11 页让大家把鼠标放在侧边栏的指令上看说明。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：`lt`、`pen`、`pu()`、`pd()`、`box`、`rt 180, 25`、`speed`、`jumpto` 的意思课件没有解释。表里和上面分段里的说法是按 PencilCode 的常见用法写的，只为帮你看懂例子。"
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "sequence"
+          },
+          "caption": {
+            "zh": "试一试：运行一段按顺序执行的海龟程序，看指令是不是从上到下一条一条执行，每条执行了几次。",
+            "en": "Run a sequence of turtle instructions and watch them execute from top to bottom."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "海龟每一步都从“上一步结束的位置和方向”开始。把第 3 行 `rt 90` 和第 4 行 `fd 200` 对调，画出来的就是另一个图形了。"
+            },
+            {
+              "zh": "`rt 90` 只是转身，不会移动；真正移动的是 `fd`。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the turtle app, in what order are the instructions followed?",
+            "zh": "在海龟 App 里，指令按什么顺序执行？"
+          },
+          "options": [
+            {
+              "en": "From top to bottom, in order",
+              "zh": "从上到下，按顺序"
+            },
+            {
+              "en": "From bottom to top",
+              "zh": "从下到上"
+            },
+            {
+              "en": "In a random order",
+              "zh": "随机顺序"
+            },
+            {
+              "en": "The shortest instructions first",
+              "zh": "最短的指令先执行"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 10 页原话：Instructions are followed from top to bottom, in order."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "The p.9 program is: pen blue, fd 100, rt 90, fd 200, rt 90, fd 100, rt 90, fd 200. What does the turtle draw?",
+            "zh": "第 9 页的程序是：pen blue, fd 100, rt 90, fd 200, rt 90, fd 100, rt 90, fd 200。海龟画出什么？"
+          },
+          "options": [
+            {
+              "en": "A square with four sides of 100 units each",
+              "zh": "四条边都是 100 的正方形"
+            },
+            {
+              "en": "A straight line that is 600 units long in total",
+              "zh": "一条总长 600 的直线"
+            },
+            {
+              "en": "A triangle made of three sides of 100 units",
+              "zh": "三条边都是 100 的三角形"
+            },
+            {
+              "en": "A rectangle 200 units wide and 100 units tall",
+              "zh": "宽 200、高 100 的长方形"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "走了 4 段：100、200、100、200，每两段之间右转 90 度，所以是长方形：高 100、宽 200。不是正方形：边长不全是 100；不是直线：中间有转弯；不是三角形：走了 4 段、转了 3 次 90 度。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-first-program-reuse",
+      "title": {
+        "zh": "活动：第一个程序，以及为什么要复用指令",
+        "en": "Your First Program and Reusing Code"
+      },
+      "slides": "11-12",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 11 页的活动 **Your First Program**：只用 Move 和 Art 标签页里的指令（想加声音也可以用 Sound），画一幅简单的图。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件提示：把鼠标放在侧边栏的指令上，就能看到它是做什么的。不知道该填什么数字？课件说：just try something and see what happens!（随便试一个，看看会怎样！）"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss (p.11): Share your drawing with nearby classmates. Talk about the challenges you found in making your drawing. How long do you think it would take to draw something more complex this way, like a whole scene?",
+            "zh": "讨论（第 11 页）：和旁边的同学分享你的画，聊聊画的时候遇到了哪些困难。如果用这种方式画更复杂的东西，比如一整个场景，你觉得要花多久？"
+          },
+          "answer": {
+            "en": "The main challenge was that every movement had to be written as its own instruction. It was also hard to guess the right numbers for distances and angles, so I had to try and fix things many times, and one instruction in the wrong order could ruin the drawing. Drawing a whole scene this way would take a very long time, because it would need hundreds of instructions, and many of them would repeat. This is why we need ways to package and reuse instructions, such as functions and loops.",
+            "zh": "得分点：1）困难：每个动作都要单独写一条指令；距离、角度的数字难猜，要反复试；顺序错一条就画歪。2）画整个场景：要写成百上千条指令，非常慢，而且很多是重复的。3）引出下一页：所以需要“打包、复用”指令的办法——函数和循环。课件没有给标准答案，第 12 页的话就是最好的结论。"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第 12 页紧接着给出了结论（课件没有直接说“要多久”）：如果每条指令都得单独写，我们永远做不出复杂的东西。好在现代编程语言提供了打包（**package**）和复用（**reuse**）指令的办法。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 12 页）",
+            "en": "Slide sentences (p.12)"
+          },
+          "items": [
+            {
+              "en": "We would never be able to do anything complex if we had to specify every instruction individually.",
+              "zh": "如果每条指令都必须单独写出来，我们永远做不出任何复杂的东西。"
+            },
+            {
+              "en": "Fortunately, modern programming languages give us ways to package and reuse instructions.",
+              "zh": "幸好，现代编程语言给了我们打包和复用指令的办法。"
+            },
+            {
+              "en": "We will look at two of these: **functions** and **loops**.",
+              "zh": "本课学其中两种：函数和循环。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像微信的“快捷短语”：把常用的一大段话存起来，以后点一下就发出去，不用每次重新打字。函数和循环就是编程里“存起来、反复用”指令的工具。",
+          "limit": "类比的边界：快捷短语每次发的都一模一样；函数还可以靠参数（**parameter**）做出不同版本，循环还能自动重复很多次。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "specify",
+              "zh": "明确写出",
+              "hint": "把一条指令具体地写出来。"
+            },
+            {
+              "en": "package",
+              "zh": "打包",
+              "hint": "把一串指令装进一个“块”里，当作一个整体来用。"
+            },
+            {
+              "en": "reuse",
+              "zh": "复用",
+              "hint": "同一段指令写一次，用很多次。"
+            },
+            {
+              "en": "function",
+              "zh": "函数",
+              "hint": "有名字的指令块，定义一次，按名字调用很多次（第 7 节）。"
+            },
+            {
+              "en": "loop",
+              "zh": "循环",
+              "hint": "没有名字的指令块，立刻重复执行（第 10 节）。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "复用省下的是程序员“写”的功夫，不是电脑“做”的功夫：画 3 个机器人，电脑还是要把画机器人的指令执行 3 遍。这一点在第 16、17 节（计算时间）会很重要。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why do modern programming languages give us ways to package and reuse instructions?",
+            "zh": "为什么现代编程语言要提供打包和复用指令的办法？"
+          },
+          "options": [
+            {
+              "en": "Because reused instructions take no time at all when the computer executes them again and again",
+              "zh": "因为被复用的指令，电脑一遍遍执行时完全不花时间"
+            },
+            {
+              "en": "Because we could never do anything complex if we had to specify every instruction individually",
+              "zh": "因为如果每条指令都要单独写，我们永远做不出复杂的东西"
+            },
+            {
+              "en": "Because computers cannot follow a long list of instructions from top to bottom, in order",
+              "zh": "因为电脑没法从上到下、按顺序执行一长串指令"
+            },
+            {
+              "en": "Because packaging and reusing instructions turns an ordinary program into an AI program",
+              "zh": "因为打包、复用指令会把普通程序变成 AI 程序"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "正确答案说的就是第 12 页的原话：We would never be able to do anything complex if we had to specify every instruction individually. “复用的指令不花时间”错：每条被执行的指令都要花时间（第 37 页）；“电脑没法按顺序执行一长串指令”错：电脑就是从上到下、按顺序执行的（第 10 页）；“变成 AI 程序”错：复用指令和是不是 AI 无关，第 34 页看的是步骤由谁想出来。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-functions",
+      "title": {
+        "zh": "函数：定义一次，按名字反复调用",
+        "en": "Functions: Define Once, Call by Name"
+      },
+      "slides": "13-18",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "函数（**function**）就是：把一串指令装进一个“盒子”，再给盒子起个名字。以后想用这串指令，只要写一下它的名字就行。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像奶茶店的“1 号套餐”：店员先学会“1 号 = 珍珠奶茶 + 少冰 + 七分糖”（这叫定义，**define**）。之后顾客只要说“来一杯 1 号”（这叫调用，**call**），店员就把整套步骤做一遍。说几次“1 号”，就做几杯。",
+          "limit": "注意：只把套餐写在墙上、没人点单，就一杯也不会做——函数也一样，只定义、不调用，什么都不会发生。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 14、17 页）",
+            "en": "Course definition (p.14, 17)"
+          },
+          "items": [
+            {
+              "en": "A **function** is a named block of instructions that we **define** once, and can then reuse as many times as we want by **calling** it by name.",
+              "zh": "函数是一个有名字的指令块：我们定义它一次，之后可以按名字调用它，想复用多少次都可以。"
+            },
+            {
+              "en": "This is how we can build complex systems: by specifying instructions once and letting the computer execute them more than once.",
+              "zh": "这就是我们搭建复杂系统的方法：指令只写一次，让电脑执行很多次。（第 17 页）"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "关键词 Key words",
+            "中文",
+            "解释"
+          ],
+          "rows": [
+            [
+              "named",
+              "有名字的",
+              "每个函数都有名字，比如 `draw_robot`、`square`。"
+            ],
+            [
+              "block of instructions",
+              "指令块",
+              "一串指令装在一起；在积木里，就是拖进定义积木“嘴巴”（mouth）里的那些指令。"
+            ],
+            [
+              "define once",
+              "定义一次",
+              "只写一遍，告诉电脑“这个名字代表这些指令”。"
+            ],
+            [
+              "reuse as many times as we want",
+              "想用几次就用几次",
+              "写一次，可以用很多次。"
+            ],
+            [
+              "calling it by name",
+              "按名字调用",
+              "写一行 `draw_robot()`，就执行函数里的全部指令。"
+            ]
+          ]
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": " 1  speed 10\n 2  draw_robot = () ->\n 3    pen blue\n 4    fd 100\n 5    rt 90\n 6    fd 200\n 7    rt 90\n 8    fd 100\n 9    rt 90\n10    fd 200\n11    pu()\n12    rt 90\n13    fd 62.5\n14    rt 90\n15    fd 37.5\n16    box green, 25\n17    fd 125\n18    box green, 25\n19    rt 180\n20    fd 37.5\n21    lt 90\n22    fd 25\n23    pen green, 10\n24    pd()\n25    rt 180, 25\n26  draw_robot()\n27  pu()\n28  fd 100\n29  draw_robot()\n30  pu()\n31  fd 100\n32  draw_robot()",
+          "zh": "第 17 页的完整程序。第 2 行是函数定义（绿色积木，在 Operators 标签页）；第 3–25 行这 23 条指令，就是第 10 页画机器人脸的指令，被搬进了函数的“嘴巴”里；第 26、29、32 行是 3 次调用。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "课件例子：draw_robot 函数，三步看懂（第 15–17 页）",
+            "en": "Slide example: draw_robot (p.15-17)"
+          },
+          "steps": [
+            {
+              "zh": "第 15 页：把画机器人脸的指令搬进函数定义块。这时按 Play——海龟一动不动，什么也没画。因为只有“定义”，没有“调用”。",
+              "en": "If we push Play now, nothing happens to the turtle."
+            },
+            {
+              "zh": "第 16 页：在最后加一行 `draw_robot()`（第 26 行）。执行这一行，就会执行函数定义里的全部指令——画出 1 张机器人脸。",
+              "en": "Executing that line executes everything inside our function definition."
+            },
+            {
+              "zh": "第 17 页：调用 3 次（第 26、29、32 行），每两次调用之间用 `pu()` 和 `fd 100` 把海龟挪个位置——画出 3 张机器人脸，从左下到右上斜着排。课件说：Now we can draw a robot as many times as we want!（现在想画几个机器人就画几个！）",
+              "en": "Call our function 3 times."
+            },
+            {
+              "zh": "课件的结论：指令只写一次，让电脑执行很多次——这就是搭建复杂系统的方法。",
+              "en": "This is how we can build complex systems: by specifying instructions once and letting the computer execute them more than once."
+            }
+          ],
+          "answer": {
+            "zh": "数一数：函数里有 23 条指令，调用 3 次，电脑一共执行了 23 × 3 = 69 条画机器人的指令，但程序员只写了一遍。（69 是我们算的，课件没写。）",
+            "en": "Written once, executed 3 times."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "function-call"
+          },
+          "caption": {
+            "zh": "试一试：函数定义本身不会执行，只有调用那一行才会让里面的指令执行。观察每条指令的执行次数和调用次数是什么关系。",
+            "en": "A function definition does nothing until it is called. Compare the number of calls with the number of executions."
+          }
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "函数积木长什么样（第 18 页）",
+            "en": "The function icons (p.18)"
+          },
+          "items": [
+            {
+              "zh": "定义积木 `f = (x) ->`：放好以后，把别的指令拖进它的“嘴巴”（mouth）里。",
+              "en": "This one is for function definition. Once you place it, you can drag other instructions inside the 'mouth'."
+            },
+            {
+              "zh": "调用积木 `f(x)`：放在定义下面的任何地方，就会执行这个函数。",
+              "en": "This one is for calling the function. If you place it anywhere below the definition, it will execute the function."
+            },
+            {
+              "zh": "点一下“f”就能给函数改名。可以有好几个函数，但它们的名字必须都不一样。",
+              "en": "You can have several different functions, but they all must have different names."
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "只定义、不调用 = 什么都不发生（第 15 页）。不要以为“写了函数就会画出来”。"
+            },
+            {
+              "zh": "调用积木要放在定义的下面（第 18 页）。"
+            },
+            {
+              "zh": "几个函数不能同名（第 18 页）。"
+            },
+            {
+              "zh": "定义（**define**）和调用（**call**）是两件事：定义只写一次；调用可以很多次，每调用一次，里面的指令就全部执行一遍。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On p.15, the robot-face instructions are inside a function definition, but the function is never called. What happens when we push Play?",
+            "zh": "第 15 页：画机器人脸的指令放进了函数定义里，但从没调用这个函数。按 Play 会怎样？"
+          },
+          "options": [
+            {
+              "en": "Nothing happens to the turtle",
+              "zh": "海龟什么也不做"
+            },
+            {
+              "en": "One robot face is drawn",
+              "zh": "画出 1 张机器人脸"
+            },
+            {
+              "en": "Three robot faces are drawn",
+              "zh": "画出 3 张机器人脸"
+            },
+            {
+              "en": "The computer finds a way to draw the face by itself",
+              "zh": "电脑自己想办法把脸画出来"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 15 页原话：If we push Play now, nothing happens to the turtle. 只定义不调用，函数里的指令不会执行。画 1 张脸需要 1 次调用（第 16 页），画 3 张脸需要 3 次调用（第 17 页）；电脑也不会自己想办法画，它只会执行指令。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On p.17, draw_robot() is called 3 times. How many times is EACH instruction inside draw_robot executed?",
+            "zh": "第 17 页调用了 3 次 draw_robot()。函数里的“每一条”指令执行了几次？"
+          },
+          "options": [
+            {
+              "en": "1"
+            },
+            {
+              "en": "3"
+            },
+            {
+              "en": "23"
+            },
+            {
+              "en": "69"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "每调用一次，函数里的每条指令执行一次；调用 3 次，每条就执行 3 次。23 是函数里指令的条数；69 = 23 × 3 是一共执行了多少条，不是“每条”几次。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-parameters",
+      "title": {
+        "zh": "函数参数（进阶）：同一个函数画出不同大小",
+        "en": "Function Parameters (an Advanced Feature)"
+      },
+      "slides": "19-22",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "参数（**parameter**）就是调用函数时一起交给它的一个值（**value**，在这里就是一个数，比如 100），用来定制（**customize**）函数的行为。比如告诉画正方形的函数：这次边长 100，下次边长 200。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像点奶茶时说“大杯”还是“中杯”：做法（函数）是同一套，但你点单（调用）时给的选项（参数）不同，做出来的就不同。",
+          "limit": "类比的边界：店员可能听错，但函数是按参数的位置一一对应的，不会弄错。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 19 页）",
+            "en": "Course definition (p.19)"
+          },
+          "items": [
+            {
+              "en": "The 'x' (which you can also rename) is called a **parameter**.",
+              "zh": "积木里的“x”（也可以改名）叫做参数。"
+            },
+            {
+              "en": "A parameter is a value that we can give to the function when it is called to customize the function's behaviour.",
+              "zh": "参数是我们在调用函数时可以交给它的一个值，用来定制函数的行为。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件第 19–22 页的标题都写着 **an Advanced Feature**（进阶功能），第 23 页的活动也说函数可以有参数，也可以没有（with or without parameters）。所以先确保懂了函数本身，再来学参数。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "页",
+            "函数定义",
+            "调用",
+            "画出什么"
+          ],
+          "rows": [
+            [
+              "p.20",
+              "`square = () ->`（无参数）",
+              "`square()`",
+              "边长永远是 100 的正方形"
+            ],
+            [
+              "p.21",
+              "`square = (length) ->`（1 个参数）",
+              "`square(100)`、`square(200)`",
+              "边长 100 和边长 200 的两个正方形，左下角重合"
+            ],
+            [
+              "p.22",
+              "`rectangle = (length, width) ->`（2 个参数，用逗号隔开）",
+              "`rectangle(100, 200)`",
+              "length 100、width 200 的长方形：高 100、宽 200"
+            ]
+          ],
+          "caption": {
+            "zh": "三个函数的函数体（**function body**，函数“嘴巴”里的那些指令；这是通用叫法，课件没用这个词）都是 4 次“前进、右转 90 度”，区别只在于前进的距离是直接写成固定数字（比如 100），还是由参数决定。",
+            "en": "Same pattern of code; only the distances change."
+          }
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": " 1  speed 2\n 2  pen red\n 3  square = (length) ->\n 4    fd length\n 5    rt 90\n 6    fd length\n 7    rt 90\n 8    fd length\n 9    rt 90\n10    fd length\n11    rt 90\n12  square(100)\n13  square(200)",
+          "zh": "第 21 页：原来写成固定数字的 `fd 100` 变成了 `fd length`。`length` 就是参数，它的值要等调用时才给出。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步看 square(100) 和 square(200)（第 21 页）",
+            "en": "Trace square(100) and square(200) (p.21)"
+          },
+          "steps": [
+            {
+              "zh": "第 12 行 `square(100)`：把 100 交给参数 `length`。函数里每个 `fd length` 都变成“前进 100”，画出边长 100 的正方形。",
+              "en": "Tell it to draw one square with length 100."
+            },
+            {
+              "zh": "画完后海龟一共转了 4 次 90 度（360 度），回到起点，方向也和开始时一样。"
+            },
+            {
+              "zh": "第 13 行 `square(200)`：这次 `length` 是 200，从同一个起点画出边长 200 的正方形。",
+              "en": "Tell it to draw a second square with length 200."
+            },
+            {
+              "zh": "所以课件的图里，小正方形套在大正方形里面，左下角重合。"
+            }
+          ],
+          "answer": {
+            "zh": "同一个函数，参数不同，画出的正方形大小就不同——这就是“定制函数的行为”（customize the function's behaviour）。",
+            "en": "Same function, different parameter value, different result."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "两个参数：顺序决定谁是谁（第 22 页）",
+            "en": "Two parameters: the order tells us which is which (p.22)"
+          },
+          "steps": [
+            {
+              "zh": "定义 `rectangle = (length, width) ->`：两个参数用逗号隔开，第 1 个叫 length，第 2 个叫 width。"
+            },
+            {
+              "zh": "函数体：`fd length`、`rt 90`、`fd width`、`rt 90`，再重复一遍这 4 条（共 8 条）。"
+            },
+            {
+              "zh": "调用 `rectangle(100, 200)`：第 1 个值 100 交给 length，第 2 个值 200 交给 width。"
+            },
+            {
+              "zh": "海龟先向上走 100（length），右转后向右走 200（width），再走 100、再走 200，画出高 100、宽 200 的长方形，和课件的图一样。"
+            }
+          ],
+          "answer": {
+            "zh": "课件原话：The order tells us which is which.（顺序告诉我们哪个值是哪个参数。）如果写成 `rectangle(200, 100)`，就会画出高 200、宽 100 的长方形（这是我们推出来的）。",
+            "en": "The order tells us which is which."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "function-param"
+          },
+          "caption": {
+            "zh": "试一试：一个参数的函数——给不同的值，同一个函数画出不同大小。",
+            "en": "One parameter: different values give different sizes."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "function-two-params"
+          },
+          "caption": {
+            "zh": "试一试：两个参数的函数——注意调用时两个值的顺序。",
+            "en": "Two parameters: watch the order of the values."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "参数的值是“调用时”给的，不是在定义里直接写成固定数字：定义里只写名字（`length`），调用时才给数（`100`）。"
+            },
+            {
+              "zh": "多个参数按顺序对应：`rectangle(100, 200)` 和 `rectangle(200, 100)` 画出来不一样。"
+            },
+            {
+              "zh": "没有参数的函数（如第 20 页的 `square()`）每次都画一样的东西；有参数的函数每次可以不同。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is a parameter?",
+            "zh": "根据课件，什么是参数（parameter）？"
+          },
+          "options": [
+            {
+              "en": "The name that we give to a function so that we can call it again later",
+              "zh": "我们给函数起的名字，方便以后再调用它"
+            },
+            {
+              "en": "The number of times that a for-loop repeats its block of code, such as 3",
+              "zh": "for 循环重复它的代码块的次数，比如 3 次"
+            },
+            {
+              "en": "A value that we give to a function when we call it, to customize its behaviour",
+              "zh": "调用函数时交给它的一个值，用来定制它的行为"
+            },
+            {
+              "en": "A mistake in a program, such as a missed edge case, that gives a wrong result",
+              "zh": "程序里的错误，比如漏想了特殊情况，导致结果出错"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "正确答案就是第 19 页的定义（原话：A parameter is a value that we can give to the function when it is called to customize the function's behaviour.）。“给函数起的名字”是函数名（点“f”可以改名，第 18 页）；“for 循环重复的次数”是迭代次数，比如 `[1..3]` 是 3 次；“程序里的错误”是 bug（第 36 页）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A function is defined as rectangle = (length, width) -> and is called as rectangle(100, 200). What is the value of width?",
+            "zh": "函数定义为 rectangle = (length, width) ->，调用写成 rectangle(100, 200)。width 的值是多少？"
+          },
+          "options": [
+            {
+              "en": "100"
+            },
+            {
+              "en": "200"
+            },
+            {
+              "en": "300"
+            },
+            {
+              "en": "It depends on which computer runs it",
+              "zh": "取决于哪台电脑运行它"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "按顺序对应：第 1 个值给 length，第 2 个值给 width，所以 width = 200。300 是把两个数加起来了，没有这回事；“取决于哪台电脑”也不对：程序没有歧义，在哪台电脑上运行都一样。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-abstraction-emergence",
+      "title": {
+        "zh": "好用的函数、抽象与涌现行为",
+        "en": "Useful Functions, Abstraction and Emergent Behaviour"
+      },
+      "slides": "23-24",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "抽象（**abstraction**）：函数一旦定义好，我们调用它时就不用再去想里面的每一条指令了。你心里想的是“画个机器人”，而不是“前进 100、右转 90、前进 200……”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像开车：踩油门车就走，你不用知道发动机里每个零件怎么动。又像点外卖：你只点“宫保鸡丁”，不用管厨房切菜、炒菜的每一步。",
+          "limit": "类比的边界：发动机和厨房的细节都还在、照样在运转；函数里的指令也一样每次都执行，只是你不用去想它。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：抽象（第 24 页）",
+            "en": "Course definition: abstraction (p.24)"
+          },
+          "items": [
+            {
+              "en": "Once we have defined a function, we are freed from needing to think about all of its instructions every time we want to call it. This is called **abstraction**.",
+              "zh": "定义好函数以后，每次调用它时，我们不必再去想它的全部指令。这就叫抽象。"
+            },
+            {
+              "en": "Functions let us abstract away the details to focus on building more complex things.",
+              "zh": "函数让我们把细节“抽象掉”，专心去搭建更复杂的东西。（课件原文是 to focus building，这里补上了 on，写起来更通顺。）"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "涌现行为（**emergent behaviour**）：很多很简单的底层（**low-level**）执行加在一起，产生了一种新的、更高层（**high-level**）的行为——而这个新行为不是哪一条指令直接写出来的。"
+        },
+        {
+          "type": "analogy",
+          "zh": "涌现像体育场里的“人浪”：每个观众只做一件很简单的事——旁边的人站起来，我也站起来再坐下。没有人指挥整道“浪”，可从远处看，一道波浪在绕着体育场跑。简单的底层动作 → 新的高层现象。",
+          "limit": "这只是帮你理解的类比。课件给的唯一例子是 LLM 的语言能力。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：涌现行为（第 24 页）",
+            "en": "Course definition: emergent behaviour (p.24)"
+          },
+          "items": [
+            {
+              "en": "A related idea is **emergent behaviour**, where the sum effect of many low-level function executions results in new high-level behaviour.",
+              "zh": "一个相关的概念是涌现行为：大量底层函数执行的总效果，产生了新的高层行为。"
+            },
+            {
+              "en": "E.g. Language in LLMs emerges from the low-level mathematics of the neural network.",
+              "zh": "例子：大语言模型（LLM）的语言能力，是从神经网络底层的数学运算中涌现出来的。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Word",
+            "中文",
+            "解释"
+          ],
+          "rows": [
+            [
+              "abstraction",
+              "抽象",
+              "藏起细节、只看整体：用一个函数名代表一大串指令。"
+            ],
+            [
+              "abstract away the details",
+              "把细节抽象掉",
+              "细节还在、照样执行，只是你不用去想它。"
+            ],
+            [
+              "emergent behaviour",
+              "涌现行为",
+              "很多底层的小动作加在一起，出现了一种新的、高层的行为。"
+            ],
+            [
+              "sum effect",
+              "总效果",
+              "很多次执行加在一起产生的整体结果。"
+            ],
+            [
+              "low-level",
+              "底层",
+              "最基本、最细小的东西，比如一条 `fd 100`、一次数学运算。"
+            ],
+            [
+              "high-level",
+              "高层",
+              "从整体看到的行为，比如“画出一张机器人脸”“会用语言”。"
+            ],
+            [
+              "LLM",
+              "大语言模型",
+              "Large Language Model，会生成文字的 AI 模型，课程后面会专门讲。"
+            ],
+            [
+              "neural network",
+              "神经网络",
+              "LLM 背后的数学模型，课程后面会讲。"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "把两个概念放回课件的例子里",
+            "en": "The two ideas in the slide examples"
+          },
+          "steps": [
+            {
+              "zh": "抽象：写好 `draw_robot` 以后，第 17 页在定义下面只用 3 行 `draw_robot()` 就画了 3 个机器人（另外 4 行是挪位置的 `pu()`、`fd 100`）。读程序的人只需知道“这里画一个机器人”，不用逐条看那 23 条指令。"
+            },
+            {
+              "zh": "涌现：LLM 内部只有大量底层的数学运算（神经网络），没有哪一条运算本身在“说话”；但它们加在一起，就表现出“会用语言”这种高层行为（第 24 页）。"
+            }
+          ],
+          "answer": {
+            "zh": "一句话区分：抽象是“我们主动把细节藏起来，方便使用”；涌现是“许多底层执行加在一起，出现了新的高层行为”。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "抽象不是把细节删掉：函数里的指令每次调用都照样执行，只是我们不用去想。"
+            },
+            {
+              "zh": "涌现行为不是某一条指令直接写出来的，而是很多底层执行的“总效果”（sum effect）。"
+            },
+            {
+              "zh": "abstraction 和 emergent behaviour 是“相关的概念”（a related idea），不是同一个东西，别混着写。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "学完这两个概念，回头看第 23 页的活动 **Your First Function**：自己写一个函数（有没有参数都可以），并至少调用两次来完成你的画。可以改旧图，也可以画新图。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity (p.23): Create your own function (with or without parameters) and call it at least twice. Discuss: Share your drawing with nearby classmates again. Did you use functions in a similar way? What do you think makes for a useful function?",
+            "zh": "活动（第 23 页）：写一个自己的函数（有没有参数都行），至少调用两次。讨论：再和同学分享你的画。大家用函数的方式相似吗？你觉得什么样的函数才好用？"
+          },
+          "answer": {
+            "en": "Most of us used functions in a similar way: we put the instructions for one shape, like a square or a robot face, inside a function and called it several times. A useful function does one clear job that we need many times, so we define it once and reuse it by calling its name. It should have a clear name, and parameters can make it more flexible; for example, square(length) can draw squares of any size. A useful function also gives us abstraction: we can call it without thinking about all of its instructions.",
+            "zh": "得分点：1）相似之处：都把“一个形状”的指令装进函数，再多次调用；2）好函数的标准：做一件明确、常重复的事；名字清楚；用参数变灵活（例如 square(length)）；3）点出“抽象”：调用时不用再想里面的细节。课件没有标准答案，这些要点来自第 17、19、24 页。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement best describes abstraction in this lecture?",
+            "zh": "哪一句最符合本课所说的“抽象”？"
+          },
+          "options": [
+            {
+              "en": "A loop repeats its block of code immediately, a fixed number of times.",
+              "zh": "循环立刻把它的代码块重复固定的次数。"
+            },
+            {
+              "en": "We can call a defined function without thinking about all its instructions.",
+              "zh": "函数定义好后，调用时不用再去想它的全部指令。"
+            },
+            {
+              "en": "Many low-level function executions together produce new high-level behaviour.",
+              "zh": "许多底层函数执行加在一起，产生新的高层行为。"
+            },
+            {
+              "en": "The programmer writes out every single instruction individually, in order.",
+              "zh": "程序员按顺序把每一条指令都单独写出来。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "正确答案是第 24 页说的抽象。“立刻重复固定次数”说的是 definite for-loop；“底层执行产生新的高层行为”是涌现行为（emergent behaviour）；“每条指令单独写”正是第 12 页说“做不出复杂东西”的做法。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which example of emergent behaviour is given in the lecture?",
+            "zh": "课件给出的涌现行为例子是哪个？"
+          },
+          "options": [
+            {
+              "en": "Calling draw_robot() three times to draw three robot faces in a diagonal row",
+              "zh": "调用 3 次 draw_robot()，画出斜着排的 3 张机器人脸"
+            },
+            {
+              "en": "Renaming a function by clicking on 'f' and typing a new name for it",
+              "zh": "点击“f”，输入新名字，给函数改名"
+            },
+            {
+              "en": "Changing [1..3] to [1..9] in a for-loop so that it draws nine robot heads",
+              "zh": "把 for 循环里的 [1..3] 改成 [1..9]，画出 9 个机器人头"
+            },
+            {
+              "en": "Language in LLMs emerging from the low-level mathematics of the neural network",
+              "zh": "LLM 的语言能力从神经网络底层的数学运算中涌现出来"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 24 页唯一的例子是 LLM 的语言能力。其他三项分别是调用函数、给函数改名、改循环次数，都不是涌现行为。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-loops-definition",
+      "title": {
+        "zh": "循环：没有名字、立刻重复",
+        "en": "Loops, Iterations and the Definite For-Loop"
+      },
+      "slides": "25-26, 29",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "循环（**loop**）就是：一段指令只写一次，让电脑马上连着执行好几遍。它没有名字，也不需要“调用”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像健身教练说“深蹲，做 10 个”：教练不用说 10 遍“蹲下、站起”，只说一次“重复 10 次”，你就马上连着做 10 个。每做完一个，就是一次迭代（**iteration**），也就是“一轮”。",
+          "limit": "类比的边界：人做到第 8 个可能偷懒；definite for-loop 会严格做满固定的次数。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 26 页）",
+            "en": "Course definitions (p.26)"
+          },
+          "items": [
+            {
+              "en": "A **loop** is an unnamed block of code that is executed repeatedly and immediately.",
+              "zh": "循环是一个没有名字的代码块，它会被立刻、重复地执行。"
+            },
+            {
+              "en": "Each time the block is executed is called one **iteration** of the loop.",
+              "zh": "代码块每执行一次，叫做循环的一次迭代。"
+            },
+            {
+              "en": "The **definite for-loop** iterates a fixed (definite) number of times.",
+              "zh": "definite for-loop（确定次数的 for 循环）会迭代固定（确定）的次数。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "关键词 Key words",
+            "中文",
+            "解释"
+          ],
+          "rows": [
+            [
+              "unnamed",
+              "没有名字",
+              "和函数不同，循环没有名字，没法在别处按名字再用它。"
+            ],
+            [
+              "block of code",
+              "代码块",
+              "放进循环“嘴巴”里的那些指令（循环体，**loop body**；通用叫法，课件没用这个词）。"
+            ],
+            [
+              "executed repeatedly",
+              "重复执行",
+              "同一块代码执行很多遍。"
+            ],
+            [
+              "immediately",
+              "立刻",
+              "程序执行到循环这里，就马上开始重复，不需要另外调用。"
+            ],
+            [
+              "iteration",
+              "迭代 / 一轮",
+              "代码块完整执行一遍 = 1 次 iteration。"
+            ],
+            [
+              "definite",
+              "确定的",
+              "次数事先定好，比如 `for [1..3]` 就是 3 次。"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件说：编程语言通常有好几种循环，本课只学一种——definite for-loop（We will look at just one）。其他种类的循环课件没有讲。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "对比项",
+            "函数 function（第 14 页）",
+            "循环 loop（第 26 页）"
+          ],
+          "rows": [
+            [
+              "有没有名字",
+              "有名字（named）",
+              "没有名字（unnamed）"
+            ],
+            [
+              "什么时候执行",
+              "被调用（call）时才执行；只定义不调用就什么都不做（第 15 页）",
+              "程序执行到这里就立刻执行（immediately）"
+            ],
+            [
+              "执行几次",
+              "调用几次，就执行几次",
+              "固定次数（definite for-loop）"
+            ],
+            [
+              "共同点",
+              "都能打包、复用指令（第 12 页）",
+              "都能打包、复用指令（第 12 页）"
+            ]
+          ],
+          "caption": {
+            "zh": "“什么时候执行”这一行，是把第 15–16 页和第 26 页放在一起对比得出的。",
+            "en": "Function vs loop."
+          }
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "for 循环积木（第 29 页）",
+            "en": "The for-loop icon (p.29)"
+          },
+          "items": [
+            {
+              "zh": "样子：橙色的 `for [1..3]`，下面有一个“嘴巴”（mouth）。",
+              "en": "for [1..3]"
+            },
+            {
+              "zh": "在 Control 标签页里能找到它。",
+              "en": "You can find it under the 'Control' tab."
+            },
+            {
+              "zh": "把指令拖进“嘴巴”，它们就成为循环的一部分。",
+              "en": "Instructions can be dragged into the 'mouth' to become part of the loop."
+            },
+            {
+              "zh": "把 3 换成别的数，就能调整迭代次数。",
+              "en": "You can adjust the number of iterations by replacing 3 with a different value."
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "`[1..3]` 表示 1、2、3，一共 3 次迭代，不是 2 次。"
+            },
+            {
+              "zh": "一次 iteration 是整个循环体执行一遍，不是“一条指令执行一次”。"
+            },
+            {
+              "zh": "循环没有名字（unnamed），函数有名字（named）——这是区分两者最直接的一点。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which description matches a loop in this lecture?",
+            "zh": "哪一项符合本课对循环（loop）的描述？"
+          },
+          "options": [
+            {
+              "en": "A named block of instructions that runs only when it is called",
+              "zh": "一个有名字、只有被调用时才运行的指令块"
+            },
+            {
+              "en": "An unnamed block of code that is executed repeatedly and immediately",
+              "zh": "一个没有名字、被立刻重复执行的代码块"
+            },
+            {
+              "en": "A value given to a function to customize its behaviour",
+              "zh": "交给函数、用来定制其行为的一个值"
+            },
+            {
+              "en": "A series of precise instructions written in English",
+              "zh": "用英文写的一串精确指令"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "正确答案是第 26 页原话。“有名字、被调用才运行”说的是函数；“交给函数的值”是参数；“用英文写的精确指令”更像用英文写的算法。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A definite for-loop is written as for [1..9]. How many iterations does it run?",
+            "zh": "一个 definite for-loop 写成 for [1..9]，它会迭代几次？"
+          },
+          "options": [
+            {
+              "en": "1"
+            },
+            {
+              "en": "8"
+            },
+            {
+              "en": "9"
+            },
+            {
+              "en": "10"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "[1..9] 就是从 1 数到 9，一共 9 次（第 28 页用它画了 9 个机器人）。8 是误以为 9 − 1；10 是多算了一次。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-loops-robot-example",
+      "title": {
+        "zh": "循环例子：画 3 个机器人，再改成 9 个",
+        "en": "Loop Example: 3 Robots, Then 9"
+      },
+      "slides": "27-28",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 27 页把两个程序并排放：左边叫 No loops（不用循环），右边叫 Loop 3 times（循环 3 次）。两个都画出 3 张机器人脸，前 25 行也完全一样（`speed 10` 加上 `draw_robot` 的定义）。"
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": "26  draw_robot()\n27  pu()\n28  fd 100\n29  draw_robot()\n30  pu()\n31  fd 100\n32  draw_robot()",
+          "zh": "左边 No loops：一共 32 行。第 1–25 行和第 15 页一样（`speed 10` 加 `draw_robot` 的定义），这里省略，只列出后 7 行：3 次调用，加上 2 组“抬笔、前进 100”。"
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": "26  for [1..3]\n27    draw_robot()\n28    pu()\n29    fd 100",
+          "zh": "右边 Loop 3 times：一共 29 行。第 1–25 行也和第 15 页一样（这里省略）。第 26 行是橙色的 for 循环，第 27–29 行在它的“嘴巴”里，这 3 行会重复 3 遍。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步看循环版怎么画出 3 个机器人",
+            "en": "Step through the loop version"
+          },
+          "steps": [
+            {
+              "zh": "第 1 次迭代：`draw_robot()` 画出第 1 张脸 → `pu()` 抬笔 → `fd 100` 向前挪 100。"
+            },
+            {
+              "zh": "第 2 次迭代：在新位置画第 2 张脸 → 抬笔 → 挪 100。"
+            },
+            {
+              "zh": "第 3 次迭代：画第 3 张脸 → 抬笔 → 挪 100。3 次做完，循环结束。"
+            },
+            {
+              "zh": "结果：3 张机器人脸从左下到右上斜着排，和不用循环的版本一样。"
+            }
+          ],
+          "answer": {
+            "zh": "小细节：循环版把“抬笔、前进 100”也做了第 3 次，所以图里海龟停在最上面那张脸的上方；不用循环的版本只做了 2 次，海龟停在最后那张脸的嘴巴旁边。（这是对比两张图推出来的，课件没讲。）"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第 28 页：想画 9 个机器人？只要把 `[1..3]` 改成 `[1..9]`——只改一个数（课件标注 Change to 9）。图里就出现了从左下排到右上的 9 张脸。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话 + 可以这样写",
+            "en": "Slide sentences and how to explain them"
+          },
+          "items": [
+            {
+              "en": "Both draw the robot face 3 times.",
+              "zh": "两个程序都画出 3 张机器人脸。（第 27 页）"
+            },
+            {
+              "en": "With this version, if we want to draw 9 robot heads instead, we only need to change one value.",
+              "zh": "用循环的版本，如果想改画 9 个机器人头，只需要改一个数值。（第 28 页）"
+            },
+            {
+              "en": "A loop lets us repeat code without copying it, so changing the number of repetitions needs only one change.",
+              "zh": "循环让我们不用复制代码就能重复，所以改重复次数只要改一处。（总结句）"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "对比项",
+            "不用循环（第 17、27 页）",
+            "用循环（第 27–28 页）"
+          ],
+          "rows": [
+            [
+              "画 3 个机器人",
+              "32 行（调用部分 7 行）",
+              "29 行（循环部分 4 行）"
+            ],
+            [
+              "画 9 个机器人",
+              "调用部分要写 9 次调用 + 8 组“抬笔、前进”= 25 行（推算）",
+              "只把 3 改成 9：`for [1..9]`"
+            ],
+            [
+              "想改数量时",
+              "要复制或删除很多行",
+              "只改一个数"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：第 28 页的程序多了一行 `jumpto -500, -500`（所以是 30 行），课件没有解释。按 PencilCode 的用法，它让海龟先跳到很靠左下的位置，很可能是为了让 9 张斜着排的脸能放进画布。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "循环“嘴巴”里有 3 行：`draw_robot()`、`pu()`、`fd 100`。每次迭代这 3 行全都执行一遍，不是只执行 `draw_robot()`。"
+            },
+            {
+              "zh": "代码行数少了，电脑执行的指令可没少：画 9 个机器人，`draw_robot` 里的 23 条指令还是要执行 9 遍（共 207 条，推算）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On p.28, what change makes the loop program draw 9 robot heads instead of 3?",
+            "zh": "第 28 页，怎样修改循环程序，就能画 9 个机器人头而不是 3 个？"
+          },
+          "options": [
+            {
+              "en": "Copy the draw_robot definition 9 times",
+              "zh": "把 draw_robot 的定义复制 9 次"
+            },
+            {
+              "en": "Add 6 more pu() instructions",
+              "zh": "再加 6 个 pu()"
+            },
+            {
+              "en": "Rename draw_robot to draw_9_robots",
+              "zh": "把 draw_robot 改名为 draw_9_robots"
+            },
+            {
+              "en": "Change [1..3] to [1..9]",
+              "zh": "把 [1..3] 改成 [1..9]"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "课件原话：we only need to change one value（只改一个数）。复制定义没用：定义再多，不调用也不会画；多加 pu() 只会多抬几次笔；改名字不会改变次数。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the 'Loop 3 times' program, line 28 is pu(), inside the for [1..3] loop. How many times is line 28 executed?",
+            "zh": "在 Loop 3 times 程序里，第 28 行是 for [1..3] 循环里的 pu()。第 28 行一共执行几次？"
+          },
+          "options": [
+            {
+              "en": "1"
+            },
+            {
+              "en": "2"
+            },
+            {
+              "en": "3"
+            },
+            {
+              "en": "23"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "循环体里的每条指令每次迭代执行 1 次，迭代 3 次，所以第 28 行执行 3 次。2 是不用循环的版本里“抬笔、前进”的组数；23 是 draw_robot 里的指令条数。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-loop-activities",
+      "title": {
+        "zh": "活动：第一个循环 & 你的杰作",
+        "en": "Activities: Your First Loop and Your Masterpiece"
+      },
+      "slides": "30-31",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 30 页活动 **Your First Loop**：用一个 4 次迭代（**iteration**）的 for 循环画一个正方形。提示：循环里只需要 2 条指令。"
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": "for [1..4]\n  fd 100\n  rt 90",
+          "zh": "参考答案（课件没给答案，这是按提示写的；边长 100 借用第 35 页的 move forward 100 units）：循环体只有 `fd 100` 和 `rt 90` 两条，重复 4 次。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "为什么“2 条指令 × 4 次”就是一个正方形",
+            "en": "Why 2 instructions × 4 iterations draw a square"
+          },
+          "steps": [
+            {
+              "zh": "第 1 次迭代：前进 100（画一条边）→ 右转 90 度。"
+            },
+            {
+              "zh": "第 2 次迭代：再画一条边 → 再右转 90 度。"
+            },
+            {
+              "zh": "第 3、4 次迭代：画完剩下两条边，每次都右转 90 度。"
+            },
+            {
+              "zh": "4 × 90 度 = 360 度：海龟转了一整圈，回到起点，方向也和开始时一样。"
+            }
+          ],
+          "answer": {
+            "zh": "一共执行了 2 × 4 = 8 条指令，和第 20 页 `square` 函数里写的 8 行一样多——但我们只写了 2 行。这也正是第 35 页“算法方法”画正方形的写法。",
+            "en": "8 instruction executions from only 2 written instructions."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "可以这样写",
+            "en": "How to explain it"
+          },
+          "items": [
+            {
+              "en": "A definite for-loop with 4 iterations of 'move forward 100 units, then turn right 90 degrees' draws a square.",
+              "zh": "一个迭代 4 次、每次“前进 100 单位，再右转 90 度”的 for 循环，就能画出正方形。"
+            },
+            {
+              "en": "A function can draw one copy of a picture, and a for-loop can call it many times; to change the number of copies, we only change one value.",
+              "zh": "函数负责画一份，for 循环负责调用很多次；想改份数，只改一个数。"
+            }
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "loop"
+          },
+          "caption": {
+            "zh": "试一试：运行带循环的程序，看循环体里的每条指令每次迭代执行一次：总执行次数 = 条数 × 迭代次数。",
+            "en": "Each instruction in the loop body runs once per iteration."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss (p.30): How might you use for-loops to help produce a more complex drawing?",
+            "zh": "讨论（第 30 页）：你可以怎样用 for 循环来帮助画出更复杂的图？"
+          },
+          "answer": {
+            "en": "A for-loop repeats a block of instructions a fixed number of times, so I can use it for every repeated pattern without writing the same instructions again. For example, a loop with 4 iterations of 'move forward, turn right 90 degrees' draws a square, and a loop that calls a function like draw_robot() can draw many copies of a picture. To change how many copies I get, I only need to change one value. I can also combine loops with functions, or put a loop inside another loop, to build big drawings from a small amount of code.",
+            "zh": "得分点：1）for 循环 = 把一段指令重复固定次数，不用重复写；2）举例：4 次“前进、右转 90 度”画正方形；循环里调用 draw_robot() 画很多个机器人；3）改一个数就能改数量；4）循环可以和函数一起用，也可以循环套循环（第 41 页），用很少的代码画出大图。"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第 31 页活动 **Your Masterpiece**：至少用一个函数和至少一个 for 循环，画一幅很棒的作品。"
+        },
+        {
+          "type": "text",
+          "zh": "愿意分享的话：点 Share Code，再点 Copy Code，把得到的文字作为回复贴到本节课的 Piazza 帖子下（Piazza 是课程的留言讨论区）。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity (p.31): Using at least one function and at least one for-loop, draw something awesome. Practice question (not on the slide): How would you plan your program?",
+            "zh": "活动（第 31 页）：至少用一个函数和至少一个 for 循环，画一幅很棒的作品。练习题（课件上没有这一问）：你会怎样规划你的程序？"
+          },
+          "answer": {
+            "en": "First, I would find the part of my drawing that repeats, for example one house in a street of houses. I would put the instructions for one house into a function called draw_house, so I only write them once. Then I would use a for-loop, for example for [1..5], whose body calls draw_house() and then moves the turtle to the next spot. If I want 10 houses, I only change 5 to 10.",
+            "zh": "得分点：1）先找出重复的部分；2）用函数把“画一个”的指令打包（定义一次）；3）用 for 循环重复调用，并在每次之间移动海龟；4）想改数量只改一个数。思路和第 27–28 页的机器人例子完全一样。房子只是举例，你画什么都可以。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“4 次迭代”是循环体整体执行 4 次，不是循环里要放 4 条指令。"
+            },
+            {
+              "zh": "函数负责“画一个”，循环负责“重复很多次”，两者经常配合使用；但它们不是一回事。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "To draw a square with a definite for-loop of 4 iterations, which two instructions should be inside the loop?",
+            "zh": "要用 4 次迭代的 for 循环画正方形，循环里应该放哪两条指令？"
+          },
+          "options": [
+            {
+              "en": "fd 100 and fd 100",
+              "zh": "fd 100 和 fd 100"
+            },
+            {
+              "en": "rt 90 and rt 90",
+              "zh": "rt 90 和 rt 90"
+            },
+            {
+              "en": "fd 100 and rt 90",
+              "zh": "fd 100 和 rt 90"
+            },
+            {
+              "en": "pen red and speed 2",
+              "zh": "pen red 和 speed 2"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "正方形 = 4 次“走一条边、转 90 度”。两条都是 fd 100：只走不转，画成一条直线；两条都是 rt 90：只转不走，什么也画不出来；pen red 和 speed 2 只是设置颜色和速度。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-algorithmic-thinking",
+      "title": {
+        "zh": "算法思维：所有程序都由基本指令搭成",
+        "en": "Algorithmic Thinking"
+      },
+      "slides": "32-33",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "算法思维（**algorithmic thinking**）：面对一个问题，只用手上现有的（**available**）底层（**low-level**，也就是最基本的）指令，一步一步把它解决。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像只用几种最基础的乐高小方块搭一座城堡：你没有一块现成的“城堡”积木，只能想清楚先放哪块、再放哪块。海龟也只会前进、转弯、换笔，你要用它们拼出机器人脸——这就是算法思维。",
+          "limit": "类比的边界：搭乐高可以凭感觉；算法要求每一步都精确、按顺序。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 33 页）",
+            "en": "Slide sentences (p.33)"
+          },
+          "items": [
+            {
+              "en": "**Algorithmic thinking**: solving a problem step-by-step using the low-level instructions that are available.",
+              "zh": "算法思维：用现有的底层指令，一步一步地解决问题。"
+            },
+            {
+              "en": "There is more to Computer Science than functions and loops.",
+              "zh": "计算机科学不只有函数和循环。"
+            },
+            {
+              "en": "All computer programs, from the fanciest LLM to the simplest robot-face-drawer, are built from a set of basic instructions.",
+              "zh": "所有电脑程序，从最高级的大语言模型到最简单的画机器人脸程序，都是由一套基本指令搭起来的。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "学习目标 2 要求你“解释程序是怎样由指令搭成的”。课件没有单独一页讲这个，答案分散在好几页里。下面把它们串成一条线："
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "程序是怎样由指令搭起来的",
+            "en": "How programs are built from instructions"
+          },
+          "items": [
+            {
+              "en": "A programming language defines a set of instructions that a computer can perform unambiguously. (p.8)",
+              "zh": "编程语言规定了一套电脑能无歧义执行的基本指令。"
+            },
+            {
+              "en": "A program is a series of these instructions. (p.8)",
+              "zh": "程序就是这些指令排成的一串。"
+            },
+            {
+              "en": "Instructions are followed from top to bottom, in order. (p.10)",
+              "zh": "指令从上到下、按顺序执行。"
+            },
+            {
+              "en": "Functions and loops package instructions so that we can reuse them. (p.12)",
+              "zh": "函数和循环把指令打包，方便复用。"
+            },
+            {
+              "en": "We specify instructions once and let the computer execute them more than once; this is how we build complex systems. (p.17)",
+              "zh": "指令写一次、让电脑执行多次——复杂系统就是这样搭出来的。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "长答题模板：Explain how programs are built from instructions",
+            "en": "Model answer for Outcome 2"
+          },
+          "items": [
+            {
+              "en": "A program is a series of instructions written in a programming language, and the computer can perform each instruction unambiguously.",
+              "zh": "程序是用编程语言写的一串指令，每条指令电脑都能无歧义地执行。"
+            },
+            {
+              "en": "The computer follows the instructions from top to bottom, in order, so by stacking the right instructions we can make it do a task, such as drawing a robot face.",
+              "zh": "电脑从上到下按顺序执行指令，把正确的指令叠起来，就能完成任务（比如画机器人脸）。"
+            },
+            {
+              "en": "Functions and loops let us package and reuse instructions, so we can specify instructions once and let the computer execute them many times.",
+              "zh": "函数和循环让我们打包、复用指令：写一次，执行很多次。"
+            },
+            {
+              "en": "In this way, all programs, from the fanciest LLM to the simplest robot-face-drawer, are built from a set of basic instructions.",
+              "zh": "就这样，所有程序（从 LLM 到画机器人脸的小程序）都是由基本指令搭起来的。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "算法思维强调用“现有的”（available）底层指令一步步解决问题，而不是只说一个大概的想法。"
+            },
+            {
+              "zh": "LLM 再厉害也是由基本指令搭起来的，它不是魔法。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what are all computer programs built from?",
+            "zh": "根据课件，所有电脑程序都是由什么搭起来的？"
+          },
+          "options": [
+            {
+              "en": "Training data, not instructions",
+              "zh": "训练数据，而不是指令"
+            },
+            {
+              "en": "English sentences that the computer interprets",
+              "zh": "由电脑去理解的英文句子"
+            },
+            {
+              "en": "Neural networks, which do not use instructions",
+              "zh": "神经网络，它不使用指令"
+            },
+            {
+              "en": "A set of basic instructions",
+              "zh": "一套基本指令"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 33 页：All computer programs, from the fanciest LLM to the simplest robot-face-drawer, are built from a set of basic instructions. “训练数据，而不是指令”错：连最高级的 LLM 也是由基本指令搭成的，纯算法程序更是不需要训练数据（第 36 页）；“由电脑去理解的英文句子”错：电脑执行的是编程语言里无歧义的指令（第 8 页），它不会去理解、去猜英文；“神经网络不使用指令”错：第 24 页说 LLM 的语言能力是从神经网络底层的数学运算中涌现出来的，而 LLM 本身也是由基本指令搭成的（第 33 页）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which phrase best describes algorithmic thinking?",
+            "zh": "哪一项最能描述“算法思维”？"
+          },
+          "options": [
+            {
+              "en": "Solving a problem step-by-step using the low-level instructions that are available",
+              "zh": "用现有的底层指令一步一步解决问题"
+            },
+            {
+              "en": "Letting the computer choose its own goal and then find its own way to reach it",
+              "zh": "让电脑自己选目标，再自己想办法达成"
+            },
+            {
+              "en": "Memorizing every single instruction that a programming language defines, one by one",
+              "zh": "把编程语言规定的每条指令都一条条背下来"
+            },
+            {
+              "en": "Writing every step in plain English, so that the computer can guess what we mean",
+              "zh": "每一步都用普通英文写，让电脑去猜我们的意思"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "正确答案是第 33 页的定义。“让电脑自己选目标”不对：本课说的 AI 是程序员给目标、电脑找方法（第 34 页），不是电脑自己选目标，而且这也不是算法思维；“背下每条指令”与定义无关，定义说的是用现有的指令一步步解决问题；“用英文写、让电脑去猜”错：电脑不会猜，它只执行无歧义的指令（第 8 页）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-algorithms-vs-ai",
+      "title": {
+        "zh": "算法 vs AI：步骤是谁想出来的？",
+        "en": "Algorithms vs. AI"
+      },
+      "slides": "34-35",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "判断一个方法是不是 AI，先问一个问题：解决问题的步骤，是程序员（**programmer**）写好的，还是电脑自己找出来的？"
+        },
+        {
+          "type": "analogy",
+          "zh": "像两种辅导老师：A 老师把每道题的解题步骤都写好，你照着抄就行——这像纯算法；B 老师只告诉你“目标是把这道题做对，你能用的公式就这几个”，解法要你自己摸索——这像 AI。",
+          "limit": "这只是帮你记的类比。课件说这是“一般规则”（a general rule），不是绝对的定义。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：一般规则（第 34 页）",
+            "en": "The general rule (p.34)"
+          },
+          "items": [
+            {
+              "en": "Simply following an algorithm is not normally considered to be AI.",
+              "zh": "单纯照着算法执行，通常不被认为是 AI。"
+            },
+            {
+              "en": "As a general rule, if the programmer specifies a step-by-step solution to the problem, it isn't AI.",
+              "zh": "一般规则：如果程序员给出了一步一步的解法，那就不是 AI。"
+            },
+            {
+              "en": "If the programmer specifies a goal and the computer finds a way to achieve the goal, it is AI.",
+              "zh": "如果程序员只给出目标，由电脑自己找到达成目标的方法，那就是 AI。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "对比项",
+            "Not-AI (Algorithmic) approach",
+            "AI approach"
+          ],
+          "rows": [
+            [
+              "课件原话（第 35 页）",
+              "Draw a square by repeating the following 4 times: move forward 100 units, then turn right 90 degrees.",
+              "Find a sequence of actions to draw a square. Your available actions are: move forward 100 units and turn right 90 degrees."
+            ],
+            [
+              "程序员给了什么",
+              "完整的解法：做什么、按什么顺序、做几次",
+              "目标（画正方形）+ 可用的动作（**available actions**）"
+            ],
+            [
+              "电脑要做什么",
+              "照着做",
+              "自己找出一串动作（**a sequence of actions**）"
+            ],
+            [
+              "结果",
+              "正方形",
+              "正方形"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步看懂第 35 页的两个例子",
+            "en": "The two square examples, step by step (p.35)"
+          },
+          "steps": [
+            {
+              "zh": "两个例子的目标一样：画一个正方形（课件右边那个红色正方形）。"
+            },
+            {
+              "zh": "能用的动作也一样：前进 100 单位（`fd 100`）、右转 90 度（`rt 90`）。"
+            },
+            {
+              "zh": "算法版：程序员已经想好“重复 4 次：前进、右转”，电脑只是照做——和第 30 页的 for 循环一模一样。"
+            },
+            {
+              "zh": "AI 版：程序员只说“目标是正方形，你能用这两个动作”。怎么组合、做几次，由电脑自己去找。"
+            },
+            {
+              "zh": "所以区别不在结果，而在于“谁想出了步骤”：程序员想的 → 不是 AI；电脑自己找的 → 是 AI。"
+            }
+          ],
+          "answer": {
+            "zh": "电脑具体怎样“找”到动作序列，本课没讲；下一课（Lecture 3：Search and Rationality）会讲。",
+            "en": "Same goal, same actions, same result; the difference is who finds the steps."
+          }
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "goal",
+              "zh": "目标",
+              "hint": "想达到的结果，比如“画出正方形”。"
+            },
+            {
+              "en": "step-by-step solution",
+              "zh": "一步一步的解法",
+              "hint": "完整写好的步骤，照做就行。"
+            },
+            {
+              "en": "available actions",
+              "zh": "可用的动作",
+              "hint": "允许电脑使用的动作，比如前进 100、右转 90 度。"
+            },
+            {
+              "en": "sequence of actions",
+              "zh": "动作序列",
+              "hint": "按顺序排好的一串动作，AI 版要电脑自己去找。"
+            },
+            {
+              "en": "purely algorithmic approach",
+              "zh": "纯算法方法",
+              "hint": "程序员把解法完整写好，电脑只负责执行。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "结果一样不代表方法一样：两个例子都画出正方形，但一个是 AI，一个不是。"
+            },
+            {
+              "zh": "“用了电脑”不等于 AI。照着程序员写好的步骤执行，通常不被认为是 AI（not normally considered to be AI）。"
+            },
+            {
+              "zh": "用了循环或函数，也不会因此变成 AI：算法版画正方形就用了“重复 4 次”。"
+            },
+            {
+              "zh": "课件用的是 normally、as a general rule 这类词，答题时别写成绝对的 always / never。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A programmer writes: 'Draw a square by repeating the following 4 times: move forward 100 units, then turn right 90 degrees.' According to the lecture, is this AI?",
+            "zh": "程序员写道：“重复以下动作 4 次来画正方形：前进 100 单位，然后右转 90 度。”根据课件，这是 AI 吗？"
+          },
+          "options": [
+            {
+              "en": "Yes, because the computer is the one that draws the square",
+              "zh": "是，因为画正方形的是电脑"
+            },
+            {
+              "en": "Yes, because it uses a loop to repeat the same actions 4 times",
+              "zh": "是，因为它用循环把同样的动作重复了 4 次"
+            },
+            {
+              "en": "No, because the programmer specified a step-by-step solution",
+              "zh": "不是，因为程序员给出了一步一步的解法"
+            },
+            {
+              "en": "No, because drawing a square is too simple a task to need AI",
+              "zh": "不是，因为画正方形这个任务太简单，用不着 AI"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "第 34–35 页：程序员写好了步骤，所以是 Not-AI (Algorithmic) approach。“电脑画的”不能说明是 AI：用电脑执行不等于 AI；“重复 4 次”也不能：用循环和是不是 AI 无关；“正方形太简单”结论对但理由错：判断标准不是任务难不难，而是谁想出步骤。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which situation is an AI approach according to the lecture's general rule?",
+            "zh": "按照课件的一般规则，下面哪种情况是 AI 方法？"
+          },
+          "options": [
+            {
+              "en": "The programmer writes every single instruction that the turtle needs to draw a robot face.",
+              "zh": "程序员写好海龟画机器人脸需要的每一条指令。"
+            },
+            {
+              "en": "The computer follows the five toast instructions step by step, exactly as written.",
+              "zh": "电脑照着写好的 5 条做吐司指令，一步步执行。"
+            },
+            {
+              "en": "The programmer writes a loop that calls square() 10 times, one call per iteration.",
+              "zh": "程序员写一个循环，每次迭代调用一次 square()，一共 10 次。"
+            },
+            {
+              "en": "The programmer gives a goal and the available actions; the computer finds the steps.",
+              "zh": "程序员给出目标和可用的动作，由电脑自己找出步骤。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "只有“程序员给出目标和可用的动作、电脑自己找出步骤”符合第 34 页的一般规则，第 35 页画正方形的 AI 例子就是这样。另外三项的步骤都是程序员写好的，电脑只是照着执行，所以按一般规则不是 AI；用了循环也不会因此变成 AI。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s15-algorithm-pros-cons",
+      "title": {
+        "zh": "纯算法方法：局限与优点",
+        "en": "Pure Algorithmic Solutions: Limits and Advantages"
+      },
+      "slides": "36",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 36 页讲纯算法解法（**pure algorithmic solution**）的两面：不一定总能为一个问题找到纯算法的解法，而且这种方法有弱点；但只要能找到，它通常有很多好处。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 36 页，要点补成了完整句子）",
+            "en": "Slide text (p.36), written as full sentences"
+          },
+          "items": [
+            {
+              "en": "It may not always be possible to find a pure algorithmic solution to a problem.",
+              "zh": "不一定总能为一个问题找到纯算法的解法。"
+            },
+            {
+              "en": "In a pure algorithmic solution, all the hard problem solving is done by the programmer.",
+              "zh": "在纯算法解法里，所有困难的解题工作都由程序员来做。"
+            },
+            {
+              "en": "So a pure algorithmic solution is vulnerable to human error (e.g. missed edge cases, bugs).",
+              "zh": "所以纯算法解法容易受人为错误影响（比如漏掉了边缘情况、程序有 bug）。"
+            },
+            {
+              "en": "When an algorithmic solution exists, there are typically advantages: stable results, often guaranteed to be correct; explainable solutions; no need for training data; often fast, with low resource usage.",
+              "zh": "当存在算法解法时，通常有这些优点：结果稳定，常常能保证正确；解法可以解释；不需要训练数据；通常很快，占用资源少。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "类别",
+            "English（第 36 页）",
+            "中文大白话"
+          ],
+          "rows": [
+            [
+              "局限",
+              "It may not always be possible to find a pure algorithmic solution to a problem.",
+              "不一定总能写出完整的步骤（有时找不到纯算法的解法）。"
+            ],
+            [
+              "局限",
+              "All the hard problem solving is done by the programmer",
+              "最难的“想办法”全靠程序员自己。"
+            ],
+            [
+              "局限",
+              "Vulnerable to human error (e.g. missed edge cases, bugs)",
+              "人会犯错：漏想特殊情况、写出 bug。"
+            ],
+            [
+              "优点",
+              "Stable results, often guaranteed to be correct",
+              "结果稳定，常常能保证正确。"
+            ],
+            [
+              "优点",
+              "Explainable solutions",
+              "能说清楚每一步为什么这样做。"
+            ],
+            [
+              "优点",
+              "No need for training data",
+              "不需要训练数据。"
+            ],
+            [
+              "优点",
+              "Often fast, with low resource usage",
+              "通常很快，用的资源（时间、内存等）少。"
+            ]
+          ],
+          "caption": {
+            "zh": "课件没有给前几条贴“缺点”标签，它们写在“不一定能找到纯算法解法”这句下面；从内容看，它们是纯算法方法的不足。",
+            "en": "The first bullets sit under 'It may not always be possible...' on the slide."
+          }
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "edge case",
+              "zh": "边缘情况 / 特殊情况",
+              "hint": "不常见、容易被漏想的情况，比如面包袋是空的。"
+            },
+            {
+              "en": "bug",
+              "zh": "程序错误",
+              "hint": "程序里写错的地方，会让结果出错。"
+            },
+            {
+              "en": "human error",
+              "zh": "人为错误",
+              "hint": "因为人想漏了或写错了而产生的错误。"
+            },
+            {
+              "en": "training data",
+              "zh": "训练数据",
+              "hint": "让 AI 学习用的大量例子；纯算法不需要它。"
+            },
+            {
+              "en": "explainable",
+              "zh": "可解释的",
+              "hint": "能说清楚结果是怎么得出来的。"
+            },
+            {
+              "en": "resource usage",
+              "zh": "资源占用",
+              "hint": "运行时用掉的时间、内存等。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：第 36 页只列出了 human error、edge cases、bugs、explainable、training data、resource usage 这些词，没有给它们下定义。上面词卡里的解释和例子（比如“面包袋是空的”、资源里的“内存”）是帮助理解的补充，不是课件原话。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像给朋友写一份“到我家的路线说明”：路线清楚时，照着走又快又稳，每一步也说得清（优点）。但要把所有意外都想到很难——路在修、地铁停运、下暴雨……漏掉一个特殊情况（edge case），说明就会失效（局限）。",
+          "limit": "类比的边界：课件没有说 AI 一定能解决这些问题，只是指出纯算法有这些局限。"
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "课件用的是带保留的词：typically（通常）、often guaranteed（常常能保证）、Often fast（通常很快）。答题时把这些词保留下来，别写成 always correct / always fast（总是正确 / 总是很快）。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "回到大表（Lecture 1 p.57 的性质大表）：大表第一栏叫 “Symbolic/ Algorithmic”，这一页解释了那一栏的好几格。No need for training data → Labeled data needed? None；Explainable solutions → Explainability: Generally, Yes；Often fast, with low resource usage → Speed（问题小时可以很快）、Cost and capacity: Usually low。弱点 “missed edge cases” → Main failure mode: Edge cases outside the rules。",
+          "en": "Back to the Big Table (Lecture 1 p.57): this slide explains the Symbolic/Algorithmic column, for example 'Labeled data needed? None' and 'Explainability: Generally, Yes'."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Vulnerable to human error 是纯算法的弱点：步骤全是人写的，人想漏、写错，程序就会错。"
+            },
+            {
+              "zh": "No need for training data 是纯算法的优点，别和 AI 弄反了。"
+            },
+            {
+              "zh": "“不一定能找到纯算法解法”不等于“纯算法没用”：能找到时，它通常有很多好处。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is listed in the lecture as an advantage of an algorithmic solution?",
+            "zh": "下面哪一项是课件列出的算法解法的优点？"
+          },
+          "options": [
+            {
+              "en": "It can solve every problem",
+              "zh": "它能解决所有问题"
+            },
+            {
+              "en": "No need for training data",
+              "zh": "不需要训练数据"
+            },
+            {
+              "en": "The computer finds the solution by itself",
+              "zh": "电脑自己找到解法"
+            },
+            {
+              "en": "It is never affected by human error",
+              "zh": "它从不受人为错误影响"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "“不需要训练数据”是第 36 页列出的优点。“能解决所有问题”错：课件说不一定总能找到纯算法解法；“电脑自己找到解法”是 AI 的特点；“从不受人为错误影响”正好相反：纯算法 vulnerable to human error。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why is a pure algorithmic solution vulnerable to human error?",
+            "zh": "为什么纯算法解法容易受人为错误影响？"
+          },
+          "options": [
+            {
+              "en": "Because the programmer does all the hard problem solving",
+              "zh": "因为困难的解题工作全部由程序员来做"
+            },
+            {
+              "en": "Because it needs a lot of training data before it can work",
+              "zh": "因为它要先有大量训练数据才能工作"
+            },
+            {
+              "en": "Because the computer changes the instructions at random",
+              "zh": "因为电脑会随机修改指令"
+            },
+            {
+              "en": "Because programming languages are ambiguous for computers",
+              "zh": "因为编程语言对电脑来说有歧义"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "第 36 页把两条放在一起：All the hard problem solving is done by the programmer；Vulnerable to human error (e.g. missed edge cases, bugs)。程序员是人，会犯错：可能漏想边缘情况，也可能写出 bug，所以纯算法容易受人为错误影响。“需要大量训练数据”错：纯算法不需要训练数据；“电脑随机修改指令”错：电脑不会乱改指令；“编程语言有歧义”错：编程语言是无歧义的（第 8 页）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s16-computation-time",
+      "title": {
+        "zh": "计算时间：每执行一条指令都要花时间",
+        "en": "Computation Time"
+      },
+      "slides": "37-38, 42",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "电脑很快，但不是“零时间”。每执行一条指令（**instruction**）都要花一点点时间；执行的指令越多，花的时间就越多。这就是计算时间（**computation time**）的问题。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像食堂打饭：给一个人打饭只要 10 秒，很快。但队伍有 1000 人的话，就要 10000 秒，将近 3 个小时。单条指令再快，执行次数一多，时间就扛不住。",
+          "limit": "类比的边界：电脑执行一条指令比打饭快得多，但程序让它执行的次数也可能多得多。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 37–38、42 页）",
+            "en": "Slide sentences (p.37-38, 42)"
+          },
+          "items": [
+            {
+              "en": "One fact defines much of Computer Science as a field of study: **Every instruction executed costs time.**",
+              "zh": "计算机科学这门学科，很大程度上是围绕这个事实展开的：每执行一条指令都要花时间。"
+            },
+            {
+              "en": "It's important to be aware that time limits how much work a computer can do.",
+              "zh": "重要的是要意识到：时间限制了电脑能做多少工作。"
+            },
+            {
+              "en": "Even with our limited toolset, we can make the computer work for an unreasonably long time.",
+              "zh": "即使只用我们这套有限的工具，也能让电脑一直干活，干到久得离谱。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "关键词 Key words",
+            "中文",
+            "解释"
+          ],
+          "rows": [
+            [
+              "every instruction executed",
+              "每一条被执行的指令",
+              "注意是“被执行的”：程序里写了 1 行，如果它被执行 100 次，就要花 100 次的时间。"
+            ],
+            [
+              "costs time",
+              "要花时间",
+              "执行指令不是免费的，执行越多越慢。"
+            ],
+            [
+              "time complexity",
+              "时间复杂度",
+              "补充：课件只提了这个名字（第 38 页），没有下定义；一般指研究程序要花多少时间的学问。本课不讲细节。"
+            ],
+            [
+              "limited toolset",
+              "有限的工具",
+              "指本课学的这些东西：指令、函数、循环。"
+            ],
+            [
+              "unreasonably long time",
+              "长得离谱的时间",
+              "函数和循环套在一起时，执行次数会暴涨。"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件原话：We won't get into the details of time complexity in this class. 也就是说，本课不讲时间复杂度（**time complexity**）的细节。但你必须知道：时间限制了电脑能做多少工作。"
+        },
+        {
+          "type": "text",
+          "zh": "为什么程序员要关心计算时间？（学习目标 5）因为每条指令都花时间，而函数和循环能让很少几行代码执行非常多条指令。一不留神，程序就会慢到没法用。下一节用数字来演示。"
+        },
+        {
+          "type": "text",
+          "zh": "第 42 页还预告：下一课（Lecture 3：Search and Rationality）会讲一种 AI，计算时间是它的主要限制之一（one of the main limiting factors）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "长答题模板：Why is computation time a concern for programmers?",
+            "en": "Model answer for Outcome 5"
+          },
+          "items": [
+            {
+              "en": "Every instruction executed costs time, and time limits how much work a computer can do.",
+              "zh": "每执行一条指令都花时间，而时间限制了电脑能做多少工作。"
+            },
+            {
+              "en": "With functions and loops, a few lines of code can make the computer execute a huge number of instructions, for example a loop inside another loop.",
+              "zh": "有了函数和循环，几行代码就能让电脑执行海量指令，比如循环里再套循环。"
+            },
+            {
+              "en": "So even with a limited toolset, a program can run for an unreasonably long time, and programmers must think about how many instructions their program will execute.",
+              "zh": "所以即使工具有限，程序也可能运行长得离谱的时间；程序员必须考虑程序会执行多少条指令。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "代码行数少不等于运行快。决定时间的是“执行了多少条指令”，不是“写了多少行”。"
+            },
+            {
+              "zh": "别写“电脑很快，所以时间不重要”。课件说，“每条指令都花时间”是定义计算机科学的一个事实。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, which fact 'defines much of Computer Science as a field of study'?",
+            "zh": "根据课件，哪个事实“在很大程度上定义了计算机科学这门学科”？"
+          },
+          "options": [
+            {
+              "en": "Every program needs training data.",
+              "zh": "每个程序都需要训练数据。"
+            },
+            {
+              "en": "Every algorithm is a form of AI.",
+              "zh": "每个算法都是一种 AI。"
+            },
+            {
+              "en": "Every instruction executed costs time.",
+              "zh": "每执行一条指令都要花时间。"
+            },
+            {
+              "en": "Every function must have a parameter.",
+              "zh": "每个函数都必须有参数。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "正确答案是第 37 页的粗体句。“都需要训练数据”错：纯算法不需要训练数据；“算法都是 AI”错：照着算法执行通常不算 AI；“函数都必须有参数”错：函数可以没有参数（第 20 页）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Program A has 3 lines but makes the computer execute 1,000 instructions. Program B has 20 lines and executes each line once. Which program needs more computation time?",
+            "zh": "程序 A 只有 3 行，却让电脑执行了 1000 条指令；程序 B 有 20 行，每行执行一次。哪个程序需要更多计算时间？"
+          },
+          "options": [
+            {
+              "en": "Program B, because it has more lines of code to run",
+              "zh": "程序 B，因为它要运行的代码行更多"
+            },
+            {
+              "en": "Program A, because more instructions are executed",
+              "zh": "程序 A，因为执行的指令更多"
+            },
+            {
+              "en": "They need the same time, because each line runs once",
+              "zh": "两者一样，因为每一行都只运行一次"
+            },
+            {
+              "en": "Neither, because modern computers are so fast",
+              "zh": "都不需要，因为现代电脑非常快"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "看执行次数，不看行数：程序 A 执行了 1000 条，程序 B 只执行了 20 条。“B 的代码行更多”错：行数不决定时间；“每一行都只运行一次”错：循环会让一行代码执行很多次，程序 A 就是这样；“电脑很快所以都不需要”也错：每条被执行的指令都要花时间（第 37 页）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s17-counting-executions",
+      "title": {
+        "zh": "数一数：指令被执行了多少次",
+        "en": "Counting Instruction Executions"
+      },
+      "slides": "39-41",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 39–41 页用同一个 `square` 函数做实验。它的函数体（**function body**，就是函数“嘴巴”里的指令）有 8 条指令：4 组“前进 100、右转 90”。三页只改变调用方式，看函数里的每条指令被执行（**executed**）几次。"
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": " 1  speed 2\n 2  pen red\n 3  square = () ->\n 4    fd 100\n 5    rt 90\n 6    fd 100\n 7    rt 90\n 8    fd 100\n 9    rt 90\n10    fd 100\n11    rt 90\n12  square()",
+          "zh": "第 39 页：只调用一次 `square()`（A single call to `square`）。课件标注第 4–11 行：Executed one time each（每条执行 1 次）。"
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": "12  for count in [1..10]\n13    square()",
+          "zh": "第 40 页：第 1–11 行和第 39 页一样（这里省略），只是把第 12 行的单独调用换成了 for 循环，在循环里调用 `square`（Loop calls `square` 10 times）。课件标注 Executed 10 times each（每条执行 10 次）。"
+        },
+        {
+          "type": "code",
+          "language": "pencilcode",
+          "code": "12  for count in [1..10]\n13    for count in [1..10]\n14      square()",
+          "zh": "第 41 页：第 1–11 行还是一样（省略）。这次一个循环里面再套一个循环，由里层循环调用 `square`。这种写法常叫嵌套循环（**nested loop**；这是补充的叫法，课件没有用这个词，考试写 a loop inside another loop 最稳妥）。课件提问 How many times is every instruction of `square` executed now?（Executed ?? times each.）"
+        },
+        {
+          "type": "analogy",
+          "zh": "像体育课跑圈：老师说“跑 10 圈”，你就跑 10 圈。如果规定“每节体育课跑 10 圈，一共上 10 节课”，你一共要跑 10 × 10 = 100 圈。里层循环像“每节课跑 10 圈”，外层循环像“上 10 节课”——套在一起，次数要相乘。",
+          "limit": "类比的边界：人跑多了会累、会变慢；电脑不会累，但每多执行一条指令就多花一点时间。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步算出第 41 页的 ??",
+            "en": "Work out the ?? on p.41"
+          },
+          "steps": [
+            {
+              "zh": "先看里层循环：它调用 `square()` 10 次。"
+            },
+            {
+              "zh": "再看外层循环：它把整个里层循环执行 10 遍。"
+            },
+            {
+              "zh": "所以 `square()` 一共被调用 10 × 10 = 100 次。"
+            },
+            {
+              "zh": "每调用一次，`square` 里的每条指令执行 1 次，所以每条指令执行 100 次。"
+            },
+            {
+              "zh": "如果问“一共”执行了多少条：8 条 × 100 次 = 800 次。"
+            }
+          ],
+          "answer": {
+            "zh": "答案：每条 100 次（100 times each）。课件上写的是 ??，100 是按第 39、40 页的规律算出来的。",
+            "en": "100 times each (10 × 10)."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话 + 算出的答案（第 39–41 页）",
+            "en": "Slide sentences and the worked answer (p.39-41)"
+          },
+          "items": [
+            {
+              "en": "If we call our square function once, every instruction inside of it gets executed one time.",
+              "zh": "调用一次 square，函数里的每条指令执行 1 次。"
+            },
+            {
+              "en": "If we call our square function inside this for-loop, every instruction inside of it gets executed 10 times.",
+              "zh": "在这个 10 次的 for 循环里调用 square，函数里的每条指令执行 10 次。"
+            },
+            {
+              "en": "With a for-loop of 10 iterations inside another for-loop of 10 iterations, every instruction of square is executed 10 × 10 = 100 times.",
+              "zh": "10 次的循环套在另一个 10 次的循环里，square 的每条指令执行 10 × 10 = 100 次。（课件写的是 ??，100 是算出来的。）"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "页",
+            "怎样调用 square",
+            "每条指令执行几次",
+            "8 条指令一共执行几次"
+          ],
+          "rows": [
+            [
+              "p.39",
+              "直接调用 1 次 `square()`",
+              "1",
+              "8 × 1 = 8"
+            ],
+            [
+              "p.40",
+              "在 `for count in [1..10]` 里调用",
+              "10",
+              "8 × 10 = 80"
+            ],
+            [
+              "p.41",
+              "两层 `for count in [1..10]` 嵌套",
+              "10 × 10 = 100",
+              "8 × 100 = 800"
+            ]
+          ],
+          "caption": {
+            "zh": "课件只写了 one time、10 times 和 ??；100 以及最后一列的总数是我们算出来的。",
+            "en": "The slides show 1, 10 and ??; 100 and the totals are worked out here."
+          }
+        },
+        {
+          "type": "formula",
+          "expr": "executions of each instruction = outer iterations × inner iterations = 10 × 10 = 100",
+          "zh": "循环套循环时，次数要“相乘”，不是“相加”。课件没有把它写成公式，这是从第 39–41 页的例子总结出来的规律。",
+          "en": "Nested loops multiply the number of executions.",
+          "where": [
+            {
+              "symbol": "outer iterations",
+              "zh": "外层循环的迭代次数（这里是 10）"
+            },
+            {
+              "symbol": "inner iterations",
+              "zh": "里层循环的迭代次数（这里是 10）"
+            }
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "loop-calls-function"
+          },
+          "caption": {
+            "zh": "试一试：循环调用函数——数一数函数里每条指令的执行次数，是不是等于循环的迭代次数。",
+            "en": "A loop that calls a function: count the executions."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "turtle-sandbox",
+          "config": {
+            "preset": "nested-loop"
+          },
+          "caption": {
+            "zh": "试一试：嵌套循环——看执行次数怎样相乘。再想想：外面再套一层 10 次，会变成 10 × 10 × 10 = 1000 次。",
+            "en": "Nested loops: watch the counts multiply."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "有意思的是：三页右边的图一模一样，都只有一个红色正方形！因为每画完一个正方形，海龟都回到起点，后面的正方形全画在同一个位置上。电脑多干了 100 倍的活，画面却看不出任何区别——计算时间是“看不见”的成本。（这是对比三张图得出的观察。）"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "嵌套循环是“乘”，不是“加”：两层 10 次嵌套是 100 次，不是 20 次。"
+            },
+            {
+              "zh": "看清问的是“每条”（each）还是“一共”（total）：每条 100 次；8 条一共 800 次。"
+            },
+            {
+              "zh": "程序里只写了一行 `square()`，不代表它只执行一次——要看它外面套了几层循环。"
+            },
+            {
+              "zh": "两层循环用的是同一个名字 `count`，课件没有解释它。数次数时只看 `[1..10]` 里的 10 就够了。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A loop for count in [1..10] contains another loop for count in [1..10], which calls square(). How many times is each instruction of square executed?",
+            "zh": "循环 for count in [1..10] 里面又套了一个 for count in [1..10]，里层调用 square()。square 里的每条指令执行几次？"
+          },
+          "options": [
+            {
+              "en": "10"
+            },
+            {
+              "en": "20"
+            },
+            {
+              "en": "100"
+            },
+            {
+              "en": "800"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "10 × 10 = 100。20 是误把两层加起来；800 是 8 条指令的总执行次数，不是“每条”的次数。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Suppose a third loop of 10 iterations is placed around the two nested loops. How many times is each instruction of square executed now?",
+            "zh": "假如在这两层循环外面再套一层 10 次的循环，square 里的每条指令现在执行几次？"
+          },
+          "options": [
+            {
+              "en": "30"
+            },
+            {
+              "en": "100"
+            },
+            {
+              "en": "1,000"
+            },
+            {
+              "en": "8,000"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "10 × 10 × 10 = 1000（举一反三，课件没有这一题）。30 是把三层加起来；8000 是 8 条 × 1000 次的总数。这正说明了第 42 页的话：工具再有限，也能让电脑工作很久。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s18-exam-review",
+      "title": {
+        "zh": "考前复习：用英文回答 5 个学习目标",
+        "en": "Exam Review: The Five Learning Outcomes"
+      },
+      "slides": "2, 43",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 2 页的学习目标，就是本课“你应该会什么”的清单；第 43 页的总结列了 6 个主题：algorithm 的定义、程序与指令、函数、循环、AI 与纯算法方法的区别、计算时间。下面把它们写成能直接用在试卷上的英文。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "5 个学习目标的示范答案（“目标 N”只是中文标签，考试时不用写）",
+            "en": "Model answers for the five outcomes"
+          },
+          "items": [
+            {
+              "en": "An **algorithm** is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal. If the instructions are not precise enough, we might fail to achieve our goal.",
+              "zh": "目标 1：下定义，并说明精确的重要性。"
+            },
+            {
+              "en": "To write my own algorithm in English, I number the steps, start each step with an action verb, and say exactly what to do, in order.",
+              "zh": "目标 1（续）：自己用英文写算法：给步骤编号、每步用动作动词开头、写清楚做什么（多少、哪个、在哪里），按顺序排好（句型见第 3 节）。"
+            },
+            {
+              "en": "A **program** is a series of instructions written in a programming language, which a computer can perform unambiguously. The instructions are followed from top to bottom, in order, and functions and loops let us reuse them to build complex programs.",
+              "zh": "目标 2：程序如何由指令搭成：编程语言 → 一串指令 → 按顺序执行 → 用函数和循环复用。"
+            },
+            {
+              "en": "A **function** is a named block of instructions that we define once and can call by name as many times as we want.",
+              "zh": "目标 3：函数有名字，定义一次，调用才执行，可以调用很多次。"
+            },
+            {
+              "en": "A **loop** is an unnamed block of code that is executed repeatedly and immediately.",
+              "zh": "目标 3：循环没有名字，程序执行到它就立刻重复执行。"
+            },
+            {
+              "en": "Both let us package and reuse instructions, so we do not have to specify every instruction individually.",
+              "zh": "目标 3：两者的作用都是打包、复用指令，不用把每条指令都单独写出来。"
+            },
+            {
+              "en": "As a general rule, if the programmer specifies a step-by-step solution, it is a purely algorithmic approach and not AI. If the programmer specifies a goal and the computer finds a way to achieve it, it is AI.",
+              "zh": "目标 4：区分 AI 和纯算法：按一般规则，看步骤是谁想出来的。可以用第 35 页画正方形的例子来说明。"
+            },
+            {
+              "en": "Every instruction executed costs time, and time limits how much work a computer can do. Loops and functions, especially a loop inside another loop, can make a computer execute a huge number of instructions, so programmers must care about computation time.",
+              "zh": "目标 5：为什么关心计算时间：每条指令都花时间；循环套循环让执行次数相乘（10 × 10 = 100）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "概念",
+            "英文要点",
+            "别和它搞混"
+          ],
+          "rows": [
+            [
+              "algorithm 算法",
+              "precise, step-by-step, in order, to achieve a goal",
+              "program 程序：用编程语言写给电脑的一串指令"
+            ],
+            [
+              "function 函数",
+              "named; runs when it is called",
+              "loop 循环：unnamed; runs immediately"
+            ],
+            [
+              "parameter 参数",
+              "a value given when the function is called",
+              "函数名：点“f”可以改的那个名字"
+            ],
+            [
+              "iteration 迭代",
+              "one execution of the loop's block",
+              "instruction 指令：一条命令"
+            ],
+            [
+              "abstraction 抽象",
+              "use a function without thinking about its instructions",
+              "emergent behaviour 涌现：底层执行加起来出现新的高层行为"
+            ],
+            [
+              "algorithmic approach 纯算法",
+              "the programmer specifies the steps",
+              "AI approach：程序员给目标，电脑找方法"
+            ]
+          ],
+          "caption": {
+            "zh": "易混概念速查表",
+            "en": "Easily confused pairs"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件明确说了下面三样不要求，复习时不用在这些上面钻牛角尖。"
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "课件明确说不要求的",
+            "en": "Not required (the slides say so)"
+          },
+          "items": [
+            {
+              "zh": "Python 语法（第 8 页）",
+              "en": "Don't worry, you don't have to understand the Python syntax."
+            },
+            {
+              "zh": "时间复杂度的细节（第 38 页）",
+              "en": "We won't get into the details of time complexity in this class."
+            },
+            {
+              "zh": "其他种类的循环：本课只学 definite for-loop（第 26 页）",
+              "en": "We will look at just one: the definite for-loop."
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "前后联系：Lab 2（Algorithms with Turtles）重复用了本课的很多页（算法定义、海龟 App、函数、参数、循环）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "下一课 Lecture 3（Search and Rationality）会讲电脑怎样自己找出动作序列，那时计算时间是主要的限制之一（第 42 页的预告）。"
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which pair is matched correctly?",
+            "zh": "哪一组配对是正确的？"
+          },
+          "options": [
+            {
+              "en": "Function: unnamed, runs immediately. Loop: named, runs when it is called.",
+              "zh": "函数：没名字，立刻运行。循环：有名字，被调用时才运行。"
+            },
+            {
+              "en": "Function: needs training data. Loop: does not need training data.",
+              "zh": "函数：需要训练数据。循环：不需要训练数据。"
+            },
+            {
+              "en": "Function: always AI. Loop: never AI.",
+              "zh": "函数：一定是 AI。循环：一定不是 AI。"
+            },
+            {
+              "en": "Function: named, runs when it is called. Loop: unnamed, runs immediately.",
+              "zh": "函数：有名字，被调用时才运行。循环：没名字，立刻运行。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "第 14 页和第 26 页：函数有名字、调用才执行；循环没有名字、立刻重复执行。把两者说反的那一项是错的；“训练数据”和“是不是 AI”都与这两个定义无关。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A student says: 'My program has only 3 lines, so it must run quickly.' Which reply best matches the lecture?",
+            "zh": "一个同学说：“我的程序只有 3 行，所以一定跑得很快。”哪个回答最符合课件？"
+          },
+          "options": [
+            {
+              "en": "Not necessarily: loops can execute a few lines many times, and each execution costs time.",
+              "zh": "不一定：循环能让几行代码执行很多次，而每执行一次都要花时间。"
+            },
+            {
+              "en": "Yes: fewer lines always means less computation time, because each line runs only once.",
+              "zh": "对：行数越少，计算时间一定越少，因为每行只运行一次。"
+            },
+            {
+              "en": "Yes: computers are now so fast that short programs take no time at all to run.",
+              "zh": "对：现在的电脑快到短程序完全不花时间。"
+            },
+            {
+              "en": "Not necessarily: short programs always need training data, which takes a long time.",
+              "zh": "不一定：短程序总是需要训练数据，而这要花很长时间。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "决定时间的是执行了多少条指令，不是写了多少行。第 41 页的程序只有 14 行，却让 square 的每条指令执行 100 次（100 是算出来的）。“行数越少时间一定越少”错：循环里的一行可以执行很多次；“短程序完全不花时间”错：每执行一条指令都要花时间（第 37 页）；“短程序需要训练数据”与这道题无关，普通程序不需要训练数据。"
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "An algorithm is a series of precise instructions that can be followed step-by-step, in order, to achieve a goal (e.g. making toast).",
+      "zh": "算法是一系列精确的指令，可以一步一步、按顺序执行，用来达成目标（例：做吐司）。"
+    },
+    {
+      "en": "If our instructions are not precise enough, we might fail to achieve our goal; the evil genie game exposes imprecise steps.",
+      "zh": "指令不够精确就可能达不到目标；邪恶精灵游戏用来找出不精确的步骤。"
+    },
+    {
+      "en": "A programming language defines a set of instructions that a computer can perform unambiguously; a series of such instructions is called a program.",
+      "zh": "编程语言规定了电脑能无歧义执行的一套指令；这样的一串指令就叫程序。"
+    },
+    {
+      "en": "Instructions are followed from top to bottom, in order.",
+      "zh": "指令从上到下、按顺序执行。"
+    },
+    {
+      "en": "A function is a named block of instructions that we define once and reuse by calling it by name; defining it without calling it does nothing.",
+      "zh": "函数是有名字的指令块，定义一次，按名字调用来复用；只定义不调用，什么也不会发生。"
+    },
+    {
+      "en": "A parameter is a value we give to a function when it is called to customize its behaviour; with several parameters, the order tells us which is which.",
+      "zh": "参数是调用函数时交给它的值，用来定制函数的行为；有多个参数时按顺序对应。"
+    },
+    {
+      "en": "Abstraction lets us call a function without thinking about all of its instructions; emergent behaviour is new high-level behaviour from many low-level executions (e.g. language in LLMs).",
+      "zh": "抽象让我们调用函数时不必去想它的全部指令；涌现行为是大量底层执行带来的新的高层行为（例：LLM 的语言能力）。"
+    },
+    {
+      "en": "A loop is an unnamed block of code that is executed repeatedly and immediately; each execution is one iteration, and a definite for-loop iterates a fixed number of times.",
+      "zh": "循环是没有名字、被立刻重复执行的代码块；每执行一次叫一次迭代；definite for-loop 迭代固定的次数。"
+    },
+    {
+      "en": "Algorithmic thinking is solving a problem step-by-step using the low-level instructions that are available; all programs are built from a set of basic instructions.",
+      "zh": "算法思维就是用现有的底层指令一步步解决问题；所有程序都由一套基本指令搭成。"
+    },
+    {
+      "en": "As a general rule, if the programmer specifies a step-by-step solution, it isn't AI; if the programmer specifies a goal and the computer finds a way to achieve it, it is AI.",
+      "zh": "一般规则：程序员写好步骤 → 不是 AI；程序员给目标、电脑自己找方法 → 是 AI。"
+    },
+    {
+      "en": "Pure algorithmic solutions are not always possible and are vulnerable to human error, but when they exist they are typically stable, explainable, need no training data, and are often fast.",
+      "zh": "纯算法解法不一定总能找到，而且容易出人为错误；但能找到时，通常结果稳定、可以解释、不需要训练数据、通常很快。"
+    },
+    {
+      "en": "Every instruction executed costs time; loops multiply the number of executions (1, then 10, then 10 × 10 = 100 times each), so time limits how much work a computer can do.",
+      "zh": "每执行一条指令都花时间；循环让执行次数成倍增加（1 次、10 次、10 × 10 = 100 次），所以时间限制了电脑能做多少工作。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Define 'algorithm' with all the key words (series, precise, step-by-step, in order, goal) and give the toast example.",
+      "zh": "最基础的定义题；关键词漏一个就可能丢分。",
+      "sectionId": "s02-what-is-an-algorithm"
+    },
+    {
+      "en": "Explain why instructions must be precise, using the evil genie idea.",
+      "zh": "第 6–7 页有两道讨论题，适合出长答题。",
+      "sectionId": "s03-precision-evil-genie"
+    },
+    {
+      "en": "Define 'programming language' (unambiguously) and 'program'.",
+      "zh": "两个粗体定义；注意 unambiguously 这个强调词。",
+      "sectionId": "s04-programming-language-program"
+    },
+    {
+      "en": "Explain why we need ways to package and reuse instructions (p.11 Discuss and p.12).",
+      "zh": "第 11 页讨论题的结论就在第 12 页：每条指令都单独写，就做不出复杂的东西；这是学习目标 3（函数和循环的作用）的出发点。",
+      "sectionId": "s06-first-program-reuse"
+    },
+    {
+      "en": "Define 'function', 'define' and 'call'; say what happens with 0, 1 or 3 calls.",
+      "zh": "典型问法：只定义不调用会怎样？调用 3 次，每条指令执行几次？",
+      "sectionId": "s07-functions"
+    },
+    {
+      "en": "Explain what a parameter is and why the order of the values matters.",
+      "zh": "rectangle(100, 200) 里谁是 length、谁是 width。",
+      "sectionId": "s08-parameters"
+    },
+    {
+      "en": "Define abstraction and emergent behaviour, and give the LLM example.",
+      "zh": "两个相关但不同的概念，容易被做成干扰项。",
+      "sectionId": "s09-abstraction-emergence"
+    },
+    {
+      "en": "Define loop, iteration and definite for-loop; compare a function with a loop.",
+      "zh": "对比关键：named vs unnamed，called vs immediately。",
+      "sectionId": "s10-loops-definition"
+    },
+    {
+      "en": "Explain how programs are built from instructions.",
+      "zh": "学习目标 2，答案分散在好几页，用串好的模板来答。",
+      "sectionId": "s13-algorithmic-thinking"
+    },
+    {
+      "en": "Decide whether an approach is AI or purely algorithmic, using the general rule and the square example.",
+      "zh": "学习目标 4，适合出情景判断题：看步骤是谁想出来的。",
+      "sectionId": "s14-algorithms-vs-ai"
+    },
+    {
+      "en": "List the limitations and advantages of pure algorithmic solutions.",
+      "zh": "第 36 页的列表；注意保留 typically、often 这类词。",
+      "sectionId": "s15-algorithm-pros-cons"
+    },
+    {
+      "en": "Explain why computation time is a concern for programmers.",
+      "zh": "学习目标 5：用“每条指令都花时间 + 循环让次数暴涨”来答。",
+      "sectionId": "s16-computation-time"
+    },
+    {
+      "en": "Count how many times each instruction runs with a loop and with nested loops (1, 10, 100).",
+      "zh": "第 41 页课堂提问的答案是 10 × 10 = 100；注意“每条”和“一共”的区别。",
+      "sectionId": "s17-counting-executions"
+    }
+  ]
+}

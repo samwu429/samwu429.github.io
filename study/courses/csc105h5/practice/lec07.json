@@ -1,0 +1,1458 @@
+{
+  "lessonId": "lec07",
+  "questions": [
+    {
+      "id": "lec07-q01",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s06-layers",
+      "prompt": {
+        "en": "According to the slides, how many output nodes does a neural network typically have for binary (two-class) classification?",
+        "zh": "根据课件，做二分类（只有两类）时，神经网络的输出层通常有几个节点？"
+      },
+      "options": [
+        {
+          "en": "As many as there are hidden layers",
+          "zh": "和隐藏层的个数一样多"
+        },
+        {
+          "en": "One",
+          "zh": "1 个"
+        },
+        {
+          "en": "Two, one for each class",
+          "zh": "2 个，每类一个"
+        },
+        {
+          "en": "One for each input feature",
+          "zh": "每个输入特征一个"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "答案：1 个。课件 p.15 讲输出层（**output layer**）：Typically one node for binary (two-class) classification or scalar (single number) regression; more nodes for more complex outputs（二分类或只输出一个数的回归，通常 1 个节点；输出更复杂才用更多节点）。\n“2 个，每类一个”最容易选错：两类听起来像要两个节点，但课件说二分类通常只要 1 个。补充（课件外）的理解：一个输出数就能表示二选一，比如数大判一类、数小判另一类，就像 Lecture 4/5 决策边界的两边。输出节点个数和隐藏层个数无关；输入特征的个数决定的是有几个输入（比如 x1、x2、x3），不是输出层有几个节点。",
+        "en": "Slide 15: typically one output node for binary (two-class) classification or scalar regression; more nodes for more complex outputs."
+      }
+    },
+    {
+      "id": "lec07-q02",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s02-neural-network-biology",
+      "prompt": {
+        "en": "According to the slides, what do inhibitory inputs do to a biological neuron?",
+        "zh": "根据课件，抑制性输入（inhibitory inputs）对生物神经元起什么作用？"
+      },
+      "options": [
+        {
+          "en": "They reduce progress towards firing.",
+          "zh": "阻碍神经元走向放电。"
+        },
+        {
+          "en": "They push the neuron towards firing.",
+          "zh": "推动神经元去放电。"
+        },
+        {
+          "en": "They carry the neuron's outgoing signal to other cells.",
+          "zh": "把神经元发出的信号送到别的细胞。"
+        },
+        {
+          "en": "They make the neuron pass along every signal it receives.",
+          "zh": "让神经元把收到的每个信号都原样传下去。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "答案：阻碍放电。课件 p.6：兴奋性输入（**excitatory inputs**）推动神经元走向放电；抑制性输入（**inhibitory inputs**）减少走向放电的进度。兴奋性输入够多时，神经元短暂地放一次电（动作电位，**action potential**），然后轴突回到静息电位。\n“推动放电”是兴奋性输入，正好说反了；“把信号送到别的细胞”是轴突（**axon**）的工作；“每个信号都原样传下去”和课件相反：课件强调神经元不会盲目地传递信号（does not just blindly pass along a signal），它会“决定”放不放电。",
+        "en": "Excitatory inputs push a neuron towards firing; inhibitory inputs reduce progress towards firing."
+      }
+    },
+    {
+      "id": "lec07-q03",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s02-neural-network-biology",
+      "prompt": {
+        "en": "According to the slides, a biological neuron simply passes along every signal it receives to the next cell.",
+        "zh": "根据课件，生物神经元只是把收到的每个信号都直接传给下一个细胞。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错（False）。课件 p.6 特别强调（Importantly）：神经元不会盲目地传递信号（does not just blindly pass along a signal），而是根据输入“决定”要不要放电，放电叫动作电位（**action potential**）。兴奋性输入推动放电，抑制性输入阻碍放电；只有兴奋性输入足够多时，才会短暂放一次电。人工神经元也模仿这一点：用激活函数（**activation function**）决定输出有多强。",
+        "en": "False. A neuron 'decides' whether or not to fire (an action potential) based on its inputs."
+      }
+    },
+    {
+      "id": "lec07-q04",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s03-neuron-parts-mapping",
+      "prompt": {
+        "en": "The slides show a biological neuron next to an artificial neuron. Which of the following correctly match a part of the biological neuron with its role in the artificial neuron? Select all that apply.",
+        "zh": "课件把生物神经元和人工神经元并排画出。下面哪些把生物神经元的部件和它在人工神经元里的角色对应正确？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "Dendrites correspond to the activation function f.",
+          "zh": "树突（dendrites）对应激活函数 f。"
+        },
+        {
+          "en": "Synapses correspond to the weights w1, w2, w3 that the inputs are multiplied by.",
+          "zh": "突触（synapses）对应权重 w1、w2、w3，输入要乘上它们。"
+        },
+        {
+          "en": "The axons of other cells correspond to the output layer of the network.",
+          "zh": "其他细胞的轴突（axons of other cells）对应网络的输出层。"
+        },
+        {
+          "en": "The cell body corresponds to the part that adds up the weighted inputs (w1x1 + w2x2 + ... + b).",
+          "zh": "细胞体（cell body）对应把加权输入加起来的部分（w1x1 + w2x2 + ... + b）。"
+        },
+        {
+          "en": "The axon corresponds to the output line that carries f(w1x1 + w2x2 + ... + b) to other neurons.",
+          "zh": "轴突（axon）对应把 f(w1x1 + w2x2 + ... + b) 送到其他神经元的输出线。"
+        }
+      ],
+      "answer": [
+        1,
+        3,
+        4
+      ],
+      "explain": {
+        "zh": "正确的是：突触 ↔ 权重、细胞体 ↔ 求和、轴突 ↔ 输出线。看 p.5 右图的标签：输入 x1、x2、x3 来自“其他细胞的轴突”（**axons of other cells**）；权重 w1、w2、w3 那几个点下面写着 **Synapses**；乘完的 w1x1、w2x2、w3x3 沿着 **Dendrites** 流进大圆 **Cell body**，在那里加起来；小圆 f 是激活函数（**activation function**）；输出 f(...) 沿 **Axon** 送出去，成为其他神经元的输入。\n错的两项：树突负责把信号“带进”神经元（p.7），对应的是加权输入那几条箭头，不是 f；“其他细胞的轴突”是输入的来源（x1、x2、x3 从那里来），不是输出层。",
+        "en": "Synapses = weights, cell body = sum of weighted inputs, axon = output line. Dendrites carry the weighted inputs in, and the axons of other cells supply the inputs."
+      }
+    },
+    {
+      "id": "lec07-q05",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s03-neuron-parts-mapping",
+      "prompt": {
+        "en": "Explain the relationship between a biological neuron and an artificial neuron. Describe how the parts correspond, and give at least two ways in which the analogy breaks down.",
+        "zh": "解释生物神经元和人工神经元之间的关系。说明各部件怎样对应，并至少举出两个类比不成立的地方。"
+      },
+      "modelAnswer": {
+        "en": "Artificial neurons are structures coded to emulate some of the behaviour of biological neurons, and a neural network is made of many interacting artificial neurons. In a biological neuron, dendrites carry signals from other cells into the cell body, where the signals either meet the threshold for an action potential or not. If the neuron fires, the signal travels along the axon to other cells, and information passes between cells at synapses. In an artificial neuron, each input x1, x2, ... is multiplied by a weight, which sits where the synapse is and decides whether the input is excitatory or inhibitory, and by how much. The weighted inputs travel along the dendrites into the cell body. The cell body adds up the weighted inputs, the activation function decides the strength of the output, and the output travels like the axon's signal to other neurons. However, the analogy ends: artificial neurons are millions of times faster, their activation functions are not all-or-nothing, the brain has far more connections, and artificial networks need much more power.",
+        "zh": "得分结构：① 一句话总关系：人工神经元模仿生物神经元的部分行为；② 生物神经元怎样工作：树突接收 → 细胞体汇总、看是否达到门槛 → 放电（动作电位）→ 沿轴突送出，突触处传递信息；③ 一一对应：输入 x ↔ 别的细胞传来的信号，权重 ↔ 突触（决定兴奋/抑制及程度），加权输入沿树突进入细胞体，求和 ↔ 细胞体，激活函数 ↔ 决定输出强度（像决定放不放电），输出 ↔ 轴突；④ 至少两个不同点（速度、连接密度、可塑性、激活函数、训练、成本）。写不同点时注意方向：人工的更快、更耗电；人脑的连接更多。"
+      },
+      "points": [
+        {
+          "en": "States that artificial neurons emulate (some of) the behaviour of biological neurons, and that neural networks are built from many interacting artificial neurons.",
+          "zh": "说明人工神经元模仿生物神经元的（部分）行为；神经网络由许多互相作用的人工神经元组成。"
+        },
+        {
+          "en": "Describes the biological neuron: dendrites bring signals in, the cell body checks the threshold, an action potential travels along the axon, and synapses transfer information between cells.",
+          "zh": "描述生物神经元：树突把信号带进来，细胞体看是否达到门槛，动作电位沿轴突传出，突触处在细胞间传递信息。"
+        },
+        {
+          "en": "Maps the parts: inputs are multiplied by weights at the synapses, the weighted inputs travel along the dendrites, the cell body sums them, the activation function sets the output strength, and the output goes along the axon to other neurons.",
+          "zh": "写出对应：输入在突触的位置乘权重，加权输入沿树突进入，细胞体把它们相加，激活函数决定输出强度，输出沿轴突送给其他神经元。"
+        },
+        {
+          "en": "Explains that the weights decide whether each input is excitatory or inhibitory, and by how much.",
+          "zh": "说明权重决定每个输入是兴奋性还是抑制性，以及程度多大。"
+        },
+        {
+          "en": "Gives at least two correct differences from slide 10 (speed, connection density, plasticity, activation function, training, cost) in the right direction.",
+          "zh": "至少写出 p.10 的两个不同点（速度、连接密度、可塑性、激活函数、训练、成本），而且方向写对。"
+        }
+      ],
+      "explain": {
+        "zh": "这题直接对应学习目标 1（LO1）。答题顺序：先一句话总关系，再写生物神经元怎样工作，再逐个部件对应，最后写“类比到此为止”（p.10：This is where the analogy ends）。常见丢分：① 把树突说成输出（树突是“进”，轴突是“出”）；② 说人工网络的连接比人脑多（反了：人脑有几百万亿个突触，最大的网络约 1 万亿个参数）；③ 说人工激活函数和生物一样“要么放、要么不放”（课件说人工的不是全有或全无）。图里的 b 课件没有命名，照写公式即可。"
+      }
+    },
+    {
+      "id": "lec07-q06",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s04-artificial-neuron",
+      "prompt": {
+        "en": "Which sequence correctly describes how an artificial neuron produces its output?",
+        "zh": "下面哪个顺序正确描述了人工神经元产生输出的过程？"
+      },
+      "options": [
+        {
+          "en": "Apply the activation function to each input, add the results, then multiply the sum by a single weight.",
+          "zh": "先对每个输入用激活函数，把结果相加，再把和乘上一个权重。"
+        },
+        {
+          "en": "Add the inputs together, apply the activation function, then multiply the result by each weight.",
+          "zh": "先把输入加起来，用激活函数，再把结果乘上每个权重。"
+        },
+        {
+          "en": "Multiply all the inputs together, then fire only if the product is above a threshold.",
+          "zh": "把所有输入相乘，乘积超过门槛才放电。"
+        },
+        {
+          "en": "Multiply each input by its weight, add them up, then apply the activation function.",
+          "zh": "每个输入乘上自己的权重，加起来，再对这个和用激活函数。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "答案：先乘权重 → 再相加 → 最后用激活函数。课件 p.9：权重 w1、w2… 与输入相乘（Weights … are multiplied with the inputs）；激活函数作用在加权输入之和上（applied to the sum of the weighted inputs），决定输出的强度。图里写成 f(w1x1 + w2x2 + ··· + b)：括号里先算加权和，最后才套 f。\n其他顺序都不对：激活函数是最后一步，不在乘权重之前；输入之间不会互相相乘；“超过门槛才放电”是生物神经元全有或全无的方式，课件 p.10–11 说人工激活函数不是全有或全无（not all-or-nothing）。",
+        "en": "Each input is multiplied by its weight, the weighted inputs are added, and the activation function is applied to the sum: f(w1x1 + w2x2 + ... + b)."
+      }
+    },
+    {
+      "id": "lec07-q07",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s05-analogy-ends-activation",
+      "prompt": {
+        "en": "Slide 11 shows the graphs of two common activation functions, Sigmoid and Rectified Linear Unit (ReLU). Which statement matches the graphs?",
+        "zh": "第 11 页画了两种常见激活函数的图像：Sigmoid 和 Rectified Linear Unit（ReLU，修正线性单元）。哪句话和图相符？"
+      },
+      "options": [
+        {
+          "en": "Both functions are all-or-nothing: they output only 0 or 1.",
+          "zh": "两个都是全有或全无：只输出 0 或 1。"
+        },
+        {
+          "en": "ReLU outputs 0 for every negative input, while Sigmoid's output stays between 0 and 1.",
+          "zh": "ReLU 对所有负数输入都输出 0；Sigmoid 的输出始终在 0 到 1 之间。"
+        },
+        {
+          "en": "Sigmoid outputs 0 for every negative input, while ReLU's output stays between 0 and 1.",
+          "zh": "Sigmoid 对所有负数输入都输出 0；ReLU 的输出始终在 0 到 1 之间。"
+        },
+        {
+          "en": "Both functions give negative outputs when the input is negative.",
+          "zh": "输入是负数时，两个函数都输出负数。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "答案：ReLU 对负数输入输出 0，Sigmoid 的输出在 0 到 1 之间。读图：Sigmoid 是一条平滑的 S 形曲线，纵轴从 0 到 1.0，输入很负时接近 0，输入为 0 时约 0.5，输入很大时接近 1；ReLU 在所有负数输入处都是 0（平的），正数部分是一条往上的直线，输入 10 时输出 10。\n“只输出 0 或 1”错：课件 p.11 说激活函数不是全有或全无（not all-or-nothing）。把两者特点对调的选项错：Sigmoid 对负数输入输出 0 到 0.5 之间的正数（输入越负越接近 0），不是正好 0；ReLU 可以输出到 10，不限于 0 到 1。“输出负数”也错：两张图都没有低于 0 的部分。注意：课件说数学原因超出课程范围，不用背公式。",
+        "en": "ReLU is flat at 0 for negative inputs and rises as a straight line for positive inputs; Sigmoid is an S-shaped curve between 0 and 1. Neither is all-or-nothing."
+      }
+    },
+    {
+      "id": "lec07-q08",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s05-analogy-ends-activation",
+      "prompt": {
+        "en": "According to slide 10, which of the following are ways in which artificial neural networks are NOT like biological brains? Select all that apply.",
+        "zh": "根据第 10 页，下面哪些是人工神经网络“不像”生物大脑的地方？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "Speed: artificial neurons are many (millions of) times faster.",
+          "zh": "速度：人工神经元快很多（快几百万倍）。"
+        },
+        {
+          "en": "Connection density: the largest neural nets have far more connections than a human brain.",
+          "zh": "连接密度：最大的神经网络的连接比人脑多得多。"
+        },
+        {
+          "en": "Cost: artificial neural networks require much more power to run.",
+          "zh": "成本：人工神经网络运行需要多得多的电力。"
+        },
+        {
+          "en": "Plasticity: artificial neurons are living cells that can replicate as needed.",
+          "zh": "可塑性：人工神经元是活细胞，需要时可以增殖（自我复制）。"
+        },
+        {
+          "en": "Activation function: artificial activation functions are not as all-or-nothing as biological action potentials.",
+          "zh": "激活函数：人工激活函数不像生物动作电位那样全有或全无。"
+        },
+        {
+          "en": "Training: training artificial neural nets is known to be biologically implausible.",
+          "zh": "训练：人工神经网络的训练方式被认为在生物学上不太可信（大脑很可能不是这样学习的）。"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "explain": {
+        "zh": "正确的是速度、成本、激活函数、训练这四项，都是 p.10 原话。\n两个陷阱：① 连接密度说反了：人脑有几百万亿（100s of trillions）个突触，最大的新型神经网络只有约 1 万亿（~1 trillion）个参数，人脑的连接多得多；② 可塑性说反了：课件说的是“生物神经元是活细胞，能按需增殖（replicate）”，人工神经元只是代码写出的结构，不是活细胞。",
+        "en": "Speed, cost, activation function and training are on slide 10. The brain has more connections (100s of trillions of synapses vs ~1 trillion parameters), and it is biological neurons that are living cells."
+      }
+    },
+    {
+      "id": "lec07-q09",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s05-analogy-ends-activation",
+      "prompt": {
+        "en": "Slide 10 says a human brain has 100s of trillions of synapses, and the largest recent neural nets have ~1 trillion parameters. Use 100 trillion for the brain. The number of synapses is how many times the number of parameters?",
+        "zh": "第 10 页说：人脑有几百万亿（100s of trillions）个突触，最大的新型神经网络约有 1 万亿（~1 trillion）个参数。人脑按 100 万亿算（符合“几百万亿”的最小值）。突触数是参数数的多少倍？"
+      },
+      "answer": 100,
+      "tolerance": 0,
+      "unit": "times",
+      "explain": {
+        "zh": "答案：100 倍。\n第 1 步：100 trillion ÷ 1 trillion = 100。\n第 2 步：“100s of trillions”指几百万亿，100 只是最小的估计，真实差距是“几百倍”。\n为什么拿突触和参数比：在 p.5 的图里，权重（参数）正好画在突触（**synapses**）的位置。常见错误：方向说反，以为神经网络的连接更多。这就是课件说的连接密度（**connection density**）不同点。",
+        "en": "100 trillion / 1 trillion = 100, so the brain has at least about 100 times as many connections."
+      }
+    },
+    {
+      "id": "lec07-q10",
+      "type": "tf",
+      "difficulty": 1,
+      "sectionId": "s06-layers",
+      "prompt": {
+        "en": "When we count the layers in a neural net, both the input layer and the output layer count as layers.",
+        "zh": "数神经网络的层数时，输入层和输出层都算作一层。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错（False）。课件 p.17：数层数时输出层算一层，输入层不算（the output layer counts as one layer, but the input layer does not）。原因：输入层其实不是由神经元组成（Not actually composed of neurons），只是把输入值传给下一层（p.15）。所以 p.17 的网络（INPUT → LAYER 1 → LAYER 2 → OUTPUT）是 3 层，不是 4 层；单层网络（single-layer network）没有隐藏层。",
+        "en": "False. The output layer counts as one layer, but the input layer does not, so the slide 17 network has 3 layers."
+      }
+    },
+    {
+      "id": "lec07-q11",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s06-layers",
+      "prompt": {
+        "en": "The network on slide 17 has three inputs (x1, x2, x3), LAYER 1 with 4 circles, LAYER 2 with 3 circles, and an OUTPUT layer with 1 circle. How many neurons does this network contain?",
+        "zh": "第 17 页的网络有 3 个输入（x1、x2、x3），LAYER 1 有 4 个圆圈，LAYER 2 有 3 个圆圈，OUTPUT 层有 1 个圆圈。这个网络一共有多少个神经元？"
+      },
+      "answer": 8,
+      "tolerance": 0,
+      "unit": "neurons",
+      "explain": {
+        "zh": "答案：8 个。\n第 1 步：输入层不是由神经元组成（p.15：Not actually composed of neurons），x1、x2、x3 只是输入值，不算神经元。\n第 2 步：只数圆圈：4 + 3 + 1 = 8。\n常见错误：把输入也算进去，得到 3 + 4 + 3 + 1 = 11；或者把层数 3 当成神经元个数。分清楚：这个网络有 3 层、2 个隐藏层、8 个神经元。",
+        "en": "Inputs are not neurons, so count only the circles: 4 + 3 + 1 = 8."
+      }
+    },
+    {
+      "id": "lec07-q12",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s07-inference-feed-forward",
+      "prompt": {
+        "en": "Which statement about a feed-forward neural net is correct?",
+        "zh": "关于前馈神经网络（feed-forward neural net），哪句话正确？"
+      },
+      "options": [
+        {
+          "en": "Communication always proceeds forward through the layers, from input to output.",
+          "zh": "信息总是一层一层向前传，从输入到输出。"
+        },
+        {
+          "en": "Neurons send signals backwards to earlier layers, which is what 'feed-forward' means.",
+          "zh": "神经元把信号往回传给前面的层，这就是“前馈”的意思。"
+        },
+        {
+          "en": "During inference, the feature vector enters at the output layer and the final result comes out of the input layer.",
+          "zh": "推理时，特征向量从输出层进入，最终结果从输入层出来。"
+        },
+        {
+          "en": "Each neuron mainly communicates with the other neurons in its own layer.",
+          "zh": "每个神经元主要和同一层的其他神经元交流。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "答案：总是从输入往输出向前传（p.19 原话：communication always proceeds forward through the layers, from input to output）。\n往回传（backwards communication）叫循环（**recurrence**），只有一些更复杂的网络才有，正好是前馈的反面。推理（**inference**）的方向也说反了：p.18 是特征向量从输入层进入 → 经过隐藏层被变换 → 在输出层产生最终结果。p.14 说大多数情况下，神经元不和同一层的其他神经元交流，只从前一层接收、向下一层发送。",
+        "en": "Feed-forward means information always moves forward from input to output; backwards communication is called recurrence."
+      }
+    },
+    {
+      "id": "lec07-q13",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s08-why-hidden-layers",
+      "prompt": {
+        "en": "According to the slides, what is the cost of adding hidden layers to a neural network?",
+        "zh": "根据课件，给神经网络加隐藏层要付出什么代价？"
+      },
+      "options": [
+        {
+          "en": "The network can then only produce a linear decision boundary.",
+          "zh": "网络之后只能画出线性的决策边界。"
+        },
+        {
+          "en": "The network must remove its input layer to make room for the hidden layers.",
+          "zh": "网络必须去掉输入层，给隐藏层腾位置。"
+        },
+        {
+          "en": "More neurons and parameters, so training needs more time and data.",
+          "zh": "神经元和参数更多，所以训练需要更多时间和数据。"
+        },
+        {
+          "en": "The network stops being feed-forward and has to use recurrence.",
+          "zh": "网络不再是前馈的，必须使用循环（recurrence）。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "答案：更多神经元和参数 → 训练更花时间、需要更多数据（p.20 原话）。这是代价；好处是能在数据空间里表示更复杂的形状。\n“只能画线性边界”说反了：那是“没有”隐藏层时的限制（p.25）。每个神经网络都有输入层（p.15、p.28），加隐藏层不会去掉它。MLP 有隐藏层，但仍然是前馈（**feed-forward**）网络（p.30），所以有隐藏层不等于要用循环。",
+        "en": "Hidden layers add neurons and parameters, so training takes more time and requires more data; the benefit is representing more complicated shapes."
+      }
+    },
+    {
+      "id": "lec07-q14",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s08-why-hidden-layers",
+      "prompt": {
+        "en": "Explain the importance of hidden layers in neural networks. In your answer, discuss their cost and benefit, linear separability (using the XOR data from the TensorFlow Playground activity), and why multilayer networks were not used before the 1970s.",
+        "zh": "解释隐藏层在神经网络中的重要性。回答中要讨论：隐藏层的代价和好处、线性可分（结合 TensorFlow Playground 活动里的 XOR 数据），以及为什么 1970 年代以前没有使用多层网络。"
+      },
+      "modelAnswer": {
+        "en": "Hidden layers are the layers between the input layer and the output layer; they are hidden because they do not communicate with the outside world. Adding hidden layers has a cost: there are more neurons and more parameters to learn, so training takes more time and requires more data. The benefit is that hidden layers give the network the power to represent more complicated shapes in the data space. Without at least one hidden layer, a network can only produce a linear decision boundary. In the Playground activity, a network with 0 hidden layers separated two clusters with a straight line, but it failed on the XOR data, because XOR is not linearly separable. To get a good classifier, we need to add hidden layers. Historically, neural nets were developed in the 1950s but were limited to one layer, because multilayer networks couldn't be trained; this contributed to the First AI Winter. Backpropagation, developed in the 1970s, unlocked multilayer networks, which (with sufficient size) are Universal Function Approximators.",
+        "zh": "得分结构：① 定义：隐藏层在输入层和输出层之间，不和外界交流；② 代价：参数更多 → 训练更慢、要更多数据；③ 好处：能表示更复杂的形状，没有隐藏层只能画直线边界；④ 活动证据：0 个隐藏层能分开两团点，但分不开线性不可分的 XOR（一条直线、很多点分错、loss 很高），要加隐藏层；⑤ 历史：1950 年代只能单层 → 第一次 AI 寒冬；1970 年代反向传播让多层网络能训练；足够大的多层网络是万能函数逼近器。"
+      },
+      "points": [
+        {
+          "en": "Defines hidden layers as the layers between input and output that do not communicate with the outside world.",
+          "zh": "定义：隐藏层在输入层和输出层之间，不和外界交流。"
+        },
+        {
+          "en": "Cost: more neurons and parameters, so training takes more time and requires more data.",
+          "zh": "代价：神经元和参数更多，训练更花时间、需要更多数据。"
+        },
+        {
+          "en": "Benefit: more complicated shapes in the data space; without a hidden layer, only a linear decision boundary is possible.",
+          "zh": "好处：能表示数据空间里更复杂的形状；没有隐藏层只能画线性决策边界。"
+        },
+        {
+          "en": "Uses the activity: XOR is not linearly separable, so a network with 0 hidden layers fails and hidden layers are needed.",
+          "zh": "用活动举例：XOR 线性不可分，0 个隐藏层的网络失败，需要加隐藏层。"
+        },
+        {
+          "en": "History: 1950s nets were limited to one layer (a major contributor to the First AI Winter); backpropagation in the 1970s unlocked multilayer networks, which are Universal Function Approximators.",
+          "zh": "历史：1950 年代只能单层（第一次 AI 寒冬的主要原因之一）；1970 年代反向传播解锁多层网络，多层网络是万能函数逼近器。"
+        }
+      ],
+      "explain": {
+        "zh": "这题对应学习目标 2（LO2），把 p.20–26 的道理、课堂活动和历史串在一起。按“代价 → 好处 → 活动证据 → 历史”的顺序写最清楚。注意：课件没有说解决 XOR 具体需要几层、几个节点，不要编数字；无法训练多层网络只能说是第一次 AI 寒冬的“主要原因之一”（a major cause / contributor），不要说成唯一原因。"
+      }
+    },
+    {
+      "id": "lec07-q15",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s09-activity-linear-separability",
+      "prompt": {
+        "en": "In the TensorFlow Playground activity, a network with 0 hidden layers was trained on the XOR (four-quadrant) data. What happened?",
+        "zh": "在 TensorFlow Playground 课堂活动中，用 0 个隐藏层的网络训练 XOR（四个象限）数据。结果怎样？"
+      },
+      "options": [
+        {
+          "en": "It learned a curved boundary that separated the four quadrants perfectly.",
+          "zh": "它学出一条弯曲的边界，完美分开了四个象限。"
+        },
+        {
+          "en": "It separated the data perfectly, just as it did with the two separate clusters.",
+          "zh": "它和处理两团分开的点时一样，完美分开了数据。"
+        },
+        {
+          "en": "It could not start training until at least one hidden layer was added.",
+          "zh": "必须先加至少一个隐藏层，它才能开始训练。"
+        },
+        {
+          "en": "It still drew one straight line, so many points were misclassified.",
+          "zh": "它仍然只画了一条直线，所以很多点被分错。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "答案：只能画一条直线，很多点分错，loss 很高。p.23 截图：0 HIDDEN LAYERS，背景被一条斜直线分开，Test loss 0.836、Training loss 0.826；而 p.21–22 用两团分开的点时 loss 是 0.001 / 0.000，几乎完美。原因（p.25）：没有至少一个隐藏层，网络只能产生线性决策边界，而 XOR 数据不是线性可分（**linearly separable**）的。\n“弯曲边界”需要隐藏层，0 个隐藏层画不出来；“和两团点一样完美”与截图不符；“必须先加隐藏层才能训练”也不对：p.21–22 里 0 个隐藏层的网络照样能训练（两团点的 loss 0.001 / 0.000）；0 个隐藏层能训练，只是只能画直线。",
+        "en": "With no hidden layer, the network can only produce a linear decision boundary, and XOR is not linearly separable, so the loss stayed high (0.836 / 0.826)."
+      }
+    },
+    {
+      "id": "lec07-q16",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s10-backprop-history",
+      "prompt": {
+        "en": "The slides say that multilayer neural networks are Universal Function Approximators. What does this mean?",
+        "zh": "课件说多层神经网络是万能函数逼近器（Universal Function Approximators）。这是什么意思？"
+      },
+      "options": [
+        {
+          "en": "They are guaranteed to reach 100% accuracy on any test set.",
+          "zh": "它们在任何测试集上都保证 100% 准确。"
+        },
+        {
+          "en": "With sufficient size, they can produce any decision boundary to arbitrary precision.",
+          "zh": "只要规模足够大，它们能以任意精度画出任何决策边界。"
+        },
+        {
+          "en": "They can be used without any training, because they already contain every function.",
+          "zh": "它们不需要任何训练就能用，因为已经包含了所有函数。"
+        },
+        {
+          "en": "They can only produce linear decision boundaries, but they produce them very quickly.",
+          "zh": "它们只能画线性决策边界，但画得很快。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "答案：只要足够大，能以任意精度画出任何决策边界（p.26 原话：(with sufficient size), they can produce any decision boundary in the data space to arbitrary precision）。\n“保证 100% 准确”错：课件说的是“能画出”任何边界，没说在新数据上一定全对。“不需要训练”错：神经网络要通过优化权重来训练（p.12），隐藏层越多，训练越需要数据（p.20）。“只能画线性边界”是没有隐藏层的感知机（**Perceptron**）的限制，正好和多层网络相反。",
+        "en": "With sufficient size, multilayer networks can produce any decision boundary to arbitrary precision; this does not mean perfect test accuracy or no training."
+      }
+    },
+    {
+      "id": "lec07-q17",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s10-backprop-history",
+      "prompt": {
+        "en": "What is backpropagation, and why was its development in the 1970s important for neural networks?",
+        "zh": "什么是反向传播（backpropagation）？为什么它在 1970 年代出现对神经网络很重要？"
+      },
+      "modelAnswer": {
+        "en": "Backpropagation is a method for efficiently determining weight updates throughout the network, and it is used together with gradient descent to train neural nets. Before it, multilayer networks could not be trained, so the neural nets of the 1950s were limited to one layer, which was a major cause of the First AI Winter. Backpropagation, developed in the 1970s, unlocked multilayer networks with hidden layers.",
+        "zh": "第 1 句：定义（高效确定整个网络中权重的更新，和梯度下降一起用来训练）。第 2 句：没有它之前多层网络训练不了 → 1950 年代的网络只能有一层 → 第一次 AI 寒冬的主要原因之一。第 3 句：1970 年代的反向传播解锁了多层网络。"
+      },
+      "points": [
+        {
+          "en": "Defines backpropagation as a method for efficiently determining weight updates throughout the network (used with gradient descent).",
+          "zh": "定义：高效确定整个网络权重更新的方法（和梯度下降一起用）。"
+        },
+        {
+          "en": "Before it, multilayer networks could not be trained, so 1950s neural nets were limited to one layer (no hidden layers).",
+          "zh": "在它之前多层网络训练不了，所以 1950 年代的神经网络只能有一层（没有隐藏层）。"
+        },
+        {
+          "en": "This was a major cause of the First AI Winter, when interest in AI crashed.",
+          "zh": "这是第一次 AI 寒冬（大家对 AI 的兴趣崩盘）的主要原因之一。"
+        },
+        {
+          "en": "Developed in the 1970s, backpropagation unlocked multilayer networks.",
+          "zh": "1970 年代出现的反向传播解锁了多层网络。"
+        }
+      ],
+      "explain": {
+        "zh": "要点是“定义 + 因果链”。常见错误：① 年代写错（神经网络 1950 年代出现；反向传播 1970 年代出现）；② 把反向传播（训练时确定权重更新的方法）和循环（**recurrence**，有些网络里信息往回传）混为一谈；③ 课件没有写反向传播是谁发明的，也没写 AI 寒冬的具体年份，不要自己补。"
+      }
+    },
+    {
+      "id": "lec07-q18",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s11-architectures-perceptron-mlp",
+      "prompt": {
+        "en": "A network's inputs x1, x2 and x3 connect directly to a single output neuron, with no layers in between. Which architecture is this, and what can it produce?",
+        "zh": "一个网络的输入 x1、x2、x3 直接连到一个输出神经元，中间没有任何层。这是哪种架构？它能产生什么？"
+      },
+      "options": [
+        {
+          "en": "A Perceptron; it can only produce linear models.",
+          "zh": "感知机（Perceptron）；只能产生线性模型。"
+        },
+        {
+          "en": "A Multilayer Perceptron (MLP); it can solve any classification problem.",
+          "zh": "多层感知机（MLP）；能解决任何分类问题。"
+        },
+        {
+          "en": "A deep learning network; it can produce any decision boundary.",
+          "zh": "深度学习网络；能画出任何决策边界。"
+        },
+        {
+          "en": "An autoencoder; it recreates its input at the output.",
+          "zh": "自编码器；在输出端重建输入。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "答案：Perceptron，只能产生线性模型（p.29：neural net with no hidden layers – all inputs connect directly to all outputs. It can only produce linear models.）。所以它分不开 XOR。\nMLP 至少有一个隐藏层（one or more hidden layers，p.30）；深度学习至少有 2 个隐藏层（p.31）；自编码器中间要收窄成瓶颈，输出要和输入一样多（p.32）。这个网络没有隐藏层、只有 1 个输出，都不符合。",
+        "en": "No hidden layers with the inputs connected directly to the output is a Perceptron, which can only produce linear models."
+      }
+    },
+    {
+      "id": "lec07-q19",
+      "type": "calc",
+      "difficulty": 3,
+      "sectionId": "s11-architectures-perceptron-mlp",
+      "prompt": {
+        "en": "The Multilayer Perceptron on slide 30 is fully-connected (all nodes in adjacent layers are connected). It has 3 inputs (x1, x2, x3), a hidden layer of 4 neurons, a hidden layer of 3 neurons, and 1 output neuron. Each arrow in the diagram is one connection with its own weight. How many connections does the network have?",
+        "zh": "第 30 页的多层感知机是全连接的（相邻层的所有节点都相连）。它有 3 个输入（x1、x2、x3）、一个 4 个神经元的隐藏层、一个 3 个神经元的隐藏层和 1 个输出神经元。图中每个箭头是一条连接，各有自己的权重。这个网络一共有多少条连接？"
+      },
+      "answer": 27,
+      "tolerance": 0,
+      "unit": "connections",
+      "explain": {
+        "zh": "答案：27 条（由图推算，课件没有直接写这个数）。\n第 1 步：全连接（**fully-connected**）= 相邻两层两两相连，所以每一段的连接数 = 前一层个数 × 后一层个数。\n第 2 步：输入 → LAYER 1：3 × 4 = 12；LAYER 1 → LAYER 2：4 × 3 = 12；LAYER 2 → 输出：3 × 1 = 3。\n第 3 步：12 + 12 + 3 = 27。\n常见错误：把个数相加（3 + 4 + 3 + 1 = 11）；或者把不相邻的层也连起来（p.14 说大多数情况下神经元只和前一层、后一层交流）。图里的 b 没有画成箭头，不算。",
+        "en": "3 x 4 + 4 x 3 + 3 x 1 = 12 + 12 + 3 = 27."
+      }
+    },
+    {
+      "id": "lec07-q20",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s12-deep-learning-cnn",
+      "prompt": {
+        "en": "According to the slides, which kind of task is a Convolutional Network specialized for?",
+        "zh": "根据课件，卷积网络（Convolutional Network）专门用于哪类任务？"
+      },
+      "options": [
+        {
+          "en": "Tasks where one network makes fake data and another network tries to catch the fakes.",
+          "zh": "一个网络造假数据、另一个网络负责抓假数据的任务。"
+        },
+        {
+          "en": "Tasks where the network must recreate its input at the output after squeezing it through a bottleneck.",
+          "zh": "网络要先把输入挤过瓶颈、再在输出端重建输入的任务。"
+        },
+        {
+          "en": "Tasks where the spatial relationship between input features matters, like images or board games.",
+          "zh": "输入特征之间的空间关系很重要的任务，比如图像或棋盘游戏。"
+        },
+        {
+          "en": "Tasks where the data is linearly separable, so no hidden layers are needed.",
+          "zh": "数据线性可分、所以不需要隐藏层的任务。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "答案：空间关系重要的任务（p.36：specialized for domains where the spatial relationship between input features is important），最常见是图像像素，也包括棋盘游戏。局部的一小团特征被送进卷积层（**convolution layer**），检测出“边”（edges）这样的更高级特征。\n其他选项是别的架构：造假和抓假 = GAN（生成器 + 判别器）；挤过瓶颈再重建 = 自编码器（**autoencoder**）；线性可分、不需要隐藏层 = 感知机（**Perceptron**）。卷积网络本身是深度神经网络（deep neural net），有隐藏层。",
+        "en": "Convolutional Networks are for domains where the spatial relationship between input features matters, such as image pixels or board games."
+      }
+    },
+    {
+      "id": "lec07-q21",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s10-backprop-history",
+      "prompt": {
+        "en": "Backpropagation is a network structure that lets signals travel backwards; it is another name for recurrence.",
+        "zh": "反向传播（backpropagation）是一种让信号往回传的网络结构，它就是循环（recurrence）的另一个名字。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错（False）。反向传播是训练时用的方法：a method for efficiently determining weight updates throughout the network（高效确定整个网络里权重怎样更新，p.12），和梯度下降一起用来训练神经网络。循环（**recurrence**）是一些更复杂的网络允许往回传（backwards communication）的结构（p.19）。一个是训练方法，一个是网络结构；两个都和“往回”有关，所以很容易混。",
+        "en": "False. Backpropagation is a training method for efficiently determining weight updates (slide 12); recurrence is backwards communication in some more sophisticated networks (slide 19)."
+      }
+    },
+    {
+      "id": "lec07-q22",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s12-deep-learning-cnn",
+      "prompt": {
+        "en": "The deep learning example on slide 31 has three inputs (x1, x2, x3), then five hidden layers (with 4, 4, 4, 3 and 3 neurons), then an output layer with 1 neuron. Using the layer-counting rule from the slides, how many layers does this network have?",
+        "zh": "第 31 页的深度学习例子：3 个输入（x1、x2、x3），然后是 5 个隐藏层（分别有 4、4、4、3、3 个神经元），最后是 1 个神经元的输出层。按课件数层数的规则，这个网络有几层？"
+      },
+      "answer": 6,
+      "tolerance": 0,
+      "unit": "layers",
+      "explain": {
+        "zh": "答案：6 层。\n规则（p.17）：输出层算一层，输入层不算。\n计算：5 个隐藏层 + 1 个输出层 = 6。\n常见错误：把输入层也算进去得 7；忘了输出层得 5；把神经元个数 4 + 4 + 4 + 3 + 3 + 1 = 19 当成层数。它有 5 个隐藏层（至少 2 个），所以符合深度学习（**deep learning**）的定义。",
+        "en": "5 hidden layers + 1 output layer = 6; the input layer does not count."
+      }
+    },
+    {
+      "id": "lec07-q23",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s13-autoencoder",
+      "prompt": {
+        "en": "Which of the following statements about autoencoders are correct according to the slides? Select all that apply.",
+        "zh": "根据课件，下面关于自编码器（autoencoder）的说法哪些正确？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "It contains a discriminator that decides whether its input is real or fake.",
+          "zh": "它包含一个判别器，判断输入是真是假。"
+        },
+        {
+          "en": "It narrows to a bottleneck in the middle.",
+          "zh": "它在中间收窄成一个瓶颈（bottleneck）。"
+        },
+        {
+          "en": "To train it, we try to recreate the input at the output.",
+          "zh": "训练时，我们让输出尽量重建（还原）输入。"
+        },
+        {
+          "en": "The encoder shrinks the input into a smaller feature embedding space, and the decoder reproduces the original input.",
+          "zh": "编码器把输入压缩进更小的特征嵌入空间，解码器再还原出原始输入。"
+        },
+        {
+          "en": "Because of the bottleneck, no information is ever lost.",
+          "zh": "因为有瓶颈，所以一点信息都不会丢。"
+        },
+        {
+          "en": "It can be used to reduce the size of data we need to transfer or store.",
+          "zh": "它可以用来减小需要传输或存储的数据量。"
+        }
+      ],
+      "answer": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "explain": {
+        "zh": "正确：瓶颈、重建输入、编码器/解码器分工、减小数据量（p.32–33 原话）。\n错的两项：判别器（**discriminator**）是 GAN 的部件，不属于自编码器；课件说正因为有瓶颈，一些信息会丢失（some information will be lost），所以目标是减少损失（reduce the loss），而不是“一点不丢”。p.32 的图：5 个输入 → 3 → 瓶颈 2 → 3 → 5 个重建（RECONSTRUCTION）输出。",
+        "en": "Autoencoders narrow to a bottleneck, try to recreate the input, split into an encoder and a decoder, and can reduce data size. Some information is lost, and discriminators belong to GANs."
+      }
+    },
+    {
+      "id": "lec07-q24",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s14-gan",
+      "prompt": {
+        "en": "In a Generative Adversarial Network (GAN), what is the job of the discriminator?",
+        "zh": "在生成对抗网络（GAN）中，判别器（discriminator）的任务是什么？"
+      },
+      "options": [
+        {
+          "en": "To produce convincing fake data, such as images, from random noise.",
+          "zh": "从随机噪声出发，做出以假乱真的假数据，比如图片。"
+        },
+        {
+          "en": "To tell real data apart from the generator's fake data.",
+          "zh": "区分真实数据和生成器造出的假数据。"
+        },
+        {
+          "en": "To give the generator a random starting point.",
+          "zh": "给生成器一个随机的起点。"
+        },
+        {
+          "en": "To recreate its input at the output through a bottleneck.",
+          "zh": "通过瓶颈在输出端重建输入。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "答案：区分真数据和生成器造的假数据（p.34），图里它的输出写着 REAL / FAKE。\n“做出以假乱真的假数据”是生成器（**generator**）的任务；“随机起点”是噪声输入（**noise**）的作用（p.34：The noise input just gives the generator a random starting point.）；“通过瓶颈重建输入”是自编码器。两个模型一起训练、都越来越强；训练结束后，生成器成为有用的生成模型（**generative model**，p.35）。",
+        "en": "The discriminator tries to tell real data from the generator's fake data; the generator makes the fakes."
+      }
+    },
+    {
+      "id": "lec07-q25",
+      "type": "multi",
+      "difficulty": 1,
+      "sectionId": "s15-transformer-llm",
+      "prompt": {
+        "en": "Which of the following statements about Large Language Models (LLMs) match the slides? Select all that apply.",
+        "zh": "下面关于大语言模型（LLM）的说法，哪些和课件一致？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "An LLM is a generative model trained on internet-scale text data.",
+          "zh": "LLM 是在互联网规模的文本数据上训练的生成模型。"
+        },
+        {
+          "en": "An LLM must be completely retrained before it can be used for each new task.",
+          "zh": "每做一个新任务，LLM 都必须完全重新训练。"
+        },
+        {
+          "en": "LLMs are called foundation models because they can be applied to many different tasks with little or no additional training.",
+          "zh": "LLM 被称为基础模型，因为它们几乎不用（或只用很少）额外训练就能用于很多不同任务。"
+        },
+        {
+          "en": "Modern LLMs are Perceptrons, so they have no hidden layers.",
+          "zh": "现代 LLM 是感知机，所以没有隐藏层。"
+        },
+        {
+          "en": "Under the hood, modern LLMs are deep neural networks that use the Transformer architecture.",
+          "zh": "从内部看，现代 LLM 是使用 Transformer 架构的深度神经网络。"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "explain": {
+        "zh": "正确的三项都是 p.39 原话：生成模型 + 互联网规模文本；基础模型（**foundation models**）= 几乎不用额外训练就能做很多任务；内部是使用 Transformer 架构的深度神经网络（p.37 也说 Transformer 是 LLM 的基础）。\n“每个新任务都要完全重新训练”正好和“基础模型”的意思相反；“LLM 是感知机、没有隐藏层”也错：LLM 是深度（deep）神经网络，而深度学习至少有 2 个隐藏层。",
+        "en": "LLMs are generative models trained on internet-scale text, are called foundation models, and are deep neural networks using the Transformer architecture."
+      }
+    },
+    {
+      "id": "lec07-q26",
+      "type": "calc",
+      "difficulty": 2,
+      "sectionId": "s15-transformer-llm",
+      "prompt": {
+        "en": "On slide 37, the Transformer's predicted next token for 'When Ann grew her ___' is: confidence 38%, business 20%, career 15%, fame 10%, followed by '⋮' (more tokens that are not shown). What total probability is left for all the tokens that are not shown?",
+        "zh": "第 37 页，Transformer 对 “When Ann grew her ___” 预测的下一个 token 是：confidence 38%、business 20%、career 15%、fame 10%，下面还有 “⋮”（没列出的其他 token）。没列出来的所有 token 加起来还剩多少概率？"
+      },
+      "answer": 17,
+      "tolerance": 0,
+      "unit": "%",
+      "explain": {
+        "zh": "答案：17%（由图推算）。\n第 1 步：一个概率分布里，所有候选的概率加起来是 100%。\n第 2 步：列出的四个：38 + 20 + 15 + 10 = 83%。\n第 3 步：100 − 83 = 17%。\n这说明最可能的 confidence 也只有 38%，剩下的概率分给了很多别的 token；最后选哪一个，还和温度（**Temperature**）设置有关（p.52）。",
+        "en": "38 + 20 + 15 + 10 = 83%, so 100 - 83 = 17% is left for the tokens not shown."
+      }
+    },
+    {
+      "id": "lec07-q27",
+      "type": "multi",
+      "difficulty": 2,
+      "sectionId": "s16-prompting-context",
+      "prompt": {
+        "en": "Which of the following statements about prompting are correct according to the slides? Select all that apply.",
+        "zh": "根据课件，下面关于提示（prompting）的说法哪些正确？选出所有正确项。"
+      },
+      "options": [
+        {
+          "en": "Prompting means describing a task for the machine in natural language.",
+          "zh": "提示就是用自然语言向机器描述任务。"
+        },
+        {
+          "en": "A prompt technically forces the LLM to follow it, in the same way that calling a function would.",
+          "zh": "prompt 在技术上会强制 LLM 照做，就像调用函数一样。"
+        },
+        {
+          "en": "Unlike other methods in AI, users can direct an LLM without needing to know any coding.",
+          "zh": "和 AI 的其他方法不同，用户完全不需要会编程就能指挥 LLM。"
+        },
+        {
+          "en": "Prompts can be ambiguous, which leads to variability in outcomes.",
+          "zh": "prompt 可能有歧义，导致结果多变。"
+        },
+        {
+          "en": "The context, which holds the prompts, is kept permanently after the session ends.",
+          "zh": "装着 prompt 的上下文（context）在会话结束后会被永久保留。"
+        }
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explain": {
+        "zh": "正确的三项都是 p.40 原话：用自然语言描述任务；不需要会编程；prompt 可能有歧义、结果多变。\n错的两项：p.40 说提示在技术上并不强制（doesn't technically force）LLM 做任何事，不像调用函数（Lecture 2 学的 function）那样；p.41 说 prompt 进入上下文（**context**），也就是 LLM 对目前这段对话的记忆，会话结束时上下文就消失（disappears），不是永久保留。",
+        "en": "Prompting uses natural language, needs no coding, and can be ambiguous. It does not technically force the LLM, and the context disappears at the end of a session."
+      }
+    },
+    {
+      "id": "lec07-q28",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s16-prompting-context",
+      "prompt": {
+        "en": "According to the slides, why will commercial LLMs usually try to answer your questions or complete your tasks?",
+        "zh": "根据课件，为什么商用 LLM 通常会努力回答你的问题、完成你的任务？"
+      },
+      "modelAnswer": {
+        "en": "LLMs have been pre-trained on internet-scale data to predict the text that comes next, and usually an answer follows a question. Commercial LLMs have also been trained to act as helpful assistants. Combined, these factors mean they usually try to answer, although this does not stop them from making mistakes.",
+        "zh": "两个原因 + 一个提醒：① 预训练（**pre-trained**）：学会预测接下来的文字，而问题后面通常跟着答案；② 商用 LLM 还被训练成乐于助人的助手（helpful assistants）；③ 但这挡不住它们犯错（p.42）。"
+      },
+      "points": [
+        {
+          "en": "LLMs are pre-trained on internet-scale data to predict the text that comes next.",
+          "zh": "LLM 在互联网规模的数据上预训练，学会预测接下来的文字。"
+        },
+        {
+          "en": "In that text, an answer usually follows a question, so the predicted next text is usually an answer.",
+          "zh": "在这些文字里，问题后面通常跟着答案，所以预测出来的通常是答案。"
+        },
+        {
+          "en": "Commercial LLMs are also trained to act as helpful assistants.",
+          "zh": "商用 LLM 还被训练成乐于助人的助手。"
+        },
+        {
+          "en": "Trying to answer does not stop them from making mistakes (for example, the car wash answer).",
+          "zh": "努力回答不代表不会出错（例如洗车的回答）。"
+        }
+      ],
+      "explain": {
+        "zh": "课件 p.41 给了两个因素，最后一句是 “Combined, these factors mean…”，所以两个因素都要写到。再加上 p.42 的提醒（Although this doesn't stop them from making mistakes）就更完整。不要写成“因为 LLM 真正理解了问题”或“因为 LLM 会核实事实”，课件没有这样说。"
+      }
+    },
+    {
+      "id": "lec07-q29",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s17-mistakes-copilot-activity",
+      "prompt": {
+        "en": "On slide 42, a user asks a chatbot: 'I want to wash my car. The car wash is 100 feet away. Should I walk or drive?' The chatbot confidently answers 'Walk.' What is the best explanation of its mistake?",
+        "zh": "第 42 页，用户问聊天机器人：“我想洗车，洗车店在 100 英尺外，我该走路还是开车？”机器人很有把握地回答 “Walk.”（走路）。对这个错误最好的解释是什么？"
+      },
+      "options": [
+        {
+          "en": "It converted 100 feet to metres incorrectly, so its walking time was wrong.",
+          "zh": "它把 100 英尺换算成米时算错了，所以走路时间也算错了。"
+        },
+        {
+          "en": "It refused to answer because the question was not written as code.",
+          "zh": "因为问题不是用代码写的，它拒绝回答。"
+        },
+        {
+          "en": "Its context disappeared in the middle of the conversation, so it guessed.",
+          "zh": "对话进行到一半，它的上下文消失了，所以它乱猜了一个答案。"
+        },
+        {
+          "en": "It missed that the car itself must get to the car wash.",
+          "zh": "它没想到车本身必须到洗车店。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "答案：车本身要到洗车店，人走过去没用。课件只写了 “Although this doesn't stop them from making mistakes…”，没有点明错在哪；“车必须到洗车店”是最合理的解读。这个例子说明：LLM 的回答可以听起来自信又合理，思路（reasoning）却是错的。\n其他选项：100 feet = 30.48 米，回答里写 about 30 metres 是对的，数字没错；它也没有拒绝回答，而且 prompt 本来就是用自然语言写的，不需要代码（p.40）；上下文是在会话结束时（at the end of a session）才消失（p.41），不是在对话中间。",
+        "en": "The car must be at the car wash, so 'Walk' misses the point of the request; the numbers in the reply are fine."
+      }
+    },
+    {
+      "id": "lec07-q30",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s17-mistakes-copilot-activity",
+      "prompt": {
+        "en": "A classmate says: 'Copilot always sounds confident, so I can trust its answers without checking them.' Using what you learned about how LLMs are trained and how they produce a response, explain why this is risky. Refer to at least one example from the lecture.",
+        "zh": "一位同学说：“Copilot 说话总是很有把握，所以我不用核对就可以相信它的答案。”根据你学到的 LLM 怎样训练、怎样生成回答，解释为什么这样做有风险。至少引用课上的一个例子。"
+      },
+      "modelAnswer": {
+        "en": "This is risky because an LLM builds its answer by predicting likely text, not by checking that the answer is true. It has been pre-trained on internet-scale data to predict the text that comes next, and commercial LLMs are trained to act as helpful assistants, so they will usually try to answer even when they are wrong. To respond, the LLM tokenizes the prompt, turns the tokens into embeddings, applies attention, and predicts a probability distribution for the next token. One token is picked, sometimes from farther down the list depending on the temperature, and the process repeats. For example, when asked whether to walk or drive to a car wash 100 feet away, a chatbot confidently answered 'Walk', even though the car itself must get to the car wash. Prompts can also be ambiguous, leading to variability in outcomes. So a confident tone does not prove an answer is correct, and important answers should be checked.",
+        "zh": "得分结构：① 观点：有风险，自信不等于正确；② 训练原因：预训练是“预测接下来的文字”，商用 LLM 又被训练成助手，所以总会努力给出答案；③ 生成方式：每次从下一个 token 的概率分布里挑一个（受温度影响），再接上去重复——它生成的是“像样的文字”，不是核实过的事实；④ 例子：洗车问题回答 Walk；⑤ 其他：prompt 有歧义导致结果多变（Lecture 1 把一本正经地说错话叫 hallucination）；⑥ 结论：重要答案要核对。"
+      },
+      "points": [
+        {
+          "en": "States a clear position: a confident answer is not necessarily a correct answer.",
+          "zh": "立场清楚：说话自信不代表答案正确。"
+        },
+        {
+          "en": "Explains training: pre-trained to predict the text that comes next and trained to act as a helpful assistant, so it usually tries to answer anyway.",
+          "zh": "解释训练：预训练是预测接下来的文字，又被训练成助手，所以无论如何都会努力给出答案。"
+        },
+        {
+          "en": "Explains generation: one token at a time from a probability distribution (affected by temperature), which produces likely text rather than checked facts.",
+          "zh": "解释生成：每次从概率分布里挑一个 token（受温度影响），生成的是“可能的文字”，不是核实过的事实。"
+        },
+        {
+          "en": "Uses a lecture example, such as the car wash answer 'Walk'.",
+          "zh": "引用课上的例子，比如洗车问题回答 Walk。"
+        },
+        {
+          "en": "Mentions that prompts can be ambiguous (or hallucination from Lecture 1) and concludes that important answers should be checked.",
+          "zh": "提到 prompt 可能有歧义（或 Lecture 1 的 hallucination），并得出重要答案要核对的结论。"
+        }
+      ],
+      "explain": {
+        "zh": "这类“评价一种说法”的长答题，要把技术原理（怎样训练、怎样生成）和后果（会出错）连起来。p.43 的课堂活动也问过：能不能让 Copilot 承认自己不知道？能不能让它说谎？可见课上就在提醒大家别盲目相信。注意：课件没有给出 LLM 出错的比例，不要编数字；“重要答案要核对”是合理的结论，不是课件原话。"
+      }
+    },
+    {
+      "id": "lec07-q31",
+      "type": "calc",
+      "difficulty": 1,
+      "sectionId": "s18-tokenization",
+      "prompt": {
+        "en": "Using the tokenization shown on slide 45, how many tokens does the sentence 'The student daydreamed in class.' become?",
+        "zh": "按第 45 页展示的分词方式，句子 “The student daydreamed in class.” 会变成多少个 token？"
+      },
+      "answer": 8,
+      "tolerance": 0,
+      "unit": "tokens",
+      "explain": {
+        "zh": "答案：8 个。课件写的是 The/student/day/dream/ed/in/class/.\n第 1 步：daydreamed 被切成 day、dream、ed 三块。\n第 2 步：句号 . 也是单独一块。\n第 3 步：The、student、day、dream、ed、in、class、. 一共 8 个。\n常见错误：按单词数得 5；没拆 daydreamed 但算了句号得 6；拆了 daydreamed 却忘了句号得 7。",
+        "en": "The/student/day/dream/ed/in/class/. gives 8 tokens."
+      }
+    },
+    {
+      "id": "lec07-q32",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s18-tokenization",
+      "prompt": {
+        "en": "Tokenization breaks words into smaller pieces that still convey meaning, for example 'jump/s', 'jump/ing' and 'jump/ed'. Why would it NOT be helpful to break words into individual characters, such as 'j/u/m/p/s'?",
+        "zh": "分词把词切成更小、但仍能表达意思的块，比如 jump/s、jump/ing、jump/ed。为什么把词切成单个字母（比如 j/u/m/p/s）没有帮助？"
+      },
+      "modelAnswer": {
+        "en": "Tokens should be smaller pieces that still convey meaning, but a single character like 'j' or 'u' does not mean anything by itself. If 'jumps' becomes j/u/m/p/s, the shared meaningful piece 'jump' is lost, so the machine cannot easily notice the similarity between closely-related words such as 'jumps', 'jumping' and 'jumped'.",
+        "zh": "两句话拿分：① 单个字母本身没有意思，而 token 应该是“仍有意思的块”；② 拆成字母会丢掉共同的有意义部分 jump，机器就不容易看出 jumps、jumping、jumped 是近亲词。"
+      },
+      "points": [
+        {
+          "en": "Tokens should still convey meaning, but a single character does not mean anything by itself.",
+          "zh": "token 应该仍有意思，但单个字母本身没有意思。"
+        },
+        {
+          "en": "Splitting into characters loses the shared meaningful piece 'jump'.",
+          "zh": "拆成字母会丢掉共同的有意义部分 jump。"
+        },
+        {
+          "en": "So the machine cannot easily notice the similarity in closely-related words.",
+          "zh": "所以机器不容易注意到近亲词之间的相似。"
+        }
+      ],
+      "explain": {
+        "zh": "这是 p.46 的 Discuss 题，课件没有答案页，答案要从 p.45 的两句话推出：token 是“仍能表达意思的更小的块”，这样“机器容易注意到近亲词的相似”。补充（课件外）：拆成字母还会让每个 prompt 变成多得多的块（比如 jumps 拆成字母是 5 块，而 jump/s 只有 2 块），可以作为加分点，但核心是“意思”。"
+      }
+    },
+    {
+      "id": "lec07-q33",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s19-embeddings",
+      "prompt": {
+        "en": "According to the slides, how is each token represented in an LLM's embedding space?",
+        "zh": "根据课件，在 LLM 的嵌入空间（embedding space）里，每个 token 是怎样表示的？"
+      },
+      "options": [
+        {
+          "en": "As a single ID number, which is the same for all tokens with similar meanings.",
+          "zh": "用一个编号表示，意思相近的 token 编号都一样。"
+        },
+        {
+          "en": "As a vector of hundreds (or more) of numbers that capture its meaning.",
+          "zh": "用一个由几百个（或更多）数字组成的向量表示，尽可能多地捕捉 token 的意思。"
+        },
+        {
+          "en": "As the list of its individual characters, such as j/u/m/p.",
+          "zh": "用它的单个字母列表表示，比如 j/u/m/p。"
+        },
+        {
+          "en": "As a percentage showing how likely the token is to come next.",
+          "zh": "用一个百分比表示它出现在下一个位置的可能性。"
+        }
+      ],
+      "answer": 1,
+      "explain": {
+        "zh": "答案：几百个（或更多）数字组成的向量（p.48 原话）。意思相近的 token 在嵌入空间里应该靠得近（p.49），每个 token 的嵌入是用机器学习（Machine Learning）找到的。\n“一个编号”错：p.37 图里分词后出现的 1215、9042 这类编号，课件没有解释，接下来 embedding 那一步才把每个 token 变成一整列数字；而且意思相近也不是编号相同。“单个字母”是课件说没有帮助的做法（p.46–47）。“百分比”是输出端下一个 token 的概率分布（p.52），不是嵌入。",
+        "en": "Each token becomes a vector of hundreds (or more) of numbers that captures its meaning; percentages belong to the next-token distribution."
+      }
+    },
+    {
+      "id": "lec07-q34",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s19-embeddings",
+      "prompt": {
+        "en": "In the embedding space used by an LLM, tokens with similar meanings should be close together; for example, in the slide figure, 'one' should be closer to 'all' than to 'teacher'.",
+        "zh": "在 LLM 使用的嵌入空间里，意思相近的 token 应该靠得近；例如在课件的图里，“one” 离 “all” 应该比离 “teacher” 更近。"
+      },
+      "answer": true,
+      "explain": {
+        "zh": "对（True）。原则来自 p.49：Tokens with similar meanings should be close together in the embedding space。p.48 的图：one 是 −1.82, 0.13, −0.15…，all 是 −1.85, 0.11, −0.03…，两行几乎一样；teacher 是 −0.53, −0.34, 0.07…，差得多。推算：把 10 个数逐个相减、取绝对值再相加，one 和 all 只差 0.78，one 和 teacher 差 3.55。Semantle 游戏用的 Word2vec 也是同样的道理。",
+        "en": "True. Similar meanings should be close together; the 'one' and 'all' rows are almost identical, while 'teacher' is different."
+      }
+    },
+    {
+      "id": "lec07-q35",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s20-attention",
+      "prompt": {
+        "en": "Which statement best describes attention in an LLM?",
+        "zh": "哪句话最好地描述了 LLM 中的注意力（attention）？"
+      },
+      "options": [
+        {
+          "en": "A mechanism that lets other tokens in the context window change a token's embedding.",
+          "zh": "一种机制，让上下文窗口里的其他 token 修改一个 token 的嵌入向量。"
+        },
+        {
+          "en": "The step that breaks words into smaller pieces that still convey meaning.",
+          "zh": "把词切成更小、但仍有意思的块的那一步。"
+        },
+        {
+          "en": "A setting that makes answers farther down the list more likely to be picked.",
+          "zh": "一个让列表下方的答案更容易被选中的设置。"
+        },
+        {
+          "en": "The LLM's memory of the conversation so far, which disappears at the end of a session.",
+          "zh": "LLM 对目前这段对话的记忆，会话结束时消失。"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "答案：让一个 token 的嵌入向量被上下文窗口里的其他 token 修改（p.50 原话）。例子：“its” 单独看没什么意思，但知道它关注（attends to）“plot” 之后，就能推断出它的意思（p.51）。\n其他选项是别的概念：切词 = 分词（**tokenization**）；让靠后的答案更容易被选 = 调高温度（**Temperature**）；对话记忆 = 上下文（**context**）。",
+        "en": "Attention lets other tokens in the context window modify a token's embedding vector."
+      }
+    },
+    {
+      "id": "lec07-q36",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s20-attention",
+      "prompt": {
+        "en": "Consider the prompt: 'Make a simple plot of y=3x+1 for me. Label its axes height and width.' Using the idea of attention, explain which words are modifying which other words, and why this matters.",
+        "zh": "看这个 prompt：“Make a simple plot of y=3x+1 for me. Label its axes height and width.” 用注意力（attention）的思想，解释哪些词在修饰哪些词，以及为什么这很重要。"
+      },
+      "modelAnswer": {
+        "en": "'Plot' is being modified by the adjective 'simple', which tells us what kind of plot to make. 'Its' does not convey much meaning on its own, but if we know that 'its' attends to 'plot', we can infer its meaning: the axes belong to the plot. Attention allows the embedding vector of each token to be modified by other tokens in the context window, so the model can understand words in context.",
+        "zh": "三个得分点：① simple 修饰 plot（形容词说明要什么样的图）；② its 关注（attends to）plot，所以知道 its 指的是这张图；③ 注意力让 token 的嵌入向量被上下文里的其他 token 修改，词的意思就能结合上下文理解。"
+      },
+      "points": [
+        {
+          "en": "'simple' modifies 'plot'.",
+          "zh": "“simple” 修饰 “plot”。"
+        },
+        {
+          "en": "'its' attends to 'plot', so we can infer what 'its' means.",
+          "zh": "“its” 关注 “plot”，所以能推断出 its 的意思。"
+        },
+        {
+          "en": "Attention lets other tokens in the context window modify a token's embedding vector.",
+          "zh": "注意力让上下文窗口中的其他 token 修改一个 token 的嵌入向量。"
+        }
+      ],
+      "explain": {
+        "zh": "这是 p.50 的 Discuss 题，答案在 p.51：plot 被 simple 修饰；its 关注 plot。还可以补充别的合理联系（我们的解读，课件外）：axes 属于 its（也就是图的坐标轴），height 和 width 是坐标轴的标签。y=3x+1 只是例句的一部分，不需要计算。"
+      }
+    },
+    {
+      "id": "lec07-q37",
+      "type": "mcq",
+      "difficulty": 2,
+      "sectionId": "s21-next-token-temperature",
+      "prompt": {
+        "en": "For the prompt 'For lunch, let's order ___', the most likely next token is 'sandwiches' (25.1%) and the least likely one shown is 'nothing' (1.2%). What happens if the Temperature setting is raised?",
+        "zh": "对于 “For lunch, let's order ___”，最可能的下一个 token 是 sandwiches（25.1%），列出的最不可能的是 nothing（1.2%）。如果把温度（Temperature）调高，会怎样？"
+      },
+      "options": [
+        {
+          "en": "The top answer, 'sandwiches', becomes more likely to be picked.",
+          "zh": "第一名 sandwiches 更容易被选中。"
+        },
+        {
+          "en": "The LLM always picks 'sandwiches', so every answer is the same.",
+          "zh": "LLM 永远选 sandwiches，所以每次回答都一样。"
+        },
+        {
+          "en": "Answers farther down the list, such as 'nothing', become more likely to be picked.",
+          "zh": "列表下方的答案（比如 nothing）更容易被选中。"
+        },
+        {
+          "en": "The LLM skips the probability distribution and copies a sentence from its training data.",
+          "zh": "LLM 跳过概率分布，直接照抄训练数据里的一句话。"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "答案：靠后的答案更容易被选中（p.52：At higher temperatures, answers farther down the list are more likely to be picked）。\n“第一名更容易被选”是低温（low temperature）的效果，说反了；“永远选第一名”就是课件说的“只选最可能的 token”，那样回答没有多样性（no diversity），温度设置正是用来解决这个问题的；“跳过概率分布、照抄”课件没有这种说法，LLM 输出端给出的总是下一个 token 的概率分布。",
+        "en": "A higher temperature makes lower-ranked tokens more likely; a low temperature favours the top answer."
+      }
+    },
+    {
+      "id": "lec07-q38",
+      "type": "mcq",
+      "difficulty": 3,
+      "sectionId": "s11-architectures-perceptron-mlp",
+      "prompt": {
+        "en": "A network has 4 inputs, one hidden layer with 5 neurons, and 2 output neurons. All nodes in adjacent layers are connected, and all arrows point forward. Which description is correct?",
+        "zh": "一个网络有 4 个输入、一个有 5 个神经元的隐藏层和 2 个输出神经元。相邻层的所有节点都相连，所有箭头都向前。哪种描述正确？"
+      },
+      "options": [
+        {
+          "en": "A Perceptron with 1 layer",
+          "zh": "一个 1 层的感知机（Perceptron）"
+        },
+        {
+          "en": "A deep learning network with 3 layers",
+          "zh": "一个 3 层的深度学习网络"
+        },
+        {
+          "en": "A Multilayer Perceptron (MLP) with 2 layers",
+          "zh": "一个 2 层的多层感知机（MLP）"
+        },
+        {
+          "en": "An autoencoder, because it has a hidden layer",
+          "zh": "一个自编码器，因为它有隐藏层"
+        }
+      ],
+      "answer": 2,
+      "explain": {
+        "zh": "答案：2 层的 MLP。\n第 1 步认架构：箭头都向前（前馈，**feed-forward**）+ 相邻层的所有节点都相连（全连接，**fully-connected**）+ 有 1 个隐藏层，正好符合多层感知机（**MLP**）的定义（p.30：one or more hidden layers）。\n第 2 步数层数（p.17）：输入层不算，1 个隐藏层 + 1 个输出层 = 2 层。\n其他选项：感知机没有隐藏层（p.29），这个网络有一个；深度学习至少要 2 个隐藏层（p.31），这里只有 1 个，而且要把输入层也算进去才会得到 3 层；自编码器要在中间收窄成瓶颈、并在输出端重建输入（p.32），这里是 4 → 5 → 2，中间没有变窄，输出个数也和输入不一样。有隐藏层不等于自编码器。",
+        "en": "Feed-forward, fully-connected, one hidden layer: an MLP. Layers = 1 hidden + 1 output = 2, because the input layer does not count."
+      }
+    },
+    {
+      "id": "lec07-q39",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s22-response-loop",
+      "prompt": {
+        "en": "An LLM has just chosen one new token for its response. According to the slides, what happens next?",
+        "zh": "LLM 刚刚为回答选出了一个新 token。根据课件，接下来会发生什么？"
+      },
+      "options": [
+        {
+          "en": "The response is finished, because the LLM predicts the whole answer at once.",
+          "zh": "回答结束了，因为 LLM 一次就预测出整个答案。"
+        },
+        {
+          "en": "The new token is used to retrain the network's weights with backpropagation.",
+          "zh": "用这个新 token 通过反向传播重新训练网络的权重。"
+        },
+        {
+          "en": "The context window is cleared, and the next token is predicted from the new token alone.",
+          "zh": "清空上下文窗口，只根据这个新 token 预测下一个。"
+        },
+        {
+          "en": "It is appended to the end of the context window, and the whole process starts again.",
+          "zh": "把新 token 接到上下文窗口的末尾，然后整个过程从头再来。"
+        }
+      ],
+      "answer": 3,
+      "explain": {
+        "zh": "答案：接到上下文窗口末尾，整个过程再来一遍（p.54 原话）。p.53 说：做了这么多，我们只给回答加了一个 token！所以 LLM 是一次一个 token 地“写”回答，不是一次写完。\n“重新训练权重”错：回答问题是在用训练好的模型做推理（**inference**），课件的流程里没有这一步；反向传播是训练时用的方法（p.12）。“清空上下文”错：上下文在会话结束时才消失（p.41），新 token 是接在原有内容后面，前面的 prompt 和已经生成的 token 都还在。",
+        "en": "The new token is appended to the end of the context window and the whole process repeats, one token at a time."
+      }
+    },
+    {
+      "id": "lec07-q40",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s22-response-loop",
+      "prompt": {
+        "en": "Explain, at a high level, the steps an LLM follows to respond to a prompt. Use examples from the lecture to illustrate the steps.",
+        "zh": "从宏观上解释 LLM 回答一个 prompt 时经过的步骤，并用课上的例子说明。"
+      },
+      "modelAnswer": {
+        "en": "First, the prompt is tokenized: words are broken into smaller pieces that still convey meaning, for example 'daydreamed' becomes day/dream/ed. Second, each token is mapped into an embedding space, where it is represented as a vector of hundreds of numbers that capture its meaning; tokens with similar meanings are close together (in the slide figure, 'one' is close to 'all'). Third, attention lets other tokens in the context window modify each token's embedding vector; for example, 'its' attends to 'plot'. After lots more computation, the output is a probability distribution for the next token, such as 'sandwiches' 25.1% for 'For lunch, let's order ___'. One token is chosen, and the Temperature setting controls how likely lower-ranked tokens are to be picked. Finally, the new token is appended to the end of the context window, and the whole process starts again, one token at a time.",
+        "zh": "按顺序写 6 步，每步配一个例子：① 分词（day/dream/ed）；② 嵌入（几百个数字组成的向量，one 和 all 很近）；③ 注意力（its 关注 plot）；④ 输出下一个 token 的概率分布（sandwiches 25.1%）；⑤ 按温度选出一个 token（低温时第一名更可能，高温时靠后的更容易被选）；⑥ 接到上下文窗口末尾，从头再来，一次一个 token。"
+      },
+      "points": [
+        {
+          "en": "Tokenization is the first step: words are broken into smaller pieces that still convey meaning (e.g. day/dream/ed).",
+          "zh": "第一步分词：把词切成仍有意思的小块（如 day/dream/ed）。"
+        },
+        {
+          "en": "Tokens are mapped to embeddings: vectors of hundreds of numbers, with similar meanings close together.",
+          "zh": "token 映射成嵌入：几百个数字组成的向量，意思相近的靠得近。"
+        },
+        {
+          "en": "Attention lets other tokens in the context window modify each token's embedding (e.g. 'its' attends to 'plot').",
+          "zh": "注意力让上下文窗口中的其他 token 修改每个 token 的嵌入（如 its 关注 plot）。"
+        },
+        {
+          "en": "The output is a probability distribution for the next token; one token is chosen, and Temperature controls how often lower-ranked tokens are picked.",
+          "zh": "输出下一个 token 的概率分布；选出一个 token，温度控制靠后选项被选中的机会。"
+        },
+        {
+          "en": "The new token is appended to the end of the context window and the process repeats, one token at a time.",
+          "zh": "新 token 接到上下文窗口末尾，整个过程重复，一次一个 token。"
+        }
+      ],
+      "explain": {
+        "zh": "这题对应学习目标 4（LO4），要求是“at a high level”（宏观），所以不用写数学，只要顺序对、每一步说清楚在做什么。最容易丢分的地方：① 顺序写错（分词一定是第一步）；② 漏掉最后的“接回去再来一遍”；③ 把温度说反（低温：第一名更可能；高温：靠后的更可能）。"
+      }
+    },
+    {
+      "id": "lec07-q41",
+      "type": "mcq",
+      "difficulty": 1,
+      "sectionId": "s11-architectures-perceptron-mlp",
+      "prompt": {
+        "en": "Every neural network has an input and an output layer, but the design in between is flexible. According to the slides, what are patterns of neural network design called?",
+        "zh": "每个神经网络都有输入层和输出层，但中间怎么设计很灵活。根据课件，神经网络的设计模式叫什么？"
+      },
+      "options": [
+        {
+          "en": "Architectures",
+          "zh": "架构（architectures）"
+        },
+        {
+          "en": "Hidden layers",
+          "zh": "隐藏层"
+        },
+        {
+          "en": "Activation functions",
+          "zh": "激活函数"
+        },
+        {
+          "en": "Foundation models",
+          "zh": "基础模型"
+        }
+      ],
+      "answer": 0,
+      "explain": {
+        "zh": "答案：架构（**architectures**）。课件 p.28：Patterns of neural network design are called architectures. A neural network architecture is often well-suited for one particular kind of task（一种架构通常很适合某一类任务）。Perceptron、MLP、自编码器、GAN、卷积网络、Transformer 都是架构。\n其他选项：隐藏层是输入层和输出层中间的层（p.16），是设计的一部分，不是“设计模式”的名字；激活函数是每个神经元里决定输出强度的函数（p.9）；基础模型是 LLM 因为通用而得到的名字（p.39）。",
+        "en": "Slide 28: patterns of neural network design are called architectures; an architecture is often well-suited for one particular kind of task."
+      }
+    },
+    {
+      "id": "lec07-q42",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s13-autoencoder",
+      "prompt": {
+        "en": "Choose two neural network architectures from the lecture (other than the Perceptron). For each, describe its structure and what it is used for.",
+        "zh": "从课上讲的神经网络架构中选两种（感知机除外），分别说明它的结构和用途。"
+      },
+      "modelAnswer": {
+        "en": "An autoencoder narrows to a bottleneck in the middle, with an encoder that shrinks the input into a smaller feature embedding space and a decoder that reproduces the original input. It is trained to recreate its input at the output, and it can be used to reduce the size of data we need to transfer or store. A GAN has a generator that produces convincing fake data and a discriminator that tries to tell real from fake data; they train together, and at the end the generator becomes a useful generative model.",
+        "zh": "示范选了自编码器和 GAN（也可以选 MLP、卷积网络、Transformer）。每种架构写两件事：① 结构：自编码器中间收窄成瓶颈，前半是编码器、后半是解码器；GAN 由生成器和判别器两部分组成，一起训练。② 用途：自编码器可以减少需要传输/存储的数据量；GAN 训练完后，生成器成为有用的生成模型，能造出像真数据的新数据。"
+      },
+      "points": [
+        {
+          "en": "Structure of the first architecture, e.g. an autoencoder narrows to a bottleneck, with an encoder and a decoder.",
+          "zh": "第一种架构的结构：例如自编码器中间收窄成瓶颈，分成编码器和解码器。"
+        },
+        {
+          "en": "Use of the first architecture, e.g. an autoencoder recreates its input and can reduce the size of data to transfer or store.",
+          "zh": "第一种架构的用途：例如自编码器重建输入，可以减少需要传输/存储的数据量。"
+        },
+        {
+          "en": "Structure of the second architecture, e.g. a GAN has a generator and a discriminator that train together.",
+          "zh": "第二种架构的结构：例如 GAN 由一起训练的生成器和判别器组成。"
+        },
+        {
+          "en": "Use of the second architecture, e.g. the trained generator becomes a useful generative model that produces data resembling real data.",
+          "zh": "第二种架构的用途：例如训练好的生成器成为有用的生成模型，能产生像真数据的新数据。"
+        }
+      ],
+      "explain": {
+        "zh": "这题对应学习目标 3（LO3：Identify important neural network architectures）。每种架构写两件事：结构 + 用途。也可以选别的架构，照课件写：MLP = 前馈、全连接、有一个或多个隐藏层，是通用网络，能解决各种回归和分类问题（p.30）；卷积网络 = 深度网络，局部的一小团特征送进卷积层，检测出边这样的更高级特征，用于输入特征之间空间关系重要的领域，比如图像像素、棋盘游戏（p.36）；Transformer = 大语言模型的基础（p.37、p.39）。常见丢分：把 GAN 的生成器和判别器搞反；说自编码器“一点信息都不丢”（课件说一定会丢一些）。"
+      }
+    },
+    {
+      "id": "lec07-q43",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s04-artificial-neuron",
+      "prompt": {
+        "en": "Lecture 3 and Lab 3 built heuristics as weighted sums, such as Material Advantage = 1 × (pawn difference) + 3 × (knight difference) + .... Compare the weights in this kind of heuristic with the weights of an artificial neuron in Lecture 7. What do the two have in common, and who chooses the weights in each case, and how?",
+        "zh": "Lecture 3 和 Lab 3 把 heuristic 写成加权和，例如 子力优势 = 1 ×（兵的差）+ 3 ×（马的差）+ …。把这种 heuristic 的权重和 Lecture 7 人工神经元的权重作比较：两者有什么共同点？各自的权重由谁来定、怎么定？"
+      },
+      "modelAnswer": {
+        "en": "Both use a weighted sum. In a weighted-sum heuristic, a set of features is compared for each player (ours minus the opponent's), and each difference is multiplied by a weight that sets its importance; for example, pawns have a weight of 1 and knights a weight of 3. An artificial neuron also multiplies each input feature x1, x2, ... by a weight w1, w2, ... and adds the results, and then an activation function is applied to the sum to determine the strength of its output. In both cases, the weights decide how much each input matters. The difference is who chooses the weights. In Lab 3, we chose and tuned the weights by hand, using human expert knowledge such as the value of chess pieces. In a neural network, the weights are parameters that the machine finds during training, using gradient descent and backpropagation. Lecture 3 also says that heuristics may be learned autonomously through Machine Learning, so the two ideas are closely related.",
+        "zh": "得分结构：① 共同点：都是加权和，每个输入 / 特征乘一个权重再相加，权重决定每个输入有多重要；② heuristic：每个特征算“我方 − 对方”，乘上表示重要程度的权重（兵 1、马 3）；③ 神经元：加权和之后还要经过激活函数，决定输出的强度；④ 区别：Lab 3 的权重由人凭专家知识定、靠调；神经元的权重是训练中用梯度下降 + 反向传播找出来的参数；⑤ 加分：Lecture 3 p.54 说 heuristic 也可以用机器学习自动学出来。"
+      },
+      "points": [
+        {
+          "en": "Both are weighted sums: each input or feature is multiplied by a weight, and the results are added.",
+          "zh": "两者都是加权和：每个输入或特征乘一个权重，再相加。"
+        },
+        {
+          "en": "Heuristic: each feature is compared for each player (ours minus the opponent's), and its weight sets its importance (e.g. pawn 1, knight 3).",
+          "zh": "heuristic：每个特征算“我方 − 对方”，权重表示它有多重要（如兵 1、马 3）。"
+        },
+        {
+          "en": "Neuron: an activation function is applied to the sum of the weighted inputs.",
+          "zh": "神经元：对加权输入之和再用激活函数。"
+        },
+        {
+          "en": "Lab 3 weights are chosen and tuned by people using expert knowledge; neuron weights are learned in training with gradient descent and backpropagation.",
+          "zh": "Lab 3 的权重由人凭专家知识定、靠调；神经元的权重是训练中用梯度下降 + 反向传播学出来的。"
+        }
+      ],
+      "explain": {
+        "zh": "这题把 Lecture 3 p.54–55、Lab 3 p.11–14 和 Lecture 7 p.9、p.12 串起来，是跨课比较题。按“共同点 → 各自怎么用 → 权重从哪来”的顺序写。常见丢分：说 heuristic 的权重“一定”是人定的（Lecture 3 p.54 说 heuristic 也可以用机器学习学出来）；说神经元的权重是人设定的（p.12 说是训练时优化出来的）；忘了神经元在加权和之后还有激活函数。",
+        "en": "Links Lecture 3 p.54-55, Lab 3 p.11-14 and Lecture 7 p.9 and p.12."
+      }
+    },
+    {
+      "id": "lec07-q44",
+      "type": "tf",
+      "difficulty": 2,
+      "sectionId": "s04-artificial-neuron",
+      "prompt": {
+        "en": "Like the weights of an artificial neuron, the weights of the Connect Four heuristics built in Lab 3 were found automatically by gradient descent.",
+        "zh": "和人工神经元的权重一样，Lab 3 里搭的 Connect Four heuristic 的权重也是用梯度下降自动找出来的。"
+      },
+      "answer": false,
+      "explain": {
+        "zh": "错。Lab 3 的权重是我们自己定、自己调的（例如 'Combined' 里三连的权重 3、中间列棋子的权重 1）。人工神经元的权重才是训练中用梯度下降 + 反向传播找出来的（Lecture 7 p.12）。两者相同的是结构：都是加权和。",
+        "en": "False. In Lab 3, people chose and tuned the weights; a neuron's weights are learned during training."
+      }
+    },
+    {
+      "id": "lec07-q45",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s08-why-hidden-layers",
+      "prompt": {
+        "en": "Lecture 4 used 7 training leaves (4 oak, 3 maple). No straight line can classify all 7 leaves correctly: the linear Model A gets 6 of 7, while the curved Model B gets 7 of 7. In Lecture 6, Model A had a validation accuracy of 6/6, while Model B had a lower validation accuracy. Using ideas from Lectures 6 and 7, explain why a neural network with no hidden layers can classify at most 6 of these 7 leaves correctly, and why a curved boundary might still be worse on new leaves.",
+        "zh": "Lecture 4 用了 7 片训练叶子（4 片 oak、3 片 maple）。没有任何一条直线能把 7 片全分对：直线 Model A 对 6 片，弯曲的 Model B 对 7 片。在 Lecture 6 的验证集上，Model A 的验证准确率是 6/6，Model B 更低。用 Lecture 6 和 7 的知识解释：为什么没有隐藏层的神经网络最多只能分对这 7 片中的 6 片？为什么弯曲的边界在新叶子上仍可能更差？"
+      },
+      "modelAnswer": {
+        "en": "Without at least one hidden layer, a neural network can only produce a linear decision boundary, such as a straight line in the leaf data space. For example, a Perceptron has no hidden layers and can only produce linear models. Since no straight line can classify all 7 leaves correctly, the leaves are not linearly separable, so such a network can get at most 6 of 7 right, like Model A. Hidden layers give a network the power to represent more complicated shapes, such as the curved boundary of Model B, which classifies all 7 training leaves. However, a more flexible boundary is not always better. Model B had 100% training accuracy but a lower validation accuracy than Model A (6/6), which is a sign of overfitting: the boundary bends to fit the training points instead of the genuine pattern. Hidden layers also add parameters, so training takes more time and requires more data. Therefore, we should choose the model with the best validation accuracy, not the best training accuracy.",
+        "zh": "得分结构：① 没有隐藏层只能画线性决策边界（Perceptron 只能产生线性模型，Lecture 7 p.25、p.29）；② 7 片叶子线性不可分，所以最多 6/7，就像 Model A；③ 隐藏层能表示更复杂的形状，比如弯曲的 Model B（训练 7/7）；④ 但更灵活的边界可能过拟合：Model B 训练 100%，验证却低于 Model A 的 6/6；隐藏层还要更多时间和数据（p.20）；⑤ 结论：按验证准确率挑模型（Lecture 6）。"
+      },
+      "points": [
+        {
+          "en": "No hidden layers means only a linear decision boundary (a Perceptron can only produce linear models).",
+          "zh": "没有隐藏层只能画线性决策边界（感知机只能产生线性模型）。"
+        },
+        {
+          "en": "The 7 leaves are not linearly separable, so the best a linear model can do is 6 of 7, like Model A.",
+          "zh": "7 片叶子线性不可分，所以线性模型最多 6/7，就像 Model A。"
+        },
+        {
+          "en": "Hidden layers allow more complicated shapes, such as Model B's curved boundary (7/7 on training).",
+          "zh": "隐藏层能表示更复杂的形状，比如 Model B 的弯曲边界（训练 7/7）。"
+        },
+        {
+          "en": "A more flexible boundary can overfit: Model B's validation accuracy is lower than Model A's 6/6, and hidden layers need more time and data.",
+          "zh": "更灵活的边界可能过拟合：Model B 的验证准确率低于 Model A 的 6/6；隐藏层还需要更多时间和数据。"
+        },
+        {
+          "en": "Choose the model by validation accuracy, not training accuracy.",
+          "zh": "按验证准确率挑模型，而不是按训练准确率。"
+        }
+      ],
+      "explain": {
+        "zh": "跨课题：Lecture 4 p.47（Models A–C）、Lecture 6 p.17–18、p.22（验证）、Lecture 7 p.20、p.25、p.29。“没有一条直线能分对 7 片”是我们自己验证的（M (9, 14) 被三片 O 围在中间），所以题目直接给出了这个条件；Model B 的验证准确率课件没有印出来，本站按图数是 3/6。常见丢分：以为训练 7/7 的 Model B 最好；把“线性可分”说成“数据点排成一条线”。",
+        "en": "Links Lecture 4 p.47, Lecture 6 p.17-18 and p.22, and Lecture 7 p.20, p.25 and p.29."
+      }
+    },
+    {
+      "id": "lec07-q46",
+      "type": "short",
+      "difficulty": 2,
+      "sectionId": "s19-embeddings",
+      "prompt": {
+        "en": "In Lecture 4, text was turned into numbers one character at a time (e.g. 'Hello!' = 0048 0065 006c 006c 006f 0021). How does an LLM in Lecture 7 turn text into numbers differently?",
+        "zh": "Lecture 4 里，文字是一个字符一个字符变成数字的（例如 “Hello!” = 0048 0065 006c 006c 006f 0021）。Lecture 7 的 LLM 把文字变成数字的方法有什么不同？"
+      },
+      "modelAnswer": {
+        "en": "In Lecture 4, each character is converted to a number by a character encoding scheme such as Unicode. An LLM instead breaks the text into tokens, smaller pieces of words that still convey meaning, such as day/dream/ed. Each token is then mapped to an embedding, a vector of hundreds of numbers that captures its meaning and is found via Machine Learning, so tokens with similar meanings are close together.",
+        "zh": "得分点：① Lecture 4：每个字符用字符编码（如 Unicode）变成一个数；② LLM 不按单个字符来，而是先分成仍有意义的 token（day/dream/ed）；③ 每个 token 再映射成嵌入：几百个数字组成的向量，由机器学习找出来，意思相近的 token 靠得近。"
+      },
+      "points": [
+        {
+          "en": "Lecture 4: each character becomes a number through a character encoding scheme (e.g. Unicode).",
+          "zh": "Lecture 4：每个字符通过字符编码（如 Unicode）变成一个数字。"
+        },
+        {
+          "en": "LLM: the text is split into tokens that still convey meaning, not into single characters.",
+          "zh": "LLM：文字被切成仍有意义的 token，而不是单个字符。"
+        },
+        {
+          "en": "Each token is mapped to an embedding vector of hundreds of numbers, found via Machine Learning; similar meanings are close together.",
+          "zh": "每个 token 映射成由几百个数字组成的嵌入向量，由机器学习找到；意思相近的靠得近。"
+        }
+      ],
+      "explain": {
+        "zh": "跨课题：Lecture 4 p.27（所有数据最终都要变成数字）、p.30（字符编码），Lecture 7 p.46–49（分词、嵌入）。p.47 的问题“如果不把词拆成单个字母，怎样把它们变成数字？”正好接着 Lecture 4。p.37 的图还显示 token 先变成编号（1215、9042……），再变成嵌入。常见丢分：说 LLM 也把每个字母变成一个数字；忘了说嵌入是机器学出来的。",
+        "en": "Links Lecture 4 p.27 and p.30 with Lecture 7 p.46-49."
+      }
+    },
+    {
+      "id": "lec07-q47",
+      "type": "long",
+      "difficulty": 3,
+      "sectionId": "s23-big-table-revisited",
+      "prompt": {
+        "en": "A student says: 'LLMs are just Machine Learning, and Lecture 1 says ML inference is generally fast, so asking an LLM must be fast and cheap.' Using the Big Table of Properties from Lecture 1 and what you learned in Lecture 7, explain what is wrong with this argument. Then explain why LLM prompting is rarely explainable.",
+        "zh": "一位同学说：“LLM 就是机器学习，Lecture 1 说 ML 推理一般很快，所以问 LLM 一定又快又便宜。”用 Lecture 1 的性质大表和 Lecture 7 学到的内容，说明这个论证错在哪里；再解释为什么 LLM 提示很少能解释清楚。"
+      },
+      "modelAnswer": {
+        "en": "The first part is correct: LLMs are a specific type of ML model. However, the Big Table treats LLM prompting as its own approach and says that it is often slower and costlier per call, while ML can be fast if the model is small. Lecture 7 helps explain why. An LLM is a deep neural network that uses the Transformer architecture, and it builds its response one token at a time: after each new token, it appends the token to the context window and starts the whole process again. Artificial neural networks also require much more power to run, and Lecture 1 says the most popular LLMs need huge data centers. So one likely reason is that a single response requires a lot of computation, which makes it slower and more costly. One reason LLM prompting is rarely explainable is that these deep networks have many hidden layers and a huge number of parameters, so it is hard to say why a particular answer was produced.",
+        "zh": "得分结构：① 先承认对的部分：LLM 是一种特定的 ML 模型（Lecture 1 p.54）；② 大表：LLM 提示 “Often slower / costlier per call”，ML 只是 “Can be fast if the model is small”（p.57）；③ 原因（用 one likely reason 写）：一次一个 token，每个 token 都重跑整个过程（Lecture 7 p.53–54）；神经网络耗电多（p.10）；最流行的 LLM 要巨大的数据中心（Lecture 1 p.56）；④ 很少可解释：深度网络、隐藏层多、参数极多（p.31、p.10）。"
+      },
+      "points": [
+        {
+          "en": "Agrees that LLMs are a specific type of ML model.",
+          "zh": "承认 LLM 是一种特定的 ML 模型。"
+        },
+        {
+          "en": "Big Table: LLM prompting is often slower and costlier per call; ML can be fast if the model is small.",
+          "zh": "大表：LLM 提示每次调用往往更慢更贵；ML 一栏只写着模型小时可以很快（Can be fast if the model is small）。"
+        },
+        {
+          "en": "Reason: one token at a time, with the whole process repeated for every token; neural networks need much more power; huge data centers.",
+          "zh": "原因：一次一个 token、每个 token 重跑整个过程；神经网络耗电多；巨大的数据中心。"
+        },
+        {
+          "en": "Rarely explainable: deep networks with many hidden layers and a huge number of parameters.",
+          "zh": "很少可解释：隐藏层很多、参数极多的深度网络。"
+        }
+      ],
+      "explain": {
+        "zh": "跨课题：Lecture 1 p.51、p.54、p.56–57，Lecture 7 p.10、p.31、p.39、p.53–54。“一次一个 token 所以更慢更贵”是把两课连起来的推理，课件没有逐字这样写，所以答案里用 one likely reason。常见丢分：直接同意“LLM 推理很快”；只背大表格子、不给原因。",
+        "en": "Links Lecture 1 p.51-57 with Lecture 7 p.10, p.31, p.39 and p.53-54."
+      }
+    }
+  ]
+}

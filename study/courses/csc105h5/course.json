@@ -1,0 +1,569 @@
+{
+  "id": "csc105h5",
+  "code": "CSC105H5 F",
+  "shortCode": "CSC105H5",
+  "title": {
+    "zh": "人工智能素养",
+    "en": "Artificial Intelligence Literacy"
+  },
+  "term": "Fall 2026",
+  "school": "University of Toronto Mississauga",
+  "instructor": "Joshua Jung",
+  "links": [
+    {
+      "label": {
+        "zh": "Quercus 课程主页",
+        "en": "Quercus course page"
+      },
+      "href": "https://q.utoronto.ca/courses/442526"
+    }
+  ],
+  "examFormat": {
+    "zh": "两次随堂测验（各 1 小时，在讲课的第二个小时进行）都是选择题 + 长答题，不考写代码。期末考试 2 小时，覆盖全部内容，占 40%，并且期末必须拿到至少 40% 才能通过这门课。考试不允许使用生成式 AI。",
+    "en": "Two 1-hour in-class tests (multiple choice + long answer, no coding). The 2-hour final exam covers all material, is worth 40%, and you must get at least 40% on it to pass. No GenAI is allowed on tests or the final."
+  },
+  "assessments": [
+    {
+      "id": "labs",
+      "name": {
+        "zh": "实验课",
+        "en": "Labs"
+      },
+      "weight": 20,
+      "date": null,
+      "detail": {
+        "zh": "每周 2 小时，现场完成并上交，最低的两次不计分。",
+        "en": "Weekly 2-hour labs, handed in at the end of the lab; lowest two dropped."
+      }
+    },
+    {
+      "id": "test1",
+      "name": {
+        "zh": "测验 1",
+        "en": "Test 1"
+      },
+      "weight": 15,
+      "date": "2026-10-06",
+      "detail": {
+        "zh": "1 小时，随堂。",
+        "en": "1 hour, in class."
+      }
+    },
+    {
+      "id": "test2",
+      "name": {
+        "zh": "测验 2",
+        "en": "Test 2"
+      },
+      "weight": 15,
+      "date": "2026-11-10",
+      "detail": {
+        "zh": "1 小时，随堂，选择题 + 长答题。考试范围以老师在 Quercus / Piazza 公布为准。",
+        "en": "1 hour, in class, multiple choice + long answer. Confirm the scope on Quercus / Piazza."
+      }
+    },
+    {
+      "id": "paper",
+      "name": {
+        "zh": "期末论文",
+        "en": "Final Paper"
+      },
+      "weight": 10,
+      "date": "2026-12-08",
+      "detail": {
+        "zh": "可单人或两人合作，写用 AI 解决真实问题的实践与伦理考量。",
+        "en": "Alone or in pairs: practical and ethical considerations of using AI for a real problem."
+      }
+    },
+    {
+      "id": "final",
+      "name": {
+        "zh": "期末考试",
+        "en": "Final Exam"
+      },
+      "weight": 40,
+      "date": null,
+      "detail": {
+        "zh": "考试周进行，具体日期以教务处公布为准。2 小时，覆盖全部内容；期末低于 40% 时总评最高只能拿 47%。",
+        "en": "During the final exam period; 2 hours, all material. Below 40% on the final caps your grade at 47%."
+      }
+    }
+  ],
+  "branches": [
+    {
+      "id": "foundations",
+      "title": {
+        "zh": "AI 是什么 · 怎么选方法",
+        "en": "What AI is and how to choose a method"
+      }
+    },
+    {
+      "id": "symbolic",
+      "title": {
+        "zh": "算法与符号 AI（搜索、博弈）",
+        "en": "Algorithms and Symbolic AI"
+      }
+    },
+    {
+      "id": "ml",
+      "title": {
+        "zh": "监督学习（数据、训练、评估、公平）",
+        "en": "Supervised Machine Learning"
+      }
+    },
+    {
+      "id": "llm",
+      "title": {
+        "zh": "神经网络与大语言模型",
+        "en": "Neural Networks and LLMs"
+      }
+    }
+  ],
+  "units": [
+    {
+      "id": "lec01",
+      "kind": "lecture",
+      "number": 1,
+      "branch": "foundations",
+      "title": {
+        "en": "What is AI? (+ Syllabus)",
+        "zh": "什么是 AI？（+ 课程大纲）"
+      },
+      "lesson": "lessons/lec01.json",
+      "practice": "practice/lec01.json",
+      "glossary": "glossary/lec01.json",
+      "sectionIds": [
+        "s01-ai-means-to-you",
+        "s02-ai-umbrella",
+        "s03-broad-vs-narrow",
+        "s04-russell-norvig-grid",
+        "s05-thinking-humanly",
+        "s06-turing-test",
+        "s07-rationality",
+        "s08-thinking-rationally",
+        "s09-acting-rationally",
+        "s10-course-definition",
+        "s11-symbolic-ai",
+        "s12-symbolic-weaknesses",
+        "s13-machine-learning",
+        "s14-ml-strengths-weaknesses",
+        "s15-llms",
+        "s16-llm-weaknesses",
+        "s17-big-table",
+        "s18-course-logistics"
+      ],
+      "oneLiner": {
+        "zh": "AI 有很多互相竞争的定义。本课程的定义：AI 是一个研究领域，研究会观察环境、会执行行动的智能体（agent），目标是设计出行为理性的智能体。本课还介绍了三种 AI 方法：符号 AI、机器学习，以及属于机器学习的大语言模型。",
+        "en": "There are many competing definitions of AI. In this course, AI is a field of study concerned with agents that observe their environment and perform actions; the goal is to design agents that behave rationally. The lecture also introduces Symbolic AI, Machine Learning and LLMs (a type of ML)."
+      },
+      "estimatedMinutes": 135,
+      "questionCount": 43,
+      "termCount": 51
+    },
+    {
+      "id": "lec02",
+      "kind": "lecture",
+      "number": 2,
+      "branch": "symbolic",
+      "title": {
+        "en": "Algorithms: An Introduction to Algorithmic Thinking",
+        "zh": "算法：算法思维入门"
+      },
+      "lesson": "lessons/lec02.json",
+      "practice": "practice/lec02.json",
+      "glossary": "glossary/lec02.json",
+      "sectionIds": [
+        "s01-roadmap",
+        "s02-what-is-an-algorithm",
+        "s03-precision-evil-genie",
+        "s04-programming-language-program",
+        "s05-turtle-sequence",
+        "s06-first-program-reuse",
+        "s07-functions",
+        "s08-parameters",
+        "s09-abstraction-emergence",
+        "s10-loops-definition",
+        "s11-loops-robot-example",
+        "s12-loop-activities",
+        "s13-algorithmic-thinking",
+        "s14-algorithms-vs-ai",
+        "s15-algorithm-pros-cons",
+        "s16-computation-time",
+        "s17-counting-executions",
+        "s18-exam-review"
+      ],
+      "oneLiner": {
+        "zh": "算法就是一串精确的、按顺序一步步执行、用来达成目标的指令；函数和循环让我们把指令打包复用；一般来说，步骤由程序员写好的不算 AI，程序员只给目标、由电脑自己找步骤的算 AI；而电脑每执行一条指令都要花时间。",
+        "en": "An algorithm is a series of precise instructions followed step-by-step, in order, to achieve a goal; functions and loops let us reuse instructions; as a general rule, it is AI when the programmer gives a goal and the computer finds the steps; and every instruction executed costs time."
+      },
+      "estimatedMinutes": 135,
+      "questionCount": 44,
+      "termCount": 39
+    },
+    {
+      "id": "lec03",
+      "kind": "lecture",
+      "number": 3,
+      "branch": "symbolic",
+      "title": {
+        "en": "Search",
+        "zh": "搜索"
+      },
+      "lesson": "lessons/lec03.json",
+      "practice": "practice/lec03.json",
+      "glossary": "glossary/lec03.json",
+      "sectionIds": [
+        "s01-symbolic-ai",
+        "s02-puzzles-sokoban",
+        "s03-state-dynamics-goal",
+        "s04-search-state-tree",
+        "s05-tree-terminology",
+        "s06-exhaustive-search-steps",
+        "s07-solution-guarantee",
+        "s08-exponential-growth",
+        "s09-multiplayer-games",
+        "s10-reward-values",
+        "s11-minimax-tictactoe",
+        "s12-abstract-minimax",
+        "s13-minimax-activity",
+        "s14-heuristics",
+        "s15-material-advantage",
+        "s16-depth-limited-minimax",
+        "s17-lab-connect-four",
+        "s18-symbolic-vs-algorithm",
+        "s19-alignment"
+      ],
+      "oneLiner": {
+        "zh": "符号 AI 靠规则推理找解；搜索就是按规则把未来的局面画成一棵树去找目标；有对手时用 minimax（我们取最大、对手取最小）；树太大就用启发式估分，但会失去保证；最后讨论奖励要和人类价值观“对齐”。",
+        "en": "Symbolic AI finds solutions by reasoning with rules; Search looks ahead through a state tree to find a goal, Minimax handles an opponent, heuristics estimate values when the tree is too big, and Alignment asks whether the reward matches human values."
+      },
+      "estimatedMinutes": 140,
+      "questionCount": 48,
+      "termCount": 48
+    },
+    {
+      "id": "lec04",
+      "kind": "lecture",
+      "number": 4,
+      "branch": "ml",
+      "title": {
+        "en": "Data and an Introduction to Machine Learning",
+        "zh": "数据与机器学习入门"
+      },
+      "lesson": "lessons/lec04.json",
+      "practice": "practice/lec04.json",
+      "glossary": "glossary/lec04.json",
+      "sectionIds": [
+        "s01-why-data",
+        "s02-data-sources-provenance",
+        "s03-copyright-basics",
+        "s04-copyright-ai-court",
+        "s05-copyright-ethics-debate",
+        "s06-invasion-of-privacy",
+        "s07-information-leakage",
+        "s08-structured-data",
+        "s09-column-types",
+        "s10-unstructured-images-video",
+        "s11-unstructured-audio-text",
+        "s12-feature-vectors",
+        "s13-data-space",
+        "s14-plotting-activities",
+        "s15-ml-pipeline-supervised",
+        "s16-classification-regression",
+        "s17-decision-boundary-parameters",
+        "s18-accuracy-error",
+        "s19-accuracy-activity"
+      ],
+      "oneLiner": {
+        "zh": "机器学习不靠人写规则，而是从数据里学规律：这一课讲数据从哪来、版权和隐私问题、各种数据怎么变成数字（特征向量、数据空间），以及监督学习怎么用决策边界分类、怎么算准确率和错误率。",
+        "en": "In Machine Learning, the computer learns patterns from data, so this lecture covers data, copyright and privacy, feature vectors, and accuracy in supervised learning."
+      },
+      "estimatedMinutes": 140,
+      "questionCount": 41,
+      "termCount": 48
+    },
+    {
+      "id": "lec05",
+      "kind": "lecture",
+      "number": 5,
+      "branch": "ml",
+      "title": {
+        "en": "Training Models",
+        "zh": "训练模型"
+      },
+      "lesson": "lessons/lec05.json",
+      "practice": "practice/lec05.json",
+      "glossary": "glossary/lec05.json",
+      "sectionIds": [
+        "s01-lecture-map",
+        "s02-supervised-learning",
+        "s03-classification-vs-regression",
+        "s04-models-and-parameters",
+        "s05-regression-predicted-value",
+        "s06-fitting-training-goal",
+        "s07-slope-and-intercept",
+        "s08-activity-line-of-best-fit",
+        "s09-cost-function",
+        "s10-error-and-squared-error",
+        "s11-mean-squared-error",
+        "s12-comparing-lines-by-cost",
+        "s13-gradient-descent-algorithm",
+        "s14-gradient-descent-in-action",
+        "s15-gradient-descent-classification",
+        "s16-model-selection",
+        "s17-mse-zero-and-new-data",
+        "s18-overfitting-definition"
+      ],
+      "oneLiner": {
+        "zh": "训练模型＝我们先选好模型的样子，机器用代价函数（比如 MSE）给参数打分，再（例如用梯度下降）一点点调参数让代价变小；但训练集上代价最低的模型不一定最好，因为它可能过拟合。",
+        "en": "Training means the machine finds parameter values that make the cost small, for example with gradient descent, but a very low training cost can mean overfitting."
+      },
+      "estimatedMinutes": 115,
+      "questionCount": 41,
+      "termCount": 42
+    },
+    {
+      "id": "lec06",
+      "kind": "lecture",
+      "number": 6,
+      "branch": "ml",
+      "title": {
+        "en": "Model Evaluation and Algorithmic Fairness",
+        "zh": "模型评估与算法公平"
+      },
+      "lesson": "lessons/lec06.json",
+      "practice": "practice/lec06.json",
+      "glossary": "glossary/lec06.json",
+      "sectionIds": [
+        "s01-lecture-map",
+        "s02-overfitting-review",
+        "s03-choosing-a-model",
+        "s04-validation-set",
+        "s05-validation-mse",
+        "s06-tree-validation-activity",
+        "s07-model-family-hyperparameters",
+        "s08-final-accuracy-dice",
+        "s09-test-set",
+        "s10-tp-fp-fn-tn",
+        "s11-precision-recall-f1",
+        "s12-other-priorities",
+        "s13-bias-cases",
+        "s14-causes-of-bias",
+        "s15-disparate-treatment-impact",
+        "s16-demographic-parity",
+        "s17-predictive-parity",
+        "s18-equalized-odds",
+        "s19-individual-fairness-compare",
+        "s20-tradeoffs-stakeholders",
+        "s21-improving-fairness-auditing"
+      ],
+      "oneLiner": {
+        "zh": "模型在训练数据上考得好不算数：要用验证集挑模型、用测试集报成绩，除了准确率还要看精确率和召回率，还要检查模型对不同人群公不公平。",
+        "en": "A model must be judged on data it has not seen: we choose models with a validation set, report results with a test set, look beyond accuracy, and check that the model is fair to different groups."
+      },
+      "estimatedMinutes": 155,
+      "questionCount": 43,
+      "termCount": 45
+    },
+    {
+      "id": "lec07",
+      "kind": "lecture",
+      "number": 7,
+      "branch": "llm",
+      "title": {
+        "en": "Neural Networks and an Introduction to LLMs",
+        "zh": "神经网络与大语言模型（LLM）入门"
+      },
+      "lesson": "lessons/lec07.json",
+      "practice": "practice/lec07.json",
+      "glossary": "glossary/lec07.json",
+      "sectionIds": [
+        "s01-roadmap",
+        "s02-neural-network-biology",
+        "s03-neuron-parts-mapping",
+        "s04-artificial-neuron",
+        "s05-analogy-ends-activation",
+        "s06-layers",
+        "s07-inference-feed-forward",
+        "s08-why-hidden-layers",
+        "s09-activity-linear-separability",
+        "s10-backprop-history",
+        "s11-architectures-perceptron-mlp",
+        "s12-deep-learning-cnn",
+        "s13-autoencoder",
+        "s14-gan",
+        "s15-transformer-llm",
+        "s16-prompting-context",
+        "s17-mistakes-copilot-activity",
+        "s18-tokenization",
+        "s19-embeddings",
+        "s20-attention",
+        "s21-next-token-temperature",
+        "s22-response-loop",
+        "s23-big-table-revisited"
+      ],
+      "oneLiner": {
+        "zh": "神经网络就是很多“人工神经元”一层一层连起来的模型；隐藏层让它能画出弯弯曲曲的决策边界；大语言模型（LLM）是用 Transformer 架构的超大神经网络，它回答你时，每次只预测下一个 token，接上去再预测下一个。",
+        "en": "A neural network is many artificial neurons organized in layers; hidden layers let it draw complicated decision boundaries; an LLM is a huge Transformer network that answers a prompt by predicting one token at a time and repeating."
+      },
+      "estimatedMinutes": 180,
+      "questionCount": 47,
+      "termCount": 48
+    },
+    {
+      "id": "lab01",
+      "kind": "lab",
+      "number": 1,
+      "branch": "foundations",
+      "title": {
+        "en": "Lab 1: Selecting a Method",
+        "zh": "Lab 1：选择合适的方法"
+      },
+      "lesson": "lessons/lab01.json",
+      "practice": "practice/lab01.json",
+      "glossary": "glossary/lab01.json",
+      "sectionIds": [
+        "s01-lab-goal",
+        "s02-lab-walkthrough",
+        "s03-symbolic-ai",
+        "s04-machine-learning",
+        "s05-llms",
+        "s06-big-table",
+        "s07-choosing-practice",
+        "s08-exam-takeaways"
+      ],
+      "oneLiner": {
+        "zh": "复习三类 AI 方法（符号 AI、机器学习、大语言模型；LLM 本身是一种特定的机器学习模型）的定义、优点和弱点，学会看一个问题该选哪一种方法。",
+        "en": "Review three kinds of AI approaches (Symbolic AI, Machine Learning and LLMs, which are a specific type of ML model) and learn to choose the right method for a problem."
+      },
+      "estimatedMinutes": 55,
+      "questionCount": 14,
+      "termCount": 20
+    },
+    {
+      "id": "lab02",
+      "kind": "lab",
+      "number": 2,
+      "branch": "symbolic",
+      "title": {
+        "en": "Algorithms with Turtles",
+        "zh": "用小海龟学算法"
+      },
+      "lesson": "lessons/lab02.json",
+      "practice": "practice/lab02.json",
+      "glossary": "glossary/lab02.json",
+      "sectionIds": [
+        "s01-lab-goal",
+        "s02-lab-steps",
+        "s03-algorithm-concept",
+        "s04-functions",
+        "s05-parameters",
+        "s06-loops",
+        "s07-discuss-model-answers",
+        "s08-exam-takeaways"
+      ],
+      "oneLiner": {
+        "zh": "这个 lab 用 Turtle 小海龟程序复习 Lecture 2：算法是按顺序执行的精确指令；函数和循环让我们把指令写一次、用很多次。",
+        "en": "This lab uses the Turtle app to review Lecture 2: an algorithm is a list of precise instructions done in order, and functions and loops let us write instructions once and use them many times."
+      },
+      "estimatedMinutes": 45,
+      "questionCount": 14,
+      "termCount": 14
+    },
+    {
+      "id": "lab03",
+      "kind": "lab",
+      "number": 3,
+      "branch": "symbolic",
+      "title": {
+        "en": "Lab 3: Search and Game-Playing (with Connect Four!)",
+        "zh": "Lab 3：搜索与博弈（Connect Four 四子棋）"
+      },
+      "lesson": "lessons/lab03.json",
+      "practice": "practice/lab03.json",
+      "glossary": "glossary/lab03.json",
+      "sectionIds": [
+        "s01-lab-goal",
+        "s02-lab-steps",
+        "s03-search-minimax",
+        "s04-depth-heuristics",
+        "s05-weighted-sum",
+        "s06-connect-four-heuristic",
+        "s07-model-answers",
+        "s08-exam-takeaways"
+      ],
+      "oneLiner": {
+        "zh": "用 Connect Four 这个游戏，亲眼看电脑怎么用 Minimax “往前看几步”，再自己用加权和（**weighted sum**）做一个 heuristic 给局面打分。",
+        "en": "You watch Minimax play Connect Four and build your own weighted-sum heuristic."
+      },
+      "estimatedMinutes": 55,
+      "questionCount": 14,
+      "termCount": 21
+    },
+    {
+      "id": "lab04",
+      "kind": "lab",
+      "number": 4,
+      "branch": "ml",
+      "title": {
+        "en": "Evaluating the Role of Data in Teachable Machine",
+        "zh": "在 Teachable Machine 中评估数据的作用"
+      },
+      "lesson": "lessons/lab04.json",
+      "practice": "practice/lab04.json",
+      "glossary": "glossary/lab04.json",
+      "sectionIds": [
+        "s01-lab-goal",
+        "s02-lab-steps",
+        "s03-supervised-learning",
+        "s04-accuracy-testing",
+        "s05-majority-class-errors",
+        "s06-out-of-distribution",
+        "s07-model-answers",
+        "s08-exam-takeaways"
+      ],
+      "oneLiner": {
+        "zh": "用 Teachable Machine 训练一个分辨“剪刀”和“布”手势的图像分类器，再故意改变训练数据，亲眼看到：数据决定了模型有多准、会犯什么错。",
+        "en": "We trained an image classifier in Teachable Machine to tell SCISSORS from PAPER, then changed the training data to see how data decides a model's accuracy and errors."
+      },
+      "estimatedMinutes": 50,
+      "questionCount": 14,
+      "termCount": 22
+    },
+    {
+      "id": "lab05",
+      "kind": "lab",
+      "number": 5,
+      "branch": "ml",
+      "title": {
+        "en": "Model Evaluation and Fairness (Hiring Model Cards)",
+        "zh": "模型评估与公平性（招聘模型卡）"
+      },
+      "lesson": "lessons/lab05.json",
+      "practice": "practice/lab05.json",
+      "glossary": "glossary/lab05.json",
+      "sectionIds": [
+        "s01-lab-goal",
+        "s02-steps",
+        "s03-hiring-grid",
+        "s04-five-metrics",
+        "s05-overall-and-gap",
+        "s06-fairness-on-cards",
+        "s07-stakeholder-ranking",
+        "s08-exam-takeaways"
+      ],
+      "oneLiner": {
+        "zh": "把一个招聘模型的结果按 A、B 两组分开算指标，判断它满足哪种公平，再站在五种利益相关者的角度给 8 个模型排名。你会发现，没有一个模型能让所有人都满意。",
+        "en": "You compute metrics for two groups of job applicants, check which fairness definitions each hiring model meets, and see that different stakeholders prefer different models."
+      },
+      "estimatedMinutes": 60,
+      "questionCount": 14,
+      "termCount": 20
+    }
+  ],
+  "review": {
+    "cheatsheet": "review/cheatsheet.json",
+    "toolkit": "review/exam-toolkit.json",
+    "overview": "review/course-overview.json"
+  }
+}

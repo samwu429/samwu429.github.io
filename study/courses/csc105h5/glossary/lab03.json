@@ -1,0 +1,382 @@
+{
+  "lessonId": "lab03",
+  "terms": [
+    {
+      "id": "search",
+      "en": "Search",
+      "zh": "搜索",
+      "def": {
+        "en": "Search is a method for a computer to 'look ahead' by using the game's dynamics to generate possible future states. It is one of the sub-fields of Symbolic AI.",
+        "zh": "电脑先不真走，而是按游戏规则（动态）把以后可能出现的状态一个个生成出来，先“往前看”，再决定怎么走。它是符号 AI 的一个子领域。"
+      },
+      "example": {
+        "zh": "Connect Four 里，电脑先想象“我下 column 3，对手下 column 4……”之后会变成什么局面。",
+        "en": "Imagining the boards after 'I play column 3, the opponent plays column 4, ...'."
+      },
+      "slides": "3",
+      "related": [
+        "state-tree",
+        "dynamics",
+        "minimax"
+      ]
+    },
+    {
+      "id": "state",
+      "en": "State (game state)",
+      "zh": "状态（游戏状态）",
+      "def": {
+        "en": "A game's state is a snapshot of the game at a particular moment in time. It's the answer to the question: 'What information would I have to save in order to put this game away and resume it later?'",
+        "zh": "游戏在某一时刻的“快照”。判断方法：要把游戏收起来、下次接着玩，必须记下哪些信息？那些信息就是状态。在状态树里，每个状态就是一个节点。"
+      },
+      "example": {
+        "zh": "Connect Four 棋盘上每个格子现在是红、黄还是空，就构成一个状态。（定义出自 Lecture 3 第 17 页，Lab 3 讲义没有重复它。）"
+      },
+      "slides": "3",
+      "related": [
+        "dynamics",
+        "state-tree"
+      ]
+    },
+    {
+      "id": "dynamics",
+      "en": "Dynamics (of a game)",
+      "zh": "动态（游戏规则）",
+      "def": {
+        "en": "A game's dynamics are the rules of the game. For any given state, they tell us what actions can be taken and how the state changes when they are.",
+        "zh": "就是游戏规则：在任何一个状态下，能做哪些行动（动作），做完以后状态会怎么变。搜索就是用这些规则往前推演、生成未来可能的状态。"
+      },
+      "example": {
+        "zh": "Connect Four 里：可以往没满的列丢一个棋子，棋子掉到这一列最下面的空格（规则本身课件没写，属于课件外常识）。（dynamics 的定义出自 Lecture 3 第 17 页。）"
+      },
+      "slides": "3",
+      "related": [
+        "state",
+        "search"
+      ]
+    },
+    {
+      "id": "state-tree",
+      "en": "State tree (game tree, search tree)",
+      "zh": "状态树（游戏树、搜索树）",
+      "def": {
+        "en": "A state tree (also called a game tree or search tree) is a way to visualize search: each state in the tree is a node, each action connecting nodes is an edge, and the root node is the current game state.",
+        "zh": "把搜索画成一棵倒着长的树：每个状态是一个节点（node），连接节点的每个动作是一条边（edge），最上面的根节点（root）是当前状态，往下每一层是多走一步之后的状态。game tree、state tree、search tree 说的是同一个东西。"
+      },
+      "example": {
+        "zh": "第 4 页的推箱子部分状态树：根往下有 up 和 down 两条边，再往下又各有两条边。"
+      },
+      "slides": "3-4",
+      "related": [
+        "search",
+        "node",
+        "edge",
+        "minimax"
+      ]
+    },
+    {
+      "id": "node",
+      "en": "Node (in a state tree)",
+      "zh": "节点",
+      "def": {
+        "en": "Each state in the tree is also called a node. The root node is the first (topmost) node in the tree.",
+        "zh": "状态树里的每一个状态（每一张局面图）就是一个节点。最上面的那个是根节点（root node），也就是现在的局面。"
+      },
+      "example": {
+        "zh": "第 4 页的推箱子树里，每一张小图（一个局面）就是一个节点。（定义出自 Lecture 3 第 21 页。）"
+      },
+      "slides": "4",
+      "related": [
+        "edge",
+        "depth",
+        "state-tree"
+      ]
+    },
+    {
+      "id": "edge",
+      "en": "Edge (in a state tree)",
+      "zh": "边",
+      "def": {
+        "en": "Each action connecting nodes is also called an edge. Each edge goes from a parent node to a child node.",
+        "zh": "连接两个节点的每个动作就叫一条边，也就是树里的箭头。边从父节点（parent node）指向子节点（child node），上面通常写着动作名。"
+      },
+      "example": {
+        "zh": "第 4 页的树里，根往下的 up 和 down 就是两条边。（定义出自 Lecture 3 第 21 页。）"
+      },
+      "slides": "4",
+      "related": [
+        "node",
+        "depth",
+        "state-tree"
+      ]
+    },
+    {
+      "id": "exhaustive-search",
+      "en": "Exhaustive search",
+      "zh": "穷举搜索",
+      "def": {
+        "en": "An exhaustive search is the most basic kind of search. It considers all possibilities from the current game state until the end of the game. Exhaustive search is simple, but inefficient: for large games it is too time-consuming.",
+        "zh": "最基本的搜索：从当前状态开始，把所有可能一个不漏地列出来，一直搜到游戏结束。简单，但效率低；游戏太大时太费时间，搜不完。"
+      },
+      "example": {
+        "zh": "Connect Four 每步最多 7 种下法，一直搜到结束的状态数太多，所以 lab 里只搜到固定深度。（定义出自 Lecture 3 第 19 页。）"
+      },
+      "slides": "5, 9",
+      "related": [
+        "search",
+        "search-depth",
+        "minimax"
+      ]
+    },
+    {
+      "id": "minimax",
+      "en": "Minimax (Minimax algorithm)",
+      "zh": "Minimax（极小化极大算法）",
+      "def": {
+        "en": "An algorithm for multiplayer games that decides what move to play. Minimax starts at terminal states and carries values upwards, assuming: on our turn, we always maximize our reward; on our opponent's turn, they will always minimize our reward. When a value gets carried up to the root, we know what move to play and the reward we should get for playing it.",
+        "zh": "两人对战时决定下哪一步的算法：从终止状态（最底下）开始，一层一层往上传值：轮到我们（▲）取孩子里的最大值，轮到对手（▼）取最小值。传到根时，就知道该走哪一步、能拿到多少奖励。"
+      },
+      "example": {
+        "zh": "第 5 页井字棋树：O 那层取 min 得 0、0、0，根取 max 得 0，所以最多保证平局。",
+        "en": "Page 5 tic-tac-toe tree: the root value is 0 (a draw)."
+      },
+      "slides": "5",
+      "related": [
+        "state-tree",
+        "reward-value",
+        "heuristic",
+        "search-depth"
+      ]
+    },
+    {
+      "id": "reward-value",
+      "en": "Reward values",
+      "zh": "奖励值",
+      "def": {
+        "en": "Numerical values assigned to all of the ways that a game can end. The course conventions are: a win is +100, a loss is -100, a draw is 0, and any other outcome must be between -100 and +100. Heuristics follow the same conventions: a guaranteed win is +100, a guaranteed loss is -100 and an equal position is 0.",
+        "zh": "给游戏的每种结局打一个数：赢 +100，输 -100，平局 0，其他结局在 -100 和 +100 之间。这样电脑就能区分输和平局，也能比较哪个结局更好。启发式估分也用同一套刻度：保证赢 +100，保证输 -100，势均力敌 0。"
+      },
+      "example": {
+        "zh": "第 5 页的井字棋树：我们 X 赢的终局是 +100，平局的终局是 0。（终局 +100 / -100 / 0 的约定出自 Lecture 3 第 33 页；heuristic 用同一套刻度，见 Lab 3 第 9 页。）"
+      },
+      "slides": "5, 9",
+      "related": [
+        "heuristic",
+        "minimax"
+      ]
+    },
+    {
+      "id": "heuristic",
+      "en": "Heuristic (heuristic evaluation function)",
+      "zh": "启发式（启发式评估函数）",
+      "def": {
+        "en": "A heuristic (or heuristic evaluation function) is a numerical score for estimating the 'goodness' of a state from our perspective. Following the reward conventions: a guaranteed win is +100, a guaranteed loss is -100, an equal position is 0, and any other outcome must be between -100 and +100.",
+        "zh": "从我们这边看，给一个状态（局面）估一个“好坏分”：越高对我们越好。来源有两种：用机器学习自动学，或者用人类专家知识手工设计。它只是估计，不能完整反映局面，也不一定准；依赖它就会失去对奖励的保证。"
+      },
+      "example": {
+        "zh": "国际象棋网站的评估条显示白方 +2.1 的优势；lab 里的 'Combined' 也是一个 heuristic。",
+        "en": "A chess bar saying White has a +2.1 advantage."
+      },
+      "slides": "9-10",
+      "related": [
+        "weighted-sum",
+        "heuristic-feature",
+        "heuristic-weight",
+        "search-depth",
+        "reward-value",
+        "expert-knowledge"
+      ]
+    },
+    {
+      "id": "search-depth",
+      "en": "Search depth (fixed depth)",
+      "zh": "搜索深度（固定深度）",
+      "def": {
+        "en": "How many levels below the current state the search generates. To ensure we don't run out of time, we can generate states to a fixed depth and calculate heuristic values for the bottom row, then use Minimax as if they were terminal states. Since heuristics are only estimates, we lose guarantees about the reward we will receive.",
+        "zh": "搜索从当前状态往下生成几层。为了不超时，只搜到固定深度：最底一排用启发式打分，再把它们当成终止状态做 Minimax。省时间，但启发式只是估计，所以失去对奖励的保证；不过终止状态太深、找不到时，用估计总比什么都没有好。"
+      },
+      "example": {
+        "zh": "lab 截图里两个玩家的 Search depth 都设成 4。Lab 3 第 9 页：穷举搜索太费时间时，就只搜到一个更合理的固定深度，再用 heuristic 评估那里的状态。"
+      },
+      "slides": "7, 9, 16",
+      "related": [
+        "depth",
+        "exhaustive-search",
+        "heuristic",
+        "minimax"
+      ]
+    },
+    {
+      "id": "depth",
+      "en": "Depth (of a node)",
+      "zh": "深度（节点的深度）",
+      "def": {
+        "en": "The depth of a node is the number of edges between it and the root. The root is at depth 0.",
+        "zh": "从根走到这个节点要经过几条边。根 = 0，根的孩子 = 1，孩子的孩子 = 2……"
+      },
+      "example": {
+        "zh": "第 4 页的树：根是 depth 0，up / down 走到的两个状态是 depth 1，最下面四个是 depth 2。（定义出自 Lecture 3 第 21 页。）"
+      },
+      "slides": "4, 7, 16",
+      "related": [
+        "search-depth",
+        "node",
+        "edge"
+      ]
+    },
+    {
+      "id": "expert-knowledge",
+      "en": "Expert knowledge",
+      "zh": "专家知识",
+      "def": {
+        "en": "Expert knowledge is the intuition and reasoning of human experts distilled for use by AI. Heuristics may be crafted manually, using human expert knowledge (or learned autonomously through Machine Learning).",
+        "zh": "把人类专家的直觉和推理“提炼”出来交给 AI 用。手工设计启发式靠的就是它（另一条路是用机器学习自动学）。"
+      },
+      "example": {
+        "zh": "象棋高手知道后比兵值钱得多，于是后的权重是 9，兵是 1。Lab 3 第 11 页：国际象棋的“子力优势”（material advantage）就是可以用作 heuristic 的专家知识。（定义出自 Lecture 3 第 54 页。）"
+      },
+      "slides": "11",
+      "related": [
+        "heuristic",
+        "material-advantage"
+      ]
+    },
+    {
+      "id": "material-advantage",
+      "en": "Material advantage (chess)",
+      "zh": "子力优势（国际象棋）",
+      "def": {
+        "en": "In Chess, 'material advantage' is expert knowledge that can be used as a heuristic: `Material Advantage = 1*[(# W pawns) - (# B pawns)] + 3*[(# W knights) - (# B knights)] + 3*[(# W bishops) - (# B bishops)] + 5*[(# W rooks) - (# B rooks)] + 9*[(# W queens) - (# B queens)]`. This is a simple, common format for a heuristic (a weighted sum).",
+        "zh": "国际象棋的加权和启发式：每种棋子算“白方个数 - 黑方个数”，乘上它的权重，最后全部加起来；正数表示白方占优。权重：兵 pawn 1、马 knight 3、象 bishop 3、车 rook 5、后 queen 9。"
+      },
+      "example": {
+        "zh": "白方只比黑方多 1 个象，其他一样：3 × 1 = 3。"
+      },
+      "slides": "11-14",
+      "related": [
+        "weighted-sum",
+        "heuristic-feature",
+        "heuristic-weight",
+        "expert-knowledge"
+      ]
+    },
+    {
+      "id": "heuristic-feature",
+      "en": "Feature (in a heuristic)",
+      "zh": "特征（启发式里的）",
+      "def": {
+        "en": "In a heuristic, something that can be used as an indicator of how good a state is, such as # pawns or # knights. In the simple, common format for a heuristic, a set of features is compared for each player, and their importance is weighted.",
+        "zh": "局面里能用来指示“局面好不好”的东西，可以数一数、比一比，比如兵的个数、马的个数。每个特征都用“我方 - 对方”来比，再乘上权重。"
+      },
+      "example": {
+        "zh": "Connect Four app 里的 chips、two_in_a_row、three_in_a_row、win_threat、stacked_threats。"
+      },
+      "slides": "12, 17-19",
+      "related": [
+        "heuristic-weight",
+        "feature-difference",
+        "weighted-sum",
+        "heuristic"
+      ]
+    },
+    {
+      "id": "feature-difference",
+      "en": "Difference (in a heuristic)",
+      "zh": "差值",
+      "def": {
+        "en": "Our value of a feature minus our opponent's value, e.g. (# W pawns) – (# B pawns). The difference decides who has an advantage.",
+        "zh": "“我的 − 对手的”。决定谁占优势的是差值，不是某一方单独的数量。"
+      },
+      "example": {
+        "zh": "白方 8 个兵、黑方 7 个兵：兵的差值 = 8 − 7 = 1，对白方有利。"
+      },
+      "slides": "13, 17",
+      "related": [
+        "heuristic-feature",
+        "heuristic-weight",
+        "weighted-sum"
+      ]
+    },
+    {
+      "id": "heuristic-weight",
+      "en": "Weight (in a heuristic)",
+      "zh": "权重（启发式里的）",
+      "def": {
+        "en": "A value that multiplies a feature's difference. It determines the importance of this feature against every other feature; in material advantage, pawns have weight 1, knights 3, bishops 3, rooks 5 and queens 9.",
+        "zh": "乘在特征差值前面的数，表示这个特征比别的特征重要多少：越重要，乘的数越大。注意：Lab 3 里权重由人定、靠调（**tuning**）；Lecture 3 p.54 也说 heuristic 可以用机器学习自动学出来，那时权重就像 Lecture 4–5 的模型参数，由机器来找。"
+      },
+      "example": {
+        "zh": "兵没有马重要，所以兵的权重是 1，马是 3；'Combined' 里三连的权重是 3，中间列棋子是 1。"
+      },
+      "slides": "14, 17",
+      "related": [
+        "heuristic-feature",
+        "feature-difference",
+        "weighted-sum",
+        "model-parameter"
+      ]
+    },
+    {
+      "id": "weighted-sum",
+      "en": "Weighted sum",
+      "zh": "加权和",
+      "def": {
+        "en": "A simple, common format for a heuristic: a set of features is compared for each player (ours minus the opponent's), each difference is multiplied by a weight, and the results are added.",
+        "zh": "最常见的 heuristic 格式：每个特征算“我的 − 对手的”，乘上权重，再全部加起来。"
+      },
+      "example": {
+        "zh": "'Combined' = 3 × (三连的差) + 1 × (column 3 棋子的差)。"
+      },
+      "slides": "11, 16-17",
+      "related": [
+        "heuristic-feature",
+        "feature-difference",
+        "heuristic-weight",
+        "heuristic",
+        "material-advantage",
+        "artificial-neuron"
+      ]
+    },
+    {
+      "id": "three-in-a-row",
+      "en": "Three-in-a-row (three_in_a_row)",
+      "zh": "三连",
+      "def": {
+        "en": "A Connect Four feature in the lab app: the number of occurrences of chips placed three-in-a-row (in any direction) by the given player. two_in_a_row is the same idea for two chips.",
+        "zh": "lab app 里的特征：某个玩家有几处三个棋子连成一线（横、竖、斜都算）。two_in_a_row 是两个连成一线。"
+      },
+      "slides": "16, 19-20",
+      "related": [
+        "heuristic-feature",
+        "win-threat"
+      ]
+    },
+    {
+      "id": "win-threat",
+      "en": "Win threat (win_threat)",
+      "zh": "致胜威胁",
+      "def": {
+        "en": "A Connect Four feature in the lab app: the number of spaces that are currently empty, but would win the game for the given player if filled.",
+        "zh": "lab app 里的特征：现在空着、但这个玩家一下进去就能赢的格子数。"
+      },
+      "slides": "19",
+      "related": [
+        "stacked-threats",
+        "heuristic-feature"
+      ]
+    },
+    {
+      "id": "stacked-threats",
+      "en": "Stacked threats (stacked_threats)",
+      "zh": "叠加威胁",
+      "def": {
+        "en": "A Connect Four feature in the lab app: the number of times one win threat appears in the space directly above another one.",
+        "zh": "lab app 里的特征：一个致胜威胁正好在另一个致胜威胁正上方的次数。"
+      },
+      "slides": "19",
+      "related": [
+        "win-threat",
+        "heuristic-feature"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4619 @@
+{
+  "id": "lec04",
+  "kind": "lecture",
+  "number": 4,
+  "title": {
+    "en": "Data and an Introduction to Machine Learning",
+    "zh": "数据与机器学习入门"
+  },
+  "sources": [
+    {
+      "file": "lec04_data_intro_ml_.pdf",
+      "pages": 47
+    }
+  ],
+  "estimatedMinutes": 140,
+  "oneLiner": {
+    "zh": "机器学习不靠人写规则，而是从数据里学规律：这一课讲数据从哪来、版权和隐私问题、各种数据怎么变成数字（特征向量、数据空间），以及监督学习怎么用决策边界分类、怎么算准确率和错误率。",
+    "en": "In Machine Learning, the computer learns patterns from data, so this lecture covers data, copyright and privacy, feature vectors, and accuracy in supervised learning."
+  },
+  "outcomes": [
+    {
+      "en": "Explain data provenance and its importance",
+      "zh": "解释数据溯源（data provenance）及其重要性"
+    },
+    {
+      "en": "Describe the ethical and legal challenges associated with copyright and privacy in data",
+      "zh": "描述数据在版权和隐私方面的道德与法律挑战"
+    },
+    {
+      "en": "Describe different forms of data",
+      "zh": "描述数据的不同形式"
+    },
+    {
+      "en": "Explain feature vectors and data spaces",
+      "zh": "解释特征向量和数据空间"
+    },
+    {
+      "en": "Describe the basic objectives of Supervised Learning",
+      "zh": "描述监督学习的基本目标"
+    },
+    {
+      "en": "Calculate the accuracy and classification error of a model",
+      "zh": "计算模型的准确率和分类错误率"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-why-data",
+      "title": {
+        "zh": "为什么需要数据？数据是什么",
+        "en": "Why do we need data? What is data?"
+      },
+      "slides": "5-6",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一课的主角是**数据**。先想一个问题：机器学习（**Machine Learning, ML**）和前几课的方法有什么不同？一句话：以前是人把东西**写好**交给电脑；机器学习是给电脑一大堆**例子**，让它自己找规律。"
+        },
+        {
+          "type": "analogy",
+          "zh": "教电脑做一道菜，有三种教法：\n① 纯算法：给一份详细菜谱，照着一步步做（人把“解法”写好）。\n② 符号 AI：不给菜谱，给一本烹饪知识手册（什么配什么、火候规则），电脑按这些知识自己推理（人把“知识”写好）。\n③ 机器学习：菜谱和手册都不给，只让它尝几千道菜、看每道菜的评价，自己总结规律（给“训练数据”）。",
+          "limit": "类比到此为止：电脑“总结规律”不是像人一样真正理解，而是在数字里找模式（后面会看到，所有数据最后都要变成数字）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.5）",
+            "en": "Course wording (slide 5)"
+          },
+          "items": [
+            {
+              "en": "In purely algorithmic approaches, we specify the solution to a problem in detail, using instructions the computer can understand.",
+              "zh": "纯算法方法（**purely algorithmic**）：人把问题的**解法**详细写成电脑能懂的指令。"
+            },
+            {
+              "en": "In Symbolic AI, we specify knowledge of the problem in detail, using instructions the computer can understand.",
+              "zh": "符号 AI（**Symbolic AI**）：人把关于问题的**知识**详细写成电脑能懂的指令。"
+            },
+            {
+              "en": "In Machine Learning (ML), we do neither. Instead, we provide the computer with training data.",
+              "zh": "机器学习：解法和知识都不写，而是给电脑**训练数据**（**training data**）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "三句话只差一个关键词：solution / knowledge / training data",
+            "en": "Only one key word differs: solution / knowledge / training data"
+          },
+          "headers": [
+            "方法 Approach",
+            "人给电脑什么",
+            "What the human gives"
+          ],
+          "rows": [
+            [
+              "纯算法 Purely algorithmic",
+              "详细的**解法**",
+              "the solution, in detail"
+            ],
+            [
+              "符号 AI Symbolic AI",
+              "详细的**问题知识**",
+              "knowledge of the problem, in detail"
+            ],
+            [
+              "机器学习 Machine Learning",
+              "两样都不给，只给**训练数据**",
+              "neither; training data instead"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "那“数据”到底是什么？课件第 6 页：在机器学习里，数据（**data**）就是一组例子（**examples**），电脑从这些例子中学出规律（**patterns**）。要学的东西不同，需要的数据样子也不同。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.6）",
+            "en": "Course wording (slide 6)"
+          },
+          "items": [
+            {
+              "en": "In Machine Learning, data is the collection of examples from which patterns are learned.",
+              "zh": "在机器学习中，数据是一组例子，规律就是从这些例子里学出来的。"
+            },
+            {
+              "en": "The form of data depends on what is being learned.",
+              "zh": "数据长什么样，取决于要学什么。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "要学什么，就准备什么数据（p.6 的三个例子）",
+            "en": "What you learn decides what data you need (slide 6)"
+          },
+          "steps": [
+            {
+              "zh": "想根据室外温度预测正在燃烧的森林火灾数量 → 需要一张“成对”的清单：(室外温度, 火灾数量)。每一对就是一个例子。",
+              "en": "Predict the number of active forest fires from outdoor temperature: a list of pairs (outdoor temperature, # forest fires)."
+            },
+            {
+              "zh": "想识别照片里的狗 → 既要一批**有狗**的照片，也要一批**没有狗**的照片。两种都有，才能对比出区别。",
+              "en": "Detect dogs in photos: photos that contain dogs AND photos that do not contain dogs."
+            },
+            {
+              "zh": "想生成自然流畅的文字 → 需要大量自然流畅的文字作为例子。",
+              "en": "Generate natural-sounding text: many examples of natural-sounding text."
+            }
+          ],
+          "answer": {
+            "zh": "三个任务，三种完全不同的数据：数据的形式取决于要学什么。",
+            "en": "The form of data depends on what is being learned."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "联系 Lecture 3：那一课说过“符号 AI 需要规则才能工作，其他方法（即机器学习）需要数据”。这一课就专门讲“数据”。",
+          "en": "Link to Lecture 3: Symbolic AI needs rules to work. Other methods (i.e. Machine Learning) need data."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "三句话结构几乎一样，只差一个词：给 **solution** = 纯算法；给 **knowledge** = 符号 AI；给 **training data** = 机器学习。别张冠李戴。"
+            },
+            {
+              "zh": "识别狗的例子里，“没有狗的照片”也是必需的数据，不是多余的。"
+            },
+            {
+              "zh": "数据不只是表格里的数字：照片、文字也都是数据（后面“数据的形式”会细讲）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Machine Learning, what do we provide the computer with, instead of a detailed solution or detailed knowledge of the problem?",
+            "zh": "在机器学习中，我们不给电脑详细的解法或知识，而是给它什么？"
+          },
+          "options": [
+            {
+              "en": "A detailed list of rules",
+              "zh": "一份详细的规则清单"
+            },
+            {
+              "en": "Step-by-step instructions for the solution",
+              "zh": "一步一步的解题指令"
+            },
+            {
+              "en": "A faster computer",
+              "zh": "一台更快的电脑"
+            },
+            {
+              "en": "Training data",
+              "zh": "训练数据"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "课件第 5 页：In Machine Learning (ML), we do neither. Instead, we provide the computer with training data. 规则清单更像符号 AI（给知识）；一步步的解题指令是纯算法（给解法）。",
+            "en": "ML gets training data; detailed knowledge is Symbolic AI and a detailed solution is the purely algorithmic approach."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which approach specifies knowledge of the problem in detail, using instructions the computer can understand?",
+            "zh": "哪种方法是把“关于问题的知识”详细写成电脑能懂的指令？"
+          },
+          "options": [
+            {
+              "en": "A purely algorithmic approach",
+              "zh": "纯算法方法"
+            },
+            {
+              "en": "Symbolic AI",
+              "zh": "符号 AI"
+            },
+            {
+              "en": "Machine Learning",
+              "zh": "机器学习"
+            },
+            {
+              "en": "Data provenance",
+              "zh": "数据溯源"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "knowledge（知识）对应 Symbolic AI；solution（解法）对应纯算法；机器学习两样都不写，只给训练数据。数据溯源是下一节的概念，不是一种方法。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-data-sources-provenance",
+      "title": {
+        "zh": "数据从哪来？数据溯源（data provenance）",
+        "en": "Where does data come from? Data provenance"
+      },
+      "slides": "8-10",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "想用数据，先得有数据。很多条数据放在一起，叫数据集（**dataset**）。课件说，拿到数据集只有两条路：①自己收集；②用别人已经收集好的。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像准备期末复习资料：①自己整理笔记——花时间、花力气，但完全按你的需要来；②借学长学姐的笔记——省事，但不一定适合你这学期的课。借之前你会问：哪年的？哪门课记的？怎么记的？后来改过没有？这些“笔记的来历”，就相当于数据溯源。",
+          "limit": "类比的局限：数据集还要多问一个法律问题——我们有没有权利这样用它（见下一节版权）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.8）",
+            "en": "Course wording (slide 8)"
+          },
+          "items": [
+            {
+              "en": "If you want to use a collection of data (also called a dataset), you have two options: collect it yourself, or acquire data already collected by someone else.",
+              "zh": "想用一组数据（也叫数据集），有两个选择：自己收集，或者获取别人已经收集好的数据。"
+            },
+            {
+              "en": "Collecting it yourself is generally costly, but the data can be customized for its purpose.",
+              "zh": "自己收集：通常成本高，但数据可以按用途定制。"
+            },
+            {
+              "en": "Acquiring data already collected by someone else is generally less costly, but the data may not exactly fit your purpose. Data provenance can help to determine the fit.",
+              "zh": "用别人的：通常成本低，但不一定完全合用；数据溯源能帮你判断合不合用。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "选项 Option",
+            "成本 Cost",
+            "合不合用 Fit",
+            "补充 Notes"
+          ],
+          "rows": [
+            [
+              "自己收集 Collect it yourself",
+              "Generally costly（通常贵）",
+              "can be customized for its purpose（可以按用途定制）",
+              "might require sensors, surveys, or studies（可能要用传感器、问卷调查或研究）"
+            ],
+            [
+              "用别人收集好的 Acquire data already collected by someone else",
+              "Generally less costly（通常便宜）",
+              "may not exactly fit your purpose（不一定完全合用）",
+              "Data provenance can help to determine the fit（用数据溯源判断）"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "第二条路的关键工具：数据溯源（**data provenance**）。它就是数据集“有记录的历史”，相当于数据的“出生证明 + 履历表”。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.9）",
+            "en": "Course definition (slide 9)"
+          },
+          "items": [
+            {
+              "en": "Data Provenance is the documented history of a dataset.",
+              "zh": "数据溯源是一个数据集有文字记录的历史。"
+            },
+            {
+              "en": "It includes: when and where the data was collected; how the data was collected; how the data has been transformed since it was collected.",
+              "zh": "它包括：数据是什么时候、在哪里收集的；是怎么收集的；收集之后被怎样转换（处理）过。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "把定义拆开",
+            "en": "Breaking down the definition"
+          },
+          "items": [
+            {
+              "zh": "documented（有记录的）：写下来的历史，不是靠人回忆。"
+            },
+            {
+              "zh": "When and where（何时、何地）：比如哪一年、在哪个城市收集的。"
+            },
+            {
+              "zh": "How collected（怎么收集的）：用传感器？发问卷？做研究？"
+            },
+            {
+              "zh": "How transformed（收集后怎么被改过）：比如删掉了一些行、合并了数据、换了单位。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "为什么重要？课件第 10 页：溯源能帮我们判断“用这个数据集合不合适”。下面三个问题都要靠溯源记录来回答。"
+        },
+        {
+          "type": "text",
+          "zh": "其中偏差（**bias**）指：收集方式让数据偏向某一部分人或情况，不能公平地代表整体。（同一个英文词 bias，在 Lecture 6 讲公平性时常译作“偏见”。）"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.10）",
+            "en": "Course wording (slide 10)"
+          },
+          "items": [
+            {
+              "en": "Data Provenance can help us decide if it is appropriate to use a dataset.",
+              "zh": "数据溯源能帮我们判断使用某个数据集是否合适。"
+            },
+            {
+              "en": "Does the population surveyed match the population we are interested in?",
+              "zh": "被调查的人群，和我们关心的人群一致吗？"
+            },
+            {
+              "en": "Is there bias in the collection of the data?",
+              "zh": "数据收集过程中有没有偏差？"
+            },
+            {
+              "en": "Are we legally permitted to use this data in the way that we intend to use it?",
+              "zh": "法律上允许我们按打算的方式使用这些数据吗？"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用溯源检查一个借来的数据集（虚构的小例子）",
+            "en": "Checking a borrowed dataset with provenance (made-up example)"
+          },
+          "steps": [
+            {
+              "zh": "目标：做一个关于 UTM 大学生学习习惯的模型。你在网上找到一份现成的问卷数据集。"
+            },
+            {
+              "zh": "问题①人群对不对：溯源记录写着“对某所高中的学生做的问卷” → 被调查的是高中生，不是我们关心的大学生 → 不太合适。"
+            },
+            {
+              "zh": "问题②有没有偏差：记录写着“问卷只在图书馆门口发放” → 只问到了常去图书馆的人 → 收集过程有偏差。"
+            },
+            {
+              "zh": "问题③法律上能不能用：数据附带的许可证是否允许我们这样用？→ 这就是下一节“版权”的内容。"
+            }
+          ],
+          "answer": {
+            "zh": "三个问题都要靠溯源记录（何时何地、怎么收集、怎么处理过）才能回答。",
+            "en": "All three questions are answered with the dataset's provenance."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Data provenance 不是数据本身，而是数据的**历史记录**。"
+            },
+            {
+              "zh": "别把两条路的优缺点记反：自己收集 = 贵但可定制；用别人的 = 便宜但不一定合用。"
+            },
+            {
+              "zh": "溯源包含 3 项：when and where、how collected、how transformed。第 3 项“收集后怎么被转换”最容易漏。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is data provenance?",
+            "zh": "什么是数据溯源？"
+          },
+          "options": [
+            {
+              "en": "The legal protection on creative work granted to its creator",
+              "zh": "法律给创作者作品的保护"
+            },
+            {
+              "en": "The process of collecting data with sensors",
+              "zh": "用传感器收集数据的过程"
+            },
+            {
+              "en": "The documented history of a dataset",
+              "zh": "数据集有记录的历史"
+            },
+            {
+              "en": "A list of values that represents one piece of data",
+              "zh": "代表一条数据的数值列表"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "课件第 9 页：Data Provenance is the documented history of a dataset. A 是版权（copyright）；B 只是收集方法之一；D 是后面讲的特征向量（feature vector）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is a disadvantage of acquiring data already collected by someone else?",
+            "zh": "根据课件，用别人收集好的数据，缺点是什么？"
+          },
+          "options": [
+            {
+              "en": "It is generally more costly.",
+              "zh": "通常更贵。"
+            },
+            {
+              "en": "The data may not exactly fit your purpose.",
+              "zh": "数据可能不完全符合你的用途。"
+            },
+            {
+              "en": "It always requires sensors.",
+              "zh": "总是需要传感器。"
+            },
+            {
+              "en": "It can never be used for Machine Learning.",
+              "zh": "永远不能用于机器学习。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "课件第 8 页：Generally less costly, but data may not exactly fit your purpose. “更贵”是自己收集的缺点；传感器是自己收集时可能用到的工具。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-copyright-basics",
+      "title": {
+        "zh": "版权、许可证和合理使用",
+        "en": "Copyright, licenses and fair use"
+      },
+      "slides": "11",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "版权（**copyright**）就是法律给**创作者**的保护：你创作的东西，别人不能随便复制、修改、传播。课件特别写了：数据集（**dataset**）也算受保护的创作作品。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像你写的一篇公众号文章：别人想转载，得先找你“开白”（拿到授权）。你还可以加条件，比如“转载请注明作者”“仅限非商业使用”。这个“授权”就相当于许可证（**license**）。",
+          "limit": "类比到此为止：美国还有一条例外叫“合理使用”（**fair use**）——如果用法是“转化性的”（**transformative**），没有授权也可以用。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.11）",
+            "en": "Course definition (slide 11)"
+          },
+          "items": [
+            {
+              "en": "Copyright is the legal protection on creative work (including datasets) granted to its creator.",
+              "zh": "版权是法律给创作者的保护，保护的是他们创作的作品（包括数据集）。"
+            },
+            {
+              "en": "Normally, copyrighted work cannot be legally copied, modified, or distributed without a license from the copyright holder granting those rights.",
+              "zh": "通常，没有版权持有人授予这些权利的许可证，就不能合法地复制、修改或分发受版权保护的作品。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "copyright",
+              "zh": "版权",
+              "hint": "法律对创作作品的保护，归创作者"
+            },
+            {
+              "en": "creative work",
+              "zh": "创作作品",
+              "hint": "人创作出来的东西；课件说包括数据集"
+            },
+            {
+              "en": "license",
+              "zh": "许可证（授权）",
+              "hint": "版权持有人给你的使用许可，可以附带条件"
+            },
+            {
+              "en": "copyright holder",
+              "zh": "版权持有人",
+              "hint": "拥有版权的人，有权发许可证"
+            },
+            {
+              "en": "fair use doctrine",
+              "zh": "合理使用原则",
+              "hint": "美国的一条法律原则：用法是“转化性的”，就可以不经许可使用"
+            },
+            {
+              "en": "transformative",
+              "zh": "转化性的",
+              "hint": "字面意思：把原作品变成了新的东西，而不是原样照搬（课件没有再细讲）"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "把定义拆开",
+            "en": "Breaking it down"
+          },
+          "items": [
+            {
+              "zh": "legal protection：法律层面的保护。"
+            },
+            {
+              "zh": "creative work (including datasets)：创作作品，**包括数据集**。"
+            },
+            {
+              "zh": "granted to its creator：保护给创作者。"
+            },
+            {
+              "zh": "copied, modified, or distributed：复制、修改、分发——没有许可证，这三件事通常都不能做。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：许可证与合理使用",
+            "en": "Course wording: license and fair use"
+          },
+          "items": [
+            {
+              "en": "A license may place conditions on use (e.g. must credit the author, free to use for non-profit or educational purposes only).",
+              "zh": "许可证可以对使用加条件（例如必须注明作者；只限非营利或教育用途免费使用）。"
+            },
+            {
+              "en": "Work can be used without a license (in the United States) if that use is \"transformative\" under the fair use doctrine.",
+              "zh": "（在美国）如果用法在合理使用原则下是“转化性的”，没有许可证也可以使用作品。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "按课件规则推一推：能不能用这个数据集？（虚构例子）",
+            "en": "Applying the rules: can we use this dataset? (made-up example)"
+          },
+          "steps": [
+            {
+              "zh": "你想用网上一个图片数据集训练模型。先记住：数据集本身也可能受版权保护。"
+            },
+            {
+              "zh": "查许可证：上面写着“仅限教育用途免费使用，须注明作者”。"
+            },
+            {
+              "zh": "做课堂作业并注明作者 → 符合许可证的条件。"
+            },
+            {
+              "zh": "拿去做赚钱的商业产品 → 不符合许可证的条件。"
+            },
+            {
+              "zh": "如果完全没有许可证：课件说，在美国，如果这种用法是“转化性的”（**transformative**），按合理使用原则（**fair use**）可以不经许可使用。"
+            }
+          ],
+          "answer": {
+            "zh": "先看有没有许可证、条件是什么；没有许可证时，在美国，如果用法是“转化性的”，可以按合理使用原则使用。",
+            "en": "Check the license and its conditions. Without a license, in the US, the work can still be used if the use is transformative under the fair use doctrine."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "fair use 是**美国**的规则（课件写了 in the United States），别说成全世界通用。"
+            },
+            {
+              "zh": "有 license 不等于想怎么用就怎么用：license 可以带条件（署名、只限非营利或教育用途）。"
+            },
+            {
+              "zh": "数据集也可能受版权保护（including datasets），不是“数据随便用”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Under the fair use doctrine in the United States, when can work be used without a license?",
+            "zh": "在美国的合理使用原则下，什么情况下可以不经许可使用作品？"
+          },
+          "options": [
+            {
+              "en": "When the use is \"transformative\"",
+              "zh": "用法是“转化性的”"
+            },
+            {
+              "en": "Whenever the user credits the author",
+              "zh": "只要注明了作者"
+            },
+            {
+              "en": "Whenever the work is a dataset",
+              "zh": "只要作品是数据集"
+            },
+            {
+              "en": "Never",
+              "zh": "永远不行"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "课件第 11 页：Work can be used without a license (in the United States) if that use is “transformative” under the fair use doctrine. 注明作者是许可证可能附带的条件，不是免许可的理由；数据集同样受版权保护。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, which statement about copyright is TRUE?",
+            "zh": "根据课件，关于版权哪句话是对的？"
+          },
+          "options": [
+            {
+              "en": "Copyright never applies to datasets.",
+              "zh": "版权从不适用于数据集。"
+            },
+            {
+              "en": "Copyrighted work can always be copied if it is online.",
+              "zh": "只要在网上，受版权保护的作品就能随便复制。"
+            },
+            {
+              "en": "A license can never place conditions on use.",
+              "zh": "许可证永远不能附加使用条件。"
+            },
+            {
+              "en": "Copyright protects creative work, including datasets.",
+              "zh": "版权保护创作作品，包括数据集。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "定义原话写了 creative work (including datasets)。网上的作品同样受版权保护；许可证可以加条件（比如必须注明作者）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-copyright-ai-court",
+      "title": {
+        "zh": "AI 与版权：两个闹上法庭的问题",
+        "en": "Copyright and AI: two questions that went to court"
+      },
+      "slides": "12-14",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "AI 出现后，版权遇到了新问题。课件说，至少有两个大问题已经闹上法庭（**gone to court**）：①AI 生成的作品，版权归谁？②用作品训练 AI 模型，算不算合理使用（**fair use**）？"
+        },
+        {
+          "type": "analogy",
+          "zh": "问题①像：你在修图 App 里点“一键生成”做了一张图，这张图算你的作品吗？问题②像：有人把图书馆所有书读一遍、学会了各种写法，然后开始大量卖文章——原书作者能告他吗？",
+          "limit": "注意：AI 训练和人读书并不完全一样（AI 能无限量地产出），这正是下一节正反双方争论的地方。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：问题①（p.13）",
+            "en": "Course wording: question 1 (slide 13)"
+          },
+          "items": [
+            {
+              "en": "Who owns the copyright on work produced by AI? This is mostly settled. Nobody owns the copyright.",
+              "zh": "AI 生成的作品版权归谁？这个问题基本已有定论：没有人拥有版权。"
+            },
+            {
+              "en": "Copyright can only be applied to work produced by humans.",
+              "zh": "版权只能用于人类创作的作品。"
+            },
+            {
+              "en": "Prompting is not sufficient for ownership.",
+              "zh": "只写提示词（**prompt**）不足以让你拥有版权。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "把问题①拆开",
+            "en": "Breaking down question 1"
+          },
+          "items": [
+            {
+              "zh": "mostly settled：基本定了（不是“还在吵”）。"
+            },
+            {
+              "zh": "Nobody owns：没有人拥有——写提示词的人没有，AI 本身也没有。"
+            },
+            {
+              "zh": "only ... humans：版权只保护**人**创作的作品。"
+            },
+            {
+              "zh": "prompting：给 AI 写提示词（**prompt**）。课件说：光写提示词不够成为作者。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "相关案例：猴子自拍（p.13）",
+            "en": "Related case: the monkey selfie (slide 13)"
+          },
+          "steps": [
+            {
+              "zh": "课件放了一张照片：一只猴子自己按下快门拍的自拍。"
+            },
+            {
+              "zh": "法院判决：这张自拍**不能**受版权保护。"
+            },
+            {
+              "zh": "道理和 AI 作品一样：不是人创作的 → 没有版权。"
+            }
+          ],
+          "answer": {
+            "zh": "版权只适用于人类创作的作品。",
+            "en": "Courts ruled this selfie taken by a monkey cannot be copyrighted. Copyright can only be applied to work produced by humans."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：问题②（p.14）",
+            "en": "Course wording: question 2 (slide 14)"
+          },
+          "items": [
+            {
+              "en": "Does training an AI model constitute fair use? This is still in the courts.",
+              "zh": "训练 AI 模型算不算合理使用？这个问题还在法庭上，没有定论。"
+            },
+            {
+              "en": "There are active lawsuits from media copyright holders against AI companies. E.g. Disney et al. vs. Midjourney.",
+              "zh": "媒体版权方正在起诉 AI 公司，例如 Disney 等公司诉 Midjourney。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "把问题②拆开",
+            "en": "Breaking down question 2"
+          },
+          "items": [
+            {
+              "zh": "constitute fair use：算不算合理使用。"
+            },
+            {
+              "zh": "still in the courts：还在打官司，没有定论。"
+            },
+            {
+              "zh": "**et al.**：意思是“等”（Disney 和其他公司）。"
+            },
+            {
+              "zh": "Midjourney：一个 AI 生图工具。课件放了它生成的几张图，看起来很像一些知名动画角色，这正是版权方担心的地方。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "问题 Question",
+            "现状 Status",
+            "关键词 Key words"
+          ],
+          "rows": [
+            [
+              "① Who owns the copyright on work produced by AI?（AI 作品版权归谁？）",
+              "mostly settled（基本定了）：没有人拥有",
+              "Nobody owns; only work produced by humans; prompting is not sufficient; monkey selfie"
+            ],
+            [
+              "② Does training an AI model constitute fair use?（训练 AI 算合理使用吗？）",
+              "still in the courts（还在打官司）",
+              "active lawsuits; Disney et al. vs. Midjourney"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "课件第 14 页还标了出处：Norton Rose Fulbright 网站上一篇关于 2026 年 AI 版权案件进展的文章。说明这是一个还在变化的法律话题。",
+          "en": "Source on slide 14: a Norton Rose Fulbright article with an update on AI copyright cases in 2026."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "两个问题的状态正好相反，千万别记反：①“谁拥有 AI 作品的版权”基本定了（没人拥有）；②“训练算不算合理使用”还没定（still in the courts）。"
+            },
+            {
+              "zh": "提示词写得再长、再用心，也不能让你拥有版权（Prompting is not sufficient for ownership）。"
+            },
+            {
+              "zh": "Disney et al. vs. Midjourney：是版权方（Disney 等）告 AI 公司（Midjourney），不是反过来。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, who owns the copyright on work produced by AI?",
+            "zh": "根据课件，AI 生成作品的版权归谁？"
+          },
+          "options": [
+            {
+              "en": "The person who wrote the prompt",
+              "zh": "写提示词的人"
+            },
+            {
+              "en": "The company that built the AI",
+              "zh": "开发这个 AI 的公司"
+            },
+            {
+              "en": "Nobody",
+              "zh": "没有人"
+            },
+            {
+              "en": "The AI model itself",
+              "zh": "AI 模型自己"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "课件第 13 页：This is mostly settled. Nobody owns the copyright. 版权只适用于人类创作的作品，而且 Prompting is not sufficient for ownership，所以写提示词的人也不拥有。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is the status of the question \"Does training an AI model constitute fair use?\"",
+            "zh": "根据课件，“训练 AI 模型算不算合理使用”这个问题现在是什么状态？"
+          },
+          "options": [
+            {
+              "en": "It is mostly settled: training is always fair use.",
+              "zh": "基本定了：训练总是合理使用。"
+            },
+            {
+              "en": "It is still in the courts.",
+              "zh": "还在法庭上，没有定论。"
+            },
+            {
+              "en": "It is mostly settled: training is never fair use.",
+              "zh": "基本定了：训练从来不算合理使用。"
+            },
+            {
+              "en": "It has never gone to court.",
+              "zh": "从来没有上过法庭。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "课件第 14 页：This is still in the courts. There are active lawsuits…，例如 Disney et al. vs. Midjourney。“基本定了”说的是另一个问题（AI 作品版权归谁）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-copyright-ethics-debate",
+      "title": {
+        "zh": "用版权作品训练 AI 道德吗？（正反方 + 讨论）",
+        "en": "Is it ethical to train AI on copyrighted work? (debate)"
+      },
+      "slides": "15-16",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "法律问题还没定，课件接着问一个**道德**问题：用受版权保护的作品去训练（生成式）AI，道德吗？生成式 AI（**generative AI**）指能生成新作品（文字、图片等）的 AI，比如上一节生成图片的 Midjourney。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像一个学画画的学生：他看了几千幅别人的画，练出了自己的风格。支持方说：人类画家也这样学，没人要求他列出所有看过的画。反对方说：那些画家发表作品是给“人”欣赏的，没同意让机器拿去学，然后无限量地画、给公司赚钱。",
+          "limit": "类比的局限：一个学生一辈子画不了多少画，但 AI 模型能无限量地产出——这正是反对方的核心理由。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：问题与正反方（p.15）",
+            "en": "Course wording: the question and both sides (slide 15)"
+          },
+          "items": [
+            {
+              "en": "The question remains: Is it ethical to train (generative) AI on copyrighted work?",
+              "zh": "问题仍然存在：用受版权保护的作品训练（生成式）AI，道德吗？"
+            },
+            {
+              "en": "In favour: AI doesn't copy from existing work, it synthesizes it into its internal model.",
+              "zh": "支持方①：AI 不是照抄已有作品，而是把它们综合消化进自己的内部模型。"
+            },
+            {
+              "en": "In favour: Human creatives don't have to cite every work that they were influenced by.",
+              "zh": "支持方②：人类创作者也不必注明每一部影响过他们的作品。"
+            },
+            {
+              "en": "Against: Most work used in training was published with the understanding that it would be seen by humans.",
+              "zh": "反对方①：训练用的大多数作品，发表时默认是给人看的。"
+            },
+            {
+              "en": "Against: AI models can produce an infinite amount of work for the sole profit of tech companies. It is a pillaging of the commons.",
+              "zh": "反对方②：AI 模型能无限量地产出作品，利润只归科技公司——这是对公共资源的掠夺。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "ethical",
+              "zh": "道德的、合乎伦理的",
+              "hint": "问的是“对不对、该不该”，不是“合不合法”"
+            },
+            {
+              "en": "synthesize",
+              "zh": "综合、合成",
+              "hint": "把很多东西混合消化，变成新的东西"
+            },
+            {
+              "en": "internal model",
+              "zh": "内部模型",
+              "hint": "AI 训练后在内部形成的东西"
+            },
+            {
+              "en": "cite",
+              "zh": "注明出处",
+              "hint": "写明“我参考了谁的作品”"
+            },
+            {
+              "en": "sole profit",
+              "zh": "利润全归一方",
+              "hint": "好处只归一方（科技公司）"
+            },
+            {
+              "en": "pillaging of the commons",
+              "zh": "掠夺公共资源",
+              "hint": "the commons = 大家共享的东西，这里指大家公开发布的作品"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Which argument holds more weight with you?",
+            "zh": "讨论：哪一方的论点对你更有说服力？"
+          },
+          "answer": {
+            "en": "I think the case against holds more weight. Most work used in training was published with the understanding that it would be seen by humans, not used to train AI. AI models can also produce an infinite amount of work for the sole profit of tech companies, which is a pillaging of the commons. The case in favour has a point, because AI synthesizes work into its internal model instead of copying it, much like human creatives who are influenced by others. However, the huge scale and the profit make AI training different, and whether it is fair use is still in the courts.",
+            "zh": "答题结构：①表态（选哪一方都可以）；②用课件的 1–2 条论点做理由（反对方：作品默认是给人看的；无限量产出、利润只归科技公司 = 掠夺公共资源）；③承认另一方的一个论点（AI 是综合不是照抄；人类也不必注明所有影响），显得考虑全面；④收尾：规模和利润让 AI 不同于人，而且法律上 fair use 还在法庭（p.14）。如果你选支持方，就把②③对调：用 synthesizes 和 human creatives 做理由，再承认反对方的一点。"
+          }
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "长答题四步模板",
+            "en": "Four-step answer template"
+          },
+          "items": [
+            {
+              "zh": "表态：I think the case in favour / against holds more weight.",
+              "en": "State your side."
+            },
+            {
+              "zh": "给理由：用课件原话里的 1–2 条论点。",
+              "en": "Support it with 1–2 arguments from the slides."
+            },
+            {
+              "zh": "承认对方：写一条另一方的论点，再说明为什么你仍然不同意。",
+              "en": "Acknowledge one argument from the other side."
+            },
+            {
+              "zh": "收尾：可以提到法律上训练是否算 fair use 还在法庭（still in the courts）。",
+              "en": "Conclude, e.g. the legal question is still in the courts."
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "这类讨论题没有唯一的标准答案。选哪一边都可以，关键是用课件里的论点把理由讲清楚，并提到另一方。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "别把**法律**问题和**道德**问题混在一起：法律上 fair use 还在法庭（p.14）；道德上是正反双方的争论（p.15）。"
+            },
+            {
+              "zh": "论点别归错边：“synthesizes it into its internal model”和“human creatives don't have to cite”是**支持方**；“seen by humans”和“pillaging of the commons”是**反对方**。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is an argument AGAINST training AI on copyrighted work, according to the lecture?",
+            "zh": "根据课件，下面哪一条是**反对**用版权作品训练 AI 的论点？"
+          },
+          "options": [
+            {
+              "en": "AI doesn't copy from existing work; it synthesizes it into its internal model.",
+              "zh": "AI 不照抄，而是综合进内部模型。"
+            },
+            {
+              "en": "Human creatives don't have to cite every work that they were influenced by.",
+              "zh": "人类创作者也不必注明所有影响过他们的作品。"
+            },
+            {
+              "en": "Most work used in training was published with the understanding that it would be seen by humans.",
+              "zh": "训练用的大多数作品，发表时默认是给人看的。"
+            },
+            {
+              "en": "Nobody owns the copyright on work produced by AI.",
+              "zh": "没有人拥有 AI 作品的版权。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "C 是反对方①。A、B 是支持方的论点；D 是“AI 作品版权归谁”这个法律问题的结论，不是道德论点。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-invasion-of-privacy",
+      "title": {
+        "zh": "隐私问题①：侵犯隐私（Target 案例）",
+        "en": "Privacy problem 1: invasion of privacy (the Target case)"
+      },
+      "slides": "17-20",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "就算数据是**合法**得到的，也可能有隐私（**privacy**）方面的道德问题。课件看两种情况：①侵犯隐私（**invasion of privacy**）；②信息泄露（**information leakage**）。这一节讲①。"
+        },
+        {
+          "type": "analogy",
+          "zh": "想想你常用的外卖 App：①它记得你每一单点了什么（你给它的数据）；②它还可能从别的公司买到你的其他信息（买来的数据）；③它甚至能从你最近的订单**推断**出你可能生病了——这件事你从没告诉过它。第③步就是课件最担心的。",
+          "limit": "这只是帮助理解的假设；课件里的真实案例是下面的 Target。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.17–18）",
+            "en": "Course wording (slides 17-18)"
+          },
+          "items": [
+            {
+              "en": "Legally acquired data can also pose ethical problems related to privacy.",
+              "zh": "合法获得的数据也可能带来与隐私有关的道德问题。"
+            },
+            {
+              "en": "Many companies track every interaction you have with them (e.g. purchase history, support calls, survey answers).",
+              "zh": "很多公司会追踪你和它们的每一次互动（例如购买记录、客服电话、问卷回答）。"
+            },
+            {
+              "en": "They can also purchase data they wouldn't normally have (e.g. ethnicity, family status, online activity).",
+              "zh": "它们还能买到本来没有的数据（例如种族、家庭状况、上网活动）。"
+            },
+            {
+              "en": "ML can infer details you have never given to a company (e.g. political leanings, addiction, pregnancy).",
+              "zh": "机器学习能推断出你从没告诉过公司的细节（例如政治倾向、成瘾、怀孕）。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "公司掌握你信息的三个层次（p.18）",
+            "en": "Three levels of company data (slide 18)"
+          },
+          "items": [
+            {
+              "zh": "追踪：你和公司的每次互动都被记录（购买记录、客服电话、问卷回答）。",
+              "en": "Track: purchase history, support calls, survey answers."
+            },
+            {
+              "zh": "购买：公司买来它本来没有的数据（种族、家庭状况、上网活动）。",
+              "en": "Purchase: ethnicity, family status, online activity."
+            },
+            {
+              "zh": "推断（**infer**）：ML 算出你从没给过的细节（政治倾向、成瘾、怀孕）。",
+              "en": "Infer: political leanings, addiction, pregnancy."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Target 的怀孕预测模型（p.19）",
+            "en": "Target's pregnancy prediction model (slide 19)"
+          },
+          "steps": [
+            {
+              "zh": "2012 年，《纽约时报杂志》（The New York Times Magazine）发表文章，讲 Target 公司的怀孕预测模型（课件附了文章链接）。",
+              "en": "In 2012, The New York Times Magazine published an article about Target's pregnancy prediction model."
+            },
+            {
+              "zh": "动机：Target 发现，新手父母是特别有价值的顾客。",
+              "en": "Target realized that new parents are particularly valuable customers."
+            },
+            {
+              "zh": "做法：用 ML 找出处于孕中期（**second trimester**）的准妈妈（**expectant mothers**）。",
+              "en": "They used ML to detect expectant mothers in their second trimester."
+            },
+            {
+              "zh": "然后给她们发婴儿用品的定向广告（**targeted ads**）。",
+              "en": "They sent targeted ads for baby-related products."
+            },
+            {
+              "zh": "关键：怀孕正是 p.18 说的“ML 能推断出、你却从没告诉公司的细节”之一。",
+              "en": "Pregnancy is one of the details that ML can infer even though you never gave it to a company."
+            }
+          ],
+          "answer": {
+            "zh": "公司掌握的顾客数据 + ML 推断（推断出顾客从没告诉过公司的怀孕）→ 可能构成侵犯隐私。课件第 17 页提醒：就算数据是合法获得的，也可能有隐私问题。",
+            "en": "Customer data + ML inference can lead to an invasion of privacy, even when the data was legally acquired (slide 17)."
+          }
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "invasion of privacy",
+              "zh": "侵犯隐私",
+              "hint": "公司或别人打探、利用你的私人信息，包括你从没告诉过他们的信息"
+            },
+            {
+              "en": "infer",
+              "zh": "推断",
+              "hint": "根据已有信息，算出没有直接给出的信息"
+            },
+            {
+              "en": "targeted ads",
+              "zh": "定向广告",
+              "hint": "根据你的信息专门推给你的广告"
+            },
+            {
+              "en": "expectant mothers",
+              "zh": "准妈妈",
+              "hint": "正在怀孕的女性"
+            },
+            {
+              "en": "second trimester",
+              "zh": "孕中期",
+              "hint": "怀孕分三段，每段大约三个月；第二段叫 second trimester"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Do you feel that this was an unethical invasion of privacy? Can you think of ways that companies/governments act on similarly obtained information unethically?",
+            "zh": "讨论：你觉得这是不道德的侵犯隐私吗？你能想到公司或政府以不道德的方式利用类似方式得到的信息的例子吗？"
+          },
+          "answer": {
+            "en": "Yes, I feel it was an unethical invasion of privacy. The customers did not tell Target that they were pregnant; ML inferred this very personal detail, and Target acted on it with targeted ads. Even if the data was legally acquired, using it this way can still be unethical. Similarly obtained information could be misused in other ways: for example, a company could infer addiction and target vulnerable people with ads, or a government could infer people's political leanings and treat them unfairly.",
+            "zh": "答题要点：①表态（是或否都可以，但要给理由）；②理由：顾客没有告诉公司，是 ML 推断出了怀孕这种很私人的信息，公司还据此采取了行动；③呼应 p.17：数据合法获得，也可能不道德；④第二问举例：用 p.18 列出的可推断信息（成瘾、政治倾向）设想被滥用的情况，用 could（可能）来表达，不要编造真实事件。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "课件的重点：数据**合法**获得，也可能有隐私问题。别以为“合法 = 没问题”。"
+            },
+            {
+              "zh": "最需要警惕的是第 3 层“推断”：你没填、没说的信息，ML 也可能算出来。"
+            },
+            {
+              "zh": "记清案例细节：2012 年、The New York Times Magazine、second trimester（孕中期）、targeted ads for baby-related products。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the Target case, what did Target use ML for?",
+            "zh": "在 Target 案例中，Target 用 ML 做了什么？"
+          },
+          "options": [
+            {
+              "en": "To leak customers' training data to attackers outside the company",
+              "zh": "把顾客的训练数据泄露给公司外的攻击者"
+            },
+            {
+              "en": "To decide who owns the copyright on ads that AI produces",
+              "zh": "决定 AI 生成的广告版权归谁"
+            },
+            {
+              "en": "To detect expectant mothers and send targeted ads for baby products",
+              "zh": "找出准妈妈，并给她们推送婴儿用品的定向广告"
+            },
+            {
+              "en": "To detect dogs in the photos that customers upload",
+              "zh": "识别顾客上传的照片里的狗"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "课件第 19 页的 Summary：They used ML to detect expectant mothers in their second trimester and sent targeted ads for baby-related products. A 属于“信息泄露”话题；B 是版权话题；D 是第 6 页的数据例子。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of these is given on the slides as a detail that ML can infer even though you never gave it to a company?",
+            "zh": "课件里，哪一项是“你从没告诉公司、但 ML 能推断出来”的细节？"
+          },
+          "options": [
+            {
+              "en": "Purchase history",
+              "zh": "购买记录"
+            },
+            {
+              "en": "Support calls",
+              "zh": "客服电话"
+            },
+            {
+              "en": "Political leanings",
+              "zh": "政治倾向"
+            },
+            {
+              "en": "Survey answers",
+              "zh": "问卷回答"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.18：ML can infer details you have never given to a company: e.g. political leanings, addiction, pregnancy. 购买记录、客服电话、问卷回答是公司“追踪每次互动”得到的（第 1 层）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-information-leakage",
+      "title": {
+        "zh": "隐私问题②：信息泄露与差分隐私",
+        "en": "Privacy problem 2: information leakage and Differential Privacy"
+      },
+      "slides": "21-22",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二种隐私问题：信息泄露（**information leakage**）。ML 模型有时会把训练数据集（**training dataset**）的一部分“记住”（**memorize**），而这些内容里可能有敏感信息。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像一个同学刷题时，把某张卷子上的原文（连同上面别人的姓名、电话）一字不差地背了下来。别人不用翻他的笔记本，只要巧妙地提问，就可能让他把这些内容说出来。",
+          "limit": "类比的局限：课件只说，研究表明攻击者不需要开发者权限，就能检测出模型“记住”的数据；具体怎么检测，课件没有讲。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.21）",
+            "en": "Course wording (slide 21)"
+          },
+          "items": [
+            {
+              "en": "ML models sometimes \"memorize\" parts of their training dataset, which may include sensitive material.",
+              "zh": "ML 模型有时会“记住”训练数据集的一部分，其中可能包含敏感内容。"
+            },
+            {
+              "en": "\"Memorized\" data is part of the final model.",
+              "zh": "被“记住”的数据是最终模型的一部分。"
+            },
+            {
+              "en": "Research has shown that attackers can detect this data without developer access to the model.",
+              "zh": "研究表明：攻击者就算拿不到开发者那样的模型访问权限，也能把这些数据检测出来。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "把定义拆开",
+            "en": "Breaking it down"
+          },
+          "items": [
+            {
+              "zh": "memorize（记住）：模型把训练数据的一些内容原样存在了自己里面。"
+            },
+            {
+              "zh": "part of the final model：这些内容就在最终的模型里，模型交给别人用时，它也跟着一起出去。"
+            },
+            {
+              "zh": "attackers（攻击者）：想偷取数据的人。"
+            },
+            {
+              "zh": "without developer access：攻击者不需要像开发者那样能直接查看模型内部，也能把数据检测出来。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "课件第 21 页脚注的研究出处：Carlini 等人 2019 年发表在 28th USENIX Security Symposium（USENIX Security 19）上的论文。",
+          "en": "Carlini, Nicholas, et al. 'The secret sharer: Evaluating and testing unintended memorization in neural networks.' 28th USENIX Security Symposium (USENIX Security 19). 2019."
+        },
+        {
+          "type": "text",
+          "zh": "怎么防？课件给的办法是差分隐私（**Differential Privacy**）：在训练过程中**有策略地加入随机性**（**randomness**，就是故意加一点随机的“干扰”）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像老师公布全班平均分时，故意加上一个很小的随机数。这样不管有没有某一个同学的成绩，公布出来的结果都差不多——别人就没法从结果反推出这个同学考了多少。代价：公布的平均分没那么准了。",
+          "limit": "这只是帮助理解：类比里随机数加在“公布的结果”上，而课件说的是加在**训练过程**里（into the training process），考试按课件写。课件也没有讲具体公式。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.22）",
+            "en": "Course wording (slide 22)"
+          },
+          "items": [
+            {
+              "en": "Differential Privacy provides some protection by strategically inserting randomness into the training process.",
+              "zh": "差分隐私通过在训练过程中有策略地加入随机性，提供一定的保护。"
+            },
+            {
+              "en": "It guarantees that the model changes very little when a single piece of data is removed from the training set, but comes at some cost to model performance.",
+              "zh": "它保证：从训练集里去掉任何一条数据，模型几乎不变；但代价是模型性能会有所下降。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "短版：记不住原话时这样写",
+            "en": "Short version to write"
+          },
+          "items": [
+            {
+              "en": "Differential Privacy gives some protection. It strategically adds randomness during training. Removing one piece of data changes the model very little. It comes at some cost to model performance.",
+              "zh": "差分隐私提供一定的保护：训练时有策略地加入随机性；去掉一条数据，模型几乎不变；代价是模型性能下降。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "要点",
+            "课件原话 (p.22)",
+            "中文意思"
+          ],
+          "rows": [
+            [
+              "怎么做 How",
+              "strategically inserting randomness into the training process",
+              "在训练过程中有策略地加入随机性"
+            ],
+            [
+              "保证什么 Guarantee",
+              "the model changes very little when a single piece of data is removed from the training set",
+              "去掉任何一条数据，模型几乎不变（单条数据对模型的影响很小）"
+            ],
+            [
+              "代价 Cost",
+              "comes at some cost to model performance",
+              "模型的表现会差一些"
+            ],
+            [
+              "程度 How much",
+              "provides some protection",
+              "只是“一定程度”的保护，不是百分之百"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "回到大表（Lecture 1 p.57 的性质大表）：这一节解释了 Privacy（隐私）那一行。机器学习一栏写着 “Training data can sometimes be leaked”（训练数据有时会泄露），说的就是这里的信息泄露。LLM 一栏的 “Training data sometimes regurgitated”（训练数据有时被原样吐出来）也和“模型记住了训练数据”有关（这是我们的理解）。",
+          "en": "Back to the Big Table (Lecture 1 p.57): this section explains the Privacy row for Machine Learning, 'Training data can sometimes be leaked'."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "攻击者**不需要**开发者权限（without developer access）也能检测出被记住的数据。"
+            },
+            {
+              "zh": "差分隐私只是 some protection（部分保护），而且有代价（model performance 下降）——不是完美、免费的方案。"
+            },
+            {
+              "zh": "两种隐私问题别混：侵犯隐私 = 公司拿数据（包括推断出的信息）做侵犯隐私的事；信息泄露 = 模型记住了训练数据，被攻击者挖出来。"
+            },
+            {
+              "zh": "后面 Lecture 5 第 38 页讲过拟合（**overfitting**）时还会看到 memorize 这个词（Lecture 6 第 8 页复习）：那里指模型记住了训练数据里的随机噪声（**random noise**），而不是真正的规律，换成新数据就预测不准。这里的重点不同：被记住的训练数据可能是敏感信息，攻击者能检测出来，是隐私问题。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "How does Differential Privacy provide some protection?",
+            "zh": "差分隐私怎样提供一定的保护？"
+          },
+          "options": [
+            {
+              "en": "By deleting the model as soon as training is finished",
+              "zh": "训练一结束就删除模型"
+            },
+            {
+              "en": "By giving developers full access to the model",
+              "zh": "给开发者访问模型的全部权限"
+            },
+            {
+              "en": "By making the model memorize more of its training data",
+              "zh": "让模型记住更多训练数据"
+            },
+            {
+              "en": "By strategically inserting randomness into the training process",
+              "zh": "在训练过程中有策略地加入随机性"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.22 原话：Differential Privacy provides some protection by strategically inserting randomness into the training process. A、B 都不是课件说的办法；C 让模型记住更多训练数据，反而会让泄露更严重。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement about Differential Privacy is TRUE according to the lecture?",
+            "zh": "根据课件，关于差分隐私哪句话正确？"
+          },
+          "options": [
+            {
+              "en": "It gives perfect protection, and model performance does not change at all.",
+              "zh": "它提供完美的保护，而且模型性能完全不受影响。"
+            },
+            {
+              "en": "The model changes very little when a single piece of data is removed, but there is some cost to model performance.",
+              "zh": "去掉一条数据时模型变化很小，但模型性能要付出一些代价。"
+            },
+            {
+              "en": "It lets attackers detect memorized data without developer access to the model.",
+              "zh": "它让攻击者不需要开发者权限，就能检测出被记住的数据。"
+            },
+            {
+              "en": "It only works for structured data, such as a table with a schema.",
+              "zh": "它只适用于结构化数据，比如有 schema 的表格。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.22：guarantees that the model changes very little when a single piece of data is removed … but comes at some cost to model performance。A 错：它只提供 some protection，而且有代价；C 描述的是信息泄露的风险（p.21），不是差分隐私的作用；D 错：课件没说它只适用于结构化数据。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-structured-data",
+      "title": {
+        "zh": "结构化数据：schema 与表格数据",
+        "en": "Structured data: schema and tabular data"
+      },
+      "slides": "24",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "数据的形式（**forms of data**）分两大类：结构化（**structured**）和非结构化（**unstructured**）。先看结构化数据：每一条数据都按同一个**固定格式**记录，同样的信息、同样的顺序。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像新生入学登记表：每个人都填同样的格子——姓名、学号、专业，顺序也完全一样。这张表事先规定好的格式，就叫 schema。反过来，微信聊天记录想写什么写什么，没有固定格子——那是非结构化数据（后面两节讲）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.24）",
+            "en": "Course definition (slide 24)"
+          },
+          "items": [
+            {
+              "en": "Structured data follows a predefined, predictable format called a schema, where every piece of data has the same information in the same order.",
+              "zh": "结构化数据遵循一种事先定义好、可预测的格式（叫 schema），每条数据都有相同的信息、相同的顺序。"
+            },
+            {
+              "en": "Tabular data is the most common kind of structured data. One piece of data is a row in the table. Information appears in the same order for every piece of data.",
+              "zh": "表格数据是最常见的结构化数据。一条数据就是表格里的一行；每条数据的信息顺序都一样。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "把定义拆开",
+            "en": "Breaking it down"
+          },
+          "items": [
+            {
+              "zh": "predefined（事先定义好的）：还没收集数据之前，格式就已经定了。"
+            },
+            {
+              "zh": "predictable（可预测的）：你提前就知道每条数据里有什么。"
+            },
+            {
+              "zh": "schema（模式、格式规定）：这个固定格式的名字。"
+            },
+            {
+              "zh": "tabular data（表格数据）：一条数据（one piece of data）= 表格中的一**行**（row）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "课件第 24 页的叶子表。课件里种类用叶子图标表示，行号是我们加的；这张表会一直用到第 47 页。",
+            "en": "The leaf table from slide 24 (leaf type is an icon on the slide; row numbers added)."
+          },
+          "headers": [
+            "行 Row",
+            "Leaf Width（叶宽）",
+            "Leaf Height（叶高）",
+            "Leaf Type（叶子种类）"
+          ],
+          "rows": [
+            [
+              "1",
+              "7.0 cm",
+              "12.0 cm",
+              "oak 橡树叶"
+            ],
+            [
+              "2",
+              "9.0 cm",
+              "6.0 cm",
+              "oak 橡树叶"
+            ],
+            [
+              "3",
+              "10.0 cm",
+              "18.0 cm",
+              "oak 橡树叶"
+            ],
+            [
+              "4",
+              "5.0 cm",
+              "10.0 cm",
+              "oak 橡树叶"
+            ],
+            [
+              "5",
+              "13.0 cm",
+              "11.0 cm",
+              "maple 枫叶"
+            ],
+            [
+              "6",
+              "11.0 cm",
+              "9.0 cm",
+              "maple 枫叶"
+            ],
+            [
+              "7",
+              "9.0 cm",
+              "14.0 cm",
+              "maple 枫叶"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "读懂叶子表",
+            "en": "Reading the leaf table"
+          },
+          "steps": [
+            {
+              "zh": "每一行 = 一片叶子 = 一条数据。共 7 行 → 7 条数据。"
+            },
+            {
+              "zh": "每一列 = 同一种信息：叶宽、叶高、叶子种类。"
+            },
+            {
+              "zh": "每一行的信息顺序都一样：先宽、再高、再种类 → 这就是 schema 的意思。"
+            },
+            {
+              "zh": "数一数：4 片 oak（橡树叶，第 1–4 行），3 片 maple（枫叶，第 5–7 行）。"
+            }
+          ],
+          "answer": {
+            "zh": "这是表格数据，也就是最常见的结构化数据。",
+            "en": "This is tabular data, the most common kind of structured data."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "一条数据是一**行**（row），不是一列。列是“同一种信息”。"
+            },
+            {
+              "zh": "tabular data 是结构化数据里**最常见**的一种，不是唯一的一种。"
+            },
+            {
+              "zh": "叶子种类在课件里是图标，后面会被换成数字（oak = 1、maple = 2），见“特征向量”一节。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In tabular data, what is one piece of data?",
+            "zh": "在表格数据中，一条数据是什么？"
+          },
+          "options": [
+            {
+              "en": "A row in the table",
+              "zh": "表格的一行"
+            },
+            {
+              "en": "A column in the table",
+              "zh": "表格的一列"
+            },
+            {
+              "en": "The whole table",
+              "zh": "整张表"
+            },
+            {
+              "en": "The table's header",
+              "zh": "表头"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.24：One piece of data is a row in the table. 一列是同一种信息（比如所有叶子的宽度）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is the predefined, predictable format of structured data called?",
+            "zh": "结构化数据那种事先定义好、可预测的格式叫什么？"
+          },
+          "options": [
+            {
+              "en": "A pixel",
+              "zh": "像素"
+            },
+            {
+              "en": "A frame",
+              "zh": "帧"
+            },
+            {
+              "en": "A feature vector",
+              "zh": "特征向量"
+            },
+            {
+              "en": "A schema",
+              "zh": "schema（模式）"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "定义原话：…a predefined, predictable format called a schema… A（像素）、B（帧）属于图像和视频；C（特征向量）是后面讲的“一条数据的数值列表”。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-column-types",
+      "title": {
+        "zh": "列的三种类型：连续型、有序型、类别型",
+        "en": "Column types: continuous, ordinal, categorical"
+      },
+      "slides": "25-26",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "表格里每一列可以有不同的类型（**types**）。课件给了三种常见类型：连续型（**continuous**）、有序型（**ordinal**）、类别型（**categorical**）。判断只要问两个问题：①顺序有没有意义？②小数有没有意义？"
+        },
+        {
+          "type": "analogy",
+          "zh": "用点外卖来记：\n① 配送距离 3.7 公里：是数值，有大小顺序，小数也有意义 → 连续型。\n② 辣度（不辣、微辣、中辣、特辣，越来越辣）：有顺序，但不存在“1.5 辣”这种小数 → 有序型（它甚至不是数字）。\n③ 支付方式（微信、支付宝、银行卡）：没有谁大谁小 → 类别型。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.25）",
+            "en": "Course definitions (slide 25)"
+          },
+          "items": [
+            {
+              "en": "Continuous: A numeric value where ordering is meaningful and decimal values make sense (e.g. height in cm).",
+              "zh": "连续型：一个数值，顺序有意义，小数也有意义（例：以厘米计的身高）。"
+            },
+            {
+              "en": "Ordinal: A category (which may or may not be numerical) where ordering is meaningful, but decimal values don't make sense (e.g. position in a race).",
+              "zh": "有序型：一种类别（可以是数字，也可以不是），顺序有意义，但小数没有意义（例：赛跑名次）。"
+            },
+            {
+              "en": "Categorical: A category where ordering is not meaningful (e.g. hair colour).",
+              "zh": "类别型：一种类别，顺序没有意义（例：发色）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "类型 Type",
+            "顺序有意义？Ordering meaningful?",
+            "小数有意义？Decimal values make sense?",
+            "课件例子 Slide example"
+          ],
+          "rows": [
+            [
+              "Continuous 连续型",
+              "Yes 有",
+              "Yes 有",
+              "height in cm（身高，厘米）"
+            ],
+            [
+              "Ordinal 有序型",
+              "Yes 有",
+              "No 没有",
+              "position in a race（赛跑名次）"
+            ],
+            [
+              "Categorical 类别型",
+              "No 没有",
+              "不适用（课件没提）",
+              "hair colour（发色）"
+            ]
+          ]
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "两个问题判断一列的类型",
+            "en": "Two questions to type a column"
+          },
+          "items": [
+            {
+              "en": "Look at the values in the column.",
+              "zh": "先看这一列里都是些什么值。"
+            },
+            {
+              "en": "Is ordering meaningful? If no, it is categorical.",
+              "zh": "顺序有意义吗？没有 → 类别型（categorical）；有 → 继续问。"
+            },
+            {
+              "en": "Do decimal values make sense? If no, it is ordinal; if yes, it is continuous.",
+              "zh": "小数有意义吗？没有 → 有序型（ordinal）；有 → 连续型（continuous）。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "给叶子表的三列定类型",
+            "en": "Typing the three columns of the leaf table"
+          },
+          "steps": [
+            {
+              "zh": "Leaf Width（7.0 cm、9.0 cm……）：是数值，越大越宽，7.5 cm 也有意义 → continuous。"
+            },
+            {
+              "zh": "Leaf Height（12.0 cm……）：同理 → continuous。课件的例子 height in cm 正是这种。"
+            },
+            {
+              "zh": "Leaf Type（oak / maple）：橡树叶和枫叶没有谁大谁小 → categorical。"
+            },
+            {
+              "zh": "后面课件会把 oak 记成 1、maple 记成 2，但这只是编号，2 并不比 1“大”，所以仍是 categorical（第 38 页也把 leaf type 叫作 categorical variable）。"
+            }
+          ],
+          "answer": {
+            "zh": "宽、高 = continuous；种类 = categorical。",
+            "en": "Width and height are continuous; leaf type is categorical."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Ordinal 可以是数字（名次 1、2、3），也可以不是（不辣、微辣……）。看到数字别马上选 continuous，要问“小数有没有意义”：没有“第 2.5 名”，所以名次是 ordinal。"
+            },
+            {
+              "zh": "用数字编码的类别（oak = 1、maple = 2）仍是 categorical，因为顺序没有意义。"
+            },
+            {
+              "zh": "Continuous 一定是数值（numeric value）；ordinal 和 categorical 都是“类别”（category）。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Imagine the information that the university keeps about each student. What are some examples of values of each type?",
+            "zh": "讨论：想象一下大学为每个学生保存的信息。每种类型各举一些例子。"
+          },
+          "answer": {
+            "en": "Continuous: a student's GPA (for example 3.67) or course average (for example 78.5%), because ordering is meaningful and decimal values make sense. Ordinal: year of study (1st, 2nd, 3rd or 4th year) or a letter grade (A, B, C), because ordering is meaningful but decimal values don't make sense. Categorical: program of study or home country, because ordering is not meaningful.",
+            "zh": "这些例子是我们举的（课件没有给答案），你可以换成自己的。答题关键：每个例子后面都用课件的标准说明理由——顺序有没有意义、小数有没有意义。比如年级有先后，但没有“2.5 年级”，所以是 ordinal；专业之间没有大小，所以是 categorical。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A runner's position in a race (1st, 2nd, 3rd) is an example of which type of value?",
+            "zh": "赛跑名次（第 1、2、3 名）属于哪种类型？"
+          },
+          "options": [
+            {
+              "en": "Continuous",
+              "zh": "连续型"
+            },
+            {
+              "en": "Ordinal",
+              "zh": "有序型"
+            },
+            {
+              "en": "Categorical",
+              "zh": "类别型"
+            },
+            {
+              "en": "Unstructured",
+              "zh": "非结构化"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "课件的例子：Ordinal … (e.g. position in a race)。名次有先后（顺序有意义），但没有“第 2.5 名”（小数没意义）。所以不是 continuous；也不是 categorical，因为顺序有意义。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the leaf table, oak is stored as 1 and maple as 2. What type is the Leaf Type column?",
+            "zh": "叶子表里 oak 记作 1、maple 记作 2。Leaf Type 这一列是什么类型？"
+          },
+          "options": [
+            {
+              "en": "Continuous, because it is stored as a number",
+              "zh": "连续型，因为存成了数字"
+            },
+            {
+              "en": "Ordinal, because 2 is bigger than 1",
+              "zh": "有序型，因为 2 比 1 大"
+            },
+            {
+              "en": "Categorical, because ordering is not meaningful",
+              "zh": "类别型，因为顺序没有意义"
+            },
+            {
+              "en": "Unstructured, because it was shown as an icon",
+              "zh": "非结构化，因为原来是图标"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "1 和 2 只是编号，oak 和 maple 没有谁大谁小，所以是 categorical（第 38 页也称它为 categorical variable）。存成数字不代表就是 continuous；“2 比 1 大”在这里没有意义。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-unstructured-images-video",
+      "title": {
+        "zh": "非结构化数据①：图像和视频",
+        "en": "Unstructured data 1: images and video"
+      },
+      "slides": "27-28",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "非结构化数据（**unstructured data**）= 不遵循 schema 的数据。电脑得做**额外处理**才能从里面找到重要信息。课件举了三类：图像和视频、音频、自由文本。"
+        },
+        {
+          "type": "analogy",
+          "zh": "结构化数据像填好的登记表，一眼就知道“姓名”在哪一格；非结构化数据像一条 60 秒的微信语音或一张截图——信息都在里面，但你得自己听、自己看、自己找。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.27）",
+            "en": "Course definition (slide 27)"
+          },
+          "items": [
+            {
+              "en": "Unstructured data does not follow a schema, so the computer has to do extra processing to find important information.",
+              "zh": "非结构化数据不遵循 schema，所以电脑需要额外处理才能找到重要信息。"
+            },
+            {
+              "en": "Some examples of unstructured data are: images and video, audio, freeform text.",
+              "zh": "非结构化数据的例子：图像和视频、音频、自由文本。"
+            },
+            {
+              "en": "Ultimately, all data must be reduced to numbers in order to be used by a computer.",
+              "zh": "归根结底，所有数据都必须变成数字，电脑才能使用。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "最后一句最关键：**所有数据最终都要变成数字**。这一节看图像和视频，下一节看音频和文字。"
+        },
+        {
+          "type": "text",
+          "zh": "图像（**image**）由像素（**pixel**）组成：像素就是图上的一个个小格子，每格用数字记下这一点有多亮（亮度，**intensity**）——单色图每格 1 个数，彩色图通常每格 3 个数（红、绿、蓝）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.28）",
+            "en": "Course wording (slide 28)"
+          },
+          "items": [
+            {
+              "en": "Images are represented by pixel values, which give the intensity at each point in space.",
+              "zh": "图像用像素值表示，像素值给出画面上每个点的亮度（强度）。"
+            },
+            {
+              "en": "Monochrome requires one value per pixel, while colour typically requires three (e.g. red, green, and blue).",
+              "zh": "单色（黑白、灰度）图每个像素需要 1 个数；彩色图通常需要 3 个数（例如红、绿、蓝）。"
+            },
+            {
+              "en": "Video is made up of an ordered sequence of images, called frames.",
+              "zh": "视频由一串按顺序排列的图像组成，每张图像叫一帧。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "pixel",
+              "zh": "像素",
+              "hint": "图片上的一个小格子，存一个（或几个）数字"
+            },
+            {
+              "en": "intensity",
+              "zh": "强度、亮度",
+              "hint": "这个点有多亮：数字越大越亮"
+            },
+            {
+              "en": "monochrome",
+              "zh": "单色（黑白、灰度）",
+              "hint": "每个像素 1 个数"
+            },
+            {
+              "en": "colour (red, green, blue)",
+              "zh": "彩色（红、绿、蓝）",
+              "hint": "通常每个像素 3 个数"
+            },
+            {
+              "en": "frame",
+              "zh": "帧",
+              "hint": "视频里的每一张图片"
+            },
+            {
+              "en": "ordered sequence",
+              "zh": "有顺序的序列",
+              "hint": "一串按固定顺序排好的东西，顺序不能乱"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "课件的手写数字“0”（p.28）",
+            "en": "The handwritten \"0\" on slide 28"
+          },
+          "steps": [
+            {
+              "zh": "左图是一张黑白（灰度）图片：黑底上一个手写的 0。"
+            },
+            {
+              "zh": "它被分成 28 行 × 28 列的小格子，每格是一个像素 → 共 28 × 28 = 784 个像素。"
+            },
+            {
+              "zh": "因为是单色（monochrome），每个像素只需 1 个数 → 右图就是这 784 个数字排成的 28 × 28 方阵。"
+            },
+            {
+              "zh": "数字表示亮度：0 = 黑色背景；252–255 左右 = 白色笔画；中间的数（比如 53、115、166）= 笔画边缘的灰色。这张图里最小是 0，最大是 255。"
+            },
+            {
+              "zh": "如果是同样大小的彩色图，通常每个像素 3 个数（红、绿、蓝）→ 784 × 3 = 2,352 个数（这一步是我们算的，课件没算）。"
+            }
+          ],
+          "answer": {
+            "zh": "一张图片 = 一大张由像素亮度数字组成的表格。",
+            "en": "An image is a grid of pixel values (here 28 × 28 = 784 numbers)."
+          }
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "[[  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   2  53 225 157 255 224 101  16   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0  24 123 252 252 252 253 252 252 212 138   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0  22 201 252 252 252 252 253 252 252 252 243  89   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   2 168 252 252 248 230 182 154  10 102 237 252 249  30   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0 119 252 252 250 115   0   0   0   0   0  56 233 252 206  22   0   0   0   0   0]\n [  0   0   0   0   0   0   0  35 246 252 252 117   0   0   0   0   0   0   0  79 252 252  99   0   0   0   0   0]\n [  0   0   0   0   0   0  32 221 252 252 166   2   0   0   0   0   0   0   0   5 146 251 220  32   0   0   0   0]\n [  0   0   0   0   0   0  67 252 252 199  22   0   0   0   0   0   0   0   0   0   0 231 252  66   0   0   0   0]\n [  0   0   0   0   0   0  67 252 252  88   0   0   0   0   0   0   0   0   0   0   0 231 252 147   0   0   0   0]\n [  0   0   0   0   0   0 115 252 252  88   0   0   0   0   0   0   0   0   0   0   0 231 252 175   0   0   0   0]\n [  0   0   0   0   0   5 187 253 241  39   0   0   0   0   0   0   0   0   0   0  51 244 253  66   0   0   0   0]\n [  0   0   0   0   0  10 199 252 230   0   0   0   0   0   0   0   0   0   0  15 179 252 241  49   0   0   0   0]\n [  0   0   0   0   0   0 176 252 187   0   0   0   0   0   0   0   0   0   0 146 252 252 118   0   0   0   0   0]\n [  0   0   0   0   0   0 176 252 121   0   0   0   0   0   0   0   0   0 136 249 252 237  47   0   0   0   0   0]\n [  0   0   0   0   0   0 105 252 144   0   0   0   0   0   0   0  39 146 249 252 233  55   0   0   0   0   0   0]\n [  0   0   0   0   0   0  67 252 230   0   0   0   0   0  78 104 236 252 252 233  59   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0  64 250 250  88  12  12  31 155 250 253 252 252 237  55   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0 142 252 252 252 252 252 252 252 253 241 118  47   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0  26 245 252 252 252 252 252 219 161  49   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0  89 166 252 247 142 142  33   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]\n [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0]]",
+          "zh": "课件右图的原样数字（28 行，每行 28 个数）。第 0–4 行和第 25–27 行全是 0（纯黑背景）；把大数字连起来看，就能看出“0”的形状。"
+        },
+        {
+          "type": "text",
+          "zh": "视频（**video**）= 一串按顺序排列的图片，每一张叫一帧（**frame**）。所以视频就是“很多张像素数字表，按时间顺序排好”。顺序很重要：打乱顺序，画面就乱了。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "单色每个像素 **1** 个数；彩色通常 **3** 个数（red, green, blue）。别记反。"
+            },
+            {
+              "zh": "像素值表示的是**亮度、强度**（intensity），不是颜色的名字。"
+            },
+            {
+              "zh": "“非结构化”不是“没用”或“乱码”：只是没有 schema，电脑要多做处理才能找到重要信息。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, how many values per pixel does a monochrome image require?",
+            "zh": "根据课件，单色图片每个像素需要几个数？"
+          },
+          "options": [
+            {
+              "en": "One",
+              "zh": "1 个"
+            },
+            {
+              "en": "Two",
+              "zh": "2 个"
+            },
+            {
+              "en": "Three",
+              "zh": "3 个"
+            },
+            {
+              "en": "Four",
+              "zh": "4 个"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.28：Monochrome requires one value per pixel, while colour typically requires three (e.g. red, green, and blue). 3 个是彩色图。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is an example of unstructured data?",
+            "zh": "下面哪个是非结构化数据？"
+          },
+          "options": [
+            {
+              "en": "A table of leaf widths and heights",
+              "zh": "叶宽叶高的表格"
+            },
+            {
+              "en": "Images and video",
+              "zh": "图像和视频"
+            },
+            {
+              "en": "A spreadsheet in which every row has the same columns",
+              "zh": "每一行列都相同的电子表格"
+            },
+            {
+              "en": "Tabular data",
+              "zh": "表格数据"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.27 列出的非结构化数据：Images and video, Audio, Freeform text。表格、电子表格都有 schema，属于结构化数据。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is video made up of?",
+            "zh": "根据课件，视频由什么组成？"
+          },
+          "options": [
+            {
+              "en": "The amplitude of a sound wave, recorded many times per second",
+              "zh": "每秒记录很多次的声波振幅"
+            },
+            {
+              "en": "An ordered sequence of images, called frames",
+              "zh": "一串按顺序排列的图像，每张叫一帧"
+            },
+            {
+              "en": "An ordered sequence of characters",
+              "zh": "一串按顺序排列的字符"
+            },
+            {
+              "en": "One table that follows a schema",
+              "zh": "一张遵循 schema 的表格"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.28：Video is made up of an ordered sequence of images, called frames（视频由按顺序排列的图像组成，每张叫一帧）。A 是音频（p.29）；C 是文本（p.30）；D 是结构化数据（p.24）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-unstructured-audio-text",
+      "title": {
+        "zh": "非结构化数据②：音频和文本",
+        "en": "Unstructured data 2: audio and text"
+      },
+      "slides": "29-30",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "声音也要变成数字。音频（**audio**）= 把声波的振幅（**amplitude**，可以理解成这一瞬间声音的“响度”，loudness）每秒记录很多次，再按时间顺序排好。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像你发微信语音：手机每秒“听”很多很多次，每次只记一个数字——这一瞬间声波比安静时的中间线（零线）高还是低、差多少。把这些数字按时间顺序排好，就能把你的声音放出来。",
+          "limit": "课件没说每秒具体记多少次，只说 many times per second（每秒很多次）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.29）",
+            "en": "Course definition (slide 29)"
+          },
+          "items": [
+            {
+              "en": "Audio is represented by the ordered amplitude/loudness of a sound wave, recorded many times per second.",
+              "zh": "音频用声波的振幅（响度）来表示：每秒记录很多次，并按顺序排列。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "读课件的声波图（p.29）",
+            "en": "Reading the waveform on slide 29"
+          },
+          "steps": [
+            {
+              "zh": "图里是一条蓝色声波，在中间那条灰色“零线”上下摆动。"
+            },
+            {
+              "zh": "竖着的黑线标出一个时刻：time = 1077 ms（ms = 毫秒，千分之一秒，所以约 1.077 秒）。"
+            },
+            {
+              "zh": "这一时刻的读数：amplitude = -0.392 → 就是**一个数字**。负号表示这一刻声波在零线下方（课件没有给振幅的刻度）。"
+            },
+            {
+              "zh": "整段声音 = 很多个这样的数字，按时间顺序排成一串。"
+            }
+          ],
+          "answer": {
+            "zh": "音频 = 按时间顺序记录的一串振幅数字。",
+            "en": "Audio is an ordered list of amplitude values, e.g. amplitude -0.392 at time 1077 ms."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "文字也一样。自由文本（**freeform text**，也可以直接叫 **text**）= 一串按顺序排列的字符（**characters**：字母、标点、空格等）。"
+        },
+        {
+          "type": "text",
+          "zh": "每个字符都会用字符编码方案（**character encoding scheme**）换成一个数字。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.30）",
+            "en": "Course definition (slide 30)"
+          },
+          "items": [
+            {
+              "en": "Freeform text (or just text) is an ordered sequence of characters (letters, punctuation, spaces, etc.).",
+              "zh": "自由文本（简称文本）是一串按顺序排列的字符（字母、标点、空格等）。"
+            },
+            {
+              "en": "Each character is converted to a (hexadecimal) numeric value using a character encoding scheme (e.g. Unicode, UTF-8, ASCII).",
+              "zh": "每个字符都用一种字符编码方案（如 Unicode、UTF-8、ASCII）转换成一个（十六进制的）数值。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "character",
+              "zh": "字符",
+              "hint": "一个字母、一个标点或一个空格，都算一个字符"
+            },
+            {
+              "en": "character encoding scheme",
+              "zh": "字符编码方案",
+              "hint": "一张“字符 ↔ 数字”的对照表，例如 Unicode、UTF-8、ASCII"
+            },
+            {
+              "en": "hexadecimal",
+              "zh": "十六进制",
+              "hint": "一种写数字的方法：除了 0–9，还用 a–f 表示 10–15"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Hello! 变成数字（p.30）",
+            "en": "Hello! as numbers (slide 30)"
+          },
+          "steps": [
+            {
+              "zh": "课件写：Hello! = 0048 0065 006c 006c 006f 0021。"
+            },
+            {
+              "zh": "6 个字符（H、e、l、l、o、!）→ 6 个数字，一个对一个。"
+            },
+            {
+              "zh": "两个 l 的编码完全一样（都是 006c）：同一个字符，永远是同一个数字。"
+            },
+            {
+              "zh": "感叹号 ! 也有自己的数字 0021：标点也是字符。"
+            },
+            {
+              "zh": "里面的 c、f 是十六进制里的“数字”：a–f 代表 10–15（课件原注：a through f are numbers 10 to 15 in hexadecimal）。"
+            }
+          ],
+          "answer": {
+            "zh": "文本 → 一串字符 → 每个字符按编码方案变成一个数字。",
+            "en": "Text is an ordered sequence of characters, and each character becomes a number."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "只为帮助理解：把课件上的十六进制换成熟悉的十进制（课件没有讲换算，十进制是我们算的）",
+            "en": "For understanding only: the slide's hex values in decimal (our own conversion)"
+          },
+          "headers": [
+            "字符 Character",
+            "课件上的十六进制 Hex",
+            "换算 Working",
+            "十进制 Decimal"
+          ],
+          "rows": [
+            [
+              "H",
+              "0048",
+              "4 × 16 + 8",
+              "72"
+            ],
+            [
+              "e",
+              "0065",
+              "6 × 16 + 5",
+              "101"
+            ],
+            [
+              "l",
+              "006c",
+              "6 × 16 + 12",
+              "108"
+            ],
+            [
+              "l",
+              "006c",
+              "6 × 16 + 12",
+              "108"
+            ],
+            [
+              "o",
+              "006f",
+              "6 × 16 + 15",
+              "111"
+            ],
+            [
+              "!",
+              "0021",
+              "2 × 16 + 1",
+              "33"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "记忆技巧：视频（frames）、音频（amplitude）、文本（characters）的课件定义里都有 **ordered**（按顺序的）这个词。顺序一乱，意思就变了，比如 dog 和 god 是同样三个字母。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "音频是“每秒记录很多次”（many times per second），不是每秒一次。"
+            },
+            {
+              "zh": "空格和标点也是字符，也会被编码成数字。"
+            },
+            {
+              "zh": "Unicode、UTF-8、ASCII 都是**字符编码方案**的例子，不是三种数据形式。"
+            },
+            {
+              "zh": "振幅可以是负数（如 −0.392）：负号只表示这一刻波在零线下方，不是“负的响度”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "How is audio represented, according to the lecture?",
+            "zh": "根据课件，音频是怎样表示的？"
+          },
+          "options": [
+            {
+              "en": "By pixel values that give the intensity at each point in space",
+              "zh": "给出每个点亮度的像素值"
+            },
+            {
+              "en": "By an ordered sequence of images, called frames, shown one after another",
+              "zh": "一张接一张、按顺序排列的图像（帧）"
+            },
+            {
+              "en": "By a schema in which every piece of data has the same information in the same order",
+              "zh": "每条数据信息相同、顺序相同的 schema"
+            },
+            {
+              "en": "By the ordered amplitude/loudness of a sound wave, recorded many times per second",
+              "zh": "按顺序记录的声波振幅（响度），每秒记录很多次"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.29 原话就是 D。A（像素值）是图像，B（帧）是视频，C（schema）是结构化数据。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In \"Hello! = 0048 0065 006c 006c 006f 0021\", why does 006c appear twice?",
+            "zh": "在 Hello! = 0048 0065 006c 006c 006f 0021 中，为什么 006c 出现了两次？"
+          },
+          "options": [
+            {
+              "en": "Because the same character (l) is always converted to the same number",
+              "zh": "因为同一个字符（l）总是被转换成同一个数字"
+            },
+            {
+              "en": "Because the encoding scheme made a mistake when it converted the text",
+              "zh": "因为编码方案在转换文字时出错了"
+            },
+            {
+              "en": "Because every space in the text is converted to 006c",
+              "zh": "因为文字里的每个空格都被编码成 006c"
+            },
+            {
+              "en": "Because the ! at the end has no numeric value of its own",
+              "zh": "因为结尾的感叹号没有自己的数值"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "Hello 里有两个 l，编码方案对同一个字符给同一个数字，所以 006c 出现两次。感叹号也有数值（0021）；这个例子里没有空格。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-feature-vectors",
+      "title": {
+        "zh": "特征向量、特征与特征工程",
+        "en": "Feature vectors, features and feature engineering"
+      },
+      "slides": "32-34",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "不管原来是表格、图片还是文字，每一条数据都能写成一个**数值列表**，电脑就能看懂。"
+        },
+        {
+          "type": "text",
+          "zh": "这个列表叫特征向量（**feature vector**），列表里的每一个值叫一个特征（**feature**）。向量（**vector**）在这里就理解成“方括号里一串按顺序排好的数”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像体检表上你的一行记录：[身高, 体重, 血型编号]。整行数字 = 你的特征向量；其中“身高”这一个数 = 一个特征。每个同学都有这样一行，格式一样。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.32–33）",
+            "en": "Course definition (slides 32-33)"
+          },
+          "items": [
+            {
+              "en": "Despite their differences in type, each piece of data can be represented as a list of values that can be understood by the computer.",
+              "zh": "尽管类型各不相同，每一条数据都可以表示成电脑能理解的一个数值列表。"
+            },
+            {
+              "en": "These lists are called feature vectors, and each value within is a feature.",
+              "zh": "这些列表叫特征向量，其中的每一个值叫一个特征。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "把第 3 片叶子变成特征向量（p.32–33）",
+            "en": "Turning row 3 into a feature vector (slides 32-33)"
+          },
+          "steps": [
+            {
+              "zh": "表格第 3 行：Leaf Width = 10.0 cm，Leaf Height = 18.0 cm，Leaf Type = oak（橡树叶图标）。"
+            },
+            {
+              "zh": "按列的顺序取数：宽 10.0，高 18.0。"
+            },
+            {
+              "zh": "类别换成数字：oak 记作 1（如果是 maple 就记作 2）。"
+            },
+            {
+              "zh": "写成列表：[10.0, 18.0, 1] ← 这就是特征向量。"
+            },
+            {
+              "zh": "课件用大括号标注：整个 [10.0, 18.0, 1] 是 Feature vector；其中的 10.0 是一个 Feature。"
+            }
+          ],
+          "answer": {
+            "zh": "第 3 行 → [10.0, 18.0, 1]",
+            "en": "E.g. this row becomes [10.0, 18.0, 1], where the 1 represents \"oak\" and \"maple\" would be 2."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "按同样方法得到的全部 7 个特征向量（课件只写了第 3 行，其余是我们照做的）",
+            "en": "All 7 feature vectors (the slide shows only row 3)"
+          },
+          "headers": [
+            "叶子 Leaf",
+            "种类 Type",
+            "特征向量 [width, height, type]"
+          ],
+          "rows": [
+            [
+              "1",
+              "oak",
+              "[7.0, 12.0, 1]"
+            ],
+            [
+              "2",
+              "oak",
+              "[9.0, 6.0, 1]"
+            ],
+            [
+              "3",
+              "oak",
+              "[10.0, 18.0, 1]（课件的例子）"
+            ],
+            [
+              "4",
+              "oak",
+              "[5.0, 10.0, 1]"
+            ],
+            [
+              "5",
+              "maple",
+              "[13.0, 11.0, 2]"
+            ],
+            [
+              "6",
+              "maple",
+              "[11.0, 9.0, 2]"
+            ],
+            [
+              "7",
+              "maple",
+              "[9.0, 14.0, 2]"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "特征不是越多越好。课件第 34 页：我们希望**每个**特征都能告诉我们关于数据的有用信息。把特征向量“改造”一下——删掉没用的、组合出更有用的——就叫特征工程（**feature engineering**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像做菜前备料：没用的配料直接扔掉（删特征）；有些东西要两样混在一起才出味道（组合特征）。备料方法不同，最后菜的味道可能差很多——特征工程对 ML 结果的影响也可能很大。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.34）",
+            "en": "Course wording (slide 34)"
+          },
+          "items": [
+            {
+              "en": "In ML, we would like every feature to tell us something useful about the data.",
+              "zh": "在 ML 中，我们希望每个特征都能告诉我们关于数据的有用信息。"
+            },
+            {
+              "en": "Sometimes, features aren't useful, and it would be better to remove them (e.g. ignore leaf width).",
+              "zh": "有时特征没用，最好删掉（例如忽略叶宽）。"
+            },
+            {
+              "en": "Sometimes, features are more useful when combined with each other (e.g. add a new feature for height multiplied by width).",
+              "zh": "有时特征组合起来更有用（例如新增一个“高 × 宽”的特征）。"
+            },
+            {
+              "en": "Transforming our feature vectors this way is called feature engineering. Feature engineering can have a large impact on the results we get from ML.",
+              "zh": "这样改造特征向量就叫特征工程。特征工程可能对 ML 的结果有很大影响。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "特征工程的两种操作（用第 3 片叶子）",
+            "en": "Two feature-engineering moves (leaf 3)"
+          },
+          "steps": [
+            {
+              "zh": "原来的特征向量：[10.0, 18.0, 1]（宽、高、种类）。"
+            },
+            {
+              "zh": "操作①删掉没用的特征（课件例子：ignore leaf width）→ [18.0, 1]。"
+            },
+            {
+              "zh": "操作②组合出新特征（课件例子：height multiplied by width）→ 18.0 × 10.0 = 180.0，多加一个特征 → [10.0, 18.0, 180.0, 1]（数字是我们代进去算的）。"
+            }
+          ],
+          "answer": {
+            "zh": "删特征、组合特征，都属于特征工程。",
+            "en": "Removing features and combining features are both feature engineering."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "特征向量 = 整个列表（一条数据）；特征 = 列表里的一个值。别说反。"
+            },
+            {
+              "zh": "oak = 1、maple = 2 只是编号，不代表大小。"
+            },
+            {
+              "zh": "特征工程不只是“加特征”，**删**特征也是。"
+            },
+            {
+              "zh": "课件说特征工程 can have a large impact（可能影响很大），不是可有可无的小步骤。"
+            },
+            {
+              "zh": "Lecture 3 / Lab 3 也用过 feature 这个词：heuristic 的特征是“能说明局面好坏的指标”（如兵的个数），每个特征算“我方 − 对方”再乘权重。这里的 feature 是特征向量里的一个值。都是“描述一样东西的一个数”，但用在不同的方法里，别把两课的例子混在一起。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the feature vector [10.0, 18.0, 1], what is 10.0?",
+            "zh": "在特征向量 [10.0, 18.0, 1] 中，10.0 是什么？"
+          },
+          "options": [
+            {
+              "en": "A feature",
+              "zh": "一个特征"
+            },
+            {
+              "en": "A feature vector",
+              "zh": "一个特征向量"
+            },
+            {
+              "en": "A data space",
+              "zh": "一个数据空间"
+            },
+            {
+              "en": "The code for maple",
+              "zh": "maple 的编号"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.33：each value within is a feature。整个列表才是 feature vector；maple 的编号是 2，而且种类放在第 3 个位置。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Adding a new feature for leaf height multiplied by leaf width is an example of what?",
+            "zh": "新增一个“叶高 × 叶宽”的特征，属于什么？"
+          },
+          "options": [
+            {
+              "en": "Data provenance",
+              "zh": "数据溯源"
+            },
+            {
+              "en": "Differential Privacy",
+              "zh": "差分隐私"
+            },
+            {
+              "en": "Information leakage",
+              "zh": "信息泄露"
+            },
+            {
+              "en": "Feature engineering",
+              "zh": "特征工程"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.34：组合特征（height multiplied by width）和删除特征（ignore leaf width）都叫 feature engineering。A、B、C 是前面讲的数据来源和隐私话题。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-data-space",
+      "title": {
+        "zh": "表示（representation）与数据空间",
+        "en": "Representations and data space"
+      },
+      "slides": "35-36",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "特征工程让我们可以用不止一种方式“看”同一批原始数据（**raw data**）。每一种看法叫一个表示（**representation**），可以画在数据空间（**data space**，也叫特征空间 **feature space**）里。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像地图 App 标店铺：每家店有（经度, 纬度）两个数，就能在 2 维地图上标成一个点，离得近的店在地图上也挨得近。数据空间就是把特征向量当“坐标”画成点的地图。",
+          "limit": "地图只有 2 维；数据空间有几个特征就有几维。维度一多就很难画在纸上（第 38 页也说 3 维在纸上就不容易画）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.35）",
+            "en": "Course definition (slide 35)"
+          },
+          "items": [
+            {
+              "en": "Feature engineering gives us more than one way to view the same raw data.",
+              "zh": "特征工程让我们能用不止一种方式看同一批原始数据。"
+            },
+            {
+              "en": "Each of these is called a representation, which we can visualize in the data space (or feature space).",
+              "zh": "每一种看法叫一个表示，可以在数据空间（也叫特征空间）中画出来看。"
+            },
+            {
+              "en": "Feature vectors with N dimensions live in an N-dimensional data space.",
+              "zh": "有 N 个维度的特征向量，位于 N 维的数据空间中。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "把定义拆开",
+            "en": "Breaking it down"
+          },
+          "items": [
+            {
+              "zh": "raw data（原始数据）：还没处理过的数据，比如叶子表本身。"
+            },
+            {
+              "zh": "representation（表示）：一种看数据的方式，比如只看 [宽, 高]。"
+            },
+            {
+              "zh": "data space = feature space：同一个东西的两个名字。"
+            },
+            {
+              "zh": "dimension（维度）：特征向量里有几个数就是几维。2 个特征 → 2 维（一张平面图）；3 个特征 → 3 维。"
+            },
+            {
+              "zh": "visualize（可视化）：画成图来看。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "画出 [(leaf width), (leaf height)] 的数据空间（p.35）",
+            "en": "The data space for [(leaf width), (leaf height)] (slide 35)"
+          },
+          "steps": [
+            {
+              "zh": "每片叶子只取 [宽, 高] → 2 个特征 → 2 维数据空间，也就是一张平面图。"
+            },
+            {
+              "zh": "横轴 = Leaf Width (cm)，纵轴 = Leaf Height (cm)。"
+            },
+            {
+              "zh": "第 1 片叶子 [7.0, 12.0]：往右数到 7、往上数到 12，点一个点。"
+            },
+            {
+              "zh": "7 片叶子全部画完：(5, 10)、(7, 12)、(9, 6)、(9, 14)、(10, 18)、(11, 9)、(13, 11)。"
+            },
+            {
+              "zh": "课件这张图上是 7 个一模一样的绿点：这个表示里没有种类信息，所以看不出哪片是 oak、哪片是 maple。"
+            }
+          ],
+          "answer": {
+            "zh": "一个特征向量 = 数据空间里的一个点。",
+            "en": "Each feature vector is one point in the data space."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "课件第 36 页：数据空间里的**几何关系**（谁离谁近、点怎么分布）很重要。ML 的任务是从数据中学出预测模型（**predictive models**）。"
+        },
+        {
+          "type": "text",
+          "zh": "后面会看到，这些模型就是函数（**function**，“输入数字、输出结果”的机器），可以看成数据空间里的**形状**。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.36）",
+            "en": "Course wording (slide 36)"
+          },
+          "items": [
+            {
+              "en": "Geometric relationships in data space are important.",
+              "zh": "数据空间中的几何关系很重要。"
+            },
+            {
+              "en": "In ML, our task is to learn predictive models from data.",
+              "zh": "在 ML 中，我们的任务是从数据中学出预测模型。"
+            },
+            {
+              "en": "These models are functions that can be interpreted as shapes in the data space.",
+              "zh": "这些模型是函数，可以理解为数据空间中的形状。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "第 43–44 页就兑现了这句话：分类模型在数据空间里画出一条决策边界（直线或曲线）。先记住：模型 = 数据空间里的形状。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "data space 和 feature space 是**同一个东西**，别当成两个概念。"
+            },
+            {
+              "zh": "N 个特征 → N 维空间：[宽, 高, 种类] 是 3 维，不是 2 维。"
+            },
+            {
+              "zh": "同一批原始数据可以有多个 representation（多种看法），不是只有一种。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A feature vector of the form [(leaf width), (leaf height), (leaf type)] lives in a data space with how many dimensions?",
+            "zh": "形如 [(叶宽), (叶高), (种类)] 的特征向量位于几维数据空间？"
+          },
+          "options": [
+            {
+              "en": "1",
+              "zh": "1 维"
+            },
+            {
+              "en": "2",
+              "zh": "2 维"
+            },
+            {
+              "en": "3",
+              "zh": "3 维"
+            },
+            {
+              "en": "7",
+              "zh": "7 维"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.35：Feature vectors with N dimensions live in an N-dimensional data space。这个向量有 3 个特征 → 3 维（第 38 页的标题就是 3-D Data Space）。7 是叶子的个数，不是维数。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is another name for the data space?",
+            "zh": "数据空间的另一个名字是什么？"
+          },
+          "options": [
+            {
+              "en": "Feature space",
+              "zh": "特征空间"
+            },
+            {
+              "en": "Schema",
+              "zh": "schema（格式）"
+            },
+            {
+              "en": "Training set",
+              "zh": "训练集"
+            },
+            {
+              "en": "Decision boundary",
+              "zh": "决策边界"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.35：the data space (or feature space)。schema 是结构化数据的格式；决策边界是模型在数据空间里画出的分界线。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Feature engineering gives us more than one way to view the same raw data. What is each of these ways called?",
+            "zh": "特征工程让我们能用多种方式看同一批原始数据。每一种方式叫什么？"
+          },
+          "options": [
+            {
+              "en": "A schema",
+              "zh": "schema（格式）"
+            },
+            {
+              "en": "A feature",
+              "zh": "特征"
+            },
+            {
+              "en": "A representation",
+              "zh": "表示"
+            },
+            {
+              "en": "A decision boundary",
+              "zh": "决策边界"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.35：Each of these is called a representation（每一种看法叫一个表示），可以画在数据空间（data space，也叫 feature space）里看。A（schema）是结构化数据的格式；B（feature）是特征向量里的一个值；D（decision boundary）是模型在数据空间里画的分界线。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-plotting-activities",
+      "title": {
+        "zh": "课堂活动：把叶子画进数据空间（2 维和 3 维）",
+        "en": "Activities: plotting the leaves in data space (2-D and 3-D)"
+      },
+      "slides": "37-38",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "两个课堂活动（**Activity**），练习“特征向量 → 数据空间里的点”。课件没给答案，下面一步一步做。规则：leaf type 用 1 表示 oak，2 表示 maple。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity: Plot all 7 leaves from our table as points in each of the two data spaces below. For leaf type, use 1 for oak and 2 for maple. (Data space for [(leaf width), (leaf type)] and data space for [(leaf height), (leaf type)].)",
+            "zh": "活动：把表中 7 片叶子分别画进下面两个数据空间。叶子种类用 1 表示 oak、2 表示 maple。（数据空间①：[(叶宽), (种类)]；数据空间②：[(叶高), (种类)]）"
+          },
+          "answer": {
+            "en": "In the [(leaf width), (leaf type)] data space, the oaks are at (7, 1), (9, 1), (10, 1) and (5, 1), and the maples are at (13, 2), (11, 2) and (9, 2). In the [(leaf height), (leaf type)] data space, the oaks are at (12, 1), (6, 1), (18, 1) and (10, 1), and the maples are at (11, 2), (9, 2) and (14, 2). Each leaf becomes one point, so each plot has 7 points.",
+            "zh": "做法：每片叶子只取这两个特征，写成 (x, y)：x 是宽（或高），y 是种类编号。oak 的点都在 Oak (1) 那一横排，maple 的点都在 Maple (2) 那一横排。"
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "活动答案：每片叶子在两个数据空间里的坐标",
+            "en": "Activity answer: each leaf's point in the two data spaces"
+          },
+          "headers": [
+            "叶子 Leaf",
+            "原始数据（宽, 高, 种类）",
+            "[(leaf width), (leaf type)]",
+            "[(leaf height), (leaf type)]"
+          ],
+          "rows": [
+            [
+              "1",
+              "7.0, 12.0, oak",
+              "(7, 1)",
+              "(12, 1)"
+            ],
+            [
+              "2",
+              "9.0, 6.0, oak",
+              "(9, 1)",
+              "(6, 1)"
+            ],
+            [
+              "3",
+              "10.0, 18.0, oak",
+              "(10, 1)",
+              "(18, 1)"
+            ],
+            [
+              "4",
+              "5.0, 10.0, oak",
+              "(5, 1)",
+              "(10, 1)"
+            ],
+            [
+              "5",
+              "13.0, 11.0, maple",
+              "(13, 2)",
+              "(11, 2)"
+            ],
+            [
+              "6",
+              "11.0, 9.0, maple",
+              "(11, 2)",
+              "(9, 2)"
+            ],
+            [
+              "7",
+              "9.0, 14.0, maple",
+              "(9, 2)",
+              "(14, 2)"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "画完之后观察（我们自己的观察，课件没写）",
+            "en": "What the two plots show (our own observation)"
+          },
+          "steps": [
+            {
+              "zh": "只看宽度：oak 在 5–10 cm，maple 在 9–13 cm，在 9 cm 处重叠（第 2 片 oak 和第 7 片 maple 都是 9.0 cm 宽）。"
+            },
+            {
+              "zh": "只看高度：oak 在 6–18 cm，maple 在 9–14 cm，maple 的范围整个落在 oak 的范围里面。"
+            },
+            {
+              "zh": "所以：只用宽、或只用高，都没法干净地把 oak 和 maple 分开。"
+            },
+            {
+              "zh": "下一个活动把宽和高放进同一张图，情况就清楚多了。"
+            }
+          ],
+          "answer": {
+            "zh": "一个特征往往不够，把几个特征放在一起看更清楚。",
+            "en": "Here, one feature alone does not separate oak from maple."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第 38 页：3 维图在纸上不好画。但如果有一个类别型变量（**categorical variable**；变量 = 会取不同值的量，这里就是“种类”这个特征），可以用**形状或颜色**来表示它，这样 3 维也能画在一张平面图上。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.38）",
+            "en": "Course wording (slide 38)"
+          },
+          "items": [
+            {
+              "en": "Plotting in three dimensions on paper isn't easy, but if we have a categorical variable, we can often represent it using shapes or colour.",
+              "zh": "在纸上画三维图不容易，但如果有类别型变量，我们常常可以用形状或颜色来表示它。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity: Plot the points in the [(leaf width), (leaf height), (leaf type)] data space on the axes below, where (leaf type) is indicated by shape: O for oak and M for maple.",
+            "zh": "活动：在下面的坐标轴上画出 [(叶宽), (叶高), (种类)] 数据空间中的点，种类用形状表示：O 表示 oak，M 表示 maple。"
+          },
+          "answer": {
+            "en": "Leaf width goes on the x-axis and leaf height on the y-axis, and the third feature, leaf type, is shown by the shape of each point. The oaks (O) are at (7, 12), (9, 6), (10, 18) and (5, 10). The maples (M) are at (13, 11), (11, 9) and (9, 14). This shows a 3-D data space on flat paper, because leaf type is categorical.",
+            "zh": "这张 O/M 图非常重要：第 43、44、47 页的所有模型都画在这张图上，课件后面的图正好就是这个答案。图里 3 个 M 大致在右边中间，4 个 O 分布在左边、上面和下面。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "第 37 页的两张图是 **2 维**（[宽, 种类]、[高, 种类]）；第 38 页是 **3 维**（[宽, 高, 种类]），只是第 3 维用形状 O/M 表示。"
+            },
+            {
+              "zh": "画点时，先写的特征放横轴（x），后写的放纵轴（y）：[(leaf width), (leaf height)] → 宽是横轴。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On flat paper, how can we show a third feature that is categorical (like leaf type)?",
+            "zh": "在平面纸上，怎样表示第三个、而且是类别型的特征（比如叶子种类）？"
+          },
+          "options": [
+            {
+              "en": "By deleting the feature",
+              "zh": "把这个特征删掉"
+            },
+            {
+              "en": "By multiplying height by width",
+              "zh": "把高乘以宽"
+            },
+            {
+              "en": "By using shapes or colour",
+              "zh": "用形状或颜色"
+            },
+            {
+              "en": "It cannot be shown",
+              "zh": "没办法表示"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.38：if we have a categorical variable, we can often represent it using shapes or colour，比如 O 表示 oak、M 表示 maple。删除或组合特征是特征工程，不是画图方法。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s15-ml-pipeline-supervised",
+      "title": {
+        "zh": "机器学习流程与监督学习",
+        "en": "The ML pipeline and Supervised Learning"
+      },
+      "slides": "40-41",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "有了整理好的数据，下一步怎么做出模型？课件给了机器学习的通用流程（**Machine Learning Pipeline**），一共 4 步。前面讲的全是第 1 步。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "机器学习流程（p.40）",
+            "en": "The Machine Learning Pipeline (slide 40)"
+          },
+          "items": [
+            {
+              "en": "1. Data Preparation",
+              "zh": "数据准备：收集、整理数据，变成特征向量（本课前半部分）"
+            },
+            {
+              "en": "2. Model Training",
+              "zh": "模型训练：让机器从数据里学出模型（本课后半部分开始讲）"
+            },
+            {
+              "en": "3. Model Evaluation",
+              "zh": "模型评估：检查模型好不好"
+            },
+            {
+              "en": "4. Inference/Deployment",
+              "zh": "推理/部署：用模型对新数据做预测，真正投入使用"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像开一家奶茶店：①备原料（数据准备）→ ②研发配方（模型训练）→ ③找人试喝打分（模型评估）→ ④正式上架开卖（推理/部署）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.40）",
+            "en": "Course wording (slide 40)"
+          },
+          "items": [
+            {
+              "en": "In ML, there is a common workflow for producing useful models from data: 1. Data Preparation, 2. Model Training, 3. Model Evaluation, 4. Inference/Deployment.",
+              "zh": "ML 有一个从数据产出有用模型的通用流程：1 数据准备，2 模型训练，3 模型评估，4 推理/部署。"
+            },
+            {
+              "en": "So far, we have talked about Data Preparation. We now move to Model Training under the Supervised Learning paradigm.",
+              "zh": "到目前为止讲的是数据准备；现在进入监督学习范式下的模型训练。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "联系 Lab 4：讲义里说，训练好之后让模型对新数据做预测，这就叫推理（**inference**）。",
+          "en": "Lab 4 handout: \"Then, we will ask it to make predictions about new data. This is called inference.\""
+        },
+        {
+          "type": "text",
+          "zh": "监督学习（**Supervised Learning**）一句话：用一批**带答案**的例子训练模型，让它学会给**没答案**的新例子猜答案。"
+        },
+        {
+          "type": "text",
+          "zh": "这里的“答案”就是我们想预测的那个特征，叫目标特征（**target feature**）。paradigm（范式）可以理解成“一种学习方式”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像刷带答案的真题：每道题都附了标准答案（有标签的训练数据）。你刷完、总结出规律（训练）。考试时遇到没见过、也没有答案的新题（无标签数据），你就能自己做出答案（预测）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.41）",
+            "en": "Course definition (slide 41)"
+          },
+          "items": [
+            {
+              "en": "In Supervised Learning, we want to predict the value of a feature in the data space (called the target feature).",
+              "zh": "在监督学习中，我们想预测数据空间中某个特征的值（这个特征叫目标特征）。"
+            },
+            {
+              "en": "We will learn from a labelled training dataset, in which the target feature's value is known for every piece of data.",
+              "zh": "我们从有标签的训练数据集中学习：其中每条数据的目标特征值都是已知的。"
+            },
+            {
+              "en": "Once this learning (or training) is complete, we can use the resulting model to make predictions about the target feature for unlabelled data, where the target value is not known.",
+              "zh": "学习（训练）完成后，就能用得到的模型，对目标值未知的无标签数据预测目标特征。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "短版：记不住原话时这样写",
+            "en": "Short version to write"
+          },
+          "items": [
+            {
+              "en": "In Supervised Learning, we train a model on labelled data. Then we use it to predict the target feature for unlabelled data.",
+              "zh": "监督学习：用有标签的数据训练模型，再用它给无标签数据预测目标特征。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "target feature",
+              "zh": "目标特征",
+              "hint": "我们想预测的那个特征（“答案”）"
+            },
+            {
+              "en": "labelled training dataset",
+              "zh": "带标签的训练数据集",
+              "hint": "每条数据的目标特征值都已知（“带标签”也常说成“有标签”）"
+            },
+            {
+              "en": "training (learning)",
+              "zh": "训练（学习）",
+              "hint": "模型从有标签数据里学规律的过程"
+            },
+            {
+              "en": "unlabelled data",
+              "zh": "无标签数据",
+              "hint": "目标值未知，要靠模型来预测"
+            },
+            {
+              "en": "model",
+              "zh": "模型",
+              "hint": "训练得到的“预测机器”"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用叶子例子对号入座",
+            "en": "Mapping the terms onto the leaf example"
+          },
+          "steps": [
+            {
+              "zh": "想预测：叶子是 oak 还是 maple → 目标特征 = Leaf Type（第 43–47 页的模型都在预测它）。"
+            },
+            {
+              "zh": "输入特征：Leaf Width 和 Leaf Height。"
+            },
+            {
+              "zh": "有标签的训练集：表里 7 片叶子，每片的种类都已知（4 片 oak + 3 片 maple）。"
+            },
+            {
+              "zh": "训练：机器用这 7 片叶子学出一个模型（比如一条分界线）。"
+            },
+            {
+              "zh": "预测：捡到一片新叶子，只量了宽和高、不知道种类（无标签数据）→ 交给模型来猜。"
+            }
+          ],
+          "answer": {
+            "zh": "监督学习 = 从有标签数据学，再对无标签数据预测目标特征。",
+            "en": "Supervised Learning: learn from labelled data, then predict the target feature for unlabelled data."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "labelled 指的是**目标特征**的值已知，不是“每一列都有名字”。"
+            },
+            {
+              "zh": "训练用**有标签**数据；预测用在**无标签**数据上。别反过来。"
+            },
+            {
+              "zh": "流程顺序：准备 → 训练 → 评估 → 推理/部署。评估在部署之前。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Supervised Learning, what is a labelled training dataset?",
+            "zh": "在监督学习中，什么是有标签的训练数据集？"
+          },
+          "options": [
+            {
+              "en": "A dataset in which the target value is not known for any piece of data",
+              "zh": "每条数据的目标值都未知的数据集"
+            },
+            {
+              "en": "A dataset in which every column has a name written at the top",
+              "zh": "每一列顶上都写了名字的数据集"
+            },
+            {
+              "en": "A dataset that is only used after the model has been deployed",
+              "zh": "只在模型部署之后才用的数据集"
+            },
+            {
+              "en": "A dataset in which the target feature's value is known for every piece of data",
+              "zh": "每条数据的目标特征值都已知的数据集"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.41：a labelled training dataset, in which the target feature's value is known for every piece of data。A 描述的是无标签数据（unlabelled data，目标值未知）；B 错：“有标签”不是指列名；C 错：训练数据在训练时就要用，不是部署之后。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is the correct order of the Machine Learning Pipeline?",
+            "zh": "机器学习流程的正确顺序是？"
+          },
+          "options": [
+            {
+              "en": "Model Training → Data Preparation → Inference/Deployment → Model Evaluation",
+              "zh": "模型训练 → 数据准备 → 推理/部署 → 模型评估"
+            },
+            {
+              "en": "Data Preparation → Model Training → Model Evaluation → Inference/Deployment",
+              "zh": "数据准备 → 模型训练 → 模型评估 → 推理/部署"
+            },
+            {
+              "en": "Data Preparation → Model Evaluation → Model Training → Inference/Deployment",
+              "zh": "数据准备 → 模型评估 → 模型训练 → 推理/部署"
+            },
+            {
+              "en": "Inference/Deployment → Model Training → Model Evaluation → Data Preparation",
+              "zh": "推理/部署 → 模型训练 → 模型评估 → 数据准备"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.40 的顺序：1. Data Preparation 2. Model Training 3. Model Evaluation 4. Inference/Deployment。先有数据才能训练，先评估再部署。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s16-classification-regression",
+      "title": {
+        "zh": "两种监督学习任务：分类 vs 回归",
+        "en": "Two kinds of task: classification vs regression"
+      },
+      "slides": "42",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "监督学习分两种任务，看目标值（**target value**）的**类型**来决定。"
+        },
+        {
+          "type": "text",
+          "zh": "目标是类别型（**categorical**）→ 分类（**classification**）；目标是连续型（**continuous**）→ 回归（**regression**）。本课先只讲分类。"
+        },
+        {
+          "type": "analogy",
+          "zh": "外卖 App 想预测“你这一单会不会加奶茶”（会 / 不会，是类别）→ 分类；想预测“这一单多少分钟送到”（比如 27.5 分钟，是连续的数）→ 回归。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.42）",
+            "en": "Course wording (slide 42)"
+          },
+          "items": [
+            {
+              "en": "Depending on the type of the target value, there are two kinds of Supervised Learning task:",
+              "zh": "根据目标值的类型，监督学习任务分两种："
+            },
+            {
+              "en": "Classification, if the target value is categorical.",
+              "zh": "目标值是类别型 → 分类。"
+            },
+            {
+              "en": "Regression, if the target value is continuous.",
+              "zh": "目标值是连续型 → 回归。"
+            },
+            {
+              "en": "We will focus on classification for the time being.",
+              "zh": "我们暂时先专注于分类。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "回忆列的类型：categorical = 顺序没意义的类别（比如 oak / maple）；continuous = 小数有意义的数值（比如以厘米计的高度）。所以先判断“要预测的那一列”是什么类型，就知道是分类还是回归。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "任务 Task",
+            "目标值类型 Target type",
+            "课程里的叶子例子"
+          ],
+          "rows": [
+            [
+              "Classification 分类",
+              "categorical 类别型",
+              "用宽和高预测 Leaf Type（oak / maple）——本课第 43–47 页"
+            ],
+            [
+              "Regression 回归",
+              "continuous 连续型",
+              "用叶宽预测叶高（cm）——Lecture 5 会讲"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "三步判断：分类还是回归？",
+            "en": "Three steps: classification or regression?"
+          },
+          "steps": [
+            {
+              "zh": "第 1 步：找出要预测的东西（目标特征）。"
+            },
+            {
+              "zh": "第 2 步：判断它的类型：categorical 还是 continuous？"
+            },
+            {
+              "zh": "第 3 步：categorical → classification；continuous → regression。"
+            },
+            {
+              "zh": "例 1：用宽和高预测叶子种类 → 目标 = 种类（categorical）→ 分类。"
+            },
+            {
+              "zh": "例 2：用叶宽预测叶高 → 目标 = 叶高（continuous，可以是 12.5 cm）→ 回归。"
+            }
+          ],
+          "answer": {
+            "zh": "看目标，不看输入。",
+            "en": "Look at the type of the target value, not the inputs."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "看的是**目标值**的类型，不是输入特征的类型。叶子例子的输入全是数字，但目标是种类，所以是分类。"
+            },
+            {
+              "zh": "目标用 1、2 编码的类别（oak = 1、maple = 2）仍然是分类，不是回归。"
+            },
+            {
+              "zh": "本课只讲分类（for the time being），回归在 Lecture 5。"
+            },
+            {
+              "zh": "课件只讲了两种情况：目标是 categorical → 分类；目标是 continuous → 回归。目标是 ordinal 的情况课件没讲，不用自己推断。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A model uses leaf width and leaf height to predict whether a leaf is oak or maple. Which kind of Supervised Learning task is this?",
+            "zh": "一个模型用叶宽和叶高预测叶子是 oak 还是 maple。这是哪种监督学习任务？"
+          },
+          "options": [
+            {
+              "en": "Classification",
+              "zh": "分类"
+            },
+            {
+              "en": "Regression",
+              "zh": "回归"
+            },
+            {
+              "en": "Feature engineering",
+              "zh": "特征工程"
+            },
+            {
+              "en": "Data Preparation",
+              "zh": "数据准备"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "目标（leaf type）是类别型 → classification。输入是数字不影响判断；特征工程和数据准备不是“监督学习任务的种类”。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A model predicts leaf height (in cm) from leaf width. Which kind of task is this, and why?",
+            "zh": "一个模型用叶宽预测叶高（厘米）。这是哪种任务？为什么？"
+          },
+          "options": [
+            {
+              "en": "Classification, because the input is a number",
+              "zh": "分类，因为输入是数字"
+            },
+            {
+              "en": "Regression, because the target value is continuous",
+              "zh": "回归，因为目标值是连续型"
+            },
+            {
+              "en": "Classification, because the target value is categorical",
+              "zh": "分类，因为目标值是类别型"
+            },
+            {
+              "en": "Regression, because there are two features",
+              "zh": "回归，因为有两个特征"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "叶高是以厘米计的数值，小数有意义 → continuous → regression。判断看目标值类型，不看输入，也不看特征个数。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s17-decision-boundary-parameters",
+      "title": {
+        "zh": "决策边界、模型与参数（权重）",
+        "en": "Decision boundaries, models and parameters (weights)"
+      },
+      "slides": "43-44",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "分类模型在数据空间里画出一个**形状**，把空间分成两边：一边预测一种类别（**class**，这里就是 oak 或 maple），另一边预测另一种。这条分界线叫决策边界（**decision boundary**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像体育课在操场上画一条线分队：站在线左边的是红队，右边的是蓝队。来了一位新同学，看他站在线的哪一边，就知道他归哪队。",
+          "limit": "真实的边界不一定是直线，也可以是弯曲的线（见下面第二、三张图）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.43）",
+            "en": "Course definition (slide 43)"
+          },
+          "items": [
+            {
+              "en": "In a classification problem, our model generates a shape in the data space that forms a decision boundary between classes: on one side of the boundary, we predict one class, and on the other side, we predict a different class.",
+              "zh": "在分类问题中，模型在数据空间里生成一个形状，形成类别之间的决策边界：边界一侧预测一个类别，另一侧预测另一个类别。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "短版：记不住原话时这样写",
+            "en": "Short version to write"
+          },
+          "items": [
+            {
+              "en": "A decision boundary is a shape in the data space. On one side, the model predicts one class. On the other side, it predicts a different class.",
+              "zh": "决策边界是数据空间里的一个形状：一边预测一个类别，另一边预测另一个类别。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "课件第 43 页的三张图（同样 7 个点，三种边界）",
+            "en": "The three plots on slide 43"
+          },
+          "steps": [
+            {
+              "zh": "三张图都用第 38 页那张 O/M 图：横轴叶宽，纵轴叶高；O = oak，M = maple。"
+            },
+            {
+              "zh": "左图：一条**直线**，从上方 (6, 20) 斜着下到 (12, 0)。"
+            },
+            {
+              "zh": "中图：一条横躺、开口向右的**抛物线**（像躺倒的 U）。3 个 M 在弯线里面，4 个 O 在外面。"
+            },
+            {
+              "zh": "右图：一条弯来弯去的**曲线**，把 3 个 M 圈在右边，4 个 O 在外面。"
+            },
+            {
+              "zh": "共同点：每条边界都把空间分成两边，一边判 oak，一边判 maple。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "第 44 页揭晓：模型其实就是输入特征的**函数**（**function**，“输入数字 → 输出结果”的机器）。"
+        },
+        {
+          "type": "text",
+          "zh": "分工很明确：**我们**选模型的样子（直线？曲线？）；**机器**在训练时找最好的参数（**parameter**）值 w0、w1、w2……。参数也叫权重（**weights**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像做奶茶：我们决定做“茶 + 奶 + 糖”这种奶茶（选模型的形式）；机器负责一遍遍试出最好喝的比例：几分茶、几分奶、几分糖（找参数的值）。"
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "注意同一个词换了意思。Lecture 2 的 function（函数）是“一组有名字的指令”，parameter（参数）是“调用函数时给它的值”，比如 square(100) 里的 100。从 Lecture 4 起，model 是“输入特征 → 输出”的数学规则（Models are just functions of the input features），parameter / weight 是机器在训练中找出来的数（w0、w1、w2）。",
+          "en": "Same words, new meanings: in Lecture 2 a parameter is a value given when a function is called; from Lecture 4 on, a model parameter (weight) is a number the machine finds during training."
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（区分两种 parameter）",
+            "en": "Exam sentence (two kinds of parameter)"
+          },
+          "items": [
+            {
+              "en": "A model parameter (weight) is learned during training; a function parameter is given when the function is called.",
+              "zh": "模型参数（权重）是在训练中学出来的；函数参数是在调用函数时给的。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "连起来看：w0 + w1x1 + w2x2 是“一个常数 + 加权和（**weighted sum**）”：每个特征乘一个权重，再加起来。Lecture 3 / Lab 3 的 heuristic 也是加权和，只是那里的权重由人来定；Lecture 7 的人工神经元同样先算加权和，权重也由训练找出来。",
+          "en": "w0 + w1x1 + w2x2 is a weighted sum, like Lecture 3's heuristics (weights set by people) and Lecture 7's artificial neuron (weights learned in training)."
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.44）",
+            "en": "Course wording (slide 44)"
+          },
+          "items": [
+            {
+              "en": "Models are just functions of the input features.",
+              "zh": "模型就是输入特征的函数。"
+            },
+            {
+              "en": "It's our job to choose a model. It's the machine's job to find the best parameter values (w0, w1, w2, …), also called weights. That's what it does during training.",
+              "zh": "选模型是我们的工作；找最好的参数值（w0, w1, w2, …，也叫权重）是机器的工作——它在训练中做的就是这件事。"
+            },
+            {
+              "en": "In each equation, x1 is leaf width and x2 is leaf height.",
+              "zh": "每个方程里，x1 是叶宽，x2 是叶高。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "先学会读这些式子",
+            "en": "How to read the equations"
+          },
+          "items": [
+            {
+              "zh": "x1、x2 里的 1、2 是**编号**（课件上写成右下角的小字，叫下标），不是“乘以 1、乘以 2”：x1 = 第 1 个输入特征（叶宽），x2 = 第 2 个输入特征（叶高）。w0、w1、w2…… 里的数字也是编号：第 0、1、2…… 个参数。"
+            },
+            {
+              "zh": "字母挨在一起表示**相乘**：w1x1 = w1 × x1，0.3x2 = 0.3 × x2。x1 前面没写数字，就是 1 × x1。"
+            },
+            {
+              "zh": "右上角的小数字表示**自己乘自己几次**（乘方）：x2² = x2 × x2（平方），x2³ = x2 × x2 × x2，x2⁴ = 4 个 x2 相乘。例：叶高 x2 = 10 时，0.14x2² = 0.14 × 10 × 10 = 14。"
+            },
+            {
+              "zh": "w0 后面不乘任何 x，是一个单独的数（训练后的直线里 w0 = −12）。"
+            },
+            {
+              "zh": "“= 0”：让整个式子正好等于 0 的所有点连起来，就是图上的决策边界。"
+            },
+            {
+              "zh": "线性（**Linear**）只有 x1、x2 → 直线；二次（**Quadratic**）多了 x2² → 抛物线；高阶多项式（**Higher-order polynomial**）还有 x2³、x2⁴ → 更弯的曲线。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "课件第 44 页的三个模型（x1 = 叶宽，x2 = 叶高；Untrained = 只有形式，Trained = 参数已变成具体数字）",
+            "en": "The three models on slide 44 (x1 = leaf width, x2 = leaf height)"
+          },
+          "headers": [
+            "模型 Model",
+            "Untrained（训练前）",
+            "Trained（训练后）",
+            "参数个数"
+          ],
+          "rows": [
+            [
+              "Linear 线性（直线）",
+              "w0 + w1x1 + w2x2 = 0",
+              "−12 + x1 + 0.3x2 = 0",
+              "3 个（w0–w2）"
+            ],
+            [
+              "Quadratic 二次（抛物线）",
+              "w0 + w1x1 + w2x2 + w3x2² = 0",
+              "−29.5 + x1 + 3.5x2 − 0.14x2² = 0",
+              "4 个（w0–w3）"
+            ],
+            [
+              "Higher-order polynomial 高阶多项式（更弯的曲线）",
+              "w0 + w1x1 + w2x2 + w3x2² + w4x2³ + w5x2⁴ = 0",
+              "−456 + x1 + 169x2 − 23.3x2² + 1.39x2³ − 0.0303x2⁴ = 0",
+              "6 个（w0–w5）"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "把叶子代入训练好的直线 −12 + x1 + 0.3x2（看它在哪一侧）",
+            "en": "Plugging leaves into the trained line −12 + x1 + 0.3x2"
+          },
+          "steps": [
+            {
+              "zh": "训练后：w0 = −12，w1 = 1，w2 = 0.3（x1 前面的 1 省略不写）。直线上的点让式子正好等于 0。"
+            },
+            {
+              "zh": "第 3 片叶子（oak，x1 = 10，x2 = 18）：−12 + 10 + 0.3 × 18 = −12 + 10 + 5.4 = 3.4，大于 0。"
+            },
+            {
+              "zh": "第 4 片叶子（oak，x1 = 5，x2 = 10）：−12 + 5 + 0.3 × 10 = −12 + 5 + 3 = −4，小于 0。"
+            },
+            {
+              "zh": "一正一负 → 两片叶子在直线的两侧。对照第 47 页 Model A 的颜色：大于 0 的一侧是 Predict maple，小于 0 的一侧是 Predict oak（课件没直接写这条规则，是我们从涂色看出来的）。"
+            },
+            {
+              "zh": "所以第 4 片判 oak（对），第 3 片被判成 maple（错）——这正是 Model A 唯一的错。"
+            }
+          ],
+          "answer": {
+            "zh": "代入后看正负号，就知道点在边界的哪一侧；看图题直接看点落在哪个颜色区即可。",
+            "en": "Plug in x1 and x2: the sign tells you which side of the boundary the point is on."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "decision-boundary",
+          "config": {
+            "xLabel": {
+              "zh": "叶宽 x1（厘米）",
+              "en": "Leaf Width (cm)"
+            },
+            "yLabel": {
+              "zh": "叶高 x2（厘米）",
+              "en": "Leaf Height (cm)"
+            },
+            "classes": [
+              {
+                "id": "oak",
+                "label": {
+                  "zh": "橡树叶 oak（O）",
+                  "en": "Oak (O)"
+                }
+              },
+              {
+                "id": "maple",
+                "label": {
+                  "zh": "枫叶 maple（M）",
+                  "en": "Maple (M)"
+                }
+              }
+            ],
+            "points": [
+              {
+                "x": 7,
+                "y": 12,
+                "class": "oak"
+              },
+              {
+                "x": 9,
+                "y": 6,
+                "class": "oak"
+              },
+              {
+                "x": 10,
+                "y": 18,
+                "class": "oak"
+              },
+              {
+                "x": 5,
+                "y": 10,
+                "class": "oak"
+              },
+              {
+                "x": 13,
+                "y": 11,
+                "class": "maple"
+              },
+              {
+                "x": 11,
+                "y": 9,
+                "class": "maple"
+              },
+              {
+                "x": 9,
+                "y": 14,
+                "class": "maple"
+              }
+            ],
+            "boundary": {
+              "w0": -12,
+              "w1": 1,
+              "w2": 0.3
+            },
+            "positiveClass": "maple"
+          },
+          "caption": {
+            "zh": "试一试：这是第 44 页训练好的直线 −12 + x1 + 0.3x2 = 0，式子大于 0 的一侧判 maple。改动 w0、w1、w2，看边界怎么移动、准确率怎么变——机器训练时就是在找最好的参数。挑战：能找到一条让 7 片叶子全对的直线吗？",
+            "en": "Try it: this is the trained line from slide 44 (the side where the expression is > 0 is predicted maple). Change w0, w1 and w2 and watch the boundary and the accuracy change."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：上面的挑战其实做不到。第 7 片叶子（maple，(9, 14)）被三片 oak (5, 10)、(9, 6)、(10, 18) 围成的三角形包在中间，任何直线都没法把它和这三片 oak 分到两边，所以直线最多对 6 片。弯曲的边界（第二、三张图）就能 7 片全对。这种“一条直线分不开”的数据叫线性不可分（not **linearly separable**），Lecture 7 讲隐藏层时会再用到这个词。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "分工别记反：**我们**选模型（直线、二次、高阶）；**机器**找参数的值。"
+            },
+            {
+              "zh": "parameters 和 weights 是同一个东西。"
+            },
+            {
+              "zh": "x1 = 叶宽，x2 = 叶高。二次和更高次的项（x2²、x2³、x2⁴）都只作用在 x2 上；训练后 x1 前的系数都是 1。"
+            },
+            {
+              "zh": "Untrained 和 Trained 是**同一个式子形式**：区别只是参数从字母变成了具体数字。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, what is the machine's job during training?",
+            "zh": "根据课件，训练时机器的工作是什么？"
+          },
+          "options": [
+            {
+              "en": "To find the best parameter values (weights)",
+              "zh": "找出最好的参数值（权重）"
+            },
+            {
+              "en": "To choose whether the model is linear or quadratic",
+              "zh": "决定模型是直线还是二次曲线"
+            },
+            {
+              "en": "To collect the training data",
+              "zh": "收集训练数据"
+            },
+            {
+              "en": "To decide which feature is the target",
+              "zh": "决定哪个特征是目标"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.44：It's our job to choose a model. It's the machine's job to find the best parameter values (w0, w1, w2, …), also called weights. 选模型的形式是人的工作。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is a decision boundary in a classification problem?",
+            "zh": "分类问题中的决策边界是什么？"
+          },
+          "options": [
+            {
+              "en": "The documented history of a dataset",
+              "zh": "数据集有记录的历史"
+            },
+            {
+              "en": "A list of values that represents one piece of data",
+              "zh": "代表一条数据的数值列表"
+            },
+            {
+              "en": "The number of correct predictions",
+              "zh": "预测正确的个数"
+            },
+            {
+              "en": "A shape that separates the classes in the data space",
+              "zh": "数据空间里把不同类别分开的形状"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.43 的定义：模型在数据空间里生成一个形状（a shape in the data space），形成类别之间的决策边界——一侧预测一个类别，另一侧预测另一个类别。A 是数据溯源，B 是特征向量，C 是算准确率时的分子。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s18-accuracy-error",
+      "title": {
+        "zh": "优化：准确率与分类错误率",
+        "en": "Optimization: accuracy and classification error"
+      },
+      "slides": "45-46",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "机器要找“最好”的参数值。什么叫“最好”？课件说：机器学习是一个优化（**optimization**）问题——找让误差函数（**error function**）最小的参数值。"
+        },
+        {
+          "type": "text",
+          "zh": "误差函数就是一个给模型“错得有多厉害”打分的函数：误差越小越好。具体怎么找最好的参数值，下一课（Lecture 5）讲。"
+        },
+        {
+          "type": "analogy",
+          "zh": "接着奶茶的例子：研发配方时，店里先自己尝（用训练数据），算出“这一版有几成不好喝”（误差）。不停调整比例，直到这个比例最小——这就是优化。正式上架前再找顾客试喝打分，那才是第 3 步模型评估。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.45）",
+            "en": "Course wording (slide 45)"
+          },
+          "items": [
+            {
+              "en": "Machine Learning is an optimization problem, where we are typically looking for parameter values that minimize an error function.",
+              "zh": "机器学习是一个优化问题：我们通常在找让误差函数最小的参数值。"
+            },
+            {
+              "en": "A simple error function is the classification error.",
+              "zh": "一个简单的误差函数是分类错误率。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "最简单的误差函数是分类错误率。先定义准确率（**accuracy**）：预测对的个数 ÷ 预测的总个数。再用 1 减去准确率，就是分类错误率（**classification error**），也叫错误率（**error rate**）。"
+        },
+        {
+          "type": "formula",
+          "expr": "accuracy = number of correct predictions / total number of predictions",
+          "zh": "准确率 = 预测正确的个数 ÷ 预测的总个数（课件写成分数的形式）",
+          "where": [
+            {
+              "symbol": "number of correct predictions",
+              "zh": "预测对了几个"
+            },
+            {
+              "symbol": "total number of predictions",
+              "zh": "一共预测了几个"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "classification error = 1 − accuracy",
+          "zh": "分类错误率（也叫 error rate）= 1 − 准确率"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.46）",
+            "en": "Course formulas (slide 46)"
+          },
+          "items": [
+            {
+              "en": "accuracy = number of correct predictions / total number of predictions",
+              "zh": "准确率 = 预测正确数 ÷ 预测总数"
+            },
+            {
+              "en": "classification error = 1 − accuracy",
+              "zh": "分类错误率 = 1 − 准确率"
+            },
+            {
+              "en": "The classification error is also called the error rate.",
+              "zh": "分类错误率也叫错误率（error rate）。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "把公式拆开",
+            "en": "Breaking down the formulas"
+          },
+          "items": [
+            {
+              "zh": "准确率是一个比例，在 0 到 1 之间，也可以写成百分数（0% 到 100%）。"
+            },
+            {
+              "zh": "分类错误率也是比例，= 1 − 准确率。"
+            },
+            {
+              "zh": "两者相加一定等于 1（100%），可以用来检查答案。"
+            },
+            {
+              "zh": "“最好”的参数 = 让误差函数最小（错误率最小，也就是准确率最大）。"
+            },
+            {
+              "zh": "分数怎么变百分数：先做除法，再乘 100。例如 6/7 = 6 ÷ 7 ≈ 0.857，× 100 ≈ 85.7%。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "小练习（我们编的数字）",
+            "en": "Quick practice (made-up numbers)"
+          },
+          "steps": [
+            {
+              "zh": "一个模型对 10 片叶子做了预测，其中 8 片判对。"
+            },
+            {
+              "zh": "准确率 accuracy = 8 ÷ 10 = 0.8 = 80%。"
+            },
+            {
+              "zh": "错误率 classification error = 1 − 0.8 = 0.2 = 20%。"
+            },
+            {
+              "zh": "检查：0.8 + 0.2 = 1。"
+            }
+          ],
+          "answer": {
+            "zh": "准确率 80%，错误率 20%。",
+            "en": "accuracy = 8/10 = 80%; classification error = 1 − 0.8 = 20%."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "classification error 是**比例**，不是“错了几个”。7 个里错 1 个 → error = 1/7 ≈ 14%，不是 1。"
+            },
+            {
+              "zh": "顺序：先算 accuracy，再用 1 减（课件：We first define accuracy … Then, the classification error …）。"
+            },
+            {
+              "zh": "优化是让**误差**最小，不是让准确率最小。"
+            },
+            {
+              "zh": "百分数换算：0.8 = 80%；也可以直接写分数，比如 6/7。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A model makes 10 predictions and 8 of them are correct. What is its classification error?",
+            "zh": "一个模型做了 10 个预测，对了 8 个。分类错误率是多少？"
+          },
+          "options": [
+            {
+              "en": "0.8 (80%)",
+              "zh": "0.8（即 80%）"
+            },
+            {
+              "en": "8"
+            },
+            {
+              "en": "0.2 (20%)",
+              "zh": "0.2（即 20%）"
+            },
+            {
+              "en": "2"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "accuracy = 8/10 = 0.8；classification error = 1 − 0.8 = 0.2 = 20%。A（0.8）是准确率；B（8）是对的个数；D（2）是错的个数——错误率是比例，不是个数。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "When Machine Learning is seen as an optimization problem, what are we typically looking for?",
+            "zh": "把机器学习看作优化问题时，我们通常在找什么？"
+          },
+          "options": [
+            {
+              "en": "Parameter values that minimize an error function",
+              "zh": "让误差函数最小的参数值"
+            },
+            {
+              "en": "Parameter values that maximize the classification error",
+              "zh": "让分类错误率最大的参数值"
+            },
+            {
+              "en": "The largest possible number of features",
+              "zh": "尽可能多的特征"
+            },
+            {
+              "en": "A schema for unstructured data",
+              "zh": "非结构化数据的 schema"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.45：…looking for parameter values that minimize an error function。错误率要最小，不是最大；特征多少和 schema 都与“最好”的定义无关。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s19-accuracy-activity",
+      "title": {
+        "zh": "课堂活动：算 Model A、B、C 的准确率和错误率",
+        "en": "Activity: accuracy and classification error of Models A, B and C"
+      },
+      "slides": "47",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 47 页课堂活动：三个模型 A、B、C。每张图里黄色区域写着 Predict oak（判为橡树叶），粉色区域写着 Predict maple（判为枫叶）。做法：看每个字母落在哪个颜色区，判断对错，数出对了几个，再套公式。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "看图算准确率的四步",
+            "en": "Four steps to compute accuracy from a plot"
+          },
+          "items": [
+            {
+              "en": "Look at which region each point falls in.",
+              "zh": "看每个点落在哪个颜色区（Predict oak 还是 Predict maple）。"
+            },
+            {
+              "en": "Compare the prediction with the actual class (O or M).",
+              "zh": "和它真实的字母比较：O 落在 oak 区、M 落在 maple 区才算对。"
+            },
+            {
+              "en": "Count the correct predictions.",
+              "zh": "数出对了几个（总数是 7）。"
+            },
+            {
+              "en": "accuracy = correct / total; classification error = 1 − accuracy.",
+              "zh": "套公式：准确率 = 对的个数 ÷ 总数；错误率 = 1 − 准确率。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Model A（第 44 页的直线）",
+            "en": "Model A (the linear boundary)"
+          },
+          "steps": [
+            {
+              "zh": "Model A 就是第 44 页那条直线（从 (6, 20) 到 (12, 0)）：左边黄色 Predict oak，右边粉色 Predict maple。"
+            },
+            {
+              "zh": "4 个 O：(5, 10)、(7, 12)、(9, 6) 在黄色区 → 判 oak，对；(10, 18) 在粉色区 → 判 maple，**错**。"
+            },
+            {
+              "zh": "3 个 M：(9, 14)、(11, 9)、(13, 11) 都在粉色区 → 判 maple，全对。"
+            },
+            {
+              "zh": "对的个数 = 6，总数 = 7。"
+            },
+            {
+              "zh": "准确率 accuracy = 6/7 ≈ 0.857 ≈ 85.7%（Lecture 6 写作 ≈ 86%）。"
+            },
+            {
+              "zh": "错误率 classification error = 1 − 6/7 = 1/7 ≈ 0.143 ≈ 14.3%（≈ 14%）。"
+            }
+          ],
+          "answer": {
+            "zh": "Model A：准确率 6/7 ≈ 86%，错误率 1/7 ≈ 14%。",
+            "en": "Model A: accuracy = 6/7 ≈ 86%, classification error = 1/7 ≈ 14%."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Model B（第 44 页的二次曲线）",
+            "en": "Model B (the quadratic boundary)"
+          },
+          "steps": [
+            {
+              "zh": "Model B 就是第 44 页的二次曲线（横躺的抛物线）：曲线里面粉色 Predict maple，外面黄色 Predict oak。"
+            },
+            {
+              "zh": "4 个 O 都在曲线外面（黄色）→ 都判 oak，全对。"
+            },
+            {
+              "zh": "3 个 M 都在曲线里面（粉色）→ 都判 maple，全对。"
+            },
+            {
+              "zh": "准确率 accuracy = 7/7 = 1 = 100%。"
+            },
+            {
+              "zh": "错误率 classification error = 1 − 7/7 = 0 = 0%。"
+            }
+          ],
+          "answer": {
+            "zh": "Model B：准确率 100%，错误率 0%。",
+            "en": "Model B: accuracy = 7/7 = 100%, classification error = 0%."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Model C（一条新的直线）",
+            "en": "Model C (a new straight line)"
+          },
+          "steps": [
+            {
+              "zh": "Model C 是一条**新的**直线（第 43、44 页没有，课件也没给方程）：从 (4, 0) 斜着往上到 (14, 20)。左上黄色 Predict oak，右下粉色 Predict maple。"
+            },
+            {
+              "zh": "O (9, 6) 在直线右下方（粉色）→ 判 maple，**错**。"
+            },
+            {
+              "zh": "M (9, 14) 在直线左上方（黄色）→ 判 oak，**错**。"
+            },
+            {
+              "zh": "其余 5 个都在正确的颜色区。对的个数 = 5，总数 = 7。"
+            },
+            {
+              "zh": "准确率 accuracy = 5/7 ≈ 0.714 ≈ 71.4%（≈ 71%）。"
+            },
+            {
+              "zh": "错误率 classification error = 1 − 5/7 = 2/7 ≈ 0.286 ≈ 28.6%（≈ 29%）。"
+            }
+          ],
+          "answer": {
+            "zh": "Model C：准确率 5/7 ≈ 71%，错误率 2/7 ≈ 29%。",
+            "en": "Model C: accuracy = 5/7 ≈ 71%, classification error = 2/7 ≈ 29%."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "逐片核对：每个模型把每片叶子判成什么（“对”= 判对，“错”= 判错）",
+            "en": "Leaf by leaf: what each model predicts"
+          },
+          "headers": [
+            "叶子 Leaf",
+            "(宽, 高)",
+            "真实 Actual",
+            "Model A",
+            "Model B",
+            "Model C"
+          ],
+          "rows": [
+            [
+              "1",
+              "(7, 12)",
+              "oak",
+              "oak 对",
+              "oak 对",
+              "oak 对"
+            ],
+            [
+              "2",
+              "(9, 6)",
+              "oak",
+              "oak 对",
+              "oak 对",
+              "maple 错"
+            ],
+            [
+              "3",
+              "(10, 18)",
+              "oak",
+              "maple 错",
+              "oak 对",
+              "oak 对"
+            ],
+            [
+              "4",
+              "(5, 10)",
+              "oak",
+              "oak 对",
+              "oak 对",
+              "oak 对"
+            ],
+            [
+              "5",
+              "(13, 11)",
+              "maple",
+              "maple 对",
+              "maple 对",
+              "maple 对"
+            ],
+            [
+              "6",
+              "(11, 9)",
+              "maple",
+              "maple 对",
+              "maple 对",
+              "maple 对"
+            ],
+            [
+              "7",
+              "(9, 14)",
+              "maple",
+              "maple 对",
+              "maple 对",
+              "oak 错"
+            ],
+            [
+              "判对个数",
+              "—",
+              "—",
+              "6 / 7",
+              "7 / 7",
+              "5 / 7"
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（和 Lecture 6 第 17 页给出的数字一致）",
+            "en": "Exam-ready answers (they match Lecture 6, slide 17)"
+          },
+          "items": [
+            {
+              "en": "Model A: accuracy = 6/7 ≈ 86%, classification error = 1 − 6/7 = 1/7 ≈ 14%.",
+              "zh": "Model A：7 片判对 6 片，准确率约 86%（85.7%），错误率约 14%（14.3%）。"
+            },
+            {
+              "en": "Model B: accuracy = 7/7 = 100%, classification error = 1 − 7/7 = 0%.",
+              "zh": "Model B：全部判对，准确率 100%，错误率 0%。"
+            },
+            {
+              "en": "Model C: accuracy = 5/7 ≈ 71%, classification error = 1 − 5/7 = 2/7 ≈ 29%.",
+              "zh": "Model C：判对 5 片，准确率约 71%（71.4%），错误率约 29%（28.6%）。"
+            },
+            {
+              "en": "Model B has the lowest classification error on the training leaves.",
+              "zh": "在这 7 片训练叶子上，Model B 的错误率最低。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity: Calculate the accuracy and classification error for each of the models below. (Models A, B and C on slide 47)",
+            "zh": "活动：计算下面每个模型的准确率和分类错误率（第 47 页的 Model A、B、C）。"
+          },
+          "answer": {
+            "en": "Model A misclassifies one oak (the leaf at (10, 18)), so accuracy = 6/7 ≈ 86% and classification error = 1 − 6/7 = 1/7 ≈ 14%. Model B classifies all 7 leaves correctly, so accuracy = 7/7 = 100% and classification error = 1 − 1 = 0%. Model C misclassifies the oak at (9, 6) and the maple at (9, 14), so accuracy = 5/7 ≈ 71% and classification error = 2/7 ≈ 29%. On these training leaves, Model B has the lowest classification error.",
+            "zh": "得分点：①每个模型写出“对了几个 / 总数”；②写出准确率（分数或百分数）；③写出 1 − accuracy 的算式和结果；④可以点出哪个模型错误率最低（B）。先写分数（如 6/7），再写约等于的百分数，最不容易出错。"
+          }
+        },
+        {
+          "type": "widget",
+          "name": "decision-boundary",
+          "config": {
+            "xLabel": {
+              "zh": "叶宽 x1（厘米）",
+              "en": "Leaf Width (cm)"
+            },
+            "yLabel": {
+              "zh": "叶高 x2（厘米）",
+              "en": "Leaf Height (cm)"
+            },
+            "classes": [
+              {
+                "id": "oak",
+                "label": {
+                  "zh": "橡树叶 oak（O）",
+                  "en": "Oak (O)"
+                }
+              },
+              {
+                "id": "maple",
+                "label": {
+                  "zh": "枫叶 maple（M）",
+                  "en": "Maple (M)"
+                }
+              }
+            ],
+            "points": [
+              {
+                "x": 7,
+                "y": 12,
+                "class": "oak"
+              },
+              {
+                "x": 9,
+                "y": 6,
+                "class": "oak"
+              },
+              {
+                "x": 10,
+                "y": 18,
+                "class": "oak"
+              },
+              {
+                "x": 5,
+                "y": 10,
+                "class": "oak"
+              },
+              {
+                "x": 13,
+                "y": 11,
+                "class": "maple"
+              },
+              {
+                "x": 11,
+                "y": 9,
+                "class": "maple"
+              },
+              {
+                "x": 9,
+                "y": 14,
+                "class": "maple"
+              }
+            ],
+            "boundary": {
+              "w0": -4,
+              "w1": 1,
+              "w2": -0.5
+            },
+            "positiveClass": "maple"
+          },
+          "caption": {
+            "zh": "试一试：这条直线是我们照 Model C 的图估出来的（过 (4, 0) 和 (14, 20)，约为 −4 + x1 − 0.5x2 = 0；课件没给方程），应该显示 7 片里判对 5 片。再把参数改成 Model A 的 w0 = −12、w1 = 1、w2 = 0.3，看是不是变成判对 6 片。",
+            "en": "Try it: this line is our estimate of Model C (the slide gives no equation); it should get 5 of 7 right. Then set w0 = −12, w1 = 1, w2 = 0.3 (Model A) and check that it gets 6 of 7."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "这里的准确率是在**训练用的 7 片叶子**上算的。Lecture 6 第 17 页把这组数字称为 training accuracy（训练准确率），并会用新的数据再检验这三个模型。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Model C 不是第 44 页的高阶多项式，而是一条**新的直线**。"
+            },
+            {
+              "zh": "错误率要写成比例（1/7 ≈ 14%），不要只写“错了 1 个”。写出算式 1 − 6/7 = 1/7 更清楚。"
+            },
+            {
+              "zh": "四舍五入：6/7 = 0.857…，保留一位小数是 85.7%，Lecture 6 写的是 ≈ 86%。"
+            },
+            {
+              "zh": "自检：准确率 + 错误率 = 1，比如 6/7 + 1/7 = 1。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Model A correctly classifies 6 of the 7 leaves. What is its classification error?",
+            "zh": "Model A 在 7 片叶子里判对 6 片，分类错误率是多少？"
+          },
+          "options": [
+            {
+              "en": "6/7 ≈ 86%",
+              "zh": "6/7，约 86%"
+            },
+            {
+              "en": "1"
+            },
+            {
+              "en": "1/6 ≈ 17%",
+              "zh": "1/6，约 17%"
+            },
+            {
+              "en": "1/7 ≈ 14%",
+              "zh": "1/7，约 14%"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "classification error = 1 − accuracy = 1 − 6/7 = 1/7 ≈ 14%。A（6/7）是准确率；B（1）是错的个数，不是比例；C（1/6）是“错的个数 ÷ 对的个数”，分母应该是预测总数 7。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which model on slide 47 has the lowest classification error on the 7 training leaves?",
+            "zh": "第 47 页的哪个模型在 7 片训练叶子上的分类错误率最低？"
+          },
+          "options": [
+            {
+              "en": "Model A",
+              "zh": "模型 A"
+            },
+            {
+              "en": "Model B",
+              "zh": "模型 B"
+            },
+            {
+              "en": "Model C",
+              "zh": "模型 C"
+            },
+            {
+              "en": "All three are equal",
+              "zh": "三个一样"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "B 全对，错误率 0%；A 是 1/7 ≈ 14%；C 是 2/7 ≈ 29%。所以 B 最低。"
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "In Machine Learning, we specify neither the solution nor knowledge of the problem; instead, we provide the computer with training data.",
+      "zh": "机器学习既不写解法、也不写知识，而是给电脑训练数据。"
+    },
+    {
+      "en": "Data is the collection of examples from which patterns are learned, and the form of data depends on what is being learned.",
+      "zh": "数据是供学习规律的一组例子；数据的形式取决于要学什么。"
+    },
+    {
+      "en": "A dataset can be collected yourself (generally costly, but customized for its purpose) or acquired from someone else (generally less costly, but it may not exactly fit your purpose).",
+      "zh": "数据集可以自己收集（贵但可定制），也可以用别人的（便宜但不一定合用）。"
+    },
+    {
+      "en": "Data provenance is the documented history of a dataset: when and where it was collected, how it was collected, and how it has been transformed. It helps us decide if a dataset is appropriate to use.",
+      "zh": "数据溯源是数据集有记录的历史（何时何地、怎么收集、怎么转换），帮我们判断数据集是否适合使用。"
+    },
+    {
+      "en": "Copyright is the legal protection on creative work (including datasets) granted to its creator. Using such work normally needs a license, unless (in the United States) the use is transformative under the fair use doctrine.",
+      "zh": "版权保护创作作品（包括数据集）；通常要有许可证，除非在美国属于“转化性”的合理使用。"
+    },
+    {
+      "en": "Nobody owns the copyright on work produced by AI, because copyright only applies to work produced by humans; whether training an AI model is fair use is still in the courts.",
+      "zh": "AI 生成的作品没有人拥有版权（版权只给人类作品）；训练 AI 是否算合理使用还在法庭上。"
+    },
+    {
+      "en": "Whether it is ethical to train (generative) AI on copyrighted work is debated. In favour: AI doesn't copy from existing work, it synthesizes it into its internal model, and human creatives don't have to cite every work that influenced them. Against: most work used in training was published to be seen by humans, and AI models can produce an infinite amount of work for the sole profit of tech companies.",
+      "zh": "用版权作品训练（生成式）AI 是否道德有争议。支持方：AI 不是照抄，而是综合进内部模型；人类创作者也不必注明所有影响过他们的作品。反对方：作品发表时默认是给人看的；AI 能无限量产出，利润只归科技公司。"
+    },
+    {
+      "en": "Legally acquired data can still cause privacy problems: invasion of privacy (e.g. Target's pregnancy prediction model) and information leakage (models can memorize sensitive training data).",
+      "zh": "合法获得的数据也可能有隐私问题：侵犯隐私（Target 案例）和信息泄露（模型记住敏感训练数据）。"
+    },
+    {
+      "en": "Differential Privacy gives only some protection: it strategically inserts randomness into the training process, so the model changes very little when a single piece of data is removed, but it comes at some cost to model performance.",
+      "zh": "差分隐私只提供一定的保护：训练时有策略地加入随机性，去掉一条数据模型几乎不变，但模型性能要付出代价。"
+    },
+    {
+      "en": "Structured data follows a schema (tabular data is the most common kind); unstructured data such as images, video, audio and freeform text does not, but all data must be reduced to numbers.",
+      "zh": "结构化数据遵循 schema（最常见的是表格）；图像、视频、音频、文本是非结构化数据，但最终都要变成数字。"
+    },
+    {
+      "en": "Columns can be continuous (ordering and decimal values are meaningful), ordinal (ordering is meaningful, decimal values are not) or categorical (ordering is not meaningful).",
+      "zh": "列的三种类型：连续型、有序型、类别型。"
+    },
+    {
+      "en": "Each piece of data can be written as a feature vector, such as [10.0, 18.0, 1], and each value in it is a feature. Transforming feature vectors is called feature engineering.",
+      "zh": "每条数据可以写成特征向量（如 [10.0, 18.0, 1]），其中每个值是一个特征；改造特征向量叫特征工程。"
+    },
+    {
+      "en": "Feature vectors with N dimensions live in an N-dimensional data space (also called feature space).",
+      "zh": "N 维特征向量位于 N 维数据空间（也叫特征空间）。"
+    },
+    {
+      "en": "The Machine Learning Pipeline has four steps: 1. Data Preparation, 2. Model Training, 3. Model Evaluation, 4. Inference/Deployment.",
+      "zh": "机器学习流程四步：数据准备 → 模型训练 → 模型评估 → 推理/部署。"
+    },
+    {
+      "en": "In Supervised Learning, we learn from a labelled training dataset to predict the target feature for unlabelled data. Classification predicts a categorical target; regression predicts a continuous target.",
+      "zh": "监督学习用有标签数据训练，再对无标签数据预测目标特征；目标是类别型 → 分类，连续型 → 回归。"
+    },
+    {
+      "en": "A classification model forms a decision boundary in the data space. We choose the model; the machine finds the best parameter values (weights) during training by minimizing an error function.",
+      "zh": "分类模型在数据空间里形成决策边界；人选模型，机器在训练中找让误差最小的参数值（权重）。"
+    },
+    {
+      "en": "Accuracy = number of correct predictions / total number of predictions, and classification error = 1 − accuracy. On slide 47: Model A 6/7 ≈ 86% (error 1/7 ≈ 14%), Model B 7/7 = 100% (error 0%), Model C 5/7 ≈ 71% (error 2/7 ≈ 29%).",
+      "zh": "准确率 = 预测正确数 ÷ 预测总数；错误率 = 1 − 准确率。第 47 页：A 对 6/7，B 对 7/7，C 对 5/7。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Define data provenance, list what it includes, and explain why it is important (population, bias, legal permission).",
+      "zh": "溯源的定义 + 3 项内容 + 3 个判断问题，对应学习目标 1。",
+      "sectionId": "s02-data-sources-provenance"
+    },
+    {
+      "en": "Explain copyright, a license and the fair use doctrine (US, transformative use), and note that datasets can be copyrighted.",
+      "zh": "版权三个关键词；没有许可证不能复制、修改、分发；合理使用只在美国、要求“转化性”。",
+      "sectionId": "s03-copyright-basics"
+    },
+    {
+      "en": "State who owns the copyright on AI-generated work (nobody; mostly settled) and whether training AI is fair use (still in the courts).",
+      "zh": "两个问题一个“基本定了”、一个“还在法庭”，很容易记混。",
+      "sectionId": "s04-copyright-ai-court"
+    },
+    {
+      "en": "Give one argument for and one against training generative AI on copyrighted work, and say which holds more weight with you.",
+      "zh": "课件的讨论题，适合长答题：表态 + 课件论点 + 承认对方。",
+      "sectionId": "s05-copyright-ethics-debate"
+    },
+    {
+      "en": "Use the Target example to explain how ML can invade privacy even when the data was legally acquired.",
+      "zh": "讨论题；关键是“ML 推断出你从没给过的信息”。",
+      "sectionId": "s06-invasion-of-privacy"
+    },
+    {
+      "en": "Explain information leakage and how Differential Privacy helps, including its cost to model performance.",
+      "zh": "信息泄露 + 差分隐私三要点（加随机性、去掉一条数据模型几乎不变、性能有代价）。",
+      "sectionId": "s07-information-leakage"
+    },
+    {
+      "en": "Decide whether a column is continuous, ordinal or categorical, and justify the answer.",
+      "zh": "用两个问题判断：顺序有意义吗？小数有意义吗？",
+      "sectionId": "s09-column-types"
+    },
+    {
+      "en": "Describe structured vs unstructured data and how images, video, audio and text are reduced to numbers.",
+      "zh": "对应学习目标 3；记住单色 1 个数、彩色通常 3 个数，以及 Hello! 的例子。",
+      "sectionId": "s10-unstructured-images-video"
+    },
+    {
+      "en": "Write a table row as a feature vector, identify a feature, and give examples of feature engineering.",
+      "zh": "例：第 3 行 → [10.0, 18.0, 1]；删除或组合特征都是特征工程。",
+      "sectionId": "s12-feature-vectors"
+    },
+    {
+      "en": "State the number of dimensions of a data space for a given feature vector (N features means N dimensions).",
+      "zh": "对应学习目标 4：数一数特征个数就是维数；data space = feature space。",
+      "sectionId": "s13-data-space"
+    },
+    {
+      "en": "Describe the objective of Supervised Learning using target feature, labelled training dataset and unlabelled data.",
+      "zh": "对应学习目标 5。",
+      "sectionId": "s15-ml-pipeline-supervised"
+    },
+    {
+      "en": "Decide whether a task is classification or regression from the type of the target value.",
+      "zh": "看目标，不看输入。",
+      "sectionId": "s16-classification-regression"
+    },
+    {
+      "en": "Explain what a decision boundary is, and who chooses the model versus who finds the parameter values (weights).",
+      "zh": "人选模型，机器在训练中找参数（权重）。",
+      "sectionId": "s17-decision-boundary-parameters"
+    },
+    {
+      "en": "Calculate accuracy and classification error from counts or from a plot (e.g. 6/7 ≈ 86% and 1/7 ≈ 14%).",
+      "zh": "对应学习目标 6，是本课唯一的计算目标。",
+      "sectionId": "s19-accuracy-activity"
+    }
+  ]
+}

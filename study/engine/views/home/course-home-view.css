@@ -1,0 +1,806 @@
+/*
+ * Course home page: hero, countdown chips, continue and plan cards, guide, branch map, unit cards,
+ * tools grid, assessment table and course links.
+ * 课程首页：主视觉、倒计时、继续学习与计划卡片、新手指南、知识地图、单元卡片、工具格、考核表与课程链接。
+ */
+.course-home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.course-home .section-heading {
+  margin-top: 0;
+}
+
+.course-home__section {
+  min-width: 0;
+}
+
+.course-home__muted {
+  color: var(--color-ink-3);
+}
+
+.course-home__small {
+  font-size: var(--text-sm);
+}
+
+/* Bilingual text pairs: Chinese teaching text, then English. 中英对照段落：先中文讲解，再英文。 */
+.course-home__pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.course-home__pair p {
+  margin: 0;
+}
+
+.course-home__en {
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+}
+
+/* In English practice mode the English line becomes the main text. 英文练习模式下英文升为正文样式。 */
+:root[data-lang-mode="en-practice"] .course-home__pair .course-home__en {
+  color: var(--color-ink);
+  font-size: var(--text-md);
+}
+
+/* Hero 主视觉 */
+.course-home__hero {
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper-2);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.course-home__eyebrow {
+  margin-bottom: var(--space-2);
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.course-home__title {
+  margin-bottom: var(--space-3);
+  font-size: clamp(1.75rem, 6vw, 2.75rem);
+}
+
+.course-home__title .bi-title {
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: var(--space-1);
+}
+
+.course-home__title .bi-title__en {
+  color: var(--color-ink-2);
+  font-size: 0.5em;
+}
+
+.course-home__instructor {
+  margin-bottom: var(--space-4);
+  font-weight: 700;
+}
+
+.course-home__welcome {
+  max-width: var(--content-width);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-lg);
+}
+
+.course-home__welcome .course-home__en {
+  font-size: var(--text-sm);
+}
+
+/* Countdown chips 倒计时标签 */
+.course-home__countdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 100%;
+  padding: var(--space-1) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+
+.course-home__chip-name {
+  font-weight: 800;
+}
+
+.course-home__chip-sep {
+  opacity: 0.6;
+}
+
+.course-home__chip-count {
+  font-weight: 900;
+}
+
+.course-home__chip--next {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.course-home__chip--today {
+  border-color: var(--color-warn);
+  background: var(--color-highlight-soft);
+  color: var(--color-ink);
+}
+
+.course-home__chip--past {
+  border-color: var(--color-line-soft);
+  background: transparent;
+  box-shadow: none;
+  color: var(--color-ink-3);
+}
+
+/* Continue and plan cards 继续学习与学习计划卡片 */
+.course-home__start {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 860px) {
+  .course-home__start--split {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+}
+
+.course-home__continue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-4) var(--space-6);
+}
+
+.course-home__continue-main {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.course-home__overall {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.course-home__overall p {
+  margin: var(--space-1) 0 0;
+}
+
+.course-home__overall-label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.course-home__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.course-home__card-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.course-home__unit-tag {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.course-home__continue-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.course-home__when {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.course-home__plans {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.course-home__plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.course-home__plan-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.course-home__plan-link:hover {
+  text-decoration: underline;
+}
+
+/* Newcomer guide 新手指南 */
+.course-home__guide {
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.course-home__guide-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  list-style: none;
+}
+
+.course-home__guide-summary::-webkit-details-marker {
+  display: none;
+}
+
+.course-home__guide-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.course-home__guide-chevron {
+  display: inline-grid;
+  transition: transform 160ms ease;
+}
+
+.course-home__guide[open] .course-home__guide-chevron {
+  transform: rotate(180deg);
+}
+
+.course-home__guide-steps {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0 var(--space-4) var(--space-4);
+  list-style: none;
+  counter-reset: course-home-guide;
+}
+
+.course-home__guide-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3);
+  counter-increment: course-home-guide;
+}
+
+.course-home__guide-step::before {
+  content: counter(course-home-guide);
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-ink);
+  font-size: var(--text-sm);
+  font-weight: 900;
+}
+
+/* Big-picture map 知识地图 */
+.course-home__intro {
+  max-width: var(--content-width);
+  margin-bottom: var(--space-5);
+}
+
+.course-home__branches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__branch {
+  --branch-color: var(--color-accent);
+  --branch-soft: var(--color-accent-soft);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-top: 8px solid var(--branch-color);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.course-home__branch--2 {
+  --branch-color: var(--color-signal);
+  --branch-soft: var(--color-signal-soft);
+}
+
+.course-home__branch--3 {
+  --branch-color: var(--color-warn);
+  --branch-soft: var(--color-warn-soft);
+}
+
+.course-home__branch--4 {
+  --branch-color: var(--color-highlight);
+  --branch-soft: var(--color-highlight-soft);
+}
+
+.course-home__branch--other {
+  --branch-color: var(--color-ink-3);
+  --branch-soft: var(--color-paper-2);
+}
+
+.course-home__branch-index {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--branch-soft);
+  font-size: var(--text-sm);
+  font-weight: 900;
+}
+
+.course-home__branch-title {
+  margin: 0;
+  padding-right: var(--space-7);
+  font-size: var(--text-lg);
+}
+
+.course-home__branch-summary {
+  font-size: var(--text-sm);
+}
+
+.course-home__map-units {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__map-units--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.course-home__map-unit {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-2);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.course-home__map-unit:hover {
+  border-color: var(--color-line);
+  background: var(--branch-soft, var(--color-paper-2));
+}
+
+.course-home__map-unit-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.course-home__map-check {
+  display: inline-grid;
+  color: var(--color-success);
+}
+
+.course-home__threads,
+.course-home__connections {
+  margin-top: var(--space-5);
+}
+
+.course-home__sub-title {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-lg);
+}
+
+.course-home__thread {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 2px dashed var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.course-home__thread + .course-home__thread {
+  margin-top: var(--space-3);
+}
+
+.course-home__thread-title {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.course-home__connection-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__connection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.course-home__connection-route {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.course-home__connection-arrow {
+  display: inline-grid;
+  color: var(--color-ink-3);
+}
+
+.course-home__chip-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.course-home__chip-link:hover {
+  background: var(--color-signal-soft);
+}
+
+.course-home__chip-link-en {
+  color: var(--color-ink-3);
+  font-weight: 700;
+}
+
+/* Lecture and lab cards 讲课与实验卡片 */
+.course-home__units {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__unit-item {
+  display: flex;
+  min-width: 0;
+}
+
+.course-home__unit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+}
+
+.course-home__unit-label {
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.course-home__unit-title {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.course-home__unit-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+.course-home__unit-foot .progress {
+  flex: 1 1 140px;
+}
+
+.course-home__unit-start {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-signal);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.course-home__unit--done {
+  background: var(--color-accent-soft);
+}
+
+/* Tools grid 复习工具 */
+.course-home__tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__tools > li {
+  display: flex;
+  min-width: 0;
+}
+
+.course-home__tool {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.course-home__tool:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.course-home__tool-icon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-ink);
+}
+
+.course-home__tool-body {
+  display: flex;
+  flex: 1 1 140px;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.course-home__tool-name {
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.course-home__tool-en {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.course-home__tool-desc {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.course-home__tool-badge {
+  align-self: center;
+}
+
+/* Assessment table 考核表 */
+.course-home__table th[scope="row"] {
+  background: transparent;
+  font-weight: 400;
+  white-space: normal;
+}
+
+.course-home__assess-name {
+  min-width: 13em;
+}
+
+.course-home__assess-title {
+  display: block;
+  font-weight: 800;
+}
+
+.course-home__assess-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--space-1);
+}
+
+.course-home__assess-weight {
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.course-home__assess-date {
+  white-space: nowrap;
+}
+
+.course-home__date-zh,
+.course-home__assess-date .course-home__en {
+  display: block;
+}
+
+.course-home__row--past .course-home__assess-title,
+.course-home__row--past .course-home__assess-weight {
+  color: var(--color-ink-3);
+}
+
+.course-home__table tfoot th,
+.course-home__table tfoot td {
+  border-top: 2px solid var(--color-line);
+  border-bottom: 0;
+}
+
+.course-home__format {
+  margin-top: var(--space-4);
+}
+
+/* Course links 课程链接 */
+.course-home__ext-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home__ext-list > li {
+  max-width: 100%;
+}
+
+.course-home__ext {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 100%;
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+  color: var(--color-ink);
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.course-home__ext:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.course-home__ext-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.course-home__ext-en {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+@media (max-width: 520px) {
+  .course-home {
+    gap: var(--space-6);
+  }
+
+  .course-home__hero {
+    padding: var(--space-5) var(--space-4) var(--space-4);
+    box-shadow: var(--shadow-hard-md);
+  }
+
+  .course-home .card {
+    padding: var(--space-4);
+  }
+}

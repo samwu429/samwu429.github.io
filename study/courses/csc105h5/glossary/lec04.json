@@ -1,0 +1,886 @@
+{
+  "lessonId": "lec04",
+  "terms": [
+    {
+      "id": "purely-algorithmic-approach",
+      "en": "Purely algorithmic approach (pure algorithm)",
+      "zh": "纯算法方法",
+      "def": {
+        "en": "An approach in which the programmer specifies the solution to a problem in detail (a step-by-step solution, using instructions the computer can understand), and the computer just follows it. Simply following an algorithm is not normally considered to be AI. It is usually fast, and its time depends entirely on how long the solution takes to execute.",
+        "zh": "人（程序员）把一步一步的解法详细写好，电脑只负责照做。按一般规则，这不算 AI。通常很快，花多少时间完全取决于执行这个解要多久。对比：符号 AI 给的是“找解的方法”（关于问题的知识），机器学习给的是训练数据。"
+      },
+      "example": {
+        "zh": "第 5 页三种方法对比：纯算法给解法（solution）；符号 AI 给知识（knowledge）；机器学习给训练数据（training data）。",
+        "en": "Purely algorithmic: the solution. Symbolic AI: knowledge of the problem. ML: training data."
+      },
+      "slides": "5",
+      "related": [
+        "symbolic-ai",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "symbolic-ai",
+      "en": "Symbolic AI",
+      "zh": "符号 AI",
+      "def": {
+        "en": "A sub-field of Artificial Intelligence in which problem solutions are found by encoding knowledge as symbols and then reasoning with those symbols. It is characterized by problems that have well-defined rules, reasoning that follows rules of logic, solutions that are provably correct when they are found, and generally high explainability.",
+        "zh": "AI 的一个子领域：先把知识写成符号和规则，再按逻辑一步步推理，找出问题的解。四个特点：规则明确、按逻辑推理、找到的解能被证明是对的、可解释性通常高。符号 AI 要靠规则才能工作；机器学习要靠数据。"
+      },
+      "example": {
+        "zh": "第 5 页的三种做法对比：纯算法是人把解法详细写好；符号 AI 是人把关于问题的知识（规则）详细写好，电脑用这些知识自己推理、找答案；机器学习两样都不写，只给训练数据。",
+        "en": "Slide 5: in Symbolic AI, we specify knowledge of the problem in detail, using instructions the computer can understand."
+      },
+      "slides": "5",
+      "related": [
+        "purely-algorithmic-approach",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "en": "Machine Learning (ML)",
+      "zh": "机器学习",
+      "def": {
+        "en": "'Machine Learning (ML) is a separate sub-field of Artificial Intelligence in which problem solutions are found by automatically inferring patterns from data.' It is characterized by problems where data can be acquired, distinct phases of training a model (learning from data) and inference (using the trained model to solve a problem), and generally fast inference time (though training can take a long time). Symbolic AI needs rules to work, while Machine Learning needs data.",
+        "zh": "AI 里另一个独立的子领域：不靠人写规则，而是给电脑很多例子（数据），让它自动找出规律。特点：问题能拿到数据；分训练（从数据中学习）和推理（用训练好的模型解决问题）两个阶段；推理通常很快，训练可能很久。符号 AI 要规则，机器学习要数据。"
+      },
+      "example": {
+        "en": "Slide 5: in Machine Learning, we specify neither the solution nor knowledge of the problem; instead, we provide the computer with training data. Example: learning to detect dogs from photos that contain dogs and photos that do not.",
+        "zh": "第 5 页：机器学习既不写解法、也不写知识，只给电脑训练数据，让它从例子中学出规律。例：给电脑一批有狗的照片和一批没有狗的照片，让它学会识别照片里的狗（第 6 页）。"
+      },
+      "slides": "5-6",
+      "related": [
+        "training-set",
+        "data",
+        "symbolic-ai",
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "training-set",
+      "en": "Training set (training data)",
+      "zh": "训练集（训练数据）",
+      "def": {
+        "en": "The data used to train the model: the examples the model learns from, to find its parameters such as the weights. In Supervised Learning it is a labelled training dataset, and we generally want the training set to contain the most data.",
+        "zh": "用来训练模型的数据：模型从这些例子里学习，找出参数（比如权重）。监督学习用的是带标签的训练数据集。一般希望训练集包含最多的数据。"
+      },
+      "example": {
+        "zh": "第 43–47 页的 7 片叶子就是训练数据：模型在它们上面训练，第 47 页算的准确率也是在这 7 片叶子上算的。",
+        "en": "The 7 leaves on slides 43-47 are the training data."
+      },
+      "slides": "5, 21-22, 41",
+      "related": [
+        "labelled-data",
+        "machine-learning",
+        "training"
+      ]
+    },
+    {
+      "id": "data",
+      "en": "Data",
+      "zh": "数据",
+      "def": {
+        "en": "'Data are examples to learn from (e.g. a set of photos with dogs and a set without dogs).' In Machine Learning, data is the collection of examples from which patterns are learned, and the form of data depends on what is being learned.",
+        "zh": "机器学习用来学习的例子，也就是让电脑从中学规律的一组例子。要学的东西不同，需要的数据样子也不同。注意：训练好的模型会继承数据里的偏见（bias）。"
+      },
+      "example": {
+        "zh": "预测森林火灾数量 → (室外温度, 火灾数量) 的成对清单；识别狗 → 有狗的照片 + 没有狗的照片；生成文字 → 大量自然流畅的文字。",
+        "en": "Pairs (outdoor temperature, # forest fires); photos with and without dogs; many examples of natural-sounding text."
+      },
+      "slides": "6",
+      "related": [
+        "dataset",
+        "machine-learning",
+        "training-set"
+      ]
+    },
+    {
+      "id": "dataset",
+      "en": "Dataset",
+      "zh": "数据集",
+      "def": {
+        "en": "A collection of data. You can collect it yourself (generally costly, but the data can be customized for its purpose) or acquire data already collected by someone else (generally less costly, but it may not exactly fit your purpose).",
+        "zh": "很多条数据放在一起就叫数据集。来源有两条路：自己收集（通常贵，但可以按用途定制）；用别人收集好的（通常便宜，但不一定完全合用）。"
+      },
+      "example": {
+        "zh": "自己收集可能要用传感器、问卷调查或研究（sensors, surveys, or studies）。",
+        "en": "Collecting it yourself might require sensors, surveys, or studies."
+      },
+      "slides": "8",
+      "related": [
+        "data",
+        "data-provenance",
+        "copyright"
+      ]
+    },
+    {
+      "id": "data-provenance",
+      "en": "Data provenance",
+      "zh": "数据溯源",
+      "def": {
+        "en": "The documented history of a dataset: when and where the data was collected, how the data was collected, and how the data has been transformed since it was collected. It can help us decide if it is appropriate to use a dataset.",
+        "zh": "数据集“有记录的历史”，相当于数据的出生证明加履历表：何时何地收集、怎么收集、收集后怎么被改过。用它判断这个数据集适不适合用。"
+      },
+      "example": {
+        "zh": "三个判断问题：被调查的人群和我们关心的人群一致吗？收集过程有偏差吗？法律上允许我们这样用吗？",
+        "en": "Does the population surveyed match? Is there bias in the collection? Are we legally permitted to use it this way?"
+      },
+      "slides": "8-10",
+      "related": [
+        "dataset",
+        "copyright",
+        "license",
+        "bias"
+      ]
+    },
+    {
+      "id": "bias",
+      "en": "Bias",
+      "zh": "偏见",
+      "def": {
+        "en": "Bias means that an AI system or model unfairly discriminates against certain groups. 'Trained models inherit the biases of the data they were trained on.' Possible causes of bias in ML include biased historical data, underrepresentation of specific groups in the training dataset, proxy variables, and the incompatibility of different definitions of fairness.",
+        "zh": "AI 系统或模型对某些群体不公平（歧视某些群体）。训练好的模型会继承训练数据里的偏见。ML 里偏见的可能原因：有偏见的历史数据、某些群体在训练数据中代表性不足、代理变量、不同的公平定义互相冲突。"
+      },
+      "example": {
+        "en": "Slide 10: data provenance helps us ask 'Is there bias in the collection of the data?' Biased collection means the data may not fairly represent the population we are interested in. (Made-up example) A survey handed out only at the library door reaches only people who often go to the library.",
+        "zh": "第 10 页：用数据溯源判断数据集是否合适时，要问“数据收集过程中有没有偏差（bias）？”——收集方式让数据偏向某一部分人，不能公平地代表我们关心的整体（这种用法中文常说“偏差”）。（虚构的例子）问卷只在图书馆门口发放 → 只问到了常去图书馆的人 → 收集过程有偏差。"
+      },
+      "slides": "10",
+      "related": [
+        "data-provenance",
+        "dataset"
+      ]
+    },
+    {
+      "id": "copyright",
+      "en": "Copyright",
+      "zh": "版权",
+      "def": {
+        "en": "The legal protection on creative work (including datasets) granted to its creator. Normally, copyrighted work cannot be legally copied, modified, or distributed without a license from the copyright holder. Copyright can only be applied to work produced by humans. It is also listed as one of the ethical issues of LLMs.",
+        "zh": "法律给创作者作品（包括数据集）的保护：没有版权持有人的许可证，通常不能复制、修改或分发。版权只用于人类创作的作品，所以 AI 生成的作品没有人拥有版权（只写提示词也不够）。它也是 LLM 的伦理问题之一。"
+      },
+      "example": {
+        "zh": "法院判决：猴子拍的自拍不能受版权保护（第 13 页）。",
+        "en": "Courts ruled that a selfie taken by a monkey cannot be copyrighted."
+      },
+      "slides": "11-14",
+      "related": [
+        "license",
+        "fair-use",
+        "dataset",
+        "generative-ai"
+      ]
+    },
+    {
+      "id": "license",
+      "en": "License",
+      "zh": "许可证（授权）",
+      "def": {
+        "en": "Permission from the copyright holder that grants the rights to copy, modify, or distribute a work. A license may place conditions on use (e.g. must credit the author, free to use for non-profit or educational purposes only).",
+        "zh": "版权持有人给你的使用许可。它可以附带条件，比如必须注明作者、只限非营利或教育用途免费使用。"
+      },
+      "example": {
+        "zh": "许可证写“仅限教育用途、须注明作者”：课堂作业并署名可以用；做收费商业产品就不行。",
+        "en": "A license for educational use with credit allows a credited class project, but not a paid product."
+      },
+      "slides": "11",
+      "related": [
+        "copyright",
+        "fair-use"
+      ]
+    },
+    {
+      "id": "fair-use",
+      "en": "Fair use doctrine",
+      "zh": "合理使用原则",
+      "def": {
+        "en": "A rule in the United States: work can be used without a license if that use is 'transformative'. Whether training an AI model constitutes fair use is still in the courts.",
+        "zh": "美国的一条法律原则：如果用法是“转化性的”（transformative），没有许可证也可以使用作品。训练 AI 模型算不算合理使用，还在法庭上，没有定论。"
+      },
+      "example": {
+        "zh": "媒体版权方正在起诉 AI 公司，例如 Disney et al. vs. Midjourney（第 14 页）。",
+        "en": "Disney et al. vs. Midjourney."
+      },
+      "slides": "11-12, 14",
+      "related": [
+        "copyright",
+        "license"
+      ]
+    },
+    {
+      "id": "invasion-of-privacy",
+      "en": "Invasion of privacy",
+      "zh": "侵犯隐私",
+      "def": {
+        "en": "An ethical privacy problem: many companies track every interaction you have with them, can purchase data they wouldn't normally have, and can use ML to infer details you have never given to them (e.g. political leanings, addiction, pregnancy). Legally acquired data can still cause this problem.",
+        "zh": "课件讲的第一种隐私问题：公司追踪你的每次互动，买来本来没有的数据，还能用 ML 推断出你从没告诉过它的细节。数据就算是合法获得的，也可能有这种道德问题。"
+      },
+      "example": {
+        "zh": "Target 的怀孕预测模型（2012 年《纽约时报杂志》报道）：用 ML 找出孕中期的准妈妈，推送婴儿用品的定向广告。",
+        "en": "Target used ML to detect expectant mothers in their second trimester and sent targeted ads for baby-related products."
+      },
+      "slides": "17-20",
+      "related": [
+        "information-leakage",
+        "differential-privacy"
+      ]
+    },
+    {
+      "id": "information-leakage",
+      "en": "Information leakage",
+      "zh": "信息泄露",
+      "def": {
+        "en": "A privacy problem: ML models sometimes 'memorize' parts of their training dataset, which may include sensitive material. 'Memorized' data is part of the final model, and attackers can detect this data without developer access to the model.",
+        "zh": "课件讲的第二种隐私问题：模型把训练数据的一部分（可能是敏感信息）“记住”了，这些内容就在最终模型里；攻击者不需要开发者权限，也能把它检测出来。"
+      },
+      "example": {
+        "zh": "（假设的例子）模型训练时“记住”了某人的敏感信息；攻击者没有开发者权限，也可能把它检测出来。研究出处：Carlini 等人 2019 年的论文 The secret sharer（第 21 页脚注）。",
+        "en": "(Hypothetical) A model memorizes someone's sensitive information during training, and an attacker without developer access may still detect it."
+      },
+      "slides": "21-22",
+      "related": [
+        "differential-privacy",
+        "invasion-of-privacy",
+        "training-set"
+      ]
+    },
+    {
+      "id": "differential-privacy",
+      "en": "Differential Privacy",
+      "zh": "差分隐私",
+      "def": {
+        "en": "A method that provides some protection by strategically inserting randomness into the training process. It guarantees that the model changes very little when a single piece of data is removed from the training set, but comes at some cost to model performance.",
+        "zh": "防止信息泄露的办法：训练时有策略地加入随机性，保证去掉任何一条数据，模型几乎不变。代价是模型性能会差一些，而且只是“一定程度”的保护。"
+      },
+      "slides": "22",
+      "related": [
+        "information-leakage",
+        "training-set"
+      ]
+    },
+    {
+      "id": "structured-data",
+      "en": "Structured data",
+      "zh": "结构化数据",
+      "def": {
+        "en": "Data that follows a predefined, predictable format called a schema, where every piece of data has the same information in the same order.",
+        "zh": "按事先规定好的固定格式（schema）记录的数据：每条数据都有同样的信息、同样的顺序。最常见的是表格数据。"
+      },
+      "example": {
+        "zh": "叶子表：每一行都按 [叶宽, 叶高, 叶子种类] 的顺序记录。",
+        "en": "The leaf table: every row has Leaf Width, Leaf Height and Leaf Type, in that order."
+      },
+      "slides": "24",
+      "related": [
+        "schema",
+        "tabular-data",
+        "unstructured-data"
+      ]
+    },
+    {
+      "id": "schema",
+      "en": "Schema",
+      "zh": "模式（schema，数据的固定格式）",
+      "def": {
+        "en": "The predefined, predictable format that structured data follows, where every piece of data has the same information in the same order. Unstructured data does not follow a schema.",
+        "zh": "结构化数据遵循的“格式规定”：事先定好每条数据有哪些信息、按什么顺序。非结构化数据没有 schema。"
+      },
+      "slides": "24, 27",
+      "related": [
+        "structured-data",
+        "unstructured-data"
+      ]
+    },
+    {
+      "id": "tabular-data",
+      "en": "Tabular data",
+      "zh": "表格数据",
+      "def": {
+        "en": "The most common kind of structured data. One piece of data is a row in the table, and information appears in the same order for every piece of data.",
+        "zh": "最常见的一种结构化数据。一条数据就是表格的一行；每行的信息顺序都一样。"
+      },
+      "example": {
+        "zh": "叶子表有 7 行，就是 7 条数据（4 片 oak、3 片 maple）。",
+        "en": "The leaf table has 7 rows, so it has 7 pieces of data."
+      },
+      "slides": "24",
+      "related": [
+        "structured-data",
+        "schema",
+        "feature-vector"
+      ]
+    },
+    {
+      "id": "continuous",
+      "en": "Continuous",
+      "zh": "连续型",
+      "def": {
+        "en": "A numeric value where ordering is meaningful and decimal values make sense (e.g. height in cm). If the target value is continuous, the Supervised Learning task is regression.",
+        "zh": "是数值，有大小顺序，小数也有意义（比如以厘米计的身高）。目标值是连续型时，监督学习任务就是回归。"
+      },
+      "example": {
+        "en": "Continuous is one of the column types of tabular data, together with ordinal and categorical (slides 25-26). Leaf width and leaf height in cm are continuous.",
+        "zh": "连续型是表格数据的一种列类型（还有有序型、类别型，第 25–26 页）。例：以厘米计的身高、叶宽、叶高。"
+      },
+      "slides": "25-26, 42",
+      "related": [
+        "ordinal",
+        "categorical",
+        "regression"
+      ]
+    },
+    {
+      "id": "ordinal",
+      "en": "Ordinal (column type)",
+      "zh": "有序型",
+      "def": {
+        "en": "A category (which may or may not be numerical) where ordering is meaningful, but decimal values don't make sense (e.g. position in a race).",
+        "zh": "是一种类别（可以是数字，也可以不是），有先后顺序，但小数没有意义。例：赛跑名次，不存在“第 2.5 名”。"
+      },
+      "slides": "25-26",
+      "related": [
+        "continuous",
+        "categorical"
+      ]
+    },
+    {
+      "id": "categorical",
+      "en": "Categorical",
+      "zh": "类别型",
+      "def": {
+        "en": "A category where ordering is not meaningful (e.g. hair colour, or oak vs maple). If the target value is categorical, the Supervised Learning task is classification.",
+        "zh": "是一种类别，类别之间没有大小顺序（比如发色、叶子种类）。就算用数字编码（oak = 1、maple = 2），也仍是类别型。目标值是类别型时，监督学习任务就是分类。"
+      },
+      "example": {
+        "en": "Categorical is one of the column types of tabular data (slides 25-26). Leaf type is categorical even when it is coded as 1 for oak and 2 for maple.",
+        "zh": "类别型是表格数据的一种列类型（第 25–26 页）。例：发色、叶子种类；叶子种类就算写成 oak = 1、maple = 2，也还是类别型。"
+      },
+      "slides": "25-26, 38, 42",
+      "related": [
+        "continuous",
+        "ordinal",
+        "classification"
+      ]
+    },
+    {
+      "id": "unstructured-data",
+      "en": "Unstructured data",
+      "zh": "非结构化数据",
+      "def": {
+        "en": "Data that does not follow a schema, so the computer has to do extra processing to find important information. Examples are images and video, audio, and freeform text.",
+        "zh": "不遵循 schema 的数据，电脑要做额外处理才能找到重要信息。例：图像和视频、音频、自由文本。最终它们也都要变成数字。"
+      },
+      "example": {
+        "zh": "Ultimately, all data must be reduced to numbers in order to be used by a computer（第 27 页）。",
+        "en": "Ultimately, all data must be reduced to numbers in order to be used by a computer."
+      },
+      "slides": "27-30",
+      "related": [
+        "structured-data",
+        "schema",
+        "pixel",
+        "audio",
+        "freeform-text"
+      ]
+    },
+    {
+      "id": "pixel",
+      "en": "Pixel",
+      "zh": "像素",
+      "def": {
+        "en": "A point in an image. Images are represented by pixel values, which give the intensity at each point in space. Monochrome requires one value per pixel, while colour typically requires three (e.g. red, green, and blue).",
+        "zh": "图片上的一个小点（小格子）。图像用像素值表示，像素值就是这一点的亮度（强度）。单色图每个像素 1 个数，彩色图通常 3 个数（红、绿、蓝）。"
+      },
+      "example": {
+        "zh": "第 28 页手写的“0”：28 × 28 = 784 个像素，单色，所以是 784 个数（0 是黑色背景，252–255 左右是白色笔画）。",
+        "en": "The 28 × 28 handwritten digit on slide 28 is 784 values."
+      },
+      "slides": "28",
+      "related": [
+        "frame",
+        "unstructured-data"
+      ]
+    },
+    {
+      "id": "frame",
+      "en": "Frame (video)",
+      "zh": "帧（视频里的一张画面）",
+      "def": {
+        "en": "A frame is one image in a video. Video is made up of an ordered sequence of images, called frames.",
+        "zh": "视频由一串按顺序排列的图片组成，每一张图片叫一帧。顺序不能乱。"
+      },
+      "slides": "28",
+      "related": [
+        "pixel",
+        "unstructured-data"
+      ]
+    },
+    {
+      "id": "audio",
+      "en": "Audio",
+      "zh": "音频",
+      "def": {
+        "en": "Audio is represented by the ordered amplitude/loudness of a sound wave, recorded many times per second.",
+        "zh": "声音的表示方法：每秒很多次记录声波的振幅（响度），再按时间顺序排好。"
+      },
+      "example": {
+        "zh": "第 29 页的读数：time = 1077 ms 时，amplitude = −0.392，就是一个数字（负号表示在零线下方）。",
+        "en": "At time 1077 ms, amplitude = −0.392."
+      },
+      "slides": "29",
+      "related": [
+        "unstructured-data"
+      ]
+    },
+    {
+      "id": "freeform-text",
+      "en": "Freeform text (text)",
+      "zh": "自由文本（文本）",
+      "def": {
+        "en": "An ordered sequence of characters (letters, punctuation, spaces, etc.). Each character is converted to a (hexadecimal) numeric value using a character encoding scheme.",
+        "zh": "一串按顺序排列的字符（字母、标点、空格等都算字符）。每个字符用字符编码方案换成一个数。"
+      },
+      "example": {
+        "zh": "Hello! = 0048 0065 006c 006c 006f 0021：6 个字符变成 6 个数，两个 l 都是 006c。",
+        "en": "Hello! = 0048 0065 006c 006c 006f 0021"
+      },
+      "slides": "27, 30",
+      "related": [
+        "character-encoding-scheme",
+        "unstructured-data"
+      ]
+    },
+    {
+      "id": "character-encoding-scheme",
+      "en": "Character encoding scheme",
+      "zh": "字符编码方案",
+      "def": {
+        "en": "A scheme that converts each character to a (hexadecimal) numeric value (e.g. Unicode, UTF-8, ASCII). In hexadecimal, a through f are the numbers 10 to 15.",
+        "zh": "把每个字符换成一个（十六进制）数字的“对照表”，例如 Unicode、UTF-8、ASCII。十六进制里 a–f 代表 10–15。"
+      },
+      "example": {
+        "zh": "第 30 页：H 变成 0048，感叹号 ! 变成 0021。",
+        "en": "H becomes 0048 and ! becomes 0021."
+      },
+      "slides": "30",
+      "related": [
+        "freeform-text"
+      ]
+    },
+    {
+      "id": "feature-vector",
+      "en": "Feature vector",
+      "zh": "特征向量",
+      "def": {
+        "en": "A list of values that represents one piece of data in a form the computer can understand. Each value within it is a feature.",
+        "zh": "把一条数据写成电脑能懂的一串数（列表）。整个列表叫特征向量，里面的每个值叫一个特征。"
+      },
+      "example": {
+        "zh": "叶子表第 3 行变成 [10.0, 18.0, 1]（1 代表 oak，maple 记作 2）。",
+        "en": "This row becomes [10.0, 18.0, 1], where the 1 represents oak and maple would be 2."
+      },
+      "slides": "32-33",
+      "related": [
+        "feature",
+        "data-space",
+        "feature-engineering"
+      ]
+    },
+    {
+      "id": "feature",
+      "en": "Feature",
+      "zh": "特征",
+      "def": {
+        "en": "Each value within a feature vector. In ML, we would like every feature to tell us something useful about the data.",
+        "zh": "特征向量里的每一个值，比如叶宽、叶高、叶子种类。我们希望每个特征都能提供关于数据的有用信息。"
+      },
+      "example": {
+        "zh": "[10.0, 18.0, 1] 里的 10.0（叶宽）就是一个特征。",
+        "en": "In [10.0, 18.0, 1], 10.0 (the leaf width) is a feature."
+      },
+      "slides": "33-34",
+      "related": [
+        "feature-vector",
+        "feature-engineering",
+        "target-feature"
+      ]
+    },
+    {
+      "id": "feature-engineering",
+      "en": "Feature engineering",
+      "zh": "特征工程",
+      "def": {
+        "en": "Transforming our feature vectors, for example removing features that aren't useful or combining features into a new one. Feature engineering can have a large impact on the results we get from ML.",
+        "zh": "改造特征向量：删掉没用的特征，或把几个特征组合成新特征。它可能对 ML 的结果影响很大。"
+      },
+      "example": {
+        "zh": "删掉叶宽（ignore leaf width）；或新增“高 × 宽”特征：第 3 片叶子多出 18.0 × 10.0 = 180.0。",
+        "en": "Ignore leaf width, or add a new feature for height multiplied by width."
+      },
+      "slides": "34-35",
+      "related": [
+        "feature-vector",
+        "feature",
+        "representation"
+      ]
+    },
+    {
+      "id": "representation",
+      "en": "Representation",
+      "zh": "表示（看数据的一种方式）",
+      "def": {
+        "en": "Feature engineering gives us more than one way to view the same raw data. Each of these ways is called a representation, which we can visualize in the data space.",
+        "zh": "同一批原始数据的一种“看法”。特征工程能给出多种表示，每一种都能画进数据空间里看。"
+      },
+      "example": {
+        "zh": "同样 7 片叶子，可以表示成 [宽, 高]、[宽, 种类]、[高, 种类] 或 [宽, 高, 种类]（第 35–38 页）。",
+        "en": "[(leaf width), (leaf height)] and [(leaf width), (leaf type)] are two representations of the same leaves."
+      },
+      "slides": "35",
+      "related": [
+        "data-space",
+        "feature-engineering"
+      ]
+    },
+    {
+      "id": "data-space",
+      "en": "Data space (feature space)",
+      "zh": "数据空间（特征空间）",
+      "def": {
+        "en": "The space in which we visualize feature vectors as points (also called the feature space). Feature vectors with N dimensions live in an N-dimensional data space, with one axis for each feature. Geometric relationships in data space are important: models can be interpreted as shapes in the data space.",
+        "zh": "把特征向量当“坐标”画成点的空间，也叫特征空间（feature space）。有 N 个特征就是 N 维，每个特征是一根轴。模型可以看成数据空间里的形状；分类时，这个形状就是决策边界。"
+      },
+      "example": {
+        "zh": "[(leaf width), (leaf height)] 是 2 维数据空间（一张平面图，7 片叶子就是 7 个点）；[宽, 高, 种类] 是 3 维。",
+        "en": "[(leaf width), (leaf height)] is a 2-D data space; [width, height, type] is 3-D."
+      },
+      "slides": "35-38",
+      "related": [
+        "feature-vector",
+        "representation",
+        "decision-boundary"
+      ]
+    },
+    {
+      "id": "model",
+      "en": "Model",
+      "zh": "模型",
+      "def": {
+        "en": "In ML, a model is learned from data during training and then used to solve problems (inference). Models are just functions of the input features, and they can be interpreted as shapes in the data space. It's our job to choose a model; it's the machine's job to find the best values of its parameters during training.",
+        "zh": "机器学习从数据中学出来、用来做预测的东西。模型就是输入特征的函数（公式），可以看成数据空间里的形状（比如决策边界）。选哪种模型是我们的工作；公式里参数的具体数值由机器在训练中找。"
+      },
+      "example": {
+        "zh": "第 44 页的三种模型：直线（linear）、二次（quadratic）、高阶多项式（higher-order polynomial）。",
+        "en": "Linear, quadratic and higher-order polynomial models (slide 44)."
+      },
+      "slides": "36, 43-44",
+      "related": [
+        "model-parameter",
+        "decision-boundary",
+        "training"
+      ]
+    },
+    {
+      "id": "machine-learning-pipeline",
+      "en": "Machine learning pipeline",
+      "zh": "机器学习流程",
+      "def": {
+        "en": "A common workflow for producing useful models from data: 1. Data Preparation, 2. Model Training, 3. Model Evaluation, 4. Inference/Deployment.",
+        "zh": "从数据做出有用模型的通用四步：数据准备 → 模型训练 → 模型评估 → 推理/部署。"
+      },
+      "example": {
+        "en": "The first part of Lecture 4 (forms of data, feature vectors, feature engineering) is Data Preparation; the lecture then moves to Model Training under the Supervised Learning paradigm.",
+        "zh": "Lecture 4 前半部分讲的数据的形式、特征向量、特征工程，都属于第 1 步数据准备；之后进入第 2 步：用监督学习训练模型。"
+      },
+      "slides": "40",
+      "related": [
+        "training",
+        "supervised-learning",
+        "accuracy",
+        "inference"
+      ]
+    },
+    {
+      "id": "inference",
+      "en": "Inference",
+      "zh": "推理（使用训练好的模型）",
+      "def": {
+        "en": "The phase of Machine Learning in which the trained model is used to solve a problem ('using the trained model to solve a problem'), for example to make predictions about new data. Inference time is generally fast, although the Big Table notes that large models such as LLMs are often slower and costlier per call.",
+        "zh": "机器学习的推理阶段（在训练之后）：用训练好的模型解决新问题，比如对新数据做预测。通常很快；不过性质大表也提醒：LLM 这类很大的模型每次调用往往更慢、更贵。注意：中文也叫“推理”，但它不是符号 AI 里按逻辑规则的推理（reasoning）。"
+      },
+      "example": {
+        "en": "Step 4 of the Machine Learning Pipeline is Inference/Deployment. Example: giving a trained model the width and height of a new leaf so that it predicts oak or maple.",
+        "zh": "机器学习流程的第 4 步就是推理/部署（第 40 页只列了名字；“对新数据做预测就叫 inference”这句话出自 Lab 4 讲义）。例：捡到一片新叶子，只量了宽和高，交给训练好的模型，让它判断是 oak 还是 maple。"
+      },
+      "slides": "40",
+      "related": [
+        "machine-learning-pipeline",
+        "training",
+        "unlabelled-data"
+      ]
+    },
+    {
+      "id": "supervised-learning",
+      "en": "Supervised Learning",
+      "zh": "监督学习",
+      "def": {
+        "en": "In Supervised Learning, we want to predict the value of a feature in the data space (called the target feature). We learn from a labelled training dataset, then use the resulting model to make predictions about the target feature for unlabelled data. The two kinds of task are classification and regression.",
+        "zh": "先用“带答案”的例子（带标签的训练数据）训练模型，再让模型给“没答案”的新数据（无标签数据）预测答案。要预测的那个特征叫目标特征。分两种任务：分类和回归。"
+      },
+      "example": {
+        "zh": "用叶宽和叶高预测一片叶子是 oak 还是 maple。",
+        "en": "Predicting oak or maple from leaf width and leaf height."
+      },
+      "slides": "40-42",
+      "related": [
+        "target-feature",
+        "labelled-data",
+        "unlabelled-data",
+        "classification",
+        "regression"
+      ]
+    },
+    {
+      "id": "target-feature",
+      "en": "Target feature",
+      "zh": "目标特征",
+      "def": {
+        "en": "The feature in the data space whose value we want to predict in Supervised Learning.",
+        "zh": "监督学习里要预测的那个特征，也就是要猜的“答案”。它的类型决定任务是分类还是回归。"
+      },
+      "example": {
+        "zh": "叶子例子里，目标特征是叶子种类（oak / maple）；输入特征是叶宽和叶高。",
+        "en": "In the leaf example, the target feature is the leaf type."
+      },
+      "slides": "41-42",
+      "related": [
+        "supervised-learning",
+        "labelled-data",
+        "classification",
+        "regression"
+      ]
+    },
+    {
+      "id": "labelled-data",
+      "en": "Labelled training dataset (labelled data)",
+      "zh": "带标签的训练数据集（带标签的数据）",
+      "def": {
+        "en": "A training dataset in which the target feature's value is known for every piece of data, i.e. the correct answer is given for every example.",
+        "zh": "每一条数据的目标特征值（正确答案）都已知的训练数据，比如每张照片都标好了“有狗”或“没狗”。"
+      },
+      "example": {
+        "zh": "7 片叶子都已知是 oak 还是 maple（4 片 oak、3 片 maple）。",
+        "en": "All 7 leaves are known to be oak or maple."
+      },
+      "slides": "41",
+      "related": [
+        "unlabelled-data",
+        "training-set",
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "unlabelled-data",
+      "en": "Unlabelled data",
+      "zh": "无标签数据",
+      "def": {
+        "en": "Data where the target value is not known. Once training is complete, we use the model to make predictions about the target feature for unlabelled data.",
+        "zh": "目标值（答案）未知的数据。训练完成后，用模型去预测它的目标值。"
+      },
+      "example": {
+        "zh": "捡到一片新叶子，只量了宽和高，不知道是哪种叶子。",
+        "en": "A new leaf with a measured width and height but an unknown type."
+      },
+      "slides": "41",
+      "related": [
+        "labelled-data",
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "training",
+      "en": "Training (learning)",
+      "zh": "训练（学习）",
+      "def": {
+        "en": "The phase of Machine Learning in which a model learns from data ('training a model (learning from data)'). In Supervised Learning, the model learns from a labelled training dataset: it's the machine's job to find the best parameter values (weights), and that's what it does during training. Training can take a long time.",
+        "zh": "机器学习的训练阶段（在推理之前）：模型从数据中学习规律。监督学习里，模型从带标签的训练数据中学习：机器在训练中找出最好的参数值（权重）。训练可能要花很长时间。"
+      },
+      "example": {
+        "en": "Leaf example: before training the model is w0 + w1x1 + w2x2 = 0; after training it is −12 + x1 + 0.3x2 = 0. Once training is complete, the model can make predictions for unlabelled data.",
+        "zh": "叶子例子（第 44 页）：训练前是 w0 + w1x1 + w2x2 = 0，训练后机器找到 −12 + x1 + 0.3x2 = 0。训练完成后，模型就能对无标签数据做预测。"
+      },
+      "slides": "41, 44",
+      "related": [
+        "model-parameter",
+        "labelled-data",
+        "optimization"
+      ]
+    },
+    {
+      "id": "classification",
+      "en": "Classification",
+      "zh": "分类",
+      "def": {
+        "en": "A kind of Supervised Learning task in which the target value is categorical. In a classification problem, the model forms a decision boundary between classes.",
+        "zh": "监督学习的一种任务：要预测的目标值是类别型的（比如橡树还是枫树）。模型在数据空间里画出决策边界，把不同的类别分开。"
+      },
+      "example": {
+        "zh": "用叶宽和叶高预测叶子是 oak 还是 maple。",
+        "en": "Predicting whether a leaf is oak or maple."
+      },
+      "slides": "42-43",
+      "related": [
+        "regression",
+        "categorical",
+        "decision-boundary",
+        "class"
+      ]
+    },
+    {
+      "id": "class",
+      "en": "Class",
+      "zh": "类别",
+      "def": {
+        "en": "One of the categories that a classification model (classifier) predicts. A decision boundary forms between classes: on one side of the boundary, we predict one class, and on the other side, we predict a different class.",
+        "zh": "分类模型（分类器）要预测的某一个类别。决策边界把不同的类别分开：一边预测一个类别，另一边预测另一个类别。"
+      },
+      "example": {
+        "zh": "叶子例子有两个类别：oak（橡树叶）和 maple（枫叶）。",
+        "en": "In the leaf example, the two classes are oak and maple."
+      },
+      "slides": "43, 47",
+      "related": [
+        "classification",
+        "decision-boundary",
+        "categorical"
+      ]
+    },
+    {
+      "id": "regression",
+      "en": "Regression",
+      "zh": "回归",
+      "def": {
+        "en": "A kind of Supervised Learning task in which the target value is continuous. In a regression problem, we want to predict a continuous value.",
+        "zh": "监督学习的一种任务：要预测的目标值是连续型的数（小数也有意义），比如叶子有多高。"
+      },
+      "example": {
+        "en": "Predicting leaf height (cm) from leaf width. Lecture 4 focuses on classification; regression is covered in Lecture 5.",
+        "zh": "用叶宽预测叶高（厘米）：目标值是连续型。Lecture 4 先只讲分类，回归在 Lecture 5 讲。"
+      },
+      "slides": "42",
+      "related": [
+        "classification",
+        "continuous",
+        "target-feature"
+      ]
+    },
+    {
+      "id": "decision-boundary",
+      "en": "Decision boundary",
+      "zh": "决策边界",
+      "def": {
+        "en": "In a classification problem, our model generates a shape in the data space that forms a decision boundary between classes: on one side of the boundary, we predict one class, and on the other side, we predict a different class.",
+        "zh": "分类问题里，模型在数据空间中画出的分界线（直线或曲线）：线的一边预测一个类别，另一边预测另一个类别。"
+      },
+      "example": {
+        "zh": "第 47 页 Model A：直线左边是 Predict oak，右边是 Predict maple。",
+        "en": "Model A: left of the line predicts oak, right of the line predicts maple."
+      },
+      "slides": "43-44, 47",
+      "related": [
+        "classification",
+        "model",
+        "data-space",
+        "class"
+      ]
+    },
+    {
+      "id": "model-parameter",
+      "en": "Parameter (weight)",
+      "zh": "参数（权重）",
+      "def": {
+        "en": "The values w0, w1, w2, … in a model, also called weights. It's our job to choose a model; it's the machine's job to find the best parameter values during training. In an artificial neuron, the weights are multiplied with the inputs and determine whether each input is 'excitatory' or 'inhibitory', and by how much.",
+        "zh": "模型式子里的那些数 w0、w1、w2……，也叫权重（weights）。选模型是我们的事；在训练中找出这些参数的最佳数值是机器的事。在人工神经元里，权重乘在每个输入上，决定这个输入是“促进”还是“抑制”、影响多大。注意：和函数的参数（parameter，Lecture 2）不是一回事。"
+      },
+      "example": {
+        "zh": "直线模型 w0 + w1x1 + w2x2 = 0 训练后是 −12 + x1 + 0.3x2 = 0，也就是 w0 = −12，w1 = 1，w2 = 0.3（3 个参数）。",
+        "en": "Linear model after training: w0 = −12, w1 = 1, w2 = 0.3."
+      },
+      "slides": "44-45",
+      "related": [
+        "model",
+        "training",
+        "optimization",
+        "decision-boundary"
+      ]
+    },
+    {
+      "id": "optimization",
+      "en": "Optimization",
+      "zh": "优化",
+      "def": {
+        "en": "Machine Learning is an optimization problem, where we are typically looking for parameter values that minimize an error function.",
+        "zh": "找“最好”的参数值，也就是让误差函数最小的参数值。机器学习就是一个优化问题。"
+      },
+      "slides": "45",
+      "related": [
+        "error-function",
+        "model-parameter",
+        "classification-error"
+      ]
+    },
+    {
+      "id": "error-function",
+      "en": "Error function",
+      "zh": "误差函数",
+      "def": {
+        "en": "The function that training tries to minimize: in ML, we are typically looking for parameter values that minimize an error function. A simple error function is the classification error.",
+        "zh": "衡量模型“错多少”的函数，训练就是找让它最小的参数值。最简单的例子是分类错误率。"
+      },
+      "slides": "45",
+      "related": [
+        "optimization",
+        "classification-error",
+        "cost-function",
+        "loss"
+      ]
+    },
+    {
+      "id": "accuracy",
+      "en": "Accuracy",
+      "zh": "准确率",
+      "def": {
+        "en": "Accuracy is the number of correct predictions divided by the total number of predictions: accuracy = number of correct predictions / total number of predictions. For binary classification, Accuracy = (TP + TN) / (TP + TN + FP + FN).",
+        "zh": "预测对的个数 ÷ 预测的总个数，就是猜对的比例（0 到 1，也可以写成 0% 到 100%）。二分类时：Accuracy = (TP + TN) / (TP + TN + FP + FN)。分类错误率 = 1 − 准确率。"
+      },
+      "example": {
+        "zh": "第 47 页：Model A 是 6/7 ≈ 86%，Model B 是 7/7 = 100%，Model C 是 5/7 ≈ 71%。",
+        "en": "Model A: 6/7 ≈ 86%; Model B: 7/7 = 100%; Model C: 5/7 ≈ 71%."
+      },
+      "slides": "46-47",
+      "related": [
+        "classification-error",
+        "optimization"
+      ]
+    },
+    {
+      "id": "classification-error",
+      "en": "Classification error (error rate)",
+      "zh": "分类错误率（错误率）",
+      "def": {
+        "en": "The classification error (or error rate) is 1 − accuracy, the proportion of predictions that are wrong. It is a simple error function.",
+        "zh": "1 − 准确率，也就是预测错的比例。它是一个简单的误差函数（error function），训练时要让它尽量小。"
+      },
+      "example": {
+        "zh": "第 47 页：Model A 的错误率 = 1 − 6/7 = 1/7 ≈ 14%；Model B 是 0%；Model C 是 2/7 ≈ 29%。",
+        "en": "Model A: 1 − 6/7 = 1/7 ≈ 14%."
+      },
+      "slides": "45-47",
+      "related": [
+        "accuracy",
+        "error-function"
+      ]
+    }
+  ]
+}

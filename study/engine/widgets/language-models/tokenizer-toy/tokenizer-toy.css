@@ -1,0 +1,409 @@
+/*
+ * Tokenizer toy: text field, token chips grouped by word, slash notation and the toy vocabulary.
+ * 分词玩具：输入框、按单词分组的 token 卡片、斜线写法与玩具词表。
+ */
+.tokenizer-toy {
+  width: 100%;
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.tokenizer-toy__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.tokenizer-toy__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.tokenizer-toy__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.tokenizer-toy__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.tokenizer-toy__pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tokenizer-toy__zh,
+.tokenizer-toy__en {
+  margin: 0;
+}
+
+.tokenizer-toy__en {
+  color: var(--color-ink-3);
+  font-size: 0.92em;
+}
+
+.tokenizer-toy__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.tokenizer-toy__demo-note {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border: 2px dashed var(--color-warn);
+  border-radius: var(--radius-sm);
+  background: var(--color-warn-soft);
+  font-size: var(--text-sm);
+}
+
+.tokenizer-toy__demo-title {
+  margin: 0;
+  color: var(--color-warn);
+  font-weight: 900;
+}
+
+/* Input 输入区 */
+.tokenizer-toy__field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.tokenizer-toy__label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.tokenizer-toy__input {
+  font-family: var(--font-mono);
+}
+
+.tokenizer-toy__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Token chips token 卡片 */
+.tokenizer-toy__result {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.tokenizer-toy__subheading {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.tokenizer-toy__subheading .bi-title__en {
+  font-size: 0.8em;
+}
+
+.tokenizer-toy__count {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.tokenizer-toy__count-number {
+  color: var(--color-ink);
+  font-size: var(--text-xl);
+  font-variant-numeric: tabular-nums;
+}
+
+.tokenizer-toy__words {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-3) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tokenizer-toy__words:empty {
+  display: none;
+}
+
+.tokenizer-toy__word {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  max-width: 100%;
+}
+
+.tokenizer-toy__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Pieces of one word sit edge to edge, so the word still reads as one unit. 同一个词的片段紧贴在一起，仍能看出是一个词。 */
+.tokenizer-toy__word--split .tokenizer-toy__chips {
+  gap: 0;
+}
+
+.tokenizer-toy__word--split .tokenizer-toy__chip:not(:first-child) {
+  margin-left: -2px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.tokenizer-toy__word--split .tokenizer-toy__chip:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.tokenizer-toy__chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.4rem;
+  padding: var(--space-1) var(--space-2) 2px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  line-height: 1.25;
+}
+
+.tokenizer-toy__chip-text {
+  font-family: var(--font-mono);
+  font-size: var(--text-md);
+  font-weight: 800;
+  white-space: pre;
+}
+
+.tokenizer-toy__chip-id {
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The legend samples come before the kind rules below, so they take the same borders as the chips.
+   图例小方块写在下面各种类规则的前面，这样它们会得到和卡片一样的边框。 */
+.tokenizer-toy__legend-chip {
+  display: inline-block;
+  flex: none;
+  width: 18px;
+  height: 14px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+.tokenizer-toy__chip--word {
+  background: var(--color-panel);
+}
+
+/* A subword piece also gets a thick bottom edge, so it differs from a whole word without relying on colour.
+   子词片段还有一条加粗的下边，不靠颜色也能和整词区分开。 */
+.tokenizer-toy__chip--piece {
+  border-bottom-width: 5px;
+  background: var(--color-accent-soft);
+}
+
+.tokenizer-toy__chip--letter {
+  border-style: dashed;
+  border-color: var(--color-warn);
+  background: var(--color-warn-soft);
+}
+
+.tokenizer-toy__chip--punct {
+  border-color: var(--color-ink-3);
+  background: var(--color-paper-2);
+}
+
+.tokenizer-toy__chip--unknown {
+  border-style: dashed;
+  border-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.tokenizer-toy__source {
+  padding-top: 2px;
+  border-top: 2px solid var(--color-ink-3);
+  color: var(--color-ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.tokenizer-toy__slash-box {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.tokenizer-toy__slash-label {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.tokenizer-toy__slash {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.tokenizer-toy__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.tokenizer-toy__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.tokenizer-toy__compare {
+  font-size: var(--text-sm);
+}
+
+.tokenizer-toy__shared-box {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.tokenizer-toy__shared-title {
+  margin: 0;
+  font-weight: 900;
+}
+
+.tokenizer-toy__shared-list {
+  margin: 0;
+  padding-left: var(--space-5);
+  overflow-wrap: anywhere;
+}
+
+/* Course wording 课件原话 */
+.tokenizer-toy__quote {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-left: 5px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+  font-size: var(--text-sm);
+}
+
+.tokenizer-toy__quote-label {
+  color: var(--color-exam);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.tokenizer-toy__quote-line {
+  display: grid;
+  gap: 2px;
+}
+
+.tokenizer-toy__quote-en {
+  margin: 0;
+  font-weight: 700;
+}
+
+.tokenizer-toy__quote-zh {
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+/* Toy vocabulary 玩具词表 */
+.tokenizer-toy__vocab {
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.tokenizer-toy__vocab-summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.tokenizer-toy__vocab-body {
+  display: grid;
+  gap: var(--space-3);
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+.tokenizer-toy__vocab-title {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.tokenizer-toy__vocab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tokenizer-toy__vocab-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  padding: 0 var(--space-1);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-size: var(--text-xs);
+}
+
+.tokenizer-toy__vocab-item code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-weight: 700;
+  white-space: pre;
+}
+
+.tokenizer-toy__vocab-id {
+  color: var(--color-ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 480px) {
+  .tokenizer-toy {
+    padding: var(--space-3);
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "lessonId": "lab05",
+  "terms": [
+    {
+      "id": "true-positive",
+      "en": "True positive (TP)",
+      "zh": "真阳性（TP）",
+      "def": {
+        "en": "A case that is predicted positive and is actually positive: a correct positive prediction. It is the top-left cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is also the top-left cell: qualified and hired.",
+        "zh": "预测为正，真实也为正（预测对了）。课件表格（行 = 预测，列 = 真实）的左上格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上也在左上：合格且被录用。"
+      },
+      "example": {
+        "en": "In the hiring lab, a TP is a qualified applicant who is hired. Model 1: Group A TP = 400, Group B TP = 240.",
+        "zh": "招聘 lab 里就是“合格，被录用”。Model 1 的 A 组 TP = 400，B 组 TP = 240。"
+      },
+      "slides": "3, 8",
+      "related": [
+        "false-positive",
+        "false-negative",
+        "true-negative",
+        "confusion-matrix"
+      ]
+    },
+    {
+      "id": "false-positive",
+      "en": "False positive (FP)",
+      "zh": "假阳性（FP，误报）",
+      "def": {
+        "en": "A case that is predicted positive but is actually negative: a false alarm. It is the top-right cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is the bottom-left cell: unqualified but hired.",
+        "zh": "预测为正，真实却为负（误报）。课件表格（行 = 预测，列 = 真实）的右上格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上它在左下：不合格却被录用。"
+      },
+      "example": {
+        "en": "In the hiring lab, an FP is an unqualified applicant who is hired. Model 1: Group B FP = 140.",
+        "zh": "招聘 lab 里就是“不合格，却被录用”。Model 1 的 B 组 FP = 140。在模型卡上 FP 在左下角。"
+      },
+      "slides": "3, 8",
+      "related": [
+        "true-positive",
+        "false-positive-rate",
+        "precision",
+        "confusion-matrix"
+      ]
+    },
+    {
+      "id": "false-negative",
+      "en": "False negative (FN)",
+      "zh": "假阴性（FN，漏报）",
+      "def": {
+        "en": "A case that is predicted negative but is actually positive: a missed case. It is the bottom-left cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is the top-right cell: qualified but not hired.",
+        "zh": "预测为负，真实却为正（漏报）。课件表格（行 = 预测，列 = 真实）的左下格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上它在右上：合格却没被录用。"
+      },
+      "example": {
+        "en": "In the hiring lab, an FN is a qualified applicant who is not hired. Model 1: Group B FN = 60.",
+        "zh": "招聘 lab 里就是“合格，却没被录用”。Model 1 的 B 组 FN = 60。在模型卡上 FN 在右上角。"
+      },
+      "slides": "3, 8",
+      "related": [
+        "true-positive",
+        "recall",
+        "confusion-matrix"
+      ]
+    },
+    {
+      "id": "true-negative",
+      "en": "True negative (TN)",
+      "zh": "真阴性（TN）",
+      "def": {
+        "en": "A case that is predicted negative and is actually negative: a correct negative prediction. It is the bottom-right cell of the course's table (PREDICTED rows, ACTUAL columns). On the Lab 5 hiring model cards (ACTUAL rows, PREDICTED columns), it is also the bottom-right cell: unqualified and not hired.",
+        "zh": "预测为负，真实也为负（预测对了）。课件表格（行 = 预测，列 = 真实）的右下格。Lab 5 的招聘模型卡（行 = 真实，列 = 预测）上也在右下：不合格也没被录用。"
+      },
+      "example": {
+        "en": "In the hiring lab, a TN is an unqualified applicant who is not hired. Model 1: Group B TN = 560.",
+        "zh": "招聘 lab 里就是“不合格，也没被录用”。Model 1 的 B 组 TN = 560。"
+      },
+      "slides": "3, 8",
+      "related": [
+        "false-positive",
+        "false-positive-rate",
+        "confusion-matrix"
+      ]
+    },
+    {
+      "id": "confusion-matrix",
+      "en": "Confusion matrix (TP/FP/FN/TN table)",
+      "zh": "混淆矩阵（四格表）",
+      "def": {
+        "en": "For a binary (two-class) classification problem, a 2×2 table that counts the results in four quadrants: True Positives, False Positives, False Negatives and True Negatives. Evaluation metrics are defined from these counts. In the course's layout, the rows show the PREDICTED class and the columns show the ACTUAL class: TP top-left, FP top-right, FN bottom-left, TN bottom-right. The Lab 5 hiring model cards use the opposite layout (ACTUAL rows, PREDICTED columns: FN top-right, FP bottom-left), so always read the row and column labels first; TP is top-left and TN bottom-right in both layouts. ('Confusion matrix' is a common name; the course slides do not use it.)",
+        "zh": "二分类结果的 2×2 计数表：TP、FP、FN、TN 四个格子，各种指标都从这四个数算。课件布局：行是预测（PREDICTED），列是真实（ACTUAL）；TP 左上、FP 右上、FN 左下、TN 右下。Lab 5 的招聘模型卡方向相反（行 = 真实，列 = 预测：右上 FN、左下 FP），所以先看行列标题；两种布局里 TP 都在左上、TN 都在右下。注意：课件没有用 “confusion matrix” 这个名字，它是课件外的通用叫法；考试时写 the TP/FP/FN/TN table 更稳妥。"
+      },
+      "example": {
+        "zh": "第 3 页：行 = PREDICTED，列 = ACTUAL。模型卡：行 = Qualified / Unqualified，列 = Hire / No hire，方向相反。",
+        "en": "Slide 3 has predicted rows; the model cards have actual rows."
+      },
+      "slides": "3-4, 8",
+      "related": [
+        "true-positive",
+        "false-positive",
+        "false-negative",
+        "true-negative",
+        "binary-classification"
+      ]
+    },
+    {
+      "id": "binary-classification",
+      "en": "Binary classification",
+      "zh": "二分类",
+      "def": {
+        "en": "A classification problem with only two classes, positive and negative. For binary (two-class) problems, we can name the four quadrants of the results: TP, FP, FN and TN.",
+        "zh": "只有两个类别（正类和负类）的分类问题。二分类的结果可以分成 TP、FP、FN、TN 四个格子。"
+      },
+      "example": {
+        "zh": "招聘筛选模型只输出 Hire 或 No hire。",
+        "en": "The hiring screen outputs Hire or No hire."
+      },
+      "slides": "3",
+      "related": [
+        "confusion-matrix"
+      ]
+    },
+    {
+      "id": "accuracy",
+      "en": "Accuracy",
+      "zh": "准确率",
+      "def": {
+        "en": "Accuracy is the number of correct predictions divided by the total number of predictions: accuracy = number of correct predictions / total number of predictions. For binary classification, Accuracy = (TP + TN) / (TP + TN + FP + FN).",
+        "zh": "预测对的个数 ÷ 预测的总个数，就是猜对的比例（0 到 1，也可以写成 0% 到 100%）。二分类时：Accuracy = (TP + TN) / (TP + TN + FP + FN)。分类错误率 = 1 − 准确率。"
+      },
+      "example": {
+        "en": "On the model cards each group has 1,000 applicants, so accuracy = (TP + TN) / 1,000. Model 1, Group A: (400 + 400) / 1,000 = 80.0%.",
+        "zh": "模型卡上每组 1,000 人，所以准确率 = (TP + TN) / 1,000；判对 = 合格且录用 + 不合格且不录用。Model 1 的 A 组：(400 + 400) / 1,000 = 80.0%。"
+      },
+      "slides": "3, 9",
+      "related": [
+        "precision",
+        "recall"
+      ]
+    },
+    {
+      "id": "precision",
+      "en": "Precision",
+      "zh": "精确率",
+      "def": {
+        "en": "Precision = TP / (TP + FP): of all cases the model predicted positive, the fraction that are actually positive. High precision means few false positives. Predictive parity compares precision across groups.",
+        "zh": "Precision = TP / (TP + FP)：模型说“是”的例子里，真正是的比例。精确率高 = 误报（FP）少。预测均等（predictive parity）比较的就是各组的精确率。"
+      },
+      "example": {
+        "en": "In hiring: the percentage of hired applicants who are qualified. Model 1, Group B: 240/380 = 63.2%.",
+        "zh": "招聘 lab 里：被录用的人中合格的比例。Model 1 的 B 组：240/380 = 63.2%。"
+      },
+      "slides": "3, 9-10",
+      "related": [
+        "recall",
+        "predictive-parity",
+        "true-positive",
+        "false-positive"
+      ]
+    },
+    {
+      "id": "recall",
+      "en": "Recall (true positive rate, TPR)",
+      "zh": "召回率（真阳性率）",
+      "def": {
+        "en": "Recall = TP / (TP + FN): of all cases that are actually positive, the fraction the model predicted positive. The same formula is called the true positive rate (TPR) in equalized odds. High recall means few false negatives.",
+        "zh": "Recall = TP / (TP + FN)：真实为正的例子里，被模型找出来的比例。均等几率里叫真阳性率（TPR），公式相同。召回率高 = 漏报（FN）少。"
+      },
+      "example": {
+        "en": "In hiring: the percentage of qualified applicants who are hired. Model 1, Group B: 240/300 = 80.0%.",
+        "zh": "招聘 lab 里：合格的人中被录用的比例。Model 1 的 B 组：240/300 = 80.0%。"
+      },
+      "slides": "3, 9-10",
+      "related": [
+        "precision",
+        "false-positive-rate",
+        "equalized-odds"
+      ]
+    },
+    {
+      "id": "false-positive-rate",
+      "en": "False positive rate (FPR)",
+      "zh": "假阳性率",
+      "def": {
+        "en": "FPR = FP / (FP + TN): of all cases that are actually negative, the fraction wrongly predicted positive. Equalized odds requires it, together with the true positive rate, to be the same for every group.",
+        "zh": "FPR = FP / (FP + TN)：真实为负的例子里，被错误预测为正的比例。均等几率要求它（和真阳性率一起）在每个群体都相同。"
+      },
+      "example": {
+        "en": "In hiring: the percentage of unqualified applicants who are hired. Model 1, Group B: 140/700 = 20.0%.",
+        "zh": "招聘 lab 里：不合格的人中被录用的比例。Model 1 的 B 组：140/700 = 20.0%。"
+      },
+      "slides": "5, 9-10",
+      "related": [
+        "recall",
+        "equalized-odds",
+        "false-positive"
+      ]
+    },
+    {
+      "id": "hiring-rate",
+      "en": "Hiring rate (selection rate)",
+      "zh": "录用率",
+      "def": {
+        "en": "The percentage of all applicants in a group that the model hires: (TP + FP) / N. It is compared for demographic parity.",
+        "zh": "一组里被模型说 Hire 的人所占的比例，不管合不合格。（“selection rate” 不是讲义用词，是本网站工具里的叫法；考试写 hiring rate。）"
+      },
+      "example": {
+        "zh": "Model 1：A 组 500/1,000 = 50.0%，B 组 380/1,000 = 38.0%，差距 +12.0 pp。",
+        "en": "Model 1: 50.0% vs 38.0%, gap +12.0 pp."
+      },
+      "slides": "9-10",
+      "related": [
+        "demographic-parity",
+        "percentage-point"
+      ]
+    },
+    {
+      "id": "demographic-parity",
+      "en": "Demographic parity",
+      "zh": "人口统计均等",
+      "def": {
+        "en": "Outcomes are predicted at the same rates for every group. Pros: each group is selected at the same rate, and the rule is easy to explain and to check. Cons: it ignores individual qualifications (one group could be admitted at random), and equal rates can reject stronger applicants from one group.",
+        "zh": "每个群体被预测出某种结果（例如被录取）的比例相同。优点：各组被选中的比例相同；规则容易解释、容易检查。缺点：忽略个人条件（某组甚至可以随机录取）；为了比例相同，可能拒掉某组里更强的申请人。"
+      },
+      "example": {
+        "en": "A university admits 30% of Group A applicants and 30% of Group B applicants. On a model card, demographic parity means a hiring-rate gap of 0.0 pp.",
+        "zh": "例：大学录取 A 组 30%、B 组 30% 的申请人。模型卡上就是录用率差距为 0.0 pp；卡片里 Model 2 和 Model 5 满足。"
+      },
+      "slides": "5, 13",
+      "related": [
+        "hiring-rate",
+        "predictive-parity",
+        "equalized-odds",
+        "individual-fairness"
+      ]
+    },
+    {
+      "id": "predictive-parity",
+      "en": "Predictive parity",
+      "zh": "预测均等",
+      "def": {
+        "en": "Outcomes have the same predictive meaning (TP / (TP + FP), the precision formula) for every group. Pros: admission means the same chance of success in every group, and a positive decision is equally reliable across groups. Cons: groups can still be admitted at very different rates, and matching those rates usually means unequal error rates when groups differ.",
+        "zh": "结果在每个群体里有相同的预测含义，即 TP/(TP+FP)（精确率的公式）相同。优点：被录取在每组都代表同样的成功机会；“正”的决定在各组同样可靠。缺点：各组录取率仍可能差很多；各组情况不同时，让这些比率一致通常意味着错误率不相等。"
+      },
+      "example": {
+        "en": "Among students a university admits, 80% of Group A and 80% of Group B succeed. On a model card, predictive parity means a precision gap of 0.0 pp.",
+        "zh": "例：被录取的学生里，A 组和 B 组都有 80% 成功。模型卡上就是精确率差距为 0.0 pp；卡片里 Model 3 和 Model 7 满足。"
+      },
+      "slides": "5, 13",
+      "related": [
+        "precision",
+        "demographic-parity",
+        "equalized-odds"
+      ]
+    },
+    {
+      "id": "equalized-odds",
+      "en": "Equalized odds",
+      "zh": "均等几率",
+      "def": {
+        "en": "The true positive rate (TP / (TP + FN)) and the false positive rate (FP / (FP + TN)) are the same for every group; both rates must match. Pros: the model is equally accurate for every group, and unlike demographic parity, a correct decision is required at the same rate. Cons: there is no notion of different priority between different kinds of errors, and if one group has fewer qualified applicants, fewer of them are admitted.",
+        "zh": "每个群体的真阳性率 TP/(TP+FN) 和假阳性率 FP/(FP+TN) 都相同，两个都要一样。优点：模型对每个群体同样准确；和人口统计均等不同，它要求正确的决定以相同比例出现。缺点：不区分不同错误的轻重；如果某组合格的人少，被录取的也少。"
+      },
+      "example": {
+        "zh": "例：两组都录取 90% 的合格者和 10% 的不合格者。卡片里 Model 1 和 Model 5 满足；Model 6 只有 TPR 相同，不满足。",
+        "en": "In both groups, a university admits 90% of qualified applicants and 10% of unqualified ones."
+      },
+      "slides": "5, 13",
+      "related": [
+        "recall",
+        "false-positive-rate",
+        "demographic-parity",
+        "predictive-parity"
+      ]
+    },
+    {
+      "id": "individual-fairness",
+      "en": "Individual fairness",
+      "zh": "个体公平",
+      "def": {
+        "en": "Similar individuals across different groups receive similar outcomes. Pros: similar people are treated similarly, whichever group they are in, and the decision follows the person, not only the group average. Cons: deciding which applicants count as similar can itself carry bias, and group admission rates can still come out unequal.",
+        "zh": "不同群体中相似的个人得到相似的结果。优点：相似的人得到相似对待，决定跟着个人走，不只看群体平均。缺点：判断谁算“相似”本身可能带偏见；各组录取率仍可能不相等。"
+      },
+      "example": {
+        "en": "Two applicants with similar grades and preparation get the same decision, in either group. The TP/FP/FN/TN grid does not determine it.",
+        "zh": "光看 TP/FP/FN/TN 计数表判断不了，要看模型怎么做决定。One shared cutoff for every applicant = High（Model 1、4、7）；A different cutoff for each group 或组内随机抽签 = Low（Model 2、5）。"
+      },
+      "slides": "5",
+      "related": [
+        "cutoff",
+        "demographic-parity"
+      ]
+    },
+    {
+      "id": "fairness-trade-offs",
+      "en": "Trade-offs in fairness",
+      "zh": "公平的取舍",
+      "def": {
+        "en": "Although we might like to optimize for all forms of fairness, they are often at odds with each other, and they typically come at some cost to overall accuracy. There is no single right answer to fairness: the model designers must choose what to prioritize and what costs are worth paying to best align with the needs of the model's stakeholders.",
+        "zh": "各种公平常常互相冲突，追求公平通常还要付出一些总体准确率的代价。公平没有唯一正确答案：模型设计者要决定优先什么、哪些代价值得付，以最符合利益相关者的需要。"
+      },
+      "example": {
+        "zh": "8 张卡片里没有一个模型同时满足三种群体公平；最准的 Model 4 录用率差距最大（+29.2 pp）。",
+        "en": "No model card meets all three group fairness definitions."
+      },
+      "slides": "6",
+      "related": [
+        "stakeholder",
+        "demographic-parity",
+        "predictive-parity",
+        "equalized-odds"
+      ]
+    },
+    {
+      "id": "stakeholder",
+      "en": "Stakeholder",
+      "zh": "利益相关者",
+      "def": {
+        "en": "A stakeholder is a person or group with an interest in the model; someone who will be affected by it.",
+        "zh": "和模型有利害关系、会被模型影响的人或群体。"
+      },
+      "example": {
+        "zh": "Lab 5 里的五种：hiring managers（招聘经理）、applicants（求职者）、equity office（公平事务办公室）、company counsel（公司法务）、team leads（团队主管）。",
+        "en": "Hiring managers, applicants, the equity office, company counsel and team leads."
+      },
+      "slides": "6",
+      "related": [
+        "fairness-trade-offs"
+      ]
+    },
+    {
+      "id": "model-card",
+      "en": "Model card",
+      "zh": "模型卡",
+      "def": {
+        "en": "In Lab 5, a short summary box for one model: the four counts for each group, a table of accuracy, hiring rate, precision, TPR and FPR for Group A, Group B, Overall and the gap, and an individual fairness rating.",
+        "zh": "Lab 5 里每个模型的一个总结框（讲义每页放 2-3 个）：每组四个计数、指标表（A 组、B 组、总体、差距）和个体公平等级。"
+      },
+      "example": {
+        "zh": "第 13 页说：“This is the table on the model card.”",
+        "en": "Slide 13: This is the table on the model card."
+      },
+      "slides": "8, 13",
+      "related": [
+        "percentage-point",
+        "individual-fairness",
+        "hiring-rate"
+      ]
+    },
+    {
+      "id": "percentage-point",
+      "en": "Percentage point (pp)",
+      "zh": "百分点",
+      "def": {
+        "en": "The unit for the difference between two percentages. On the model cards, Gap = Group A − Group B, in percentage points.",
+        "zh": "两个百分比直接相减得到的差，单位叫百分点。"
+      },
+      "example": {
+        "zh": "录用率 50.0% − 38.0% = +12.0 pp；负数表示 B 组更高。",
+        "en": "50.0% − 38.0% = +12.0 pp."
+      },
+      "slides": "13",
+      "related": [
+        "model-card",
+        "hiring-rate"
+      ]
+    },
+    {
+      "id": "cutoff",
+      "en": "Cutoff",
+      "zh": "分数线（门槛）",
+      "def": {
+        "en": "The line a score must reach for a 'Hire' decision. One shared cutoff for every applicant gives High individual fairness; a different cutoff for each group gives Low individual fairness.",
+        "zh": "达到这条线就录用（卡片没有给定义，这是一般含义）。所有人用一条线，个体公平高；每组一条不同的线，个体公平低。"
+      },
+      "example": {
+        "zh": "Model 1、4、7：One shared cutoff for every applicant；Model 2：A different cutoff for each group（模型卡讲义 lab05_model_cards 第 1-3 页，不是 lab05_fairness 的第 1-3 页）。",
+        "en": "Models 1, 4 and 7 use one shared cutoff; Model 2 uses a different cutoff for each group (model-card handout, pages 1-3)."
+      },
+      "slides": "1-3",
+      "related": [
+        "individual-fairness"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2008 @@
+{
+  "id": "lab05",
+  "kind": "lab",
+  "number": 5,
+  "title": {
+    "en": "Model Evaluation and Fairness (Hiring Model Cards)",
+    "zh": "模型评估与公平性（招聘模型卡）"
+  },
+  "sources": [
+    {
+      "file": "lab05_fairness.pdf",
+      "pages": 13
+    },
+    {
+      "file": "lab05_model_cards.pdf",
+      "pages": 4
+    }
+  ],
+  "estimatedMinutes": 60,
+  "oneLiner": {
+    "zh": "把一个招聘模型的结果按 A、B 两组分开算指标，判断它满足哪种公平，再站在五种利益相关者的角度给 8 个模型排名。你会发现，没有一个模型能让所有人都满意。",
+    "en": "You compute metrics for two groups of job applicants, check which fairness definitions each hiring model meets, and see that different stakeholders prefer different models."
+  },
+  "outcomes": [
+    {
+      "en": "Compute accuracy, hiring rate, precision, true positive rate and false positive rate for each group from the TP, FP, FN and TN counts.",
+      "zh": "会用每组的 TP、FP、FN、TN 算出准确率、录用率、精确率、真阳性率和假阳性率。"
+    },
+    {
+      "en": "Combine two groups by adding the counts first, then computing the percentages.",
+      "zh": "合并两组时，先把计数相加，再算百分比，不能直接平均百分比。"
+    },
+    {
+      "en": "Report each gap (Group A − Group B) in percentage points and use the gaps to check demographic parity, predictive parity and equalized odds.",
+      "zh": "会算差距（A 组 − B 组，单位百分点），并用差距判断人口统计均等、预测均等和均等几率。"
+    },
+    {
+      "en": "Read a model card and explain why individual fairness cannot be read from the counts.",
+      "zh": "会读模型卡，并解释为什么个体公平不能从计数表里算出来。"
+    },
+    {
+      "en": "Rank models by a stakeholder's primary and secondary priorities, and explain why there is no single right answer to fairness.",
+      "zh": "会按利益相关者的首要、次要关注点给模型排名，并解释为什么公平没有唯一正确答案。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-lab-goal",
+      "title": {
+        "zh": "这个 Lab 在练什么",
+        "en": "What this lab is for"
+      },
+      "slides": "1-2",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "Lab 5 的题目是模型评估与公平性（**Model Evaluation and Fairness**）。"
+        },
+        {
+          "type": "text",
+          "zh": "它把 Lecture 6（Model Evaluation and Algorithmic Fairness）里的两部分内容放在一起动手练：一是用 TP、FP、FN、TN 算指标，二是判断模型对不同群体公不公平。"
+        },
+        {
+          "type": "text",
+          "zh": "例子是一个招聘筛选模型（**hiring screen**）。它看每个求职者的材料，只给两种答案：**Hire**（录用）或 **No hire**（不录用）。"
+        },
+        {
+          "type": "text",
+          "zh": "讲义原话是 “Hire means the model says yes”。求职者分成 Group A 和 Group B 两组，每组 1,000 人。"
+        },
+        {
+          "type": "text",
+          "zh": "两组的“底子”不一样。A 组 1,000 人里有 500 人真正合格（**qualified**），B 组只有 300 人合格。讲义说，这两个数字对所有模型都不变。先记住这一点，后面会一次次看到它的影响。"
+        },
+        {
+          "type": "analogy",
+          "zh": "把这个 Lab 想成给一台“简历筛选机”做体检。体检报告就是模型卡（**model card**）：一张卡片告诉你这台机器判得准不准，对 A 组和 B 组是不是一视同仁。最后再请几类不同的人（经理、求职者、法务……）各自按最在乎的项目，给 8 台机器排名。",
+          "limit": "类比到这里为止：普通体检只看一个人，模型卡要同时比较两组人的数字。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "Lab 5 的三大步",
+            "en": "The three parts of Lab 5"
+          },
+          "items": [
+            {
+              "en": "Review: TP/FP/FN/TN metrics and four fairness definitions (slides 3-6)",
+              "zh": "复习：TP/FP/FN/TN 指标和四种公平定义（第 3-6 页）"
+            },
+            {
+              "en": "Compute Model 1 for Group A, Group B and Overall, then the gaps (slides 8-13)",
+              "zh": "动手算：Model 1 在 A 组、B 组、总体上的指标，再算差距（第 8-13 页）"
+            },
+            {
+              "en": "Read eight model cards and rank them for five stakeholder groups (model cards pages 1-4)",
+              "zh": "读 8 张模型卡，站在 5 种利益相关者的角度排名（模型卡讲义第 1-4 页）"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "Hiring screen",
+              "zh": "招聘筛选模型",
+              "hint": "看求职材料，输出 Hire（录用）或 No hire（不录用）的模型"
+            },
+            {
+              "en": "Qualified / Unqualified",
+              "zh": "合格 / 不合格",
+              "hint": "求职者的真实情况（actual），不是模型的预测"
+            },
+            {
+              "en": "Model card",
+              "zh": "模型卡",
+              "hint": "每个模型一张卡片：每组的四个计数、各项指标、差距和个体公平等级"
+            },
+            {
+              "en": "Stakeholder",
+              "zh": "利益相关者",
+              "hint": "对模型有利益、会被模型影响的人或群体"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：在 AI 行业里，model card 一般指跟模型一起发布的简短说明，写清模型的用途和它在不同人群上的表现。本 Lab 的卡片是简化版，只有计数、指标表和个体公平等级。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "Syllabus 说，每次 Lab 的二维码工作纸只在课上发，课后拿不到，所以这里没有工作纸原题。本页的“模型答案”是按讲义上印出来的指令整理的：写分数和百分比、算差距、给模型排名。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Exam sentences"
+          },
+          "items": [
+            {
+              "en": "Hire means the model says yes, so it is a positive prediction.",
+              "zh": "Hire 表示模型说 yes，也就是阳性（positive）预测。"
+            },
+            {
+              "en": "A model card shows each group's counts and metrics, so we can compare accuracy and fairness between groups.",
+              "zh": "模型卡列出每组的计数和指标，方便比较两组的准确率和公平性。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Lab 5, what does 'Hire' mean on a model card?",
+            "zh": "Lab 5 里，模型卡上的 “Hire” 是什么意思？"
+          },
+          "options": [
+            {
+              "en": "The applicant is qualified.",
+              "zh": "求职者合格。"
+            },
+            {
+              "en": "The model says yes.",
+              "zh": "模型说 yes。"
+            },
+            {
+              "en": "The applicant was hired in the past.",
+              "zh": "求职者以前被录用过。"
+            },
+            {
+              "en": "The applicant belongs to Group A.",
+              "zh": "求职者属于 A 组。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "讲义原话：Hire means the model says yes。Hire 是模型的预测。求职者真的合不合格，要看行标题 Qualified / Unqualified。所以“合格”说的是真实情况，不是 Hire 的意思。",
+            "en": "Hire is the model's prediction; Qualified describes the truth."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-steps",
+      "title": {
+        "zh": "你在 Lab 里做了什么（一步一步）",
+        "en": "What you did, step by step"
+      },
+      "slides": "3-13",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这个 Lab 有两份材料。13 页幻灯片（lab05_fairness）带你一步一步算 Model 1。"
+        },
+        {
+          "type": "text",
+          "zh": "4 页模型卡讲义（lab05_model_cards）给出 8 个模型的卡片和 5 种利益相关者（**stakeholder**）。下面按顺序走一遍。"
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "一步一步做了什么",
+            "en": "What you did, step by step"
+          },
+          "items": [
+            {
+              "zh": "第 3-4 页：复习四个格子 TP、FP、FN、TN，以及准确率（**accuracy**）、精确率（**precision**）、召回率（**recall**）的公式。",
+              "en": "Slides 3-4: review TP, FP, FN, TN and the formulas for accuracy, precision and recall."
+            },
+            {
+              "zh": "第 5 页：复习四种公平定义。第 6 页：各种公平互相冲突，要按利益相关者取舍。",
+              "en": "Slide 5: four fairness definitions. Slide 6: trade-offs and stakeholders."
+            },
+            {
+              "zh": "第 8 页：读 Model 1 的计数。A 组：TP 400、FN 100、FP 100、TN 400；B 组：TP 240、FN 60、FP 140、TN 560。",
+              "en": "Slide 8: read Model 1's counts for Group A and Group B."
+            },
+            {
+              "zh": "第 9-10 页：分别给 A 组、B 组算 5 个指标。讲义要求先写分数，再写百分比，保留一位小数。",
+              "en": "Slides 9-10: write the fraction, then the percentage to one decimal place."
+            },
+            {
+              "zh": "第 11 页：把两组的 TP、FP、FN、TN 分别相加，得到 Overall（总体）计数；N 也相加，变成 2,000。",
+              "en": "Slide 11: add the counts of both groups to get the Overall counts."
+            },
+            {
+              "zh": "第 12 页：用总体计数算总体指标，并检查：总体精确率不等于两组百分比的平均数。",
+              "en": "Slide 12: compute the Overall metrics and check precision against the average."
+            },
+            {
+              "zh": "第 13 页：算差距 Gap = A 组 − B 组，单位是百分点（**percentage points**，简写 **pp**）。这张表就是模型卡上的表。",
+              "en": "Slide 13: Gap = Group A − Group B, in percentage points. This is the table on the model card."
+            },
+            {
+              "zh": "模型卡讲义第 1-3 页：读 Model 1 到 Model 8 的卡片。",
+              "en": "Model cards pages 1-3: read the cards for Models 1 to 8."
+            },
+            {
+              "zh": "模型卡讲义第 4 页：5 种利益相关者各有首要和次要关注点，各自给 8 个模型排名。",
+              "en": "Model cards page 4: each stakeholder group ranks the eight models by its primary priority, then its secondary."
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "5 个指标、公式和它们用来比较什么（第 9 页）",
+            "en": "Five metrics and what they are compared by (slide 9)"
+          },
+          "headers": [
+            "Metric 指标",
+            "Formula 公式",
+            "Compared by 用来判断"
+          ],
+          "rows": [
+            [
+              "Accuracy 准确率",
+              "(TP + TN) / N",
+              "Overall accuracy 总体准确率"
+            ],
+            [
+              "Hiring rate 录用率",
+              "(TP + FP) / N",
+              "Demographic parity 人口统计均等"
+            ],
+            [
+              "Precision 精确率",
+              "TP / (TP + FP)",
+              "Predictive parity 预测均等"
+            ],
+            [
+              "True positive rate 真阳性率",
+              "TP / (TP + FN)",
+              "Equalized odds 均等几率"
+            ],
+            [
+              "False positive rate 假阳性率",
+              "FP / (FP + TN)",
+              "Equalized odds 均等几率"
+            ]
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "整个流程像老师做“分班成绩分析”。先给每个班单独算及格率（分组指标），再把两个班合起来算全年级（Overall），然后看两个班差多少（Gap）。最后校长、家长、学生各自按最在乎的东西给几种方案排名，排出来的第一名不一样。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Overall 不是把两组百分比取平均，而是先把计数相加，再算百分比（第 11-12 页）。平均数（**average**）= 把几个数加起来，再除以个数。例如 A、B 两组精确率的平均数是 (80.0% + 63.2%) / 2 = 71.6%，但总体精确率其实是 72.7%。"
+            },
+            {
+              "zh": "Gap 的方向固定是 A 组减 B 组：正数表示 A 组更高，负数表示 B 组更高。"
+            },
+            {
+              "zh": "个体公平（**individual fairness**）没法从计数表算出来，卡片直接写 High / Medium / Low。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "From the slides"
+          },
+          "items": [
+            {
+              "en": "The model card gives four counts for each group. Every percentage is computed from those counts.",
+              "zh": "模型卡给出每组的四个计数，每个百分比都由这些计数算出来。（第 8 页）"
+            },
+            {
+              "en": "The Overall column combines both groups. Add TP, FP, FN, and TN. Add N as well. The percentages come after this addition.",
+              "zh": "Overall 一栏把两组合起来：TP、FP、FN、TN 和 N 都相加，相加之后再算百分比。（第 11 页）"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "When you compute the Overall column for Model 1, what should you do first?",
+            "zh": "算 Model 1 的 Overall（总体）一栏时，第一步应该做什么？"
+          },
+          "options": [
+            {
+              "en": "Average the Group A and Group B percentages",
+              "zh": "把 A 组和 B 组的百分比取平均"
+            },
+            {
+              "en": "Add the TP, FP, FN and TN counts (and N) of both groups",
+              "zh": "把两组的 TP、FP、FN、TN（还有 N）分别相加"
+            },
+            {
+              "en": "Use only Group A's counts",
+              "zh": "只用 A 组的计数"
+            },
+            {
+              "en": "Subtract Group B's counts from Group A's counts",
+              "zh": "用 A 组的计数减去 B 组的计数"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "第 11 页：先把计数相加，相加之后才算百分比。取平均会出错：第 12 页里精确率的平均是 71.6%，正确答案是 72.7%。相减是算 Gap 用的，而且减的是百分比，不是计数。",
+            "en": "Add the counts first; the percentages come after the addition."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-hiring-grid",
+      "title": {
+        "zh": "招聘表格：四个格子在招聘里是什么意思",
+        "en": "The hiring grid: TP, FP, FN and TN in hiring"
+      },
+      "slides": "3-4, 8",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "是什么：模型对每个求职者做一个二选一的预测，录用或不录用。这种问题叫二分类（**binary classification**）。把“模型说什么”和“真实情况”配成对，就得到四种结果，也就是表里的四个格子。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像核酸检测：“阳性”就是机器说 yes。真阳性（**true positive**）是测出阳性，人也真的感染；假阳性（**false positive**）是测出阳性，其实没感染。招聘里，把“真的感染”换成“真的合格”，把“测出阳性”换成“模型说 Hire”。",
+          "limit": "核酸检测只看一个人测得对不对；这个 Lab 还要把 A、B 两组分开统计，再互相比较。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "From the slides"
+          },
+          "items": [
+            {
+              "en": "For binary (two-class) classification problems, we can assign names to each quadrant and define evaluation metrics in these terms.",
+              "zh": "对二分类问题，可以给四个格子起名字，再用它们定义评估指标。（第 3 页）"
+            },
+            {
+              "en": "TP: qualified, hired. FP: unqualified, hired. FN: qualified, not hired. TN: unqualified, not hired.",
+              "zh": "TP：合格，被录用；FP：不合格，被录用；FN：合格，没被录用；TN：不合格，没被录用。（第 8 页）"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开讲：两个字母分两步读。第二个字母看模型说什么：P（**positive**）是说 Hire，N（**negative**）是说 No hire。第一个字母看模型说得对不对：T（**true**）是对，F（**false**）是错。"
+        },
+        {
+          "type": "text",
+          "zh": "所以 FN 就是模型说 No hire 而且说错了，也就是其实合格却没被录用。FN 叫假阴性（**false negative**），TN 叫真阴性（**true negative**）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "Model 1 的计数（第 8 页）。注意：行是真实情况，列是模型预测",
+            "en": "Model 1 counts (slide 8). Rows = actual, columns = predicted"
+          },
+          "headers": [
+            "Group 组",
+            "Actual 真实",
+            "Hire 录用",
+            "No hire 不录用"
+          ],
+          "rows": [
+            [
+              "A (N = 1,000)",
+              "Qualified 合格 (500)",
+              "TP 400",
+              "FN 100"
+            ],
+            [
+              "A (N = 1,000)",
+              "Unqualified 不合格 (500)",
+              "FP 100",
+              "TN 400"
+            ],
+            [
+              "B (N = 1,000)",
+              "Qualified 合格 (300)",
+              "TP 240",
+              "FN 60"
+            ],
+            [
+              "B (N = 1,000)",
+              "Unqualified 不合格 (700)",
+              "FP 140",
+              "TN 560"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "从表里能直接算出三种人数",
+            "en": "Three totals you can get from the grid"
+          },
+          "items": [
+            {
+              "zh": "合格的人 = TP + FN（A 组 400 + 100 = 500，B 组 240 + 60 = 300）",
+              "en": "Qualified = TP + FN"
+            },
+            {
+              "zh": "不合格的人 = FP + TN（A 组 100 + 400 = 500，B 组 140 + 560 = 700）",
+              "en": "Unqualified = FP + TN"
+            },
+            {
+              "zh": "被录用的人 = TP + FP（A 组 400 + 100 = 500，B 组 240 + 140 = 380）",
+              "en": "Hires = TP + FP"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "后面的分母要么是这三个数之一，要么是总人数 N。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "表格方向会变！第 3 页（和 Lecture 6 一样）是行 = PREDICTED（预测）、列 = ACTUAL（真实），右上角是 FP、左下角是 FN。模型卡是行 = 真实（Qualified / Unqualified）、列 = 预测（Hire / No hire），右上角是 **FN**、左下角是 **FP**。先看行列标题，再读格子。",
+              "en": "On the model cards, rows are actual and columns are predicted, so FN is top-right and FP is bottom-left."
+            },
+            {
+              "zh": "Qualified（合格）是真实情况，Hire（录用）是模型预测。不要把“合格”和“被录用”混为一谈。"
+            },
+            {
+              "zh": "第 4 页的 Model 1 / Model 2（28、12、2、18 那组）是 Lecture 6 里出现过的旧例子，和后面招聘卡片上的 Model 1-8 不是同一批模型。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第 4 页复习：准确率一样，精确率和召回率不同",
+            "en": "Slide 4 review: same accuracy, different precision and recall"
+          },
+          "steps": [
+            {
+              "zh": "Model 1：TP 28、FP 12、FN 2、TN 18。准确率（**accuracy**）= (28 + 18) / 60 = 46/60 ≈ 77%。",
+              "en": "Model 1: Accuracy = 46/60 ≈ 77%."
+            },
+            {
+              "zh": "Model 1：精确率（**precision**）= 28 / (28 + 12) = 28/40 = 70%；召回率（**recall**）= 28 / (28 + 2) = 28/30 ≈ 93%。",
+              "en": "Precision = 28/40 = 70%; Recall = 28/30 ≈ 93%."
+            },
+            {
+              "zh": "Model 2：TP 18、FP 2、FN 12、TN 28。准确率 = 46/60 ≈ 77%；精确率 = 18/20 = 90%；召回率 = 18/30 = 60%。",
+              "en": "Model 2: Accuracy ≈ 77%; Precision = 18/20 = 90%; Recall = 18/30 = 60%."
+            },
+            {
+              "zh": "第 4 页的结论：这些值是给不同模型算的。只要有每个群体各自的 TP/FP/FN/TN，也可以在同一个模型下按群体分别算。这就是本 Lab 接下来做的事。",
+              "en": "We can also calculate metrics for different groups under the same model if we have TP/FP/FN/TN values for each group."
+            }
+          ],
+          "answer": {
+            "zh": "同样的公式，从“比较不同模型”换成“比较同一个模型下的不同群体”。",
+            "en": "Same formulas, applied to each group instead of each model."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "confusion-matrix",
+          "config": {
+            "presets": [
+              {
+                "name": {
+                  "zh": "第 4 页 Model 1",
+                  "en": "Slide 4 Model 1"
+                },
+                "tp": 28,
+                "fp": 12,
+                "fn": 2,
+                "tn": 18
+              },
+              {
+                "name": {
+                  "zh": "第 4 页 Model 2",
+                  "en": "Slide 4 Model 2"
+                },
+                "tp": 18,
+                "fp": 2,
+                "fn": 12,
+                "tn": 28
+              }
+            ]
+          },
+          "caption": {
+            "zh": "这个工具和第 3 页同方向（行 = 预测，列 = 真实）。切换两个预设：准确率不变，精确率和召回率却变了。",
+            "en": "Rows = predicted, columns = actual, like slide 3."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "第 3-4 页的标题写着 F1 Score，但这两页没有给 F1 公式，本 Lab 也不算 F1。F1 在 Lecture 6（Model Evaluation and Algorithmic Fairness）里：F1 = 2 × Precision × Recall / (Precision + Recall)。第 4 页这两个模型的 F1 分别是 80% 和 72%。"
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On a hiring model card, which cell counts applicants who are qualified but not hired?",
+            "zh": "在招聘模型卡上，哪个格子统计“合格但没被录用”的求职者？"
+          },
+          "options": [
+            {
+              "en": "TP",
+              "zh": "TP（真阳性）"
+            },
+            {
+              "en": "FP",
+              "zh": "FP（假阳性）"
+            },
+            {
+              "en": "FN",
+              "zh": "FN（假阴性）"
+            },
+            {
+              "en": "TN",
+              "zh": "TN（真阴性）"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "没被录用，说明模型说 No hire（N）；其实合格，说明模型说错了（F）。合起来就是 False Negative（FN）。FP 正好相反：不合格却被录用。模型卡上 FN 在右上角，别和第 3 页的位置搞混。",
+            "en": "Not hired is a negative prediction, and it is wrong because the applicant is qualified: a false negative."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-five-metrics",
+      "title": {
+        "zh": "五个指标怎么算：Model 1 的 A 组和 B 组",
+        "en": "Computing the five metrics for Model 1 (Group A and Group B)"
+      },
+      "slides": "8-10",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "是什么：比例（**rate**）就是“某一类人在某个范围里占多少”。计算方法：部分 ÷ 整体，得到一个小数，再 × 100% 变成百分比。讲义要求先写分数，再写百分比，保留一位小数（**one decimal place**）。"
+        },
+        {
+          "type": "text",
+          "zh": "手算示范：240/380 → 240 ÷ 380 = 0.63157… → × 100 = 63.157…% → 小数点后第二位是 5，第一位进一 → 63.2%。照讲义要求，分数和百分比都要写上。"
+        },
+        {
+          "type": "text",
+          "zh": "上面“第一位进一”这一步叫四舍五入（**rounding**）：看小数点后第二位，5 或以上就让第一位加 1，4 或以下就直接去掉。"
+        },
+        {
+          "type": "formula",
+          "expr": "Accuracy = (TP + TN) / N",
+          "zh": "准确率（**accuracy**）：这一组所有人里，模型判对的比例。判对的人 = 合格且录用（TP）+ 不合格且不录用（TN）。",
+          "where": [
+            {
+              "symbol": "N",
+              "zh": "这一组的总人数：N = TP + FP + FN + TN（每组 1,000）。所以 (TP + TN) / N 和第 3 页的 (TP + TN) / (TP + TN + FP + FN) 是同一个公式。",
+              "en": "number of applicants in the group: N = TP + FP + FN + TN"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "Hiring rate = (TP + FP) / N",
+          "zh": "录用率（**hiring rate**）：所有人里被模型说 Hire 的比例，不管合不合格。它用来判断人口统计均等（**demographic parity**）。"
+        },
+        {
+          "type": "formula",
+          "expr": "Precision = TP / (TP + FP)",
+          "zh": "精确率（**precision**）：被录用的人里，真正合格的比例。它用来判断预测均等（**predictive parity**）。"
+        },
+        {
+          "type": "formula",
+          "expr": "True positive rate (recall) = TP / (TP + FN)",
+          "zh": "真阳性率（**true positive rate**，简写 **TPR**，也叫召回率 **recall**）：合格的人里，被录用的比例。"
+        },
+        {
+          "type": "formula",
+          "expr": "False positive rate = FP / (FP + TN)",
+          "zh": "假阳性率（**false positive rate**，简写 **FPR**）：不合格的人里，被错误录用的比例。真阳性率和假阳性率要一起用来判断均等几率（**equalized odds**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "记分母的口诀：先问“在谁里面数？”精确率在“被录用的人”里数；真阳性率在“合格的人”里数；假阳性率在“不合格的人”里数；准确率和录用率在“所有人”里数。像点外卖：精确率是你点的菜里有几道好吃；真阳性率是所有好吃的菜里你点到了几道。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "A 组：TP 400、FP 100、FN 100、TN 400、N = 1,000（第 9 页）",
+            "en": "Group A: TP 400, FP 100, FN 100, TN 400, N = 1,000 (slide 9)"
+          },
+          "steps": [
+            {
+              "zh": "准确率 = (400 + 400) / 1,000 = 800/1,000 = 80.0%",
+              "en": "Accuracy = (400 + 400) / 1,000 = 800/1,000 = 80.0%"
+            },
+            {
+              "zh": "录用率 = (400 + 100) / 1,000 = 500/1,000 = 50.0%",
+              "en": "Hiring rate = (400 + 100) / 1,000 = 500/1,000 = 50.0%"
+            },
+            {
+              "zh": "精确率 = 400 / (400 + 100) = 400/500 = 80.0%",
+              "en": "Precision = 400 / (400 + 100) = 400/500 = 80.0%"
+            },
+            {
+              "zh": "真阳性率 = 400 / (400 + 100) = 400/500 = 80.0%",
+              "en": "True positive rate = 400 / (400 + 100) = 400/500 = 80.0%"
+            },
+            {
+              "zh": "假阳性率 = 100 / (100 + 400) = 100/500 = 20.0%",
+              "en": "False positive rate = 100 / (100 + 400) = 100/500 = 20.0%"
+            }
+          ],
+          "answer": {
+            "zh": "A 组：准确率 80.0%、录用率 50.0%、精确率 80.0%、TPR 80.0%、FPR 20.0%",
+            "en": "Group A: accuracy 80.0%, hiring rate 50.0%, precision 80.0%, TPR 80.0%, FPR 20.0%"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "B 组：TP 240、FP 140、FN 60、TN 560、N = 1,000（第 10 页）",
+            "en": "Group B: TP 240, FP 140, FN 60, TN 560, N = 1,000 (slide 10)"
+          },
+          "steps": [
+            {
+              "zh": "准确率 = (240 + 560) / 1,000 = 800/1,000 = 80.0%",
+              "en": "Accuracy = (240 + 560) / 1,000 = 800/1,000 = 80.0%"
+            },
+            {
+              "zh": "录用率 = (240 + 140) / 1,000 = 380/1,000 = 38.0%",
+              "en": "Hiring rate = (240 + 140) / 1,000 = 380/1,000 = 38.0%"
+            },
+            {
+              "zh": "精确率 = 240 / (240 + 140) = 240/380 = 63.2%",
+              "en": "Precision = 240 / (240 + 140) = 240/380 = 63.2%"
+            },
+            {
+              "zh": "真阳性率 = 240 / (240 + 60) = 240/300 = 80.0%",
+              "en": "True positive rate = 240 / (240 + 60) = 240/300 = 80.0%"
+            },
+            {
+              "zh": "假阳性率 = 140 / (140 + 560) = 140/700 = 20.0%",
+              "en": "False positive rate = 140 / (140 + 560) = 140/700 = 20.0%"
+            }
+          ],
+          "answer": {
+            "zh": "B 组：准确率 80.0%、录用率 38.0%、精确率 63.2%、TPR 80.0%、FPR 20.0%",
+            "en": "Group B: accuracy 80.0%, hiring rate 38.0%, precision 63.2%, TPR 80.0%, FPR 20.0%"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "A 组的精确率和真阳性率都是 400/500，但它们仍是两个不同的指标。只是因为 A 组正好有 500 个合格的人和 500 个被录用的人，分母碰巧一样（第 9 页）。",
+              "en": "Precision and true positive rate are both 400/500 here. They are still different metrics."
+            },
+            {
+              "zh": "B 组就不一样了：被录用 380 人，合格 300 人，所以精确率 240/380 = 63.2%，真阳性率 240/300 = 80.0%（第 10 页）。",
+              "en": "Precision and true positive rate now differ: 380 people were hired, and 300 applicants were qualified."
+            },
+            {
+              "zh": "假阳性率的分母是“不合格的人”（FP + TN），不是“被录用的人”。B 组是 140/700，不是 140/380。"
+            }
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "fairness-groups",
+          "config": {
+            "groups": [
+              {
+                "name": {
+                  "zh": "A 组",
+                  "en": "Group A"
+                },
+                "tp": 400,
+                "fp": 100,
+                "fn": 100,
+                "tn": 400
+              },
+              {
+                "name": {
+                  "zh": "B 组",
+                  "en": "Group B"
+                },
+                "tp": 240,
+                "fp": 140,
+                "fn": 60,
+                "tn": 560
+              }
+            ],
+            "tolerance": 0
+          },
+          "caption": {
+            "zh": "这是 Model 1 的计数（第 8 页）。核对工具算出的录用率、精确率、TPR、FPR 是否和第 9-10 页一样，再看哪种公平成立。工具里的 selection rate 就是讲义的 hiring rate（录用率）；考试写 hiring rate。工具的容差（**tolerance**）设为 0 pp：公平定义要求各组比例相同，所以差距都是 0.0 pp 才算成立，做题也这样判断。",
+            "en": "Model 1 counts from slide 8. Tolerance is set to 0 pp: the fairness definitions ask for the same rates in every group, so a definition holds only when its gaps are 0.0 pp. Use the same rule when you answer questions."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Exam sentences"
+          },
+          "items": [
+            {
+              "en": "Precision is the percentage of hired applicants who are qualified: TP / (TP + FP).",
+              "zh": "精确率 = 被录用的人中合格者的比例。"
+            },
+            {
+              "en": "The true positive rate is the percentage of qualified applicants who are hired: TP / (TP + FN).",
+              "zh": "真阳性率 = 合格的人中被录用者的比例。"
+            },
+            {
+              "en": "The false positive rate is the percentage of unqualified applicants who are hired: FP / (FP + TN).",
+              "zh": "假阳性率 = 不合格的人中被录用者的比例。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "For Group B of Model 1 (TP 240, FP 140, FN 60, TN 560), what is the precision?",
+            "zh": "Model 1 的 B 组（TP 240、FP 140、FN 60、TN 560）精确率是多少？"
+          },
+          "options": [
+            {
+              "en": "240/300 = 80.0%"
+            },
+            {
+              "en": "240/380 = 63.2%"
+            },
+            {
+              "en": "380/1,000 = 38.0%"
+            },
+            {
+              "en": "140/700 = 20.0%"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "精确率 = TP / (TP + FP) = 240 / (240 + 140) = 240/380 = 63.2%。240/300 是真阳性率（分母是合格的人）；380/1,000 是录用率；140/700 是假阳性率。",
+            "en": "Precision = TP / (TP + FP) = 240/380 = 63.2%."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-overall-and-gap",
+      "title": {
+        "zh": "Overall 与 Gap：先加计数，再算百分比",
+        "en": "Overall and Gap: add the counts first"
+      },
+      "slides": "11-13",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "是什么：总体（**Overall**）就是把 A、B 两组当成一个 2,000 人的大组来算。讲义的做法是先把 TP、FP、FN、TN 和 N 分别相加，然后再算百分比（第 11 页）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "Model 1 的总体计数（第 11 页）",
+            "en": "Overall counts for Model 1 (slide 11)"
+          },
+          "headers": [
+            "Count 计数",
+            "Group A",
+            "Group B",
+            "Add A + B",
+            "Overall"
+          ],
+          "rows": [
+            [
+              "TP",
+              "400",
+              "240",
+              "400 + 240",
+              "640"
+            ],
+            [
+              "FP",
+              "100",
+              "140",
+              "100 + 140",
+              "240"
+            ],
+            [
+              "FN",
+              "100",
+              "60",
+              "100 + 60",
+              "160"
+            ],
+            [
+              "TN",
+              "400",
+              "560",
+              "400 + 560",
+              "960"
+            ],
+            [
+              "N",
+              "1,000",
+              "1,000",
+              "1,000 + 1,000",
+              "2,000"
+            ],
+            [
+              "Hires 被录用 (TP + FP)",
+              "500",
+              "380",
+              "500 + 380",
+              "880"
+            ],
+            [
+              "Qualified 合格 (TP + FN)",
+              "500",
+              "300",
+              "500 + 300",
+              "800"
+            ],
+            [
+              "Unqualified 不合格 (FP + TN)",
+              "500",
+              "700",
+              "500 + 700",
+              "1,200"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "总体指标（第 12 页，N = 2,000）",
+            "en": "Overall metrics (slide 12, N = 2,000)"
+          },
+          "steps": [
+            {
+              "zh": "准确率 = (640 + 960) / 2,000 = 1,600/2,000 = 80.0%",
+              "en": "Accuracy = (640 + 960) / 2,000 = 1,600/2,000 = 80.0%"
+            },
+            {
+              "zh": "录用率 = (640 + 240) / 2,000 = 880/2,000 = 44.0%",
+              "en": "Hiring rate = (640 + 240) / 2,000 = 880/2,000 = 44.0%"
+            },
+            {
+              "zh": "精确率 = 640 / (640 + 240) = 640/880 = 72.7%",
+              "en": "Precision = 640 / (640 + 240) = 640/880 = 72.7%"
+            },
+            {
+              "zh": "真阳性率 = 640 / (640 + 160) = 640/800 = 80.0%",
+              "en": "True positive rate = 640 / (640 + 160) = 640/800 = 80.0%"
+            },
+            {
+              "zh": "假阳性率 = 240 / (240 + 960) = 240/1,200 = 20.0%",
+              "en": "False positive rate = 240 / (240 + 960) = 240/1,200 = 20.0%"
+            }
+          ],
+          "answer": {
+            "zh": "总体：准确率 80.0%、录用率 44.0%、精确率 72.7%、TPR 80.0%、FPR 20.0%",
+            "en": "Overall: accuracy 80.0%, hiring rate 44.0%, precision 72.7%, TPR 80.0%, FPR 20.0%"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "From the slides"
+          },
+          "items": [
+            {
+              "en": "Check precision against the average of the two percentages. Group A is 80.0% and Group B is 63.2%. Their average is 71.6%. The summed counts give 640/880 = 72.7%.",
+              "zh": "拿精确率和两个百分比的平均数比一比：A 组 80.0%，B 组 63.2%，平均是 71.6%；用相加后的计数算是 640/880 = 72.7%。（第 12 页）"
+            },
+            {
+              "en": "Hiring rate happens to match the average, because both groups have N = 1,000. Precision does not. Add the counts every time.",
+              "zh": "录用率碰巧等于平均数，因为两组的 N 都是 1,000；精确率就不行。每次都要把计数加起来。（第 12 页）"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "为什么不能直接平均？想象一班 50 人平均 80 分，二班 10 人平均 60 分。全年级平均分不是 (80 + 60) / 2 = 70，而是约 76.7，因为一班人多，分量更大。精确率也一样：A 组的 80.0% 来自 500 个被录用的人，B 组的 63.2% 只来自 380 个人。"
+        },
+        {
+          "type": "text",
+          "zh": "拆开讲：录用率的分母是 N，两组都是 1,000，一样大，所以 (50.0% + 38.0%) / 2 = 44.0% 碰巧是对的。"
+        },
+        {
+          "type": "text",
+          "zh": "精确率的分母是“被录用的人”，A 组 500、B 组 380，不一样大，所以平均数 71.6% 是错的，正确答案是 72.7%。"
+        },
+        {
+          "type": "text",
+          "zh": "差距（**Gap**）= A 组 − B 组，单位是百分点（**percentage points**，简写 **pp**）。例：录用率 50.0% − 38.0% = +12.0 pp。"
+        },
+        {
+          "type": "text",
+          "zh": "正号表示 A 组更高，负号表示 B 组更高，+0.0 pp 表示两组一样。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "Model 1 的模型卡表（第 13 页）",
+            "en": "The Model 1 model card table (slide 13)"
+          },
+          "headers": [
+            "Measure 指标",
+            "Group A",
+            "Group B",
+            "Overall",
+            "Gap (A − B)"
+          ],
+          "rows": [
+            [
+              "Accuracy 准确率",
+              "800/1,000 = 80.0%",
+              "800/1,000 = 80.0%",
+              "1,600/2,000 = 80.0%",
+              "+0.0 pp"
+            ],
+            [
+              "Hiring rate 录用率",
+              "500/1,000 = 50.0%",
+              "380/1,000 = 38.0%",
+              "880/2,000 = 44.0%",
+              "+12.0 pp"
+            ],
+            [
+              "Precision 精确率",
+              "400/500 = 80.0%",
+              "240/380 = 63.2%",
+              "640/880 = 72.7%",
+              "+16.8 pp"
+            ],
+            [
+              "True positive rate 真阳性率",
+              "400/500 = 80.0%",
+              "240/300 = 80.0%",
+              "640/800 = 80.0%",
+              "+0.0 pp"
+            ],
+            [
+              "False positive rate 假阳性率",
+              "100/500 = 20.0%",
+              "140/700 = 20.0%",
+              "240/1,200 = 20.0%",
+              "+0.0 pp"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：百分点和百分比不是一回事。从 38.0% 到 50.0% 是差 12.0 个百分点；如果说“高了 12%”，容易被理解成“38.0% 再乘 1.12”。所以模型卡用 pp 表示两个百分比直接相减的差。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "小提示：卡片上的 Gap 是用已经四舍五入到一位小数的百分比相减得到的。例如 Model 2 的精确率：90.0% − 56.3% = +33.7 pp。做题时照卡片上的百分比相减即可。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Overall：先加计数，再算百分比；不要平均两个百分比（精确率 71.6% 是错的，72.7% 才对）。"
+            },
+            {
+              "zh": "Gap 是减法（A − B），单位是 pp，不是除法。"
+            },
+            {
+              "zh": "Gap 的正负号只表示哪一组更高；判断公平时看它离 0 有多远。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Exam sentences"
+          },
+          "items": [
+            {
+              "en": "The gap is Group A minus Group B, in percentage points. A gap of +0.0 pp means both groups have the same rate.",
+              "zh": "Gap = A 组减 B 组，单位百分点；+0.0 pp 表示两组相同。"
+            },
+            {
+              "en": "To combine groups, add the counts first. Averaging the percentages gives the wrong precision.",
+              "zh": "合并两组要先加计数；直接平均百分比会算错精确率。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Group A's precision is 80.0% and Group B's is 63.2%. What is Model 1's Overall precision?",
+            "zh": "A 组精确率 80.0%，B 组 63.2%。Model 1 的总体精确率是多少？"
+          },
+          "options": [
+            {
+              "en": "71.6%, the average of the two percentages",
+              "zh": "71.6%，两个百分比的平均数"
+            },
+            {
+              "en": "72.7%, from the summed counts 640/880",
+              "zh": "72.7%，用相加后的计数 640/880"
+            },
+            {
+              "en": "80.0%, the higher of the two",
+              "zh": "80.0%，取较高的那个"
+            },
+            {
+              "en": "16.8%, the difference between the two",
+              "zh": "16.8%，两者之差"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "总体要用相加后的计数：640/880 = 72.7%。71.6% 是简单平均，第 12 页专门提醒它是错的，因为两组被录用的人数（500 和 380）不一样。16.8 是 Gap（单位 pp），不是总体精确率。",
+            "en": "Use the summed counts: 640/880 = 72.7%."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-fairness-on-cards",
+      "title": {
+        "zh": "读模型卡：四种公平哪种成立",
+        "en": "Reading the model cards: which fairness definitions hold"
+      },
+      "slides": "5, 13",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "去哪页找：这一节用到两份讲义。公平定义（第 5 页）和差距表（第 13 页）在 lab05_fairness 讲义；8 张卡片的计数和百分比在另一份 4 页的模型卡讲义（lab05_model_cards）第 1-3 页。上面标的页码是 lab05_fairness 的页码。",
+          "en": "Two handouts: the definitions (p.5) and the gap table (p.13) are in lab05_fairness; the eight cards are on pages 1-3 of the separate model-card handout (lab05_model_cards)."
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义（第 5 页）",
+            "en": "Course definitions (slide 5)"
+          },
+          "items": [
+            {
+              "en": "Demographic Parity: Outcomes are predicted at the same rates for every group.",
+              "zh": "人口统计均等：每个群体被预测为 yes（录用）的比例相同。例：大学录取 A 组 30%、B 组 30% 的申请人。"
+            },
+            {
+              "en": "Predictive Parity: Outcomes have the same predictive meaning (TP / (TP + FP)) for every group.",
+              "zh": "预测均等：同一个预测结果在每个群体里含义相同，也就是精确率相同。例：被录取的学生里，A 组和 B 组都有 80% 成功。"
+            },
+            {
+              "en": "Equalized Odds: True positive rate (TP / (TP + FN)) and false positive rate (FP / (FP + TN)) are the same for every group.",
+              "zh": "均等几率：每个群体的真阳性率和假阳性率都相同。例：两组都录取 90% 的合格者和 10% 的不合格者。"
+            },
+            {
+              "en": "Individual Fairness: Similar individuals across different groups receive similar outcomes.",
+              "zh": "个体公平：不同群体里相似的个人得到相似的结果。例：成绩和准备程度相近的两个申请人，不管在哪组，都得到同样的决定。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开讲：前三种是群体公平，都在比“两组的某个比例一样不一样”。"
+        },
+        {
+          "type": "text",
+          "zh": "人口统计均等（**demographic parity**）比录用率；预测均等（**predictive parity**）比精确率；均等几率（**equalized odds**）同时比真阳性率和假阳性率。"
+        },
+        {
+          "type": "text",
+          "zh": "个体公平（**individual fairness**）比的是“相似的个人”，不是两组的平均数。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "在模型卡上怎么查（讲义页脚和第 13 页）",
+            "en": "Where to look on the card (handout footer and slide 13)"
+          },
+          "headers": [
+            "Fairness 公平定义",
+            "Look at 看哪一行",
+            "Holds when 成立条件",
+            "Model 1"
+          ],
+          "rows": [
+            [
+              "Demographic parity 人口统计均等",
+              "Hiring rate 录用率",
+              "Gap = 0.0 pp",
+              "+12.0 pp: does not hold 不成立"
+            ],
+            [
+              "Predictive parity 预测均等",
+              "Precision 精确率",
+              "Gap = 0.0 pp",
+              "+16.8 pp: does not hold 不成立"
+            ],
+            [
+              "Equalized odds 均等几率",
+              "TPR and FPR together 两行一起看",
+              "Both gaps = 0.0 pp",
+              "+0.0 and +0.0 pp: holds 成立"
+            ],
+            [
+              "Individual fairness 个体公平",
+              "Rating on the card 卡片上的等级",
+              "Not from the grid 表格算不出",
+              "High: one shared cutoff"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "Model 1 的结论（第 13 页）：均等几率成立，人口统计均等（+12.0 pp）和预测均等（+16.8 pp）都不成立。"
+        },
+        {
+          "type": "text",
+          "zh": "TPR、FPR 一样，录用率为什么不一样？A 组：500 合格 × 80% + 500 不合格 × 20% = 400 + 100 = 500 人被录用；B 组：300 × 80% + 700 × 20% = 240 + 140 = 380 人。"
+        },
+        {
+          "type": "text",
+          "zh": "规则一样，但两组合格的人数不同，所以录用人数也不同。这正是 Lecture 6 第 42 页说的均等几率的缺点。"
+        },
+        {
+          "type": "text",
+          "zh": "个体公平：讲义页脚原话是 “Individual fairness asks whether similar applicants receive the same decision. The grid does not determine it.”"
+        },
+        {
+          "type": "text",
+          "zh": "意思是，光看 TP/FP/FN/TN 表格判断不了个体公平，要看模型“怎么做决定”。每张卡片都给了等级和理由（模型卡讲义第 1-3 页）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "8 张卡片上的个体公平等级和决策方式（模型卡讲义第 1-3 页）",
+            "en": "Individual fairness ratings on the eight cards (model cards pages 1-3)"
+          },
+          "headers": [
+            "Rating 等级",
+            "Models",
+            "How decisions are made 决策方式"
+          ],
+          "rows": [
+            [
+              "High 高",
+              "1, 4, 7",
+              "One shared cutoff for every applicant. 所有人同一条分数线"
+            ],
+            [
+              "Medium 中",
+              "3",
+              "Shared cutoff, with a few decisions adjusted by hand. 同一条线，少数决定被人工调整"
+            ],
+            [
+              "Medium 中",
+              "6",
+              "Borderline files go to a panel that does not always agree. 分数在线附近的申请交给评审小组决定，小组成员意见不一定一致"
+            ],
+            [
+              "Medium 中",
+              "8",
+              "Managers may override the model's recommendation. 经理可以推翻模型的建议"
+            ],
+            [
+              "Low 低",
+              "2",
+              "A different cutoff for each group. 每组一条不同的分数线"
+            ],
+            [
+              "Low 低",
+              "5",
+              "Inside each group, hires are a random draw. 组内随机抽签录用"
+            ]
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "分数线（**cutoff**）就像及格线。全校统一 60 分及格，个体公平就高：两个都考 65 分的人，结果一定一样。如果一班及格线 60、二班及格线 70（每组一条线），同样考 65 分，一班及格、二班不及格，个体公平就低。抽签决定就更不看个人表现了。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "8 张卡片的计数（模型卡讲义第 1-3 页）",
+            "en": "Counts on the eight model cards (model cards pages 1-3)"
+          },
+          "headers": [
+            "Model",
+            "Group A: TP / FP / FN / TN",
+            "Group B: TP / FP / FN / TN"
+          ],
+          "rows": [
+            [
+              "1",
+              "400 / 100 / 100 / 400",
+              "240 / 140 / 60 / 560"
+            ],
+            [
+              "2",
+              "360 / 40 / 140 / 460",
+              "225 / 175 / 75 / 525"
+            ],
+            [
+              "3",
+              "300 / 100 / 200 / 400",
+              "210 / 70 / 90 / 630"
+            ],
+            [
+              "4",
+              "480 / 20 / 20 / 480",
+              "180 / 28 / 120 / 672"
+            ],
+            [
+              "5",
+              "200 / 200 / 300 / 300",
+              "120 / 280 / 180 / 420"
+            ],
+            [
+              "6",
+              "400 / 50 / 100 / 450",
+              "240 / 350 / 60 / 350"
+            ],
+            [
+              "7",
+              "270 / 30 / 230 / 470",
+              "63 / 7 / 237 / 693"
+            ],
+            [
+              "8",
+              "320 / 80 / 180 / 420",
+              "180 / 140 / 120 / 560"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "注意：卡片上的格子一行是 TP、FN，一行是 FP、TN；这里按 TP / FP / FN / TN 的顺序写，和第 9-10 页一样。想练习就任选一个模型，用这些计数算 5 个指标和 Gap，再和下面的一览表核对。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "8 个模型一览（数字全部来自模型卡；Gap = A − B）",
+            "en": "All eight models at a glance (numbers from the model cards; Gap = A − B)"
+          },
+          "headers": [
+            "Model",
+            "Overall accuracy 总体准确率",
+            "Hiring-rate gap 录用率差距",
+            "Precision gap 精确率差距",
+            "TPR gap",
+            "FPR gap",
+            "Individual fairness 个体公平"
+          ],
+          "rows": [
+            [
+              "1",
+              "80.0%",
+              "+12.0 pp",
+              "+16.8 pp",
+              "+0.0 pp",
+              "+0.0 pp",
+              "High"
+            ],
+            [
+              "2",
+              "78.5%",
+              "+0.0 pp",
+              "+33.7 pp",
+              "-3.0 pp",
+              "-17.0 pp",
+              "Low"
+            ],
+            [
+              "3",
+              "77.0%",
+              "+12.0 pp",
+              "+0.0 pp",
+              "-10.0 pp",
+              "+10.0 pp",
+              "Medium"
+            ],
+            [
+              "4",
+              "90.6%",
+              "+29.2 pp",
+              "+9.5 pp",
+              "+36.0 pp",
+              "+0.0 pp",
+              "High"
+            ],
+            [
+              "5",
+              "52.0%",
+              "+0.0 pp",
+              "+20.0 pp",
+              "+0.0 pp",
+              "+0.0 pp",
+              "Low"
+            ],
+            [
+              "6",
+              "72.0%",
+              "-14.0 pp",
+              "+48.2 pp",
+              "+0.0 pp",
+              "-40.0 pp",
+              "Medium"
+            ],
+            [
+              "7",
+              "74.8%",
+              "+23.0 pp",
+              "+0.0 pp",
+              "+33.0 pp",
+              "+5.0 pp",
+              "High"
+            ],
+            [
+              "8",
+              "74.0%",
+              "+8.0 pp",
+              "+23.7 pp",
+              "+4.0 pp",
+              "-4.0 pp",
+              "Medium"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "从表里看出的规律",
+            "en": "Patterns in the table"
+          },
+          "items": [
+            {
+              "zh": "人口统计均等成立（录用率差距 +0.0 pp）：Model 2、Model 5。",
+              "en": "Demographic parity holds for Models 2 and 5."
+            },
+            {
+              "zh": "预测均等成立（精确率差距 +0.0 pp）：Model 3、Model 7。",
+              "en": "Predictive parity holds for Models 3 and 7."
+            },
+            {
+              "zh": "均等几率成立（TPR 和 FPR 差距都是 +0.0 pp）：Model 1、Model 5。",
+              "en": "Equalized odds holds for Models 1 and 5."
+            },
+            {
+              "zh": "没有一个模型同时满足三种群体公平。这正是第 6 页说的：各种公平经常互相冲突（at odds）。",
+              "en": "No model meets all three. The forms of fairness are often at odds with each other."
+            },
+            {
+              "zh": "最准的 Model 4（90.6%）录用率差距最大（+29.2 pp）；Model 5 满足两种公平，准确率却只有 52.0%。",
+              "en": "The most accurate model (Model 4) has the largest hiring-rate gap; Model 5 meets two definitions but is only 52.0% accurate."
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "均等几率要 TPR 和 FPR 两个差距都是 0。Model 6 的 TPR 差距是 +0.0 pp，但 FPR 差距是 -40.0 pp（B 组不合格的人有 50.0% 被录用），所以不成立。"
+            },
+            {
+              "zh": "满足公平指标不等于模型好。Model 5 在组内随机抽签，人口统计均等和均等几率都成立，但准确率只有 52.0%，个体公平是 Low。这正是 Lecture 6 说的人口统计均等的缺点：不看个人资格，一个组甚至可以被随机录取。"
+            },
+            {
+              "zh": "两组准确率一样也不等于公平。Model 8 两组准确率都是 74.0%，精确率却差 +23.7 pp。“准确率相等”不在第 5 页的四种公平定义里。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "Lecture 6 的缺点（Cons）在卡片上的例子（Lecture 6 第 40-43 页）",
+            "en": "Lecture 6 cons, seen on the cards (Lecture 6 pp. 40-43)"
+          },
+          "headers": [
+            "Fairness 公平定义",
+            "Lecture 6 con 课件原话",
+            "On the cards 卡片上的例子"
+          ],
+          "rows": [
+            [
+              "Demographic parity 人口统计均等",
+              "p40: It ignores individual qualifications: one group could be admitted at random. 不看个人资格，一个组甚至可以被随机录取",
+              "Model 5: hiring rates 40.0% / 40.0%, but hires are a random draw; accuracy 52.0%"
+            ],
+            [
+              "Predictive parity 预测均等",
+              "p41: Groups can still be admitted at very different rates. 两组的录取率仍可能差很多",
+              "Model 7: precision 90.0% / 90.0%, but hiring rates 30.0% / 7.0%"
+            ],
+            [
+              "Equalized odds 均等几率",
+              "p42: If one group has fewer qualified applicants, fewer of them are admitted. 合格的人少的组，被录取的人也少",
+              "Model 1: TPR 80.0% / 80.0% and FPR 20.0% / 20.0%, but 500 vs 380 hires (Group B has only 300 qualified)"
+            ],
+            [
+              "Individual fairness 个体公平",
+              "p43: Group admission rates can still come out unequal. 两组的录取率仍可能不相等",
+              "Models 1, 4, 7 are High, but hiring-rate gaps are +12.0, +29.2, +23.0 pp"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "Lecture 6 第 42 页把 “The model is equally accurate for every group.”（每个群体一样准）列为均等几率的优点（**Pros**），考试问优点时照课件原话写。Model 1 确实如此（两组都是 80.0%）。\n但做计算题时不要直接假设：Model 5 也满足均等几率，两组准确率却是 50.0% 和 54.0%，一定要从计数算。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "联系 Lecture 6 第 39 页（这是把定义用到卡片上的推论，Lab 讲义没有这样说）：Model 2 每组用一条不同的分数线，决策时明确考虑了群体身份，符合差别对待（**disparate treatment**）的定义。\nModel 1 对所有人用同一条线，不算差别对待；但 B 组录用率更低（38.0% vs 50.0%），和 Lecture 6 里“所有群体用同一个信用分要求”造成差别影响（**disparate impact**）的例子类似。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "联系 Lecture 6 第 39 页的 Discuss：“Can you think of a process that uses disparate treatment to try to minimize disparate impact?”\n可以用 Model 2 回答（这是我们的推论，Lab 讲义没这样说）：它每组用一条不同的分数线（差别对待），结果两组录用率都是 40.0%，这就是“用差别对待去减少差别影响”的一个例子。代价是它的个体公平是 Low。"
+        },
+        {
+          "type": "widget",
+          "name": "fairness-groups",
+          "config": {
+            "groups": [
+              {
+                "name": {
+                  "zh": "Model 5 A 组",
+                  "en": "Model 5 Group A"
+                },
+                "tp": 200,
+                "fp": 200,
+                "fn": 300,
+                "tn": 300
+              },
+              {
+                "name": {
+                  "zh": "Model 5 B 组",
+                  "en": "Model 5 Group B"
+                },
+                "tp": 120,
+                "fp": 280,
+                "fn": 180,
+                "tn": 420
+              }
+            ],
+            "tolerance": 0
+          },
+          "caption": {
+            "zh": "Model 5（组内随机抽签）：工具会显示人口统计均等和均等几率都成立，但精确率差 20.0 pp。对照上面的一览表，想想它的准确率为什么只有 52.0%。工具里的 selection rate 就是讲义的 hiring rate（录用率）；考试写 hiring rate。工具的容差（**tolerance**）设为 0 pp，和上面“在模型卡上怎么查”表里的“成立条件”一样：差距都是 0.0 pp 才算成立。",
+            "en": "Model 5: inside each group, hires are a random draw. Tolerance is set to 0 pp, as in the 'Holds when' column of the table above: a definition holds only when its gaps are 0.0 pp."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Model 6 has a true positive rate gap of +0.0 pp and a false positive rate gap of -40.0 pp. Does Model 6 satisfy equalized odds?",
+            "zh": "Model 6 的真阳性率差距是 +0.0 pp，假阳性率差距是 -40.0 pp。Model 6 满足均等几率吗？"
+          },
+          "options": [
+            {
+              "en": "Yes, because the TPR gap is +0.0 pp",
+              "zh": "满足，因为 TPR 差距是 +0.0 pp"
+            },
+            {
+              "en": "No, because equalized odds needs both the TPR gap and the FPR gap to be 0",
+              "zh": "不满足，因为均等几率要求 TPR 和 FPR 的差距都是 0"
+            },
+            {
+              "en": "Yes, because its overall accuracy is 72.0%",
+              "zh": "满足，因为它的总体准确率是 72.0%"
+            },
+            {
+              "en": "It cannot be decided from the model card",
+              "zh": "从模型卡上判断不了"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "均等几率要 TPR 和 FPR 两个都相同（讲义页脚：together, for equalized odds）。Model 6 的 FPR 是 A 组 10.0%、B 组 50.0%，差 -40.0 pp，所以不成立。准确率和均等几率无关；TPR、FPR 都能从卡片上读出来，所以能判断。",
+            "en": "Equalized odds needs both rates to match; the FPR gap is -40.0 pp."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Exam sentences"
+          },
+          "items": [
+            {
+              "en": "Model 1 satisfies equalized odds because its TPR and FPR gaps are both +0.0 pp, but it fails demographic parity (+12.0 pp) and predictive parity (+16.8 pp).",
+              "zh": "Model 1 满足均等几率（TPR、FPR 差距都是 0），但不满足人口统计均等和预测均等。"
+            },
+            {
+              "en": "Individual fairness cannot be read from the TP/FP/FN/TN grid. It depends on how decisions are made, for example one shared cutoff for every applicant.",
+              "zh": "个体公平不能从计数表读出，要看决策方式，比如是否对所有人用同一条分数线。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s07-stakeholder-ranking",
+      "title": {
+        "zh": "给 8 个模型排名：五种利益相关者（模型答案）",
+        "en": "Ranking the eight models for five stakeholder groups (model answers)"
+      },
+      "slides": "6",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "去哪页找：第 6 页（公平的取舍、利益相关者的定义）在 lab05_fairness 讲义；5 种利益相关者和他们的首要 / 次要关注点在模型卡讲义（lab05_model_cards）第 4 页；排名要用的 8 张卡片在模型卡讲义第 1-3 页。",
+          "en": "Page 6 (trade-offs, stakeholders) is in lab05_fairness; the five stakeholder groups are on page 4 of the model-card handout, and the eight cards are on its pages 1-3."
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（第 6 页）",
+            "en": "From the slides (slide 6)"
+          },
+          "items": [
+            {
+              "en": "Although we might like to optimize for all forms of fairness, they are often at odds with each other. (This was the case for the COMPAS example.) They also typically come at some cost to overall accuracy.",
+              "zh": "我们也许想同时满足所有公平，但它们经常互相冲突（COMPAS 例子就是这样，见 Lecture 6 第 37 页）；而且通常要牺牲一些总体准确率。（第 6 页）"
+            },
+            {
+              "en": "There is no single right answer to fairness. It is up to the model designers to choose what to prioritize and what costs are worth paying to best align with the needs of the model's stakeholders.",
+              "zh": "公平没有唯一正确答案。由模型设计者决定优先考虑什么、哪些代价值得付出，以最好地满足利益相关者的需求。"
+            },
+            {
+              "en": "A stakeholder is a person or group with an interest in the model; someone who will be affected by it.",
+              "zh": "利益相关者：对模型有利益的人或群体，也就是会受模型影响的人。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "任务（模型卡讲义第 4 页）：每个利益相关者（**stakeholder**）群体先按首要关注点（**primary priority**）给 8 个模型排名，再看次要关注点（**secondary priority**）。"
+        },
+        {
+          "type": "text",
+          "zh": "讲义还提醒：别的群体可能会把同样的模型排得不一样。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像宿舍几个人聚餐选餐厅。一个人最在乎价格，其次口味；另一个人最在乎离得近，其次环境。同样 8 家餐厅，每个人排出来的第一名可能不一样。下面的答案是这样比的：先比最在乎的，打平了再比第二在乎的。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "五种利益相关者的关注点（模型卡讲义第 4 页）",
+            "en": "Stakeholder priorities (model cards page 4)"
+          },
+          "headers": [
+            "Stakeholder 利益相关者",
+            "Primary 首要",
+            "Secondary 次要",
+            "Why 原因"
+          ],
+          "rows": [
+            [
+              "Hiring managers 招聘经理",
+              "Overall accuracy 总体准确率",
+              "Predictive parity 预测均等",
+              "要招到能干活的人，希望模型尽量判对；“录用”在两组的成功机会应差不多"
+            ],
+            [
+              "Applicants 求职者",
+              "Individual fairness 个体公平",
+              "Demographic parity 人口统计均等",
+              "资格相同的两个人应得到相同决定；希望本组录用率接近另一组"
+            ],
+            [
+              "Equity office 公平事务办公室",
+              "Demographic parity 人口统计均等",
+              "Equalized odds 均等几率",
+              "要为录用率差距负责（外界最先看到的比较）；也希望两组合格者录用率、不合格者误录率相同"
+            ],
+            [
+              "Company counsel 公司法务",
+              "Equalized odds 均等几率",
+              "Individual fairness 个体公平",
+              "要为错误率辩护；也希望用一条共同规则，让相似的人得到相同决定"
+            ],
+            [
+              "Team leads 团队主管",
+              "Predictive parity 预测均等",
+              "Overall accuracy 总体准确率",
+              "和被录用的人共事，希望 yes 在两组代表同样的合格机会；也希望足够准确"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "怎么排（下面的答案用这套规则）",
+            "en": "How the model answers rank (the rules used below)"
+          },
+          "items": [
+            {
+              "zh": "先比首要关注点；只有打平时，才看次要关注点。",
+              "en": "Compare the primary priority first; use the secondary priority only to break a tie."
+            },
+            {
+              "zh": "准确率看 Overall 一列，越高越好。",
+              "en": "Accuracy: use the Overall column; higher is better."
+            },
+            {
+              "zh": "三种群体公平看对应的 Gap，按离 0 的远近比，不看正负号。",
+              "en": "Group fairness: use the matching gap; closer to 0 is better, whatever its sign."
+            },
+            {
+              "zh": "个体公平按 High > Medium > Low。",
+              "en": "Individual fairness: High > Medium > Low."
+            },
+            {
+              "zh": "均等几率要同时看 TPR 和 FPR 两个差距，这里用“两个差距里较大的那个”来比。",
+              "en": "Equalized odds: look at both the TPR gap and the FPR gap, and compare the larger of the two."
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：讲义没细说次要关注点怎么用，下面的答案理解为“首要关注点打平时才用次要关注点”。讲义也没规定均等几率怎么合并 TPR 和 FPR 两个差距，也没说 Gap 的正负号要不要考虑；这里按大小比，并取两个差距中较大的那个。\n如果改用两个差距之和，公司法务的排名里第 1-5 名不变，只有 Model 4 和 Model 7 互换；公平事务办公室的排名不变。遇到类似题时，写清楚你用的规则。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Hiring managers rank the models by overall accuracy first and predictive parity second. Rank the eight models and name their first choice.",
+            "zh": "招聘经理先看总体准确率，再看预测均等。请给 8 个模型排名，并说出首选。"
+          },
+          "answer": {
+            "en": "By overall accuracy the order is Model 4 (90.6%), 1 (80.0%), 2 (78.5%), 3 (77.0%), 7 (74.8%), 8 (74.0%), 6 (72.0%) and 5 (52.0%). There are no exact ties, so the secondary priority does not change this order. Their first choice is Model 4, which also has a fairly small precision gap (+9.5 pp).",
+            "zh": "按 Overall 准确率从高到低排，没有完全相同的准确率，所以次要关注点不改变这个顺序。首选 Model 4：最准，而且精确率差距 +9.5 pp 在 8 个模型里排第三小，次要关注点上也不错。Model 5 准确率只有 52.0%，排最后。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Applicants rank the models by individual fairness first and demographic parity second. Rank the eight models and name their first choice.",
+            "zh": "求职者先看个体公平，再看人口统计均等。请给 8 个模型排名，并说出首选。"
+          },
+          "answer": {
+            "en": "First sort by individual fairness: High (Models 1, 4, 7), then Medium (3, 6, 8), then Low (2, 5). Inside each level, a smaller hiring-rate gap (ignoring the sign) is better: 1 (+12.0 pp), 7 (+23.0), 4 (+29.2), then 8 (+8.0), 3 (+12.0), 6 (-14.0), then 2 and 5 (both +0.0, tied). Their first choice is Model 1.",
+            "zh": "先分三档：High > Medium > Low；同一档里再比录用率差距，离 0 越近越好。注意：Model 2 和 Model 5 的录用率差距是 0，但它们在 Low 档，次要关注点只在同一档里比，所以它们还是排最后。首选 Model 1。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "The equity office ranks the models by demographic parity first and equalized odds second. Rank the eight models and name its first choice.",
+            "zh": "公平事务办公室先看人口统计均等，再看均等几率。请给 8 个模型排名，并说出首选。"
+          },
+          "answer": {
+            "en": "Rank by the size of the hiring-rate gap: Models 2 and 5 (0.0 pp), 8 (8.0), 1 and 3 (12.0), 6 (14.0), 7 (23.0) and 4 (29.2). Ties are broken by equalized odds: Model 5 (TPR and FPR gaps +0.0 pp) beats Model 2 (TPR gap -3.0 pp, FPR gap -17.0 pp), and Model 1 (+0.0 and +0.0 pp) beats Model 3 (-10.0 and +10.0 pp). The order is 5, 2, 8, 1, 3, 6, 7, 4, so the first choice is Model 5, even though it is only 52.0% accurate.",
+            "zh": "先比录用率差距的大小（Model 6 是 -14.0 pp，大小按 14.0 算），打平了再看均等几率。首选 Model 5，但它在组内随机抽签，准确率只有 52.0%。这说明只盯一种公平，可能付出很大的准确率代价。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Company counsel ranks the models by equalized odds first and individual fairness second. Rank the eight models and name its first choice.",
+            "zh": "公司法务先看均等几率，再看个体公平。请给 8 个模型排名，并说出首选。"
+          },
+          "answer": {
+            "en": "Models 1 and 5 both have TPR and FPR gaps of +0.0 pp. The tie is broken by individual fairness: Model 1 is High and Model 5 is Low, so Model 1 comes first. The rest are ordered by the size of their larger gap, ignoring the sign: 8 (4.0), 3 (10.0), 2 (17.0), 7 (33.0), 4 (36.0) and 6 (40.0). The order is 1, 5, 8, 3, 2, 7, 4, 6.",
+            "zh": "均等几率要同时看 TPR 和 FPR 两个差距，这里用两者中较大的那个来比。Model 1 和 Model 5 都是 0，用次要关注点（个体公平）打破平局：High 胜过 Low，首选 Model 1。Model 6 虽然 TPR 差距是 0，但 FPR 差距 -40.0 pp，排最后。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Team leads rank the models by predictive parity first and overall accuracy second. Rank the eight models and name their first choice.",
+            "zh": "团队主管先看预测均等，再看总体准确率。请给 8 个模型排名，并说出首选。"
+          },
+          "answer": {
+            "en": "Rank by the size of the precision gap: Models 3 and 7 (0.0 pp), then 4 (9.5), 1 (16.8), 5 (20.0), 8 (23.7), 2 (33.7) and 6 (48.2). The tie between Models 3 and 7 is broken by overall accuracy: 77.0% beats 74.8%. The order is 3, 7, 4, 1, 5, 8, 2, 6, so the first choice is Model 3.",
+            "zh": "首要关注点打平（Model 3 和 Model 7 的精确率差距都是 0.0 pp），就用次要关注点总体准确率来分：77.0% > 74.8%，所以 Model 3 第一。"
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "汇总：每个群体的第一名",
+            "en": "Summary: each group's first choice"
+          },
+          "headers": [
+            "Stakeholder 利益相关者",
+            "First choice 首选",
+            "Why 原因"
+          ],
+          "rows": [
+            [
+              "Hiring managers 招聘经理",
+              "Model 4",
+              "Highest overall accuracy (90.6%) 总体准确率最高"
+            ],
+            [
+              "Applicants 求职者",
+              "Model 1",
+              "High individual fairness, smallest hiring-rate gap in that level (+12.0 pp) 个体公平 High 档里录用率差距最小"
+            ],
+            [
+              "Equity office 公平事务办公室",
+              "Model 5",
+              "Hiring-rate gap +0.0 pp, and TPR and FPR gaps +0.0 pp 录用率差距为 0，TPR、FPR 差距也为 0"
+            ],
+            [
+              "Company counsel 公司法务",
+              "Model 1",
+              "TPR and FPR gaps +0.0 pp, High individual fairness 均等几率成立，个体公平 High"
+            ],
+            [
+              "Team leads 团队主管",
+              "Model 3",
+              "Precision gap +0.0 pp, more accurate than Model 7 精确率差距为 0，而且比 Model 7 准"
+            ]
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Different stakeholder groups chose different first models (4, 1, 5, 1 and 3). Why? What does this show about fairness?",
+            "zh": "五个群体的首选不一样（4、1、5、1、3）。为什么？这说明公平有什么特点？"
+          },
+          "answer": {
+            "en": "Each group cares about a different measure, and the measures conflict: no model meets demographic parity, predictive parity and equalized odds at the same time, partly because the groups have different percentages of qualified applicants (50% vs 30%). Fairness also costs accuracy: Model 5 meets two fairness definitions but is only 52.0% accurate, while the most accurate model, Model 4, has the largest hiring-rate gap. So there is no single right answer to fairness. The model designers must choose what to prioritize and which costs are worth paying for their stakeholders.",
+            "zh": "评分点：① 各群体看重的指标不同；② 这些公平定义互相冲突，8 个模型没有一个同时满足三种群体公平；③ 追求公平常常牺牲准确率（Model 5 和 Model 4 的对比）；④ 结论用第 6 页原话：没有唯一正确答案，由设计者按利益相关者的需求取舍。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Team leads rank models by predictive parity first and overall accuracy second. Models 3 and 7 both have a precision gap of +0.0 pp. Which model do team leads rank first?",
+            "zh": "团队主管先看预测均等，再看总体准确率。Model 3 和 Model 7 的精确率差距都是 +0.0 pp。团队主管把哪个模型排第一？"
+          },
+          "options": [
+            {
+              "en": "Model 3, because its overall accuracy (77.0%) is higher than Model 7's (74.8%)",
+              "zh": "Model 3，因为它的总体准确率（77.0%）高于 Model 7（74.8%）"
+            },
+            {
+              "en": "Model 7, because its individual fairness is High",
+              "zh": "Model 7，因为它的个体公平是 High"
+            },
+            {
+              "en": "Model 4, because it has the highest overall accuracy",
+              "zh": "Model 4，因为它的总体准确率最高"
+            },
+            {
+              "en": "Model 5, because its hiring-rate gap is +0.0 pp",
+              "zh": "Model 5，因为它的录用率差距是 +0.0 pp"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "首要关注点（预测均等）打平，就看次要关注点（总体准确率）：77.0% > 74.8%，所以 Model 3 第一。个体公平不是团队主管的关注点；Model 4 的精确率差距是 +9.5 pp，在首要关注点上就输了；录用率差距对应人口统计均等，也不是团队主管看的。",
+            "en": "The primary priority is tied, so the secondary (overall accuracy) decides: Model 3."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-exam-takeaways",
+      "title": {
+        "zh": "考试要点：这个 Lab 带走什么",
+        "en": "Takeaways for the exam"
+      },
+      "slides": "5-6, 13",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "必记 6 条",
+            "en": "Six things to remember"
+          },
+          "items": [
+            {
+              "zh": "所有百分比都从四个计数（TP、FP、FN、TN）算出来；先写分数，再写百分比。",
+              "en": "Every percentage comes from the four counts. Write the fraction, then the percentage."
+            },
+            {
+              "zh": "公式要会：录用率 (TP + FP) / N；精确率 TP / (TP + FP)；真阳性率 TP / (TP + FN)；假阳性率 FP / (FP + TN)；准确率 (TP + TN) / N。",
+              "en": "Know the five formulas."
+            },
+            {
+              "zh": "合并两组：先加计数，再算百分比，不要平均百分比。",
+              "en": "Add the counts before computing Overall percentages."
+            },
+            {
+              "zh": "Gap = A − B，单位 pp；+0.0 pp 才算两组相同。",
+              "en": "Gap = Group A − Group B, in percentage points."
+            },
+            {
+              "zh": "人口统计均等看录用率，预测均等看精确率，均等几率看 TPR 和 FPR 两个，个体公平看决策方式（表格算不出）。",
+              "en": "Demographic parity: hiring rate. Predictive parity: precision. Equalized odds: TPR and FPR. Individual fairness: not from the grid."
+            },
+            {
+              "zh": "各种公平互相冲突，也常常牺牲准确率；没有唯一正确答案，要看利益相关者。",
+              "en": "Fairness definitions conflict and cost accuracy; there is no single right answer."
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Exam sentences"
+          },
+          "items": [
+            {
+              "en": "Different forms of fairness are often at odds with each other, and they typically come at some cost to overall accuracy.",
+              "zh": "不同的公平经常互相冲突，而且通常要牺牲一些总体准确率。（第 6 页）"
+            },
+            {
+              "en": "Demographic parity compares hiring rates, predictive parity compares precision, and equalized odds compares both the true positive rate and the false positive rate.",
+              "zh": "三种群体公平分别比较录用率、精确率，以及 TPR 和 FPR。"
+            },
+            {
+              "en": "A model can satisfy one fairness definition and fail another. For example, Model 1 satisfies equalized odds but has a hiring-rate gap of +12.0 pp.",
+              "zh": "一个模型可能满足一种公平，却违反另一种。"
+            },
+            {
+              "en": "Satisfying a fairness metric does not make a model good. Model 5 hires at random inside each group and is only 52.0% accurate.",
+              "zh": "满足公平指标不代表模型好。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "以为模型卡的表格方向和 Lecture 6 一样。模型卡是行 = 真实、列 = 预测，右上角是 FN。"
+            },
+            {
+              "zh": "把精确率（被录用的人里有多少合格）和真阳性率（合格的人里有多少被录用）弄反。"
+            },
+            {
+              "zh": "只看 TPR 就说均等几率成立。还要看 FPR。"
+            },
+            {
+              "zh": "以为两组准确率相同就是公平。Model 8 两组准确率都是 74.0%，精确率却差 +23.7 pp。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "A company must pick one hiring model. Using the model cards, explain why the hiring managers and the equity office would disagree, and what the company should do.",
+            "zh": "公司必须选一个招聘模型。用模型卡解释为什么招聘经理和公平事务办公室会意见不同，公司应该怎么做。"
+          },
+          "answer": {
+            "en": "Hiring managers care most about overall accuracy, so they prefer Model 4 (90.6%). The equity office cares most about demographic parity, so it prefers Model 5, whose hiring-rate gap is 0.0 pp. But Model 4 has the largest hiring-rate gap (+29.2 pp), and Model 5 is only 52.0% accurate because it hires at random inside each group. This shows that fairness and accuracy are often at odds. There is no single right answer, so the company should decide which priorities and costs best match the needs of its stakeholders, and explain that choice.",
+            "zh": "评分点：① 写出两方的首要关注点（准确率 vs 人口统计均等）；② 引用卡片数字（90.6%、+29.2 pp、0.0 pp、52.0%）；③ 说明公平和准确率之间的取舍；④ 结论：没有唯一正确答案，由设计者按利益相关者的需求选择。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement about the eight hiring model cards is TRUE?",
+            "zh": "关于 8 张招聘模型卡，哪一项是正确的？"
+          },
+          "options": [
+            {
+              "en": "Model 4 is the most accurate and also has the smallest hiring-rate gap.",
+              "zh": "Model 4 最准，录用率差距也最小。"
+            },
+            {
+              "en": "No model satisfies demographic parity, predictive parity and equalized odds at the same time.",
+              "zh": "没有一个模型同时满足人口统计均等、预测均等和均等几率。"
+            },
+            {
+              "en": "Every model with High individual fairness has a hiring-rate gap of +0.0 pp.",
+              "zh": "个体公平是 High 的模型，录用率差距都是 +0.0 pp。"
+            },
+            {
+              "en": "Equal accuracy in both groups means the model satisfies predictive parity.",
+              "zh": "两组准确率相等，就说明模型满足预测均等。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "人口统计均等成立的是 Model 2、5；预测均等成立的是 Model 3、7；均等几率成立的是 Model 1、5。没有一个模型三个都满足。Model 4 最准，但录用率差距最大（+29.2 pp）；个体公平 High 的 Model 1、4、7，录用率差距是 +12.0、+29.2、+23.0 pp，都不是 0（这就是 Lecture 6 第 43 页说的个体公平的缺点）；Model 8 两组准确率相同，精确率却差 +23.7 pp。",
+            "en": "No card meets all three group fairness definitions."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "复习建议：从“读模型卡”一节的计数表里任选一个模型，自己算一遍 5 个指标和 Gap，再和 8 个模型一览表里的 Gap 和总体准确率核对。算熟了，计算题和长答题里的数字就都不怕了。"
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "In Lab 5 we evaluated a hiring screen model separately for Group A and Group B, using the TP, FP, FN and TN counts.",
+      "zh": "Lab 5 用 TP、FP、FN、TN 计数，把招聘筛选模型在 A 组和 B 组上分开评估。"
+    },
+    {
+      "en": "Hiring rate is compared for demographic parity, precision for predictive parity, and the true and false positive rates together for equalized odds.",
+      "zh": "录用率对应人口统计均等，精确率对应预测均等，真阳性率和假阳性率一起对应均等几率。"
+    },
+    {
+      "en": "Overall values come from the summed counts: Model 1's overall precision is 640/880 = 72.7%, not the 71.6% average.",
+      "zh": "总体数值用相加后的计数算：Model 1 总体精确率是 640/880 = 72.7%，不是平均数 71.6%。"
+    },
+    {
+      "en": "Gap = Group A − Group B in percentage points; a group fairness definition holds when its gap is 0.0 pp.",
+      "zh": "Gap = A 组 − B 组（百分点）；差距为 0.0 pp 时，对应的群体公平成立。"
+    },
+    {
+      "en": "Individual fairness asks whether similar applicants receive the same decision, and the grid does not determine it.",
+      "zh": "个体公平问的是相似的求职者是否得到相同决定，计数表决定不了它。"
+    },
+    {
+      "en": "No model met every fairness definition, and different stakeholders chose different models, so there is no single right answer to fairness.",
+      "zh": "没有一个模型满足所有公平定义，不同利益相关者选了不同模型，所以公平没有唯一正确答案。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Compute the hiring rate, precision, TPR and FPR of one group from its four counts.",
+      "zh": "可能考计算：从四个计数算一组的录用率、精确率、TPR、FPR。",
+      "sectionId": "s04-five-metrics"
+    },
+    {
+      "en": "Read the hiring grid correctly: rows are actual (qualified or not), columns are predicted (hire or not).",
+      "zh": "读对表格方向，别把 FN 和 FP 搞反。",
+      "sectionId": "s03-hiring-grid"
+    },
+    {
+      "en": "Combine groups by adding counts, and explain why averaging percentages gives the wrong precision.",
+      "zh": "合并两组先加计数；能解释为什么精确率不能取平均。",
+      "sectionId": "s05-overall-and-gap"
+    },
+    {
+      "en": "Decide from the gaps which fairness definitions a model satisfies, and explain why individual fairness needs more than the grid.",
+      "zh": "根据差距判断满足哪种公平；解释为什么个体公平从表格看不出来。",
+      "sectionId": "s06-fairness-on-cards"
+    },
+    {
+      "en": "Rank models for a stakeholder group and explain the trade-offs: there is no single right answer.",
+      "zh": "适合长答题：按利益相关者排名，并解释其中的取舍。",
+      "sectionId": "s07-stakeholder-ranking"
+    }
+  ]
+}

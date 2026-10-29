@@ -1,0 +1,324 @@
+{
+  "lessonId": "lab01",
+  "terms": [
+    {
+      "id": "symbolic-ai",
+      "en": "Symbolic AI",
+      "zh": "符号 AI",
+      "def": {
+        "en": "A sub-field of Artificial Intelligence in which problem solutions are found by encoding knowledge as symbols and then reasoning with those symbols. It is characterized by problems that have well-defined rules, reasoning that follows rules of logic, solutions that are provably correct when they are found, and generally high explainability.",
+        "zh": "AI 的一个子领域：先把知识写成符号和规则，再按逻辑一步步推理，找出问题的解。四个特点：规则明确、按逻辑推理、找到的解能被证明是对的、可解释性通常高。符号 AI 要靠规则才能工作；机器学习要靠数据。"
+      },
+      "example": {
+        "en": "Finding the best move in a puzzle or game.",
+        "zh": "在谜题或游戏里找最佳走法；排日程让任务互不重叠（Lecture 3 第 6 页的例子）。弱点：大问题可能算不完；有些知识很难写成符号（比如认出照片里的狗）。"
+      },
+      "slides": "3-5",
+      "related": [
+        "machine-learning",
+        "explainability",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "en": "Machine Learning (ML)",
+      "zh": "机器学习",
+      "def": {
+        "en": "'Machine Learning (ML) is a separate sub-field of Artificial Intelligence in which problem solutions are found by automatically inferring patterns from data.' It is characterized by problems where data can be acquired, distinct phases of training a model (learning from data) and inference (using the trained model to solve a problem), and generally fast inference time (though training can take a long time). Symbolic AI needs rules to work, while Machine Learning needs data.",
+        "zh": "AI 里另一个独立的子领域：不靠人写规则，而是给电脑很多例子（数据），让它自动找出规律。特点：问题能拿到数据；分训练（从数据中学习）和推理（用训练好的模型解决问题）两个阶段；推理通常很快，训练可能很久。符号 AI 要规则，机器学习要数据。"
+      },
+      "example": {
+        "en": "Learning to detect dogs from a set of photos with dogs and a set without dogs.",
+        "zh": "用一组有狗的照片和一组没狗的照片训练模型，再判断新照片里有没有狗。弱点：只适用于训练过的问题、会继承数据偏见、解只是大概率对、可解释性低。"
+      },
+      "slides": "6-7",
+      "related": [
+        "data",
+        "training",
+        "inference",
+        "symbolic-ai",
+        "large-language-model"
+      ]
+    },
+    {
+      "id": "data",
+      "en": "Data",
+      "zh": "数据",
+      "def": {
+        "en": "'Data are examples to learn from (e.g. a set of photos with dogs and a set without dogs).' In Machine Learning, data is the collection of examples from which patterns are learned, and the form of data depends on what is being learned.",
+        "zh": "机器学习用来学习的例子，也就是让电脑从中学规律的一组例子。要学的东西不同，需要的数据样子也不同。注意：训练好的模型会继承数据里的偏见（bias）。"
+      },
+      "slides": "6",
+      "related": [
+        "machine-learning",
+        "labelled-data",
+        "bias"
+      ]
+    },
+    {
+      "id": "training",
+      "en": "Training (learning)",
+      "zh": "训练（学习）",
+      "def": {
+        "en": "The phase of Machine Learning in which a model learns from data ('training a model (learning from data)'). In Supervised Learning, the model learns from a labelled training dataset: it's the machine's job to find the best parameter values (weights), and that's what it does during training. Training can take a long time.",
+        "zh": "机器学习的训练阶段（在推理之前）：模型从数据中学习规律。监督学习里，模型从带标签的训练数据中学习：机器在训练中找出最好的参数值（权重）。训练可能要花很长时间。"
+      },
+      "slides": "6",
+      "related": [
+        "inference",
+        "machine-learning",
+        "data"
+      ]
+    },
+    {
+      "id": "inference",
+      "en": "Inference",
+      "zh": "推理（使用训练好的模型）",
+      "def": {
+        "en": "The phase of Machine Learning in which the trained model is used to solve a problem ('using the trained model to solve a problem'), for example to make predictions about new data. Inference time is generally fast, although the Big Table notes that large models such as LLMs are often slower and costlier per call.",
+        "zh": "机器学习的推理阶段（在训练之后）：用训练好的模型解决新问题，比如对新数据做预测。通常很快；不过性质大表也提醒：LLM 这类很大的模型每次调用往往更慢、更贵。注意：中文也叫“推理”，但它不是符号 AI 里按逻辑规则的推理（reasoning）。"
+      },
+      "slides": "6",
+      "related": [
+        "training",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "large-language-model",
+      "en": "Large Language Model (LLM)",
+      "zh": "大语言模型（LLM）",
+      "def": {
+        "en": "'Large Language Models (LLMs) are a specific type of ML model.' An LLM is a generative model trained on internet-scale text data; because of the enormous quantity and breadth of data, it is able to produce text in response to a wide variety of inputs, generally without additional training. LLMs are interacted with via prompting in plain text (not code), and modern LLMs are deep neural networks that use the Transformer architecture.",
+        "zh": "一种特定的机器学习模型：在互联网规模的海量文本上训练出来的生成模型；数据又多又广，所以能回应各种各样的输入。用普通文字写 prompt 来使用，不用写代码，一般不需要额外训练。现代 LLM 是使用 Transformer 架构的深度神经网络。"
+      },
+      "example": {
+        "en": "Asking Copilot 'Hi Copilot, is this a dog?' about a photo.",
+        "zh": "第 9 页：用户问 Copilot “Hi Copilot, is this a dog?”，它回答 “Yes, it appears to be a dog.” 弱点：需要巨大的数据中心、会产生幻觉（hallucination）、有很多伦理问题。"
+      },
+      "slides": "8-10",
+      "related": [
+        "machine-learning",
+        "prompting",
+        "hallucination"
+      ]
+    },
+    {
+      "id": "prompting",
+      "en": "Prompting",
+      "zh": "提示（写 prompt）",
+      "def": {
+        "en": "Describing a task for the machine in natural language. LLMs are interacted with via prompting in plain text (not code), so users can direct an LLM without needing to know any coding. But prompts are not quite the same as coded instructions: they can be ambiguous, leading to variability in outcomes, and prompting doesn't technically force the LLM to do anything, in the way that calling a function would.",
+        "zh": "用自然语言（普通的话，不是代码）向机器描述任务；prompt 就是你写给 LLM 的那段话。不会编程也能指挥 LLM；但 prompt 和代码指令不完全一样：可能有歧义、结果会变，而且技术上并不强制 LLM 做任何事，不像调用函数那样。"
+      },
+      "example": {
+        "zh": "“Hi Copilot, is this a dog?” 就是一个 prompt。",
+        "en": "'Hi Copilot, is this a dog?' is a prompt."
+      },
+      "slides": "8-9",
+      "related": [
+        "large-language-model",
+        "prompt-injection",
+        "prompt-sensitivity"
+      ]
+    },
+    {
+      "id": "hallucination",
+      "en": "Hallucination",
+      "zh": "幻觉",
+      "def": {
+        "en": "The tendency of LLMs to confidently state falsehoods: LLMs 'are prone to confidently stating falsehoods (hallucination)'. In the Big Table, the main failure mode of LLM prompting is 'Hallucination; prompt sensitivity'.",
+        "zh": "LLM 一本正经地说出错误内容。危险在于：它说错时的语气和说对时一样自信，所以重要的答案要自己核实。"
+      },
+      "example": {
+        "zh": "LLM 很自信地给出一本根本不存在的书的书名和作者。"
+      },
+      "slides": "10-11",
+      "related": [
+        "large-language-model",
+        "prompting",
+        "prompt-sensitivity"
+      ]
+    },
+    {
+      "id": "explainability",
+      "en": "Explainability",
+      "zh": "可解释性",
+      "def": {
+        "en": "How easy it is to explain why the model (or system) gave the result it gave. Symbolic AI and algorithmic solutions are generally explainable, explanations are difficult for complex ML models, and LLM prompting is rarely explainable.",
+        "zh": "说清楚“模型（或系统）为什么给出这个结果”有多容易。符号 AI 和算法解法一般都能解释；复杂的机器学习模型很难解释；LLM 很少能解释。"
+      },
+      "slides": "3, 7, 11",
+      "related": [
+        "symbolic-ai",
+        "machine-learning",
+        "large-language-model"
+      ]
+    },
+    {
+      "id": "bias",
+      "en": "Bias",
+      "zh": "偏见",
+      "def": {
+        "en": "Bias means that an AI system or model unfairly discriminates against certain groups. 'Trained models inherit the biases of the data they were trained on.' Possible causes of bias in ML include biased historical data, underrepresentation of specific groups in the training dataset, proxy variables, and the incompatibility of different definitions of fairness.",
+        "zh": "AI 系统或模型对某些群体不公平（歧视某些群体）。训练好的模型会继承训练数据里的偏见。ML 里偏见的可能原因：有偏见的历史数据、某些群体在训练数据中代表性不足、代理变量、不同的公平定义互相冲突。"
+      },
+      "example": {
+        "en": "Big Table: bias can be written into rules (Symbolic), learned from data (ML), or reproduced as stereotypes (LLMs).",
+        "zh": "大表：符号 AI 的偏见可能被人写进规则；ML 会从数据中学到偏见；LLM 可能复制刻板印象。"
+      },
+      "slides": "7, 11",
+      "related": [
+        "data",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "labelled-data",
+      "en": "Labelled training dataset (labelled data)",
+      "zh": "带标签的训练数据集（带标签的数据）",
+      "def": {
+        "en": "A training dataset in which the target feature's value is known for every piece of data, i.e. the correct answer is given for every example.",
+        "zh": "每一条数据的目标特征值（正确答案）都已知的训练数据，比如每张照片都标好了“有狗”或“没狗”。"
+      },
+      "example": {
+        "en": "In the Big Table, Symbolic methods need none, ML often needs lots, and LLM prompting can need very little.",
+        "zh": "大表：符号方法不需要；ML 常常需要很多；LLM 可以很少。"
+      },
+      "slides": "11",
+      "related": [
+        "data",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "task-openness",
+      "en": "Task openness",
+      "zh": "任务开放度",
+      "def": {
+        "en": "How flexible or open-ended a task is. In the Big Table it is low for Symbolic/Algorithmic methods, medium for ML and high for LLM prompting.",
+        "zh": "补充（课件外）：课件只在大表中写了 Task openness?，没有定义。一般指任务有多灵活、多开放：规则固定的任务开放度低；什么问题都可能来的任务开放度高。大表：符号低、ML 中、LLM 高。"
+      },
+      "slides": "11",
+      "related": [
+        "large-language-model",
+        "symbolic-ai"
+      ]
+    },
+    {
+      "id": "edge-case",
+      "en": "Edge case",
+      "zh": "边缘情况（特殊情况）",
+      "def": {
+        "en": "An unusual situation that the rules (or the person who wrote the steps) did not plan for. A missed edge case is a kind of human error that pure algorithmic solutions are vulnerable to, and the Big Table gives 'Edge cases outside the rules; search can be slow' as the main failure mode of Symbolic/Algorithmic methods.",
+        "zh": "补充（课件外）：课件没有给定义，一般指规则（或写步骤的人）没有考虑到的少见情况。课件说：纯算法容易漏掉边缘情况（missed edge cases），这是人为错误的一种；大表说它是符号/算法方法的主要失败方式。"
+      },
+      "slides": "11",
+      "related": [
+        "symbolic-ai"
+      ]
+    },
+    {
+      "id": "distribution-shift",
+      "en": "Distribution shift",
+      "zh": "分布偏移",
+      "def": {
+        "en": "When the data a model meets after training is different from the data it was trained on, so the model works worse and needs retraining. The Big Table lists 'Distribution shift; needs retraining' as the main failure mode of ML.",
+        "zh": "补充（课件外）：课件只在大表里提到这个词。一般指模型后来遇到的数据和训练时的数据不一样了，于是表现变差，需要重新训练（retraining）。"
+      },
+      "slides": "11",
+      "related": [
+        "machine-learning",
+        "training",
+        "out-of-distribution"
+      ]
+    },
+    {
+      "id": "adversarial-example",
+      "en": "Adversarial example",
+      "zh": "对抗样本",
+      "def": {
+        "en": "An input that has been changed on purpose, often only slightly, to trick an ML model into making a mistake. The Big Table says ML is 'Vulnerable to adversarial examples'.",
+        "zh": "补充（课件外）：课件只在大表的 Security（安全）一行提到。一般指被故意改动（常常只改一点点）、专门骗 ML 模型出错的输入。"
+      },
+      "slides": "11",
+      "related": [
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "prompt-injection",
+      "en": "Prompt injection",
+      "zh": "提示注入",
+      "def": {
+        "en": "An attack in which someone hides instructions inside the text given to an LLM so that it stops following its intended instructions and does something it should not do. The Big Table says LLMs are 'Vulnerable to prompt injection'.",
+        "zh": "补充（课件外）：课件只在大表的 Security（安全）一行提到。一般指在给 LLM 的文字里藏进“坏指令”，让它不按原本的要求做事、去做不该做的事。"
+      },
+      "slides": "11",
+      "related": [
+        "prompting",
+        "large-language-model"
+      ]
+    },
+    {
+      "id": "prompt-sensitivity",
+      "en": "Prompt sensitivity",
+      "zh": "对提示词敏感",
+      "def": {
+        "en": "When a small change in the wording of a prompt changes the LLM's answer. The Big Table lists it, together with hallucination, as the main failure mode of LLM prompting.",
+        "zh": "补充（课件外）：课件只在大表中提到。一般指 prompt 换个说法（哪怕只改几个字），回答就可能不一样；Lecture 7 也说 prompts can be ambiguous, leading to variability in outcomes。"
+      },
+      "slides": "11",
+      "related": [
+        "prompting",
+        "hallucination"
+      ]
+    },
+    {
+      "id": "job-displacement",
+      "en": "Job displacement",
+      "zh": "工作被取代",
+      "def": {
+        "en": "People losing their jobs because AI systems take over their work. It is listed on the slides as one of the ethical issues of LLMs.",
+        "zh": "补充（课件外）：课件只把它列为 LLM 的伦理问题之一，没有给定义。一般指有些工作被 AI 取代，人因此失业。"
+      },
+      "slides": "10",
+      "related": [
+        "large-language-model",
+        "cognitive-offloading",
+        "copyright"
+      ]
+    },
+    {
+      "id": "cognitive-offloading",
+      "en": "Cognitive offloading",
+      "zh": "认知卸载",
+      "def": {
+        "en": "Handing thinking work over to a tool, such as an LLM, instead of doing it yourself. It is listed on the slides as one of the ethical issues of LLMs.",
+        "zh": "补充（课件外）：课件只把它列为 LLM 的伦理问题之一，没有给定义。一般指把本该自己动脑的事交给工具（比如 LLM），自己想得越来越少。"
+      },
+      "slides": "10",
+      "related": [
+        "large-language-model"
+      ]
+    },
+    {
+      "id": "copyright",
+      "en": "Copyright",
+      "zh": "版权",
+      "def": {
+        "en": "The legal protection on creative work (including datasets) granted to its creator. Normally, copyrighted work cannot be legally copied, modified, or distributed without a license from the copyright holder. Copyright can only be applied to work produced by humans. It is also listed as one of the ethical issues of LLMs.",
+        "zh": "法律给创作者作品（包括数据集）的保护：没有版权持有人的许可证，通常不能复制、修改或分发。版权只用于人类创作的作品，所以 AI 生成的作品没有人拥有版权（只写提示词也不够）。它也是 LLM 的伦理问题之一。"
+      },
+      "example": {
+        "zh": "Lab 1 把版权列为 LLM 的伦理问题之一：LLM 用海量文字训练（Lecture 4 详细讲）。"
+      },
+      "slides": "10",
+      "related": [
+        "large-language-model",
+        "data"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+/*
+ * Worked example: numbered ink circles walk the learner through the steps; the answer sits in a
+ * green box at the end.
+ * 例题：墨色圆形编号带着学习者一步步走，答案放在最后的绿色框里。
+ */
+.example-block {
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.example-block__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.example-block__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.example-block__step {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-3);
+}
+
+.example-block__num {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: var(--text-sm);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.example-block__step-zh {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.example-block__answer {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+}
+
+.example-block__answer .lesson-block__tag {
+  margin-bottom: var(--space-1);
+}
+
+.example-block__answer-zh {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.75;
+}
+
+.example-block .example-block__answer-en {
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+}

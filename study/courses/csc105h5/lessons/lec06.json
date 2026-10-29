@@ -1,0 +1,4692 @@
+{
+  "id": "lec06",
+  "kind": "lecture",
+  "number": 6,
+  "title": {
+    "en": "Model Evaluation and Algorithmic Fairness",
+    "zh": "模型评估与算法公平"
+  },
+  "sources": [
+    {
+      "file": "lec06_evaluation_fairness_.pdf",
+      "pages": 48
+    }
+  ],
+  "estimatedMinutes": 155,
+  "oneLiner": {
+    "zh": "模型在训练数据上考得好不算数：要用验证集挑模型、用测试集报成绩，除了准确率还要看精确率和召回率，还要检查模型对不同人群公不公平。",
+    "en": "A model must be judged on data it has not seen: we choose models with a validation set, report results with a test set, look beyond accuracy, and check that the model is fair to different groups."
+  },
+  "outcomes": [
+    {
+      "en": "Define and describe the purpose of a validation and test set.",
+      "zh": "能定义验证集和测试集，并说明它们各自的用途。"
+    },
+    {
+      "en": "Calculate and explain the importance of evaluation criteria other than accuracy.",
+      "zh": "会计算准确率以外的评估标准（精确率、召回率、F1），并解释它们为什么重要。"
+    },
+    {
+      "en": "Describe different definitions of algorithmic fairness and identify their uses in preventing bias.",
+      "zh": "能描述算法公平的几种不同定义，并说出它们在防止偏见时的用处。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-lecture-map",
+      "title": {
+        "zh": "这一课的地图：用“考试”来理解",
+        "en": "Lecture map"
+      },
+      "slides": "1-3",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一课叫模型评估与算法公平（**Model Evaluation and Algorithmic Fairness**），老师是 Joshua Jung。先复习：模型（**model**）= 用输入特征算出预测结果的函数（公式），它是从数据里学出来的（Lecture 4、5 讲过）。这一课回答两个大问题：\n① 怎么知道一个模型到底好不好？\n② 模型对不同人群公平吗？"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "model evaluation",
+              "zh": "模型评估",
+              "hint": "检查模型表现好不好、该选哪个模型"
+            },
+            {
+              "en": "algorithmic fairness",
+              "zh": "算法公平",
+              "hint": "检查模型对不同群体是否公平"
+            },
+            {
+              "en": "training set",
+              "zh": "训练集",
+              "hint": "用来训练模型（找参数）的数据"
+            },
+            {
+              "en": "validation set",
+              "zh": "验证集",
+              "hint": "不用来训练、用来挑模型的数据"
+            },
+            {
+              "en": "test set",
+              "zh": "测试集",
+              "hint": "既不训练也不挑模型，最后用来报告成绩的数据"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "把训练模型想成你准备高考：\n练习册（带答案）= 训练集（**training set**），你拿它来学；\n模拟考 = 验证集（**validation set**），用来比较哪种复习方法更好；\n高考 = 测试集（**test set**），题目谁都没见过，考出来才是真实水平。",
+          "limit": "类比只帮你记住三份数据的分工。模型不会真的“理解”题目，它只是调整参数去贴合数据。"
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "这一课的五个部分（p.3 Outline）",
+            "en": "Outline (p.3)"
+          },
+          "items": [
+            {
+              "en": "Review: Overfitting",
+              "zh": "复习：过拟合——训练题满分，新题却很差"
+            },
+            {
+              "en": "Model Selection and the Validation Set",
+              "zh": "选模型和验证集——用没参与训练的数据来挑模型"
+            },
+            {
+              "en": "The Test Set",
+              "zh": "测试集——再用一份没碰过的数据报告最终成绩"
+            },
+            {
+              "en": "Other Evaluation Criteria",
+              "zh": "其他评估标准——精确率（**precision**）、召回率（**recall**）、F1，以及速度/成本、可解释性、公平"
+            },
+            {
+              "en": "Bias and Algorithmic Fairness",
+              "zh": "偏见与算法公平——真实案例、偏见原因、公平的定义和改进方法"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（全课主线）",
+            "en": "Big picture"
+          },
+          "items": [
+            {
+              "en": "We train models on the training set, choose a model with the validation set, and report the final accuracy on the test set.",
+              "zh": "在训练集上训练，用验证集挑模型，在测试集上报告最终准确率。"
+            },
+            {
+              "en": "Accuracy is not the only criterion. Precision, recall, F1, speed/cost, explainability, and bias and fairness also matter.",
+              "zh": "准确率不是唯一标准，精确率、召回率、F1、速度/成本、可解释性、偏见与公平也很重要。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "学习建议：本课有 13 个 “Discuss” 讨论题和 3 个课堂活动（Activity）。每一个下面都配了可以照着写的英文参考答案，很适合用来练长答题。"
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which part of the dataset should be used to report the final accuracy of the chosen model?",
+            "zh": "应该用哪一部分数据来报告选中模型的最终准确率？"
+          },
+          "options": [
+            {
+              "en": "The training set",
+              "zh": "训练集"
+            },
+            {
+              "en": "The validation set",
+              "zh": "验证集"
+            },
+            {
+              "en": "The test set",
+              "zh": "测试集"
+            },
+            {
+              "en": "Any part, because they all give the same result",
+              "zh": "哪部分都行，结果都一样"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "测试集（test set）既不用于训练也不用于挑模型，所以它给出的成绩最诚实（p.27）。训练集上的成绩会因为过拟合而偏高；验证集被拿来挑模型，也会偏高（p.26）。三份数据的结果并不一样。",
+            "en": "The test set is not used for training or validation, so it does not overreport the final accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-overfitting-review",
+      "title": {
+        "zh": "复习：过拟合（训练满分，新题翻车）",
+        "en": "Review: Overfitting"
+      },
+      "slides": "4-8",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "过拟合（**overfitting**）一句话：模型把训练数据“背”得太死，连数据里碰巧出现的小偏差都背了下来，结果遇到新数据反而预测得很差。"
+        },
+        {
+          "type": "text",
+          "zh": "先复习 Lecture 5 的几个词：\n参数（**parameters**）：模型里要靠训练找出来的数字，比如 w0、w1。\n误差（**error**）：预测值 y 减真实值 t，即 `error = y − t`。"
+        },
+        {
+          "type": "text",
+          "zh": "均方误差（**mean squared error**，简称 **MSE**）：每个误差先平方（自己乘自己），再求平均（加起来除以个数）。MSE 越小，预测越准。"
+        },
+        {
+          "type": "analogy",
+          "zh": "背答案的学生：老师给了 7 道练习题和答案，他一字不差全背下来，练习题全对（相当于训练 MSE = 0）。可考试换了新题，他就一塌糊涂。另一个同学只抓住了大致思路，练习题没全对，新题却考得不错。",
+          "limit": "类比边界：模型不是故意去“背”。它是参数太多、太灵活，曲线能硬穿过每一个训练点。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns.",
+              "zh": "过拟合：模型记住了训练数据里的随机噪声，而不是真正的规律。"
+            },
+            {
+              "en": "It is not hard for a model with many parameters to reach an MSE of 0 on the training set.",
+              "zh": "参数很多的模型，不难在训练集上把 MSE 做到 0。"
+            },
+            {
+              "en": "We want a model to make predictions about new data.",
+              "zh": "我们要的是：模型能对新数据做出预测。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "memorizes",
+              "zh": "记住、背下来",
+              "hint": "把训练点一个个“记死”，而不是学到大方向"
+            },
+            {
+              "en": "random noise",
+              "zh": "随机噪声",
+              "hint": "数据里碰巧出现的小偏差（比如测量误差），新数据里不会照样重复"
+            },
+            {
+              "en": "genuine patterns",
+              "zh": "真正的规律",
+              "hint": "新数据里也会出现的整体趋势"
+            },
+            {
+              "en": "training set",
+              "zh": "训练集",
+              "hint": "用来训练（找参数）的数据，p.5 里是 7 个绿色点"
+            },
+            {
+              "en": "new data",
+              "zh": "新数据",
+              "hint": "训练时没见过的数据；p.6 特意把 new 写成斜体"
+            },
+            {
+              "en": "overfitted",
+              "zh": "过拟合了（形容模型）",
+              "hint": "p.7 原话：the model on the left has been overfitted to the training data"
+            },
+            {
+              "en": "polynomial",
+              "zh": "多项式",
+              "hint": "把 x1、x1²（x1 的平方）、x1³…… 各乘一个参数再加起来的式子，例如 w0 + w1x1 + w2x1²"
+            },
+            {
+              "en": "degree (degree-6 polynomial)",
+              "zh": "次数（6 次多项式）",
+              "hint": "式子里 x1 的最高次方；p.5 最高到 x1⁶，所以是 6 次。课件只叫它 Higher-order polynomial（高次多项式，Lecture 5 里叫高阶多项式，是同一个词）"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "p.5：7 个点、7 个参数 → 训练 MSE = 0",
+            "en": "p.5: 7 points, 7 parameters, training MSE = 0"
+          },
+          "steps": [
+            {
+              "zh": "数据：输入 x1 = 叶子宽度（Leaf Width，cm），输出 = 叶子高度（Leaf Height，cm）。训练集是 7 个绿色点。"
+            },
+            {
+              "zh": "模型：高次多项式（**Higher-order polynomial**），未训练时写作 `y = w0 + w1x1 + w2x1² + w3x1³ + w4x1⁴ + w5x1⁵ + w6x1⁶`。x1² 读作“x1 的平方”，就是 x1 × x1，以此类推。最高次方是 x1⁶，所以它是 6 次多项式。"
+            },
+            {
+              "zh": "它一共有 7 个参数：w0、w1……w6。"
+            },
+            {
+              "zh": "训练后：w0 = 171.5，w1 = −203.85，w2 = 91.014，w3 = −19.102，w4 = 2.0499，w5 = −0.10872，w6 = 0.002257。"
+            },
+            {
+              "zh": "7 个参数刚好够让曲线穿过全部 7 个点，每个点的误差都是 0，所以训练 MSE = 0。"
+            },
+            {
+              "zh": "但看图：蓝色曲线在点和点之间上下乱甩，一点都不像叶子的真实规律。"
+            }
+          ],
+          "answer": {
+            "zh": "训练 MSE = 0 不等于好模型，它只是把 7 个点“背”了下来。",
+            "en": "An MSE of 0 on the training set does not mean the model is good."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "p.6-8：换成新数据，谁更好？",
+            "en": "p.6-8: which model is better on new data?"
+          },
+          "steps": [
+            {
+              "zh": "两张图里的红色点是新数据（训练时没见过）。"
+            },
+            {
+              "zh": "左图：同一条乱甩的高次多项式曲线，在新数据上 MSE = 190.27。"
+            },
+            {
+              "zh": "右图：一条简单的直线，在同样的新数据上 MSE = 5.77。"
+            },
+            {
+              "zh": "190.27 比 5.77 大得多（我们算了一下，大约是 33 倍）：训练满分的模型，在新数据上反而差得多。"
+            },
+            {
+              "zh": "所以 p.7 说：左边的模型对训练数据过拟合了（overfitted to the training data）。"
+            }
+          ],
+          "answer": {
+            "zh": "过拟合的样子：训练误差很低（甚至是 0），新数据上的误差却很高。",
+            "en": "An overfitted model has very low training error but high error on new data (190.27 vs 5.77)."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "训练 MSE 越小 ≠ 模型越好。我们真正关心的是新数据上的表现。"
+            },
+            {
+              "zh": "p.5-8 的高次多项式是 6 次（w0～w6，训练 MSE = 0）；p.13、p.16 也叫 Higher-order polynomial，但它是 4 次（w0～w4，训练 MSE = 1.67）。名字一样，不是同一个模型。"
+            },
+            {
+              "zh": "p.5 的输出写成 `y`，p.13 和 p.16 写成 `x2`（叶子高度）。是同一个量，只是写法不同。"
+            },
+            {
+              "zh": "写定义时两半都要写：**memorizes random noise**（记住随机噪声）+ **rather than genuine patterns**（而不是真正的规律）。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "p.8 最后留了两个问题：“So, how do we avoid overfitting? What is the best model to use?”（怎么避免过拟合？用哪个模型最好？）答案就是接下来的内容：多试几个模型，用验证集来挑。"
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "The higher-order polynomial from the lecture (7 parameters, w0 to w6) reaches MSE = 0 on the training set but MSE = 190.27 on new data. A straight line gets MSE = 5.77 on the same new data. What does this show?",
+            "zh": "课件里的高次多项式（7 个参数，w0～w6）训练 MSE = 0，新数据 MSE = 190.27；直线在同样的新数据上 MSE = 5.77。这说明什么？"
+          },
+          "options": [
+            {
+              "en": "The polynomial has been overfitted to the training data.",
+              "zh": "多项式对训练数据过拟合了。"
+            },
+            {
+              "en": "The straight line has been overfitted to the training data.",
+              "zh": "直线过拟合了。"
+            },
+            {
+              "en": "A training MSE of 0 always means the best model.",
+              "zh": "训练 MSE 为 0 永远代表最好的模型。"
+            },
+            {
+              "en": "The new data must contain mistakes.",
+              "zh": "新数据一定有错。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "多项式训练误差为 0、新数据误差却很大，正是过拟合的样子（p.7）。直线在新数据上误差小（5.77），没有过拟合。训练 MSE = 0 恰恰可能是“背”下来的结果。题目也没有任何证据说新数据有错。",
+            "en": "Very low training error plus high error on new data is the sign of overfitting."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement best describes overfitting?",
+            "zh": "哪句话最能描述过拟合？"
+          },
+          "options": [
+            {
+              "en": "The model is trained on the test set.",
+              "zh": "模型在测试集上训练。"
+            },
+            {
+              "en": "The model has too few parameters to fit the training data.",
+              "zh": "模型参数太少，连训练数据都贴合不了。"
+            },
+            {
+              "en": "The model is too slow to make predictions.",
+              "zh": "模型预测太慢。"
+            },
+            {
+              "en": "The model memorizes random noise in the training data, rather than genuine patterns.",
+              "zh": "模型记住了训练数据里的随机噪声，而不是真正的规律。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "“memorizes random noise in the training data, rather than genuine patterns”这一项就是 p.8 的原话定义。在测试集上训练是另一种错误做法；参数太少是“太简单”，和过拟合正好相反；预测快慢属于速度/成本问题（p.32）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-choosing-a-model",
+      "title": {
+        "zh": "选模型的两条路：靠理论，还是靠数据",
+        "en": "Choosing a model: theoretical vs empirical reasons"
+      },
+      "slides": "9-13",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "模型选择（**model selection**）：在几种模型里决定用哪一种。课件给了两种理由：\n理论理由（**theoretical reasons**）：我们知道数据是怎么产生的。\n实证理由（**empirical reasons**，也有人译成“经验理由”，但意思是凭真实数据说话，不是凭个人经验）：不知道，就多试几个，让真实数据说了算。"
+        },
+        {
+          "type": "analogy",
+          "zh": "理论派：你知道打车费是“起步价 + 每公里固定加价”，那就直接用一条直线来算，因为规则本身就是直线。\n实证派：你不知道奶茶店排队时间跟什么有关，只好多试几种猜法，看哪种和真实记录最吻合。",
+          "limit": "打车费的规则是为了好懂编的例子，不是课件内容。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "Sometimes, we might have strong theoretical reasons for choosing a type of model because we know something about the process that generated the data.",
+              "zh": "有时我们了解产生数据的过程，所以有很强的理论理由去选某一类模型。"
+            },
+            {
+              "en": "Most of the time in ML, we don't know in advance which model best fits the underlying process.",
+              "zh": "但在机器学习里，大多数时候我们事先不知道哪个模型最符合背后的过程。"
+            },
+            {
+              "en": "A common solution is to try several models, and take the one that works best empirically (i.e. based on real data).",
+              "zh": "常见做法：多试几个模型，选在真实数据上效果最好的那个。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "理论的例子：测理想气体常数 R（p.10-12）",
+            "en": "Theory example: the ideal gas constant (p.10-12)"
+          },
+          "steps": [
+            {
+              "zh": "实验四步：① 把已知质量的气体封进一个坚固的容器（rigid vessel）；② 改变容器的温度 T；③ 在每个温度下测压强 P；④ 用最佳拟合直线（**line of best fit**）求出理想气体常数 R。"
+            },
+            {
+              "zh": "最佳拟合直线（**line of best fit**）= 离所有测量点总体最近的那条直线（Lecture 5 讲过）。"
+            },
+            {
+              "zh": "先认字母：P = 压强（**pressure**，单位 kPa），V = 体积（**volume**，容器多大，单位 L），n = 气体的量（单位 mol），T = 温度（**temperature**，单位 K），R = 要测的常数。"
+            },
+            {
+              "zh": "理想气体定律（**Ideal Gas Law**）：`PV = nRT`。"
+            },
+            {
+              "zh": "两边同时除以 V，变成 `P = (nR/V)T`。这说明 P 和 T 是直线关系。"
+            },
+            {
+              "zh": "斜率（**slope**，直线有多陡：T 每增加 1，P 增加多少）是 `m = nR/V`。"
+            },
+            {
+              "zh": "已知 n = 0.050 mol，V = 1.00 L。图上横轴是温度 Temperature (K)，纵轴是压强 Pressure (kPa)，6 个测量点的最佳拟合直线给出 m = 0.414 kPa/K。"
+            },
+            {
+              "zh": "所以 R ≈ 0.414 × 1.00 / 0.050 = 8.28 L·kPa/(mol·K)。"
+            }
+          ],
+          "answer": {
+            "zh": "p.12：我们知道这个关系应该是直线，所以选线性模型完全合理。",
+            "en": "We knew the relationship should be linear, so choosing a linear model made perfect sense."
+          }
+        },
+        {
+          "type": "formula",
+          "expr": "R = m × V / n = 0.414 × 1.00 / 0.050 = 8.28 L·kPa/(mol·K)",
+          "zh": "由 `m = nR/V` 两边同乘 V、再除以 n，得到 R = mV/n，然后代入数字。",
+          "where": [
+            {
+              "symbol": "m",
+              "zh": "直线的斜率，0.414 kPa/K"
+            },
+            {
+              "symbol": "V",
+              "zh": "容器体积，1.00 L"
+            },
+            {
+              "symbol": "n",
+              "zh": "气体的物质的量，0.050 mol"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "学习建议：这个物理例子是用来说明“知道规律是直线 → 直接选直线模型”。记住这个道理，比记物理公式更重要。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "实证的例子：同样 7 个叶子点，试 3 种模型（p.13）",
+            "en": "Empirical example: three models on the leaf data (p.13)"
+          },
+          "steps": [
+            {
+              "zh": "线性（**Linear**）：未训练 `x2 = w0 + w1x1`；训练后 `x2 = 8.65 + 0.464x1`。是一条直线。"
+            },
+            {
+              "zh": "二次（**Quadratic**）：未训练 `x2 = w0 + w1x1 + w2x1²`；训练后 `x2 = −0.603 + 3.55x1 − 0.193x1²`。是一条拱形曲线。"
+            },
+            {
+              "zh": "高次多项式（**Higher-order polynomial**）：未训练 `x2 = w0 + w1x1 + w2x1² + w3x1³ + w4x1⁴`；训练后 `x2 = −26.1 + 23.6x1 − 4.95x1² + 0.434x1³ − 0.0134x1⁴`。是一条弯来弯去的曲线。"
+            },
+            {
+              "zh": "“未训练”（**Untrained**）= 参数还是字母 w；“训练后”（**Trained**）= 参数已经被训练换成了具体数字。"
+            }
+          ],
+          "answer": {
+            "zh": "三个都试过了，那该选哪个？下一步就要用验证集来比较。",
+            "en": "Next, we compare the three models on a validation set."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "对比项",
+            "Theoretical reasons 理论理由",
+            "Empirical reasons 实证理由（凭数据）"
+          ],
+          "rows": [
+            [
+              "什么时候用",
+              "我们知道产生数据的过程（例如物理定律）",
+              "ML 里大多数时候：事先不知道哪个模型最合适"
+            ],
+            [
+              "怎么选",
+              "直接选符合理论的模型类型",
+              "多试几个模型，选在真实数据上效果最好的"
+            ],
+            [
+              "课件例子",
+              "理想气体：P 和 T 成直线 → 线性模型，R ≈ 8.28",
+              "叶子数据：线性、二次、高次多项式，比较后再选"
+            ]
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "**empirically**（实证地）的意思是 “based on real data”（根据真实数据），不是“凭感觉”，也不是“凭个人经验”。"
+            },
+            {
+              "zh": "课件说 “Most of the time”（大多数时候）我们没有理论可依，所以 ML 里实证的做法（多试几个、看数据）更常见。"
+            },
+            {
+              "zh": "p.13 的 Higher-order polynomial 是 4 次（最高到 x1⁴），不是 p.5 那个 6 次的。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In machine learning, why do we usually try several models and compare them on real data?",
+            "zh": "在机器学习里，为什么通常要多试几个模型，并用真实数据比较？"
+          },
+          "options": [
+            {
+              "en": "Because trying more models always makes the training MSE 0.",
+              "zh": "因为多试模型总能让训练 MSE 变成 0。"
+            },
+            {
+              "en": "Because most of the time we don't know in advance which model best fits the underlying process.",
+              "zh": "因为大多数时候我们事先不知道哪个模型最符合背后的过程。"
+            },
+            {
+              "en": "Because theoretical reasons are never allowed in ML.",
+              "zh": "因为 ML 里不允许用理论理由。"
+            },
+            {
+              "en": "Because linear models are always wrong.",
+              "zh": "因为线性模型总是错的。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "“we don't know in advance which model best fits the underlying process”是 p.13 的原话。训练 MSE 为 0 不是目标（可能是过拟合）；理论理由是允许的（p.10 的理想气体就是），只是不常有；线性模型在理想气体例子里恰恰是对的。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the ideal gas experiment, why did a linear model make perfect sense?",
+            "zh": "在理想气体实验里，为什么用线性模型完全合理？"
+          },
+          "options": [
+            {
+              "en": "We knew the relationship between pressure and temperature should be linear.",
+              "zh": "我们知道压强和温度的关系应该是直线。"
+            },
+            {
+              "en": "It had the lowest validation MSE among many models.",
+              "zh": "它在很多模型里验证 MSE 最低。"
+            },
+            {
+              "en": "Linear models can never overfit.",
+              "zh": "线性模型永远不会过拟合。"
+            },
+            {
+              "en": "There were only six measurements.",
+              "zh": "因为只有 6 个测量点。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.12：we knew the relationship should be linear。这是理论理由，不是比较验证 MSE 得来的（那是实证理由）。“永远不会过拟合”课件没这么说；测量点的数量也不是选线性模型的理由。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-validation-set",
+      "title": {
+        "zh": "验证集：留一份数据不训练",
+        "en": "The validation set"
+      },
+      "slides": "14-15",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "验证集（**validation set**）：拿到数据后，先切出一小部分藏起来，训练时完全不用。训练完，再用这部分数据检查模型，看它对“没见过的数据”表现如何。"
+        },
+        {
+          "type": "analogy",
+          "zh": "模拟考：平时你只做练习册（训练集）。老师另外准备了一套你没见过的模拟卷（验证集），用来看哪种复习方法真的有效。要是你提前把模拟卷的答案背了，模拟考的分数就没意义了。",
+          "limit": "类比边界：这里被“考”的是模型，验证集的分数用来在几个模型之间挑选。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "A validation set is a part of our dataset that we do not use for training.",
+              "zh": "验证集是数据集中我们不用来训练的那一部分。"
+            },
+            {
+              "en": "When we first receive a dataset, usually we split off a validation set (smaller than the training set) and set it aside.",
+              "zh": "刚拿到数据集时，通常先分出一个验证集（比训练集小），放在一边。"
+            },
+            {
+              "en": "Models with low error on the training set do not always generalize well. We can find this using a validation set.",
+              "zh": "训练集上误差低的模型不一定泛化得好，我们可以用验证集发现这一点。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "dataset",
+              "zh": "数据集",
+              "hint": "手上全部的数据（所有例子）"
+            },
+            {
+              "en": "split off",
+              "zh": "分出来",
+              "hint": "一拿到数据就先切出一块"
+            },
+            {
+              "en": "set it aside",
+              "zh": "放在一边",
+              "hint": "训练时完全不碰它"
+            },
+            {
+              "en": "smaller than the training set",
+              "zh": "比训练集小",
+              "hint": "训练需要最多的数据，所以验证集小一些"
+            },
+            {
+              "en": "generalize",
+              "zh": "泛化",
+              "hint": "在没见过的新数据上也表现好（课件没给正式定义）"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "为什么要这样做？p.14 提醒我们：训练集上误差低，不代表在新数据上也好（还记得 MSE 0 和 190.27 吗）。验证集就是我们手里的“新数据”：模型没见过它，所以它的分数能告诉我们模型会不会泛化。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Why it is important that we do not use our validation set for training?",
+            "zh": "讨论：为什么不能用验证集来训练？（课件原句是 “Why it is important that …?”，语序不标准；自己写英文问句时要写 Why is it important that …?）"
+          },
+          "answer": {
+            "en": "The validation set must act like new data that the model has never seen. If we train on it, the model can fit or even memorize those points, so a low validation error would no longer show how well the model generalizes. Then we could not detect overfitting or compare models fairly.",
+            "zh": "得分点：① 验证集要扮演“没见过的新数据”；② 拿它训练，模型会把这些点也背下来，验证误差会变低、不再可信；③ 那就发现不了过拟合，也没法公平地比较模型。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "验证集“不用来训练”，但它“会被用来挑模型”。测试集（后面会讲）则连挑模型都不用。"
+            },
+            {
+              "zh": "验证集比训练集小（smaller than the training set），不是一样大，更不是更大。"
+            },
+            {
+              "zh": "要在一拿到数据时就分出来（When we first receive a dataset），而不是训练完再临时去找。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is a validation set?",
+            "zh": "什么是验证集？"
+          },
+          "options": [
+            {
+              "en": "The part of the dataset used to find the model's weights",
+              "zh": "用来找模型参数的那部分数据"
+            },
+            {
+              "en": "The training set checked a second time",
+              "zh": "把训练集再检查一遍"
+            },
+            {
+              "en": "Data collected after the model is deployed",
+              "zh": "模型上线后才收集的数据"
+            },
+            {
+              "en": "A part of our dataset that we do not use for training",
+              "zh": "数据集中不用来训练的那一部分"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.15 原话：a part of our dataset that we do not use for training。找参数用的是训练集；用训练集再查一遍就失去意义了；验证集是一开始就从数据集中分出来的，不是上线后才收集的。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Compared with the training set, the validation set is usually:",
+            "zh": "和训练集相比，验证集通常："
+          },
+          "options": [
+            {
+              "en": "larger",
+              "zh": "更大"
+            },
+            {
+              "en": "smaller",
+              "zh": "更小"
+            },
+            {
+              "en": "about the same size",
+              "zh": "差不多一样大"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.15：split off a validation set (smaller than the training set)。训练需要最多的数据，所以验证集更小，不是一样大，更不是更大。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-validation-mse",
+      "title": {
+        "zh": "用验证 MSE 挑模型：二次模型胜出",
+        "en": "Choosing a model by validation MSE"
+      },
+      "slides": "16",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "p.16 把 p.13 的 3 个模型拿来，用 4 个红色的验证点检验。每个模型有两个分数：\n训练 MSE（**Training MSE**）：在 7 个绿色训练点上算；\n验证 MSE（**Validation MSE**）：在 4 个红色验证点上算。\nMSE 越小越好。线性模型的训练 MSE 11.92，就是 Lecture 5 里一步步算过的 83.42 / 7 ≈ 11.92。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model 模型",
+            "Trained 训练后的式子",
+            "Training MSE",
+            "Validation MSE"
+          ],
+          "rows": [
+            [
+              "Linear 线性",
+              "x2 = 8.65 + 0.464x1",
+              "11.92",
+              "9.75"
+            ],
+            [
+              "Quadratic 二次",
+              "x2 = −0.603 + 3.55x1 − 0.193x1²",
+              "4.68",
+              "1.38（最低）"
+            ],
+            [
+              "Higher-order polynomial 高次多项式（4 次）",
+              "x2 = −26.1 + 23.6x1 − 4.95x1² + 0.434x1³ − 0.0134x1⁴",
+              "1.67（最低）",
+              "8.07"
+            ]
+          ],
+          "caption": {
+            "zh": "p.16 的原数字",
+            "en": "Numbers from p.16"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步读这张表",
+            "en": "Reading the table step by step"
+          },
+          "steps": [
+            {
+              "zh": "看训练 MSE：11.92 → 4.68 → 1.67。模型越复杂（**more complex**，越能弯），训练误差越小。"
+            },
+            {
+              "zh": "如果只看训练 MSE，我们会选高次多项式（1.67 最小）。"
+            },
+            {
+              "zh": "再看验证 MSE：9.75、1.38、8.07。最小的是二次模型的 1.38。"
+            },
+            {
+              "zh": "高次多项式：训练最好（1.67），验证却差（8.07），这是过拟合的信号。"
+            },
+            {
+              "zh": "线性模型：训练和验证都偏高（11.92 和 9.75），一条直线弯不过来（这是我们的解读，课件没写）。"
+            },
+            {
+              "zh": "按 p.16 的规则（验证集上表现好是选模型的有力理由），选二次模型。"
+            }
+          ],
+          "answer": {
+            "zh": "选二次模型（Quadratic）：验证 MSE = 1.38，三个里最低。（课件没有用文字下结论，这是按 p.16 的规则读出来的。）",
+            "en": "Choose the quadratic model: it has the lowest validation MSE (1.38)."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话 + 考试这样写",
+            "en": "Course wording and exam sentences"
+          },
+          "items": [
+            {
+              "en": "Although there may still be other considerations, good performance on the validation set is a strong reason to prefer one model over another.",
+              "zh": "虽然可能还有别的考虑，但验证集上表现好，是选这个模型而不选另一个的有力理由。"
+            },
+            {
+              "en": "The higher-order polynomial has the lowest training MSE (1.67) but a high validation MSE (8.07), so it is overfitting.",
+              "zh": "高次多项式训练 MSE 最低（1.67），验证 MSE 却高（8.07），说明它过拟合了。"
+            },
+            {
+              "en": "The quadratic model has the lowest validation MSE (1.38), so we prefer it.",
+              "zh": "二次模型的验证 MSE 最低（1.38），所以选它。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：下面的计算是我们按 Lecture 5 的 MSE 方法自己算的。4 个验证点的坐标是从 p.16 的图上读出来的，课件只给了最后结果 9.75。算出来和课件一致，能帮你看懂这个数字是怎么来的。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "验证 MSE 9.75 是怎么来的（线性模型）",
+            "en": "Where the validation MSE 9.75 comes from (linear model)"
+          },
+          "steps": [
+            {
+              "zh": "4 个验证点（宽，高）：(3, 7.5)、(7, 16.2)、(9, 14.8)、(13, 11.5)。"
+            },
+            {
+              "zh": "把 x1 代进 `x2 = 8.65 + 0.464x1` 算预测值（这里的 x2 就是预测值 y）。例如 x1 = 3：0.464 × 3 = 1.392，8.65 + 1.392 = 10.042。其他三个点同样算：11.898、12.826、14.682。"
+            },
+            {
+              "zh": "误差 = 预测值 y − 真实值 t：2.542、−4.302、−1.974、3.182。"
+            },
+            {
+              "zh": "误差的平方（自己乘自己）：2.542 × 2.542 ≈ 6.462；其余是 18.507、3.897、10.125。加起来 = 38.991。"
+            },
+            {
+              "zh": "MSE = 38.991 / 4 ≈ 9.75。算法和训练 MSE 完全一样，只是换成了验证点。"
+            }
+          ],
+          "answer": {
+            "zh": "验证 MSE ≈ 9.75，与 p.16 一致。",
+            "en": "Validation MSE ≈ 9.75, as on p.16."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "不要选训练 MSE 最低的模型！要看验证 MSE。"
+            },
+            {
+              "zh": "MSE 是“越小越好”；准确率（**accuracy**）是“越大越好”。别把方向搞反。"
+            },
+            {
+              "zh": "p.16 的 4 个验证点，和 p.6 的 8 个红色“新数据”点不是同一批。"
+            },
+            {
+              "zh": "p.16 说 “Although there may still be other considerations”：验证表现是有力理由，但不是唯一理由（p.32 会讲其他考虑）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Training MSE: Linear 11.92, Quadratic 4.68, Higher-order polynomial 1.67. Validation MSE: Linear 9.75, Quadratic 1.38, Higher-order polynomial 8.07. Which model should we prefer?",
+            "zh": "训练 MSE：线性 11.92、二次 4.68、高次 1.67；验证 MSE：线性 9.75、二次 1.38、高次 8.07。应该选哪个？"
+          },
+          "options": [
+            {
+              "en": "Linear",
+              "zh": "线性"
+            },
+            {
+              "en": "Quadratic",
+              "zh": "二次"
+            },
+            {
+              "en": "Higher-order polynomial",
+              "zh": "高次多项式"
+            },
+            {
+              "en": "It cannot be decided from MSE",
+              "zh": "看 MSE 决定不了"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选验证 MSE 最低的二次模型（1.38）。高次多项式只是训练 MSE 最低，验证 MSE 8.07 很高，是过拟合；线性模型两个 MSE 都偏高。p.16 说验证集表现是选模型的有力理由，所以可以决定。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which model in the p.16 table shows the clearest sign of overfitting?",
+            "zh": "p.16 的表里，哪个模型最明显地过拟合？"
+          },
+          "options": [
+            {
+              "en": "The linear model",
+              "zh": "线性模型"
+            },
+            {
+              "en": "The quadratic model",
+              "zh": "二次模型"
+            },
+            {
+              "en": "The higher-order polynomial",
+              "zh": "高次多项式"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "过拟合的信号是“训练误差低、验证误差高”：高次多项式训练 1.67（最低）、验证 8.07。二次模型两个都低；线性模型两个都偏高，不是过拟合的样子。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-tree-validation-activity",
+      "title": {
+        "zh": "课堂活动：树叶分类，用验证准确率挑模型",
+        "en": "Activity: Validation for tree classification"
+      },
+      "slides": "17-18, 22",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这个活动换成分类（**classification**）问题：根据叶子宽度（Leaf Width）和高度（Leaf Height），判断是橡树叶 oak（图里写 O）还是枫树叶 maple（写 M）。前面叶子高度的例子是预测一个数字，叫回归（**regression**），用 MSE 量误差；这里预测的是“哪一类”，所以改用准确率来量。"
+        },
+        {
+          "type": "text",
+          "zh": "图里米色区域 = 预测 oak（Predict oak），粉色区域 = 预测 maple（Predict maple）。把两个区域分开的线叫决策边界（**decision boundary**）。p.17 的训练准确率是 Lecture 4 最后那个活动（第 47 页）算过的（Previously, we calculated the training accuracy…）。"
+        },
+        {
+          "type": "formula",
+          "expr": "Accuracy = number of correct predictions / total number of predictions;  classification error = 1 − accuracy",
+          "zh": "准确率（**accuracy**）= 分对的个数 ÷ 总个数，越大越好；分类错误率（**classification error**，也叫 error rate）= 1 − 准确率，越小越好。6/7 就是 6 ÷ 7 ≈ 0.857 ≈ 86%。在训练集上算的叫训练准确率，在验证集上算的叫验证准确率（**validation accuracy**）。（这是 Lecture 4 第 46 页的写法；本课把它叫 Training Error / Validation Error。）"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "决策边界的形状",
+            "Training Accuracy",
+            "Training Error"
+          ],
+          "rows": [
+            [
+              "Model A",
+              "直线：从 (6, 20) 到 (12, 0)",
+              "6/7 ≈ 86%",
+              "1 − 6/7 = 1/7 ≈ 14%"
+            ],
+            [
+              "Model B",
+              "弯曲的曲线（开口向右），曲线里面是 maple",
+              "7/7 = 100%",
+              "1 − 7/7 = 0%"
+            ],
+            [
+              "Model C",
+              "直线：从 (4, 0) 到 (14, 20)",
+              "5/7 ≈ 71%",
+              "1 − 5/7 = 2/7 ≈ 29%"
+            ]
+          ],
+          "caption": {
+            "zh": "p.17：7 个绿色训练点上的结果（准确率和错误率是课件原数字，边界端点是从图上读的）",
+            "en": "p.17: training results on the 7 green points"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "p.18 换上 6 个红色验证点（宽，高）：M (8, 18)、O (4, 14)、O (6, 8)、O (8, 4)、M (12, 6)、M (14, 5)（坐标是从图上读的）。任务：算每个模型的验证准确率，然后决定选哪个。"
+        },
+        {
+          "type": "widget",
+          "name": "decision-boundary",
+          "config": {
+            "xLabel": {
+              "zh": "叶子宽度 Leaf Width（cm）",
+              "en": "Leaf Width (cm)"
+            },
+            "yLabel": {
+              "zh": "叶子高度 Leaf Height（cm）",
+              "en": "Leaf Height (cm)"
+            },
+            "classes": [
+              {
+                "id": "oak",
+                "label": {
+                  "zh": "橡树叶 oak（O）",
+                  "en": "Oak (O)"
+                }
+              },
+              {
+                "id": "maple",
+                "label": {
+                  "zh": "枫树叶 maple（M）",
+                  "en": "Maple (M)"
+                }
+              }
+            ],
+            "points": [
+              {
+                "x": 8,
+                "y": 18,
+                "class": "maple"
+              },
+              {
+                "x": 4,
+                "y": 14,
+                "class": "oak"
+              },
+              {
+                "x": 6,
+                "y": 8,
+                "class": "oak"
+              },
+              {
+                "x": 8,
+                "y": 4,
+                "class": "oak"
+              },
+              {
+                "x": 12,
+                "y": 6,
+                "class": "maple"
+              },
+              {
+                "x": 14,
+                "y": 5,
+                "class": "maple"
+              }
+            ],
+            "boundary": {
+              "w0": -120,
+              "w1": 10,
+              "w2": 3
+            },
+            "positiveClass": "maple"
+          },
+          "caption": {
+            "zh": "试一试：图上是 p.18 的 6 个验证点和 Model A 的直线（−120 + 10x1 + 3x2 = 0，方程是按图上的端点算的），6 个全对（6/6 = 100%）。把滑块调成 w0 = −40、w1 = 10、w2 = −5，就得到 Model C 的直线（从 (4, 0) 到 (14, 20)，直线下方预测 maple），验证准确率掉到 4/6。注意：三个数全部取相反数时线不变，但两边的预测会对调（变成 2/6）。",
+            "en": "Start with Model A's line (6/6). Set w0 = −40, w1 = 10, w2 = −5 to get Model C's line (maple below it): validation accuracy drops to 4/6."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：课件没有印出 Model B 和 Model C 的验证准确率。下面的 3/6 和 4/6 是我们按 p.18 的图逐点数出来的；p.22 只给了 Model A：Validation Accuracy = 6/6 = 100%。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步算验证准确率",
+            "en": "Calculating validation accuracy step by step"
+          },
+          "steps": [
+            {
+              "zh": "Model A（直线）：6 个点全在正确的一边 → 6/6 = 100%，验证错误率 1 − 6/6 = 0（这是 p.22 的课件原数字）。"
+            },
+            {
+              "zh": "Model B（曲线）：曲线尖端约在 (7.6, 12.5)，下面那条弧线到宽度 15 时约在高度 5.2（从图上读的）。M (8, 18) 在曲线外面，落在 oak 区，错；M (12, 6) 和 M (14, 5) 刚好在下面那条弧线的下方一点点，也在 oak 区，错；3 个 O 都对 → 3/6 = 50%。"
+            },
+            {
+              "zh": "Model C（直线）：先学会判断点在线的上方还是下方。线从 (4, 0) 到 (14, 20)：宽度每多 1，线就高 2，所以在宽度 x 处，线的高度 = 2x − 8。"
+            },
+            {
+              "zh": "M (8, 18)：宽度 8 处线高 2 × 8 − 8 = 8，点高 18 > 8 → 在线上方 → oak 区 → 错。O (8, 4)：4 < 8 → 在线下方 → maple 区 → 错。其余 4 个都对 → 4/6 ≈ 67%。"
+            },
+            {
+              "zh": "对比：Model B 训练 100%、验证只有 50%，过拟合；Model A 训练 86%、验证 100%，最好。"
+            }
+          ],
+          "answer": {
+            "zh": "选 Model A（验证准确率 6/6 = 100%）。",
+            "en": "Prefer Model A: validation accuracy 6/6 = 100%."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Exam sentences"
+          },
+          "items": [
+            {
+              "en": "Training Error = 1 − Training Accuracy. For Model A, Training Accuracy = 6/7 ≈ 86% and Training Error = 1/7 ≈ 14%.",
+              "zh": "训练错误率 = 1 − 训练准确率。Model A：训练准确率 6/7 ≈ 86%，训练错误率 1/7 ≈ 14%。"
+            },
+            {
+              "en": "Model B has 100% training accuracy but a lower validation accuracy, so it is overfitting.",
+              "zh": "Model B 训练准确率 100%，验证准确率却更低，说明它过拟合了。"
+            },
+            {
+              "en": "Model A has the best validation accuracy (6/6 = 100%), so we prefer Model A.",
+              "zh": "Model A 验证准确率最高（6/6 = 100%），所以选 Model A。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "For the given validation set, calculate the validation accuracy for each model. Which model do you prefer?",
+            "zh": "对给定的验证集，算出每个模型的验证准确率。你选哪个模型？"
+          },
+          "answer": {
+            "en": "Model A gets 6/6 = 100% validation accuracy, Model B gets 3/6 = 50%, and Model C gets 4/6 ≈ 67%. I prefer Model A because it has the highest validation accuracy. Model B has 100% training accuracy but only 50% validation accuracy, so it is overfitting.",
+            "zh": "得分点：① 写出三个验证准确率；② 选 A，理由是验证准确率最高；③ 指出 B 训练 100% 但验证低，说明过拟合。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: We mentioned that there might be considerations beyond validation accuracy for choosing a model. Can you think of any?",
+            "zh": "讨论：除了验证准确率，选模型时还可能考虑什么？"
+          },
+          "answer": {
+            "en": "Yes. First, we can consider speed/cost: how costly it is to train the model and to use it for inference. Second, we can consider explainability: how easy it is to explain why the model gave its result. Third, we can consider bias and fairness: whether the model unfairly discriminates against any groups. We can also look at other evaluation criteria, such as precision and recall.",
+            "zh": "课件 p.32 正好给了答案：速度/成本、可解释性、偏见与公平。p.29-31 的精确率、召回率也是“准确率以外”的标准。写 2～3 条并各解释一句即可。生词：inference（推理）= 用训练好的模型做预测，p.32 会讲；精确率（precision）、召回率（recall）在 p.29-31 讲。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "训练准确率最高的 Model B（100%）不是最好的选择；要看验证准确率。"
+            },
+            {
+              "zh": "准确率越大越好；错误率 = 1 − 准确率，越小越好。"
+            },
+            {
+              "zh": "算验证准确率时只数红色验证点，别把绿色训练点混进来。"
+            },
+            {
+              "zh": "同一个英文词 error 有两种用法：回归里 error = y − t（一个点差多少，叫误差）；分类里 Error = 1 − Accuracy（错的比例，叫错误率）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Model B has a training accuracy of 7/7 = 100% but a much lower validation accuracy. What is the most likely explanation?",
+            "zh": "Model B 训练准确率 7/7 = 100%，验证准确率却低得多。最可能的解释是？"
+          },
+          "options": [
+            {
+              "en": "Model B is overfitting the training data.",
+              "zh": "Model B 过拟合了训练数据。"
+            },
+            {
+              "en": "The validation set is larger than the training set.",
+              "zh": "验证集比训练集大。"
+            },
+            {
+              "en": "Model B is the best model, because training accuracy is what matters most.",
+              "zh": "Model B 最好，因为训练准确率最重要。"
+            },
+            {
+              "en": "Model B was trained on the validation set.",
+              "zh": "Model B 是用验证集训练的。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "训练满分、验证差，就是过拟合（曲线为了绕开每个训练点弯得太厉害）。验证集比训练集小（p.15）；训练准确率不是选模型的依据；如果真用验证集训练过，验证准确率反而会很高。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-model-family-hyperparameters",
+      "title": {
+        "zh": "模型家族与超参数：决策树的最大深度",
+        "en": "Model families and hyperparameters"
+      },
+      "slides": "19-20",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "到目前为止，每个模型都是完全不同类型的函数（**function**：输入一个数、按固定规则算出结果的式子），比如直线、二次曲线、多项式。但有些方法只要在训练前改几个关键数字，就能得到一串相关的模型。这一串叫模型家族（**model family**），那几个关键数字叫超参数（**hyperparameters**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "奶茶的甜度：同一款奶茶，下单前选三分糖、五分糖还是全糖，做出来就是不同的几杯。这一款奶茶的所有甜度版本像一个模型家族，甜度就像超参数，必须在“做之前”选好。",
+          "limit": "类比边界：奶茶不需要训练；模型是先定好超参数，再用训练数据训练出来。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "For some methods, we can get multiple related models by varying a set of key values before training. Such methods define a model family.",
+              "zh": "有些方法可以在训练前改变一组关键数值，得到多个相关的模型。这样的方法定义了一个模型家族。"
+            },
+            {
+              "en": "The key values are called hyperparameters.",
+              "zh": "这些关键数值叫超参数。"
+            },
+            {
+              "en": "The maximum depth of the tree is a hyperparameter.",
+              "zh": "决策树的最大深度就是一个超参数。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开看：\n**varying**：改变，换成不同的值；\n**key values**：关键数值；\n**before training**：训练前就定好。这正是超参数和参数（**parameters**，比如 w0、w1）的区别：参数是训练过程中找出来的，超参数是训练前定好的。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "decision tree",
+              "zh": "决策树",
+              "hint": "一连串“是/否”问题，一路问下去，最后落到一个末端给出答案"
+            },
+            {
+              "en": "maximum depth",
+              "zh": "最大深度",
+              "hint": "从最上面的问题往下，最多能问几层"
+            },
+            {
+              "en": "leaf (of a tree diagram)",
+              "zh": "叶节点（树的末端）",
+              "hint": "给出预测（Oak 或 Maple）的末端方框；别和数据里的树叶混"
+            },
+            {
+              "en": "hyperparameter",
+              "zh": "超参数",
+              "hint": "训练前定好的关键数值"
+            },
+            {
+              "en": "parameter (weight)",
+              "zh": "参数（权重）",
+              "hint": "训练时找出来的数字，比如 w0、w1"
+            }
+          ]
+        },
+        {
+          "type": "tree",
+          "root": {
+            "label": "Width ≤ 10.5 cm",
+            "shape": "node",
+            "children": [
+              {
+                "label": "Oak",
+                "shape": "leaf",
+                "value": "4 O, 1 M",
+                "edge": "yes"
+              },
+              {
+                "label": "Maple",
+                "shape": "leaf",
+                "value": "2 M",
+                "edge": "no"
+              }
+            ]
+          },
+          "caption": {
+            "zh": "最大深度 1（Maximum depth 1）：只问一个问题。叶节点下面的数字是落到这里的训练点。",
+            "en": "Maximum depth 1 (p.20)"
+          }
+        },
+        {
+          "type": "tree",
+          "root": {
+            "label": "Width ≤ 10.5 cm",
+            "shape": "node",
+            "children": [
+              {
+                "label": "Height ≤ 13 cm",
+                "shape": "node",
+                "edge": "yes",
+                "children": [
+                  {
+                    "label": "Oak",
+                    "shape": "leaf",
+                    "value": "3 O",
+                    "edge": "yes"
+                  },
+                  {
+                    "label": "Width ≤ 9.5 cm",
+                    "shape": "node",
+                    "edge": "no",
+                    "children": [
+                      {
+                        "label": "Maple",
+                        "shape": "leaf",
+                        "value": "1 M",
+                        "edge": "yes"
+                      },
+                      {
+                        "label": "Oak",
+                        "shape": "leaf",
+                        "value": "1 O",
+                        "edge": "no"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "Maple",
+                "shape": "leaf",
+                "value": "2 M",
+                "edge": "no"
+              }
+            ]
+          },
+          "caption": {
+            "zh": "最大深度 3（Maximum depth 3）：最多连问三层。",
+            "en": "Maximum depth 3 (p.20)"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "怎么读这两棵树（同样是 7 个叶子训练点）",
+            "en": "Reading the two trees (p.20)"
+          },
+          "steps": [
+            {
+              "zh": "深度 1：问“宽度 ≤ 10.5 cm 吗？”是（yes）→ 预测 Oak；否（no）→ 预测 Maple。"
+            },
+            {
+              "zh": "叶节点上的 “4 O, 1 M” 表示有 4 个橡树叶和 1 个枫树叶训练点落到这里。这里预测 Oak，所以那 1 个 M 被分错了。"
+            },
+            {
+              "zh": "深度 3 第 1 问：宽度 ≤ 10.5 cm 吗？否 → Maple（2 M）。"
+            },
+            {
+              "zh": "是 → 第 2 问：高度 ≤ 13 cm 吗？是 → Oak（3 O）。"
+            },
+            {
+              "zh": "否 → 第 3 问：宽度 ≤ 9.5 cm 吗？是 → Maple（1 M）；否 → Oak（1 O）。"
+            },
+            {
+              "zh": "深度 3 的每个叶节点里只有一种叶子（3 O、1 M、1 O、2 M），所以训练点全部分对。"
+            },
+            {
+              "zh": "树旁边的小图（p.20）：深度 1 只有一条竖线（宽度 = 10.5），左边预测 oak、右边预测 maple；深度 3 又加了一条横线（高度 = 13）和一条短竖线（宽度 = 9.5）。因为每个问题只拿一个特征（宽度或高度）和一个数比，所以这两棵树的边界都是横平竖直的，和 Model A–C 的斜线、曲线不一样。"
+            },
+            {
+              "zh": "两棵树来自同一个决策树家族，只是超参数“最大深度”不同（1 和 3），就成了两个不同的模型。"
+            }
+          ],
+          "answer": {
+            "zh": "（我们按叶节点上的数字数出来的）深度 1 的训练准确率是 6/7，深度 3 是 7/7。深度越大越能贴合训练数据，但这不代表在新数据上更好。",
+            "en": "Different hyperparameter values give different models from the same family."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "课件原话：“(We are not going to talk about decision trees in detail.)”——不会细讲决策树。你只要懂：最大深度是超参数；不同深度 = 同一家族里的不同模型；能看懂树是怎么一路问下去的就够了。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "超参数（hyperparameter）是训练前定好的；参数（parameter / weight）是训练中学出来的。"
+            },
+            {
+              "zh": "同一个模型家族里的模型是相关的（同一种方法，只改超参数）；而 p.13 的线性、二次、多项式在课件里是 “a completely different type of function”（完全不同类型的函数）。"
+            },
+            {
+              "zh": "树形图的 leaf（叶节点）和数据里的 leaf（树叶）是两回事。"
+            },
+            {
+              "zh": "决策树（**decision tree**，一种机器学习模型，Lecture 1 的大伞图把 Decision Trees 画在 Machine Learning 里）≠ 状态树（**state tree**，Lecture 3 的搜索）。同样叫 depth：决策树的最大深度 = 最多连问几个问题，是训练前定的超参数；状态树的深度 = 节点离根有几条边（走了几步）。决策树的叶节点给出预测；状态树里游戏结束的节点叫终止状态（**terminal state**）。"
+            },
+            {
+              "zh": "还有第三种 “deep”：Lecture 7 的深度学习（**deep learning**）指隐藏层很多（至少 2 个），和树的深度无关。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is an example of a hyperparameter?",
+            "zh": "下面哪个是超参数的例子？"
+          },
+          "options": [
+            {
+              "en": "The weight w1 = 0.464 found by training",
+              "zh": "训练得到的权重 w1 = 0.464"
+            },
+            {
+              "en": "The validation accuracy of a model",
+              "zh": "模型的验证准确率"
+            },
+            {
+              "en": "The maximum depth of a decision tree",
+              "zh": "决策树的最大深度"
+            },
+            {
+              "en": "The number of maple leaves in the dataset",
+              "zh": "数据集中枫树叶的数量"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.20：The maximum depth of the tree is a hyperparameter。w1 = 0.464 是训练得到的参数，不是训练前定的；验证准确率是评估结果；数据里有几片枫叶是数据本身。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is a model family?",
+            "zh": "什么是模型家族？"
+          },
+          "options": [
+            {
+              "en": "All models that have the same training accuracy",
+              "zh": "训练准确率相同的所有模型"
+            },
+            {
+              "en": "All models that are tested on the same validation set",
+              "zh": "在同一个验证集上测试的所有模型"
+            },
+            {
+              "en": "A group of completely different types of functions",
+              "zh": "一组完全不同类型的函数"
+            },
+            {
+              "en": "A set of related models we get by varying key values (hyperparameters) before training",
+              "zh": "训练前改变关键数值（超参数）得到的一组相关模型"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "“varying key values (hyperparameters) before training”这一项就是 p.19 原话的意思。训练准确率相同、验证集相同都不是定义；“完全不同类型的函数”恰恰是课件说的“到目前为止”的情况，和模型家族正好相对。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-final-accuracy-dice",
+      "title": {
+        "zh": "报告最终准确率：验证准确率为什么会偏高（掷骰子活动）",
+        "en": "Reporting a final accuracy: the dice activity"
+      },
+      "slides": "21-26",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "选好模型以后，我们想知道它投入实际使用，也就是生产环境（**production**）时，大概表现多好。p.22 的问题：选中的 Model A 验证准确率是 6/6 = 100%，能不能直接说“它上线后准确率就是 100%”？"
+        },
+        {
+          "type": "text",
+          "zh": "课堂活动“选最大值的后果”（**Consequences of Choosing the Maximum**）：在 Google 搜 “dice”，会出现掷骰子小工具。D6 = 六面骰子（点数 1～6）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "production",
+              "zh": "生产环境（实际使用）",
+              "hint": "模型正式上线、给真实用户用的时候"
+            },
+            {
+              "en": "D6",
+              "zh": "六面骰子",
+              "hint": "点数 1～6 的普通骰子"
+            },
+            {
+              "en": "probability distribution",
+              "zh": "概率分布",
+              "hint": "每个可能结果出现的可能性各有多大"
+            },
+            {
+              "en": "most likely value",
+              "zh": "最可能的值",
+              "hint": "掷一次最容易出现的总和：28（p.24）"
+            },
+            {
+              "en": "expected maximum of 10 rolls",
+              "zh": "10 次最大值的期望",
+              "hint": "掷 10 次只留最大的，平均来说会得到 35.4（p.26）"
+            },
+            {
+              "en": "noisy",
+              "zh": "带噪声的（含运气）",
+              "hint": "结果里混着随机的运气成分"
+            },
+            {
+              "en": "overreport",
+              "zh": "报高",
+              "hint": "报出来的成绩比真实水平高（p.27：overreporting）"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "课件的指令：“Add D6 until you have 8, then roll once.”，就是加到 8 个 D6，掷一次，看 8 个点数的总和。课件截图那次是 5、2、2、3、5、2、5、3，总和 Total 27。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: What value should you expect to get?",
+            "zh": "讨论：（8 个骰子掷一次）你应该预期得到多少？"
+          },
+          "answer": {
+            "en": "The total of 8 six-sided dice can be anywhere from 8 to 48, but values near the middle are much more likely. The most likely value is 28, so we should expect a total of about 28.",
+            "zh": "8 个骰子最少 8（全是 1），最多 48（全是 6）。p.24 的概率分布图中间最高：最可能的值（Most likely value）是 28。所以预期在 28 左右。"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "概率（**probability**）= 某件事发生的可能性。p.24 画的是概率分布（**probability distribution**）：每个总和出现的概率有多大。横轴是总和（8～48），纵轴是概率（%）。图形中间高、两边低，最高的柱子在 28：“Most likely value: 28”。"
+        },
+        {
+          "type": "text",
+          "zh": "p.25：现在重新掷 10 次，记下 10 个总和，只取最大的那个（**maximum**）。你会发现这个最大值几乎总比 28 大（我们按概率算过：约 99.8% 的机会）。p.26 给出：10 次里最大值的期望（**expected**，意思是“平均来说会得到”）是 35.4（Expected maximum of 10 rolls: 35.4）。"
+        },
+        {
+          "type": "widget",
+          "name": "dice-max",
+          "config": {
+            "dice": 8,
+            "sides": 6,
+            "rolls": 10
+          },
+          "caption": {
+            "zh": "试一试：每轮掷 8 个六面骰子共 10 次，只留最大值。多试几轮，看最大值是不是总在 28 以上、平均在 35 左右。",
+            "en": "Roll 8 dice 10 times and keep the maximum. Compare it with the most likely value, 28."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "选秀海选：10 个水平差不多的人各唱一次，你挑唱得最好的那个。可他那天很可能正好超常发挥（运气好），下次再唱多半没那么好。挑出来的“最高分”里含着运气，所以会偏高。",
+          "limit": "类比边界：骰子全靠运气；模型的验证成绩里既有真实水平也有运气，正是运气那部分让“挑出来的最高分”偏高。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: What is the connection between this activity and reporting the validation accuracy as our final accuracy?",
+            "zh": "讨论：这个活动和“把验证准确率当作最终准确率来报告”有什么联系？"
+          },
+          "answer": {
+            "en": "Each model's validation accuracy is like one dice roll: it contains some random luck. When we try many models and choose the one with the maximum validation accuracy, we are taking the maximum of many noisy results, like the maximum of 10 rolls (expected 35.4) instead of the typical value (28). So the chosen model's validation accuracy is likely to overreport its true performance.",
+            "zh": "得分点：① 每个模型的验证成绩 = 掷一次骰子（有运气成分）；② 选验证最好的模型 = 取 10 次里的最大值；③ 最大值（35.4）系统性地高于典型值（28）；④ 所以验证准确率会高估真实表现。"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话 + 考试这样写",
+            "en": "Course wording and exam sentences"
+          },
+          "items": [
+            {
+              "en": "Once we have selected a model, we want to know how it is expected to perform in production.",
+              "zh": "选好模型后，我们想知道它在实际使用中预期会表现如何。"
+            },
+            {
+              "en": "We should be aware that when we are given a validation accuracy, true performance is likely to be worse!",
+              "zh": "要意识到：给出的是验证准确率时，真实表现很可能更差！"
+            },
+            {
+              "en": "Choosing the maximum of many noisy results overestimates the typical value: the expected maximum of 10 rolls is 35.4, but the most likely value of one roll is 28.",
+              "zh": "在许多带噪声的结果里取最大值，会高估典型值：10 次的最大值期望是 35.4，而一次最可能的值是 28。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Is the validation accuracy a good measure of expected performance?",
+            "zh": "讨论（p.22）：验证准确率是衡量预期表现的好指标吗？"
+          },
+          "answer": {
+            "en": "Not really. We used the validation accuracy to choose the best model, so the chosen model's validation accuracy is the maximum of several noisy results. It is likely to be higher than the true performance on new data. To report an honest final accuracy, we should use a separate test set.",
+            "zh": "答案是“不太好”。理由：验证准确率已经被用来挑模型；挑出来的是几个带运气的成绩里最高的那个，所以往往偏高（p.26：true performance is likely to be worse）。办法：另留一个测试集（p.27）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "不是验证准确率“算错了”，而是“我们挑了最大的那个”，它带着运气，所以偏高（**overreport**）。"
+            },
+            {
+              "zh": "28 是一次掷的“最可能的值”（most likely value）；35.4 是“10 次里最大值的期望”（expected maximum of 10 rolls）。别记反。"
+            },
+            {
+              "zh": "解决办法不是“再多试几个模型”（试得越多，挑出来的最大值越容易偏高），而是另外留一个测试集（下一节）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why is the validation accuracy of the chosen model likely to overreport its true performance?",
+            "zh": "为什么选中模型的验证准确率很可能高估它的真实表现？"
+          },
+          "options": [
+            {
+              "en": "Because we chose the model with the maximum validation accuracy, and that maximum includes some lucky noise.",
+              "zh": "因为我们选的是验证准确率最高的模型，这个最大值里有运气成分。"
+            },
+            {
+              "en": "Because the validation set was used for training.",
+              "zh": "因为验证集被用来训练了。"
+            },
+            {
+              "en": "Because validation accuracy is always calculated incorrectly.",
+              "zh": "因为验证准确率总是算错。"
+            },
+            {
+              "en": "Because the validation set is larger than the training set.",
+              "zh": "因为验证集比训练集大。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "就像取 10 次掷骰子的最大值（35.4）会高于典型值（28）。验证集本来就不用来训练（p.15）；计算本身没有错；验证集比训练集小，不是更大。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the dice activity (8 six-sided dice), what are the most likely total of one roll and the expected maximum of 10 rolls?",
+            "zh": "掷骰子活动（8 个六面骰子）中，一次掷的最可能总和、以及 10 次最大值的期望分别是多少？"
+          },
+          "options": [
+            {
+              "en": "35.4 and 28"
+            },
+            {
+              "en": "27 and 48"
+            },
+            {
+              "en": "8 and 48"
+            },
+            {
+              "en": "28 and 35.4"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.24：Most likely value: 28；p.26：Expected maximum of 10 rolls: 35.4。27 只是课件截图里那一次的结果；8 和 48 是可能的最小值和最大值。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-test-set",
+      "title": {
+        "zh": "测试集：诚实地报告最终成绩（60/20/20）",
+        "en": "The test set"
+      },
+      "slides": "27",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "测试集（**test set**）：再留出一份数据，既不用来训练，也不用来验证（挑模型）。等模型选定后，用它来算最终准确率（**final accuracy**），这样就不会把成绩报高。"
+        },
+        {
+          "type": "text",
+          "zh": "为什么测试集的成绩不会偏高？因为模型已经用验证集选好了，我们只拿这“一个”模型在测试集上算一次准确率，没有再从好几个结果里挑最大的。没有“挑最大值”，就没有骰子活动里那种运气加分（35.4 比 28 多出来的那部分）。（这是按 p.26-27 的道理说的。）"
+        },
+        {
+          "type": "analogy",
+          "zh": "高考：练习册（训练集）你做过；模拟考（验证集）你拿来调整复习方法、挑最佳方案；高考卷（测试集）谁都没见过，考出来的分数才真正代表你的水平。",
+          "limit": "类比边界：课件只说测试集“不用于训练或验证”；“像高考一样留到最后”是帮你记的说法。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "We can avoid overreporting our final accuracy by using a test set.",
+              "zh": "用测试集可以避免把最终准确率报高。"
+            },
+            {
+              "en": "A test set is a segment of the dataset not used for training or validation.",
+              "zh": "测试集是数据集中既不用于训练、也不用于验证的一部分。"
+            },
+            {
+              "en": "Since we generally want the training set to contain the most data, splitting the original dataset something like 60/20/20 for training/validation/test is common.",
+              "zh": "因为一般希望训练集的数据最多，所以把原始数据按大约 60/20/20 分成训练/验证/测试是常见做法。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（按 p.26-27 的道理推出，不是课件原话）",
+            "en": "Exam sentence (our reasoning from p.26-27, not slide wording)"
+          },
+          "items": [
+            {
+              "en": "Because the test set is not used to choose the model, its accuracy is not the maximum of many noisy results, so it does not overreport the final accuracy.",
+              "zh": "测试集没参与挑模型，它的准确率不是从许多带噪声的结果里挑出的最大值，所以不会把最终准确率报高。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开看：\n**overreporting**：报高了（上一节骰子活动说的问题）；\n**segment**：一段、一部分；\n**not used for training or validation**：两件事都不参与，这是它和验证集的区别；\n**something like 60/20/20**：大约这样分，是常见做法，不是死规定。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "60/20/20 怎么分（总数是我们举的例子）",
+            "en": "A 60/20/20 split (example numbers)"
+          },
+          "steps": [
+            {
+              "zh": "假设一共有 1000 个例子。"
+            },
+            {
+              "zh": "先把百分数变成小数（百分数 ÷ 100）：60% = 60 ÷ 100 = 0.6，20% = 20 ÷ 100 = 0.2。"
+            },
+            {
+              "zh": "训练集 60%：1000 × 0.6 = 600 个，用来训练模型。"
+            },
+            {
+              "zh": "验证集 20%：1000 × 0.2 = 200 个，用来比较、挑选模型。"
+            },
+            {
+              "zh": "测试集 20%：1000 × 0.2 = 200 个，模型选定后用来报告最终准确率。"
+            }
+          ],
+          "answer": {
+            "zh": "600 / 200 / 200。训练集最大，因为训练需要最多的数据。",
+            "en": "600 / 200 / 200. The training set gets the most data."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "对比项",
+            "Training set 训练集",
+            "Validation set 验证集",
+            "Test set 测试集"
+          ],
+          "rows": [
+            [
+              "用来做什么",
+              "训练模型（找参数）",
+              "比较、挑选模型",
+              "报告最终准确率"
+            ],
+            [
+              "参与训练吗",
+              "参与",
+              "不参与",
+              "不参与"
+            ],
+            [
+              "用来挑模型吗",
+              "不靠它挑（训练误差低不代表好）",
+              "用",
+              "不用"
+            ],
+            [
+              "常见比例",
+              "约 60%",
+              "约 20%",
+              "约 20%"
+            ],
+            [
+              "考试类比",
+              "练习册",
+              "模拟考",
+              "高考"
+            ]
+          ]
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "完整流程（把 p.13-27 串起来）",
+            "en": "The whole workflow (p.13-27)"
+          },
+          "items": [
+            {
+              "en": "Split the dataset, e.g. 60/20/20 for training/validation/test.",
+              "zh": "先把数据分成三份，例如 60/20/20"
+            },
+            {
+              "en": "Train several candidate models on the training set.",
+              "zh": "在训练集上训练几个候选模型"
+            },
+            {
+              "en": "Compare them on the validation set and choose the best one.",
+              "zh": "在验证集上比较，选出最好的"
+            },
+            {
+              "en": "Report the final accuracy of the chosen model on the test set.",
+              "zh": "用测试集给选中的模型算最终成绩"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "验证集 vs 测试集：验证集用来“挑模型”；测试集用来“报成绩”，挑模型时不能用它。"
+            },
+            {
+              "zh": "如果拿测试集来挑模型，它就变成了另一个验证集，又会出现“取最大值”的偏高问题。（这是按 p.26-27 的道理推出来的。）"
+            },
+            {
+              "zh": "60/20/20 是 “something like”（大约），常见但不是唯一答案。"
+            },
+            {
+              "zh": "训练集要最大（contain the most data），不是三份一样大。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is a test set?",
+            "zh": "什么是测试集？"
+          },
+          "options": [
+            {
+              "en": "The part of the dataset used to choose between models",
+              "zh": "用来在模型之间挑选的那部分数据"
+            },
+            {
+              "en": "The part of the dataset used to train the model",
+              "zh": "用来训练模型的那部分数据"
+            },
+            {
+              "en": "A segment of the dataset not used for training or validation",
+              "zh": "数据集中既不用于训练也不用于验证的一部分"
+            },
+            {
+              "en": "Another name for the validation set",
+              "zh": "验证集的另一个名字"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.27 原话。用来挑模型的是验证集；用来训练的是训练集；测试集和验证集是两份不同的数据。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which split for training/validation/test does the lecture describe as common?",
+            "zh": "课件说哪种训练/验证/测试的划分比较常见？"
+          },
+          "options": [
+            {
+              "en": "60/20/20"
+            },
+            {
+              "en": "20/20/60"
+            },
+            {
+              "en": "20/60/20"
+            },
+            {
+              "en": "0/50/50"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.27：something like 60/20/20 for training/validation/test is common。训练集要最多的数据，所以 60% 给训练集；其他选项让训练集变小，甚至没有训练集。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-tp-fp-fn-tn",
+      "title": {
+        "zh": "四个格子：TP、FP、FN、TN",
+        "en": "The four quadrants: TP, FP, FN, TN"
+      },
+      "slides": "28-30",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "准确率（**accuracy**）只告诉你“对了多少”，不告诉你“错在哪儿”。p.29 说：Lab 4 里让大家比较过“类似下面这样”的结果（“In Lab 4, we asked you to compare results like the following”），然后给出 Model 1 和 Model 2 两张表：准确率一样，错误的类型却完全不同。要看清楚，先得给每种结果起名字。"
+        },
+        {
+          "type": "text",
+          "zh": "二分类（**binary classification**，two-class）：答案只有两类。课件把两类叫 POSITIVE（正类）和 NEGATIVE（负类）。把“模型预测的”和“真实情况”两两配对，就得到 4 个格子（**quadrant**）。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "行 = 预测，列 = 真实",
+            "ACTUAL = POSITIVE",
+            "ACTUAL = NEGATIVE"
+          ],
+          "rows": [
+            [
+              "PREDICTED = POSITIVE",
+              "True Positives (TP) 真阳性",
+              "False Positives (FP) 假阳性"
+            ],
+            [
+              "PREDICTED = NEGATIVE",
+              "False Negatives (FN) 假阴性",
+              "True Negatives (TN) 真阴性"
+            ]
+          ],
+          "caption": {
+            "zh": "p.30 的布局：行是预测（PREDICTED），列是真实（ACTUAL）。TP 左上，FP 右上，FN 左下，TN 右下。",
+            "en": "p.30 layout: PREDICTED rows, ACTUAL columns."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "名字怎么拆：\n第二个词（Positive / Negative）= 模型“预测”的是什么；\n第一个词（True / False）= 这个预测“对不对”。\n所以 False Positive = 预测是正，但错了（真实是负）；False Negative = 预测是负，但错了（真实是正）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "火灾报警器：真着火、它响了 = TP；没着火却乱响 = FP（虚惊一场）；着火了它却没响 = FN（漏报，最危险）；没着火也没响 = TN。",
+          "limit": "类比边界：哪种错误更糟要看具体问题。火灾里漏报更可怕，但在别的问题里，误报也可能代价很大。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "True Positive (TP)",
+              "zh": "真阳性",
+              "hint": "预测正，真实也是正（预测对了），左上格"
+            },
+            {
+              "en": "False Positive (FP)",
+              "zh": "假阳性（误报）",
+              "hint": "预测正，真实却是负（预测错了），右上格"
+            },
+            {
+              "en": "False Negative (FN)",
+              "zh": "假阴性（漏报）",
+              "hint": "预测负，真实却是正（预测错了），左下格"
+            },
+            {
+              "en": "True Negative (TN)",
+              "zh": "真阴性",
+              "hint": "预测负，真实也是负（预测对了），右下格"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写",
+            "en": "Exam sentences"
+          },
+          "items": [
+            {
+              "en": "True Positives (TP) are predicted positive and actually positive. False Positives (FP) are predicted positive but actually negative.",
+              "zh": "TP：预测为正，真实也为正。FP：预测为正，真实却为负。"
+            },
+            {
+              "en": "False Negatives (FN) are predicted negative but actually positive. True Negatives (TN) are predicted negative and actually negative.",
+              "zh": "FN：预测为负，真实却为正。TN：预测为负，真实也为负。"
+            },
+            {
+              "en": "In the lecture's table, the rows show the PREDICTED class and the columns show the ACTUAL class.",
+              "zh": "课件的表里，行是预测的类别，列是真实的类别。"
+            },
+            {
+              "en": "Always read the row and column labels before copying TP, FP, FN and TN.",
+              "zh": "抄 TP、FP、FN、TN 之前，一定先看清行和列的标题。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model 1",
+            "ACTUAL = POSITIVE",
+            "ACTUAL = NEGATIVE"
+          ],
+          "rows": [
+            [
+              "PREDICTED = POSITIVE",
+              "28 (TP)",
+              "12 (FP)"
+            ],
+            [
+              "PREDICTED = NEGATIVE",
+              "2 (FN)",
+              "18 (TN)"
+            ]
+          ],
+          "caption": {
+            "zh": "p.29 的 Model 1（括号里的 TP、FP 等是我们加的标注）",
+            "en": "Model 1 (p.29)"
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model 2",
+            "ACTUAL = POSITIVE",
+            "ACTUAL = NEGATIVE"
+          ],
+          "rows": [
+            [
+              "PREDICTED = POSITIVE",
+              "18 (TP)",
+              "2 (FP)"
+            ],
+            [
+              "PREDICTED = NEGATIVE",
+              "12 (FN)",
+              "28 (TN)"
+            ]
+          ],
+          "caption": {
+            "zh": "p.29 的 Model 2。两个模型各有 60 个例子，都对了 28 + 18 = 46 个。",
+            "en": "Model 2 (p.29)"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: These models have the same overall accuracy, but can you imagine a scenario where, because of the problem, one model is better than the other?",
+            "zh": "讨论：两个模型总体准确率一样，你能想到某个场景，因为问题本身的特点，其中一个模型更好吗？"
+          },
+          "answer": {
+            "en": "Yes. Both models are correct 46 times out of 60, but they make different mistakes. Model 1 has few false negatives (2) but many false positives (12), while Model 2 has few false positives (2) but many false negatives (12). When screening for a serious disease, missing a sick person is very bad, so Model 1 is better. When a false alarm is very costly, for example an expensive follow-up test, Model 2 is better.",
+            "zh": "得分点：① 两者都是 46/60 对；② 错误类型不同：Model 1 漏报少、误报多，Model 2 误报少、漏报多；③ 举场景：严重疾病筛查怕漏报 → Model 1；误报代价高 → Model 2。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "先看行列标题再填数：Lecture 6 是行 = PREDICTED、列 = ACTUAL；Lab 5 的招聘模型卡反过来（行 = 真实的 Qualified / Unqualified，列 = Hire / No hire，所以右上是 FN、左下是 FP）。认格子靠“预测了什么 + 预测对不对”，不靠位置。"
+            },
+            {
+              "zh": "False Positive 是“预测为正但错了”，不是“预测为负”。看第二个词判断模型预测了什么。"
+            },
+            {
+              "zh": "positive 不代表“好事”，只代表“属于正类”（比如“有这种病”）。"
+            },
+            {
+              "zh": "课件 p.29-31 没用混淆矩阵（**confusion matrix**）这个词，只说给每个格子起名字。你在别处会见到这个叫法。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the lecture's table (PREDICTED rows, ACTUAL columns), a case that is predicted POSITIVE but is actually NEGATIVE is a:",
+            "zh": "在课件的表里（行 = 预测，列 = 真实），预测为正、真实为负的情况叫："
+          },
+          "options": [
+            {
+              "en": "True Positive (TP)",
+              "zh": "真阳性"
+            },
+            {
+              "en": "False Positive (FP)",
+              "zh": "假阳性"
+            },
+            {
+              "en": "False Negative (FN)",
+              "zh": "假阴性"
+            },
+            {
+              "en": "True Negative (TN)",
+              "zh": "真阴性"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "预测为正 → 第二个词是 Positive；预测错了 → 第一个词是 False。所以是 False Positive（右上格）。FN 是预测为负但真实为正；TP、TN 都是预测对了。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Model 1 has FN = 2. What does this mean?",
+            "zh": "Model 1 的 FN = 2，是什么意思？"
+          },
+          "options": [
+            {
+              "en": "2 cases were correctly predicted positive.",
+              "zh": "有 2 个例子被正确预测为正。"
+            },
+            {
+              "en": "2 cases that are actually negative were wrongly predicted positive.",
+              "zh": "有 2 个真实为负的例子被错误地预测成正。"
+            },
+            {
+              "en": "2 cases that are actually positive were wrongly predicted negative.",
+              "zh": "有 2 个真实为正的例子被错误地预测成负。"
+            },
+            {
+              "en": "2 cases were correctly predicted negative.",
+              "zh": "有 2 个例子被正确预测为负。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "False Negative：预测为负（Negative），但预测错了（False），所以真实是正。“真实为负、被错误地预测成正”那一项描述的是 FP（Model 1 里是 12）；“被正确预测为正”是 TP，“被正确预测为负”是 TN。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-precision-recall-f1",
+      "title": {
+        "zh": "精确率、召回率和 F1：同样 77%，谁更好？",
+        "en": "Precision, recall and F1 score"
+      },
+      "slides": "30-31",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "三个新指标，各盯一种错误：\n精确率（**precision**）：模型说“是”的里面，有多少真的是？怕误报（FP）。\n召回率（**recall**）：真的“是”的里面，模型找出了多少？怕漏报（FN）。\nF1 分数（**F1 score**）：把精确率和召回率合成一个数。"
+        },
+        {
+          "type": "analogy",
+          "zh": "用渔网捞鱼（只想要鱼，不想要垃圾）：\n精确率 = 网里捞上来的东西中，鱼占多少；\n召回率 = 湖里所有的鱼中，你捞到了多少。\n网撒得大，鱼捞得全（召回率高），但垃圾也多（精确率低）。",
+          "limit": "类比边界：“网越大召回越高、精确越低”只是常见情况，不是一定的；考试按公式算。"
+        },
+        {
+          "type": "formula",
+          "expr": "Accuracy = (TP + TN) / (TP + TN + FP + FN)",
+          "zh": "准确率：所有例子里，预测对了（TP + TN）的比例。"
+        },
+        {
+          "type": "formula",
+          "expr": "Precision = TP / (TP + FP)",
+          "zh": "精确率：分母是“预测为正”的那一行（TP + FP）。",
+          "where": [
+            {
+              "symbol": "TP",
+              "zh": "预测正，真实也正"
+            },
+            {
+              "symbol": "FP",
+              "zh": "预测正，真实是负（误报）"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "Recall = TP / (TP + FN)",
+          "zh": "召回率：分母是“真实为正”的那一列（TP + FN）。",
+          "where": [
+            {
+              "symbol": "TP",
+              "zh": "预测正，真实也正"
+            },
+            {
+              "symbol": "FN",
+              "zh": "预测负，真实是正（漏报）"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "F1 Score = 2(Precision)(Recall) / (Precision + Recall)",
+          "zh": "F1：精确率和召回率的一种“平均”。两个都高，F1 才高；有一个很低，F1 就会被拉低。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（公式照课件）",
+            "en": "Exam sentences (formulas as on the slides)"
+          },
+          "items": [
+            {
+              "en": "Precision = TP / (TP + FP). It is the fraction of predicted positives that are actually positive.",
+              "zh": "精确率 = TP / (TP + FP)，即预测为正的例子里，真正为正的比例。"
+            },
+            {
+              "en": "Recall = TP / (TP + FN). It is the fraction of actual positives that the model predicted as positive.",
+              "zh": "召回率 = TP / (TP + FN)，即真正为正的例子里，被模型找出来的比例。"
+            },
+            {
+              "en": "F1 Score = 2(Precision)(Recall) / (Precision + Recall).",
+              "zh": "F1 = 2 × 精确率 × 召回率 ÷（精确率 + 召回率）。"
+            },
+            {
+              "en": "Two models can have the same accuracy but make very different kinds of errors.",
+              "zh": "两个模型准确率可以一样，但犯的错误种类完全不同。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Model 1 的计算：TP = 28，FP = 12，FN = 2，TN = 18",
+            "en": "Model 1 (p.31)"
+          },
+          "steps": [
+            {
+              "zh": "准确率：Accuracy = (28 + 18) / (28 + 18 + 12 + 2) = 46/60 ≈ 77%"
+            },
+            {
+              "zh": "精确率：Precision = 28 / (28 + 12) = 28/40 = 70%"
+            },
+            {
+              "zh": "召回率：Recall = 28 / (28 + 2) = 28/30 ≈ 93%"
+            },
+            {
+              "zh": "F1 第 1 步：先把百分数变成小数（百分数 ÷ 100）：70% = 0.70，28/30 ≈ 0.933"
+            },
+            {
+              "zh": "F1 第 2 步：分子 = 2 × 0.70 × 0.933 ≈ 1.306"
+            },
+            {
+              "zh": "F1 第 3 步：分母 = 0.70 + 0.933 = 1.633"
+            },
+            {
+              "zh": "F1 第 4 步：1.306 ÷ 1.633 ≈ 0.80 = 80%"
+            }
+          ],
+          "answer": {
+            "zh": "Accuracy ≈ 77%，Precision = 70%，Recall ≈ 93%，F1 = 80%（与 p.31 一致）",
+            "en": "Accuracy ≈ 77%, Precision = 70%, Recall ≈ 93%, F1 = 80%"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Model 2 的计算：TP = 18，FP = 2，FN = 12，TN = 28",
+            "en": "Model 2 (p.31)"
+          },
+          "steps": [
+            {
+              "zh": "准确率：Accuracy = (18 + 28) / (18 + 28 + 2 + 12) = 46/60 ≈ 77%"
+            },
+            {
+              "zh": "精确率：Precision = 18 / (18 + 2) = 18/20 = 90%"
+            },
+            {
+              "zh": "召回率：Recall = 18 / (18 + 12) = 18/30 = 60%"
+            },
+            {
+              "zh": "F1 第 1 步：先把百分数变成小数：90% = 0.9，60% = 0.6"
+            },
+            {
+              "zh": "F1 第 2 步：分子 = 2 × 0.9 × 0.6 = 1.08"
+            },
+            {
+              "zh": "F1 第 3 步：分母 = 0.9 + 0.6 = 1.5"
+            },
+            {
+              "zh": "F1 第 4 步：1.08 ÷ 1.5 = 0.72 = 72%（课件写作 18/25 = 72%）"
+            }
+          ],
+          "answer": {
+            "zh": "Accuracy ≈ 77%，Precision = 90%，Recall = 60%，F1 = 72%（与 p.31 一致）",
+            "en": "Accuracy ≈ 77%, Precision = 90%, Recall = 60%, F1 = 72%"
+          }
+        },
+        {
+          "type": "widget",
+          "name": "confusion-matrix",
+          "config": {
+            "presets": [
+              {
+                "name": {
+                  "zh": "Model 1（p.29）",
+                  "en": "Model 1 (p.29)"
+                },
+                "tp": 28,
+                "fp": 12,
+                "fn": 2,
+                "tn": 18
+              },
+              {
+                "name": {
+                  "zh": "Model 2（p.29）",
+                  "en": "Model 2 (p.29)"
+                },
+                "tp": 18,
+                "fp": 2,
+                "fn": 12,
+                "tn": 28
+              }
+            ]
+          },
+          "caption": {
+            "zh": "试一试：在 Model 1 和 Model 2 之间切换，准确率不变，精确率和召回率却几乎对调。再自己改改 FN 或 FP，看哪个指标跟着变。",
+            "en": "Switch between Model 1 and Model 2: same accuracy, very different precision and recall."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Which model do you prefer for a medical condition that is very serious if not caught early? Which do you prefer for a condition that isn't as serious and further testing is very costly?",
+            "zh": "讨论：如果一种病不早发现就很严重，你选哪个模型？如果病没那么严重，但进一步检查很贵，你选哪个？"
+          },
+          "answer": {
+            "en": "For a very serious condition, I prefer Model 1 because it has higher recall (28/30 ≈ 93%). It misses only 2 sick people (FN = 2), and missing a case is the worst error here. For a less serious condition where further testing is very costly, I prefer Model 2 because it has higher precision (18/20 = 90%). It gives only 2 false alarms (FP = 2), so fewer healthy people are sent for expensive tests.",
+            "zh": "得分点：① 严重疾病 → 漏报（FN）最可怕 → 看召回率 → Model 1（93%，FN = 2）；② 不严重但复查很贵 → 误报（FP）代价大 → 看精确率 → Model 2（90%，FP = 2）；③ 理由要说清“哪种错误更糟”，并引用数字。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "精确率的分母是 TP + FP（预测为正的那一行）；召回率的分母是 TP + FN（真实为正的那一列）。这是最容易混的地方！"
+            },
+            {
+              "zh": "记忆法：Precision 问“我说是的，准不准”；Recall 问“该找的，找全没有”。"
+            },
+            {
+              "zh": "F1 不是简单平均：Model 2 的 (90% + 60%) / 2 = 75%，但 F1 = 72%。"
+            },
+            {
+              "zh": "两个模型准确率都是 46/60 ≈ 77%，只看准确率会以为它们一样好。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A model has TP = 28, FP = 12, FN = 2, TN = 18. What is its precision?",
+            "zh": "某模型 TP = 28，FP = 12，FN = 2，TN = 18。它的精确率是多少？"
+          },
+          "options": [
+            {
+              "en": "28/30 ≈ 93%"
+            },
+            {
+              "en": "46/60 ≈ 77%"
+            },
+            {
+              "en": "28/40 = 70%"
+            },
+            {
+              "en": "18/30 = 60%"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "Precision = TP / (TP + FP) = 28 / (28 + 12) = 28/40 = 70%。28/30 是召回率（分母用了 FN）；46/60 是准确率；18/30 是 Model 2 的召回率。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "For a very serious disease that must be caught early, which metric matters most, and which model is better?",
+            "zh": "对于必须尽早发现的严重疾病，哪个指标最重要？哪个模型更好？"
+          },
+          "options": [
+            {
+              "en": "Precision; Model 2",
+              "zh": "精确率；Model 2"
+            },
+            {
+              "en": "Accuracy; both are equally good",
+              "zh": "准确率；两个一样好"
+            },
+            {
+              "en": "Precision; Model 1",
+              "zh": "精确率；Model 1"
+            },
+            {
+              "en": "Recall; Model 1",
+              "zh": "召回率；Model 1"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "严重疾病最怕漏报（FN），召回率 = TP / (TP + FN) 衡量的正是“病人有没有被找全”。Model 1 召回率 93%、FN 只有 2，更好。精确率针对的是误报；只看准确率会以为两者一样（都是 77%）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-other-priorities",
+      "title": {
+        "zh": "不只看成绩：速度/成本、可解释性、偏见与公平",
+        "en": "Other priorities"
+      },
+      "slides": "32",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "选模型时，有些理由跟表现（**performance**）好不好没有直接关系。p.32 列了三条，这也正是 p.18 讨论题“除了验证准确率还要考虑什么”的答案。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "There may be reasons for selecting a model that are not directly related to performance.",
+              "zh": "选模型时，可能有一些和表现没有直接关系的理由。"
+            },
+            {
+              "en": "Speed/Cost: How costly is it to train the model? How costly is it to perform inference using a trained model?",
+              "zh": "速度/成本：训练这个模型要花多少成本？用训练好的模型做推理要花多少成本？"
+            },
+            {
+              "en": "Explainability: How easy is it to explain why the model gave the result it gave?",
+              "zh": "可解释性：解释“模型为什么给出这个结果”有多容易？"
+            },
+            {
+              "en": "Bias and Fairness: Does the model unfairly discriminate against any groups?",
+              "zh": "偏见与公平：模型有没有不公平地歧视某些群体？"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "inference",
+              "zh": "推理（使用模型）",
+              "hint": "用已经训练好的模型去做预测，和“训练”相对。课件定义在 Lecture 1 p.51：inference (using the trained model to solve a problem)；本课 p.32 只用了这个词，没再定义。"
+            },
+            {
+              "en": "explainability",
+              "zh": "可解释性",
+              "hint": "人能不能看懂模型为什么这样判断"
+            },
+            {
+              "en": "bias",
+              "zh": "偏见",
+              "hint": "模型对某些群体不公平"
+            },
+            {
+              "en": "discriminate against",
+              "zh": "歧视",
+              "hint": "因为一个人属于某个群体而不公平地对待他"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "挑导航路线：最快的路线不一定选，还要看过路费贵不贵（成本），以及 App 能不能说清楚为什么推荐这条路（可解释性）。",
+          "limit": "类比边界：第三条“偏见与公平”在导航里类比不了。模型的决定会落到真实的人身上（工作、贷款、判刑），这是下一大部分的主题。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "回到大表（Lecture 1 p.57 的性质大表）：这一页解释了大表里的几行。Speed/Cost → Speed 和 Cost and capacity 两行；Explainability → Explainability 一行（ML 一栏写的是 “Difficult for complex models”）；Bias and Fairness → Fairness / subgroup risk 一行（ML 一栏写的是 “Bias can be learned from data”）。“选方法”的长答题可以用这三条来说理由。",
+          "en": "Back to the Big Table (Lecture 1 p.57): this slide explains the Speed, Cost and capacity, Explainability and Fairness rows."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Speed/Cost 包括两种成本：训练（**train**）的成本和推理（**inference**）的成本，考试时最好两种都写。"
+            },
+            {
+              "zh": "这三条是“和表现没有直接关系”的理由；精确率、召回率、F1 仍然属于表现指标。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, which of the following is a reason for selecting a model that is NOT directly related to performance?",
+            "zh": "根据课件，下面哪个是“和表现没有直接关系”的选模型理由？"
+          },
+          "options": [
+            {
+              "en": "Explainability",
+              "zh": "可解释性"
+            },
+            {
+              "en": "Validation accuracy",
+              "zh": "验证准确率"
+            },
+            {
+              "en": "Recall",
+              "zh": "召回率"
+            },
+            {
+              "en": "Training MSE",
+              "zh": "训练 MSE"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.32 的三条是 Speed/Cost、Explainability、Bias and Fairness。验证准确率、召回率、训练 MSE 都是衡量表现的指标。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "'How costly is it to perform inference using a trained model?' belongs to which consideration?",
+            "zh": "“用训练好的模型做推理要花多少成本？”属于哪一条考虑？"
+          },
+          "options": [
+            {
+              "en": "Speed/Cost",
+              "zh": "速度/成本"
+            },
+            {
+              "en": "Explainability",
+              "zh": "可解释性"
+            },
+            {
+              "en": "Bias and Fairness",
+              "zh": "偏见与公平"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.32 把训练成本和推理成本都放在 Speed/Cost 下。可解释性问的是“能不能说清为什么”；偏见与公平问的是“有没有歧视某些群体”。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-bias-cases",
+      "title": {
+        "zh": "偏见的四个真实案例",
+        "en": "Examples of bias"
+      },
+      "slides": "33-37",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "最后一大部分：偏见与算法公平（**Bias and Algorithmic Fairness**）。这里的偏见（**bias**）指模型不公平地歧视某些群体（p.32 的说法）。课件用 4 个真实案例说明，每个案例都问同一个问题：这个模型产生偏见，最可能的原因是什么？"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：这里的 bias 是“偏见、不公平”。如果别的课讲神经元时出现 bias（偏置项），那是另一个意思，别混。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "提示：课件 p.34-37 每页底部都印了同一个来源链接（Prolific 网站上一篇讲 AI 偏见真实案例的文章）。课件没有给这四个讨论题的标准答案，下面的参考答案是按 p.38 的原因列表和 p.44 的说明推断的。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "案例 Case",
+            "年份和关键数字（课件原数字）",
+            "伦理问题"
+          ],
+          "rows": [
+            [
+              "招聘 Hiring：Amazon（p.34）",
+              "2014 年开始用；10 年招聘数据；2015 年发现扣分",
+              "招聘中的性别歧视"
+            ],
+            [
+              "贷款 Loans and Credit：美国房贷（p.35）",
+              "2012-2018 年的调查；多付约 0.08%",
+              "贷款中的族裔歧视（没用族裔也发生）"
+            ],
+            [
+              "人脸识别 Facial Recognition（p.36）",
+              "2018 年研究；错误率最多高 34%",
+              "错误率不平等；认错人导致错误逮捕"
+            ],
+            [
+              "再犯 Recidivism：COMPAS（p.37）",
+              "2016 年 ProPublica；44.9% 对 23.5%",
+              "判刑和假释中的种族差异"
+            ]
+          ],
+          "caption": {
+            "zh": "四个案例一览（每个案例的完整原文和讨论在下面）",
+            "en": "The four cases at a glance"
+          }
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "resume-scoring model",
+              "zh": "简历打分模型",
+              "hint": "给简历打分、按分数给求职者排名的模型（p.34）"
+            },
+            {
+              "en": "rank applicants",
+              "zh": "给求职者排名",
+              "hint": "按分数高低给申请人排先后"
+            },
+            {
+              "en": "penalize",
+              "zh": "扣分（惩罚）",
+              "hint": "因为某个特点给更低的分"
+            },
+            {
+              "en": "mortgage",
+              "zh": "房贷",
+              "hint": "买房时向银行借的钱（p.35）"
+            },
+            {
+              "en": "borrower",
+              "zh": "借款人",
+              "hint": "借钱的人"
+            },
+            {
+              "en": "equivalent",
+              "zh": "条件相当的",
+              "hint": "除了族裔，其他条件都差不多"
+            },
+            {
+              "en": "ethnicity",
+              "zh": "族裔",
+              "hint": "一个人属于哪个民族或种族群体；p.35 说模型没用它做特征"
+            },
+            {
+              "en": "Black / White / Latinx",
+              "zh": "黑人 / 白人 / 拉丁裔",
+              "hint": "课件里比较的群体名称；拉丁裔 = 拉丁美洲裔"
+            },
+            {
+              "en": "facial recognition",
+              "zh": "人脸识别",
+              "hint": "用软件认出照片或视频里的人是谁（p.36）"
+            },
+            {
+              "en": "CCTV footage",
+              "zh": "监控录像",
+              "hint": "监控摄像头拍下的画面"
+            },
+            {
+              "en": "suspect",
+              "zh": "嫌疑人",
+              "hint": "被怀疑犯了罪的人"
+            },
+            {
+              "en": "false arrest",
+              "zh": "错误逮捕",
+              "hint": "抓错了人"
+            },
+            {
+              "en": "darker-skinned / lighter-skinned",
+              "zh": "深肤色 / 浅肤色",
+              "hint": "p.36 比较的两组人：深肤色女性和浅肤色男性"
+            },
+            {
+              "en": "recidivism / reoffend",
+              "zh": "再犯 / 再次犯罪",
+              "hint": "p.37 的解释：recidivism = committing another crime（再次犯罪）"
+            },
+            {
+              "en": "defendant",
+              "zh": "被告",
+              "hint": "在法庭上被起诉的人"
+            },
+            {
+              "en": "high risk",
+              "zh": "高风险",
+              "hint": "模型认为这个人很可能再犯"
+            },
+            {
+              "en": "sentencing and parole",
+              "zh": "判刑和假释",
+              "hint": "判多久的刑；服刑一段时间后有条件地提前出狱"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Hiring (p.34): In 2014, Amazon began using a resume-scoring model to rank applicants, trained on 10 years of hiring data. In 2015, this model was found to penalize resumes including words like 'women's', or the names of all-women's colleges. Discuss: What was the likely reason for the bias of this model?",
+            "zh": "招聘（p.34）：2014 年，Amazon 开始用简历打分模型（**resume-scoring model**）给求职者排名，训练数据是 10 年的招聘记录。2015 年发现，它会给含 “women’s” 等词、或女子学院名字的简历扣分（**penalize**）。讨论：这个模型产生偏见，最可能的原因是什么？"
+          },
+          "answer": {
+            "en": "The likely reason is biased historical data used in training. The model learned from 10 years of past hiring decisions. If those past decisions favoured men, the model learned to copy that pattern, so it penalized resumes with words like 'women's'.",
+            "zh": "对应 p.38 的第一个原因：训练用的历史数据本身有偏见（**biased historical data**）。模型学的是“过去被录用的人长什么样”，过去的偏向就被它照搬了。（课件没给标准答案，这是按 p.38 的原因列表推断的。）"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Loans and Credit (p.35): In a survey of the US mortgage market from 2012-2018, researchers found that Black and Latinx borrowers paid ~0.08% more than equivalent White borrowers. This result held for human and algorithmic lenders, even though models were not trained using ethnicity as a feature. Discuss: What was the likely reason for the bias of this model?",
+            "zh": "贷款（p.35）：一项对 2012-2018 年美国房贷（**mortgage**）市场的调查发现，黑人（**Black**）和拉丁裔（**Latinx**）借款人（**borrowers**）比条件相当的白人（**White**）借款人多付约 0.08%。人工放贷和算法放贷都是这样，尽管模型训练时没用族裔（**ethnicity**）这个特征。讨论：偏见最可能的原因是什么？"
+          },
+          "answer": {
+            "en": "The likely reason is the use of proxy variables. Ethnicity was not used as a feature, but other features can be related to ethnicity. In combination, they can recreate the sensitive information, so the model can still treat groups differently. Biased historical lending data may also play a role.",
+            "zh": "对应 p.38 的第三个原因：代理变量（**proxy variables**）。模型没用族裔，但别的特征组合起来能“还原”族裔（p.46）。所以“删掉敏感特征”并不能保证公平。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Facial Recognition (p.36): Police may use facial recognition software to match CCTV footage with government ID photos to identify a suspect. Incorrect identifications lead to false arrests. In a 2018 study, researchers found that in commercial facial recognition software, error rates were up to 34% higher for darker-skinned women than for lighter-skinned men. Discuss: What was the likely reason for the bias of this model?",
+            "zh": "人脸识别（p.36）：警察可能用人脸识别（**facial recognition**）软件，把监控录像（**CCTV footage**）和政府证件照比对，来找出嫌疑人（**suspect**）。认错人会导致错误逮捕（**false arrests**）。2018 年的一项研究发现，商业人脸识别软件对深肤色（**darker-skinned**）女性的错误率，比浅肤色（**lighter-skinned**）男性最多高 34%。讨论：偏见最可能的原因是什么？"
+          },
+          "answer": {
+            "en": "The likely reason is underrepresentation of specific groups in the training dataset. If there were far fewer photos of darker-skinned women in the training data, the model learned their faces less well, so its error rate for them was higher. In policing, these errors can lead to false arrests.",
+            "zh": "对应 p.38 的第二个原因：某些群体在训练数据中代表性不足（**underrepresentation**）。照片少 → 学得差 → 错误率高 → 在警务场景里导致错误逮捕。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Recidivism (p.37): COMPAS is a model for predicting recidivism (i.e. committing another crime). It is currently used in several US states to inform judges' decisions regarding sentencing and parole. In 2016, ProPublica published an article showing that Black defendants who did not go on to reoffend were incorrectly classified as high risk at a rate of 44.9%, compared to 23.5% for White defendants. The company stated that at any given risk score, the likelihood of reoffending was approximately equal across racial groups. Discuss: What was the likely reason for the bias of this model?",
+            "zh": "再犯（p.37）：COMPAS 是预测再犯（**recidivism**，即再次犯罪）的模型，美国多个州用它辅助法官做判刑和假释（**sentencing and parole**）决定。2016 年 ProPublica 发文指出：在后来没有再犯（**reoffend**）的人里，黑人被告（**defendants**）被错误地判为高风险（**high risk**）的比例是 44.9%，白人被告是 23.5%。公司回应：在任何一个风险分数上，各族群再犯的可能性大致相同。讨论：偏见最可能的原因是什么？"
+          },
+          "answer": {
+            "en": "The likely reason is the incompatibility of different definitions of fairness. The company says the model is fair because a given risk score means about the same chance of reoffending in every racial group. ProPublica says it is unfair because Black defendants who did not reoffend were wrongly labelled high risk more often (44.9% vs 23.5%). Both claims can be true at once, because different forms of fairness are often at odds with each other.",
+            "zh": "对应 p.38 的第四个原因：不同的公平定义互相冲突。p.44 明确写了：“This was the case for the COMPAS example.” 公司强调“同一分数在各组含义相同”；ProPublica 强调“没再犯的人被错判高风险的比例不同”。两种说法用的是不同的公平定义（见后面的 Predictive Parity 和 Equalized Odds；把两种说法对应到这两个指标是我们按 p.41-42 推断的）。"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写（案例事实）",
+            "en": "Key facts to remember"
+          },
+          "items": [
+            {
+              "en": "Amazon's resume-scoring model, trained on 10 years of hiring data, was found to penalize resumes including words like 'women's'.",
+              "zh": "Amazon 的简历打分模型用 10 年招聘数据训练，被发现给含 “women’s” 等词的简历扣分。"
+            },
+            {
+              "en": "In the US mortgage market, Black and Latinx borrowers paid ~0.08% more than equivalent White borrowers, even though models were not trained using ethnicity as a feature.",
+              "zh": "美国房贷市场中，黑人和拉丁裔借款人比条件相当的白人借款人多付约 0.08%，尽管模型没用族裔做特征。"
+            },
+            {
+              "en": "Commercial facial recognition had error rates up to 34% higher for darker-skinned women than for lighter-skinned men, and incorrect identifications lead to false arrests.",
+              "zh": "商业人脸识别对深肤色女性的错误率比浅肤色男性最多高 34%，认错人会导致错误逮捕。"
+            },
+            {
+              "en": "COMPAS wrongly classified Black defendants who did not reoffend as high risk at a rate of 44.9%, compared to 23.5% for White defendants.",
+              "zh": "COMPAS 把没有再犯的黑人被告错判为高风险的比例是 44.9%，白人是 23.5%。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "房贷案例的关键：模型“没有”用族裔做特征，仍然有偏见。说明光删掉敏感特征不够。"
+            },
+            {
+              "zh": "COMPAS 的 44.9% 和 23.5% 是“没有再犯的人”里被错判为高风险的比例，不是“所有被告”里的比例。"
+            },
+            {
+              "zh": "人脸识别的 “up to 34% higher”、房贷的 “~0.08% more”，课件没细说是什么的百分比，照原话写最安全。"
+            },
+            {
+              "zh": "年份别混：Amazon 2014 年开始用、2015 年发现问题；房贷调查 2012-2018；人脸研究 2018；ProPublica 2016。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What did ProPublica report about COMPAS in 2016?",
+            "zh": "2016 年 ProPublica 报道了 COMPAS 的什么问题？"
+          },
+          "options": [
+            {
+              "en": "It penalized resumes including the word 'women's'.",
+              "zh": "它给含 “women’s” 的简历扣分。"
+            },
+            {
+              "en": "Black and Latinx borrowers paid ~0.08% more.",
+              "zh": "黑人和拉丁裔借款人多付约 0.08%。"
+            },
+            {
+              "en": "Error rates were up to 34% higher for darker-skinned women.",
+              "zh": "深肤色女性的错误率最多高 34%。"
+            },
+            {
+              "en": "Black defendants who did not reoffend were wrongly classified as high risk at 44.9%, compared to 23.5% for White defendants.",
+              "zh": "没有再犯的黑人被告被错判高风险的比例是 44.9%，白人是 23.5%。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "44.9% 对 23.5% 那一项是 p.37 的 COMPAS 事实。34% 是人脸识别（p.36）；“women’s” 是 Amazon 招聘（p.34）；0.08% 是美国房贷（p.35）。复习时把每个案例和它的数字对应起来记。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-causes-of-bias",
+      "title": {
+        "zh": "偏见从哪来：四个可能的原因",
+        "en": "Possible causes of bias"
+      },
+      "slides": "38",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "p.38 列出了机器学习中偏见的可能原因（**causes of bias**）。注意课件写的是 “A non-exhaustive list”：这不是完整清单，现实中还可能有别的原因。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话（p.38）",
+            "en": "Course wording (p.38)"
+          },
+          "items": [
+            {
+              "en": "Biased historical data used in training",
+              "zh": "训练用的历史数据本身有偏见"
+            },
+            {
+              "en": "Underrepresentation of specific groups in the training dataset",
+              "zh": "某些群体在训练数据中代表性不足（样本太少）"
+            },
+            {
+              "en": "Proxy variables used to recreate forbidden, sensitive information",
+              "zh": "代理变量被用来还原被禁止使用的敏感信息"
+            },
+            {
+              "en": "Incompatibility of different definitions of fairness",
+              "zh": "不同的公平定义互相冲突、无法同时满足"
+            },
+            {
+              "en": "Possible causes of bias in ML include biased historical data, underrepresentation of specific groups in the training dataset, proxy variables, and the incompatibility of different definitions of fairness.",
+              "zh": "机器学习中偏见的可能原因包括：有偏见的历史数据、训练数据中某些群体代表性不足、代理变量、不同公平定义互相冲突。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "historical data",
+              "zh": "历史数据",
+              "hint": "过去真实做出的决定；过去不公平，模型就会学着照做"
+            },
+            {
+              "en": "underrepresentation",
+              "zh": "代表性不足",
+              "hint": "某个群体在训练数据里样本太少，模型对他们学得差"
+            },
+            {
+              "en": "proxy variable",
+              "zh": "代理变量",
+              "hint": "本身不是敏感信息，但组合起来能把敏感信息“猜”出来"
+            },
+            {
+              "en": "sensitive information",
+              "zh": "敏感信息",
+              "hint": "例如族裔、性别这类不应用来做决定的信息"
+            },
+            {
+              "en": "definitions of fairness",
+              "zh": "公平的定义",
+              "hint": "“公平”有好几种量法（p.40-43），常常不能同时满足"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "用“学做菜”来记四个原因：每个原因都像一种做菜翻车的方式，对应关系见下面的列表。",
+          "limit": "类比只帮记忆；真实的偏见会伤害到人（工作、贷款、自由）。"
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "学做菜类比：四个原因",
+            "en": "Cooking analogy: the four causes"
+          },
+          "items": [
+            {
+              "zh": "历史数据有偏见 = 照着一本有错的老菜谱学，学得越像错得越像。"
+            },
+            {
+              "zh": "代表性不足 = 只练过川菜，突然让你做粤菜就容易翻车。"
+            },
+            {
+              "zh": "代理变量 = 规定不许写“放辣椒”，菜谱却写“放小米椒”，结果一样辣。"
+            },
+            {
+              "zh": "公平定义冲突 = 有人要“每人分量一样”，有人要“饿的人多吃”，一盘菜很难同时满足。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "原因 Cause",
+            "最对得上的案例",
+            "为什么"
+          ],
+          "rows": [
+            [
+              "Biased historical data",
+              "Amazon 招聘（p.34）",
+              "模型学的是过去 10 年的录用记录"
+            ],
+            [
+              "Underrepresentation",
+              "人脸识别（p.36）",
+              "某些群体的照片少，错误率更高"
+            ],
+            [
+              "Proxy variables",
+              "美国房贷（p.35）",
+              "模型没用族裔，但其他特征能还原它"
+            ],
+            [
+              "Incompatibility of definitions of fairness",
+              "COMPAS（p.37）",
+              "p.44 原话：This was the case for the COMPAS example."
+            ]
+          ],
+          "caption": {
+            "zh": "只有 COMPAS 这一行是课件明确写的（p.44），其他三行是我们按案例内容推断的对应关系。",
+            "en": "Only the COMPAS link is stated on the slides (p.44)."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "代理变量最难懂，再说一句。变量（**variable**）/特征（**feature**）就是数据表里的一列信息，比如年龄、收入、住址。就算把“族裔”这一列删掉，别的几列合在一起，仍可能把它猜出来。p.46 原话：“proxy variables, which in combination can reveal the original sensitive features”（代理变量组合起来能暴露原来的敏感特征）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（课件外）：常举的例子是住址（邮编）——它和族裔往往有关系，几列合在一起就可能把族裔“猜”出来。课件没举具体例子，考试写原理即可。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "连起来看：代理变量靠的是 Lecture 4 讲过的同一种能力：ML 能推断出你从没告诉过公司的信息（Lecture 4 p.18-19：p.18 说 ML can infer details you have never given to a company，p.19 是 Target 预测怀孕的例子）。所以只删掉“族裔”这一列不够（p.46：Simple removal is often not enough due to proxy variables）。Lecture 4 数据溯源里的问题“收集数据的过程有偏见吗？”（Lecture 4 p.10），就是在提前防第一、二个原因；Lecture 1 也说过：训练好的模型会继承训练数据的偏见（Lecture 1 p.52）。",
+          "en": "Proxy variables use the same ability as Lecture 4's Target case: ML can infer details you never gave. That is why simple removal of a sensitive feature is often not enough."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“non-exhaustive” = 不完整。考试列偏见原因时可以写这四条，但别说“只有这四条”。"
+            },
+            {
+              "zh": "删掉敏感特征 ≠ 消除偏见（代理变量的问题）。"
+            },
+            {
+              "zh": "第四条不是数据的问题，而是“公平本身有好几种定义、互相冲突”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Commercial facial recognition software had much higher error rates for darker-skinned women. Which cause of bias is the most likely explanation?",
+            "zh": "商业人脸识别对深肤色女性的错误率高得多。最可能的偏见原因是？"
+          },
+          "options": [
+            {
+              "en": "Proxy variables used to recreate sensitive information",
+              "zh": "代理变量还原敏感信息"
+            },
+            {
+              "en": "Incompatibility of different definitions of fairness",
+              "zh": "公平定义互相冲突"
+            },
+            {
+              "en": "Underrepresentation of specific groups in the training dataset",
+              "zh": "训练数据中某些群体代表性不足"
+            },
+            {
+              "en": "The test set was too large",
+              "zh": "测试集太大"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "某群体照片太少，模型对他们学得差，错误率就高，这是代表性不足。代理变量用在“模型没直接用敏感特征却仍然歧视”的情况（如房贷）；定义冲突对应 COMPAS；测试集大小不会造成这种偏见。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the US mortgage example, the models were not trained using ethnicity as a feature, but Black and Latinx borrowers still paid more. Which cause of bias best explains this?",
+            "zh": "美国房贷例子中，模型没用族裔做特征，但黑人和拉丁裔借款人仍然付得更多。哪个原因最能解释？"
+          },
+          "options": [
+            {
+              "en": "Proxy variables used to recreate forbidden, sensitive information",
+              "zh": "代理变量还原了被禁止的敏感信息"
+            },
+            {
+              "en": "Underrepresentation of specific groups in the training dataset",
+              "zh": "训练数据中某些群体代表性不足"
+            },
+            {
+              "en": "The model was overfitted to the validation set",
+              "zh": "模型过拟合了验证集"
+            },
+            {
+              "en": "The validation set was too small",
+              "zh": "验证集太小"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "关键是“没用族裔却仍有偏见”：别的特征组合起来能还原族裔，这就是代理变量。题目没提某群体数据少；“过拟合验证集”不是课件说的偏见原因；验证集大小和偏见原因无关。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s15-disparate-treatment-impact",
+      "title": {
+        "zh": "差别对待 vs 差别影响",
+        "en": "Disparate treatment vs disparate impact"
+      },
+      "slides": "39",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "两种“不公平”：\n差别对待（**disparate treatment**）：做决定时直接看你属于哪个群体。看的是“过程”。\n差别影响（**disparate impact**）：不管做决定时有没有看群体，只要结果让某些敏感群体受到的伤害特别多（不成比例），就是差别影响。看的是“结果”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "奶茶店招兼职：\n差别对待 = 招聘启事写“只要男生”，明着按群体区分；\n差别影响 = 启事写“身高 1 米 8 以上”，没提性别，结果大部分女生都被刷掉了。",
+          "limit": "类比只为区分两个概念；现实中某条要求合不合理，要看具体工作。注意：“只要男生”也会让女生全部被刷掉，所以它既是差别对待，也造成了差别影响；身高要求只造成差别影响。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话定义",
+            "en": "Course definition"
+          },
+          "items": [
+            {
+              "en": "Disparate treatment means making decisions that explicitly consider a person's membership in a protected or sensitive group.",
+              "zh": "差别对待：做决定时明确考虑一个人是否属于受保护或敏感的群体。"
+            },
+            {
+              "en": "Disparate impact means making decisions that disproportionately harm people from certain sensitive groups.",
+              "zh": "差别影响：做出的决定不成比例地伤害某些敏感群体的人。"
+            },
+            {
+              "en": "It is often not possible to avoid both.",
+              "zh": "两者常常不可能同时避免。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "explicitly consider",
+              "zh": "明确地考虑",
+              "hint": "决定规则里直接用到“你属于哪个群体”"
+            },
+            {
+              "en": "membership",
+              "zh": "成员身份",
+              "hint": "你属于哪个群体"
+            },
+            {
+              "en": "protected or sensitive group",
+              "zh": "受保护 / 敏感群体",
+              "hint": "按族裔、性别等划分的群体（课件没给正式定义）"
+            },
+            {
+              "en": "disproportionately harm",
+              "zh": "不成比例地伤害",
+              "hint": "伤害特别集中地落在某些群体身上"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "课件例子：所有人用同一个信用分门槛（p.39）",
+            "en": "Slide example: one fixed credit score for all groups"
+          },
+          "steps": [
+            {
+              "zh": "信用分（**credit score**）：衡量一个人借钱后按时还钱有多可靠的分数。"
+            },
+            {
+              "zh": "规则：所有群体都要求同一个固定的信用分，够了才批。"
+            },
+            {
+              "zh": "这条规则没看你属于哪个群体 → 不是差别对待（not disparate treatment）。"
+            },
+            {
+              "zh": "但有些群体由于历史原因信用分普遍更低 → 他们被拒的更多 → 这是差别影响（disparate impact）。"
+            },
+            {
+              "zh": "如果想消除这个差别影响，就要对不同群体用不同标准，那又变成了差别对待。所以两者常常不能同时避免。（这一步是从 p.39 的 It is often not possible to avoid both 推出来的解释。）"
+            }
+          ],
+          "answer": {
+            "zh": "固定信用分门槛：不是 disparate treatment，但造成了 disparate impact。",
+            "en": "A fixed credit score for all groups is not disparate treatment, but it causes disparate impact."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Discuss: Can you think of a process that uses disparate treatment to try to minimize disparate impact?",
+            "zh": "讨论：你能想到一个“用差别对待来尽量减少差别影响”的做法吗？"
+          },
+          "answer": {
+            "en": "Yes. For example, after a model rates applications on a 10-point scale, we can adjust the rating upward for a group that we know the model is biased against. This explicitly uses group membership, so it is disparate treatment. However, its goal is to reduce the harm to that group, so it tries to minimize disparate impact.",
+            "zh": "得分点：① 给出一个具体做法；② 说明它明确用了群体身份 = 差别对待；③ 说明目的是减少对该群体的伤害 = 减少差别影响。这个做法在 p.47 叫后处理（post-processing），最后一节会讲。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "差别对待看“过程”（有没有直接用群体身份）；差别影响看“结果”（某群体是不是被伤害得特别多）。"
+            },
+            {
+              "zh": "没用敏感特征 ≠ 没有差别影响（想想信用分例子和房贷案例）。"
+            },
+            {
+              "zh": "反过来，用了群体身份也不一定是为了伤害谁，可能正是为了减少差别影响（见讨论题）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A bank requires the same fixed credit score from all groups. Groups with historically lower credit scores are rejected more often. According to the lecture, this is:",
+            "zh": "银行对所有群体要求同一个固定信用分，历史上信用分较低的群体被拒得更多。按课件，这属于："
+          },
+          "options": [
+            {
+              "en": "Disparate treatment, but not disparate impact",
+              "zh": "差别对待，但不是差别影响"
+            },
+            {
+              "en": "Disparate impact, but not disparate treatment",
+              "zh": "差别影响，但不是差别对待"
+            },
+            {
+              "en": "Both disparate treatment and disparate impact",
+              "zh": "既是差别对待也是差别影响"
+            },
+            {
+              "en": "Neither",
+              "zh": "两者都不是"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "这就是 p.39 的例子：规则没看群体身份，所以不是差别对待；但结果不成比例地伤害了某些群体，所以是差别影响。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following is an example of disparate treatment?",
+            "zh": "下面哪个是差别对待的例子？"
+          },
+          "options": [
+            {
+              "en": "A rule that ignores group membership but harms one group more",
+              "zh": "规则不看群体身份，但对某一组伤害更大"
+            },
+            {
+              "en": "A model with low validation accuracy",
+              "zh": "验证准确率低的模型"
+            },
+            {
+              "en": "A model that is slow to train",
+              "zh": "训练很慢的模型"
+            },
+            {
+              "en": "A decision rule that explicitly uses an applicant's membership in a sensitive group",
+              "zh": "决定规则直接用了申请人属于哪个敏感群体"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "差别对待的关键词是 explicitly consider membership（明确考虑群体身份）。“规则不看群体身份，但对某一组伤害更大”那一项是差别影响，不是差别对待；验证准确率低、训练很慢与公平的定义无关（属于表现或成本问题）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s16-demographic-parity",
+      "title": {
+        "zh": "公平指标 1：人口统计均等（Demographic Parity）",
+        "en": "Fairness metric 1: Demographic parity"
+      },
+      "slides": "40",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "公平指标（**fairness metrics**）：把“公平”变成能计算、能检查的规则。课件 p.40-43 讲了 4 个，全部用同一个例子：大学录取（**admission**），两个群体 Group A 和 Group B。被录取（**admitted**）= 模型预测为正（positive）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "admit / admission",
+              "zh": "录取",
+              "hint": "大学决定收这个学生；在例子里 = 模型预测为正"
+            },
+            {
+              "en": "applicant",
+              "zh": "申请人",
+              "hint": "申请上这所大学的人"
+            },
+            {
+              "en": "qualified / unqualified",
+              "zh": "合格 / 不合格",
+              "hint": "真实情况：这个人到底能不能成功（= 真实为正 / 真实为负）"
+            },
+            {
+              "en": "succeed",
+              "zh": "成功",
+              "hint": "被录取以后表现好、读得下来"
+            },
+            {
+              "en": "selection rate",
+              "zh": "被选中的比例（录取率）",
+              "hint": "被录取人数 ÷ 这一组的申请人数"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "格子",
+            "在大学录取例子里的意思"
+          ],
+          "rows": [
+            [
+              "TP",
+              "合格（会成功）且被录取"
+            ],
+            [
+              "FP",
+              "不合格，却被录取"
+            ],
+            [
+              "FN",
+              "合格，却被拒"
+            ],
+            [
+              "TN",
+              "不合格，也被拒"
+            ]
+          ],
+          "caption": {
+            "zh": "把 p.30 的四个格子翻译到录取场景（这张对照表是我们整理的，p.41-42 的公式就用这些字母）",
+            "en": "The four quadrants in the admissions example"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第一个指标：人口统计均等（**demographic parity**）。一句话：每个群体被录取（被选中）的比例要一样。比例（**rate**）= 被录取人数 ÷ 该组申请总人数。"
+        },
+        {
+          "type": "analogy",
+          "zh": "公司年会抽奖：两个部门各抽中 30% 的人。只要比例一样就算“公平”，不管谁平时表现好。",
+          "limit": "类比边界：抽奖本来就该随机；录取却应该看能力。这正好暴露了它的缺点：忽略个人条件。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "Demographic Parity: Outcomes are predicted at the same rates for every group.",
+              "zh": "人口统计均等：每个群体被预测出某种结果的比例相同。"
+            },
+            {
+              "en": "E.g. A university admits 30% of Group A applicants and 30% of Group B applicants.",
+              "zh": "例：大学录取 A 组 30% 的申请人，也录取 B 组 30% 的申请人。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "Selection rate = (TP + FP) / (TP + FP + FN + TN)",
+          "zh": "被选中的比例 = 预测为正（被录取）的人数 ÷ 这一组的总人数。人口统计均等要求各组这个比例相同。（课件没写这个公式，这是把定义换成四个格子的写法。）"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "按课件例子算一算（人数是我们编的）",
+            "en": "Worked example (made-up head counts)"
+          },
+          "steps": [
+            {
+              "zh": "A 组 200 人申请，录取 60 人：60 / 200 = 30%。"
+            },
+            {
+              "zh": "B 组 100 人申请，录取 30 人：30 / 100 = 30%。"
+            },
+            {
+              "zh": "比例相同（30% = 30%）→ 满足人口统计均等。录取人数不同（60 和 30）没关系，比的是比例。"
+            }
+          ],
+          "answer": {
+            "zh": "满足 demographic parity：两组录取率都是 30%。",
+            "en": "Demographic parity holds: both groups are admitted at 30%."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Pros 优点（课件原话）",
+            "Cons 缺点（课件原话）"
+          ],
+          "rows": [
+            [
+              "Each group is selected at the same rate.（每组被选中的比例相同）",
+              "It ignores individual qualifications: one group could be admitted at random.（忽略个人条件：某一组甚至可以随机录取）"
+            ],
+            [
+              "The rule is easy to explain and to check.（规则容易解释、容易检查）",
+              "Equal rates can reject stronger applicants from one group.（为了比例相同，可能拒掉某一组里更强的申请人）"
+            ]
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "fairness-groups",
+          "config": {
+            "groups": [
+              {
+                "name": {
+                  "zh": "A 组（演示数据）",
+                  "en": "Group A (illustrative)"
+                },
+                "tp": 30,
+                "fp": 0,
+                "fn": 20,
+                "tn": 50
+              },
+              {
+                "name": {
+                  "zh": "B 组（演示数据）",
+                  "en": "Group B (illustrative)"
+                },
+                "tp": 18,
+                "fp": 12,
+                "fn": 2,
+                "tn": 68
+              }
+            ]
+          },
+          "caption": {
+            "zh": "演示（数字是编的，不是课件数据）：两组各 100 人，录取率都是 30%，满足人口统计均等。但 A 组 50 个合格的人只录了 30 个（20 个合格的被拒），B 组却录了 12 个不合格的。这就是 “Equal rates can reject stronger applicants from one group”。",
+            "en": "Illustrative numbers: both groups are admitted at 30%, but 20 qualified applicants in Group A are rejected while Group B admits 12 unqualified ones."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "往后看：Lab 5 用招聘模型卡（**model card**），从每一组（Group A、Group B）的 TP、FP、FN、TN 分别算出录用率、精确率、TPR、FPR，再判断这一节到 s19 的公平指标是否成立。注意模型卡的表格是行 = 真实（合格 / 不合格）、列 = 预测（Hire / No hire），和本课 p.30 正好相反。",
+          "en": "Lab 5 computes these metrics for each group from model cards. Its grid puts ACTUAL in the rows, the opposite of the lecture."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "人口统计均等只看比例，不看谁合格，所以连 “one group could be admitted at random”（某组随机录取）也能满足它。"
+            },
+            {
+              "zh": "比较的是比例（rate），不是人数。"
+            },
+            {
+              "zh": "这个指标用不到“谁真的合格”，所以和精确率、召回率那类公式不同。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A university admits 30% of Group A applicants and 30% of Group B applicants. Which fairness metric does this example illustrate?",
+            "zh": "大学录取 A 组 30% 的申请人，也录取 B 组 30%。这个例子说明的是哪个公平指标？"
+          },
+          "options": [
+            {
+              "en": "Demographic Parity",
+              "zh": "人口统计均等"
+            },
+            {
+              "en": "Predictive Parity",
+              "zh": "预测均等"
+            },
+            {
+              "en": "Equalized Odds",
+              "zh": "均等几率"
+            },
+            {
+              "en": "Individual Fairness",
+              "zh": "个体公平"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.40 的原例子。只比较“录取比例”的是人口统计均等。预测均等比较“被录取的人里成功的比例”；均等几率比较 TPR 和 FPR；个体公平比较相似的个人。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which is a con of demographic parity given in the lecture?",
+            "zh": "课件给出的人口统计均等的缺点是哪个？"
+          },
+          "options": [
+            {
+              "en": "It is hard to explain and to check.",
+              "zh": "难以解释、难以检查。"
+            },
+            {
+              "en": "Deciding which applicants count as similar can itself carry bias.",
+              "zh": "判断谁和谁相似本身就可能带偏见。"
+            },
+            {
+              "en": "It ignores individual qualifications: one group could be admitted at random.",
+              "zh": "忽略个人条件：某一组甚至可以随机录取。"
+            },
+            {
+              "en": "There is no notion of different priority between different kinds of errors.",
+              "zh": "不区分不同错误的轻重。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "“It ignores individual qualifications” 是 p.40 的缺点原话。“难以解释、难以检查”说反了：“容易解释、容易检查”恰恰是它的优点；“判断谁和谁相似本身就可能带偏见”是个体公平的缺点（p.43）；“不区分不同错误的轻重”是均等几率的缺点（p.42）。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s17-predictive-parity",
+      "title": {
+        "zh": "公平指标 2：预测均等（Predictive Parity）",
+        "en": "Fairness metric 2: Predictive parity"
+      },
+      "slides": "41",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "预测均等（**predictive parity**）一句话：模型说“录取”（预测为正）时，这个决定在每个群体里一样可靠：被录取的人里，真正成功的比例相同。"
+        },
+        {
+          "type": "analogy",
+          "zh": "外卖平台的“推荐”标签：不管是川菜馆还是粤菜馆，只要贴了“推荐”，真的好吃的比例都应该是 80%。标签在每一类店里“同样靠谱”。",
+          "limit": "类比边界：它不管每一类店有多少家被贴了标签，就像预测均等不管两组的录取率是否一样。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "Predictive Parity: Outcomes have the same predictive meaning (TP/(TP+FP)) for every group.",
+              "zh": "预测均等：结果在每个群体里有相同的预测含义，即 TP/(TP+FP) 相同。"
+            },
+            {
+              "en": "E.g. Among students a university admits, 80% of Group A and 80% of Group B succeed.",
+              "zh": "例：在大学录取的学生中，A 组有 80% 成功，B 组也有 80% 成功。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "Predictive meaning = TP / (TP + FP)",
+          "zh": "这个式子和 p.30 的精确率（**precision**）一模一样。所以预测均等 = 每个群体的精确率相同。（课件没直接说“就是精确率”，但公式完全相同。）",
+          "where": [
+            {
+              "symbol": "TP",
+              "zh": "被录取，而且成功了"
+            },
+            {
+              "symbol": "FP",
+              "zh": "被录取，但没成功"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "按课件例子算一算（人数是我们编的）",
+            "en": "Worked example (made-up head counts)"
+          },
+          "steps": [
+            {
+              "zh": "A 组录取了 50 人，其中 40 人成功：40 / 50 = 80%。"
+            },
+            {
+              "zh": "B 组录取了 20 人，其中 16 人成功：16 / 20 = 80%。"
+            },
+            {
+              "zh": "两组的 TP/(TP+FP) 都是 80% → 满足预测均等。"
+            },
+            {
+              "zh": "但如果两组都是 100 人申请，A 组录取率是 50%，B 组只有 20%。录取率差很多，预测均等不管这个。"
+            }
+          ],
+          "answer": {
+            "zh": "满足 predictive parity（都是 80%），但不满足 demographic parity（50% 和 20%）。",
+            "en": "Predictive parity holds (80% in both), but demographic parity does not (50% vs 20%)."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Pros 优点（课件原话）",
+            "Cons 缺点（课件原话）"
+          ],
+          "rows": [
+            [
+              "Admission means the same chance of success in every group.（被录取在每组都代表同样的成功机会）",
+              "Groups can still be admitted at very different rates.（各组的录取率仍可能差很多）"
+            ],
+            [
+              "A positive decision is equally reliable across groups.（“正”的决定在各组同样可靠）",
+              "Matching those rates usually means unequal error rates when groups differ.（各组情况不同时，让这些比率一致通常意味着错误率不相等）"
+            ]
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "fairness-groups",
+          "config": {
+            "groups": [
+              {
+                "name": {
+                  "zh": "A 组（演示数据）",
+                  "en": "Group A (illustrative)"
+                },
+                "tp": 40,
+                "fp": 10,
+                "fn": 10,
+                "tn": 40
+              },
+              {
+                "name": {
+                  "zh": "B 组（演示数据）",
+                  "en": "Group B (illustrative)"
+                },
+                "tp": 16,
+                "fp": 4,
+                "fn": 4,
+                "tn": 76
+              }
+            ]
+          },
+          "caption": {
+            "zh": "演示（数字是编的）：两组精确率都是 80%，满足预测均等；但录取率是 50% 和 20%，人口统计均等不满足；假阳性率是 20% 和 5%，错误率也不相等。这正是它的两个缺点。",
+            "en": "Illustrative numbers: precision is 80% in both groups, but admission rates and false positive rates differ."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "预测均等看的是“被录取的人里”成功的比例（分母 TP + FP），不是“所有申请人里”的比例。"
+            },
+            {
+              "zh": "满足预测均等，不代表录取率相同，也不代表错误率相同。"
+            },
+            {
+              "zh": "第二个缺点里的 “those rates” 课件没说清具体指哪个比率，考试引用时照原话写即可。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Among students a university admits, 80% of Group A and 80% of Group B succeed. Which fairness metric is satisfied?",
+            "zh": "大学录取的学生中，A 组和 B 组都有 80% 成功。满足的是哪个公平指标？"
+          },
+          "options": [
+            {
+              "en": "Demographic Parity",
+              "zh": "人口统计均等"
+            },
+            {
+              "en": "Predictive Parity",
+              "zh": "预测均等"
+            },
+            {
+              "en": "Equalized Odds",
+              "zh": "均等几率"
+            },
+            {
+              "en": "Individual Fairness",
+              "zh": "个体公平"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.41 的原例子。“被录取的人里成功的比例相同” = TP/(TP+FP) 相同 = 预测均等。它没说两组录取率（人口统计均等），也没说 TPR、FPR（均等几率）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Predictive parity requires which quantity to be the same for every group?",
+            "zh": "预测均等要求每个群体的哪个量相同？"
+          },
+          "options": [
+            {
+              "en": "TP/(TP+FP)"
+            },
+            {
+              "en": "TP/(TP+FN)"
+            },
+            {
+              "en": "FP/(FP+TN)"
+            },
+            {
+              "en": "(TP+TN)/(TP+TN+FP+FN)"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.41：same predictive meaning (TP/(TP+FP))，和精确率是同一个式子。TP/(TP+FN) 是真阳性率（召回率），FP/(FP+TN) 是假阳性率，这两个属于均等几率；最后一个是准确率。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s18-equalized-odds",
+      "title": {
+        "zh": "公平指标 3：均等几率（Equalized Odds）",
+        "en": "Fairness metric 3: Equalized odds"
+      },
+      "slides": "42",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "均等几率（**equalized odds**）一句话：两个比例在每个群体都要一样：\n① 合格的人被录取的比例（真阳性率，**true positive rate**）；\n② 不合格的人被（错误地）录取的比例（假阳性率，**false positive rate**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "监考抓作弊：对两个班要求一样，真作弊的人被抓到的比例相同（比如都是 90%），没作弊的人被冤枉的比例也相同（比如都是 10%）。",
+          "limit": "类比边界：它只要求两个比例相同，没说漏抓和冤枉哪个更严重。这正是它的一个缺点。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "Equalized Odds: True positive rate (TP/(TP+FN)) and false positive rate (FP/(FP+TN)) are the same for every group.",
+              "zh": "均等几率：每个群体的真阳性率 TP/(TP+FN) 和假阳性率 FP/(FP+TN) 都相同。"
+            },
+            {
+              "en": "E.g. In both groups, a university admits 90% of qualified applicants and 10% of unqualified ones.",
+              "zh": "例：两组都录取 90% 的合格申请人、10% 的不合格申请人。"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "expr": "True positive rate (TPR) = TP / (TP + FN)",
+          "zh": "真阳性率（**true positive rate**）：真正合格的人里，被录取的比例。和 p.30 的召回率（recall）是同一个式子。"
+        },
+        {
+          "type": "formula",
+          "expr": "False positive rate (FPR) = FP / (FP + TN)",
+          "zh": "假阳性率（**false positive rate**）：真正不合格的人里，被错误录取的比例。这个式子是 p.42 才出现的，p.30 没有。",
+          "where": [
+            {
+              "symbol": "FP",
+              "zh": "不合格却被录取"
+            },
+            {
+              "symbol": "TN",
+              "zh": "不合格也被拒"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "按课件例子算一算（人数是我们编的）",
+            "en": "Worked example (made-up head counts)"
+          },
+          "steps": [
+            {
+              "zh": "A 组：50 个合格的人录了 45 个 → TPR = 45/50 = 90%；50 个不合格的人录了 5 个 → FPR = 5/50 = 10%。"
+            },
+            {
+              "zh": "B 组：20 个合格的人录了 18 个 → TPR = 18/20 = 90%；80 个不合格的人录了 8 个 → FPR = 8/80 = 10%。"
+            },
+            {
+              "zh": "两组 TPR 都是 90%、FPR 都是 10% → 满足均等几率。"
+            },
+            {
+              "zh": "再看录取率：A 组 (45 + 5) / 100 = 50%，B 组 (18 + 8) / 100 = 26%。B 组合格的人少，被录取的也少。这就是它的第二个缺点。"
+            }
+          ],
+          "answer": {
+            "zh": "满足 equalized odds（TPR 90%、FPR 10%），但两组录取率不同（50% 和 26%）。",
+            "en": "Equalized odds holds (TPR 90%, FPR 10%), but admission rates differ (50% vs 26%)."
+          }
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Pros 优点（课件原话）",
+            "Cons 缺点（课件原话）"
+          ],
+          "rows": [
+            [
+              "The model is equally accurate for every group.（模型对每个群体同样准确）",
+              "There is no notion of different priority between different kinds of errors.（不区分不同错误的轻重）"
+            ],
+            [
+              "Unlike demographic parity, a correct decision is required at the same rate.（和人口统计均等不同，它要求“正确的决定”以相同比例出现）",
+              "If one group has fewer qualified applicants, fewer of them are admitted.（如果某组合格的人少，被录取的也少）"
+            ]
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "fairness-groups",
+          "config": {
+            "groups": [
+              {
+                "name": {
+                  "zh": "A 组（演示数据）",
+                  "en": "Group A (illustrative)"
+                },
+                "tp": 45,
+                "fp": 5,
+                "fn": 5,
+                "tn": 45
+              },
+              {
+                "name": {
+                  "zh": "B 组（演示数据）",
+                  "en": "Group B (illustrative)"
+                },
+                "tp": 18,
+                "fp": 8,
+                "fn": 2,
+                "tn": 72
+              }
+            ]
+          },
+          "caption": {
+            "zh": "演示（人数是编的，比例用的是课件的 90% 和 10%）：两组 TPR 都是 90%、FPR 都是 10%，满足均等几率；但录取率是 50% 和 26%，精确率是 90% 和约 69%，另外两个指标都不满足。",
+            "en": "Illustrative numbers using the slide's 90% and 10%: equalized odds holds, but the other metrics do not."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "均等几率要两个比率都相同：TPR 和 FPR。只有 TPR 相同不够。"
+            },
+            {
+              "zh": "TPR 的分母是真实为正（TP + FN），FPR 的分母是真实为负（FP + TN）；别和精确率的分母（TP + FP）混。"
+            },
+            {
+              "zh": "COMPAS 案例里“没再犯却被判高风险”的比例（44.9% 和 23.5%），按 p.42 的定义就是两组 FPR 不相等。（这是我们按定义对应的，课件没直接这样说。）"
+            },
+            {
+              "zh": "优点第二条可以这样理解：人口统计均等只要求录取比例一样，不管录得对不对；均等几率还要求“录对的比例”（合格的人被录取的比例 TPR）也一样。（这是我们的理解，课件没展开；考试照原话写。）"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In both groups, a university admits 90% of qualified applicants and 10% of unqualified ones. Which fairness metric is satisfied?",
+            "zh": "两组都录取 90% 的合格申请人和 10% 的不合格申请人。满足的是哪个公平指标？"
+          },
+          "options": [
+            {
+              "en": "Demographic Parity",
+              "zh": "人口统计均等"
+            },
+            {
+              "en": "Predictive Parity",
+              "zh": "预测均等"
+            },
+            {
+              "en": "Equalized Odds",
+              "zh": "均等几率"
+            },
+            {
+              "en": "Individual Fairness",
+              "zh": "个体公平"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.42 的原例子：90% = 真阳性率，10% = 假阳性率，两组都相同 → 均等几率。它没说两组录取率相同（人口统计均等），也没说被录取的人里成功比例相同（预测均等）。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "The false positive rate (FPR) is defined in the lecture as:",
+            "zh": "课件里假阳性率（FPR）的定义是："
+          },
+          "options": [
+            {
+              "en": "TP/(TP+FN)"
+            },
+            {
+              "en": "FP/(FP+TN)"
+            },
+            {
+              "en": "FP/(TP+FP)"
+            },
+            {
+              "en": "TP/(TP+FP)"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.42：false positive rate (FP/(FP+TN))，分母是所有真实为负的人。TP/(TP+FN) 是真阳性率；TP/(TP+FP) 是预测均等用的精确率；FP/(TP+FP) 不是课件里的指标。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s19-individual-fairness-compare",
+      "title": {
+        "zh": "公平指标 4：个体公平 + 四个指标总对比",
+        "en": "Fairness metric 4: Individual fairness, and all four compared"
+      },
+      "slides": "43",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "个体公平（**individual fairness**）一句话：不看群体的比例，而看个人。两个条件相似的人，不管属于哪个群体，都应该得到相似的结果。"
+        },
+        {
+          "type": "analogy",
+          "zh": "两个求职者，学历、经验、面试表现几乎一样，只是属于不同群体：个体公平要求他们得到差不多的结果。",
+          "limit": "类比边界：“相似”怎么定义（只看学历？还看经验？）本身就有争议，这正是它的缺点。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "Individual Fairness: Similar individuals across different groups receive similar outcomes.",
+              "zh": "个体公平：不同群体中相似的个人得到相似的结果。"
+            },
+            {
+              "en": "E.g. Two applicants with similar grades and preparation get the same decision, in either group.",
+              "zh": "例：两个成绩和准备情况相似的申请人，不管在哪一组，都得到相同的决定。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开看：**similar individuals**（相似的个人）+ **across different groups**（跨越不同群体）+ **similar outcomes**（相似的结果）。前三个指标都在“群体层面”比比例；个体公平在“个人层面”比结果。课件只给了预测均等（p.41）和均等几率（p.42）的公式；人口统计均等（p.40）和个体公平（p.43）都没有给公式。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Pros 优点（课件原话）",
+            "Cons 缺点（课件原话）"
+          ],
+          "rows": [
+            [
+              "Similar people are treated similarly, whichever group they are in.（相似的人得到相似对待，不管在哪一组）",
+              "Deciding which applicants count as similar can itself carry bias.（判断哪些申请人算“相似”，本身就可能带偏见）"
+            ],
+            [
+              "The decision follows the person, not only the group average.（决定跟着个人走，不只看群体平均）",
+              "Group admission rates can still come out unequal.（各组的录取率仍可能不相等）"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Metric 指标",
+            "每组要相同的是什么",
+            "课件例子（大学录取）",
+            "课件公式"
+          ],
+          "rows": [
+            [
+              "Demographic Parity 人口统计均等",
+              "被预测为正的比例（录取率）",
+              "A、B 两组都录取 30%",
+              "无"
+            ],
+            [
+              "Predictive Parity 预测均等",
+              "“正”的预测含义：被录取的人里成功的比例",
+              "被录取的学生里，两组都有 80% 成功",
+              "TP/(TP+FP)"
+            ],
+            [
+              "Equalized Odds 均等几率",
+              "真阳性率和假阳性率",
+              "两组都录取 90% 的合格者、10% 的不合格者",
+              "TP/(TP+FN) 和 FP/(FP+TN)"
+            ],
+            [
+              "Individual Fairness 个体公平",
+              "相似的个人得到相似的结果",
+              "成绩和准备相似的两人，在哪组都得到相同决定",
+              "无"
+            ]
+          ],
+          "caption": {
+            "zh": "四个公平指标总对比：看到例子就能说出是哪个指标",
+            "en": "The four fairness metrics compared"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "怎么一眼认出是哪个指标",
+            "en": "How to recognize each metric"
+          },
+          "steps": [
+            {
+              "zh": "题目说“两组被录取 / 被选中的比例一样” → Demographic Parity。"
+            },
+            {
+              "zh": "说“被录取（预测为正）的人里，成功（真正为正）的比例一样” → Predictive Parity。"
+            },
+            {
+              "zh": "说“合格的人被录取的比例一样，而且不合格的人被录取的比例也一样” → Equalized Odds。"
+            },
+            {
+              "zh": "说“两个相似的人得到相似 / 相同的结果” → Individual Fairness。"
+            }
+          ],
+          "answer": {
+            "zh": "关键词：same rates → Demographic Parity；predictive meaning / among those admitted → Predictive Parity；TPR 和 FPR / qualified 和 unqualified → Equalized Odds；similar individuals → Individual Fairness。考试要写全称，不要写缩写。",
+            "en": "Keywords: same rates (Demographic Parity), predictive meaning (Predictive Parity), TPR and FPR (Equalized Odds), similar individuals (Individual Fairness)."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "个体公平看个人，其他三个看群体。满足个体公平，各组录取率仍可能不同。"
+            },
+            {
+              "zh": "最容易混的一对：Predictive Parity 的分母是 TP + FP（被录取的人）；Equalized Odds 里 TPR 的分母是 TP + FN（合格的人）。"
+            },
+            {
+              "zh": "四个指标常常不能同时满足（下一节）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Two applicants with similar grades and preparation get the same decision, whichever group they are in. Which fairness metric is this?",
+            "zh": "两个成绩和准备相似的申请人，不管在哪一组都得到相同决定。这是哪个公平指标？"
+          },
+          "options": [
+            {
+              "en": "Demographic Parity",
+              "zh": "人口统计均等"
+            },
+            {
+              "en": "Predictive Parity",
+              "zh": "预测均等"
+            },
+            {
+              "en": "Equalized Odds",
+              "zh": "均等几率"
+            },
+            {
+              "en": "Individual Fairness",
+              "zh": "个体公平"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "p.43 的原例子：看的是“相似的个人”，不是群体比例，所以是个体公平。其他三个都是比较群体的某个比率。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which fairness metric has this con: 'Deciding which applicants count as similar can itself carry bias'?",
+            "zh": "哪个公平指标有这个缺点：“判断哪些申请人算相似，本身就可能带偏见”？"
+          },
+          "options": [
+            {
+              "en": "Equalized Odds",
+              "zh": "均等几率"
+            },
+            {
+              "en": "Individual Fairness",
+              "zh": "个体公平"
+            },
+            {
+              "en": "Predictive Parity",
+              "zh": "预测均等"
+            },
+            {
+              "en": "Demographic Parity",
+              "zh": "人口统计均等"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "只有个体公平需要判断“谁和谁相似”，所以这是它的缺点（p.43）。其他三个比较的是群体的比率，不需要定义“相似”。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s20-tradeoffs-stakeholders",
+      "title": {
+        "zh": "公平的取舍与利益相关者（课堂活动）",
+        "en": "Trade-offs in fairness and stakeholders"
+      },
+      "slides": "44-45",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "现实很骨感：各种公平常常互相冲突（**at odds**），而且通常还要牺牲一些总体准确率。所以“公平”没有唯一正确答案，要由模型设计者（**model designers**）根据利益相关者（**stakeholders**）的需要来取舍（**trade-off**）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "班级分零食：有人说“每人一样多”才公平，有人说“谁出力多谁多拿”才公平，有人说“饿的人多吃”才公平。三种说法不可能同时满足，班长得看大家的需要来选，并且说清楚代价。",
+          "limit": "类比边界：模型的公平问题影响的是录取、贷款、判刑这类大事，取舍要慎重得多。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "Although we might like to optimize for all forms of fairness, they are often at odds with each other. (This was the case for the COMPAS example.)",
+              "zh": "虽然我们希望所有形式的公平都做到，但它们常常互相冲突（COMPAS 就是这样）。"
+            },
+            {
+              "en": "They also typically come at some cost to overall accuracy.",
+              "zh": "追求公平通常还要付出一些总体准确率的代价。"
+            },
+            {
+              "en": "There is no single right answer to fairness. It is up to the model designers to choose what to prioritize and what costs are worth paying to best align with the needs of the model's stakeholders.",
+              "zh": "公平没有唯一正确答案。要由模型设计者决定优先什么、哪些代价值得付，以最符合利益相关者的需要。"
+            },
+            {
+              "en": "A stakeholder is a person or group with an interest in the model; someone who will be affected by it.",
+              "zh": "利益相关者：和模型有利害关系的人或群体，也就是会被模型影响的人。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "at odds",
+              "zh": "互相冲突",
+              "hint": "满足了一个，就很难再满足另一个"
+            },
+            {
+              "en": "trade-off",
+              "zh": "取舍、权衡",
+              "hint": "得到一样，就要放弃一点另一样"
+            },
+            {
+              "en": "stakeholder",
+              "zh": "利益相关者",
+              "hint": "会被模型影响、和模型有利害关系的人或群体"
+            },
+            {
+              "en": "model designers",
+              "zh": "模型设计者",
+              "hint": "决定优先哪种公平、愿意付出什么代价的人"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "COMPAS：两种公平为什么打架",
+            "en": "COMPAS: two forms of fairness in conflict"
+          },
+          "steps": [
+            {
+              "zh": "公司说：在任何风险分数上，各族群再犯的可能性大致相同。意思是同一个分数在各组“含义相同”，这接近预测均等（predictive parity）。"
+            },
+            {
+              "zh": "ProPublica 说：没有再犯的人里，黑人被错判高风险的比例是 44.9%，白人是 23.5%。这是假阳性率不相等，均等几率（equalized odds）不满足。"
+            },
+            {
+              "zh": "两种说法可以同时成立：模型满足了一种公平，却违反了另一种。"
+            },
+            {
+              "zh": "p.44：“This was the case for the COMPAS example.” 这就是“公平定义互相冲突”的真实例子。"
+            }
+          ],
+          "answer": {
+            "zh": "把公司和 ProPublica 的说法分别对应到预测均等、均等几率，是我们按 p.41-42 的定义推出来的；课件只说 COMPAS 体现了公平之间的冲突。",
+            "en": "Different fairness definitions can conflict, as in the COMPAS example."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Activity: Identifying Stakeholders. Discuss: In the university admissions examples, who are the stakeholders? What might their priorities be? List at least three groups of stakeholders and the forms of fairness they might be most interested in.",
+            "zh": "课堂活动“找出利益相关者”：在大学录取例子里，谁是利益相关者？他们可能优先考虑什么？至少列出三类利益相关者，以及他们最可能关心的公平形式。"
+          },
+          "answer": {
+            "en": "1) Individual applicants want to be judged on their own grades and preparation, so they may care most about individual fairness. 2) Applicant groups (Group A and Group B) may want demographic parity, so that each group is admitted at the same rate. 3) The university wants admitted students to succeed, so it may prefer predictive parity, where admission means the same chance of success in every group. 4) Society or the government may want equalized odds, so that in every group the same share of qualified applicants is admitted and the same share of unqualified applicants is admitted.",
+            "zh": "课件没有标准答案，言之有理即可。得分点：① 至少三类利益相关者（申请人、各群体、大学、社会/政府……）；② 每类说出可能的优先目标；③ 把目标对应到 p.40-43 的具体公平指标。上面的对应只是一种合理写法。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "不要写“可以让模型同时满足所有公平”，课件说它们常常冲突。"
+            },
+            {
+              "zh": "公平通常要付出一些准确率的代价（some cost to overall accuracy）。"
+            },
+            {
+              "zh": "“没有唯一正确答案”不等于“随便选”：要根据利益相关者的需要来选，并说明代价。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the lecture, which statement about fairness is correct?",
+            "zh": "根据课件，关于公平哪句话正确？"
+          },
+          "options": [
+            {
+              "en": "There is a single right definition of fairness that every model should use.",
+              "zh": "有一个唯一正确的公平定义，所有模型都该用它。"
+            },
+            {
+              "en": "Optimizing for fairness always increases overall accuracy.",
+              "zh": "追求公平总会提高总体准确率。"
+            },
+            {
+              "en": "Only the model designers are stakeholders.",
+              "zh": "只有模型设计者才是利益相关者。"
+            },
+            {
+              "en": "Different forms of fairness are often at odds with each other and typically cost some overall accuracy.",
+              "zh": "不同形式的公平常常互相冲突，而且通常要牺牲一些总体准确率。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "“often at odds … some overall accuracy”那一项是 p.44 的原意。课件明确说 “There is no single right answer to fairness”；公平通常有准确率代价，不是总能提高准确率；利益相关者是所有会被模型影响的人，不只是设计者。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is a stakeholder?",
+            "zh": "什么是利益相关者？"
+          },
+          "options": [
+            {
+              "en": "A person or group with an interest in the model; someone who will be affected by it",
+              "zh": "和模型有利害关系的人或群体，会被它影响的人"
+            },
+            {
+              "en": "Only the programmer who trains the model",
+              "zh": "只有训练模型的程序员"
+            },
+            {
+              "en": "A data point in the test set",
+              "zh": "测试集里的一个数据点"
+            },
+            {
+              "en": "A hyperparameter that controls fairness",
+              "zh": "控制公平的一个超参数"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "p.44 原话定义。利益相关者范围很广（申请人、大学、社会……），不只是程序员；它和数据点、超参数都无关。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s21-improving-fairness-auditing",
+      "title": {
+        "zh": "让模型更公平：前处理、中处理、后处理 + 模型审计",
+        "en": "Improving fairness and model auditing"
+      },
+      "slides": "46-48",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "公平指标不只能用来检查已有的模型，我们还可以在做模型的过程中出手（**intervene**）。按动手的时间分三种：训练前、训练中、训练后。"
+        },
+        {
+          "type": "analogy",
+          "zh": "做一道少盐的菜：\n前处理（**pre-processing**）= 下锅前先把食材上的盐洗掉；\n中处理（**in-processing**）= 炒的时候边尝边调，既要好吃也要少盐；\n后处理（**post-processing**）= 出锅后发现太咸，再加点水调一调。",
+          "limit": "类比边界：盐洗不干净，就像代理变量：表面删掉了，别的东西里还藏着。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话",
+            "en": "Course wording"
+          },
+          "items": [
+            {
+              "en": "We can use fairness metrics to evaluate existing models, but we can also intervene in model creation to try to improve fairness.",
+              "zh": "公平指标可以用来评估已有模型，我们也可以在建模过程中介入，尽量提高公平性。"
+            },
+            {
+              "en": "Pre-Processing: Remove information about sensitive features.",
+              "zh": "前处理：去掉关于敏感特征的信息。"
+            },
+            {
+              "en": "In-Processing: Instead of optimizing just for low error, also optimize for fairness.",
+              "zh": "中处理：不只为低误差优化，也同时为公平优化。"
+            },
+            {
+              "en": "Post-Processing: Adjust the decisions we make based on the model's output.",
+              "zh": "后处理：根据模型的输出，调整我们做出的决定。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "方法",
+            "什么时候",
+            "怎么做（课件）",
+            "要注意（课件）"
+          ],
+          "rows": [
+            [
+              "Pre-Processing 前处理",
+              "训练之前（处理数据）",
+              "去掉敏感特征的信息；更高级的方法用特征工程（**feature engineering**）去掉这些信息，同时保留其他信息",
+              "简单删除常常不够：代理变量（**proxy variables**）组合起来能暴露原来的敏感特征"
+            ],
+            [
+              "In-Processing 中处理",
+              "训练过程中",
+              "不只为低误差优化，也为公平优化",
+              "常常是在代价函数（**cost function**）里加一个额外的数学项，叫正则项（**regularizer**）"
+            ],
+            [
+              "Post-Processing 后处理",
+              "训练之后（用模型输出做决定时）",
+              "调整根据模型输出做出的决定",
+              "例：模型给申请打 10 分制的分数，对已知被模型歧视的群体把分数往上调"
+            ]
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "sensitive features",
+              "zh": "敏感特征",
+              "hint": "与受保护群体有关的信息，比如族裔"
+            },
+            {
+              "en": "proxy variables",
+              "zh": "代理变量",
+              "hint": "组合起来能暴露敏感特征的其他变量"
+            },
+            {
+              "en": "feature engineering",
+              "zh": "特征工程",
+              "hint": "改造、组合输入的特征；这里用来去掉敏感信息、保留有用信息（课件没细讲）"
+            },
+            {
+              "en": "cost function",
+              "zh": "代价函数",
+              "hint": "训练时要尽量变小的那个数，比如误差（课件这里没定义）"
+            },
+            {
+              "en": "regularizer",
+              "zh": "正则项",
+              "hint": "加进代价函数的额外数学项；这里用来让模型也照顾公平"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "后处理的例子（p.47）",
+            "en": "Post-processing example (p.47)"
+          },
+          "steps": [
+            {
+              "zh": "模型给每份申请打分，满分 10 分。"
+            },
+            {
+              "zh": "我们已经知道模型对某个群体有偏见（给他们打低了）。"
+            },
+            {
+              "zh": "做决定前，把这个群体的分数往上调。课件没说调多少。"
+            },
+            {
+              "zh": "这个做法直接用了群体身份（差别对待，disparate treatment），目的却是减少对这个群体的伤害（差别影响，disparate impact），正好回答了 p.39 的讨论题。（这个联系是我们按 p.39 的定义推出来的，课件没直接说。）"
+            }
+          ],
+          "answer": {
+            "zh": "后处理改的是“决定”，不是模型本身。",
+            "en": "Post-processing adjusts the decisions made from the model's output."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "最后一道关：模型审计（**model auditing**）。在部署（**deployment**，正式上线给用户用）之前，对模型做一次全面的最终检查，常常由独立的第三方（**independent party**）来做。可以查表现、公平、安全（**security**），以及利益相关者在乎的任何东西。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "课件原话：模型审计",
+            "en": "Course wording: model auditing"
+          },
+          "items": [
+            {
+              "en": "Model auditing is a comprehensive final check of a model before deployment, often performed by an independent party.",
+              "zh": "模型审计是在部署前对模型做的全面最终检查，常由独立的第三方进行。"
+            },
+            {
+              "en": "A model audit can check metrics related to performance, fairness, security, and anything else important to stakeholders.",
+              "zh": "模型审计可以检查与表现、公平、安全以及利益相关者在乎的其他任何方面有关的指标。"
+            },
+            {
+              "en": "It can be the last chance to find problems before contact with users.",
+              "zh": "它可能是模型接触用户前发现问题的最后机会。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "新车上市前的第三方检测：不是厂家自己说了算，而是独立机构把性能、安全等方面都查一遍，过关了才卖给顾客。",
+          "limit": "类比边界：课件说审计 “often”（常常）由独立方来做，不是一定。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "三种方法按时间区分：前处理改数据，中处理改训练目标，后处理改决定。"
+            },
+            {
+              "zh": "前处理“简单删除敏感特征”常常不够，原因是代理变量。"
+            },
+            {
+              "zh": "正则项（regularizer）属于中处理（in-processing），不是前处理。"
+            },
+            {
+              "zh": "模型审计在部署之前（before deployment），检查的不只是公平，还有表现、安全等。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Adding an extra mathematical term (a regularizer) to the cost function, so that the model also optimizes for fairness, is an example of:",
+            "zh": "在代价函数里加一个额外的数学项（正则项），让模型也为公平优化，这属于："
+          },
+          "options": [
+            {
+              "en": "Pre-Processing",
+              "zh": "前处理"
+            },
+            {
+              "en": "In-Processing",
+              "zh": "中处理"
+            },
+            {
+              "en": "Post-Processing",
+              "zh": "后处理"
+            },
+            {
+              "en": "Model auditing",
+              "zh": "模型审计"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.46：In-Processing 常常是在代价函数里加正则项。前处理是训练前删敏感信息；后处理是训练后调整决定；审计是部署前的最终检查，不改模型。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why is simply removing sensitive features often not enough to make a model fair?",
+            "zh": "为什么简单删除敏感特征常常不足以让模型公平？"
+          },
+          "options": [
+            {
+              "en": "Removing features always reduces accuracy to 0.",
+              "zh": "删特征总会让准确率变成 0。"
+            },
+            {
+              "en": "Sensitive features are needed to build the test set.",
+              "zh": "建测试集需要敏感特征。"
+            },
+            {
+              "en": "Proxy variables, in combination, can reveal the original sensitive features.",
+              "zh": "代理变量组合起来能暴露原来的敏感特征。"
+            },
+            {
+              "en": "Removing features always causes overfitting.",
+              "zh": "删特征总会导致过拟合。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "p.46 原话：proxy variables, which in combination can reveal the original sensitive features。其他三个说法课件没有，也不对。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is model auditing?",
+            "zh": "什么是模型审计？"
+          },
+          "options": [
+            {
+              "en": "Training the model again on the test set",
+              "zh": "在测试集上重新训练模型"
+            },
+            {
+              "en": "A comprehensive final check of a model before deployment, often performed by an independent party",
+              "zh": "部署前对模型的全面最终检查，常由独立的第三方进行"
+            },
+            {
+              "en": "Removing sensitive features before training",
+              "zh": "训练前删除敏感特征"
+            },
+            {
+              "en": "Adjusting scores upward for a group after the model gives its output",
+              "zh": "模型输出后给某一组把分数往上调"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "p.48 原话定义。“训练前删除敏感特征”是前处理，“模型输出后给某一组把分数往上调”是后处理；在测试集上重新训练则违背了测试集的用途。"
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "Overfitting occurs when a model memorizes random noise in the training data, rather than genuine patterns. A higher-order polynomial with 7 parameters (w0 to w6) had MSE 0 on the training set but MSE 190.27 on new data, while a straight line had MSE 5.77.",
+      "zh": "过拟合：模型记住了训练数据里的随机噪声，而不是真正的规律。高次多项式（7 个参数 w0～w6）训练 MSE 为 0，在新数据上却是 190.27，而直线只有 5.77。"
+    },
+    {
+      "en": "Sometimes we choose a model for theoretical reasons (the ideal gas law is linear, giving R ≈ 8.28 L·kPa/(mol·K)), but most of the time in ML we try several models and take the one that works best empirically.",
+      "zh": "有时可以按理论选模型（理想气体定律是直线关系，算出 R ≈ 8.28），但 ML 里大多数时候要多试几个模型，按真实数据选效果最好的。"
+    },
+    {
+      "en": "A validation set is a part of our dataset that we do not use for training. Good performance on the validation set is a strong reason to prefer one model over another.",
+      "zh": "验证集是不用来训练的那部分数据；验证集上表现好，是选模型的有力理由。"
+    },
+    {
+      "en": "Low training error does not guarantee good generalization: the quadratic model had the lowest validation MSE (1.38), while the higher-order polynomial had the lowest training MSE (1.67) but a validation MSE of 8.07.",
+      "zh": "训练误差低不代表泛化好：二次模型验证 MSE 最低（1.38）；高次多项式训练 MSE 最低（1.67），验证 MSE 却是 8.07。"
+    },
+    {
+      "en": "In the tree classification activity, Model A had the best validation accuracy (6/6 = 100%), even though Model B had 100% training accuracy.",
+      "zh": "树叶分类活动中，Model A 的验证准确率最高（6/6 = 100%），虽然 Model B 的训练准确率是 100%。"
+    },
+    {
+      "en": "A model family is a set of related models we get by varying key values before training. These key values are called hyperparameters, such as the maximum depth of a decision tree.",
+      "zh": "模型家族：训练前改变关键数值得到的一组相关模型；这些关键数值叫超参数，例如决策树的最大深度。"
+    },
+    {
+      "en": "Because we choose the model with the best validation accuracy, true performance is likely to be worse, like the maximum of 10 dice rolls (35.4) compared with the most likely value of one roll (28).",
+      "zh": "因为我们挑的是验证准确率最好的模型，真实表现很可能更差，就像 10 次掷骰子的最大值（35.4）高于一次最可能的值（28）。"
+    },
+    {
+      "en": "A test set is a segment of the dataset not used for training or validation. It lets us avoid overreporting the final accuracy. A split like 60/20/20 for training/validation/test is common.",
+      "zh": "测试集既不用于训练也不用于验证，用来避免把最终准确率报高；常见划分约为 60/20/20（训练/验证/测试）。"
+    },
+    {
+      "en": "For binary classification, Accuracy = (TP + TN) / (TP + TN + FP + FN), Precision = TP / (TP + FP), Recall = TP / (TP + FN), and F1 Score = 2(Precision)(Recall) / (Precision + Recall).",
+      "zh": "二分类的四个公式：准确率、精确率、召回率、F1，都用 TP、FP、FN、TN 来算。"
+    },
+    {
+      "en": "Two models can have the same accuracy (46/60 ≈ 77%) but make different errors. Prefer high recall when missing a positive is very serious, and high precision when false positives are very costly.",
+      "zh": "两个模型准确率可以相同（46/60 ≈ 77%）但错误类型不同：漏报很严重时看召回率，误报代价高时看精确率。"
+    },
+    {
+      "en": "Other reasons for choosing a model include speed/cost, explainability, and bias and fairness.",
+      "zh": "选模型的其他理由：速度/成本、可解释性、偏见与公平。"
+    },
+    {
+      "en": "Possible causes of bias include biased historical data, underrepresentation of specific groups, proxy variables, and the incompatibility of different definitions of fairness.",
+      "zh": "偏见的可能原因：有偏见的历史数据、某些群体代表性不足、代理变量、不同公平定义互相冲突。"
+    },
+    {
+      "en": "Disparate treatment explicitly considers a person's membership in a sensitive group; disparate impact disproportionately harms certain groups. It is often not possible to avoid both.",
+      "zh": "差别对待是直接考虑群体身份；差别影响是结果不成比例地伤害某些群体；两者常常不能同时避免。"
+    },
+    {
+      "en": "Demographic parity: same outcome rates; predictive parity: same TP/(TP+FP); equalized odds: same TP/(TP+FN) and FP/(FP+TN); individual fairness: similar individuals receive similar outcomes.",
+      "zh": "四个公平指标：人口统计均等（比例相同）、预测均等（TP/(TP+FP) 相同）、均等几率（TPR 和 FPR 都相同）、个体公平（相似的人结果相似）。"
+    },
+    {
+      "en": "Forms of fairness are often at odds with each other and cost some accuracy, so model designers must choose priorities based on the needs of the stakeholders.",
+      "zh": "各种公平常常互相冲突，也要付出准确率的代价，所以设计者要根据利益相关者的需要来取舍。"
+    },
+    {
+      "en": "Fairness can be improved by pre-processing (remove information about sensitive features), in-processing (also optimize for fairness, not just for low error, often by adding a regularizer to the cost function) or post-processing (adjust the decisions we make based on the model's output). Model auditing is a comprehensive final check of a model before deployment.",
+      "zh": "提高公平的方法：前处理（去掉敏感特征的信息）、中处理（不只为低误差优化，也为公平优化，常常在代价函数里加正则项）、后处理（调整根据模型输出做出的决定）；模型审计是部署前的全面最终检查。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Define overfitting and explain why an MSE of 0 on the training set does not mean a good model.",
+      "zh": "定义 + 解释：会写过拟合定义，并用 0、190.27、5.77 三个数说明。",
+      "sectionId": "s02-overfitting-review"
+    },
+    {
+      "en": "Explain the difference between choosing a model for theoretical reasons and for empirical reasons, and calculate R = mV/n = 0.414 × 1.00 / 0.050 = 8.28 L·kPa/(mol·K).",
+      "zh": "理论 vs 实证（凭真实数据）两条路；会用 m、n、V 算出 R ≈ 8.28。",
+      "sectionId": "s03-choosing-a-model"
+    },
+    {
+      "en": "Define a validation set and explain why we must not use it for training.",
+      "zh": "定义 + p.15 讨论题，适合练简答。",
+      "sectionId": "s04-validation-set"
+    },
+    {
+      "en": "Use a table of training and validation MSE to choose a model and spot overfitting.",
+      "zh": "读表选模型：选验证 MSE 最低的（1.38），并指出哪个模型过拟合。",
+      "sectionId": "s05-validation-mse"
+    },
+    {
+      "en": "Calculate validation accuracy and error for classification models and choose one.",
+      "zh": "数点算准确率：6/6、3/6、4/6；错误率 = 1 − 准确率。",
+      "sectionId": "s06-tree-validation-activity"
+    },
+    {
+      "en": "Define model family and hyperparameter, with the maximum depth of a decision tree as an example.",
+      "zh": "分清超参数（训练前定）和参数（训练中学）。",
+      "sectionId": "s07-model-family-hyperparameters"
+    },
+    {
+      "en": "Explain why validation accuracy overreports true performance, using the dice activity.",
+      "zh": "长答题素材：10 次最大值 35.4 和最可能值 28。",
+      "sectionId": "s08-final-accuracy-dice"
+    },
+    {
+      "en": "Define a test set, explain its purpose, and give the common 60/20/20 split.",
+      "zh": "训练集、验证集、测试集的分工是本课的核心。",
+      "sectionId": "s09-test-set"
+    },
+    {
+      "en": "Name TP, FP, FN and TN in the slide layout (PREDICTED rows, ACTUAL columns).",
+      "zh": "先认对格子，才能算对指标。",
+      "sectionId": "s10-tp-fp-fn-tn"
+    },
+    {
+      "en": "Calculate accuracy, precision, recall and F1, and choose between models for a given scenario.",
+      "zh": "计算 + 场景选择：严重疾病看召回率，复查昂贵看精确率。",
+      "sectionId": "s11-precision-recall-f1"
+    },
+    {
+      "en": "List reasons beyond performance for choosing a model: speed/cost, explainability, bias and fairness.",
+      "zh": "这也是 p.18 讨论题的答案。",
+      "sectionId": "s12-other-priorities"
+    },
+    {
+      "en": "Describe the four bias case studies and explain the likely cause of each.",
+      "zh": "案例和原因配对，适合练长答题。",
+      "sectionId": "s13-bias-cases"
+    },
+    {
+      "en": "List possible causes of bias in ML.",
+      "zh": "四条原因，记住它是 non-exhaustive（不完整）的清单。",
+      "sectionId": "s14-causes-of-bias"
+    },
+    {
+      "en": "Distinguish disparate treatment from disparate impact, using the credit-score example.",
+      "zh": "过程 vs 结果；固定信用分门槛 = 差别影响，但不是差别对待。",
+      "sectionId": "s15-disparate-treatment-impact"
+    },
+    {
+      "en": "Identify each fairness metric from an example and give its pros and cons.",
+      "zh": "看例子认指标：30%、80%、90%/10%、相似的人。",
+      "sectionId": "s19-individual-fairness-compare"
+    },
+    {
+      "en": "Explain why fairness definitions conflict, and identify stakeholders and their priorities.",
+      "zh": "p.45 的活动适合练长答题。",
+      "sectionId": "s20-tradeoffs-stakeholders"
+    },
+    {
+      "en": "Describe pre-processing, in-processing, post-processing and model auditing.",
+      "zh": "按“训练前 / 训练中 / 训练后 / 部署前”来记。",
+      "sectionId": "s21-improving-fairness-auditing"
+    }
+  ]
+}

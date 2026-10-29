@@ -1,0 +1,138 @@
+/*
+ * Content typography shared by views and widgets: bilingual pairs, tables, forms, formulas.
+ * 视图与组件共用的内容样式：中英对照、表格、表单与公式。
+ */
+.bi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bi__en {
+  margin: 0;
+  font-weight: 600;
+}
+
+.bi__zh {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: 0.95em;
+}
+
+.bi-title {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--space-2);
+}
+
+.bi-title__en {
+  color: var(--color-ink-3);
+  font-weight: 700;
+  font-size: 0.72em;
+  letter-spacing: 0;
+}
+
+.en {
+  font-family: var(--font-sans);
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-line-soft);
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  background: var(--color-paper-2);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.data-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+}
+
+.textarea {
+  min-height: 140px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.check-row input {
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  accent-color: var(--color-accent);
+}
+
+.formula {
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-md);
+  text-align: center;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.kbd-hint {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}

@@ -1,0 +1,241 @@
+/*
+ * Shared styles of the machine-learning widgets: panels, plot frame, parameter sliders, formulas, legends.
+ * 机器学习类组件共用样式：面板、坐标框、参数滑块、公式与图例。
+ */
+.ml-panel {
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.ml-eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.ml-teach {
+  margin: 0;
+}
+
+.ml-teach__zh,
+.ml-teach__en {
+  display: block;
+}
+
+.ml-teach__en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+/* Formulas keep the slide notation; indexed symbols are subscripts. 公式沿用课件记号，编号写成下标。 */
+.ml-math {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ml-math sub {
+  font-size: 0.72em;
+  line-height: 0;
+}
+
+/* Plot frame 坐标框 */
+.ml-plot {
+  min-width: 0;
+}
+
+.ml-plot__canvas {
+  width: 100%;
+  min-width: 0;
+}
+
+.ml-plot__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--font-sans);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ml-plot__bg {
+  fill: var(--color-panel);
+}
+
+.ml-plot__gridline {
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.ml-plot__axis {
+  stroke: var(--color-line);
+  stroke-width: 2;
+  stroke-linecap: square;
+}
+
+.ml-plot__tick {
+  fill: var(--color-ink-3);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ml-plot__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.ml-plot__title--y {
+  margin-bottom: var(--space-2);
+}
+
+.ml-plot__title--x {
+  justify-content: flex-end;
+  margin-top: var(--space-1);
+}
+
+.ml-plot__title .en {
+  color: var(--color-ink-3);
+  font-weight: 700;
+}
+
+/* Parameter sliders 参数滑块 */
+.ml-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ml-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ml-slider__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.ml-slider__label {
+  min-width: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.ml-slider__symbol {
+  font-size: var(--text-md);
+}
+
+.ml-slider__hint {
+  margin-left: var(--space-2);
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.ml-slider__value {
+  flex: none;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.ml-slider__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.ml-slider__range {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.ml-slider__nudge {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-hard-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.ml-slider__nudge:hover {
+  background: var(--color-paper-2);
+}
+
+.ml-slider__nudge:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* Legends 图例 */
+.ml-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.ml-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ml-legend__icon {
+  flex: none;
+  overflow: visible;
+}
+
+.ml-status {
+  min-height: 1.5em;
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+@media print {
+  .ml-slider__track,
+  .ml-slider__nudge {
+    display: none;
+  }
+}

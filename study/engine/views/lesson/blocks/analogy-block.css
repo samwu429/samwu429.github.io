@@ -1,0 +1,33 @@
+/*
+ * Analogy card: warm paper colour so everyday comparisons stand out from the formal content.
+ * 生活类比卡片：暖色纸张底色，让生活化的比喻与正式内容区分开。
+ */
+.analogy-block {
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-analogy-soft);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.analogy-block__text {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+.analogy-block__limit {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 2px dashed var(--color-line-soft);
+}
+
+.analogy-block__limit .lesson-block__tag {
+  margin-bottom: var(--space-1);
+}
+
+.analogy-block__limit-text {
+  margin: 0;
+  color: var(--color-ink-2);
+  line-height: 1.75;
+}
