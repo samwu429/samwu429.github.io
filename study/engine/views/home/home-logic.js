@@ -75,9 +75,9 @@ export function totalWeight(assessments) {
 
 /**
  * Splits course units into one group per kind, in the display order of core/text/unit-labels.js
- * (lectures, modules, labs, tutorials, workshops, then every other kind). Units of a known kind are
+ * (lectures, modules, chapters, labs, tutorials, workshops, then every other kind). Units of a known kind are
  * sorted by number; the last group keeps course order. Returns [{ kind, units }] without empty groups.
- * 按 core/text/unit-labels.js 的显示顺序把课程单元按类型分组（讲课、模块、实验、辅导、工作坊，最后是其他类型）。
+ * 按 core/text/unit-labels.js 的显示顺序把课程单元按类型分组（讲课、模块、章节、实验、辅导、工作坊，最后是其他类型）。
  * 已知类型的单元按编号排序，最后一组保持课程顺序。返回 [{ kind, units }]，不含空组。
  */
 export function splitUnits(units) {

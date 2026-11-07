@@ -28,6 +28,13 @@ const LOADERS = {
   'z-score': () => import('./statistics/z-score/z-score.js'),
   'scatter-correlation': () => import('./statistics/scatter-correlation/scatter-correlation.js'),
   'least-squares-line': () => import('./statistics/least-squares-line/least-squares-line.js'),
+  'signal-detection': () => import('./psychology/signal-detection/signal-detection.js'),
+  afterimage: () => import('./psychology/afterimage/afterimage.js'),
+  'sleep-cycle': () => import('./psychology/sleep-cycle/sleep-cycle.js'),
+  'classical-conditioning': () => import('./psychology/classical-conditioning/classical-conditioning.js'),
+  'operant-quadrant': () => import('./psychology/operant-quadrant/operant-quadrant.js'),
+  'reinforcement-schedules': () => import('./psychology/reinforcement-schedules/reinforcement-schedules.js'),
+  'concept-sorter': () => import('./psychology/concept-sorter/concept-sorter.js'),
 };
 
 export function hasWidget(name) {

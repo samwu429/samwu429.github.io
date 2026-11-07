@@ -1,0 +1,814 @@
+/*
+ * sleep-cycle widget: the hypnogram with its cursor, the time slider and step buttons, the panel of the stage
+ * under the cursor (EEG traces and facts), and the summary of the whole night.
+ * Colours, spacing, radii and shadows come from the design tokens only, so dark mode needs no extra rules.
+ * The hypnogram's viewBox follows the measured width (1 unit = 1 pixel), and the EEG traces scale with theirs.
+ * sleep-cycle 组件：带光标的睡眠图、时间滑块与按钮、光标所在阶段的面板（示意脑电波与知识点），以及整夜的汇总。
+ * 颜色、间距、圆角和阴影只使用设计变量，深色模式不需要额外规则。睡眠图的 viewBox 跟随测得的宽度（1 单位 = 1 像素），示意脑电波随自己的 viewBox 缩放。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.sleep-cycle {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  container-type: inline-size;
+}
+
+/* Header 标题区 */
+.sleep-cycle__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.sleep-cycle__eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.sleep-cycle__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.sleep-cycle__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.sleep-cycle__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Bilingual sentences: Chinese line, then the English line. 双语句子：先中文一行，再英文一行。 */
+.sleep-cycle__pair {
+  margin: 0;
+  min-width: 0;
+}
+
+.sleep-cycle__zh,
+.sleep-cycle__en {
+  display: block;
+}
+
+.sleep-cycle__en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+/* "Simplified illustration" note and the REM pitfall 简化示意说明与 REM 易错点 */
+.sleep-cycle__note,
+.sleep-cycle__pitfall {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  background: var(--color-signal-soft);
+  font-size: var(--text-sm);
+}
+
+.sleep-cycle__pitfall {
+  border-left-color: var(--color-warn);
+  background: var(--color-warn-soft);
+}
+
+.sleep-cycle__note .icon,
+.sleep-cycle__pitfall .icon {
+  margin-top: var(--space-1);
+}
+
+.sleep-cycle__note .icon {
+  color: var(--color-signal);
+}
+
+.sleep-cycle__pitfall .icon {
+  color: var(--color-warn);
+}
+
+/* Panels 面板 */
+.sleep-cycle__panel {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.sleep-cycle__heading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.sleep-cycle__subheading {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+/* Hypnogram 睡眠图 */
+.sleep-cycle__figure {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+}
+
+.sleep-cycle__chart-host {
+  width: 100%;
+  min-width: 0;
+}
+
+.sleep-cycle__chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  /* Horizontal drags move the cursor; vertical swipes still scroll the page. 横向拖动移动光标，竖向滑动仍然滚动页面。 */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Odd cycles get a light wash of the soft line colour, which stays visible in both themes. 奇数周期铺一层淡淡的浅线条色，两种主题下都看得见。 */
+.sleep-cycle__band--odd {
+  fill: var(--color-line-soft);
+  fill-opacity: 0.55;
+}
+
+.sleep-cycle__band--even {
+  fill: none;
+}
+
+.sleep-cycle__current {
+  fill: var(--color-highlight-soft);
+}
+
+.sleep-cycle__row-line {
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+}
+
+.sleep-cycle__hour-line {
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.sleep-cycle__frame {
+  fill: none;
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+}
+
+.sleep-cycle__fill--n3 {
+  fill: var(--color-signal-soft);
+}
+
+.sleep-cycle__fill--rem {
+  fill: var(--color-accent-soft);
+}
+
+.sleep-cycle__line {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.sleep-cycle__rem-line {
+  stroke: var(--color-accent-strong);
+  stroke-width: 5;
+  stroke-linecap: butt;
+}
+
+.sleep-cycle__n3-line {
+  stroke: var(--color-signal);
+  stroke-width: 5;
+  stroke-linecap: butt;
+}
+
+.sleep-cycle__stage-label {
+  fill: var(--color-ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.sleep-cycle__hour-label {
+  fill: var(--color-ink-2);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.sleep-cycle__cycle-label {
+  fill: var(--color-ink-3);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.sleep-cycle__cursor-line {
+  stroke: var(--color-warn);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.sleep-cycle__cursor-dot {
+  fill: var(--color-warn);
+  stroke: var(--color-panel);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+/* Legend and the key of the codes 图例与代号说明 */
+.sleep-cycle__caption {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+.sleep-cycle__legend,
+.sleep-cycle__key-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-ink-2);
+}
+
+.sleep-cycle__legend li,
+.sleep-cycle__key-list li {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+}
+
+.sleep-cycle__swatch {
+  display: inline-block;
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.sleep-cycle__swatch--rem {
+  border: 0;
+  border-bottom: 4px solid var(--color-accent-strong);
+  background: var(--color-accent-soft);
+}
+
+.sleep-cycle__swatch--n3 {
+  border: 0;
+  border-bottom: 4px solid var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+.sleep-cycle__swatch--cycle {
+  background: var(--color-line-soft);
+}
+
+.sleep-cycle__swatch--current {
+  background: var(--color-highlight-soft);
+}
+
+.sleep-cycle__swatch--cursor {
+  width: 4px;
+  border: 0;
+  border-radius: 0;
+  background: var(--color-warn);
+}
+
+.sleep-cycle__key {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sleep-cycle__key-title {
+  margin: 0;
+  color: var(--color-ink);
+  font-weight: 800;
+}
+
+.sleep-cycle__key-code {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.sleep-cycle__axes {
+  color: var(--color-ink-2);
+}
+
+/* Controls 控件 */
+.sleep-cycle__slider {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.sleep-cycle__slider-label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.sleep-cycle__range {
+  width: 100%;
+  min-width: 0;
+  min-height: 32px;
+  margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.sleep-cycle__readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.sleep-cycle__readout-time {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+}
+
+.sleep-cycle__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Stage chips: the colour repeats the chart's shading, and the text always names the stage. 阶段标签：颜色与图中底色对应，文字始终写出阶段名称。 */
+.sleep-cycle__chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-1);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.sleep-cycle__chip--code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.sleep-cycle__chip--w {
+  background: var(--color-highlight-soft);
+}
+
+.sleep-cycle__chip--rem {
+  border-color: var(--color-accent-strong);
+  background: var(--color-accent-soft);
+}
+
+.sleep-cycle__chip--n3 {
+  border-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+/* Stage panel 阶段面板 */
+.sleep-cycle__info-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.sleep-cycle__info-title .bi-title__en {
+  font-size: 0.75em;
+}
+
+.sleep-cycle__meta {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sleep-cycle__meta-line {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.sleep-cycle__meta-label {
+  color: var(--color-ink);
+  font-weight: 800;
+}
+
+.sleep-cycle__moment,
+.sleep-cycle__wave-part,
+.sleep-cycle__fact-part {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.sleep-cycle__notes {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sleep-cycle__note-item {
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-highlight);
+  border-radius: var(--radius-sm);
+  background: var(--color-highlight-soft);
+  font-size: var(--text-sm);
+}
+
+.sleep-cycle__waves {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.sleep-cycle__traces {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-3);
+}
+
+.sleep-cycle__trace {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  margin: 0;
+}
+
+.sleep-cycle__trace-svg {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.sleep-cycle__trace-axis {
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+}
+
+.sleep-cycle__trace-line {
+  fill: none;
+  stroke: var(--color-signal);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.sleep-cycle__burst {
+  fill: var(--color-accent-soft);
+}
+
+.sleep-cycle__trace-caption {
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.sleep-cycle__trace-note {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+.sleep-cycle__wave-list,
+.sleep-cycle__facts {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sleep-cycle__wave,
+.sleep-cycle__fact {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-size: var(--text-sm);
+}
+
+.sleep-cycle__wave-name {
+  margin: 0;
+  font-weight: 800;
+}
+
+.sleep-cycle__wave-name .bi-title__en {
+  font-size: 0.85em;
+}
+
+.sleep-cycle__source {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+/* Exam sentences 考试句子 */
+.sleep-cycle__exam {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+}
+
+.sleep-cycle__exam-title {
+  margin: 0;
+  color: var(--color-exam);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.sleep-cycle__exam-sentence {
+  margin: 0;
+}
+
+.sleep-cycle__exam-en {
+  display: block;
+  font-weight: 800;
+}
+
+.sleep-cycle__exam-zh {
+  display: block;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Summary 汇总 */
+.sleep-cycle__tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-3);
+}
+
+.sleep-cycle__tile {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.sleep-cycle__tile-title {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.sleep-cycle__tile-title .bi-title__en {
+  font-size: 0.8em;
+}
+
+.sleep-cycle__tile-text {
+  font-size: var(--text-sm);
+}
+
+.sleep-cycle__tile-book {
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-line-soft);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+.sleep-cycle__bar-chart {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.sleep-cycle__bar-unit {
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  text-align: right;
+}
+
+.sleep-cycle__bars {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sleep-cycle__bar {
+  display: grid;
+  grid-template-columns: max-content minmax(2.5rem, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+}
+
+.sleep-cycle__bar-name {
+  white-space: nowrap;
+}
+
+.sleep-cycle__bar-track {
+  display: block;
+  height: 12px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+}
+
+.sleep-cycle__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink-3);
+}
+
+.sleep-cycle__bar-fill--n3 {
+  background: var(--color-signal);
+}
+
+.sleep-cycle__bar-fill--rem {
+  background: var(--color-accent);
+}
+
+.sleep-cycle__bar-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.sleep-cycle__shares {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.sleep-cycle__share {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sleep-cycle__share-name,
+.sleep-cycle__share-text {
+  margin: 0;
+  font-size: var(--text-xs);
+}
+
+.sleep-cycle__share-name {
+  font-weight: 800;
+}
+
+.sleep-cycle__share-text {
+  color: var(--color-ink-2);
+}
+
+.sleep-cycle__stack {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.sleep-cycle__stack-part {
+  display: block;
+  min-width: 0;
+  padding: var(--space-1) 0;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.sleep-cycle__stack-part--light {
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+}
+
+.sleep-cycle__stack-part--n3 {
+  background: var(--color-signal);
+  color: var(--color-panel);
+}
+
+.sleep-cycle__stack-part--rem {
+  background: var(--color-accent-strong);
+  color: var(--color-on-accent);
+}
+
+.sleep-cycle__closing .sleep-cycle__zh {
+  font-weight: 800;
+}
+
+/* Table 表格 */
+.sleep-cycle__table-caption {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  text-align: left;
+}
+
+.sleep-cycle__table th,
+.sleep-cycle__table td {
+  vertical-align: middle;
+}
+
+/* Row names may wrap, so the table fits narrow screens; it still scrolls inside its own box if needed. 行名可以换行，窄屏也放得下；放不下时仍在自己的框里横向滚动。 */
+.sleep-cycle__table tbody th,
+.sleep-cycle__table thead th {
+  white-space: normal;
+}
+
+.sleep-cycle__num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.sleep-cycle__table tbody tr.sleep-cycle__row--light th,
+.sleep-cycle__table tbody tr.sleep-cycle__row--light td {
+  background: var(--color-paper-2);
+}
+
+.sleep-cycle__table tbody tr.sleep-cycle__row--total th,
+.sleep-cycle__table tbody tr.sleep-cycle__row--total td {
+  font-weight: 800;
+}
+
+/* Nothing in the widget animates; this keeps it so if a shared style ever adds a transition. 组件里没有任何动画；即使共用样式以后加了过渡效果，这里也保持不动。 */
+@media (prefers-reduced-motion: reduce) {
+  .sleep-cycle,
+  .sleep-cycle * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sleep-cycle {
+    padding: var(--space-3);
+  }
+
+  .sleep-cycle__panel {
+    padding: var(--space-3);
+  }
+}
+
+/* Narrow widgets: thinner table cells, so the table fits a 360 px phone without scrolling. 窄屏：表格单元格变窄，360 px 的手机上不用横向滚动也放得下。 */
+@container (max-width: 420px) {
+  .sleep-cycle__table th,
+  .sleep-cycle__table td {
+    padding-right: var(--space-1);
+    padding-left: var(--space-1);
+  }
+}
+
+@container (min-width: 720px) {
+  .sleep-cycle__panel {
+    padding: var(--space-4) var(--space-5);
+  }
+}

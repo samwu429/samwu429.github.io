@@ -1,0 +1,527 @@
+/*
+ * concept-sorter widget: a sorting drill with a progress bar, the item card, one button per category, feedback
+ * with the correct category and the reason, and a summary that lists the missed items.
+ * Colours, spacing, radii and shadows come from the design tokens only, so dark mode needs no extra rules.
+ * Everything wraps from 360 px wide; nothing scrolls sideways.
+ * concept-sorter 组件：分类练习，含进度条、题目卡片、每个类别一个按钮、带正确类别和原因的反馈，以及列出答错题目的总结。
+ * 颜色、间距、圆角和阴影只使用设计变量，深色模式不需要额外规则。从 360 px 宽起所有内容都会换行，不会横向滚动。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.concept-sorter {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  container-type: inline-size;
+}
+
+/* Spacing comes from the grid gaps, not from paragraph margins. 间距来自网格间隙，而不是段落外边距。 */
+.concept-sorter p {
+  margin: 0;
+}
+
+/* Header 标题区 */
+.concept-sorter__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.concept-sorter__eyebrow {
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.concept-sorter__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.concept-sorter__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.concept-sorter__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Bilingual sentences: Chinese line, then the English line. 双语句子：先中文一行，再英文一行。 */
+.concept-sorter__pair {
+  min-width: 0;
+}
+
+.concept-sorter__zh,
+.concept-sorter__en {
+  display: block;
+}
+
+.concept-sorter__en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+/* Exam English with its Chinese meaning underneath. 考试英文，下面是中文意思。 */
+.concept-sorter__glossed {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.concept-sorter__glossed-zh {
+  color: var(--color-ink-2);
+  font-size: 0.88em;
+  font-weight: 500;
+}
+
+.concept-sorter__stage,
+.concept-sorter__summary {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* Progress 进度 */
+.concept-sorter__progress {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.concept-sorter__count {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+/* Focus lands here only as a reading position for each new item. 焦点落在这里只是为了从新题目开始阅读。 */
+.concept-sorter__count:focus {
+  outline: none;
+}
+
+.concept-sorter__count-visible {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-2);
+}
+
+.concept-sorter__count-number {
+  color: var(--color-ink);
+  font-size: var(--text-md);
+  font-variant-numeric: tabular-nums;
+}
+
+.concept-sorter__track {
+  height: 10px;
+  overflow: hidden;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+}
+
+.concept-sorter__fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--color-accent);
+  transition: width 240ms ease;
+}
+
+/* Item card 题目卡片 */
+.concept-sorter__card {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.concept-sorter__prompt {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.concept-sorter__item {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+/* Category buttons: one column on a phone, more columns when the widget is wider. 类别按钮：手机上一列，组件变宽时自动多列。 */
+.concept-sorter__choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.concept-sorter__choice {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-hard-sm);
+  text-align: left;
+  line-height: 1.35;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.concept-sorter__choice:hover:not([aria-disabled="true"]) {
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  transform: translate(-1px, -1px);
+}
+
+.concept-sorter__choice:active:not([aria-disabled="true"]) {
+  box-shadow: none;
+  transform: translate(1px, 1px);
+}
+
+.concept-sorter__choice[aria-disabled="true"] {
+  box-shadow: none;
+  cursor: default;
+}
+
+.concept-sorter__key {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* A category name: Chinese and English side by side, wrapping when the line is full. 类别名称：中英并排，放不下时换行。 */
+.concept-sorter__category {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-1);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.concept-sorter__category-zh {
+  font-weight: 800;
+}
+
+.concept-sorter__category-en {
+  font-weight: 700;
+}
+
+/* Inside a button the English name goes under the Chinese one. 按钮里英文名称放在中文下面。 */
+.concept-sorter__choice-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.concept-sorter__choice-name .concept-sorter__category-en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+.concept-sorter__mark {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+}
+
+/* After a choice: green for the right category, red for a wrong pick; icons say the same without colour. 作答后：正确类别变绿、选错的变红；图标不靠颜色也能表达同样的意思。 */
+.concept-sorter__choice[data-state="correct"] {
+  border-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.concept-sorter__choice[data-state="correct"] .concept-sorter__key {
+  border-color: var(--color-success);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.concept-sorter__choice[data-state="correct"] .concept-sorter__mark {
+  color: var(--color-success);
+}
+
+.concept-sorter__choice[data-state="wrong"] {
+  border-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.concept-sorter__choice[data-state="wrong"] .concept-sorter__key {
+  border-color: var(--color-danger);
+  background: var(--color-danger);
+  color: var(--color-panel);
+}
+
+.concept-sorter__choice[data-state="wrong"] .concept-sorter__mark {
+  color: var(--color-danger);
+}
+
+.concept-sorter__choice[data-state="other"] {
+  opacity: 0.6;
+}
+
+/* Keyboard hint: one quiet line, hidden on touch screens without a keyboard. 键盘提示：一行浅色小字，没有键盘的触屏设备上隐藏。 */
+.concept-sorter__hint {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.concept-sorter__hint .concept-sorter__zh,
+.concept-sorter__hint .concept-sorter__en {
+  display: inline;
+  color: inherit;
+  font-size: inherit;
+}
+
+.concept-sorter__hint .concept-sorter__en {
+  margin-left: var(--space-1);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .concept-sorter__hint {
+    display: none;
+  }
+}
+
+/* Feedback 反馈 */
+.concept-sorter__feedback {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-ink-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+}
+
+.concept-sorter__feedback[data-result="correct"] {
+  border-left-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.concept-sorter__feedback[data-result="wrong"] {
+  border-left-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.concept-sorter__feedback-body {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.concept-sorter__verdict {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-md);
+  font-weight: 900;
+}
+
+.concept-sorter__feedback[data-result="correct"] .concept-sorter__verdict {
+  color: var(--color-success);
+}
+
+.concept-sorter__feedback[data-result="wrong"] .concept-sorter__verdict {
+  color: var(--color-danger);
+}
+
+.concept-sorter__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+  font-size: var(--text-sm);
+}
+
+.concept-sorter__line .icon {
+  align-self: center;
+}
+
+.concept-sorter__line--answer .icon {
+  color: var(--color-success);
+}
+
+.concept-sorter__line--choice .icon {
+  color: var(--color-danger);
+}
+
+.concept-sorter__line-label {
+  color: var(--color-ink-2);
+  font-weight: 800;
+}
+
+.concept-sorter__why {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-size: var(--text-sm);
+}
+
+.concept-sorter__why-title {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.concept-sorter__why-zh {
+  line-height: 1.75;
+}
+
+.concept-sorter__why-en {
+  color: var(--color-ink-2);
+}
+
+.concept-sorter__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.concept-sorter__actions--start {
+  justify-content: flex-start;
+}
+
+/* Summary 总结 */
+.concept-sorter__summary-title {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+/* Focus lands here only as a reading position for the results. 焦点落在这里只是为了从结果开始阅读。 */
+.concept-sorter__summary-title:focus {
+  outline: none;
+}
+
+.concept-sorter__score {
+  color: var(--color-accent-strong);
+  font-size: var(--text-3xl);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.concept-sorter__score-body {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.concept-sorter__score-text .concept-sorter__zh {
+  font-weight: 800;
+}
+
+.concept-sorter__advice {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.concept-sorter__subheading {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.concept-sorter__missed {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.concept-sorter__missed-item {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.concept-sorter__missed-text {
+  font-weight: 700;
+}
+
+.concept-sorter__none {
+  font-weight: 700;
+}
+
+.concept-sorter__note {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+/* A config with too few usable entries 可用条目太少的配置 */
+.concept-sorter__invalid {
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 480px) {
+  .concept-sorter {
+    padding: var(--space-3);
+  }
+
+  .concept-sorter__card,
+  .concept-sorter__feedback {
+    padding: var(--space-3);
+  }
+}
+
+@container (min-width: 720px) {
+  .concept-sorter__card {
+    padding: var(--space-4) var(--space-5);
+  }
+}
+
+/* No movement for learners who ask for less motion. 为减少动态效果的学习者去掉所有移动。 */
+@media (prefers-reduced-motion: reduce) {
+  .concept-sorter__fill,
+  .concept-sorter__choice {
+    transition: none;
+  }
+
+  .concept-sorter__choice:hover:not([aria-disabled="true"]),
+  .concept-sorter__choice:active:not([aria-disabled="true"]) {
+    transform: none;
+  }
+}

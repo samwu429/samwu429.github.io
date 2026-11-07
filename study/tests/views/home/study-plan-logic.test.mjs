@@ -104,6 +104,18 @@ test('module ranges, false ranges and other kinds behave like lectures', () => {
   assert.deepEqual(hrefs(detectTaskLinks({ en: 'Module 3, then Lecture 3', zh: '第 3 模块' }, UNITS)), ['#/learn/lec03']);
 });
 
+const CHAPTERS = [4, 5, 6].map((number) => ({ id: `ch0${number}`, kind: 'chapter', number }));
+
+test('detectTaskLinks finds textbook chapters in English and Chinese', () => {
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Reread Chapter 5' }, CHAPTERS)), ['#/learn/ch05']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Chapters 4-6 key terms' }, CHAPTERS)), ['#/learn/ch04', '#/learn/ch05', '#/learn/ch06']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Ch. 4 and Ch 6, then ch05' }, CHAPTERS)), ['#/learn/ch04', '#/learn/ch06', '#/learn/ch05']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '复习第 4–6 章的术语' }, CHAPTERS)), ['#/learn/ch04', '#/learn/ch05', '#/learn/ch06']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '第 5 章和第 6 章' }, CHAPTERS)), ['#/learn/ch05', '#/learn/ch06']);
+  assert.deepEqual(detectTaskLinks({ en: 'Chapter 6' }, CHAPTERS)[0].label, { zh: '第 6 章', en: 'Chapter 6' });
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Check each 4 options; teach 5 friends' }, CHAPTERS)), []);
+});
+
 test('detectTaskLinks avoids false ranges and unknown units', () => {
   assert.deepEqual(hrefs(detectTaskLinks({ en: 'lec 5 - 30 minutes' }, UNITS)), ['#/learn/lec05']);
   assert.deepEqual(hrefs(detectTaskLinks({ en: 'Lecture 6, 2 hours' }, UNITS)), ['#/learn/lec06']);

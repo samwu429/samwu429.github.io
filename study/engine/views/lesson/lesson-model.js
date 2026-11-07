@@ -65,9 +65,9 @@ export function displayTitle(title, kind) {
 
 /**
  * Splits units into one titled group per kind, in the display order of core/text/unit-labels.js
- * (lectures, modules, labs, tutorials, workshops, then other), keeping course order inside a group
+ * (lectures, modules, chapters, labs, tutorials, workshops, then other), keeping course order inside a group
  * and dropping empty groups. Returns [{ kind, title, units }].
- * 按 core/text/unit-labels.js 的显示顺序把单元按类型分组并加上标题（讲课、模块、实验、辅导、工作坊，最后是其他），
+ * 按 core/text/unit-labels.js 的显示顺序把单元按类型分组并加上标题（讲课、模块、章节、实验、辅导、工作坊，最后是其他），
  * 组内保持课程顺序，并去掉空组。返回 [{ kind, title, units }]。
  */
 export function groupUnits(units) {
@@ -137,6 +137,19 @@ export function slidesLabel(slides) {
   if (slides === undefined || slides === null) return '';
   const text = String(slides).trim();
   return text ? `p.${text}` : '';
+}
+
+/**
+ * Words for what a lesson's page numbers point at: the printed textbook pages of a chapter unit, the
+ * slide pages of every other kind. `badge` prefixes a section's pages, `title` explains them and
+ * `sources` labels the source files in the lesson header.
+ * 讲义页码指向什么：章节单元是教材的印刷页码，其他类型是课件页码。badge 放在小节页码前，title 解释页码，
+ * sources 是讲义开头资料清单的标签。
+ */
+export function pageSourceWords(kind) {
+  return kind === 'chapter'
+    ? { badge: '教材 Textbook', title: '教材页码 Textbook pages', sources: '资料 Sources: ' }
+    : { badge: '课件 Slides', title: '课件页码 Slide pages', sources: '课件 Slides: ' };
 }
 
 /**

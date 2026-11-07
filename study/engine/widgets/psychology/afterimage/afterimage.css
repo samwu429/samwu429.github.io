@@ -1,0 +1,395 @@
+/*
+ * afterimage widget: the picture to stare at and the white field in one box, the step label and instruction, the
+ * calm countdown, the stare-time slider, the buttons, the step-3 panels and the expected afterimage.
+ * Colours, spacing, radii and shadows come from the design tokens only, so dark mode needs no extra rules. The only
+ * other colours are the stimulus colours, which the SVG pictures and the table swatches set from afterimage-logic.js:
+ * the demo needs the same bright colours and a pure white field in light and dark mode.
+ * afterimage 组件：同一个框里的原图与白色区域、步骤标签与指示、安静的倒计时、盯视时间滑块、按钮、第 3 步的面板和预期后像。
+ * 颜色、间距、圆角和阴影只用设计变量，深色模式不需要额外规则。唯一的例外是刺激图的颜色：SVG 图和表格色块从
+ * afterimage-logic.js 读取它们，因为演示在浅色和深色模式下都需要同样鲜艳的颜色和纯白的区域。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.afterimage {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  container-type: inline-size;
+}
+
+/* Header 标题区 */
+.afterimage__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.afterimage__eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.afterimage__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.afterimage__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.afterimage__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Bilingual sentences: Chinese line, then the English line. 双语句子：先中文一行，再英文一行。 */
+.afterimage__pair {
+  margin: 0;
+  min-width: 0;
+}
+
+.afterimage__zh,
+.afterimage__en {
+  display: block;
+}
+
+.afterimage__en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+/* Pictures: the SVG scales with its viewBox; nothing in the box moves or animates. 图片：SVG 随 viewBox 缩放；框里没有任何移动或动画。 */
+.afterimage__figures {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* Step 3 puts the original and the expected afterimage side by side when there is room. 第 3 步在空间够时把原图和预期后像并排。 */
+@container (min-width: 600px) {
+  .afterimage__figures--compare {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+.afterimage__figure {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+}
+
+.afterimage__stage {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  line-height: 0;
+}
+
+/* The stimulus colours are the content of the demo, so forced-colours mode keeps them. 刺激颜色就是演示内容，强制颜色模式下也保留。 */
+.afterimage__picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  forced-color-adjust: none;
+}
+
+.afterimage__caption {
+  display: grid;
+  gap: var(--space-1);
+  justify-items: start;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+  font-size: var(--text-sm);
+}
+
+.afterimage__caption-title {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  font-weight: 800;
+}
+
+.afterimage__badge {
+  white-space: normal;
+}
+
+.afterimage__note {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+/* Step label and instruction 步骤标签与指示 */
+.afterimage__status {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.afterimage__step-label {
+  margin: 0;
+  color: var(--color-accent-ink);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.afterimage__instruction-text {
+  font-size: var(--text-md);
+}
+
+.afterimage--look .afterimage__instruction-text {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.afterimage__notice,
+.afterimage__tip {
+  margin: 0;
+}
+
+/* Countdown: a number and a thin bar, no blinking. 倒计时：一个数字加一条细进度条，不闪烁。 */
+.afterimage__countdown-row {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  max-width: 520px;
+}
+
+.afterimage__countdown {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.afterimage__count-number {
+  min-width: 2ch;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  text-align: right;
+}
+
+.afterimage__look-timer {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+/* Stare-time slider 盯视时间滑块 */
+.afterimage__field {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  max-width: 520px;
+}
+
+.afterimage__label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.afterimage__range-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.afterimage__range {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.afterimage__range-value {
+  flex: none;
+  min-width: 5.5em;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.afterimage__range-number {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.afterimage__hint {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+/* Buttons wrap, and a long label wraps inside its button instead of widening the page. 按钮会换行；长标签在按钮内换行，不会撑宽页面。 */
+.afterimage__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  min-width: 0;
+}
+
+.afterimage__controls .btn {
+  max-width: 100%;
+  text-align: left;
+}
+
+/* Step 3 第 3 步 */
+.afterimage__explain {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* Slightly tighter lines than the page, because every sentence is shown in two languages. 行距比正文略紧，因为每句话都有两种语言。 */
+.afterimage__panel {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  line-height: 1.6;
+}
+
+.afterimage__heading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+/* Colour table 颜色对照表 */
+.afterimage__table th {
+  white-space: normal;
+}
+
+.afterimage__colour {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+/* A swatch is a stimulus colour; its border keeps white visible on light panels and black on dark ones. 色块是刺激颜色；边框让白色在浅色面板、黑色在深色面板上都看得见。 */
+.afterimage__swatch {
+  display: inline-block;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  forced-color-adjust: none;
+}
+
+.afterimage__colour-name,
+.afterimage__pair-name {
+  font-weight: 800;
+}
+
+.afterimage__pair-name,
+.afterimage__where,
+.afterimage__source {
+  display: block;
+}
+
+.afterimage__where,
+.afterimage__source {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+/* Numbered steps and the two stages 编号步骤与两个阶段 */
+.afterimage__steps,
+.afterimage__flow {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+.afterimage__steps li::marker,
+.afterimage__flow li::marker {
+  font-weight: 900;
+}
+
+.afterimage__flow-title {
+  margin: 0;
+  font-weight: 800;
+}
+
+.afterimage__example {
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+}
+
+/* Exam sentences 考试句子 */
+.afterimage__exam {
+  border-left: 4px solid var(--color-exam);
+  background: var(--color-exam-soft);
+}
+
+.afterimage__exam .afterimage__heading {
+  color: var(--color-exam);
+}
+
+.afterimage__exam-sentence {
+  margin: 0;
+}
+
+.afterimage__exam-en {
+  display: block;
+  font-weight: 800;
+}
+
+.afterimage__exam-zh {
+  display: block;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 480px) {
+  .afterimage {
+    padding: var(--space-3);
+  }
+
+  .afterimage__panel {
+    padding: var(--space-3);
+  }
+}
+
+/* The progress bar steps instead of gliding (the view also updates it once a second). 进度条逐格跳动而不是滑动（视图也每秒才更新一次）。 */
+@media (prefers-reduced-motion: reduce) {
+  .afterimage .progress__fill {
+    transition: none;
+  }
+}

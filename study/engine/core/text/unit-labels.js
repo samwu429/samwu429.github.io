@@ -1,9 +1,9 @@
 /**
  * The one place that names course units and their kinds: "第 3 讲 / Lecture 3 / Lec 3",
- * "模块 2 / Module 2 / Mod 2", "实验 2 / Lab 2 / Lab 2", plus the group title of each kind and the
- * order in which groups are shown. Views format these parts for their own needs. DOM-free.
- * 课程单元及其类型命名的唯一来源：“第 3 讲 / Lecture 3 / Lec 3”“模块 2 / Module 2 / Mod 2”“实验 2 / Lab 2 / Lab 2”，
- * 以及每类单元的分组标题和分组的显示顺序。各视图按需组合这些部分。不依赖 DOM。
+ * "模块 2 / Module 2 / Mod 2", "第 4 章 / Chapter 4 / Ch 4", "实验 2 / Lab 2 / Lab 2", plus the group
+ * title of each kind and the order in which groups are shown. Views format these parts for their own needs. DOM-free.
+ * 课程单元及其类型命名的唯一来源：“第 3 讲 / Lecture 3 / Lec 3”“模块 2 / Module 2 / Mod 2”“第 4 章 / Chapter 4 / Ch 4”
+ * “实验 2 / Lab 2 / Lab 2”，以及每类单元的分组标题和分组的显示顺序。各视图按需组合这些部分。不依赖 DOM。
  */
 
 // zh, zhBare, en and short name a single unit; group is the title of a list of such units; zhWhich
@@ -17,6 +17,10 @@ const KINDS = Object.freeze({
   module: Object.freeze({
     zh: (number) => `模块 ${number}`, zhBare: '模块', en: 'Module', short: 'Mod',
     group: Object.freeze({ zh: '模块', en: 'Modules' }), zhWhich: '哪几个模块',
+  }),
+  chapter: Object.freeze({
+    zh: (number) => `第 ${number} 章`, zhBare: '章节', en: 'Chapter', short: 'Ch',
+    group: Object.freeze({ zh: '章节', en: 'Chapters' }), zhWhich: '哪几章',
   }),
   lab: Object.freeze({
     zh: (number) => `实验 ${number}`, zhBare: '实验', en: 'Lab', short: 'Lab',
@@ -33,16 +37,17 @@ const KINDS = Object.freeze({
 });
 
 /** Known unit kinds in the order their groups are shown; any other kind comes after them. 已知单元类型的分组显示顺序；其他类型排在它们之后。 */
-export const KIND_ORDER = Object.freeze(['lecture', 'module', 'lab', 'tutorial', 'workshop']);
+export const KIND_ORDER = Object.freeze(['lecture', 'module', 'chapter', 'lab', 'tutorial', 'workshop']);
 
 /** Group kind of every unit whose kind is unknown or missing. 类型未知或缺失的单元所在分组的类型名。 */
 export const OTHER_KIND = 'other';
 
 const OTHER_TITLE = Object.freeze({ zh: '其他', en: 'Other' });
 
-// Lectures and modules carry the teaching of a course; labs, tutorials and workshops accompany them.
-// 讲课与模块承载课程的主要教学；实验、辅导与工作坊是配套单元。
-const MAIN_KINDS = Object.freeze(['lecture', 'module']);
+// Lectures, modules and textbook chapters carry the teaching of a course; labs, tutorials and workshops
+// accompany them.
+// 讲课、模块与教材章节承载课程的主要教学；实验、辅导与工作坊是配套单元。
+const MAIN_KINDS = Object.freeze(['lecture', 'module', 'chapter']);
 
 /** The unit number as a positive integer (numeric strings allowed), otherwise null. 单元编号（正整数，允许数字字符串），否则为 null。 */
 export function unitNumber(unit) {
@@ -52,12 +57,12 @@ export function unitNumber(unit) {
   return Number.isInteger(number) && number > 0 ? number : null;
 }
 
-/** True for the kinds named here: lecture, module, lab, tutorial and workshop. 是否为这里能命名的已知类型（讲课、模块、实验、辅导、工作坊）。 */
+/** True for the kinds named here: lecture, module, chapter, lab, tutorial and workshop. 是否为这里能命名的已知类型（讲课、模块、章节、实验、辅导、工作坊）。 */
 export function isKnownKind(kind) {
   return Object.hasOwn(KINDS, kind);
 }
 
-/** True for the main teaching units, lectures and modules. 是否为主要教学单元（讲课或模块）。 */
+/** True for the main teaching units: lectures, modules and chapters. 是否为主要教学单元（讲课、模块或章节）。 */
 export function isMainKind(kind) {
   return MAIN_KINDS.includes(kind);
 }
@@ -119,7 +124,7 @@ function joinWords(words, separator, lastSeparator) {
  *   zh, en   - "第 3 讲" / "Lecture 3"; a known kind without a number gives "讲课" / "Lecture";
  *              anything else gives the unit id (or `fallbackId`)
  *   short    - "Lec 3"; without a known kind and number, the upper-cased id
- *   known    - true when the kind is a lecture, module, lab, tutorial or workshop
+ *   known    - true when the kind is a lecture, module, chapter, lab, tutorial or workshop
  *   numbered - true when the kind is known and the unit has a number
  * 单元的名称：zh、en 为“第 3 讲”/“Lecture 3”，已知类型但没有编号时为“讲课”/“Lecture”，其他情况为单元 id（或 fallbackId）；
  * short 为“Lec 3”，没有已知类型与编号时为大写的 id；known 表示类型已知；numbered 表示类型已知且有编号。

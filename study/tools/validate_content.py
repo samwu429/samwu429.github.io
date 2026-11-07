@@ -21,7 +21,7 @@ from pathlib import Path
 FOLDERS = {"lesson": "lessons", "questions": "practice", "glossary": "glossary", "review": "review"}
 # Unit kinds the engine names (engine/core/text/unit-labels.js).
 # 引擎能够命名的单元类型（见 engine/core/text/unit-labels.js）。
-UNIT_KINDS = ("lecture", "lab", "module", "tutorial", "workshop")
+UNIT_KINDS = ("lecture", "lab", "module", "chapter", "tutorial", "workshop")
 
 CJK = re.compile(r"[一-鿿]")
 HTML_TAG = re.compile(r"<\s*/?\s*[a-zA-Z][^>]*>")
@@ -52,6 +52,13 @@ WIDGETS = {
     "z-score": [],
     "scatter-correlation": ["points"],
     "least-squares-line": [],
+    "signal-detection": ["scenario", "signal"],
+    "afterimage": ["preset"],
+    "sleep-cycle": [],
+    "classical-conditioning": ["example"],
+    "operant-quadrant": ["scenarios"],
+    "reinforcement-schedules": [],
+    "concept-sorter": ["categories", "items"],
 }
 # Option values of the statistics widgets (engine/widgets/statistics/).
 # 统计类组件的可选取值（见 engine/widgets/statistics/）。
@@ -66,6 +73,19 @@ TURTLE_PRESETS = {
     "sequence", "function-call", "function-param", "function-two-params", "loop",
     "loop-robot", "loop-robot-9", "loop-calls-function", "nested-loop",
 }
+# Option values of the psychology widgets (engine/widgets/psychology/).
+# 心理学组件的可选取值（见 engine/widgets/psychology/）。
+PSYCHOLOGY_WIDGETS = {
+    "signal-detection", "afterimage", "sleep-cycle", "classical-conditioning", "operant-quadrant",
+    "reinforcement-schedules", "concept-sorter",
+}
+AFTERIMAGE_PRESETS = ("flag", "patches")
+SLEEP_PRESETS = ("typical-night",)
+CONDITIONING_EXAMPLES = ("pavlov", "little-albert", "taste-aversion", "custom")
+CONDITIONING_ROLES = ("neutral", "us", "ur", "cr")
+CONDITIONING_NOTATIONS = ("us", "ucs")
+OPERANT_ANSWERS = ("positive-reinforcement", "negative-reinforcement", "positive-punishment", "negative-punishment")
+SCHEDULE_NAMES = ("FR", "VR", "FI", "VI")
 # Limits of the minimax-tree widget (engine/widgets/search/minimax-tree/minimax-logic.js).
 # minimax-tree 组件的上限（见 minimax-logic.js）。
 MINIMAX_MAX_DEPTH = 4
@@ -218,6 +238,8 @@ def check_widget(report, where, block):
                 report.err(f"{where}.points[{index}]", "class must be one of classes[].id")
     if name in STATISTICS_WIDGETS:
         check_statistics_widget(report, where, name, config)
+    if name in PSYCHOLOGY_WIDGETS:
+        check_psychology_widget(report, where, name, config)
     if "caption" in block:
         report.bi(f"{where}.caption", block["caption"], need=("zh",))
 
@@ -404,6 +426,90 @@ def check_statistics_widget(report, where, name, config):
                 report.err(where, "summary needs positive sx and sy and r between -1 and 1")
         else:
             report.err(where, "least-squares-line needs points or a summary")
+
+
+def whole_number(value, low, high):
+    return isinstance(value, int) and not isinstance(value, bool) and low <= value <= high
+
+
+def check_labelled_items(report, where, items, low, high, answers):
+    """Checks a list of low..high items shaped {text: Bi, answer: one of `answers`, why: Bi with zh}.
+    检查 low 到 high 个 {text: 双语, answer: answers 之一, why: 至少有中文的双语} 条目组成的列表。"""
+    if not isinstance(items, list) or not low <= len(items) <= high:
+        report.err(where, f"needs {low}-{high} entries")
+        return
+    for index, item in enumerate(items):
+        entry = f"{where}[{index}]"
+        if not isinstance(item, dict):
+            report.err(entry, "must be an object with text, answer and why")
+            continue
+        report.bi(f"{entry}.text", item.get("text"))
+        if item.get("answer") not in answers:
+            report.err(entry, f"answer must be one of {', '.join(answers)}")
+        report.bi(f"{entry}.why", item.get("why"), need=("zh",))
+
+
+def check_psychology_widget(report, where, name, config):
+    """Shape checks of the psychology widgets, matching their config readers in engine/widgets/psychology/.
+    心理学组件的配置检查，与 engine/widgets/psychology/ 中各组件读取配置的规则一致。"""
+    for key in ("title", "prompt"):
+        if key in config:
+            report.bi(f"{where}.config.{key}", config[key])
+    if name == "signal-detection":
+        report.bi(f"{where}.config.scenario", config.get("scenario"))
+        report.bi(f"{where}.config.signal", config.get("signal"))
+        if "sensitivity" in config and not (is_number(config["sensitivity"]) and 0 <= config["sensitivity"] <= 3):
+            report.err(where, "sensitivity must be a number from 0 to 3")
+        if "criterion" in config and not (is_number(config["criterion"]) and -1.5 <= config["criterion"] <= 3):
+            report.err(where, "criterion must be a number from -1.5 to 3")
+    elif name == "afterimage":
+        if config.get("preset") not in AFTERIMAGE_PRESETS:
+            report.err(where, f"preset must be one of {', '.join(AFTERIMAGE_PRESETS)}")
+        if "seconds" in config and not whole_number(config["seconds"], 5, 60):
+            report.err(where, "seconds must be a whole number from 5 to 60")
+    elif name == "sleep-cycle":
+        if config.get("preset", "typical-night") not in SLEEP_PRESETS:
+            report.err(where, f"preset must be one of {', '.join(SLEEP_PRESETS)}")
+    elif name == "classical-conditioning":
+        example = config.get("example")
+        if example not in CONDITIONING_EXAMPLES:
+            report.err(where, f"example must be one of {', '.join(CONDITIONING_EXAMPLES)}")
+        if config.get("notation", "us") not in CONDITIONING_NOTATIONS:
+            report.err(where, "notation must be us or ucs")
+        roles = config.get("roles")
+        if example == "custom":
+            if not isinstance(roles, dict) or set(roles) != set(CONDITIONING_ROLES):
+                report.err(where, f"a custom example needs roles with exactly {', '.join(CONDITIONING_ROLES)}")
+            else:
+                for role in CONDITIONING_ROLES:
+                    report.bi(f"{where}.config.roles.{role}", roles[role])
+        elif roles is not None:
+            report.warn(where, "roles are only read when example is custom")
+    elif name == "operant-quadrant":
+        check_labelled_items(report, f"{where}.config.scenarios", config.get("scenarios"), 3, 12, OPERANT_ANSWERS)
+    elif name == "reinforcement-schedules":
+        if "ratio" in config and not whole_number(config["ratio"], 2, 20):
+            report.err(where, "ratio must be a whole number from 2 to 20")
+        if "interval" in config and not (is_number(config["interval"]) and 3 <= config["interval"] <= 30):
+            report.err(where, "interval must be a number of seconds from 3 to 30")
+        if "examples" in config:
+            check_labelled_items(report, f"{where}.config.examples", config["examples"], 1, 10, SCHEDULE_NAMES)
+    elif name == "concept-sorter":
+        categories = config.get("categories")
+        if not isinstance(categories, list) or not 2 <= len(categories) <= 6:
+            report.err(where, "categories needs 2-6 entries")
+            return
+        ids = []
+        for index, category in enumerate(categories):
+            item = f"{where}.config.categories[{index}]"
+            if not isinstance(category, dict) or not isinstance(category.get("id"), str) or not TERM_ID.match(category["id"]):
+                report.err(item, "needs a kebab-case id and a label")
+                continue
+            ids.append(category["id"])
+            report.bi(f"{item}.label", category.get("label"))
+        if len(ids) != len(set(ids)):
+            report.err(where, "category ids must be unique")
+        check_labelled_items(report, f"{where}.config.items", config.get("items"), 4, 20, tuple(ids))
 
 
 def check_block(report, where, block, stats):

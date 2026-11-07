@@ -25,6 +25,7 @@ import {
   minutesLabel,
   neighbourUnits,
   normalizeSections,
+  pageSourceWords,
   practiceHref,
   sectionNumber,
   slidesLabel,
@@ -83,7 +84,7 @@ function sourceText(source) {
   return Number.isFinite(pages) && pages > 0 ? `${source.file} · ${pages} 页 pages` : source.file;
 }
 
-function renderHeader({ lesson, unit, kind, title, sectionCount, branch, headerProgress, resume }) {
+function renderHeader({ lesson, unit, kind, pageWords, title, sectionCount, branch, headerProgress, resume }) {
   const minutes = minutesLabel(lesson.estimatedMinutes ?? unit.estimatedMinutes);
   const sources = listOf(lesson.sources).filter((source) => hasText(source.file));
   const outcomes = listOf(lesson.outcomes).filter((item) => hasText(item.en) || hasText(item.zh));
@@ -102,7 +103,7 @@ function renderHeader({ lesson, unit, kind, title, sectionCount, branch, headerP
     h('ul', { class: 'lesson-view__meta', role: 'list' },
       minutes ? metaItem('clock', `${minutes.zh} · ${minutes.en}`) : null,
       metaItem('list', `${sectionCount} 节 sections`),
-      sources.map((source) => metaItem('book', '课件 Slides: ', h('span', { lang: 'en' }, sourceText(source)))),
+      sources.map((source) => metaItem('book', pageWords.sources, h('span', { lang: 'en' }, sourceText(source)))),
       branch ? h('li', { class: 'lesson-view__meta-item' }, badge(pickText(branch, 'zh'), 'accent', { title: pickText(branch, 'en') })) : null),
     h('div', { class: 'lesson-view__progress' },
       h('span', { class: 'lesson-view__progress-label' }, icon('checkCircle', { size: 18 }), '已学会 Learned'),
@@ -119,7 +120,7 @@ function renderHeader({ lesson, unit, kind, title, sectionCount, branch, headerP
           zhNode(item.zh, hasText(item.en) ? 'gloss' : 'teach', 'p', 'lesson-view__outcome-zh')))))) : null);
 }
 
-function renderSection(section, index, { unitId, scope, progress }) {
+function renderSection(section, index, { unitId, scope, progress, pageWords }) {
   const titleId = `${section.id}--title`;
   const slides = slidesLabel(section.slides);
   const heading = h('h2', { class: 'lesson-section__title', id: titleId, tabindex: '-1' },
@@ -147,7 +148,7 @@ function renderSection(section, index, { unitId, scope, progress }) {
       heading,
       h('div', { class: 'lesson-section__meta' },
         levelBadge(section.level),
-        slides ? badge(`课件 Slides ${slides}`, 'neutral', { title: '课件页码 Slide pages' }) : null,
+        slides ? badge(`${pageWords.badge} ${slides}`, 'neutral', { title: pageWords.title }) : null,
         doneFlag))),
   h('div', { class: 'lesson-section__body' }, renderBlocks(section.blocks, scope)),
   h('footer', { class: 'lesson-section__footer' }, toggle));
@@ -248,6 +249,7 @@ function mountLesson(container, context, unit, lesson, sections, requestedSectio
   const unitId = unit.id;
   const units = Array.isArray(context.course?.units) ? context.course.units : [];
   const kind = lessonKindLabel(lesson, unit);
+  const pageWords = pageSourceWords(lesson.kind ?? unit.kind);
   const title = displayTitle(asBi(lesson.title) || asBi(unit.title) || { en: unitId }, kind);
   const branch = (context.course?.branches || []).find((candidate) => candidate.id === unit.branch)?.title || null;
   const scope = createBlockScope(context, { unitId });
@@ -261,7 +263,7 @@ function mountLesson(container, context, unit, lesson, sections, requestedSectio
   let lockUntil = 0;
 
   const toc = createLessonToc({ unitId, sections, onSelect: (sectionId) => goToSection(sectionId) });
-  const sectionViews = sections.map((section, index) => renderSection(section, index, { unitId, scope, progress }));
+  const sectionViews = sections.map((section, index) => renderSection(section, index, { unitId, scope, progress, pageWords }));
   const viewsById = new Map(sectionViews.map((view) => [view.id, view]));
   const headerProgress = h('div', { class: 'lesson-view__progress-bar' });
 
@@ -316,7 +318,7 @@ function mountLesson(container, context, unit, lesson, sections, requestedSectio
   }
 
   replaceContent(container, h('div', { class: 'lesson-view' },
-    renderHeader({ lesson, unit, kind, title, sectionCount: sections.length, branch, headerProgress, resume }),
+    renderHeader({ lesson, unit, kind, pageWords, title, sectionCount: sections.length, branch, headerProgress, resume }),
     h('div', { class: 'lesson-view__layout' },
       h('div', { class: 'lesson-view__aside' }, toc.element),
       h('div', { class: 'lesson-view__main' },

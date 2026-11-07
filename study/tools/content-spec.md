@@ -53,7 +53,7 @@ A "Bi" value below is an object `{"zh": "...", "en": "..."}`. Unless stated othe
 
 ## 4. File formats
 
-### 4.1 Lesson file (`lessons/<id>.json`) — one per unit (lecture, lab, module, tutorial or workshop)
+### 4.1 Lesson file (`lessons/<id>.json`) — one per unit (lecture, lab, module, textbook chapter, tutorial or workshop)
 
 ```json
 {
@@ -79,9 +79,9 @@ A "Bi" value below is an object `{"zh": "...", "en": "..."}`. Unless stated othe
 }
 ```
 
-- `kind`: `"lecture"`, `"lab"`, `"module"`, `"tutorial"` or `"workshop"`; the course brief says which kinds and ids the course uses. Labs and other hands-on units use the same structure; the brief describes their section order.
+- `kind`: `"lecture"`, `"lab"`, `"module"`, `"chapter"` (a textbook chapter), `"tutorial"` or `"workshop"`; the course brief says which kinds and ids the course uses. Labs and other hands-on units use the same structure; the brief describes their section order.
 - Section `id`: `sNN-kebab-case` (NN = 01, 02…), unique in the file.
-- `slides`: page range(s) in the PDF, e.g. `"17-22"` or `"9, 12-14"`. For handouts use the handout page numbers. Leave it out only for a section that has no slide source at all (for example a topic taught only from official solutions); then say in the section's first text block where the content comes from.
+- `slides`: page range(s) in the PDF, e.g. `"17-22"` or `"9, 12-14"`. For handouts use the handout page numbers; for textbook chapters use the printed book page numbers (the lesson page then labels them "教材 Textbook" instead of "课件 Slides"). Leave it out only for a section that has no slide source at all (for example a topic taught only from official solutions); then say in the section's first text block where the content comes from.
 - `level`: `"core"` (must know), `"exam"` (high-probability exam point — use for the most testable sections only), `"extra"` (background/context, lower priority; e.g. course logistics).
 - Size: see the course brief; each section has 4–14 blocks.
 
@@ -209,6 +209,20 @@ Labels (`title`, `variable`, `cases`, `rowVariable`, `columnVariable`, `xLabel`,
 | `z-score` | `{"title": Bi, "variable": Bi, "unit": "", "mean": 250, "sd": 50, "values": [400, 150]}`, or `{"title": Bi, "compare": [{"name": Bi, "mean": 70, "sd": 8, "value": 82}, {"name": Bi, "mean": 60, "sd": 5, "value": 68}]}` | z = (x − x̄)/s with the numbers substituted, a number line at x̄ ± 1, 2, 3 SD and the interpretation sentence; `compare` shows which score is relatively higher. 1–6 values or 2–4 comparisons. |
 | `scatter-correlation` | `{"title": Bi, "xLabel": Bi, "yLabel": Bi, "xName": Bi, "yName": Bi, "points": [[1, 2], [2, 3], [3, 5], [4, 4]]}` (`xName`/`yName` optional: short variable names for the sentences) | Scatterplot with movable, addable and removable points; live r with the z-score product table r = Σ z_x z_y / (n − 1); direction and strength wording; outlier and change-of-units demos. 4–30 points. |
 | `least-squares-line` | `{"title": Bi, "xLabel": Bi, "yLabel": Bi, "xName": Bi, "yName": Bi, "points": [[60, 55], [70, 62]]}`, or from summary statistics `{"title": Bi, "xName": Bi, "yName": Bi, "summary": {"xbar": 70, "sx": 10, "ybar": 62, "sy": 8, "r": 0.77}}` | b1 = r·s_y/s_x and b0 = ȳ − b1·x̄ substituted, ŷ = b0 + b1x, residuals e = y − ŷ, residual plot, R² = r², slope/intercept/R² interpretation sentences in context, prediction with an extrapolation warning, and a "try your own line" mode. 3–30 points. |
+
+### 5.5 Psychology
+
+Labels are Bi with both `zh` and `en`; `title` (and `prompt` where listed) is optional and a default title is shown without it. These widgets teach ideas, not data: the conditioning curve and the reinforcement-schedule records are drawn by simple rules and say on screen that they are simplified illustrations. Write scenarios in the learner's world (campus, part-time job, family, pets, phones) or reuse the textbook's and the lecture's own examples.
+
+| name | config | what it shows |
+|---|---|---|
+| `signal-detection` | `{"title": Bi, "scenario": Bi, "signal": Bi, "sensitivity": 1.5, "criterion": 0.75}` | Signal detection theory: a noise curve and a signal-plus-noise curve on an evidence axis, a draggable decision criterion, a sensitivity slider and the four outcomes (hit, miss, false alarm, correct rejection) with live rates. Liberal, neutral and conservative buttons show that a lower criterion buys more hits with more false alarms. `scenario` is the situation (a radiologist reading X-rays) and `signal` what is detected (a tumour). `sensitivity` (d′) 0–3, default 1.5; `criterion` −1.5 to 3 in noise-SD units from the noise mean, default sensitivity / 2. |
+| `afterimage` | `{"title": Bi, "preset": "flag", "seconds": 20}` | Negative afterimage for the opponent-process theory: the learner stares at the fixation dot of a coloured picture for `seconds` (whole number 5–60, default 20), then at a white field; the widget then explains the colours seen (red–green, blue–yellow, black–white pairs) and can show the expected afterimage. `preset`: `"flag"` (green, black and yellow stripes that leave a red, white and blue afterimage) or `"patches"` (colour squares and their opponent colours). |
+| `sleep-cycle` | `{"title": Bi, "preset": "typical-night"}` | Hypnogram of a typical young adult's night: wake, stages N1, N2, N3 and REM over about 8 hours in roughly 90-minute cycles. Tapping a stretch or moving the time cursor shows the stage, its EEG waves (beta, alpha, theta, sleep spindles, delta) and what happens in it; a summary shows that N3 comes mostly early in the night and REM periods grow longer toward morning. `preset` is `"typical-night"` (the default and only preset). |
+| `classical-conditioning` | `{"title": Bi, "example": "pavlov", "notation": "us"}`, or a custom example `{"example": "custom", "roles": {"neutral": Bi, "us": Bi, "ur": Bi, "cr": Bi}}` | A before / during / after storyboard labelling the neutral stimulus, US, UR, CS and CR of the example, and a trial simulator (pair the CS with the US, present the CS alone, rest) whose simplified curve shows acquisition, extinction and spontaneous recovery. `example`: `"pavlov"` (a tone and food), `"little-albert"` (a white rat and a loud noise), `"taste-aversion"` (a new flavour and illness) or `"custom"` with `roles`. `notation`: `"us"` (the textbook's US, UR, CS, CR; default) or `"ucs"` (the lecture's UCS and UCR). |
+| `operant-quadrant` | `{"title": Bi, "scenarios": [{"text": Bi, "answer": "negative-reinforcement", "why": Bi}]}` | The 2 × 2 table of operant consequences (a stimulus added or removed × the behaviour more or less likely) and a two-step drill: for each scenario the learner decides whether something is added or removed and whether the behaviour increases or decreases, then sees the quadrant and `why`. `answer`: `positive-reinforcement`, `negative-reinforcement`, `positive-punishment` or `negative-punishment`. 3–12 scenarios; `why` needs `zh`. |
+| `reinforcement-schedules` | `{"title": Bi, "ratio": 5, "interval": 8, "examples": [{"text": Bi, "answer": "VR", "why": Bi}]}` | The four partial schedules: a try-it mode where the learner presses a response button under FR, VR, FI or VI and sees when reinforcers arrive and the cumulative record grow; the typical response pattern of each schedule (a simplified illustration); and, when `examples` are given, a drill naming the schedule behind everyday examples. `ratio` (whole number 2–20, default 5) is n of FR-n and the average of VR-n; `interval` (3–30 seconds, default 8) is the FI and VI time in the try-it mode. `answer` is `FR`, `VR`, `FI` or `VI`; 1–10 examples; `why` needs `zh`. |
+| `concept-sorter` | `{"title": Bi, "prompt": Bi, "categories": [{"id": "monocular", "label": Bi}], "items": [{"text": Bi, "answer": "monocular", "why": Bi}]}` | A general sorting drill: one item at a time, the learner picks its category, gets feedback with `why`, and reviews the mistakes at the end. 2–6 categories with unique kebab-case ids, 4–20 items; each `answer` is a category id; `why` needs `zh`. Use it for any classification a test asks for (depth cues, drug classes, levels of awareness, types of learning). |
 
 ## 6. Process requirements for every author
 

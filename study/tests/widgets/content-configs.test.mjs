@@ -39,6 +39,13 @@ import { normalizeBoxplotConfig } from '../../engine/widgets/statistics/boxplot/
 import { normalizeZScoreConfig } from '../../engine/widgets/statistics/z-score/z-score-logic.js';
 import { normalizeScatterConfig } from '../../engine/widgets/statistics/scatter-correlation/scatter-correlation-logic.js';
 import { normalizeLeastSquaresConfig } from '../../engine/widgets/statistics/least-squares-line/least-squares-line-logic.js';
+import { normalizeSignalDetectionConfig } from '../../engine/widgets/psychology/signal-detection/signal-detection-logic.js';
+import { normalizeAfterimageConfig } from '../../engine/widgets/psychology/afterimage/afterimage-logic.js';
+import { normalizeSleepCycleConfig } from '../../engine/widgets/psychology/sleep-cycle/sleep-cycle-logic.js';
+import { normalizeClassicalConditioningConfig } from '../../engine/widgets/psychology/classical-conditioning/classical-conditioning-logic.js';
+import { normalizeOperantQuadrantConfig } from '../../engine/widgets/psychology/operant-quadrant/operant-quadrant-logic.js';
+import { normalizeReinforcementSchedulesConfig } from '../../engine/widgets/psychology/reinforcement-schedules/reinforcement-schedules-logic.js';
+import { normalizeConceptSorterConfig } from '../../engine/widgets/psychology/concept-sorter/concept-sorter-logic.js';
 
 // Every widget block of every course pack's lessons is read here with the same pure readers the widgets use,
 // so a renamed preset or config field fails in the test run instead of in the browser. A pack whose lessons
@@ -280,6 +287,59 @@ const READS = {
       assert.deepEqual(model.summary, Object.fromEntries(SUMMARY_STATISTICS.map((key) => [key, config.summary[key]])));
     }
     keepsLabels(model, config);
+  },
+  'signal-detection': (config) => {
+    const model = normalizeSignalDetectionConfig(config);
+    assert.equal(model.usedDefault.story, false, 'scenario or signal is unusable, the textbook example is shown instead');
+    sameLabel(model.scenario, config.scenario, 'scenario');
+    sameLabel(model.signal, config.signal, 'signal');
+    if (Object.hasOwn(config, 'title')) sameLabel(model.title, config.title, 'title');
+    if (Object.hasOwn(config, 'sensitivity')) assert.equal(model.sensitivity, config.sensitivity);
+    if (Object.hasOwn(config, 'criterion')) assert.equal(model.criterion, config.criterion);
+  },
+  afterimage: (config) => {
+    const model = normalizeAfterimageConfig(config);
+    assert.deepEqual(model.adjusted, [], 'some keys are not used as written');
+    assert.equal(model.preset, config.preset);
+    if (Object.hasOwn(config, 'title')) sameLabel(model.title, config.title, 'title');
+  },
+  'sleep-cycle': (config) => {
+    const model = normalizeSleepCycleConfig(config);
+    assert.equal(model.usedDefaultPreset, Object.hasOwn(config, 'preset') ? false : model.usedDefaultPreset);
+    if (Object.hasOwn(config, 'title')) assert.equal(model.usedDefaultTitle, false, 'title is not read as written');
+  },
+  'classical-conditioning': (config) => {
+    const model = normalizeClassicalConditioningConfig(config);
+    assert.equal(model.usedDefault, false, 'the example is unusable, Pavlov is shown instead');
+    assert.equal(model.example, config.example);
+    assert.equal(model.notation, config.notation ?? 'us');
+    if (config.example === 'custom') {
+      for (const role of ['neutral', 'us', 'ur', 'cr']) sameLabel(model.roles[role], config.roles[role], `roles.${role}`);
+    }
+    if (Object.hasOwn(config, 'title')) sameLabel(model.title, config.title, 'title');
+  },
+  'operant-quadrant': (config) => {
+    const model = normalizeOperantQuadrantConfig(config);
+    assert.equal(model.drill, true, 'fewer than 3 usable scenarios, the drill is hidden');
+    assert.equal(model.dropped, 0, 'some scenarios are dropped');
+    assert.deepEqual(model.scenarios.map((scenario) => scenario.answer), config.scenarios.map((scenario) => scenario.answer));
+    model.scenarios.forEach((scenario, index) => sameLabel(scenario.text, config.scenarios[index].text, `scenarios[${index}].text`));
+    if (Object.hasOwn(config, 'title')) sameLabel(model.title, config.title, 'title');
+  },
+  'reinforcement-schedules': (config) => {
+    const model = normalizeReinforcementSchedulesConfig(config);
+    if (Object.hasOwn(config, 'ratio')) assert.equal(model.ratio, config.ratio);
+    if (Object.hasOwn(config, 'interval')) assert.equal(model.interval, config.interval);
+    assert.deepEqual(model.examples.map((example) => example.answer), (config.examples ?? []).map((example) => example.answer));
+    if (Object.hasOwn(config, 'title')) sameLabel(model.title, config.title, 'title');
+  },
+  'concept-sorter': (config) => {
+    const model = normalizeConceptSorterConfig(config);
+    assert.equal(model.ok, true, `the drill cannot run: ${model.problem}`);
+    assert.deepEqual(model.dropped, { categories: 0, items: 0 }, 'some categories or items are dropped');
+    assert.deepEqual(model.categories.map((category) => category.id), config.categories.map((category) => category.id));
+    assert.deepEqual(model.items.map((item) => item.answer), config.items.map((item) => item.answer));
+    if (Object.hasOwn(config, 'title')) sameLabel(model.title, config.title, 'title');
   },
 };
 

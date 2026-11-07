@@ -1,0 +1,776 @@
+/*
+ * classical-conditioning widget: the before / during / after storyboard with the notation toggle, the exam answer
+ * and the key, then the trial simulator with its buttons, the curve of CR strength, the sentence about what just
+ * happened and the list of stages. Colours, spacing, radii and shadows come from the design tokens only, so dark
+ * mode needs no extra rules; everything stacks from 360 px wide.
+ * classical-conditioning 组件：“建立前 / 建立中 / 建立后”三格图（带记号切换、考试答案和记号说明），以及试次模拟器（按钮、
+ * CR 强度曲线、“刚才发生了什么”的句子和阶段列表）。颜色、间距、圆角和阴影只使用设计变量，深色模式不需要额外规则；
+ * 从 360 px 宽起全部纵向排列。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.classical-conditioning {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  container-type: inline-size;
+}
+
+/* Header 标题区 */
+.classical-conditioning__header {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.classical-conditioning__eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.classical-conditioning__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.classical-conditioning__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.classical-conditioning__example {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.classical-conditioning__example-label {
+  color: var(--color-ink-2);
+  font-weight: 800;
+}
+
+.classical-conditioning__example-name {
+  font-weight: 800;
+}
+
+.classical-conditioning__source {
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.classical-conditioning__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.classical-conditioning__notation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.classical-conditioning__notation-label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.classical-conditioning__notation-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.classical-conditioning__notation-note {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+/* Panels 面板 */
+.classical-conditioning__panel {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.classical-conditioning__heading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.classical-conditioning__subheading {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+/* Bilingual sentences: Chinese line, then the English line. 双语句子：先中文一行，再英文一行。 */
+.classical-conditioning__pair {
+  margin: 0;
+  min-width: 0;
+}
+
+.classical-conditioning__zh,
+.classical-conditioning__en {
+  display: block;
+}
+
+.classical-conditioning__en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+.classical-conditioning__abbr {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* Storyboard 三格图 */
+.classical-conditioning__stages {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.classical-conditioning__stage {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.classical-conditioning__stage-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.classical-conditioning__stage-number {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: var(--text-sm);
+  font-weight: 900;
+}
+
+.classical-conditioning__stage-name {
+  min-width: 0;
+}
+
+.classical-conditioning__flows {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.classical-conditioning__flows > .classical-conditioning__flow + .classical-conditioning__flow {
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-line-soft);
+}
+
+.classical-conditioning__flow {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.classical-conditioning__chip {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-ink-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.classical-conditioning__chip--unconditioned {
+  border-left-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.classical-conditioning__chip--conditioned {
+  border-left-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+.classical-conditioning__chip--neutral {
+  border-left-color: var(--color-ink-3);
+  background: var(--color-paper-2);
+}
+
+.classical-conditioning__chip--none {
+  border: 1px dashed var(--color-ink-3);
+  background: var(--color-panel);
+  color: var(--color-ink-2);
+}
+
+.classical-conditioning__chip-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.classical-conditioning__term {
+  min-width: 0;
+}
+
+.classical-conditioning__item {
+  margin: 0;
+  min-width: 0;
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.classical-conditioning__item-name {
+  font-weight: 800;
+}
+
+/* The English name is what the test uses, so it stays readable next to the Chinese. 英文名称是考试要用的，所以在中文旁边也要清楚易读。 */
+.classical-conditioning__item-name .bi-title__en,
+.classical-conditioning__example-name .bi-title__en {
+  color: var(--color-ink-2);
+  font-size: 0.9em;
+}
+
+.classical-conditioning__connector {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  margin: 0;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.classical-conditioning__connector .icon {
+  flex: none;
+  color: var(--color-ink-2);
+}
+
+.classical-conditioning__stage-note {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Key point of the example 例子的要点 */
+.classical-conditioning__note {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+  font-size: var(--text-sm);
+}
+
+.classical-conditioning__note-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  color: var(--color-accent-ink);
+  font-size: var(--text-xs);
+  font-weight: 900;
+}
+
+/* Exam answer 考试答案 */
+.classical-conditioning__exam {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-exam);
+  border-radius: var(--radius-sm);
+  background: var(--color-exam-soft);
+}
+
+.classical-conditioning__exam-title {
+  margin: 0;
+  color: var(--color-exam);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.classical-conditioning__exam-body {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.classical-conditioning__exam-sentence {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.classical-conditioning__exam-en {
+  display: block;
+  font-weight: 800;
+}
+
+.classical-conditioning__exam-zh {
+  display: block;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Key of symbols and terms, folded away by default 记号和术语，默认收起 */
+.classical-conditioning__key-block {
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-line-soft);
+}
+
+.classical-conditioning__key-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.classical-conditioning__key-summary::-webkit-details-marker {
+  display: none;
+}
+
+.classical-conditioning__key-summary:hover {
+  background: var(--color-paper-2);
+}
+
+.classical-conditioning__key-summary .icon {
+  flex: none;
+  transition: transform 160ms ease;
+}
+
+.classical-conditioning__key-block[open] > .classical-conditioning__key-summary .icon {
+  transform: rotate(180deg);
+}
+
+.classical-conditioning__key-title {
+  min-width: 0;
+}
+
+.classical-conditioning__key {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+}
+
+.classical-conditioning__key-row {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-ink-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.classical-conditioning__key-row--unconditioned {
+  border-left-color: var(--color-accent);
+}
+
+.classical-conditioning__key-row--conditioned {
+  border-left-color: var(--color-signal);
+}
+
+.classical-conditioning__key-term {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.classical-conditioning__key-meaning {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+/* Simulator 模拟器 */
+.classical-conditioning__badge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-self: start;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0 var(--space-2);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  color: var(--color-warn);
+  background: var(--color-warn-soft);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.classical-conditioning__instructions {
+  font-size: var(--text-sm);
+}
+
+.classical-conditioning__actions {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.classical-conditioning__action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Two stacked lines inside a button: the Chinese label, then the English one. 按钮里上下两行：中文在上，英文在下。 */
+.classical-conditioning__action .btn__label {
+  display: grid;
+  justify-items: start;
+  text-align: left;
+}
+
+.classical-conditioning__action .btn__label .en {
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.classical-conditioning__action[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.classical-conditioning__status {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.classical-conditioning__figure {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  min-width: 0;
+}
+
+.classical-conditioning__chart-host {
+  width: 100%;
+  min-width: 0;
+}
+
+.classical-conditioning__chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.classical-conditioning__band--acquisition,
+.classical-conditioning__phase-number--acquisition {
+  fill: var(--color-accent-soft);
+  background: var(--color-accent-soft);
+}
+
+.classical-conditioning__band--extinction,
+.classical-conditioning__phase-number--extinction {
+  fill: var(--color-signal-soft);
+  background: var(--color-signal-soft);
+}
+
+.classical-conditioning__band--rest,
+.classical-conditioning__phase-number--rest {
+  fill: var(--color-highlight-soft);
+  background: var(--color-highlight-soft);
+}
+
+.classical-conditioning__band--recovery,
+.classical-conditioning__phase-number--recovery {
+  fill: var(--color-danger-soft);
+  background: var(--color-danger-soft);
+}
+
+.classical-conditioning__band--neutral,
+.classical-conditioning__phase-number--neutral {
+  fill: var(--color-paper-2);
+  background: var(--color-paper-2);
+}
+
+.classical-conditioning__grid {
+  stroke: var(--color-line-soft);
+  stroke-width: 1;
+}
+
+.classical-conditioning__axis {
+  stroke: var(--color-ink-3);
+  stroke-width: 1.5;
+}
+
+.classical-conditioning__tick,
+.classical-conditioning__x-label {
+  fill: var(--color-ink-3);
+  font-size: 11px;
+}
+
+.classical-conditioning__band-number {
+  fill: var(--color-ink-2);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.classical-conditioning__peak {
+  stroke: var(--color-ink-3);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+.classical-conditioning__peak-label {
+  fill: var(--color-ink-2);
+  stroke: var(--color-panel);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.classical-conditioning__curve {
+  stroke: var(--color-ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* A rest has no trials: the jump is dashed. 休息期间没有试次：这一段跳变用虚线。 */
+.classical-conditioning__curve--rest {
+  stroke: var(--color-ink-2);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.classical-conditioning__point {
+  fill: var(--color-ink);
+  stroke: var(--color-panel);
+  stroke-width: 1.5;
+}
+
+.classical-conditioning__point--start {
+  fill: var(--color-panel);
+  stroke: var(--color-ink-3);
+  stroke-width: 2;
+}
+
+.classical-conditioning__point--rest {
+  fill: var(--color-panel);
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+
+.classical-conditioning__point.is-latest {
+  stroke: var(--color-accent-strong);
+  stroke-width: 3;
+}
+
+.classical-conditioning__caption {
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+/* What just happened 刚才发生了什么 */
+.classical-conditioning__happened {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.classical-conditioning__happened-title {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.classical-conditioning__happened-text .classical-conditioning__zh {
+  font-weight: 700;
+}
+
+/* List of stages, numbered like the bands 阶段列表，编号与图上色块一致 */
+.classical-conditioning__stage-block {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.classical-conditioning__phases {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.classical-conditioning__phase {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+
+.classical-conditioning__phase.is-current {
+  border-color: var(--color-line-soft);
+  background: var(--color-panel);
+}
+
+.classical-conditioning__phase--empty {
+  display: block;
+  color: var(--color-ink-2);
+}
+
+.classical-conditioning__phase-number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0 var(--space-1);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink);
+  font-size: var(--text-xs);
+  font-weight: 900;
+}
+
+.classical-conditioning__phase-body {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.classical-conditioning__phase-name {
+  font-weight: 800;
+}
+
+.classical-conditioning__phase-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+
+.classical-conditioning__phase-change {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.classical-conditioning__caveat {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 5px solid var(--color-warn);
+  border-radius: var(--radius-sm);
+  background: var(--color-warn-soft);
+  font-size: var(--text-sm);
+}
+
+.classical-conditioning__caveat .icon {
+  margin-top: var(--space-1);
+  color: var(--color-warn);
+}
+
+.classical-conditioning__rule {
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+/* The only motion in the widget is the chevron turning; it stops when the reader asks for less motion. 组件里唯一的动效是箭头转动；读者要求减少动效时取消。 */
+@media (prefers-reduced-motion: reduce) {
+  .classical-conditioning__key-summary .icon {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .classical-conditioning {
+    padding: var(--space-3);
+  }
+
+  .classical-conditioning__panel {
+    padding: var(--space-3);
+  }
+}
+
+/* Three panels side by side once there is room, like Figure 6.2. 空间足够时三格并排，与图 6.2 一致。 */
+@container (min-width: 720px) {
+  .classical-conditioning__panel {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .classical-conditioning__stages {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

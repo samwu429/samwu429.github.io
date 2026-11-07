@@ -1,0 +1,754 @@
+/*
+ * operant-quadrant widget: the 2 x 2 table of operant consequences (a stimulus added or removed x the behaviour more
+ * or less likely) with its rules and the "negative reinforcement is not punishment" reminder, and the two-step drill
+ * with its answer board, feedback and end-of-round summary.
+ * Colours, spacing, radii and shadows come from the design tokens only, so dark mode needs no extra rules.
+ * operant-quadrant 组件：操作性条件反射后果的 2 × 2 表（刺激被加上或被拿走 × 行为更可能或更不可能发生）、规则与
+ * “负强化不是惩罚”的提醒，以及带答案小表、反馈和每轮总结的两步练习。
+ * 颜色、间距、圆角和阴影只使用设计变量，深色模式不需要额外规则。
+ */
+/* An explicit width keeps the size container from collapsing inside flex or inline hosts. 明确宽度，避免尺寸容器在 flex 或行内宿主中塌缩。 */
+.operant-quadrant {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-md);
+  container-type: inline-size;
+}
+
+/* Header 标题区 */
+.operant-quadrant__header {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.operant-quadrant__eyebrow {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.operant-quadrant__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.operant-quadrant__title .bi-title__en {
+  font-size: 0.68em;
+}
+
+.operant-quadrant__intro {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+/* Bilingual sentences: Chinese line, then the English line; scenarios put English first. 双语句子：先中文、再英文；情境先英文。 */
+.operant-quadrant__pair,
+.operant-quadrant__gloss {
+  margin: 0;
+  min-width: 0;
+}
+
+.operant-quadrant__zh,
+.operant-quadrant__en,
+.operant-quadrant__gloss-en,
+.operant-quadrant__gloss-zh {
+  display: block;
+}
+
+.operant-quadrant__en {
+  color: var(--color-ink-2);
+  font-size: 0.92em;
+}
+
+.operant-quadrant__gloss-zh {
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+.operant-quadrant__symbol {
+  font-family: var(--font-mono);
+  font-weight: 900;
+}
+
+/* Sections and panels 区块与面板 */
+.operant-quadrant__section,
+.operant-quadrant__panel {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.operant-quadrant__panel {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.operant-quadrant__heading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+/* The 2 x 2 table: fixed columns so long English terms wrap inside their cell at 360 px. 2 × 2 表：固定列宽，360 px 宽时长英文词也在格子里换行。 */
+.operant-quadrant__table-wrap {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.operant-quadrant__table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: var(--space-1);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.operant-quadrant__col-rows {
+  width: 27%;
+}
+
+.operant-quadrant__table th,
+.operant-quadrant__table td {
+  padding: var(--space-2);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
+.operant-quadrant__table .operant-quadrant__corner {
+  padding: 0;
+}
+
+.operant-quadrant__col-head,
+.operant-quadrant__row-head {
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-weight: 800;
+}
+
+.operant-quadrant__table .operant-quadrant__col-head {
+  vertical-align: bottom;
+}
+
+.operant-quadrant__col-head > .operant-quadrant__symbol,
+.operant-quadrant__row-head > .operant-quadrant__symbol {
+  display: block;
+  font-size: var(--text-lg);
+  line-height: 1.2;
+}
+
+.operant-quadrant__head-text .zh,
+.operant-quadrant__head-text .en {
+  display: block;
+}
+
+.operant-quadrant__head-text .en {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.operant-quadrant__cell {
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.operant-quadrant__name {
+  margin: 0 0 var(--space-1);
+  min-width: 0;
+}
+
+.operant-quadrant__name-zh,
+.operant-quadrant__name-en {
+  display: block;
+}
+
+.operant-quadrant__name-zh {
+  font-size: var(--text-md);
+  font-weight: 900;
+}
+
+.operant-quadrant__name-en {
+  font-weight: 800;
+}
+
+.operant-quadrant__example {
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+/* Lit quadrants: colour plus a badge with an icon and words. 被点亮的格子：颜色之外还有带图标和文字的徽标。 */
+.operant-quadrant__cell[data-state="row"],
+.operant-quadrant__board-cell[data-state="row"] {
+  background: var(--color-highlight-soft);
+}
+
+.operant-quadrant__cell[data-state="chosen"],
+.operant-quadrant__board-cell[data-state="chosen"] {
+  border-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+.operant-quadrant__cell[data-state="right"],
+.operant-quadrant__cell[data-state="correct"],
+.operant-quadrant__board-cell[data-state="right"],
+.operant-quadrant__board-cell[data-state="correct"] {
+  border-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.operant-quadrant__cell[data-state="wrong"],
+.operant-quadrant__board-cell[data-state="wrong"] {
+  border-color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+/* Icon on the left, words wrapping beside it; square-ish corners stay neat when the words take several lines. 图标在左、文字在旁边换行；圆角较小，文字多行时也整齐。 */
+.operant-quadrant__badge {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--space-1);
+  max-width: 100%;
+  margin-top: var(--space-2);
+  padding: 0 var(--space-1);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.operant-quadrant__badge > .icon {
+  margin-top: 0.15em;
+}
+
+.operant-quadrant__badge-text {
+  min-width: 0;
+}
+
+[data-state="chosen"] > .operant-quadrant__badge {
+  color: var(--color-signal);
+}
+
+[data-state="right"] > .operant-quadrant__badge,
+[data-state="correct"] > .operant-quadrant__badge {
+  color: var(--color-success);
+}
+
+[data-state="wrong"] > .operant-quadrant__badge {
+  color: var(--color-danger);
+}
+
+/* Rules and the reminder 规则与提醒 */
+.operant-quadrant__rules {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.operant-quadrant__rule-item {
+  display: grid;
+  grid-template-columns: 3em minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2);
+}
+
+.operant-quadrant__rule-item > .operant-quadrant__symbol {
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  text-align: center;
+}
+
+.operant-quadrant__warning {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.operant-quadrant__warning-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  color: var(--color-warn);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.operant-quadrant__warning-text .operant-quadrant__zh {
+  font-weight: 800;
+}
+
+/* Drill 练习 */
+.operant-quadrant__drill-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+}
+
+.operant-quadrant__score {
+  margin: 0;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.operant-quadrant__play,
+.operant-quadrant__summary,
+.operant-quadrant__summary-body {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.operant-quadrant__scenario {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.operant-quadrant__scenario-heading {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.operant-quadrant__scenario-gloss .operant-quadrant__gloss-en {
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.operant-quadrant__step {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.operant-quadrant__question {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.operant-quadrant__question .zh,
+.operant-quadrant__question .en {
+  display: block;
+}
+
+.operant-quadrant__question .en {
+  color: var(--color-ink-2);
+  font-weight: 700;
+}
+
+.operant-quadrant__choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-2);
+}
+
+.btn.operant-quadrant__choice {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 52px;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+}
+
+.operant-quadrant__choice .btn__label {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.operant-quadrant__choice-zh {
+  font-size: var(--text-md);
+  font-weight: 800;
+}
+
+.operant-quadrant__choice-en {
+  font-weight: 600;
+}
+
+/* The key word is written in lower case and shown in capitals, so screen readers say it as a word. 关键词用小写书写、以大写显示，读屏会按单词读出。 */
+.operant-quadrant__choice-en strong {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.btn.operant-quadrant__choice[aria-disabled="true"] {
+  cursor: default;
+}
+
+.btn.operant-quadrant__choice[aria-disabled="true"]:hover,
+.btn.operant-quadrant__choice[aria-disabled="true"]:active {
+  transform: none;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.btn.operant-quadrant__choice[aria-disabled="true"][aria-pressed="false"] {
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* Answer board 答案小表 */
+.operant-quadrant__board {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  min-width: 0;
+}
+
+.operant-quadrant__board-caption {
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+
+.operant-quadrant__board-grid {
+  display: grid;
+  grid-template-columns: minmax(4rem, 0.6fr) repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+  max-width: 34rem;
+  font-size: var(--text-xs);
+  line-height: 1.35;
+}
+
+/* The lines of a label stay together in the middle of a tall row (and at the bottom of the column labels). 标签的几行在较高的行里聚在中间（列标签贴着底部）。 */
+.operant-quadrant__board-axis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  gap: 0 var(--space-1);
+  min-width: 0;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-2);
+  font-weight: 700;
+}
+
+.operant-quadrant__board-axis--column {
+  align-content: flex-end;
+}
+
+.operant-quadrant__board-axis.is-active {
+  background: var(--color-highlight-soft);
+  color: var(--color-ink);
+  font-weight: 900;
+}
+
+.operant-quadrant__board-axis-text .zh,
+.operant-quadrant__board-axis-text .en {
+  display: block;
+}
+
+.operant-quadrant__board-cell {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-1);
+  min-width: 0;
+  min-height: 3.4rem;
+  padding: var(--space-1);
+  border: 2px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  overflow-wrap: break-word;
+}
+
+.operant-quadrant__board-cell .operant-quadrant__name {
+  margin: 0;
+}
+
+.operant-quadrant__board-cell .operant-quadrant__name-zh {
+  font-size: var(--text-sm);
+}
+
+.operant-quadrant__board-cell .operant-quadrant__badge {
+  margin-top: 0;
+}
+
+/* Feedback 反馈 */
+.operant-quadrant__feedback {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+}
+
+.operant-quadrant__feedback[data-result="right"] {
+  border-color: var(--color-success);
+}
+
+.operant-quadrant__feedback[data-result="wrong"] {
+  border-color: var(--color-danger);
+}
+
+.operant-quadrant__verdict,
+.operant-quadrant__step-result,
+.operant-quadrant__hint,
+.operant-quadrant__all-correct {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2);
+}
+
+.operant-quadrant__verdict {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 800;
+}
+
+.operant-quadrant__verdict .operant-quadrant__en {
+  color: var(--color-ink);
+}
+
+[data-result="right"] > .operant-quadrant__verdict > .icon {
+  color: var(--color-success);
+}
+
+[data-result="wrong"] > .operant-quadrant__verdict > .icon {
+  color: var(--color-danger);
+}
+
+.operant-quadrant__step-results {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.operant-quadrant__step-result > .icon,
+.operant-quadrant__hint > .icon {
+  margin-top: 0.3em;
+}
+
+.operant-quadrant__step-result.is-right > .icon {
+  color: var(--color-success);
+}
+
+.operant-quadrant__step-result.is-wrong > .icon {
+  color: var(--color-danger);
+}
+
+.operant-quadrant__hint {
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-highlight);
+  border-radius: var(--radius-sm);
+  background: var(--color-highlight-soft);
+  font-size: var(--text-sm);
+}
+
+.operant-quadrant__rule {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-2);
+  font-size: var(--text-sm);
+}
+
+.operant-quadrant__why {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.operant-quadrant__why-label {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.operant-quadrant__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+/* Summary 总结 */
+.operant-quadrant__summary-heading {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+/* Focused only as a reading target, like the station's headings. 只作为阅读位置获得焦点，与站内其他标题一致。 */
+.operant-quadrant__summary-heading:focus {
+  outline: none;
+}
+
+.operant-quadrant__summary-score .operant-quadrant__zh {
+  font-size: var(--text-lg);
+  font-weight: 900;
+}
+
+.operant-quadrant__all-correct {
+  margin: 0;
+  color: var(--color-success);
+  font-weight: 800;
+}
+
+.operant-quadrant__all-correct .operant-quadrant__en {
+  color: inherit;
+}
+
+.operant-quadrant__missed-heading {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.operant-quadrant__missed {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.operant-quadrant__missed-item {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-line-soft);
+  border-left: 4px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.operant-quadrant__missed-text .operant-quadrant__gloss-en {
+  font-weight: 700;
+}
+
+.operant-quadrant__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+/* Icon on the left, the words flowing inline beside it. 图标在左，文字在旁边按行排列。 */
+.operant-quadrant__tag {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--space-1);
+  max-width: 100%;
+  padding: 0 var(--space-2);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.operant-quadrant__tag > .icon {
+  margin-top: 0.2em;
+}
+
+.operant-quadrant__tag-text {
+  min-width: 0;
+}
+
+.operant-quadrant__tag--wrong {
+  color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.operant-quadrant__tag--correct {
+  color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.operant-quadrant__missed-why {
+  font-size: var(--text-sm);
+}
+
+/* Colour changes fade only when motion is welcome; nothing blinks. 只有在不减少动态效果时颜色才渐变；没有任何闪烁。 */
+@media (prefers-reduced-motion: no-preference) {
+  .operant-quadrant__cell,
+  .operant-quadrant__board-cell,
+  .operant-quadrant__board-axis {
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+}
+
+@media (max-width: 480px) {
+  .operant-quadrant {
+    padding: var(--space-3);
+  }
+}
+
+/* Narrow widgets (phones from 360 px): tighter cells and smaller type keep the table inside its box. 窄组件（360 px 起的手机）：格子更紧凑、字更小，表格不会撑出框外。 */
+@container (max-width: 30rem) {
+  .operant-quadrant__panel {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .operant-quadrant__table {
+    font-size: var(--text-xs);
+  }
+
+  .operant-quadrant__table th,
+  .operant-quadrant__table td {
+    padding: var(--space-1);
+  }
+
+  .operant-quadrant__col-rows {
+    width: 26%;
+  }
+
+  .operant-quadrant__name-zh {
+    font-size: var(--text-sm);
+  }
+
+  .operant-quadrant__rule-item {
+    grid-template-columns: 2.6em minmax(0, 1fr);
+  }
+}
+
+@container (min-width: 720px) {
+  .operant-quadrant__panel {
+    padding: var(--space-4) var(--space-5);
+  }
+}

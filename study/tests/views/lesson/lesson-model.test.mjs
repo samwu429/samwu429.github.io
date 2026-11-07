@@ -10,6 +10,7 @@ import {
   minutesLabel,
   neighbourUnits,
   normalizeSections,
+  pageSourceWords,
   practiceHref,
   sectionNumber,
   slidesLabel,
@@ -127,6 +128,13 @@ test('minutes and slide labels ignore missing or invalid values', () => {
   assert.equal(slidesLabel(7), 'p.7');
   assert.equal(slidesLabel('  '), '');
   assert.equal(slidesLabel(null), '');
+});
+
+test('chapter pages point at the textbook, every other kind at the slides', () => {
+  assert.deepEqual(pageSourceWords('chapter'), { badge: '教材 Textbook', title: '教材页码 Textbook pages', sources: '资料 Sources: ' });
+  for (const kind of ['lecture', 'module', 'lab', undefined]) {
+    assert.deepEqual(pageSourceWords(kind), { badge: '课件 Slides', title: '课件页码 Slide pages', sources: '课件 Slides: ' }, String(kind));
+  }
 });
 
 test('a leading "Lab N:" is removed from titles because the kind is shown separately', () => {
