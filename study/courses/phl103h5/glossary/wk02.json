@@ -1,0 +1,734 @@
+{
+  "lessonId": "wk02",
+  "terms": [
+    {
+      "id": "argument",
+      "en": "Argument",
+      "zh": "论证",
+      "def": {
+        "en": "A set of statements in which some statements (the premises) are offered as reasons for another statement (the conclusion).",
+        "zh": "论证就是“用理由支持一个观点”：一句或几句是理由（前提，**premise**），另一句是这些理由要支持的观点（结论，**conclusion**）。原文里结论可能先说，也可能最后才说；写成标准形式时，前提在前，结论放在最后。哲学课里的论证不是吵架，而是一条可以一步一步检查的推理链。"
+      },
+      "example": {
+        "zh": "罗素的“剩余物”论证：能确定回答的问题都会分出去成为独立的科学（比如天文学、心理学），所以哲学的不确定在很大程度上是表面的（罗素第 2 页）。",
+        "en": "Russell's residue argument: subjects that can be answered definitely become separate sciences, so philosophy's uncertainty is largely more apparent than real (Russell, p. 2)."
+      },
+      "related": [
+        "premise",
+        "conclusion",
+        "standard-form"
+      ]
+    },
+    {
+      "id": "premise",
+      "en": "Premise",
+      "zh": "前提",
+      "def": {
+        "en": "A statement that an argument offers as a reason for its conclusion; in standard form the premises are numbered P1, P2, and so on.",
+        "zh": "前提就是论证里“当理由用”的句子。考试写标准形式（**standard form**）时，按顺序写成 P1、P2……。评价一个论证时，常常就是一条一条问：这个前提是真的吗？"
+      },
+      "example": {
+        "zh": "本站为哈特核心论证写的标准形式里，第一个前提是：一个东西“是什么”解释不了它“存在着”，没有东西能让自己存在（哈特第 2、6 页）。",
+        "en": "In this site's standard form of Hart's core argument, the first premise is: what a thing is does not explain that it is, and nothing can give itself existence (Hart, pp. 2, 6)."
+      },
+      "related": [
+        "argument",
+        "conclusion",
+        "valid-argument"
+      ]
+    },
+    {
+      "id": "conclusion",
+      "en": "Conclusion",
+      "zh": "结论",
+      "def": {
+        "en": "The statement that an argument tries to establish on the basis of its premises; in standard form it is written last and marked C.",
+        "zh": "结论是论证最终要证明的那句话；写成标准形式时放在最后，标成 C。读一篇哲学文章时，先找结论（作者到底想证明什么），再找支持它的前提。"
+      },
+      "example": {
+        "zh": "罗素总结的结论：学哲学不是为了确定的答案，而是为了问题本身（罗素第 6–7 页）。",
+        "en": "Russell's concluding claim: philosophy should be studied not for definite answers but for its questions (Russell, pp. 6-7)."
+      },
+      "related": [
+        "argument",
+        "premise"
+      ]
+    },
+    {
+      "id": "standard-form",
+      "en": "Standard form",
+      "zh": "标准形式",
+      "def": {
+        "en": "A way of setting out an argument as a numbered list of premises (P1, P2, ...) followed by the conclusion (C), so that each step can be checked.",
+        "zh": "把论证拆开、编号写出来：前提（**premise**）写成 P1、P2……每条一句，最后写结论 C（**conclusion**）。这样老师和你自己都能一步一步检查。本站建议：题目要你 **reconstruct**（重构）一个论证时，就把它写成标准形式。补充（读物外）：课程大纲把“从哲学文本中提取和概括论证”列为学习目标之一，标准形式是做到这一点的好办法。"
+      },
+      "example": {
+        "zh": "本站为哈特核心论证写的标准形式：P1 本质解释不了存在；P2 所以世界是绝对偶然的；P3 物理解释回答的是因果的问题；P4 它们只是用一个偶然之物解释另一个；C 所以存在之谜是存在论的，不只是因果的（哈特第 2、4、7 页）。",
+        "en": "This site's standard form of Hart's core argument: P1 essence does not explain existence; P2 so the world is absolutely contingent; P3 physical explanations answer aetiological questions; P4 they only explain one contingent thing by another; C so the mystery of existence is ontological, not merely aetiological (Hart, pp. 2, 4, 7)."
+      },
+      "related": [
+        "argument",
+        "premise",
+        "conclusion"
+      ]
+    },
+    {
+      "id": "valid-argument",
+      "en": "Valid argument",
+      "zh": "有效论证",
+      "def": {
+        "en": "An argument in which, if all the premises are true, the conclusion must also be true.",
+        "zh": "有效＝“前提都真，结论就一定真”。有效只看推理的连接牢不牢，不看前提本身真不真：前提是假的，论证照样可以有效。"
+      },
+      "example": {
+        "zh": "批评者可以指出：从“每个有限事物都依赖他物”推到“整个自然依赖他物”，单靠这一步并不有效，因为墙上每块砖都可以很小，墙却可以很大（对哈特第 5–7 页“从部分推到整体”的质疑）。",
+        "en": "A critic can point out that the step from 'every finite thing depends on something else' to 'nature as a whole depends on something else' is not valid by itself: every brick in a wall can be small while the wall is large (a part-to-whole worry about Hart, pp. 5-7)."
+      },
+      "related": [
+        "sound-argument",
+        "argument",
+        "premise"
+      ]
+    },
+    {
+      "id": "sound-argument",
+      "en": "Sound argument",
+      "zh": "可靠论证",
+      "def": {
+        "en": "A valid argument whose premises are all true, so that its conclusion is true as well.",
+        "zh": "可靠＝有效＋前提都真。评价一个论证时分两步问：①推理有效吗？②前提都真吗？两步都通过，论证才是可靠的。"
+      },
+      "example": {
+        "zh": "要说明哈特的核心论证可靠，不只要说明它有效，还要说明它的前提都是真的，包括那个没写出来的前提（本站的分析）：偶然的存在需要解释。批评者可以质疑的正是这个前提。",
+        "en": "To show that Hart's core argument is sound, one must show not only that it is valid but also that its premises are true, including the unstated premise (on this site's reading) that contingent existence needs an explanation, which a critic can question."
+      },
+      "related": [
+        "valid-argument",
+        "argument"
+      ]
+    },
+    {
+      "id": "thought-experiment",
+      "en": "Thought experiment",
+      "zh": "思想实验",
+      "def": {
+        "en": "An imagined scenario used to test a claim or bring out our intuitions about it, without carrying out a real experiment.",
+        "zh": "不做真实的实验，只在脑子里设想一个情境，用它来检验一个观点，或引出我们对它的直觉（**intuition**：不经推理、一想就觉得对或不对的判断）。读到思想实验，要问两件事：情境是怎样设定的？它要说明什么？"
+      },
+      "example": {
+        "zh": "泰勒的森林圆球（哈特第 4–5 页）：想象在森林里碰到一个巨大的半透明圆球，再把它想成宇宙那么大、或者一直存在，看看“它为什么存在”的问题还在不在。哈特没有用“思想实验”这个词，这是本站的归类。",
+        "en": "Taylor's sphere in the forest (Hart, pp. 4-5): imagine finding a huge translucent sphere, then imagine it as big as the universe or as having always existed, and see whether the question of why it exists remains. Hart does not call it a thought experiment; the label is ours."
+      },
+      "related": [
+        "taylors-sphere",
+        "argument"
+      ]
+    },
+    {
+      "id": "objection",
+      "en": "Objection and reply",
+      "zh": "反驳与回应",
+      "def": {
+        "en": "An objection is a reason offered against a thesis or an argument, often by attacking one of its premises; a reply is the defender's answer to it.",
+        "zh": "反驳（**objection**）＝对一个观点或论证提出的质疑，常常是攻击其中某个前提；回应（**reply**）＝对质疑的答复。本站建议的小论文结构：论点 → 作者的论证 → 一个反驳 → 回应或你的评价。"
+      },
+      "example": {
+        "zh": "对哈特的反驳：也许宇宙就是存在着，根本没有解释。替哈特回应（本站的建议）：可以借泰勒的圆球，我们会觉得一个东西没有任何原因就在那儿很荒唐（哈特第 4–5 页）。",
+        "en": "An objection to Hart: perhaps the universe simply exists with no explanation. A reply on Hart's behalf (this site's suggestion) can appeal to Taylor's sphere: we would find it absurd that a thing is there with no cause (Hart, pp. 4-5)."
+      },
+      "related": [
+        "argument",
+        "premise"
+      ]
+    },
+    {
+      "id": "wonder",
+      "en": "Wonder",
+      "zh": "惊奇",
+      "def": {
+        "en": "For Hart, the unsettling or joyful surprise in which all serious thought begins: not curiosity about a missing fact, but the sudden awareness that no fact could explain the mystery that anything exists at all.",
+        "zh": "哈特说的惊奇不是好奇（**curiosity**）：好奇缺的是一个事实，查到就结束；惊奇是突然意识到，任何事实都解释不了“竟然有东西存在”这个谜。哈特说，柏拉图和亚里士多德都认为哲学开始于惊奇。罗素也说，哲学让熟悉的东西显得陌生，从而让我们保持惊奇（罗素第 4 页）。"
+      },
+      "example": {
+        "zh": "小孩子也许更敞开地感到惊奇，就像 Silesius 诗里那朵“没有为什么”、开花只因为开花的玫瑰（第 1–2 页）；大人只在少有的瞬间，忽然觉得熟悉的一切都很怪异（第 2 页）。",
+        "en": "Small children may feel wonder more openly, like Silesius's rose that blooms without a 'why' (pp. 1-2); adults meet it again only in rare moments when everything familiar suddenly seems strange (p. 2)."
+      },
+      "slides": "1",
+      "related": [
+        "givenness",
+        "ontological-surprise",
+        "single-mindedness"
+      ]
+    },
+    {
+      "id": "givenness",
+      "en": "Givenness",
+      "zh": "被给予性",
+      "def": {
+        "en": "Hart's word for the way the world is simply there, given to us, with no explanation of why it exists; small children are still openly aware of it.",
+        "zh": "世界就这样“给”到我们面前、摆在那里，没有附带任何“为什么”。哈特说，小孩子还毫无戒备地向这种被给予敞开，所以更常感到惊奇。"
+      },
+      "example": {
+        "zh": "哈特说，在生命的早期，我们不用任何概念就直接感到这有多神奇，正像 Silesius 说的：玫瑰没有“为什么”，它开花只因为它开花（第 2 页）。",
+        "en": "In early life we sense, without any concept, how marvellous it is that, as Silesius says, the rose has no 'why' and blooms because it blooms (p. 2)."
+      },
+      "slides": "1-2",
+      "related": [
+        "wonder"
+      ]
+    },
+    {
+      "id": "ontological-surprise",
+      "en": "Ontological surprise",
+      "zh": "存在论的惊讶",
+      "def": {
+        "en": "Hart's name for the brief shock of astonishment that anything exists at all, which one may try to explain away as a brain glitch, a confusion of grammar or an unintelligible question.",
+        "zh": "突然惊讶于“竟然有东西存在”。存在论的（**ontological**）＝关于存在本身的。有人会把它打发成大脑的小故障、语法造成的假问题或说不通的问题；哈特说这是推卸思考的责任，那种体验其实是对世界绝对偶然性的真实一瞥（第 4 页）。"
+      },
+      "example": {
+        "zh": "有人把似曾相识解释成大脑把一个知觉极快地处理了两次；照这个样子，也有人说存在论的惊讶只是心里把现实“重影”了一下（第 3–4 页）。哈特反对这种说法。",
+        "en": "Just as déjà vu can be explained as the brain processing one perception twice, someone may say that ontological surprise is just the mind briefly seeing reality double (pp. 3-4); Hart rejects this."
+      },
+      "slides": "3",
+      "related": [
+        "wonder",
+        "single-mindedness",
+        "absolute-contingency"
+      ]
+    },
+    {
+      "id": "essence-and-existence",
+      "en": "Essence and existence ('what it is' and 'that it is')",
+      "zh": "本质与存在（“是什么”与“存在着”）",
+      "def": {
+        "en": "A thing's essence is what it is, its nature or kind; its existence is the bare fact that it is. Hart holds that in every finite thing neither explains the other, so knowing what something is never explains why it exists.",
+        "zh": "本质＝一个东西“是什么”（属于哪一类、有什么特征）；存在＝它“存在着”这件事本身。哈特说两者之间没有逻辑联系：把一个东西是什么描述得再完整，也推不出它存在。没有东西有存在的“权利”，也没有让自己存在的能力（第 2 页）。在本站重建的核心论证里，这是第一个前提。"
+      },
+      "example": {
+        "zh": "哈特第 6 页用这对老术语说自己：我的本质和我的存在都来自别处（过去、未来、周围的宇宙），像短暂的礼物，而不是稳稳占有的财产。",
+        "en": "On p. 6 Hart applies these old terms to oneself: what one is and that one is are both received from outside oneself, from the past, the future and the surrounding universe, as passing gifts rather than possessions."
+      },
+      "slides": "2, 6",
+      "related": [
+        "absolute-contingency",
+        "ontological-poverty",
+        "ontological"
+      ]
+    },
+    {
+      "id": "gratuitous-existence",
+      "en": "Gratuitous existence",
+      "zh": "无端的存在",
+      "def": {
+        "en": "Hart's claim that everything we know exists without being owed its existence: nothing in experience has a right to be or the power to give itself existence, because what a thing is never explains that it is.",
+        "zh": "哈特说，我们知道的一切都以“无端的”（**gratuitous**）方式存在：没有东西有存在的“权利”，也没有让自己存在的能力，因为一个东西“是什么”永远解释不了它“存在着”（第 2 页）。这里的 gratuitous 不是“多余、没价值”，而是“不欠谁、没有非存在不可的理由”。"
+      },
+      "example": {
+        "zh": "在惊奇的瞬间，人会意识到：世界说明不了自己为什么存在，可它偏偏就在那里（第 2 页）。",
+        "en": "In the moment of wonder one sees that the world cannot explain why it is actual, yet it is there anyway (p. 2)."
+      },
+      "slides": "2",
+      "related": [
+        "essence-and-existence",
+        "absolute-contingency",
+        "ontological-fortuity"
+      ]
+    },
+    {
+      "id": "single-mindedness",
+      "en": "Single-mindedness",
+      "zh": "一心只顾眼前",
+      "def": {
+        "en": "Hart's term for the habitual, practical frame of mind we return to after a moment of wonder, which closes the gap between what things are and that they are so that we can get on with life.",
+        "zh": "惊奇的瞬间过去以后，我们回到的那种只顾眼前事务的习惯状态。它把“是什么”和“存在着”之间短暂裂开的那道缝重新合上，好让我们继续过日子（第 3 页）。这里不是夸人“专心”，而是对存在之谜习以为常的遗忘。"
+      },
+      "example": {
+        "zh": "哈特说，那个瞬间满得让人几乎动弹不得，又没有可以抓住的具体对象，所以人迟早得放手、回到对这个谜的习惯性遗忘里（第 3 页）。",
+        "en": "Because the moment of wonder is overwhelming and has no particular object, we must sooner or later let it go and slip back into our everyday forgetfulness of the mystery (p. 3)."
+      },
+      "slides": "3",
+      "related": [
+        "ontological-surprise",
+        "wonder"
+      ]
+    },
+    {
+      "id": "absolute-contingency",
+      "en": "Absolute contingency",
+      "zh": "绝对偶然性",
+      "def": {
+        "en": "The world's status, as Hart describes it, of being something that need not be the way it is and need not exist at all, since it has neither inherent necessity nor explanatory self-sufficiency.",
+        "zh": "偶然（**contingent**）＝本来可以不是这样，甚至本来可以不存在；它的反面是必然（**necessary**）。注意：偶然不是“随便、不重要”。哈特说的“绝对”偶然有两层：世界不必是这个样子，也根本不必存在（第 4 页）。"
+      },
+      "example": {
+        "zh": "哈特说，那种在最熟悉的东西里感到存在之奇特的罕见体验，是对世界绝对偶然性的真实一瞥（第 4 页）。",
+        "en": "Hart says the rare experience of being's strangeness within the familiar is a genuine glimpse of the world's absolute contingency (p. 4)."
+      },
+      "slides": "4",
+      "related": [
+        "ontological",
+        "aetiological",
+        "essence-and-existence"
+      ]
+    },
+    {
+      "id": "ontological",
+      "en": "Ontological (mystery)",
+      "zh": "存在论的（之谜）",
+      "def": {
+        "en": "Concerning being or existence as such. Hart calls the mystery of existence ontological: how can anything that lacks inherent necessity exist at all? This is a question of logical or conceptual possibility that no physical explanation can answer.",
+        "zh": "存在论的＝关于“存在”本身的。哈特说存在之谜是存在论的，不只是因果的：任何这样偶然、没有内在必然性或解释上的自足的东西，怎么可能存在？这是逻辑上或概念上的可能性问题，单纯的物理解释回答不了（第 4 页）。"
+      },
+      "example": {
+        "zh": "就算物理学把一切原因都追到初始奇点，“为什么竟有东西存在”这个问题也还在（第 4、7 页）。",
+        "en": "Even if physics traced every cause back to the initial singularity, the question of why anything exists at all would remain (pp. 4, 7)."
+      },
+      "slides": "4",
+      "related": [
+        "aetiological",
+        "absolute-contingency"
+      ]
+    },
+    {
+      "id": "aetiological",
+      "en": "Aetiological (question)",
+      "zh": "因果的（问题）",
+      "def": {
+        "en": "Concerning causes and origins. For Hart, aetiological questions ask about the physical origins of things, how one physical state came from an earlier one, how things persist through time, and what the universe is made of.",
+        "zh": "因果的＝关于原因和起源的。哈特列了四类：事物的物理起源；一个物理状态怎样由之前的物理状态产生；事物怎样在时间中持续；宇宙由哪些物理成分组成（第 4 页）。这些是科学回答的问题。"
+      },
+      "example": {
+        "zh": "把一个东西的原因往下追到亚原子、往前追到初始奇点，回答的都是因果的问题，最后只到最基本的偶然之物，离解释存在一点也没更近（第 7 页）。",
+        "en": "Tracing a thing's causes down to the subatomic or back to the initial singularity answers aetiological questions but reaches only the most elementary contingencies, no closer to explaining existence (p. 7)."
+      },
+      "slides": "4",
+      "related": [
+        "ontological",
+        "absolute-contingency"
+      ]
+    },
+    {
+      "id": "taylors-sphere",
+      "en": "Taylor's sphere",
+      "zh": "泰勒的圆球",
+      "def": {
+        "en": "Richard Taylor's thought experiment, used by Hart: a walker who finds a large translucent sphere in a forest would find it absurd that it is there with no cause, yet the same question applies to a rock, a tree, or a sphere as big as the universe that has always existed.",
+        "zh": "美国哲学家理查德·泰勒（**Richard Taylor**）的思想实验，哈特借用来说明存在之谜（第 4–5 页）。散步的人碰到一个巨大的半透明圆球，一定会问它为什么在那儿；可是对石头、树也能问同样的问题，我们不问只是因为习惯了。圆球想成宇宙那么大或沙粒那么小、永远存在或只存在几秒，问题都一样成立。"
+      },
+      "example": {
+        "zh": "结论：只就“存在”来说，石头和树也没有比圆球更好的理由出现在那里；要解释的不只是一个东西的本性，还有它的存在（第 5 页）。圆球是泰勒的例子，别写成 Hart's sphere。",
+        "en": "When it comes to existence, a rock or a tree has no better reason to be there than the sphere, so what calls for explanation is not only a thing's nature but its very existence (p. 5)."
+      },
+      "slides": "4-5",
+      "related": [
+        "thought-experiment",
+        "thereness",
+        "absolute-contingency"
+      ]
+    },
+    {
+      "id": "thereness",
+      "en": "Thereness",
+      "zh": "“就在那儿”",
+      "def": {
+        "en": "Hart's word for the bare fact that a thing is simply there, with no visible reason why; it is what makes us ask about a thing's existence and not just its nature.",
+        "zh": "一个东西赤裸裸地“就在那儿”这一事实，却看不出任何明白的理由。哈特说，正是它让我们不只想理解一个东西的本性，还想理解它的存在本身（第 5 页）。"
+      },
+      "example": {
+        "zh": "圆球先因为格格不入引起好奇；可是让人追问它为什么存在的，是它的“就在那儿”。我们很少追问熟悉的东西的存在来历（**ontological pedigree**），所以对石头和树不问（第 5 页）。",
+        "en": "The sphere first catches attention because it is out of place, but its bare thereness is what calls for an explanation of its existence; we rarely ask about the 'ontological pedigree' of familiar things such as rocks and trees (p. 5)."
+      },
+      "slides": "5",
+      "related": [
+        "taylors-sphere",
+        "essence-and-existence"
+      ]
+    },
+    {
+      "id": "ontological-fortuity",
+      "en": "Ontological fortuity",
+      "zh": "存在上的偶然",
+      "def": {
+        "en": "Hart's term for the fact that things simply happen to exist, without any necessity; ontological poverty goes further, adding that they totally depend on other things.",
+        "zh": "东西碰巧存在，不是非存在不可（**fortuity**：碰巧如此）。哈特说，物理秩序每时每刻不只让我们看到存在上的偶然，还让我们看到更深一层的存在上的贫乏（第 5 页）。"
+      },
+      "example": {
+        "zh": "在惊奇的瞬间，一切熟悉的东西都显得惊人地偶然、陌生（第 2 页）。",
+        "en": "In the moment of wonder, everything familiar seems startlingly fortuitous and strange (p. 2)."
+      },
+      "slides": "2, 5",
+      "related": [
+        "ontological-poverty",
+        "absolute-contingency"
+      ]
+    },
+    {
+      "id": "ontological-poverty",
+      "en": "Ontological poverty (indigence)",
+      "zh": "存在上的贫乏",
+      "def": {
+        "en": "Hart's term for the complete dependence of every physical thing, at every moment, on things outside itself for its very existence, shown in impermanence, composition, subjection to time and becoming, and the union of essence and existence.",
+        "zh": "“贫乏”不是没钱，而是：一切物理的东西在每一个瞬间，都必然地、完全地依赖自身之外的实在才能存在（第 5 页）。表现：无常（**annicha**）、复合（**composite**）、受时间支配而总在生成（**becoming**）、本质与存在谁也解释不了谁。结论：宇宙中没有任何东西含有自身存在的根据（第 6 页）。"
+      },
+      "example": {
+        "zh": "以“我自己”为例：我存在的每一刻只实现了“我是什么”的一部分；我的本质和存在都来自别处，我只是靠无数让我能存在的条件才活着，彻头彻尾是偶然的（第 6–7 页）。",
+        "en": "In one's own case, each instant realizes only part of what one is; one's essence and existence come from elsewhere, so one lives only thanks to countless enabling conditions and is contingent through and through (pp. 6-7)."
+      },
+      "slides": "5-6",
+      "related": [
+        "annicha",
+        "ontological-fortuity",
+        "essence-and-existence"
+      ]
+    },
+    {
+      "id": "annicha",
+      "en": "Annicha",
+      "zh": "无常（annicha）",
+      "def": {
+        "en": "A Buddhist term Hart borrows for the impermanence and changeability of everything we can sense or imagine: nothing lasts, and everything changes and passes.",
+        "zh": "哈特借用的佛教术语：一切能被感官感到、能被心里想到的东西都不长久、会变、很短暂（第 5 页）。用这个词不代表哈特在为佛教辩护。补充（读物外）：巴利文通常拼作 anicca；考试按读物的拼法写 annicha。"
+      },
+      "example": {
+        "zh": "无常是哈特说的存在上的贫乏的第一个表现，后面还有复合、受时间支配、本质与存在的结合（第 5–6 页）。",
+        "en": "Annicha is the first mark of ontological poverty, followed by composition, subjection to time, and the union of essence and existence (pp. 5-6)."
+      },
+      "slides": "5",
+      "related": [
+        "ontological-poverty"
+      ]
+    },
+    {
+      "id": "beings-and-being-as-such",
+      "en": "Beings and being as such",
+      "zh": "存在者与存在本身",
+      "def": {
+        "en": "Beings are particular existing things; being as such is the existence of anything at all, which is not one more thing. Hart notes that thinkers in the great religious traditions warn that beings are much easier to think about than being itself.",
+        "zh": "存在者（**beings**）＝一个个存在的东西：人、树、星星、粒子；存在本身（**being as such**）＝“竟然有东西存在”这件事，不是又一个东西。哈特说，各大宗教传统里的思想者一再提醒：想存在者比想存在本身容易得多，所以我们总可能在自己的概念后面看不见存在之谜（第 8 页）。"
+      },
+      "example": {
+        "zh": "危险：把存在之谜缩成一个简单的概念，比如一个机械的或物理的原因、一个无关紧要的谓词，抓住以后就不管了（第 8 页）。",
+        "en": "The danger is to shrink the mystery of being into a simple concept, such as a trivial predicate or a physical cause, and then stop thinking about it (p. 8)."
+      },
+      "slides": "8",
+      "related": [
+        "question-of-god",
+        "ontological"
+      ]
+    },
+    {
+      "id": "question-of-god",
+      "en": "The question of God",
+      "zh": "上帝的问题",
+      "def": {
+        "en": "Hart's claim that any deep reflection on the contingency of things must raise the question of God, which a truly rational life must keep asking whether or not it can be answered, and which differs in kind from questions about 'gods' within nature.",
+        "zh": "哈特说：任何深入思考事物偶然性的人，都一定会碰到上帝的问题；不管它能不能被回答，真正理性的人生都要一次又一次地问它（第 8 页）。这是“必须问”，不是证明：这份节选没有证明上帝存在。它也和关于“诸神”的问题在种类上完全不同。"
+      },
+      "example": {
+        "zh": "诸神被包含在自然之内，是自然力量最崇高的表现；哈特正要说明上帝怎样不同时，读物在句子中间断了（第 8 页）。",
+        "en": "The gods belong within nature as the highest expressions of its power; the selection breaks off mid-sentence just as Hart begins to say how God differs (p. 8)."
+      },
+      "slides": "8",
+      "related": [
+        "beings-and-being-as-such",
+        "absolute-contingency"
+      ]
+    },
+    {
+      "id": "indirect-value",
+      "en": "Indirect value (of philosophy)",
+      "zh": "（哲学的）间接价值",
+      "def": {
+        "en": "Russell's claim that philosophy, unlike physical science, does not benefit people who never study it through inventions; if it has value for others, it is only indirectly, through the way it changes the lives of its students.",
+        "zh": "科学靠发明，让完全不懂科学的人也受益；哲学没有这种效用（**utility**）。所以罗素说，哲学如果对学生以外的人有价值，也只能是间接的：先改变学习者的生活，再通过学习者影响别人（第 1 页）。间接不等于“次要”。"
+      },
+      "example": {
+        "zh": "你不懂卫星定位也能用手机导航，这是科学的效用；哲学的好处则首先长在学它的人身上（第 1 页）。",
+        "en": "Physical science, through its inventions, is useful to countless people who know nothing about it; philosophy has no such utility, so its value must be sought mainly in its students (p. 1)."
+      },
+      "slides": "1",
+      "related": [
+        "goods-of-the-mind",
+        "practical-person"
+      ]
+    },
+    {
+      "id": "practical-person",
+      "en": "'Practical' person",
+      "zh": "所谓“务实”的人",
+      "def": {
+        "en": "Russell's name, in scare quotes, for someone who recognizes only material needs: such a person knows that the body needs food but forgets that the mind needs food too.",
+        "zh": "罗素给 practical 加了引号，表示这个词被用错了：这种人只承认物质需要，知道身体要吃饭，却意识不到心灵也需要“食粮”（第 1–2 页）。罗素反对的是只看物质需要，不是反对实际。"
+      },
+      "example": {
+        "zh": "罗素说：就算人人都过得好、贫穷和疾病降到最低，要建成一个有价值的社会，也还有很多事要做（第 2 页）。",
+        "en": "Even if everyone were well off and poverty and disease were reduced to a minimum, Russell says, much would remain to be done to make a valuable society (p. 2)."
+      },
+      "slides": "1-2",
+      "related": [
+        "goods-of-the-mind",
+        "indirect-value"
+      ]
+    },
+    {
+      "id": "goods-of-the-mind",
+      "en": "Goods of the mind (vs. goods of the body)",
+      "zh": "心灵的好处（与身体的好处）",
+      "def": {
+        "en": "Intellectual goods, as opposed to material goods such as food and health; Russell says they are at least as important, and that the value of philosophy lies only among them.",
+        "zh": "心灵的好处＝知识、思想、心灵的广大；身体的好处＝食物、健康、物质条件。罗素说前者至少和后者一样重要，而且哲学的价值“只”在心灵的好处之中（第 2 页）。"
+      },
+      "example": {
+        "zh": "罗素承认：只有不漠视心灵好处的人，才能被说服学哲学不是浪费时间（第 2 页）。本站的评价：这一点可能被批评为“只说给已经相信的人听”。",
+        "en": "Russell admits that only people who already care about the goods of the mind can be convinced that studying philosophy is time well spent (p. 2)."
+      },
+      "slides": "2",
+      "related": [
+        "indirect-value",
+        "practical-person"
+      ]
+    },
+    {
+      "id": "residue-argument",
+      "en": "Residue argument",
+      "zh": "“剩余物”论证",
+      "def": {
+        "en": "Russell's argument that philosophy's uncertainty is largely only apparent: as soon as a subject can give definite answers it becomes a separate science, so what keeps the name 'philosophy' is the residue of questions that cannot yet be answered definitely.",
+        "zh": "一门学问一旦能得到确定的知识，就离开哲学、成为独立的科学；留在哲学里的，只是目前还答不了的剩余部分（**residue**）。所以哲学的不确定在很大程度上是表面的多于真实的（第 2 页）。罗素马上补充：这只是一部分真相，有些问题也许真的无解（第 3 页）。“剩余物论证”是本站的叫法，读物用的词是 residue。"
+      },
+      "example": {
+        "zh": "研究天体的学问曾属于哲学，牛顿名著的书名里还有“自然哲学”，现在它是天文学；研究人心的学问不久前还是哲学的一部分，现在成了心理学（第 2 页）。",
+        "en": "The study of the heavens was once part of philosophy (Newton's great work still spoke of natural philosophy) and is now astronomy; the study of the mind has recently become psychology (p. 2)."
+      },
+      "slides": "2",
+      "related": [
+        "argument",
+        "liberating-doubt"
+      ]
+    },
+    {
+      "id": "tyranny-of-custom",
+      "en": "Tyranny of custom",
+      "zh": "习俗的暴政",
+      "def": {
+        "en": "Russell's phrase for the hold that unexamined habitual beliefs, from common sense and from one's age or nation, have over our thinking; philosophy frees our thoughts from it by suggesting many possibilities.",
+        "zh": "没想过的习惯信念（来自常识、自己的时代或国家）像暴君一样管住我们的思想。罗素说，哲学虽然不能确定地告诉我们答案，却能提出许多可能性，扩大思想，把它从习俗的暴政中解放出来（第 3 页）。"
+      },
+      "example": {
+        "zh": "身上一点哲学都没有的人，一辈子被关在偏见里：对他来说世界确定、有限、一目了然，常见的东西引不起问题，不熟悉的可能性被轻蔑地拒绝（第 3 页）。",
+        "en": "The person with no philosophy is imprisoned in prejudice: to him the world seems definite, finite and obvious, common objects raise no questions, and unfamiliar possibilities are scornfully rejected (p. 3)."
+      },
+      "slides": "3",
+      "related": [
+        "liberating-doubt",
+        "arrogant-dogmatism"
+      ]
+    },
+    {
+      "id": "arrogant-dogmatism",
+      "en": "Arrogant dogmatism",
+      "zh": "傲慢的独断",
+      "def": {
+        "en": "Confident, unexamined certainty that rejects unfamiliar possibilities and closes the mind to speculation; Russell says philosophy removes the arrogant dogmatism of people who have never experienced liberating doubt.",
+        "zh": "不经检查、傲慢地认定自己一定对，一口回绝不熟悉的可能性；这里不专指宗教教条。罗素说，哲学能去掉从没走进“解放人的怀疑”的人那种傲慢的独断（第 3–4 页）；总结里又说，哲学的问题能削弱让心灵拒绝思辨的独断自信（第 6 页）。"
+      },
+      "example": {
+        "zh": "哲学减少我们对“事物是什么”的确定感，却大大增加我们对“事物可能是什么”的知识，从而去掉独断（第 3–4 页）。",
+        "en": "Philosophy lessens our certainty about what things are but greatly increases our knowledge of what they may be, and so removes dogmatism (pp. 3-4)."
+      },
+      "slides": "3-4, 6",
+      "related": [
+        "liberating-doubt",
+        "tyranny-of-custom",
+        "dogmatism"
+      ]
+    },
+    {
+      "id": "liberating-doubt",
+      "en": "Liberating doubt",
+      "zh": "解放人的怀疑",
+      "def": {
+        "en": "Doubt that frees us from prejudice by opening up possibilities we had never considered; Russell contrasts it with the arrogant dogmatism of those who have never experienced it.",
+        "zh": "让人摆脱偏见、看到新可能的怀疑。罗素赞扬的不是“什么都不信”，而是这种去掉偏见和独断、让思想变大的怀疑（第 3–4 页）。"
+      },
+      "example": {
+        "zh": "哲学把熟悉的东西以陌生的样子展示出来，让我们保持惊奇（第 4 页）；罗素在这本书前几章（第 7 周读的桌子问题）就是这样让最日常的东西引出难题的（第 3 页）。",
+        "en": "Philosophy keeps wonder alive by making familiar things look unfamiliar (p. 4); the book's opening chapters (read in Week 7) show even everyday things leading to hard problems (p. 3)."
+      },
+      "slides": "4",
+      "related": [
+        "arrogant-dogmatism",
+        "tyranny-of-custom",
+        "wonder"
+      ]
+    },
+    {
+      "id": "instinctive-person",
+      "en": "Instinctive person (the instinctive life)",
+      "zh": "本能式的人（本能式的生活）",
+      "def": {
+        "en": "Russell's picture of a life shut inside the circle of private interests, which notices the outer world only as it helps or hinders its wishes; such a life is feverish, confined and without peace.",
+        "zh": "只活在私人利益圈子里的人：家人朋友也许算在圈内，外面的世界只看“帮我还是挡我”。这种生活狂热、局促、没有安宁，只有欲望的坚持和意志的无力之间的冲突（第 4 页）。补充（读物外）：罗素原书写的是 the instinctive man，课程 PDF 改成了 person。"
+      },
+      "example": {
+        "zh": "罗素的意象：这样的人像被围困的要塞里的守军，知道敌人不让逃走、最后只能投降（第 4 页）。守军代表本能式的生活，不是哲学家。",
+        "en": "Russell compares such a life to a garrison in a besieged fortress that cannot escape and knows it must surrender in the end (p. 4); the garrison is the instinctive life, not the philosopher."
+      },
+      "slides": "4",
+      "related": [
+        "philosophic-contemplation",
+        "self-assertion"
+      ]
+    },
+    {
+      "id": "philosophic-contemplation",
+      "en": "Philosophic contemplation",
+      "zh": "哲学的沉思",
+      "def": {
+        "en": "Russell's name for the impartial study of the universe as a whole, driven only by the desire for knowledge: it does not divide the world into friends and foes and does not try to prove that the universe is akin to humanity.",
+        "zh": "沉思（**contemplation**）＝不为用处、只为认识而专心地看和想。罗素说哲学的沉思不偏不倚地看整个宇宙，不分朋友和敌人、有利和有害，也不想证明宇宙和人类相像（第 4 页）。它是逃出本能式生活这座牢狱的“一条路”，不是唯一的路。"
+      },
+      "example": {
+        "zh": "罗素说，哲学有一种价值，也许是最主要的价值，来自它沉思的对象的伟大，以及由此带来的、摆脱狭隘个人目标的自由（第 4 页）。",
+        "en": "Russell suggests that philosophy's chief value may lie in the greatness of what it contemplates and in the release from narrow, personal aims that this brings (p. 4)."
+      },
+      "slides": "4",
+      "related": [
+        "impartiality",
+        "self-and-not-self",
+        "instinctive-person"
+      ]
+    },
+    {
+      "id": "self-and-not-self",
+      "en": "Self and not-Self",
+      "zh": "自我与非我",
+      "def": {
+        "en": "Russell's terms for the knowing mind (the Self) and everything beyond it that it seeks to know (the not-Self); in contemplation the mind begins from the not-Self, whose greatness widens the limits of the Self.",
+        "zh": "自我（**Self**）＝认识世界的这个“我”；非我（**not-Self**）＝我以外的一切、被认识的世界。罗素说，一切获得知识的过程都扩大自我，而且最好不刻意去求：从非我出发，让自我去适应对象，借着宇宙的伟大，自我的边界就扩大了（第 4–5 页）。扩大自我不是自私。"
+      },
+      "example": {
+        "zh": "罗素说，借着宇宙的无限，沉思宇宙的心灵也分享到一点无限（第 5 页）。",
+        "en": "Through the infinity of the universe, Russell says, the mind that contemplates it gains some share in infinity (p. 5)."
+      },
+      "slides": "4-5",
+      "related": [
+        "knowledge-as-union",
+        "self-assertion",
+        "philosophic-contemplation"
+      ]
+    },
+    {
+      "id": "self-assertion",
+      "en": "Self-assertion",
+      "zh": "自我主张",
+      "def": {
+        "en": "Russell's term for treating the world as a means to one's own ends, for example by trying to prove that the world is so like the Self that it can be known without admitting anything alien; it holds back the growth of the Self.",
+        "zh": "处处以“我”为中心，把世界当成实现自己目的的工具，比如想证明世界和自我非常相像、认识它不用承认任何陌生的东西。罗素说它让世界显得比自我轻，反而限制了自我的成长（第 4–5 页）。"
+      },
+      "example": {
+        "zh": "罗素说，把宇宙同化成人类的哲学培养不出伟大的灵魂（第 5 页）；想证明世界和自我相像，本身就是一种自我主张（第 4 页）。",
+        "en": "Russell says that philosophies which assimilate the universe to humanity do not foster greatness of soul (p. 5); trying to show that the world is like the Self is a form of self-assertion (p. 4)."
+      },
+      "slides": "4-5",
+      "related": [
+        "self-and-not-self",
+        "knowledge-as-union",
+        "humanity-is-the-measure-of-all-things"
+      ]
+    },
+    {
+      "id": "knowledge-as-union",
+      "en": "Knowledge as union of Self and not-Self",
+      "zh": "知识是自我与非我的结合",
+      "def": {
+        "en": "Russell's view that knowing is a kind of union between the Self and the not-Self, which, like all union, is damaged by dominion, that is, by trying to make the universe fit what we find in ourselves.",
+        "zh": "罗素说，知识是自我与非我的一种结合；和一切结合一样，它会被支配（**dominion**）破坏，也就是硬要宇宙迁就我们自身（第 5 页）。沉思中一切依赖习惯、私利或欲望的东西，都会扭曲对象、破坏这种结合（第 5 页）。"
+      },
+      "example": {
+        "zh": "“人是万物的尺度”这类观点所说的知识，不是和非我的结合，而是一层由偏见、习惯和欲望织成的幕布，挡在我们和外面的世界之间（第 5 页）。",
+        "en": "On the 'humanity is the measure' view, what passes for knowledge is really a screen of our own prejudices, habits and desires standing between us and the world (p. 5)."
+      },
+      "slides": "5",
+      "related": [
+        "self-and-not-self",
+        "self-assertion",
+        "humanity-is-the-measure-of-all-things"
+      ]
+    },
+    {
+      "id": "humanity-is-the-measure-of-all-things",
+      "en": "'Humanity is the measure of all things' view",
+      "zh": "“人是万物的尺度”的观点",
+      "def": {
+        "en": "The view Russell rejects: truth is person-made, space, time and universals belong to the mind, and anything the mind did not make is unknowable and unimportant; Russell says it is untrue and that it ties contemplation to the Self.",
+        "zh": "罗素反对的观点：人是万物的尺度，真理是人造的，空间、时间和共相都是心灵的性质，心灵没造出来的东西都不可知、无关紧要。罗素说按本书前面的讨论它是错的，而且它把沉思绑在自我上，夺走了沉思的价值（第 5 页）。这是罗素反对的观点，不是他自己的。补充（读物外）：这句话最早出自古希腊的普罗泰戈拉（**Protagoras**）。"
+      },
+      "example": {
+        "zh": "罗素说，喜欢这种知识观的人，就像一个从不走出家门的人：他怕出了门，自己说的话就没人听了（第 5 页）。",
+        "en": "Russell compares someone who enjoys this theory of knowledge to a person who never leaves home for fear that outside it his word would not be law (p. 5)."
+      },
+      "slides": "5",
+      "related": [
+        "knowledge-as-union",
+        "self-assertion"
+      ]
+    },
+    {
+      "id": "free-intellect",
+      "en": "Free intellect",
+      "zh": "自由的理智",
+      "def": {
+        "en": "Russell's ideal of a mind that knows impartially, as if from no particular place or time, without hopes and fears and without customary beliefs, and that therefore values abstract, universal knowledge above sense-knowledge tied to one point of view.",
+        "zh": "不受私人希望、恐惧和习俗束缚，只想认识的心灵。罗素说它“像上帝可能看到的那样”去看：没有此时此地，冷静、不动感情；所以它更看重抽象而普遍的知识，因为个人经历的偶然进不去；不太看重感官知识，因为感官知识依赖一个个人的视角和一个感官既揭示又扭曲的身体（第 6 页）。"
+      },
+      "example": {
+        "zh": "本站的理解：“as God might see”是比喻，意思是完全不偏不倚地看，不是宗教主张；罗素要的也只是人类所能达到的最不带个人色彩的知识（第 6 页）。",
+        "en": "On this site's reading, seeing 'as God might see' is a metaphor for impartial knowledge, not a religious claim; Russell asks only for knowledge as impersonal as humans can reach (p. 6)."
+      },
+      "slides": "6",
+      "related": [
+        "impartiality",
+        "citizens-of-the-universe"
+      ]
+    },
+    {
+      "id": "impartiality",
+      "en": "Impartiality",
+      "zh": "不偏不倚",
+      "def": {
+        "en": "For Russell, one and the same quality of mind that is the pure desire for truth in contemplation, justice in action, and universal love in emotion.",
+        "zh": "不站在自己这一边，也不站在任何一边。罗素说，同一种不偏不倚：在沉思中是纯粹的求真愿望，在行动中是正义（**justice**），在情感中是能给所有人、不只给有用或可敬之人的普遍的爱（**universal love**）（第 6 页）。"
+      },
+      "example": {
+        "zh": "习惯了不偏不倚地沉思的心灵，在行动和情感中也会保留一些，把自己的目的和欲望看成整体中极小的部分（第 6 页）。注意罗素只说“保留一些”。",
+        "en": "A mind used to impartial contemplation keeps something of it in action and emotion, seeing its own aims and desires as tiny parts of the whole (p. 6)."
+      },
+      "slides": "6",
+      "related": [
+        "free-intellect",
+        "citizens-of-the-universe",
+        "philosophic-contemplation"
+      ]
+    },
+    {
+      "id": "citizens-of-the-universe",
+      "en": "Citizens of the universe",
+      "zh": "宇宙公民",
+      "def": {
+        "en": "Russell's image for people whose thoughts, actions and affections have been enlarged by contemplation to take in the whole universe, rather than a single walled city fighting all the others; in this citizenship, he says, lies true freedom.",
+        "zh": "沉思扩大的不只是思想的对象，还有行动和感情的对象，让我们属于整个宇宙，而不只属于一座与其他城市交战的围城。罗素说，人真正的自由就在这种身份里：摆脱狭隘的希望和恐惧（第 6 页）。在总结里，他说心灵因沉思宇宙的伟大而变得伟大，能和宇宙结合，这是心灵的至善（**highest good**）（第 6–7 页）。"
+      },
+      "example": {
+        "zh": "对比：只顾自己小圈子、把世界分成敌我的心态，就像一座和其他城市交战的围城；宇宙公民的心态则是不偏不倚、关心整体（第 6 页）。",
+        "en": "The contrast is a mind that cares only for its own small circle and divides the world into friends and enemies, like a single walled city fighting all the others (p. 6)."
+      },
+      "slides": "6",
+      "related": [
+        "impartiality",
+        "free-intellect",
+        "philosophic-contemplation"
+      ]
+    }
+  ]
+}

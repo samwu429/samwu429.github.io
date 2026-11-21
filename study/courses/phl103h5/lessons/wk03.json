@@ -1,0 +1,3966 @@
+{
+  "id": "wk03",
+  "kind": "week",
+  "number": 3,
+  "title": {
+    "en": "Socrates",
+    "zh": "苏格拉底"
+  },
+  "sources": [
+    {
+      "file": "Plato, Apology (trans. G.M.A. Grube)",
+      "pages": 14
+    },
+    {
+      "file": "Plato, Euthyphro (trans. G.M.A. Grube)",
+      "pages": 11
+    }
+  ],
+  "estimatedMinutes": 200,
+  "oneLiner": {
+    "zh": "《申辩篇》：七十岁的苏格拉底在法庭上为自己的一生辩护——他唯一的智慧是不以为自己知道不知道的事，他宁可服从神、继续审视别人，也不怕死。《游叙弗伦篇》：他请自称精通神事的游叙弗伦说清“虔敬是什么”，五个定义一个个被驳倒，最后没有答案。",
+    "en": "In the Apology, Socrates defends his life of questioning: his only wisdom is that he does not think he knows what he does not know, and he will obey the god rather than stop, even when facing death. In the Euthyphro, every definition of piety that Euthyphro offers fails under his questioning."
+  },
+  "outcomes": [
+    {
+      "en": "Explain the two sets of accusers and their charges, and how Socrates answers the old charges and Meletus' formal charge.",
+      "zh": "能说清两批控告者和他们的指控，以及苏格拉底怎样回应旧指控和美勒托的正式指控。"
+    },
+    {
+      "en": "Tell the story of the oracle at Delphi and explain what Socrates means by human wisdom, without turning it into the slogan 'I know that I know nothing'.",
+      "zh": "能讲德尔斐神谕的故事，说明苏格拉底所说的“人的智慧”是什么，而不把它说成“我只知道我一无所知”。"
+    },
+    {
+      "en": "Put Socrates' main arguments in the Apology in standard form (the cross-examination of Meletus, the fear of death, obeying the god, the gadfly, the private life, the counter-penalty, death as no evil) and point out their assumptions and limits.",
+      "zh": "能把《申辩篇》的主要论证写成标准形式（盘问美勒托、怕死是假智慧、服从神、牛虻、远离政治、反提刑罚、死亡未必是坏事），并指出它们的假设和局限。"
+    },
+    {
+      "en": "State Euthyphro's definitions of piety in order and explain why Socrates rejects each one.",
+      "zh": "能按顺序说出游叙弗伦对虔敬的各个定义，并解释苏格拉底为什么一个个否定它们。"
+    },
+    {
+      "en": "Reconstruct the Euthyphro dilemma and explain why it shows that being loved by the gods is a quality of piety, not its nature.",
+      "zh": "能写出游叙弗伦困境的论证，并解释为什么它说明“被神爱”只是虔敬的一种性质，不是它的本质。"
+    },
+    {
+      "en": "Compare the two dialogues on knowledge and ignorance, service to the gods, craft analogies and irony.",
+      "zh": "能从知与无知、为神服务、技艺类比和反讽几个方面比较两篇对话。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-trial-and-accusers",
+      "title": {
+        "zh": "申辩篇：审判与两批控告者",
+        "en": "Apology: The Trial and the Two Sets of Accusers"
+      },
+      "slides": "1-2, 4",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一周读柏拉图（**Plato**）的两篇作品，主角都是对柏拉图影响极深的苏格拉底（**Socrates**，见 Euthyphro 文件第 1 页的导言），译者都是 **G.M.A. Grube**。第一篇 **Apology**（《申辩篇》）是柏拉图笔下苏格拉底受审时对陪审团说的辩护词；第二篇 **Euthyphro**（《游叙弗伦篇》）是他在法庭外和游叙弗伦讨论“虔敬是什么”。这一节先看：审判怎么进行、谁在告他、告他什么。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "提醒：本站只有这一周的两篇读物（柏拉图的 Apology 和 Euthyphro），没有课堂讲义，也没有辅导课材料。这一周是测验 1（10 月 14 日，已经考完）的内容，期末 3 小时的累积考试还会再考。老师上课可能补充本站没有的要点，或者用不同的说法（比如游叙弗伦的定义怎么编号），请以你的课堂笔记和 Quercus 为准。",
+          "en": "The station has only this week's two readings, not the lectures or the tutorials. This week was on Test 1 (already written) and comes back on the cumulative 3-hour final. The lectures may add points that are not here, so check your lecture notes and Quercus."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "apologia (Apology)",
+              "zh": "申辩（辩护词）",
+              "hint": "希腊词，意思是法庭上的“辩护”，不是“道歉”。"
+            },
+            {
+              "en": "accuser / charge",
+              "zh": "控告者 / 指控",
+              "hint": "控告者＝把人告上法庭的人；指控＝说这个人犯了什么罪。"
+            },
+            {
+              "en": "jury",
+              "zh": "陪审团",
+              "hint": "一大群普通公民，投票决定被告有没有罪、判什么刑。"
+            },
+            {
+              "en": "argument",
+              "zh": "论证",
+              "hint": "用一些理由去支持一个观点。"
+            },
+            {
+              "en": "premise / conclusion",
+              "zh": "前提 / 结论",
+              "hint": "前提＝当理由用的句子；结论＝这些理由要证明的那句话。"
+            },
+            {
+              "en": "standard form",
+              "zh": "标准形式",
+              "hint": "把前提编号写成 P1、P2……，最后写结论 C，方便一步步检查。"
+            },
+            {
+              "en": "rhetoric",
+              "zh": "修辞术",
+              "hint": "为了说服人而讲究技巧的漂亮说法；苏格拉底说自己不用这一套。"
+            },
+            {
+              "en": "Sophists",
+              "zh": "智者",
+              "hint": "当时收学费、到各城教年轻人的名师，如 Gorgias（第 2 页脚注 1）。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "审判怎么进行？这些背景来自 Grube 给《申辩篇》写的导言，印在 Euthyphro 文件的最后一页（第 11 页）：陪审团有 501 人，他们既判有罪没罪，也定刑罚。定罪以后，原告先提一个刑罚，被告再提一个反提刑罚（**counter-assessment**），陪审团在两者里选一个。所以全篇有两次投票：先投有没有罪，再投判哪种刑。同一页的脚注还说，apology 只是希腊词 apologia 的音译，意思是“辩护”，这篇讲话一点也不像道歉。"
+        },
+        {
+          "type": "text",
+          "zh": "开场（第 1 页，17a–18a）：苏格拉底说，原告讲得很有说服力，可几乎没有一句是真的。最让他吃惊的谎话，是提醒陪审员别被他这个能说会道的人骗了；他一开口就会证明自己根本不会说话，原告却不怕当场被拆穿，这在他看来最无耻——除非他们说的会说话就是说真话。他七十岁了，这是第一次上法庭，会像平时在市场上银行家的桌子旁那样说话，就像外地人只会用家乡话。他请陪审员别管说法好不好听，只看他说的对不对：陪审员的本分在于此，讲话人的本分是说真话。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像买手机时遇到两种人：一个是嘴很甜、话术一套一套的销售；一个是只讲实情的老同学。苏格拉底说原告是前一种，自己是后一种：别看包装，看内容是不是真的。",
+          "limit": "这个类比有限：苏格拉底其实非常会说话，他说自己不会说话，本身也可能是一种说话技巧；而且我们读到的优美文字是柏拉图写的（Grube 的导言，Euthyphro 文件第 11 页）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：为什么早先的控告者更危险（第 1–2 页，18a–e）",
+            "en": "Standard form: why the old accusers are more dangerous (pp. 1-2, 18a-e)"
+          },
+          "items": [
+            {
+              "en": "P1: The old accusers have spread their story for many years, and they reached many jurors as children, when people believe most easily.",
+              "zh": "P1：早先的控告者把这个说法传了很多年，很多陪审员小时候就听过，那时候最容易相信。"
+            },
+            {
+              "en": "P2: No one ever answered their story, so it won by default.",
+              "zh": "P2：一直没有人反驳，等于不战而胜。"
+            },
+            {
+              "en": "P3: They are many and mostly nameless (only a writer of comedies can be named), so Socrates cannot bring them to court or question them; he has to fight with shadows.",
+              "zh": "P3：他们人多，而且大多叫不出名字（只有一位喜剧作家能点名），苏格拉底没法把他们带上法庭盘问，只能像跟影子打仗一样。"
+            },
+            {
+              "en": "P4: Their listeners assume that people who study the heavens do not believe in the gods.",
+              "zh": "P4：听的人会以为，研究天上地下的人都不信神。"
+            },
+            {
+              "en": "C: So the old accusers are more dangerous than Anytus and the later accusers, and Socrates must answer them first.",
+              "zh": "C：所以早先的控告者比安尼图斯等后来的控告者更危险，苏格拉底要先回应他们。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "旧指控是什么？苏格拉底替这些无名的人念了一份想象中的宣誓书（第 2 页，19b–c）：他研究天上和地下的事；他把较弱的论证说成较强的（**makes the worse argument the stronger**：把本来站不住的一方说赢，也就是诡辩）；他还把这些教给别人。他说，大家在阿里斯托芬（**Aristophanes**）的喜剧里见过：一个苏格拉底吊在半空晃来晃去，说自己在空中行走。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "苏格拉底怎样回应旧指控（第 2 页，19c–20c）",
+            "en": "How Socrates answers the old charges (p. 2, 19c-20c)"
+          },
+          "steps": [
+            {
+              "zh": "研究天上地下：他说自己并不看不起这种学问，但他跟它毫无关系。他请听过他谈话的陪审员互相问问：谁听他讨论过这些？他相信答案是：没有人。",
+              "en": "Studying the heavens: he does not despise such knowledge, but he has no part in it; the many jurors who have heard him talk can confirm this."
+            },
+            {
+              "zh": "收费教人：这也不是真的。他说，要是真能像 Gorgias、Prodicus、Hippias 那样到各城教年轻人，倒是件好事（脚注 1：这三人都是有名的智者）。",
+              "en": "Fees: he does not teach for money, unlike famous Sophists such as Gorgias, Prodicus and Hippias."
+            },
+            {
+              "zh": "卡利亚（**Callias**）的故事：这个人在智者身上花的钱比谁都多。苏格拉底问他：如果你的两个儿子是小马或小牛，我们会请养马人或农夫让它们长好；他们是人，谁懂得让人成为好人、好公民？卡利亚说：帕罗斯的 **Evenus**，学费五个明那（**mina**，一种钱的单位）。",
+              "en": "Callias: for colts or calves we would hire a horse breeder or a farmer, so who is the expert in human and social excellence? Callias names Evenus, who charges five minas."
+            },
+            {
+              "zh": "苏格拉底说：如果 Evenus 真有这门本领，还收得这么便宜，那他真幸福；我要是有，早就得意了，可我没有。本站的理解：这多半是反讽（**irony**：嘴上说的和真正的意思不一样），他大概怀疑有人能把做好人当手艺来卖。",
+              "en": "He calls Evenus fortunate if he really has this art, and says he does not have it himself; the praise is most likely ironic (this is an interpretation)."
+            }
+          ],
+          "answer": {
+            "zh": "旧指控把他和研究天象的人、收费的智者混为一谈，而他两样都不是。",
+            "en": "The old charges confuse Socrates with people who study the heavens and with paid Sophists; he is neither."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：三位原告与正式指控",
+            "en": "Exam sentences: the three accusers and the formal charge"
+          },
+          "items": [
+            {
+              "en": "The later accusers are Meletus, Anytus and Lycon. Meletus speaks for the poets, Anytus for the craftsmen and the politicians, and Lycon for the orators (p. 4, 23e-24a).",
+              "zh": "后来的控告者是美勒托（**Meletus**）、安尼图斯（**Anytus**）和吕孔（**Lycon**）：美勒托代表诗人，安尼图斯代表工匠和政治家，吕孔代表演说家。"
+            },
+            {
+              "en": "Meletus' formal charge has two parts: Socrates corrupts the young, and he does not believe in the gods of the city but in new spiritual things instead (p. 4, 24b-c).",
+              "zh": "美勒托的正式指控有两部分：败坏青年；不信城邦所信的神，而信新的精灵之事。"
+            },
+            {
+              "en": "Socrates says that if he is condemned, what condemns him will not be Meletus or Anytus but the slander and jealousy of the many (p. 7, 28a).",
+              "zh": "苏格拉底说，如果他被定罪，定他罪的不是美勒托或安尼图斯，而是很多人的诽谤和嫉妒。"
+            }
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "concept-sorter",
+          "config": {
+            "title": {
+              "zh": "这是早先的流言，还是正式指控？",
+              "en": "Old rumour or formal charge?"
+            },
+            "prompt": {
+              "zh": "把每条说法放进正确的一类。",
+              "en": "Sort each accusation into the right group."
+            },
+            "categories": [
+              {
+                "id": "old-rumour",
+                "label": {
+                  "zh": "早先控告者的流言（第 1–2 页）",
+                  "en": "The old accusers' rumours (pp. 1-2)"
+                }
+              },
+              {
+                "id": "formal-charge",
+                "label": {
+                  "zh": "美勒托的正式指控（第 4 页）",
+                  "en": "Meletus' formal charge (p. 4)"
+                }
+              }
+            ],
+            "items": [
+              {
+                "text": {
+                  "zh": "他研究天上和地下的事。",
+                  "en": "He studies the heavens and what lies under the earth."
+                },
+                "answer": "old-rumour",
+                "why": {
+                  "zh": "这是旧宣誓书的第一条（第 2 页，19b），也就是阿里斯托芬喜剧里那个在空中行走的形象。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "他把较弱的论证说成较强的。",
+                  "en": "He makes the worse argument the stronger."
+                },
+                "answer": "old-rumour",
+                "why": {
+                  "zh": "这是旧流言的第二条（第 1–2 页，18b、19b），说他会诡辩。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "他把这些东西教给别人。",
+                  "en": "He teaches these things to others."
+                },
+                "answer": "old-rumour",
+                "why": {
+                  "zh": "这是想象中的旧宣誓书的第三条（第 2 页，19c）。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "他收学费教人。",
+                  "en": "He teaches people for a fee."
+                },
+                "answer": "old-rumour",
+                "why": {
+                  "zh": "这是他在回应旧流言时否认的另一条传言（第 2 页，19d–e），不在美勒托的起诉书里。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "他败坏青年。",
+                  "en": "He corrupts the young."
+                },
+                "answer": "formal-charge",
+                "why": {
+                  "zh": "这是正式指控的第一部分（第 4 页，24b）。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "他不信城邦所信的神。",
+                  "en": "He does not believe in the gods the city believes in."
+                },
+                "answer": "formal-charge",
+                "why": {
+                  "zh": "这是正式指控的第二部分（第 4 页，24b–c）。旧流言只是让人以为研究天象的人不信神；写进起诉书、点明“城邦的神”的是这一条。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "他信新的精灵之事。",
+                  "en": "He believes in other new spiritual things."
+                },
+                "answer": "formal-charge",
+                "why": {
+                  "zh": "这也属于正式指控的第二部分（第 4 页，24c）；后来苏格拉底就抓住这一句反驳美勒托（第 6 页）。"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "zh": "本站判断：选择题可能会问某条指控属于旧流言还是正式指控。",
+            "en": "A likely multiple-choice question, in the station's judgement: which accusation belongs to which group."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why does Socrates spend so long answering the old accusers before he turns to Meletus' formal charge?",
+            "zh": "苏格拉底为什么先花很长时间回应早先的控告者，再回应美勒托的正式指控？"
+          },
+          "answer": {
+            "en": "Socrates thinks the jurors' real prejudice comes from the old slander, which they have heard since childhood and which no one ever answered. He says Meletus relied on this slander when he wrote his charge (19a-b). Unless the old picture of him as a sky-gazing, fee-taking clever talker is removed, the jury will not judge the formal charge fairly. Later he even says that slander and envy, not Meletus, will be what convicts him (28a).",
+            "zh": "要点：1）陪审员的偏见来自多年的旧诽谤，他们从小就听，也没人反驳过；2）美勒托写起诉书时就是靠这些诽谤（19a–b）；3）不先清除这个旧形象，正式指控就没法被公平地审；4）他后来说，真正会定他罪的是诽谤和嫉妒，不是美勒托（28a）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "Apology 不是“道歉”，而是“辩护”（希腊词 apologia）。苏格拉底在全篇里没有道歉。",
+              "en": "Apology means a defence speech, not saying sorry."
+            },
+            {
+              "zh": "别把两批指控混在一起：研究天上地下、把弱论证说强、收费教人，是旧流言；败坏青年、不信城邦的神而信新的精灵之事，是正式指控。"
+            },
+            {
+              "zh": "安尼图斯是后来的控告者，不是早先的。苏格拉底说他更怕早先那些无名的人，而不是安尼图斯一伙（第 1 页，18b）。"
+            },
+            {
+              "zh": "501 人的陪审团、以及“陪审团只能在两个刑罚里二选一”这条规则，来自 Grube 的导言（Euthyphro 文件第 11 页）。原告提刑、被告反提这一步在讲话里能直接看到：美勒托提死刑，苏格拉底问自己该反提什么（《申辩篇》第 11 页，36b）。"
+            },
+            {
+              "zh": "苏格拉底没说研究天上地下的学问不好，他只说自己没研究过（19c）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Socrates, why are the old accusers more dangerous than Meletus, Anytus and Lycon?",
+            "zh": "按苏格拉底的说法，为什么早先的控告者比美勒托、安尼图斯和吕孔更危险？"
+          },
+          "options": [
+            {
+              "en": "They are more skilled speakers than the later accusers.",
+              "zh": "他们比后来的控告者更会说话。"
+            },
+            {
+              "en": "They spread their story for years, reached jurors as children, and cannot be named or cross-examined.",
+              "zh": "他们传了很多年，陪审员从小就听，而且叫不出名字，没法盘问。"
+            },
+            {
+              "en": "They wrote a formal charge that carries the death penalty.",
+              "zh": "他们写了一份可判死刑的正式起诉书。"
+            },
+            {
+              "en": "They are the Sophists Gorgias, Prodicus and Hippias.",
+              "zh": "他们就是智者 Gorgias、Prodicus 和 Hippias。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B。第 1–2 页（18b–d）的理由是：时间长、从小听、没人反驳、叫不出名字只能和影子打仗。A 不对：苏格拉底没有用会不会说话来区分两批人；C 是美勒托的正式起诉，属于后来的控告者；D 把智者当成了控告者，其实他提到智者，是为了说明自己不像他们那样收费教人。",
+            "en": "B: their story is old, learned in childhood and never answered, and the accusers are nameless."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-oracle-and-human-wisdom",
+      "title": {
+        "zh": "申辩篇：德尔斐神谕与人的智慧",
+        "en": "Apology: The Oracle and Human Wisdom"
+      },
+      "slides": "2-4",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "上一节说，旧诽谤让人以为苏格拉底是个怪人。那他到底在干什么？他设想有人问（第 2–3 页，20c）：你的职业是什么？这些流言从哪儿来？他的回答是：来自一种智慧，大概是人的智慧（**human wisdom**）——也许他刚提到的那些收费教人的智者有超出人的智慧，他没有（20d–e）。为了证明，他请德尔斐（**Delphi**）的神作证。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "oracle",
+              "zh": "神谕",
+              "hint": "人到神庙去问问题，得到的、被当作神给出的回答。"
+            },
+            {
+              "en": "the Pythian (Pythia)",
+              "zh": "皮提亚",
+              "hint": "读物写作 the Pythian：在德尔斐宣布神的回答的人（背景见本节的补充）。"
+            },
+            {
+              "en": "riddle",
+              "zh": "谜语",
+              "hint": "字面意思说不通、需要解读的话。"
+            },
+            {
+              "en": "refute",
+              "zh": "反驳、驳倒",
+              "hint": "证明一个说法是错的。"
+            },
+            {
+              "en": "examine / test",
+              "zh": "审视、检验",
+              "hint": "一问一答地追问对方，看他自称知道的东西站不站得住。"
+            },
+            {
+              "en": "human wisdom",
+              "zh": "人的智慧",
+              "hint": "不以为自己知道自己不知道的事，并看清人的智慧价值很小。"
+            },
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "objection",
+              "zh": "反驳（质疑）",
+              "hint": "对一个说法或论证提出的不同意见。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "德尔斐神谕的故事（第 3 页，20e–21a）",
+            "en": "The oracle at Delphi (p. 3, 20e-21a)"
+          },
+          "steps": [
+            {
+              "zh": "凯勒丰（**Chairephon**，也常拼作 Chaerephon）是苏格拉底从年轻时就交的朋友，做什么事都很冲动。",
+              "en": "Chairephon, a friend of Socrates from youth, was an impulsive man."
+            },
+            {
+              "zh": "他有一次去德尔斐，问神：有没有人比苏格拉底更有智慧？",
+              "en": "At Delphi he asked whether anyone was wiser than Socrates."
+            },
+            {
+              "zh": "宣布神谕的皮提亚（读物写 the Pythian）回答：没有人更有智慧。",
+              "en": "The Pythian answered that nobody was wiser."
+            },
+            {
+              "zh": "凯勒丰已经死了，苏格拉底说他的兄弟可以出庭作证。",
+              "en": "Chairephon is dead, but his brother can testify to this."
+            }
+          ],
+          "answer": {
+            "zh": "注意：神谕只回答了一个问题（没人比他更有智慧），没有下任何命令。",
+            "en": "The oracle answered a question; it gave no order."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底听了很困惑（第 3 页，21b）：他很清楚自己一点也不智慧；可神又不会说谎，说谎不合神的身份。所以这句话一定是个谜语（**riddle**）。他想了很久，才很不情愿地决定去检验：找一个公认有智慧的人，只要这个人比他智慧，就可以对神谕说：这个人比我智慧，你却说是我。也就是说，他一开始是想反驳（**refute**）神谕。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "走访三类人（第 3–4 页，21b–22e）",
+            "en": "Testing three groups (pp. 3-4, 21b-22e)"
+          },
+          "steps": [
+            {
+              "zh": "政治家（**politicians**）：第一个是一位公众人物。很多人、尤其他自己，都觉得他有智慧，其实没有。苏格拉底想让他看清这一点，结果他和很多旁观的人都讨厌苏格拉底。",
+              "en": "A politician seemed wise to many people and above all to himself, but was not; when Socrates tried to show him this, he and many bystanders came to dislike Socrates."
+            },
+            {
+              "zh": "苏格拉底得出：我们俩大概都不知道什么真正有价值的东西；但他不知道却以为自己知道，我不知道也不以为自己知道。我就在这一小点上比他智慧（21d）。后来他发现，名声最大的人几乎最欠缺，被看低的人反而更懂（22a）。",
+              "en": "Neither of them knows anything worthwhile, but the politician thinks he knows and Socrates does not; that small difference makes Socrates wiser. Those with the best reputations turned out to be nearly the most deficient."
+            },
+            {
+              "zh": "诗人（**poets**）：他拿诗人最用心的作品去问意思，结果旁观的人几乎都比作者讲得好。诗人写诗不是靠知识，而是靠天分和灵感，像预言家一样说了很多美好的话，自己却不明白。而且因为会写诗，他们以为自己在别的事上也很智慧（22b–c）。",
+              "en": "Poets compose by talent and inspiration, not knowledge, like seers who say fine things without understanding them; and because of their poetry they think they are wise in other matters too."
+            },
+            {
+              "zh": "工匠（**craftsmen**）：他们确实懂很多他不懂的好东西，在这一点上比他智慧。可他们犯了和诗人一样的错：因为手艺好，就以为自己在别的最重要的事上也很智慧，这个错误盖过了他们的智慧（22c–e）。",
+              "en": "Craftsmen really know many fine things that Socrates does not, but because of their skill they think they are wise about the most important matters too, and this error outweighs their real knowledge."
+            },
+            {
+              "zh": "他替神谕问自己：是像现在这样，既没有他们的智慧也没有他们的无知更好，还是两样都有更好？他的回答是：像现在这样更好（22e）。",
+              "en": "Asking on behalf of the oracle, he prefers to be as he is, without their knowledge and without their ignorance."
+            }
+          ],
+          "answer": {
+            "zh": "每一类人都以为自己懂最重要的事，其实不懂；苏格拉底的优势只是他不这样以为。",
+            "en": "Each group thinks it knows the most important things and does not; Socrates' only advantage is that he does not think so."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：神谕与人的智慧（第 3–4 页，21a–23b）",
+            "en": "Standard form: the oracle and human wisdom (pp. 3-4, 21a-23b)"
+          },
+          "items": [
+            {
+              "en": "P1: The oracle at Delphi said that no one is wiser than Socrates.",
+              "zh": "P1：德尔斐神谕说，没有人比苏格拉底更有智慧。"
+            },
+            {
+              "en": "P2: Socrates is very conscious that he is not wise at all.",
+              "zh": "P2：苏格拉底很清楚，自己一点也不智慧。"
+            },
+            {
+              "en": "P3: The god does not lie, so the answer must be a riddle that needs to be interpreted.",
+              "zh": "P3：神不会说谎，所以这句话是需要解读的谜语。"
+            },
+            {
+              "en": "P4: When Socrates questioned politicians, poets and craftsmen, each of them thought he knew important things that he did not know.",
+              "zh": "P4：他盘问政治家、诗人、工匠，发现每个人都以为自己懂重要的事，其实不懂。"
+            },
+            {
+              "en": "P5: Socrates does not think he knows what he does not know.",
+              "zh": "P5：苏格拉底不以为自己知道自己不知道的事。"
+            },
+            {
+              "en": "C: So Socrates is wiser than they are in this one small way. The oracle probably means that human wisdom is of little or no value, and that the wisest human is one who, like Socrates, sees this.",
+              "zh": "C：所以苏格拉底只在这一小点上比别人智慧。神谕的意思大概是：人的智慧价值很小甚至没有；最智慧的人，就是像苏格拉底那样看清这一点的人。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "逐条看：P1 和 P2 看起来冲突——神说他最智慧，他自己觉得不智慧。P3 让他不能直接说神错了，只能去解读。P4 是他走访的结果。P5 是关键，原话是“I do not think I know what I do not know”（第 3 页，21d）：我不以为自己知道我不知道的东西。所以他的智慧不是知道得多，而是对自己的无知有清醒的认识。C 来自第 4 页（23a–b），他说比较可能的情况是：神只是拿苏格拉底的名字当例子。"
+        },
+        {
+          "type": "analogy",
+          "zh": "考前刷题，两个同学都不会一道题。甲随便写了个答案，还觉得自己肯定对；乙在题旁标了“不会”，打算去问老师。论会不会这道题，两人一样；但乙知道自己不会，甲不知道自己不会。苏格拉底就像乙：他的智慧只是比甲多知道这一点。",
+          "limit": "类比的限度：刷题有标准答案，问老师就能解决；苏格拉底说的是怎样生活才好这类最重要的问题，他认为没有人真正掌握答案，连他自己也没有。"
+        },
+        {
+          "type": "text",
+          "zh": "结果（第 4 页，23b–d）：他到处寻找他认为有智慧的人，本城人、外乡人都找；一旦觉得对方其实不智慧，就让对方看清，他说这是在帮神的忙、为神服务。因此他没空管公共事务，也没空管自己的家，过得非常穷。有钱人家的年轻人有空，喜欢跟着看，还学他去盘问别人。被问倒的人不怪自己，反而说苏格拉底败坏青年；问他教了什么，他们答不出，就搬出骂一切哲学家的老套话。诽谤就是这样来的。顺便连到第 2 周：罗素说哲学的价值很大程度上就在于它的不确定，它能打掉人们自以为是的独断（**dogmatism**：不加检查就认定自己对）；本站的理解：苏格拉底承认无知的态度，可以看作这种价值的早期例子。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：德尔斐的神通常认为是阿波罗（**Apollo**），这个译本从头到尾没有点名，只说 the god at Delphi（德尔斐的神）；读物里宣布神谕的 the Pythian（皮提亚，Pythia）是那里的女祭司。后人把苏格拉底这种一问一答、揭出对方矛盾的检验方法叫作 **elenchus**（诘问法），这个词也不在译文里；考试可以用，但别当成原文。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: the oracle only answered a question; it gave no order. Is Socrates entitled to call his questioning a mission from the god?",
+            "zh": "反驳：神谕只回答了一个问题，并没有下命令。苏格拉底凭什么说他的盘问是神交给他的任务？"
+          },
+          "answer": {
+            "en": "The oracle itself only said that no one was wiser than Socrates. Socrates first tried to refute it, and only after testing many people did he read it as a message that human wisdom is of little worth, and his questioning as service to the god (23b). So the mission is his own interpretation, and a critic can say it is a convenient one. In his defence, he later adds that the god also commanded him through oracles, dreams and other signs (33c), so he does not rest on this one answer alone.",
+            "zh": "要点：1）神谕原话只是“没人更有智慧”；2）他先想反驳神谕，检验之后才把它理解为“人的智慧价值很小”，并把检验别人称为为神服务（23b）；3）所以“使命”是他的解读，批评者可以说这个解读太方便；4）为他辩护：他后来说神还通过神谕、梦和其他方式命令过他（33c），不只靠这一次回答。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "苏格拉底在这里没有说“我只知道我一无所知”。他说的是：我不以为自己知道我不知道的事（21d）。他在别处还说自己确实知道一些事，比如做错事、不服从上级是可耻的（第 7 页，29b）。",
+              "en": "He never says 'I know that I know nothing' in this reading."
+            },
+            {
+              "zh": "神谕说的是“没有人比他更有智慧”，不是“苏格拉底知道得最多”，也没有命令他去盘问别人。"
+            },
+            {
+              "zh": "他去找人，起初是为了反驳神谕（找一个比他智慧的人），结果却证实了神谕。"
+            },
+            {
+              "zh": "工匠不是一无所知：他们真懂自己的手艺，错在以为自己在更重要的事上也懂。"
+            },
+            {
+              "zh": "德尔斐神谕不是苏格拉底的神圣征兆（**divine sign**）：神谕是凯勒丰去神庙问到的一次回答；神圣征兆是苏格拉底从小就有、只会阻止他的声音（第 9 页）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What did the oracle at Delphi tell Chairephon?",
+            "zh": "德尔斐神谕告诉了凯勒丰什么？"
+          },
+          "options": [
+            {
+              "en": "That Socrates must question everyone who seems wise.",
+              "zh": "苏格拉底必须去盘问每个看起来有智慧的人。"
+            },
+            {
+              "en": "That Socrates knows more than anyone else in Athens.",
+              "zh": "苏格拉底比雅典任何人知道得都多。"
+            },
+            {
+              "en": "That no one is wiser than Socrates.",
+              "zh": "没有人比苏格拉底更有智慧。"
+            },
+            {
+              "en": "That Socrates will be put to death for impiety.",
+              "zh": "苏格拉底会因不敬神被处死。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 3 页，21a）。A 是苏格拉底后来对神谕的理解，不是神谕本身；B 把“最有智慧”误解成“知道得最多”，而苏格拉底恰恰说自己没什么知识；D 读物里没有这样的预言。",
+            "en": "C. A is Socrates' later interpretation; B confuses wisdom with knowing a lot."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which group, according to Socrates, really knew many fine things but thought they were wise about the most important matters too?",
+            "zh": "按苏格拉底的说法，哪一类人确实懂很多好东西，却以为自己在最重要的事上也有智慧？"
+          },
+          "options": [
+            {
+              "en": "The craftsmen",
+              "zh": "工匠"
+            },
+            {
+              "en": "The politicians",
+              "zh": "政治家"
+            },
+            {
+              "en": "The poets",
+              "zh": "诗人"
+            },
+            {
+              "en": "The Sophists",
+              "zh": "智者"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 4 页，22c–e）。工匠真懂手艺，在这一点上比苏格拉底智慧，错在把这份自信带到别的最重要的事上。政治家（B）只是看起来有智慧；诗人（C）写诗靠灵感，不靠知识；智者（D）不是他这次走访的对象。",
+            "en": "A. The craftsmen had real knowledge of their crafts but overreached."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-cross-examining-meletus",
+      "title": {
+        "zh": "申辩篇：盘问美勒托：三个论证",
+        "en": "Apology: Cross-Examining Meletus: Three Arguments"
+      },
+      "slides": "4-7",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "现在苏格拉底回应正式指控：败坏青年；不信城邦的神而信新的精灵之事（第 4 页，24b–c）。他说真正有罪的是美勒托：拿严肃的事开玩笑，随便把人告上法庭，装作关心自己从没关心过的事（24c）。接着他当庭盘问（**cross-examine**）美勒托，提出三个论证。本站判断这一节很可能考到：要会写出每个论证的标准形式，并说出它证明了什么、没证明什么。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "cross-examine",
+              "zh": "盘问",
+              "hint": "当庭一问一答地追问对方，让对方自己说出矛盾。"
+            },
+            {
+              "en": "analogy",
+              "zh": "类比",
+              "hint": "拿一件熟悉的事去说明另一件相似的事，比如拿养马说明教育。"
+            },
+            {
+              "en": "deliberately / unwillingly",
+              "zh": "故意 / 无意",
+              "hint": "明知而有意去做 / 不是有意的、不知道自己在做坏事。"
+            },
+            {
+              "en": "contradiction",
+              "zh": "矛盾",
+              "hint": "同时说 A 和“不是 A”，两句不可能都真。"
+            },
+            {
+              "en": "dilemma",
+              "zh": "两难",
+              "hint": "只有两个选项，选哪个结果都一样（或者两个选项对要做选择的那一方都不利）。"
+            },
+            {
+              "en": "assumption",
+              "zh": "假设（隐含前提）",
+              "hint": "论证没明说、却要靠它才成立的前提。"
+            },
+            {
+              "en": "spirits / spiritual things",
+              "zh": "精灵 / 精灵之事",
+              "hint": "按美勒托同意的说法，精灵要么是神，要么是神的孩子（第 6 页）。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "当庭盘问：谁让年轻人变好？（第 5 页，24c–25c）",
+            "en": "Cross-examination: who improves the young? (p. 5, 24c-25c)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底：你最在乎年轻人变好，那你告诉陪审团，谁让他们变好？美勒托先是答不上来。",
+              "en": "Meletus at first cannot say who improves the young."
+            },
+            {
+              "zh": "美勒托：法律。苏格拉底：我问的是人。美勒托：这些陪审员，全部都是。苏格拉底再一个个问：旁听的人呢？议事会（**Council**）的成员呢？公民大会（**Assembly**）的成员呢？美勒托都说：他们也让年轻人变好。",
+              "en": "He answers: the laws; then the jurors, all of them; asked in turn about the audience, the Council and the Assembly, he says they improve the young too."
+            },
+            {
+              "zh": "苏格拉底总结：照你说，所有雅典人都让年轻人变好，只有我一个人败坏他们？美勒托：正是。",
+              "en": "So every Athenian improves the young and only Socrates corrupts them? Meletus: exactly."
+            },
+            {
+              "zh": "苏格拉底：马也是这样吗？恰恰相反：能让马变好的只有一个或极少数人，就是养马人；大多数人用马，反而把马弄坏。所有动物都是这样（25b）。",
+              "en": "With horses it is the opposite: only one person or very few (the horse breeders) improve them, and most people who use them make them worse; the same holds for all animals."
+            }
+          ],
+          "answer": {
+            "zh": "美勒托的回答很荒唐，说明他从来没认真想过年轻人的事。",
+            "en": "Meletus' answer is absurd and shows that he has never cared about the young."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证 1 的标准形式：谁让青年变好（第 5 页，24c–25c）",
+            "en": "Argument 1 in standard form: who improves the young? (p. 5, 24c-25c)"
+          },
+          "items": [
+            {
+              "en": "P1: If Meletus really cares about the young, he must know who makes them better.",
+              "zh": "P1：如果美勒托真关心年轻人，他就该知道谁让他们变好。"
+            },
+            {
+              "en": "P2: Meletus says that the laws, the jurors, the audience, the Council and the Assembly, in fact all Athenians, improve the young, and only Socrates corrupts them.",
+              "zh": "P2：美勒托说法律、陪审员、旁听者、议事会、公民大会，也就是所有雅典人都让年轻人变好，只有苏格拉底败坏他们。"
+            },
+            {
+              "en": "P3: With horses and all other animals it is the opposite: one person or very few experts (the horse breeders) improve them, while most people who use them make them worse.",
+              "zh": "P3：马和其他所有动物正相反：只有一个或极少数专家（养马人）能让它们变好，大多数使用者反而把它们弄坏。"
+            },
+            {
+              "en": "P4 (unstated): Making young people better also needs rare expert knowledge.",
+              "zh": "P4（没明说）：让年轻人变好，也需要少数人才有的专门知识。"
+            },
+            {
+              "en": "C: So Meletus' answer is absurd. It shows that he has never cared about or thought about the young, and his charge is not serious.",
+              "zh": "C：所以美勒托的回答很荒唐，说明他从没关心、也没想过年轻人的事，他的指控不是认真的。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "宿舍的路由器坏了，大家都会用，可真能修好的只有懂网络的那一两个人。要是有人说“全楼每个人都能把路由器修好，只有一个人在把它弄坏”，你会觉得这人根本没想过路由器是怎么回事。苏格拉底就是这样嘲笑美勒托的回答。",
+          "limit": "类比的限度：修路由器显然是技术活；而让年轻人成为好人是不是也只有少数专家会，正是可以争的地方。支持民主的人可以说，城邦的法律和风气确实在一起教育年轻人。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证 2 的标准形式：没人会故意败坏身边的人（第 5 页，25c–26a）",
+            "en": "Argument 2 in standard form: no one corrupts his associates deliberately (p. 5, 25c-26a)"
+          },
+          "items": [
+            {
+              "en": "P1: Bad people harm those who live closest to them, and good people benefit them.",
+              "zh": "P1：坏人会伤害身边的人，好人会给身边的人带来好处。"
+            },
+            {
+              "en": "P2: No one wants to be harmed by the people around him.",
+              "zh": "P2：没有人愿意被身边的人伤害。"
+            },
+            {
+              "en": "P3: Making one's associates bad means risking harm from them, so no one would do it deliberately unless he were very ignorant, and Socrates is not that ignorant.",
+              "zh": "P3：把身边的人教坏，就要冒被他们伤害的风险；除非无知到极点，没人会故意这样做，而苏格拉底没那么无知。"
+            },
+            {
+              "en": "C1: So either Socrates does not corrupt the young, or he does so unwillingly.",
+              "zh": "C1：所以苏格拉底要么没有败坏青年，要么是无意的。"
+            },
+            {
+              "en": "P4: The law says that unwilling wrongdoers should be taught and urged in private, not brought to court; court is for those who need punishment.",
+              "zh": "P4：法律要求对无意犯错的人私下教导、劝告，而不是告上法庭；法庭是给需要惩罚的人的。"
+            },
+            {
+              "en": "C2: So Meletus is wrong either way: there is no corruption, or he should have instructed Socrates instead of prosecuting him.",
+              "zh": "C2：所以美勒托怎么说都错：要么根本没有败坏，要么他该私下教导苏格拉底，而不是起诉他。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "论证 2 的关键在 P1–P3：坏人会伤害身边的人，没人愿意被伤害，所以故意把身边的人教坏，等于故意给自己找麻烦。苏格拉底说他不至于无知到这个地步。P4 是法律上的一招：无意的错，该私下教导和劝告，学明白了自然就不做了；可美勒托一直躲着他、不肯教他，却直接告上法庭（25e–26a）。隐含的假设（**assumption**）是：人人都想要对自己好的东西。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "当庭盘问：苏格拉底到底信不信神（第 6 页，26b–27e）",
+            "en": "Cross-examination: does Socrates believe in gods? (p. 6, 26b-27e)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底先让美勒托说清楚：你是说我信一些神、只是不信城邦的神？还是说我根本不信神？美勒托选了后者：完全不信神。",
+              "en": "Socrates asks Meletus to choose: other gods than the city's, or no gods at all? Meletus says: no gods at all."
+            },
+            {
+              "zh": "美勒托还说，苏格拉底说太阳是石头、月亮是土。苏格拉底回答：你以为你在告阿那克萨戈拉（**Anaxagoras**）吗？那是他书里的理论，年轻人在书摊上最多花一个德拉克马（**drachma**，一种小钱币）就能买到；我要是冒充是自己的，他们会笑话我（26d–e）。",
+              "en": "Meletus says Socrates calls the sun a stone and the moon earth; Socrates replies that these are Anaxagoras' theories, sold in books for a drachma at most."
+            },
+            {
+              "zh": "接着类比：有人信人的活动却不信有人吗？信骑马的活动却不信有马吗？信吹笛的活动却不信有吹笛手吗？美勒托只好承认：信精灵的活动，就得信有精灵。",
+              "en": "No one believes in horsemen's or flute-playing activities without believing in horses or flute-players; so no one believes in spiritual activities without believing in spirits."
+            },
+            {
+              "zh": "精灵是什么？美勒托同意：精灵要么是神，要么是神的孩子（传说是神和仙女等所生的私生子）。",
+              "en": "Meletus agrees that spirits are either gods or children of gods."
+            },
+            {
+              "zh": "两种情况都推出苏格拉底信神：精灵是神，他就信神；精灵是神的孩子，那么信神的孩子却不信神，就像信有骡子却不信有马和驴一样荒唐（27d–e）。",
+              "en": "Either way Socrates believes in gods: believing in children of gods but not in gods is like believing in mules but not in horses and asses."
+            }
+          ],
+          "answer": {
+            "zh": "美勒托的起诉书自相矛盾：说他完全不信神，又说他信精灵之事。",
+            "en": "Meletus' charge contradicts itself."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证 3 的标准形式：信精灵就得信神（第 6–7 页，26b–28a）",
+            "en": "Argument 3 in standard form: belief in spirits means belief in gods (pp. 6-7, 26b-28a)"
+          },
+          "items": [
+            {
+              "en": "P1: Meletus' sworn charge says that Socrates believes in (and teaches) new spiritual things.",
+              "zh": "P1：美勒托宣誓的起诉书说，苏格拉底信（并教）新的精灵之事。"
+            },
+            {
+              "en": "P2: No one believes in human, horsemen's or flute-playing activities without believing in humans, horses or flute-players; in the same way, whoever believes in spiritual things believes in spirits.",
+              "zh": "P2：没人信人的、骑马的、吹笛的活动，却不信有人、有马、有吹笛手；同样，信精灵之事的人就信有精灵。"
+            },
+            {
+              "en": "P3: Spirits are either gods or children of gods (Meletus agrees).",
+              "zh": "P3：精灵要么是神，要么是神的孩子（美勒托同意）。"
+            },
+            {
+              "en": "P4: If spirits are gods, Socrates believes in gods; if they are children of gods, he must still believe in gods, because believing in children of gods but not in gods is as absurd as believing in mules but not in horses and asses.",
+              "zh": "P4：如果精灵是神，苏格拉底就信神；如果精灵是神的孩子，他也得信神，因为信神的孩子却不信神，就像信骡子却不信马和驴一样荒唐。"
+            },
+            {
+              "en": "C: So Meletus contradicts himself: he says that Socrates believes in no gods at all, yet his own charge implies that Socrates believes in gods.",
+              "zh": "C：所以美勒托自相矛盾：他说苏格拉底完全不信神，可他自己的起诉书却推出苏格拉底信神。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "三个论证一览：说明了什么、靠什么假设、局限在哪",
+            "en": "The three arguments: what each shows, what it assumes, and its limit"
+          },
+          "headers": [
+            "论证 Argument",
+            "说明了什么 What it shows",
+            "依赖的假设 What it assumes",
+            "局限 Limit"
+          ],
+          "rows": [
+            [
+              "1 谁让青年变好（马和养马人）",
+              "美勒托从没认真想过青年的事",
+              "让人变好像养马一样，是少数专家的本领",
+              "只打击美勒托的可信度，没证明苏格拉底没有败坏青年"
+            ],
+            [
+              "2 没人故意败坏身边的人",
+              "要么没败坏，要么是无意的，该私下教导而不是起诉",
+              "人人都想要对自己好的东西；教坏别人一定会害到自己",
+              "教坏别人只是有风险，不一定受害；也可能有人不在乎，或另有好处"
+            ],
+            [
+              "3 信精灵就得信神（骡子）",
+              "美勒托的“完全不信神”和起诉书自相矛盾",
+              "精灵是神或神的孩子（美勒托同意）",
+              "只驳倒“完全不信神”这个夸大说法，没回应“不信城邦的神”"
+            ]
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Do Socrates' three arguments against Meletus prove that he is innocent?",
+            "zh": "苏格拉底驳美勒托的三个论证，能证明他无罪吗？"
+          },
+          "answer": {
+            "en": "Not fully. The first argument only shows that Meletus has never thought about who improves the young, which attacks his credibility rather than the charge itself. The second depends on the assumption that no one would knowingly make his companions bad. The third refutes only Meletus' claim that Socrates believes in no gods at all, not the charge that he rejects the city's gods. The arguments expose Meletus' carelessness and self-contradiction, and Socrates himself says that what endangers him is not Meletus but the slander and envy of many people (28a).",
+            "zh": "要点：1）论证 1 打击的是美勒托的可信度，不是指控本身；2）论证 2 靠“没人会故意把身边的人教坏”这个假设；3）论证 3 只驳倒“完全不信神”，没回应“不信城邦的神”；4）三个论证揭露了美勒托马虎、自相矛盾；苏格拉底自己也说，真正威胁他的不是美勒托，而是很多人的诽谤和嫉妒（28a）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "论证 1 证明的是美勒托不关心青年，不是苏格拉底没有败坏青年。"
+            },
+            {
+              "zh": "论证 3 只驳倒了“完全不信神”，没有回应“不信城邦的神”这一条。是苏格拉底先问美勒托指哪一种，美勒托自己选了“完全不信”（第 6 页）。"
+            },
+            {
+              "zh": "“太阳是石头、月亮是土”是阿那克萨戈拉的理论，不是苏格拉底的（26d）。"
+            },
+            {
+              "zh": "苏格拉底自己说：真正会让他被定罪的不是美勒托，而是很多人的诽谤和嫉妒（第 7 页，28a）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does Socrates' argument about spirits and mules actually show?",
+            "zh": "苏格拉底关于精灵和骡子的论证，实际上证明了什么？"
+          },
+          "options": [
+            {
+              "en": "That Socrates believes in exactly the gods the city believes in.",
+              "zh": "苏格拉底信的正是城邦所信的神。"
+            },
+            {
+              "en": "That Meletus contradicts himself by saying Socrates believes in no gods at all while charging him with believing in spiritual things.",
+              "zh": "美勒托自相矛盾：一边说苏格拉底完全不信神，一边又告他信精灵之事。"
+            },
+            {
+              "en": "That Anaxagoras, not Socrates, should be on trial.",
+              "zh": "该受审的是阿那克萨戈拉，不是苏格拉底。"
+            },
+            {
+              "en": "That spirits do not exist.",
+              "zh": "精灵并不存在。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B。这个论证只驳倒“完全不信神”这个夸大说法（第 6–7 页）。A 不对：论证没有说明他信城邦的神，这正是它的局限；C：提到阿那克萨戈拉只是说明太阳是石头那套理论不是苏格拉底的；D：论证恰恰假定信精灵之事就得信有精灵。",
+            "en": "B. It exposes Meletus' self-contradiction but does not show that Socrates believes in the city's gods."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the second argument, Meletus says Socrates corrupts the young deliberately. How does Socrates respond?",
+            "zh": "在第二个论证里，美勒托说苏格拉底是故意败坏青年。苏格拉底怎么回应？"
+          },
+          "options": [
+            {
+              "en": "No one would deliberately make his associates bad, since bad people harm those close to them; so he either does not corrupt them or does so unwillingly.",
+              "zh": "没人会故意把身边的人教坏，因为坏人会伤害身边的人；所以他要么没败坏，要么是无意的。"
+            },
+            {
+              "en": "He admits it but says the young deserved it.",
+              "zh": "他承认了，但说年轻人活该。"
+            },
+            {
+              "en": "He says the jurors corrupt the young more than he does.",
+              "zh": "他说陪审员比他更败坏青年。"
+            },
+            {
+              "en": "He says that only horse breeders can corrupt the young.",
+              "zh": "他说只有养马人才能败坏青年。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 5 页，25c–26a）。他还补充：如果是无意的，法律要求私下教导，而不是起诉。B、C 读物里都没有；D 把第一个论证的养马类比张冠李戴了，而且养马人是让马变好的人。",
+            "en": "A. He adds that unwilling wrongdoers should be instructed in private, not prosecuted."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-post-and-fear-of-death",
+      "title": {
+        "zh": "申辩篇：坚守岗位与对死亡的恐惧",
+        "en": "Apology: Standing at One's Post and the Fear of Death"
+      },
+      "slides": "7",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "驳完美勒托，苏格拉底自己提出一个反驳（**objection**：对一个做法或观点的质疑）：你走上这条路，现在有被处死的危险，难道不觉得羞耻吗（第 7 页，28b）？他的回应（**reply**：对质疑的答复）是：一个哪怕有一点价值的人，做事只该看做得对不对、像好人还是像坏人，不该算计会活还是会死。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "objection / reply",
+              "zh": "反驳 / 回应",
+              "hint": "反驳＝对观点或做法的质疑；回应＝对质疑的答复。"
+            },
+            {
+              "en": "post",
+              "zh": "岗位",
+              "hint": "自己选定或被长官安排的位置，危险来了也不能离开。"
+            },
+            {
+              "en": "disgrace",
+              "zh": "耻辱",
+              "hint": "让人看不起、丢脸的处境，比如当逃兵。"
+            },
+            {
+              "en": "false wisdom",
+              "zh": "假智慧",
+              "hint": "以为自己有智慧、以为自己知道，其实不知道。"
+            },
+            {
+              "en": "superior",
+              "zh": "上级",
+              "hint": "地位比你高、你应该服从的人；苏格拉底说可以是神，也可以是人。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "阿喀琉斯的选择（第 7 页，28c–d）",
+            "en": "Achilles' choice (p. 7, 28c-d)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底说：照你的看法，死在特洛伊的英雄都是没出息的人，尤其是忒提斯（**Thetis**）的儿子（脚注 2：就是阿喀琉斯 **Achilles**）。",
+              "en": "On the objector's view, the heroes who died at Troy would be worthless, above all the son of Thetis (footnote 2: Achilles)."
+            },
+            {
+              "zh": "阿喀琉斯想杀赫克托耳（**Hector**），为战友帕特罗克洛斯（**Patroclus**）报仇。他的女神母亲警告他：杀了赫克托耳，你自己很快也会死。",
+              "en": "Achilles wanted to kill Hector to avenge his comrade Patroclus; his goddess mother warned him that his own death would soon follow."
+            },
+            {
+              "zh": "阿喀琉斯不把死亡和危险当回事，他更怕作为懦夫活着、不为朋友报仇，在船边被人嘲笑、成为大地的负担。",
+              "en": "He despised death and danger and feared far more to live as a coward who did not avenge his friend."
+            },
+            {
+              "zh": "苏格拉底反问：你觉得他考虑过死亡和危险吗？",
+              "en": "Did Achilles give any thought to death and danger? Clearly not."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：好人怕的是耻辱和做错事，不是死亡。",
+            "en": "A good man fears disgrace and wrongdoing more than death."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：坚守岗位（第 7 页，28b–29a）",
+            "en": "Standard form: staying at one's post (p. 7, 28b-29a)"
+          },
+          "items": [
+            {
+              "en": "P1: A good man looks only at whether his action is right or wrong, not at the risk of death.",
+              "zh": "P1：好人做事只看对错，不看会不会死。"
+            },
+            {
+              "en": "P2: Achilles chose to avenge Patroclus and die soon after, rather than live in disgrace as a coward.",
+              "zh": "P2：阿喀琉斯宁可报仇后很快死去，也不愿作为懦夫屈辱地活着。"
+            },
+            {
+              "en": "P3: Wherever a man is stationed, by his own choice or by his commander, he must stay at his post and face danger rather than disgrace.",
+              "zh": "P3：一个人站在哪个岗位——自己选的或长官派的——就该守住，宁可冒险也不受辱。"
+            },
+            {
+              "en": "P4: Socrates stayed at his post in battle at Potidaea, Amphipolis and Delium; the god, as he thought and believed, stationed him in the life of philosophy, examining himself and others.",
+              "zh": "P4：苏格拉底在波提狄亚、安菲波利斯、德利乌姆打仗时守住了岗位；按他自己的理解和相信，神把他安排在哲学生活这个岗位上：审视自己和别人。"
+            },
+            {
+              "en": "C: So he must not abandon philosophy for fear of death; deserting this post would be the real reason to charge him with not believing in the gods.",
+              "zh": "C：所以他不能因为怕死放弃哲学；真要逃离这个岗位，那才真该被告不信神。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P4 里的三场战役（波提狄亚 **Potidaea**、安菲波利斯 **Amphipolis**、德利乌姆 **Delium**），苏格拉底都听从选出来的指挥官，冒着死的危险守住位置。他说：神命令他——这是他自己的理解和相信——过哲学（**philosophy**）的生活，审视自己和别人；要是这时怕死逃走，才真可怕。那样他才真该被告上法庭，罪名是：不信有神、违抗神谕、怕死、以为自己有智慧其实没有（28e–29a）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "怕死，就像对着一个没拆的快递吓得发抖，认定里面一定是炸弹。可你根本不知道里面是什么，说不定是礼物。苏格拉底说，怕死的人就是这样：表现得好像自己知道死是最大的坏事，其实谁也不知道。",
+          "limit": "类比的限度：快递拆开就知道了，而死后是什么，苏格拉底认为活人没有知识；另外，人怕死也可能只是本能，不一定是自以为知道，这正是下面要讨论的反驳。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：怕死是一种假智慧（第 7 页，29a–b）",
+            "en": "Standard form: fearing death is false wisdom (p. 7, 29a-b)"
+          },
+          "items": [
+            {
+              "en": "P1: No one knows whether death is the greatest good or the greatest evil for a human being.",
+              "zh": "P1：没有人知道，死对人来说是最大的好事还是最大的坏事。"
+            },
+            {
+              "en": "P2: People who fear death behave as though they were sure that death is the worst of all evils.",
+              "zh": "P2：怕死的人，表现得好像他们知道死是最大的坏事。"
+            },
+            {
+              "en": "P3: Thinking that you know what you do not know is the most blameworthy kind of ignorance.",
+              "zh": "P3：以为自己知道自己不知道的事，是最该受责备的无知。"
+            },
+            {
+              "en": "C1: So fearing death is a kind of false wisdom: thinking one is wise when one is not.",
+              "zh": "C1：所以怕死是一种假智慧：以为自己有智慧，其实没有。"
+            },
+            {
+              "en": "P4: Socrates does know that doing wrong and disobeying a superior, god or man, is wicked and shameful.",
+              "zh": "P4：苏格拉底确实知道：做错事、不服从上级（无论神还是人）是邪恶而可耻的。"
+            },
+            {
+              "en": "C2: So he will never fear or run from something that may be good (death) rather than something he knows is bad (doing wrong).",
+              "zh": "C2：所以他绝不会去怕、去躲可能是好事的东西（死），而不去怕明知是坏的事（做错事）。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这是第 3 页“人的智慧”用在死亡上：别人以为自己知道死是坏事，苏格拉底不以为自己知道。他说，如果他在什么事上比别人智慧，就在这里：他对冥界的事没有足够的知识，也不以为自己有（29b）。但他不是什么都不知道：P4 说他知道做错事、不服从上级是可耻的。由此得出他的行动原则：在明知是坏的事和可能是好事的未知之事之间，他宁可面对后者。"
+        },
+        {
+          "type": "widget",
+          "name": "concept-sorter",
+          "config": {
+            "title": {
+              "zh": "苏格拉底说自己知道什么、不知道什么？",
+              "en": "What does Socrates claim to know, and what not?"
+            },
+            "prompt": {
+              "zh": "判断每一句：苏格拉底说自己知道（或确信），还是说自己（或任何人）不知道？",
+              "en": "For each statement: does Socrates say he knows it (or is convinced of it), or that he (or anyone) does not know it?"
+            },
+            "categories": [
+              {
+                "id": "claims-to-know",
+                "label": {
+                  "zh": "他说自己知道或确信",
+                  "en": "He says he knows or is convinced"
+                }
+              },
+              {
+                "id": "does-not-know",
+                "label": {
+                  "zh": "他说自己或任何人都不知道",
+                  "en": "He says he or anyone does not know"
+                }
+              }
+            ],
+            "items": [
+              {
+                "text": {
+                  "zh": "死对人来说是最大的好事还是最大的坏事。",
+                  "en": "Whether death is the greatest good or the greatest evil."
+                },
+                "answer": "does-not-know",
+                "why": {
+                  "zh": "第 7 页（29a）：没有人知道。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "做错事、不服从上级（神或人）是可耻的。",
+                  "en": "That doing wrong and disobeying a superior, god or man, is shameful."
+                },
+                "answer": "claims-to-know",
+                "why": {
+                  "zh": "第 7 页（29b）：他明确说自己知道这一点。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "冥界（死后世界）的事。",
+                  "en": "Things in the underworld."
+                },
+                "answer": "does-not-know",
+                "why": {
+                  "zh": "第 7 页（29b）：他没有足够的知识，也不以为自己有。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "神不会说谎。",
+                  "en": "That the god does not lie."
+                },
+                "answer": "claims-to-know",
+                "why": {
+                  "zh": "第 3 页（21b）：他说神不会说谎，说谎不合神的身份；所以他把神谕当谜语来解，而不是说神错了。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "坐牢、交不起的罚款、流放都是坏事。",
+                  "en": "That prison, a fine he cannot pay and exile are evils."
+                },
+                "answer": "claims-to-know",
+                "why": {
+                  "zh": "第 12 页（37b）：他说这些是他很清楚的坏事，所以不选。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "自己从来没有故意冤枉过任何人。",
+                  "en": "That he has never willingly wronged anyone."
+                },
+                "answer": "claims-to-know",
+                "why": {
+                  "zh": "第 11–12 页（37a–b）：他说自己确信这一点，所以也不会冤枉自己，去提一个坏刑罚。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "他和陪审员谁去往更好的命运。",
+                  "en": "Which of them, he or the jurors, is going to the better lot."
+                },
+                "answer": "does-not-know",
+                "why": {
+                  "zh": "第 14 页（42a）：除了神，谁也不知道。"
+                }
+              },
+              {
+                "text": {
+                  "zh": "死后灵魂会不会搬到另一个地方。",
+                  "en": "Whether the soul moves to another place after death."
+                },
+                "answer": "does-not-know",
+                "why": {
+                  "zh": "第 13–14 页（40c–41c）：他只说“照传说的那样”，把它当作两种可能之一，对死亡抱的是美好的希望；第 7 页（29b）他也说，自己对冥界的事没有足够的知识。"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "zh": "他不是“什么都不知道”：他承认不知道死亡和冥界，却确信一些道德上的事。",
+            "en": "He does not claim to know nothing: he admits ignorance about death but is sure of some moral truths."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: a person can fear death without claiming to know that death is bad. Does Socrates' argument still work? And is his claim to know that wrongdoing is shameful consistent with his human wisdom?",
+            "zh": "反驳：一个人可以怕死，却并不声称知道死是坏事。苏格拉底的论证还成立吗？他说自己知道做错事可耻，这和“人的智慧”矛盾吗？"
+          },
+          "answer": {
+            "en": "The objection has force: fear can be an instinct or a reaction to the unknown, not a belief that death is the greatest evil, so P2 may be too strong. Socrates' point works best against people who act as if death were the worst thing, for example by doing wrong to avoid it. As for consistency, human wisdom does not mean knowing nothing: Socrates denies having wisdom about the most important matters, but he still claims a few moral truths, such as that doing wrong is shameful (29b).",
+            "zh": "要点：1）怕死可以是本能或对未知的反应，不一定是“自以为知道死最坏”，所以 P2 可能说过头了；2）他的论证最适用于为了躲死而去做坏事的人；3）人的智慧不等于一无所知：他否认自己在最重要的事上有智慧，但仍主张少数道德真理，比如做错事可耻（29b）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "苏格拉底在这里没有说“死是好事”，他说的是没人知道死是好是坏（29a）；后来他也只说发生在自己身上的事可能是好事、对死亡有美好的希望（第 13 页），最后还说只有神知道谁的去处更好（42a）。"
+            },
+            {
+              "zh": "他不是说“一切都不知道”：29b 他明确说自己知道做错事和不服从上级是可耻的。"
+            },
+            {
+              "zh": "“岗位”有两种：战场上的岗位是长官派的；哲学的岗位是神派的——这是他自己的理解。"
+            },
+            {
+              "zh": "阿喀琉斯的例子说明的是“怕耻辱胜过怕死”，不是“英雄不会死”。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why, according to Socrates, is fearing death a form of false wisdom?",
+            "zh": "按苏格拉底的说法，为什么怕死是一种假智慧？"
+          },
+          "options": [
+            {
+              "en": "Because death is certainly a blessing, so fearing it is a mistake.",
+              "zh": "因为死肯定是好事，所以怕死是错的。"
+            },
+            {
+              "en": "Because the gods have promised that good men will be rewarded after death.",
+              "zh": "因为神保证了好人死后会得到奖赏。"
+            },
+            {
+              "en": "Because brave soldiers never think about death.",
+              "zh": "因为勇敢的士兵从来不想死亡。"
+            },
+            {
+              "en": "Because no one knows whether death is good or bad, yet those who fear it act as if they knew it is the greatest evil.",
+              "zh": "因为没人知道死是好是坏，怕死的人却表现得好像知道死是最大的坏事。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 7 页，29a–b）。A 错：他没说死肯定是好事，那本身也会变成自以为知道；B 读物里没有这种保证：第 13–14 页他说的是对死亡有美好的希望、好人的事神不会不管（41d），不是神许诺了奖赏；C 混淆了守岗位的例子和这个论证，这个论证讲的是知识，不是勇气。",
+            "en": "D. No one knows what death is, so fearing it as the worst evil is a pretence of knowledge."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-obey-the-god-gadfly",
+      "title": {
+        "zh": "申辩篇：服从神、关心灵魂与牛虻",
+        "en": "Apology: Obeying the God, Caring for the Soul, the Gadfly"
+      },
+      "slides": "7-9",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "安尼图斯说过：要么一开始就不该把苏格拉底告上来，要么既然告了就非处死不可，否则陪审员的儿子们都会照他的教导去做、被彻底教坏（第 7 页，29c）。苏格拉底于是设想：如果你们放了我，但有个条件——不许再做这种探究、不许再搞哲学（**philosophy**：在他这里就是不断追问、审视自己和别人），被抓到就处死，那我会怎么回答（29c–d）？这叫有条件的无罪释放。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "acquit / acquittal",
+              "zh": "无罪释放",
+              "hint": "陪审团判被告无罪、放他走。"
+            },
+            {
+              "en": "soul",
+              "zh": "灵魂",
+              "hint": "人内在的自我；苏格拉底劝人关心灵魂的最好状态，胜过关心身体和钱。"
+            },
+            {
+              "en": "virtue / excellence (aretē)",
+              "zh": "美德 / 卓越",
+              "hint": "人作为人的好。第 8 页 Grube 在 virtue 后面注了希腊词 aretē；同页 30b 的 excellence，本站理解为同一个词的另一种译法。"
+            },
+            {
+              "en": "harm",
+              "zh": "伤害",
+              "hint": "苏格拉底认为死、流放、剥夺公民权都不是真正的大伤害；做不义之事对自己的伤害更大（第 8 页）。"
+            },
+            {
+              "en": "gadfly",
+              "zh": "牛虻",
+              "hint": "叮马的飞虫；苏格拉底自比神派来叮醒雅典的牛虻（第 8 页）。"
+            },
+            {
+              "en": "objection",
+              "zh": "反驳（质疑）",
+              "hint": "对一个说法或做法提出的不同意见。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：服从神，而不是服从陪审团（第 7–8 页，29b–30c）",
+            "en": "Standard form: obeying the god rather than the jury (pp. 7-8, 29b-30c)"
+          },
+          "items": [
+            {
+              "en": "P1: The god ordered Socrates to practise philosophy: to examine himself and others and to urge them to care for wisdom, truth and their souls.",
+              "zh": "P1：神命令苏格拉底搞哲学：审视自己和别人，劝人关心智慧、真理和灵魂。"
+            },
+            {
+              "en": "P2: It is wicked and shameful to disobey a superior, whether god or man (29b), and (implied) the god ranks above the jury.",
+              "zh": "P2：不服从上级（神或人）是邪恶可耻的（29b）；而且（隐含）神的地位高于陪审团。"
+            },
+            {
+              "en": "P3: An acquittal on condition that he stop philosophizing would require him to disobey the god.",
+              "zh": "P3：以“不再搞哲学”为条件的释放，要求他违背神。"
+            },
+            {
+              "en": "C: So he would refuse it. In his words, \"I will obey the god rather than you\" (p. 8, 29d), and he will keep philosophizing as long as he lives, even if he has to die many times.",
+              "zh": "C：所以他会拒绝。用他的话说：我要服从神，而不是服从你们（第 8 页，29d）；只要还活着就不停止哲学，哪怕要死很多次。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "他说自己会继续对遇到的每个雅典人这样说（29d–30a）：你是最伟大城邦的公民，却只顾拼命追求钱、名声和荣誉，不关心智慧、真理和灵魂（**soul**）的最好状态，不觉得羞耻吗？谁说自己关心，他就盘问、审视、检验他；发现对方没有自称的那种好，就责备他把最重要的事看得最轻。老少、本城人和外乡人都一样，对本城人更甚。他说这是神的命令，是城邦最大的福气。"
+        },
+        {
+          "type": "text",
+          "zh": "他把自己的劝告总结成一句（第 8 页，30b）：不是钱带来美德（**excellence**），而是美德让钱和其他一切对人成为好东西，对个人和城邦都一样。如果说这样劝人就算败坏青年，那这劝告就是有害的；但他说的就是这些，别无其他。不管陪审团信不信安尼图斯、放不放他，他都会这样做下去。"
+        },
+        {
+          "type": "analogy",
+          "zh": "钱像一把菜刀：在会做饭的人手里，它做出一桌好菜；在坏人手里，它能伤人。刀本身不决定好坏，用刀的人决定。苏格拉底的意思也是这样：先有美德（人本身好），钱和别的东西才对你真正有好处。",
+          "limit": "类比的限度：苏格拉底没有说钱是坏东西，也没说穷就是美德；他只是说，关心灵魂要放在关心身体和钱前面。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：杀我，你们受的伤害更大（第 8–9 页，30c–31c）",
+            "en": "Standard form: killing me harms you more than me (pp. 8-9, 30c-31c)"
+          },
+          "items": [
+            {
+              "en": "P1: A worse man cannot harm a better one; death, exile and the loss of civic rights are not the great harm that people think they are.",
+              "zh": "P1：坏人不能伤害比他好的人；死、流放、剥夺公民权，并不是大家以为的那种大伤害。"
+            },
+            {
+              "en": "P2: Trying to have a man executed unjustly is a great wrong, and it harms the wrongdoer far more.",
+              "zh": "P2：想不公正地处死一个人是大错，受伤害更大的是做这件事的人。"
+            },
+            {
+              "en": "P3: Socrates is the god's gift to the city, a gadfly that keeps a large but sluggish horse awake, and another like him will not easily be found.",
+              "zh": "P3：苏格拉底是神送给城邦的礼物，像牛虻一样叮醒一匹又大又懒的马；再找一个这样的人不容易。"
+            },
+            {
+              "en": "P4: Evidence that he is the god's gift: it is not human nature to neglect one's own affairs for years, without fees, to urge each citizen to care for virtue; his poverty is his witness.",
+              "zh": "P4：他是神的礼物的证据：为了劝每个人关心美德，多年不管自己的事、不收钱，这不像普通人性；他的贫穷就是证人。"
+            },
+            {
+              "en": "C: So if the jurors kill him, they harm themselves more than him, and he is making his defence for their sake, not his own.",
+              "zh": "C：所以陪审员如果杀他，伤害自己比伤害他更多；他是在为他们辩护，而不是为自己。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P1 最难懂。苏格拉底承认美勒托或安尼图斯可以杀他、流放他、剥夺他的公民权（**disfranchise**），但他不认为这些是大伤害（30c–d）。这句话怎么理解？本站的理解是：只有把伤害理解为让一个人变坏、损害他的灵魂，它才说得通：别人能夺走身体和财产，夺不走他的好；反过来，想冤杀好人的人，是在让自己变坏。这样他才说，他是在为陪审员辩护：免得他们因为判他死刑而对神送的礼物犯错（30d–e）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "牛虻的比喻（第 8 页，30e–31a）",
+            "en": "The gadfly image (p. 8, 30e-31a)"
+          },
+          "steps": [
+            {
+              "zh": "雅典像一匹又大又高贵的马，因为个子大，有点懒、反应慢。",
+              "en": "Athens is like a large, well-bred horse that is somewhat sluggish because of its size."
+            },
+            {
+              "zh": "神把苏格拉底安在这座城邦上，像一只牛虻（**gadfly**），去叮它、刺激它，让它醒着。",
+              "en": "The god attached Socrates to the city like a gadfly to stir it up."
+            },
+            {
+              "zh": "他整天到处劝说、责备每一个人。被叮的人会烦，就像打盹时被弄醒的人，会伸手一拍。",
+              "en": "He rouses, persuades and reproaches everyone all day; people get annoyed, like someone woken from a doze, and swat at him."
+            },
+            {
+              "zh": "如果你们听安尼图斯的话杀了我，就可以接着睡一辈子，除非神关心你们，再派一个人来。",
+              "en": "If they kill him, they can sleep on for the rest of their lives, unless the god cares for them and sends someone else."
+            }
+          ],
+          "answer": {
+            "zh": "牛虻让人讨厌，却对马有好处：苏格拉底让人难受的盘问，正是城邦需要的提醒。",
+            "en": "The gadfly is annoying but useful: his uncomfortable questioning is what the city needs."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "P4 的证据（31a–c）：他多年不管自己的事，像父亲或兄长一样挨个劝人关心美德（**virtue**，原文注了希腊词 aretē），却从不收钱。原告那么无耻，也找不出一个证人说他收过钱或要过钱；而他自己有一个有力的证人：他的贫穷。这也呼应第 4 页：因为为神服务，他过得非常穷。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: by saying he will obey the god rather than the jury, isn't Socrates putting himself above the law?",
+            "zh": "反驳：苏格拉底说要服从神而不是服从陪审团，这不是把自己凌驾于法律之上吗？"
+          },
+          "answer": {
+            "en": "There is a real tension. Early in the speech Socrates says he must obey the law and make his defence (19a), and later he says jurors must judge by law because of their oath (35c). But the conditional acquittal is only a hypothetical, and what he would refuse is an order to stop doing what he believes the god commands, not the authority of the court as such. He also goes through the court's procedure: he defends himself, proposes a penalty and accepts the vote in this speech.",
+            "zh": "要点：1）确实有张力：他说过必须守法、为自己辩护（19a），也说陪审员要按誓言依法审判（35c）；2）有条件释放只是假设，他拒绝的是“停止神命令的事”，不是法庭本身的权威；3）他仍走完法庭程序：辩护、提出刑罚，在这篇讲话里接受投票结果。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“坏人不能伤害好人”不是说不能杀他。他明说美勒托可以杀他、流放他（30d），意思是这些不是真正的大伤害。"
+            },
+            {
+              "zh": "牛虻比喻里，“马”是雅典城邦，“牛虻”是苏格拉底，把他安上去的是神。别把马说成陪审团或美勒托。"
+            },
+            {
+              "zh": "有条件的无罪释放只是苏格拉底的设想，陪审团并没有真这样提。"
+            },
+            {
+              "zh": "他的劝告不是“钱是坏的”，而是：钱不能带来美德，美德让钱成为好东西（30b）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the gadfly image, what does the large, sluggish horse stand for?",
+            "zh": "在牛虻比喻里，那匹又大又懒的马代表什么？"
+          },
+          "options": [
+            {
+              "en": "The jury of 501",
+              "zh": "501 人的陪审团"
+            },
+            {
+              "en": "The city of Athens",
+              "zh": "雅典城邦"
+            },
+            {
+              "en": "Meletus and the other accusers",
+              "zh": "美勒托和其他原告"
+            },
+            {
+              "en": "Socrates' own soul",
+              "zh": "苏格拉底自己的灵魂"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 8 页，30e）：神把苏格拉底安在城邦上，像牛虻叮一匹大而懒的马。A、C 都只是城邦里的一部分人；D 把比喻弄反了，苏格拉底是牛虻，不是马。",
+            "en": "B. The god attached Socrates to the city as a gadfly to a large, sluggish horse."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-divine-sign-private-life",
+      "title": {
+        "zh": "申辩篇：神圣征兆与远离政治",
+        "en": "Apology: The Divine Sign and the Private Life"
+      },
+      "slides": "9-10",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "有人会觉得奇怪：苏格拉底私下到处劝人、管别人的事，为什么不去公民大会（**assembly**：雅典的最高决策机构，所有成年男性公民都能参加、投票，见 Euthyphro 文件第 2 页脚注 5）给城邦出主意（第 9 页，31c）？这一节讲他的回答：神圣征兆不让他从政，而且一个真正为正义而战的人在政坛活不长。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "divine sign",
+              "zh": "神圣征兆",
+              "hint": "苏格拉底从小就有的一个声音，只阻止他做某事，从不催他去做。"
+            },
+            {
+              "en": "public life / private life",
+              "zh": "公共生活 / 私人生活",
+              "hint": "担任公职、在大会上发言 / 以普通公民身份过日子。"
+            },
+            {
+              "en": "democracy / oligarchy",
+              "zh": "民主制 / 寡头制",
+              "hint": "由全体公民投票做主 / 由少数人掌权。"
+            },
+            {
+              "en": "the Thirty",
+              "zh": "三十人（三十僭主）",
+              "hint": "雅典战败后掌权约九个月的严苛寡头政府（脚注 4，公元前 404–403 年）。"
+            },
+            {
+              "en": "witness",
+              "zh": "证人",
+              "hint": "在法庭上为某件事作证的人。"
+            },
+            {
+              "en": "argument from silence",
+              "zh": "从“没人出来”推论",
+              "hint": "因为本该出现的证据（控诉的人）没有出现，就推出事情没发生。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "神圣征兆（**divine sign**）是什么（第 9 页，31c–d）？苏格拉底说，他有一个神圣的或属于精灵的征兆，美勒托在起诉书里还拿它取笑。它从他小时候就开始，是一个声音；每次出现，都是让他别做正要做的事，从不鼓励他去做什么。正是它阻止了他从政，而他认为阻止得对。Euthyphro 译本的脚注 4 也说：在柏拉图笔下，这个征兆总是阻止，从不正面指示；当时一般人以为它能预言未来。"
+        },
+        {
+          "type": "analogy",
+          "zh": "神圣征兆像一辆只有刹车、没有油门的车：它会在你要开错路时一脚踩停你，却从不推你往哪里开。苏格拉底到处盘问别人，不是征兆推他去的；征兆做的只是拦，比如在他想从政时把他拦住（第 13 页他还说，它平时连小事也常拦他）。",
+          "limit": "类比的限度：刹车是机器，征兆在苏格拉底看来来自神；而且后面（第 13 页）他还会从征兆“没有踩刹车”推出自己做得对，这一点车的类比说明不了。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：为什么正直的人要远离政治（第 9 页，31c–32e）",
+            "en": "Standard form: why a just man stays out of politics (p. 9, 31c-32e)"
+          },
+          "items": [
+            {
+              "en": "P1: Socrates' divine sign, a voice that only turns him away from things, opposed his going into politics.",
+              "zh": "P1：苏格拉底的神圣征兆（一个只会阻止他的声音）反对他从政。"
+            },
+            {
+              "en": "P2: No one survives who honestly opposes the crowd and tries to stop many unjust and illegal things from happening in the city.",
+              "zh": "P2：真心反对群众、想阻止城邦里许多不公不法之事的人，都活不下去。"
+            },
+            {
+              "en": "P3: Socrates' deeds show that he would oppose injustice whatever the danger: he opposed the illegal trial of the generals under the democracy and refused the Thirty's order to arrest Leon under the oligarchy.",
+              "zh": "P3：他的行动表明，无论多危险他都会反对不义：民主制下他反对非法审判将军们，寡头制下他拒绝三十人逮捕勒翁的命令。"
+            },
+            {
+              "en": "C: So if he had gone into politics he would have died long ago and done no good; a person who really fights for justice must live a private life to survive even for a short time, and the sign was right to stop him.",
+              "zh": "C：所以他要是从政，早就死了，对谁都没好处；真正为正义而战的人，想活得哪怕久一点，就得过私人生活。征兆阻止得对。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "行动证据一：审判十位将军（第 9 页，32a–c；脚注 3）",
+            "en": "Evidence in deeds 1: the trial of the generals (p. 9, 32a-c; footnote 3)"
+          },
+          "steps": [
+            {
+              "zh": "除了当过议事会（**Council**）成员，苏格拉底在城邦里没有担任过别的公职。那时正轮到他所在的部落 Antiochis 主持会议。",
+              "en": "His only office was a seat on the Council, at a time when his tribe, Antiochis, was presiding."
+            },
+            {
+              "zh": "公民大会想把十位将军放在一起集体审判，罪名是海战后没有救起幸存者。脚注 3 说：这是公元前 406 年的阿吉纽西（**Arginusae**）海战，雅典在这场战争中的最后一次胜利；一场大风暴让他们没法救人。",
+              "en": "The Assembly wanted to try the ten generals together for failing to rescue survivors after a naval battle, the battle of Arginusae in 406 BC (footnote 3)."
+            },
+            {
+              "zh": "这样集体审判是违法的，后来大家也都承认。主持委员会里只有苏格拉底一个人反对，投了反对票。",
+              "en": "Trying them as a body was illegal, as everyone later agreed; Socrates alone on the presiding committee opposed it and voted against it."
+            },
+            {
+              "zh": "演说家们准备告他、把他抓走，群众在喊叫助威；他宁可站在法律和正义一边冒险，也不因为怕坐牢、怕死而跟着做不义的事。",
+              "en": "The orators threatened to prosecute him and the crowd shouted, but he chose to risk everything on the side of law and justice."
+            }
+          ],
+          "answer": {
+            "zh": "这件事发生在民主制下：多数人的意愿也可能不义，他照样反对。",
+            "en": "Under the democracy, he resisted an unjust majority."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "行动证据二：萨拉米斯的勒翁（第 9 页，32c–d；脚注 4）",
+            "en": "Evidence in deeds 2: Leon of Salamis (p. 9, 32c-d; footnote 4)"
+          },
+          "steps": [
+            {
+              "zh": "雅典战败后建立了寡头政府“三十人”（**the Thirty**，脚注 4：公元前 404 年建立，统治约九个月）。",
+              "en": "After Athens' final defeat, the oligarchy of the Thirty ruled for about nine months in 404-3 BC (footnote 4)."
+            },
+            {
+              "zh": "三十人把苏格拉底和另外四个人叫到议事厅（**the Hall**），命令他们去萨拉米斯把勒翁（**Leon**）抓来处死。他们这样给很多人下令，是想让尽量多的人沾上罪责。",
+              "en": "The Thirty ordered him and four others to bring Leon from Salamis to be executed; they gave such orders to many people to implicate as many as possible."
+            },
+            {
+              "zh": "另外四个人去了，苏格拉底直接回家了。要不是这个政府不久就垮台，他可能已经因此被处死。",
+              "en": "The other four went; Socrates went home. He might have been killed if the government had not fallen soon after."
+            },
+            {
+              "zh": "他说，这证明他一点也不在乎死，他全部在乎的是不做不义或不敬神的事；很多人可以为此作证。",
+              "en": "He says this shows that he cares nothing for death, only about not doing anything unjust or impious."
+            }
+          ],
+          "answer": {
+            "zh": "这件事发生在寡头制下：不管谁掌权，他都拒绝参与不义。",
+            "en": "Under the oligarchy too, he refused to take part in injustice."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "接着他说（32e–33c）：他在公事和私事上都是同一个人，从没和任何人约好去做不义的事，包括那些被诬说是他学生的人。他从来不是任何人的老师，没答应教过谁；谁想听他谈话他都不拒绝，也不是收钱才谈，对穷人富人一样提问。所以听众后来做好事坏事，不能算在他头上；谁说私下跟他学过别人没听过的东西，就是在说谎。年轻人为什么爱跟着他？因为看自以为有智慧的人被问倒很有意思。他说这件事是神通过神谕、梦和各种方式命令他做的。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：没人出来指控他（第 10 页，33c–34b）",
+            "en": "Standard form: the missing witnesses (p. 10, 33c-34b)"
+          },
+          "items": [
+            {
+              "en": "P1: If Socrates had corrupted young men, some of them, now older, would come forward to accuse him, or their fathers, brothers and other relatives would.",
+              "zh": "P1：如果他败坏过年轻人，这些人长大后会出来控诉他，或者他们的父亲、兄弟等亲属会出来。"
+            },
+            {
+              "en": "P2: Many such people are in court, for example Crito, the father of Critobulus, and Adeimantus, the brother of Plato, yet Meletus called none of them as witnesses.",
+              "zh": "P2：这样的人很多都在法庭上，比如克里托布洛斯的父亲克里同（**Crito**）、柏拉图的兄弟阿德曼图斯（**Adeimantus**），美勒托却一个也没传来作证。"
+            },
+            {
+              "en": "P3: Instead, they are all ready to help Socrates.",
+              "zh": "P3：相反，他们都准备帮苏格拉底。"
+            },
+            {
+              "en": "P4: The older relatives, who were not corrupted themselves, have no reason to help him except that they know Meletus is lying.",
+              "zh": "P4：那些自己没被败坏的年长亲属，帮他的理由只可能是：他们知道美勒托在说谎。"
+            },
+            {
+              "en": "C: So the charge of corrupting the young is false.",
+              "zh": "C：所以“败坏青年”的指控是假的。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：苏格拉底的神圣征兆，后人常用希腊词 **daimonion** 来称呼，这个词不在 Grube 的译文里（译文写 divine or spiritual sign）。考试可以用这个名称，但要和德尔斐神谕分开：神谕是凯勒丰去神庙问到的一次回答，征兆是苏格拉底一辈子不时听到、只会阻止他的声音。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "How strong is Socrates' argument from the missing witnesses?",
+            "zh": "苏格拉底“没人出来指控他”这个论证有多强？"
+          },
+          "answer": {
+            "en": "It makes a reasonable point: if he had harmed so many young men, one would expect some victims or their families to accuse him, and Meletus called none. But it is an argument from silence. Relatives may stay loyal to Socrates, may not see his influence as corruption, or may simply not want to get involved. So it weakens Meletus' case without proving that Socrates is innocent.",
+            "zh": "要点：1）有道理：真败坏了那么多人，应该有受害者或家属出来，美勒托却一个证人也没带；2）但这是从“没人出来”推论；3）亲属可能出于忠诚、不认为那是败坏，或不想卷进来；4）它削弱了指控，但不能完全证明他无罪。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "神圣征兆只会阻止，从不命令或鼓励。说它命令苏格拉底去盘问别人是错的：那是他对神谕的理解（第 4 页）以及他说的神谕、梦等其他方式（33c）。"
+            },
+            {
+              "zh": "苏格拉底不是不关心城邦：他私下劝每一个人，正是在为城邦服务；他避开的是担任公职、在大会上从政。"
+            },
+            {
+              "zh": "两件行动证据要对上政体：阿吉纽西将军案在民主制下，勒翁案在三十人的寡头制下。"
+            },
+            {
+              "zh": "他说自己从来不是任何人的老师，所以不对听众的好坏负责（33a–b）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does Socrates' divine sign do, according to the Apology?",
+            "zh": "按《申辩篇》，苏格拉底的神圣征兆有什么作用？"
+          },
+          "options": [
+            {
+              "en": "It tells him what the future holds.",
+              "zh": "告诉他将来会发生什么。"
+            },
+            {
+              "en": "It orders him to question people who seem wise.",
+              "zh": "命令他去盘问看起来有智慧的人。"
+            },
+            {
+              "en": "It only turns him away from something he is about to do; it never urges him on.",
+              "zh": "只在他要做某事时阻止他，从不鼓励他去做。"
+            },
+            {
+              "en": "It is the answer the Pythian gave to Chairephon.",
+              "zh": "就是皮提亚给凯勒丰的那个回答。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 9 页，31d；也见 Euthyphro 脚注 4）。A 是当时一般人的看法（Euthyphro 脚注 4），不是苏格拉底的说法；B 混淆了征兆和他对神谕的理解；D 把征兆和德尔斐神谕混为一谈。",
+            "en": "C. The sign only holds him back."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which pair of events does Socrates give as proof, in deeds, that he would resist injustice under any government?",
+            "zh": "苏格拉底用哪两件事证明他在任何政府下都会反对不义？"
+          },
+          "options": [
+            {
+              "en": "His military service at Potidaea and his refusal to beg the jury",
+              "zh": "在波提狄亚服役，以及拒绝向陪审团求情"
+            },
+            {
+              "en": "Opposing the illegal group trial of the generals, and refusing the Thirty's order to arrest Leon of Salamis",
+              "zh": "反对非法集体审判将军们，以及拒绝三十人让他逮捕萨拉米斯的勒翁的命令"
+            },
+            {
+              "en": "Questioning the politicians, and visiting the oracle at Delphi",
+              "zh": "盘问政治家，以及去德尔斐求神谕"
+            },
+            {
+              "en": "Refusing to pay a fine, and refusing to go into exile",
+              "zh": "拒绝交罚款，以及拒绝流放"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 9 页，32b–d）：一件在民主制下，一件在寡头制下。A 的服役例子用在第 7 页守岗位的论证里；C 里去德尔斐的是凯勒丰，不是苏格拉底；D 属于判决后的反提刑罚部分，而且他最后提了罚款（第 12 页）。",
+            "en": "B. One under the democracy, one under the oligarchy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-pity-penalty-unexamined-life",
+      "title": {
+        "zh": "申辩篇：拒绝乞怜、反提刑罚与未经审视的人生",
+        "en": "Apology: No Pity, the Counter-Penalty, the Unexamined Life"
+      },
+      "slides": "10-12",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "主体辩护的最后一段（第 10–11 页，34b–35d）：他料到有陪审员会不高兴——那人自己受审时哭着求情，还把孩子、亲友带上法庭博同情，苏格拉底面临死刑却什么都不做。他说，他也有家，有三个儿子，一个十几岁，两个还小；用荷马的话说，他不是从橡树或石头里生出来的。但他不会把孩子带来求陪审团放过他。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "appeal to pity",
+              "zh": "乞怜（博同情）",
+              "hint": "哭着求法官、陪审员可怜你，让他们不按事实和法律判。"
+            },
+            {
+              "en": "oath",
+              "zh": "誓言",
+              "hint": "陪审员发过誓要依法审判。"
+            },
+            {
+              "en": "verdict",
+              "zh": "裁决",
+              "hint": "第一次投票：有罪还是无罪。"
+            },
+            {
+              "en": "counter-assessment",
+              "zh": "反提刑罚",
+              "hint": "定罪后被告自己提出的刑罚；陪审团在原告提的和被告提的之间二选一。"
+            },
+            {
+              "en": "Prytaneum",
+              "zh": "市政厅（普律塔内安）",
+              "hint": "雅典的执政官大厅；奥运冠军在那里享受免费用餐（第 11 页脚注 5）。"
+            },
+            {
+              "en": "mina",
+              "zh": "明那",
+              "hint": "一种银钱单位；苏格拉底先提一明那，后来提三十明那。"
+            },
+            {
+              "en": "irony",
+              "zh": "反讽",
+              "hint": "说的和真正的意思不一样，比如装谦虚；他说陪审员会以为他在反讽（38a）。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：为什么拒绝乞怜（第 10–11 页，34b–35d）",
+            "en": "Standard form: why he will not beg for pity (pp. 10-11, 34b-35d)"
+          },
+          "items": [
+            {
+              "en": "P1: Begging with tears and bringing one's children to court brings shame on the city, especially when men with a reputation for virtue do it.",
+              "zh": "P1：哭着求情、把孩子带上法庭，会让城邦蒙羞，尤其是被认为有美德的人这样做。"
+            },
+            {
+              "en": "P2: A juror's job is not to give justice as a favour but to judge according to law, as he has sworn to do.",
+              "zh": "P2：陪审员的职责不是把正义当人情送人，而是按誓言依法审判。"
+            },
+            {
+              "en": "P3: Getting jurors to break their oath by begging would amount to teaching them that there are no gods.",
+              "zh": "P3：求陪审员违背誓言，就等于教他们不信神。"
+            },
+            {
+              "en": "C: So Socrates will try to inform and persuade the jury, not beg; if he begged, his own defence would prove the impiety charge against him.",
+              "zh": "C：所以苏格拉底只讲道理、说服，不求情；要是求情，他的辩护反而坐实了不敬神的指控。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这里有个漂亮的反转：他正因为不敬神（**impiety**：对神不恭敬、不虔敬）受审，而乞怜恰恰是不敬神——让陪审员违背对神发的誓。所以他说，他信神，比任何一个原告都信（35d）；他把判决交给陪审员和神。注意他也说，拒绝乞怜不是出于傲慢，也不是不尊重陪审员（34d），而是为了自己、陪审员和整个城邦的名誉。"
+        },
+        {
+          "type": "text",
+          "zh": "这时陪审团投票判他有罪，美勒托提出死刑。苏格拉底说他不生气，判决也不意外；让他意外的是票数这么接近：只要有三十票改投，他就会被判无罪（第 11 页，36a）。他还说，要不是安尼图斯和吕孔加入，美勒托连五分之一的票都拿不到，还得被罚一千德拉克马。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：我应得的是在市政厅免费用餐（第 11 页，36b–37a）",
+            "en": "Standard form: what he deserves is free meals in the Prytaneum (p. 11, 36b-37a)"
+          },
+          "items": [
+            {
+              "en": "P1: A penalty should be what one deserves.",
+              "zh": "P1：刑罚应该是一个人应得的。"
+            },
+            {
+              "en": "P2: Socrates neglected wealth, household affairs and public offices to give each citizen privately the greatest benefit: urging him to care first for being as good and as wise as possible.",
+              "zh": "P2：苏格拉底不顾钱财、家务和公职，私下给每个公民最大的好处：劝他首先关心让自己尽可能好、尽可能智慧。"
+            },
+            {
+              "en": "P3: Such a poor benefactor, who needs leisure to keep exhorting the citizens, deserves something good.",
+              "zh": "P3：这样一个需要闲暇来继续劝人的穷恩人，应得的是好东西。"
+            },
+            {
+              "en": "P4: Free meals in the Prytaneum suit him better than an Olympic victor, because the victor only makes people think they are happy while Socrates makes them happy, and the victor does not need the food but Socrates does.",
+              "zh": "P4：在市政厅免费用餐，给他比给奥运冠军更合适：冠军只让你们以为自己幸福，他让你们真的幸福；冠军不缺饭吃，他缺。"
+            },
+            {
+              "en": "C: So the penalty he proposes is free meals in the Prytaneum.",
+              "zh": "C：所以他提出的“刑罚”是在市政厅免费用餐。"
+            }
+          ]
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "判决阶段的顺序（第 11–12 页）",
+            "en": "The order of the penalty phase (pp. 11-12)"
+          },
+          "items": [
+            {
+              "en": "First vote: guilty, but if only thirty votes had gone the other way he would have been acquitted",
+              "zh": "第一次投票：有罪；只要三十票改投就会无罪（36a）"
+            },
+            {
+              "en": "Meletus proposes death",
+              "zh": "美勒托提出死刑"
+            },
+            {
+              "en": "Socrates first says he deserves free meals in the Prytaneum",
+              "zh": "苏格拉底先说自己应得市政厅免费用餐（36d–e）"
+            },
+            {
+              "en": "He rejects prison, a fine he cannot pay, exile and silence",
+              "zh": "他拒绝坐牢、交不起的罚款、流放和闭嘴（37b–38a）"
+            },
+            {
+              "en": "He offers one mina, then thirty minae guaranteed by Plato, Crito, Critobulus and Apollodorus",
+              "zh": "他提一明那，后来提三十明那，由柏拉图、克里同、克里托布洛斯、阿波罗多洛斯担保（38b）"
+            },
+            {
+              "en": "Second vote: death",
+              "zh": "第二次投票：死刑"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：为什么不选坐牢、流放或闭嘴（第 12 页，37b–38a）",
+            "en": "Standard form: why not prison, exile or silence (p. 12, 37b-38a)"
+          },
+          "items": [
+            {
+              "en": "P1: Socrates does not know whether death is good or bad.",
+              "zh": "P1：苏格拉底不知道死是好是坏。"
+            },
+            {
+              "en": "P2: Prison, a fine he cannot pay (which would mean prison until he paid) and exile are things he knows to be bad; in exile, other cities would drive him out just as Athens wants to.",
+              "zh": "P2：坐牢、交不起的罚款（等于一直坐牢到付清）、流放，都是他明知是坏的事；流放到别的城邦，那里的人也会像雅典人一样赶他走。"
+            },
+            {
+              "en": "P3: One should never choose something one knows is bad to avoid something that may be good (29b).",
+              "zh": "P3：不能为了躲开可能是好事的东西，去选明知是坏的事（29b）。"
+            },
+            {
+              "en": "P4: He cannot live quietly, because that would disobey the god, and because discussing virtue every day is the greatest good for a human being: \"the unexamined life is not worth living for man\" (p. 12, 38a).",
+              "zh": "P4：他也不能闭嘴过日子：那是违背神；而且每天讨论美德是人最大的好事，因为未经审视的人生不值得过（第 12 页，38a）。"
+            },
+            {
+              "en": "C: So he proposes none of these; he offers only a fine that he can pay.",
+              "zh": "C：所以这些他都不提，只提一笔他付得起的罚款。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P4 里这句话很有名，但要记住它出现在判决阶段：有人问，你出国以后安安静静、不说话过日子，不行吗？他说这是最难让陪审员相信的一点：说要服从神，他们会以为他在反讽（**irony**）；说每天讨论美德（**virtue**：人作为人的好）、审视自己和别人是人最大的好事，他们更不信。审视（**examine**），就是不断追问自己和别人：什么是好、怎样活才对、自己的信念站不站得住。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像开车全程跟着导航走，从不看地图，也不问为什么走这条路：能到地方，可你不知道自己要去哪儿、为什么去。苏格拉底说，人生不能这样“自动驾驶”：要停下来问自己在追求什么，那值不值得追求。",
+          "limit": "类比的限度：导航至少有人设计过路线；苏格拉底担心的是，人们追求钱、名声、荣誉（第 8 页），却从没问过这些是不是最重要的。另外，“不值得过”说得很重，下面的讨论会看它是不是太苛刻。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is Socrates right that 'the unexamined life is not worth living for man' (p. 12, 38a)?",
+            "zh": "苏格拉底说“未经审视的人生不值得过”（第 12 页，38a），对吗？"
+          },
+          "answer": {
+            "en": "Socrates makes this claim while explaining why he cannot accept silence as a penalty: for him, examining himself and others about virtue every day is the greatest human good (38a). A critic can say it is too harsh, since a kind and honest person without leisure for philosophy still seems to live a worthwhile life. A defender can reply that examining does not have to mean professional philosophy; it means asking whether one's own values are right, which anyone can do. Read this way, the claim is a strong call to reflect, not a judgment on people without education.",
+            "zh": "要点：1）语境：他在解释为什么不能接受“闭嘴”这个刑罚（38a）；2）批评：太苛刻，善良诚实却没空搞哲学的人，人生似乎也有价值；3）辩护：审视不必是职业哲学，而是问自己的价值观对不对，人人都能做；4）这样理解，这句话是号召反思，不是看不起没受过教育的人。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“未经审视的人生不值得过”出自定罪之后的反提刑罚部分（38a），是他解释为什么不肯闭嘴的理由，不是开场白。"
+            },
+            {
+              "zh": "他不是拒绝一切刑罚：他先说自己应得免费用餐，后来提了一明那、再提三十明那的罚款（38b）。"
+            },
+            {
+              "zh": "第一次投票很接近：只要三十票改投就无罪（36a）。第二次投票的票数读物没有给。"
+            },
+            {
+              "zh": "柏拉图本人就在法庭上，还为罚款担保（38b）；Grube 的导言也提到这一点（Euthyphro 文件第 11 页）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Socrates refuse to bring his children to court to beg for pity?",
+            "zh": "苏格拉底为什么拒绝把孩子带上法庭求情？"
+          },
+          "options": [
+            {
+              "en": "Because he has no family.",
+              "zh": "因为他没有家人。"
+            },
+            {
+              "en": "Because his divine sign forbade it.",
+              "zh": "因为神圣征兆禁止他这样做。"
+            },
+            {
+              "en": "Because he is certain the jury will acquit him anyway.",
+              "zh": "因为他确定陪审团反正会判他无罪。"
+            },
+            {
+              "en": "Because it would shame the city and ask jurors to break their oath to judge by law, which would be impious.",
+              "zh": "因为这会让城邦蒙羞，而且是让陪审员违背依法审判的誓言，这是不敬神的。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 10–11 页，34b–35d）。A 错：他说自己有三个儿子；B 读物没这样说，征兆出现在第 9 页和第 13 页的别的事情上；C 错：他承认自己冒着最大的危险，后来也确实被判有罪。",
+            "en": "D. Begging would shame the city and make jurors break their oath."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-after-the-sentence",
+      "title": {
+        "zh": "申辩篇：判决之后：死亡未必是坏事",
+        "en": "Apology: After the Sentence: Death May Be No Evil"
+      },
+      "slides": "12-14",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二次投票判了死刑。苏格拉底先对投票判他死的人说（第 12 页，38c–39a）：为了这么短的时间，你们会在想诋毁雅典的人眼里，背上杀死“有智慧的人”苏格拉底的名声和罪责（他们会说他有智慧，哪怕他其实没有）；其实再等一等，我这么老也会死。我被定罪不是因为缺少话说，而是缺少厚脸皮：不肯哭哭啼啼、说你们最爱听的话。我宁可这样辩护后去死，也不愿那样辩护后活着；打仗时扔掉武器、向追兵求饶也能活命，可人不该不惜一切代价逃避死亡。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "wickedness",
+              "zh": "邪恶（为恶）",
+              "hint": "做坏事、变成坏人；苏格拉底说它比死亡跑得更快。"
+            },
+            {
+              "en": "prophesy",
+              "zh": "预言",
+              "hint": "说出将来会发生的事；他说人临死时最会预言（39c）。"
+            },
+            {
+              "en": "perception",
+              "zh": "感知",
+              "hint": "看到、听到、感觉到东西；死如果是什么都感知不到，就像无梦的睡眠。"
+            },
+            {
+              "en": "relocation of the soul",
+              "zh": "灵魂迁居",
+              "hint": "死后灵魂（**soul**，人内在的自我）从这里搬到另一个地方（冥界 **Hades**）。"
+            },
+            {
+              "en": "good hope",
+              "zh": "美好的希望",
+              "hint": "有理由期待，但不等于知道；他对死亡只说有美好的希望。"
+            },
+            {
+              "en": "dichotomy",
+              "zh": "二分（只有两种可能）",
+              "hint": "把情况分成两种；如果漏掉了别的可能，就叫假二分。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "慢的追赶者和快的追赶者（第 12–13 页，39a–b）",
+            "en": "The slow and the fast pursuer (pp. 12-13, 39a-b)"
+          },
+          "steps": [
+            {
+              "zh": "躲开死亡不难，躲开邪恶（**wickedness**）难得多，因为邪恶跑得比死亡快。",
+              "en": "Escaping death is not hard; escaping wickedness is much harder, because it is the faster runner."
+            },
+            {
+              "zh": "苏格拉底又老又慢，被慢的那个追上了：死亡。",
+              "en": "Old and slow, Socrates has been caught by the slower pursuer, death."
+            },
+            {
+              "zh": "原告们又聪明又敏捷，被快的那个追上了：邪恶。",
+              "en": "His clever and quick accusers have been caught by the faster one, wickedness."
+            },
+            {
+              "zh": "所以他被陪审员判了死刑，原告们被真理判了邪恶和不义；各自接受各自的判决。",
+              "en": "He is sentenced to death by the jury, while truth sentences his accusers to wickedness and injustice."
+            }
+          ],
+          "answer": {
+            "zh": "真正可怕的不是死，而是变成坏人（本站的理解：这和第 8 页“坏人不能伤害好人”是同一个思想）。",
+            "en": "The real danger is becoming wicked, not dying."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "他还向判他死的人预言（39c–d）：你们杀我，是想不用再交代自己怎么活；结果正相反，会有更多人来检验你们——是我以前拦着他们，他们更年轻，你们会更恼火。靠杀人堵不住别人的责备；最好也最容易的办法，不是去诋毁别人，而是让自己尽可能变好。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：死亡未必是坏事（第 13–14 页，40a–41d）",
+            "en": "Standard form: death may be no evil (pp. 13-14, 40a-41d)"
+          },
+          "items": [
+            {
+              "en": "P1: Socrates' divine sign used to oppose him often, even in small matters, whenever he was about to do something wrong.",
+              "zh": "P1：苏格拉底的神圣征兆以前常常阻止他，哪怕是小事，只要他要做错事。"
+            },
+            {
+              "en": "P2: On the day of his trial it never opposed him, though he was facing what most people think is the worst of evils.",
+              "zh": "P2：受审这一天，它一次也没有阻止他，尽管他面对的是大多数人眼里最大的坏事。"
+            },
+            {
+              "en": "C1: So what has happened to him is probably good, and those who think death is an evil are mistaken.",
+              "zh": "C1：所以发生在他身上的事很可能是好事，认为死是坏事的人错了。"
+            },
+            {
+              "en": "P3: Death is one of two things: the dead are nothing and perceive nothing, like a dreamless sleep, or the soul moves from here to another place.",
+              "zh": "P3：死只有两种可能：死者什么都不是、什么都感知不到，像无梦的睡眠；或者灵魂从这里搬到另一个地方。"
+            },
+            {
+              "en": "P4: If death is a dreamless sleep, it is a gain, since such a night is better than almost all of one's days and nights, and all eternity would seem like a single night.",
+              "zh": "P4：如果死是无梦的睡眠，那是好事：这样的一夜胜过一生中几乎所有的日夜，永恒也只像一夜。"
+            },
+            {
+              "en": "P5: If death is a move to another place, it is a great blessing: one meets true judges, great poets and heroes, and can go on examining people without being put to death for it.",
+              "zh": "P5：如果死是迁居，那是大福气：能见到真正的法官、伟大的诗人和英雄，还能继续审视别人，而不会因此被处死。"
+            },
+            {
+              "en": "C2: So one may have good hope that death is a blessing.",
+              "zh": "C2：所以有美好的希望：死是一件好事。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这段话是对投票放他的人说的，他说只有他们配叫真正的法官（**judges**，40a）。P1–P2 用的是神圣征兆的沉默：这一天他早上出门、走进法庭、讲话的每一刻，它都没出来阻止（40a–c）。既然它总在他要做错事时出现，这次不出现，就说明他做的是对的，发生的事也可能是好事；他甚至称之为有力的证明。注意：这个推论要先接受“征兆不会漏掉任何一件错事”。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "两种可能，两种都不坏（第 13–14 页，40c–41c）",
+            "en": "Two possibilities, and neither is bad (pp. 13-14, 40c-41c)"
+          },
+          "steps": [
+            {
+              "zh": "可能一：死后什么都感知不到。想想你睡得最沉、一个梦都没做的那一夜，拿它和一生中其他日日夜夜比：比它更好的日夜很容易数出来，普通人如此，连大王（**the great king**）也如此。",
+              "en": "Option 1: no perception at all, like a night of deep sleep without dreams; even the great king would find few days and nights better than such a night."
+            },
+            {
+              "zh": "所以如果死是这样，永恒也不过像一夜，那是好事。",
+              "en": "Then all eternity would seem like a single night, which is a gain."
+            },
+            {
+              "zh": "可能二：照传说的那样，灵魂搬到另一个地方（冥界）。那里有真正的法官 Minos、Radamanthus、Aeacus、Triptolemus，还有诗人 Orpheus、Musaeus、Hesiod、Homer。",
+              "en": "Option 2: as we are told, the soul moves to another place, where there are true judges and poets such as Orpheus, Hesiod and Homer."
+            },
+            {
+              "zh": "还能见到被不公正判决害死的古人，如 Palamedes 和 Telamon 的儿子 Ajax，和他们比比各自的遭遇。",
+              "en": "He could meet men of old who died through unjust verdicts, such as Palamedes and Ajax, and compare experiences."
+            },
+            {
+              "zh": "最好的是：他能在那里继续检验和审视人，看谁真有智慧、谁只是自以为有；那里的人不会因此处死他（41b–c）。",
+              "en": "Best of all, he could go on examining people there, and they would not kill him for it."
+            }
+          ],
+          "answer": {
+            "zh": "两种可能都不是坏事，所以对死亡可以抱有美好的希望。",
+            "en": "Either way death is no evil, so there is good hope."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "最后他说（41c–42a）：你们也要对死抱美好的希望，记住一个道理：好人无论活着还是死后，都不会受到伤害，神也不会不管他的事。他不生原告的气，但他们本意是要害他，这一点该受责备。他还向判他有罪的人和原告提出一个请求：等他的儿子长大，如果他们把钱或别的东西看得比美德重，或者没什么本事却自以为了不起，就像他让你们难受那样，也去让他们难受、责备他们。最后一句：我去死，你们去活，谁的去处更好，除了神谁也不知道。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像考完试后估分：你觉得自己答得不错，有理由抱希望；但成绩出来之前，你并不知道自己考了多少。苏格拉底对死亡就是这个态度：他给出理由抱美好的希望，却从不说自己知道。",
+          "limit": "类比的限度：成绩总会公布；而死后到底怎样，按苏格拉底最后一句话，只有神知道（42a），活人没有办法“查分”。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Assess Socrates' argument that death is not an evil. Is it consistent with his earlier claim that no one knows whether death is good or bad?",
+            "zh": "评价苏格拉底“死亡不是坏事”的论证。它和他前面说的“没人知道死是好是坏”一致吗？"
+          },
+          "answer": {
+            "en": "The argument is open to objections: the two options may not be exhaustive, since the dead might suffer in a bad afterlife, and the second option rests on traditional stories. Dreamless sleep may also seem good only because we wake up refreshed, which the dead never do. On consistency, Socrates is mostly careful: the two-options argument ends only in good hope, and his last words leave the answer to the god (42a). One remark goes further, since from the sign's silence he says that those who think death an evil are certainly mistaken (40b-c), which sounds like a claim to knowledge. So the speech is largely, though not perfectly, consistent with his claim at 29a that no one knows whether death is good or bad.",
+            "zh": "要点：1）可能是假二分：也许有痛苦的来世；第二种可能靠的是传说；2）无梦的睡眠显得好，也许只因为我们醒来后精神好，死者却不会醒；3）一致性：两种可能的论证只得出“有美好的希望”，最后一句还把答案留给神（42a）；4）但有一句走得更远：他从征兆的沉默推出，认为死是坏事的人肯定错了（40b–c），听起来像是声称知道；5）所以整体上大体和 29a 一致，但不是完全一致。"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "考试提示：写死亡论证时，要写清楚他的结论主要是 good hope（美好的希望），不是 knowledge（知识）。苏格拉底在第 7 页说没人知道死是好是坏；第 13 页他虽然从征兆的沉默推出“认为死是坏事的人肯定错了”，但两种可能的论证只得出有美好的希望，最后一句还把答案留给神。把他写成“证明了死是好事”就错了。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "神圣征兆在这里靠“不出现”起作用：它没阻止他，他才推出这件事可能是好的。征兆本身仍然只会阻止。"
+            },
+            {
+              "zh": "两种可能是：①什么都感知不到（像无梦的睡眠）；②灵魂迁居到另一个地方。不是“天堂和地狱”。"
+            },
+            {
+              "zh": "预言是对判他死刑的人说的；征兆的沉默和两种可能是对投票放他的人说的。"
+            },
+            {
+              "zh": "“邪恶跑得比死亡快”说的是原告被邪恶追上了，苏格拉底被死亡追上了，别弄反。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What are the two possibilities Socrates considers for what death is?",
+            "zh": "苏格拉底考虑的死亡的两种可能是什么？"
+          },
+          "options": [
+            {
+              "en": "Heaven for good people and punishment for bad people",
+              "zh": "好人上天堂，坏人受惩罚"
+            },
+            {
+              "en": "A complete lack of perception like dreamless sleep, or a relocation of the soul to another place",
+              "zh": "像无梦的睡眠那样什么都感知不到，或者灵魂迁居到另一个地方"
+            },
+            {
+              "en": "Rebirth as another person, or rebirth as an animal",
+              "zh": "转世成另一个人，或者转世成动物"
+            },
+            {
+              "en": "Eternal sleep, or a return to life after the trial",
+              "zh": "永远沉睡，或者审判后复活"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 13 页，40c）。A 是很多人熟悉的说法，但苏格拉底的第二种可能只说灵魂去了另一个地方，那里有真正的法官、诗人、英雄；C、D 读物里都没有。",
+            "en": "B. Dreamless sleep or a move of the soul to another place."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-euthyphro-case-one-form",
+      "title": {
+        "zh": "游叙弗伦篇：游叙弗伦的案子与那一个型",
+        "en": "Euthyphro: Euthyphro's Case and the Demand for One Form"
+      },
+      "slides": "1-5",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二篇读物是柏拉图的 **Euthyphro**（《游叙弗伦篇》），也是 Grube 译本。文件第 1 页是 Grube 的导言结尾和他对这一篇的说明：整篇都在找虔敬（**piety**）的定义（**definition**：一句话说清一个东西到底是什么），是苏格拉底寻找伦理概念普遍定义的典型例子；和往常一样，最后没有找到让苏格拉底满意的定义。他还点出三处重要段落：一个型（5d）、神爱虔敬的东西是因为它虔敬（10d）、属和种的区别（11e–12d）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "piety / the pious",
+              "zh": "虔敬 / 虔敬的（事）",
+              "hint": "对神恰当、正确的态度和行为；希腊词 hosion（第 1 页）。"
+            },
+            {
+              "en": "impious / impiety",
+              "zh": "不虔敬 / 不敬神",
+              "hint": "虔敬的反面；苏格拉底正因为不敬神被起诉。"
+            },
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "说清一个东西到底是什么：对所有这类东西都成立，对别的东西不成立。"
+            },
+            {
+              "en": "form",
+              "zh": "型",
+              "hint": "所有虔敬的行为共有的、让它们成为虔敬的那一个特征（5d、6d–e）。"
+            },
+            {
+              "en": "model (standard)",
+              "zh": "范本（标准）",
+              "hint": "拿来对照、判断一个新行为是不是虔敬的尺子（6e）。"
+            },
+            {
+              "en": "king-archon",
+              "zh": "王者执政官",
+              "hint": "雅典九位主要官员之一，管宗教仪式和冒犯神的案件（第 2 页脚注 2）。"
+            },
+            {
+              "en": "pollution",
+              "zh": "（宗教上的）污染",
+              "hint": "明知而和没受惩罚的杀人者同住会沾上的不洁；起诉他才能洗清（4c）。"
+            },
+            {
+              "en": "irony",
+              "zh": "反讽",
+              "hint": "嘴上说的和真正的意思相反，比如假装要拜对方为师。"
+            },
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "Grube 说，希腊词 hosion（译作 piety，虔敬）本来指懂得祈祷和献祭的正确仪式并照着做；游叙弗伦却用它的宽义：一般的虔敬行为，差不多等于正义，中间的桥梁是让神喜欢的行为（第 1 页）。脚注 1 说，游叙弗伦显然是个职业祭司，自认为是仪式和虔敬方面的专家，似乎也被人这样认为。对话一开始（第 2 页），他在王者执政官（**king-archon**）的法庭附近碰到苏格拉底，很惊讶：苏格拉底平时在吕克昂（**Lyceum**，城外的体育场）和年轻人聊天，不是打官司的人。"
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底说自己不是起诉别人，而是被人起诉了（第 2 页，2a–b）。原告美勒托年轻、没名气，头发长、胡子稀、鹰钩鼻。指控是：苏格拉底败坏青年；至于怎么败坏，美勒托说他制造新神、不信旧神（2c–3b）。游叙弗伦马上联想到苏格拉底常说的神圣征兆（脚注 4），还说自己在公民大会上谈神事、预言未来，也被人当疯子笑。这场对话发生在审判之前；Grube 说，它对审判和指控的提及，像是整出审判大戏的序幕（第 1 页）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "游叙弗伦的案子（第 3 页，3e–4e）",
+            "en": "Euthyphro's case (p. 3, 3e-4e)"
+          },
+          "steps": [
+            {
+              "zh": "游叙弗伦家在纳克索斯（**Naxos**，爱琴海上的大岛，脚注 6）种地时，有一个替他们干活的仆从（Grube 的说明叫他 laborer，雇工）。",
+              "en": "When the family farmed on Naxos, a dependent worked for them as a servant (Grube's note calls him a laborer)."
+            },
+            {
+              "zh": "这个雇工喝醉后发怒，杀了家里的一个奴隶。",
+              "en": "In a drunken rage he killed one of the household slaves."
+            },
+            {
+              "zh": "游叙弗伦的父亲把他手脚捆起来扔进沟里，派人去雅典问祭司该怎么处理，其间完全不管他，觉得他是杀人犯，死了也无所谓。",
+              "en": "The father tied him hand and foot, threw him into a ditch and sent a man to ask a priest what to do, giving the bound man no thought."
+            },
+            {
+              "zh": "信使还没回来，雇工就因饥饿、寒冷和捆绑死了。",
+              "en": "He died of hunger, cold and his bonds before the messenger came back."
+            },
+            {
+              "zh": "游叙弗伦以杀人罪起诉父亲。家人很生气：父亲并没有亲手杀他；就算杀了，死者本身是杀人犯；而且儿子告父亲杀人本身就是不虔敬的。",
+              "en": "Euthyphro prosecutes his father for murder; his family says the father did not kill him, the dead man was a killer anyway, and a son prosecuting his father is impious."
+            },
+            {
+              "zh": "游叙弗伦的立场（他讲案子之前，先驳回苏格拉底“死者想必是你亲戚”的猜测，4b–c）：受害者是外人还是亲人都无所谓，只看杀人者做得正不正当；如果你明知而和杀人者同桌共食，又不通过起诉来洗清他和你自己，就会沾上同样的污染（**pollution**）。他还说，家人对神怎样看待虔敬与不虔敬的想法是错的（4e）。",
+              "en": "Euthyphro's view (stated when Socrates guesses that the victim must be a relative): what matters is whether the killer acted justly; living with an unpunished killer brings pollution unless you cleanse yourself and him by prosecuting. He says his family's ideas about piety are wrong."
+            }
+          ],
+          "answer": {
+            "zh": "这个案子让“什么是虔敬”成了一个真问题：对同一件事，游叙弗伦说虔敬，他的家人说不虔敬。",
+            "en": "The case makes the question of piety real: Euthyphro and his family disagree about the same act."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底问：你对神圣之事、对虔敬和不虔敬的知识这么准确，告父亲就一点不怕自己做了不虔敬的事？游叙弗伦说：如果我对这一切没有准确的知识，我就没用了，也不比大多数人强（4e–5a）。苏格拉底马上说要拜他为师，好对美勒托说：你要告就去告我的老师吧（5a–b）。本站的理解：这是反讽（**irony**），苏格拉底并不真认为游叙弗伦懂，他是在请对方把知识拿出来检验。"
+        },
+        {
+          "type": "analogy",
+          "zh": "问“什么是水果”，你答“苹果就是”。这不算错，苹果确实是水果，但它没回答问题：香蕉、西瓜呢？来了一个新东西（比如番茄），你凭什么判断？好的定义要说出所有水果共有、让它们成为水果的东西，能拿来当尺子量新东西。苏格拉底对虔敬要的就是这种答案。",
+          "limit": "类比的限度：水果可以查词典、问植物学家；虔敬这样的道德概念没有现成的专家，而游叙弗伦恰恰自称是专家。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "学习提示：读物里没有给游叙弗伦的定义编号。本站按出现顺序叫 D1（起诉做错事的人）、D2（神所喜爱的）、D3（所有神都爱的）、D4（正义中照料或服侍神的部分）、D5（懂得怎样献祭和祈祷）。老师上课可能编号不同，考试时直接写出定义的内容最保险。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：举例不等于定义（第 4–5 页，5c–6e）",
+            "en": "Standard form: an example is not a definition (pp. 4-5, 5c-6e)"
+          },
+          "items": [
+            {
+              "en": "P1: Euthyphro claims to know exactly what piety is, well enough to prosecute his own father without fear.",
+              "zh": "P1：游叙弗伦自称准确地知道什么是虔敬，所以敢毫无顾虑地告自己的父亲。"
+            },
+            {
+              "en": "P2: The pious is the same in every pious action, and all pious actions are pious through one form; the impious is its opposite.",
+              "zh": "P2：虔敬在每个虔敬的行为里都是同一个；所有虔敬的行为都因为同一个型而虔敬，不虔敬是它的反面。"
+            },
+            {
+              "en": "P3: So a good answer must state \"that form itself that makes all pious actions pious\" (p. 5, 6d), so that it can be used as a model for judging any action.",
+              "zh": "P3：所以好的回答必须说出那个让所有虔敬行为都虔敬的型本身（第 5 页，6d），好拿来当范本，判断任何行为。"
+            },
+            {
+              "en": "P4: Euthyphro's first answer (D1) is that the pious is doing what he is doing now, prosecuting wrongdoers whoever they are; but he agrees that there are many other pious actions.",
+              "zh": "P4：游叙弗伦的第一个回答（D1）是：虔敬就是做我现在做的事，起诉做错事的人，不管他是谁；可他也承认还有很多别的虔敬行为。"
+            },
+            {
+              "en": "C: So D1 gives one example of piety, not the form; it does not say what piety is.",
+              "zh": "C：所以 D1 只举了一个虔敬的例子，没说出型，没回答虔敬是什么。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "游叙弗伦给 D1 找了个证据（5e–6a）：人们都说宙斯（**Zeus**）是最好、最公正的神，却也承认：宙斯因为父亲克洛诺斯（**Cronus**）不公正地吞了自己的儿子，就把父亲捆了起来；还说有人因为类似的理由阉了自己的父亲（脚注 9 的说法是：宙斯阉了克洛诺斯，而克洛诺斯也阉过自己的父亲乌拉诺斯）。他说，大家这样说神，却生他的气，是自相矛盾。苏格拉底回答：我就是很难接受这种关于神的说法，大概这就是我被告的原因（6a）。游叙弗伦却说，神之间的战争、仇恨这些故事全是真的，他还知道更惊人的。"
+        },
+        {
+          "type": "text",
+          "zh": "型（**form**）是什么？脚注 7 解释：希腊词 eidos 和 idea 平常指身材、外貌；我们把同一个词（虔敬的）用在不同行为上，它们就该有一个共同特征、呈现同一个样子。在早期对话里，比如这里，这个型似乎就在具体行为之中，没有单独存在；这类段落让我们看到，苏格拉底的普遍定义怎样过渡到柏拉图后来“独立存在的永恒的型”（**Forms**）。6d 的“型”也是这个意思。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: must you be able to define piety before you can know that any particular act is pious?",
+            "zh": "反驳：一定要先能定义虔敬，才能知道某个具体行为是虔敬的吗？"
+          },
+          "answer": {
+            "en": "Socrates seems to think so in this dialogue: he wants the form so that he can use it as a model for judging any action (6e), and at the end he says Euthyphro would never have dared to prosecute his father without clear knowledge of piety (15d). A critic can reply that we recognize many clear cases without being able to define the general term. Still, Euthyphro's case is not a clear case, since his own family thinks it impious, so here a standard is exactly what is needed.",
+            "zh": "要点：1）苏格拉底在这篇里似乎认为要：他要型作范本判断任何行为（6e），结尾还说没有清楚的知识就不敢告父亲（15d）；2）批评：很多清楚的例子，我们不会下定义也能认出来；3）但游叙弗伦的案子正是有争议的情况，连家人都认为不虔敬，所以这里恰恰需要标准。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "被害人不是游叙弗伦的亲人，而是一个杀了奴隶的雇工；游叙弗伦也不是在告杀人的雇工，而是告他的父亲。"
+            },
+            {
+              "zh": "D1 被否定，不是因为“起诉父亲不虔敬”，而是因为它只是一个例子，不是型。"
+            },
+            {
+              "zh": "苏格拉底说要拜游叙弗伦为师，按本站的理解是反讽，不是真心认为他懂。"
+            },
+            {
+              "zh": "这里的“型”就在具体行为之中（脚注 7），还不是柏拉图后来说的独立存在的型。"
+            },
+            {
+              "zh": "这场对话按故事时间发生在审判之前，虽然课程先读《申辩篇》。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Socrates reject Euthyphro's first answer, that piety is prosecuting wrongdoers as he is doing now?",
+            "zh": "苏格拉底为什么不接受游叙弗伦的第一个回答（虔敬就是像他现在这样起诉做错事的人）？"
+          },
+          "options": [
+            {
+              "en": "Because prosecuting one's own father is obviously impious.",
+              "zh": "因为起诉自己的父亲显然不虔敬。"
+            },
+            {
+              "en": "Because the gods disagree about prosecutions.",
+              "zh": "因为诸神对起诉这件事意见不一。"
+            },
+            {
+              "en": "Because it gives one example of a pious action instead of the one form that makes all pious actions pious.",
+              "zh": "因为它只举了一个虔敬行为的例子，而不是让所有虔敬行为都虔敬的那一个型。"
+            },
+            {
+              "en": "Because Euthyphro's father did not actually kill the laborer.",
+              "zh": "因为游叙弗伦的父亲并没有真的杀死那个雇工。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 4–5 页，6d–e）。A 是游叙弗伦家人的看法，苏格拉底没有据此反驳；B 是用来反驳 D2（神所喜爱的）的理由；D 也是家人的说法，和定义的问题无关。",
+            "en": "C. D1 is an example, not the form."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-dear-to-the-gods",
+      "title": {
+        "zh": "游叙弗伦篇：神所喜爱的与诸神之争",
+        "en": "Euthyphro: Dear to the Gods and the Quarrelling Gods"
+      },
+      "slides": "5-6",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "游叙弗伦的第二个回答（D2，第 5 页，6e–7a）：神所喜爱的（**dear to the gods**）就是虔敬（**pious**：对神恰当、正确）的，神不喜爱的就是不虔敬的。苏格拉底说：好极了，这次你按我要的方式回答了——它是一个普遍（**general**：对所有情况都适用）的说法，不是一个例子；至于对不对，还得检验。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "一句话说清一个东西到底是什么，对所有这类东西都成立。"
+            },
+            {
+              "en": "dear to the gods / god-loved",
+              "zh": "神所喜爱的 / 为神所爱的",
+              "hint": "被神喜爱的东西；D2 说虔敬就是它。"
+            },
+            {
+              "en": "god-hated",
+              "zh": "为神所恨的",
+              "hint": "被神厌恶的东西；D2 说不虔敬就是它。"
+            },
+            {
+              "en": "opposites",
+              "zh": "对立面",
+              "hint": "不能同时成立的两样东西，比如虔敬和不虔敬。"
+            },
+            {
+              "en": "reductio (reduction to absurdity)",
+              "zh": "归谬法",
+              "hint": "先假设对方的说法成立，推出荒唐或矛盾的结论，证明它错了。"
+            },
+            {
+              "en": "amendment",
+              "zh": "修正",
+              "hint": "把一个说法改一改，躲开反驳；D3 就是对 D2 的修正。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：诸神意见不一，D2 失败（第 5–6 页，7a–8b）",
+            "en": "Standard form: the gods disagree, so D2 fails (pp. 5-6, 7a-8b)"
+          },
+          "items": [
+            {
+              "en": "P1: D2: whatever is dear to the gods is pious, and whatever the gods hate is impious; the pious and the impious are opposites.",
+              "zh": "P1：D2：神所喜爱的是虔敬的，神所厌恶的是不虔敬的；虔敬和不虔敬是对立面。"
+            },
+            {
+              "en": "P2: The gods quarrel and are hostile to one another (Euthyphro believes the stories).",
+              "zh": "P2：诸神之间有争吵、有敌意（游叙弗伦相信这些故事）。"
+            },
+            {
+              "en": "P3: Disagreements about number, size and weight are settled by counting, measuring and weighing; only disagreements about what is just or unjust, beautiful or ugly, good or bad lead to anger and hatred.",
+              "zh": "P3：关于数目、大小、轻重的分歧，数一数、量一量、称一称就解决了；只有关于正义与不义、美与丑、好与坏的分歧才会引起愤怒和仇恨。"
+            },
+            {
+              "en": "P4: So the gods disagree about what is just, beautiful and good, and each god loves what he thinks good and hates its opposite.",
+              "zh": "P4：所以诸神的分歧在于什么是正义、美、好；每个神爱自己认为好的，恨它的反面。"
+            },
+            {
+              "en": "P5: So the same things are loved by some gods and hated by others.",
+              "zh": "P5：所以同样的东西，有的神爱，有的神恨。"
+            },
+            {
+              "en": "C: So on D2 one and the same thing would be pious and impious at once, which is impossible because they are opposites; D2 fails.",
+              "zh": "C：按 D2，同样的东西就既虔敬又不虔敬，而二者是对立面，这不可能；D2 失败。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "哪些分歧会让人变成仇人？（第 5 页，7b–d）",
+            "en": "Which disagreements make enemies? (p. 5, 7b-d)"
+          },
+          "steps": [
+            {
+              "zh": "你我争哪个数大：数一数，很快就解决，不会结仇。",
+              "en": "If we differ about which number is greater, we count and soon agree."
+            },
+            {
+              "zh": "争哪个大、哪个小：拿尺子量。争哪个重、哪个轻：拿秤称。",
+              "en": "Larger and smaller: we measure. Heavier and lighter: we weigh."
+            },
+            {
+              "zh": "那什么分歧解决不了、会让人生气结仇？正义与不义、美与丑、好与坏。",
+              "en": "The disputes we cannot settle, which make us angry and hostile, are about what is just or unjust, beautiful or ugly, good or bad."
+            },
+            {
+              "zh": "神如果有分歧，也只会是关于这些事。",
+              "en": "If the gods have differences, they must be about these same things."
+            }
+          ],
+          "answer": {
+            "zh": "这一步说明：诸神争吵，正是在争什么是好、什么是正义，所以他们喜爱的东西不一样。",
+            "en": "The gods quarrel about values, so they love different things."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "宿舍四个人：争“空调现在几度”，看一眼遥控器就完了；争“谁更高”，量一下就完了。可争“半夜打游戏吵不吵人、算不算不尊重别人”，就可能吵翻。苏格拉底说，神之间也只会为这种“对不对、好不好”的问题结仇。",
+          "limit": "类比的限度：苏格拉底并没有说价值问题永远没法讨论——他整篇对话就在讲道理讨论虔敬；他只是说，这类问题没有数、量、称那样的现成办法。"
+        },
+        {
+          "type": "text",
+          "zh": "注意这个论证的打法：它从游叙弗伦自己相信的东西出发（他相信神之间有战争和仇恨，第 4 页，6b–c），推出他的定义会让同一个行为既虔敬又不虔敬。这就是归谬法（**reductio**）。所以它反驳的是“D2 加上诸神会争吵”这个组合：如果神永远意见一致，这个反驳就打不中，这也正是后面 D3 要修改的地方。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "同一个行为，宙斯喜欢，克洛诺斯讨厌（第 5–6 页，8a–b）",
+            "en": "One act, pleasing to Zeus and hateful to Cronus (pp. 5-6, 8a-b)"
+          },
+          "steps": [
+            {
+              "zh": "游叙弗伦正在惩罚自己的父亲。",
+              "en": "Euthyphro is punishing his father."
+            },
+            {
+              "zh": "宙斯可能喜欢：他自己就惩罚过父亲克洛诺斯。",
+              "en": "Zeus may be pleased, since he punished his own father Cronus."
+            },
+            {
+              "zh": "克洛诺斯和乌拉诺斯（**Uranus**）可能讨厌：脚注 9 说，克洛诺斯是宙斯的父亲，乌拉诺斯是克洛诺斯的父亲，两代都是被儿子惩罚的父亲。",
+              "en": "Cronus and Uranus may be displeased: both were fathers punished by their sons (footnote 9)."
+            },
+            {
+              "zh": "赫菲斯托斯（**Hephaestus**）可能喜欢，赫拉（**Hera**）可能讨厌：脚注 9 说，他们的故事同样是儿子惩罚父母。",
+              "en": "Hephaestus may be pleased and Hera displeased, since their story too is one of a son punishing a parent (footnote 9)."
+            }
+          ],
+          "answer": {
+            "zh": "按 D2，游叙弗伦的同一个行为就既虔敬又不虔敬。",
+            "en": "On D2, Euthyphro's act would be both pious and impious."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "游叙弗伦的补救为什么不行（第 6 页，8b–e）",
+            "en": "Why Euthyphro's patch fails (p. 6, 8b-e)"
+          },
+          "items": [
+            {
+              "en": "Euthyphro's patch: no god disagrees that whoever kills unjustly must pay the penalty.",
+              "zh": "游叙弗伦的补救：在“不公正地杀人者必须受罚”这一点上，没有哪个神有异议。"
+            },
+            {
+              "en": "Socrates' reply: no one, god or human, ever argues that a wrongdoer should go unpunished; people deny that they did wrong instead.",
+              "zh": "苏格拉底的回应：无论神还是人，没有谁主张做错事的人不该受罚；被告们只是否认自己做错了。"
+            },
+            {
+              "en": "The real disagreements are about particular cases: who did wrong, what he did and when, and whether a given act was just or unjust.",
+              "zh": "真正的分歧在具体案件上：谁做错了、做了什么、什么时候做的，某个行为到底正不正义。"
+            },
+            {
+              "en": "So agreement on the general rule does not remove the gods' disagreement about acts like Euthyphro's prosecution.",
+              "zh": "所以在一般原则上一致，并不能消除诸神对游叙弗伦这类具体行为的分歧。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底接着要证据：凭什么说所有神都认为那个雇工死得冤、儿子该告父亲（9a–b）？他随即想到：就算所有神都恨这个行为，我也只知道这件事被神恨，还是没学到虔敬是什么（9c–d）。于是他提出修正（**amendment**）：所有神都爱的是虔敬的，所有神都恨的是不虔敬的，有的爱有的恨的就两者都不是或两者都是。游叙弗伦欣然接受（9e）。这就是 D3。注意：这个说法是苏格拉底先提出来的。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Would D2 survive if the gods always agreed, or if there were only one god?",
+            "zh": "如果诸神总是意见一致，或者只有一个神，D2 还会被驳倒吗？"
+          },
+          "answer": {
+            "en": "The argument against D2 depends on Euthyphro's belief that the gods quarrel about the just and the good. If all the gods agreed, or there were only one god, no act would be both loved and hated, so this objection would not apply. That is why Socrates' amendment, D3, speaks of what all the gods love. But D3 still faces a deeper question, the dilemma at 10a, about whether the gods' love makes things pious or responds to their piety.",
+            "zh": "要点：1）这个反驳靠的是游叙弗伦相信神会为正义和好坏争吵；2）神意见一致或只有一个神，就不会有既被爱又被恨的行为，这个反驳就失效；3）所以 D3 改成“所有神都爱的”；4）但 D3 还要面对 10a 的两难：是神的爱让东西虔敬，还是神因为它虔敬才爱它。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "D2 是被“诸神意见不一”驳倒的；D3 是被下一节的两难驳倒的。别把两个反驳对调。"
+            },
+            {
+              "zh": "D3（所有神都爱的）是苏格拉底提出、游叙弗伦接受的修正，不是游叙弗伦原来的说法。"
+            },
+            {
+              "zh": "苏格拉底说“好极了”，夸的是 D2 的形式（一个普遍的说法），不是说它对。"
+            },
+            {
+              "zh": "游叙弗伦的补救失败，不是因为有神主张不惩罚杀人者，而是因为分歧在具体案件上。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does the second definition (piety is what is dear to the gods) fail?",
+            "zh": "第二个定义（虔敬就是神所喜爱的）为什么失败？"
+          },
+          "options": [
+            {
+              "en": "Because it gives only an example, not the form.",
+              "zh": "因为它只举了例子，没说出型。"
+            },
+            {
+              "en": "Because the gods disagree about the just and the good, so the same act would be both pious and impious.",
+              "zh": "因为诸神在正义和好坏上意见不一，同一个行为就会既虔敬又不虔敬。"
+            },
+            {
+              "en": "Because the gods love the pious because it is pious.",
+              "zh": "因为神爱虔敬的东西是因为它虔敬。"
+            },
+            {
+              "en": "Because the gods gain nothing from human sacrifices.",
+              "zh": "因为神从人的献祭里得不到任何好处。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 5–6 页，7a–8b）。A 是驳 D1 的理由；C 是驳 D3 的两难里的关键一步；D 是讨论 D5（献祭和祈祷）时的论点。",
+            "en": "B. Divine disagreement makes one act both pious and impious."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-euthyphro-dilemma",
+      "title": {
+        "zh": "游叙弗伦篇：游叙弗伦困境",
+        "en": "Euthyphro: The Euthyphro Dilemma"
+      },
+      "slides": "7-8",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "D3 说：所有神都爱的就是虔敬（**pious**：对神恰当、正确）的。苏格拉底问：别人说什么我们就信，还是要检验说话的人是什么意思？游叙弗伦说要检验（9e）。于是苏格拉底提出全篇最关键的问题（第 7 页，10a；Grube 在第 1 页把 10d 这一段列为有重要哲学意义的段落之一），用大白话说：神爱虔敬的东西，是因为它本来就虔敬？还是它之所以虔敬，是因为神爱它？游叙弗伦说：我听不懂。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "一句话说清一个东西到底是什么；D3 是第三个被检验的虔敬定义。"
+            },
+            {
+              "en": "contradiction",
+              "zh": "矛盾",
+              "hint": "同时说 A 和“不是 A”，两句不可能都真。"
+            },
+            {
+              "en": "dilemma",
+              "zh": "两难",
+              "hint": "只有两个选项，而选哪个都有代价。"
+            },
+            {
+              "en": "horn",
+              "zh": "（两难的）一支",
+              "hint": "两难里的一个选项，比如选第一支、选第二支。"
+            },
+            {
+              "en": "because (explanation)",
+              "zh": "因为（解释）",
+              "hint": "这里问的是谁解释谁：是 A 造成 B，还是 B 造成 A。"
+            },
+            {
+              "en": "affected",
+              "zh": "被作用的",
+              "hint": "被别的东西作用、影响，比如被搬、被看、被爱。"
+            },
+            {
+              "en": "quality vs nature",
+              "zh": "性质 vs 本质",
+              "hint": "性质＝它恰好具有、发生在它身上的特点；本质＝它到底是什么。"
+            },
+            {
+              "en": "substitution",
+              "zh": "替换",
+              "hint": "如果两个词说的是同一个东西，句子里把一个换成另一个，真假应该不变。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "被搬的、被领的、被看的（第 7 页，10a–c）",
+            "en": "Carried, led, seen (p. 7, 10a-c)"
+          },
+          "steps": [
+            {
+              "zh": "我们分得清被搬的东西和搬东西的人、被领的和领路的、被看的和看的人；同样也有被爱的东西和爱它的人。",
+              "en": "We distinguish something carried and something carrying, led and leading, seen and seeing; likewise loved and loving."
+            },
+            {
+              "zh": "一个东西为什么是被搬的东西？因为有人正在搬它；不是因为它是被搬的东西，才有人来搬它。",
+              "en": "Something counts as a carried thing because someone is carrying it, not the other way round."
+            },
+            {
+              "zh": "被领的、被看的也一样：因为正在被领、被看，它才是被领的、被看的东西。",
+              "en": "The same holds for being led and being seen."
+            },
+            {
+              "zh": "一般原则（脚注 10）：任何被改变、被作用的东西，都是因为正在被改变、被作用，才成为被改变、被作用的东西，不是反过来。",
+              "en": "General principle (footnote 10): anything changed or affected is a changed or affected thing because it is being changed or affected, not vice versa."
+            },
+            {
+              "zh": "被爱也是一种被作用。所以被爱的东西之所以是被爱的东西，是因为有人在爱它。",
+              "en": "Being loved is a way of being affected, so a loved thing is loved because someone loves it."
+            }
+          ],
+          "answer": {
+            "zh": "这一步要立下的是：为神所爱的之所以为神所爱，是因为神爱它。",
+            "en": "The god-loved is god-loved because the gods love it."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "刷短视频：一条视频成为“被点赞的视频”，是因为大家在给它点赞，不是因为它“被点赞”，大家才来点。再问：大家点赞，是因为视频本来就好；还是视频之所以好，是因为大家点赞？如果你说“好视频”就等于“被点赞的视频”，又说大家是因为它好才点赞，那就等于说大家是因为它被点赞才点赞，说不通了。",
+          "limit": "类比的限度：网友点赞常常跟风、不靠谱，而神被当作完美的判断者；苏格拉底的论证不靠“神会看走眼”，只靠“谁解释谁”这个逻辑结构。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：虔敬不等于为神所爱的（第 7–8 页，10a–11b）",
+            "en": "Standard form: the pious is not the same as the god-loved (pp. 7-8, 10a-11b)"
+          },
+          "items": [
+            {
+              "en": "P1: D3 says that the pious is the same as what all the gods love, the god-loved.",
+              "zh": "P1：D3 说，虔敬就是所有神都爱的东西，也就是为神所爱的。"
+            },
+            {
+              "en": "P2: In general, an affected thing is such because something affects it, not the other way round (carried, led, seen); being loved is a way of being affected.",
+              "zh": "P2：一般地，被作用的东西是因为有东西作用它，才成为被作用的东西，不是反过来（被搬、被领、被看）；被爱也是一种被作用。"
+            },
+            {
+              "en": "P3: So the god-loved is god-loved because the gods love it.",
+              "zh": "P3：所以为神所爱的之所以为神所爱，是因为神爱它。"
+            },
+            {
+              "en": "P4: Euthyphro agrees that the gods love the pious because it is pious, not that it is pious because they love it.",
+              "zh": "P4：游叙弗伦同意：神爱虔敬的东西，是因为它虔敬；不是因为神爱它，它才虔敬。"
+            },
+            {
+              "en": "P5: If the pious and the god-loved were the same, we could swap them: then the pious would be pious because the gods love it, which contradicts P4, and the god-loved would be loved because it is god-loved, which reverses the direction set out in P2 and P3.",
+              "zh": "P5：如果虔敬和为神所爱的是同一个东西，就可以互换：那虔敬就是因为被神爱才虔敬，与 P4 矛盾；为神所爱的也就成了因为它为神所爱才被爱，与 P2、P3 定下的方向相反。"
+            },
+            {
+              "en": "C: So the pious is not the same as the god-loved. Being loved by all the gods is only \"an affect or a quality\" of the pious (p. 8, 11a), not what the pious is.",
+              "zh": "C：所以虔敬不等于为神所爱的。被所有神爱，只是虔敬的一种遭受或性质（第 8 页，11a），不是虔敬的本质。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P2、P3 讲的是被动说法的方向：先有动作（神在爱），才有结果（它成了被爱的东西）。所以“为神所爱”这个身份完全来自神的爱：神一爱，它就是；神不爱，它就不是。这一点游叙弗伦马上就同意了（10c–d）。"
+        },
+        {
+          "type": "text",
+          "zh": "关键在 P4：苏格拉底问，神爱虔敬的东西是因为它虔敬，还是别的原因？游叙弗伦说：就是因为它虔敬（10d）。这样一来，虔敬的东西是先虔敬、后被爱；为神所爱的东西是先被爱、才成为为神所爱的。两者的“因为”方向正好相反（11a），所以不可能是同一个东西。苏格拉底的结论：你只告诉了我虔敬有“被所有神爱”这个性质，还没告诉我虔敬是什么（11a–b）。它是不是被神爱，我们不争，你从头说虔敬是什么。Grube 的导言（第 1 页）也是这样读 10d 的：神爱虔敬的（因而也是对的）东西，是因为它对。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "两难的两支和各自的代价",
+            "en": "The two horns and what each costs"
+          },
+          "headers": [
+            "选项 Horn",
+            "意思 What it says",
+            "代价 The cost"
+          ],
+          "rows": [
+            [
+              "1 神爱它，因为它虔敬（loved because pious）",
+              "虔敬本身有它的本质，神的爱是对它的回应",
+              "虔敬是什么不由神的爱决定；“被神爱”只是它的性质，还得另外说出它的本质。游叙弗伦选的是这一支（10d）"
+            ],
+            [
+              "2 它虔敬，因为神爱它（pious because loved）",
+              "神爱什么，什么就虔敬；虔敬由神的爱造成",
+              "神爱什么好像不需要理由，虔敬就可能变得任意（读物没有展开这一支，这是常见的分析）"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：“游叙弗伦困境”（**Euthyphro dilemma**）是后人给 10a 这个问题起的名字，不在译文里。后来的哲学家把它推广成：道德上对的事，是因为神命令才对，还是因为它本来就对、神才命令？主张前一支的立场叫神命论（**divine command theory**）。考试可以用这些名称，但别说成柏拉图的原话。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "代达罗斯的雕像（第 8 页，11b–e）",
+            "en": "The statues of Daedalus (p. 8, 11b-e)"
+          },
+          "steps": [
+            {
+              "zh": "游叙弗伦抱怨：不管我们提出什么说法，它都绕来绕去，不肯待在原地。",
+              "en": "Euthyphro complains that whatever they propose keeps moving around and will not stay put."
+            },
+            {
+              "zh": "苏格拉底说：你的说法像我的祖先代达罗斯（**Daedalus**）做的雕像。脚注 11：苏格拉底可能和父亲一样是石匠；神话里代达罗斯做的木雕会自己走动。",
+              "en": "Socrates: your statements are like the statues of my ancestor Daedalus, which moved by themselves (footnote 11)."
+            },
+            {
+              "zh": "游叙弗伦反过来说：让说法动来动去的是你，你才是代达罗斯。",
+              "en": "Euthyphro replies that Socrates is the Daedalus who makes them move."
+            },
+            {
+              "zh": "苏格拉底说：那我比代达罗斯还厉害，能让别人的东西也动起来；可我宁愿你的说法站住不动，胜过拥有坦塔罗斯（**Tantalus**）的财富。",
+              "en": "Socrates: then I am cleverer than Daedalus, since I move other people's things too, but I would rather your statements stayed put than have the wealth of Tantalus."
+            }
+          ],
+          "answer": {
+            "zh": "会跑掉的说法，就是经不起检验、站不住的观点；苏格拉底要的是能站住的定义。",
+            "en": "Statements that run away are claims that do not survive examination; Socrates wants a definition that stays put."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Could Euthyphro have escaped the argument by taking the other horn, that the pious is pious because the gods love it?",
+            "zh": "游叙弗伦如果选另一支（虔敬之所以虔敬是因为神爱它），能逃过这个论证吗？"
+          },
+          "answer": {
+            "en": "The substitution step works only because Euthyphro agrees that the gods love the pious because it is pious (10d). If he said instead that the pious is pious because the gods love it, the pious and the god-loved could be the same, and this refutation would fail. But the cost is high: piety would then depend only on what the gods happen to love, and the gods would seem to have no reason for loving one thing rather than another. So Euthyphro must choose: either piety has a nature of its own that he still has not stated, or it depends on the gods' love and risks being arbitrary.",
+            "zh": "要点：1）替换那一步之所以成立，只因游叙弗伦同意“因为虔敬才被爱”（10d）；2）选另一支，虔敬和为神所爱的可以是同一个东西，这个反驳就失效；3）代价：虔敬只取决于神恰好爱什么，神的爱好像没有理由；4）所以他只能二选一：要么虔敬有自己的本质（他还没说出来），要么它依赖神的爱，可能变得任意。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "游叙弗伦选的是“神爱它，因为它虔敬”（10d），学生最常把两支弄反。"
+            },
+            {
+              "zh": "这个论证不是说神不爱虔敬的东西：神确实爱它，只是“被神爱”不是虔敬的本质，只是它的性质（11a）。"
+            },
+            {
+              "zh": "它讨论的是谁解释谁，不是哪些行为算虔敬：就算虔敬的东西恰好都被所有神爱，二者仍然不是同一个东西。"
+            },
+            {
+              "zh": "“游叙弗伦困境”“神命论”都是后人的名称，不在译文里。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the dilemma at 10a, which option does Euthyphro accept?",
+            "zh": "在 10a 的两难里，游叙弗伦选了哪一个？"
+          },
+          "options": [
+            {
+              "en": "The pious is pious because the gods love it.",
+              "zh": "虔敬之所以虔敬，是因为神爱它。"
+            },
+            {
+              "en": "The gods love the pious because it is pious.",
+              "zh": "神爱虔敬的东西，是因为它虔敬。"
+            },
+            {
+              "en": "The gods do not love the pious at all.",
+              "zh": "神根本不爱虔敬的东西。"
+            },
+            {
+              "en": "Some gods love the pious and others hate it.",
+              "zh": "有的神爱虔敬的东西，有的神恨它。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 7 页，10d）。正因为他选了这一支，苏格拉底才能推出虔敬和为神所爱的不是同一个东西。A 是另一支，常被学生搞反；C 与对话不符，双方都同意神爱虔敬的东西；D 是驳倒 D2 时的情形，D3 已经改成“所有神都爱的”。",
+            "en": "B. Euthyphro says the gods love the pious because it is pious."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-part-of-justice-care-service",
+      "title": {
+        "zh": "游叙弗伦篇：正义的一部分：照料与服侍",
+        "en": "Euthyphro: Piety as Part of Justice: Care and Service"
+      },
+      "slides": "8-10",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "游叙弗伦说不下去了，苏格拉底决定帮他（第 8 页，11e）。他问：凡是虔敬（**pious**：对神恰当、正确）的，都必然是正义（**just**：做事公正、对得起别人）的吗？游叙弗伦说是。那凡是正义的都虔敬吗？还是说虔敬的都正义，但正义的只有一部分虔敬？游叙弗伦说听不懂。苏格拉底打趣：你比我年轻多少，就比我智慧多少——本站认为这又是反讽（**irony**：说的和真正的意思相反）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "一句话说清一个东西到底是什么，对所有这类东西都成立。"
+            },
+            {
+              "en": "part and whole",
+              "zh": "部分与整体",
+              "hint": "部分包含在整体里，但整体比部分大。"
+            },
+            {
+              "en": "genus and species",
+              "zh": "属与种",
+              "hint": "大类与其中的小类；Grube 说 11e–12d 讲清了二者的区别（第 1 页）。"
+            },
+            {
+              "en": "justice / the just",
+              "zh": "正义 / 正义的",
+              "hint": "做事公正、对得起人和神；这里是比虔敬更大的一类。"
+            },
+            {
+              "en": "care",
+              "zh": "照料",
+              "hint": "让被照料的对象得到好处、变得更好，比如养马。"
+            },
+            {
+              "en": "service",
+              "zh": "服侍",
+              "hint": "帮主人完成他的目标，像奴隶服侍主人。"
+            },
+            {
+              "en": "product (aim)",
+              "zh": "产物（目标）",
+              "hint": "一门手艺最后要做成的东西，比如造船的产物是船。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "恐惧与羞耻、奇数与数（第 8–9 页，12a–d）",
+            "en": "Fear and shame, odd and number (pp. 8-9, 12a-d)"
+          },
+          "steps": [
+            {
+              "zh": "有位诗人写过，有恐惧的地方就有羞耻（脚注 12：作者不详）。苏格拉底不同意。",
+              "en": "A poet claimed that fear always brings shame with it (footnote 12: author unknown); Socrates disagrees."
+            },
+            {
+              "zh": "很多人怕生病、怕穷，却不为这些感到羞耻。所以有恐惧，不一定有羞耻。",
+              "en": "Many people fear disease and poverty without being ashamed of them."
+            },
+            {
+              "zh": "反过来，有羞耻就一定有恐惧：感到羞耻的人，总是怕落下坏名声。",
+              "en": "But where there is shame there is fear: anyone who feels shame fears a reputation for wickedness."
+            },
+            {
+              "zh": "所以恐惧的范围比羞耻大：羞耻是恐惧的一部分，就像奇数是数的一部分——有奇数就有数，有数却不一定是奇数。",
+              "en": "So fear covers more: shame is a part of fear, as odd is a part of number."
+            },
+            {
+              "zh": "同样：有虔敬就有正义，有正义却不一定有虔敬。虔敬是正义的一部分（12d）。",
+              "en": "Likewise, piety is a part of justice."
+            }
+          ],
+          "answer": {
+            "zh": "这些例子教的是部分与整体（属与种）：小类在大类里面，但大类里不都是小类。",
+            "en": "Part and whole: the smaller class lies inside the larger one, but not the other way round."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "所有高铁都是火车，但不是所有火车都是高铁。要说清高铁是什么，光说它是火车不够，还得说它是哪一种火车（比如速度特别快、在专用线路上跑的）。苏格拉底说：虔敬是正义的一部分，接下来要说清它是正义里的哪一部分。",
+          "limit": "类比的限度：高铁的区别特征可以测量；而虔敬和正义其他部分的区别，正是游叙弗伦说不清的地方。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：虔敬是正义的一部分（第 8–9 页，11e–12e）",
+            "en": "Standard form: piety is a part of justice (pp. 8-9, 11e-12e)"
+          },
+          "items": [
+            {
+              "en": "P1: Everything pious is just.",
+              "zh": "P1：凡是虔敬的都是正义的。"
+            },
+            {
+              "en": "P2: Not everything just is pious, just as not all fear is shame and not every number is odd.",
+              "zh": "P2：并非凡是正义的都是虔敬的，就像不是所有恐惧都是羞耻、不是所有数都是奇数。"
+            },
+            {
+              "en": "P3: So piety is a part of justice.",
+              "zh": "P3：所以虔敬是正义的一部分。"
+            },
+            {
+              "en": "P4: To define a part, one must say which part it is, as the even is the part of number that can be divided into two equal parts.",
+              "zh": "P4：要定义一个部分，就得说清是哪一部分，比如偶数是能分成两个相等部分的那部分数。"
+            },
+            {
+              "en": "C: So Euthyphro must say which part of justice piety is.",
+              "zh": "C：所以游叙弗伦得说清，虔敬是正义中的哪一部分。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "游叙弗伦的第四个回答（D4，第 9 页，12e）：虔敬是正义中照料神（**care of the gods**）的那一部分；照料人的，是正义的其余部分。苏格拉底说说得很好，但他还要问清楚“照料”是什么意思。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "照料就是让对象变好（第 9 页，12e–13c）",
+            "en": "Care makes its object better (p. 9, 12e-13c)"
+          },
+          "steps": [
+            {
+              "zh": "不是人人都会照料马，养马人会：养马就是照料马。",
+              "en": "Only some people know how to look after horses: horse breeders do."
+            },
+            {
+              "zh": "不是人人都会照料狗，猎人会：狩猎就是照料狗。养牛就是照料牛。",
+              "en": "The hunter cares for dogs; cattle raising cares for cattle."
+            },
+            {
+              "zh": "每一种照料效果都一样：都是为了被照料者的好处，让它变得更好，比如马被养马人照料后变好了。",
+              "en": "Every kind of care aims at the good and benefit of what is cared for and makes it better."
+            },
+            {
+              "zh": "那么，虔敬既然是照料神，是不是让神得到好处、变得更好？你做一件虔敬的事，就让某个神变好了？游叙弗伦：凭宙斯发誓，不是！",
+              "en": "So does a pious act improve any of the gods? Euthyphro: certainly not, by Zeus."
+            }
+          ],
+          "answer": {
+            "zh": "照料让对象变好，而虔敬的行为不会让神变好，所以虔敬不是这种意义上的照料。",
+            "en": "Care improves its object, but pious acts do not improve the gods."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：虔敬不是“照料神”（第 9 页，12e–13d）",
+            "en": "Standard form: piety is not 'care of the gods' (p. 9, 12e-13d)"
+          },
+          "items": [
+            {
+              "en": "P1: D4: piety is the part of justice that is care of the gods.",
+              "zh": "P1：D4：虔敬是正义中照料神的那一部分。"
+            },
+            {
+              "en": "P2: Care in every case aims at the good of what is cared for and makes it better (horse breeding, hunting dogs, cattle raising).",
+              "zh": "P2：每一种照料都是为了被照料者的好处，让它变得更好（养马、猎犬、养牛）。"
+            },
+            {
+              "en": "P3: No pious act makes any god better.",
+              "zh": "P3：没有哪件虔敬的事能让神变得更好。"
+            },
+            {
+              "en": "C: So piety is not care in this sense.",
+              "zh": "C：所以虔敬不是这种意义上的照料。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底说他本来也不认为游叙弗伦是这个意思。游叙弗伦说，他指的是奴隶照料主人那种照料（13d）。苏格拉底说：那就是一种服侍（**service**）神。服侍的重点不是让主人变好，而是帮主人完成他要做的事。于是问题变成：神用我们当仆人，要完成什么？"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "每种服侍都有产物（第 9–10 页，13d–14c）",
+            "en": "Every service has a product (pp. 9-10, 13d-14c)"
+          },
+          "steps": [
+            {
+              "zh": "服侍医生，是为了达成健康。",
+              "en": "Service to doctors aims at health."
+            },
+            {
+              "zh": "服侍造船匠，是为了造出船；服侍盖房的工匠，是为了盖出房子。",
+              "en": "Service to shipbuilders aims at a ship; service to housebuilders, at a house."
+            },
+            {
+              "zh": "那服侍神，是为了达成什么？神用我们当仆人，完成的那个出色成果是什么？游叙弗伦：很多好东西。",
+              "en": "What excellent result do the gods achieve by using us as servants? Euthyphro: many fine things."
+            },
+            {
+              "zh": "苏格拉底：将军也做成很多好东西，但能一句话说出主要的：打仗的胜利；农夫也做成很多好东西，主要的是从土地里种出粮食。",
+              "en": "Generals also achieve many fine things, but their main aim is victory in war; for farmers, it is food from the earth."
+            },
+            {
+              "zh": "游叙弗伦说要准确知道这些很难，转而谈起祈祷和献祭（14b，下一节）。苏格拉底说：你本来就要说出答案了，却转身走开了（14c）。",
+              "en": "Euthyphro says precise knowledge of this is hard and turns to prayer and sacrifice; Socrates says he turned away just when he was about to answer."
+            }
+          ],
+          "answer": {
+            "zh": "游叙弗伦说不出神通过我们的服侍完成的主要产物，所以“服侍神”这个定义没有说完。",
+            "en": "Euthyphro cannot name the main product of our service to the gods, so the definition stays incomplete."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：服侍神，产物是什么？（第 9–10 页，13d–14c）",
+            "en": "Standard form: service to the gods, for what product? (pp. 9-10, 13d-14c)"
+          },
+          "items": [
+            {
+              "en": "P1: Revised D4: piety is service to the gods, like the service slaves give their masters.",
+              "zh": "P1：修正后的 D4：虔敬是服侍神，像奴隶服侍主人。"
+            },
+            {
+              "en": "P2: Every service helps to produce some main product: health for doctors, a ship for shipbuilders, a house for housebuilders, victory for generals, food for farmers.",
+              "zh": "P2：每种服侍都帮着完成一个主要产物：医生的健康、造船匠的船、盖房匠的房子、将军的胜利、农夫的粮食。"
+            },
+            {
+              "en": "P3: Euthyphro cannot say what main product the gods achieve through our service; he only says that they achieve many fine things.",
+              "zh": "P3：游叙弗伦说不出神靠我们的服侍完成的主要产物，只说神做成了很多好东西。"
+            },
+            {
+              "en": "C: So the definition is incomplete: it does not yet say what piety is.",
+              "zh": "C：所以这个定义不完整，还没说出虔敬是什么。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Socrates says Euthyphro turned away just when he was about to answer. What could the product of service to the gods be?",
+            "zh": "苏格拉底说游叙弗伦正要回答时却转身走开了。服侍神的产物可能是什么？"
+          },
+          "answer": {
+            "en": "The dialogue never says. One answer suggested by the Apology is that the gods want human souls to be as good as possible: there Socrates calls his examining of people service to the god, and he urges everyone to care for the best possible state of their souls (Apology 23b, 30a-b). But this is an interpretation that links the two readings; Plato does not state it in the Euthyphro. Euthyphro himself turns to prayer and sacrifice instead.",
+            "zh": "要点：1）对话没有给出答案；2）一种来自《申辩篇》的解读：神要人的灵魂尽可能好——苏格拉底在那里把审视别人叫作为神服务，并劝人关心灵魂的最好状态（23b、30a–b）；3）但这是把两篇连起来的解读，柏拉图在 Euthyphro 里没有明说；4）游叙弗伦自己转去谈祈祷和献祭。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "是“虔敬是正义的一部分”，不是“正义是虔敬的一部分”：大类是正义，小类是虔敬。"
+            },
+            {
+              "zh": "羞耻是恐惧的一部分（不是反过来），奇数是数的一部分。诗人“有恐惧就有羞耻”的说法被苏格拉底否定了。"
+            },
+            {
+              "zh": "D4 先被理解为照料（被否定：神不能被变好），再改成服侍（没被直接驳倒，而是说不出产物）。"
+            },
+            {
+              "zh": "游叙弗伦没有说神什么都不做，他说神做成了很多好东西，只是说不出主要的那一个。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which comparisons does Socrates use to show how piety is related to justice?",
+            "zh": "苏格拉底用哪组比较来说明虔敬和正义的关系？"
+          },
+          "options": [
+            {
+              "en": "Shame is a part of fear, as odd is a part of number.",
+              "zh": "羞耻是恐惧的一部分，就像奇数是数的一部分。"
+            },
+            {
+              "en": "Something carried is carried because it is being carried.",
+              "zh": "被搬的东西是因为正在被搬才是被搬的。"
+            },
+            {
+              "en": "Daedalus' statues move by themselves.",
+              "zh": "代达罗斯的雕像会自己走动。"
+            },
+            {
+              "en": "Horse breeders improve horses, while most people make them worse.",
+              "zh": "养马人让马变好，大多数人却让马变坏。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 8–9 页，12a–d）。B 是两难论证里“被作用”的例子（第 7 页）；C 是说论证跑来跑去的玩笑（第 8 页）；D 是《申辩篇》里驳美勒托的类比（第 5 页），不是这里的论证。",
+            "en": "A. Shame within fear and odd within number model piety within justice."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-trade-and-the-circle",
+      "title": {
+        "zh": "游叙弗伦篇：祈祷献祭、交易与回到原点",
+        "en": "Euthyphro: Prayer, Sacrifice, Trade and the Circle"
+      },
+      "slides": "10-11",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "上一节结尾，游叙弗伦换了一种说法（第 10 页，14b）：要说准确很难，简单说，懂得在祈祷和献祭时说神喜欢的话、做神喜欢的事，这就是虔敬（**piety**：对神恰当、正确的态度和行为），能保住家庭和城邦；相反的就是不虔敬，会毁掉一切。苏格拉底说：你本可以说得短得多，你是不想教我。但爱探究的人只能跟着他所爱的东西走，它去哪儿就跟到哪儿（14c）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "standard form (P1, P2, ..., C)",
+              "zh": "标准形式",
+              "hint": "论证＝用理由支持一个观点；标准形式＝把理由（前提 P1、P2……）编号列出，最后写要证明的结论 C。"
+            },
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "一句话说清一个东西到底是什么，对所有这类东西都成立。"
+            },
+            {
+              "en": "sacrifice",
+              "zh": "献祭",
+              "hint": "给神献上礼物；苏格拉底说这是给神东西。"
+            },
+            {
+              "en": "prayer",
+              "zh": "祈祷",
+              "hint": "向神请求；苏格拉底说这是向神要东西。"
+            },
+            {
+              "en": "trading skill",
+              "zh": "交易技艺",
+              "hint": "懂得怎样和对方互相给予、交换的本领。"
+            },
+            {
+              "en": "benefit",
+              "zh": "好处、益处",
+              "hint": "让对方得到实际的好处。"
+            },
+            {
+              "en": "going in a circle",
+              "zh": "绕回原点（循环）",
+              "hint": "推来推去，又回到一开始已经被否定的说法。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：从祈祷献祭绕回“神所喜爱的”（第 10–11 页，14c–15c）",
+            "en": "Standard form: from prayer and sacrifice back to 'dear to the gods' (pp. 10-11, 14c-15c)"
+          },
+          "items": [
+            {
+              "en": "P1: D5: piety is knowing how to sacrifice and pray.",
+              "zh": "P1：D5：虔敬就是懂得怎样献祭和祈祷。"
+            },
+            {
+              "en": "P2: Sacrifice is giving to the gods and prayer is asking from them; done correctly, we ask for what we need and give what they need. So piety would be \"a sort of trading skill between gods and men\" (p. 10, 14e).",
+              "zh": "P2：献祭是给神东西，祈祷是向神要东西；做得对，就是要我们需要的、给神需要的。这样，虔敬就成了神和人之间的一种交易技艺（第 10 页，14e）。"
+            },
+            {
+              "en": "P3: But the gods receive no benefit from our gifts; all our goods come from them, and what we give them is only honour, reverence and what pleases them.",
+              "zh": "P3：可神从我们的礼物里得不到好处：我们的一切好东西都来自神，我们给神的只是尊敬、敬畏和让神高兴的东西。"
+            },
+            {
+              "en": "P4: So on this view the pious is what pleases the gods, and Euthyphro says it is what is most dear to them.",
+              "zh": "P4：所以按这个说法，虔敬就是让神高兴的东西；游叙弗伦说，它是对神最可爱的东西。"
+            },
+            {
+              "en": "P5: But being dear to the gods is the same as being god-loved, and the god-loved was already shown to differ from the pious (10e-11a).",
+              "zh": "P5：可“神所喜爱的”就是“为神所爱的”，而前面已经证明为神所爱的不等于虔敬（10e–11a）。"
+            },
+            {
+              "en": "C: So the argument has come back in a circle: either their earlier agreement was wrong or the present one is, and they must start again from the beginning.",
+              "zh": "C：所以论证绕了一圈回到原点：要么前面的同意错了，要么现在的错了，只能从头再来。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P1–P2 很贴近当时的日常理解：Grube 说，hosion 本来就指懂得祈祷和献祭的正确仪式（第 1 页）。苏格拉底一步步追问：献祭（**sacrifice**）＝给，祈祷（**prayer**）＝要（14c–d）；会要就是要自己需要的，会给就是给对方需要的，送人家根本用不上的东西不算本事（14d–e）。于是虔敬成了一种交易。游叙弗伦说：你愿意这么叫就这么叫吧。苏格拉底说：我什么都不愿意，除非它是真的。"
+        },
+        {
+          "type": "analogy",
+          "zh": "很多人去庙里烧香许愿：“保佑我考试过，过了我回来还愿。”这就很像一笔交易：我给你香火，你给我保佑。苏格拉底的问题是：正常的交易里双方都得到好处；可神什么都不缺，我们的香火对神有什么用？如果神什么也得不到，这还算交易吗？",
+          "limit": "类比的限度：烧香许愿是今天的例子，不是古希腊的宗教；而且很多人并不把拜神当成交易，这正是有人觉得苏格拉底把 D5 说得不公平的原因（见下面的讨论）。"
+        },
+        {
+          "type": "text",
+          "zh": "P3–P5 是陷阱所在。苏格拉底问神从我们的礼物里得到什么好处；游叙弗伦反问：你以为神会从我们这里得到好处吗？我们给神的只是尊敬、敬畏和让神高兴（15a）。苏格拉底：那么虔敬就是让神高兴，而不是对神有益、被神喜爱的？游叙弗伦说：它是对神最可爱的东西。苏格拉底：那虔敬又成了神所喜爱的（15b）。可这正是前面已经被否定的说法：“神所喜爱的”就是“为神所爱的”，游叙弗伦也承认（15c）。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "论证怎样绕回原点",
+            "en": "How the argument goes round in a circle"
+          },
+          "items": [
+            {
+              "en": "D2: the pious is what is dear to the gods (6e-7a)",
+              "zh": "D2：虔敬就是神所喜爱的（6e–7a）"
+            },
+            {
+              "en": "Refuted: the gods disagree, so one act would be both pious and impious (8a)",
+              "zh": "被驳倒：诸神意见不一，同一行为既虔敬又不虔敬（8a）"
+            },
+            {
+              "en": "D3: the pious is whatever all the gods love (9e)",
+              "zh": "D3：虔敬就是所有神都爱的（9e）"
+            },
+            {
+              "en": "Refuted: being god-loved and being pious turn out to be different (10e-11a)",
+              "zh": "被驳倒：为神所爱的不等于虔敬（10e–11a）"
+            },
+            {
+              "en": "D4 and D5: care, service, prayer and sacrifice (12e-14e)",
+              "zh": "D4、D5：照料、服侍、祈祷和献祭（12e–14e）"
+            },
+            {
+              "en": "Back to the start: the pious is what is most dear to the gods (15b)",
+              "zh": "回到原点：虔敬就是对神最可爱的东西（15b）"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "结尾：普罗透斯与游叙弗伦的离开（第 11 页，15c–16a）",
+            "en": "The ending: Proteus and Euthyphro's exit (p. 11, 15c-16a)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底：要么我们前面同意错了，要么现在错了；我们得从头再查虔敬是什么，我不会甘心放弃。",
+              "en": "Either they were wrong before or are wrong now, so they must start again; Socrates will not give up."
+            },
+            {
+              "zh": "如果有谁懂虔敬，那就是你；我不会放你走，就像不放走普罗透斯（**Proteus**）一样。脚注 13：普罗透斯是神话里的海中老人，能不停变形，以此逃避别人的盘问。",
+              "en": "He will not let Euthyphro go, as one must hold on to Proteus, the shape-changing old man of the sea who escaped being questioned (footnote 13)."
+            },
+            {
+              "zh": "如果你对虔敬没有清楚的知识，就绝不敢为了一个仆从去告年迈的父亲杀人：你会怕神，怕自己做得不对，也会在人前感到羞耻（15d）。",
+              "en": "Without clear knowledge of piety, Euthyphro would never have dared to charge his elderly father with murder for the sake of a servant."
+            },
+            {
+              "zh": "游叙弗伦：下次吧，苏格拉底，我现在赶时间，该走了（15e）。",
+              "en": "Euthyphro says he is in a hurry and must go, and puts the question off to another time."
+            },
+            {
+              "zh": "苏格拉底：你这一走，就把我从一个大希望上摔了下来：我本想从你这里学会虔敬，向美勒托证明我在神事上已经变聪明，不再因为无知而随意乱想、乱创新，一辈子过得更好（15e–16a）。",
+              "en": "Socrates: you have dashed my hope of learning piety from you, escaping Meletus' charge and living better for the rest of my life."
+            }
+          ],
+          "answer": {
+            "zh": "对话没有找到定义就结束了；自称最懂虔敬的人，在检验面前走掉了。",
+            "en": "The dialogue ends without a definition, and the man who claimed to know leaves."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：后人把苏格拉底式对话这种找不到答案、陷入困惑的结尾叫作 **aporia**（困惑、无路可走）。这个词不在译文里；Grube 只说，和往常一样，没有找到让苏格拉底满意的定义（第 1 页）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "游叙弗伦的定义一览（编号是本站的，读物里没有）",
+            "en": "Euthyphro's definitions at a glance (the numbering is the station's, not the reading's)"
+          },
+          "headers": [
+            "定义 Definition",
+            "内容 What it says",
+            "为什么失败 Why it fails"
+          ],
+          "rows": [
+            [
+              "D1（5d–e）",
+              "虔敬就是像我现在这样，起诉做错事的人",
+              "只是一个例子，不是让所有虔敬行为都虔敬的型（6d–e）"
+            ],
+            [
+              "D2（6e–7a）",
+              "神所喜爱的就是虔敬的",
+              "诸神意见不一，同一行为既虔敬又不虔敬（7a–8b）"
+            ],
+            [
+              "D3（9e）",
+              "所有神都爱的就是虔敬的",
+              "两难：神爱它是因为它虔敬，所以“被神爱”只是它的性质，不是本质（10a–11b）"
+            ],
+            [
+              "D4 照料（12e）",
+              "正义中照料神的那一部分",
+              "照料让对象变好，可虔敬不能让神变好（13a–d）"
+            ],
+            [
+              "D4 服侍（13d）",
+              "像奴隶服侍主人那样服侍神",
+              "说不出神通过我们的服侍完成的主要产物（13d–14c）"
+            ],
+            [
+              "D5（14c–e）",
+              "懂得怎样献祭和祈祷（给与要的交易）",
+              "神得不到好处，最后又绕回“神所喜爱的”（15b–c）"
+            ]
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is it fair of Socrates to turn Euthyphro's answer about prayer and sacrifice into a 'trading skill'?",
+            "zh": "苏格拉底把游叙弗伦关于祈祷和献祭的说法变成“交易技艺”，公平吗？"
+          },
+          "answer": {
+            "en": "Partly. Grube notes that hosion first meant knowing the proper ritual of prayer and sacrifice, so Euthyphro's answer is close to the ordinary meaning of the word. Socrates only draws out what giving and asking seem to imply, and Euthyphro agrees at each step. But Euthyphro accepts the word 'trading' only reluctantly, and a worshipper could say that sacrifice expresses honour rather than paying for favours. Still, once Euthyphro says the gods gain nothing and are only pleased, the definition falls back on 'dear to the gods', which was already refuted.",
+            "zh": "要点：1）Grube 说 hosion 本来就指祈祷、献祭的仪式知识，D5 很贴近日常意思；2）苏格拉底只是推出“给与要”的含义，游叙弗伦每一步都同意；3）但游叙弗伦是勉强接受“交易”这个词，信神的人可以说献祭是表达尊敬，不是买好处；4）不过一旦说神得不到好处、只是高兴，定义就又回到已经被否定的“神所喜爱的”。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "The dialogue ends without a definition. What does the ending show?",
+            "zh": "对话没有给出定义就结束了。这个结尾说明了什么？"
+          },
+          "answer": {
+            "en": "The ending does not show that piety does not exist or cannot be defined, since Socrates wants to start again. It shows that Euthyphro, who claimed precise knowledge of piety and acted on it against his own father, cannot say what piety is. This makes him a living example of the Apology's point that people think they know important things they do not know. It also shows Socrates' method: a definition is tested against agreed examples and principles, and a definition that leads back to a refuted one must be given up.",
+            "zh": "要点：1）结尾不说明虔敬不存在或无法定义，苏格拉底还想从头再来；2）说明自称准确知道虔敬、还据此告父亲的游叙弗伦，其实说不出虔敬是什么；3）这正是《申辩篇》说的“以为自己知道其实不知道”；4）也展示了苏格拉底的方法：用双方同意的例子和原则检验定义，绕回已被否定的定义就得放弃。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“交易技艺”是苏格拉底推出来、游叙弗伦勉强接受的说法，不是游叙弗伦一开始的话。"
+            },
+            {
+              "zh": "说神得不到好处、只得到尊敬和让神高兴的东西，是这一步把定义带回了“神所喜爱的”。"
+            },
+            {
+              "zh": "对话没有判定游叙弗伦告父亲是对是错。"
+            },
+            {
+              "zh": "没找到答案，不等于虔敬不存在，也不等于苏格拉底认为宗教不重要。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does the discussion of prayer and sacrifice bring Euthyphro back to where he started?",
+            "zh": "为什么关于祈祷和献祭的讨论让游叙弗伦回到了原点？"
+          },
+          "options": [
+            {
+              "en": "Because he says the pious is what pleases the gods and is most dear to them, which is the god-loved definition already refuted.",
+              "zh": "因为他说虔敬是让神高兴、对神最可爱的东西，这就是已经被驳倒的“为神所爱的”定义。"
+            },
+            {
+              "en": "Because he says again that piety is prosecuting wrongdoers.",
+              "zh": "因为他又说虔敬就是起诉做错事的人。"
+            },
+            {
+              "en": "Because Socrates admits that the gods are benefited by sacrifices.",
+              "zh": "因为苏格拉底承认神从献祭中得到好处。"
+            },
+            {
+              "en": "Because the king-archon ends the discussion.",
+              "zh": "因为王者执政官结束了讨论。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 10–11 页，15b–c）。B 错：他没有回到 D1，回到的是 D2、D3 的“神所喜爱的”；C 正相反，双方都说神得不到好处；D 错：是游叙弗伦自己借口赶时间离开的（15e）。",
+            "en": "A. 'Most dear to the gods' is the god-loved definition again."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-comparing-the-readings",
+      "title": {
+        "zh": "比较：人的智慧与虔敬",
+        "en": "Comparison: Human Wisdom and Piety in the Two Dialogues"
+      },
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节把两篇放在一起比较，所以没有单独的页码。用到的地方：《申辩篇》第 1–8 页（旧诽谤、Evenus、神谕、人的智慧、为神服务、盘问美勒托、怕死是假智慧、服从神、关心灵魂）和第 11–14 页（拒绝乞怜与誓言、反讽、结局）；《游叙弗伦篇》第 1–11 页（尤其第 1–4 页的场景、案子和他自称的知识，第 9–11 页的服侍神、交易和结尾）。本站判断：比较题、小论文可能会用到这一节。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "human wisdom",
+              "zh": "人的智慧",
+              "hint": "不以为自己知道自己不知道的事（《申辩篇》第 3 页，21d）。"
+            },
+            {
+              "en": "piety",
+              "zh": "虔敬",
+              "hint": "对神恰当、正确的态度和行为；《游叙弗伦篇》想定义的东西。"
+            },
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "一句话说清一个东西到底是什么，对所有这类东西都成立。"
+            },
+            {
+              "en": "craft analogy",
+              "zh": "技艺类比",
+              "hint": "本站的叫法，读物里没有这个词：拿有专门技术的行业（养马、行医、造船）来比道德问题。"
+            },
+            {
+              "en": "irony",
+              "zh": "反讽",
+              "hint": "说的和真正的意思相反，比如假装要拜对方为师。"
+            },
+            {
+              "en": "interpretation",
+              "zh": "解读",
+              "hint": "读者从文本推出来、文本没有直接说的意思；写的时候要标明是解读。"
+            },
+            {
+              "en": "dramatic order",
+              "zh": "故事时间顺序",
+              "hint": "按对话里发生的时间排的先后，不是写作或课程阅读的先后。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "先理清顺序。按故事时间，《游叙弗伦篇》在前：苏格拉底已经被起诉，来到王者执政官的法庭，审判还没开始（Euthyphro 第 2 页）；Grube 说，它对审判和指控的提及像是整出审判大戏的序幕（第 1 页）。《申辩篇》是审判本身。课程却先读《申辩篇》（周一），再读《游叙弗伦篇》（周三）。所以读《游叙弗伦篇》时你已经知道结局，而苏格拉底在对话里还说，想从游叙弗伦那儿学会虔敬，好应付美勒托。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "两篇对照",
+            "en": "The two dialogues side by side"
+          },
+          "headers": [
+            "比较点 Point",
+            "申辩篇 Apology",
+            "游叙弗伦篇 Euthyphro"
+          ],
+          "rows": [
+            [
+              "谁自称有知识",
+              "政治家、诗人、工匠以为自己懂最重要的事（第 3–4 页）",
+              "游叙弗伦自称准确知道虔敬，所以敢告父亲（第 3 页）"
+            ],
+            [
+              "苏格拉底的姿态",
+              "不以为自己知道自己不知道的事（21d）",
+              "说要拜游叙弗伦为师，请他教自己（5a）"
+            ],
+            [
+              "方法",
+              "盘问、检验别人的知识；当庭盘问美勒托（第 5–7 页）",
+              "对方提出定义，再用双方同意的例子和原则检验（第 4–11 页）"
+            ],
+            [
+              "技艺类比",
+              "小马小牛找养马人、农夫（第 2 页）；只有养马人让马变好（第 5 页）",
+              "养马、猎犬、养牛是照料；医生、造船匠、将军、农夫的服侍各有产物（第 9–10 页）"
+            ],
+            [
+              "为神服务",
+              "他把检验别人叫作为神服务（第 4 页，23b–c；第 8 页，30a）",
+              "“虔敬是服侍神”，却说不出产物（第 9–10 页）"
+            ],
+            [
+              "结局",
+              "被判死刑，对死亡抱美好的希望（第 12–14 页）",
+              "没有找到定义，游叙弗伦借口赶时间离开（第 11 页）"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "最重要的联系（本站的理解，两篇都没有直接这样说）：游叙弗伦是《申辩篇》里那种人的活例子。《申辩篇》说，人的智慧（**human wisdom**）就是不以为自己知道自己不知道的事（第 3 页，21d），而以为知道其实不知道，是最该受责备的无知（第 7 页，29b）。游叙弗伦说，自己要是对虔敬（**piety**）没有准确的知识，就不比大多数人强（Euthyphro 第 3 页，4e–5a）；可他的定义一个个站不住，最后借口走掉（第 11 页）。苏格拉底在两篇里做的是同一件事：检验自称有知识的人。"
+        },
+        {
+          "type": "text",
+          "zh": "第二个联系是服侍神。《申辩篇》里，苏格拉底说他到处检验别人是在为神服务，因此一贫如洗（第 4 页，23b–c），还说他劝人关心灵魂（**soul**）是城邦最大的福气（第 8 页，30a）。《游叙弗伦篇》里，修正后的 D4 说虔敬是服侍神，却说不出神靠我们完成的产物（第 9–10 页）。把两篇连起来，可以猜：苏格拉底自己的生活就是一种答案——帮神让人的灵魂变好。但要注意：这是解读，两篇都没有直接这样说。"
+        },
+        {
+          "type": "text",
+          "zh": "第三，两篇都用技艺类比（**craft analogy**：拿有专门技术的行业来比）：养马人懂得让马变好，医生、造船匠有明确的产物。苏格拉底借此追问：在做好人、虔敬这类最重要的事上，谁是真正的专家？第四，本站认为两篇都有反讽（**irony**：说的和真正的意思相反）：他称美勒托是自称的好人和爱国者（申辩篇第 4 页）、羡慕 Evenus 收费便宜（第 2 页）、说要拜游叙弗伦为师（游叙弗伦篇第 3–4 页）、说游叙弗伦比自己年轻多少就智慧多少（第 8 页）。陪审员也会以为他说服从神是在反讽（申辩篇第 12 页，38a）。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is the Socrates of the Apology pious by the tests of the Euthyphro?",
+            "zh": "按《游叙弗伦篇》的各个标准，《申辩篇》里的苏格拉底算虔敬吗？"
+          },
+          "answer": {
+            "en": "By D1 he is not obviously pious, since he prosecutes no one, and D2 and D3 cannot be checked because we do not know what the gods love. By the service version of D4, however, he seems the most pious man in Athens: he calls his questioning service to the god and gives up wealth and safety for it. He also refuses to beg because making jurors break their oath would be impious (35c-d), and he says he believes in the gods as none of his accusers do. So, on this interpretation, the dialogue that fails to define piety still suggests that Socrates, not Euthyphro, lives it.",
+            "zh": "要点：1）按 D1 不明显，他不起诉任何人；2）D2、D3 无法检验，我们不知道神爱什么；3）按 D4 的服侍版，他似乎最虔敬：把检验别人叫作为神服务，为此放弃钱财和安全；4）他拒绝乞怜，因为让陪审员违誓是不敬神的（35c–d），还说他比任何原告都信神；5）按这种解读，没能定义虔敬的对话，仍暗示真正活出虔敬的是苏格拉底，而不是游叙弗伦。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Short essay: How does the Euthyphro illustrate the Apology's account of human wisdom?",
+            "zh": "小论文：《游叙弗伦篇》怎样印证了《申辩篇》对“人的智慧”的说法？"
+          },
+          "answer": {
+            "en": "In the Apology, Socrates says his only wisdom is that he does not think he knows what he does not know, while the people he questioned believed they knew the most important things. The Euthyphro shows this in action. Euthyphro claims precise knowledge of piety and prosecutes his own father on the strength of it, but each definition he gives fails under questioning, and the last one circles back to a refuted one. Socrates, by contrast, admits his ignorance and keeps asking. The dialogue ends with Euthyphro walking away, which also suggests how unwelcome such examinations could be.",
+            "zh": "要点：1）申辩篇：唯一的智慧是不以为自己知道不知道的事，被问的人却以为自己懂最重要的事；2）游叙弗伦自称准确知道虔敬，还据此告父亲；3）他的定义一个个经不起盘问，最后一个绕回已被否定的定义；4）苏格拉底承认无知、继续追问；5）游叙弗伦借口走掉，也让人看到这种检验多么不受欢迎（这是解读）。"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：比较题的关键句",
+            "en": "Exam sentences for comparison questions"
+          },
+          "items": [
+            {
+              "en": "Both dialogues show Socrates testing people who claim to know about the most important things.",
+              "zh": "两篇都展示苏格拉底检验那些自称懂最重要之事的人。"
+            },
+            {
+              "en": "Euthyphro is a clear example of what the Apology calls the most blameworthy kind of ignorance: thinking one knows what one does not know.",
+              "zh": "游叙弗伦是《申辩篇》所说最该受责备的无知的清楚例子：以为自己知道自己不知道的事。"
+            },
+            {
+              "en": "In the Apology Socrates calls his questioning service to the god; in the Euthyphro, piety as service to the gods fails only because Euthyphro cannot name its product.",
+              "zh": "《申辩篇》里苏格拉底把盘问叫作为神服务；《游叙弗伦篇》里“虔敬是服侍神”失败，只是因为游叙弗伦说不出它的产物。"
+            },
+            {
+              "en": "Neither dialogue reaches a final definition, but both suggest that admitting ignorance and continuing to examine is the right place to start.",
+              "zh": "两篇都没有给出最终定义，但都暗示：承认无知、继续审视，才是正确的起点。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "和其他周的联系（简单记）：第 2 周罗素说哲学的价值很大程度上在于它的不确定，能让人摆脱习俗和独断；本站的理解是，苏格拉底的人的智慧可以看作早期的例子。第 4 周《美诺篇》里，原告之一安尼图斯会登场；美诺也像游叙弗伦的 D1 一样，先列举许多美德，而不是说出美德是什么。第 5 周笛卡尔要推倒从小接受的错误信念，可以对照《申辩篇》说陪审员从小就听信了诽谤（第 1 页）。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "按故事时间，《游叙弗伦篇》在审判之前，《申辩篇》是审判本身；课程的阅读顺序正好相反。"
+            },
+            {
+              "zh": "“苏格拉底的生活就是服侍神的产物”是把两篇连起来的解读，不是柏拉图的原话；写的时候用 one interpretation is ... 这类说法。"
+            },
+            {
+              "zh": "游叙弗伦是职业祭司（Euthyphro 脚注 1），还说自己在公民大会上预言未来（3c）；苏格拉底在 Euthyphro 里和“你们这些预言家”保持距离（3e，脚注 4）。别把苏格拉底说成游叙弗伦那样的预言家；他在《申辩篇》结尾也作过一次预言，但他说那是人临死时常有的预言（39c）。"
+            },
+            {
+              "zh": "两篇说“神”的方式不同：《申辩篇》里他的使命来自单数的 the god（德尔斐的神）；《游叙弗伦篇》讨论的是复数的 the gods（诸神）。"
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement best describes how the two dialogues are connected?",
+            "zh": "下面哪一句最能说明两篇对话的联系？"
+          },
+          "options": [
+            {
+              "en": "The Euthyphro gives the definition of piety that Socrates uses in his defence.",
+              "zh": "《游叙弗伦篇》给出了苏格拉底在辩护中使用的虔敬定义。"
+            },
+            {
+              "en": "Both dialogues are set after Socrates' death.",
+              "zh": "两篇都发生在苏格拉底死后。"
+            },
+            {
+              "en": "Euthyphro, who claims precise knowledge of piety but cannot define it, is an example of the false wisdom described in the Apology.",
+              "zh": "自称准确知道虔敬却说不出定义的游叙弗伦，是《申辩篇》所说假智慧的例子。"
+            },
+            {
+              "en": "In both dialogues Socrates claims to be an expert on the gods.",
+              "zh": "在两篇里，苏格拉底都自称是神事专家。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C。A 错：《游叙弗伦篇》没有找到定义（第 11 页）；B 错：《游叙弗伦篇》在审判前，《申辩篇》是审判本身；D 正相反，苏格拉底在两篇里都否认自己有这种专门知识，还说要向游叙弗伦学（第 3–4 页）。",
+            "en": "C. Euthyphro shows the false wisdom that the Apology describes."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "The Apology is Socrates' defence speech at his trial; the Greek word apologia means a defence, not an apology in the sense of saying sorry.",
+      "zh": "《申辩篇》是苏格拉底在审判中的辩护词；希腊词 apologia 意思是“辩护”，不是“道歉”。"
+    },
+    {
+      "en": "Socrates first answers the old accusers, whose rumours said that he studied the heavens and what lies under the earth, made the worse argument the stronger and taught for fees, and only then the formal charge of Meletus, Anytus and Lycon: corrupting the young and not believing in the city's gods but in new spiritual things.",
+      "zh": "苏格拉底先回应早先的控告者（流言说他研究天上地下、把弱论证说强、收费教人），再回应美勒托、安尼图斯、吕孔的正式指控：败坏青年、不信城邦的神而信新的精灵之事。"
+    },
+    {
+      "en": "The oracle at Delphi said that no one was wiser than Socrates; after questioning politicians, poets and craftsmen, he concluded that he was wiser only in that he does not think he knows what he does not know.",
+      "zh": "德尔斐神谕说没有人比苏格拉底更有智慧；他盘问政治家、诗人、工匠后得出：他只在一点上更智慧——不以为自己知道自己不知道的事。"
+    },
+    {
+      "en": "Socrates reads the oracle as saying that human wisdom is of little or no value, and he calls his questioning of people service to the god.",
+      "zh": "苏格拉底把神谕理解为“人的智慧价值很小甚至没有”，并把盘问别人称为为神服务。"
+    },
+    {
+      "en": "In cross-examining Meletus, Socrates argues that Meletus has never cared about who improves the young, that no one would corrupt his associates deliberately, and that believing in spiritual things means believing in gods; these arguments expose Meletus' carelessness but do not answer the charge about the city's gods.",
+      "zh": "盘问美勒托时，他论证：美勒托从没关心过谁让青年变好；没人会故意败坏身边的人；信精灵之事就得信神。这些论证揭露了美勒托的马虎，却没回应“不信城邦的神”这一条。"
+    },
+    {
+      "en": "Socrates argues that fearing death is a kind of false wisdom, because no one knows whether death is good or bad, while he does know that doing wrong and disobeying a superior is shameful.",
+      "zh": "他论证怕死是一种假智慧，因为没人知道死是好是坏；而他确实知道做错事、不服从上级是可耻的。"
+    },
+    {
+      "en": "Socrates says he would obey the god rather than the jury, because the god ordered him to examine himself and others and to urge them to care for their souls more than for wealth or reputation.",
+      "zh": "他说要服从神而不是陪审团，因为神命令他审视自己和别人，劝人关心灵魂胜过关心钱财和名声。"
+    },
+    {
+      "en": "He compares himself to a gadfly attached by the god to Athens, a large but sluggish horse, and argues that killing him would harm the jurors more than him, since a worse man cannot harm a better one.",
+      "zh": "他自比神安在雅典（一匹大而懒的马）身上的牛虻，并论证杀他对陪审员的伤害比对他更大，因为坏人不能伤害比他好的人。"
+    },
+    {
+      "en": "His divine sign only turns him away from actions; it kept him out of politics, because a person who truly fights for justice cannot survive in public life, as the trial of the generals and the order to arrest Leon of Salamis show.",
+      "zh": "他的神圣征兆只会阻止他；它让他远离政治，因为真正为正义而战的人在公共生活中活不下去，审判将军案和逮捕勒翁的命令都说明了这一点。"
+    },
+    {
+      "en": "After the guilty verdict Socrates proposes free meals in the Prytaneum, rejects prison, exile and silence, and says that 'the unexamined life is not worth living for man' (38a); he finally offers thirty minae, and the jury sentences him to death.",
+      "zh": "定罪后他提出在市政厅免费用餐，拒绝坐牢、流放和闭嘴，并说未经审视的人生不值得过；最后他提出三十明那的罚款，陪审团判他死刑。"
+    },
+    {
+      "en": "After the sentence he argues that death is either like a dreamless sleep or a move of the soul to another place, so there is good hope that it is a blessing; he claims hope, not knowledge.",
+      "zh": "判决后他论证：死要么像无梦的睡眠，要么是灵魂迁居到另一个地方，所以有美好的希望认为死是好事；他主张的是希望，不是知识。"
+    },
+    {
+      "en": "In the Euthyphro, Socrates asks for the one form that makes all pious actions pious, so that it can serve as a model; Euthyphro's first answer, prosecuting wrongdoers, fails because it is only an example.",
+      "zh": "《游叙弗伦篇》里，苏格拉底要的是让所有虔敬行为都虔敬的那一个型，好拿来当范本；游叙弗伦的第一个回答（起诉做错事的人）只是一个例子，所以不行。"
+    },
+    {
+      "en": "The definition of the pious as what is dear to the gods fails because the gods disagree about the just and the good, so the same act would be both pious and impious.",
+      "zh": "“神所喜爱的”这个定义失败，因为诸神在正义和好坏上意见不一，同一行为会既虔敬又不虔敬。"
+    },
+    {
+      "en": "In the dilemma, Euthyphro agrees that the gods love the pious because it is pious; since the god-loved is god-loved because the gods love it, the pious and the god-loved are not the same, and being loved by the gods is only a quality of piety, not its nature.",
+      "zh": "在两难里，游叙弗伦同意神爱虔敬的东西是因为它虔敬；而为神所爱的是因为神爱它才为神所爱，所以二者不是同一个东西，“被神爱”只是虔敬的性质，不是本质。"
+    },
+    {
+      "en": "Piety as the part of justice that cares for the gods fails because care makes its object better and the gods cannot be made better; piety as service fails because Euthyphro cannot name the product of that service.",
+      "zh": "“虔敬是正义中照料神的部分”失败，因为照料会让对象变好，而神不能被变好；“虔敬是服侍神”失败，因为游叙弗伦说不出这种服侍的产物。"
+    },
+    {
+      "en": "Piety as knowing how to sacrifice and pray turns piety into a kind of trade from which the gods gain nothing, and it circles back to 'dear to the gods'; the dialogue ends without a definition when Euthyphro leaves.",
+      "zh": "“虔敬是懂得献祭和祈祷”把虔敬变成一种神得不到好处的交易，又绕回“神所喜爱的”；游叙弗伦离开，对话没有得出定义。"
+    },
+    {
+      "en": "One natural interpretation links the readings: Euthyphro, who claims precise knowledge of piety but cannot define it, illustrates the Apology's point that people think they know important things that they do not know.",
+      "zh": "一种很自然的解读把两篇连起来：自称准确知道虔敬却说不出定义的游叙弗伦，印证了《申辩篇》的观点：人们以为自己懂重要的事，其实不懂。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Which accusations belong to the old accusers and which to the formal charge, and why Socrates fears the old accusers more.",
+      "zh": "哪些指控属于早先的流言、哪些属于正式指控，以及他为什么更怕早先的控告者。本站判断：选择题可能会考这种分类。",
+      "sectionId": "s01-trial-and-accusers"
+    },
+    {
+      "en": "The oracle story and human wisdom; know that Socrates never says 'I know that I know nothing'.",
+      "zh": "本站判断：神谕故事和人的智慧很可能会考；注意他没说过“我只知道我一无所知”。",
+      "sectionId": "s02-oracle-and-human-wisdom"
+    },
+    {
+      "en": "The three arguments against Meletus in standard form, and what each does and does not show.",
+      "zh": "会写驳美勒托的三个论证的标准形式，并说出各自证明了什么、没证明什么。",
+      "sectionId": "s03-cross-examining-meletus"
+    },
+    {
+      "en": "Why fearing death is false wisdom, and what Socrates does claim to know (29b).",
+      "zh": "为什么怕死是假智慧，以及苏格拉底说自己确实知道什么（29b）。",
+      "sectionId": "s04-post-and-fear-of-death"
+    },
+    {
+      "en": "The gadfly image and the claim that a worse man cannot harm a better one.",
+      "zh": "牛虻比喻的各部分分别代表什么，以及“坏人不能伤害好人”的意思。",
+      "sectionId": "s05-obey-the-god-gadfly"
+    },
+    {
+      "en": "What the divine sign does, and how the trial of the generals and Leon of Salamis support his staying out of politics.",
+      "zh": "神圣征兆的作用（只阻止），以及将军案和勒翁案怎样支持他远离政治。",
+      "sectionId": "s06-divine-sign-private-life"
+    },
+    {
+      "en": "The counter-penalty (free meals in the Prytaneum) and the context of the claim that 'the unexamined life is not worth living for man' (38a).",
+      "zh": "反提刑罚（市政厅免费用餐）的理由，以及“未经审视的人生不值得过”出现的语境。",
+      "sectionId": "s07-pity-penalty-unexamined-life"
+    },
+    {
+      "en": "The argument that death may be no evil (the sign's silence and the two possibilities), and the difference between good hope and knowledge.",
+      "zh": "“死亡未必是坏事”的论证（征兆的沉默、两种可能），以及美好的希望和知识的区别。",
+      "sectionId": "s08-after-the-sentence"
+    },
+    {
+      "en": "Why an example is not a definition, using Euthyphro's first answer and the demand for one form.",
+      "zh": "用游叙弗伦的第一个回答和“那一个型”说明为什么举例不等于定义。",
+      "sectionId": "s09-euthyphro-case-one-form"
+    },
+    {
+      "en": "How divine disagreement refutes the definition of the pious as what is dear to the gods, and why the patch about punishing killers fails.",
+      "zh": "诸神意见不一怎样驳倒“神所喜爱的”，以及“杀人者该受罚”这个补救为什么不行。",
+      "sectionId": "s10-dear-to-the-gods"
+    },
+    {
+      "en": "The Euthyphro dilemma in standard form, which horn Euthyphro takes, and the cost of each horn.",
+      "zh": "游叙弗伦困境的标准形式、游叙弗伦选了哪一支、每一支的代价。本站判断：这里很可能出小论文。",
+      "sectionId": "s11-euthyphro-dilemma"
+    },
+    {
+      "en": "The part-whole comparisons, and why care and service fail as definitions of piety.",
+      "zh": "部分与整体的比较（恐惧与羞耻、奇数与数），以及照料和服侍为什么都不行。",
+      "sectionId": "s12-part-of-justice-care-service"
+    },
+    {
+      "en": "The trading-skill definition, why the argument circles back, and what the ending without a definition shows.",
+      "zh": "交易技艺这个定义、论证为什么绕回原点、没有定义的结尾说明了什么。",
+      "sectionId": "s13-trade-and-the-circle"
+    },
+    {
+      "en": "Comparison essay: how the Euthyphro illustrates the Apology's human wisdom, service to the god or gods, craft analogies and irony.",
+      "zh": "比较题：《游叙弗伦篇》怎样印证《申辩篇》的人的智慧，以及为神服务、技艺类比、反讽这几条线索。",
+      "sectionId": "s14-comparing-the-readings"
+    }
+  ]
+}

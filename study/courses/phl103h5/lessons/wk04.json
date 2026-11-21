@@ -1,0 +1,4009 @@
+{
+  "id": "wk04",
+  "kind": "week",
+  "number": 4,
+  "title": {
+    "en": "Plato on Knowledge",
+    "zh": "柏拉图论知识"
+  },
+  "sources": [
+    {
+      "file": "Plato, Meno 70a-86d, trans. G.M.A. Grube (Sep 28; 'Plato-Meno' PDF pp. 1-17, the same text as 'Plato-Meno (excerpt)')",
+      "pages": 17
+    },
+    {
+      "file": "Plato, Meno 86d-100b, trans. G.M.A. Grube (Sep 30; 'Plato-Meno' PDF pp. 18-28)",
+      "pages": 11
+    }
+  ],
+  "estimatedMinutes": 210,
+  "oneLiner": {
+    "zh": "美诺问“美德能教吗”，苏格拉底说要先知道“美德是什么”；三次定义都失败后，他用“学习就是回忆”回答“探究不可能”的悖论，并让奴隶男孩做几何题来演示；后半篇他改用假设法，最后区分知识和真意见，暂时得出：美德像是神赐的正确意见。",
+    "en": "Meno asks whether virtue can be taught; Socrates insists on first asking what virtue is, answers Meno's paradox with the theory of recollection and the slave-boy demonstration, and ends, provisionally, with virtue as god-given right opinion, which differs from knowledge by not being tied down by an account of the reason why."
+  },
+  "outcomes": [
+    {
+      "en": "Explain Socrates' priority of definition and why he rejects Meno's three definitions of virtue, using the requirements of a good definition from the bees, shape and color examples.",
+      "zh": "能解释苏格拉底的“定义优先”，并用蜜蜂、形状、颜色的例子说明好定义的要求，讲清美诺的三个定义为什么都不行。"
+    },
+    {
+      "en": "State Meno's paradox in standard form and explain Socrates' reply: the immortal soul, learning as recollection, and the practical argument against idleness.",
+      "zh": "能用标准形式写出美诺悖论，并说明苏格拉底的回答：灵魂不朽、学习就是回忆，以及“相信探究让人不懒惰”的实践理由。"
+    },
+    {
+      "en": "Walk through the slave-boy demonstration step by step (4, 16 and 9 square feet, then 8 on the diagonal) and assess the argument from it to recollection and immortality.",
+      "zh": "能一步步讲清奴隶男孩的演示（4、16、9 平方英尺，最后对角线上的 8），并评价从演示推到回忆和灵魂不朽的论证。"
+    },
+    {
+      "en": "Reconstruct the arguments of the second half: the hypothesis that virtue is teachable if and only if it is knowledge, the argument that virtue is wisdom, and the argument that virtue has no teachers.",
+      "zh": "能重建后半篇的论证：“美德可教，当且仅当它是知识”的假设、“美德是智慧”的论证，以及“美德没有老师”的论证。"
+    },
+    {
+      "en": "Explain how knowledge differs from true opinion (the road to Larissa, the statues of Daedalus) and why Socrates concludes, provisionally, that virtue is a gift from the gods.",
+      "zh": "能说明知识和真意见的区别（去拉里萨的路、代达罗斯的雕像），以及苏格拉底为什么暂时得出“美德是神的恩赐”。"
+    },
+    {
+      "en": "Compare the two halves of the dialogue and plan a short essay on whether virtue is knowledge or whether learning is recollection.",
+      "zh": "能比较全篇前后两半，并为“美德是不是知识”或“学习是不是回忆”写出小论文提纲。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-meno-question-priority-of-definition",
+      "title": {
+        "zh": "美诺篇：美诺的问题与“定义优先”",
+        "en": "Meno: Meno's Question and the Priority of Definition"
+      },
+      "slides": "1-3",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一周只读一篇：柏拉图（**Plato**）的对话录（**dialogue**：用人物一问一答写成的哲学作品）**Meno**（《美诺篇》），英文译者是 **G.M.A. Grube**。周一（9 月 28 日）读 70a–86d，就是完整版 PDF 第 1–17 页，和 'Plato-Meno (excerpt)' 那份 PDF 一字不差；周三（9 月 30 日）读 86d–100b，第 18–28 页。本站的页码一律用完整版 PDF 的页码。页边印着的 70、71 和 a–e 是段落编号（它的来历见下一节的补充说明），例如 71b，本站会同时给出这种编号。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "提醒：本站只有《美诺篇》这篇读物本身，没有课堂讲义，也没有辅导课材料。考试考“全部课程内容”，老师上课可能补充本站没有的要点，或者用不同的说法，请以课堂笔记和 Quercus 为准。这一周属于测验 1（10 月 14 日，已经考完）的范围；期末 3 小时的考试是累积的，考全学期内容，这一周还会再考。",
+          "en": "The station has only the reading itself, not the lectures or the tutorials. Tests cover all course content, so the lectures may add points that are not here; check your lecture notes and Quercus. This week was on Test 1 (already written) and comes back on the cumulative 3-hour final exam."
+        },
+        {
+          "type": "text",
+          "zh": "先认识人物。导言（第 1 页）说，美诺（**Meno**）是色萨利（**Thessaly**）一个显赫贵族家族的年轻人，这个家族一向亲近雅典。导言还说：他佩服修辞学家高尔吉亚（**Gorgias**），学了他关于美德（**virtue**）的说法；他家在雅典的靠山是民主派政治家（**politician**）安尼图斯（**Anytus**），美诺在雅典似乎就住在他家。这个安尼图斯后来是控告苏格拉底（**Socrates**）的人之一，第 3 周读的《申辩篇》里出现过。\n导言（第 1–2 页）还给全篇画了一张地图：①美诺问美德能不能教，两人先追问“美德是什么”，没有结果；②美诺提出“探究不可能”的难题，苏格拉底用“灵魂（**soul**）不朽（**immortal**）、学习就是回忆（**recollection**：想起灵魂本来就知道的东西）”来回答，并让美诺的一个奴隶男孩做几何题来演示；③后半篇苏格拉底换了新方法假设（**hypothesis**：先假定一个“如果……”再往下推），论证（**argument**：用理由支持一个观点）“美德是知识（**knowledge**）”，又发现论证的弱点，转向“美德是神赐的正确意见（**right opinion**：看法是对的，却说不出为什么）”。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "virtue",
+              "zh": "美德",
+              "hint": "让一个人成为好人、把该做的事做好的那种优秀品质；全篇要弄清的就是它。"
+            },
+            {
+              "en": "epistemology",
+              "zh": "知识论",
+              "hint": "研究“知识是什么、我们怎样得到知识”的哲学分支；这一周的主题“柏拉图论知识”就属于它。"
+            },
+            {
+              "en": "argument",
+              "zh": "论证",
+              "hint": "用一些理由去支持一个观点。"
+            },
+            {
+              "en": "premise",
+              "zh": "前提",
+              "hint": "论证里当理由用的句子，按顺序写成 P1、P2……"
+            },
+            {
+              "en": "conclusion",
+              "zh": "结论",
+              "hint": "论证最后要证明的那句话，写成 C。"
+            },
+            {
+              "en": "standard form",
+              "zh": "标准形式",
+              "hint": "把前提一条条编号列出，最后写结论，方便检查每一步。"
+            },
+            {
+              "en": "priority of definition",
+              "zh": "定义优先",
+              "hint": "苏格拉底的原则：先知道一个东西是什么，才能知道它有什么性质（比如能不能教）。"
+            },
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "回答“X 是什么”：说出所有 X 共有、并让它们成为 X 的那个东西。"
+            },
+            {
+              "en": "quality",
+              "zh": "性质",
+              "hint": "一个东西“怎么样”，比如能不能教、好不好看；和它“是什么”相对。"
+            },
+            {
+              "en": "irony",
+              "zh": "反讽",
+              "hint": "字面上在夸，其实是在讽刺，或者另有意思。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "对话一开头（70a，第 2 页）美诺就问：美德（**virtue**）能教吗？如果不能教，是靠练习（**practice**）得来的吗？还是既不靠教也不靠练，而是天生（**by nature**）就有，或者通过别的什么方式得到？记住这四个选项：教、练、天生、别的方式。苏格拉底先“夸”色萨利人：以前出名的是骑术和财富，现在又以智慧出名，因为高尔吉亚教会他们不管被问什么，都像专家一样给出大胆、气派的回答；而在雅典，随便问一个人，他会笑着说自己连美德是什么都不知道（70a–71a）。本站的理解：这番“夸奖”是反讽（**irony**），言下之意是：张口就答不等于真懂。"
+        },
+        {
+          "type": "analogy",
+          "zh": "开学时群里有人问：“新来的辅导员严不严？好不好说话？”你连这位辅导员是谁都不知道，就没法回答他严不严。苏格拉底的意思一样：连美德是什么都不知道，就没法回答美德能不能教。他自己举的例子是：完全不知道美诺是谁的人，没法知道美诺长得好不好看、有没有钱、出身高不高贵（71b，第 3 页）。",
+          "limit": "这个类比（**analogy**）也露出了“定义优先”的弱点：生活里我们常常说不出一个东西的完整定义，却知道它的一些性质（说不出“水”的定义，也知道水能解渴）。本站的理解：苏格拉底要求的是更严格的“知道”：先弄清是什么，才算真正知道怎么样。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：定义优先（71a–c，第 2–3 页）",
+            "en": "Standard form: the priority of definition (71a-c, pp. 2-3)"
+          },
+          "items": [
+            {
+              "en": "P1: If you do not know what a thing is, you cannot know what qualities it has. (Someone who has no idea who Meno is cannot know whether Meno is good-looking, rich or well-born.)",
+              "zh": "P1：不知道一个东西是什么，就不可能知道它有什么性质。（完全不知道美诺是谁的人，没法知道他好不好看、有没有钱、出身好不好。）"
+            },
+            {
+              "en": "P2: Being teachable (or coming from practice, or from nature) would be a quality of virtue.",
+              "zh": "P2：“能教”（或者“靠练习”“天生”）是美德的一种性质。"
+            },
+            {
+              "en": "P3: Socrates does not know what virtue is, and he says he has never met anyone who does.",
+              "zh": "P3：苏格拉底不知道美德是什么，而且他说自己从来没遇到过知道的人。"
+            },
+            {
+              "en": "C: So Socrates cannot say whether virtue can be taught; the question 'What is virtue?' has to be answered first.",
+              "zh": "C：所以苏格拉底没法回答美德能不能教；必须先回答“美德是什么”。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P1 是全篇最重要的原则之一，常叫“定义优先”（**priority of definition**）。苏格拉底的原话是：“If I do not know what something is, how could I know what qualities it possesses?”（71b，第 2–3 页）。注意两组词：**what something is**（它是什么，问本质）和 **qualities**（性质，问它怎么样）。“能不能教”属于性质，所以要排在“美德是什么”之后。P2 书里没有明说，是一个隐含前提（**implicit premise**：论证需要、但作者没说出来的前提）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：“定义优先”（**priority of definition**）是后来讨论《美诺篇》时常用的名称，译本里没有这个词组；读物里只有苏格拉底在 71b 的那个问句。考试可以用这个名称，但别把它写成苏格拉底的原话。",
+          "en": "Outside the reading: 'priority of definition' is the usual later label for the principle at 71b; the translation never uses the phrase."
+        },
+        {
+          "type": "text",
+          "zh": "P3 来自苏格拉底的坦白：他说自己在美德问题上和雅典同胞一样“穷”，怪自己完全无知；还说从没遇到过知道美德是什么的人（71b–c）。美诺问：高尔吉亚来雅典时你没见过他吗？苏格拉底说见过，但记不太清当时怎么想，也许高尔吉亚是知道的；美诺说自己赞同高尔吉亚的看法。苏格拉底就说：高尔吉亚不在场，先不管他，你自己说美德是什么（71c–d）。这和第 3 周《申辩篇》里的苏格拉底一致：不知道就承认不知道。"
+        },
+        {
+          "type": "text",
+          "zh": "为什么说这条原则是全篇的框架？第一，前半篇先在第 3–10 页找美德的定义，三次都失败。第二，到了 86d（第 17–18 页），苏格拉底拗不过美诺，勉强同意先不定义、直接讨论“能不能教”，改用假设法。第三，全篇最后一段（100b，第 28 页）他又回到这条原则：要清楚地知道美德怎样来到人身上，得先找出美德本身是什么。所以全篇以“定义优先”开头，也以它结尾；最后的暂时答案落在第四个选项“别的方式”上：神的恩赐。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Is the priority of definition too strong? Can we know some qualities of a thing without being able to define it?",
+            "zh": "反驳：“定义优先”是不是要求太高了？我们能不能在说不出定义的时候，也知道一个东西的某些性质？"
+          },
+          "answer": {
+            "en": "One can object that the principle is too strong. We often know true things about something we cannot define: we know that water quenches thirst without a definition of water, and we know that courage is admirable without being able to define courage. A defender could reply that Socrates wants knowledge in a strict sense: to be sure whether virtue is teachable, we must know what virtue is. The Meno itself suggests a middle path, since Socrates later sets the principle aside (86d-e) and still reaches a provisional answer, but admits at the end (100b) that clear knowledge needs the definition.",
+            "zh": "答题思路：①先说反驳：生活中我们常常定义不出一个东西，却知道它的一些性质（不会定义“勇敢”，也知道勇敢值得佩服）；②再替苏格拉底回应：他要的是严格意义上的“知道”，要确定美德能不能教，就得知道它是什么；③用文本收尾：苏格拉底自己在 86d–e 暂时放下这条原则，得出一个暂时的答案，但在 100b 又承认，真正清楚的知识仍然需要定义。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "苏格拉底一开始并没有说“美德不能教”，他说的是：在知道美德是什么之前，他回答不了。",
+              "en": "At the start Socrates does not say that virtue cannot be taught; he says he cannot answer until he knows what virtue is."
+            },
+            {
+              "zh": "美诺是来自色萨利的贵族青年，不是做几何题的那个奴隶男孩；男孩是美诺家里的仆人，只出现在 82b–85b。",
+              "en": "Meno is the young aristocrat from Thessaly, not the slave boy; the boy belongs to Meno's household and appears only in 82b-85b."
+            },
+            {
+              "zh": "苏格拉底夸色萨利人有智慧，一般读作反讽，不是真心称赞。",
+              "en": "Socrates' praise of Thessalian wisdom is usually read as ironic, not sincere."
+            },
+            {
+              "zh": "“是什么”（what it is）和“怎么样”（qualities，比如能不能教）是两个问题，苏格拉底认为顺序不能反。",
+              "en": "'What it is' and 'what qualities it has' are different questions, and for Socrates the first must come first."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Socrates say he cannot tell Meno whether virtue can be taught?",
+            "zh": "苏格拉底为什么说他没法告诉美诺美德能不能教？"
+          },
+          "options": [
+            {
+              "en": "Because the sophists have already proved that it can be taught.",
+              "zh": "因为智者（**sophists**）已经证明了美德能教。"
+            },
+            {
+              "en": "Because he does not know what virtue is, and one cannot know a thing's qualities without knowing what it is.",
+              "zh": "因为他不知道美德是什么，而不知道一个东西是什么，就不可能知道它的性质。"
+            },
+            {
+              "en": "Because only Gorgias knows the answer, and Gorgias is not present.",
+              "zh": "因为只有高尔吉亚知道答案，而高尔吉亚不在场。"
+            },
+            {
+              "en": "Because virtue obviously comes by nature.",
+              "zh": "因为美德显然是天生的。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B。这是“定义优先”（71b）：不知道美诺是谁，就不知道他好不好看、有没有钱；同理，不知道美德是什么，就不知道它能不能教。A 错：开头根本没提智者证明过什么。C 错：苏格拉底只说高尔吉亚不在场、先不管他，并没有说只有高尔吉亚知道。D 错：苏格拉底在这里对四个选项都不下结论。",
+            "en": "B: the priority of definition (71b). At this point Socrates takes no side on how virtue is acquired."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-one-form-of-virtue",
+      "title": {
+        "zh": "美诺篇：美德只有一个形式：蜜蜂与“一种美德”",
+        "en": "Meno: One Form of Virtue: Bees, Health, and 'A Virtue' vs. Virtue"
+      },
+      "slides": "3-5",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "苏格拉底请美诺自己说美德（**virtue**）是什么。美诺觉得很容易（71e–72a，第 3 页）：男人的美德是管理公共事务，帮朋友、害敌人，同时小心别让自己吃亏；女人的美德是管好家、守住家产、顺从丈夫；孩子（不论男女）、老人、自由人、奴隶，美德又各不相同。他说美德多得很，每种行动、每个年纪、每项工作都有一种，恶（**wickedness**）也一样。注意：这些是美诺的看法，不是苏格拉底的；苏格拉底下面批评的不是这些内容，而是“列清单”这种回答方式。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：①“美德”的希腊原词是 **aretē**，意思接近“卓越、优秀”：把一个人该做的事做好，不只是道德上的“好”。这能帮你理解美诺为什么把“管好城邦”算作男人的美德。②页边 70a、71b 这类编号通称 **Stephanus** 编号，各种译本都用，所以引用柏拉图时写编号最通用。③上课可能听到几个希腊词：**elenchus**（苏格拉底式的盘问反驳）、**aporia**（困惑、走投无路）、**anamnesis**（回忆）。本站的英译读物里没有这些词。",
+          "en": "Outside the reading: the Greek word for virtue is aretē (excellence); the margin numbers are called Stephanus numbers; lectures may use the Greek words elenchus (refutation by questioning), aporia (perplexity) and anamnesis (recollection), which the translation does not use."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "definition",
+              "zh": "定义",
+              "hint": "说出所有 X 共有、并让它们成为 X 的那一个东西；不是列例子。"
+            },
+            {
+              "en": "instance (example)",
+              "zh": "实例（例子）",
+              "hint": "属于某一类的具体一个，比如某一只蜜蜂、某一种美德。"
+            },
+            {
+              "en": "form",
+              "zh": "形式",
+              "hint": "译者在 72c 用的词，这里只是“所有实例共有的那个东西”；导言（第 2 页）说，到另一篇对话 Phaedo（《斐多篇》），柏拉图才把 Forms 加进来，作为回忆和知识的对象。"
+            },
+            {
+              "en": "analogy",
+              "zh": "类比",
+              "hint": "用一个容易懂的例子说明另一个难懂的问题；本节用蜜蜂、健康。"
+            },
+            {
+              "en": "counterexample",
+              "zh": "反例",
+              "hint": "一个让某个概括或定义不成立的具体例子。"
+            },
+            {
+              "en": "justice / moderation",
+              "zh": "正义 / 节制",
+              "hint": "正义＝做事公正；节制＝有分寸、管得住欲望（不节制叫 intemperate）。"
+            },
+            {
+              "en": "a virtue vs. virtue",
+              "zh": "一种美德 vs. 美德本身",
+              "hint": "正义是“一种”美德，是美德的一个部分；美德本身是整体。部分不能拿来当整体的定义。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "老师问：“什么是水果？”你答：“苹果、香蕉、西瓜、葡萄……”你列了一大串，可老师要的是：它们凭什么都叫水果？美诺的第一个答案就是这样，列了一“群”美德，却没说出它们共同的那一个东西。",
+          "limit": "“水果”可以去查植物学的定义；美德到底有没有一个人人共有的“形式”，正是苏格拉底先假定、别人可以质疑的地方（见本节的讨论题）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一群蜜蜂（72a–c，第 3–4 页）",
+            "en": "The swarm of bees (72a-c, pp. 3-4)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底开玩笑：我只想找一种美德，你却给了我一整“群”。",
+              "en": "Socrates jokes that he was looking for one virtue and found a whole swarm."
+            },
+            {
+              "zh": "顺着“群”的比喻问：如果问蜜蜂的本性是什么，你说蜜蜂有很多种，那么它们在“是蜜蜂”这一点上彼此不同吗？",
+              "en": "If you said bees are many and varied, do they differ in being bees?"
+            },
+            {
+              "zh": "美诺答：它们在“是蜜蜂”这一点上彼此没有不同。（可能在美丑、大小这些方面不同，是苏格拉底在问题里提出来的。）",
+              "en": "Meno answers that, as bees, they are all alike (it was Socrates who suggested they might differ in beauty or size)."
+            },
+            {
+              "zh": "那么一定有一个东西，让它们都一样、都是蜜蜂；美诺说他能说出来。",
+              "en": "So there is one thing that all bees share, and Meno says he could say what it is."
+            },
+            {
+              "zh": "苏格拉底：美德也是这样。美德就算有很多种，也都有同一个形式（**form**），正是它让它们成为美德；回答“美德是什么”，就要看着这个形式回答（72c，第 4 页）。",
+              "en": "Socrates: likewise, all virtues have one and the same form that makes them virtues, and a definition must look to it (72c, p. 4)."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：定义要找“共同的那一个”，不是列出“很多个”。",
+            "en": "The point: a definition must give the one thing all cases share, not a list of the many."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "健康、大小和力气（72d–73a，第 4 页）",
+            "en": "Health, size and strength (72d-73a, p. 4)"
+          },
+          "steps": [
+            {
+              "zh": "男人的健康和女人的健康是两种健康吗？美诺说是一样的。",
+              "en": "Is a man's health different from a woman's? Meno says it is the same."
+            },
+            {
+              "zh": "大小、力气也一样：女人有力气，那份力气作为“力气”和男人的没有区别。",
+              "en": "So with size and strength: strength is the same as strength in a man or a woman."
+            },
+            {
+              "zh": "那美德呢？在孩子、老人、女人、男人身上，作为“美德”有区别吗？",
+              "en": "Is virtue, as virtue, any different in a child, an old man, a woman or a man?"
+            },
+            {
+              "zh": "美诺犹豫了：他觉得美德“不太像”这些例子（73a）。所以苏格拉底要给一个更直接的论证（下一块）。",
+              "en": "Meno hesitates: virtue seems unlike these cases (73a), so Socrates needs a more direct argument."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：健康、力气作为健康、力气，在男人和女人身上都一样，美德也应该如此。美诺不服，所以真正撑起结论的是下一块“人人都需要正义和节制”的论证。",
+            "en": "The point: health and strength are the same in a man and a woman, and so should virtue be; since Meno resists, the real support is the next argument, that everyone needs justice and moderation."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：美德在所有人身上是同一个（73a–c，第 4 页）",
+            "en": "Standard form: virtue is the same in everyone (73a-c, p. 4)"
+          },
+          "items": [
+            {
+              "en": "P1: No one can manage a city or a household well without managing it justly and moderately, that is, with justice and moderation.",
+              "zh": "P1：不论管城邦还是管家，不公正、不节制就管不好；要管好，就得有正义和节制。"
+            },
+            {
+              "en": "P2: A child or an old man cannot be good if he is unjust and intemperate, but he can be good if he is just and moderate.",
+              "zh": "P2：孩子和老人如果不公正、不节制，就不可能是好人；公正、节制，就可以是好人。"
+            },
+            {
+              "en": "P3: So all human beings become good by acquiring the same qualities, and so they are good in the same way.",
+              "zh": "P3：所以所有人都是靠获得同样的品质而变好的，他们“好”的方式是一样的。"
+            },
+            {
+              "en": "P4: People could not be good in the same way unless they had the same virtue.",
+              "zh": "P4：如果美德不同，人们就不可能以同样的方式是好人。"
+            },
+            {
+              "en": "C: So virtue is the same in everyone, and Meno must say what that one thing is instead of listing the virtues of men, women, children and slaves.",
+              "zh": "C：所以美德在所有人身上是同一个东西；美诺要说出这一个东西，而不是按男人、女人、孩子、奴隶列一张清单。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "逐条看这个论证（**argument**：用前提支持结论）。P1、P2 用的是美诺自己的答案：他刚说男人的美德是管城邦、女人的是管家，苏格拉底指出两样都离不开正义（**justice**）和节制（**moderation**）。P3 从 P1、P2 推出来。P4 把“以同样的方式变好”连到“有同样的美德”。注意：苏格拉底不否认男人和女人的分工不同；他说的是，作为美德，大家需要的东西一样。"
+        },
+        {
+          "type": "text",
+          "zh": "既然美德人人相同，美诺给出第二个答案：美德就是能统治别人（**to rule over people**），他说这是能套到所有人身上的一个说法（73c–d，第 4 页）。苏格拉底马上找反例（**counterexample**）：孩子或奴隶的美德，难道是能统治主人吗？统治别人的人还算奴隶吗？显然不行。他又补一刀：统治总得是“公正地”统治，而不是不公正地统治吧（73d）？"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "是“美德”，还是“一种美德”？（73d–74b，第 5 页）",
+            "en": "Virtue or a virtue? (73d-74b, p. 5)"
+          },
+          "steps": [
+            {
+              "zh": "美诺同意要加“公正地”，理由是“正义就是美德”。",
+              "en": "Meno agrees to add 'justly', because, he says, justice is virtue."
+            },
+            {
+              "zh": "苏格拉底追问：正义是“美德”，还是“一种美德”？",
+              "en": "Socrates asks: is justice virtue, or a virtue?"
+            },
+            {
+              "zh": "他用形状举例：圆是一种形状（**a shape**），但不能说圆就是“形状”（**shape**）本身，因为还有别的形状。颜色也一样：白是一种颜色，不是颜色本身（74c）。",
+              "en": "Roundness is a shape, not shape itself, because there are other shapes; white is a color, not color (74c)."
+            },
+            {
+              "zh": "美诺明白了：正义是一种美德，此外还有勇敢（**courage**）、节制、智慧（**wisdom**）、大方（**munificence**）等很多种（74a）。",
+              "en": "Meno agrees: justice is a virtue, and there are many others, such as courage, moderation, wisdom and munificence (74a)."
+            },
+            {
+              "zh": "苏格拉底：老问题又来了：我们要找一个，却又找到了很多个，那个能统摄所有美德的“一”还是没找到（74a–b）。",
+              "en": "Socrates: the same trouble again; looking for one virtue, they found many, not the one that covers them all (74a-b)."
+            }
+          ],
+          "answer": {
+            "zh": "说出美德的一个部分（一种美德），不等于说出美德整体是什么。",
+            "en": "Naming a part of virtue (a virtue) does not say what virtue as a whole is."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "美诺的前两个答案和它们的问题",
+            "en": "Meno's first two answers and what is wrong with them"
+          },
+          "headers": [
+            "美诺的答案 Meno's answer",
+            "苏格拉底的批评 Socrates' objection",
+            "对定义的要求 Lesson for a definition"
+          ],
+          "rows": [
+            [
+              "1. 按身份列举：男人、女人、孩子、奴隶各有美德（71e–72a）",
+              "列出了一“群”美德，没说出共同点（蜜蜂、健康）",
+              "说出所有实例共有的一个形式 one form"
+            ],
+            [
+              "2. 能统治别人（73c–d）",
+              "不适用于孩子和奴隶；还得加“公正地”",
+              "要适用于每一个实例 fit every case"
+            ],
+            [
+              "2+. 公正地统治，因为“正义就是美德”（73d–e）",
+              "正义只是一种美德，就像圆只是一种形状",
+              "部分不能当整体 a part is not the whole"
+            ]
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Must all virtues share one form? Could the virtues of different people simply resemble each other without one common feature?",
+            "zh": "反驳：所有美德一定有一个共同的“形式”吗？会不会不同人的美德只是彼此相像，并没有一个人人共有的东西？"
+          },
+          "answer": {
+            "en": "A critic can say that Socrates assumes, rather than proves, that 'virtue' names one thing, as 'bee' does. His best support is that everyone needs justice and moderation to be good (73a-c). But sharing justice and moderation does not rule out further virtues that differ by role, and the dialogue never finds the single form it looks for. So the one-form demand is a working assumption of Socrates' method rather than a proven result.",
+            "zh": "答题思路：①指出假定：苏格拉底默认“美德”像“蜜蜂”一样指一种东西；②承认他最好的理由：人人都需要正义和节制（73a–c）；③指出不足：都需要正义和节制，并不排除还有因身份而不同的美德，而且全篇最后也没找到那个形式；④结论：这是苏格拉底探究方法默认的出发点，不是已经证明的结论。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“正义是一种美德”（a virtue）不等于“正义就是美德”（virtue）。",
+              "en": "'Justice is a virtue' is not the same as 'justice is virtue'."
+            },
+            {
+              "zh": "列例子不是定义：定义要说出所有实例的共同点。",
+              "en": "A list of examples is not a definition."
+            },
+            {
+              "zh": "这里的 form 只是“共同特征”；导言说，柏拉图要到《斐多篇》才把 Forms 当作回忆和知识的对象加进来。",
+              "en": "'Form' here just means the common feature; the introduction says Plato brings in the Forms, as what is recollected and known, only in the Phaedo."
+            },
+            {
+              "zh": "苏格拉底没有否认男女分工不同；他说的是，作为美德，大家需要的是同样的东西。",
+              "en": "Socrates does not deny that men and women have different tasks; he says virtue as virtue is the same."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "When Meno says that justice is virtue, how does Socrates reply?",
+            "zh": "美诺说“正义就是美德”时，苏格拉底怎样回应？"
+          },
+          "options": [
+            {
+              "en": "Justice is not a virtue at all.",
+              "zh": "正义根本不是美德。"
+            },
+            {
+              "en": "Justice is the same thing as moderation.",
+              "zh": "正义和节制是同一个东西。"
+            },
+            {
+              "en": "Justice is a virtue, one among several, just as roundness is a shape and not shape itself.",
+              "zh": "正义是一种美德，是好几种之一，就像圆是一种形状，而不是形状本身。"
+            },
+            {
+              "en": "Justice is only a man's virtue, not a woman's.",
+              "zh": "正义只是男人的美德，不是女人的。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（73e–74a，第 5 页）。圆是一种形状，因为还有别的形状；同理，正义是一种美德，因为还有勇敢、节制、智慧、大方。A 错：苏格拉底承认正义是美德的一种。B 错：两者是不同的美德。D 错：苏格拉底刚论证过男人和女人都需要正义（73a–b）。",
+            "en": "C (73e-74a, p. 5): justice is a part of virtue, not virtue as a whole."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-models-of-good-definition",
+      "title": {
+        "zh": "美诺篇：什么是好定义：形状与颜色",
+        "en": "Meno: What Makes a Good Definition: Shape and Color"
+      },
+      "slides": "5-7",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "美诺还是找不到那个“一”。苏格拉底决定先拿一个容易的东西练手：形状（**shape**）。他指出：圆的和直的正好相反，可是说到“是形状”，圆的并不比直的更算形状，两者同样都是形状（74d–e，第 5 页）。所以形状的定义（**definition**：说出所有实例共有的那个东西）必须同样适用于圆和直。苏格拉底说，这是给美诺回答美德（**virtue**）问题做练习（75a，第 6 页）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "shape / color",
+              "zh": "形状 / 颜色",
+              "hint": "本节的两个练习对象；苏格拉底用它们示范怎样下定义。"
+            },
+            {
+              "en": "limit (boundary, end)",
+              "zh": "界限（边界、终点）",
+              "hint": "一个东西到这里为止的地方；苏格拉底说这几个词在这里指同一个意思。"
+            },
+            {
+              "en": "plane / solid",
+              "zh": "平面 / 立体",
+              "hint": "几何里的词：平面只有长和宽，立体有长、宽、高。"
+            },
+            {
+              "en": "debater",
+              "zh": "好争的辩手",
+              "hint": "只想辩赢、不想一起找真相的人；原文说的是聪明又好争的那种人。"
+            },
+            {
+              "en": "agreed terms",
+              "zh": "双方承认懂的词",
+              "hint": "朋友之间讨论时，回答不仅要真，还要用提问者承认自己已经懂的词。"
+            },
+            {
+              "en": "effluvium (plural effluvia)",
+              "zh": "流射物",
+              "hint": "恩培多克勒学说里，从物体上流出的极细小的东西，会钻进感官的“通道”。"
+            },
+            {
+              "en": "theatrical",
+              "zh": "像演戏的、花哨的",
+              "hint": "苏格拉底对仿高尔吉亚的颜色定义的评价：好听，但并不更好。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第一个形状定义和美诺的反对（75b–d，第 6 页）",
+            "en": "The first definition of shape and Meno's objection (75b-d, p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "美诺不肯自己试，要苏格拉底先说。苏格拉底答应，条件是美诺之后要说出美德是什么（75b）。",
+              "en": "Meno asks Socrates to answer first; Socrates agrees, on condition that Meno will then define virtue (75b)."
+            },
+            {
+              "zh": "第一个定义：形状是所有存在的东西里，唯一总是伴随颜色出现的那个东西。苏格拉底说，美诺要是这样定义美德，他就满意了。",
+              "en": "First definition: shape is the only thing that always goes with color. Socrates would be satisfied with a definition of virtue like this."
+            },
+            {
+              "zh": "美诺说这很蠢：要是有人说他也不知道颜色是什么，这个定义对他有什么用（75c）？",
+              "en": "Meno calls it foolish: what if someone does not know what color is (75c)?"
+            },
+            {
+              "zh": "苏格拉底：我的回答是真的。如果提问的是只想辩赢的辩手（**debater**），我会说：我答了，错了你来驳。",
+              "en": "Socrates: the answer is true, and a quarrelsome debater could simply be told that refuting it is his job."
+            },
+            {
+              "zh": "但朋友之间想一起讨论，回答就要更温和、更合乎讨论：不仅要真，还要用提问者承认自己已经懂的词（**agreed terms**）（75d）。",
+              "en": "But between friends, an answer must be true and must use terms the questioner admits he knows (75d)."
+            }
+          ],
+          "answer": {
+            "zh": "第一个定义没有被判为假；问题是它不合朋友间讨论的规矩：用了对方可能不懂的“颜色”。",
+            "en": "The first definition is not called false; it breaks the rule for friendly discussion by using 'color', which the questioner may not know."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "你问路，对方说：“就在某某大厦旁边。”他说的可能完全对，可你根本不知道那栋大厦在哪儿，这个回答对你就没用。好的指路要用你已经认识的地标。苏格拉底的规矩就是这样：朋友之间回答问题，要用对方承认懂的词。",
+          "limit": "问路只求“有用”；苏格拉底的规矩同时要求回答是真的。而且这条规矩只用在真心一起讨论的朋友之间：他说，对只想辩赢的辩手，不必讲这个客气。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第二个形状定义：立体的界限（75d–76a，第 6 页）",
+            "en": "The second definition: the limit of a solid (75d-76a, p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底先确认美诺懂的词：你会说某个东西有“终点”吧？也就是界限（**limit**）或边界（**boundary**），他说这几个词指同一个意思。",
+              "en": "Socrates checks words Meno knows: an end, that is, a limit or boundary, which he treats as the same thing."
+            },
+            {
+              "zh": "脚注 1：普罗狄科（**Prodicus**）是有名的智者（**sophist**：收费教人的职业教师），特别讲究词义的精确区分；苏格拉底说普罗狄科也许会反对把这几个词当成一样，但美诺肯定懂。",
+              "en": "Footnote 1: Prodicus, a sophist keen on exact word meanings, might object, but Meno understands."
+            },
+            {
+              "zh": "再确认：你会像几何里那样，说平面（**plane**）和立体（**solid**）吧？美诺说会。",
+              "en": "Meno also accepts 'plane' and 'solid', as in geometry."
+            },
+            {
+              "zh": "于是第二个定义：形状就是一个立体的界限（**the limit of a solid**）（76a）。",
+              "en": "So: shape is the limit of a solid (76a)."
+            }
+          ],
+          "answer": {
+            "zh": "这个定义只用了美诺承认懂的词（界限、立体），所以合乎朋友之间讨论的规矩。",
+            "en": "It uses only terms Meno accepts, so it meets the rule for friendly discussion."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "美诺接着要苏格拉底定义颜色（**color**）。苏格拉底笑他太过分：自己不肯回想高尔吉亚怎么说美德，却一直让老人家回答；还说美诺老在讨论里发号施令，像被宠坏的漂亮年轻人，趁年轻就像暴君一样（76a–c，第 7 页）。本站的理解：这几句写出了美诺的性格：想要现成答案，不想自己想。后面他要苏格拉底“教”他回忆说（**recollection**，82a），又坚持先问自己原来的问题（86c–d），都是同一种性格。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "仿高尔吉亚的颜色定义（76c–e，第 7 页）",
+            "en": "A color definition in Gorgias' style (76c-e, p. 7)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底问：要不要照高尔吉亚（**Gorgias**）的方式回答？美诺当然要。",
+              "en": "Socrates offers an answer in Gorgias' manner, and Meno wants exactly that."
+            },
+            {
+              "zh": "这种方式借用恩培多克勒（**Empedocles**）的学说（脚注 2：约公元前 493–433 年西西里的哲学家，以研究自然现象、包括感官知觉出名）：物体会发出流射物（**effluvia**），感官里有通道（**channels**），有的流射物大小正好合适，有的太小或太大。",
+              "en": "It borrows Empedocles' theory (footnote 2): things give off effluvia, there are channels, and some effluvia fit the channels while others are the wrong size, too small or too big."
+            },
+            {
+              "zh": "再加上“视觉”，并引品达（**Pindar**）的一句诗来装点（脚注 3）。",
+              "en": "Add sight, and a line of Pindar for decoration (footnote 3)."
+            },
+            {
+              "zh": "颜色的定义：颜色是从形状发出的、和视觉相合、能被看见的流射物（76d）。美诺说好极了；苏格拉底说，照这个办法你还能推出声音、气味的定义。",
+              "en": "Color is an effluvium from shapes that fits sight and is perceived (76d). Meno loves it; Socrates says sound and smell could be defined the same way."
+            },
+            {
+              "zh": "苏格拉底的评价：这是一个像演戏的（**theatrical**）回答，所以你喜欢；但它并不更好，形状的那个回答更好（76e）。",
+              "en": "Socrates calls it a theatrical answer that pleases Meno, but says it is not better; the shape answer is better (76e)."
+            },
+            {
+              "zh": "他还说：要是美诺不必在秘仪（**the mysteries**：古希腊的宗教入会仪式）之前离开，能留下来入会，他也会同意这一点。",
+              "en": "He adds that Meno would agree if he could stay for the mysteries and be initiated."
+            }
+          ],
+          "answer": {
+            "zh": "苏格拉底只说颜色定义并不更好，形状的回答更好。本站的理解：花哨、借来的理论不等于好定义，他看重的是简单、用双方懂的词、对所有实例都成立的定义。",
+            "en": "Socrates says only that the color answer is not better and that the shape answer is; on our reading, a flashy definition built on a borrowed theory is not a better one, and he values plain, agreed terms that cover every case."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "好定义的检查清单",
+            "en": "Checklist for a good definition"
+          },
+          "headers": [
+            "规则 Rule",
+            "出处 Where",
+            "例子 Example"
+          ],
+          "rows": [
+            [
+              "1. 说出所有实例共有的“一”，不是列举 State the one common feature, not a list",
+              "72a–c，74d–75a（第 3–6 页）",
+              "蜜蜂；圆和直同样是形状"
+            ],
+            [
+              "2. 对每一个实例都成立 Fit every case",
+              "73c–d（第 4 页）",
+              "“能统治别人”不适用于孩子和奴隶"
+            ],
+            [
+              "3. 要真 Be true",
+              "75c（第 6 页）",
+              "苏格拉底说第一个形状定义是真的"
+            ],
+            [
+              "4. 朋友之间：用提问者承认懂的词 Use terms the questioner accepts",
+              "75c–d（第 6 页）",
+              "用“立体的界限”，而不用“总是伴随颜色的东西”"
+            ],
+            [
+              "5. 不用还在探究中的词 No terms still under inquiry",
+              "79d（第 10 页）",
+              "不能用正义（美德的一部分）去定义美德"
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（本站的重建）：好定义需要什么（74d–77a，第 5–7 页）",
+            "en": "Standard form (our reconstruction): what a good definition requires (74d-77a, pp. 5-7)"
+          },
+          "items": [
+            {
+              "en": "P1: Round and straight are opposites, yet each is just as much a shape as the other; so a definition of shape must state what is common to all shapes (74d-75a).",
+              "zh": "P1：圆和直正好相反，却同样都是形状；所以形状的定义要说出所有形状共有的东西（74d–75a）。"
+            },
+            {
+              "en": "P2: In a discussion between friends, an answer must not only be true but must also use terms the questioner admits he already knows (75c-d).",
+              "zh": "P2：朋友之间讨论，回答不仅要真，还要用提问者承认自己已经懂的词（75c–d）。"
+            },
+            {
+              "en": "P3: 'Shape is the only thing that always goes with color' is true, but it relies on 'color', which the questioner may not know (75b-d).",
+              "zh": "P3：“形状是唯一总是伴随颜色的东西”是真的，但它靠的是“颜色”这个词，提问者可能不懂（75b–d）。"
+            },
+            {
+              "en": "P4: 'Shape is the limit of a solid' covers every shape and uses only terms Meno accepts, such as limit and solid (75e-76a).",
+              "zh": "P4：“形状是立体的界限”适用于所有形状，而且只用了美诺接受的词，比如界限、立体（75e–76a）。"
+            },
+            {
+              "en": "P5: The color definition in Gorgias' style borrows Empedocles' theory and only sounds impressive; Socrates calls it theatrical and not better (76c-e).",
+              "zh": "P5：仿高尔吉亚的颜色定义借用恩培多克勒的理论，只是听起来厉害；苏格拉底说它像演戏，并不更好（76c–e）。"
+            },
+            {
+              "en": "C: So a good answer to 'What is X?' states the one feature common to every X, is true, and uses agreed terms; Socrates later adds (79d) that it must not use terms still under inquiry.",
+              "zh": "C：所以，回答“X 是什么”，要说出所有 X 共有的那一个特征（也就是它们的形式 **form**），要真，要用双方认可的词；后来（79d）苏格拉底又补充：不能用还在探究中的词。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "为什么苏格拉底说形状的回答比颜色的回答好（76e）？文本没有解释，也没有点明指的是哪一个形状定义。本站的理解：两个形状定义都朴素、对每一种形状都成立，第二个还只用了双方都懂的词；颜色的那个定义靠一整套借来的理论（流射物、通道），再用一句诗装点，听起来很有学问，正合美诺的口味，可借来的理论本身对不对，还得另外检验。注意：苏格拉底没有说这两个形状定义就是最终答案，它们只是示范，让美诺照着回答美德问题（75a–b，77a–b）。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Is the 'agreed terms' rule fair? Every definition uses other words; must those words be defined too?",
+            "zh": "反驳：“用双方懂的词”这条规矩合理吗？每个定义都要用别的词，那些词是不是也都得先定义？"
+          },
+          "answer": {
+            "en": "If every word in a definition had to be defined first, we would never finish, so the rule has to stop somewhere. Socrates stops at words both speakers admit they understand, such as 'limit', 'plane' and 'solid'. The rule is about cooperation: in a friendly discussion an answer should inform the questioner, not merely be true. So it is fair as a rule for inquiry between friends, while a quarrelsome debater, Socrates says, can simply be told to refute the answer.",
+            "zh": "答题思路：①承认问题：要是每个词都先定义，会没完没了；②苏格拉底的办法：停在双方承认懂的词上（界限、平面、立体）；③说明规矩的目的：朋友间的回答要让对方真正明白，不只是“真”；④对只想辩赢的辩手，苏格拉底说可以只回一句“错了你来驳”。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "苏格拉底更看重朴素的形状定义，不是美诺喜欢的花哨的颜色定义。",
+              "en": "Socrates prefers the plain shape definition to the flashy color definition Meno likes."
+            },
+            {
+              "zh": "第一个形状定义（总是伴随颜色）苏格拉底说是真的；问题在于用了对方可能不懂的词。",
+              "en": "Socrates calls the first shape definition true; its problem is the unexplained term 'color'."
+            },
+            {
+              "zh": "形状和颜色只是练习，真正要定义的是美德。",
+              "en": "Shape and color are practice cases; the real target is virtue."
+            },
+            {
+              "zh": "普罗狄科只是被提到（75e 和 96d，脚注 1 有介绍），不是对话中说话的人物。",
+              "en": "Prodicus is only mentioned (75e, 96d; footnote 1), not a speaker."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which definition of shape does Socrates give in terms Meno agrees he understands?",
+            "zh": "苏格拉底用美诺承认懂的词，给出的形状定义是哪一个？"
+          },
+          "options": [
+            {
+              "en": "The limit of a solid.",
+              "zh": "立体的界限。"
+            },
+            {
+              "en": "What alone always goes with color.",
+              "zh": "唯一总是伴随颜色出现的东西。"
+            },
+            {
+              "en": "An effluvium from shapes that fits the sight.",
+              "zh": "从形状发出、和视觉相合的流射物。"
+            },
+            {
+              "en": "Whatever is round or straight.",
+              "zh": "凡是圆的或直的东西。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（76a，第 6 页）。B 是第一个定义（75b），美诺嫌它用了“颜色”这个词。C 是仿高尔吉亚的颜色定义，不是形状定义，苏格拉底说它像演戏。D 只是列举实例，正是苏格拉底说不能用的回答方式。",
+            "en": "A (76a, p. 6): it uses only terms Meno accepts."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A student defines 'fruit' as 'apples, bananas, grapes and so on'. Which requirement from the shape discussion does this break?",
+            "zh": "一个学生把“水果”定义为“苹果、香蕉、葡萄等等”。这违反了形状讨论里的哪条要求？"
+          },
+          "options": [
+            {
+              "en": "It is not true.",
+              "zh": "它不是真的。"
+            },
+            {
+              "en": "It uses terms the questioner does not know.",
+              "zh": "它用了提问者不懂的词。"
+            },
+            {
+              "en": "It borrows a theory from Empedocles.",
+              "zh": "它借用了恩培多克勒的理论。"
+            },
+            {
+              "en": "It lists instances instead of stating what they all share.",
+              "zh": "它只列举实例，没说出它们共有的东西。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D。列举实例正是美诺第一个答案的毛病（一群蜜蜂；圆和直都是形状）。A 不对：苹果、香蕉确实是水果。B 不对：这些词谁都懂。C 是干扰项：那是颜色定义的特点，和这个回答无关。",
+            "en": "D: a list of instances is not a definition."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-desire-for-good-and-circularity",
+      "title": {
+        "zh": "美诺篇：第三个定义：没人想要坏东西，以及循环定义",
+        "en": "Meno: The Third Definition: No One Desires the Bad, and the Circularity Charge"
+      },
+      "slides": "8-10",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "示范给完了，苏格拉底催美诺兑现承诺：说出美德（**virtue**）整体是什么，别再把“一”打碎成“多”（77a，第 7 页）。美诺第三次回答，借一位诗人的话：美德就是欲求美的东西（**to desire beautiful things**），并且有能力得到它们（77b，第 8 页）。苏格拉底先确认：欲求美的东西，就是欲求好的东西（**good things**）吗？美诺说当然。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "desire",
+              "zh": "欲求",
+              "hint": "想要；两人同意，欲求一个东西就是想把它弄到自己手里（77c）。"
+            },
+            {
+              "en": "good / bad",
+              "zh": "好的 / 坏的",
+              "hint": "这里主要指对拥有者有益或有害，不只是道德上的好坏。"
+            },
+            {
+              "en": "beneficial / harmful",
+              "zh": "有益的 / 有害的",
+              "hint": "给拥有它的人带来好处 / 带来伤害。"
+            },
+            {
+              "en": "miserable / unhappy",
+              "zh": "悲惨的 / 不幸福的",
+              "hint": "受了伤害就在那个程度上悲惨，悲惨的人就不幸福。"
+            },
+            {
+              "en": "circular definition",
+              "zh": "循环定义",
+              "hint": "用要定义的东西本身（或它的一部分）去定义它，等于什么也没说清。"
+            },
+            {
+              "en": "piety",
+              "zh": "虔敬",
+              "hint": "敬神、对神尽本分；第 3 周《游叙弗伦篇》讨论的就是它，这里被当作美德的一部分。"
+            },
+            {
+              "en": "guest friend",
+              "zh": "世交",
+              "hint": "不同城邦的家族之间世代相传的待客情谊。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：没有人想要坏东西（77b–78b，第 8 页）",
+            "en": "Standard form: no one desires bad things (77b-78b, p. 8)"
+          },
+          "items": [
+            {
+              "en": "P1: To desire something is to want to get it for oneself.",
+              "zh": "P1：欲求一个东西，就是想把它弄到自己手里。"
+            },
+            {
+              "en": "P2: Anyone who desires bad things either believes they are beneficial or knows that they are harmful.",
+              "zh": "P2：想要坏东西的人，要么以为它们有益，要么知道它们有害。"
+            },
+            {
+              "en": "P3: Those who believe bad things are beneficial do not know they are bad; they desire what they take to be good, so they really desire good things.",
+              "zh": "P3：以为坏东西有益的人，并不知道它们是坏的；他们想要的是自以为好的东西，所以其实是在欲求好东西。"
+            },
+            {
+              "en": "P4: Those who know that bad things harm their owner know they will be harmed; whoever is harmed is miserable to that extent, and the miserable are unhappy.",
+              "zh": "P4：知道坏东西会伤害拥有者的人，就知道自己会受伤害；受伤害就在那个程度上悲惨，悲惨的人不幸福。"
+            },
+            {
+              "en": "P5: No one wants to be miserable and unhappy.",
+              "zh": "P5：没有人想要悲惨、不幸福。"
+            },
+            {
+              "en": "C: So no one wants what is bad; everyone desires good things.",
+              "zh": "C：所以没有人想要坏东西；人人都欲求好东西。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这个论证（**argument**：用前提支持结论）是分情况讨论。美诺说有人想要坏东西，苏格拉底就把这些人分成两组（P2）。第一组以为坏东西有益：他们想要的其实是自以为好的东西，只是认错了（P3）。第二组明知有害：那他们就是想让自己受伤害、变悲惨、不幸福，可谁也不想这样（P4、P5）。两条路都走不通，所以结论（**conclusion**）是：没有人想要坏东西。P1 这个对“欲求”的理解是美诺同意的（77c），整个论证都靠它。"
+        },
+        {
+          "type": "analogy",
+          "zh": "你点了一份“轻食沙拉”外卖，后来才发现酱料热量爆表。你想要的是“健康”，只是认错了，这就是第一组：想要的是自以为好的东西。苏格拉底会说，没有人点外卖时心里想的是“我要一份让自己变糟的东西”。",
+          "limit": "生活里也有人明知熬夜、抽烟伤身，还是照做。苏格拉底的论证把这种人算进第二组，说那等于想让自己悲惨。很多人觉得这不符合真实的人性，这正是本节讨论题里的反驳。"
+        },
+        {
+          "type": "text",
+          "zh": "这个结论带来一个后果：既然“想要好东西”人人都有，在这一点上谁也不比谁强；一个人如果比另一个人好，只能是更有能力得到好东西。于是美诺的定义缩成：美德就是获得好东西的能力（**the power of securing good things**）（78b–c，第 8–9 页）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "好东西、波斯大王和“公正地”（78c–79a，第 9 页）",
+            "en": "The goods, the Great King and 'justly' (78c-79a, p. 9)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底问：好东西指什么？美诺说：健康、财富，还有金银，以及城邦里的荣誉和官职。",
+              "en": "Meno's goods: health and wealth, gold and silver, honors and offices in the city."
+            },
+            {
+              "zh": "苏格拉底开玩笑：照美诺这位波斯大王（**the Great King**）的世交的说法，美德就是弄到金银（78d）。本站的理解：这是反讽，把美诺的定义说得很俗。",
+              "en": "Socrates restates the view in a mocking way (our reading): for Meno, who has inherited ties of guest friendship with the Great King, virtue is getting gold and silver (78d)."
+            },
+            {
+              "zh": "再问：弄到这些东西，要不要加上“公正地”“虔敬地”？如果不公正地弄到，还算美德吗？美诺说不算，那是恶。",
+              "en": "Must the getting be just and pious? Getting them unjustly, Meno agrees, is wickedness, not virtue."
+            },
+            {
+              "zh": "所以获取必须伴随正义、节制、虔敬（**piety**）或美德的别的某一部分；不然，即使弄到了好东西，也不是美德（78d–e）。",
+              "en": "So the getting must come with justice, moderation, piety or some other part of virtue (78d-e)."
+            },
+            {
+              "zh": "反过来：在不公正的情况下不去弄金银，这种“没弄到”也是美德（78e）。",
+              "en": "And failing to get gold and silver, when getting it would be unjust, is also virtue (78e)."
+            },
+            {
+              "zh": "所以弄到还是弄不到都不是关键；关键是做事时有没有正义：带着正义做的就是美德，没有的就是恶（79a）。",
+              "en": "So whatever is done with justice is virtue, and what is done without it is wickedness (79a)."
+            }
+          ],
+          "answer": {
+            "zh": "美诺的定义实际上变成了：“美德就是带着美德的一部分去做事”。",
+            "en": "Meno's definition becomes: virtue is acting with a part of virtue."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：循环定义的指控（78c–79e，第 9–10 页）",
+            "en": "Standard form: the circularity charge (78c-79e, pp. 9-10)"
+          },
+          "items": [
+            {
+              "en": "P1: Getting goods unjustly is wickedness, not virtue, so the getting must be done with justice, moderation, piety or some other part of virtue.",
+              "zh": "P1：不公正地获取好东西是恶，不是美德，所以获取必须伴随正义、节制、虔敬或美德的别的部分。"
+            },
+            {
+              "en": "P2: Not getting goods, when getting them would be unjust, is also virtue.",
+              "zh": "P2：在获取会不公正的时候不去获取，也是美德。"
+            },
+            {
+              "en": "P3: So what makes an action virtuous is not getting goods but doing it with a part of virtue.",
+              "zh": "P3：所以让一个行动成为美德的，不是获取好东西，而是带着美德的一部分去做。"
+            },
+            {
+              "en": "P4: So Meno's definition comes to this: virtue is any action done with a part of virtue.",
+              "zh": "P4：所以美诺的定义等于说：带着美德的一部分做的任何行动，就是美德。"
+            },
+            {
+              "en": "P5: Without knowing what virtue itself is, no one can know what counts as a part of virtue, and answers in terms still under inquiry were already rejected in the case of shape.",
+              "zh": "P5：不知道美德本身是什么，就不知道什么是美德的一部分；而用还在探究中的词来回答，在讨论形状时已经被否定了。"
+            },
+            {
+              "en": "C: So Meno has not said what virtue as a whole is, and the question must be faced again from the beginning.",
+              "zh": "C：所以美诺没有说出美德整体是什么，问题必须从头再来。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "什么叫循环定义（**circular definition**）？就是用要定义的东西去定义它自己。美诺说“美德＝带着正义获取好东西”，可正义刚刚被承认是美德的一部分（74a、79a）。不知道美德整体是什么，就不知道什么算它的一部分；用部分去说明整体，等于没说（79c）。苏格拉底还提醒：讨论形状时，他们已经同意不能用还在探究中、还没有取得一致的词来回答（79d，第 10 页）。所以要从头再来（79e）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：“明知对自己不好还去做”，哲学里常叫 **weakness of will**（意志薄弱，希腊词 **akrasia**）。《美诺篇》里没有这个词，但人们常把这里“没有人想要坏东西”的论证和这种现象放在一起讨论。答题时可以用这个名称，但要说明这是通用叫法，不是读物原文。",
+          "en": "Outside the reading: knowingly choosing what is bad for oneself is usually called weakness of will (akrasia); the Meno does not use the term."
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Don't people sometimes knowingly choose what is bad for them? How might Socrates reply?",
+            "zh": "反驳：人们不是有时明知某样东西对自己不好，还是去选它吗？苏格拉底可以怎样回应？"
+          },
+          "answer": {
+            "en": "One can object that people sometimes choose what they know will harm them, such as staying up all night before a test, so P4 and P5 seem to miss real cases. Socrates could reply that at the moment of choice such a person sees the pleasure as good for him and does not want the harm itself, so he still aims at what he takes to be good. Even so, the argument depends on reading 'desire' as wanting something for oneself (77c), and the objection shows that its premises need more defence.",
+            "zh": "答题思路：①反驳：明知熬夜伤身还熬夜，似乎就是想要坏东西；②可能的回应：选择那一刻，他看重的是眼前的快乐，以为“这对我好”，并不是想要伤害本身，所以仍然在追求自以为好的东西；③评价：论证依赖“欲求＝想为自己得到”（77c）这一步，这个反驳说明它的前提还需要辩护。注意：第②步是可能的辩护思路，书里没有这段对话。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“没有人想要坏东西”的意思是：人追求的总是自己以为好的东西；不是说没有人追求事实上坏的东西。",
+              "en": "'No one desires bad things' means people always aim at what they believe is good, not that no one ever pursues things that are in fact bad."
+            },
+            {
+              "zh": "循环的指控不是说“正义不是美德”，而是说：用美德的一部分去定义美德整体，等于没说。",
+              "en": "The circularity charge does not deny that justice is a virtue; it says a part of virtue cannot define the whole."
+            },
+            {
+              "zh": "这个译本说的是 beautiful things（美的东西），苏格拉底马上把它等同于 good things（好东西）。",
+              "en": "The translation says 'beautiful things', which Socrates at once equates with good things."
+            },
+            {
+              "zh": "“波斯大王的世交”一般读作反讽，不是在夸美诺。",
+              "en": "Calling Meno the guest friend of the Great King is usually read as mockery, not praise."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Socrates reject 'virtue is the power to secure good things justly'?",
+            "zh": "苏格拉底为什么否定“美德就是公正地获得好东西的能力”？"
+          },
+          "options": [
+            {
+              "en": "Because no one desires good things.",
+              "zh": "因为没有人欲求好东西。"
+            },
+            {
+              "en": "Because gold and silver are not good things.",
+              "zh": "因为金银不是好东西。"
+            },
+            {
+              "en": "Because justice is a part of virtue, so the definition explains virtue through a part of virtue, which is still under inquiry.",
+              "zh": "因为正义是美德的一部分，这个定义是用还在探究中的美德的一部分来解释美德。"
+            },
+            {
+              "en": "Because justice can be taught but virtue cannot.",
+              "zh": "因为正义能教，美德不能教。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（79a–e，第 9–10 页）。A 正好相反：上一个论证的结论是人人都欲求好东西。B 错：苏格拉底没有否认健康、财富是好东西，他说的是获取必须伴随正义。D 错：“能不能教”是后半篇的问题，这里没有讨论。",
+            "en": "C (79a-e): the definition is circular."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A student says: 'Virtue is doing anything courageously.' Which problem would Socrates point out?",
+            "zh": "一个学生说：“美德就是勇敢地做任何事。”苏格拉底会指出什么问题？"
+          },
+          "options": [
+            {
+              "en": "Courage is not a virtue.",
+              "zh": "勇敢不是美德。"
+            },
+            {
+              "en": "It defines virtue through a part of virtue (courage), so it is circular.",
+              "zh": "它用美德的一部分（勇敢）来定义美德，所以是循环定义。"
+            },
+            {
+              "en": "It does not mention beautiful things.",
+              "zh": "它没有提到美的东西。"
+            },
+            {
+              "en": "It is a theatrical answer in the style of Gorgias.",
+              "zh": "它是仿高尔吉亚的、像演戏的回答。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B。勇敢是美德的一种（74a），用部分去定义整体就是循环定义，和“公正地获取”是同一个毛病。A 错：美诺和苏格拉底都把勇敢算作美德。C 是干扰项，和定义好坏无关。D 错：像演戏的花哨回答指的是那个颜色定义。",
+            "en": "B: courage is one part of virtue, so the definition is circular."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-torpedo-fish-and-meno-paradox",
+      "title": {
+        "zh": "美诺篇：电鳐与美诺悖论",
+        "en": "Meno: The Torpedo Fish and Meno's Paradox"
+      },
+      "slides": "10-11",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "被要求从头再来，美诺抱怨了（80a–b，第 10 页）：早就听说苏格拉底自己总是困惑（**perplexed**），也让别人困惑；现在他像施了魔法，让我也完全困惑了。美诺开玩笑说，苏格拉底长相和本事都像扁平的电鳐（**torpedo fish**），谁碰到它谁就发麻。他说自己的脑子和舌头都麻了：以前对着大批听众讲过上千次美德（**virtue**），自认讲得很好，现在却连美德是什么都说不出来。他还说，苏格拉底要是在别的城邦这样做，会被当成巫师赶走。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "perplexity (being at a loss)",
+              "zh": "困惑（不知所措）",
+              "hint": "原来以为懂，被问倒后发现自己不懂、不知道怎么办的状态。"
+            },
+            {
+              "en": "numb",
+              "zh": "发麻",
+              "hint": "电鳐让人发麻；美诺用它比喻被问到说不出话。"
+            },
+            {
+              "en": "inquiry (search)",
+              "zh": "探究（寻找）",
+              "hint": "去弄清自己还不知道的东西。"
+            },
+            {
+              "en": "paradox",
+              "zh": "悖论",
+              "hint": "一个看起来每一步都对、结论却让人难以接受的论证。"
+            },
+            {
+              "en": "dilemma / horn",
+              "zh": "两难 / 角",
+              "hint": "只有两条路，走哪条都得到同一个（坏）结论；每条路叫一个“角”。"
+            },
+            {
+              "en": "debater's argument",
+              "zh": "辩论家的论证",
+              "hint": "苏格拉底对美诺这个难题的称呼：为了辩赢、而不是为了求真的论证。"
+            },
+            {
+              "en": "valid / sound",
+              "zh": "有效 / 可靠",
+              "hint": "有效＝如果前提都真，结论就一定真；可靠＝有效，而且前提确实都真。美诺问苏格拉底这个论证是否 sound。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            },
+            {
+              "en": "true opinion",
+              "zh": "真意见",
+              "hint": "看法是对的，但还不是知识；第 16–17 页和第 26–27 页会细讲。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底说美诺是个小滑头：拿电鳐比他，是想让他也回敬一个比喻，因为漂亮的人都喜欢被拿漂亮的东西来比；苏格拉底偏不。他说：如果电鳐自己也是麻的，才让别人发麻，那我像它；否则不像。因为我让别人困惑（**perplexity**）的时候，自己并没有答案，反而比谁都困惑（80c）。所以：我不知道美德是什么，你现在看来也不知道；但我仍然想和你一起研究、一起寻找（80d）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "美诺的三个问题（80d，第 11 页）",
+            "en": "Meno's three questions (80d, p. 11)"
+          },
+          "steps": [
+            {
+              "zh": "你完全不知道美德是什么，要怎么去找它？",
+              "en": "How can you look for virtue if you have no idea at all what it is?"
+            },
+            {
+              "zh": "你要把一个完全不知道的东西当作目标，怎么瞄准？",
+              "en": "What would you be aiming at in your search?"
+            },
+            {
+              "zh": "就算碰巧遇到了，你又怎么知道这就是你原来不知道的那个东西？",
+              "en": "Even if you came across it, how could you tell that it was the very thing you did not know?"
+            }
+          ],
+          "answer": {
+            "zh": "三个问题合起来是一个挑战：对完全不知道的东西，既没法开始找，也没法认出自己找到了。",
+            "en": "Together they say: what we do not know at all, we can neither start to look for nor recognize when found."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：辩论家的论证（80e，第 11 页）",
+            "en": "Standard form: the debater's argument (80e, p. 11)"
+          },
+          "items": [
+            {
+              "en": "P1: For any object of inquiry, a person either knows it or does not know it.",
+              "zh": "P1：对任何要探究的东西，一个人要么知道它，要么不知道它。"
+            },
+            {
+              "en": "P2: If he knows it, he cannot search for it, because there is no need to search for what he already knows.",
+              "zh": "P2：如果他知道，就不能去找，因为已经知道的东西没有必要找。"
+            },
+            {
+              "en": "P3: If he does not know it, he cannot search for it either, because he would not know what he is looking for.",
+              "zh": "P3：如果他不知道，也不能去找，因为他不知道自己要找的是什么。"
+            },
+            {
+              "en": "C: So no one can search for (inquire into) anything; inquiry is impossible.",
+              "zh": "C：所以谁也不能寻找（探究）任何东西；探究是不可能的。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底把美诺的话改写成一个两难（**dilemma**）。P1 说只有两种情况：知道，或者不知道。P2 是第一个“角”（**horn**）：已经知道，就没必要找。P3 是第二个角：完全不知道，就不知道找什么；美诺的第三问（找到了也认不出）也属于这一角。两个角都推出“不能探究”，这就是结论（**conclusion**）。要反驳这个论证（**argument**），必须对两个角都有交代，或者攻击 P1。"
+        },
+        {
+          "type": "analogy",
+          "zh": "在宿舍找蓝牙耳机：如果你知道它在哪，就不用找；如果你连“耳机”长什么样都完全不知道，就算它摆在桌上，你也认不出来。美诺的难题就是把这两头都堵死。",
+          "limit": "现实中找耳机时你是“半知道”：知道它长什么样，只是不知道它在哪。这个中间状态正是悖论忽略的地方：它把“知道”看成要么全知道、要么全不知道。"
+        },
+        {
+          "type": "text",
+          "zh": "这个难题为什么偏偏在这里出现？因为两人刚刚都承认不知道美德是什么。如果悖论成立，他们对美德的整个研究就从根上不可能了，美诺也就有了不用再想的理由。苏格拉底称它为辩论家的论证（**debater's argument**）。美诺问：你不觉得它可靠（**sound**）吗？苏格拉底只简短地说：我不觉得（81a）。他的理由是下一节的回忆说（**recollection**）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "两个角，以及两种回答（回答部分是本站的整理）",
+            "en": "The two horns and two kinds of reply (the replies are our reconstruction)"
+          },
+          "headers": [
+            "",
+            "第一个角 Horn 1",
+            "第二个角 Horn 2"
+          ],
+          "rows": [
+            [
+              "说法 Claim",
+              "已经知道，就不必找",
+              "完全不知道，就不知道找什么，找到也认不出"
+            ],
+            [
+              "隐含的假定 Hidden assumption",
+              "“知道”就是全都知道",
+              "“不知道”就是完全不知道"
+            ],
+            [
+              "回忆说的回答（下一节）Recollection's reply",
+              "灵魂（**soul**）其实知道，只是人现在想不起来，所以要找",
+              "灵魂里本来就有，想起来的时候能认出来"
+            ],
+            [
+              "不靠回忆说的回答 A reply without recollection",
+              "可以只知道一部分，再去找剩下的",
+              "可以凭一个描述或一个真意见去找，并认出答案"
+            ]
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "How could someone answer Meno's paradox without the theory of recollection?",
+            "zh": "不用回忆说，还能怎样回答美诺悖论？"
+          },
+          "answer": {
+            "en": "The paradox treats knowing as all-or-nothing: either we know a thing completely or not at all. But we usually know something about what we are looking for, such as a description of it or a true opinion about it, without fully knowing it. With such partial knowledge we can start to search and can recognize the answer when we find it, as a doctor who knows the symptoms can search for the cause of a disease. The Meno itself later describes such a middle state: true opinion, which is correct but not yet knowledge (85c, 97b).",
+            "zh": "答题思路：①找出悖论的隐含假定：“知道”只有全有和全无两种；②指出中间状态：部分知识（**knowledge**）、对目标的描述、真意见；③举例：医生知道症状、不知道病因，也能去找，找到时也能认出；④联系文本：《美诺篇》后面自己就提出了“真意见”这个中间状态（85c、97b）。"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：这个难题通常叫“美诺悖论”（**Meno's paradox**），也叫“探究悖论”（**paradox of inquiry**）。这两个名字不是译本里的说法：导言（第 1 页）只说美诺提出了一个 paradox，苏格拉底把它叫作辩论家的论证（80e）。考试时可以用通用名称。",
+          "en": "Outside the reading: 'Meno's paradox' and 'the paradox of inquiry' are the usual labels; the translation calls it a debater's argument (80e)."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "悖论有两个角，只回答其中一个角，不算完整的回答。",
+              "en": "The paradox has two horns; a full answer must deal with both."
+            },
+            {
+              "zh": "苏格拉底并不接受这个论证：他说在他看来它并不可靠（81a）。",
+              "en": "Socrates does not accept the argument; he says it does not seem sound to him (81a)."
+            },
+            {
+              "zh": "苏格拉底不是手握答案、故意让人发麻：他说自己让别人困惑时，自己也没有答案。",
+              "en": "Socrates does not hide an answer; he says he is perplexed himself."
+            },
+            {
+              "zh": "这里的“悖论”指看似合理却推出怪结论的论证，不是一句自相矛盾的话。",
+              "en": "'Paradox' here means a plausible argument with a strange conclusion, not a self-contradictory sentence."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Socrates' version of Meno's paradox, why can't a person search for what he does not know?",
+            "zh": "在苏格拉底改写的美诺悖论里，为什么一个人不能去找他不知道的东西？"
+          },
+          "options": [
+            {
+              "en": "Because there is no need to search for it.",
+              "zh": "因为没有必要找它。"
+            },
+            {
+              "en": "Because only the gods know it.",
+              "zh": "因为只有神知道它。"
+            },
+            {
+              "en": "Because the sophists charge fees for it.",
+              "zh": "因为智者教它要收费。"
+            },
+            {
+              "en": "Because he would not know what he was looking for.",
+              "zh": "因为他不知道要找什么。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（80e）。这是第二个角。A 是第一个角（已经知道就不必找）的理由，放在这里就张冠李戴了。B、C 都不是文本给的理由，是干扰项（智者收费是 91b 讨论美德老师时才说的事）。",
+            "en": "D: the second horn (80e). A gives the reason of the first horn."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which reply answers Meno's paradox without appealing to the soul or to recollection, by rejecting the assumption that knowing is all-or-nothing?",
+            "zh": "哪一种回答不诉诸灵魂或回忆，而是通过否定“知道只有全有或全无”这个假定来回答美诺悖论？"
+          },
+          "options": [
+            {
+              "en": "We can search with partial knowledge, such as a description or a true opinion of what we seek.",
+              "zh": "我们可以凭部分知识去找，比如对目标的描述或一个真意见。"
+            },
+            {
+              "en": "The soul is immortal and has learned everything.",
+              "zh": "灵魂不朽，已经学过一切。"
+            },
+            {
+              "en": "Believing the paradox makes people idle.",
+              "zh": "相信这个悖论会让人懒惰。"
+            },
+            {
+              "en": "Socrates is more perplexed than anyone.",
+              "zh": "苏格拉底比谁都困惑。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A：它指出“知道一部分”这个中间状态，直接攻击 P1 背后的“要么全知、要么全不知”。B 是回忆说，靠的正是灵魂，不符合题目要求。C 是苏格拉底的实践理由（81d–e），说的是相信它的后果，没有指出它错在哪里。D 只是苏格拉底对电鳐比喻的回应。",
+            "en": "A: partial knowledge is a middle state between knowing and not knowing."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-recollection-theory",
+      "title": {
+        "zh": "美诺篇：回忆说：灵魂不朽，学习即回忆",
+        "en": "Meno: The Theory of Recollection"
+      },
+      "slides": "11-12",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "苏格拉底为什么不接受辩论家的论证（**debater's argument**，也就是上一节的美诺悖论 **Meno's paradox**）？他说，他听一些懂神圣之事的男人和女人讲过一件他认为又真又美的事（81a，第 11 页）。讲的人是一些祭司和女祭司（**priests and priestesses**），他们用心要能对自己的宗教活动给出说明；诗人品达（**Pindar**）和许多“神圣的”诗人也这样说（81a–b）。注意：这一步的根据是宗教权威（**authority**：因为说话人的身份而相信），不是论证。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "soul",
+              "zh": "灵魂",
+              "hint": "人身上会思考、会认识的那部分；这里说它不朽，死去又重生，永远不会被毁灭。"
+            },
+            {
+              "en": "immortal",
+              "zh": "不朽的",
+              "hint": "永远不会被毁灭。"
+            },
+            {
+              "en": "reborn",
+              "zh": "重生、转世",
+              "hint": "灵魂离开一个身体（人们叫它死亡），又进入新的生命。"
+            },
+            {
+              "en": "recollection",
+              "zh": "回忆",
+              "hint": "苏格拉底的说法：所谓学习，其实是灵魂想起它本来就知道的东西。"
+            },
+            {
+              "en": "akin",
+              "zh": "同类相通",
+              "hint": "整个自然彼此相关，所以想起一样东西，就能顺着找到别的。"
+            },
+            {
+              "en": "underworld",
+              "zh": "冥界",
+              "hint": "古希腊人说的死者所在的地下世界；灵魂在那里也见过一切。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "他们说的内容是：人的灵魂（**soul**）是不朽的（**immortal**）：有时会“结束”，人们管这叫死亡；有时又重生（**reborn**），但永远不会被毁灭，所以人应该尽量虔敬（**piously**）地过一生（81b）。苏格拉底接着引了品达的几行诗（脚注 4），大意是：珀耳塞福涅（**Persephone**）在第九年把一些灵魂送回上面的阳光下，他们中间会出现高贵、强大、最有智慧的国王，后人称他们为英雄。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：回忆说（81b–d，第 11 页）",
+            "en": "Standard form: the theory of recollection (81b-d, p. 11)"
+          },
+          "items": [
+            {
+              "en": "P1: The human soul is immortal: it dies and is reborn many times, but it is never destroyed (Socrates takes this from priests, priestesses and poets such as Pindar).",
+              "zh": "P1：人的灵魂不朽：它死去又重生很多次，但永远不会被毁灭（苏格拉底说这来自祭司、女祭司和品达等诗人）。"
+            },
+            {
+              "en": "P2: Since it has been born many times and has seen all things, both here and in the underworld, the soul has learned everything.",
+              "zh": "P2：灵魂生过很多次，见过人间和冥界的一切，所以没有什么是它没学过的。"
+            },
+            {
+              "en": "P3: All of nature is akin, so after recalling one thing a person can discover everything else on his own, as long as he is brave and keeps searching without growing tired.",
+              "zh": "P3：整个自然同类相通，所以一个人想起一样东西后，只要勇敢、不怕累地找下去，就能自己发现其余的一切。"
+            },
+            {
+              "en": "C: So what we call learning is really recollection: the soul recovering knowledge it already has, about virtue and about other things.",
+              "zh": "C：所以我们所说的学习，其实是回忆：灵魂找回它本来就有的知识（**knowledge**），包括关于美德（**virtue**）的知识和别的知识。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "逐条看。P1 来自宗教权威。P2 从“生过很多次、见过一切”推出“没有什么没学过”。P3 说自然万物同类相通（**akin**），所以想起一样，就能顺藤摸瓜找出其余的，但前提是勇敢、不怕累地去找。结论就是这一句：“searching and learning are, as a whole, recollection”（81d，第 11 页），即探究和学习整个来说就是回忆（**recollection**）。注意：灵魂学过的东西包括美德，不只是几何（81c）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "回忆说怎样回答悖论的两个角（本站的整理：苏格拉底没有逐个角作答）",
+            "en": "How recollection answers both horns of the paradox (our reconstruction: Socrates does not answer the horns one by one)"
+          },
+          "headers": [
+            "悖论的角 Horn",
+            "回忆说的回答 How recollection answers it"
+          ],
+          "rows": [
+            [
+              "第一个角：已经知道，就不必找 If you know it, there is no need to search",
+              "灵魂“知道”，但人现在想不起来，所以还有东西要找：把它想起来 The soul has the knowledge, but we do not recall it now, so there is something to search for"
+            ],
+            [
+              "第二个角：完全不知道，就不知道找什么，找到也认不出 If you do not know it, you cannot aim at it or recognize it",
+              "人从来不是完全不知道；想起来的时候，就能认出这就是答案 We are never wholly ignorant, so when we recall the answer we can recognize it"
+            ]
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "考试时遇到一个公式“话到嘴边”：明明学过，一时想不起来；同学一提前半句，你马上接出后半句，还能肯定“对，就是它”。苏格拉底说的学习就像这样：答案本来就在你心里，只是要被唤醒。",
+          "limit": "类比（**analogy**）里的公式是你这辈子学过、后来忘了的；苏格拉底说的知识是灵魂在出生之前就有的，这辈子从没学过。而且灵魂最初又是什么时候学会的？这个类比回答不了。"
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底还加了一个实践理由：不要相信那个辩论家的论证，因为它会让我们懒惰，胆小的人才爱听它；而他的说法让人有干劲、热心去探究（81d–e）。他说自己相信这是真的，所以想和美诺一起研究美德的本性。要分清：“相信它会让人更勤奋”说的是相信的后果，并不能证明它是真的。苏格拉底在 86b–c 也把两者分开：论证的其他部分他不坚持，只坚持这个实践主张。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "“你能教我吗？”这个圈套（81e–82b，第 11–12 页）",
+            "en": "The 'teach me' trap (81e-82b, pp. 11-12)"
+          },
+          "steps": [
+            {
+              "zh": "美诺问：你说我们不是在学习，所谓学习其实是回忆，你能“教”我这一点吗？",
+              "en": "Meno asks Socrates to teach him that learning is recollection."
+            },
+            {
+              "zh": "苏格拉底说他是个小滑头：我刚说没有教、只有回忆，你却问我能不能教你，想让我当场自相矛盾（82a）。",
+              "en": "Socrates points out the trap: he has just said there is no teaching, only recollection (82a)."
+            },
+            {
+              "zh": "美诺说不是故意的，只是说话习惯；如果苏格拉底能用某种办法让他看到事情确实如此，就请这样做。",
+              "en": "Meno says it was just a habit and asks Socrates to show him somehow that it is so."
+            },
+            {
+              "zh": "苏格拉底说这不容易，但愿意尽力：叫美诺从众多随从中随便叫来一个，在他身上证明给美诺看（82a–b）。",
+              "en": "Socrates agrees to try, using one of Meno's many attendants (82a-b)."
+            }
+          ],
+          "answer": {
+            "zh": "苏格拉底不“教”回忆说，而是用演示让美诺自己看；本站的理解：这种做法本身就和回忆说一致。",
+            "en": "Instead of teaching the theory, Socrates offers a demonstration; on our reading, this way of proceeding itself fits the theory."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is the theory of recollection a good answer to Meno's paradox?",
+            "zh": "回忆说是对美诺悖论的好回答吗？"
+          },
+          "answer": {
+            "en": "It does answer both horns: we can search because the soul already has the knowledge, and we can recognize the answer when we recall it. But so far its support is religious authority plus a practical reason, and the fact that believing a view makes us energetic does not show that it is true. It also invites a regress: if all learning is recollection, when did the soul first learn? Socrates himself later says he will not insist on every part of the account (86b-c).",
+            "zh": "答题思路：①优点：对两个角都有回答；②缺点一：到这里为止，它的根据只是宗教权威加实践理由，而“相信它让人勤奋”不等于它是真的；③缺点二：倒退问题：如果一切学习都是回忆，灵魂最初是什么时候学会的？④苏格拉底自己在 86b–c 也说，不坚持这个说法的每一部分。"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "联系别的读物：导言（第 2 页）说，回忆说在另一篇对话 Phaedo（《斐多篇》）里还会出现，并加上柏拉图的 Forms，作为回忆和知识的对象（本课程没有读这一篇）。第 5 周读的笛卡尔（**René Descartes**）也会到自己心里去寻找确定的知识，可以和这里对照。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "回忆（recollection）不是想起这辈子早些时候经历过的事，而是想起灵魂在出生前就有的知识。",
+              "en": "Recollection is not remembering earlier events in this life; it is recovering knowledge the soul had before birth."
+            },
+            {
+              "zh": "到这里，回忆说的根据是祭司和诗人的说法加上实践理由，还不是证明；证明的尝试在奴隶男孩那一段。",
+              "en": "So far the theory rests on religious authority and a practical reason; the attempted proof comes with the slave boy."
+            },
+            {
+              "zh": "“没有教，只有回忆”（82a）和后来“说可教还是可回忆都一样”（87b–c）不矛盾：后者只是暂时不在用词上较真。",
+              "en": "'No teaching, only recollection' (82a) does not clash with 87b-c, where Socrates lets 'taught' and 'recollected' count the same."
+            },
+            {
+              "zh": "灵魂学过的东西包括美德，不只是几何（81c）。",
+              "en": "The soul has learned about virtue too, not only geometry (81c)."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to the doctrine Socrates reports, what we call learning is really:",
+            "zh": "按照苏格拉底转述的说法，我们所说的学习其实是："
+          },
+          "options": [
+            {
+              "en": "being taught by a wise teacher.",
+              "zh": "被有智慧的老师教会。"
+            },
+            {
+              "en": "practising a skill until it becomes a habit.",
+              "zh": "反复练习一种技能，直到成为习惯。"
+            },
+            {
+              "en": "recollecting what the immortal soul already knows.",
+              "zh": "回忆起不朽的灵魂本来就知道的东西。"
+            },
+            {
+              "en": "collecting new information through the senses.",
+              "zh": "通过感官收集新信息。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（81c–d）。A 正是苏格拉底否认的：他说没有教，只有回忆（82a）。B 是“练习”，那是美诺开头四个选项之一，不是回忆说。D 是从感官得到新知识，和回忆说相反；导言（第 1 页）也说，男孩是在回忆，而不是从第一次给他的材料里得出新结论。",
+            "en": "C (81c-d): learning is recollecting what the soul already knows."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-slave-boy-geometry",
+      "title": {
+        "zh": "美诺篇：奴隶男孩与面积加倍的正方形",
+        "en": "Meno: The Slave Boy and the Doubled Square"
+      },
+      "slides": "12-16",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "美诺从随从里叫来一个男孩（**the slave boy**）。苏格拉底只问了两件事：他是希腊人吗？会说希腊语吗？美诺说会，他是在我家里出生的（82b，第 12 页）。后面美诺还确认：没有人教过他几何（85e）。苏格拉底请美诺注意看：男孩是在回忆（**recollection**），还是在向我学习？这场演示（**demonstration**：当面做一遍，用来支持一个说法）就是要拿出证据，支持上一节的回忆说。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "square",
+              "zh": "正方形",
+              "hint": "四条边一样长的方形图形；苏格拉底还指出它“穿过中间的线”也一样长。"
+            },
+            {
+              "en": "side",
+              "zh": "边",
+              "hint": "正方形的一条边；这一段问的是：边要多长，面积才会加倍？"
+            },
+            {
+              "en": "area",
+              "zh": "面积",
+              "hint": "图形占多大地方；正方形的面积＝边长 × 边长。"
+            },
+            {
+              "en": "'feet' (= square feet)",
+              "zh": "“英尺”（＝平方英尺）",
+              "hint": "译本说“四英尺的图形”，指的是面积 4 平方英尺，不是长度。"
+            },
+            {
+              "en": "diagonal",
+              "zh": "对角线",
+              "hint": "从正方形的一个角连到对面那个角的线。"
+            },
+            {
+              "en": "perplexity",
+              "zh": "困惑",
+              "hint": "发现自己不懂、不知所措的状态；苏格拉底说这对学习者有好处。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "A-------G-------B\n|       |       |\n|   1   |   1   |\n|       |       |\nE-------+-------F\n|       |       |\n|   1   |   1   |\n|       |       |\nD-------H-------C\n\nAG = GB = 1 ft, so each side is 2 ft.\nWhole square = 2 x 2 = 4 (square feet).",
+          "zh": "第 12 页脚注 5 的图：苏格拉底画了正方形 ABCD（A 在左上，B 在右上，C 在右下，D 在左下），每条边 2 英尺；G、H 是上下两条边的中点，E、F 是左右两条边的中点。EF 和 GH 这两条“穿过中间的线”连接对边中点、经过正方形中心，把它分成 4 个 1 平方英尺的小方块（图里每格中的 1 指面积）。这是男孩的出发点：面积 4。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第一部分：两次错误的答案（82c–84a，第 12–14 页）",
+            "en": "Part 1: two wrong answers (82c-84a, pp. 12-14)"
+          },
+          "steps": [
+            {
+              "zh": "边长 2 英尺的正方形，面积是 2 × 2 = 4（平方英尺）。男孩算对了（82c–d）。",
+              "en": "A square with 2-foot sides has an area of 2 x 2 = 4 square feet; the boy gets this right (82c-d)."
+            },
+            {
+              "zh": "苏格拉底：可以有另一个四边相等、面积是它两倍的正方形，面积是多少？男孩：8（82d）。",
+              "en": "A square twice as big would be 8 square feet (82d)."
+            },
+            {
+              "zh": "那它的边多长？男孩很有把握：显然是两倍长，也就是 4 英尺（82e）。",
+              "en": "The boy confidently says its side will be twice as long (82e)."
+            },
+            {
+              "zh": "苏格拉底转向美诺：你看，我没有教他什么，只是在问。他以为自己知道，其实不知道。美诺同意（82e）。",
+              "en": "Socrates tells Meno that he is only asking questions; the boy thinks he knows but does not (82e)."
+            },
+            {
+              "zh": "检验：把边加倍到 4 英尺，画出来的大正方形里有 4 个 4 平方英尺的正方形，是原来的 4 倍：4 × 4 = 16，不是 8（83a–c）。",
+              "en": "Check: a 4-foot side gives a square containing four of the original squares, 4 x 4 = 16, not 8 (83a-c)."
+            },
+            {
+              "zh": "8 比 4 大、比 16 小，所以边应该比 2 英尺长、比 4 英尺短（83c–d；脚注 6）。男孩说：3 英尺（83e）。",
+              "en": "Since 8 lies between 4 and 16, the side must be between 2 and 4 feet (footnote 6); the boy says 3 feet (83e)."
+            },
+            {
+              "zh": "检验：3 × 3 = 9，还是不等于 8（83e）。",
+              "en": "Check: 3 x 3 = 9, still not 8 (83e)."
+            },
+            {
+              "zh": "苏格拉底请他说准确，算不出来就指出是哪条线。男孩承认：我不知道（84a）。",
+              "en": "Asked for the exact line, the boy admits that he does not know (84a)."
+            }
+          ],
+          "answer": {
+            "zh": "两次错误都是男孩自己算出来、自己承认的：他从“以为知道”变成了“知道自己不知道”。",
+            "en": "The boy works out and admits both mistakes himself: he moves from thinking he knows to knowing that he does not know."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "男孩的几次回答",
+            "en": "The boy's answers"
+          },
+          "headers": [
+            "边长 Side",
+            "面积 Area",
+            "和 8 比 Compared with 8",
+            "出处 Where"
+          ],
+          "rows": [
+            [
+              "2 英尺（原来的正方形）",
+              "2 × 2 = 4",
+              "目标是它的两倍：8",
+              "82c–d（第 13 页）"
+            ],
+            [
+              "4 英尺（第一次回答：边加倍）",
+              "4 × 4 = 16",
+              "是原来的 4 倍，太大",
+              "82e–83c（第 13 页）"
+            ],
+            [
+              "3 英尺（第二次回答）",
+              "3 × 3 = 9",
+              "比 8 多 1，还是不对",
+              "83e（第 14 页）"
+            ],
+            [
+              "对角线（最后的答案）",
+              "8",
+              "正好是 4 的两倍",
+              "85b（第 16 页）"
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：困惑对学习者有好处（84a–c，第 14–15 页）",
+            "en": "Standard form: perplexity benefits the learner (84a-c, pp. 14-15)"
+          },
+          "items": [
+            {
+              "en": "P1: At first the boy did not know the side of the eight-foot square, but he thought he knew and answered confidently.",
+              "zh": "P1：一开始男孩不知道 8 平方英尺正方形的边，却以为自己知道，回答得很有把握。"
+            },
+            {
+              "en": "P2: Now he still does not know it, but he no longer thinks he knows; he is perplexed.",
+              "zh": "P2：现在他仍然不知道，但不再以为自己知道了；他陷入了困惑。"
+            },
+            {
+              "en": "P3: Someone who thinks he knows something will not try to find it out; only someone who realizes he does not know wants to find out.",
+              "zh": "P3：以为自己知道的人不会去弄明白；只有意识到自己不知道的人，才会想弄明白。"
+            },
+            {
+              "en": "C: So making the boy perplexed and numb, the way the torpedo fish numbs people, did him no harm; it left him better placed to find the answer.",
+              "zh": "C：所以像电鳐（**torpedo fish**）那样把男孩问到困惑、发麻，并没有害他，反而让他更有条件找到答案。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这个论证（**argument**）回答了美诺的电鳐抱怨（80a–b）：被问到发麻、困惑（**perplexity**）不是坏事，而是学习的第一步。苏格拉底还说：要不是被问倒，男孩也许会很有把握地对着大批听众大谈“面积加倍，边就要加倍”（84b–c）。这很像美诺说自己对着大批听众讲过上千次美德（**virtue**）（80b）；本站的理解：苏格拉底是在顺带回敬美诺。"
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "A-------G-------B\n|     / | \\     |\n|   /   |   \\   |\n| /     |     \\ |\nE-------+-------F\n| \\     |     / |\n|   \\   |   /   |\n|     \\ | /     |\nD-------H-------C\n\nAG = GB = 2 ft, so each side is 4 ft: four squares of 4 = 16 (square feet).\nGF, FH, HE and EG cut each small square in half.\nGFHE = 4 halves = 2 small squares = 8 (square feet).",
+          "zh": "第 16 页脚注 9 的图：大正方形 ABCD 每边 4 英尺，字母位置和上一张图一样（G、H 是上下两条边的中点，E、F 是左右两条边的中点），由 4 个 4 平方英尺的小正方形拼成（脚注 7 讲怎样拼）。苏格拉底在每个小正方形里画一条对角线：GF、FH、HE、EG。这四条线首尾相接，围成一个斜放的正方形 GFHE，它正好占每个小正方形的一半。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第二部分：用对角线找到答案（84c–85b，第 15–16 页）",
+            "en": "Part 2: finding the answer with the diagonal (84c-85b, pp. 15-16)"
+          },
+          "steps": [
+            {
+              "zh": "苏格拉底说：接下来我只提问、不教，看他怎样从困惑里走出来（84c–d）。",
+              "en": "Socrates says he will only ask questions, not teach (84c-d)."
+            },
+            {
+              "zh": "画一个 4 平方英尺的正方形，旁边加一个同样大的，再加第三个，最后把角上的空位补上：得到 4 个相等的正方形（84d；脚注 7）。",
+              "en": "Build three equal 4-foot squares and fill the corner: four equal squares (84d, footnote 7)."
+            },
+            {
+              "zh": "整个大图形是一个小正方形的几倍？男孩：4 倍（也就是 16）。可我们要的是 2 倍（84e）。",
+              "en": "The whole is four times one small square (16), but they want twice (84e)."
+            },
+            {
+              "zh": "在每个小正方形里从一个角到对面的角画一条线，这条线把小正方形切成两半（85a；脚注 9）。",
+              "en": "A line from corner to corner cuts each small square in two (85a, footnote 9)."
+            },
+            {
+              "zh": "这四条一样长的线围成一个新图形 GFHE（脚注 10）。",
+              "en": "These four equal lines enclose a new figure, GFHE (footnote 10)."
+            },
+            {
+              "zh": "GFHE 里有几个“半块”？4 个。一个小正方形有几个“半块”？2 个。4 是 2 的两倍（85a–b）。",
+              "en": "GFHE contains four halves, a small square contains two, and four is double two (85a-b)."
+            },
+            {
+              "zh": "所以 GFHE 的面积是 2 × 4 = 8 平方英尺。它建在哪条线上？建在 4 平方英尺正方形从角到角的那条线上，有学问的人管它叫对角线（**diagonal**）（85b）。",
+              "en": "So GFHE is 8 square feet, built on the corner-to-corner line of the 4-foot square, which experts call the diagonal (85b)."
+            }
+          ],
+          "answer": {
+            "zh": "面积加倍的正方形，要建在原来正方形的对角线上：以对角线为边的正方形，面积正好是原来的两倍。",
+            "en": "The square on the diagonal of the original square has double its area."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：用今天的数学说，所求的边长是 √8 ≈ 2.83 英尺，既不是整数，也不能写成分数，所以男孩试 4、试 3 都不行。苏格拉底的解法不给数字，而是直接指出一条线：对角线。也可以用勾股定理检验：边长 2 的正方形，对角线的平方 = 2² + 2² = 8。",
+          "en": "Outside the reading: the side needed is the square root of 8, about 2.83 feet, which is not a whole number or a fraction; by Pythagoras' theorem, the square of the diagonal of a 2-foot square is 4 + 4 = 8."
+        },
+        {
+          "type": "text",
+          "zh": "整个过程中，苏格拉底反复说自己没有教，只是在提问（82e、84c–d）；最后他问美诺：男孩说出的意见，有哪一个不是他自己的？美诺说：全都是他自己的（85b–c）。但也要看到：照脚注 9，关键的对角线是苏格拉底自己画的，很多问题也是只需回答“是”或“不是”的问题。下一节评估这个论证时会讨论这一点。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Is being made perplexed always good for a learner? Could it make him give up instead?",
+            "zh": "反驳：被问到困惑，对学习者总是好事吗？会不会反而让人放弃？"
+          },
+          "answer": {
+            "en": "Socrates' claim is about a learner who wrongly thinks he knows: perplexity removes that false confidence and makes him want to find out (84a-c). But perplexity alone does not produce the answer; the boy succeeds only because Socrates goes on to guide his search (84c-85b). Meno shows the risk: right after complaining that he was numbed, he raised the argument that inquiry is impossible (80a-e). That is why Socrates adds that believing we can find out what we do not know makes us braver and less idle (81d-e, 86b-c).",
+            "zh": "答题思路：①苏格拉底的论点针对“以为自己知道”的人：困惑打掉虚假的自信，让人想去弄明白（84a–c）；②但光有困惑得不出答案：男孩能成功，是因为苏格拉底接着带他一步步探究（84c–85b）；③美诺就是反面的例子：他刚抱怨完被问麻了，就提出了“探究不可能”的论证（80a–e）；④所以苏格拉底还要加上实践理由：相信能找到自己不知道的东西，会让人更勇敢、更不懒惰（81d–e、86b–c）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "译本里的 feet（英尺）在这里指面积（平方英尺）：“四英尺的图形”就是 4 平方英尺。",
+              "en": "In the translation 'feet' means square feet: a four-foot figure has an area of 4 square feet."
+            },
+            {
+              "zh": "答案不是一个数字，而是一条线：原来正方形的对角线。",
+              "en": "The answer is not a number but a line: the diagonal of the original square."
+            },
+            {
+              "zh": "两次错误（4 英尺、3 英尺）是演示的一部分：从“以为知道”到“知道自己不知道”，苏格拉底说这是进步。",
+              "en": "The two wrong answers are part of the lesson: Socrates presents the boy's perplexity as progress."
+            },
+            {
+              "zh": "做题的是美诺家的奴隶男孩，不是美诺。",
+              "en": "The slave boy, not Meno, answers the geometry questions."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In the slave-boy episode, the square with double the area of a 2-foot square is built on:",
+            "zh": "在奴隶男孩那一段，面积是 2 英尺正方形两倍的正方形，建在哪条线上？"
+          },
+          "options": [
+            {
+              "en": "a 4-foot side",
+              "zh": "4 英尺长的边"
+            },
+            {
+              "en": "a 3-foot side",
+              "zh": "3 英尺长的边"
+            },
+            {
+              "en": "the diagonal of the original square",
+              "zh": "原来正方形的对角线"
+            },
+            {
+              "en": "a side of 8 feet",
+              "zh": "8 英尺长的边"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（85b）。A：边长 4 英尺得到 16 平方英尺，是原来的 4 倍（83b–c）。B：3 英尺得到 9（83e）。D：8 是面积，不是边长，男孩也从没这样回答。",
+            "en": "C (85b). A gives 16 square feet, B gives 9, and 8 is the area, not the side."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-argument-for-recollection-and-immortality",
+      "title": {
+        "zh": "美诺篇：从演示到回忆与灵魂不朽",
+        "en": "Meno: From the Demonstration to Recollection and Immortality"
+      },
+      "slides": "16-17",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "男孩找到对角线（**diagonal**）以后，苏格拉底开始解释这场演示说明了什么（85b–86b，第 16–17 页）。他先问美诺：男孩的回答里，有没有哪个意见不是他自己的？美诺说：全都是他自己的。可是他们刚才也同意，男孩原本并不知道答案。苏格拉底由此一步步推到回忆（**recollection**），最后推到灵魂（**soul**）不朽（**immortal**：永远不会毁灭）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "opinion",
+              "zh": "意见",
+              "hint": "一个人认为事情如何的看法，可能对也可能错。"
+            },
+            {
+              "en": "true opinion",
+              "zh": "真意见",
+              "hint": "正确的看法，但还不是知识：说得对，却说不出为什么（第 26–27 页会讲清两者的区别）。"
+            },
+            {
+              "en": "knowledge",
+              "zh": "知识",
+              "hint": "比真意见更牢靠的认识；苏格拉底说反复提问能把真意见变成知识。"
+            },
+            {
+              "en": "stirred up as in a dream",
+              "zh": "像梦一样被唤起",
+              "hint": "刚被问出来的真意见还很模糊、不稳定。"
+            },
+            {
+              "en": "leading question",
+              "zh": "诱导性提问",
+              "hint": "提问方式本身就暗示了答案，比如只让人回答“是”或“不是”。"
+            },
+            {
+              "en": "alternative explanation",
+              "zh": "另一种解释",
+              "hint": "对同一个现象，用另一套理由来说明。"
+            },
+            {
+              "en": "hedge",
+              "zh": "留余地",
+              "hint": "说话不说满，只坚持一部分。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：从演示到回忆和灵魂不朽（85b–86b，第 16–17 页）",
+            "en": "Standard form: from the demonstration to recollection and immortality (85b-86b, pp. 16-17)"
+          },
+          "items": [
+            {
+              "en": "P1: Every answer the boy gave was his own opinion, and yet he did not know the answer before.",
+              "zh": "P1：男孩的每个回答都是他自己的意见，可他原本并不知道答案。"
+            },
+            {
+              "en": "P2: So a person who does not know something can have true opinions about it within himself.",
+              "zh": "P2：所以一个不知道某件事的人，心里可以有关于它的真意见。"
+            },
+            {
+              "en": "P3: These opinions have just been stirred up, as in a dream; if he were asked the same questions many times and in different ways, he would end up with knowledge as exact as anyone else's, without being taught, only questioned.",
+              "zh": "P3：这些意见刚被唤起，像做梦一样；如果用不同方式反复问他同样的问题，他最后会有和任何人一样准确的知识，不是被教会的，只是被问出来的。"
+            },
+            {
+              "en": "P4: Finding knowledge within oneself is recollection.",
+              "zh": "P4：在自己心里找到知识，就是回忆。"
+            },
+            {
+              "en": "P5: He must either have acquired this knowledge at some time or have always had it.",
+              "zh": "P5：这些知识要么是他某个时候获得的，要么是他一直都有的。"
+            },
+            {
+              "en": "P6: He did not acquire it in this life, because no one taught him geometry (Meno, in whose house he grew up, confirms this).",
+              "zh": "P6：他不是这辈子获得的，因为没有人教过他几何（他在美诺家长大，美诺可以作证）。"
+            },
+            {
+              "en": "P7: So he must have had these opinions, and learned them, at another time, when he was not yet human.",
+              "zh": "P7：所以他是在别的时候、在他还不是人的时候，就有了并学到了这些意见。"
+            },
+            {
+              "en": "P8: He exists through all time, either as a human being or not, and all that time he has true opinions that questioning can turn into knowledge; so his soul has always been in the state of having learned.",
+              "zh": "P8：他在所有时间里都存在，不论是不是人；这整段时间里他都带着能被提问变成知识的真意见，所以他的灵魂一直处在“已经学过”的状态。"
+            },
+            {
+              "en": "C: So, if the soul always holds the truth about reality (as P8 suggests), it would be immortal; therefore we should confidently search for, and recollect, what we do not know now.",
+              "zh": "C：所以，如果关于实在的真理一直在灵魂里（P8 正是这个意思），灵魂就是不朽的；因此我们应当有信心去寻找、去回忆我们现在不知道的东西。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "先看 P1–P3。P1 靠美诺作证：每个回答都是男孩自己说的。P2 是关键的一步：一个“不知道”的人，心里却有真意见（**true opinion**），说得对，但还不算知识（**knowledge**）。P3 说这些意见刚被唤起，像做梦一样模糊；用不同方式反复问同样的问题，最后他会知道得和任何人一样准确：不是被教会的，只是被问出来的。"
+        },
+        {
+          "type": "text",
+          "zh": "再看 P4–P8。P4 把“在自己心里找到知识”叫作回忆。P5–P7 是排除法：这知识要么是某个时候得到的，要么一直都有；如果是这辈子得到的，就得有人教过他几何，美诺说没有；那他一定是在别的时候、在他还不是人的时候学到的（86a）。P8 再推一步：他在所有时间里都存在，又一直带着这些真意见，所以他的灵魂一直处在“已经学过”的状态；于是，如果关于实在的真理总在灵魂里，灵魂就是不朽的（86a–b）。注意：“一直都有”这一支，苏格拉底只说了一句“那他就一直知道”，没有展开。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "推理链一览",
+            "en": "The chain of reasoning"
+          },
+          "items": [
+            {
+              "en": "The boy's answers were his own opinions",
+              "zh": "男孩的回答都是他自己的意见"
+            },
+            {
+              "en": "True opinions were in him though he did not know",
+              "zh": "他不知道答案，心里却有真意见"
+            },
+            {
+              "en": "Repeated questioning would turn them into knowledge",
+              "zh": "反复提问会把它们变成知识"
+            },
+            {
+              "en": "Finding knowledge within oneself is recollection",
+              "zh": "在自己心里找到知识就是回忆"
+            },
+            {
+              "en": "Not learned in this life, so learned when he was not a human being",
+              "zh": "不是这辈子学的，所以是他还不是人的时候学的"
+            },
+            {
+              "en": "The truth is always in the soul, so the soul is immortal",
+              "zh": "真理一直在灵魂里，所以灵魂不朽"
+            },
+            {
+              "en": "So we should keep searching for what we do not know",
+              "zh": "所以我们应当继续寻找自己不知道的东西"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "然后苏格拉底留了余地（**hedge**）（86b–c，第 17 页）：他说不坚持这个论证在其他各方面都对；但有一点，他愿意用言语和行动尽全力去捍卫：相信“人应该去寻找自己不知道的东西”，比相信“不知道的东西找不到、也不该去找”，会让我们成为更好、更勇敢、更不懒惰的人。所以他最坚定的主张是实践上的，而不是灵魂故事的每个细节。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Did Socrates really only ask questions, or did he in effect teach the boy?",
+            "zh": "反驳：苏格拉底真的只是在提问吗？还是其实在教男孩？"
+          },
+          "answer": {
+            "en": "A critic can point out that many of Socrates' questions are leading yes-or-no questions, and footnote 9 says that Socrates himself drew the diagonals that solve the problem. So the key step may have come from Socrates, not from the boy's soul. In reply, the boy does calculate the areas himself, rejects his own wrong answers, and must see for himself that the inner square contains four halves. Still, this shows at most that the boy can recognize a truth when it is put in front of him, which is weaker than finding it alone.",
+            "zh": "答题思路：①反驳：很多问题是只需答“是”或“不是”的诱导性提问（**leading questions**），关键的对角线还是苏格拉底画的（脚注 9）；②回应：面积是男孩自己算的，错误答案是他自己否定的，GFHE 是两倍也要他自己看出来；③评价：最多说明男孩能“认出”摆在眼前的真理，这比“自己找到”要弱。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Does 'not taught in this life' show 'learned before birth'? Is there a simpler explanation?",
+            "zh": "反驳：“这辈子没人教过”能推出“出生前学过”吗？有没有更简单的解释？"
+          },
+          "answer": {
+            "en": "The step from 'not taught in this life' to 'learned before birth' ignores another possibility: the boy may be working out the answer now, with reasoning abilities he already has, guided by good questions. The introduction itself contrasts recollecting with drawing new conclusions from information met for the first time (p. 1), and the second description seems to fit what we see. Also, a geometry problem can be checked in a drawing, while questions about virtue cannot, so the case may not carry over to moral knowledge. Finally, the boy ends with true opinion, not knowledge.",
+            "zh": "答题思路：①找出跳跃：从“这辈子没人教”到“出生前学过”，漏掉了“他现在就在用自己的推理能力推出来”这种可能；②导言（第 1 页）自己就把“回忆”和“从第一次见到的材料推出新结论”相对照，后一种说法似乎更符合我们看到的情形；③几何可以画图检验，美德（**virtue**）问题不行，这个例子不一定能推广到道德知识；④男孩最后只有真意见，还没有知识。"
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "逐步评估这个论证",
+            "en": "Assessing the argument step by step"
+          },
+          "headers": [
+            "步骤 Step",
+            "支持 Support",
+            "弱点 Weakness"
+          ],
+          "rows": [
+            [
+              "意见是男孩自己的（P1）",
+              "美诺作证；错误答案也是男孩自己否定的",
+              "诱导性提问；对角线是苏格拉底画的（脚注 9）"
+            ],
+            [
+              "不知道的人心里有真意见（P2）",
+              "男孩最后确实说出了正确答案",
+              "也可能是被问题一步步带出来的"
+            ],
+            [
+              "反复提问会变成知识（P3）",
+              "和后面“用原因的说明拴住”呼应（98a）",
+              "这只是预测，演示里并没有做到"
+            ],
+            [
+              "这辈子没学过，所以出生前学过（P6–P7）",
+              "美诺说没人教过他几何",
+              "漏掉了“现在推理出来”这种解释"
+            ],
+            [
+              "灵魂不朽（C）",
+              "苏格拉底说真理一直在灵魂里",
+              "跳跃最大；苏格拉底自己也不坚持（86b–c）"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "论证结束后，两人同意：应该去寻找自己不知道的东西，那就一起来找美德是什么吧（86c）。可美诺说，他更想先研究、先听苏格拉底回答他原来的问题：美德是可教的、天生的（**by nature**），还是用别的方式来到人身上的（86c–d）。这就是周三那部分（86d 以后）的起点：苏格拉底只好不先定义（**definition**），改用假设法（**method of hypothesis**）。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "男孩最后只有真意见，不是知识；要变成知识，还需要反复提问（85c–d）。",
+              "en": "The boy ends with true opinion, not knowledge; that would need repeated questioning (85c-d)."
+            },
+            {
+              "zh": "在 81b，灵魂不朽是祭司和诗人说的“前提”；在这里，它是从演示推出来的“结论”。",
+              "en": "At 81b immortality is a premise taken from priests and poets; here it is the conclusion of an argument."
+            },
+            {
+              "zh": "苏格拉底最坚持的是实践主张（相信探究会让人更好、更勇敢、更不懒），不是灵魂故事的每个细节（86b–c）。",
+              "en": "Socrates insists most on the practical claim, not on every detail of the argument (86b-c)."
+            },
+            {
+              "zh": "“意见都是他自己的”是美诺的判断，批评者可以质疑。",
+              "en": "That the opinions were all the boy's own is Meno's judgment, which critics can question."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Socrates, what does the slave boy have right after the demonstration?",
+            "zh": "按照苏格拉底的说法，演示刚结束时，奴隶男孩有的是什么？"
+          },
+          "options": [
+            {
+              "en": "Full knowledge of all geometry.",
+              "zh": "关于全部几何的完整知识。"
+            },
+            {
+              "en": "Opinions that Socrates taught him.",
+              "zh": "苏格拉底教给他的意见。"
+            },
+            {
+              "en": "Nothing, since all his answers were wrong.",
+              "zh": "什么也没有，因为他的回答都错了。"
+            },
+            {
+              "en": "True opinions, stirred up as in a dream, which repeated questioning could turn into knowledge.",
+              "zh": "像梦一样刚被唤起的真意见，反复提问可以把它们变成知识。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（85c–d）。A 错：苏格拉底说要反复提问才会变成知识。B 错：苏格拉底和美诺都说那些意见是男孩自己的。C 错：男孩最后答对了（对角线）。",
+            "en": "D (85c-d): true opinions, not yet knowledge."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which claim does Socrates say he would defend most firmly (86b-c)?",
+            "zh": "苏格拉底说他最愿意坚决捍卫的是哪一个主张（86b–c）？"
+          },
+          "options": [
+            {
+              "en": "Every detail of the argument for the soul's immortality.",
+              "zh": "灵魂不朽论证的每一个细节。"
+            },
+            {
+              "en": "That we will be better, braver and less idle if we believe we should search for what we do not know.",
+              "zh": "如果相信应该去寻找自己不知道的东西，我们会更好、更勇敢、更不懒惰。"
+            },
+            {
+              "en": "That the slave boy now has complete knowledge.",
+              "zh": "奴隶男孩现在已经有了完整的知识。"
+            },
+            {
+              "en": "That virtue can be taught by the sophists.",
+              "zh": "智者（**sophists**）能教美德。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（86b–c）。A 正好相反：他说不坚持论证在其他方面都对。C 错：男孩只有真意见。D 和这里无关；后半篇他还怀疑智者算不算美德的老师。",
+            "en": "B (86b-c): the practical claim."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-hypothesis-and-virtue-as-knowledge",
+      "title": {
+        "zh": "美诺篇：假设法：美德是知识吗？",
+        "en": "Meno: The Method of Hypothesis and the Argument That Virtue Is Knowledge"
+      },
+      "slides": "17-20",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "周三的部分从这里开始。苏格拉底说：如果由他来带路，他们会先研究美德（**virtue**）是什么，再问能不能教。可美诺不肯管住自己，好让自己“自由”，却要来管苏格拉底，那就依你吧，还能怎么办？于是只好去研究一个还不知道“是什么”的东西有什么性质（86d–e，第 17–18 页）。这等于暂时放下第一节的“定义优先”（**priority of definition**）。不过他请美诺让一步：用假设（**hypothesis**）的办法来研究。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "hypothesis",
+              "zh": "假设",
+              "hint": "还不知道答案时，先假定一个“如果……”，看从它能推出什么。"
+            },
+            {
+              "en": "method of hypothesis",
+              "zh": "假设法",
+              "hint": "像几何学家那样，从一个条件出发研究问题；导言说这是后半篇的新方法（第 2 页）。"
+            },
+            {
+              "en": "if and only if",
+              "zh": "当且仅当",
+              "hint": "两个方向都成立：是知识就能教，能教就是知识。"
+            },
+            {
+              "en": "teachable (recollectable)",
+              "zh": "可教的（可回忆的）",
+              "hint": "能通过教得到；苏格拉底说这里用“可教”还是“可回忆”都一样（87b–c）。"
+            },
+            {
+              "en": "knowledge / wisdom / understanding",
+              "zh": "知识 / 智慧 / 理解",
+              "hint": "这一节里三个词几乎当同一件事用。"
+            },
+            {
+              "en": "beneficial",
+              "zh": "有益的",
+              "hint": "对人有好处；苏格拉底说凡是好的都有益。"
+            },
+            {
+              "en": "right use",
+              "zh": "正确使用",
+              "hint": "决定健康、财富等东西对人有益还是有害的那个因素。"
+            },
+            {
+              "en": "by nature",
+              "zh": "天生",
+              "hint": "生下来就有，不是后来得到的。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "几何学家的假设（86e–87b，第 18 页）",
+            "en": "The geometers' hypothesis (86e-87b, p. 18)"
+          },
+          "steps": [
+            {
+              "zh": "几何学家常这样研究：有人问，某一块面积能不能作为一个三角形，内接在某个圆里（脚注 14：这里的译法依照数学史家 T. L. Heath 的解释）。",
+              "en": "Asked whether a given area can be inscribed as a triangle in a given circle (footnote 14: the translation follows T. L. Heath)..."
+            },
+            {
+              "zh": "几何学家回答：我还不知道，但我有一个有用的假设：如果这块面积满足某个条件，结果是一种；如果不满足，结果是另一种。",
+              "en": "...a geometer says he does not yet know, but has a useful hypothesis: if the area meets a certain condition, one result follows; if not, another."
+            },
+            {
+              "zh": "这样，不必先知道答案，也能说清“在什么条件下会怎样”。",
+              "en": "So he can say what follows under each condition without first knowing the answer."
+            },
+            {
+              "zh": "苏格拉底说：我们研究美德也这样：既然不知道它是什么、有什么性质，就问美德是灵魂（**soul**）里哪一类东西，它才会可教或不可教（87b）。",
+              "en": "Likewise for virtue: what sort of thing in the soul must virtue be for it to be teachable or not (87b)?"
+            }
+          ],
+          "answer": {
+            "zh": "几何的例子只是示范“从假设出发推理”的方法，具体的几何细节不用掌握。",
+            "en": "The geometry only illustrates reasoning from a hypothesis; its details are not needed."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "刷数学题时的“分类讨论”：不知道 x 是不是正数，就先写“如果 x 是正数，那么……；如果不是，那么……”。不知道答案，也能先把“条件 → 结果”理清楚。苏格拉底对美德也这样：先不问美德是什么，只问“如果美德是知识，会怎样”。",
+          "limit": "数学里的条件最后可以检验；而美德是不是知识，正是要争论的问题。所以假设法只是把问题换成“美德是不是知识”，并没有绕开难题。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：假设：美德可教，当且仅当它是知识（87b–c，第 18 页）",
+            "en": "Standard form: the hypothesis that virtue is teachable if and only if it is knowledge (87b-c, p. 18)"
+          },
+          "items": [
+            {
+              "en": "P1: Nothing can be taught except knowledge (and here it makes no difference whether we say 'taught' or 'recollected').",
+              "zh": "P1：人只能被教会知识（这里说“教”还是说“回忆”都一样）。"
+            },
+            {
+              "en": "P2: If virtue is some kind of knowledge, then it can be taught.",
+              "zh": "P2：如果美德是一种知识，它就能教。"
+            },
+            {
+              "en": "C: So virtue is teachable if it is knowledge and not teachable if it is not; the question becomes whether virtue is knowledge.",
+              "zh": "C：所以美德可教，当且仅当它是知识；问题变成：美德是不是知识。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：美德是智慧（87d–89a，第 18–19 页）",
+            "en": "Standard form: virtue is wisdom (87d-89a, pp. 18-19)"
+          },
+          "items": [
+            {
+              "en": "P1: Virtue is something good; they agree this hypothesis stands firm.",
+              "zh": "P1：美德是好的；他们同意这个假设站得住。"
+            },
+            {
+              "en": "P2: Virtue makes us good, and everything good is beneficial; so virtue is beneficial.",
+              "zh": "P2：美德让我们成为好人，而凡是好的都有益；所以美德是有益的。"
+            },
+            {
+              "en": "P3: Health, strength, beauty and wealth sometimes benefit us and sometimes harm us: right use makes them beneficial, and wrong use makes them harmful.",
+              "zh": "P3：健康、力气、美貌、财富有时有益、有时有害：用得对就有益，用错了就有害。"
+            },
+            {
+              "en": "P4: Qualities of the soul that are not knowledge, such as courage without understanding (which is mere recklessness), moderation or quickness of mind, also benefit with understanding and harm without it.",
+              "zh": "P4：灵魂里那些不是知识的品质，比如没有理解的勇敢（只是鲁莽）、节制、头脑灵活，也是有理解就有益，没有就有害。"
+            },
+            {
+              "en": "P5: Whatever the soul undertakes ends in happiness if wisdom directs it and in the opposite if ignorance directs it; and a wise soul uses outside goods such as wealth rightly.",
+              "zh": "P5：灵魂做的任何事，由智慧指导就以幸福告终，由无知指导就相反；而且聪明的灵魂会正确使用财富这类外在的好东西。"
+            },
+            {
+              "en": "P6: So in every case, what makes things beneficial is wisdom.",
+              "zh": "P6：所以在一切情况下，让东西变得有益的是智慧。"
+            },
+            {
+              "en": "C: So virtue, since it is beneficial, is wisdom, either the whole of it or a part.",
+              "zh": "C：所以美德既然有益，就是智慧，或者是智慧的全部，或者是它的一部分。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这个论证（**argument**：用前提支持结论）的思路在 87d 已经说明：如果有什么好东西在知识（**knowledge**）的范围之外，美德就可能不是知识；如果一切好东西都离不开知识，美德就很可能是知识。P1 是第二个假设：美德是好的。P2 用到一个原则：好的就是有益的（**beneficial**）。后面 P3–P5 就是去检查：是不是一切东西有益都靠知识。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "健康财富、勇敢与鲁莽（88a–89a，第 19 页）",
+            "en": "Health and wealth, courage and recklessness (88a-89a, p. 19)"
+          },
+          "steps": [
+            {
+              "zh": "健康、力气、美貌、财富：用得对就有益，用错了就有害；决定因素是正确使用（**right use**）（88a）。",
+              "en": "Health, strength, beauty and wealth benefit or harm depending on right or wrong use (88a)."
+            },
+            {
+              "zh": "再看灵魂的品质：节制、正义、勇敢、聪明、记性、大方等等。",
+              "en": "Now the qualities of the soul: moderation, justice, courage, intelligence, memory, munificence."
+            },
+            {
+              "zh": "拿勇敢来说：如果它不是智慧，只是一种鲁莽（**recklessness**），一个人没有理解地莽撞，就会受害；有理解，就会得益（88b）。",
+              "en": "Courage that is not wisdom is a kind of recklessness: without understanding it harms, with understanding it benefits (88b)."
+            },
+            {
+              "zh": "节制和头脑灵活也一样：有理解地学、有理解地练，就有益；没有理解，就有害。",
+              "en": "So with moderation and quickness of mind."
+            },
+            {
+              "zh": "所以灵魂的这些品质本身既不有益也不有害，跟着智慧就有益，跟着愚蠢就有害（88c–d）。",
+              "en": "So these qualities are in themselves neither beneficial nor harmful; wisdom or folly makes them so (88c-d)."
+            },
+            {
+              "zh": "财富等外在的东西也一样：聪明的灵魂用得对，愚蠢的灵魂用得错（88d–e）。",
+              "en": "The same holds for wealth: the wise soul uses it rightly, the foolish soul wrongly (88d-e)."
+            }
+          ],
+          "answer": {
+            "zh": "一切东西有益还是有害，都看有没有智慧指导；美德既然有益，就是智慧（89a）。",
+            "en": "Whether anything benefits depends on wisdom; since virtue benefits, it is wisdom (89a)."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底马上推出：如果美德是智慧，好人就不是天生（**by nature**）好的（89a）。理由（89b，第 19–20 页）：如果好人是天生的，就会有专家从年轻人里认出天生的好人；我们会把他们关在雅典卫城（**Acropolis**）上，封存得比金子还严，免得被人带坏，等他们长大再为城邦所用。言下之意（这一步文本没有明说）：现实中没有这种做法，所以好人不是天生的。那就是靠学习来的；照这个假设，美德可以教（89c）。"
+        },
+        {
+          "type": "text",
+          "zh": "美诺很快同意了。苏格拉底却问：我们同意得对吗？美诺说：当时看起来是对的。苏格拉底说：一个结论要站得住，不能只是当时看起来对，现在和以后也得看起来对（89c）。他还说明：“美德如果是知识就能教”这一点没有错，他怀疑的是“美德是不是知识”（89d）。这个怀疑引出下一节的“老师检验”。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Is wisdom really the only thing that makes actions beneficial?",
+            "zh": "反驳：真的只有智慧能让行动有益吗？"
+          },
+          "answer": {
+            "en": "Socrates' argument assumes that nothing except wisdom can make our use of things beneficial. But someone can act rightly without wisdom, for example by luck, or by holding a correct belief without understanding why it is correct. Socrates himself later admits this gap: he says it was a mistake to agree that only knowledge guides correctly, since true opinion guides just as well (96e-97c). So the argument that virtue is wisdom is weaker than it first looks, and the dialogue later revises it.",
+            "zh": "答题思路：①找出关键前提：只有智慧能让东西有益（P6）；②反例（**counterexample**）：靠运气，或者有正确看法却不懂为什么，也能做对；③用文本：苏格拉底后来自己承认，“只有知识能正确引导”是个错误，真意见（**true opinion**：对的看法，但还不是知识）也能正确引导（96e–97c）；④结论：这个论证比看上去弱，对话后面修正了它。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“美德是知识”在这里是苏格拉底论证出来的，但不是全篇的最终结论；后面他又论证美德不能教，所以不是知识。",
+              "en": "'Virtue is knowledge' is argued here but is not the final verdict; later Socrates argues that virtue is not taught and so is not knowledge."
+            },
+            {
+              "zh": "这里说“可教”和“可回忆”没区别（87b–c），和前面“没有教，只有回忆”不矛盾：这里只是暂时不在用词上较真。",
+              "en": "Treating 'taught' and 'recollected' as the same here (87b-c) does not contradict the earlier claim that there is no teaching, only recollection."
+            },
+            {
+              "zh": "苏格拉底是勉强答应美诺，先不定义就问“能不能教”（86d–e）；假设法是他反过来请美诺让步、用来研究这个问题的办法。全篇最后他又回到“先定义”（100b）。",
+              "en": "Socrates only reluctantly agrees to ask whether virtue is teachable before defining it (86d-e); the method of hypothesis is the concession he asks for in return, and at the end he returns to the need for a definition (100b)."
+            },
+            {
+              "zh": "卫城论证的推理是：如果好人天生，就该有挑选、看守天生好人的做法；没有这种做法（这一步文本没有明说），所以好人不是天生的。",
+              "en": "The Acropolis argument: if the good were good by nature, we would pick them out and guard them; we do not (the text leaves this step unstated), so they are not good by nature."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "On the hypothesis Socrates adopts, virtue can be taught if and only if it is:",
+            "zh": "按照苏格拉底采用的假设，美德可教，当且仅当它是："
+          },
+          "options": [
+            {
+              "en": "natural",
+              "zh": "天生的"
+            },
+            {
+              "en": "knowledge",
+              "zh": "知识"
+            },
+            {
+              "en": "practice",
+              "zh": "练习"
+            },
+            {
+              "en": "a gift from the gods",
+              "zh": "神的恩赐"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（87b–c）。苏格拉底说人只能被教会知识，如果美德是一种知识，就能教。A：天生的东西不靠教。C：练习是美诺开头的选项之一，这里没有讨论。D：神的恩赐是全篇最后的暂时结论，而且它恰恰不能教。",
+            "en": "B (87b-c): only knowledge can be taught."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Socrates says that courage without understanding becomes mere recklessness and harms us. Which claim does this example support?",
+            "zh": "苏格拉底说，没有理解的勇敢只是鲁莽，会伤害我们。这个例子支持的是哪个说法？"
+          },
+          "options": [
+            {
+              "en": "Qualities of the soul benefit us only when wisdom directs them.",
+              "zh": "灵魂的品质只有在智慧指导下才对我们有益。"
+            },
+            {
+              "en": "The good are good by nature.",
+              "zh": "好人是天生的。"
+            },
+            {
+              "en": "There are no teachers of virtue.",
+              "zh": "美德没有老师。"
+            },
+            {
+              "en": "True opinion guides as well as knowledge.",
+              "zh": "真意见和知识一样能正确引导。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（88b–c）。勇敢有理解就有益，没理解就成了鲁莽、有害，说明灵魂的品质要靠智慧指导才有益。B 正好相反：苏格拉底由此推出好人不是天生的。C 是下一节的论证。D 是第 26 页才提出的观点，而且它反过来削弱了这个论证。",
+            "en": "A (88b-c): wisdom decides whether a quality of the soul benefits."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-no-teachers-of-virtue",
+      "title": {
+        "zh": "美诺篇：找不到美德的老师：安尼图斯、智者与父子论证",
+        "en": "Meno: No Teachers of Virtue: Anytus, the Sophists, and Fathers and Sons"
+      },
+      "slides": "20-25",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "苏格拉底的怀疑落在一个检验上：任何东西只要能教，就一定有教它的人和学它的人；反过来，如果一样东西既没有老师也没有学生，就可以认为它不能教（89d–e，第 20 页）。他说自己找了很久，还请教过最有经验的人，也找不到美德（**virtue**）的老师。这时安尼图斯（**Anytus**）正好在旁边坐下。脚注 15 提醒：他就是后来在审判中控告苏格拉底的人之一（见《申辩篇》23e）。苏格拉底介绍说，安尼图斯的父亲安忒米翁（**Anthemion**）靠自己的智慧和努力致富，不像底比斯人伊斯墨尼亚斯（**Ismenias**）那样靠别人的赠予；雅典人正选安尼图斯担任最高的职位，所以请他一起找老师很合适（90a–b）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "sophist",
+              "zh": "智者",
+              "hint": "收费授课的职业教师，自称能教美德，比如普罗泰戈拉。"
+            },
+            {
+              "en": "craft",
+              "zh": "技艺",
+              "hint": "像医术、做鞋、吹笛这样的专门本事，有公认的、收费的老师。"
+            },
+            {
+              "en": "teachers-and-learners test",
+              "zh": "老师与学生检验",
+              "hint": "能教的东西一定有老师和学生；两样都没有，就不能教。"
+            },
+            {
+              "en": "statesman",
+              "zh": "政治家",
+              "hint": "管理城邦公共事务的领袖，比如地米斯托克利、伯里克利。"
+            },
+            {
+              "en": "Athenian gentleman",
+              "zh": "雅典的正派人",
+              "hint": "安尼图斯说的有声望、受尊敬的好公民。"
+            },
+            {
+              "en": "slander",
+              "zh": "诽谤",
+              "hint": "说别人坏话、毁坏名誉；安尼图斯觉得苏格拉底在诽谤名人。"
+            },
+            {
+              "en": "generalization",
+              "zh": "概括",
+              "hint": "从几个例子推出“所有……都……”的结论；例子少，结论就弱。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "技艺的类比：该送美诺去找谁？（90b–91b，第 20–21 页）",
+            "en": "The crafts analogy: to whom should Meno be sent? (90b-91b, pp. 20-21)"
+          },
+          "steps": [
+            {
+              "zh": "想让美诺成为好医生，送他去找谁？找医生。想让他成为好鞋匠？找鞋匠（90b–c）。",
+              "en": "To become a good physician, Meno should go to physicians; to become a shoemaker, to shoemakers (90b-c)."
+            },
+            {
+              "zh": "意思是：送他去找从事这门技艺（**craft**）、收费、并且公开表明愿意教任何想学的人的人（90d）。",
+              "en": "That is, to those who practise the craft, charge fees and offer to teach anyone who wants to learn (90d)."
+            },
+            {
+              "zh": "学吹笛也一样：不去找自称会教、靠它挣钱的老师，却去找不教这门技艺的人，那就太傻了（90e）。",
+              "en": "The same with flute-playing: it would be foolish to send him to people who do not claim to teach it (90e)."
+            },
+            {
+              "zh": "美诺想要的美德是：管好家和城邦、照顾父母、像好人那样接待和送别本国人和外邦人（91a）。",
+              "en": "Meno wants the virtue that lets people manage households and cities, care for their parents, and welcome and send off citizens and strangers (91a)."
+            },
+            {
+              "zh": "照同样的道理，就该送他去找自称教美德、对任何希腊人开放、并且收学费的人：也就是人们说的智者（**sophists**）（91b）。",
+              "en": "By the same reasoning he should go to those who profess to teach virtue to any Greek for a fee: the sophists (91b)."
+            }
+          ],
+          "answer": {
+            "zh": "技艺有公认的、收费的老师；如果美德能教，按理也该有这样的老师，候选人就是智者。",
+            "en": "Crafts have recognized, paid teachers; if virtue can be taught, it should too, and the candidates are the sophists."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "安尼图斯和智者（91c–92c，第 21–22 页）",
+            "en": "Anytus and the sophists (91c-92c, pp. 21-22)"
+          },
+          "steps": [
+            {
+              "zh": "安尼图斯大叫别说了：谁也别去找他们，他们明显会把跟随他们的人带坏（91c）。",
+              "en": "Anytus is horrified: the sophists clearly ruin and corrupt their followers (91c)."
+            },
+            {
+              "zh": "苏格拉底不信：在所有自称能让人受益的人里，难道只有他们不但不帮人，反而毁人，还照样收钱？",
+              "en": "Socrates doubts that they alone, of all who claim to benefit people, would harm them and still be paid."
+            },
+            {
+              "zh": "普罗泰戈拉（**Protagoras**）靠这门学问挣的钱，比雕刻家菲狄亚斯（**Phidias**）再加上另外十个雕刻家还多（91d）。",
+              "en": "Protagoras earned more than the sculptor Phidias and ten other sculptors (91d)."
+            },
+            {
+              "zh": "修补旧鞋、旧衣服的人，如果把东西修得更糟，不到一个月就会被发现、饿死；可普罗泰戈拉干了四十年，快七十岁才去世，名声一直很好，难道全希腊四十年都没发现他在毁人（91d–92a）？",
+              "en": "Menders of sandals and clothes who made things worse would be caught within a month, yet Protagoras kept a high reputation for forty years until he died at nearly seventy (91d-92a)."
+            },
+            {
+              "zh": "安尼图斯说：疯的不是智者，而是交钱的年轻人、把孩子交给他们的亲属，以及放他们进城的城邦（92a–b）。",
+              "en": "Anytus blames the young men who pay, their relatives and the cities that let the sophists in (92a-b)."
+            },
+            {
+              "zh": "苏格拉底问：哪个智者害过你？安尼图斯：一个也没见过，也不许家里人接近。那你怎么判断他们的教导好不好？安尼图斯：我知道他们是什么人。苏格拉底笑他：那你大概是个巫师（92b–c）。",
+              "en": "Anytus admits he has never met a sophist, yet says he knows what they are; Socrates jokes that he must be a wizard (92b-c)."
+            }
+          ],
+          "answer": {
+            "zh": "本站的理解：安尼图斯没有经验却很有把握，正好反衬苏格拉底：不知道就承认不知道。",
+            "en": "On our reading, Anytus' confident ignorance contrasts with Socrates' admission of ignorance."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底说：好，就当智者会让人变坏，那你告诉美诺该去找谁。安尼图斯说：不用点名，随便哪个雅典的正派人（**gentleman**），只要美诺肯听，都会比智者更能让他变好（92e）。那这些人又是跟谁学的？安尼图斯说：跟前辈的正派人学的。苏格拉底说：问题不是雅典有没有好人，而是好人能不能把自己的美德传给别人（93a–b）。接着他举出四位公认的好人。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "父与子：四位好人都没能把美德传给儿子（93b–94e，第 23–24 页）",
+            "en": "Fathers and sons: four good men who could not pass on their virtue (93b-94e, pp. 23-24)"
+          },
+          "headers": [
+            "父亲 Father",
+            "儿子 Son(s)",
+            "学过什么 What they were taught",
+            "结果 Result"
+          ],
+          "rows": [
+            [
+              "地米斯托克利 Themistocles（脚注 16：雅典政治家、将军，领导过战胜波斯的战争）",
+              "克莱奥范托斯 Cleophantus",
+              "骑术：能站在马背上投标枪，还有别的绝技",
+              "没有人说他像父亲一样好、一样有智慧（93c–e）"
+            ],
+            [
+              "阿里斯提德 Aristides",
+              "吕西马科斯 Lysimachus",
+              "雅典最好的教育（凡是老师能教的）",
+              "没有被教成比别人更好的人（94a）"
+            ],
+            [
+              "伯里克利 Pericles",
+              "帕拉洛斯 Paralus 和克桑西普斯 Xanthippus",
+              "骑术、各种技艺、体育",
+              "没能被教成好人（94a–b）"
+            ],
+            [
+              "修昔底德 Thucydides（脚注 17：墨勒西阿斯之子、政治家，不是那位历史学家）",
+              "墨勒西阿斯 Melesias 和斯忒法诺斯 Stephanus",
+              "摔跤：两个儿子是雅典最好的摔跤手，分别交给 Xanthias 和 Eudorus 训练，这两人被认为是当时最好的摔跤手（94c）",
+              "没能被教成好人（94b–e）"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这一串例子的逻辑：这几位父亲都是公认的好人，如果有谁能教自己的美德，就是他们；他们肯花钱请最好的老师教儿子骑马、摔跤，可见并不吝惜儿子，儿子也不缺天分（克莱奥范托斯就很有本事）。让儿子成为好人是“不花钱”的，如果美德能教，他们一定会自己教，或者请人来教，哪怕请外邦人（94d–e）。可儿子们都没成为父亲那样的好人。所以苏格拉底说：美德肯定不能教（94e）。"
+        },
+        {
+          "type": "text",
+          "zh": "安尼图斯听了很不高兴，警告苏格拉底：你太轻易说别人坏话了，最好小心点；在雅典，害人比帮人容易，你自己也知道（94e）。导言（第 1 页）把这称为一个隐含的威胁。苏格拉底对美诺说：安尼图斯生气了，他以为我在诽谤（**slander**）这些人，而且把自己也算在这些人里面（95a）。读过第 3 周的《申辩篇》就知道，安尼图斯后来真的成了控告苏格拉底的人。"
+        },
+        {
+          "type": "text",
+          "zh": "还剩下别的候选人（95a–96b，第 24–25 页）。苏格拉底问美诺：你们色萨利的正派人肯当美德的老师吗？美诺说：他们有时说美德能教，有时又说不能。智者呢？美诺说他最佩服高尔吉亚的一点，就是他从不许诺教美德，还嘲笑那样许诺的人，他只想把人教成能说会道的人（95c）；至于智者算不算老师，美诺自己也拿不准。诗人忒奥格尼斯（**Theognis**，脚注 18）也一样：一处说跟好人交往能学到好，另一处又说教导永远不能把坏人教好，自相矛盾（95d–96a）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：没有老师，所以美德不能教（89d–96c，第 20–25 页）",
+            "en": "Standard form: no teachers, so virtue cannot be taught (89d-96c, pp. 20-25)"
+          },
+          "items": [
+            {
+              "en": "P1: If something can be taught, there are teachers and learners of it; if it has neither, it cannot be taught.",
+              "zh": "P1：如果一样东西能教，就有教它的人和学它的人；两样都没有，它就不能教。"
+            },
+            {
+              "en": "P2: The only candidates for teachers of virtue are the sophists and the good and worthy men.",
+              "zh": "P2：美德老师的候选人只有两种：智者，以及那些好人、正派人。"
+            },
+            {
+              "en": "P3: The sophists are not recognized as teachers of virtue: Anytus says they corrupt people, Gorgias laughs at the claim, and Meno cannot decide.",
+              "zh": "P3：智者不被公认为美德的老师：安尼图斯说他们带坏人，高尔吉亚嘲笑这种许诺，美诺也拿不准。"
+            },
+            {
+              "en": "P4: The worthy men cannot pass on their virtue (good fathers such as Themistocles and Pericles failed with their sons), and like the poet Theognis they say at one time that virtue can be taught and at another that it cannot; people so confused about a subject cannot teach it.",
+              "zh": "P4：正派人传不下自己的美德（地米斯托克利、伯里克利等好父亲都没教好儿子），而且他们像诗人忒奥格尼斯一样，一会儿说能教、一会儿说不能；对一门学问这样糊涂的人，教不了它。"
+            },
+            {
+              "en": "C1: So there are no teachers of virtue, and so there are no learners either.",
+              "zh": "C1：所以美德没有老师，也就没有学生。"
+            },
+            {
+              "en": "C2: So virtue cannot be taught, and on the hypothesis, virtue is not knowledge (Socrates draws this at 98e-99b).",
+              "zh": "C2：所以美德不能教；照假设（**hypothesis**），美德也就不是知识（**knowledge**）（苏格拉底在 98e–99b 得出这一点）。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Does the lack of recognized teachers really show that virtue cannot be taught?",
+            "zh": "反驳：找不到公认的老师，真的能说明美德不能教吗？"
+          },
+          "answer": {
+            "en": "The argument generalizes from a few cases: four famous fathers and a disputed group of sophists. The sons' failures could have other causes, such as their own choices, and the absence of recognized teachers may only show that no one yet has the knowledge to teach, not that virtue is unteachable in principle. Socrates' own questioning might even be a kind of teaching, if teaching means helping someone recollect. So the argument shows at most that virtue is not taught in Athens the way crafts are, and it clashes with the earlier argument that virtue is knowledge.",
+            "zh": "答题思路：①这是从少数例子做的概括（**generalization**）：四位父亲加一群有争议的智者，样本小，又是挑出来的；②儿子失败可以有别的原因，比如他们自己的选择；③“没有公认的老师”可能只说明还没有人有这种知识，不说明美德原则上不能教；④苏格拉底的提问本身也许就是一种“教”（帮人回忆，**recollection**）；⑤结论最多是：美德在雅典不像技艺那样被教，而且这和“美德是知识”的论证冲突。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "安尼图斯不是智者；他讨厌智者，却一个也没见过（92b）。",
+              "en": "Anytus is not a sophist; he condemns sophists without ever having met one (92b)."
+            },
+            {
+              "zh": "这里的修昔底德是墨勒西阿斯之子、政治家，不是写历史的那位（脚注 17）。",
+              "en": "This Thucydides is the statesman son of Melesias, not the historian (footnote 17)."
+            },
+            {
+              "zh": "高尔吉亚不自称教美德，只教人能说会道（95c）。",
+              "en": "Gorgias does not claim to teach virtue, only to make people clever speakers (95c)."
+            },
+            {
+              "zh": "父子论证并不是说儿子们没天分；苏格拉底特意用克莱奥范托斯的骑术排除了这个解释。",
+              "en": "The fathers-and-sons argument does not say the sons lacked talent; Cleophantus' horsemanship rules that out."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which person is NOT cited as a good man who failed to make his son good?",
+            "zh": "下面哪个人不是被举出来的、没能把儿子教成好人的好人？"
+          },
+          "options": [
+            {
+              "en": "Themistocles",
+              "zh": "地米斯托克利"
+            },
+            {
+              "en": "Aristides",
+              "zh": "阿里斯提德"
+            },
+            {
+              "en": "Pericles",
+              "zh": "伯里克利"
+            },
+            {
+              "en": "Protagoras",
+              "zh": "普罗泰戈拉"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D。普罗泰戈拉是智者，苏格拉底用他四十年的好名声和收入反驳安尼图斯“智者带坏人”的说法（91d–92a）。地米斯托克利和克莱奥范托斯（93c–e）、阿里斯提德和吕西马科斯（94a）、伯里克利和他的两个儿子（94a–b）都是父子论证里的例子，另外还有修昔底德（94b–e）。",
+            "en": "D: Protagoras is the sophist Socrates defends against Anytus (91d-92a)."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A student argues: 'My piano teacher's son plays badly, so playing the piano cannot be taught.' Which weakness of the fathers-and-sons argument does this parody bring out?",
+            "zh": "一个学生说：“我钢琴老师的儿子弹得很差，所以弹钢琴是教不会的。”这个模仿揭示了父子论证的什么弱点？"
+          },
+          "options": [
+            {
+              "en": "A son's failure may have other causes, such as his own choices or effort, so it does not show that the skill cannot be taught.",
+              "zh": "儿子失败可能另有原因，比如自己的选择或努力，所以不能说明这门本事教不会。"
+            },
+            {
+              "en": "It wrongly assumes that the piano teacher is a sophist.",
+              "zh": "它错误地假定钢琴老师是智者。"
+            },
+            {
+              "en": "It defines piano playing through a part of piano playing.",
+              "zh": "它用弹钢琴的一部分来定义弹钢琴。"
+            },
+            {
+              "en": "It depends on the theory of recollection.",
+              "zh": "它依赖回忆说。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A。从少数儿子的失败推出“教不会”，忽略了别的原因；弹钢琴明明有很多人学会，可见这种推理不可靠。B、C、D 都和这个论证的结构无关：C 说的是循环定义（第 9–10 页的问题），D 是前半篇的回忆说。",
+            "en": "A: one son's failure does not show that a skill is unteachable."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-true-opinion-road-to-larissa",
+      "title": {
+        "zh": "美诺篇：去拉里萨的路：真意见也能正确引导",
+        "en": "Meno: The Road to Larissa: True Opinion Guides as Well as Knowledge"
+      },
+      "slides": "25-26",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "听完“美德（**virtue**）不能教”，美诺说：看来是这样，如果我们研究得没错的话。可他接着纳闷：那难道没有好人吗？好人又是怎么来的（96c–d，第 25 页）？苏格拉底说：我们俩大概都不怎么样，高尔吉亚没把你教好，普罗狄科也没把我教好。可笑的是，我们一直没注意到：人把事情做成功，并不只靠知识（**knowledge**）的引导（96d–e）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "guide / correct guidance",
+              "zh": "引导 / 正确引导",
+              "hint": "带领别人（或指导自己的行动）得到正确的结果；好人对城邦有益，就因为能正确引导事务。"
+            },
+            {
+              "en": "true opinion (right opinion, correct opinion, true belief)",
+              "zh": "真意见",
+              "hint": "正确的看法，但不是知识；译本里这几个说法指的是同一个东西。"
+            },
+            {
+              "en": "knowledge",
+              "zh": "知识",
+              "hint": "不只看法对，下一节会说它还被对原因的说明“拴住”了。"
+            },
+            {
+              "en": "Larissa",
+              "zh": "拉里萨",
+              "hint": "美诺家乡色萨利的一座城（第 2 页提到“拉里萨的阿里斯提波”）。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。这一节苏格拉底说，之前同意的一个前提错了。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：去拉里萨的路（96e–97c，第 25–26 页）",
+            "en": "Standard form: the road to Larissa (96e-97c, pp. 25-26)"
+          },
+          "items": [
+            {
+              "en": "P1: Good men are beneficial, and they are beneficial because they give correct guidance in our affairs.",
+              "zh": "P1：好人是有益的（**beneficial**），他们有益，是因为能在事务上给出正确的引导。"
+            },
+            {
+              "en": "P2: A man who knows the way to Larissa, having travelled it, guides others there correctly.",
+              "zh": "P2：一个知道去拉里萨的路、自己走过的人，能把别人正确地带到那里。"
+            },
+            {
+              "en": "P3: A man who has a correct opinion about which road leads to Larissa, but has never travelled it and does not know it, also guides others there correctly.",
+              "zh": "P3：一个对哪条路通往拉里萨有正确看法、却从没走过、也没有知识的人，同样能把别人正确地带到那里。"
+            },
+            {
+              "en": "P4: So as long as his opinion is correct, he is no worse a guide than the man who knows.",
+              "zh": "P4：所以只要他的看法是对的，他带路就不比有知识的人差。"
+            },
+            {
+              "en": "C: So true opinion is no worse a guide to correct action than knowledge, and their earlier agreement that only knowledge guides correctly was a mistake.",
+              "zh": "C：所以在引导正确行动上，真意见一点也不比知识差；他们之前同意的“只有知识能正确引导”是个错误。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P1 是他们之前同意、现在仍然认为对的：好人一定有益，而有益是因为能正确引导（96e–97a）。错的是另一条前提（**premise**）：没有知识就不能正确引导（97a）。这条前提就藏在“美德是智慧”的论证里（只有智慧让东西有益）。苏格拉底现在说：研究美德的时候，我们漏掉了真意见（**true opinion**）也能正确引导这一点（97b–c）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "周末带同学去一家没去过的店：你在小红书上看过路线，记得清清楚楚，虽然自己从没走过，也能把大家带到；本地的同学走过很多次，当然也能带到。今天你们俩带路一样好，这就是“真意见在引导上不比知识差”。",
+          "limit": "区别在于：你只记得路线，不知道为什么这样走；一旦记混了或者遇到修路，你可能就乱了。这正是下一节代达罗斯的雕像要讲的“不稳定”。注意：苏格拉底没有说真意见给的结果更差，只要它是对的，结果一样。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "去拉里萨的路（97a–c，第 26 页）",
+            "en": "The road to Larissa (97a-c, p. 26)"
+          },
+          "steps": [
+            {
+              "zh": "一个人知道去拉里萨（**Larissa**）的路，自己走过，带别人去，当然带得对（97a）。",
+              "en": "A man who knows the way to Larissa, having gone there, leads others correctly (97a)."
+            },
+            {
+              "zh": "另一个人对哪条路通往拉里萨有正确的看法，但自己没去过，也没有关于它的知识，他带路也会带对（97b）。",
+              "en": "A man with a correct opinion about the road, who has not gone there and lacks knowledge of it, also leads correctly (97b)."
+            },
+            {
+              "zh": "只要他的看法是对的，他就不比有知识的人差（97b）。",
+              "en": "As long as his opinion is right, he is no worse a guide than the one who knows (97b)."
+            },
+            {
+              "zh": "所以：在引导正确行动上，真意见一点也不比知识差（97b）。",
+              "en": "So true opinion is no worse a guide to correct action than knowledge (97b)."
+            },
+            {
+              "zh": "这正是他们研究美德时漏掉的：真意见也能引导人做对（97b–c）。",
+              "en": "This is what they left out when they said only knowledge leads to correct action (97b-c)."
+            }
+          ],
+          "answer": {
+            "zh": "真意见和知识在“引导的结果”上一样好；两者的区别要到别的地方去找。",
+            "en": "As guides, true opinion and knowledge do equally well; the difference must lie elsewhere."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "美诺反驳：有知识的人总会成功，有真意见的人只是有时成功（97c）。苏格拉底反问：有正确意见（**right opinion**，就是真意见）的人，只要他的意见是对的，不也总会成功吗？美诺只好承认，这是必然的。可这让他更困惑了：既然这样，为什么知识比正确意见值钱得多？两者到底哪里不同（97c–d）？这就引出下一节。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is Meno right that knowledge always succeeds while true opinion succeeds only sometimes?",
+            "zh": "美诺说“知识总会成功，真意见只是有时成功”，他说得对吗？"
+          },
+          "answer": {
+            "en": "Socrates replies that a true opinion always succeeds as long as it remains true, so in any single case it guides as well as knowledge does. Meno's worry is still reasonable, but it is better put as a point about reliability over time: a person without knowledge may give up a true opinion, or apply it badly when things change. That is the difference Socrates develops next with the statues of Daedalus: knowledge stays, while true opinion tends to run away.",
+            "zh": "答题思路：①苏格拉底的回应：真意见只要是对的，就总会成功，单看一次和知识一样好；②但美诺的担心有道理，只是要换个说法：问题在于“随着时间是否可靠”，没有知识的人，遇到新情况可能放弃或用错正确的看法；③这正是下一节代达罗斯的雕像要讲的：知识会留下，真意见会跑掉。"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "这一步为什么重要？它解开了“没有美德的老师，却有好人”这个难题：好人（比如那些政治家，**statesmen**）靠的也许是真意见，而不是知识；真意见能把事做对，却不能像知识那样教给别人。第 27–28 页的结论就建立在这上面。同时，它也削弱了“只有智慧让东西有益”这个论证（第 18–19 页）。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "只要是对的，真意见在引导上就不比知识差；知识更值钱，不是因为它当下的结果更好。",
+              "en": "While it is correct, true opinion guides as well as knowledge; knowledge is not more valuable because of better results."
+            },
+            {
+              "zh": "这里的 opinion 不是“随便的感觉”，而是对的看法，只是还没有知识那么牢靠。",
+              "en": "'Opinion' here is a correct belief, not a mere feeling; it just lacks the stability of knowledge."
+            },
+            {
+              "zh": "译本里 true opinion、right opinion、correct opinion、true belief 是同一个意思，考试时用 true opinion 最稳妥。",
+              "en": "True opinion, right opinion, correct opinion and true belief mean the same thing in this translation."
+            },
+            {
+              "zh": "被推翻的是“只有知识能正确引导”这条前提，不是“好人有益”。",
+              "en": "The premise given up is that only knowledge guides correctly, not that good men are beneficial."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "The road to Larissa example shows that:",
+            "zh": "去拉里萨的路这个例子说明："
+          },
+          "options": [
+            {
+              "en": "knowledge always gives better results than true opinion.",
+              "zh": "知识总是比真意见得到更好的结果。"
+            },
+            {
+              "en": "true opinion is no worse a guide to correct action than knowledge.",
+              "zh": "在引导正确行动上，真意见不比知识差。"
+            },
+            {
+              "en": "only people who have travelled a road can have a true opinion about it.",
+              "zh": "只有走过一条路的人，才能对它有真意见。"
+            },
+            {
+              "en": "good men are good by nature.",
+              "zh": "好人是天生的。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（97a–c，第 26 页）。没走过却对路有正确看法的人，带路和走过的人一样好。A 是美诺的反驳，苏格拉底指出真意见只要是对的就总会成功。C 正好相反：例子里那个人没走过，却有真意见。D 和这个例子无关；苏格拉底还论证过好人不是天生的。",
+            "en": "B (97a-c): a correct opinion about the road guides as well as knowledge of it."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A student memorizes the correct answer to a practice question from a classmate's notes, without understanding why it is correct. In the Meno's terms, what does the student have?",
+            "zh": "一个学生从同学的笔记里背下一道练习题的正确答案，却不明白它为什么对。用《美诺篇》的说法，他有的是什么？"
+          },
+          "options": [
+            {
+              "en": "Knowledge tied down by an account of the reason why",
+              "zh": "被对原因的说明拴住的知识"
+            },
+            {
+              "en": "Recollection of what the soul learned before birth",
+              "zh": "对灵魂出生前所学东西的回忆"
+            },
+            {
+              "en": "True opinion",
+              "zh": "真意见"
+            },
+            {
+              "en": "A false opinion",
+              "zh": "错误的意见"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C：答案是对的，但他说不出为什么，就像没走过却知道哪条路通往拉里萨的人。A 错：他没有对原因的说明，所以不是知识（下一节）。B 错：答案是从笔记里背来的，不是在自己心里找到的。D 错：答案是对的。",
+            "en": "C: a correct belief without an account of why it is correct."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-daedalus-knowledge-vs-true-opinion",
+      "title": {
+        "zh": "美诺篇：代达罗斯的雕像：知识与真意见的区别",
+        "en": "Meno: The Statues of Daedalus: How Knowledge Differs from True Opinion"
+      },
+      "slides": "26-27",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "美诺想知道：既然真意见（**true opinion**）引导得一样好，为什么知识（**knowledge**）比正确意见（**right opinion**）值钱得多？两者又有什么不同（97c–d，第 26 页）？苏格拉底说：你会奇怪，是因为没留意过代达罗斯（**Daedalus**）的雕像，不过色萨利大概没有这种雕像（一句玩笑）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "Daedalus",
+              "zh": "代达罗斯",
+              "hint": "雕像的作者；苏格拉底说他的雕像不拴住就会跑掉（第 3 周《游叙弗伦篇》里苏格拉底也提到过他）。"
+            },
+            {
+              "en": "tied down",
+              "zh": "拴住",
+              "hint": "让东西固定、不再跑掉；苏格拉底用它说明知识和真意见的区别。"
+            },
+            {
+              "en": "an account of the reason why",
+              "zh": "对原因的说明",
+              "hint": "讲清“为什么是这样”的推理；用它把真意见拴住。"
+            },
+            {
+              "en": "recollection",
+              "zh": "回忆",
+              "hint": "苏格拉底说，想出这种对原因的说明，就是之前同意过的回忆（98a）。"
+            },
+            {
+              "en": "stable",
+              "zh": "稳定",
+              "hint": "待在原处不跑；知识稳定，真意见容易从心里溜走。"
+            },
+            {
+              "en": "runaway slave",
+              "zh": "会逃跑的奴隶",
+              "hint": "苏格拉底的比喻：得到一个会逃跑的奴隶不值钱，因为留不住。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "代达罗斯的雕像（97d–98a，第 26 页）",
+            "en": "The statues of Daedalus (97d-98a, p. 26)"
+          },
+          "steps": [
+            {
+              "zh": "代达罗斯的雕像，不拴住就会跑掉、溜走；拴住了就待在原处。",
+              "en": "Daedalus' statues run away unless they are tied down; tied down, they stay."
+            },
+            {
+              "zh": "得到一座没拴住的代达罗斯作品不值多少钱，就像得到一个会逃跑的奴隶，它留不住；拴住的就很值钱，因为他的作品非常漂亮。",
+              "en": "An untied one is worth little, like a runaway slave, because it does not stay; a tied one is worth much, for his works are beautiful."
+            },
+            {
+              "zh": "苏格拉底说：我想的其实是真意见。",
+              "en": "Socrates says he is thinking of true opinions."
+            },
+            {
+              "zh": "真意见只要留在那里，就是好东西，做的都是好事；可它们不愿意久留，会从人的心里溜走。",
+              "en": "True opinions are fine and do only good while they stay, but they do not stay long; they escape from a person's mind."
+            },
+            {
+              "zh": "所以它们不值多少钱，直到有人用对原因的说明（**an account of the reason why**）把它们拴住（**tied down**）。",
+              "en": "So they are not worth much until they are tied down by an account of the reason why."
+            },
+            {
+              "zh": "苏格拉底说：这个拴住的过程，就是他们之前同意过的回忆（**recollection**）（98a）。",
+              "en": "This tying down, Socrates says, is recollection, as they agreed before (98a)."
+            },
+            {
+              "zh": "拴住之后，它们首先变成知识，然后待在原处。所以知识比正确意见更值钱：知识和正确意见的区别，就在于被拴住了（98a）。",
+              "en": "Once tied down, they become knowledge and stay in place; that is why knowledge is valued more, and it differs from correct opinion by being tied down (98a)."
+            }
+          ],
+          "answer": {
+            "zh": "知识＝被对原因的说明拴住的真意见；它更有价值，因为它稳定、留得住。",
+            "en": "Knowledge is true opinion tied down by an account of the reason why; it is worth more because it stays."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "这一段是全篇最关键的定义。苏格拉底说，真意见不值多少钱，“until one ties them down by (giving) an account of the reason why”（98a，第 26 页），即直到有人用对原因的说明把它们拴住。考试时写出 **tied down**（拴住）和 **an account of the reason why**（对原因的说明）这两个词组，再说明苏格拉底把它等同于回忆，就抓住了要点。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：知识为什么比真意见更有价值（97d–98a，第 26–27 页）",
+            "en": "Standard form: why knowledge is worth more than true opinion (97d-98a, pp. 26-27)"
+          },
+          "items": [
+            {
+              "en": "P1: True opinions are fine and do only good while they stay, but they do not stay long; they slip out of a person's mind.",
+              "zh": "P1：真意见留在心里时是好东西，只做好事；可它们留不久，会从人的心里溜走。"
+            },
+            {
+              "en": "P2: True opinions are tied down by working out an account of the reason why, and Socrates says this is recollection.",
+              "zh": "P2：想出对原因的说明，就能把真意见拴住；苏格拉底说这就是回忆。"
+            },
+            {
+              "en": "P3: Once tied down, true opinions become knowledge and stay in place.",
+              "zh": "P3：真意见一旦被拴住，就变成知识，并且待在原处。"
+            },
+            {
+              "en": "P4: What stays is worth more than what runs away, just as a tied statue of Daedalus is worth more than an untied one.",
+              "zh": "P4：留得住的东西比会跑掉的更值钱，就像拴住的代达罗斯雕像比没拴住的值钱。"
+            },
+            {
+              "en": "C: So knowledge is worth more than true opinion, and it differs from true opinion by being tied down.",
+              "zh": "C：所以知识比真意见更有价值；它和真意见的区别就在于被拴住了。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "刷题时“背答案”和“搞懂思路”的区别：背下来的答案（真意见）考试时也能写对，可过两天就忘了，题目换个说法也认不出来；把“为什么这样做”搞懂（对原因的说明），答案就被“拴住”了，变成你自己的知识。",
+          "limit": "这个类比（**analogy**）容易让人以为知识只是“记得更牢”。苏格拉底的重点是有没有对原因的说明：拴住它的是“为什么”；而且他说，找到这个“为什么”就是回忆，不是靠老师灌进来的。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "真意见和知识：一样的地方与不一样的地方",
+            "en": "True opinion and knowledge: what is the same and what differs"
+          },
+          "headers": [
+            "",
+            "真意见 True opinion",
+            "知识 Knowledge"
+          ],
+          "rows": [
+            [
+              "是真的吗 True?",
+              "是",
+              "是"
+            ],
+            [
+              "引导行动 Guiding action",
+              "只要它还是对的，就和知识一样好（97b）",
+              "正确引导（97a）"
+            ],
+            [
+              "稳定吗 Does it stay?",
+              "不稳定，会从心里溜走（97e–98a）",
+              "稳定，待在原处（98a）"
+            ],
+            [
+              "有对原因的说明吗 An account of the reason why?",
+              "没有",
+              "有：被它拴住（98a）"
+            ],
+            [
+              "怎样得到 How it comes",
+              "后天得到（98c–d），但可以没有理解，比如受神灵感召的先知（99c）",
+              "想出对原因的说明，也就是回忆（98a）"
+            ],
+            [
+              "例子 Examples",
+              "没走过、只是对路有正确看法的人；85c 刚被问出答案的男孩",
+              "走过那条路的人；被反复提问之后的男孩（85c–d，苏格拉底的预测）"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这一段和前半篇连了起来。回想奴隶男孩（85c–d）：他的真意见刚被问出来，像梦一样；苏格拉底说，用不同方式反复问同样的问题，最后就会变成和任何人一样准确的知识，而在自己心里找到知识就是回忆。98a 他又说，把真意见拴住就是“我们之前同意过的”回忆。本站的理解：两处放在一起读，反复提问＝想出对原因的说明＝把真意见拴住＝回忆。照这样读，回忆说不只回答了美诺悖论（**Meno's paradox**），也说明了真意见怎样变成知识。"
+        },
+        {
+          "type": "text",
+          "zh": "苏格拉底接着说：他刚才这番话，像一个没有知识、只是在猜的人说的；但“正确意见和知识是两回事”，他不认为这是猜。如果说他知道什么（他说自己能声称知道的事很少），这一条就是其中之一（98b，第 27 页）。这和第 3 周《申辩篇》里的苏格拉底一致：很少声称自己知道什么。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: Is being 'tied down' (stable) enough to make a true opinion knowledge?",
+            "zh": "反驳：只要被“拴住”（稳定），真意见就算知识了吗？"
+          },
+          "answer": {
+            "en": "If 'tied down' only meant 'held firmly', it would not be enough: a stubborn person can keep a lucky true opinion all his life without any reason for it, and we would not call that knowledge. But Socrates says opinions are tied down by an account of the reason why, so what makes knowledge is the reason, and the stability comes from having it. Read this way, his view is that knowledge is true opinion plus an account, and it is more stable because the person understands why it is true.",
+            "zh": "答题思路：①反驳：如果“拴住”只是“抓得牢”，那不够：固执的人可以一辈子死守一个碰巧对的看法，却说不出理由，这不算知识；②回应：苏格拉底说的是用对原因的说明拴住，所以造成知识的是那个“为什么”，稳定只是它带来的结果；③结论：照这样读，知识＝真意见＋对原因的说明，它更稳定，是因为人明白它为什么是真的。"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：后来的知识论（**epistemology**：研究知识的哲学分支）常把知识概括为“有理由的真信念”（**justified true belief**），很多人把《美诺篇》的“用对原因的说明拴住”看作这种想法的早期版本。考试时以读物的说法为准：知识是被对原因的说明拴住的真意见。",
+          "en": "Outside the reading: later epistemology often defines knowledge as justified true belief, and the Meno's idea of tying down a true opinion with an account of the reason why is often seen as an early version of it."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "知识更值钱，不是因为它当下给出更好的结果（真意见只要对，结果一样），而是因为它留得住（被拴住）。",
+              "en": "Knowledge is worth more not because it gives better results but because it stays (it is tied down)."
+            },
+            {
+              "zh": "“拴住”靠的是对原因的说明，苏格拉底说这就是回忆（98a），不是“记得更牢”或“更有自信”。",
+              "en": "Tying down is done by an account of the reason why, which Socrates calls recollection (98a), not by firmer memory or confidence."
+            },
+            {
+              "zh": "苏格拉底说自己刚才的说法是在“猜”，但“知识和正确意见不同”这一点，他说是他知道的少数事情之一（98b）。",
+              "en": "Socrates says he is guessing in what he has just said, but claims to know that knowledge and right opinion differ (98b)."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Socrates, what turns a true opinion into knowledge?",
+            "zh": "按照苏格拉底的说法，什么能把真意见变成知识？"
+          },
+          "options": [
+            {
+              "en": "Agreement by many people.",
+              "zh": "很多人都同意。"
+            },
+            {
+              "en": "Learning it from a paid teacher such as a sophist.",
+              "zh": "从智者这样的收费老师那里学来。"
+            },
+            {
+              "en": "Acting on it successfully many times.",
+              "zh": "照着它做，成功了很多次。"
+            },
+            {
+              "en": "Tying it down by an account of the reason why.",
+              "zh": "用对原因的说明把它拴住。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（98a，第 26 页）。A：多数人同意不等于有对原因的说明。B：收费老师是前面讨论过的话题，而且苏格拉底说想出原因的说明是回忆，不是被教。C：真意见做对再多次，仍然可能溜走；关键是有没有对原因的说明。",
+            "en": "D (98a): an account of the reason why ties it down."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why, according to Socrates, is knowledge prized more highly than right opinion?",
+            "zh": "按照苏格拉底的说法，为什么知识比正确意见更受重视？"
+          },
+          "options": [
+            {
+              "en": "Because knowledge stays in place, being tied down, while true opinions tend to run away.",
+              "zh": "因为知识被拴住了、留在原处，而真意见容易跑掉。"
+            },
+            {
+              "en": "Because knowledge gives better results than true opinion in every single case.",
+              "zh": "因为在每一次具体情况里，知识的结果都比真意见好。"
+            },
+            {
+              "en": "Because knowledge comes by nature.",
+              "zh": "因为知识是天生的。"
+            },
+            {
+              "en": "Because knowledge can be bought from the sophists.",
+              "zh": "因为知识可以从智者那里买到。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（97e–98a）。B 错：苏格拉底说真意见只要是对的，引导得和知识一样好（97b–c）。C 错：他说知识和真意见都不是天生的，而是后天得到的（98c–d）。D 错：文本没有这样说，智者算不算美德的老师本身就有争议。",
+            "en": "A (97e-98a): knowledge stays because it is tied down."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-virtue-as-divine-gift",
+      "title": {
+        "zh": "美诺篇：结论：美德是正确意见和神的恩赐？",
+        "en": "Meno: The Conclusion: Virtue as Right Opinion and a Divine Gift"
+      },
+      "slides": "27-28",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "最后，苏格拉底把前面的结论（**conclusions**）串成一条链（98b–99b，第 27 页）。先确认：真意见（**true opinion**）指导每一个行动时都不比知识（**knowledge**）差，有真意见的人也不比有知识的人差；好人是有益的（**beneficial**）。既然人成为好人、对城邦有益，不只靠知识，也靠正确意见（**right opinion**，即真意见），而这两样都不是天生的（**by nature**），而是后天得到的，那么好人也不是天生的（98c–d）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "statesman",
+              "zh": "政治家",
+              "hint": "带领城邦的公共人物，比如地米斯托克利。"
+            },
+            {
+              "en": "soothsayer / prophet",
+              "zh": "占卜者 / 先知",
+              "hint": "受神灵感召时能说出很多真话，却不懂自己在说什么。"
+            },
+            {
+              "en": "inspired",
+              "zh": "受神灵感召的",
+              "hint": "好像被神附了身，话不是从自己的理解里来的。"
+            },
+            {
+              "en": "divine",
+              "zh": "神圣的",
+              "hint": "和神有关的；苏格拉底说这些做对事却没有理解的人，可以叫作“神圣的”。"
+            },
+            {
+              "en": "a gift from the gods",
+              "zh": "神的恩赐",
+              "hint": "不是天生的，也不是教来的，而是神给的。"
+            },
+            {
+              "en": "understanding",
+              "zh": "理解",
+              "hint": "知道自己做的事为什么对；神赐的美德“不伴随理解”。"
+            },
+            {
+              "en": "chance",
+              "zh": "运气、碰巧",
+              "hint": "碰巧做对的事，不算人的正确引导（99a）。"
+            },
+            {
+              "en": "provisional",
+              "zh": "暂时的",
+              "hint": "留有余地、以后可能被修正的结论。"
+            },
+            {
+              "en": "argument (premises, conclusion, standard form)",
+              "zh": "论证（前提、结论、标准形式）",
+              "hint": "论证＝用前提（理由）支持结论；标准形式＝把前提编号写成 P1、P2……，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "苏格拉底的总结链（98c–99b）",
+            "en": "Socrates' summary chain (98c-99b)"
+          },
+          "items": [
+            {
+              "en": "Good men benefit their cities by guiding them correctly",
+              "zh": "好人通过正确引导使城邦受益"
+            },
+            {
+              "en": "Only knowledge and true opinion guide correctly; chance is not human guidance",
+              "zh": "只有知识和真意见能正确引导；碰运气不算人的引导"
+            },
+            {
+              "en": "Neither comes by nature, so the good are not good by nature",
+              "zh": "两者都不是天生的，所以好人不是天生的"
+            },
+            {
+              "en": "Virtue is teachable if and only if it is knowledge",
+              "zh": "美德（**virtue**）可教，当且仅当它是知识"
+            },
+            {
+              "en": "There are no teachers, so virtue is neither teachable nor knowledge",
+              "zh": "没有老师，所以美德既不可教，也不是知识"
+            },
+            {
+              "en": "So statesmen guide by right opinion, not knowledge",
+              "zh": "所以政治家靠正确意见，不靠知识"
+            },
+            {
+              "en": "Like inspired prophets, they are divine but lack understanding",
+              "zh": "他们像受感召的先知：神圣，但没有理解"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：美德是神的恩赐（98b–100b，第 27–28 页）",
+            "en": "Standard form: virtue as a gift from the gods (98b-100b, pp. 27-28)"
+          },
+          "items": [
+            {
+              "en": "P1: Good men benefit their cities by guiding them correctly, and only two things guide correctly: true opinion and knowledge (what turns out right by chance is not human guidance).",
+              "zh": "P1：好人通过正确引导让城邦受益，而能正确引导的只有两样：真意见和知识（碰巧做对的不算人的引导）。"
+            },
+            {
+              "en": "P2: Neither knowledge nor true opinion comes by nature, so the good are not good by nature.",
+              "zh": "P2：知识和真意见都不是天生的，所以好人不是天生的。"
+            },
+            {
+              "en": "P3: Virtue cannot be taught, because it has no teachers; so virtue is not knowledge.",
+              "zh": "P3：美德没有老师，所以不能教；因此美德不是知识。"
+            },
+            {
+              "en": "P4: So good statesmen such as Themistocles guide their cities by right opinion, not by knowledge, and this is why they cannot make others like themselves.",
+              "zh": "P4：所以像地米斯托克利这样的好政治家，是靠正确意见而不是靠知识领导城邦的，这就是他们没法让别人变得像自己的原因。"
+            },
+            {
+              "en": "P5: In this they are like soothsayers, prophets and poets, who say many true things when inspired without knowing what they are saying, and such people are rightly called divine.",
+              "zh": "P5：在这一点上，他们像占卜者、先知和诗人：受感召时说出许多真话，却不知道自己在说什么；这样的人被称为“神圣的”是对的。"
+            },
+            {
+              "en": "C: So, if the inquiry was right, virtue is neither inborn nor taught; it comes to those who have it as a gift from the gods, without understanding.",
+              "zh": "C：所以，如果这场探究是对的，美德既不是天生的，也不是教来的，而是作为神的恩赐、不伴随理解地来到拥有它的人身上。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P4 从“知识被排除了”推出：地米斯托克利这样的政治家（**statesmen**）不是靠智慧领导城邦，所以他们没法让别人（包括自己的儿子）变得像自己，因为让他们成为这样的人的不是知识（99b）。P5 把他们比作占卜者和先知（**soothsayers and prophets**）：受神灵感召时说出许多真话，却不知道自己在说什么（99c）。苏格拉底说，这些人、所有诗人，以及在重大事务上说对做对的政治家，都可以叫作神圣的（**divine**）（99c–d）。"
+        },
+        {
+          "type": "text",
+          "zh": "他还举出旁证：女人也把好人叫作“神圣的”，斯巴达人（**Spartans**）赞美一个人时会说“这个人是神圣的”（99d）。美诺说他们说得对，又提醒：安尼图斯听了大概会恼火。苏格拉底说他不在乎，以后再和安尼图斯谈（99e）。"
+        },
+        {
+          "type": "text",
+          "zh": "结论（99e–100a，第 28 页）：如果这整场讨论的方式是对的，美德既不是天生的，也不是教来的，而是作为神的恩赐（**a gift from the gods**）来到拥有它的人身上，并且不伴随理解（**understanding**）。只有一个例外：除非有哪位政治家能把别人也培养成政治家。苏格拉底说，这样的人在活人中间，就像荷马（**Homer**）笔下冥界里的忒瑞西阿斯（**Tiresias**，脚注 19：《奥德赛》第十卷）：亡魂里只有他头脑清醒，别人都只是影子；就美德而言，他才是影子中间唯一真实的存在。"
+        },
+        {
+          "type": "text",
+          "zh": "最后一段（100b）：照这个推理，美德似乎是作为神的恩赐出现在拥有它的人身上。但苏格拉底马上加上限制：要清楚地知道这一点，得先在研究美德怎样来到人身上之前，弄清美德本身是什么。全篇就这样回到第一节的“定义优先”（**priority of definition**）。他临走前请美诺去说服安尼图斯，让他平和一些，说这样也算给雅典人做了件好事（100b）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "美诺开头的四个选项（70a），最后怎么样了",
+            "en": "Meno's four options (70a) and the final verdict"
+          },
+          "headers": [
+            "70a 的选项 Option at 70a",
+            "最后的看法 Final verdict",
+            "出处 Where"
+          ],
+          "rows": [
+            [
+              "教来的 Taught",
+              "不是：美德没有老师",
+              "96b–c，98d–e，99e"
+            ],
+            [
+              "练习得来的 Practice",
+              "后文没有单独讨论",
+              "只在 70a 出现"
+            ],
+            [
+              "天生的 By nature",
+              "不是：知识和真意见都不是天生的",
+              "89a–b，98c–d，99e"
+            ],
+            [
+              "别的方式 Some other way",
+              "神的恩赐，不伴随理解（有条件、暂时的结论）",
+              "99e–100b"
+            ]
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "The Meno argues both that virtue is knowledge (87d-89a) and that it is not (96c, 99a-b). Which premise should go?",
+            "zh": "《美诺篇》既论证“美德是知识”（87d–89a），又论证“美德不是知识”（96c、99a–b）。应该放弃哪个前提？"
+          },
+          "answer": {
+            "en": "The first argument says that virtue is beneficial and that only wisdom makes things beneficial, so virtue is wisdom; the second says that virtue has no teachers, so it is not teachable and not knowledge. Socrates himself gives up a premise of the first argument: true opinion also guides correctly (96e-97c), so wisdom is not the only thing that makes action beneficial. One could instead reject the premise that no teachers means not teachable, since perhaps no one yet has the knowledge. Either way, the final answer is explicitly provisional, because virtue was never defined (100b).",
+            "zh": "答题思路：①说清冲突：论证 A（有益，而只有智慧让东西有益，所以美德是智慧）对论证 B（没有老师，所以不可教，所以不是知识）；②苏格拉底自己的解决：放弃 A 的一个前提，因为真意见也能正确引导（96e–97c）；③另一种选择：放弃 B 的“没有老师＝不能教”；④结论：不论哪种，最后的答案都是有条件、暂时的，因为美德始终没有被定义（100b）。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is calling virtue a divine gift a real explanation?",
+            "zh": "说美德是神的恩赐，算是真正的解释吗？"
+          },
+          "answer": {
+            "en": "Calling virtue a divine gift names the puzzle more than it explains it: it says only that good statesmen get things right without understanding, not how they do so. Socrates also states it conditionally, as holding only if their inquiry was right, and at once adds that clear knowledge requires first finding what virtue is. Some readers hear irony here, since these 'divine' statesmen could not even make their own sons good. Still, the comparison with inspired prophets makes a serious point: right action without knowledge cannot be passed on by teaching.",
+            "zh": "答题思路：①它更像给难题起了个名字：只说好政治家做对了却没有理解，没说他们是怎么做到的；②文本里它是有条件的（只在这场探究是对的情况下成立），而且苏格拉底马上补充：要先知道美德是什么；③有人读出反讽：这些“神圣”的政治家连自己的儿子都教不好；④但它也有严肃的一面：没有知识的正确行动，没法靠教来传下去。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“神的恩赐”是有条件、暂时的结论（“如果这场讨论是对的”），不是苏格拉底确信的学说。",
+              "en": "The divine-gift conclusion is conditional and provisional, not a confident doctrine."
+            },
+            {
+              "zh": "叫政治家“神圣”，是夸他们做得对，同时否认他们有理解；他们像先知，不像有智慧的人。",
+              "en": "Calling statesmen divine praises their success but denies them understanding."
+            },
+            {
+              "zh": "可以讨论的一点（本站的看法）：98c–d 说真意见是后天得到的、不是天生的，结论却说美德是神给的、不伴随理解。不过神赐也不是天生的，所以这未必是矛盾，答题时要说清楚。",
+              "en": "A point to discuss (our view): true opinion is said to be acquired, not natural (98c-d), yet virtue is called a gift from the gods; since a divine gift is not inborn either, this need not be a contradiction."
+            },
+            {
+              "zh": "例外：如果有政治家能把别人培养成政治家，他就像影子中间的忒瑞西阿斯，那样的美德才可能是能教的知识。",
+              "en": "The exception: a statesman who could make another statesman would be like Tiresias among the shades."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "At the end of the Meno, how does virtue appear to come to those who have it?",
+            "zh": "在《美诺篇》最后，美德看起来是怎样来到拥有它的人身上的？"
+          },
+          "options": [
+            {
+              "en": "By nature.",
+              "zh": "天生的。"
+            },
+            {
+              "en": "By teaching.",
+              "zh": "教来的。"
+            },
+            {
+              "en": "By practice.",
+              "zh": "练习得来的。"
+            },
+            {
+              "en": "As a gift from the gods, without understanding.",
+              "zh": "作为神的恩赐，不伴随理解。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（99e–100b，第 28 页），而且是有条件的：如果这场探究是对的。A 错：苏格拉底说知识和真意见都不是天生的。B 错：美德没有老师，所以不能教。C 错：“练习”是 70a 的选项之一，后文没有讨论。苏格拉底还补充：要清楚地知道，得先弄清美德本身是什么。",
+            "en": "D (99e-100b), stated conditionally."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why can't statesmen like Themistocles make others like themselves?",
+            "zh": "像地米斯托克利这样的政治家，为什么没法让别人变得像自己？"
+          },
+          "options": [
+            {
+              "en": "They are too busy with public affairs.",
+              "zh": "他们忙于公共事务。"
+            },
+            {
+              "en": "Their sons lack natural talent.",
+              "zh": "他们的儿子缺少天分。"
+            },
+            {
+              "en": "They lead by right opinion, not knowledge, so they have nothing teachable to pass on.",
+              "zh": "他们靠正确意见而不是知识来领导，所以没有可以教的东西传下去。"
+            },
+            {
+              "en": "The sophists corrupt their sons.",
+              "zh": "智者带坏了他们的儿子。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（99b）。A 错：苏格拉底提到修昔底德忙于公务，只是为了说明他本可以请别人来教（94d–e）。B 错：苏格拉底用克莱奥范托斯的骑术排除了“没天分”的解释（93d–e）。D 错：文本没有这样说。",
+            "en": "C (99b): right opinion is not knowledge and cannot be taught."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-comparing-the-two-halves",
+      "title": {
+        "zh": "比较：《美诺篇》前后两半：方法、知识与真意见",
+        "en": "Comparison: The Two Halves of the Meno: Method, Knowledge and True Opinion"
+      },
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节不讲新的段落，而是把全篇（PDF 第 1–28 页）关于美德（**virtue**）和知识（**knowledge**）的讨论串起来，方便写小论文。主要用到：导言（第 1–2 页）、定义优先（**priority of definition**：先知道是什么，才能知道怎么样；71b，第 2–3 页）、关于真意见（**true opinion**：对的看法，但还不是知识）和回忆（**recollection**：想起灵魂本来就有的知识）的论证（**argument**，85c–86c，第 16–17 页）、假设法（**method of hypothesis**：先假定“如果……”再往下推；86d–87c，第 17–18 页）、真意见与知识（97a–98b，第 26–27 页）和结尾（100b，第 28 页）。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "前半篇和后半篇对照",
+            "en": "The two halves side by side"
+          },
+          "headers": [
+            "",
+            "前半篇 First half（70a–86d，第 2–17 页）",
+            "后半篇 Second half（86d–100b，第 17–28 页）"
+          ],
+          "rows": [
+            [
+              "问题 Question",
+              "美德是什么？探究可能吗？",
+              "美德能不能教？好人从哪里来？"
+            ],
+            [
+              "方法 Method",
+              "找定义：美诺给答案，苏格拉底用反例（counterexample）反驳",
+              "假设法：先不定义，从“如果美德是知识”往下推"
+            ],
+            [
+              "谁主导 Who leads",
+              "美诺提出看法，苏格拉底批评",
+              "苏格拉底提出自己的假设，再检验它的弱点"
+            ],
+            [
+              "关键例子 Key examples",
+              "蜜蜂、形状和颜色、电鳐（torpedo fish）、奴隶男孩",
+              "几何学家的假设、卫城、父与子、去拉里萨的路、代达罗斯的雕像"
+            ],
+            [
+              "结果 Outcome",
+              "没有找到定义；困惑（perplexity）；回忆说",
+              "暂时结论：美德是神赐的正确意见（right opinion）；知识是被拴住的真意见"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "导言（第 2 页）说，后半篇出现了一个“新苏格拉底”：他不再让美诺说出看法、再去批评，而是用新的论证方法，提出自己的假设（美德是知识），也检查自己论证的弱点，最后转向另一个可能的假设：美德是神赐予的正确意见。导言把这和《游叙弗伦篇》这类“苏格拉底式”对话相对照：第 3 周读的《游叙弗伦篇》正是一问一答、最后陷入困惑的那种。"
+        },
+        {
+          "type": "text",
+          "zh": "“定义优先”（**priority of definition**）是全篇的框架：71b 提出它（不知道是什么，就不知道怎么样）；86d–e 苏格拉底被美诺“管住”，勉强把它放下，改用假设法（**hypothesis**）；100b 又重申它：要清楚地知道美德怎样来到人身上，得先知道美德本身是什么。写论文时可以这样说：后半篇的结论之所以只是暂时的，正是因为前半篇的问题没有解决。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "真意见怎样变成知识：把两半连起来（本站的整理）",
+            "en": "How true opinion becomes knowledge: linking the two halves (our reconstruction)"
+          },
+          "items": [
+            {
+              "en": "The slave boy has true opinions without knowledge (85c)",
+              "zh": "奴隶男孩不知道答案，心里却有真意见（85c）"
+            },
+            {
+              "en": "They are stirred up as in a dream and are not yet stable",
+              "zh": "它们像梦一样刚被唤起，还不稳定"
+            },
+            {
+              "en": "Repeated questioning in different ways (85c-d)",
+              "zh": "用不同方式反复提问（85c–d）"
+            },
+            {
+              "en": "Working out an account of the reason why, which is recollection (98a)",
+              "zh": "想出对原因的说明，也就是回忆（98a）"
+            },
+            {
+              "en": "The opinions are tied down and become knowledge, which stays (98a)",
+              "zh": "真意见被拴住，变成知识，留在原处（98a）"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "后半篇的政治家（**statesmen**）是反过来的例子：他们也有真意见（**true opinion**），能把城邦带对（97b–99c），却没有对原因的说明，所以不能把美德教给别人，连自己的儿子都教不好。本站的理解：对照着看，男孩的真意见可以通过反复提问被拴住，变成知识（**knowledge**）；政治家的真意见没被拴住，只能说是神的恩赐。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "美德是知识吗？全篇的正反两面",
+            "en": "Is virtue knowledge? Both sides in the dialogue"
+          },
+          "headers": [
+            "",
+            "内容 Content",
+            "出处 Where"
+          ],
+          "rows": [
+            [
+              "支持：美德是知识 For",
+              "美德有益；只有智慧让东西有益；所以美德是智慧",
+              "87d–89a（第 18–19 页）"
+            ],
+            [
+              "反对：美德不是知识 Against",
+              "没有老师就不能教；美德没有老师；所以不能教，也不是知识",
+              "89d–96c，98d–99b（第 20–27 页）"
+            ],
+            [
+              "化解 Resolution",
+              "真意见也能正确引导；苏格拉底承认，之前同意的“只有知识能正确引导”错了，这就动摇了“支持”一栏的论证",
+              "96e–97c（第 25–26 页）"
+            ],
+            [
+              "最后的答案 Final answer",
+              "政治家靠正确意见；美德似乎是神的恩赐，不伴随理解",
+              "99b–100b（第 27–28 页）"
+            ],
+            [
+              "留下的问题 Open question",
+              "要确定，得先知道美德本身是什么",
+              "100b（第 28 页）"
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：把两半连起来的句子",
+            "en": "How to write it: sentences that link the two halves"
+          },
+          "items": [
+            {
+              "en": "In the first half of the Meno, Socrates tests Meno's definitions of virtue against the demand for one common form; in the second half he reasons from a hypothesis instead.",
+              "zh": "《美诺篇》前半篇，苏格拉底用“要说出一个共同形式（**form**）”的要求检验美诺对美德的定义；后半篇他改为从假设出发推理。"
+            },
+            {
+              "en": "Recollection links the two halves: the slave boy's true opinions could become knowledge through repeated questioning, and Socrates later says that tying down a true opinion by an account of the reason why is recollection.",
+              "zh": "回忆把两半连在一起：奴隶男孩的真意见经过反复提问可以变成知识；后来苏格拉底说，用对原因的说明把真意见拴住，就是回忆。"
+            },
+            {
+              "en": "Socrates first argues that virtue is knowledge because only wisdom makes things beneficial, but he later admits that they were wrong to agree that only knowledge guides correctly, since true opinion also guides correctly (97b-c).",
+              "zh": "苏格拉底先论证美德是知识，因为只有智慧让东西有益；但后来他承认，之前同意“只有知识能正确引导”是错的，因为真意见也能正确引导（97b–c）。"
+            },
+            {
+              "en": "Because virtue is never defined, the final answer, that virtue comes as a gift from the gods without understanding, is explicitly provisional.",
+              "zh": "因为美德始终没有被定义，最后的答案（美德作为神的恩赐、不伴随理解地到来）明确只是暂时的。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "style": "number",
+          "title": {
+            "zh": "小论文提纲：《美诺篇》说明了美德是知识吗？",
+            "en": "Essay outline: Does the Meno show that virtue is knowledge?"
+          },
+          "items": [
+            {
+              "zh": "论点：《美诺篇》最后没有证明美德是知识；它的暂时答案是：好人靠正确意见行事。",
+              "en": "Thesis: the Meno does not show that virtue is knowledge; its provisional answer is that good men act by right opinion."
+            },
+            {
+              "zh": "论证 A：美德有益，只有智慧让东西有益，所以美德是智慧（87d–89a）。",
+              "en": "Argument A: virtue is beneficial and only wisdom makes things beneficial, so virtue is wisdom (87d-89a)."
+            },
+            {
+              "zh": "论证 B：没有美德的老师，所以美德不能教，因而不是知识（89d–96c）。",
+              "en": "Argument B: there are no teachers of virtue, so it cannot be taught and is not knowledge (89d-96c)."
+            },
+            {
+              "zh": "化解：真意见也能正确引导（去拉里萨的路，97a–c），推翻论证 A 的关键前提。",
+              "en": "Resolution: true opinion also guides correctly (the road to Larissa, 97a-c), which removes a key premise of Argument A."
+            },
+            {
+              "zh": "区分：知识是被对原因的说明拴住的真意见（代达罗斯的雕像，97d–98a）。",
+              "en": "Distinction: knowledge is true opinion tied down by an account of the reason why (the statues of Daedalus, 97d-98a)."
+            },
+            {
+              "zh": "评价：论证 B 从少数例子概括，比较弱；最后的结论有条件、是暂时的，因为美德始终没被定义（100b）。",
+              "en": "Assessment: Argument B generalizes from a few cases; the conclusion is conditional and provisional because virtue is never defined (100b)."
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Essay question: Does the slave-boy demonstration show that learning is recollection?",
+            "zh": "小论文题：奴隶男孩的演示能说明学习就是回忆吗？"
+          },
+          "answer": {
+            "en": "Socrates argues that the boy, who was never taught geometry, found true opinions within himself through questioning, so he must have learned them before this life, and his soul is immortal (85b-86b). The demonstration does show that the boy can reach a truth without being told it, since he calculates and rejects his own wrong answers. But it does not show that he learned it before birth: he may be reasoning now, guided by leading questions and by diagonals that Socrates draws himself. Socrates seems to admit this, defending firmly only the practical claim that believing in inquiry makes us better (86b-c).",
+            "zh": "答题思路：①先复述论证（85b–86b）：没人教过，心里却有真意见；在自己心里找到知识就是回忆；不是这辈子学的，所以出生前学过；灵魂（**soul**）不朽；②承认它说明了什么：男孩自己算、自己否定错误答案，能不靠别人告诉就达到真理；③指出它没说明什么：可能是现在推理出来的，而且有诱导性提问，对角线（**diagonal**）是苏格拉底画的；④用苏格拉底自己留的余地收尾（86b–c）。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Essay question: Is Meno's paradox a real threat to inquiry, and how does the dialogue answer it?",
+            "zh": "小论文题：美诺悖论（**Meno's paradox**）真的威胁到探究吗？这篇对话怎样回答它？"
+          },
+          "answer": {
+            "en": "Meno's paradox says that we can search neither for what we know, since there is no need, nor for what we do not know, since we would not know what to look for (80d-e). Socrates answers with recollection: the soul already knows, so searching is recalling (81a-d). One can also build a less mythical answer from the dialogue's own terms: true opinion is a middle state between knowing and not knowing, and inquiry can start from true opinions and tie them down by an account of the reason why (85c, 98a). So the paradox is a threat only if knowledge is all-or-nothing, and the Meno's own distinction between true opinion and knowledge suggests that it is not.",
+            "zh": "答题思路：①说清悖论的两个角（80d–e）；②苏格拉底的回答：回忆说（81a–d）；③还可以用对话自己的概念给出更好的回答（这是解读，苏格拉底没有这样回答悖论）：真意见是“知道”和“不知道”之间的中间状态，探究可以从真意见出发，再用对原因的说明把它拴住（85c、98a）；④结论：只有把知识看成全有或全无，悖论才构成威胁，而《美诺篇》对真意见和知识的区分说明并非如此。"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "和别的几周的联系（写论文可以用）：①第 3 周《申辩篇》：安尼图斯是控告人之一（脚注 15）；苏格拉底很少声称自己知道什么（98b）。②第 3 周《游叙弗伦篇》：同样要找“一个形式”，同样以困惑收场；虔敬（**piety**）在这里成了美德的一部分（78d–e）。③第 2 周罗素（**Bertrand Russell**）的 'The Value of Philosophy'：困惑和不确定也有价值，可以对照男孩“被问麻了反而更好”（84a–c）。④第 5 周笛卡尔（**René Descartes**）：也在自己心里找知识，也要找稳固、留得住的东西，可以对照代达罗斯的雕像。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“美德是知识”是后半篇苏格拉底论证的假设，不是美诺的定义；美诺的三个定义都在前半篇。",
+              "en": "'Virtue is knowledge' is Socrates' hypothesis in the second half, not one of Meno's three definitions in the first half."
+            },
+            {
+              "zh": "真意见在两半里都出现：85c（男孩）和 97b–99c（去拉里萨的人、政治家）。",
+              "en": "True opinion appears in both halves: the slave boy (85c) and the guide and the statesmen (97b-99c)."
+            },
+            {
+              "zh": "回忆也在两半里都出现：81d（回答悖论）和 98a（拴住真意见）。",
+              "en": "Recollection also appears in both halves: answering the paradox (81d) and tying down true opinion (98a)."
+            },
+            {
+              "zh": "最后的答案是暂时的：苏格拉底说要先知道美德本身是什么（100b）。",
+              "en": "The final answer is provisional: Socrates says we must first know what virtue itself is (100b)."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which idea links the two halves of the Meno?",
+            "zh": "哪个想法把《美诺篇》的前后两半连在了一起？"
+          },
+          "options": [
+            {
+              "en": "The sophists' fees.",
+              "zh": "智者（**sophists**）收的学费。"
+            },
+            {
+              "en": "The claim that the soul learns everything through the senses.",
+              "zh": "灵魂通过感官学会一切的说法。"
+            },
+            {
+              "en": "Recollection, which turns true opinion into knowledge by an account of the reason why.",
+              "zh": "回忆：用对原因的说明把真意见变成知识。"
+            },
+            {
+              "en": "The definition of shape as the limit of a solid.",
+              "zh": "“形状是立体的界限”这个定义。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C。前半篇，回忆说回答了美诺悖论，并解释男孩怎样从真意见走向知识（81d、85c–d）；后半篇，苏格拉底说用对原因的说明拴住真意见就是回忆（98a）。A 只出现在后半篇。B 和回忆说相反。D 只是前半篇的一个定义示范。",
+            "en": "C: recollection appears at 81d and 85c-d and again at 98a."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "Socrates says he cannot tell whether virtue can be taught, because one cannot know what qualities a thing has without knowing what it is (71b).",
+      "zh": "苏格拉底说他没法判断美德能不能教，因为不知道一个东西是什么，就不可能知道它有什么性质（71b）。"
+    },
+    {
+      "en": "He rejects Meno's list of virtues for men, women, children and slaves: a definition must state the one form that all virtues share, as all bees are the same in being bees (72a-c).",
+      "zh": "他否定了美诺按男人、女人、孩子、奴隶列出的美德清单：定义要说出所有美德共有的那一个形式，就像所有蜜蜂在“是蜜蜂”这一点上都一样（72a–c）。"
+    },
+    {
+      "en": "On the models of shape and color, a good definition covers every case, is true, uses terms the questioner already accepts, and avoids terms still under inquiry (75b-76a, 79d).",
+      "zh": "从形状和颜色的示范看，好定义要适用于每个实例、要真、要用提问者已经接受的词，并且不用还在探究中的词（75b–76a，79d）。"
+    },
+    {
+      "en": "Meno's third definition fails: since no one desires what is bad, it reduces to the power to secure goods, and adding 'justly' defines virtue through a part of virtue, which is circular (77b-79e).",
+      "zh": "美诺的第三个定义失败了：既然没有人想要坏东西，它就缩成“获得好东西的能力”；再加上“公正地”，就是用美德的一部分定义美德，成了循环定义（77b–79e）。"
+    },
+    {
+      "en": "Meno's paradox says that one can search neither for what one knows, since there is no need, nor for what one does not know, since one would not know what to look for (80d-e).",
+      "zh": "美诺悖论说：已经知道的不必找，完全不知道的不知道找什么，所以两种都无法探究（80d–e）。"
+    },
+    {
+      "en": "Socrates replies, on the authority of priests and poets, that the immortal soul has learned everything, so learning is recollection; believing this makes us energetic rather than idle (81a-e).",
+      "zh": "苏格拉底借祭司和诗人的说法回答：不朽的灵魂已经学过一切，所以学习就是回忆；相信这一点会让我们勤奋而不是懒惰（81a–e）。"
+    },
+    {
+      "en": "The slave boy first doubles the side (16 square feet), then tries 3 feet (9 square feet), admits that he does not know, and finally sees that the square on the diagonal has double the area (8 square feet) (82b-85b).",
+      "zh": "奴隶男孩先把边加倍（得到 16 平方英尺），再试 3 英尺（得到 9），承认自己不知道，最后看出以对角线为边的正方形面积正好加倍（8 平方英尺）（82b–85b）。"
+    },
+    {
+      "en": "Socrates argues that the boy's true opinions were his own and not taught, so his soul learned them before this life and is immortal, but he firmly defends only the claim that believing in inquiry makes us better and braver (85b-86c).",
+      "zh": "苏格拉底论证：男孩的真意见是他自己的，不是教来的，所以他的灵魂在这辈子之前就学过，灵魂不朽；但他坚决捍卫的只是“相信探究会让我们更好、更勇敢”（85b–86c）。"
+    },
+    {
+      "en": "Reasoning from a hypothesis, Socrates holds that virtue is teachable if and only if it is knowledge, and argues that it is knowledge because only wisdom makes things beneficial (87b-89a).",
+      "zh": "苏格拉底从假设出发：美德可教，当且仅当它是知识；他又论证美德是知识，因为只有智慧能让东西有益（87b–89a）。"
+    },
+    {
+      "en": "He then argues that virtue cannot be taught because there are no teachers of it: the sophists are disputed, and good fathers such as Themistocles and Pericles could not make their sons good (89d-96c).",
+      "zh": "接着他论证美德不能教，因为没有美德的老师：智者有争议，地米斯托克利、伯里克利这样的好父亲也没能把儿子教成好人（89d–96c）。"
+    },
+    {
+      "en": "The road to Larissa shows that true opinion guides action as well as knowledge, and the statues of Daedalus show that knowledge is worth more because it is tied down by an account of the reason why (97a-98a).",
+      "zh": "去拉里萨的路说明真意见和知识一样能引导行动；代达罗斯的雕像说明知识更有价值，因为它被对原因的说明拴住了（97a–98a）。"
+    },
+    {
+      "en": "Socrates concludes, provisionally, that good statesmen guide by right opinion, so virtue comes as a gift from the gods without understanding, and that we will know this clearly only after finding what virtue itself is (99b-100b).",
+      "zh": "苏格拉底暂时得出结论：好政治家靠正确意见领导，所以美德作为神的恩赐、不伴随理解地到来；要清楚地知道这一点，得先弄清美德本身是什么（99b–100b）。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "The priority of definition in standard form, with the 'who Meno is' example (71b), and how it frames the whole dialogue (100b).",
+      "zh": "很可能考的论证题：写出标准形式，并说明它怎样框住全篇（71b 和 100b）。",
+      "sectionId": "s01-meno-question-priority-of-definition"
+    },
+    {
+      "en": "Why a list of virtues is not a definition: the bees, health and strength, and 'a virtue' vs. virtue.",
+      "zh": "选择题可能考“一种美德”和“美德本身”的区别，以及蜜蜂的例子要说明什么。",
+      "sectionId": "s02-one-form-of-virtue"
+    },
+    {
+      "en": "The requirements of a good definition and the two definitions of shape.",
+      "zh": "可能给一个定义，问它违反了哪条规则；也可能考“立体的界限”。",
+      "sectionId": "s03-models-of-good-definition"
+    },
+    {
+      "en": "The argument that no one desires bad things, and the circularity charge against Meno's third definition.",
+      "zh": "简答题：重建论证，说明它对第三个定义的影响；可以加上“明知有害还去做”的反驳。",
+      "sectionId": "s04-desire-for-good-and-circularity"
+    },
+    {
+      "en": "Meno's paradox as a dilemma in standard form, both horns, and possible replies.",
+      "zh": "很可能考：两个角都要写；可以补充不靠回忆说的回答（部分知识、真意见）。",
+      "sectionId": "s05-torpedo-fish-and-meno-paradox"
+    },
+    {
+      "en": "The theory of recollection, how it answers both horns, and why the practical argument is not evidence that it is true.",
+      "zh": "说明回忆说怎样回答两个角，以及“相信它让人勤奋”为什么不是它为真的证据。",
+      "sectionId": "s06-recollection-theory"
+    },
+    {
+      "en": "The slave-boy steps (4, 16, 9, then 8 on the diagonal) and why perplexity benefits the learner.",
+      "zh": "数字和步骤适合出选择题；“困惑有益”适合出简答题。",
+      "sectionId": "s07-slave-boy-geometry"
+    },
+    {
+      "en": "The argument from the demonstration to recollection and immortality, and its weaknesses.",
+      "zh": "很可能出小论文：重建论证并评价（诱导性提问、现在推理的解释、男孩只有真意见）。",
+      "sectionId": "s08-argument-for-recollection-and-immortality"
+    },
+    {
+      "en": "The method of hypothesis and the argument that virtue is wisdom (courage and recklessness).",
+      "zh": "考“可教当且仅当是知识”，以及勇敢和鲁莽的例子。",
+      "sectionId": "s09-hypothesis-and-virtue-as-knowledge"
+    },
+    {
+      "en": "The no-teachers argument: Anytus, the sophists, fathers and sons, and its weaknesses.",
+      "zh": "可能考哪个人物不是失败的父亲（普罗泰戈拉）；简答要写出它的弱点。",
+      "sectionId": "s10-no-teachers-of-virtue"
+    },
+    {
+      "en": "The road to Larissa: true opinion is no worse a guide than knowledge.",
+      "zh": "很可能考：这个例子说明了什么，推翻了哪条前提。",
+      "sectionId": "s11-true-opinion-road-to-larissa"
+    },
+    {
+      "en": "How knowledge differs from true opinion: tied down by an account of the reason why (the statues of Daedalus).",
+      "zh": "全篇最关键的定义；记住 tied down、an account of the reason why 和 recollection。",
+      "sectionId": "s12-daedalus-knowledge-vs-true-opinion"
+    },
+    {
+      "en": "The final conclusion: statesmen guide by right opinion, and virtue is a divine gift, stated conditionally and provisionally.",
+      "zh": "考结论的内容、它的条件和暂时性；可以写它和“美德是知识”的冲突。",
+      "sectionId": "s13-virtue-as-divine-gift"
+    },
+    {
+      "en": "Essay questions linking the two halves: is virtue knowledge, and does the demonstration show recollection?",
+      "zh": "小论文：用前后两半的对照，以及“真意见变成知识”的链条。",
+      "sectionId": "s14-comparing-the-two-halves"
+    }
+  ]
+}
