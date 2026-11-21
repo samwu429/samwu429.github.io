@@ -35,12 +35,22 @@ test('textbook chapters are named like the other kinds', () => {
   assert.deepEqual(kindsText([{ kind: 'chapter' }, { kind: 'chapter' }]), { zh: '章节', en: 'chapter' });
 });
 
+test('syllabus weeks are named like the other kinds', () => {
+  assert.deepEqual(unitLabels({ id: 'wk07', kind: 'week', number: 7 }), { zh: '第 7 周', en: 'Week 7', short: 'Wk 7', known: true, numbered: true });
+  assert.deepEqual(unitLabels({ id: 'wk12', kind: 'week', number: null }), { zh: '每周主题', en: 'Week', short: 'WK12', known: true, numbered: false });
+  assert.deepEqual(unitName({ kind: 'week', number: '10' }), { zh: '第 10 周', en: 'Week 10' });
+  assert.equal(whichUnitsZh('week'), '哪几周');
+  assert.deepEqual(kindsText([{ kind: 'week' }, { kind: 'week' }]), { zh: '每周主题', en: 'week' });
+  assert.equal(isMainKind('week'), true);
+});
+
 test('kinds have plural group titles, a display order and a main flag', () => {
-  assert.deepEqual(KIND_ORDER, ['lecture', 'module', 'chapter', 'lab', 'tutorial', 'workshop']);
+  assert.deepEqual(KIND_ORDER, ['lecture', 'module', 'chapter', 'week', 'lab', 'tutorial', 'workshop']);
   assert.deepEqual(KIND_ORDER.map(kindGroupTitle), [
     { zh: '讲课', en: 'Lectures' },
     { zh: '模块', en: 'Modules' },
     { zh: '章节', en: 'Chapters' },
+    { zh: '每周主题', en: 'Weeks' },
     { zh: '实验', en: 'Labs' },
     { zh: '辅导', en: 'Tutorials' },
     { zh: '工作坊', en: 'Workshops' },
@@ -51,7 +61,7 @@ test('kinds have plural group titles, a display order and a main flag', () => {
     assert.equal(isMainKind(kind), false, String(kind));
   }
   assert.ok(KIND_ORDER.every(isKnownKind));
-  assert.deepEqual(KIND_ORDER.filter(isMainKind), ['lecture', 'module', 'chapter']);
+  assert.deepEqual(KIND_ORDER.filter(isMainKind), ['lecture', 'module', 'chapter', 'week']);
 });
 
 test('whichUnitsZh asks which units of a kind', () => {

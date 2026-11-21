@@ -1,0 +1,3683 @@
+{
+  "id": "wk09",
+  "kind": "week",
+  "number": 9,
+  "title": {
+    "en": "Consciousness",
+    "zh": "意识"
+  },
+  "sources": [
+    {
+      "file": "Nagel, 'What Is It Like to Be a Bat?'",
+      "pages": 17
+    },
+    {
+      "file": "Chalmers, 'Uploading and Consciousness'",
+      "pages": 6
+    }
+  ],
+  "estimatedMinutes": 170,
+  "oneLiner": {
+    "zh": "内格尔：一个生物有意识，就是“做它是有某种样子的”；这种主观特征只能从某一类观点去把握，所以现有的物理还原解释不了它（物理主义也许是真的，但我们现在理解不了）。查默斯：把大脑的零件一个个换成功能完全相同的计算元件，意识最可能一直都在，所以足够好的上传体会有意识；可它是不是“我”，是另一个问题。",
+    "en": "Nagel argues that a creature is conscious when there is something it is like to be it, and that this subjective character is tied to a point of view, so no current physical reduction can capture it; Chalmers argues that a functionally identical upload would very probably be conscious, but that this does not show the upload would be you."
+  },
+  "outcomes": [
+    {
+      "en": "State Nagel's criterion of consciousness ('something it is like') and explain why functional, intentional and causal-role analyses leave out the subjective character of experience.",
+      "zh": "能写出内格尔判断意识的标准（“做它是有某种样子的”），并解释为什么功能分析、意向分析和因果角色分析都漏掉了经验的主观特征。"
+    },
+    {
+      "en": "Explain the bat thought experiment: why Nagel chose bats, why imagining how a bat behaves is not enough, and what a schematic conception is.",
+      "zh": "能讲清蝙蝠思想实验：为什么选蝙蝠，为什么想象蝙蝠的行为不够，什么是“粗略的概念”。"
+    },
+    {
+      "en": "Reconstruct Nagel's point-of-view argument that the usual appearance-to-reality model of reduction cannot work for experience, and explain why he says physicalism may be true but cannot yet be understood.",
+      "zh": "能写出内格尔的“观点”论证：通常“从表象走向实在”的还原模式为什么用不到经验上；并解释他为什么说物理主义也许为真，但我们现在还理解不了。"
+    },
+    {
+      "en": "Explain Chalmers's question 'Will an upload be conscious?', why consciousness is a further fact (Mary, the mouse), and his argument that neurons and silicon are on a par, which favours functionalist over biological theories.",
+      "zh": "能说明查默斯的问题“上传体会有意识吗”，为什么意识是一个“进一步的事实”（玛丽、老鼠），以及他“神经元和硅一样难懂”、所以支持功能论而不支持生物论的论证。"
+    },
+    {
+      "en": "Reconstruct the gradual uploading argument (sudden disappearance, gradual fading or staying present), explain consciousness as an organizational invariant, and say why this does not settle personal identity.",
+      "zh": "能写出逐步上传论证（突然消失、逐渐褪色、一直保持），解释“意识是组织不变量”，并说明这为什么解决不了人格同一性问题。"
+    },
+    {
+      "en": "Compare Nagel and Chalmers on what physical or functional descriptions can tell us about consciousness.",
+      "zh": "能比较内格尔和查默斯：物理描述或功能描述到底能告诉我们多少关于意识的事。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-what-it-is-like",
+      "title": {
+        "zh": "内格尔：意识就是“成为它是什么样子”",
+        "en": "Nagel: Consciousness: Something It Is Like"
+      },
+      "slides": "2-3",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一周读两篇讲意识（**consciousness**：有体验、有感受的状态）的文章。第一篇是哲学家内格尔（**Thomas Nagel**）的 'What Is It Like to Be a Bat?'（意思是“成为一只蝙蝠是什么样子？”），1974 年发表在期刊 **The Philosophical Review** 上（PDF 第 1 页是期刊的封面信息）。全文围绕一个问题：意识能不能用物理的方式解释清楚？"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "提醒：本站只有这一周的两篇读物（内格尔的蝙蝠论文、查默斯谈上传与意识的节选），没有课堂讲义，也没有辅导课材料。测验 2 考“全部课程内容”，老师上课可能补充本站没有的要点，或者用不同的说法。请以你的课堂笔记和 Quercus 为准。",
+          "en": "The station has only this week's two readings, not the lectures or the tutorials. Test 2 covers all course content, so the lectures may add points that are not here. Check your lecture notes and Quercus."
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "页码说明：本课写的“第 N 页”都是 Quercus 上 PDF 的页码。内格尔：PDF 第 2–17 页＝期刊原文第 435–450 页（PDF 页码加 433）。查默斯：PDF 第 1–6 页＝原文第 35–40 页（PDF 页码加 34）。老师引用原文页码时，用这个换算就能对上。",
+          "en": "Page numbers in this lesson are the PDF pages on Quercus. Nagel: PDF pp. 2-17 = printed pp. 435-450 (add 433). Chalmers: PDF pp. 1-6 = printed pp. 35-40 (add 34)."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "argument",
+              "zh": "论证",
+              "hint": "用一些理由（前提）去支持一个观点（结论）。"
+            },
+            {
+              "en": "premise / conclusion",
+              "zh": "前提 / 结论",
+              "hint": "前提是当理由用的句子，编号 P1、P2……；结论是最后要证明的那句话，写成 C。"
+            },
+            {
+              "en": "standard form",
+              "zh": "标准形式",
+              "hint": "把前提一条条编号列出，最后写结论，方便检查每一步。"
+            },
+            {
+              "en": "valid / sound",
+              "zh": "有效 / 可靠",
+              "hint": "有效＝如果前提都真，结论就一定真；可靠＝有效，而且前提确实都真。"
+            },
+            {
+              "en": "thought experiment",
+              "zh": "思想实验",
+              "hint": "不做真实的实验，只在脑子里设想一个情境，看它能说明什么。比如设想自己变成蝙蝠。"
+            },
+            {
+              "en": "mind-body problem",
+              "zh": "身心问题",
+              "hint": "心灵（想法、感受）和身体（尤其是大脑）到底是什么关系？"
+            },
+            {
+              "en": "mental state",
+              "zh": "心灵状态",
+              "hint": "心里的状态：看见、疼、害怕、相信、想要……"
+            },
+            {
+              "en": "reduction / reductionist",
+              "zh": "还原 / 还原论者",
+              "hint": "还原＝说明一种东西“其实就是”另一种更基本的东西（水其实就是 H2O）；还原论者想这样解释心灵。"
+            },
+            {
+              "en": "physicalism (materialism)",
+              "zh": "物理主义（唯物主义）",
+              "hint": "认为心灵状态就是身体（大脑）的物理状态，心灵事件就是物理事件。"
+            },
+            {
+              "en": "subjective character of experience",
+              "zh": "经验的主观特征",
+              "hint": "经验从体验者自己“里面”看是什么样子。内格尔认为这是意识最核心的特征。"
+            }
+          ]
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "内格尔全文路线图（本课第 1–7 节）",
+            "en": "Map of Nagel's paper (sections 1-7 of this lesson)"
+          },
+          "items": [
+            {
+              "en": "Definition: a creature is conscious if there is something it is like to be it (pp. 2-3).",
+              "zh": "定义：有意识＝成为这个生物是有某种样子的（第 2–3 页）。"
+            },
+            {
+              "en": "Functional and causal analyses of the mind leave this subjective character out (pp. 3-4).",
+              "zh": "功能分析、因果分析都漏掉了这种主观特征（第 3–4 页）。"
+            },
+            {
+              "en": "The bat: we cannot conceive what its sonar experience is like (pp. 5-7).",
+              "zh": "蝙蝠：我们想象不出它的声呐经验是什么样子（第 5–7 页）。"
+            },
+            {
+              "en": "Such facts are real, but each is tied to a type of point of view (pp. 7-9).",
+              "zh": "这种事实是真实的，但每一个都连着某一类观点（第 7–9 页）。"
+            },
+            {
+              "en": "Reduction works by leaving points of view behind, so it cannot reach experience (pp. 9-12).",
+              "zh": "还原靠离开观点、走向客观，所以够不着经验（第 9–12 页）。"
+            },
+            {
+              "en": "Physicalism may be true, but we cannot yet understand how (pp. 12-15).",
+              "zh": "物理主义也许为真，但我们现在理解不了它怎么可能为真（第 12–15 页）。"
+            },
+            {
+              "en": "Proposal: first build an objective phenomenology, a way to describe experience that others can understand (pp. 16-17).",
+              "zh": "提议：先发展一种客观现象学，也就是用别人也能懂的方式描述经验（第 16–17 页）。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "文章第一句就亮出立场：正是意识让身心问题（**mind-body problem**）真正难以解决（第 2 页）。内格尔说，没有意识，这个问题会无趣得多；有了意识，它看起来就没有希望了（第 3 页）。他还说，目前没有任何一种还原（**reduction**）的概念能用到意识上；也许将来能发明新的理论形式，但那是遥远的未来的事（第 3 页）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "还原论者最爱的科学类比（第 2 页）",
+            "en": "The reductionists' favourite analogies (p. 2)"
+          },
+          "steps": [
+            {
+              "zh": "内格尔列出五个科学上成功的还原：水与 H2O、图灵机与 IBM 计算机、闪电与放电、基因与 DNA、橡树与碳氢化合物。",
+              "en": "Nagel lists five successful reductions: water and H2O, the Turing machine and the IBM machine, lightning and electrical discharge, the gene and DNA, the oak tree and hydrocarbon."
+            },
+            {
+              "zh": "每一对的意思都是：前一个“其实就是”后一个。比如科学发现，水其实就是 H2O 分子。",
+              "en": "In each pair the first thing turns out to be nothing over and above the second, as water turns out to be H2O."
+            },
+            {
+              "zh": "还原论者（**reductionist**）希望心灵也这样：心灵状态其实就是大脑状态。内格尔说，每个还原论者都有一个自己最喜欢的科学类比。",
+              "en": "Reductionists hope the mind can be reduced to the brain in the same way, and each has a favourite analogy from science."
+            },
+            {
+              "zh": "内格尔的回应：这些例子都缺了身心问题独有的东西，也就是意识，所以它们几乎不可能帮我们弄懂心灵和大脑的关系。",
+              "en": "Nagel replies that these examples leave out the one thing that sets the mind-body problem apart, namely consciousness, so they are very unlikely to help."
+            },
+            {
+              "zh": "他还批评一种人之常情：喜欢用熟悉、已经弄懂的东西去解释完全不同、还弄不懂的东西。结果，一些不太可信的心灵理论被人接受，只因为它们方便做熟悉的那种还原。",
+              "en": "He blames a common human weakness: explaining what we do not understand in terms that suit familiar things. This has led people to accept implausible accounts of the mind."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：科学里别的还原再成功，也不能直接搬到意识上来。",
+            "en": "Successful reductions elsewhere do not show that consciousness can be reduced in the same way."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "内格尔的意识标准（第 3 页）",
+            "en": "Nagel's criterion of consciousness (p. 3)"
+          },
+          "items": [
+            {
+              "en": "According to Nagel, an organism is conscious if and only if \"there is something that it is like to be that organism\" (p. 3).",
+              "zh": "内格尔说：一个生物有意识的心灵状态，当且仅当“成为这个生物是有某种样子的”（第 3 页）。"
+            },
+            {
+              "en": "What counts is how things are for the creature itself, from the inside, not how the creature looks to an observer.",
+              "zh": "这个“样子”是对这个生物自己而言的，是从里面体验到的，不是它在旁观者眼里的样子。"
+            },
+            {
+              "en": "Nagel calls this feature the subjective character of experience.",
+              "zh": "内格尔把这个特征叫作经验的主观特征。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "把定义拆开讲：\n1. 生物（**organism**）：活的东西，人、蝙蝠、老鼠都算。\n2. 当且仅当（**if and only if**）：两边同真同假。成为它有某种样子，它就有意识；没有，就没有意识。\n3. 对这个生物而言（**for the organism**）：关键是它自己从里面体验起来怎样，不是外面的人看到它在做什么。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：问“做一块石头是什么样子？”大多数人会说：什么样子都没有，石头里面没有任何体验。再问“做一只猫是什么样子？”我们会觉得一定有某种样子：它会饿、会怕、会舒舒服服地晒太阳。内格尔的标准，就是这条“里面有没有体验”的分界线。",
+          "limit": "石头和猫是帮你抓住这句话的例子，不是内格尔的。而且内格尔承认：在很简单的生物那里，我们没法确定有没有意识（第 3 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "内格尔还说（第 3 页）：意识很普遍，出现在动物生命的很多层次上；但在很简单的生物那里我们不能确定，而且很难说什么才算意识的证据。毫无疑问，意识还以无数种我们完全想象不到的形式，存在于宇宙中其他星球上。不过形式再怎么不同，有意识的意思都一样：成为这个生物是有某种样子的。"
+        },
+        {
+          "type": "text",
+          "zh": "一个容易误会的地方：英文 **what it is like** 里的 like，看起来像“像什么”。但脚注 6（第 7 页）专门说明，这个说法不是问“它像我们经验里的什么东西”，而是问“对主体自己来说是怎样的”（原文：“how it is for the subject himself”）。",
+          "en": "Footnote 6 (p. 7): 'what it is like' does not mean what the experience resembles; it means how it is for the subject."
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“what it is like”不是“像什么”。它问的是从里面体验起来怎样，不是拿它和别的东西作比较（脚注 6，第 7 页）。",
+              "en": "'What it is like' does not mean 'what it resembles'; it means how it is for the subject."
+            },
+            {
+              "zh": "内格尔的标准不看行为、语言或聪明程度。他甚至怀疑意识对行为有什么必然的含义（第 3 页）。",
+              "en": "Nagel's criterion is not about behaviour, language or intelligence."
+            },
+            {
+              "zh": "内格尔没有说科学里的还原（水就是 H2O）错了。他说的是：这些成功的例子里没有意识，所以帮不上身心问题的忙。",
+              "en": "Nagel does not say the scientific reductions are wrong; he says they do not help with consciousness."
+            },
+            {
+              "zh": "“主观”在这里不是“随便怎么想都行”，而是“从体验者自己的角度”。后面几节会细讲。",
+              "en": "'Subjective' here means 'from the point of view of the one who has the experience', not 'mere opinion'."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Nagel, a creature is conscious if and only if:",
+            "zh": "根据内格尔，一个生物有意识，当且仅当："
+          },
+          "options": [
+            {
+              "en": "it behaves intelligently in its environment.",
+              "zh": "它在环境里表现得很聪明。"
+            },
+            {
+              "en": "there is something it is like to be that creature, for the creature itself.",
+              "zh": "成为这个生物是有某种样子的，而且是对它自己而言的。"
+            },
+            {
+              "en": "it can describe its own states in a language.",
+              "zh": "它能用语言描述自己的状态。"
+            },
+            {
+              "en": "its inner states play the right causal roles in producing behaviour.",
+              "zh": "它的内部状态在产生行为时起着合适的因果作用。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B，这是第 3 页的定义。A 和 C 都不是内格尔的标准：他怀疑意识对行为有什么必然含义（第 3 页），脚注 3 还说没有语言和思想的动物也有经验（第 4 页）。D 是因果角色分析；内格尔恰恰说，这种分析连没有任何体验的机器人也能满足（第 3 页），所以抓不住意识。",
+            "en": "B is Nagel's definition (p. 3). A and C are not his criterion, and D is the causal-role analysis that he says a robot without experience could satisfy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-reductive-analyses-leave-it-out",
+      "title": {
+        "zh": "内格尔：还原论分析漏掉了什么",
+        "en": "Nagel: What Reductive Analyses Leave Out"
+      },
+      "slides": "3-4",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "定义一出来，内格尔马上用它去检验当时流行的心灵理论（第 3–4 页）。这些理论先把心灵分析（**analysis**：拆成更简单的说法）成别的东西，再把它还原（**reduction**：说明它其实就是更基本的东西）成大脑的物理状态。内格尔的论点：这些分析都漏掉了经验的主观特征（**subjective character of experience**：从体验者自己里面看是什么样子）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "functional state",
+              "zh": "功能状态",
+              "hint": "按“它做什么”来定义的状态：受什么输入引起、又产生什么输出。"
+            },
+            {
+              "en": "intentional state",
+              "zh": "意向状态",
+              "hint": "“关于”某个东西的心灵状态，比如相信明天下雨、想要一杯奶茶。"
+            },
+            {
+              "en": "causal role",
+              "zh": "因果角色",
+              "hint": "一个状态通常由什么引起、又会引起什么行为。"
+            },
+            {
+              "en": "logically compatible with its absence",
+              "zh": "与它的缺失在逻辑上相容",
+              "hint": "就算没有这个东西，这种分析也照样成立，不会自相矛盾。"
+            },
+            {
+              "en": "robots or automata",
+              "zh": "机器人或自动机",
+              "hint": "能像人一样行动的机器；内格尔假设它们里面什么体验都没有。"
+            },
+            {
+              "en": "materialism / physicalism",
+              "zh": "唯物主义 / 物理主义",
+              "hint": "心灵状态就是物理状态。这两页里内格尔把两个词当作差不多的意思用。"
+            },
+            {
+              "en": "phenomenal features (of a substance)",
+              "zh": "物质的现象特征",
+              "hint": "一种物质给观察者的感觉：看起来、摸起来、尝起来怎样。"
+            },
+            {
+              "en": "phenomenological features (of experience)",
+              "zh": "经验的现象学特征",
+              "hint": "经验本身从里面体验起来的特征。"
+            },
+            {
+              "en": "point of view",
+              "zh": "观点（视角）",
+              "hint": "从某种身体、某种感官出发去经验世界的角度。"
+            },
+            {
+              "en": "incorrigible",
+              "zh": "不可能弄错的",
+              "hint": "对某件事绝对不会出错。脚注 3 用到这个词。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "打游戏时，NPC 被打会喊“好痛”，血少了会逃跑，看见你会打招呼。只按“功能”描述，它的反应和一个会疼、会怕的人对得上；可我们一般认为它里面什么也感觉不到。只描述“输入什么、输出什么”，就能套到一个完全没有体验的东西上。这正是内格尔对功能分析的批评。",
+          "limit": "NPC 的程序很简单，离“行为完全像人”差得很远。内格尔在脚注 2 也承认：也许复杂到能像人一样行动的东西，就一定会有经验；但这一点光靠分析“经验”这个概念是发现不了的（第 3 页）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：还原式分析漏掉了意识（第 3–4 页）",
+            "en": "Standard form (P = premise, C = conclusion): reductive analyses leave consciousness out (pp. 3-4)"
+          },
+          "items": [
+            {
+              "en": "P1: A creature is conscious exactly when there is something it is like to be it; this is the subjective character of experience.",
+              "zh": "P1：一个生物有意识状态，当且仅当成为它是有某种样子的；这就是经验的主观特征。"
+            },
+            {
+              "en": "P2: Functional, intentional and causal-role analyses of the mind could all be true of robots that behave like people but experience nothing.",
+              "zh": "P2：功能分析、意向分析、因果角色分析，对一个行为像人、却什么也体验不到的机器人，同样都能成立。"
+            },
+            {
+              "en": "P3: So these analyses are logically compatible with the absence of subjective character, and an analysis that still fits when a feature is absent does not capture that feature.",
+              "zh": "P3：所以这些分析和“没有主观特征”在逻辑上相容；一个在某特征缺席时也照样成立的分析，抓不住这个特征。"
+            },
+            {
+              "en": "P4: A reduction is only as good as its account of the thing being reduced; an account with a missing piece sets up the whole problem wrongly.",
+              "zh": "P4：任何还原都必须从分析“要还原的东西”开始；分析漏掉了东西，问题就提错了。"
+            },
+            {
+              "en": "C: So it is useless to defend materialism with these analyses, and without an idea of what subjective character is, we cannot know what a physicalist theory must explain.",
+              "zh": "C：所以拿这些分析为唯物主义辩护是没用的；不先弄清主观特征是什么，就不知道物理主义理论到底要解释什么。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P2 的根据（第 3 页）：功能状态和意向状态可以安到机器人或自动机身上，它们行为像人，却什么也体验不到；用经验在人类典型行为里的因果角色（**causal role**）来分析，也是同样的问题。脚注 2 留了一个口子：也许现实中根本造不出这种机器人，也许复杂到能像人一样行动的东西就一定有经验。内格尔说，就算这是真的，也不能光靠分析“经验”这个概念发现它。"
+        },
+        {
+          "type": "text",
+          "zh": "P3 的意思：一个分析如果在“没有体验”时也照样成立，它就没有把体验说进去。P4 和结论（第 4 页）：还原计划要先分析清楚要还原的是什么；分析漏了东西，问题就提错了。一个在不管意识时显得很合理的还原，没有理由认为它能扩展到意识上。"
+        },
+        {
+          "type": "text",
+          "zh": "注意内格尔承认什么（第 4 页）：他不否认有意识的心灵状态会引起行为，也不否认可以给它们功能上的刻画。他只否认这些就是对它们的全部分析。换句话说，功能描述没有错，只是不完整。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "为什么经验不能像物质的“样子”那样被放到一边（第 4 页）",
+            "en": "Why experience cannot be set aside like a substance's appearances (p. 4)"
+          },
+          "steps": [
+            {
+              "zh": "物理或化学还原一种普通物质时，会碰到它的现象特征（**phenomenal features**），也就是它给观察者的感觉，比如看起来什么颜色、摸起来怎样。",
+              "en": "When physics or chemistry reduces an ordinary substance, it meets the substance's phenomenal features: how it looks or feels to observers."
+            },
+            {
+              "zh": "科学的办法是：把这些感觉解释成这种物质在人类观察者心里产生的效果，然后把它们放在还原之外。",
+              "en": "Science puts these features to one side by treating them as effects that the substance has on observers' minds."
+            },
+            {
+              "zh": "内格尔说，轮到经验本身时，这一招用不上。为什么？他在这里没有展开，本站的理解是：经验的现象学特征（**phenomenological features**）本来就是心里的东西，没有别的地方可以把它们推过去。",
+              "en": "Nagel says this move does not work for experience itself. He does not spell out why; on our reading, its features are already in the mind, so there is nowhere else to put them."
+            },
+            {
+              "zh": "所以内格尔说：要为物理主义辩护，就得给这些特征本身一个物理的说明。可一看它们的主观特征，这似乎做不到。",
+              "en": "So a defender of physicalism must give these features themselves a physical account, and Nagel thinks this seems impossible."
+            }
+          ],
+          "answer": {
+            "zh": "这一步说明：经验是心灵的物理说明里最难的一块，不能像别的现象那样绕过去。",
+            "en": "Experience is the hardest part of a physical account of the mind; it cannot be bypassed."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "为什么做不到？内格尔的回答（第 4 页）：每一个主观现象都和一个单一的观点（**point of view**）本质地连在一起，而一个客观的（**objective**：不依赖某个特定观点的）物理理论似乎必然要放弃这个观点。这是全文的核心想法，本课第 5 小节会展开。他说，这个问题也可以叫主观与客观的关系，或法语 **pour-soi** 与 **en-soi** 的关系，但他想说得更具体。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：**pour-soi**（自为的存在，指有意识的存在）和 **en-soi**（自在的存在，指物）是法国哲学家萨特（**Jean-Paul Sartre**）常用的一对词。读物只提了一下，没有解释，知道它大致对应“主观／客观”就够了。"
+        },
+        {
+          "type": "text",
+          "zh": "脚注 3（第 4 页）补了一点：主观特征不等于“我们绝不会弄错的东西”（**incorrigible**）。理由有两个：我们对自己的经验其实也会弄错；而且没有语言和思想的动物也有经验，它们对自己的经验根本没有任何信念。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'A robot that behaved exactly like a person in every situation would have experiences, so Nagel's robot premise begs the question.' How can Nagel reply?",
+            "zh": "反驳（**objection**，对论证的质疑）：“一个在任何情况下都和人一模一样行动的机器人，一定有经验；所以内格尔的机器人前提是在窃取论题（把要证明的结论偷偷当成前提）。”内格尔可以怎么回应？"
+          },
+          "answer": {
+            "en": "Nagel can grant that such a robot might be impossible. In footnote 2 he allows that any system complicated enough to act as a person does might have experiences. But if this is true, it is a fact we would have to discover in some other way, not by analysing the concept of experience. So a functional analysis still does not say what experience is, and its subjective character is still left out.",
+            "zh": "内格尔可以先让步：也许这种机器人造不出来（脚注 2，第 3 页）。但即使“像人一样行动的东西都有经验”是真的，它也不是分析“经验”的概念得出来的，而是另外一个事实。所以功能分析仍然没有说出经验是什么，主观特征还是被漏掉了。答题时先承认对方的一部分，再指出“概念分析”和“事实”的区别，这样最稳。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "内格尔不否认心灵状态有原因、有结果，也不否认可以有功能描述；他只否认这些就是全部（第 4 页）。",
+              "en": "Nagel grants that mental states have causes, effects and functional descriptions; he denies only that these are the whole story."
+            },
+            {
+              "zh": "“与缺失逻辑上相容”不是说这种机器人真的存在，而是说假设它存在并不矛盾。",
+              "en": "'Logically compatible with its absence' does not mean such robots exist, only that supposing them is consistent."
+            },
+            {
+              "zh": "phenomenal features 是一种物质给观察者的样子；phenomenological features 是经验本身的特征。别搞反。",
+              "en": "Phenomenal features belong to a substance as it appears; phenomenological features belong to experience itself."
+            },
+            {
+              "zh": "脚注 3：主观特征不是“绝不会弄错的东西”，没有语言的动物也有经验。",
+              "en": "Subjective character is not what we cannot be wrong about; animals without language also have it."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Nagel say that functional and causal-role analyses do not capture consciousness?",
+            "zh": "内格尔为什么说功能分析和因果角色分析抓不住意识？"
+          },
+          "options": [
+            {
+              "en": "Because conscious mental states have no causes or effects.",
+              "zh": "因为有意识的心灵状态没有原因，也没有结果。"
+            },
+            {
+              "en": "Because these analyses could be true of robots that behave like people but experience nothing.",
+              "zh": "因为这些分析对行为像人、却什么也体验不到的机器人同样成立。"
+            },
+            {
+              "en": "Because science has shown that robots can never behave like people.",
+              "zh": "因为科学已经证明机器人永远不能像人一样行动。"
+            },
+            {
+              "en": "Because consciousness can be explained as an effect on the minds of observers.",
+              "zh": "因为意识可以解释成观察者心里产生的效果。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 3 页）：这些分析与“没有体验”在逻辑上相容。A 错：内格尔明说心灵状态会引起行为（第 4 页）。C 错：内格尔从没说科学证明了机器人不能像人一样行动；他的论证只需要“行为像人、却毫无体验的机器人”这个设想不自相矛盾。脚注 2 甚至承认，也许真的不可能有这种机器人，只是这一点不能靠分析“经验”的概念得出。D 是科学处理普通物质“样子”的办法，内格尔恰恰说这一招不能用在经验本身上（第 4 页）。",
+            "en": "B (p. 3). Nagel grants that mental states cause behaviour (A), never appeals to anything science has shown about robots (C; footnote 2 only allows that such robots might be impossible), and says the 'effect on observers' move cannot be used for experience itself (D)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-the-bat",
+      "title": {
+        "zh": "内格尔：蝙蝠思想实验",
+        "en": "Nagel: The Bat Thought Experiment"
+      },
+      "slides": "5-7",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "现在进入全文最有名的思想实验（**thought experiment**：不做真实实验，只在脑子里设想一个情境，看它说明什么）。内格尔先假定我们都相信蝙蝠有经验：它们是哺乳动物，我们对它们有经验的把握，不比对老鼠、鸽子、鲸鱼的少（第 5 页）。他不选黄蜂或比目鱼，因为在进化树上走得太远，人们就渐渐不相信那里还有经验了。"
+        },
+        {
+          "type": "text",
+          "zh": "蝙蝠离我们比黄蜂、比目鱼近，可它们的活动方式和感官又和我们差别极大，所以问题显得特别鲜明；内格尔也说，这个问题换别的物种同样能提。他还说：谁要是在密闭的屋子里和一只受惊的蝙蝠待过一会儿，就知道什么叫碰上一种根本陌生的生命形式（第 5 页）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "echolocation (sonar)",
+              "zh": "回声定位（声呐）",
+              "hint": "自己发出声音，再听回声，判断周围东西的远近、大小、形状。"
+            },
+            {
+              "en": "microchiroptera",
+              "zh": "小蝙蝠类",
+              "hint": "大多数蝙蝠属于这一类，主要靠声呐感知世界（第 5 页）。"
+            },
+            {
+              "en": "phylogenetic tree",
+              "zh": "进化树",
+              "hint": "表示物种亲缘关系的树；越往下走，离人越远。"
+            },
+            {
+              "en": "extrapolation from our own case",
+              "zh": "从我们自己的情况外推",
+              "hint": "拿我们用在自己和别人身上的心灵概念，去推想别的生物的内心。"
+            },
+            {
+              "en": "our own case",
+              "zh": "我们自己的情况",
+              "hint": "脚注 5：不只是“我”，而是我们毫无问题地用在自己和其他人身上的那些心灵概念。"
+            },
+            {
+              "en": "schematic conception",
+              "zh": "粗略的概念",
+              "hint": "只知道经验的大类（疼、怕、饿），不知道它们具体是什么样子。"
+            },
+            {
+              "en": "imagination",
+              "zh": "想象",
+              "hint": "内格尔说：想象的材料只能来自我们自己的经验，所以范围有限。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "蝙蝠怎样感知世界（第 5 页）：大多数蝙蝠（准确说是 **microchiroptera**）主要靠声呐，也就是回声定位（**echolocation**）。它们发出快速、细微变化的高频尖叫，再接收物体反射回来的回声；大脑把发出的声音和回声对应起来，就能精确分辨距离、大小、形状、运动和质地，精细程度可以和我们的视觉相比。"
+        },
+        {
+          "type": "text",
+          "zh": "关键在这里：蝙蝠的声呐显然是一种知觉，却和我们任何一种感官的工作方式都不一样，没有理由认为它主观上（**subjectively**：从蝙蝠自己里面体验起来）像我们能体验或想象的任何东西（第 5 页）。于是内格尔问：有没有方法让我们从自己的情况外推（**extrapolate**）到蝙蝠的内心生活？如果没有，还有什么别的方法？"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：蝙蝠论证（第 5–6 页）",
+            "en": "Standard form (P = premise, C = conclusion): the bat argument (pp. 5-6)"
+          },
+          "items": [
+            {
+              "en": "P1: Bats are mammals, so we are confident that they have experience: there is something it is like to be a bat.",
+              "zh": "P1：蝙蝠是哺乳动物，所以我们确信它们有经验：成为一只蝙蝠是有某种样子的。"
+            },
+            {
+              "en": "P2: Most bats perceive the world mainly by sonar, which works unlike any human sense, so there is no reason to think it feels similar to any experience we have or can imagine.",
+              "zh": "P2：大多数蝙蝠主要靠声呐感知世界，它和人类任何感官都不同，所以没有理由认为它像我们能体验或想象的任何东西。"
+            },
+            {
+              "en": "P3: Our imagination can only use our own experience as material, by adding to it, taking parts away or changing it.",
+              "zh": "P3：我们的想象只能拿自己的经验当材料：往上加、从中减，或者改一改。"
+            },
+            {
+              "en": "P4: So imagining bat-like behaviour shows at most how I would feel if I acted like a bat, not \"what it is like for a bat to be a bat\" (p. 6).",
+              "zh": "P4：所以想象蝙蝠式的行为，只告诉我“我”像蝙蝠那样行动会是什么样子，而不是“对一只蝙蝠来说，做蝙蝠是什么样子”（第 6 页）。"
+            },
+            {
+              "en": "P5: Even being gradually changed into a bat would not let my present self imagine the experiences of that future bat-self.",
+              "zh": "P5：就算一点点被变成蝙蝠，现在的我也没法想象那个变成蝙蝠的“未来的我”的经验。"
+            },
+            {
+              "en": "C: So if grasping bat experience depends on extrapolating from our own case, that extrapolation cannot be completed. We can form only a schematic conception of bat experience; its specific subjective character is beyond our power to conceive.",
+              "zh": "C：所以，如果把握蝙蝠的经验要靠从我们自己的情况外推，这个外推就完成不了。对蝙蝠的经验，我们只能有一个粗略的概念；它具体的主观特征，我们没法设想。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "想象自己是一只蝙蝠（第 6 页）",
+            "en": "Imagining that you are a bat (p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "想象你的手臂上长着蹼，傍晚和清晨飞来飞去，用嘴捉虫子。",
+              "en": "Imagine having webbed arms that let you fly about in the early morning and evening, snapping up insects with your mouth."
+            },
+            {
+              "zh": "想象你视力很差，靠反射回来的高频声音信号感知周围。",
+              "en": "Imagine that you see very poorly and sense your surroundings by reflected high-frequency sounds."
+            },
+            {
+              "zh": "想象你白天在阁楼里用脚倒挂着。",
+              "en": "Imagine passing the daytime upside down in an attic, hanging by your feet."
+            },
+            {
+              "zh": "结果：内格尔说，就算能想象这些（其实也想象不了多少），也只告诉我“我”像蝙蝠那样行动会是什么样子。可他要问的是：对蝙蝠来说，做蝙蝠是什么样子。",
+              "en": "Even if I could picture all this, it would only show how it would feel for me to act as a bat acts, and that is not the question."
+            },
+            {
+              "zh": "原因：想象只能动用我自己心灵的资源。往我现有的经验上加东西、减东西，或者又加又减又改，都做不到。",
+              "en": "My imagination can only work with what my own mind supplies: adding to, taking away from or changing my present experience will not do it."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：想象“我像蝙蝠一样行动”和知道“做蝙蝠对蝙蝠来说是什么样子”是两回事。",
+            "en": "Imagining myself behaving like a bat is not the same as knowing \"what it is like for a bat to be a bat\" (p. 6)."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "那就干脆变成蝙蝠？（第 6 页）",
+            "en": "What if I turned into a bat? (p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "如果我在不改变自己基本结构的情况下，外表和行为都像一只黄蜂或蝙蝠，我的经验仍然一点也不像那些动物的经验。",
+              "en": "If I only looked and acted like a wasp or a bat while keeping my own basic make-up, my experiences would be nothing like theirs."
+            },
+            {
+              "zh": "如果设想我拥有蝙蝠的神经生理结构，内格尔怀疑这个设想到底有没有意义。",
+              "en": "It is doubtful that it even makes sense to suppose that I have a bat's neurophysiology."
+            },
+            {
+              "zh": "就算我能一点点被变成蝙蝠，我现在的构造里也没有任何东西，能让我想象那个变形后的“未来的我”会有什么经验。",
+              "en": "Even a step-by-step change into a bat would not help: my present make-up gives me no way to imagine what that future self would experience."
+            },
+            {
+              "zh": "内格尔说，最好的证据会来自蝙蝠自己的经验，可惜我们不知道那是什么样子。",
+              "en": "The best evidence would be the bats' own experiences, if only we knew what they were like."
+            }
+          ],
+          "answer": {
+            "zh": "连“变成蝙蝠”这条路也走不通，因为我们的想象只能从自己现在的构造出发。",
+            "en": "Even transformation does not help, because my imagination starts from my present make-up."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "所以（第 6 页）：如果“成为蝙蝠是什么样子”要靠从我们的情况外推，这个外推就完成不了。我们最多形成一个粗略的概念（**schematic conception**）：根据蝙蝠的结构和行为，安上一般的经验类型，比如把声呐说成一种三维的、朝前方的知觉，相信它们有某种疼、怕、饿和性欲，还有声呐之外更熟悉的知觉。但每一种都有具体的主观特征，我们没法设想。"
+        },
+        {
+          "type": "text",
+          "zh": "内格尔说这不只是蝙蝠的问题（第 6–7 页）。宇宙别处如果有有意识的生命，其中一些恐怕连用我们最一般的经验词汇都描述不了。人和人之间也有这个问题：一个天生又聋又盲的人，他的经验的主观特征我进不去，我的大概他也进不去；但这不妨碍我们都相信对方的经验有这样一种主观特征。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：戴上 VR 头盔玩一款“当一只鸟”的游戏，画面在天上飞，你也觉得很爽。可你感受到的，仍然是你自己眼睛看到的画面、你自己的兴奋，不是鸟的感受。游戏只是让“你”去做鸟的动作。内格尔说的“想象自己是蝙蝠”就是这种情况。",
+          "limit": "VR 至少还在用人类的视觉。蝙蝠的声呐是我们根本没有的感官，连“换一种画面”都谈不上，所以蝙蝠的情况比这个类比更难。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "想象“我像蝙蝠一样行动”不等于知道“做蝙蝠对蝙蝠来说是什么样子”（第 6 页）。",
+              "en": "Imagining myself behaving like a bat is not knowing \"what it is like for a bat to be a bat\" (p. 6)."
+            },
+            {
+              "zh": "内格尔不怀疑蝙蝠有经验；他的论证恰恰从“蝙蝠有经验”出发（第 5 页）。",
+              "en": "Nagel does not doubt that bats have experience; his argument starts from that belief."
+            },
+            {
+              "zh": "蝙蝠不是特例：换别的物种也能提，人和人之间也有（天生又聋又盲的人，第 7 页）。蝙蝠只是最鲜明的例子。",
+              "en": "Bats are not special; the gap also exists with other species and even between people."
+            },
+            {
+              "zh": "粗略的概念不等于什么都不知道：我们知道蝙蝠有知觉、会疼会怕，只是不知道这些经验具体是什么样子。",
+              "en": "A schematic conception is not zero knowledge: we know the general types, not the specific character."
+            },
+            {
+              "zh": "选蝙蝠不是因为“只有蝙蝠有声呐”，而是因为我们确信它有经验，它的感官又和我们差别极大。",
+              "en": "Bats were chosen because we are sure they have experience and their sense is very alien, not because only bats use sonar."
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why does imagining that you have webbed arms, poor eyesight and sonar not tell you what it is like to be a bat?",
+            "zh": "为什么想象自己手臂有蹼、视力很差、靠声呐感知，并不能告诉你做蝙蝠是什么样子？"
+          },
+          "answer": {
+            "en": "Nagel argues that imagination can only use the material of our own experience. When I imagine webbing, sonar and hanging upside down, I only add to or change my own experience, so I learn at most how it would feel for me to act like a bat. The question is what it is like for the bat itself, and that depends on the bat's own point of view. So the extrapolation from our own case cannot be completed.",
+            "zh": "内格尔的理由是：想象的材料只能来自我们自己的经验（第 6 页）。想象蹼、声呐、倒挂，只是在我的经验上加减修改，所以最多知道“我”像蝙蝠一样行动是什么样子。问题却是蝙蝠自己从里面体验起来怎样，这取决于蝙蝠的观点。所以从我们的情况出发的外推完成不了。写答案时一定要点出“对我而言”和“对蝙蝠而言”的区别。"
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why did Nagel choose bats rather than wasps or flounders for his example?",
+            "zh": "内格尔为什么选蝙蝠，而不选黄蜂或比目鱼作例子？"
+          },
+          "options": [
+            {
+              "en": "Because bats are the only animals that use sonar.",
+              "zh": "因为蝙蝠是唯一用声呐的动物。"
+            },
+            {
+              "en": "Because bats probably lack experience, which makes the example clearer.",
+              "zh": "因为蝙蝠大概没有经验，这让例子更清楚。"
+            },
+            {
+              "en": "Because we are confident that bats have experience, yet their main sense is very unlike ours.",
+              "zh": "因为我们确信蝙蝠有经验，而它们的主要感官又和我们的很不一样。"
+            },
+            {
+              "en": "Because scientists know nothing about the neurophysiology of bats.",
+              "zh": "因为科学家对蝙蝠的神经生理一无所知。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 5 页）：蝙蝠是哺乳动物，我们确信它有经验；而它主要靠声呐，感官和我们差别极大，问题就特别鲜明。A 错：内格尔从没说只有蝙蝠用声呐，脚注 8 还提到盲人也能用一种声呐（第 9 页）。B 正好说反了：在进化树上走得太远（黄蜂、比目鱼），人们才会怀疑有没有经验。D 错：内格尔说人类科学家研究蝙蝠的神经生理没有类似的障碍（第 9 页）。",
+            "en": "C (p. 5). Nagel never says only bats use sonar (A), he assumes bats do have experience (B), and he says scientists face no special obstacle in studying bat neurophysiology (D, p. 9)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-facts-beyond-human-concepts",
+      "title": {
+        "zh": "内格尔：超出人类概念的事实与“观点”",
+        "en": "Nagel: Facts Beyond Human Concepts; Points of View"
+      },
+      "slides": "7-9",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "蝙蝠论证留下一个疑问：既然我们根本设想不出蝙蝠的经验是什么样子，凭什么说那里真有“某种样子”？内格尔早就说过，这类事实非常奇怪，有人会怀疑它们是否真实（第 4 页）。第 7–8 页他正面回答：我们可以相信一些事实存在，哪怕根本无法设想它们的确切性质。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "skeptic / skeptical conclusion",
+              "zh": "怀疑论者 / 怀疑论的结论",
+              "hint": "怀疑我们能知道或相信某事的人（这篇读物拼作 skeptic）。这里指“设想不出来，就说没有”的结论。"
+            },
+            {
+              "en": "Martians",
+              "zh": "火星人",
+              "hint": "脚注 7：泛指和我们完全不同的、有智慧的外星生物。"
+            },
+            {
+              "en": "realism about the subjective domain",
+              "zh": "关于主观领域的实在论",
+              "hint": "实在论＝认为某类事实真实存在，不管我们能不能认识它。内格尔对“经验是什么样子”的事实持这种立场。"
+            },
+            {
+              "en": "concept",
+              "zh": "概念",
+              "hint": "我们用来思考、描述事物的想法和词。"
+            },
+            {
+              "en": "transfinite numbers",
+              "zh": "超穷数",
+              "hint": "数学家康托尔发现的、比所有有限数都大的“无穷数”。这里只当例子用，不用懂数学。"
+            },
+            {
+              "en": "humanly inaccessible facts",
+              "zh": "人类无法企及的事实",
+              "hint": "人类心灵结构决定了我们永远理解不了的事实，就算人类永远存在也一样。"
+            },
+            {
+              "en": "cognitive dissonance",
+              "zh": "认知失调",
+              "hint": "心里两个想法打架时，为了舒服硬改掉一个。内格尔说：因为描述不了就否认它真实，是最粗糙的一种。"
+            },
+            {
+              "en": "point of view (a type)",
+              "zh": "观点（一种类型）",
+              "hint": "不是某个人私有的，而是足够相似的生物共享的一类视角。"
+            },
+            {
+              "en": "phenomenological facts",
+              "zh": "现象学事实",
+              "hint": "关于经验是什么样子的事实。"
+            },
+            {
+              "en": "epistemological",
+              "zh": "认识论的",
+              "hint": "关于“我们能不能知道”的。脚注 8 说他的论点不是认识论的。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：关于主观事实的实在论（第 7–8 页）",
+            "en": "Standard form (P = premise, C = conclusion): realism about subjective facts (pp. 7-8)"
+          },
+          "items": [
+            {
+              "en": "P1: Intelligent bats or Martians who tried to conceive what it is like to be us might fail, because of how their own minds are built.",
+              "zh": "P1：有智慧的蝙蝠或火星人如果想设想做人类是什么样子，可能会因为自己心灵的结构而失败。"
+            },
+            {
+              "en": "P2: Even so, they would be mistaken if they decided that being human is not like anything specific. We can be sure of this from our own case, since we know from the inside what being human is like.",
+              "zh": "P2：它们如果因此断定“做人类没有什么确切的样子”，那就错了。我们知道它们错了，因为我们知道做人类是什么样子。"
+            },
+            {
+              "en": "P3: Our situation with bats is much like theirs would be with us.",
+              "zh": "P3：我们对蝙蝠的处境，和它们对我们的处境差不多。"
+            },
+            {
+              "en": "P4: Facts can exist even if no human ever has the concepts to represent them, as transfinite numbers would have existed even if everyone had died before Cantor discovered them.",
+              "zh": "P4：就算没有任何人类拥有表达某些事实的概念，这些事实也可以存在；就像所有人在康托尔发现超穷数之前都死了，超穷数也照样存在。"
+            },
+            {
+              "en": "C: So the claim that bats have experiences as rich and detailed as ours is not meaningless. Realism about the subjective domain means that there are facts humans cannot state or understand.",
+              "zh": "C：所以不能把“蝙蝠有和我们一样丰富细致的经验”当成无意义的话。关于主观领域的实在论意味着：有些事实是人类说不出、也理解不了的。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "智能蝙蝠和火星人（第 7 页）",
+            "en": "Intelligent bats and Martians (p. 7)"
+          },
+          "steps": [
+            {
+              "zh": "把位置倒过来：设想有智慧的蝙蝠或火星人想弄清做人类是什么样子。",
+              "en": "Turn the case around: imagine intelligent bats or Martians trying to work out what being human is like."
+            },
+            {
+              "zh": "它们心灵的结构可能让它们根本做不到。",
+              "en": "The structure of their minds might make this impossible."
+            },
+            {
+              "zh": "如果它们因此断定：做人类没有什么确切的样子，只能给人类安上几种一般的心灵状态（比如知觉、食欲；也许它们也有这些概念，也许没有），我们知道它们错了。",
+              "en": "If they concluded that only a few general types of mental state can be given to us, we know they would be wrong."
+            },
+            {
+              "zh": "为什么知道？因为我们知道做人类是什么样子：变化多、很复杂，我们也没有足够的词汇充分描述它，但它的主观特征非常具体，有些方面只有像我们这样的生物才能理解。",
+              "en": "We know they would be wrong because we know our own experience from the inside: varied and complex, hard to put into words, but highly specific."
+            },
+            {
+              "zh": "我们对蝙蝠的处境和它们对我们的一样。所以我们设想不出蝙蝠的经验，也不能说那里没有具体、丰富的经验。",
+              "en": "We stand towards bats as they would stand towards us, so our failure to conceive bat experience does not show that nothing specific is there."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：设想不出来，不等于不存在。我们永远没法用自己的语言详细描述蝙蝠或火星人的经验，但这不能让我们把“它们有和我们一样丰富的经验”当成无意义的话。",
+            "en": "Being unable to conceive a fact does not show that the fact is not there."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "内格尔还说（第 7–8 页）：如果有人能发展出概念和理论，让我们想清楚这些事，那当然好；但这种理解也许因为我们本性的限制，永远得不到。即便如此，只因为我们永远描述或理解不了某样东西，就否认它真实、否认谈论它有意义，这是最粗糙的一种认知失调（**cognitive dissonance**）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "黑死病与超穷数（第 8 页）",
+            "en": "The Black Death and transfinite numbers (p. 8)"
+          },
+          "steps": [
+            {
+              "zh": "数学家康托尔（**Cantor**）发现了超穷数（**transfinite numbers**）。",
+              "en": "The mathematician Cantor discovered transfinite numbers."
+            },
+            {
+              "zh": "设想在他发现之前，所有人都死于黑死病，从来没有人有过这个概念。",
+              "en": "Suppose the Black Death had killed every human before Cantor made his discovery."
+            },
+            {
+              "zh": "内格尔说：超穷数照样存在。所以人类可以相信有些事实，人类永远不会有表达它们的概念；人类既然有限，怀疑这一点反而是傻的。",
+              "en": "The transfinite numbers would still have existed, so some facts may never be captured by human concepts; since humans are finite, doubting this would be silly."
+            },
+            {
+              "zh": "他走得更远：也许有些事实，人类就算永远存在也无法表达或理解，因为我们的结构不允许我们使用那一类概念。",
+              "en": "There may even be facts that humans could never represent, even if the species lasted forever, because our structure does not allow the right concepts."
+            }
+          ],
+          "answer": {
+            "zh": "所以思考“做蝙蝠是什么样子”似乎会把我们带到这个结论：有些事实无法用任何人类语言里的命题表达；我们可以被迫承认它们存在，却说不出、也理解不了它们（第 8 页）。",
+            "en": "Thinking about bats seems to lead to the conclusion that some facts cannot be stated in any human language, though we can be forced to admit that they exist."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "这和身心问题有什么关系？内格尔说（第 8 页）：不管这些事实的地位如何，关于“做人、做蝙蝠、做火星人是什么样子”的事实，似乎都体现了一个特定的观点（**point of view**）。这一句是后面整个反还原论证的地基。"
+        },
+        {
+          "type": "text",
+          "zh": "但别误会：他说的不是经验的所谓私密性（**privacy**：只有本人能接触）。这个观点不是只有一个人能进入的，而是一种类型（**type**）；人常常可以采取别人的观点，所以理解这类事实并不限于自己的情况（第 8–9 页）。反过来，就算是我们自己的经验，如果从别的观点去看，也一样难以正确理解（第 9 页）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "现象学事实：一个意义上客观，另一个意义上主观（第 9 页）",
+            "en": "Phenomenological facts: objective in one sense, subjective in another (p. 9)"
+          },
+          "items": [
+            {
+              "en": "Nagel says that facts about experience are objective in one sense: one person can know or say what another person's experience is like.",
+              "zh": "内格尔说：关于经验的事实在一个意义上是客观的：一个人能知道、也能说出另一个人的经验是什么样子。"
+            },
+            {
+              "en": "They are subjective in another sense: this is possible only for someone similar enough to take up the other's point of view.",
+              "zh": "在另一个意义上又是主观的：只有和对方足够相似、能采取对方观点的人才做得到。"
+            },
+            {
+              "en": "The more different another creature is from us, the less we can understand what its experience is like.",
+              "zh": "对方和我们差别越大，我们能理解的就越少。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：同一个宿舍的同学都玩过同一款游戏，你说“打最后那个 boss 时手心出汗的那种紧张”，大家一听就懂；没玩过的人看攻略，最多懂一半。这种“懂”不是你一个人私有的，而是玩过的这一类人共享的。内格尔说观点是一种类型，就是这个意思。",
+          "limit": "游戏没玩过可以去玩，观点就能补上；蝙蝠的观点我们没法“去玩”，因为我们的身体和心灵结构不允许。"
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "脚注 8（第 9 页）很容易被误读。内格尔承认想象力很灵活：盲人能用一种声呐（嘴里发出咔嗒声、敲手杖）探测附近的东西，知道那是什么感觉的人，也许能大致想象蝙蝠更精细的声呐；我们和别人、别的物种的距离落在一条连续的线上。但他强调：我的论点不是“我们不能知道做蝙蝠是什么样子”，我不是在提这个认识论（**epistemological**）问题；我的论点是，哪怕只是形成一个关于它的概念，也必须采取蝙蝠的观点。采取得粗略，概念也就粗略。",
+          "en": "Footnote 8 (p. 9): Nagel says he is not raising the epistemological question of whether we can know what bat experience is like; his point is that even forming a conception of it requires adopting the bat's point of view."
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Student objection: if we cannot conceive what bat experience is like, how can Nagel know that it is as rich and specific as ours?",
+            "zh": "学生的反驳：既然我们设想不出蝙蝠的经验是什么样子，内格尔凭什么知道它和我们的经验一样丰富、具体？"
+          },
+          "answer": {
+            "en": "Nagel relies on our own case. We know from the inside that our experience is highly specific, so Martians who could not conceive it would be wrong to deny it. In the same way, our failure to conceive bat experience does not show that it is vague or empty. A critic can reply that we know only our own case directly, and Nagel admits that it is hard to say what counts as evidence of experience (p. 3). So the claim about richness is a reasonable belief, not a proof.",
+            "zh": "内格尔靠的是我们自己的情况：我们从里面知道自己的经验非常具体，所以设想不出它的火星人否认它就错了；同理，我们设想不出蝙蝠的经验，也不能说明它空洞、模糊。批评者可以回应：我们只直接知道自己的情况，而内格尔自己也承认，很难说什么才算经验的证据（第 3 页）。所以“和我们一样丰富”是一个合理的信念，不是证明。小论文里这样一正一反，最容易拿分。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“主观”不等于“私密”，也不等于“随便怎么想”：观点是一种类型，足够相似的生物可以共享（第 8 页）。",
+              "en": "'Subjective' does not mean private or mere opinion: a point of view is a type that similar beings share."
+            },
+            {
+              "zh": "内格尔对主观事实是实在论者：他认为这些事实真实存在，哪怕人类永远说不出来（第 8 页）。",
+              "en": "Nagel is a realist about subjective facts: they are real even if humans can never state them."
+            },
+            {
+              "zh": "脚注 8：论点不是“我们不能知道”（认识论），而是“连形成概念都要采取对方的观点”。",
+              "en": "Footnote 8: the point is about forming a conception, not about knowledge."
+            },
+            {
+              "zh": "第 9 页的“客观”有特别的意思：一个人能说出另一个人的经验是什么样子。别和第 10–11 页“越不依赖特定观点越客观”混在一起。",
+              "en": "'Objective' on p. 9 (one person can describe another's experience) differs from 'objective' on pp. 10-11 (less tied to any viewpoint)."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does Nagel mean when he says that a point of view is a 'type'?",
+            "zh": "内格尔说观点是一种“类型”，是什么意思？"
+          },
+          "options": [
+            {
+              "en": "Only one individual can ever have access to it.",
+              "zh": "永远只有一个人能进入它。"
+            },
+            {
+              "en": "Beings who are similar enough can share it, so we are not confined to understanding our own case.",
+              "zh": "足够相似的生物可以共享它，所以理解不限于自己的情况。"
+            },
+            {
+              "en": "It is a type of physical state in the brain.",
+              "zh": "它是大脑里的一种物理状态。"
+            },
+            {
+              "en": "It is an opinion that may be true for me but false for you.",
+              "zh": "它是一种对我为真、对你可能为假的意见。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 8–9 页）：观点不是只有一个人能进入的，而是一类相似的生物共享的，人常常能采取别人的观点。A 正是内格尔说他没有在讲的“私密性”。C 把观点说成了大脑状态，内格尔没有这么说。D 把“主观”误解成“对我为真”；内格尔是关于主观事实的实在论者。",
+            "en": "B (pp. 8-9). A is the privacy Nagel says he is not talking about; C and D misread 'subjective'."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-why-reduction-fails",
+      "title": {
+        "zh": "内格尔：为什么还原对经验行不通",
+        "en": "Nagel: Why Reduction Fails for Experience"
+      },
+      "slides": "9-12",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 9 页，内格尔把前面的结论接到身心问题（**mind-body problem**：心灵和身体是什么关系）上。如果关于经验的事实只能从一个观点去把握，那么经验的真实特征怎么会体现在生物的物理运作里，就成了一个谜。物理事实是客观（**objective**：不依赖某个特定观点）事实的典型：可以从很多观点、由感官不同的个体去观察和理解。人类科学家研究蝙蝠的神经生理（神经系统怎样工作）没有类似的想象障碍，智能蝙蝠或火星人对人脑的了解甚至可能超过我们（第 9 页）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "objective / subjective",
+              "zh": "客观 / 主观",
+              "hint": "这一节的用法：越少依赖个人或物种的特定观点，理解就越客观；主观＝只有采取某一类观点才能完全把握。"
+            },
+            {
+              "en": "objectivity as a direction",
+              "zh": "客观性是一个方向",
+              "hint": "理解可以朝“更客观”走，但不一定有一个“完全客观”的终点（第 10 页）。"
+            },
+            {
+              "en": "external to the point of view",
+              "zh": "外在于观点",
+              "hint": "东西能从这个观点被观察到，但它本身不属于这个观点，比如闪电。"
+            },
+            {
+              "en": "intrinsic nature",
+              "zh": "内在本性",
+              "hint": "东西本身是什么，不看它给谁留下什么印象。"
+            },
+            {
+              "en": "phenomenal world",
+              "zh": "现象世界",
+              "hint": "世界在我们感官里呈现出来的样子。"
+            },
+            {
+              "en": "appearance / reality",
+              "zh": "表象 / 实在",
+              "hint": "东西看起来的样子 / 它实际上是什么。第 7 周罗素讲过这对词。"
+            },
+            {
+              "en": "psychophysical reduction",
+              "zh": "心物还原",
+              "hint": "把心灵现象还原成物理现象。"
+            },
+            {
+              "en": "neobehaviorism",
+              "zh": "新行为主义",
+              "hint": "当时心理哲学里的一些思路：用一个客观的心灵概念代替真正的心灵，好让没有东西剩下来不能还原（第 12 页）。"
+            },
+            {
+              "en": "conceptual relativism",
+              "zh": "概念相对主义",
+              "hint": "认为“主观／客观”的区分本身只能在更大的人类观点里画出。内格尔不接受，但说不必驳倒它，论证照样成立（脚注 9，第 10 页）。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "火星科学家与闪电（第 10 页）",
+            "en": "The Martian scientist and lightning (p. 10)"
+          },
+          "steps": [
+            {
+              "zh": "设想一个火星科学家，完全不懂视觉知觉。",
+              "en": "Imagine a Martian scientist who knows nothing about how seeing works."
+            },
+            {
+              "zh": "他仍然可以把彩虹、闪电、云当作物理现象来理解。",
+              "en": "He could still understand rainbows, lightning and clouds as physical phenomena."
+            },
+            {
+              "zh": "可他永远理解不了人类的“彩虹、闪电、云”这些概念，也不懂它们在我们现象世界里的位置。",
+              "en": "He could never understand our human concepts of them or their place in our phenomenal world."
+            },
+            {
+              "zh": "他为什么还能把握它们的客观本性？因为这些概念虽然连着一个特定的观点和视觉现象，被把握的东西本身却不是：它们能从这个观点被观察到，但外在于这个观点，所以也能从别的观点去理解。",
+              "en": "He can grasp their objective nature because these things can be observed from our visual point of view yet lie outside it, so they can be understood from other points of view as well."
+            },
+            {
+              "zh": "闪电的客观特征并没有被它看起来的样子说尽：它有比视觉样子更客观的一面，没有视觉的火星人也能研究。",
+              "en": "Lightning has a more objective character than its visual appearance shows, and a Martian without vision can investigate it."
+            }
+          ],
+          "answer": {
+            "zh": "内格尔明说，这本身不是反对还原的论证（第 10 页）：光是概念带着观点这一点，还不足以反对还原。这个例子是一个对照，用来显示经验和闪电哪里不一样。",
+            "en": "Nagel stresses that the mere fact that our concepts are tied to a point of view does not, on its own, count against reduction; the lightning case is a contrast that shows how experience is different."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "内格尔顺便说明“客观”（第 10 页）：从主观描述走向客观描述时，他不承诺有一个终点，也就是东西完全客观的内在本性（**intrinsic nature**），我们也许到得了，也许到不了。更准确的说法是：客观性是理解可以前进的一个方向（**a direction**）。理解闪电这样的现象时，尽量远离严格的人类视角是正当的。"
+        },
+        {
+          "type": "text",
+          "zh": "经验就不同了（第 10–11 页）。经验和某个观点的联系紧密得多：离开主体把握它的那个观点，很难明白“经验的客观特征”是什么意思。内格尔反问：如果去掉蝙蝠的观点，“做蝙蝠是什么样子”还能剩下什么？如果经验没有一个能从很多观点把握的客观本性，研究我大脑的火星人，怎么可能是在换个观点观察我的心灵过程，就像他换个观点观察闪电那样？人类的生理学家也一样。"
+        },
+        {
+          "type": "text",
+          "zh": "脚注 10（第 11 页）补了一个例子：问题不只是我看《蒙娜丽莎》（**Mona Lisa**）时，视觉经验有某种性质，而看我大脑的人找不到它的痕迹。就算他真在我脑子里看到一幅小小的《蒙娜丽莎》图像，他也没有理由把这幅图像等同于我的经验。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "声音其实是波：成功还原的“种子”（第 11–12 页）",
+            "en": "Sound turns out to be a wave: the seed of the objection (pp. 11-12)"
+          },
+          "steps": [
+            {
+              "zh": "一般的还原怎么走（第 11 页）：减少对个人或物种特定观点的依赖，不用东西给我们感官的印象来描述它，而用它更一般的效果、用人类感官以外的手段能测到的性质来描述。越不依赖人类视角，描述就越客观。",
+              "en": "Ordinary reduction moves away from our personal and our species' particular point of view: we describe a thing by its general effects and by properties that can be picked up by means other than the human senses."
+            },
+            {
+              "zh": "例子：发现声音其实是空气或别的介质里的一种波。我们离开一个观点（听觉的观点），换上另一个。",
+              "en": "When we learn that sound is really a wave travelling through air or other media, we drop one point of view and adopt another."
+            },
+            {
+              "zh": "被留下的那个听觉的、人类或动物的观点，本身并没有被还原。",
+              "en": "The auditory, human or animal point of view that we leave behind is not itself reduced."
+            },
+            {
+              "zh": "差别很大的物种都能用客观的方式理解同一个物理事件，不需要懂对方感官里的现象形式。它们能指向同一个实在，条件恰恰是：各自的特殊观点不属于那个共同的实在。",
+              "en": "Very different species can understand the same physical events objectively without grasping each other's sensory forms; this works only because each species' own viewpoint is left out of the shared reality they both grasp."
+            },
+            {
+              "zh": "所以还原能成功，只因为物种特有的观点被排除在“要还原的东西”之外。",
+              "en": "So the reduction works only by leaving each species' own point of view out of what gets reduced."
+            }
+          ],
+          "answer": {
+            "zh": "内格尔说，反对还原经验的种子，其实已经藏在这些成功的还原里：每一次成功，都把一个观点留下没有还原。",
+            "en": "The seeds of the objection are already in successful reductions: each one leaves a point of view unreduced."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：“观点”论证（第 4、9–12 页）",
+            "en": "Standard form (P = premise, C = conclusion): the point-of-view argument (pp. 4, 9-12)"
+          },
+          "items": [
+            {
+              "en": "P1: Facts about what an experience is like can be fully understood only from a particular type of point of view.",
+              "zh": "P1：关于经验是什么样子的事实，只有从某一类观点才能完全理解。"
+            },
+            {
+              "en": "P2: Physical facts are the model of objective facts: beings with very different senses can observe and understand them from many points of view.",
+              "zh": "P2：物理事实是客观事实的典型：感官很不同的生物，也能从很多观点去观察和理解它们。"
+            },
+            {
+              "en": "P3: Successful reductions, such as lightning and sound, become more objective by leaving our species' point of view behind. This works because the thing studied is external to that point of view, and the point of view left behind is not itself reduced.",
+              "zh": "P3：成功的还原（闪电、声音）靠离开我们物种的观点变得更客观。这行得通，是因为被研究的东西外在于这个观点，而被留下的观点本身并没有被还原。"
+            },
+            {
+              "en": "P4: Experience is not external to its point of view: the point of view is the essence of the inner world, not just a view of it.",
+              "zh": "P4：经验不外在于它的观点：观点就是内在世界的本质，不只是看它的一个角度。"
+            },
+            {
+              "en": "P5: So for experience, every step towards greater objectivity takes us farther away from its real nature.",
+              "zh": "P5：所以对经验来说，每往客观走一步，就离它的真实本性更远一步。"
+            },
+            {
+              "en": "C: So the usual model of reduction, from subjective appearance to objective reality, cannot be applied to experience, and no available idea shows how a physical theory could explain it.",
+              "zh": "C：所以通常“从主观表象走向客观实在”的还原模式用不到经验上；目前也没有任何想法能说明物理理论怎样解释它。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "为什么外部世界可以这样还原（第 11 页）？因为我们想外部世界时用的概念，虽然最初从带着知觉器官的观点出发，却指向概念以外的东西，所以我们可以换一个观点，仍然在想同一个东西。经验本身不符合这个模式：在这里，“从表象走向实在”的想法似乎毫无意义。离开人类观点的特殊性、去找那些想象不出做人是什么样子的生物也能懂的描述，不太可能让我们更接近人类经验的真实本性。"
+        },
+        {
+          "type": "text",
+          "zh": "内格尔的结论（第 12 页）：研究外部世界时，把这个观点放到一边是对的；但不能永远不管它，因为它是内在世界的本质。当时心理哲学里大部分的新行为主义（**neobehaviorism**），都是想用一个客观的心灵概念代替真东西，好让没有东西剩下来不能被还原。如果承认物理的心灵理论必须说明经验的主观特征，就得承认：目前没有任何概念能给我们一点线索。"
+        },
+        {
+          "type": "analogy",
+          "zh": "用打游戏打个比方：上帝视角（俯视整张地图）能看到所有单位的位置和血量，镜头拉得越高，看到的越全面、越客观，谁来看都一样。但“第一人称里那个角色此刻看到的画面”，在上帝视角里是找不到的；镜头拉得越高，离那个画面越远。内格尔说的就是：对经验来说，越客观，离它的真实本性越远。",
+          "limit": "游戏里的第一人称画面也是电脑算出来的，可以随时切回去。内格尔的问题是：从物理描述出发，我们不知道怎样“切回”经验，至少现在连该怎么想都不知道。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'All our concepts come from a human point of view, yet lightning was successfully reduced to electrical discharge. So the point-of-view problem cannot block the reduction of experience either.' How does Nagel answer?",
+            "zh": "反驳：“我们所有的概念都来自人类的观点，可闪电还是成功还原成了放电。所以‘观点’问题也挡不住经验的还原。”内格尔怎么回答？"
+          },
+          "answer": {
+            "en": "Nagel agrees that the fact that our concepts come from a point of view does not, on its own, tell against reduction (p. 10). Lightning can be observed from our visual point of view but lies outside it, so a Martian without vision can study its more objective nature. Experience is different: it is not external to its point of view, and if we take away the bat's point of view, nothing of the bat's experience remains. So the move to a more objective description, which works for lightning, takes us farther away from experience.",
+            "zh": "内格尔同意：概念带着观点，这本身不构成反对还原的论证（第 10 页）。闪电能从视觉观点被观察到，却外在于这个观点，所以没有视觉的火星人也能研究它更客观的本性。经验不同：它不外在于自己的观点，去掉蝙蝠的观点，“做蝙蝠是什么样子”就什么也不剩。所以对闪电有效的“走向更客观”，对经验只会越走越远。答题关键词：external to the point of view。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "火星人与闪电的例子不是内格尔反对还原的论证，而是一个对照（第 10 页）。",
+              "en": "The Martian and lightning case is a contrast, not Nagel's argument against reduction."
+            },
+            {
+              "zh": "内格尔没有说科学对闪电、声音的还原是错的；他说这些还原能成功，正是因为把观点排除在外。",
+              "en": "Nagel does not reject the reductions of lightning and sound; they succeed because they leave the point of view out."
+            },
+            {
+              "zh": "“客观性是一个方向”：内格尔不承诺存在一个完全客观的终点（第 10 页）。",
+              "en": "Objectivity is a direction; Nagel does not commit to a completely objective end point."
+            },
+            {
+              "zh": "内格尔不接受概念相对主义，但他的论证不需要先驳倒它（脚注 9）。",
+              "en": "Nagel rejects conceptual relativism but does not need to refute it (footnote 9)."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Nagel, why does the usual move from appearance to reality fail for experience itself?",
+            "zh": "根据内格尔，通常“从表象走向实在”的做法，为什么对经验本身行不通？"
+          },
+          "options": [
+            {
+              "en": "Because experience has no physical causes at all.",
+              "zh": "因为经验根本没有物理原因。"
+            },
+            {
+              "en": "Because scientists have not yet studied the brain carefully enough.",
+              "zh": "因为科学家对大脑研究得还不够仔细。"
+            },
+            {
+              "en": "Because experience is not external to its point of view, so leaving the point of view behind leaves the experience behind too.",
+              "zh": "因为经验不外在于它的观点，离开观点也就离开了经验本身。"
+            },
+            {
+              "en": "Because lightning and sound have never really been reduced.",
+              "zh": "因为闪电和声音从来没有真正被还原过。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 10–12 页）。A 错：内格尔从没说经验没有物理原因，他甚至认为有一些理由相信感觉是物理过程（第 15 页）。B 错：问题不在研究得不够，而在还原的模式本身；人类研究蝙蝠神经生理也没有障碍（第 9 页）。D 错：内格尔承认闪电、声音的还原是成功的，只是这些成功都把观点留下没有还原。",
+            "en": "C (pp. 10-12). Nagel never denies that experience has physical causes (A), the problem is not lack of research (B), and he accepts that lightning and sound were reduced (D)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-physicalism-not-yet-understood",
+      "title": {
+        "zh": "内格尔：物理主义：可能为真，却无法理解",
+        "en": "Nagel: Physicalism: Possibly True, Not Yet Understood"
+      },
+      "slides": "12-15",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "读到这里，你可能以为内格尔要说物理主义（**physicalism**：心灵状态就是身体的物理状态）是错的。不是。他问：该得出什么教训（第 13 页）？他说，断定物理主义一定是错的，这本身是个错误：那些建立在错误的客观心灵分析上的物理主义假说失败了，什么也证明不了。更准确的说法是：物理主义是一个我们理解不了的立场，因为我们现在对它怎么可能为真，没有任何概念。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "identity claim / theoretical identification",
+              "zh": "同一陈述 / 理论同一",
+              "hint": "“X 就是 Y”这种说法。科学里的例子：水就是 H2O。"
+            },
+            {
+              "en": "refer / reference",
+              "zh": "指称",
+              "hint": "一个词“指向”世界上的某个东西。"
+            },
+            {
+              "en": "referential paths",
+              "zh": "指称路径",
+              "hint": "两个词各自怎样指到东西上。同一陈述为真时，两条路径汇到同一个东西上。"
+            },
+            {
+              "en": "pre-Socratic philosopher",
+              "zh": "前苏格拉底哲学家",
+              "hint": "古希腊苏格拉底之前的哲学家，当然没有现代物理学。"
+            },
+            {
+              "en": "metamorphosis",
+              "zh": "（昆虫的）变态",
+              "hint": "毛毛虫变成蝴蝶这种身体形态的大变化。"
+            },
+            {
+              "en": "psychophysical theory",
+              "zh": "心物理论",
+              "hint": "把心灵事件和物理事件系统地联系起来的一般理论。"
+            },
+            {
+              "en": "intentional mental events / sensations",
+              "zh": "意向性的心灵事件 / 感觉",
+              "hint": "前者是“关于什么”的心灵事件，如相信、想要；后者是疼、看到红色这样的感受。"
+            },
+            {
+              "en": "problem of other minds",
+              "zh": "他心问题",
+              "hint": "我怎么知道、怎么理解除我以外还有别的有经验的主体？"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：物理主义没被驳倒，但现在无法理解（第 13–14 页）",
+            "en": "Standard form (P = premise, C = conclusion): physicalism is not refuted, but not yet intelligible (pp. 13-14)"
+          },
+          "items": [
+            {
+              "en": "P1: The failure of physicalist theories that rest on a faulty objective analysis of the mind proves nothing about physicalism itself.",
+              "zh": "P1：建立在错误的客观心灵分析上的物理主义理论失败了，这对物理主义本身什么也证明不了。"
+            },
+            {
+              "en": "P2: To understand an identity claim 'X is Y', we need more than the word 'is': we need a background that shows how both terms refer and how they could refer to the same thing.",
+              "zh": "P2：要理解“X 就是 Y”，光懂 is（就是）这个词不够；还需要一个背景，说明两个词各自怎样指称，以及它们怎么可能指向同一个东西。"
+            },
+            {
+              "en": "P3: When the two terms are very different and no such background exists, the identity sounds mystical, like the claim that matter is energy made by a pre-Socratic philosopher.",
+              "zh": "P3：两个词差别很大、又没有这种背景时，同一陈述就显得神秘，就像一位前苏格拉底哲学家说“物质就是能量”。"
+            },
+            {
+              "en": "P4: For mental and physical terms we have no such background: the usual model of scientific identification either brings back separate subjective events or misdescribes what mental words refer to.",
+              "zh": "P4：心灵词和物理词之间没有这种背景：常见的科学同一模式，要么让单独的主观事件又冒出来，要么把心灵词怎样指称讲错。"
+            },
+            {
+              "en": "C: So physicalism may be true, but at present we cannot understand it, because we have no idea how it could be true.",
+              "zh": "C：所以物理主义也许为真，但我们现在理解不了它，因为我们对它怎么可能为真毫无概念。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: the meaning of physicalism is perfectly clear. Mental states are just bodily states, and we only lack the details of which ones; what could be clearer than the word 'is'? How does Nagel reply?",
+            "zh": "反驳：“物理主义的意思再清楚不过：心灵状态就是身体的状态，我们只是还不知道是哪些。还有什么比 is（就是）这个词更清楚的？”内格尔怎么回应？"
+          },
+          "answer": {
+            "en": "Nagel says that the clarity of 'is' is deceptive. When we understand 'X is Y', we know how each term refers and roughly how the two paths of reference meet in one thing, and this comes from a theoretical background, not from the word 'is'. For mental and physical terms nobody yet has that background, so physicalism today is like the claim that matter is energy would have been in the mouth of a pre-Socratic philosopher, long before anyone had the physics to make sense of it. Knowing what 'is' means is not the same as understanding how the identity could be true.",
+            "zh": "内格尔说：is 的清楚是一种假象（第 14 页）。我们理解“X 就是 Y”，是因为知道两个词各自怎样指称，也大致知道两条指称路径怎样汇到同一个东西上；这来自理论背景，不来自 is 这个词。心和物之间现在谁都没有这样的背景，所以今天的物理主义，就像“物质就是能量”出自一位前苏格拉底哲学家之口：不是哪个人没学过物理，而是当时根本还没有那套理论。懂 is 的意思，不等于懂这个同一怎么可能为真。"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "“物质就是能量”与前苏格拉底哲学家（第 14 页）",
+            "en": "'Matter is energy' and the pre-Socratic philosopher (p. 14)"
+          },
+          "steps": [
+            {
+              "zh": "我们被告知“X 就是 Y”时，通常知道它怎样为真；但这靠的是概念或理论背景，不是 is 这个词本身。",
+              "en": "Normally, when someone says that X is Y, we see how the claim could be true only because we have some theory in the background, not because of the word 'is'."
+            },
+            {
+              "zh": "两个词差别很大时，我们可能连两条指称路径怎样汇合都毫无头绪，需要有人提供一个理论框架；没有它，这个同一就带着一股神秘色彩。",
+              "en": "When the two terms are very different, we may have no idea how the two paths of reference could meet, and without a theoretical framework the identity seems mystical."
+            },
+            {
+              "zh": "所以通俗科普常有一种“魔法味”：人们很小就被告知，所有物质其实都是能量。他们懂 is 的意思，但大多数人从来想不出是什么让这句话为真，因为缺少理论背景。",
+              "en": "This is why popular science can feel like magic: children are told that all matter is really energy, yet most never grasp what makes this true, because they lack the theory."
+            },
+            {
+              "zh": "再想象这句话出自一位前苏格拉底哲学家（**pre-Socratic philosopher**）之口：他根本不可能有那套理论。",
+              "en": "Now imagine the same claim made by a pre-Socratic philosopher, who could not have had the theory at all."
+            },
+            {
+              "zh": "内格尔说：今天物理主义的地位，就像这句话出自前苏格拉底哲学家之口：我们连它怎么可能为真的概念都还没开始有。",
+              "en": "Nagel says physicalism today is in that position: we do not even have the beginnings of an idea of how it might be true."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：知道一个同一陈述，甚至相信它，不等于理解它。物理主义目前就卡在这里。",
+            "en": "Knowing, or even believing, an identity claim is not the same as understanding it."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "为什么科学里常见的理论同一（**theoretical identification**）帮不上忙（第 14 页）？内格尔说，如果按通常的模式去解释心灵词怎样指向物理事件，只有两种结果：要么又冒出单独的主观事件，充当我们指到物理事件的中介；要么得出一个错误的说法，比如因果行为主义（**causal behaviorism**：认为“疼”就是指引起喊疼、躲开等行为的那个东西）的说法。"
+        },
+        {
+          "type": "text",
+          "zh": "用大白话说（这是本站对第 14 页那句话的解释，闪电的例子是本站加的）：“闪电就是放电”，是先用闪电的样子（我们看到的那道光，是它在我们身上产生的效果）指到那个东西，再发现它其实是放电。换成“疼就是某个大脑状态”：如果也用“它给我们的感觉”去指，那个感觉本身就是一个主观事件，我们想还原的东西又回来了；如果改用“引起某些行为的东西”去指，又把“疼”的意思讲错了。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "保险箱里的毛毛虫（第 15 页）",
+            "en": "The caterpillar in the safe (p. 15)"
+          },
+          "steps": [
+            {
+              "zh": "内格尔说，奇怪的是：对一个我们并不真正理解的东西，我们也可能有它为真的证据（第 14–15 页）。",
+              "en": "Oddly, we can have evidence that something is true without really understanding it."
+            },
+            {
+              "zh": "设想一个不懂昆虫变态的人，把一条毛毛虫锁进一个无菌的保险箱。",
+              "en": "Someone who knows nothing about insect metamorphosis locks a caterpillar in a sterile safe."
+            },
+            {
+              "zh": "几个星期后打开保险箱，里面是一只蝴蝶。",
+              "en": "Weeks later the safe is opened and there is a butterfly inside."
+            },
+            {
+              "zh": "如果他知道保险箱一直关着，他就有理由相信：这只蝴蝶就是、或曾经是那条毛毛虫。可他完全不知道这在什么意义上成立。",
+              "en": "If he knows the safe stayed closed, he has good grounds to think that the butterfly is, or used to be, the caterpillar, though he has no idea in what sense."
+            },
+            {
+              "zh": "甚至还有一种可能：毛毛虫体内有一只很小的带翅膀的寄生虫，把它吃掉以后长成了这只蝴蝶。",
+              "en": "One possibility is that a tiny winged parasite inside the caterpillar ate it and grew into the butterfly."
+            }
+          ],
+          "answer": {
+            "zh": "内格尔说，我们对物理主义可能就处在这种位置：有理由相信它，却不懂它怎么可能为真。",
+            "en": "We may be in this position with physicalism: we have some reason to believe it without understanding how it could be true."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "内格尔接着提到戴维森（**Donald Davidson**，第 15 页），作为我们可能真有物理主义证据的一个例子（毛毛虫只是说明“有证据却不理解”是可能的，本身不是证据）。戴维森论证：心灵事件如果有物理的原因和结果，就一定有物理的描述；即使我们没有、也不可能有一般的心物理论，我们也有理由相信这一点。他的论证针对意向性的心灵事件（相信、想要），但内格尔认为，我们也有一些理由相信感觉（**sensations**）是物理过程，只是没法理解怎么会这样。脚注 12：内格尔说他不懂戴维森反对心物定律的那个论证。"
+        },
+        {
+          "type": "text",
+          "zh": "戴维森的立场是：某些物理事件具有不可还原的心灵性质。内格尔说，也许某种这样描述的观点是对的，但我们现在能形成的概念里，没有一个对应它（第 15 页）。他还点出一个几乎没人研究的基本问题：说经验有客观特征，到底有没有意义？也就是问“我的经验实际上是什么样”，而不只是“它对我显得怎样”。不先懂这一点，就无法真正理解“经验的本性能被物理描述抓住”。脚注 14：这也是他心问题（**problem of other minds**）的核心。"
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "选读：脚注 11（第 12–13 页）",
+            "en": "Optional: footnote 11 (pp. 12-13)"
+          },
+          "style": "number",
+          "items": [
+            {
+              "zh": "如果心灵过程就是物理过程，那么某个物理状态就必然（**necessarily**）有某种感觉，而不只是碰巧引起一种感觉。这种关系不是偶然的（**contingent**：本来也可以不这样），不像原因和与它分开的结果那样。",
+              "en": "If mental processes are physical, a physical state would necessarily feel a certain way; the link would not be contingent like a cause and its separate effect."
+            },
+            {
+              "zh": "克里普克（**Saul Kripke**）论证：因果行为主义之类的分析失败，因为它们把“疼”当成只是碰巧指向疼的名字，漏掉了经验的主观特征，而正是这个特征让一个经验必然是它那种经验。内格尔说自己的观点和他很接近。",
+              "en": "Kripke argues that such analyses treat the word 'pain' as if it only happened to name pains, and so leave out the subjective character that makes an experience the experience it is."
+            },
+            {
+              "zh": "难题：如果心脑关系是必然的，为什么看起来是偶然的？内格尔说，想象有三种方式：知觉式（**perceptual**：进入一种像在感知那个东西的状态）、同感式（**sympathetic**：进入一种像那个心灵状态本身的状态，只能用来想象心灵状态）、符号式（**symbolic**，他不解释）。",
+              "en": "Why does a necessary link look contingent? We imagine things perceptually, sympathetically (only for mental states) or symbolically."
+            },
+            {
+              "zh": "想象“有这个心灵状态却没有那个大脑状态”时，我们同感式地想象心灵状态，同时知觉式地想象大脑状态不存在。这两种想象互相独立，所以任何经验看起来都能脱离它的大脑状态出现，关系显得偶然，哪怕它其实是必然的。",
+              "en": "Imagining the mental state without the brain state combines two independent kinds of imagination, so the link seems contingent even if it is necessary."
+            },
+            {
+              "zh": "顺带一提：把同感式想象误当成知觉式想象，就会得出唯我论（**solipsism**）：好像根本无法想象任何不是自己的经验。",
+              "en": "Solipsism comes from mistaking sympathetic imagination for perceptual imagination: one then seems unable to imagine any experience except one's own."
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：你可能早就听说“手机里的照片其实就是一串 0 和 1”。你懂“就是”的意思，也相信这句话；可如果没学过计算机，你完全想不出一张自拍怎么“就是”一串数字。内格尔说，我们对“心灵事件就是物理事件”的处境比这还要糟。",
+          "limit": "照片的事，学几节计算机课就能懂，理论背景是现成的。内格尔说，心物同一我们连这样的理论背景都没有，就像“物质就是能量”出自一位前苏格拉底哲学家之口：当时谁也不可能懂它怎么为真。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "内格尔并没有论证二元论（**dualism**：认为心和物是两种根本不同的东西），也没说物理主义是错的；他说物理主义也许为真，但现在无法理解（第 13 页）。",
+              "en": "Nagel does not say physicalism is false and does not argue for dualism; he says it may be true but cannot yet be understood."
+            },
+            {
+              "zh": "懂 is 的意思，不等于懂这个同一怎么为真（第 14 页）。",
+              "en": "Knowing what 'is' means is not understanding how the identity could be true."
+            },
+            {
+              "zh": "毛毛虫的例子说的是“可以有证据却不理解”，不是说心灵会像蝴蝶一样变形。",
+              "en": "The caterpillar case is about evidence without understanding, not about minds changing shape."
+            },
+            {
+              "zh": "戴维森的论证针对意向性的心灵事件；“感觉也是物理过程”是内格尔自己补的看法（第 15 页）。",
+              "en": "Davidson's argument is about intentional mental events; the claim about sensations is Nagel's own addition."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement best expresses Nagel's conclusion about physicalism?",
+            "zh": "哪一项最能表达内格尔对物理主义的结论？"
+          },
+          "options": [
+            {
+              "en": "Physicalism is false, so dualism must be true.",
+              "zh": "物理主义是错的，所以二元论一定是对的。"
+            },
+            {
+              "en": "Physicalism is meaningless, so it should be abandoned.",
+              "zh": "物理主义没有意义，所以应该放弃。"
+            },
+            {
+              "en": "Physicalism is true, and we now understand how it is true.",
+              "zh": "物理主义是对的，而且我们现在懂它怎样为真。"
+            },
+            {
+              "en": "Physicalism may be true, but we cannot yet understand how it could be true.",
+              "zh": "物理主义也许为真，但我们现在还无法理解它怎么可能为真。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 13–14 页）。A 错：内格尔说断定物理主义是错的本身是个错误，失败的只是基于错误分析的物理主义假说。B 错：他没说物理主义无意义，而是说我们缺少理解它的理论背景；我们甚至可能有证据支持它（戴维森的论证；毛毛虫的例子说明“有证据却不理解”是可能的，第 15 页）。C 错：他说我们连它怎么可能为真的概念都还没开始有（第 14 页）。",
+            "en": "D (pp. 13-14). Nagel says that concluding physicalism is false would be an error (A), he never calls it meaningless (B), and he says we lack even a first idea of how it could be true (C)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-objective-phenomenology",
+      "title": {
+        "zh": "内格尔：客观现象学的提议",
+        "en": "Nagel: The Proposal of an Objective Phenomenology"
+      },
+      "slides": "16-17",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "文章最后，内格尔提出一个推测性的提议（**speculative proposal**：还没有证明、带猜测成分的建议，第 16 页）：也许可以从另一个方向去接近主观（**subjective**：只有从体验者的观点才能完全把握）与客观之间的鸿沟。先暂时放下心灵和大脑的关系，单独去追求对心灵本身更客观（**objective**：不依赖某个特定观点）的理解。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "phenomenology",
+              "zh": "现象学",
+              "hint": "内格尔这里的用法：对经验是什么样子的描述，比如“蝙蝠的现象学”。"
+            },
+            {
+              "en": "objective phenomenology",
+              "zh": "客观现象学",
+              "hint": "一种设想中的新方法：不靠共情和想象，用没有这种经验的生物也能懂的方式，至少部分描述经验的主观特征。"
+            },
+            {
+              "en": "empathy",
+              "zh": "共情",
+              "hint": "设身处地地体会别人的感受。"
+            },
+            {
+              "en": "intermodal analogy",
+              "zh": "跨感官类比",
+              "hint": "拿一种感官里的东西比另一种感官里的东西，比如说颜色像声音。"
+            },
+            {
+              "en": "structural features of perception",
+              "zh": "知觉的结构特征",
+              "hint": "知觉是怎样组织起来的，而不是它具体的感受质地。"
+            },
+            {
+              "en": "first-person concepts",
+              "zh": "第一人称概念",
+              "hint": "我们从自己经验里学到的概念，比如“红”“疼”。"
+            },
+            {
+              "en": "physical (Nagel's use)",
+              "zh": "物理的（内格尔的用法）",
+              "hint": "不限于今天物理学描述的东西，但一定是客观的（脚注 15）。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "现在的状况（第 16 页）：离开想象，也就是不站到体验者的观点上，我们完全没办法思考经验的主观特征。内格尔说，应该把这看成一个挑战：形成新的概念、设计新的方法，也就是一种不依赖共情（**empathy**）或想象的客观现象学（**objective phenomenology**）。它大概抓不住全部；目标是至少部分地描述经验的主观特征，而且是用不能有这种经验的生物也能理解的形式。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：为什么要发展客观现象学（本站根据第 16–17 页整理）",
+            "en": "Standard form (P = premise, C = conclusion): why develop an objective phenomenology (reconstructed from pp. 16-17)"
+          },
+          "items": [
+            {
+              "en": "P1: For now, the only way we can think about what an experience is like is to imagine it, putting ourselves in the subject's place.",
+              "zh": "P1：现在我们只能靠想象、站到体验者的观点上，去思考经验的主观特征。"
+            },
+            {
+              "en": "P2: New concepts might describe at least part of an experience's character to beings who cannot have it, for example by describing the structural features of perception objectively.",
+              "zh": "P2：新的概念也许能向不能有这种经验的生物描述它的至少一部分，比如客观地描述知觉的结构特征。"
+            },
+            {
+              "en": "P3: Aspects of experience that can be described objectively might be better candidates for ordinary objective explanation, so questions about the physical basis of experience might become more intelligible (Nagel calls this a guess).",
+              "zh": "P3：能被客观描述的经验方面，也许更适合用熟悉的客观方式解释，这样关于经验物理基础的问题可能变得更可理解（内格尔说这只是一个猜测）。"
+            },
+            {
+              "en": "P4: Without more thought about subjective and objective, any physical theory of mind would sidestep the mind-body problem instead of posing it.",
+              "zh": "P4：不先多想想主观与客观，任何物理的心灵理论都会绕开身心问题，而不是真正提出它。"
+            },
+            {
+              "en": "C: So we should take up the challenge of developing an objective phenomenology that does not depend on empathy or imagination; and, whether or not that guess pays off, more thought about subjective and objective seems to be needed before any physical theory of mind can be seriously considered.",
+              "zh": "C：所以应该接受这个挑战，试着发展一种不依赖共情和想象的客观现象学；而且不管这个猜测对不对，似乎都得先对主观与客观的问题多想一想，才谈得上认真考虑任何物理的心灵理论。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "向天生的盲人解释“看见”（第 16 页）",
+            "en": "Explaining sight to someone blind from birth (p. 16)"
+          },
+          "steps": [
+            {
+              "zh": "要描述蝙蝠的声呐经验，就得发展这种现象学；但也可以先从人类开始。",
+              "en": "We would need such a phenomenology to describe bat sonar, but we could begin with humans."
+            },
+            {
+              "zh": "比如：试着发展一些概念，用来向一个天生的盲人解释看见是什么样子。",
+              "en": "For example, we might try to build concepts that would let us tell someone born blind what seeing is like."
+            },
+            {
+              "zh": "做到最后，总会碰到一堵空白的墙（**a blank wall**），有些东西说不出来。",
+              "en": "Eventually we would hit a blank wall."
+            },
+            {
+              "zh": "但应该能设计出一种方法，用客观的语言表达比现在多得多的内容，而且精确得多。",
+              "en": "But it should be possible to express much more in objective terms than we can now, and with much greater precision."
+            },
+            {
+              "zh": "跨感官的松散类比（**intermodal analogies**）没什么用，比如说红色像小号的声音：既看过红色、又听过小号的人都明白，这种说法几乎什么也没说清。",
+              "en": "Loose cross-sense analogies, such as comparing red to the sound of a trumpet, are of little use, as anyone who has seen red and heard a trumpet knows."
+            },
+            {
+              "zh": "知觉的结构特征（**structural features**）可能更容易被客观描述，虽然还是会漏掉一些东西。",
+              "en": "Structural features of perception might be easier to describe objectively, even if something still escaped the description."
+            }
+          ],
+          "answer": {
+            "zh": "这个例子要说明：客观现象学不是“打比方”，而是想找到别人也能懂的、精确的描述方式，至少描述经验的一部分。",
+            "en": "Objective phenomenology is not about loose comparisons; it aims at precise descriptions that others can understand, at least for part of an experience."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "这样做还有额外的好处（第 16–17 页）：和第一人称学来的概念不同的新概念，可能让我们对自己的经验也得到一种新的理解；主观概念用起来太顺手、离得太近，反而挡住了这种理解。而且，经验里能被这样客观描述的方面，也许更适合用我们熟悉的客观方式去解释，经验的物理基础问题也可能变得更可理解；内格尔自己说，这只是一个猜测（第 17 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "全文最后的结论（第 17 页）：不管这个猜测对不对，在对主观与客观这个一般问题想得更多以前，似乎不可能认真考虑任何物理的心灵理论。否则，我们连提出身心问题（心灵和身体是什么关系），都会把它绕过去。"
+        },
+        {
+          "type": "text",
+          "zh": "脚注 15（第 16–17 页）：内格尔承认他没有定义“物理的”（**physical**）。它显然不只指当代物理学能描述的东西，因为物理学还会发展；有人认为心灵现象最终也可能被承认为物理的。但不管怎样，物理的东西必须是客观的；所以如果“物理”扩大到包括心灵现象，也得给它们一个客观的特征。内格尔自己觉得更可能的是：心物关系最终会由一种理论来表达，它的基本词既不能明确归为心灵的，也不能明确归为物理的。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：给从没玩过某款音游的同学写攻略。你可以写清楚结构：几条轨道、每分钟多少拍、哪里要连击、按键怎样排；这些他都看得懂，也能照着练。但“节奏对上时那一下的爽感”，写得再细也传不过去。客观现象学就像一份尽量精确的结构说明：能说的尽量说准，承认最后有一堵墙。",
+          "limit": "同学去玩一次就能补上那种感受；天生的盲人、蝙蝠的情况却不能这样补。而且内格尔说的结构特征是知觉本身的结构，不是游戏规则。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why does Nagel propose an 'objective phenomenology', and how could it help with the mind-body problem?",
+            "zh": "内格尔为什么提议发展一种“客观现象学”？它怎样可能帮助解决身心问题？"
+          },
+          "answer": {
+            "en": "Right now we can think about what an experience is like only by imagining it from the subject's point of view, and this is why physical theories seem unable to reach it. Nagel proposes new concepts that would describe at least part of an experience, such as the structure of perception, in terms that beings who cannot have it could understand. Aspects described in this way might be better candidates for objective explanation, so the question of the physical basis of experience could become more intelligible. He admits that the proposal is speculative and would eventually hit a blank wall.",
+            "zh": "现在我们只能靠想象、站到体验者的观点上去想经验是什么样子，这正是物理理论够不着它的原因。内格尔提议发展新概念，用不能有这种经验的生物也能懂的方式，至少描述经验的一部分（比如知觉的结构）。能这样描述的方面，也许更适合做客观的解释，经验的物理基础问题也可能变得更可理解。他承认这只是推测，最后会碰到一堵空白的墙。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "客观现象学不靠共情或想象；恰恰相反，它要摆脱对想象的依赖（第 16 页）。",
+              "en": "Objective phenomenology does not rely on empathy or imagination; it tries to do without them."
+            },
+            {
+              "zh": "“红色像小号声”这种类比被内格尔否定了，别把它当成客观现象学的例子。",
+              "en": "Comparing red to a trumpet's sound is Nagel's example of what does not help."
+            },
+            {
+              "zh": "这是一个推测性的提议：内格尔说它大概抓不住全部，最后会碰到一堵空白的墙。",
+              "en": "The proposal is speculative and would not capture everything."
+            },
+            {
+              "zh": "全文的结论不是“物理主义是错的”，而是“在想清楚主观与客观以前，谈不上认真考虑物理的心灵理论”（第 17 页）。",
+              "en": "The final moral is not that physicalism is false, but that we must think more about subjective and objective first."
+            },
+            {
+              "zh": "脚注 15：“物理的”不等于“当代物理学描述的”，但一定是客观的。",
+              "en": "Footnote 15: 'physical' is not limited to current physics, but it must be objective."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is the aim of the 'objective phenomenology' that Nagel proposes?",
+            "zh": "内格尔提议的“客观现象学”目标是什么？"
+          },
+          "options": [
+            {
+              "en": "To describe, at least in part, what experiences are like in a form that beings who cannot have them could understand.",
+              "zh": "用不能有这些经验的生物也能理解的形式，至少部分地描述经验是什么样子。"
+            },
+            {
+              "en": "To prove that bats do not really have experiences.",
+              "zh": "证明蝙蝠其实没有经验。"
+            },
+            {
+              "en": "To replace talk of experience with talk of behaviour.",
+              "zh": "用谈论行为来代替谈论经验。"
+            },
+            {
+              "en": "To help us imagine bat experience through loose comparisons, such as comparing red to the sound of a trumpet.",
+              "zh": "靠松散的比较（比如把红色比作小号的声音）帮我们想象蝙蝠的经验。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 16 页）。B 错：内格尔一直假定蝙蝠有经验。C 是他批评的新行为主义一类思路：用客观的心灵概念代替真东西（第 12 页）。D 错：客观现象学恰恰不依赖想象，而且他明说红色与小号声这类跨感官类比没什么用（第 16 页）。",
+            "en": "A (p. 16). Nagel assumes bats have experience (B), criticizes replacing the mind with an objective substitute (C), and calls loose cross-sense analogies useless (D)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-will-an-upload-be-conscious",
+      "title": {
+        "zh": "查默斯：上传后的我还有意识吗",
+        "en": "Chalmers: Will an Upload Be Conscious?"
+      },
+      "slides": "1-2",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二篇是哲学家查默斯（**David Chalmers**）谈上传（**uploading**：把一个大脑“搬”进电脑，造出它的计算机版本）的文字，读物标题是 'Uploading and Consciousness'（大纲上写作 'Consciousness and Uploading'，是同一篇）。它只有 6 页，是一篇长文的节选：第 1 页先是前一节的最后一段，然后是第 9 节全文和第 10 节开头几段，第 6 页一句话没写完就断了。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：读物文件没有印出处。从节号（9、10）和脚注编号（27–33）看，它很可能出自查默斯 2010 年的长文 'The Singularity: A Philosophical Analysis'。这一点读物里没有，答题时不要写进去。"
+        },
+        {
+          "type": "text",
+          "zh": "第 1 页第一段是前一节的结尾：上传有各种形式；从自身利益的角度看，关键问题是：我能在上传中存活（**survive**）吗？查默斯说，这个问题分成两半，各对应哲学里最难的一个问题：意识，和人格同一性（**personal identity**：后来的某个存在者还是不是同一个人）。第一，上传后的“我”会有意识吗？第二，它还是我吗？本课第 8–12 小节讲第一个问题，第 13 小节讲第二个。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "uploading / upload",
+              "zh": "上传 / 上传体",
+              "hint": "把大脑转移到电脑里；得到的那个计算机系统叫上传体。"
+            },
+            {
+              "en": "consciousness",
+              "zh": "意识",
+              "hint": "查默斯的说法：成为我们是有某种样子的；看、听、感受、思考都有某种样子。"
+            },
+            {
+              "en": "personal identity",
+              "zh": "人格同一性",
+              "hint": "上传体和原来的人是不是同一个人。"
+            },
+            {
+              "en": "zombie / zombified existence",
+              "zh": "僵尸 / 僵尸化的存在",
+              "hint": "照常运作、照常行动，里面却没有任何意识的存在（第 1、5 页）。"
+            },
+            {
+              "en": "neural correlates of consciousness",
+              "zh": "意识的神经关联物",
+              "hint": "和有意识状态一起出现的大脑过程。找到它们不等于解释了意识为什么存在。"
+            },
+            {
+              "en": "further fact",
+              "zh": "进一步的事实",
+              "hint": "知道一个系统的全部物理结构以后，关于它的意识仍然没有被定下来的事实。"
+            },
+            {
+              "en": "epistemological / ontological",
+              "zh": "认识论的 / 本体论的",
+              "hint": "认识论的＝关于我们能知道什么；本体论的＝关于世界上到底有什么。"
+            },
+            {
+              "en": "materialism",
+              "zh": "唯物主义",
+              "hint": "认为一切（包括意识）归根到底都是物理的。"
+            },
+            {
+              "en": "property dualist",
+              "zh": "性质二元论者",
+              "hint": "认为意识涉及物理性质之外的基本性质的人。查默斯自称是（脚注 27）。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "意识的定义，以及为什么上传前必须先问意识（第 1 页）",
+            "en": "What consciousness is, and why the question comes first (p. 1)"
+          },
+          "items": [
+            {
+              "en": "Chalmers says that ordinary humans are conscious: there is something it is like to be us, and seeing, hearing, feeling and thinking each have a subjective character.",
+              "zh": "查默斯说：普通人是有意识的：成为我们是有某种样子的；看、听、感受、思考，都有一种主观特征。"
+            },
+            {
+              "en": "Conscious experience is central to our mental lives and is a main source of what makes life meaningful and valuable; losing the capacity for it would, in an important sense, mean that we no longer exist.",
+              "zh": "有意识的经验是心灵生活的核心，给了生活很大一部分意义和价值；失去这种能力，在一个重要的意义上我们就不再存在了。"
+            },
+            {
+              "en": "If the only thing left of me were an upload without consciousness, then arguably I would not exist any more, or would at most have a zombie-like existence with far less meaning and value.",
+              "zh": "如果上传后剩下的只是一个没有意识的上传体，那么可以说我根本不存在了；就算在某种意义上存在，也最多是一种意义和价值大打折扣的僵尸化存在。"
+            },
+            {
+              "en": "So before anyone uploads, the key thing to find out is whether the upload will be conscious.",
+              "zh": "所以上传之前，弄清上传体有没有意识至关重要。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "为什么这个问题难（第 1 页）？因为我们对意识的理解太差：没有人知道大脑过程究竟为什么、怎样产生意识。神经科学正在一点点找到意识的神经关联物（**neural correlates of consciousness**），但这个研究计划基本上把意识的存在当成了前提。关于为什么会有意识，没有任何接近公认的理论；相应地，关于哪些系统能有意识、哪些不能，也没有。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：意识是“进一步的事实”（第 1–2 页）",
+            "en": "Standard form (P = premise, C = conclusion): consciousness is a further fact (pp. 1-2)"
+          },
+          "items": [
+            {
+              "en": "P1: Complete knowledge of a system's physical structure might tell us everything about its objective behaviour and functioning, enough to say whether it is alive and intelligent.",
+              "zh": "P1：对一个系统物理结构的完整知识，也许能告诉我们它客观的行为和运作的一切，足以判断它是不是活的、聪明不聪明。"
+            },
+            {
+              "en": "P2: But this knowledge does not seem to settle every question about the system's experience: Mary knows everything about the physical processes involved in colour, yet does not know how seeing red feels, and a complete physical account of a mouse leaves open what being a mouse is like.",
+              "zh": "P2：但这种知识似乎回答不了关于它主观经验的全部问题：玛丽知道颜色视觉的全部物理过程，却不知道看见红色是什么样子；对老鼠的完整物理描述，也不能告诉我们做老鼠是什么样子。"
+            },
+            {
+              "en": "P3: We have no consciousness meter that could settle the question directly.",
+              "zh": "P3：我们没有能直接判定这个问题的“意识计”。"
+            },
+            {
+              "en": "C: So consciousness is at least an epistemologically further fact, and for any system, biological or artificial, whether it is conscious, and how, is a substantial and unobvious question.",
+              "zh": "C：所以意识至少是一个认识论上的进一步事实；对任何系统，不管是生物的还是人造的，它有没有意识、有什么样的意识，都是一个实质的、不显然的问题。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "玛丽、老鼠和不存在的“意识计”（第 2 页）",
+            "en": "Mary, the mouse and the missing consciousness meter (p. 2)"
+          },
+          "steps": [
+            {
+              "zh": "玛丽（**Mary**）是哲学家杰克逊（**Frank Jackson**）设想的著名例子：一位神经科学家，一直待在一个只有黑白两色的房间里。",
+              "en": "Mary, from Frank Jackson's famous case, is a neuroscientist who lives in a black-and-white room."
+            },
+            {
+              "zh": "她知道和颜色有关的全部物理过程，却不知道看见红色是什么样子。",
+              "en": "She has complete knowledge of the physical processes involved in colour, but she does not know how it feels to see red."
+            },
+            {
+              "zh": "查默斯说：如果这是对的，完整的物理知识就给关于颜色经验的某些问题留下了空白。",
+              "en": "If the case works, even complete physical knowledge leaves some questions about colour experience unanswered."
+            },
+            {
+              "zh": "更一般地：对一只老鼠的完整物理描述，似乎不能告诉我们做老鼠是什么样子，甚至不能告诉我们做老鼠到底有没有任何样子。",
+              "en": "In the same way, a full physical account of a mouse seems to leave open what being a mouse is like, and even whether it is like anything at all."
+            },
+            {
+              "zh": "我们也没有一个能直接判定有没有意识的“意识计”（**consciousness meter**）。",
+              "en": "And we have no consciousness meter that could settle the matter directly."
+            }
+          ],
+          "answer": {
+            "zh": "所以对任何系统，不管是生物的还是人造的，它有没有意识、有什么样的意识，都是一个实质的、不显然的问题（第 2 页）。",
+            "en": "For any system, biological or artificial, whether it is conscious and what kind of consciousness it has is a substantial and unobvious question."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "脚注 27：三种立场（第 1–2 页）",
+            "en": "Footnote 27: three positions (pp. 1-2)"
+          },
+          "headers": [
+            "立场 Position",
+            "认识论上的进一步事实 Epistemologically further facts",
+            "本体论上的进一步事实 Ontologically further facts",
+            "例子 Example"
+          ],
+          "rows": [
+            [
+              "A 型唯物主义 type-A materialist",
+              "不承认 No",
+              "不承认 No",
+              "丹尼特 Daniel Dennett"
+            ],
+            [
+              "B 型唯物主义 type-B materialist",
+              "承认 Yes",
+              "不承认 No",
+              "布洛克 Ned Block"
+            ],
+            [
+              "性质二元论 property dualist",
+              "承认 Yes",
+              "承认 Yes",
+              "查默斯本人 Chalmers himself"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "脚注 27 解释“进一步的事实”（第 1–2 页）。查默斯这里的说法很弱：关于意识的事实是认识论上（**epistemologically**）进一步的事实，也就是单靠从微观物理知识推理，定不下来。这和唯物主义（**materialism**）相容。更强的说法是：它们是本体论上（**ontologically**）进一步的事实，涉及自然界里另外的成分，比如物理性质之外的基本性质。查默斯说，哲学界的唯物主义者大多数是 B 型，也承认认识论上的进一步事实。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：去医院体检，报告上有身高、体重、血压、心电图、脑部扫描，医生看了能判断你活着、健康、反应正常。可报告上没有一栏写着“此人看到红色是什么感觉”，医院里也没有一种像体温计那样、一测就显示“有意识／没意识”的“意识计”。这就是查默斯说的“进一步的事实”。",
+          "limit": "体检报告不全，是因为没测；查默斯的意思更强：就算知道了全部物理结构，意识的问题似乎仍然没有被定下来。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why does Chalmers think that the question 'Can an upload be conscious?' is hard to answer?",
+            "zh": "查默斯为什么认为“上传体能有意识吗”这个问题很难回答？"
+          },
+          "answer": {
+            "en": "Chalmers says that our understanding of consciousness is very poor: no one knows why or how brain processes produce it, and research on neural correlates simply assumes that consciousness exists. Consciousness also seems to be a further fact: complete physical knowledge of a system tells us how it behaves and functions, but not everything about its experience, as the cases of Mary and the mouse illustrate. Since there is no consciousness meter, whether any system, including an upload, is conscious is a substantial and unobvious question.",
+            "zh": "查默斯给了两层理由（第 1–2 页）。第一，我们对意识的理解太差：没人知道大脑为什么、怎样产生意识，神经关联物的研究也只是把意识当前提。第二，意识似乎是“进一步的事实”：知道一个系统的全部物理结构，能知道它怎样行为和运作，却不能知道它的全部经验（玛丽、老鼠）。又没有“意识计”，所以任何系统（包括上传体）有没有意识，都是实质的、不显然的问题。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "查默斯基本意义上的“进一步的事实”是认识论的，和唯物主义相容，大多数唯物主义者（B 型）也接受（脚注 27）。不要一看到 further fact 就写“二元论”。",
+              "en": "In its basic, epistemological sense the further-fact claim is compatible with materialism and accepted by most materialists."
+            },
+            {
+              "zh": "玛丽的例子是杰克逊的，查默斯只是借来，并且只简单概括（第 2 页）。",
+              "en": "Mary is Frank Jackson's case; Chalmers only summarizes it."
+            },
+            {
+              "zh": "“我能在上传中存活吗”分成两个问题：有没有意识？是不是我？别混在一起。",
+              "en": "'Will I survive uploading?' splits into two questions: consciousness and identity."
+            },
+            {
+              "zh": "神经关联物的研究把意识当作前提，所以找到关联物不等于解释了意识为什么存在（第 1 页）。",
+              "en": "Finding neural correlates does not explain why consciousness exists; that research assumes it."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In footnote 27, Chalmers says that the basic further-fact claim about consciousness is:",
+            "zh": "在脚注 27 里，查默斯说关于意识的基本的“进一步事实”说法是："
+          },
+          "options": [
+            {
+              "en": "the claim that everything in the universe is conscious.",
+              "zh": "宇宙中一切都有意识的说法。"
+            },
+            {
+              "en": "the claim that consciousness is essentially biological.",
+              "zh": "意识本质上是生物性的说法。"
+            },
+            {
+              "en": "incompatible with materialism, so every materialist rejects it.",
+              "zh": "和唯物主义不相容，所以所有唯物主义者都反对它。"
+            },
+            {
+              "en": "an epistemological claim that is compatible with materialism and accepted by most materialists in philosophy.",
+              "zh": "一个认识论上的说法，和唯物主义相容，哲学界大多数唯物主义者都接受。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（脚注 27，第 1–2 页）：基本的说法只是“认识论上的进一步事实”，从微观物理知识推不出来；B 型唯物主义者（比如布洛克）也接受，而且他们是唯物主义者中的多数。A 是泛心论（脚注 28）。B 是生物论（第 2 页）。C 错：和唯物主义冲突的是“本体论上的进一步事实”，那是查默斯自己的性质二元论。",
+            "en": "D (footnote 27). A is panpsychism (fn 28), B is the biological theory (p. 2), and only ontologically further facts conflict with materialism (C)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-biological-vs-functionalist",
+      "title": {
+        "zh": "查默斯：生物论 vs 功能论",
+        "en": "Chalmers: Biological vs Functionalist Theories"
+      },
+      "slides": "2-3",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "不管认不认为意识是“进一步的事实”，至少都可以问：什么样的系统有意识（**consciousness**：成为它是有某种样子的）？查默斯说，在这个问题上哲学家分成好几派（第 2 页）。对上传最要紧的两派是生物论（**biological theories**）和功能论（**functionalist theories**）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "biological theory of consciousness",
+              "zh": "意识的生物论",
+              "hint": "意识本质上是生物性的，任何非生物的系统都不可能有意识。"
+            },
+            {
+              "en": "functionalist theory of consciousness",
+              "zh": "意识的功能论",
+              "hint": "对意识要紧的不是生物构成，而是因果结构和因果角色；组织得对，非生物系统也能有意识。"
+            },
+            {
+              "en": "causal structure / causal role",
+              "zh": "因果结构 / 因果角色",
+              "hint": "系统各部分之间“谁引起谁”的整体安排 / 一个部分在这个安排里起的作用。"
+            },
+            {
+              "en": "nonbiological / silicon",
+              "zh": "非生物的 / 硅",
+              "hint": "不是由细胞这类生命材料构成的；电脑芯片主要用硅做。"
+            },
+            {
+              "en": "physical correlates of consciousness",
+              "zh": "意识的物理关联物",
+              "hint": "在现实世界里，意识在什么物理条件下存在（脚注 28）。"
+            },
+            {
+              "en": "panpsychism",
+              "zh": "泛心论",
+              "hint": "粗略地说：一切东西都有意识（脚注 28）。"
+            },
+            {
+              "en": "the gap",
+              "zh": "鸿沟",
+              "hint": "我们完全不知道一个物理系统怎样能有意识。查默斯说，神经元和硅两边一样宽。"
+            },
+            {
+              "en": "default attitude",
+              "zh": "默认态度",
+              "hint": "没有相反理由时先采取的看法，不等于证明。"
+            },
+            {
+              "en": "principled difference",
+              "zh": "原则性的差别",
+              "hint": "能从道理上说明“为什么一种能、另一种不能”的差别，不是随便指出一个不同点。"
+            },
+            {
+              "en": "orthogonal",
+              "zh": "互不相干的",
+              "hint": "两个问题彼此独立，回答一个并不决定另一个（脚注 29）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "两派理论对比（第 2 页，脚注 28）",
+            "en": "The two camps compared (p. 2, footnote 28)"
+          },
+          "headers": [
+            "",
+            "生物论 Biological theory",
+            "功能论 Functionalist theory"
+          ],
+          "rows": [
+            [
+              "对意识要紧的是 What matters",
+              "生物构成：意识本质上是生物性的",
+              "因果结构和因果角色，不是生物构成"
+            ],
+            [
+              "非生物系统能有意识吗 Can a nonbiological system be conscious?",
+              "不能 No",
+              "能，只要组织得对 Yes, if it is organized correctly"
+            ],
+            [
+              "对上传意味着 What it means for uploading",
+              "上传体不可能有意识，我们无法有意识地以上传形式存活",
+              "上传体几乎肯定能有意识，这个障碍就消失了"
+            ],
+            [
+              "同情这一派的人 Sympathizers (fn 28)",
+              "布洛克 Ned Block、塞尔 John Searle",
+              "丹尼特 Daniel Dennett、查默斯本人"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "这两派的分歧，对“我们该不该上传”这个实际问题至关重要（第 2 页）：如果生物论是对的，上传体就不可能有意识，我们也就不能以上传的形式有意识地活下去；如果功能论是对的，上传体几乎肯定能有意识，这个障碍就消失了。查默斯自己的看法：功能论更接近真相。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：神经元和硅“一样不懂”的论证（第 2–3 页）",
+            "en": "Standard form (P = premise, C = conclusion): the argument that neurons and silicon are on a par (pp. 2-3)"
+          },
+          "items": [
+            {
+              "en": "P1: Nobody understands how a nonbiological system, for example a silicon computer, could be conscious.",
+              "zh": "P1：我们完全不知道一个非生物系统（比如硅做的计算系统）怎么会有意识。"
+            },
+            {
+              "en": "P2: But nobody understands how a biological system, for example a brain, could be conscious either: \"The gap is just as wide in both cases\" (p. 3).",
+              "zh": "P2：可我们同样完全不知道一个生物系统（比如大脑）怎么会有意识：“两边的鸿沟一样宽”（第 3 页）。"
+            },
+            {
+              "en": "P3: We know of no principled difference between biological and nonbiological systems that suggests the first can be conscious and the second cannot.",
+              "zh": "P3：我们不知道生物系统和非生物系统之间有任何原则性的差别，能说明前者能有意识、后者不能。"
+            },
+            {
+              "en": "C: So, unless such a difference is found, we should assume by default that systems of both kinds can be conscious, which favours functionalist theories.",
+              "zh": "C：所以默认态度应该是：生物系统和非生物系统都能有意识；功能论更接近真相。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "逐条看（第 2–3 页）：P1 是查默斯先承认对方说得对：我们确实不知道硅芯片怎么会有意识。P2 是关键的一转：可我们同样不知道神经元组成的大脑怎么会有意识，两边的鸿沟（**gap**）一样宽。P3：我们也不知道两类系统之间有什么原则性的差别。所以在找到这种差别以前，应该两边一视同仁。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：哲学里常把“想不通物理过程怎么会产生意识”的这道鸿沟叫作 **explanatory gap**（解释鸿沟），读物里只说 the gap。另外，有的笔记把这个论证叫“对等论证”（**parity argument**），这是为了好记起的名字，读物没有用这个词；答题时直接写出它的步骤即可。"
+        },
+        {
+          "type": "text",
+          "zh": "注意这个论证的地位：它只确立一个默认态度（**default attitude**）。本站的理解：这等于把举证责任交给生物论者：要说只有生物才能有意识，请先指出原则性的差别（查默斯本人没有用“举证责任”这个说法）。查默斯自己说，这个看法还能得到进一步推理的支持（第 3 页），那就是下一小节开始的逐步上传论证。"
+        },
+        {
+          "type": "text",
+          "zh": "脚注 28（第 2 页）很重要：这里说的生物论和功能论，不是关于“意识是什么”的理论，而只是关于意识的物理关联物（**physical correlates**）的理论，也就是：在现实世界里，意识在什么物理条件下存在。所以连性质二元论者（**property dualist**：认为意识涉及物理性质之外的基本性质的人）也可以接受其中一种。脚注 28 还提到泛心论（**panpsychism**）：粗略地说，一切都有意识；那样的话，只要有上传体，上传体当然也有意识。"
+        },
+        {
+          "type": "text",
+          "zh": "脚注 29（第 3 页）：有人奇怪，一个性质二元论者（甚至任何认为意识有重大“难题”的人）怎么会同情机器意识？查默斯回答：意识的物理关联物是生物的还是功能的，和意识是否等同于它的物理关联物，这两个问题基本上互不相干（**orthogonal**）。很难看出“意识只限于有我们这种生物构造的生物”为什么更符合性质二元论的精神。他还说，后面的讨论大多对唯物主义（一切都是物理的）和二元论（心和物是两种不同的东西）保持中立。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：两个同学用两种完全不同的方法解同一道难题，你两种方法都看不懂。这时你凭什么断定“只有 A 的方法能做对，B 的一定错”？除非你能指出两种方法在原则上有什么不同，否则合理的默认是：两种都可能做对。",
+          "limit": "做题最后可以对答案；意识却没有“意识计”可以对答案（第 2 页），所以查默斯只说“默认态度”，不说已经证明。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'Chalmers's argument is an argument from ignorance. Not knowing of a difference between neurons and silicon does not show that there is none.' Is this fair?",
+            "zh": "反驳：“查默斯的论证是诉诸无知：不知道神经元和硅有什么差别，不等于它们没有差别。”这个批评公平吗？"
+          },
+          "answer": {
+            "en": "The objection is partly fair: from the fact that we know of no principled difference, it does not follow that there is none. But Chalmers does not claim a proof. He claims only that our starting assumption should treat both kinds of system alike, because we understand neural consciousness no better than silicon consciousness. This shifts the burden to the biological theorist, and Chalmers adds that further reasoning, the gradual uploading argument, supports the same view.",
+            "zh": "这个批评有一部分道理：“不知道有差别”推不出“没有差别”。但查默斯没说他证明了什么，他只说默认态度应该是两边都能有意识，因为我们对神经元意识的理解并不比对硅意识的理解多。这等于把举证责任交给生物论者（这一句是本站的理解）。而且查默斯说还有进一步的推理支持这个看法，也就是逐步上传论证（第 3–5 页）。答题时先承认批评对的地方，再说明论证的真实地位。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "这里的生物论和功能论是关于意识的物理关联物的理论，不是关于意识是什么的理论（脚注 28）。",
+              "en": "Both camps are theories of the physical correlates of consciousness, not of what consciousness is."
+            },
+            {
+              "zh": "查默斯是性质二元论者，同时又同情功能论，这并不矛盾（脚注 29）。",
+              "en": "Chalmers is a property dualist and a functionalist in this sense, with no contradiction."
+            },
+            {
+              "zh": "这个论证只确立默认态度，不是证明；查默斯说还要靠进一步的推理（第 3 页）。",
+              "en": "The argument sets a default attitude; it is not a proof."
+            },
+            {
+              "zh": "这里的“功能论”和内格尔批评的“功能分析”不是一回事：内格尔批评的是用功能去分析意识是什么；查默斯谈的是什么物理条件伴随意识。第 14 小节细讲。",
+              "en": "Chalmers's functionalism (about correlates) is not the functional analysis of what consciousness is that Nagel attacks."
+            },
+            {
+              "zh": "布洛克和塞尔同情生物论；丹尼特和查默斯同情功能论。别配错。",
+              "en": "Block and Searle lean biological; Dennett and Chalmers lean functionalist."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which claim is at the core of Chalmers's case against favouring biological theories of consciousness?",
+            "zh": "查默斯反对偏向生物论，核心理由是哪一项？"
+          },
+          "options": [
+            {
+              "en": "We have no idea how either neurons or silicon could produce consciousness, and we know of no principled difference between them.",
+              "zh": "我们既不知道神经元、也不知道硅怎样产生意识，而且不知道两者有任何原则性的差别。"
+            },
+            {
+              "en": "We know exactly how neurons produce consciousness, but not how silicon could.",
+              "zh": "我们确切知道神经元怎样产生意识，却不知道硅怎么能。"
+            },
+            {
+              "en": "Silicon computers are faster than brains, so they must be conscious.",
+              "zh": "硅计算机比大脑快，所以一定有意识。"
+            },
+            {
+              "en": "Everything is conscious, so the question does not arise.",
+              "zh": "一切都有意识，所以这个问题根本不存在。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 2–3 页）：两边的鸿沟一样宽，又不知道有原则性的差别，所以默认两边都能有意识。B 正好说反了：查默斯说我们同样不知道神经系统怎么会有意识。C 是编造的理由，读物里没有，查默斯也不谈速度。D 是泛心论，脚注 28 只是顺带一提，不是查默斯的论证。",
+            "en": "A (pp. 2-3). B reverses his point, C is not in the reading, and D is panpsychism, only mentioned in footnote 28."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-gradual-uploading-setup",
+      "title": {
+        "zh": "查默斯：功能同构体与逐步上传",
+        "en": "Chalmers: Functional Isomorphs and Gradual Uploading"
+      },
+      "slides": "3-4",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "查默斯说，“生物系统和非生物系统都能有意识”（意识＝成为它是有某种样子的）这个看法，还能得到进一步推理的支持（第 3 页）。为此他设计了一个思想实验（**thought experiment**：只在脑子里设想的情境）：完美的上传。这一小节先把实验的设置讲清楚，下一小节再看论证本身。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "neuron",
+              "zh": "神经元",
+              "hint": "大脑里传递信号的细胞。"
+            },
+            {
+              "en": "input/output behaviour",
+              "zh": "输入／输出行为",
+              "hint": "一个部件收到什么信号，就发出什么信号。"
+            },
+            {
+              "en": "computational element",
+              "zh": "计算元件",
+              "hint": "电脑里用程序模拟某个部件的单元。"
+            },
+            {
+              "en": "isomorphic / isomorph",
+              "zh": "同构的 / 同构体",
+              "hint": "结构一一对应、完全相同的；具有这种结构的系统叫同构体。"
+            },
+            {
+              "en": "functional isomorph",
+              "zh": "功能同构体",
+              "hint": "每个部件都复制原大脑对应部件的输入／输出行为，处理过程一步步和原大脑对应的系统。"
+            },
+            {
+              "en": "computable / noncomputable",
+              "zh": "可计算的 / 不可计算的",
+              "hint": "能 / 不能用算法（一套明确的、一步步执行的计算步骤）来模拟。"
+            },
+            {
+              "en": "gradual uploading",
+              "zh": "逐步上传",
+              "hint": "一次只上传大脑的一个部件，随时间慢慢做完。"
+            },
+            {
+              "en": "nanotransfer",
+              "zh": "纳米转移",
+              "hint": "读物举的一种逐步上传过程的名字；节选里没有描述它具体怎样进行。"
+            },
+            {
+              "en": "emulate",
+              "zh": "仿真",
+              "hint": "完美地模仿另一个部件的工作。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "完美的上传（第 3 页）：设想我们能在电脑里造出一个大脑的完美上传版本。原来大脑里的每一个神经元（**neuron**），都有一个计算元件完美复制它的输入／输出行为（**input/output behaviour**）。神经元以外的部件、比神经元更小的部件，只要和大脑的工作有关，也一样复制。这些计算元件连到输入、输出装置上：人造的眼睛、耳朵、四肢和身体，可能在普通的物理环境里，也可能在虚拟环境里。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "上传体看到一个东西时（第 3 页）",
+            "en": "When the upload sees something (p. 3)"
+          },
+          "items": [
+            {
+              "en": "Artificial eyes and an artificial optic nerve are activated.",
+              "zh": "人造的眼睛和人造的视神经被激活。"
+            },
+            {
+              "en": "Computational analogues of the lateral geniculate nucleus and the visual cortex are activated.",
+              "zh": "然后是外侧膝状体（**lateral geniculate nucleus**：大脑里中转视觉信号的部位）和视觉皮层的计算版本。"
+            },
+            {
+              "en": "Then analogues of later brain areas are activated.",
+              "zh": "再是后面各个大脑区域的对应物。"
+            },
+            {
+              "en": "The result is a physical or virtual action, like the one the original brain would produce.",
+              "zh": "最后产生一个物理的或虚拟的动作，和原来的大脑会产生的动作相似。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "功能同构体和它背后的假定（第 3 页）",
+            "en": "The functional isomorph and the assumption behind it (p. 3)"
+          },
+          "items": [
+            {
+              "en": "Chalmers calls the perfect upload a functional isomorph of the brain: each of its parts duplicates the input/output behaviour of the matching part of the brain, so its processing mirrors the brain's processing step by step.",
+              "zh": "查默斯把完美的上传体叫作大脑的功能同构体：它的每个部件都复制大脑中对应部件的输入／输出行为，所以它的处理过程一步步对应大脑的处理过程。"
+            },
+            {
+              "en": "He admits that the possibility of functional isomorphs is a real assumption: if some parts of the brain work in a way that cannot be computed, no algorithm can duplicate them.",
+              "zh": "他承认，“功能同构体是可能的”是一个实质性的主张：如果大脑某些部件的工作方式不可计算，就没有算法能复制它们。"
+            },
+            {
+              "en": "He assumes that the components of cognition are computable, so that a functional isomorph is possible, and then asks whether it would be conscious.",
+              "zh": "他假定认知（**cognition**：思考、知觉这类心智活动）的各个部件都是可计算的，因而功能同构体可能存在，然后再问它会不会有意识。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "查默斯认为，判断功能同构体有没有意识，最好的办法是考察一个逐步上传（**gradual uploading**）的过程，比如纳米转移（**nanotransfer**，第 3 页）：随着时间推移，一次上传大脑的一个部件。可以一次把一整个脑区换成计算电路，也可以一次换一个神经元。新部件可以是放在原位的硅电路，也可以是电脑里的程序，通过某种传输和大脑连起来。整个过程可能花几个月、几年，也可能只要几个小时（第 4 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "关键设定（第 4 页）：如果逐步上传做得正确，每个新部件都完美地仿真（**emulate**）被它替换的部件，和周围的生物部件、非生物部件的互动也和原来一模一样。所以整个系统的行为，和不上传时完全一样。如果系统看不见、听不见上传过程，它甚至不必注意到上传发生过。原来的系统说自己有意识，部分上传的系统也会这么说；一直到完全变成非生物系统，都是这样。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步一步看逐步上传（第 3–4 页）",
+            "en": "Gradual uploading step by step (pp. 3-4)"
+          },
+          "steps": [
+            {
+              "zh": "开始：一个完全生物的大脑，有意识，也会说“我有意识”。",
+              "en": "Start: a fully biological brain that is conscious and says so."
+            },
+            {
+              "zh": "第 1 次替换：一个神经元（或一个脑区）换成功能完全相同的计算元件。它收到同样的信号，发出同样的信号。",
+              "en": "Replace one neuron, or one brain area, with a computational element that has exactly the same input/output behaviour."
+            },
+            {
+              "zh": "周围的部件察觉不到任何差别，所以整个系统的行为不变，它仍然说“我有意识”。",
+              "en": "The neighbouring parts interact with it just as before, so the system behaves the same and still says it is conscious."
+            },
+            {
+              "zh": "第 2 次、第 3 次……一次又一次替换，每一步都一样。",
+              "en": "Repeat the replacement again and again."
+            },
+            {
+              "zh": "最后：大脑全部换完，得到一个纯粹非生物的系统，也就是一个功能同构体；它的行为和自我报告从头到尾没变过。",
+              "en": "At the end the system is purely nonbiological, a functional isomorph, and its behaviour and reports never changed."
+            }
+          ],
+          "answer": {
+            "zh": "问题来了：行为和报告一点没变，那意识呢？它在过程中消失了，还是一直都在？下一小节回答。",
+            "en": "Behaviour and reports stayed the same, but what happened to consciousness? The next section answers."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：手机坏了一个零件，你换上一个接口、功能完全一样的新零件，手机照常开机，微信照常收发。再换一个、再换一个……最后手机里每个零件都换过了，它从头到尾运行得都一样，你在使用中看不出任何差别。逐步上传就是对大脑做这件事。",
+          "limit": "手机本来就没有意识（至少我们这么认为）。查默斯的问题恰恰是：换到最后，那个“有感受”的东西还在不在？光看机器照常运行是看不出来的，因为行为和自我报告都不会变。"
+        },
+        {
+          "type": "text",
+          "zh": "脚注 30（第 3–4 页）：查默斯说，这个论证更深入的版本，见他的文章 'Absent Qualia, Fading Qualia, Dancing Qualia'（也是他的书 The Conscious Mind 的第 7 章）。节选里没有这个完整版本。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why is gradual uploading a useful way to ask whether a functional isomorph would be conscious?",
+            "zh": "为什么用“逐步上传”来问功能同构体有没有意识，是个好办法？"
+          },
+          "answer": {
+            "en": "Chalmers says that gradual uploading is the best way to consider the question, though the excerpt does not spell out why. One reasonable reading of the setup is this: at every step the system behaves the same and still says that it is conscious, and each step changes only one small part. So instead of guessing about a finished upload all at once, we can ask what happens to consciousness along the way, and there are only three options: it vanishes suddenly, it fades, or it stays. Chalmers then argues that the first two are implausible.",
+            "zh": "查默斯说逐步上传是考察这个问题的最好办法，但节选没有明说为什么。从设置可以看出理由：每一步只换一个小部件，系统的行为不变，也一直说自己有意识。这样就不用一下子去猜一个做完的上传体，而可以问意识在过程中发生了什么；而可能性只有三种：突然消失、逐渐褪色、一直保持。查默斯接着论证前两种不可信。答题时要说明“这是根据论证结构的解读”。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "功能同构体不只是“行为像人”：它的每个部件都复制原部件的输入／输出行为，处理过程一步步对应（第 3 页）。",
+              "en": "A functional isomorph is not just something that behaves like us; each part duplicates a part of the brain."
+            },
+            {
+              "zh": "“功能同构体可能存在”是查默斯的假定，不是他证明的结论；如果某些部件不可计算，它就不可能存在（第 3 页）。",
+              "en": "That functional isomorphs are possible is an assumption, not a conclusion."
+            },
+            {
+              "zh": "设定本身保证行为和报告不变，所以不能靠问上传体“你有意识吗”来判断它有没有意识。",
+              "en": "Because behaviour and reports never change, asking the upload cannot settle whether it is conscious."
+            },
+            {
+              "zh": "纳米转移只是被提到的名字，节选没有描述它具体怎样进行。",
+              "en": "Nanotransfer is only named; the excerpt does not describe it."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Chalmers's gradual uploading scenario, why does the system's behaviour stay exactly the same?",
+            "zh": "在查默斯的逐步上传设想里，系统的行为为什么完全不变？"
+          },
+          "options": [
+            {
+              "en": "Because the person is asleep during the whole process.",
+              "zh": "因为整个过程中这个人都在睡觉。"
+            },
+            {
+              "en": "Because consciousness controls behaviour, and consciousness is never affected.",
+              "zh": "因为意识控制行为，而意识从来没受影响。"
+            },
+            {
+              "en": "Because each new component perfectly emulates the part it replaces and interacts with its neighbours in just the same way.",
+              "zh": "因为每个新部件都完美仿真被替换的部件，和周围部件的互动也完全一样。"
+            },
+            {
+              "en": "Because the computer copies only the person's memories, not the parts of the brain.",
+              "zh": "因为电脑只复制这个人的记忆，不复制大脑的部件。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 4 页）：每个新部件都完美仿真被替换的部件，和周围部件的互动也完全一样，所以整个系统的行为不变。A 是编的，读物没说人在睡觉。B 错：行为不变是由设定保证的，不是因为意识没受影响；意识会不会受影响，正是接下来要论证的问题，不能当前提。D 错：上传复制的是每个部件的输入／输出行为，不只是记忆。",
+            "en": "C (p. 4). A is not in the reading; B assumes what the argument must show; D is wrong because each part's input/output behaviour is duplicated."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-sudden-fading-or-staying",
+      "title": {
+        "zh": "查默斯：突然消失、逐渐褪色，还是一直保持",
+        "en": "Chalmers: Sudden Disappearance, Fading, or Staying Present"
+      },
+      "slides": "4-5",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "逐步上传过程中，意识（**consciousness**：成为它是有某种样子的）会怎样？查默斯说只有三种可能（第 4 页）：\n1. 突然消失（**sudden disappearance**）：换掉某一个部件时，从完全复杂的有意识状态一下子变成完全没有意识。\n2. 逐渐褪色（**gradual fading**）：经过不止一次替换慢慢消退，意识经验的复杂程度经过中间阶段一步步降低。\n3. 一直保持（**stays present**）：意识从头到尾都在。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "complexity of a conscious state",
+              "zh": "意识状态的复杂度",
+              "hint": "一种意识状态包含多少内容，比如意识视野里有多少比特信息（脚注 31）。"
+            },
+            {
+              "en": "bit",
+              "zh": "比特",
+              "hint": "信息的最小单位（一个 0 或 1）。"
+            },
+            {
+              "en": "intermediate values / stages",
+              "zh": "中间值 / 中间阶段",
+              "hint": "介于“完整”和“零”之间的状态。"
+            },
+            {
+              "en": "subcomponent",
+              "zh": "子部件",
+              "hint": "一个部件再拆开后的更小部分。"
+            },
+            {
+              "en": "partial upload",
+              "zh": "部分上传者",
+              "hint": "大脑只有一部分被换成计算电路的人。"
+            },
+            {
+              "en": "zombification",
+              "zh": "僵尸化",
+              "hint": "变成照常行动、里面却没有意识的状态。"
+            },
+            {
+              "en": "plausible / logically possible",
+              "zh": "可信的 / 逻辑上可能的",
+              "hint": "可信＝有理由相信，不等于被证明；逻辑上可能＝不自相矛盾，哪怕极不可信。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：脚注 30 提到的文章标题 'Absent Qualia, Fading Qualia, Dancing Qualia' 里有 **qualia**（感质）这个词，指经验被感受到的性质，比如红色看起来的样子。**fading qualia**（褪色的感质）说的就是本小节的“逐渐褪色”。读物正文没有解释这个词。"
+        },
+        {
+          "type": "text",
+          "zh": "脚注 31（第 4 页）说明为什么只有这三种：假设有一个衡量意识状态复杂度的量，比如意识视野里有多少比特（**bit**）信息；正常人的值很高，无意识系统的值是零。考虑一串假想的功能同构体，被替换的部分越来越多。如果最后的系统没有意识，这个量要么经过中间值（逐渐褪色），要么不经过任何中间值（突然消失）。所以两者的区别不在快慢，而在有没有中间状态。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：逐步上传论证（第 3–5 页）",
+            "en": "Standard form (P = premise, C = conclusion): the gradual uploading argument (pp. 3-5)"
+          },
+          "items": [
+            {
+              "en": "P1: Suppose functional isomorphs are possible, and a brain is replaced part by part with computational duplicates; the system's behaviour and its reports that it is conscious never change.",
+              "zh": "P1：假定功能同构体可能存在，把一个大脑一部分一部分地换成计算复制品；系统的行为、以及它“我有意识”的报告，始终不变。"
+            },
+            {
+              "en": "P2: During the process, consciousness must either disappear suddenly at one replacement, fade gradually over several replacements, or stay fully present throughout.",
+              "zh": "P2：过程中，意识要么在某一次替换时突然消失，要么经过几次替换逐渐褪色，要么一直完整地保持。"
+            },
+            {
+              "en": "P3: Sudden disappearance is the least plausible: if we split the key replacement into smaller ones and keep asking, we end up either with gradual fading, which turns this option into the fading one, or with all consciousness vanishing when one tiny component, such as a single neuron, is replaced, which is extremely unlikely.",
+              "zh": "P3：突然消失最不可信：把关键的那次替换拆细、一再追问，最后要么变成逐渐褪色（这样它就归入了褪色那一种），要么变成换掉一个极小的部件（比如一个神经元）全部意识就消失，后者极不可能。"
+            },
+            {
+              "en": "P4: Gradual fading is also implausible: the system would have badly degraded experience while behaving and believing exactly as before, so it would be \"deeply out of touch with its own conscious experience\" (p. 5).",
+              "zh": "P4：逐渐褪色也不可信：系统的经验严重退化，行为和信念却和原来完全一样，那它就和自己的意识经验“严重脱节”了（第 5 页）。"
+            },
+            {
+              "en": "C: So by far the most plausible view is that consciousness stays fully present: partial uploads are fully conscious, and so is a complete upload, which is a full functional isomorph.",
+              "zh": "C：所以远比另外两种可信的看法是：意识一直完整保持；部分上传者完全有意识，完整的上传体（一个完整的功能同构体）也有意识。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "反对突然消失：把关键的一步拆细（第 4 页）",
+            "en": "Against sudden disappearance: split the key step (p. 4)"
+          },
+          "steps": [
+            {
+              "zh": "假设意识在换掉某一个关键部件时突然消失。",
+              "en": "Suppose consciousness suddenly disappears when one key component is replaced."
+            },
+            {
+              "zh": "换一个设想：把这个关键部件拆成十个或更多子部件，一个一个地换。",
+              "en": "Now imagine replacing that key part in ten or more smaller steps, one subcomponent at a time."
+            },
+            {
+              "zh": "再问同一个问题：新的过程要么在几个子部件上逐渐褪色，要么还是在某一个子部件上突然消失。",
+              "en": "Ask the question again: either consciousness fades across several subcomponents, or it still disappears suddenly at one of them."
+            },
+            {
+              "zh": "如果是褪色，这种情况就变成了第二种可能。如果还是突然消失，就再拆、再问。",
+              "en": "If it fades, the case has become the fading option. If it still vanishes suddenly, split again and ask again."
+            },
+            {
+              "zh": "拆到最后只剩两种结局：要么是逐渐褪色，要么是换掉一个极小的部件（一个神经元，甚至神经元的一部分）时，全部意识一下子消失。",
+              "en": "In the end we get either gradual fading, or the loss of all consciousness at the replacement of one tiny part, such as a single neuron or a piece of one."
+            }
+          ],
+          "answer": {
+            "zh": "查默斯说：一个极小的部件就承载着全部意识，这看起来极不可能。所以突然消失是三种里最不可信的。",
+            "en": "It seems extremely unlikely that one tiny part carries all of consciousness, which makes sudden disappearance the least plausible of the three options."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "反对逐渐褪色（第 4–5 页）：那样会有一些中间阶段，系统有意识，但意识部分褪色，比原来简单。也许意识的某个部分没了，比如（按原文例子最自然的读法）视觉经验没了、听觉经验还在；也许经验里的某些区分没了，比如颜色从三维的色彩空间缩成了黑白。可按设定，系统的运作和行为一如既往，看不出任何注意到变化的迹象；很可能它也不相信有任何变化，尽管它的意识状态已经天差地别。"
+        },
+        {
+          "type": "text",
+          "zh": "查默斯说，这就要求一个有意识的系统和它自己的意识经验严重脱节（第 5 页），这正是褪色说难以接受的地方。脚注 32（第 5 页）：博斯特罗姆（**Bostrom**，2006）提出，意识除了“质”还有一个独立的“量”，量可以慢慢减少而不影响质。查默斯回答：比特数的论点照样适用：比特数要么随量逐渐下降（遇到褪色的问题），要么在量从低降到零时一下子降到零（遇到突然消失的问题）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一个满是部分上传者的社会（第 5 页）",
+            "en": "A society of partial uploads (p. 5)"
+          },
+          "steps": [
+            {
+              "zh": "设想将来部分上传很普遍：很多人的大脑都有一部分换成了硅计算电路。",
+              "en": "Imagine that partial uploads become common and many people have had parts of their brains replaced by silicon circuits."
+            },
+            {
+              "zh": "按突然消失说：有些人处在这样的状态，再多一点改变，意识就会消失，行为和组织却没有任何差别。他们的意识可能不停地一闪一灭，或者一个微小的改变就让他们彻底僵尸化（**zombification**）。",
+              "en": "On the sudden disappearance view, some people would be one tiny change away from losing consciousness, with no difference in behaviour or organization; their consciousness might keep flickering in and out."
+            },
+            {
+              "zh": "按逐渐褪色说：这些人带着严重退化的意识到处走动，照常生活，还发誓什么都没变。",
+              "en": "On the fading view, these people would walk around with badly degraded consciousness while living normally and insisting that nothing is different."
+            },
+            {
+              "zh": "查默斯说：实际上，这两种假说都很难让人认真对待。",
+              "en": "In practice, both hypotheses would be hard to take seriously."
+            }
+          ],
+          "answer": {
+            "zh": "结论（第 5 页）：查默斯认为，远比另外两种可信的假说，是完整的意识一直保持。只要新部件是旧部件的功能复制品，所有部分上传者都完全有意识；一步步推到完整的上传，完整的上传体也有意识。",
+            "en": "The hypothesis Chalmers finds by far the most plausible is that consciousness stays fully present throughout: partial uploads are fully conscious, and so is a full upload."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "查默斯还加了一个预测（第 5 页）：至少，部分上传很可能会说服大多数人，上传能保住意识。当人们面对做过有限部分上传、行为正常的亲友时，很少有人会认真认为他们没有意识；逐步扩展到完整上传，也会说服大多数人。他承认，这个过程逐渐或突然把所有人变成僵尸，至少在逻辑上仍是可能的；但到那时，这个假说会显得像“不同族裔或性别的人是僵尸”一样站不住。"
+        },
+        {
+          "type": "widget",
+          "name": "concept-sorter",
+          "config": {
+            "title": {
+              "zh": "逐步上传：意识会怎样？",
+              "en": "Gradual uploading: what happens to consciousness?"
+            },
+            "prompt": {
+              "zh": "下面每条描述，属于查默斯列出的哪一种可能？",
+              "en": "Which of Chalmers's three possibilities does each description belong to?"
+            },
+            "categories": [
+              {
+                "id": "sudden-disappearance",
+                "label": {
+                  "zh": "突然消失",
+                  "en": "Sudden disappearance"
+                }
+              },
+              {
+                "id": "gradual-fading",
+                "label": {
+                  "zh": "逐渐褪色",
+                  "en": "Gradual fading"
+                }
+              },
+              {
+                "id": "stays-present",
+                "label": {
+                  "zh": "一直保持",
+                  "en": "Stays fully present"
+                }
+              }
+            ],
+            "items": [
+              {
+                "text": {
+                  "zh": "换掉某一个神经元之前，意识完整无缺；换掉它之后，一点意识都没有了。",
+                  "en": "Before one particular neuron is replaced, consciousness is complete; right after, there is none at all."
+                },
+                "answer": "sudden-disappearance",
+                "why": {
+                  "zh": "从完全复杂的状态一下子到零，没有中间阶段，这就是突然消失（第 4 页）。",
+                  "en": "Full to nothing with no intermediate stage."
+                }
+              },
+              {
+                "text": {
+                  "zh": "替换进行到一半，她的视觉经验没了，听觉经验还在，可她仍然说自己看得清清楚楚。",
+                  "en": "Halfway through, her visual experience is gone but her hearing is not, yet she still says she sees clearly."
+                },
+                "answer": "gradual-fading",
+                "why": {
+                  "zh": "意识少了一部分、但还有意识，这是褪色的中间阶段（第 4–5 页）。这条情境按查默斯例子最自然的读法来编（视觉没了、听觉还在）；不管少的是哪一种感官经验，归类都一样。",
+                  "en": "Part of consciousness is gone, but some remains: an intermediate stage. The case follows the natural reading of Chalmers's example; whichever sense is lost, it is fading."
+                }
+              },
+              {
+                "text": {
+                  "zh": "他的颜色经验从三维色彩空间缩成了黑白，但他照样说玫瑰是红的。",
+                  "en": "His colour experience has been reduced to plain black and white, losing the full three-dimensional range of colours, but he still says the roses are red."
+                },
+                "answer": "gradual-fading",
+                "why": {
+                  "zh": "经验里的区分少了、复杂度降低，这是褪色（第 5 页）。",
+                  "en": "Distinctions are lost and complexity drops: fading."
+                }
+              },
+              {
+                "text": {
+                  "zh": "每一个部分上传的人，都和原来一样完全有意识。",
+                  "en": "Every partially uploaded person is just as fully conscious as before."
+                },
+                "answer": "stays-present",
+                "why": {
+                  "zh": "只要新部件是功能复制品，部分上传者就完全有意识，这是查默斯支持的“一直保持”（第 5 页）。",
+                  "en": "This is the view Chalmers defends."
+                }
+              },
+              {
+                "text": {
+                  "zh": "在部分上传很普遍的社会里，有些人的意识不停地一闪一灭，行为却毫无变化。",
+                  "en": "In a society of partial uploads, some people's consciousness keeps flickering in and out with no change in behaviour."
+                },
+                "answer": "sudden-disappearance",
+                "why": {
+                  "zh": "查默斯说，一闪一灭是突然消失说在部分上传社会里的后果（第 5 页）。",
+                  "en": "Flickering is what the sudden view predicts for such a society."
+                }
+              },
+              {
+                "text": {
+                  "zh": "满街的人带着严重退化的意识生活，却发誓什么都没变。",
+                  "en": "People go about their lives with badly degraded consciousness and insist that nothing is different."
+                },
+                "answer": "gradual-fading",
+                "why": {
+                  "zh": "这是褪色说在部分上传社会里的后果（第 5 页）。",
+                  "en": "This is what the fading view predicts for such a society."
+                }
+              },
+              {
+                "text": {
+                  "zh": "衡量意识复杂度的量（比如意识视野里的比特数）一步步经过中间值，最后降到零。",
+                  "en": "The measure of conscious complexity, such as the bits in the visual field, passes through values in between on its way to zero."
+                },
+                "answer": "gradual-fading",
+                "why": {
+                  "zh": "经过中间值就是褪色（脚注 31，第 4 页）。",
+                  "en": "Passing through intermediate values is fading."
+                }
+              },
+              {
+                "text": {
+                  "zh": "衡量意识复杂度的量不经过任何中间值，从很高直接掉到零。",
+                  "en": "The measure of conscious complexity drops from high straight to zero with no values in between."
+                },
+                "answer": "sudden-disappearance",
+                "why": {
+                  "zh": "不经过中间值就是突然消失（脚注 31，第 4 页）。",
+                  "en": "No intermediate values means sudden disappearance."
+                }
+              },
+              {
+                "text": {
+                  "zh": "一直替换到完全没有生物部件，得到的完整上传体也有意识。",
+                  "en": "Even when no biological parts are left, the complete upload is conscious."
+                },
+                "answer": "stays-present",
+                "why": {
+                  "zh": "查默斯从部分上传一步步推到完整上传：意识一直都在（第 5 页）。",
+                  "en": "Chalmers moves step by step from partial uploads to a full upload."
+                }
+              },
+              {
+                "text": {
+                  "zh": "查默斯认为三种可能里最可信、而且远比另外两种可信的那一种。",
+                  "en": "The option that Chalmers calls by far the most plausible."
+                },
+                "answer": "stays-present",
+                "why": {
+                  "zh": "第 5 页：查默斯说，远比另外两种可信的假说，是完整的意识一直保持。",
+                  "en": "Full consciousness staying present is his conclusion."
+                }
+              }
+            ]
+          },
+          "caption": {
+            "zh": "每条描述选一个类别，做完回看错题。关键区别：有没有中间状态，以及哪一种是查默斯自己的结论。",
+            "en": "Sort each description; the key difference is whether there are intermediate stages."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection from a biological theorist: 'A fading system that keeps saying nothing has changed is exactly what I predict, because its reports come from its unchanged functional organization, not from its experience.' How strong is Chalmers's argument against fading?",
+            "zh": "生物论者的反驳：“一个意识在褪色、却一直说‘什么都没变’的系统，正是我预料的：它的报告来自没变的功能组织，而不是来自它的经验。”查默斯反对褪色说的论证有多强？"
+          },
+          "answer": {
+            "en": "Chalmers's point is that fading requires a conscious being that is badly wrong about its own experience: it has lost, say, its colour experience but believes that nothing has changed. He finds this implausible, especially across a whole society of partial uploads. A biological theorist can accept this cost and say that reports and beliefs follow function, not experience. So the argument does not prove its conclusion; it shows that denying it has a high price, and Chalmers himself grants that zombification remains logically possible (p. 5).",
+            "zh": "查默斯的要点是：褪色说要求一个有意识的生物和自己的经验严重脱节：它已经失去了颜色经验，却相信什么都没变。他认为这不可信，放到一整个部分上传者的社会里更显荒唐。生物论者可以咬牙接受这个代价，说报告和信念跟着功能走，不跟着经验走。所以这个论证没有证明结论，它表明的是：否认结论代价很高。查默斯自己也承认僵尸化在逻辑上仍然可能（第 5 页）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "突然消失和逐渐褪色的区别不在快慢，而在有没有中间状态（脚注 31）。",
+              "en": "Sudden versus fading is about intermediate stages, not speed."
+            },
+            {
+              "zh": "逐步上传论证比较的是可信度，不是证明；查默斯承认所有人都变僵尸在逻辑上可能（第 5 页）。",
+              "en": "The argument is about plausibility, not proof; zombification stays logically possible."
+            },
+            {
+              "zh": "“会说服大多数人”的预测讲的是人们会相信什么，不是论证的一部分，也证明不了真假。",
+              "en": "The prediction about persuading people concerns belief, not truth."
+            },
+            {
+              "zh": "部分上传者完全有意识，前提是新部件是旧部件的功能复制品（第 5 页）。",
+              "en": "Partial uploads are fully conscious only if the new parts are functional duplicates."
+            },
+            {
+              "zh": "查默斯的例子（第 4–5 页）最自然的读法是：视觉经验没了，听觉经验还在。这是对原文措辞的读法，不是需要死记的考点；答题时写出“意识的某一部分没了，系统却毫无察觉”这个要点就够了。",
+              "en": "The natural reading of Chalmers's example (pp. 4-5) is that visual experience goes while auditory experience stays; this is a reading of his wording, not a fact to drill. The point to write is that part of consciousness is lost without the system noticing."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Chalmers's gradual uploading argument, which possibility does he call the least plausible?",
+            "zh": "在查默斯的逐步上传论证里，他说哪一种可能“最不可信”？"
+          },
+          "options": [
+            {
+              "en": "Consciousness suddenly disappears when a single component is replaced.",
+              "zh": "换掉某一个部件时，意识突然消失。"
+            },
+            {
+              "en": "Consciousness stays fully present throughout.",
+              "zh": "意识一直完整保持。"
+            },
+            {
+              "en": "Consciousness gradually fades over many replacements.",
+              "zh": "意识经过多次替换逐渐褪色。"
+            },
+            {
+              "en": "Consciousness grows stronger as more silicon is added.",
+              "zh": "加的硅越多，意识越强。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 4 页）：查默斯明说突然消失是最不可信的选项，因为把关键一步一再拆细，最后要么变成褪色，要么变成一个极小的部件就承载着全部意识，后者极不可能。B 是他认为最可信的结论。C 他也认为不可信，但没有说它“最”不可信。D 读物里根本没有。",
+            "en": "A (p. 4). B is his conclusion, C is also rejected but not called the least plausible, and D is not in the reading."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-organizational-invariance",
+      "title": {
+        "zh": "查默斯：意识是组织不变量",
+        "en": "Chalmers: Consciousness as an Organizational Invariant"
+      },
+      "slides": "5-6",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "上一小节的结论是：功能同构体（**functional isomorph**：每个部件都复制原大脑部件输入／输出行为的系统）有意识（**consciousness**：成为它是有某种样子的）。可“有意识”还不等于“意识一模一样”。查默斯问（第 5 页）：既然承认功能同构体有意识，是不是也该承认它们的意识状态在质上相同（**qualitatively identical**：感受起来完全一样）？他说，这不能直接推出来；但把同样的推理扩展一下，也就是他在 Chalmers 1996 里给出的“跳舞的感质”论证（**dancing qualia**），强烈支持这个结论（第 6 页）。节选没有给出这个论证。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "qualitatively identical states of consciousness",
+              "zh": "质上相同的意识状态",
+              "hint": "感受起来完全一样的意识状态，比“都有意识”强得多。"
+            },
+            {
+              "en": "dancing qualia argument",
+              "zh": "跳舞的感质论证",
+              "hint": "查默斯在 Chalmers 1996 里给出的论证，用来支持功能同构体的经验质上相同；节选只提了名字。"
+            },
+            {
+              "en": "organizational invariant",
+              "zh": "组织不变量",
+              "hint": "只要因果组织的模式相同就一定相同的性质，不管用什么材料实现。"
+            },
+            {
+              "en": "causal organization",
+              "zh": "因果组织",
+              "hint": "系统各部分之间“谁引起谁”的模式。"
+            },
+            {
+              "en": "substrate",
+              "zh": "基质（实现材料）",
+              "hint": "实现这种组织的材料：神经元、硅，或别的东西。"
+            },
+            {
+              "en": "implement",
+              "zh": "实现",
+              "hint": "用某种材料把一个组织模式搭出来。"
+            },
+            {
+              "en": "computer simulation",
+              "zh": "计算机模拟",
+              "hint": "用电脑程序模仿一个系统的运作。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "定义：组织不变量（第 6 页）",
+            "en": "Definition: organizational invariant (p. 6)"
+          },
+          "items": [
+            {
+              "en": "Chalmers says that consciousness is an organizational invariant: \"systems with the same patterns of causal organization have the same states of consciousness\" (p. 6).",
+              "zh": "查默斯说：意识是一个组织不变量：“因果组织模式相同的系统，有相同的意识状态”（第 6 页）。"
+            },
+            {
+              "en": "The material does not matter: the same organization could be built from neurons, from silicon or from something else.",
+              "zh": "不管这个组织是用神经元、用硅，还是用别的基质实现的，都一样。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "标准形式（P＝前提，C＝结论）：足够好的模拟会有意识（第 5–6 页）",
+            "en": "Standard form (P = premise, C = conclusion): a good enough simulation would be conscious (pp. 5-6)"
+          },
+          "items": [
+            {
+              "en": "P1: Functional isomorphs of a conscious brain are conscious (the gradual uploading argument), and the dancing qualia argument, which the excerpt does not give, strongly suggests that their conscious states are qualitatively identical to the original's.",
+              "zh": "P1：有意识大脑的功能同构体有意识（逐步上传论证）；节选没给出的跳舞的感质论证，强烈支持它们的意识状态和原来的质上相同。"
+            },
+            {
+              "en": "P2: So consciousness is an organizational invariant: systems with the same causal organization have the same conscious states, whatever they are made of.",
+              "zh": "P2：所以意识是组织不变量：因果组织相同的系统，不管用什么做成，意识状态都相同。"
+            },
+            {
+              "en": "P3: A computer simulation does not keep properties that are not organizational invariants, such as being wet, but it does keep properties that are, such as being a computer.",
+              "zh": "P3：计算机模拟不会保留不是组织不变量的性质（比如湿），但会保留是组织不变量的性质（比如是一台计算机）。"
+            },
+            {
+              "en": "C: So a sufficiently good computer simulation of a conscious system should itself be conscious, and its conscious states should be of the same kinds as the original's.",
+              "zh": "C：所以对一个有意识系统的、足够好的计算机模拟，应该有意识，而且有和原系统同类的意识状态。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "模拟的暴雨不湿，模拟的计算机是计算机（第 6 页）",
+            "en": "A simulated rainstorm is not wet; a simulated computer is a computer (p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "有些性质不是组织不变量，比如“湿”。在电脑里模拟一场暴雨，不管模拟得多精细，电脑里也没有任何东西变湿。",
+              "en": "Some properties, like being wet, are not organizational invariants: a simulated rainstorm, however detailed, makes nothing wet."
+            },
+            {
+              "zh": "有些性质是组织不变量，比如“是一台计算机”。在电脑里模拟一台计算机，模拟出来的东西本身就是一台计算机。",
+              "en": "Other properties, like being a computer, are organizational invariants: a simulated computer is itself a computer."
+            },
+            {
+              "zh": "一般规律：不是组织不变量的性质，不该指望模拟会保留；是组织不变量的性质，就该指望模拟会保留。",
+              "en": "In general, we should not expect a simulation to keep a property that is not an organizational invariant, but we should expect it to keep one that is."
+            },
+            {
+              "zh": "查默斯认为意识属于第二类：既然意识是组织不变量，对一个有意识系统的、足够好的计算机模拟就该有意识，而且意识状态和原来同类。",
+              "en": "Chalmers puts consciousness in the second group: a good enough simulation of a conscious system should be conscious, with the same sorts of conscious states."
+            }
+          ],
+          "answer": {
+            "zh": "所以“模拟的就不是真的”这句话不总是对：要看这个性质是不是组织不变量。",
+            "en": "'A simulation is never the real thing' is not always true: it depends on whether the property is an organizational invariant."
+          }
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "哪些性质能在模拟里保留（第 6 页）",
+            "en": "Which properties survive simulation (p. 6)"
+          },
+          "headers": [
+            "性质 Property",
+            "组织不变量？ Organizational invariant?",
+            "模拟里保留吗？ Kept in a simulation?"
+          ],
+          "rows": [
+            [
+              "湿 being wet",
+              "不是 No",
+              "不保留：模拟的暴雨不湿"
+            ],
+            [
+              "是一台计算机 being a computer",
+              "是 Yes",
+              "保留：模拟的计算机就是计算机"
+            ],
+            [
+              "意识 consciousness",
+              "查默斯论证：是 Yes",
+              "保留：足够好的模拟有意识，意识状态同类"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "查默斯说，这对正在考虑上传的人是好消息（第 6 页）。但还有一个进一步的问题：就算上传体有意识，它是我吗？这是第 13 小节的内容。注意：这一小节的结论只讲“有没有意识、有什么样的意识”，没有讲“这是谁的意识”。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：同一盘象棋，用木头棋子、塑料棋子在棋盘上下，或者在手机 app 上下，棋局都一样：走到哪一步、谁赢，完全相同。棋局只看结构，就像组织不变量。但“木头棋子的香味”换成塑料、换成手机就没了，它不是组织不变量，就像“湿”。",
+          "limit": "棋局本来就是人定的抽象规则，当然只看结构；意识是不是也像棋局一样只看结构，正是生物论者（认为只有生物才能有意识的人）要反对的。这个类比只帮你理解“组织不变量”这个词，不能证明意识就是组织不变量。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'Consciousness is like wetness, not like being a computer. A simulated brain is no more conscious than a simulated storm is wet.' How would Chalmers reply?",
+            "zh": "反驳：“意识像‘湿’，不像‘是计算机’。模拟的大脑不会有意识，就像模拟的暴雨不会湿。”查默斯会怎么回应？"
+          },
+          "answer": {
+            "en": "Chalmers agrees that properties like wetness are not kept in a simulation. The real question is which group consciousness belongs to, and he answers with his earlier arguments: we understand neural consciousness no better than silicon consciousness, and the gradual uploading argument shows that consciousness most plausibly stays present when brain parts are replaced by functional duplicates. If so, consciousness depends on causal organization, which a good simulation keeps. The objector must say where consciousness is lost during gradual replacement, and both sudden disappearance and fading are implausible.",
+            "zh": "查默斯同意“湿”这类性质在模拟里不保留。问题在于意识属于哪一类，他用前面的论证回答：我们对神经元意识的理解不比硅意识多；逐步上传论证表明，把大脑部件换成功能复制品时，意识最可能一直保持。这样的话，意识取决于因果组织，而好的模拟保留了因果组织。反对者得说清楚：逐步替换中意识在哪里丢掉了？可突然消失和逐渐褪色都不可信。注意：读物没有专门写这个反驳，这是根据查默斯的论证替他作答。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "不是所有被模拟的性质都是真的：只有组织不变量才会在模拟里保留（第 6 页）。",
+              "en": "Only organizational invariants survive simulation."
+            },
+            {
+              "zh": "“有意识”和“意识质上相同”是两步：第二步要靠跳舞的感质论证，节选没给出（第 5–6 页）。",
+              "en": "Being conscious and having qualitatively identical states are two steps; the second relies on the dancing qualia argument."
+            },
+            {
+              "zh": "组织不变量的定义里，相同的是因果组织的模式，不是材料；材料（基质）可以完全不同。",
+              "en": "What must match is the pattern of causal organization, not the material."
+            },
+            {
+              "zh": "组织不变量讲的是有什么样的意识，不回答“上传体是不是我”（第 6 页）。",
+              "en": "Organizational invariance is about which conscious states a system has, not about personal identity."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which of the following does Chalmers give as an example of an organizational invariant?",
+            "zh": "下面哪一项是查默斯举的组织不变量的例子？"
+          },
+          "options": [
+            {
+              "en": "Being wet.",
+              "zh": "湿。"
+            },
+            {
+              "en": "Being made of neurons.",
+              "zh": "由神经元构成。"
+            },
+            {
+              "en": "Being alive.",
+              "zh": "活着。"
+            },
+            {
+              "en": "Being a computer.",
+              "zh": "是一台计算机。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 6 页）：模拟的计算机就是计算机，所以“是计算机”是组织不变量。A 是查默斯举的反例：模拟的暴雨不湿。B 把材料当成了组织；组织不变量恰恰不管材料是神经元还是硅。C 在读物里没有作为例子出现。",
+            "en": "D (p. 6). A is his example of a property that is not an invariant, B confuses material with organization, and C is not used as an example."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-uploading-and-personal-identity",
+      "title": {
+        "zh": "查默斯：上传与人格同一性（开头部分）",
+        "en": "Chalmers: Uploading and Personal Identity (Opening)"
+      },
+      "slides": "6",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "组织不变量（**organizational invariant**：因果组织相同就一定相同的性质）回答了“上传体有没有意识（成为它是有某种样子的）”。查默斯说，还剩一个进一步的问题（第 6 页）：假设我能把我的大脑上传到电脑里，结果会是我吗？这就是人格同一性（**personal identity**：后来的这个存在者，和原来的是不是同一个人）的问题。读物的第 10 节从这里开始，但只有开头几段，第 6 页最后一句没写完就断了。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "personal identity",
+              "zh": "人格同一性",
+              "hint": "后来的某个存在者，和原来的是不是同一个人。"
+            },
+            {
+              "en": "person",
+              "zh": "人（人格者）",
+              "hint": "这里指有意识、有心灵生活的个体，不一定是生物学上的人。"
+            },
+            {
+              "en": "optimistic view of uploading",
+              "zh": "上传的乐观观点",
+              "hint": "上传体和原来的人是同一个人。"
+            },
+            {
+              "en": "pessimistic view of uploading",
+              "zh": "上传的悲观观点",
+              "hint": "上传体和原来的人不是同一个人。"
+            },
+            {
+              "en": "destructive uploading",
+              "zh": "破坏性上传",
+              "hint": "上传过程中，原来的大脑被毁掉。"
+            },
+            {
+              "en": "survival",
+              "zh": "存活",
+              "hint": "我继续存在下去。"
+            },
+            {
+              "en": "simulacrum",
+              "zh": "仿制品",
+              "hint": "看起来像原来那个人、顶替他位置的复制品（读物 PDF 里拼作 simulacram）。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "乐观观点 vs 悲观观点（第 6 页）",
+            "en": "Optimistic vs pessimistic views (p. 6)"
+          },
+          "headers": [
+            "",
+            "乐观观点 Optimistic view",
+            "悲观观点 Pessimistic view"
+          ],
+          "rows": [
+            [
+              "上传体是不是原来那个人 Same person as the original?",
+              "是 Yes",
+              "不是 No"
+            ],
+            [
+              "破坏性上传意味着 Destructive uploading is",
+              "一种存活 a form of survival",
+              "一种死亡 a form of death：原来的人被毁掉，造出一个仿制品顶替"
+            ],
+            [
+              "读物提到的理由 Reasons in the excerpt",
+              "节选没有展开 not given",
+              "上传体可能根本没有意识、不算一个人；或者它是一个有意识的人，但不是原来那个人"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "注意悲观观点有两条来路（第 6 页）：如果有人认为上传体没有意识，他很可能持悲观观点，理由是上传体根本不是一个人（**person**）。但就算认为上传体有意识、也是一个人，仍然可以质疑：它是不是原来那同一个人？所以，回答了意识问题，并没有回答同一性问题。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "破坏性上传：生死攸关的问题（第 6 页）",
+            "en": "Destructive uploading: a matter of life or death (p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "破坏性上传（**destructive uploading**）：上传的过程中，原来的大脑被毁掉了。",
+              "en": "In destructive uploading, the original brain is destroyed."
+            },
+            {
+              "zh": "上传完成后，电脑里有一个上传体；假设按第 12 小节的结论，它有意识，意识状态和原来的同类。",
+              "en": "Afterwards there is an upload in the computer; suppose, as section 12 argued, that it is conscious with the same sorts of states."
+            },
+            {
+              "zh": "按乐观观点：这是一种存活（**survival**）。",
+              "en": "The optimistic view counts destructive uploading as a way of surviving."
+            },
+            {
+              "zh": "按悲观观点：这是一种死亡。就好像原来的人被毁掉了，然后在他的位置上造出了一个仿制品（**simulacrum**）。",
+              "en": "On the pessimistic view, it is a form of death: as if the original person were destroyed and a simulacrum created in their place."
+            }
+          ],
+          "answer": {
+            "zh": "所以查默斯说，面对破坏性上传，乐观观点和悲观观点之争简直就是生死问题（第 6 页）。",
+            "en": "For destructive uploading, the dispute between the two views is literally a question of life or death."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "查默斯接着说：诉诸组织不变量在这里帮不上忙（第 6 页）。他刚开始设想一个新的情形，句子就断了。为什么帮不上忙？可以这样理解：组织不变量告诉我们，因果组织相同，意识状态就相同，所以上传体会有和我同类的意识；但“和我有同样的意识”不等于“就是我”，一个完美的复制品可以和我感受完全一样，却仍然是另一个人。这是根据论证结构的解读，读物在这里没写完。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：意识问题不等于同一性问题（第 1、6 页）",
+            "en": "The consciousness question is not the identity question (pp. 1, 6)"
+          },
+          "items": [
+            {
+              "en": "Chalmers divides 'Will I survive uploading?' into two questions: will the upload be conscious, and will it be me?",
+              "zh": "查默斯把“我能在上传中存活吗”分成两个问题：上传体会有意识吗？它会是我吗？"
+            },
+            {
+              "en": "The optimistic view says the upload is the very same person as the original; the pessimistic view says it is a different person.",
+              "zh": "乐观观点认为上传体和原来的人是同一个人；悲观观点认为不是。"
+            },
+            {
+              "en": "For destructive uploading this is a question of life or death: survival on the optimistic view, and death plus a simulacrum on the pessimistic view.",
+              "zh": "对破坏性上传来说，这是生死问题：按乐观观点是存活；按悲观观点是死亡，外加一个顶替的仿制品。"
+            },
+            {
+              "en": "Chalmers says that organizational invariance gives no help with this question. One natural reason is that it shows the upload has the same kind of conscious states as me, not that it is the same person.",
+              "zh": "查默斯说：诉诸组织不变量在这里帮不上忙。一个自然的解释是：它只说明上传体有和我同类的意识状态，没说明它是同一个人。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "脚注 33（第 6 页）：查默斯说，读过帕菲特（**Derek Parfit**）的 Reasons and Persons（《理由与人格》）的人都看得出，这里的讨论深受帕菲特影响。帕菲特没有讨论上传，但他对远程传送（**teletransportation**）等相关现象的讨论，很自然可以推广到上传上；查默斯说，他接下来做的就是这种推广的一部分。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：帕菲特的远程传送是一个著名的思想实验：机器在地球上扫描你的身体并把它毁掉，再在火星上用新材料造出一个一模一样的你。火星上的那个人是你吗？这和破坏性上传是同一类问题。另外，在节选以外的部分，查默斯还谈到非破坏性上传（**nondestructive uploading**）：原来的大脑保留下来，同时多出一个上传体。节选第 1 页只说上传有“各种形式”，正文只出现了破坏性上传（第 6 页）和逐步上传（第 3–4 页）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "打个比方：把一封手写信拿去复印，复印件上每一个字、每一笔都和原件一样，内容完全相同。可复印件是不是“那一张纸”？显然不是：内容相同和是同一个东西，是两个问题。如果原件被碎纸机碎掉了，你手里剩下的还是“那封信”吗？乐观派和悲观派争的，就是人身上的这个问题。",
+          "limit": "信没有意识，问题只是哪张纸；上传体可能有和你一样的意识，问题是“那个有意识的人是不是你”。对人来说，“是不是同一个”可能比对纸复杂得多，所以这个类比不能替你回答问题。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Suppose your brain is destructively uploaded, and the upload is conscious with experiences just like yours. Have you survived? Use Chalmers's distinctions.",
+            "zh": "设想你的大脑被破坏性地上传了，上传体有意识，经验和你的一模一样。你存活下来了吗？用查默斯的区分来回答。"
+          },
+          "answer": {
+            "en": "Chalmers would say that this depends on the identity question, which the consciousness question does not settle. If the optimistic view is right, the upload is me, so destructive uploading lets me survive. If the pessimistic view is right, the upload is someone else, so I have died and a simulacrum has been made in my place. Organizational invariance shows only that the upload has conscious states like mine, not that it is me, and the excerpt breaks off before Chalmers gives his own answer.",
+            "zh": "查默斯会说：这取决于同一性问题，而意识问题回答不了它（第 6 页）。按乐观观点，上传体就是我，破坏性上传是一种存活；按悲观观点，上传体是另一个人，我已经死了，只是在我的位置上造了一个仿制品。组织不变量只说明上传体有和我同类的意识状态，推不出“它就是我”。节选在查默斯给出自己的答案之前就断了，答题时不要替他下结论。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "意识问题和同一性问题是两个问题：上传体可以有意识，却仍然不是你（第 6 页）。",
+              "en": "An upload could be conscious and still not be you."
+            },
+            {
+              "zh": "悲观观点有两种理由：上传体没有意识、不算一个人；或者它是一个有意识的人，但不是原来那个人。",
+              "en": "The pessimistic view can rest on two different reasons."
+            },
+            {
+              "zh": "节选在第 6 页断了：查默斯自己站乐观还是悲观，读物里没有，不要替他回答。",
+              "en": "The excerpt stops before Chalmers gives his own view on identity."
+            },
+            {
+              "zh": "帕菲特没有讨论上传；是查默斯把帕菲特关于远程传送等情况的讨论推广到上传上（脚注 33）。",
+              "en": "Parfit did not discuss uploading; Chalmers generalizes Parfit's discussion of cases like teletransportation."
+            },
+            {
+              "zh": "读物 PDF 把 simulacrum 拼成 simulacram，是同一个词。",
+              "en": "The PDF spells simulacrum as 'simulacram'."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Chalmers, what is destructive uploading on the pessimistic view?",
+            "zh": "根据查默斯，按悲观观点，破坏性上传是什么？"
+          },
+          "options": [
+            {
+              "en": "A form of survival, because the upload is the same person.",
+              "zh": "一种存活，因为上传体就是同一个人。"
+            },
+            {
+              "en": "A form of death: the original person is destroyed and a simulacrum is created in their place.",
+              "zh": "一种死亡：原来的人被毁掉，在他的位置上造出一个仿制品。"
+            },
+            {
+              "en": "Impossible, because functional isomorphs cannot exist.",
+              "zh": "不可能，因为功能同构体不可能存在。"
+            },
+            {
+              "en": "A way of making the original brain conscious for the first time.",
+              "zh": "让原来的大脑第一次有意识的方法。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 6 页）：按悲观观点，破坏性上传是一种死亡，就好像原来的人被毁掉，再在他的位置上造出一个仿制品。A 是乐观观点。C 错：查默斯假定功能同构体可能存在（第 3 页），而且这和乐观、悲观之争无关。D 是编的，读物没有这种说法。",
+            "en": "B (p. 6). A is the optimistic view, C contradicts Chalmers's working assumption, and D is not in the reading."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-nagel-and-chalmers-compared",
+      "title": {
+        "zh": "比较：内格尔与查默斯对比",
+        "en": "Comparison: Nagel and Chalmers Compared"
+      },
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一小节比较两篇读物，不对应某一篇的固定页码，用到的是：内格尔第 3–6、9–17 页，查默斯第 1–6 页（都是 PDF 页码）。如果遇到“比较两篇读物”的小论文题，可以直接用这里的连接点。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "compare / contrast",
+              "zh": "比较 / 对照",
+              "hint": "compare＝相同点和不同点都说；contrast＝重点说不同点。"
+            },
+            {
+              "en": "reduction",
+              "zh": "还原",
+              "hint": "说明一种东西“其实就是”另一种更基本的东西，比如水其实就是 H2O。"
+            },
+            {
+              "en": "further fact",
+              "zh": "进一步的事实",
+              "hint": "查默斯的词：知道一个系统的全部物理结构以后，关于它的意识仍然没有被定下来的事实。"
+            },
+            {
+              "en": "thought experiment",
+              "zh": "思想实验",
+              "hint": "只在脑子里设想的情境，比如变成蝙蝠、逐步上传。"
+            },
+            {
+              "en": "physicalism",
+              "zh": "物理主义",
+              "hint": "心灵状态就是物理状态。内格尔：也许为真，但现在无法理解。"
+            },
+            {
+              "en": "functionalism (Chalmers's sense)",
+              "zh": "功能论（查默斯的意义）",
+              "hint": "对意识要紧的是因果组织，不是材料；它是关于意识的物理关联物的理论。"
+            },
+            {
+              "en": "functional analysis (Nagel's target)",
+              "zh": "功能分析（内格尔批评的对象）",
+              "hint": "用功能、因果角色去分析心灵状态“是什么”。"
+            },
+            {
+              "en": "property dualism",
+              "zh": "性质二元论",
+              "hint": "意识涉及物理性质之外的基本性质（查默斯的立场，脚注 27）。"
+            },
+            {
+              "en": "point of view",
+              "zh": "观点",
+              "hint": "从某一类身体、感官出发的视角；内格尔认为关于经验的事实都连着某一类观点。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "内格尔 vs 查默斯一览",
+            "en": "Nagel and Chalmers at a glance"
+          },
+          "headers": [
+            "",
+            "内格尔 Nagel",
+            "查默斯 Chalmers"
+          ],
+          "rows": [
+            [
+              "核心问题 Main question",
+              "意识能被物理还原吗？物理主义可以理解吗？",
+              "上传体会有意识吗？它会是我吗？"
+            ],
+            [
+              "意识的定义 Definition",
+              "成为这个生物是有某种样子的（第 3 页）",
+              "成为我们是有某种样子的（第 1 页）"
+            ],
+            [
+              "物理描述能说明经验吗 Does physical description reveal experience?",
+              "目前看不出怎么能：物理事实是客观的，经验连着观点（蝙蝠，第 5–12 页）",
+              "不能完全说明：意识是进一步的事实（玛丽、老鼠，第 1–2 页）"
+            ],
+            [
+              "主要方法 Main method",
+              "蝙蝠思想实验；分析还原的模式",
+              "逐步上传思想实验；比较三种可能的可信度"
+            ],
+            [
+              "对物理主义 On physicalism",
+              "也许为真，但现在无法理解（第 13–15 页）",
+              "自称性质二元论者，但说大部分讨论对唯物主义和二元论中立（脚注 27、29）"
+            ],
+            [
+              "结论 Conclusion",
+              "提议发展客观现象学；在对主观与客观想得更多之前，似乎谈不上物理的心灵理论（第 16–17 页）",
+              "功能同构体有意识；意识是组织不变量；同一性问题另说（第 5–6 页）"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "共同的起点：两人用的是同一个定义。内格尔说，一个生物有意识，当且仅当成为它是有某种样子的（第 3 页）；查默斯开篇也说，普通人有意识，就是成为我们是有某种样子的，经验有主观特征（第 1 页）。两人还都认为，物理描述说不出经验是什么样子：内格尔有蝙蝠（第 5–6、9 页），查默斯有老鼠和玛丽（第 2 页）。本站的理解：查默斯的老鼠，可以看成内格尔蝙蝠论点的简短重述（节选里查默斯没有提到内格尔）。"
+        },
+        {
+          "type": "text",
+          "zh": "不同的问题：内格尔问的是意识是什么、物理主义能不能被理解；他说现有的还原概念都用不上（第 3、13–14 页）。查默斯则把“意识是什么”放到一边：他明说，生物论和功能论只是关于意识的物理关联物的理论，不是关于意识是什么的理论（脚注 28）。他问的是：哪些系统有意识？所以两人并不是在同一个问题上正面冲突。"
+        },
+        {
+          "type": "text",
+          "zh": "一个很好用的连接点：内格尔脚注 2（第 3 页）说，也许任何复杂到能像人一样行动的东西都会有经验，但这一点不能光靠分析“经验”这个概念来发现。查默斯的逐步上传论证正好不是概念分析，而是比较可信度的论证；而且它的对象是功能同构体（每个部件都复制大脑），不只是“行为像人”的东西（第 3–5 页）。可以这样连接（这是本站的连接，两位作者都没有这样说）：内格尔留了余地，查默斯的论证落在这个余地里。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外，本站的综合）：把内格尔的“观点”问题用到上传体上。按查默斯的论证，一个完美的功能同构体会有和原来质上相同的意识状态（第 5–6 页），那它和我们属于同一类观点，我们大致能知道做它是什么样子。可一个结构和我们很不一样的人工智能，就算有意识，也可能像蝙蝠一样：我们相信它有经验，却设想不出它的经验是什么样子。两篇读物都没有这样说，写进答案时要说明这是你自己的推论。"
+        },
+        {
+          "type": "text",
+          "zh": "别混淆两种“功能”：内格尔批评的功能分析（第 3–4 页），是用功能、因果角色去说明心灵状态是什么，他说连没有体验的机器人都能满足这种分析。查默斯的功能论（第 2 页）是说意识在什么物理条件下出现：因果组织对了，就会有意识。前者讲“意识是什么”，后者讲“意识的物理关联物”。所以查默斯可以一边赞成功能论，一边同意内格尔：功能描述没有说出意识是什么（意识是进一步的事实，第 1–2 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "对物理主义的态度也不同：查默斯自称性质二元论者（**property dualist**），认为意识涉及物理性质之外的基本性质（脚注 27），但说后面的大部分讨论对唯物主义和二元论保持中立（脚注 29）。内格尔不下结论：物理主义也许为真，但我们现在无法理解（第 13 页）；他还猜测，心物关系最终可能由一种基本词既不能归为心灵、也不能归为物理的理论来表达（脚注 15）。"
+        },
+        {
+          "type": "list",
+          "title": {
+            "zh": "和其他周的联系",
+            "en": "Links to other weeks"
+          },
+          "items": [
+            {
+              "zh": "第 7 周罗素：罗素从桌子的颜色、形状随观点变化，区分表象与实在。内格尔说，“从表象走向实在”正是闪电、声音这类还原能成功的原因，却恰恰用不到经验本身上（第 10–12 页）。",
+              "en": "Russell (Week 7) separates appearance from reality; Nagel says this move works for lightning and sound but not for experience itself."
+            },
+            {
+              "zh": "第 7 周范·因瓦根：他说的客观真理，是由世界本身、而不是由我们的信念决定真假的真理。内格尔的“客观”意思不同（能从很多观点去理解）；本站的理解：内格尔说的主观事实，在范·因瓦根的意义上照样可以是客观地真的。",
+              "en": "Van Inwagen's objective truth is truth fixed by the world, not by our beliefs; Nagel's 'objective' means graspable from many points of view, and, on our reading, his subjective facts can still be objectively true in van Inwagen's sense."
+            },
+            {
+              "zh": "第 10 周查默斯谈语言模型：把“非生物系统能不能有意识”的问题用到大语言模型上。",
+              "en": "Chalmers on language models (Week 10) asks the same question about a different kind of nonbiological system."
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "比较题可以这样写",
+            "en": "Sentences for a comparison answer"
+          },
+          "items": [
+            {
+              "en": "Both Nagel and Chalmers define consciousness as there being something it is like to be a creature.",
+              "zh": "内格尔和查默斯都把意识定义为：成为某个生物是有某种样子的。"
+            },
+            {
+              "en": "Both hold that a complete physical description does not by itself tell us what an experience is like: Nagel uses the bat, and Chalmers uses Mary and the mouse.",
+              "zh": "两人都认为，完整的物理描述本身说不出经验是什么样子：内格尔用蝙蝠，查默斯用玛丽和老鼠。"
+            },
+            {
+              "en": "Nagel asks whether consciousness can be reduced, and he concludes that physicalism may be true but cannot yet be understood.",
+              "zh": "内格尔问意识能不能被还原，结论是：物理主义也许为真，但现在无法理解。"
+            },
+            {
+              "en": "Chalmers sets aside what consciousness is and asks which systems are conscious; he argues that a functional isomorph of a brain would be conscious.",
+              "zh": "查默斯把“意识是什么”放到一边，问哪些系统有意识；他论证大脑的功能同构体会有意识。"
+            },
+            {
+              "en": "One can argue that Nagel's footnote 2 leaves room for this, because he says only that conceptual analysis cannot show that humanlike behaviour brings experience.",
+              "zh": "可以论证：内格尔的脚注 2 给这一点留了余地，因为他只说：概念分析不能证明像人一样的行为就带有经验。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Would Nagel accept Chalmers's conclusion that an upload would be conscious? Compare their views on what physical or functional descriptions can tell us about consciousness.",
+            "zh": "内格尔会接受查默斯“上传体会有意识”的结论吗？比较两人对“物理或功能描述能告诉我们多少关于意识的事”的看法。"
+          },
+          "answer": {
+            "en": "Nagel might accept it in part. He agrees that functional descriptions do not tell us what consciousness is, but his footnote 2 allows that any system complicated enough to act as a person does might in fact have experience, as long as this is not claimed to follow from the concept of experience. Chalmers's gradual uploading argument is not conceptual analysis but a plausibility argument about exact functional duplicates, so it fits that opening. Still, Nagel would add that knowing that an upload is conscious is not knowing what it is like to be it, unless its point of view is of our type.",
+            "zh": "可以答：部分接受。内格尔同意功能描述说不出意识是什么，但他的脚注 2 允许“复杂到像人一样行动的东西事实上有经验”，只要别说这是从“经验”的概念里推出来的。查默斯的逐步上传论证不是概念分析，而是关于精确功能复制品的可信度论证，正好落在这个余地里。不过内格尔会补一句：知道上传体有意识，不等于知道做它是什么样子，除非它和我们属于同一类观点。注意这是推测内格尔“会怎么想”，答题时要用 might、would probably 这类词。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "不要说内格尔论证了二元论：他并没有论证二元论，还说物理主义也许为真（第 13 页）；脚注 15 甚至认为，心物关系更可能由一种基本词既不能明确归为心灵、也不能明确归为物理的理论来表达。也不要说查默斯解决了内格尔的问题：查默斯明说他的理论不是关于意识是什么的（脚注 28）。",
+              "en": "Nagel does not argue for dualism (he allows that physicalism may be true), and Chalmers does not claim to solve Nagel's problem."
+            },
+            {
+              "zh": "查默斯的功能论不等于内格尔批评的功能分析：一个讲物理关联物，一个讲意识是什么。",
+              "en": "Chalmers's functionalism (about correlates) is not the functional analysis Nagel attacks (about what consciousness is)."
+            },
+            {
+              "zh": "两人的定义相同，问题不同：内格尔问“能不能还原、能不能理解”，查默斯问“哪些系统有意识、上传体是不是我”。",
+              "en": "Same definition, different questions."
+            },
+            {
+              "zh": "“完美上传体和我们属于同一类观点”这类综合是本站的思路，不是两位作者说的；写进答案时要说明是你的推论。",
+              "en": "Linking Nagel's point of view to uploads is our synthesis, not either author's claim."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement correctly compares Nagel and Chalmers?",
+            "zh": "哪一项正确地比较了内格尔和查默斯？"
+          },
+          "options": [
+            {
+              "en": "Nagel argues that physicalism is false, while Chalmers argues that it is true.",
+              "zh": "内格尔论证物理主义是错的，查默斯论证它是对的。"
+            },
+            {
+              "en": "Chalmers's functionalism is the same as the functional analysis that Nagel attacks.",
+              "zh": "查默斯的功能论就是内格尔批评的那种功能分析。"
+            },
+            {
+              "en": "Both define consciousness as there being something it is like to be a creature, but Nagel asks whether consciousness can be reduced, while Chalmers asks which systems are conscious.",
+              "zh": "两人都把意识定义为“成为某生物是有某种样子的”，但内格尔问意识能不能被还原，查默斯问哪些系统有意识。"
+            },
+            {
+              "en": "Both argue that bats and uploads are certainly not conscious.",
+              "zh": "两人都论证蝙蝠和上传体肯定没有意识。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C。两人都用“成为它是有某种样子的”来定义意识（内格尔第 3 页，查默斯第 1 页），但问题不同。A 错：内格尔说断定物理主义是错的本身是个错误（第 13 页），查默斯自称性质二元论者（脚注 27）。B 错：查默斯的功能论是关于意识的物理关联物的理论（脚注 28），内格尔批评的是用功能去分析意识是什么。D 错：内格尔假定蝙蝠有经验，查默斯论证上传体有意识。",
+            "en": "C. Nagel says it would be a mistake to call physicalism false, and Chalmers is a property dualist (A); the two 'functional' ideas differ (B); Nagel assumes that bats have experience, and Chalmers argues that uploads are conscious (D)."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "Nagel argues that consciousness is the reason the mind-body problem is so hard to solve, and that successful reductions such as water to H2O do not help with it.",
+      "zh": "内格尔论证：正是意识让身心问题这么难；水还原成 H2O 这类成功的还原帮不上忙。"
+    },
+    {
+      "en": "Nagel's criterion is that a creature is conscious if and only if there is something it is like to be that creature, for the creature itself; he calls this the subjective character of experience.",
+      "zh": "内格尔说：一个生物有意识的心灵状态，当且仅当成为它是有某种样子的，而且是对它自己而言的；他把这叫作经验的主观特征。"
+    },
+    {
+      "en": "Functional, intentional and causal-role analyses of the mind leave subjective character out, because they could all be true of robots that behave like people but experience nothing.",
+      "zh": "功能分析、意向分析、因果角色分析都漏掉了主观特征，因为它们对行为像人、却什么也体验不到的机器人同样成立。"
+    },
+    {
+      "en": "Bats are mammals, so we believe they have experience, but their sonar is unlike any human sense. Imagining bat behaviour only shows how it would feel for me to act like a bat, so we can form only a schematic conception of bat experience.",
+      "zh": "蝙蝠是哺乳动物，我们相信它有经验，但它的声呐和人类任何感官都不同。想象蝙蝠的行为，只能知道“我”像蝙蝠那样行动是什么样子，所以对蝙蝠经验我们只有粗略的概念。"
+    },
+    {
+      "en": "Nagel is a realist about subjective facts: Martians would be wrong to deny that there is something precise it is like to be us, so our failure to conceive bat experience does not make it unreal. Such facts are tied to a type of point of view, not to one private individual.",
+      "zh": "内格尔是关于主观事实的实在论者：火星人否认“做人类有确切的样子”就错了，所以我们设想不出蝙蝠的经验，也不能说它不真实。这类事实连着一类观点，而不是某个人私有的。"
+    },
+    {
+      "en": "Reduction normally moves from appearance to a more objective reality by leaving our point of view behind, as with lightning and sound. Experience is not external to its point of view, so more objectivity takes us farther away from it.",
+      "zh": "还原通常靠离开我们的观点，从表象走向更客观的实在（闪电、声音）。经验不外在于它的观点，所以越客观，离它越远。"
+    },
+    {
+      "en": "Nagel does not conclude that physicalism is false: it may be true, but today it is like the claim that matter is energy would have been if a pre-Socratic philosopher had made it, since we have no idea how it might hold. We may even have some evidence for it without understanding it, just as someone who finds a butterfly in a safe that stayed shut has reason to think it was the caterpillar without knowing how.",
+      "zh": "内格尔不认为物理主义是错的：它也许为真，但今天的物理主义，就像“物质就是能量”出自一位前苏格拉底哲学家之口：我们根本不知道它怎么可能为真。我们甚至可能已经有支持它的证据，只是还不理解它：就像在一直锁着的保险箱里发现蝴蝶的人，有理由相信它就是那条毛毛虫，却不知道这是怎么回事。"
+    },
+    {
+      "en": "Nagel proposes an objective phenomenology that would describe at least part of what experiences are like to beings who cannot have them, and he thinks it unlikely that we can seriously consider any physical theory of mind until more thought is given to subjective and objective.",
+      "zh": "内格尔提议发展客观现象学，向不能有某种经验的生物至少描述它的一部分；他认为，在对主观与客观想得更多之前，恐怕谈不上认真考虑任何物理的心灵理论。"
+    },
+    {
+      "en": "Chalmers splits the question 'Will I survive uploading?' into two: will the upload be conscious, and will it be me? Consciousness matters because it gives our lives much of their meaning and value.",
+      "zh": "查默斯把“我能在上传中存活吗”分成两个问题：上传体会有意识吗？它会是我吗？意识要紧，是因为它给了生活很大一部分意义和价值。"
+    },
+    {
+      "en": "Chalmers says that consciousness appears to be a further fact: complete physical knowledge of a system does not seem to settle all the facts about its experience, as the cases of Mary and the mouse illustrate, and there is no consciousness meter.",
+      "zh": "查默斯说意识似乎是一个进一步的事实：对一个系统完整的物理知识，似乎定不下它的全部经验（玛丽、老鼠的例子），而且没有“意识计”。"
+    },
+    {
+      "en": "Biological theories say that only biological systems can be conscious, while functionalist theories say that causal organization is what matters. Chalmers favours functionalism because we understand neurons no better than silicon and know of no principled difference between them.",
+      "zh": "生物论说只有生物系统能有意识，功能论说要紧的是因果组织。查默斯支持功能论，因为我们对神经元的理解不比对硅多，也不知道两者有原则性的差别。"
+    },
+    {
+      "en": "In gradual uploading, brain parts are replaced one by one with functional duplicates and behaviour never changes. Sudden disappearance and gradual fading of consciousness are both implausible, so consciousness most plausibly stays fully present.",
+      "zh": "逐步上传中，大脑部件被一个个换成功能复制品，行为始终不变。意识突然消失、逐渐褪色都不可信，所以最可信的是意识一直完整保持。"
+    },
+    {
+      "en": "Chalmers concludes that consciousness is an organizational invariant, so a good enough simulation of a conscious brain would be conscious, unlike a simulated rainstorm, which is not wet.",
+      "zh": "查默斯的结论：意识是组织不变量，所以对有意识大脑足够好的模拟会有意识；这和模拟的暴雨不湿不一样。"
+    },
+    {
+      "en": "Whether an upload is conscious does not settle whether it is you: the optimistic view treats destructive uploading as survival, while the pessimistic view treats it as death and replacement by a simulacrum.",
+      "zh": "上传体有没有意识，决定不了它是不是你：按乐观观点，破坏性上传是存活；按悲观观点，是死亡，再被一个仿制品顶替。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Nagel's definition of consciousness ('something it is like' for the organism), the subjective character of experience, and why the reductionists' favourite analogies do not help.",
+      "zh": "可能考定义：用英文写出“当且仅当成为它是有某种样子的”，并说明 what it is like 不是“像什么”。",
+      "sectionId": "s01-what-it-is-like"
+    },
+    {
+      "en": "Why functional, intentional and causal-role analyses leave consciousness out (robots), what Nagel grants, and footnote 2.",
+      "zh": "适合考标准形式：写出机器人前提，再说明内格尔承认功能描述没错、只是不完整。",
+      "sectionId": "s02-reductive-analyses-leave-it-out"
+    },
+    {
+      "en": "The bat: why bats, echolocation, behaving like a bat versus being a bat, gradual transformation, schematic conception, and the person deaf and blind from birth.",
+      "zh": "本周最有名的思想实验：要能说清“我像蝙蝠一样行动”和“做蝙蝠对蝙蝠来说是什么样子”的区别。",
+      "sectionId": "s03-the-bat"
+    },
+    {
+      "en": "Intelligent bats and Martians, transfinite numbers before Cantor, realism about the subjective, a point of view as a type rather than private, and footnote 8.",
+      "zh": "容易混淆的点多：主观不等于私密；脚注 8 讲的不是“能不能知道”，而是“形成概念要采取对方观点”。",
+      "sectionId": "s04-facts-beyond-human-concepts"
+    },
+    {
+      "en": "The point-of-view argument: the Martian scientist and lightning as a contrast, objectivity as a direction, sound as a wave, and why experience is not external to its point of view.",
+      "zh": "小论文的核心论证：能写出标准形式，并解释为什么火星人与闪电不是反还原的论证。",
+      "sectionId": "s05-why-reduction-fails"
+    },
+    {
+      "en": "Physicalism may be true but is not yet intelligible: the deceptive 'is', matter is energy and the pre-Socratic, the caterpillar in the safe, and Davidson.",
+      "zh": "选择题可能考内格尔对物理主义的结论；简答题可能考毛毛虫例子说明什么。",
+      "sectionId": "s06-physicalism-not-yet-understood"
+    },
+    {
+      "en": "The proposal of an objective phenomenology: explaining sight to someone blind from birth, the useless comparison of red with a trumpet, structural features, and the final moral.",
+      "zh": "简答题：客观现象学是什么、为什么提出、和靠想象有什么不同。",
+      "sectionId": "s07-objective-phenomenology"
+    },
+    {
+      "en": "The two questions inside 'Will I survive uploading?', why consciousness matters, the further-fact argument (Mary, the mouse, no consciousness meter), and footnote 27.",
+      "zh": "脚注 27 适合出选择题：认识论上的进一步事实和唯物主义相容，大多数唯物主义者也接受。",
+      "sectionId": "s08-will-an-upload-be-conscious"
+    },
+    {
+      "en": "Biological versus functionalist theories, who is sympathetic to each, the argument that the gap is just as wide for neurons as for silicon, and footnotes 28 and 29.",
+      "zh": "简答题：查默斯为什么不偏向生物论；记住这两派理论讲的是意识的物理关联物。",
+      "sectionId": "s09-biological-vs-functionalist"
+    },
+    {
+      "en": "The perfect upload as a functional isomorph, the assumption that cognition is computable, and how gradual uploading keeps behaviour and reports unchanged.",
+      "zh": "定义题：功能同构体；注意“功能同构体可能存在”只是假定。",
+      "sectionId": "s10-gradual-uploading-setup"
+    },
+    {
+      "en": "The three possibilities during gradual uploading, the arguments against sudden disappearance and fading, the society of partial uploads, and why the conclusion is about plausibility, not proof.",
+      "zh": "最适合出小论文：写出逐步上传论证的标准形式，再评价反对褪色的那一步。",
+      "sectionId": "s11-sudden-fading-or-staying"
+    },
+    {
+      "en": "Consciousness as an organizational invariant: being wet versus being a computer, and why a good enough simulation would be conscious.",
+      "zh": "选择题可能考哪个性质是组织不变量；简答题可能考“模拟的暴雨不湿”说明什么。",
+      "sectionId": "s12-organizational-invariance"
+    },
+    {
+      "en": "Optimistic versus pessimistic views of uploading, destructive uploading as survival or death, and why organizational invariance does not settle personal identity.",
+      "zh": "要分清意识问题和同一性问题；节选断在这里，不要替查默斯下结论。",
+      "sectionId": "s13-uploading-and-personal-identity"
+    },
+    {
+      "en": "Compare Nagel and Chalmers: the same definition, different questions, the two senses of 'functional', Nagel's footnote 2, and their attitudes to physicalism.",
+      "zh": "比较型小论文：先写共同点，再写不同的问题和结论，最后加一句自己的评价。",
+      "sectionId": "s14-nagel-and-chalmers-compared"
+    }
+  ]
+}

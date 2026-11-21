@@ -106,6 +106,19 @@ test('module ranges, false ranges and other kinds behave like lectures', () => {
 
 const CHAPTERS = [4, 5, 6].map((number) => ({ id: `ch0${number}`, kind: 'chapter', number }));
 
+const WEEKS = [7, 8, 9, 10].map((number) => ({ id: `wk${String(number).padStart(2, '0')}`, kind: 'week', number }));
+
+test('detectTaskLinks finds syllabus weeks in English and Chinese', () => {
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Reread Week 8' }, WEEKS)), ['#/learn/wk08']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Weeks 7-9 key arguments' }, WEEKS)), ['#/learn/wk07', '#/learn/wk08', '#/learn/wk09']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Wk 7 and wk10' }, WEEKS)), ['#/learn/wk07', '#/learn/wk10']);
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'All of Weeks 7-10' }, WEEKS)), ['#/learn']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '复习第 8–9 周的论证' }, WEEKS)), ['#/learn/wk08', '#/learn/wk09']);
+  assert.deepEqual(hrefs(detectTaskLinks({ zh: '第 7 周和第 10 周' }, WEEKS)), ['#/learn/wk07', '#/learn/wk10']);
+  assert.deepEqual(detectTaskLinks({ en: 'Week 9' }, WEEKS)[0].label, { zh: '第 9 周', en: 'Week 9' });
+  assert.deepEqual(hrefs(detectTaskLinks({ en: 'Two weeks 3 times a day', zh: '11 月 23 日周一考试' }, WEEKS)), []);
+});
+
 test('detectTaskLinks finds textbook chapters in English and Chinese', () => {
   assert.deepEqual(hrefs(detectTaskLinks({ en: 'Reread Chapter 5' }, CHAPTERS)), ['#/learn/ch05']);
   assert.deepEqual(hrefs(detectTaskLinks({ en: 'Chapters 4-6 key terms' }, CHAPTERS)), ['#/learn/ch04', '#/learn/ch05', '#/learn/ch06']);

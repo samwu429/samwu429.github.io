@@ -1,0 +1,4010 @@
+{
+  "id": "wk07",
+  "kind": "week",
+  "number": 7,
+  "title": {
+    "en": "Appearance, Reality, and Objectivity",
+    "zh": "表象、实在与客观性"
+  },
+  "sources": [
+    {
+      "file": "Russell, The Problems of Philosophy, Chapters 1-2",
+      "pages": 10
+    },
+    {
+      "file": "van Inwagen, 'Objectivity'",
+      "pages": 15
+    }
+  ],
+  "estimatedMinutes": 180,
+  "oneLiner": {
+    "zh": "罗素问：我们看到的是真实的桌子吗？——感官只给我们会变的表象，外部世界只能推出来，可以带一点怀疑地相信；范·因瓦根问：信念的真假由谁决定？——由世界本身决定，不由我们怎么想决定，所以有客观真理。",
+    "en": "Russell asks whether the senses show us the real table (they give only changing appearances, and an independent world is a reasonable but unprovable belief); van Inwagen asks what makes our beliefs true (the World, not our minds, so there is objective truth)."
+  },
+  "outcomes": [
+    {
+      "en": "Reconstruct Russell's argument that we do not directly perceive the real table (if it exists) but must infer it, using his examples of colour, texture, shape, touch and sound.",
+      "zh": "能用罗素的颜色、质地、形状、触觉和声音的例子，写出他的论证：真实的桌子（如果有）不是我们直接感知到的东西，只能推出来。"
+    },
+    {
+      "en": "Define sense-data, sensation, physical object and matter, and explain how the idealists Berkeley and Leibniz answer Russell's two questions.",
+      "zh": "能定义感觉材料、感觉、物理对象和物质，并说明唯心论者贝克莱和莱布尼茨怎样回答罗素的两个问题。"
+    },
+    {
+      "en": "Explain why Russell thinks we cannot prove that an external world exists, and why he still accepts it: Descartes' doubt corrected, the simplicity argument (the cat, other people's speech) and instinctive belief.",
+      "zh": "能说明罗素为什么认为外部世界无法被证明，却仍然接受它：修正后的笛卡尔式怀疑、简单性论证（猫、别人说话）和本能信念。"
+    },
+    {
+      "en": "State van Inwagen's thesis of objective truth, its two components and two qualifications, and explain why it implies neither dogmatism nor 'true for me'.",
+      "zh": "能说出范·因瓦根的客观真理论题、它的两个组成部分和两个限定，并解释为什么它既不等于独断，也不允许“对我为真”。"
+    },
+    {
+      "en": "Distinguish realism versus idealism from Realism versus anti-Realism, and explain the geological argument, the reply to the 'social construct' argument (schmeight) and the self-refutation argument.",
+      "zh": "能区分小写的实在论对唯心论、大写的实在论对反实在论，并讲清地质论证、对“社会建构”论证的回应（schmeight）和自我反驳论证。"
+    },
+    {
+      "en": "Compare the two readings' questions about 'realism' and use both in one short essay.",
+      "zh": "能比较两篇读物关于“实在论”的不同问题，并在一篇小论文里同时用上两篇。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-russell-appearance-and-reality",
+      "title": {
+        "zh": "罗素：表象与实在：一张桌子的难题",
+        "en": "Russell: Appearance and Reality: The Problem of the Table"
+      },
+      "slides": "1-3",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一周读两篇。第一篇是罗素（**Bertrand Russell**）的书 **The Problems of Philosophy**（《哲学问题》）第 1–2 章。第 1 章一开头就问：有没有一种知识，确定到任何讲理的人都没法怀疑？这个问题看起来容易，罗素说它其实是最难回答的问题之一（第 1 页）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "提醒：本站只有这一周的两篇读物（罗素第 1–2 章、范·因瓦根的 'Objectivity'），没有课堂讲义，也没有辅导课材料。测验 2 考“全部课程内容”，老师上课可能补充本站没有的要点，或者用不同的说法。请以你的课堂笔记和 Quercus 为准。",
+          "en": "The station has only this week's two readings, not the lectures or the tutorials. Test 2 covers all course content, so the lectures may add points that are not here. Check your lecture notes and Quercus."
+        },
+        {
+          "type": "text",
+          "zh": "罗素说，哲学（**philosophy**）就是认真回答这类最根本问题的尝试：不像日常生活甚至科学那样独断地（**dogmatically**：不加检查就认定）回答，而是批判地（**critically**：先弄清问题难在哪里）回答。他列出一串明显得好像不值一提的日常信念：我坐在椅子上；太阳离地球约 9300 万英里，每天早上升起；别人进屋会看到同样的桌椅；我看到的桌子就是压着我手臂的那张。他说，这些都可以被合理地怀疑（第 1 页）。为了把困难说清楚，他只盯住一样东西：桌子。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "argument",
+              "zh": "论证",
+              "hint": "用一些理由（前提）去支持一个观点（结论）。"
+            },
+            {
+              "en": "premise",
+              "zh": "前提",
+              "hint": "论证里当理由用的句子，按顺序写成 P1、P2……"
+            },
+            {
+              "en": "conclusion",
+              "zh": "结论",
+              "hint": "论证最后要证明的那句话，写成 C。"
+            },
+            {
+              "en": "standard form",
+              "zh": "标准形式",
+              "hint": "把前提一条条编号列出，最后写结论，方便检查每一步。"
+            },
+            {
+              "en": "valid / sound",
+              "zh": "有效 / 可靠",
+              "hint": "有效＝如果前提都真，结论就一定真；可靠＝有效，而且前提确实都是真的。"
+            },
+            {
+              "en": "objection / reply",
+              "zh": "反驳 / 回应",
+              "hint": "反驳＝对一个观点或论证提出的质疑；回应＝对质疑的答复。"
+            },
+            {
+              "en": "appearance / reality",
+              "zh": "表象 / 实在",
+              "hint": "表象＝东西看起来、摸起来是什么样；实在＝东西撇开我们、本身是什么样。"
+            },
+            {
+              "en": "infer / inference",
+              "zh": "推出 / 推论",
+              "hint": "不是直接感觉到的，而是从别的东西推理得到的。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "网购衣服常有“色差”：商品图、你的手机屏幕、宿舍的灯下、窗边的阳光下，同一件衣服颜色都不一样。卖家说“以实物为准”。可“实物”要在哪种光线下、由谁来看，才算“真正的颜色”？这就是罗素的桌子问题。",
+          "limit": "买衣服时我们默认白天的自然光就是标准。罗素恰恰要问：凭什么这种条件下的颜色就是东西本身的颜色，而不是又一种表象？"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：颜色论证（第 1–2 页）",
+            "en": "Standard form: the argument from colour (pp. 1-2)"
+          },
+          "items": [
+            {
+              "en": "P1: From different points of view the table reflects light differently, so its colours look different; people looking at it at the same moment never see exactly the same pattern of colours.",
+              "zh": "P1：从不同位置看，桌子反光不同，颜色看起来就不同；同一时刻，没有两个人看到完全相同的颜色分布。"
+            },
+            {
+              "en": "P2: Even from one point of view, the colour looks different in artificial light, to a colour-blind person or through blue glasses, and in the dark there is no colour at all, although the table feels and sounds the same.",
+              "zh": "P2：就算站在同一个位置，在人造光下、在色盲的人眼里、戴蓝色眼镜看，颜色也不同；在黑暗里根本没有颜色，可桌子摸起来、敲起来都没变。"
+            },
+            {
+              "en": "P3: None of these colours has a better claim than the others to be the table's real colour. When we talk about 'the colour of the table' in daily life, we just mean the colour a normal viewer sees in usual light from a usual position.",
+              "zh": "P3：这些颜色里，没有哪一种比别的更有资格算“真正的颜色”。日常说“桌子的颜色”，只是指正常的人、在普通位置、普通光线下看到的颜色。"
+            },
+            {
+              "en": "C: So colour depends on the table, the observer and the light together. Picking one colour as the real one would be favouritism, so Russell concludes that the table in itself has no single colour.",
+              "zh": "C：所以颜色由桌子、看的人、光线三者一起决定。只挑一种当“真的”就是偏心，所以罗素的结论是：桌子本身没有唯一的颜色。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "罗素先描述这张桌子：看起来是长方形、棕色、有光泽；摸起来光滑、凉、硬；敲一下发出木头的声音。谁来看都会同意。可一想精确，麻烦就来了。P1、P2 的根据都是日常观察：反光的地方显得更亮，有的地方发白；你一走动，反光的位置就变（第 1 页）。所以颜色不在桌子“里面”，而是由桌子、看的人、光线一起决定的（第 2 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "P3 是关键一步，可以叫“不偏心”原则（**no favouritism**）。日常说“桌子是棕色的”，其实只是“正常人、普通位置、普通光线下的样子”。罗素说：其他条件下出现的颜色，同样有权利算“真的”；只挑一种，就是偏心（第 2 页）。注意结论的范围：说的是桌子本身（**in itself**）没有唯一的颜色，不是说桌子不存在。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "画家、实用的人和哲学家（第 2 页）",
+            "en": "The painter, the practical man and the philosopher (p. 2)"
+          },
+          "steps": [
+            {
+              "zh": "对大多数实际用途来说，颜色的这些差别不重要；对画家却极其重要。",
+              "en": "For most practical purposes these differences do not matter, but for the painter they matter a great deal."
+            },
+            {
+              "zh": "画家要改掉“东西看起来就是常识说的那种颜色”的习惯，学会按东西看起来的样子去看。比如桌子反光的地方看起来发白，画家就要看到这种白。",
+              "en": "The painter has to unlearn the common-sense colours and learn to see things as they appear."
+            },
+            {
+              "zh": "画家想知道东西看起来怎样；实用的人和哲学家想知道东西实际上怎样。",
+              "en": "The painter cares about how things look; the practical man and the philosopher care about how things really are."
+            },
+            {
+              "zh": "哲学家的这个愿望比实用的人更强，也更清楚回答它有多难。",
+              "en": "The philosopher wants this more strongly and is more aware of how hard it is to answer."
+            }
+          ],
+          "answer": {
+            "zh": "这里出现了哲学里最麻烦的区分之一：表象（**appearance**）与实在（**reality**），也就是东西看起来怎样，和东西实际上怎样。",
+            "en": "This is where the appearance/reality distinction begins: how things look versus how they really are."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "质地、形状、触觉和声音（第 2–3 页）",
+            "en": "Texture, shape, touch and sound (pp. 2-3)"
+          },
+          "steps": [
+            {
+              "zh": "质地：肉眼看，桌面除了木纹都是光滑平整的；在显微镜下，却坑坑洼洼，像有山丘和山谷。",
+              "en": "Texture: smooth to the naked eye, but full of hills and valleys under a microscope."
+            },
+            {
+              "zh": "我们想说显微镜看到的“更真”，可换一台更强的显微镜，画面又会变。既然不能信肉眼，凭什么信显微镜？",
+              "en": "A stronger microscope would change the view again, so why trust the microscope more than the naked eye?"
+            },
+            {
+              "zh": "形状：如果桌子“真的”是长方形，几乎从任何角度看，它都像有两个锐角、两个钝角；平行的两边看起来会在远处相交；等长的两边，近的那条看起来更长。学过画画的人都知道这一点。",
+              "en": "Shape: seen from almost anywhere, a rectangular table seems to have two acute and two obtuse angles."
+            },
+            {
+              "zh": "我们平时没注意到，是因为经验教会我们从“看起来的形状”构造出“真正的形状”。所以真正的形状不是看到的，而是推出来的。",
+              "en": "We learn from experience to work out the 'real' shape from the apparent one; the real shape is inferred, not seen."
+            },
+            {
+              "zh": "触觉和声音：硬的感觉取决于按多重、用身体哪个部位按，所以这些感觉不能直接显示桌子的某个确定性质，最多是某种性质的记号（**signs**）：这种性质也许引起了这些感觉，却没有在任何一种感觉里直接出现。罗素说，敲桌子发出的声音也是这样，而且更明显。",
+              "en": "Felt hardness depends on how hard we press and with what part of the body, so it is at most a sign of a property that may cause it; the same holds even more obviously for the sounds of rapping the table."
+            }
+          ],
+          "answer": {
+            "zh": "每一种感官给的都只是会变的表象，没有哪一种直接给出桌子本身。",
+            "en": "Every sense gives only changing appearances, never the table itself."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "第 1 章的主要结论（第 3 页）",
+            "en": "Chapter 1's main conclusion (p. 3)"
+          },
+          "items": [
+            {
+              "en": "Russell argues that what we directly see, feel and hear is not the real table itself, if there is a real table.",
+              "zh": "罗素论证：我们直接看到、摸到、听到的，不是真实的桌子本身（如果有真实的桌子的话）。"
+            },
+            {
+              "en": "So the real table is not known directly; it can only be inferred from what we know directly.",
+              "zh": "所以真实的桌子不是直接知道的，只能从直接知道的东西推出来。"
+            },
+            {
+              "en": "This raises two questions: (1) Does a real table exist at all? (2) If it does, what sort of object is it?",
+              "zh": "于是出现两个问题：（1）到底有没有真实的桌子？（2）如果有，它是什么样的东西？"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'The real colour of the table is simply the colour it has for a normal observer in normal daylight.' How does Russell respond?",
+            "zh": "反驳：“桌子真正的颜色，就是正常人在正常日光下看到的颜色。”罗素怎么回应？"
+          },
+          "answer": {
+            "en": "Russell agrees that this is what we mean by 'the colour of the table' in everyday life. But he argues that the colours seen under other conditions are just as entitled to be called real. Choosing the normal-light colour is a useful habit, not a discovery about the table itself. So he refuses to favour any one colour and concludes that the table has no single colour of its own.",
+            "zh": "罗素承认，日常说“桌子的颜色”就是这个意思（第 2 页）。但他追问：其他条件下的颜色凭什么不算？挑“正常光线”只是生活中方便的习惯，说明不了桌子本身是什么颜色。考试中你还可以替反驳方再说一句：正常条件下的颜色最稳定、最有用；然后指出罗素的问题是：“有用”为什么就等于“本身”？"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "第 1 章没有说“桌子不存在”。罗素一直加着“如果有的话”（**if there is one**）。有没有真实的桌子，第 2 章才论证。",
+              "en": "Chapter 1 does not say there is no table; it says the real table, if there is one, must be inferred."
+            },
+            {
+              "zh": "“没有唯一的颜色”说的是桌子本身，不是说我们看不到颜色。",
+              "en": "The claim is about the table in itself, not about what we see."
+            },
+            {
+              "zh": "真正的形状是推出来的，不是看到的。别写“我们看到桌子是长方形”。",
+              "en": "We infer the real shape; we do not see it."
+            },
+            {
+              "zh": "画家要的是表象；实用的人和哲学家要的是实在。别把画家当成追求“真相”的人。",
+              "en": "The painter wants appearance; the practical man and the philosopher want reality."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Russell conclude that the table, in itself, has no one particular colour?",
+            "zh": "罗素为什么得出“桌子本身没有唯一的颜色”？"
+          },
+          "options": [
+            {
+              "en": "Because the table is really an idea in the mind of God.",
+              "zh": "因为桌子其实是上帝心中的观念。"
+            },
+            {
+              "en": "Because a deceitful demon might be deceiving us about colours.",
+              "zh": "因为可能有一个骗人的恶魔在颜色上骗我们。"
+            },
+            {
+              "en": "Because science shows that the table is a collection of electric charges.",
+              "zh": "因为科学表明桌子是一大堆电荷。"
+            },
+            {
+              "en": "Because its colour changes with viewpoint, light and observer, and no one colour has a better claim to be the real one.",
+              "zh": "因为它的颜色随位置、光线和观察者变化，没有哪一种更有资格当真正的颜色。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D。这是颜色论证（第 1–2 页）：颜色随位置、光线、看的人变化，没有哪一种更有资格算真的。A 是贝克莱对真实桌子的看法（第 4 页）；B 是笛卡尔的恶魔（第 6 页）；C 是第 5 页顺带提到的科学说法。它们都不是这个论证的理由。",
+            "en": "D is the argument from colour (pp. 1-2). A is Berkeley's view, B is Descartes' demon and C is the scientific picture mentioned on p. 5."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-russell-sense-data-and-matter",
+      "title": {
+        "zh": "罗素：感觉材料、感觉、物理对象与物质",
+        "en": "Russell: Sense-Data, Sensation, Physical Objects and Matter"
+      },
+      "slides": "3",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 1 章说明“真实的桌子只能推出来”以后，罗素停下来定了几个意思明确的术语，好帮我们想清楚那两个问题（第 3 页）。这几个词的定义要能准确写出来，一定要分清。下面的论证（**argument**：用前提支持结论）照样写成标准形式（**standard form**：前提 P1、P2……逐条列出，最后是结论 C）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "罗素的四个术语（第 3 页，用自己的话写）",
+            "en": "Russell's four terms (p. 3, in your own words)"
+          },
+          "items": [
+            {
+              "en": "**Sense-data** are what we are directly aware of when we sense something, for example colours, sounds, smells, hardnesses and roughnesses.",
+              "zh": "感觉材料＝感觉时直接觉察到的东西，比如颜色、声音、气味、硬度、粗糙度。"
+            },
+            {
+              "en": "A **sensation** is the experience of being directly aware of sense-data. When I see a colour, the colour is a sense-datum and my awareness of it is a sensation.",
+              "zh": "感觉＝直接觉察到感觉材料的这种经验。我看到一种颜色时，颜色是感觉材料，我对它的觉察是感觉。"
+            },
+            {
+              "en": "A **physical object** is the real table, or any real thing, if it exists, as opposed to the sense-data we connect with it.",
+              "zh": "物理对象＝真实的桌子（或任何真实的东西），如果它存在的话；它和我们联系到它的感觉材料不是一回事。"
+            },
+            {
+              "en": "**Matter** is the collection of all physical objects.",
+              "zh": "物质＝所有物理对象的总和。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开讲。感觉材料（**sense-data**，单数是 **sense-datum**）＝你直接觉察到的东西：这块棕色、这种光滑、这种硬、这一声“咚”。“直接”（**immediately**）的意思是：不用推理，一感觉就有。罗素列的类型：颜色、声音、气味、硬度、粗糙度等等。"
+        },
+        {
+          "type": "text",
+          "zh": "感觉（**sensation**）＝“觉察到”这件事本身，是一种经验（**experience**：自己亲身经历的东西）。罗素特别强调：看到一种颜色时，颜色是感觉材料，不是感觉；你对颜色的觉察才是感觉（第 3 页）。一个是“被看到的东西”，一个是“看”这个经验。"
+        },
+        {
+          "type": "analogy",
+          "zh": "微信视频通话：屏幕上的画面和喇叭里的声音，相当于感觉材料；你“看到、听到”它们这件事，相当于感觉；屏幕另一头的朋友本人，相当于物理对象。你从来没有直接接触到朋友本人，只是根据画面和声音推断他在那儿。",
+          "limit": "视频通话时，我们早就知道有网络、有手机、有朋友。罗素的问题更彻底：除了感觉材料，我们凭什么相信“另一头”真的有东西？而且手机屏幕本身也是一个物理对象，这一点类比照顾不到。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：桌子为什么不是它的感觉材料（第 3 页）",
+            "en": "Standard form: why the table is not its sense-data (p. 3)"
+          },
+          "items": [
+            {
+              "en": "P1: If we know anything about the table, we know it through sense-data such as its brown colour, oblong shape and smoothness.",
+              "zh": "P1：我们对桌子的任何认识，都只能通过感觉材料：棕色、长方形、光滑……"
+            },
+            {
+              "en": "P2: These sense-data change with the observer, the point of view, the light and the pressure (the arguments of pages 1-3).",
+              "zh": "P2：这些感觉材料随观察者、位置、光线、按压力度而变（第 1–3 页的论证）。"
+            },
+            {
+              "en": "P3: So the table cannot simply be identified with its sense-data, and the sense-data are not directly the table's properties.",
+              "zh": "P3：所以桌子不能等同于这些感觉材料，感觉材料也不直接就是桌子的性质。"
+            },
+            {
+              "en": "C: So there is a problem about how sense-data are related to physical objects, and Russell's two questions can now be restated: (1) Is there any matter at all? (2) If there is, what is its nature?",
+              "zh": "C：于是出现一个问题：感觉材料和物理对象是什么关系？前面的两个问题也就可以改写成：（1）到底有没有物质？（2）如果有，它的本性是什么？"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "P3 里的性质（**property**）＝东西本身具有的特征。罗素的意思是：棕色是“我在这种光线下看到的”，不能直接算成桌子本身的特征，因为换个条件它就变了。可这又带来一个难题：既然我们只接触感觉材料，真实的桌子跟它们到底是什么关系？"
+        },
+        {
+          "type": "text",
+          "zh": "物理对象（**physical object**）＝真实的桌子（如果有的话）。物质（**matter**）＝所有物理对象合起来。两个问题里的本性（**nature**）＝它本质上是什么样的东西。第 1 章后半段介绍唯心论者的回答（他们对问题（1）说“有”，分歧在问题（2）），第 2 章再讨论相信有真实桌子的理由。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "术语 Term",
+            "是什么",
+            "桌子的例子",
+            "我们怎么知道它"
+          ],
+          "rows": [
+            [
+              "sense-data 感觉材料",
+              "直接觉察到的东西",
+              "这块棕色、这种硬、敲出来的“咚”",
+              "直接知道；第 2 章说它们的存在不受怀疑"
+            ],
+            [
+              "sensation 感觉",
+              "觉察到感觉材料的经验",
+              "我看到这块棕色这件事",
+              "也是直接的经验"
+            ],
+            [
+              "physical object 物理对象",
+              "真实的东西（如果存在）",
+              "撇开我们、本身存在的那张桌子",
+              "不直接知道，只能推出来"
+            ],
+            [
+              "matter 物质",
+              "所有物理对象的总和",
+              "所有真实的桌子、椅子、猫……",
+              "第 2 章论证：有理由相信它存在（带一点来自梦的怀疑）"
+            ]
+          ],
+          "caption": {
+            "zh": "前两行在“我们这边”，后两行在“世界那边”（如果有的话）。",
+            "en": "The first two rows are on our side; the last two are on the world's side, if there is such a thing."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "concept-sorter",
+          "config": {
+            "title": {
+              "zh": "分一分：感觉材料、感觉、物理对象还是物质？",
+              "en": "Sort it: sense-datum, sensation, physical object or matter?"
+            },
+            "prompt": {
+              "zh": "按罗素第 3 页的定义，这属于哪一类？",
+              "en": "Using Russell's definitions on p. 3, which is this?"
+            },
+            "categories": [
+              {
+                "id": "sense-datum",
+                "label": {
+                  "zh": "感觉材料",
+                  "en": "Sense-datum"
+                }
+              },
+              {
+                "id": "sensation",
+                "label": {
+                  "zh": "感觉",
+                  "en": "Sensation"
+                }
+              },
+              {
+                "id": "physical-object",
+                "label": {
+                  "zh": "物理对象",
+                  "en": "Physical object"
+                }
+              },
+              {
+                "id": "matter",
+                "label": {
+                  "zh": "物质",
+                  "en": "Matter"
+                }
+              }
+            ],
+            "items": [
+              {
+                "text": {
+                  "zh": "你看桌子时直接看到的那块棕色",
+                  "en": "The patch of brown you directly see when you look at the table"
+                },
+                "answer": "sense-datum",
+                "why": {
+                  "zh": "颜色是直接觉察到的东西。罗素明说：颜色是感觉材料，不是感觉。",
+                  "en": "A colour is something we are directly aware of."
+                }
+              },
+              {
+                "text": {
+                  "zh": "你对那块棕色的觉察（“看到”这件事）",
+                  "en": "Your awareness of that brown colour"
+                },
+                "answer": "sensation",
+                "why": {
+                  "zh": "觉察本身是感觉；被觉察的颜色才是感觉材料。",
+                  "en": "The awareness itself is the sensation."
+                }
+              },
+              {
+                "text": {
+                  "zh": "用力按桌面时感到的硬",
+                  "en": "The hardness you feel when you press the table"
+                },
+                "answer": "sense-datum",
+                "why": {
+                  "zh": "硬度在罗素的感觉材料清单里。它随按压力度而变，所以不直接是桌子的性质。",
+                  "en": "Hardnesses are on Russell's list of sense-data."
+                }
+              },
+              {
+                "text": {
+                  "zh": "敲桌子时听到的木头声",
+                  "en": "The wooden sound you hear when you tap the table"
+                },
+                "answer": "sense-datum",
+                "why": {
+                  "zh": "声音是直接听到的东西，属于感觉材料。",
+                  "en": "Sounds are sense-data."
+                }
+              },
+              {
+                "text": {
+                  "zh": "你听到那一声“咚”的经验",
+                  "en": "Your experience of hearing that sound"
+                },
+                "answer": "sensation",
+                "why": {
+                  "zh": "“听到”这个经验是感觉，不是声音本身。",
+                  "en": "The experience of hearing is a sensation."
+                }
+              },
+              {
+                "text": {
+                  "zh": "撇开所有人的观察、本身存在的那张真实的桌子（如果有的话）",
+                  "en": "The real table itself, apart from anyone's perceiving, if there is one"
+                },
+                "answer": "physical-object",
+                "why": {
+                  "zh": "罗素把真实的桌子叫物理对象。",
+                  "en": "Russell calls the real table a physical object."
+                }
+              },
+              {
+                "text": {
+                  "zh": "宇宙里所有物理对象合起来",
+                  "en": "All the physical objects there are, taken together"
+                },
+                "answer": "matter",
+                "why": {
+                  "zh": "这正是罗素对物质的定义（第 3 页）。",
+                  "en": "This is Russell's definition of matter."
+                }
+              },
+              {
+                "text": {
+                  "zh": "你闻到的一股咖啡味",
+                  "en": "A smell of coffee you notice"
+                },
+                "answer": "sense-datum",
+                "why": {
+                  "zh": "气味在感觉材料清单里。",
+                  "en": "Smells are sense-data."
+                }
+              },
+              {
+                "text": {
+                  "zh": "在显微镜下看到的坑坑洼洼",
+                  "en": "The hills and valleys you see through a microscope"
+                },
+                "answer": "sense-datum",
+                "why": {
+                  "zh": "显微镜下看到的也是表象，是另一组感觉材料，不是真实的桌子本身（第 2 页）。",
+                  "en": "What the microscope shows is still an appearance."
+                }
+              },
+              {
+                "text": {
+                  "zh": "引起你关于这只猫的所有感觉材料的那只猫本身（如果它独立存在）",
+                  "en": "The cat itself that causes all your sense-data of the cat, if it exists independently"
+                },
+                "answer": "physical-object",
+                "why": {
+                  "zh": "独立存在、引起感觉材料的东西，就是物理对象。",
+                  "en": "An independent thing that causes our sense-data is a physical object."
+                }
+              }
+            ]
+          },
+          "caption": {
+            "zh": "诀窍：颜色、声音、气味、硬度是感觉材料；“觉察到”是感觉；真实的东西是物理对象；全部真实的东西合起来是物质。",
+            "en": "Colours, sounds, smells and hardnesses are sense-data; the awareness is a sensation; a real thing is a physical object; all of them together are matter."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "A classmate says: 'The brown colour I see is simply a property of the table.' How would Russell answer?",
+            "zh": "同学说：“我看到的棕色就是桌子的一个性质。”罗素会怎么回答？"
+          },
+          "answer": {
+            "en": "Russell would say that the brown colour is a sense-datum, not directly a property of the table. The colour I see changes with my position, the light and my eyes, while the table is supposed to stay the same. So the sense-data are at most signs of some property of the table. We know the table, if at all, only by inference from them.",
+            "zh": "罗素会说：棕色是感觉材料，不直接是桌子的性质（第 3 页）。理由回到第 1–2 页：颜色随位置、光线、眼睛而变，而桌子本应没变。所以感觉材料最多是桌子某种性质的记号，桌子本身只能推出来。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "最容易犯的错：把颜色叫“感觉”。颜色是感觉材料（被觉察的东西）；觉察才是感觉（**sensation**）。",
+              "en": "The colour is a sense-datum; the awareness of it is the sensation."
+            },
+            {
+              "zh": "物理对象是“一个”真实的东西（真实的桌子）；物质是“全部”物理对象的总和。",
+              "en": "A physical object is one real thing; matter is all of them together."
+            },
+            {
+              "zh": "罗素在这里只是定义物理对象，并没有说它一定存在：“如果它存在”（**if it exists**）。",
+              "en": "Defining 'physical object' does not show that one exists."
+            },
+            {
+              "zh": "sense-data 是复数，单数是 sense-datum。英文作答时别写成 sense-datas。",
+              "en": "Singular: sense-datum; plural: sense-data."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Russell's terminology, which of the following is a sense-datum?",
+            "zh": "按罗素的术语，下面哪一个是感觉材料？"
+          },
+          "options": [
+            {
+              "en": "My awareness of a brown colour",
+              "zh": "我对一种棕色的觉察"
+            },
+            {
+              "en": "The real table that exists whether or not anyone sees it",
+              "zh": "不管有没有人看都存在的真实桌子"
+            },
+            {
+              "en": "The smoothness I feel when I touch the table",
+              "zh": "我摸桌子时感到的光滑"
+            },
+            {
+              "en": "The collection of all physical objects",
+              "zh": "所有物理对象的总和"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C。光滑是直接觉察到的东西，属于感觉材料。A 是感觉（觉察本身）；B 是物理对象；D 是物质（第 3 页）。",
+            "en": "C. A is a sensation, B is a physical object and D is matter."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "After defining his terms, how does Russell restate his two questions?",
+            "zh": "定义完术语以后，罗素把他的两个问题改写成什么？"
+          },
+          "options": [
+            {
+              "en": "(1) Is there any matter? (2) If there is, what is its nature?",
+              "zh": "（1）有没有物质？（2）如果有，它的本性是什么？"
+            },
+            {
+              "en": "(1) Are sense-data certain? (2) Is the self permanent?",
+              "zh": "（1）感觉材料确定吗？（2）自我是持续存在的吗？"
+            },
+            {
+              "en": "(1) Is matter mental? (2) Does God exist?",
+              "zh": "（1）物质是心灵的吗？（2）上帝存在吗？"
+            },
+            {
+              "en": "(1) Do other people exist? (2) Do they see the same table?",
+              "zh": "（1）别人存在吗？（2）他们看到的是同一张桌子吗？"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 3 页）。B 是第 2 章讲确定性时的话题；C 把问题（2）和贝克莱的答案混在一起；D 是第 2 章“公共对象”的问题。",
+            "en": "A. B belongs to Chapter 2's discussion of certainty, C mixes in Berkeley's answer and D is the problem of public objects."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-russell-idealism-berkeley-leibniz",
+      "title": {
+        "zh": "罗素：唯心论：贝克莱与莱布尼茨的桌子",
+        "en": "Russell: Idealism: Berkeley's and Leibniz's Tables"
+      },
+      "slides": "3-5",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "问题（2）“真实的桌子是什么样的东西”有一个很多哲学家支持的回答：唯心论（**idealism**）。唯心论者（**idealist**）认为：除了心灵（**mind**：能思考、能感觉的那个东西）和心灵里的观念（**idea**：想法、印象这类心里的内容），没有别的东西是真实的，或者至少没有别的东西被知道是真实的（第 4–5 页）。下面用标准形式（**standard form**：前提 P1、P2……加结论 C）写出两个相关的论证（**argument**：用前提支持结论）。复习：感觉材料（**sense-data**）＝直接觉察到的颜色、声音、硬度等；物理对象（**physical object**）＝真实的桌子（如果有的话）。"
+        },
+        {
+          "type": "text",
+          "zh": "贝克莱（**George Berkeley**，1685–1753）在 **Three Dialogues between Hylas and Philonous** 里要证明：根本没有物质，世界只由心灵和观念组成。书里相信物质的 **Hylas** 被 **Philonous** 一步步逼进矛盾和悖论。罗素的评价：这些论证有的站得住，有的混乱或在抠字眼；但贝克莱表明了否认物质并不荒谬，而且独立于我们的东西（如果有）不可能是我们感觉的直接对象（第 3–4 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "罗素提醒：问“物质存在吗”其实混着两个问题，因为物质（**matter**）有两种意思。①第 3 页的定义：所有物理对象的总和。②日常的意思：与心灵相对、占据空间、完全不能思考也没有意识的东西。贝克莱主要否认的是第②种（第 4 页）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：贝克莱的真实桌子（罗素的转述，第 4 页）",
+            "en": "Standard form: Berkeley's real table (as Russell reports it, p. 4)"
+          },
+          "items": [
+            {
+              "en": "P1: Our sense-data are signs of something that goes on existing when we leave the room or close our eyes, so it is independent of our seeing.",
+              "zh": "P1：感觉材料是某种东西的记号；我们离开房间或闭上眼，它还在，所以它独立于“我们的”看。"
+            },
+            {
+              "en": "P2: This something cannot be utterly unlike what we see in its nature, and it cannot be independent of all seeing.",
+              "zh": "P2：这个东西的本性不可能和我们看到的完全不同，也不可能独立于一切“看”。"
+            },
+            {
+              "en": "P3: If it were non-mental matter, it would be unknowable: we could only infer it and never be directly aware of it.",
+              "zh": "P3：如果它是非心灵的物质，它就不可知：只能推测，永远不能直接觉察。"
+            },
+            {
+              "en": "C: So the real table is an idea in God's mind, which lasts and is independent of us without being unknowable.",
+              "zh": "C：所以真实的桌子是上帝心中的一个观念：它长久存在、独立于我们，又不是不可知的。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "逐条看。P1 说明贝克莱并不否认“有独立于我们的东西”：他承认我们离开房间、闭上眼时，有东西继续存在。P2 是他唯心论的核心：这个东西不能和我们看到的东西性质完全不同，也不能独立于一切“看”。P3 是他反对非心灵物质的理由：那样的东西我们永远不能直接觉察（第 4 页）。所以他的答案是：桌子是上帝心中的观念，我们不看时它也一直在。"
+        },
+        {
+          "type": "analogy",
+          "zh": "像网络游戏：你下线了，地图还存在服务器上，别的玩家上线还能看到同一张地图。贝克莱的桌子就像“存在上帝那里的地图”：不依赖你看不看，可它本质上是观念，不是石头木头那样的非心灵物质。",
+          "limit": "服务器本身是一台物理机器；而在贝克莱看来，上帝的心灵根本不是物理的东西，观念“背后”也没有任何非心灵的物质。类比只帮你记住“不依赖我们看不看”这一点。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：唯心论的一般论证（罗素故意写得很粗糙，第 4 页）",
+            "en": "Standard form: the general idealist argument (Russell's deliberately crude statement, p. 4)"
+          },
+          "items": [
+            {
+              "en": "P1: Anything we think of is an idea in the mind that is thinking of it.",
+              "zh": "P1：凡是能被想到的东西，都是想它的那个人心里的观念。"
+            },
+            {
+              "en": "P2: So the only things that can be thought about are ideas in minds.",
+              "zh": "P2：所以能被想到的，只有心灵里的观念。"
+            },
+            {
+              "en": "P3: So anything else cannot even be conceived.",
+              "zh": "P3：所以除此之外的东西，连设想都没法设想（不可设想，**inconceivable**）。"
+            },
+            {
+              "en": "P4: What cannot be conceived cannot exist.",
+              "zh": "P4：不可设想的东西不可能存在。"
+            },
+            {
+              "en": "C: So nothing is real except minds and their ideas.",
+              "zh": "C：所以除了心灵和它们的观念，没有别的东西是真实的。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "罗素说这个论证是谬误的（**fallacious**：推理有毛病，前提推不出结论），也承认真正提出它的人不会说得这么简短粗糙（第 4 页）。但不管它对不对，很多、也许大多数哲学家都是唯心论者。贝克莱之后的唯心论者常说：桌子不依赖我看，但依赖某个心灵，往往是整个宇宙的集体心灵。莱布尼茨（**Leibniz**，1646–1716）则说：看起来是物质的东西，其实是一群或多或少原始的心灵（第 4–5 页）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：这两章没有说这个论证错在哪里，罗素在同一本书后面的第 4 章（Idealism）才专门分析。你可以先记住一个常见的诊断：“我想到 X 时，心里有一个关于 X 的观念”，推不出“X 本身就是一个观念”。你想到月亮，月亮并没有因此搬进你的脑子。考试中如果用它，要说明这是你的评价，不是罗素在这两章里说的。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "谁",
+            "（1）有真实的桌子吗？",
+            "（2）它是什么样的东西？"
+          ],
+          "rows": [
+            [
+              "贝克莱 Berkeley",
+              "有",
+              "上帝心中的观念（ideas in the mind of God）"
+            ],
+            [
+              "莱布尼茨 Leibniz",
+              "有",
+              "一群灵魂（a colony of souls）"
+            ],
+            [
+              "科学 science（第 5 页）",
+              "没有专门回答；它的说法默认有桌子，罗素只把它列为一种猜测",
+              "大量剧烈运动的电荷（electric charges）"
+            ],
+            [
+              "怀疑（第 5 页）",
+              "也许根本没有",
+              "——"
+            ]
+          ],
+          "caption": {
+            "zh": "第 5 页：几乎所有哲学家都同意有真实的桌子，它引起我们的感觉材料；分歧在它的本性。罗素把这几种关于桌子本性的说法（包括科学的说法）都放在“可以自由猜测”的范围里；最后一行是怀疑提出的可能性。",
+            "en": "p. 5: almost all philosophers agree that there is a real table that causes our sense-data; they differ about its nature. Russell lists these accounts of its nature, science's included, as conjectures; the last row is a possibility that doubt raises."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第 1 章的总结（第 5 页）：感官直接告诉我们的，不是东西本身的真相，而是依赖“我们和东西之间关系”的感觉材料。我们直接看到、摸到的只是表象（**appearance**），我们相信它是背后某种实在（**reality**）的记号。罗素的原话：“The one thing we know about it is that it is not what it seems.”（第 5 页）意思是：我们对桌子唯一知道的，就是它不是看起来的样子。除此之外，各种猜测都可以。罗素说，哲学即使答不了我们希望的那么多问题，至少能提出让世界更有意思的问题，显出最平常的东西底下的奇异和奇妙（第 5 页）。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Do Berkeley and Leibniz deny that there is a real table? Explain using Russell's two questions.",
+            "zh": "贝克莱和莱布尼茨否认有真实的桌子吗？用罗素的两个问题来解释。"
+          },
+          "answer": {
+            "en": "No. According to Russell, both answer his first question, whether there is a real table, with yes. They differ from ordinary people only on the second question, about its nature: Berkeley takes the real table to be ideas in God's mind, while for Leibniz it is a colony of souls. They deny matter only in the sense of something non-mental that is opposed to mind.",
+            "zh": "不否认。罗素在第 5 页说：两人对问题（1）都回答“有”，只在问题（2）上和普通人不同。他们否认的只是第②种意思的物质（非心灵的东西），不否认第①种（物理对象的总和）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "唯心论者不是否认桌子存在的怀疑论者（**sceptic**：怀疑我们能否知道某事的人）。贝克莱和莱布尼茨都承认有真实的桌子，只是说它是心灵的东西（第 5 页）。",
+              "en": "Idealists do not deny the real table; they say it is mental."
+            },
+            {
+              "zh": "贝克莱否认的是第②种物质（非心灵的东西），不是第①种（物理对象的总和）。",
+              "en": "Berkeley denies matter as something non-mental, not matter as the collection of physical objects."
+            },
+            {
+              "zh": "别把唯心论当成罗素自己的观点：他介绍贝克莱、承认他的功劳，但说唯心论的一般论证是谬误的（第 4 页）。",
+              "en": "Do not treat idealism as Russell's own view: he credits Berkeley but calls the general idealist argument fallacious."
+            },
+            {
+              "zh": "贝克莱的桌子不依赖“我们”看，却依赖上帝的心灵。别写“贝克莱认为桌子独立于一切心灵”。",
+              "en": "Berkeley's table is independent of our seeing, not of every mind."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Russell, how do Berkeley and Leibniz answer his first question, whether there is a real table at all?",
+            "zh": "按罗素的说法，贝克莱和莱布尼茨怎样回答第一个问题：到底有没有真实的桌子？"
+          },
+          "options": [
+            {
+              "en": "Both say no: there is no real table, only our sense-data.",
+              "zh": "两人都说没有：只有我们的感觉材料。"
+            },
+            {
+              "en": "Both say yes: for Berkeley it is ideas in God's mind, and for Leibniz it is a colony of souls.",
+              "zh": "两人都说有；贝克莱说是上帝心中的观念，莱布尼茨说是一群灵魂。"
+            },
+            {
+              "en": "Berkeley says yes, but Leibniz says no.",
+              "zh": "贝克莱说有，莱布尼茨说没有。"
+            },
+            {
+              "en": "Both refuse to answer, because they think the question is meaningless.",
+              "zh": "两人都拒绝回答，认为这个问题没有意义。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 5 页）。两人对问题（1）都回答“有”，只在问题（2）上与常识不同。A 把唯心论者误当成否认桌子的怀疑论者；C、D 读物里没有。",
+            "en": "B (p. 5): both answer the first question 'yes' and differ only about the table's nature."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-russell-certainty-and-descartes",
+      "title": {
+        "zh": "罗素：从确定的经验出发：笛卡尔与对“我思”的修正",
+        "en": "Russell: Starting from Certain Experience: Descartes and Russell's Correction of the Cogito"
+      },
+      "slides": "6-7",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 2 章叫 **The Existence of Matter**（物质的存在）。它回答第 1 章留下的问题（1）：有没有一张有自己内在本性（**intrinsic nature**：东西自己本来就有的性质）、我不看时也照样存在的桌子？还是说，桌子只是我想象出来的，是一场很长的梦里的“梦中桌子”（**dream-table**）（第 6 页）？"
+        },
+        {
+          "type": "text",
+          "zh": "罗素说这个问题极其重要。我们相信别人有心灵（**mind**：会思考、有感受的那一面），唯一的根据是观察他们的身体。所以如果不能确定物体独立存在，就不能确定别人的身体存在，更不能确定别人的心灵存在。那样我们就像被独自丢在沙漠里：也许整个外部世界只是一场梦，只有我存在（第 6 页）。下面把这个论证（**argument**：用前提支持结论）写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：第 2 章的问题为什么重要（第 6 页）",
+            "en": "Standard form: why Chapter 2's question matters (p. 6)"
+          },
+          "items": [
+            {
+              "en": "P1: Our only grounds for believing that other people have minds come from observing their bodies.",
+              "zh": "P1：我们相信别人有心灵，唯一的根据来自观察他们的身体。"
+            },
+            {
+              "en": "P2: If we cannot be sure that objects exist independently of us, we cannot be sure that other people's bodies do.",
+              "zh": "P2：如果不能确定物体独立于我们存在，就不能确定别人的身体独立存在。"
+            },
+            {
+              "en": "C: So if we cannot be sure of independent objects, we can be even less sure that other minds exist; for all we could prove, the whole outer world might be a dream and we alone might exist.",
+              "zh": "C：所以如果不能确定有独立的物体，就更不能确定别人的心灵存在；就我们能证明的而言，整个外部世界可能只是一场梦，只有我们自己存在。"
+            },
+            {
+              "en": "Russell's verdict: this possibility cannot be strictly proved false, but there is not the slightest reason to think that it is true.",
+              "zh": "罗素的判断：这种可能不能被严格证明为假，但也没有丝毫理由认为它是真的。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "怀疑之前，先找一个固定的出发点。我们怀疑的是桌子的物理存在，不怀疑让我们以为有桌子的感觉材料（**sense-data**：直接觉察到的颜色、形状、硬度等）：看的时候确实有某种颜色和形状出现，按的时候确实有硬的感觉。这些是心理上的（**psychological**）事实，不受怀疑。至少有一些直接经验看来是绝对确定的（第 6 页）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "笛卡尔的系统怀疑法（第 6 页）",
+            "en": "Descartes' method of systematic doubt (p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "笛卡尔（**René Descartes**，1596–1650）被罗素称为近代哲学的奠基人。他发明的方法今天仍然有用：系统怀疑法（**method of systematic doubt**）。",
+              "en": "Russell calls Descartes the founder of modern philosophy and says his method of systematic doubt is still useful."
+            },
+            {
+              "zh": "规则：凡是没有清楚分明地（**clearly and distinctly**）看出是真的，一律不信；凡是能让自己怀疑的，都去怀疑，直到看到不该怀疑的理由。",
+              "en": "Rule: believe nothing you do not see clearly and distinctly to be true, and doubt whatever you can until you see a reason not to."
+            },
+            {
+              "zh": "他设想一个骗人的恶魔（**deceitful demon**），不停地把不真实的东西呈现给他的感官，像一场永不结束的幻影戏。这样的恶魔存在的可能性很小，但并非不可能，所以对感官感知到的东西，怀疑是可能的。",
+              "en": "He imagined a deceitful demon showing his senses unreal things. This is unlikely but possible, so whatever the senses show can be doubted."
+            },
+            {
+              "zh": "可是怀疑自己存在是不可能的：如果他不存在，就没有恶魔能骗他。只要他在怀疑，只要他有任何经验，他就一定存在。",
+              "en": "But he could not doubt that he existed: a demon can deceive only someone who exists. Whether he doubted or had any other experience, he had to exist."
+            },
+            {
+              "zh": "于是他说：我思故我在（**Cogito, ergo sum**；英文 **I think, therefore I am**）。他以这个确定点为基础，重建被怀疑推倒的知识。",
+              "en": "So he said 'I think, therefore I am' (Cogito, ergo sum) and rebuilt knowledge on this certainty."
+            }
+          ],
+          "answer": {
+            "zh": "罗素称赞笛卡尔两件事：发明了怀疑的方法；表明了主观的东西（**subjective**：属于经验者自己内心的东西）最确定。",
+            "en": "Russell praises Descartes for inventing the method of doubt and for showing that what is subjective is most certain."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：笛卡尔的“我思”（罗素的转述，第 6 页）",
+            "en": "Standard form: Descartes' cogito (as Russell reports it, p. 6)"
+          },
+          "items": [
+            {
+              "en": "P1: Believe nothing that you do not see clearly and distinctly to be true, and doubt whatever can be doubted.",
+              "zh": "P1：没有清楚分明地看出为真的，一律不信；能怀疑的，都怀疑。"
+            },
+            {
+              "en": "P2: A deceitful demon might be showing my senses unreal things. This is unlikely but possible, so everything I perceive by the senses can be doubted.",
+              "zh": "P2：可能有一个骗人的恶魔把不真实的东西呈现给我的感官。可能性很小，但并非不可能，所以感官感知到的一切都可以怀疑。"
+            },
+            {
+              "en": "P3: But if I did not exist, no demon could deceive me; if I doubt, or have any experience at all, I must exist.",
+              "zh": "P3：可是如果我不存在，就没有恶魔能骗我；只要我在怀疑、有任何经验，我就一定存在。"
+            },
+            {
+              "en": "C: So my own existence is absolutely certain: 'I think, therefore I am.'",
+              "zh": "C：所以我自己的存在是绝对确定的：我思故我在。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "罗素提醒：用这个论证要小心，“我思故我在”说得比严格确定的多了一点（第 6 页）。我们好像很确定今天的我和昨天的我是同一个人，这在某种意义上也没错。但真实的自我（**the real Self**）和真实的桌子一样难以达到，没有当下具体经验那种绝对、让人信服的确定性（第 7 页）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：罗素对“我思”的修正（第 6–7 页）",
+            "en": "Standard form: Russell's correction of the cogito (pp. 6-7)"
+          },
+          "items": [
+            {
+              "en": "P1: When I see a brown colour as I look at my table, what is immediately certain is not that I am seeing a brown colour, but that \"a brown colour is being seen\" (p. 7).",
+              "zh": "P1：我看桌子、看到棕色时，立刻确定的不是“我在看一块棕色”，而是“有一块棕色正在被看见”。"
+            },
+            {
+              "en": "P2: This involves something or someone that sees the colour, but not the more or less lasting person we call 'I'.",
+              "zh": "P2：这当然涉及某个在看的东西（或人），但不涉及那个或多或少持续存在、被我们叫作“我”的人。"
+            },
+            {
+              "en": "P3: As far as immediate certainty goes, the seer might exist only for a moment and be different from whatever has the next experience.",
+              "zh": "P3：就立刻的确定性而言，这个看者可能只存在一瞬间，和下一刻有别的经验的那个看者不是同一个。"
+            },
+            {
+              "en": "C: So Russell argues that 'I think, therefore I am' claims more than is strictly certain: what has primitive certainty is our particular thoughts and feelings, not a lasting self.",
+              "zh": "C：所以罗素论证：“我思故我在”说得比严格确定的多；有原初确定性的，是我们一个个具体的想法和感受，不是一个持续的自我。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "共享单车：你看到一辆车正在被人骑走，你能确定的是“这辆车此刻正在被人骑”。但只凭这一眼，你不能确定骑车的是不是昨天骑它的同一个人。罗素说“我思”也是这样：立刻确定的只是“此刻有一块棕色被看见”，看的是不是一个从昨天持续到今天的“我”，这一眼保证不了。",
+          "limit": "单车的例子是从外面看别人；罗素说的是从里面看自己：连“我”昨天和今天是不是同一个，也不在立刻确定的范围里。另外，罗素没说自我不存在，只说它没有当下经验那么确定。"
+        },
+        {
+          "type": "text",
+          "zh": "所以有原初确定性（**primitive certainty**：最基本、不用推理就有的确定性）的，是我们一个个具体的想法和感受。这对梦和幻觉（**hallucination**）同样成立：做梦或看见鬼时，我们确实有那些感觉，只是人们认为没有物理对象（**physical object**：真实存在的东西，比如真实的桌子）和它们对应。所以这种确定性不用为例外情况打折扣，它就是罗素的坚实起点（第 7 页）。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'A brown colour is being seen' still needs someone who sees it, so Russell has not got rid of the self. How would Russell reply?",
+            "zh": "反驳（**objection**：对一个观点的质疑）：“有一块棕色正在被看见”还是需要一个看的人，所以罗素并没有去掉自我。罗素会怎么回应？"
+          },
+          "answer": {
+            "en": "Russell accepts that seeing a colour involves something or someone that sees it. His point is narrower: immediate certainty does not tell us that this seer is a lasting person, the same 'I' as yesterday. For all we know at that moment, the seer might exist only for an instant. So the certainty covers the present experience, not a permanent self.",
+            "zh": "罗素自己已经承认这一点（第 7 页）：看一定涉及某个看的东西。他否认的是：立刻的确定性能告诉我们这个看者是一个持续存在的“我”。答题时要写清楚：罗素没有说“没有自我”，只说持续的自我不像当下经验那样确定。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "罗素没有全盘否定笛卡尔：他赞扬怀疑法，也接受“当下经验最确定”；他只说“我思故我在”多说了一点，多出来的是一个持续的“我”。",
+              "en": "Russell keeps Descartes' method and the certainty of present experience; he only denies that a lasting 'I' is immediately certain."
+            },
+            {
+              "zh": "立刻确定的是“有一块棕色正在被看见”，不是“桌子是棕色的”，也不是“我在看棕色”。",
+              "en": "What is certain is that a brown colour is being seen, not that the table is brown or that I am seeing it."
+            },
+            {
+              "zh": "梦和幻觉不会削弱感觉材料的确定性：做梦时你确实有那些感觉。梦削弱的是“从感觉材料推出物理对象”这一步。",
+              "en": "Dreams do not make sense-data uncertain; they only weaken the inference to physical objects."
+            },
+            {
+              "zh": "罗素没说“只有我存在”是真的：他说这种可能不能被严格证明为假，但没有任何理由相信它（第 6 页）。",
+              "en": "Russell does not say that only he exists; he says this cannot be strictly disproved but there is no reason to believe it."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "When Russell looks at his table and sees brown, what does he say is quite certain at once?",
+            "zh": "罗素看桌子、看到棕色时，他说什么是立刻就完全确定的？"
+          },
+          "options": [
+            {
+              "en": "I am seeing a brown colour.",
+              "zh": "我在看一块棕色。"
+            },
+            {
+              "en": "The table is brown.",
+              "zh": "桌子是棕色的。"
+            },
+            {
+              "en": "A brown colour is being seen.",
+              "zh": "有一块棕色正在被看见。"
+            },
+            {
+              "en": "I am the same person who saw the table yesterday.",
+              "zh": "我和昨天看桌子的是同一个人。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 7 页）。A 多出了一个持续的“我”，正是罗素说“我思”多说了的部分；B 是关于物理对象的判断，只能推出来；D 涉及持续的自我，罗素说它和真实的桌子一样难以达到。",
+            "en": "C. A adds a lasting 'I', B is a claim about the physical table, and D assumes a persisting self, which Russell says is as hard to reach as the real table."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "和第 5 周连起来：你在笛卡尔的第一、第二沉思里读过怀疑、恶魔和“我在”。那份译本里恶魔叫 **malicious demon**，第二沉思的结论写作 **I am, I exist**；罗素转述时用的是拉丁文 **Cogito, ergo sum**（英文 **I think, therefore I am**），恶魔叫 **deceitful demon**。第一沉思还有做梦论证，可以和后面罗素的梦境假说（第 8 页）对照。答罗素的题时，用罗素的转述和他的修正。",
+          "en": "Link to Week 5: Descartes' First and Second Meditations contain the doubt, the demon, the dreaming argument and 'I am, I exist'. Answer Russell questions with Russell's report and his correction."
+        }
+      ]
+    },
+    {
+      "id": "s05-russell-public-objects-question-begging",
+      "title": {
+        "zh": "罗素：公共对象与“窃取论题”",
+        "en": "Russell: Public Objects and Begging the Question"
+      },
+      "slides": "7-8",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 2 章的核心问题（第 7 页）：既然我们对自己的感觉材料（**sense-data**：直接觉察到的颜色、声音、硬度等）是确定的，有没有理由把它们当作别的东西存在的记号（**sign**）？这个“别的东西”就是物理对象（**physical object**：真实的桌子，如果有的话）。换句话说：把和桌子有关的感觉材料全列出来，是不是就把桌子说完了？还是还有一个不是感觉材料、我们离开房间后仍然存在的东西？"
+        },
+        {
+          "type": "text",
+          "zh": "常识（**common sense**：普通人不假思索就接受的看法）毫不犹豫地回答：有。下面先看常识的两个理由（桌布、十个人吃饭），再看第一个回答，最后看罗素为什么说它窃取论题（**begging the question**：偷偷预设了要证明的结论）。论证（**argument**：用前提支持结论）照样写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "桌布的例子（第 7 页）",
+            "en": "The tablecloth (p. 7)"
+          },
+          "steps": [
+            {
+              "zh": "能被买卖、推来推去、在上面铺桌布的东西，似乎不可能只是一堆感觉材料。",
+              "en": "Something that can be bought, sold, pushed about and covered with a cloth seems to be more than a collection of sense-data."
+            },
+            {
+              "zh": "假设桌子只是感觉材料。用桌布把它完全盖住，我们就得不到任何来自桌子的感觉材料。",
+              "en": "Suppose the table were only sense-data, and a cloth hid it completely: we would get no sense-data from the table."
+            },
+            {
+              "zh": "那么桌子就不存在了，桌布会悬在半空，奇迹般地停在桌子原来的位置上。",
+              "en": "Then the table would have stopped existing, and the cloth would hang in empty air, as if by a miracle, where the table used to be."
+            },
+            {
+              "zh": "这显得明显荒谬。但罗素提醒：想成为哲学家，就要学会不被荒谬的结论吓倒。",
+              "en": "This seems plainly absurd, but Russell warns that a would-be philosopher must not be scared off by results that sound absurd."
+            }
+          ],
+          "answer": {
+            "zh": "桌布说明了常识为什么想要物理对象；但“听起来荒谬”本身不是证明，还需要真正的论证。",
+            "en": "The tablecloth shows why common sense wants physical objects, but sounding absurd is not a proof."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "十个人围着餐桌（第 7 页）",
+            "en": "Ten people round a dinner-table (p. 7)"
+          },
+          "steps": [
+            {
+              "zh": "十个人围坐吃饭。说他们看到的不是同一块桌布、同一套刀叉、勺子和杯子，似乎很荒唐。",
+              "en": "It seems absurd to say that ten people at dinner do not see the same tablecloth, knives, forks, spoons and glasses."
+            },
+            {
+              "zh": "但感觉材料是私人的（**private**：只属于某一个人）：一个人直接看到的，不是另一个人直接看到的。",
+              "en": "But sense-data are private: what one person immediately sees is not what another immediately sees."
+            },
+            {
+              "zh": "每个人的位置略有不同，所以看到的东西也略有不同。",
+              "en": "Each person sees from a slightly different point of view, so each sees things slightly differently."
+            },
+            {
+              "zh": "所以，如果有公共的中立对象（**public neutral object**：很多人都能在某种意义上认识的同一个对象），它必须是私人感觉材料之外、之上的东西。",
+              "en": "So if there are public neutral objects, they must exist over and above each person's private sense-data."
+            }
+          ],
+          "answer": {
+            "zh": "我们想要“同一个东西给不同的人”，这是相信物理对象的一大理由。罗素接着问：我们有什么理由相信有这种公共对象？",
+            "en": "We want different people to share one and the same object. Russell then asks what reason we have to believe in such public objects."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：从“大家的感觉材料相似”出发（第 8 页）",
+            "en": "Standard form: the argument from similar sense-data (p. 8)"
+          },
+          "items": [
+            {
+              "en": "P1: Different people looking at the table see more or less similar things, and the differences follow the laws of perspective and of the reflection of light.",
+              "zh": "P1：不同的人看桌子，看到的东西大致相似；差异也遵守透视和光反射的规律。"
+            },
+            {
+              "en": "P2: One person in the same place at different times also has similar sense-data.",
+              "zh": "P2：同一个人在同一个地方、不同时间，得到的感觉材料也相似。"
+            },
+            {
+              "en": "C: So there is a permanent public object, over and above the sense-data, that underlies or causes the sense-data of different people at different times.",
+              "zh": "C：所以在感觉材料之外，有一个持久的公共对象，它是不同的人在不同时间的感觉材料的基础或原因。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "罗素用自己的桌子举例：桌子是从房间前一位住户那里买的。他买不到那个人的感觉材料，那人一走，那些感觉材料就没了；他买到的是一种有把握的期待：以后还会有差不多的感觉材料（第 8 页）。这说明了我们为什么自然地认为，感觉材料背后有一个持久的公共对象。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：罗素为什么说它窃取论题（第 8 页）",
+            "en": "Standard form: why Russell says this begs the question (p. 8)"
+          },
+          "items": [
+            {
+              "en": "P1: The argument appeals to other people: to their similar sense-data and to what they tell us.",
+              "zh": "P1：这个论证要靠别人：靠别人相似的感觉材料，靠别人告诉我们的话。"
+            },
+            {
+              "en": "P2: But other people are present to me only through my own sense-data, such as how they look and how their voices sound.",
+              "zh": "P2：可是别人只通过我自己的感觉材料出现在我面前：他们的样子、他们说话的声音。"
+            },
+            {
+              "en": "P3: Without some reason to believe in physical objects beyond my sense-data, I would have no grounds for thinking that other people are anything more than part of my dream.",
+              "zh": "P3：如果我没有理由相信有独立于我的感觉材料的物理对象，我也就没有理由相信别人存在，他们可能只是我梦的一部分。"
+            },
+            {
+              "en": "C: So the appeal to other people assumes what is in question, which is begging the question; Russell concludes that the evidence must come from my own purely private experience.",
+              "zh": "C：所以诉诸别人就是预设了待证的东西，这叫窃取论题；罗素的结论是：证据只能从我自己纯粹私人的经验里找。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "窃取论题（**begging the question**）＝论证里偷偷预设了要证明的结论。这里要证明的是：存在独立于我的感觉材料的东西。可“别人”本身就是这样的东西之一。用别人的证词（**testimony**：别人告诉你的话）作证据，等于先假定了结论，因为证词本身也只是我的感觉材料。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：日常英语里，begs the question 也常被用来表示“引出一个问题”。罗素在第 8 页用的是逻辑上的意思：论证预设了要证明的东西。英文作答时只用后一种意思。",
+          "en": "Outside the reading: in everyday English 'begs the question' is often used to mean 'raises the question'. Russell (p. 8) uses the logical sense: the argument assumes what it is meant to prove."
+        },
+        {
+          "type": "analogy",
+          "zh": "你想确认一个网友是真人还是聊天机器人，于是问他：“你是真人吗？”他回答“是”。可这句回答本身也只是屏幕上的文字；如果他可能是机器人，这句话就证明不了什么。用别人的证词证明外部世界存在，也是这样。",
+          "limit": "网友的例子里，我们至少确定手机、网络和屏幕存在；罗素的处境更彻底：屏幕、文字、网友的样子和声音，全都只是我的感觉材料。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why can't Russell use the testimony of other people to show that the table exists independently of him?",
+            "zh": "为什么罗素不能用别人的证词来证明桌子独立于他存在？"
+          },
+          "answer": {
+            "en": "Other people are known to Russell only through his own sense-data, such as how they look and sound. Their testimony is itself just more sense-data. Unless he already knows that his sense-data are signs of things that exist independently of him, other people might be part of his dream. So using their testimony would assume what he is trying to prove, which is begging the question.",
+            "zh": "得分点：①别人只通过我的感觉材料出现；②证词本身也是感觉材料；③要先有理由相信独立的东西存在，才能相信别人存在；④所以拿别人作证据就是窃取论题，证据只能来自我自己的私人经验（第 8 页）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "窃取论题不是“提出问题”，而是“预设了待证的结论”。",
+              "en": "Begging the question means assuming what is to be proved, not raising a question."
+            },
+            {
+              "zh": "罗素没说别人不存在，也没说“大家的感觉材料相似”是假的；他说这个论证在这里用不上，因为它预设了要证明的东西。",
+              "en": "Russell does not deny that people's sense-data are similar; he says the argument assumes what is to be proved."
+            },
+            {
+              "zh": "桌布的例子：罗素承认那个结果听起来荒谬，但说荒谬不等于被驳倒。别写“罗素用桌布证明了物理对象存在”。",
+              "en": "The tablecloth is not Russell's proof of physical objects; absurdity alone proves nothing."
+            },
+            {
+              "zh": "感觉材料是私人的；公共中立对象（如果有）必须在感觉材料之外，不能就是某个人的感觉材料。",
+              "en": "Sense-data are private; public neutral objects would have to be something over and above them."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Russell reject the argument that a public table exists because different people have similar sense-data?",
+            "zh": "罗素为什么拒绝“不同的人感觉材料相似，所以有公共的桌子”这个论证？"
+          },
+          "options": [
+            {
+              "en": "Because different people actually have very different sense-data.",
+              "zh": "因为不同的人其实感觉材料差别很大。"
+            },
+            {
+              "en": "Because it begs the question: other people are known to me only through my own sense-data.",
+              "zh": "因为它窃取论题：别人只通过我自己的感觉材料被我知道。"
+            },
+            {
+              "en": "Because the laws of perspective are unreliable.",
+              "zh": "因为透视规律不可靠。"
+            },
+            {
+              "en": "Because sense-data are never certain.",
+              "zh": "因为感觉材料从来都不确定。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 8 页）。A 错：罗素承认大家看到的东西大致相似；C 错：他没有怀疑透视规律；D 错：第 2 章恰恰把感觉材料当作确定的出发点。",
+            "en": "B. Russell grants that people's sense-data are similar (A) and never doubts the laws of perspective (C); sense-data are his certain starting point, so D is wrong."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-russell-dream-hypothesis-simplicity",
+      "title": {
+        "zh": "罗素：梦境假说与简单性论证",
+        "en": "Russell: The Dream Hypothesis and the Argument from Simplicity"
+      },
+      "slides": "8-9",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "罗素先让一步（第 8 页）：在一种意义上，我们永远不能证明（**prove**）除了自己和自己的经验之外还有别的东西存在。假设世界只由我和我的想法、感受、感觉组成，其余全是幻想，这不会推出任何逻辑上的荒谬（**logical absurdity**：自相矛盾）。也就是说，这个假设逻辑上是可能的（**logically possible**：不自相矛盾、可以设想）。下面的论证（**argument**：用前提支持结论）照样写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "hypothesis",
+              "zh": "假说",
+              "hint": "用来解释一些事实的猜想，可能对也可能错。"
+            },
+            {
+              "en": "dream hypothesis",
+              "zh": "梦境假说",
+              "hint": "整个人生是一场梦，我们遇到的一切东西都是自己造出来的。"
+            },
+            {
+              "en": "common-sense hypothesis",
+              "zh": "常识假说",
+              "hint": "确实有独立于我们的物体，它们作用于我们，引起我们的感觉。"
+            },
+            {
+              "en": "simpler hypothesis",
+              "zh": "更简单的假说",
+              "hint": "罗素的说法：作为解释我们生活中事实的手段更简单（第 8 页），让我们对经验的说明更简单、更有条理（第 9 页）。本站的理解：比的是解释得好不好，不是假定的东西多少；罗素自己没有谈“东西多少”。"
+            },
+            {
+              "en": "prove / reason to believe",
+              "zh": "证明 / 有理由相信",
+              "hint": "证明＝排除一切出错的可能；有理由相信＝比对手的说法有更好的根据。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "梦、关门声和海战（第 8 页）",
+            "en": "Dreams, a banging door and a naval battle (p. 8)"
+          },
+          "steps": [
+            {
+              "zh": "梦里可能出现一个很复杂的世界，醒来才发现是错觉：梦里的感觉材料（**sense-data**：直接觉察到的颜色、声音等），并没有对应我们本来会从它们推出的那些物理对象（**physical objects**：真实存在的东西）。",
+              "en": "In dreams a complicated world may seem present, yet on waking we find that no physical objects corresponded to the dream's sense-data."
+            },
+            {
+              "zh": "如果先假定有物理世界，梦里的感觉材料也能找到物理原因（**cause**）：比如一扇门砰地关上，可能让我们梦见一场海战（**naval engagement**）。",
+              "en": "If a physical world is assumed, dreams can have physical causes: a door banging may make us dream of a naval battle."
+            },
+            {
+              "zh": "这时有物理原因（门），却没有对应的物理对象（没有真的海战）；只有一场真的海战，才会那样对应我们梦里看到的东西。",
+              "en": "Then there is a physical cause (the door) but no corresponding physical object (no real naval battle)."
+            },
+            {
+              "zh": "所以，“整个人生是一场梦，我们自己造出了眼前的一切”这个假设，没有逻辑上的不可能。",
+              "en": "So it is not logically impossible that all of life is one long dream in which we ourselves make up every object we meet."
+            }
+          ],
+          "answer": {
+            "zh": "梦境假说（**dream hypothesis**）逻辑上可能。但罗素马上说：没有任何理由认为它是真的；而且作为解释我们生活中各种事实的假说，它不如常识假说简单。",
+            "en": "The dream hypothesis is logically possible, but there is no reason to think it true, and it is a less simple way of accounting for the facts of our life."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：“只有我和我的经验存在”这种立场，哲学里常叫唯我论（**solipsism**）。罗素这两章没有用这个词；写罗素时可以说 the hypothesis that only I and my experiences exist。",
+          "en": "Outside the reading: the view that only I and my experiences exist is often called solipsism, a word Russell does not use in these chapters."
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：简单性论证（第 8–9 页）",
+            "en": "Standard form: the argument from simplicity (pp. 8-9)"
+          },
+          "items": [
+            {
+              "en": "P1: Two hypotheses can account for the facts of my life: (a) life is one long dream in which I create all the objects I meet; (b) there are objects independent of me whose action on me causes my sensations.",
+              "zh": "P1：有两个假说都能解释我生活中的事实：（a）人生是一场长梦，我遇到的一切都是我造的；（b）有独立于我的对象，它们作用于我，引起我的感觉。"
+            },
+            {
+              "en": "P2: Neither hypothesis is logically impossible, so logic alone cannot choose between them.",
+              "zh": "P2：两个假说都不是逻辑上不可能的，所以光靠逻辑选不出来。"
+            },
+            {
+              "en": "P3: Hypothesis (b) accounts for my experience much more simply: it makes sense of the cat's movements and hunger and of people's speech, and it can even explain dreams.",
+              "zh": "P3：假说（b）对我的经验解释得简单得多：它能讲通猫的移动和饥饿、别人说的话，甚至能解释梦。"
+            },
+            {
+              "en": "P4 (implicit premise, our reconstruction): When two hypotheses both fit the facts, we should prefer the simpler one.",
+              "zh": "P4（隐含前提，本站补出）：两个假说都符合事实时，应该选更简单的那个。罗素诉诸简单性，但没有专门为这条原则辩护。"
+            },
+            {
+              "en": "C: So Russell argues that we should accept the natural view: besides ourselves and our sense-data, there really are objects whose existence does not depend on our perceiving them.",
+              "zh": "C：所以罗素论证：应该接受自然的看法：确实有我们和我们的感觉材料之外的对象，它们的存在不依赖我们是否感知它们。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "猫的例子（第 9 页）",
+            "en": "The cat (p. 9)"
+          },
+          "steps": [
+            {
+              "zh": "这一刻猫在房间这一头，过一会儿在另一头。自然的想法是：它走过去了，经过了中间一连串位置。",
+              "en": "The cat is in one part of the room and later in another; naturally we think it moved through the positions in between."
+            },
+            {
+              "zh": "如果猫只是一组感觉材料，它就不可能待在我没看见它的地方。那只能说：我不看时它根本不存在，然后突然在新位置冒了出来。",
+              "en": "If the cat is only sense-data, it was never anywhere I did not see it, so it must have stopped existing and then suddenly sprung into being in a new place."
+            },
+            {
+              "zh": "饥饿：如果猫不管我看不看都存在，我能从自己的经验理解它两顿饭之间怎么饿起来。如果我不看时它不存在，那它“不存在”的时候食欲竟然和存在时长得一样快，很奇怪。",
+              "en": "If the cat exists unobserved, its growing hunger between meals is easy to understand; if not, its appetite would grow just as fast while it does not exist as while it does, which is odd."
+            },
+            {
+              "zh": "更进一步：如果猫只由感觉材料组成，它根本不可能饿，因为除了我自己的饥饿，别的饥饿都不可能成为我的感觉材料。",
+              "en": "Worse, if the cat were only sense-data it could not be hungry at all, because the only hunger that can be one of my sense-data is my own."
+            },
+            {
+              "zh": "把这些感觉材料的变化看成饥饿的表现，就很自然；看成一块块颜色的移动和变化，就完全无法解释。罗素说，这些色块 “as incapable of hunger as a triangle is of playing football”（第 9 页）：色块会饿，就像三角形会踢足球一样不可能。",
+              "en": "Read as signs of hunger, the cat's behaviour is natural; read as mere moving patches of colour, it is inexplicable, since colour patches can no more be hungry than a triangle can play football."
+            }
+          ],
+          "answer": {
+            "zh": "独立存在的猫能自然地解释它的移动和饥饿；“只有感觉材料”的说法解释不了。罗素用猫说明简单性从哪里来（第 9 页）。本站的理解：这里的“更简单”看的是能不能把经验解释通，不是假定的东西多少；罗素本人没有讨论“东西多少”。",
+            "en": "Russell uses the cat to show how simplicity comes in: an independently existing cat makes its movement and hunger natural, while the sense-data-only view leaves them inexplicable."
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "别人说话，以及梦本身（第 9 页）",
+            "en": "Other people's speech, and dreams themselves (p. 9)"
+          },
+          "steps": [
+            {
+              "zh": "罗素说，猫的困难和人的困难比起来不算什么。",
+              "en": "The difficulty with the cat is nothing compared with the case of human beings."
+            },
+            {
+              "zh": "人说话时，我们听到和某些意思联系在一起的声音，同时看到嘴唇的动作和脸上的表情。",
+              "en": "When people speak, we hear sounds we associate with ideas and see their lips move and their faces change."
+            },
+            {
+              "zh": "这时很难认为我们听到的不是一个想法（**thought**）的表达；我们自己发出同样的声音时，那就是在表达想法。",
+              "en": "It is very hard to believe that the words we hear express no thought, when the same sounds from us would express one."
+            },
+            {
+              "zh": "当然，梦里也会发生类似的事，那时我们把并不存在的人当成了存在的人。",
+              "en": "Something similar happens in dreams, where we wrongly believe that other people exist."
+            },
+            {
+              "zh": "但梦大体上取材于我们所说的清醒生活；如果假定确实有物理世界，梦本身也能用科学原理大致解释。",
+              "en": "But dreams draw largely on waking life, and science can roughly explain them if we assume a physical world."
+            }
+          ],
+          "answer": {
+            "zh": "所以，各种简单性的考虑都推着我们接受自然的看法：确实有独立于我们和我们感觉材料的对象，它们的存在不依赖我们感知它们。",
+            "en": "So every consideration of simplicity favours the natural view that there are objects whose existence does not depend on our perceiving them."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "宿舍里，你出门前桌上的外卖还是满的，回来时被吃掉一半，室友的拖鞋也换了位置。解释一：室友在你不在时回来过，吃了外卖又出去了。解释二：你不在时什么都不存在，回来时外卖“凭空”少了一半、拖鞋“凭空”换了地方。两个解释都和你看到的东西一致，但第一个能把一切串起来，第二个只能说“就是这样，没有原因”。罗素选的就是第一种解释。",
+          "limit": "宿舍的例子里，你本来就确定室友存在，也知道有物理世界；罗素是在不假定外部世界的前提下，只凭自己的感觉材料比较两个假说。而且更简单的解释也不保证一定是真的。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'The common-sense hypothesis adds a whole world of unobserved things, so the dream hypothesis is actually simpler.' How could Russell reply?",
+            "zh": "反驳（**objection**：对一个观点的质疑）：“常识假说多出了一整个没人观察的世界，所以梦境假说其实更简单。”罗素可以怎么回应？"
+          },
+          "answer": {
+            "en": "Russell could reply that he judges simplicity as a way of accounting for the facts of our life (p. 8), not by counting things. The dream hypothesis has fewer things, but it must treat the cat's jumps into being, its growing hunger and people's meaningful speech as unexplained facts. The common-sense hypothesis explains all of these, and even dreams, with one natural picture. So it is the simpler account of the facts of our life, even though it posits more objects.",
+            "zh": "思路（这是本站替罗素构想的回应）：罗素说的“简单”，是作为解释我们生活中事实的手段更简单（第 8–9 页）。梦境假说虽然东西少，却要接受一大堆无法解释的巧合；常识假说用一个自然的图景解释猫、别人说话，甚至梦本身。还可以补一句评价：“两个假说都符合事实时应选更简单的”这一条（P4）罗素没有专门论证，更简单的为什么就更可能是真的也没有说明；这是论证的弱点，所以他自己也不说这是证明。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "罗素承认梦境假说逻辑上可能、不能被严格证明为假；他说的是没有理由相信它，而且它不如常识假说简单。",
+              "en": "Russell grants that the dream hypothesis is logically possible; he says there is no reason to believe it and it is less simple."
+            },
+            {
+              "zh": "关门声和海战：有物理原因（门），没有对应的物理对象（海战）。“原因”和“对应的对象”别混。",
+              "en": "The banging door is a physical cause of the dream, but nothing corresponds to it as a real battle would."
+            },
+            {
+              "zh": "罗素说常识假说“更简单”，是指作为解释我们生活中事实的手段更简单（第 8 页）。别写成“罗素说简单就是假定的东西更少”，他没这么说。本站的理解：他看的是解释得好不好，不是数东西，但这一点罗素没有明说。",
+              "en": "Russell calls the common-sense hypothesis simpler as a way of accounting for the facts of our life (p. 8); he never defines 'simpler' as positing fewer things (reading it as explanatory simplicity is our interpretation)."
+            },
+            {
+              "zh": "猫的论证只用我自己私人经验里的规律（猫出现的位置和它的行为），没有用别人的证词，所以不会像上一节那样窃取论题。",
+              "en": "The cat argument uses patterns in my own private experience, not other people's testimony, so it does not beg the question."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is Russell's cat example meant to show?",
+            "zh": "罗素猫的例子想说明什么？"
+          },
+          "options": [
+            {
+              "en": "That cats exist only when someone perceives them.",
+              "zh": "猫只在有人感知它时才存在。"
+            },
+            {
+              "en": "That the hypothesis of independent objects explains our experience more simply than the view that there are only sense-data.",
+              "zh": "“有独立对象”的假说比“只有感觉材料”的说法更简单地解释我们的经验。"
+            },
+            {
+              "en": "That the dream hypothesis is logically impossible.",
+              "zh": "梦境假说在逻辑上不可能。"
+            },
+            {
+              "en": "That other people's testimony proves that the cat is real.",
+              "zh": "别人的证词证明了猫是真的。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 9 页）。A 正好是罗素反对的看法；C 错：罗素承认梦境假说逻辑上可能（第 8 页）；D 错：猫的论证不靠别人的证词，靠证词就窃取论题了。",
+            "en": "B. A is the view Russell argues against, C contradicts p. 8, and D would beg the question."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement matches Russell's view of the hypothesis that all of life is a dream?",
+            "zh": "关于“整个人生是一场梦”这个假说，哪一项符合罗素的看法？"
+          },
+          "options": [
+            {
+              "en": "It is logically impossible, so logic alone refutes it.",
+              "zh": "它逻辑上不可能，光靠逻辑就能驳倒。"
+            },
+            {
+              "en": "It is probably true, because dreams can be very detailed.",
+              "zh": "它很可能是真的，因为梦可以非常细致。"
+            },
+            {
+              "en": "It is proved false by the case of the banging door.",
+              "zh": "关门声的例子证明了它是假的。"
+            },
+            {
+              "en": "It is not logically impossible, but there is no reason to believe it, and it is less simple than the common-sense hypothesis.",
+              "zh": "它不是逻辑上不可能的，但没有理由相信它，而且它不如常识假说简单。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 8 页）。A 错：罗素明说没有逻辑上的荒谬；B 错：他说没有任何理由认为它真；C 错：关门声只说明梦可以有物理原因却没有对应的对象，不是对梦境假说的反驳。",
+            "en": "D. Russell says there is no logical absurdity in it (A), no reason to think it true (B), and the banging door only separates a cause from a corresponding object (C)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-russell-instinctive-beliefs",
+      "title": {
+        "zh": "罗素：本能信念与哲学的任务",
+        "en": "Russell: Instinctive Beliefs and the Job of Philosophy"
+      },
+      "slides": "9-10",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "罗素承认（第 9 页）：我们最初相信有一个独立的外部世界（**external world**：在我们之外、不依赖我们而存在的世界），并不是靠论证（**argument**：用前提支持结论）得来的。一开始反思，就发现这个信念早已在我们心里。他把这种信念叫作本能信念（**instinctive belief**）。"
+        },
+        {
+          "type": "text",
+          "zh": "那我们为什么会怀疑它？罗素说，问题出在视觉：看东西时，我们本能地把看到的感觉材料（**sense-data**：直接觉察到的颜色、形状等）本身当成了独立的对象；而第 1 章的论证表明，对象不可能就是感觉材料。这个发现对味觉、嗅觉、听觉一点也不奇怪，对触觉也只有一点奇怪。关键是：它没有削弱“有对象和我们的感觉材料对应”这个本能信念（第 9 页）。下面把罗素的论证写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：本能信念论证（第 9–10 页）",
+            "en": "Standard form: the argument from instinctive belief (pp. 9-10)"
+          },
+          "items": [
+            {
+              "en": "P1: We do not reach the belief in an independent external world by argument; we already have it as soon as we start to reflect, so it is an instinctive belief.",
+              "zh": "P1：我们相信有独立的外部世界，不是靠论证得来的；一开始反思就发现它已经在心里，所以它是本能信念。"
+            },
+            {
+              "en": "P2: Argument shows only that an object and a sense-datum cannot be one and the same thing; this does not weaken our instinctive belief that some objects correspond to our sense-data.",
+              "zh": "P2：论证只表明对象不可能就是感觉材料；“有对象和我们的感觉材料对应”这个本能信念并没有被动摇。"
+            },
+            {
+              "en": "P3: This belief leads to no difficulties; on the contrary, it makes our account of our experiences simpler and more orderly.",
+              "zh": "P3：这个信念不带来任何困难；相反，它让我们对经验的解释更简单、更有条理。"
+            },
+            {
+              "en": "P4: The only reason for rejecting an instinctive belief is that it conflicts with our other beliefs.",
+              "zh": "P4：抛弃一个本能信念的唯一理由，是它和我们的其他信念冲突。"
+            },
+            {
+              "en": "C: So Russell concludes that we may accept, with a slight doubt that comes from dreams, that the external world really exists and does not depend entirely on our perceiving it.",
+              "zh": "C：所以罗素的结论是：可以接受外部世界真的存在、并不完全依赖我们感知它；只保留一点来自梦的怀疑。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "逐条看。P1：这个信念是本来就有的，不是推出来的。P2：被论证推翻的只是“看到的就是对象本身”这一部分，本能信念的核心还在。P3：和上一节的简单性论证呼应。P4：罗素在第 10 页明确说了这条原则。结论里那“一点怀疑”来自梦：梦让我们知道，感觉材料有时没有对应的物理对象（**physical object**：真实存在的东西）（第 8–9 页）。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "罗素心目中哲学的工作方法（第 10 页）",
+            "en": "Russell's method for philosophy (p. 10)"
+          },
+          "items": [
+            {
+              "en": "Start from instinctive beliefs: all knowledge must be built on them; if we reject them all, nothing is left.",
+              "zh": "从本能信念出发：一切知识都要建立在它们之上；全部抛弃，就什么都不剩。"
+            },
+            {
+              "en": "Rank them: show their hierarchy, beginning with the beliefs we hold most strongly.",
+              "zh": "排出层级（**hierarchy**）：从我们最坚定持有的信念开始排序。"
+            },
+            {
+              "en": "Clean them: strip away additions that habit and association have mixed in but that are not really instinctive.",
+              "zh": "清理：去掉因为习惯和联想混进来、其实不是本能的附加部分。"
+            },
+            {
+              "en": "Check harmony: show that, in their final form, they fit together without clashing, as one harmonious system.",
+              "zh": "检查和谐：表明它们最后的形式彼此不冲突，组成一个和谐的体系（**harmonious system**）。"
+            },
+            {
+              "en": "Revise only for clashes: change or drop a belief only when it clashes with others, and keep a little doubt about every belief.",
+              "zh": "只因冲突而修改：只有和别的信念冲突时，才修改或放弃一个信念；所有信念都保留一点怀疑。"
+            },
+            {
+              "en": "Result: an orderly system of knowledge in which error is still possible but less likely.",
+              "zh": "结果：一个有条理的知识体系；仍可能出错，但各部分互相联系、又经过批判的检查，出错的可能变小了。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：本能信念与哲学的任务（第 10 页）",
+            "en": "Exam sentences: instinctive beliefs and the job of philosophy (p. 10)"
+          },
+          "items": [
+            {
+              "en": "Russell argues that all knowledge must be built on our instinctive beliefs; if we reject them all, nothing is left.",
+              "zh": "罗素论证：一切知识都必须建立在本能信念之上；把它们全部抛弃，就什么也不剩。"
+            },
+            {
+              "en": "Any reason to reject a belief must come from some other belief we hold, so the only test for our instinctive beliefs is whether they fit together.",
+              "zh": "抛弃一个信念的理由只能来自我们持有的另一个信念，所以检验本能信念的唯一办法，是看它们能不能彼此协调。"
+            },
+            {
+              "en": "Because any of our beliefs might be wrong, Russell says we should keep at least a little doubt about all of them.",
+              "zh": "因为任何信念都可能错，罗素说所有信念都要保留至少一点怀疑。"
+            },
+            {
+              "en": "Philosophy can at least do the modest job of organizing our instinctive beliefs into a harmonious system; Russell leaves open whether it can also give us knowledge of ultimate reality.",
+              "zh": "哲学至少能做一件较谦虚的事：把本能信念整理成和谐的体系；它能不能给出关于终极实在的知识，罗素不下结论。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "像拼拼图：你没法先证明每一块都“对”再开始拼，只能用手上的拼图块，看哪些能拼在一起。某一块和周围怎么都拼不上，才把它拿出来换掉。拼得越完整，每一块放错的可能就越小。罗素说的本能信念就是这些拼图块，哲学就是拼图的人。",
+          "limit": "拼图盒子上有一张标准答案图可以对照；我们的信念没有“答案图”，只能看它们彼此是否和谐。所以罗素的方法只能降低出错的可能，不能保证不出错。"
+        },
+        {
+          "type": "text",
+          "zh": "罗素承认，外部世界的这个论证没有我们希望的那么强，但很多哲学论证都是这个样子（第 10 页）。大多数哲学家相信哲学能做得更多：给我们关于整个宇宙、关于终极实在（**ultimate reality**：事物最根本的样子）的、别处得不到的知识。罗素对此不下结论。他只说，较谦虚的这项工作哲学一定做得到；对已经开始怀疑常识够不够用的人来说，这就足以说明哲学的艰苦工作值得做。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "和别的周连起来：第 2 周读过的罗素 'The Value of Philosophy' 出自同一本书 **The Problems of Philosophy**，那篇说在“我们开头几章”里，最日常的东西也会引出只有很不完整答案的问题；这里的桌子就是这样的例子（本站的理解）。第 8 周的休谟（**David Hume**）把我们对未来的信念归给习惯（**custom or habit**），说它是一种自然本能，可以和罗素的“本能信念”对照。",
+          "en": "Links: Russell's 'The Value of Philosophy' (Week 2) comes from the same book and looks back to these opening chapters. Hume (Week 8) also grounds belief in a natural instinct, custom or habit."
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'An instinctive belief is just a gut feeling. Why should Russell trust it?' How would Russell answer?",
+            "zh": "反驳（**objection**：对一个观点的质疑）：“本能信念不过是一种直觉，罗素凭什么相信它？”罗素会怎么回答？"
+          },
+          "answer": {
+            "en": "Russell agrees that instinctive beliefs can be mistaken, so he holds all of them with some doubt. But he argues that we can reject a belief only because of some other belief, so we cannot step outside all our beliefs to test them. The only test available is whether our instinctive beliefs fit together into a harmonious system. The belief in an external world passes this test, because it clashes with nothing and makes our experience simpler and more orderly.",
+            "zh": "得分点：①罗素承认本能信念会错，所以带一点怀疑；②拒绝一个信念只能根据另一个信念；③所以唯一的检验是看它们是否和谐；④外部世界的信念不和任何信念冲突，还让经验更简单（第 9–10 页）。可以补一句批评：一整套彼此和谐的信念也可能全都错，罗素自己也承认出错的可能还在。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "“本能的”不等于“不会错”：罗素说所有信念都该保留一点怀疑。",
+              "en": "Instinctive does not mean infallible; every belief keeps some doubt."
+            },
+            {
+              "zh": "罗素没有声称证明了外部世界，结论带着来自梦的一点怀疑。",
+              "en": "Russell does not claim to have proved the external world exists."
+            },
+            {
+              "zh": "被论证推翻的是“看到的感觉材料就是对象”，不是“有对象对应感觉材料”这个本能信念。",
+              "en": "Argument overturns only the identification of sense-datum and object, not the belief that objects correspond to sense-data."
+            },
+            {
+              "zh": "抛弃本能信念的唯一理由是它和别的信念冲突，不是“它没被证明”。",
+              "en": "An instinctive belief is rejected only if it clashes with others, not because it is unproved."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Russell, when do we have a reason to reject one of our instinctive beliefs?",
+            "zh": "按罗素的说法，什么时候我们有理由抛弃一个本能信念？"
+          },
+          "options": [
+            {
+              "en": "When it clashes with our other beliefs.",
+              "zh": "当它和我们的其他信念冲突时。"
+            },
+            {
+              "en": "Whenever it cannot be proved by logic.",
+              "zh": "只要它不能用逻辑证明。"
+            },
+            {
+              "en": "When other people do not share it.",
+              "zh": "当别人不同意它时。"
+            },
+            {
+              "en": "Never, because instinctive beliefs cannot be mistaken.",
+              "zh": "永远不会，因为本能信念不会错。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 10 页）。B 错：按 B，连外部世界的信念也得抛弃，而罗素保留了它；C 错：罗素没有用“别人是否同意”当标准；D 错：罗素说所有信念都可能错，都要带一点怀疑。",
+            "en": "A. With B even the belief in the external world would go; Russell never uses agreement as the test (C); and he says every belief might be wrong (D)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-vaninwagen-objective-truth",
+      "title": {
+        "zh": "范·因瓦根：什么是客观真理",
+        "en": "van Inwagen: What Objective Truth Is"
+      },
+      "slides": "1-3",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二篇读物是范·因瓦根（**Peter van Inwagen**）的 'Objectivity'，是他一本书的第 5 章。他问：有没有客观真理（**objective truth**）？也就是说，我们的信念（**belief**：自己认为是真的想法）和断言（**assertion**：说出来、声称为真的话）是真是假，由世界本身决定，还是由我们的心灵决定？他说，“有客观真理”这个论题（**thesis**：被提出、需要辩护的主张）是“西方共同形而上学”（**Common Western Metaphysic**）的重要组成部分（第 1 页）。下面把他的论证（**argument**：用前提支持结论）写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "两点说明：①本站用 PDF 页码（第 1–15 页）；书上印的页码是 106–120（印刷页码＝PDF 页码＋105，PDF 第 1 页没印页码）。②形而上学（**metaphysics**），按范·因瓦根第 14 页的说法，是试图发现终极实在本性的学问。“西方共同形而上学”是他在书的前几章（课程没有发）提出的说法；从这一章看，它包含一些关于世界的基本论题，比如“有客观真理”“同一个东西能在不同时间存在”（第 1、15 页）；这个名字具体怎么定义，这一章没有交代。",
+          "en": "Page numbers here are the PDF pages 1-15; the printed book pages are 106-120 (printed = PDF + 105). Metaphysics, as van Inwagen puts it on p. 14, is the attempt to find out what ultimate reality is like."
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：客观真理的两个组成部分（第 1 页）",
+            "en": "Standard form: the two components of objective truth (p. 1)"
+          },
+          "items": [
+            {
+              "en": "P1: Every belief or assertion says that the World is a certain way; it is true if the World really is that way and false if it is not.",
+              "zh": "P1：每个信念或断言都说世界是某个样子；世界真是那样，它就为真，不是那样，它就为假。"
+            },
+            {
+              "en": "P2: The World and its features are, for the most part, independent of what we believe or assert.",
+              "zh": "P2：世界和它的特征，在很大程度上独立于我们相信什么、断言什么。"
+            },
+            {
+              "en": "C: So truth and falsity are objective: what makes a belief true or false is the thing it is about, not the person who holds it.",
+              "zh": "C：所以真和假是客观的：让一个信念为真或为假的，是它所关于的那个东西（它的对象，**object**），不是持有信念的人。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "地图与领土，以及“在很大程度上”（第 1 页）",
+            "en": "Map and territory, and 'in large part' (p. 1)"
+          },
+          "steps": [
+            {
+              "zh": "范·因瓦根的比喻：信念和世界（他把 **World** 首字母大写）的关系，就像地图和领土（**territory**：实际的地面）。把领土画对是地图的责任；地图画错了，是地图的错，不是领土的错。",
+              "en": "Beliefs relate to the World as a map relates to the territory: getting it right is the map's job, and a wrong map is the map's fault."
+            },
+            {
+              "zh": "为什么世界只是“在很大程度上”独立于信念？第一，信念和断言本身也是世界的一部分，虽然只是很小的一部分。",
+              "en": "Why only 'in large part'? First, beliefs and assertions are themselves very small parts of the World."
+            },
+            {
+              "zh": "第二，信念会影响世界的其他部分：我错以为红绿灯是绿的，结果出了车祸。",
+              "en": "Second, beliefs can change other parts of the World: wrongly believing that the light is green can cause an accident."
+            },
+            {
+              "zh": "但所有人类的信念影响到的部分加起来，也只是宇宙很小的一部分：天文学和地质学告诉我们，就算从来没有人类，物理宇宙的历史和未来也会大致一样。",
+              "en": "Still, everything human beliefs affect is a tiny part of the universe; astronomy and geology suggest that without humans its history and future would be much the same."
+            }
+          ],
+          "answer": {
+            "zh": "所以“客观”的意思是：真假由信念所关于的对象决定，不由持有信念的人决定。",
+            "en": "So truth is objective: it is fixed by what a belief is about, not by who holds it."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "导航软件说“前方 200 米右转”，你右转后发现是一堵墙。错的是导航的地图，不是那堵墙：墙不需要“配合”地图。范·因瓦根说信念也是这样：把世界说对是信念的任务，说错了是信念的问题。",
+          "limit": "导航地图会被公司更新，墙也可能被拆；而且信念本身就是世界的一部分，还能改变世界（红绿灯的例子）。类比只说明谁要去符合谁：信念要符合世界，不是世界要符合信念。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Albany、贝克莱和“真理只有一个”（第 1–2 页）",
+            "en": "Albany, Berkeley and 'truth is one' (pp. 1-2)"
+          },
+          "steps": [
+            {
+              "zh": "我断言 Albany 是纽约州的首府。这句话为真，当且仅当（**if and only if**：两边同真同假）Albany 确实是纽约州首府；为假，当且仅当它不是。",
+              "en": "Take my assertion 'Albany is the capital of New York State'. It is true if and only if Albany really is the capital, and false if and only if it is not."
+            },
+            {
+              "zh": "贝克莱（**George Berkeley**）相信“没有任何东西独立于心灵存在”。这个信念为真，当且仅当确实没有东西独立于心灵存在；为假，当且仅当有某个东西独立于心灵存在。",
+              "en": "Berkeley's belief that nothing exists independently of the mind is true if and only if nothing does, and false if and only if something does."
+            },
+            {
+              "zh": "连唯心论者的信念，真假也由事情本身怎样决定，不由贝克莱自己怎么想决定。",
+              "en": "Even an idealist's belief is made true or false by how things are, not by what he thinks."
+            },
+            {
+              "zh": "如果你和我有同一个信念（都相信 Albany 是首府），赋予这个共同信念真假的，是同一个对象的特征。",
+              "en": "If you and I share a belief about Albany, the features of one and the same object make our shared belief true or false."
+            }
+          ],
+          "answer": {
+            "zh": "所以真理只有一个（**truth is one**）：不存在一个信念“对我为真、对你不为真”。",
+            "en": "So truth is one: no belief can be true for me yet false for you."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "你的朋友 Alfred 听了你的话说：“那对你也许是真的，对我可不是。”范·因瓦根说，这只是一种容易误导人的说法，Alfred 真正表达的只是：你相信的东西，他自己不相信（第 2 页）。所以“对我为真”（**true for me**）说的是“我相信什么”，不是“什么是真的”。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'If Mary says every belief is objectively true or false, she is setting herself up as the judge of truth. Who's to say what is true?' How does van Inwagen reply?",
+            "zh": "反驳（**objection**：对一个观点的质疑）：“Mary 说每个信念都客观地非真即假，那她就是把自己当成了真理的裁判。谁有资格说什么是真的？”范·因瓦根怎么回应？"
+          },
+          "answer": {
+            "en": "Van Inwagen says this objection mixes up two questions: whether there is a truth, and who can know it. Mary holds only that there are truths and falsehoods and that, in general, they do not depend on what goes on in people's minds; she does not claim that she or anyone else can settle every question. For example, no one can now say if there is intelligent life on other planets, but either there is or there is not, and facts about those planets make the claim true or false.",
+            "zh": "关键：分开“有没有真相”和“谁能知道真相”（第 2 页）。相信客观真理不等于独断（**dogmatism**：不加检查就自认为掌握了真理）。外星智慧生命的例子：现在没人能下定论，但答案客观存在，由遥远星球上的事实决定。"
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：真理只有一个，客观真理不等于独断（第 2 页）",
+            "en": "Exam sentences: truth is one, and objective truth is not dogmatism (p. 2)"
+          },
+          "items": [
+            {
+              "en": "Van Inwagen argues that truth is one: when two people share a belief, the same object makes it true or false, so nothing is true for one person and false for another.",
+              "zh": "范·因瓦根论证真理只有一个：两个人有同一个信念时，是同一个对象让它为真或为假，所以不存在对一个人真、对另一个人假的情况。"
+            },
+            {
+              "en": "Van Inwagen says that 'true for me' talk is only a misleading way of reporting what someone believes.",
+              "zh": "范·因瓦根说，“对我为真”这种说法，只是用误导人的方式说出“某人相信什么”。"
+            },
+            {
+              "en": "Believing in objective truth is not dogmatism: it does not mean that you, or anyone, has the authority to settle what is true.",
+              "zh": "相信客观真理不等于独断：它不表示你或任何人有权威来裁定什么是真的。"
+            },
+            {
+              "en": "No one can yet say if there is intelligent life on other planets, but the claim is still made true or false by how things are on those planets.",
+              "zh": "现在没人能确定别的星球上有没有智慧生命，但这个说法仍然由那些星球上的实际情况决定真假。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "两个限定：无意义的话和模糊的词（第 2–3 页）",
+            "en": "Two qualifications: meaningless utterances and vague words (pp. 2-3)"
+          },
+          "steps": [
+            {
+              "zh": "限定 1，无意义的话（**meaningless utterance**）：可能有些话说的时候不像没意义，其实什么也没说。书的前面讲过，逻辑实证主义者（**logical positivists**）认为一切形而上学的话都没有意义。",
+              "en": "Qualification 1: some utterances may be meaningless without seeming so; the logical positivists said this of all metaphysical utterances."
+            },
+            {
+              "zh": "例子：十九世纪美国的绝对唯心论者 **Josiah Royce** 写过一句 “The world is a progressively realized community of interpretation.”（第 2 页）它也许只是一串词。如果它真的没有意义，说这句话的人什么也没说，也就谈不上真或假。",
+              "en": "Example: a sentence of Royce's about the world as a community of interpretation may be just words; if so, its speaker says nothing, so it is neither true nor false."
+            },
+            {
+              "zh": "限定 2，模糊（**vagueness**）：大多数日常词语是模糊的，总有一些情况说不清这个词适不适用。身高 181.5 厘米的 Alfred 算不算“高”（**tall**），也许没有确定答案。",
+              "en": "Qualification 2: most everyday words are vague; whether Alfred, at 181.5 cm, is 'tall' may have no definite answer."
+            },
+            {
+              "zh": "这样的信念或断言既不真也不假，范·因瓦根叫它不确定的（**indeterminate**）。但“不确定”本身也是一种客观状态：Alfred 那个崇拜哥哥的十岁弟弟相信“Alfred 很高”，让这个信念处于“不确定”状态的，是不依赖于弟弟心里怎么想的事实。",
+              "en": "Such beliefs are indeterminate, but that status is as objective as truth: facts independent of the boy's mind make his belief that Alfred is tall indeterminate."
+            },
+            {
+              "zh": "模糊的词照样能说出很多真话和假话，因为清楚的情况很多：说 Bertram（200 厘米）高，是真的；说 Charles（150 厘米）高，是假的。",
+              "en": "Vague words still yield truths and falsehoods in clear cases: 'Bertram (200 cm) is tall' is true, and 'Charles (150 cm) is tall' is false."
+            }
+          ],
+          "answer": {
+            "zh": "两个限定都不削弱客观真理。之后范·因瓦根为了简单，忽略“不确定”这种状态，只谈真和假（第 3 页）。",
+            "en": "Neither qualification threatens objective truth; for simplicity van Inwagen then sets indeterminacy aside."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "concept-sorter",
+          "config": {
+            "title": {
+              "zh": "分一分：按范·因瓦根，这句话是什么状态？",
+              "en": "Sort it: what status does this have for van Inwagen?"
+            },
+            "prompt": {
+              "zh": "按第 1–3 页，下面这句话（或这个信念）属于哪一类？",
+              "en": "Using pp. 1-3, which status does this statement or belief have?"
+            },
+            "categories": [
+              {
+                "id": "true",
+                "label": {
+                  "zh": "真",
+                  "en": "True"
+                }
+              },
+              {
+                "id": "false",
+                "label": {
+                  "zh": "假",
+                  "en": "False"
+                }
+              },
+              {
+                "id": "indeterminate",
+                "label": {
+                  "zh": "不确定（非真非假）",
+                  "en": "Indeterminate"
+                }
+              },
+              {
+                "id": "says-nothing",
+                "label": {
+                  "zh": "也许什么也没说（无意义）",
+                  "en": "Perhaps says nothing (meaningless)"
+                }
+              },
+              {
+                "id": "unknown",
+                "label": {
+                  "zh": "现在没人知道，但客观上非真即假",
+                  "en": "Unknown now, but objectively true or false"
+                }
+              }
+            ],
+            "items": [
+              {
+                "text": {
+                  "zh": "Bertram 身高 200 厘米，他很高。",
+                  "en": "Bertram, who is 200 cm tall, is tall."
+                },
+                "answer": "true",
+                "why": {
+                  "zh": "“高”虽然模糊，但 200 厘米是清楚适用的情况，所以为真（第 3 页）。",
+                  "en": "A clear case of a vague word: true."
+                }
+              },
+              {
+                "text": {
+                  "zh": "Charles 身高 150 厘米，他很高。",
+                  "en": "Charles, who is 150 cm tall, is tall."
+                },
+                "answer": "false",
+                "why": {
+                  "zh": "150 厘米清楚地不算高，所以为假（第 3 页）。",
+                  "en": "A clear case where the word does not apply: false."
+                }
+              },
+              {
+                "text": {
+                  "zh": "Alfred 身高 181.5 厘米，他很高。",
+                  "en": "Alfred, who is 181.5 cm tall, is tall."
+                },
+                "answer": "indeterminate",
+                "why": {
+                  "zh": "这是“高”的边界情况，也许没有确定答案，所以不确定；这个状态本身也是客观的（第 3 页）。",
+                  "en": "A borderline case: indeterminate, and that status is itself objective."
+                }
+              },
+              {
+                "text": {
+                  "zh": "Alfred 的十岁弟弟相信“Alfred 很高”。这个信念的状态是？",
+                  "en": "Alfred's brother, who is ten, believes that Alfred is tall. What is the status of this belief?"
+                },
+                "answer": "indeterminate",
+                "why": {
+                  "zh": "弟弟再崇拜哥哥，也改变不了：让这个信念“不确定”的，是不依赖他心里怎么想的事实（第 3 页）。",
+                  "en": "Facts independent of the boy's mind make his belief indeterminate."
+                }
+              },
+              {
+                "text": {
+                  "zh": "Royce 那句“世界是一个逐步实现的解释共同体”。",
+                  "en": "Royce's sentence that the world is a progressively realized community of interpretation."
+                },
+                "answer": "says-nothing",
+                "why": {
+                  "zh": "范·因瓦根说它也许只是一串词；如果无意义，说它的人什么也没说，谈不上真假（第 2–3 页）。",
+                  "en": "If meaningless, it says nothing, so it is neither true nor false."
+                }
+              },
+              {
+                "text": {
+                  "zh": "别的星球上有智慧生命。",
+                  "en": "There is intelligent life on other planets."
+                },
+                "answer": "unknown",
+                "why": {
+                  "zh": "现在没人能下定论，但要么有、要么没有，由遥远星球上的事实决定（第 2 页）。",
+                  "en": "No one can settle it now, but facts on distant planets make it true or false."
+                }
+              },
+              {
+                "text": {
+                  "zh": "Albany 是纽约州的首府。",
+                  "en": "Albany is the capital of New York State."
+                },
+                "answer": "true",
+                "why": {
+                  "zh": "补充（读物外）：现实中 Albany 确实是纽约州首府，所以归为“真”。范·因瓦根只用这句话说明真值条件：它为真，当且仅当 Albany 是纽约州首府（第 1 页），他并没有断言它为真。无论如何，让它为真或为假的是 Albany 这个对象，不是说话人。",
+                  "en": "Outside the reading: in the real world Albany is the capital, so the statement is true. Van Inwagen uses it only to show truth conditions (p. 1); either way, the object Albany, not the speaker, makes it true or false."
+                }
+              },
+              {
+                "text": {
+                  "zh": "Snails are aquatic mammals（蜗牛是水生哺乳动物）。",
+                  "en": "Snails are aquatic mammals."
+                },
+                "answer": "false",
+                "why": {
+                  "zh": "这是范·因瓦根后面（第 11 页）举的“坏”陈述：蜗牛不是哺乳动物，客观为假。",
+                  "en": "One of van Inwagen's 'bad' statements (p. 11): objectively false."
+                }
+              }
+            ]
+          },
+          "caption": {
+            "zh": "诀窍：清楚的情况非真即假；边界情况“不确定”也是客观的；没意义的话什么也没说；不知道答案不等于没有答案。",
+            "en": "Clear cases are true or false; borderline cases are objectively indeterminate; meaningless words say nothing; not knowing is not the same as there being no answer."
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "客观真理不等于确定性或独断：相信有真相，不等于声称自己知道真相（Mary 的例子）。",
+              "en": "Objective truth is not certainty or dogmatism."
+            },
+            {
+              "zh": "“在很大程度上独立”不是“完全独立”：信念本身是世界的一部分，还会改变世界（红绿灯的例子）。",
+              "en": "The World is independent of beliefs only in large part."
+            },
+            {
+              "zh": "“不确定”（**indeterminate**）不是反实在论（**anti-Realism**：否认有客观真理的立场）的证据：它本身就是一种客观状态。",
+              "en": "Indeterminacy is itself an objective status, so it gives no support to anti-Realism."
+            },
+            {
+              "zh": "“Alfred” 这个名字出现在三个不同的例子里，别混：说“对我为真”的朋友（第 2 页）、身高 181.5 厘米的人（第 3 页）、Mount Alfred（第 9 页）。",
+              "en": "The name Alfred appears in three different examples: the friend (p. 2), the man of 181.5 cm (p. 3) and Mount Alfred (p. 9)."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to van Inwagen, what does a remark like 'true for you, but not true for me' really mean?",
+            "zh": "按范·因瓦根的说法，“对你为真，对我不为真”这类话真正的意思是什么？"
+          },
+          "options": [
+            {
+              "en": "That truth depends on who believes it.",
+              "zh": "真理取决于谁相信它。"
+            },
+            {
+              "en": "You believe it, but I do not.",
+              "zh": "你相信它，但我不相信。"
+            },
+            {
+              "en": "That the statement is indeterminate because it is vague.",
+              "zh": "这句话因为模糊而不确定。"
+            },
+            {
+              "en": "That the statement is meaningless.",
+              "zh": "这句话没有意义。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 2 页）。A 正是范·因瓦根否认的（真理只有一个）；C、D 是他讲的两个限定，和“对我为真”无关。",
+            "en": "B. A is what van Inwagen denies (truth is one); C and D are his two qualifications, which have nothing to do with 'true for me'."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does van Inwagen say that believing in objective truth does not make Mary dogmatic?",
+            "zh": "为什么范·因瓦根说，相信客观真理并不让 Mary 变得独断？"
+          },
+          "options": [
+            {
+              "en": "Because believers in objective truth claim to know all the truths.",
+              "zh": "因为相信客观真理的人声称知道所有真理。"
+            },
+            {
+              "en": "Because objective truth exists only in mathematics.",
+              "zh": "因为客观真理只存在于数学里。"
+            },
+            {
+              "en": "Because she is committed only to truth being fixed independently of minds, not to anyone being able to settle what is true.",
+              "zh": "因为她只承诺真假由独立于心灵的东西决定，不承诺有谁能裁定什么是真的。"
+            },
+            {
+              "en": "Because no belief is ever really true or false.",
+              "zh": "因为没有任何信念真的为真或为假。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 2 页）。A 正是这个误解本身；B 读物里没有这种说法；D 是否认客观真理的立场，和 Mary 正好相反。",
+            "en": "C. A is the very confusion he clears up, B is not in the reading, and D denies objective truth."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-vaninwagen-realism-idealism-anti-realism",
+      "title": {
+        "zh": "范·因瓦根：实在论、唯心论与反实在论：术语辨析",
+        "en": "van Inwagen: Realism, Idealism and Anti-Realism: Getting the Terms Straight"
+      },
+      "slides": "4-5",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "范·因瓦根说，关于客观真理（**objective truth**：真假由世界本身决定，不由我们的心灵决定）最有意思的一点是：居然有人否认它（第 4 页）。他猜测部分人的动机：他们深深反感任何“审判”他们的东西。最反感的是上帝的观念；几乎同样反感的，是一个不在乎他们怎么想、不跟他们商量就能让他们最珍视的信念变成假的客观宇宙。但他也承认这不是全部原因，因为有些否认客观真理的人也信上帝。"
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "范·因瓦根提醒读者：他完全无法同情否认客观真理的人，所以他大概不是这些观点的可靠向导，也许根本没理解它们（第 4 页）；他还承认很难找到一个自己能理解的反实在论一般表述（第 5 页）。注意：他把对动机的猜测当作一种解释提出，它不是论证（**argument**：用前提支持结论），不能拿来当驳倒反实在论的理由。",
+          "en": "Van Inwagen warns that he cannot sympathize at all with those who deny objective truth and may not understand their views. He offers his guess about their motives as an explanation, not as an argument against their view."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "realism (lowercase)",
+              "zh": "实在论（小写）",
+              "hint": "传统上和唯心论相对的论题：并不是一切存在的东西都是心灵或心灵的变化。"
+            },
+            {
+              "en": "idealism",
+              "zh": "唯心论",
+              "hint": "一切存在的东西都是心灵、心灵的变化，或这些变化的集合。"
+            },
+            {
+              "en": "modification of a mind",
+              "zh": "心灵的变化",
+              "hint": "心灵的某种状态，比如一个念头、一种感受。"
+            },
+            {
+              "en": "Realism (capital R)",
+              "zh": "大写的实在论",
+              "hint": "范·因瓦根的叫法：存在客观真理。"
+            },
+            {
+              "en": "anti-Realism",
+              "zh": "反实在论",
+              "hint": "不存在客观真理；或者说，世界是什么样依赖于心灵。"
+            },
+            {
+              "en": "mind-independent",
+              "zh": "独立于心灵",
+              "hint": "这个词有两种意思，见下面的表；混淆它们是本节的关键错误。"
+            },
+            {
+              "en": "standard form",
+              "zh": "标准形式",
+              "hint": "把论证的前提 P1、P2……逐条列出，最后写结论 C。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：一个诱人但有问题的论证（第 4 页）",
+            "en": "Standard form: a tempting argument that van Inwagen rejects (p. 4)"
+          },
+          "items": [
+            {
+              "en": "P1: Idealism holds that there is no world 'out there', independent of minds, that our sensations could represent correctly or incorrectly.",
+              "zh": "P1：唯心论说，“外面”没有一个独立于心灵的世界，让我们的感觉去正确或错误地表现它。"
+            },
+            {
+              "en": "P2: Anti-realism holds that there is no world 'out there', independent of minds, that our assertions could be true or false about.",
+              "zh": "P2：反实在论说，“外面”没有一个独立于心灵的世界，让我们的断言去对它说真话或假话。"
+            },
+            {
+              "en": "P3: So both views reject a mind-independent world.",
+              "zh": "P3：所以两者都否认有独立于心灵的世界。"
+            },
+            {
+              "en": "C: So it is not very misleading to oppose one 'realism', the thesis that there is a mind-independent world, to both idealism and anti-realism.",
+              "zh": "C：所以用同一个“实在论”（有独立于心灵的世界）去同时对立唯心论和反实在论，并不怎么误导。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "范·因瓦根说，这个论证听起来有道理，却混淆了“独立于心灵”（**mind-independent**）的两种意思（第 4–5 页）。唯心论者（**idealist**）和反实在论者（**anti-Realist**）都可能说“没有东西独立于心灵”，可他们说的是完全不同的事。所以拿同一个“实在论”去同时对立两者，会误导人。"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "",
+            "唯心论者 idealist",
+            "反实在论者 anti-Realist"
+          ],
+          "rows": [
+            [
+              "说“没有东西独立于心灵”时的意思",
+              "一切东西的本性都是心灵的：心灵、心灵的变化，或这些变化的集合",
+              "所有心灵的集体活动，在某种意义上决定了实在的一般本性"
+            ],
+            [
+              "世界的一般样子（the way the World is）依赖心灵吗？",
+              "不依赖，连上帝的心灵也不决定它（虽然大量具体事实取决于上帝的决定，就像少量具体事实取决于你我的决定）",
+              "依赖：世界的一般样子由心灵的活动决定"
+            ],
+            [
+              "有没有客观真理？",
+              "有，所以可以是大写的 Realist",
+              "没有"
+            ],
+            [
+              "例子",
+              "贝克莱（罗素第 4–5 页的唯心论者）",
+              "第 15 页推荐的 Putnam、Rorty 的书代表这种观点"
+            ]
+          ],
+          "caption": {
+            "zh": "同一句话，两种意思：所以要分开“小写 realism 对 idealism”和“大写 Realism 对 anti-Realism”。",
+            "en": "One sentence, two meanings: that is why van Inwagen separates realism versus idealism from Realism versus anti-Realism."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：两对术语（第 4–5 页）",
+            "en": "Exam sentences: two pairs of terms (pp. 4-5)"
+          },
+          "items": [
+            {
+              "en": "Lowercase **realism** is the traditional thesis opposed to **idealism**, which says that whatever exists is either a mind or some modification of a mind.",
+              "zh": "小写的实在论是和唯心论相对的传统论题；唯心论说一切存在的东西都是心灵或心灵的变化。"
+            },
+            {
+              "en": "Van Inwagen uses capital-R **Realism** for the thesis that there is objective truth, and **anti-Realism** for the view that objective truth does not exist, or that how the World is depends on minds.",
+              "zh": "范·因瓦根用大写的 Realism 指“存在客观真理”，用 anti-Realism 指“不存在客观真理，或世界的样子依赖心灵”。"
+            },
+            {
+              "en": "The idealist means that everything is mental in nature; the anti-Realist means that the collective activity of minds somehow determines the general nature of reality.",
+              "zh": "唯心论者的意思是一切东西的本性都是心灵的；反实在论者的意思是心灵的集体活动在某种意义上决定实在的一般本性。"
+            },
+            {
+              "en": "So the two debates use 'mind-independent' in different senses, and an idealist can be a Realist.",
+              "zh": "所以两场争论里“独立于心灵”的意思不同，唯心论者也可以是大写的实在论者。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "网络游戏里一切都是数据：角色、装备、地图，本性都是“数字的”。这有点像唯心论说一切都是心灵的。但你的角色现在几级，不是你“觉得”几级就是几级；你说“我 60 级”，对不对要看服务器里的实际数据。这有点像大写的实在论。“一切都是数据”和“你说了算”，是两个不同的问题。",
+          "limit": "游戏里的具体数据是开发者决定的；而按范·因瓦根的说法，唯心论者认为连上帝的心灵也不决定实在的一般本性（虽然决定了很多具体事实）。类比只用来把“东西的本性是什么”和“真假由谁决定”分开。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "贝克莱：唯心论者，却可以是大写的实在论者",
+            "en": "Berkeley: an idealist who can be a Realist"
+          },
+          "steps": [
+            {
+              "zh": "在罗素那里，贝克莱（**George Berkeley**）是唯心论者：真实的桌子是上帝心中的观念（罗素第 4 页）。",
+              "en": "For Russell, Berkeley is an idealist: the real table is an idea in God's mind."
+            },
+            {
+              "zh": "按范·因瓦根的说法，唯心论者认为一切都是心灵的，但世界的一般样子不由任何心灵决定。",
+              "en": "On van Inwagen's account, the idealist holds that everything is mental, yet the general nature of reality depends on no mind."
+            },
+            {
+              "zh": "贝克莱的信念“没有东西独立于心灵存在”本身，也看事情本身怎样而客观地为真或为假（第 1–2 页）。",
+              "en": "Berkeley's own belief is objectively true or false, depending on how things are (pp. 1-2)."
+            },
+            {
+              "zh": "范·因瓦根还说，唯心论者不是反实在论的朋友（第 6 页）。",
+              "en": "Van Inwagen adds that idealists are no friends of anti-Realism (p. 6)."
+            }
+          ],
+          "answer": {
+            "zh": "所以贝克莱反对小写的 realism，却可以接受大写的 Realism。",
+            "en": "So Berkeley rejects lowercase realism but can accept capital-R Realism."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is idealism the same thesis as anti-Realism? Explain van Inwagen's answer.",
+            "zh": "唯心论和反实在论是同一个论题吗？解释范·因瓦根的回答。"
+          },
+          "answer": {
+            "en": "No. Both idealists and anti-Realists may say that nothing is independent of the mind, but they mean different things. The idealist means that everything is mental in nature, while still holding that the way the World is does not depend on any mind. The anti-Realist means that the collective activity of minds somehow determines the general nature of reality. So van Inwagen keeps realism versus idealism apart from Realism versus anti-Realism, and an idealist can be a Realist.",
+            "zh": "得分点：①两者都可能说“没有东西独立于心灵”；②唯心论者：一切东西的本性是心灵的；③反实在论者：心灵的活动决定实在的一般本性；④所以要分两对术语，唯心论者可以是大写的实在论者（第 4–5 页）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "小写 realism 的对手是 idealism；大写 Realism 的对手是 anti-Realism。英文作答时注意大小写。",
+              "en": "realism versus idealism; Realism versus anti-Realism."
+            },
+            {
+              "zh": "唯心论者不是反实在论者：他们说一切都是心灵的，但世界怎样不由心灵决定。",
+              "en": "Idealists are not anti-Realists."
+            },
+            {
+              "zh": "范·因瓦根对动机的猜测（反感被审判）不是论证，他自己也说这不是全部原因。",
+              "en": "His guess about motives is not an argument against anti-Realism."
+            },
+            {
+              "zh": "通常的叫法是 anti-realist（小写）；范·因瓦根为了避免混淆，才改用大写的 Realism 和 anti-Realism。",
+              "en": "The capital R is van Inwagen's device to avoid confusion."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to van Inwagen, which of the following is true?",
+            "zh": "按范·因瓦根的说法，下面哪一项正确？"
+          },
+          "options": [
+            {
+              "en": "Every idealist is an anti-Realist.",
+              "zh": "每个唯心论者都是反实在论者。"
+            },
+            {
+              "en": "Capital-R Realism is the thesis opposed to idealism.",
+              "zh": "大写的实在论是和唯心论相对的论题。"
+            },
+            {
+              "en": "An idealist can be a Realist, because the idealist holds that the way the World is does not depend on minds.",
+              "zh": "唯心论者可以是大写的实在论者，因为唯心论者认为世界的样子不依赖心灵。"
+            },
+            {
+              "en": "Anti-Realists hold that everything is either a mind or some modification of a mind.",
+              "zh": "反实在论者认为一切都是心灵或心灵的变化。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 4–5 页）。A 错：两者说的“独立于心灵”意思不同；B 错：和唯心论相对的是小写的 realism；D 是唯心论的定义，不是反实在论。",
+            "en": "C. A confuses the two senses of 'mind-independent', B mixes up the two realisms, and D defines idealism."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Someone says: 'Everything that exists is mental, but whether a statement is true depends on how the World is, not on what anyone thinks.' In van Inwagen's terms, this person is:",
+            "zh": "有人说：“一切存在的东西都是心灵的，但一句话真不真，要看世界是什么样，而不看谁怎么想。”按范·因瓦根的术语，这个人是："
+          },
+          "options": [
+            {
+              "en": "an idealist and a Realist",
+              "zh": "唯心论者，也是大写的实在论者"
+            },
+            {
+              "en": "an idealist and an anti-Realist",
+              "zh": "唯心论者，也是反实在论者"
+            },
+            {
+              "en": "a realist (lowercase) and an anti-Realist",
+              "zh": "小写的实在论者，也是反实在论者"
+            },
+            {
+              "en": "neither an idealist nor a Realist",
+              "zh": "既不是唯心论者，也不是大写的实在论者"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A。“一切都是心灵的”＝唯心论；“真假看世界怎样，不看谁怎么想”＝承认客观真理＝大写的实在论。B、C 把两场争论混在一起；D 两点都说反了。",
+            "en": "A. 'Everything is mental' is idealism, and truth fixed by how the World is means objective truth, which is Realism."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-vaninwagen-everest-geological-argument",
+      "title": {
+        "zh": "范·因瓦根：珠穆朗玛峰与地质论证",
+        "en": "van Inwagen: Mount Everest and the Geological Argument"
+      },
+      "slides": "5-6",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "反实在论（**anti-Realism**：否认有客观真理的立场）到底主张什么？范·因瓦根承认，他很难找到一个自己能理解的一般表述；他更容易理解具体例子：反实在论者怎样说某个看似独立于心灵的事实其实依赖心灵（第 5 页）。他选的例子叫事实 F（**fact F**）：Mount Everest is 8,849 meters high（珠穆朗玛峰高 8,849 米）。大多数人会认为，F 在任何合理的意义上都独立于人类的心理活动。下面把双方的论证（**argument**：用前提支持结论）写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：地质论证（第 5–6 页）",
+            "en": "Standard form: the geological argument (pp. 5-6)"
+          },
+          "items": [
+            {
+              "en": "P1: The forces that raise mountains were never affected at all by the evolution that produced human beings.",
+              "zh": "P1：让山升起来的力量，从来没有受到产生人类的进化过程的丝毫影响。"
+            },
+            {
+              "en": "P2: If no human beings or other intelligent beings had ever lived on earth, the slow collision of the Indo-Australian and Eurasian tectonic plates, which raised the Himalayas, would have happened in exactly the same way.",
+              "zh": "P2：如果地球上从来没有人类或别的智慧生命，印度-澳大利亚板块和欧亚板块缓慢相撞、把喜马拉雅山挤起来的过程，也会完全一样地发生。"
+            },
+            {
+              "en": "P3: So if there had never been any minds at all, Mount Everest would still be just as tall and have just the shape it actually has; geologists' explanations already assume this, since the shaping processes ran for immense periods when no one was there to observe them.",
+              "zh": "P3：所以即使从来没有任何心灵，珠峰的大小和形状也和现在完全一样；地质学家的解释本来就预设了这一点，因为塑造地貌的过程在没有任何观察者的漫长时期里一直在进行。"
+            },
+            {
+              "en": "C: So van Inwagen concludes that F is entirely independent of human mental activity: without minds no one would know F, but F would still be there.",
+              "zh": "C：所以范·因瓦根的结论是：F 完全不依赖人类的心理活动；没有心灵，就没人知道 F，但 F 依然存在。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开讲。P1、P2 来自地质学（**geology**：研究地球构造和变化的科学）：喜马拉雅山是两个构造板块（**tectonic plates**：地壳的巨大板块）缓慢相撞挤出来的，而且现在还在继续；人类的进化（**evolution**：生物一代代慢慢变化）对这些力毫无影响。P3 的根据：地质学家解释今天地球的样子时，本来就预设这些过程在漫长的、没有任何观察者的时期里一直在进行（第 6 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "范·因瓦根说，抛开科学细节，这个论证代表了普通人的形而上学（**metaphysics**：关于世界最根本是什么样的看法）观点；有些人会拒绝其中“人类是进化的产物”这个假设（第 5 页）。它还预设（**presuppose**：事先当作成立）唯心论（**idealism**：一切存在的东西都是心灵或心灵的状态）是假的，因为它假定山和岩石这样的普通物体可以独立于心灵存在。他承认有这个预设，但认为不成问题：书的前面已经给出了拒绝唯心论的理由；唯心论者本来也不是反实在论的朋友；所以他没有理由只用唯心论者也接受的论证（第 6 页）。"
+        },
+        {
+          "type": "analogy",
+          "zh": "你睡觉时，手机在后台自动更新，早上起来版本号变了。没有人看着它更新，更新照样发生了。你要理解“它在我睡觉时更新了”，也不需要在脑子里想象一个“自己在旁边看着”的画面，只要听懂这句话就行。地质论证也是这样：没人看着，山照样升高；我们只需要理解对这个过程的描述。",
+          "limit": "手机更新是人设计的程序，和人有关；珠峰的形成完全不依赖任何心灵。类比只说明两点：没人看见也照样发生；理解一段描述不需要一个“在场”的画面。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：反实在论者可能借用的贝克莱式论证（第 6 页）",
+            "en": "Standard form: a Berkeleyan argument an anti-Realist might borrow (p. 6)"
+          },
+          "items": [
+            {
+              "en": "P1: Whenever you try to imagine geological processes (or any other events) taking place, you find you have to picture yourself, or someone, there watching them.",
+              "zh": "P1：你试着想象地质过程（或任何事情）在进行时，会发现自己必须想象自己（或某个人）在场看着。"
+            },
+            {
+              "en": "P2: But then you are not imagining those processes going on independently of the mind.",
+              "zh": "P2：那你就不是在想象这些过程独立于心灵地进行。"
+            },
+            {
+              "en": "C: So no one can imagine anything going on independently of the mind, and the geological argument seems to lose its force.",
+              "zh": "C：所以没人能想象任何事情独立于心灵地发生，地质论证好像就没有力量了。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "自己的葬礼与独处之人的画像（第 6 页）",
+            "en": "One's own funeral and a picture of someone alone (p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "对方常举的类似例子：你不可能想象自己的葬礼，因为你得想象自己在场看着，那就不是在想象自己死了。",
+              "en": "A similar claim: you cannot imagine your own funeral, because you would have to imagine yourself there watching."
+            },
+            {
+              "zh": "回应 1：就算承认“想象”是指在脑子里形成画面（**form a mental image**），也承认我们形不成没人观察的事件的画面，这个论证仍然没有力量。地质论证不要求听众形成画面，只要求他们理解对这些过程的文字描述（**verbal descriptions**）。",
+              "en": "Reply 1: even if we cannot form a mental image of an unobserved event, the geological argument needs only that we understand verbal descriptions of the processes."
+            },
+            {
+              "zh": "回应 2：那个前提本身也很可疑。说“不能想象没人观察的事件”，就像说“不能画一个独处的人”：理由是任何画都从某个视角（**point of view**）呈现画中人，看画的人被邀请在想象中站到那个视角上。",
+              "en": "Reply 2: the premise is doubtful anyway. It is like saying you cannot paint someone who is alone, because every painting shows its figure from a point of view the viewer is invited to share."
+            },
+            {
+              "zh": "这个类比的意思（本站的解释）：画一个独处的人显然做得到。画有视角，不等于画里有一个旁观者；同样，想象有视角，也不等于想象的内容里有一个观察者。",
+              "en": "The point of the comparison (our explanation): we can obviously paint someone alone, so having a point of view does not put an observer into the scene."
+            }
+          ],
+          "answer": {
+            "zh": "葬礼是对方的类比，画像是范·因瓦根的回应。地质论证只需要理解描述，不需要画面。",
+            "en": "The funeral is the opponent's example; the painting is van Inwagen's reply. The geological argument needs understanding, not images."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "An anti-Realist says: 'You cannot imagine Mount Everest rising with no one there to see it, so your geological argument fails.' How does van Inwagen reply?",
+            "zh": "反实在论者说：“你没法想象珠峰在没人看见的情况下升起来，所以你的地质论证不成立。”范·因瓦根怎么回应？"
+          },
+          "answer": {
+            "en": "Van Inwagen gives two replies. First, even if we cannot form a mental image of an event that no one observes, the geological argument does not ask us to; it only asks us to understand verbal descriptions of past geological processes. Second, the premise is doubtful anyway: it is like saying that no one can paint a lone figure, just because every picture is painted from a point of view.",
+            "zh": "两个回应都要写（第 6 页）：①论证只需要理解文字描述，不需要形成画面；②前提本身可疑，用“画独处之人”的类比说明。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "葬礼的例子是对方（贝克莱式论证）用的类比；画独处之人是范·因瓦根的回应。别弄反。",
+              "en": "The funeral supports the opponent; the painting is van Inwagen's reply."
+            },
+            {
+              "zh": "范·因瓦根没有说我们能在脑中形成“没人看着”的画面；他说论证只需要理解文字描述。",
+              "en": "He does not claim we can picture unobserved events; the argument needs only understanding of descriptions."
+            },
+            {
+              "zh": "地质论证预设唯心论为假，这是他有意的选择（书的前面已经拒绝了唯心论），不是疏忽。",
+              "en": "The geological argument deliberately presupposes that idealism is false."
+            },
+            {
+              "zh": "事实 F 是“珠峰高 8,849 米”，不是“珠峰存在”，也不是“珠峰是世界最高峰”。",
+              "en": "Fact F is that Mount Everest is 8,849 meters high."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does van Inwagen say his geological argument requires of the people it is addressed to?",
+            "zh": "范·因瓦根说，他的地质论证对听众有什么要求？"
+          },
+          "options": [
+            {
+              "en": "That they accept idealism.",
+              "zh": "接受唯心论。"
+            },
+            {
+              "en": "That they form a mental image of geological processes with no one watching.",
+              "zh": "在脑中形成没人看着的地质过程的画面。"
+            },
+            {
+              "en": "That they have personally observed tectonic plates colliding.",
+              "zh": "亲眼看过板块相撞。"
+            },
+            {
+              "en": "Only that they understand verbal descriptions of those processes.",
+              "zh": "只要能理解对这些过程的文字描述。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 6 页）。A 错：论证预设唯心论是假的；B 正是他说论证不需要的东西；C 读物里没有这种要求，而且这些过程大多发生在没有观察者的时期。",
+            "en": "D. The argument presupposes that idealism is false (A), does not need mental images (B), and the processes mostly happened with no observers at all (C)."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which example does van Inwagen use against the claim that we cannot imagine events that no one is observing?",
+            "zh": "范·因瓦根用哪个例子反驳“我们不能想象没人观察的事件”？"
+          },
+          "options": [
+            {
+              "en": "Imagining one's own funeral",
+              "zh": "想象自己的葬礼"
+            },
+            {
+              "en": "Painting a picture of someone who is alone",
+              "zh": "画一个独处的人"
+            },
+            {
+              "en": "The Martians' half-size convention",
+              "zh": "火星人的“一半大小”约定"
+            },
+            {
+              "en": "The theodolite and the weighted rope",
+              "zh": "经纬仪和挂重物的绳子"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 6 页）。A 是对方支持这个说法的类比；C、D 属于后面的“社会建构”论证（第 7–8 页）。",
+            "en": "B. A is the opponent's comparison; C and D belong to the social-construct argument (pp. 7-8)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-vaninwagen-social-construct",
+      "title": {
+        "zh": "范·因瓦根：“社会建构”论证及其回应",
+        "en": "van Inwagen: The 'Social Construct' Argument and the Reply"
+      },
+      "slides": "6-10",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "反实在论者（**anti-Realist**：否认有客观真理的人）怎样面对事实 F（珠峰高 8,849 米）？范·因瓦根替他们写了一段论证（**argument**：用前提支持结论），并说这是反实在论者论证方式的一个公平样本（第 6–8 页）。核心说法：山和高度都是人类的社会建构（**social construct**：因为人们为了社会需要而约定，才成为现在这样的东西）。约定（**convention**）＝大家商量好或习惯形成的规则。注意：这段论证是对方的，范·因瓦根自己是实在论者（**Realist**：承认有客观真理的人）。下面把双方的论证都写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：反实在论者的“社会建构”论证（第 7–8 页）",
+            "en": "Standard form: the anti-Realist 'social construct' argument (pp. 7-8)"
+          },
+          "items": [
+            {
+              "en": "P1: Mountains are social constructs: there is no line on the rock where Mount Everest begins; its boundaries are set by social institutions such as the International Geographical Union, for human purposes, and could have been set differently.",
+              "zh": "P1：山是社会建构：岩石上没有画出珠峰从哪里开始的线；它的边界由国际地理联合会之类的社会机构为了人的目的而定，本来也可以定得不同。"
+            },
+            {
+              "en": "P2: Height is a social construct: we call both the theodolite result for Everest and the weighted-rope result for a tower 'height' only because a convention that the two procedures measure one quality is socially useful.",
+              "zh": "P2：高度是社会建构：我们把经纬仪测珠峰的结果和垂绳量塔的结果都叫“高度”，只是因为“两种方法量的是同一种性质”这个约定对社会有用。"
+            },
+            {
+              "en": "P3: So facts about the heights of mountains, even before there were people, are social facts about how we apply our constructs to the past; other conventions are possible, and Martians who chose them would not be wrong.",
+              "zh": "P3：所以关于山的高度的事实，即使是有人类之前的，也只是“我们怎样把建构用到过去”的社会事实；别的约定也行，采用别的约定的火星人也不算错。"
+            },
+            {
+              "en": "C: So F depends on human minds, and applying the same reasoning to every supposedly mind-independent fact gives anti-Realism.",
+              "zh": "C：所以 F 依赖人类心灵；把同样的推理用到所有看似独立于心灵的事实上，就得到反实在论。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "反实在论者的例子，一步一步（第 7–8 页）",
+            "en": "The anti-Realist's examples, step by step (pp. 7-8)"
+          },
+          "steps": [
+            {
+              "zh": "边界：到山脚去找 Mount Everest 的边界，你看不到地上有线，只看到连成一片的岩石。边界在哪里，要去问国际地理联合会（**International Geographical Union**）之类的机构。",
+              "en": "Boundaries: there is no line on the ground, only continuous rock; where Everest begins is settled by institutions such as the International Geographical Union."
+            },
+            {
+              "zh": "他们本来也可以规定“山”从林木线（**tree line**：再往上就不长树的高度）开始，把林木线以下叫“山基”（**mountain base**）。",
+              "en": "They could just as well have decided that a mountain begins at the tree line and called the part below it the mountain base."
+            },
+            {
+              "zh": "为什么这样划？有社会原因：有人想爬山或必须爬山，把边界划在需要开始爬的地方，对他们有用。会思考的鸟没有这种目的，可能划得不一样，甚至根本不划。",
+              "en": "The boundaries serve climbers; intelligent birds might draw them differently, or not at all."
+            },
+            {
+              "zh": "高度：没法从珠峰顶垂一根挂重物的绳子到地面再用米尺量，所以用经纬仪（**theodolite**：测角度来推算高度的仪器）。量塔可以用垂绳。把两种完全不同的方法得出的数都叫“高度”，是一种约定；如果经纬仪量塔的结果和绳子不一样，我们会去重新校准（**recalibrate**）经纬仪。",
+              "en": "Height: a theodolite is used for Everest and a weighted rope for a tower; calling both results 'height' is a convention, and we would recalibrate a theodolite that disagreed with the rope."
+            },
+            {
+              "zh": "过去：我们也可以约定“公元前 1,000,000 年以前，一切东西都只有按现在的约定算出来的一半大”。不这样做，只因为那样的地质、进化、天文理论更难表述、更难用，而这反映的是我们的兴趣。如果火星人因为自己的兴趣采用这种约定，说他们错就是人类沙文主义（**human chauvinism**：只按人类的兴趣和标准评判一切）。",
+              "en": "The past: we could adopt a convention that everything before 1,000,000 B.C. was half the size our present conventions say; we don't, only for convenience, and calling Martians who did wrong would be human chauvinism."
+            }
+          ],
+          "answer": {
+            "zh": "反实在论者的结论：关于山的高度的“事实”都是社会事实；推广到一切事实，就是反实在论。",
+            "en": "The anti-Realist concludes that facts about mountains' heights are social facts, and generalizes this to all facts."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "范·因瓦根的判断：如果这就是反实在论者的全部论据，他不觉得有说服力，因为它没有证明像 F 这样的事实依赖心灵（第 8 页）。他先为了论证而让步（**for the sake of argument**：暂时承认对方的说法，看能不能推出对方要的结论）：承认我们怎样给山划界反映了社会兴趣，也承认本来可以划得不同。然后给出两个回应。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：回应 1：名字指哪个对象，不改变对象的高度（第 8 页）",
+            "en": "Standard form: Reply 1: names pick out objects but do not change their heights (p. 8)"
+          },
+          "items": [
+            {
+              "en": "P1: However we draw mountain boundaries, drawing them picks out certain objects as the bearers of names such as 'Mount Everest', 'Pikes Peak' and 'the Matterhorn'.",
+              "zh": "P1：不管我们怎样给山划界，划界都会挑出一些对象，作为 Mount Everest、Pikes Peak、the Matterhorn 等名字所指的东西。"
+            },
+            {
+              "en": "P2: These objects have their properties, such as their heights, independently of human minds, conventions, interests and social activities; we find these properties because the objects already have them.",
+              "zh": "P2：这些对象的性质（比如高度）独立于人类的心灵、约定、兴趣和社会活动；我们之所以会发现这些性质，是因为对象本来就有。"
+            },
+            {
+              "en": "P3: Under other boundary conventions, 'Mount Everest' would have named a different object, y, instead of the object x that it actually names.",
+              "zh": "P3：换一套划界约定，Mount Everest 这个名字就会指另一个对象 y，而不是它实际所指的对象 x。"
+            },
+            {
+              "en": "P4: But that is only a fact about names: what a thing is called, or whether it is called anything, does not affect its height.",
+              "zh": "P4：但这只是关于名字的事实：一个东西叫什么、有没有名字，都不影响它有多高。"
+            },
+            {
+              "en": "C: So whatever conventions we adopt, object x is still 8,849 meters high, and boundary conventions do not make F mind-dependent.",
+              "zh": "C：所以不管采用什么约定，对象 x 仍然高 8,849 米；划界约定并不让 F 依赖心灵。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "学校可以把几栋宿舍楼划成“东区”，明年也可以重新划。重新划以后，“东区最高的那栋楼”指的可能换成了另一栋，但每栋楼自己有多高，一厘米都不会变。划区决定的是名字指哪栋楼，不决定楼有多高。",
+          "limit": "宿舍楼本来就是人盖的，高度也是人设计的；范·因瓦根说的山完全不靠人存在。类比只说明“名字指什么”和“东西本身怎样”是两回事。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：回应 2：约定决定 height 这个词指哪个性质，不决定事物有多高（第 9–10 页）",
+            "en": "Standard form: Reply 2: convention fixes what 'height' names, not how high things are (pp. 9-10)"
+          },
+          "items": [
+            {
+              "en": "P1: Height is a 'social construct' only in this sense: social convention decides which property the word 'height' names, for example what is measured in meters above sea level, a benchmark chosen because it serves our interests.",
+              "zh": "P1：高度只在这个意义上是“社会建构”：由社会约定决定 height 这个词指哪个性质，比如“从海平面算起的米数”；选海平面作基准（**benchmark**），是因为它符合我们的兴趣。"
+            },
+            {
+              "en": "P2: With a different benchmark, mountains would get different figures (perhaps 8,773 meters for Everest) and even different answers about which of two mountains is higher.",
+              "zh": "P2：换一个基准，山的数字就会不同（珠峰也许是 8,773 米），连“两座山哪座更高”的答案都可能不同。"
+            },
+            {
+              "en": "P3: But then the sentence 'Mount Alfred is higher than Mount Beatrice' would simply express a different thesis; whether each thesis is true depends only on how geological forces have shaped the rock, not on our conventions.",
+              "zh": "P3：但那样的话，“Mount Alfred is higher than Mount Beatrice”这串英文只是表达了另一个论题（**thesis**：一个主张）；每个论题真不真，只取决于地质力量怎样塑造了岩石，不取决于我们的约定。"
+            },
+            {
+              "en": "C: So 'height is a social construct' comes down to a trivial point about English usage that Realists accept, and it gives no support to anti-Realism.",
+              "zh": "C：所以“高度是社会建构”归根到底只是一个关于英语用法的平凡观点，实在论者也接受，它对反实在论毫无支持。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "schmeight：四句话可以同时为真（第 9–10 页）",
+            "en": "Schmeight: four statements that can all be true (pp. 9-10)"
+          },
+          "steps": [
+            {
+              "zh": "造一个新词 schmeight（还有 schmigh、schmigher than），指“如果我们选了另一个基准，height 这个词本来会指的那个性质”。",
+              "en": "Coin 'schmeight' (with 'schmigh' and 'schmigher than') for the property 'height' would have named under the other benchmark."
+            },
+            {
+              "zh": "那么这四句话可以同时客观为真：Mount Everest is 8,849 meters high；Mount Everest is 8,773 meters schmigh；Mount Alfred is higher than Mount Beatrice；Mount Beatrice is schmigher than Mount Alfred。",
+              "en": "Then four statements can all be objectively true together: Everest is 8,849 m high; Everest is 8,773 m schmigh; Alfred is higher than Beatrice; Beatrice is schmigher than Alfred."
+            },
+            {
+              "zh": "如果当初采用了另一套约定，第一句的英文字串就会表示“珠峰 8,849 米 schmigh”，那是假的，因为第二句说它是 8,773 米 schmigh。",
+              "en": "Under the other convention, the first sentence would mean that Everest is 8,849 m schmigh, which is false, since it is 8,773 m schmigh."
+            },
+            {
+              "zh": "同样，第三句会表示“Mount Alfred 比 Mount Beatrice 更 schmigh”，那也是假的，因为第四句说的正相反。",
+              "en": "Likewise the third sentence would mean that Alfred is schmigher than Beatrice, which is false, since the fourth statement says the opposite."
+            }
+          ],
+          "answer": {
+            "zh": "约定只决定哪串词表达哪个论题，不决定论题的真假；真假由岩石被地质力量塑造成的样子决定。",
+            "en": "Conventions decide which thesis a string of words expresses, not whether the thesis is true; that depends on how geology shaped the rock."
+          }
+        },
+        {
+          "type": "widget",
+          "name": "concept-sorter",
+          "config": {
+            "title": {
+              "zh": "分一分：这是约定决定的，还是世界决定的？",
+              "en": "Sort it: fixed by convention, or by the World?"
+            },
+            "prompt": {
+              "zh": "按范·因瓦根的两个回应（第 8–10 页），下面这一项由什么决定？",
+              "en": "Using van Inwagen's two replies (pp. 8-10), what fixes this?"
+            },
+            "categories": [
+              {
+                "id": "convention",
+                "label": {
+                  "zh": "由约定决定",
+                  "en": "Fixed by convention"
+                }
+              },
+              {
+                "id": "world",
+                "label": {
+                  "zh": "由世界决定（不由约定决定）",
+                  "en": "Fixed by the World, not by convention"
+                }
+              }
+            ],
+            "items": [
+              {
+                "text": {
+                  "zh": "Mount Everest 这个名字指哪一块岩石（对象 x 还是对象 y）",
+                  "en": "Which chunk of rock the name 'Mount Everest' picks out (object x or object y)"
+                },
+                "answer": "convention",
+                "why": {
+                  "zh": "划界约定决定名字指哪个对象（第 8 页）。",
+                  "en": "Boundary conventions fix what the name refers to."
+                }
+              },
+              {
+                "text": {
+                  "zh": "对象 x 有多高",
+                  "en": "How high object x is"
+                },
+                "answer": "world",
+                "why": {
+                  "zh": "一个东西叫什么不影响它有多高；x 的高度由地质力量决定（第 8 页）。",
+                  "en": "What a thing is called does not affect its height."
+                }
+              },
+              {
+                "text": {
+                  "zh": "山从哪里开始算：山脚还是林木线",
+                  "en": "Whether a mountain is counted from its foot or from the tree line"
+                },
+                "answer": "convention",
+                "why": {
+                  "zh": "范·因瓦根为了论证承认：边界怎么划反映社会兴趣，本可以不同（第 8 页）。",
+                  "en": "He grants that where boundaries are drawn reflects our interests."
+                }
+              },
+              {
+                "text": {
+                  "zh": "height 这个词指“从海平面算起的高度”这个性质",
+                  "en": "That the word 'height' names what is measured above sea level"
+                },
+                "answer": "convention",
+                "why": {
+                  "zh": "选海平面作基准是社会约定（第 9 页）。",
+                  "en": "Choosing sea level as the benchmark is a convention."
+                }
+              },
+              {
+                "text": {
+                  "zh": "珠峰是否高出海平面 8,849 米",
+                  "en": "Whether Everest is 8,849 meters above sea level"
+                },
+                "answer": "world",
+                "why": {
+                  "zh": "词义定下来以后，真假只看岩石实际是什么样（第 9 页）。",
+                  "en": "Once the meaning is fixed, the rock decides."
+                }
+              },
+              {
+                "text": {
+                  "zh": "“Mount Alfred is higher than Mount Beatrice”这串英文表达哪个论题",
+                  "en": "Which thesis is expressed by the English sentence 'Mount Alfred is higher than Mount Beatrice'"
+                },
+                "answer": "convention",
+                "why": {
+                  "zh": "这是英语用法的事实：换一套约定，同一串词就表达另一个论题（第 9 页）。",
+                  "en": "A fact about English usage."
+                }
+              },
+              {
+                "text": {
+                  "zh": "珠峰是否是 8,773 米 schmigh",
+                  "en": "Whether Everest is 8,773 meters schmigh"
+                },
+                "answer": "world",
+                "why": {
+                  "zh": "schmeight 是另一个性质；珠峰有没有这个性质、有多少，也由地质决定（第 9 页）。",
+                  "en": "Schmeight is a different property, and geology decides how much of it Everest has."
+                }
+              },
+              {
+                "text": {
+                  "zh": "印度-澳大利亚板块和欧亚板块有没有相撞",
+                  "en": "Whether the Indo-Australian and Eurasian plates collided"
+                },
+                "answer": "world",
+                "why": {
+                  "zh": "就算从来没有人，板块也会一样地相撞（第 5–6 页的地质论证）。",
+                  "en": "The plates would have collided even with no minds."
+                }
+              }
+            ]
+          },
+          "caption": {
+            "zh": "诀窍：约定管“词和名字指什么”，世界管“被指的东西是什么样”。",
+            "en": "Conventions fix what words and names pick out; the World fixes what the things picked out are like."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "范·因瓦根的结论有两层（第 10 页）：（1）“高度是社会建构”真正说的只是一个平凡的（**trivial**：谁都会同意、没有分量的）关于英语用法的论题，实在论者完全接受，它对反实在论毫无支持；（2）这个论证连“反实在论到底是什么论题”都没给出线索，因为它对 F 说的话，正确理解后和实在论一致。他又说，驳倒一个论证还是弱结果，所以下一步要直接论证反对反实在论。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'Van Inwagen's reply assumes that the World already comes divided into objects with properties before we name them, which is exactly what the anti-Realist denies.' How might van Inwagen respond?",
+            "zh": "反驳（**objection**：对一个观点的质疑）：“范·因瓦根的回应假定了世界在我们命名之前就已经分成了带着性质的一个个对象，而这正是反实在论者否认的。”范·因瓦根可以怎么回应？"
+          },
+          "answer": {
+            "en": "Van Inwagen could say that the geological argument gives good reason to think that the rock has its size and shape whether or not anyone is there, so naming does not create these properties. Our conventions only decide which part of the rock a name like 'Mount Everest' picks out. He would also point out that the social-construct argument does not even tell us what the deeper anti-Realist claim means, so it is up to the anti-Realist to state it clearly.",
+            "zh": "这是学生可以提出的自然反驳，读物没有直接讨论。可能的回应：①地质论证支持“岩石的大小和形状不依赖人”；②约定只决定名字挑出哪一块；③反实在论者还欠一个清楚的表述（第 10 页说这个论证连反实在论是什么都没给出线索）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "范·因瓦根承认约定和兴趣决定边界和词义；他否认的只是约定决定事物有多高。别写“他否认有约定”。",
+              "en": "He grants that conventions fix boundaries and word meanings; he denies only that they fix how high things are."
+            },
+            {
+              "zh": "schmeight 是另一个性质，不是对同一个高度的另一次测量。所以“8,849 米高”和“8,773 米 schmigh”可以同时为真。",
+              "en": "Schmeight is a different property, not another measurement of the same height."
+            },
+            {
+              "zh": "社会建构论证是范·因瓦根替反实在论者写的样本，不是他自己的观点。",
+              "en": "The social-construct argument is the opponent's, not van Inwagen's."
+            },
+            {
+              "zh": "火星人和“人类沙文主义”出现在反实在论者的论证里，不在范·因瓦根的回应里。",
+              "en": "The Martians and human chauvinism belong to the anti-Realist's argument."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is van Inwagen's 'schmeight' example meant to show?",
+            "zh": "范·因瓦根的 schmeight 例子想说明什么？"
+          },
+          "options": [
+            {
+              "en": "That height is a social construct in a deep sense.",
+              "zh": "高度在深层意义上是社会建构。"
+            },
+            {
+              "en": "That Mount Everest is not really 8,849 meters high.",
+              "zh": "珠峰其实不是 8,849 米高。"
+            },
+            {
+              "en": "That changing our conventions would change which thesis our words express, not which theses are true.",
+              "zh": "改变约定只会改变我们的词表达哪个论题，不会改变哪些论题为真。"
+            },
+            {
+              "en": "That Martians who use other conventions are mistaken.",
+              "zh": "采用别的约定的火星人是错的。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 9–10 页）。A 正是他要反驳的；B 错：四句话可以同时为真，包括“珠峰高 8,849 米”；D 错：火星人出自反实在论者的论证（第 8 页），schmeight 例子不是用来评判火星人的。",
+            "en": "C. A is what he rejects, B contradicts the four co-true statements, and the Martians (D) come from the anti-Realist's argument, not from this example."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Suppose geographers change the official rule for where mountains begin. According to van Inwagen, what changes?",
+            "zh": "假设地理学家改了“山从哪里开始算”的官方规则。按范·因瓦根的说法，什么会改变？"
+          },
+          "options": [
+            {
+              "en": "The heights of the rocks.",
+              "zh": "岩石的高度。"
+            },
+            {
+              "en": "Which object a mountain's name refers to.",
+              "zh": "山的名字指哪个对象。"
+            },
+            {
+              "en": "Whether there is objective truth about mountains.",
+              "zh": "关于山有没有客观真理。"
+            },
+            {
+              "en": "The geological forces that shaped the rock.",
+              "zh": "塑造岩石的地质力量。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 8 页）：名字会改指对象 y，而不是对象 x。A、D 错：岩石的高度和地质力量不受命名影响；C 错：这正是范·因瓦根要说明不会被约定影响的东西。",
+            "en": "B. Renaming changes reference (x or y), not the rock's height (A), the geology (D), or whether there is objective truth (C)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-vaninwagen-ar-and-experience",
+      "title": {
+        "zh": "范·因瓦根：AR与“符合我们的经验”",
+        "en": "van Inwagen: AR and 'Fitting In with Our Experience'"
+      },
+      "slides": "10-12",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "驳倒一个论证（**argument**：用前提支持结论）还是弱结果，因为反实在论者（**anti-Realist**：否认有客观真理的人）可能还有别的论证（第 10 页）。所以范·因瓦根要给出一个反对反实在论的强论证。可他刚说过自己不完全理解反实在论，怎么反驳？他说这不神秘：他理解反实在论者自己认为反实在论必须具有的一些特征；他要证明，任何同时具有这些特征的论题（**thesis**：被提出的主张）都是不融贯的（**incoherent**：内部说不通、自相矛盾）。"
+        },
+        {
+          "type": "text",
+          "zh": "他选了一个简短表述，叫 **AR**：“Objective truth and falsity do not exist.”（客观的真和假不存在，第 10 页）他说，选哪个简短表述、理解得多好，都没有真正区别。AR 是关于所有陈述（**statement**：可以为真或为假的一句话）的陈述，所以它也在说它自己：按 AR 自己的说法，AR 既不客观为真，也不客观为假。下面照样写成标准形式（**standard form**：前提 P1、P2……加结论 C）。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：AR 用到自己身上（第 10–11 页）",
+            "en": "Standard form: AR applied to itself (pp. 10-11)"
+          },
+          "items": [
+            {
+              "en": "P1: AR says that no statement is objectively true or objectively false.",
+              "zh": "P1：AR 说，没有任何陈述是客观为真或客观为假的。"
+            },
+            {
+              "en": "P2: AR is itself a statement about all statements, so by its own account AR is not objectively true.",
+              "zh": "P2：AR 本身就是关于所有陈述的陈述，所以按它自己的说法，AR 不是客观为真的。"
+            },
+            {
+              "en": "P3: So anti-Realists must give AR some other 'good' status, a substitute for truth.",
+              "zh": "P3：所以反实在论者必须给 AR 另一种“好”的状态，也就是真理的替代品（**substitute for truth**）。"
+            },
+            {
+              "en": "P4: The status many of them offer is fitting in with our experience: the status that '17 + 18 = 35' and 'Lions are carnivorous' have, and that '14 ÷ 12 = 7' and 'Snails are aquatic mammals' lack.",
+              "zh": "P4：很多反实在论者给的状态是“符合我们的经验”（**fitting in with our experience**）：17 + 18 = 35、“狮子吃肉”有这种状态，14 ÷ 12 = 7、“蜗牛是水生哺乳动物”没有。"
+            },
+            {
+              "en": "C: So the question becomes whether AR itself fits in with our experience; van Inwagen argues that it does not.",
+              "zh": "C：于是问题变成：AR 自己符合我们的经验吗？范·因瓦根论证：不符合。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "“好”陈述 good",
+            "“坏”陈述 bad"
+          ],
+          "rows": [
+            [
+              "17 + 18 = 35",
+              "14 ÷ 12 = 7"
+            ],
+            [
+              "Lions are carnivorous（狮子吃肉）",
+              "Snails are aquatic mammals（蜗牛是水生哺乳动物）"
+            ]
+          ],
+          "caption": {
+            "zh": "反实在论者说，左列的共同点是“符合我们的经验”；实在论者说，它们的共同点是客观为真（第 10–11 页）。",
+            "en": "Anti-Realists say the left column fits in with our experience; Realists say it is objectively true."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "反实在论者怎么解释“符合经验”？比如：我见过狮子吃肉，没见过它们吃菜；它们的牙适合吃肉；狮子专家都说它们吃肉。所以这句话符合我们的经验，它的否定违背我们的经验。实在论者（**Realist**：承认有客观真理的人）也承认有这种状态，正是它让我们接受这些陈述。但实在论者多说一句：一个陈述可以符合经验却仍然客观为假，一连串误导人的经验可能让某人、甚至所有人都接受假的“Lions are herbivorous”（狮子吃草）。反实在论者回答：我们不需要“客观真”“客观假”这两个多余的状态（第 11 页）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "“符合经验”的实在意义（第 11 页）",
+            "en": "The robust sense of 'fitting in with experience' (p. 11)"
+          },
+          "steps": [
+            {
+              "zh": "日常陈述：如果你拒绝“狮子吃肉”，当作狮子吃草去行动，你可能会被吃掉。拒绝它会让你陷入大麻烦，而且你的经验会让你清楚地知道自己陷进去了。",
+              "en": "Everyday statements: reject 'Lions are carnivorous', act as if lions ate plants, and you might get eaten."
+            },
+            {
+              "zh": "科学陈述：比如“水的很多重要性质来自氢键”“引力是时空弯曲的函数”。拒绝它们的麻烦通常只在特殊情况下显出来，而实验室就是为制造这些情况设计的，天文台就是为在天上寻找这些情况设计的。",
+              "en": "Scientific statements, such as those about hydrogen bonding in water or gravity as curved spacetime: the trouble shows up in special conditions that laboratories create and observatories search for."
+            },
+            {
+              "zh": "数学陈述：接受了错误的数学，支票会被退票（**bounce**：账户里钱不够，支票作废），桥会塌。",
+              "en": "Mathematical statements: accept the wrong mathematics and your cheques will bounce and your bridges will fall down."
+            },
+            {
+              "zh": "这就是“符合经验”的一个相当实在的（**robust**）意义：拒绝这个陈述，就会在经验里碰壁。",
+              "en": "That is a robust sense of fitting in with experience: rejecting the statement gets you into trouble that experience makes plain."
+            }
+          ],
+          "answer": {
+            "zh": "问题来了：AR 能在这个意义上符合经验吗？",
+            "en": "The question: does AR fit in with experience in this sense?"
+          }
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Andrew 和 Rachel：谁会因为 AR 碰壁？（第 11–12 页）",
+            "en": "Andrew and Rachel: who gets into trouble over AR? (pp. 11-12)"
+          },
+          "steps": [
+            {
+              "zh": "设 Andrew 是反实在论者，Rachel 是实在论者（**Realist**：承认有客观真理的人）。",
+              "en": "Suppose Andrew is an anti-Realist, while Rachel is a Realist."
+            },
+            {
+              "zh": "有没有什么情况：Rachel 因为拒绝 AR 而倒霉，Andrew 因为接受 AR 而避开了麻烦？",
+              "en": "Are there any circumstances in which Rachel gets into trouble for rejecting AR and Andrew avoids it by accepting AR?"
+            },
+            {
+              "zh": "说 Andrew 比 Rachel 更不容易被狮子吃掉、更不容易提出被实验推翻的科学理论、更不容易设计出会塌的桥，是荒谬的。",
+              "en": "It is absurd to think that Andrew runs less risk than Rachel of being eaten by a lion, of proposing a theory that experiment refutes, or of designing a bridge that collapses."
+            },
+            {
+              "zh": "Andrew 也许说他的哲学理论会更好。可按他自己的标准，“更好”必须在经验里显出来；而对经验将会怎样做出预测，正是哲学理论（不像科学理论）出了名地不做的事（第 12 页）。",
+              "en": "He might say his philosophical theories will be better, but on his own account that must show up in experience, and philosophical theories, unlike scientific ones, notoriously make no predictions about experience."
+            }
+          ],
+          "answer": {
+            "zh": "所以 AR 不能在实在的意义上符合经验。",
+            "en": "So AR does not fit in with experience in the robust sense."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "也许反实在论者说的“经验”更宽：包括检查论证、觉得论证有说服力的经验（第 12 页）。如果有支持 AR 的决定性论证（**knockdown argument**：所有合格的哲学家都认为有说服力的论证），也许能这么说；但哲学里没有这样的论证。如果大多数哲学家认为支持 AR 的论证明显压过反对它的论证，也许也行；可实际情况也不是这样。所以 AR 没有任何清楚的意义可以说“符合我们的经验”。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：AR 不符合我们的经验（第 10–12 页）",
+            "en": "Exam sentences: AR does not fit in with our experience (pp. 10-12)"
+          },
+          "items": [
+            {
+              "en": "AR says that there is no objective truth or falsity; since AR is about all statements, it also applies to itself.",
+              "zh": "AR 说没有客观的真和假；因为 AR 是关于所有陈述的，它也适用于它自己。"
+            },
+            {
+              "en": "Van Inwagen argues that AR does not fit in with our experience in the robust sense: rejecting it gets no one into trouble, and philosophical theories make no predictions about experience.",
+              "zh": "范·因瓦根论证：AR 在实在的意义上不符合我们的经验：拒绝它不会让任何人碰壁，而且哲学理论不对经验做预测。"
+            },
+            {
+              "en": "Nor does AR fit in with our experience in a broader sense, because there is no knockdown argument for it and most philosophers do not find the arguments for it stronger than the arguments against it.",
+              "zh": "在更宽的意义上 AR 也不符合经验：没有支持它的决定性论证，大多数哲学家也不认为支持它的论证强过反对它的论证。"
+            },
+            {
+              "en": "The Realist agrees that fitting in with experience is a real status, but adds that a statement could have it and still be false.",
+              "zh": "实在论者同意“符合经验”是一种真实的状态，但补充说：一个陈述可以有这种状态却仍然是假的。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "天气预报说“明天下雨”，好不好可以等明天看淋不淋雨来检验，这像“狮子吃肉”那种实在意义的“符合经验”。可“天气预报都没有客观对错”这句话，不管你信不信，明天都不会让你多淋一次雨、少带一次伞。AR 就像这句话：经验没法用“碰壁”来检验它。",
+          "limit": "天气预报讲的是概率，本来就不总是对；类比只说明：哲学论题不能靠日常经验里的碰壁来检验。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why can't the anti-Realist say that AR fits in with our experience in the same way that 'Lions are carnivorous' does?",
+            "zh": "为什么反实在论者不能说 AR 像“狮子吃肉”一样符合我们的经验？"
+          },
+          "answer": {
+            "en": "'Lions are carnivorous' fits in with experience in a robust way: if you reject it and act on its denial, you may get eaten. AR has no such link to experience, because a Realist like Rachel gets into no trouble for rejecting it, and philosophical theories make no predictions about how our experience will go. In the broader sense of finding arguments compelling, AR still fails, because there is no knockdown argument for it and most philosophers are not persuaded.",
+            "zh": "得分点：①“狮子吃肉”的实在意义：拒绝它会碰壁（被吃掉）；②AR 没有这种联系：Rachel 拒绝 AR 不会倒霉，哲学理论不做预测；③宽意义也不行：没有决定性论证，大多数哲学家也不信服（第 11–12 页）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "实在论者也承认“符合经验”这个状态；分歧在于实在论者说：符合经验的陈述仍可能是假的（狮子吃草的例子）。",
+              "en": "Realists accept the status of fitting in with experience; they add that it can come apart from truth."
+            },
+            {
+              "zh": "“大多数哲学家不信 AR”这一点，只用来说明 AR 在宽意义上也不符合经验，不是说“不受欢迎所以是假的”。",
+              "en": "The point about most philosophers only shows that AR fails the broad sense; it is not 'unpopular, so false'."
+            },
+            {
+              "zh": "AR 是范·因瓦根为了讨论选的简短表述；他说选哪种表述没有真正区别。",
+              "en": "AR is a brief statement chosen for discussion; he says the choice makes no real difference."
+            },
+            {
+              "zh": "14 ÷ 12 = 7 是“坏”陈述（违背经验）；17 + 18 = 35 是“好”陈述。",
+              "en": "14 ÷ 12 = 7 is a bad statement; 17 + 18 = 35 is a good one."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to van Inwagen, in what robust sense does 'Lions are carnivorous' fit in with our experience?",
+            "zh": "按范·因瓦根的说法，“狮子吃肉”在什么实在的意义上符合我们的经验？"
+          },
+          "options": [
+            {
+              "en": "If you rejected it and acted as if lions ate only plants, you might get eaten.",
+              "zh": "如果你拒绝它、当作狮子只吃草去行动，你可能被吃掉。"
+            },
+            {
+              "en": "All qualified philosophers find it compelling.",
+              "zh": "所有合格的哲学家都觉得它有说服力。"
+            },
+            {
+              "en": "Your peers let you get away with saying it.",
+              "zh": "你的同行让你这么说而不追究。"
+            },
+            {
+              "en": "It is about all statements, including itself.",
+              "zh": "它是关于所有陈述的，包括它自己。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 11 页）：拒绝它会在经验里碰壁。B 是“决定性论证”的定义（第 12 页）；C 是另一位反实在论者的“同行放过”标准（第 14 页）；D 描述的是 AR，不是“狮子吃肉”。",
+            "en": "A. B describes a knockdown argument, C is the peer-approval proposal (p. 14), and D describes AR."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why doesn't AR fit in with our experience even in the broader sense of finding arguments compelling?",
+            "zh": "为什么即使按“觉得论证有说服力”这个更宽的意义，AR 也不符合我们的经验？"
+          },
+          "options": [
+            {
+              "en": "Because AR makes false predictions about lions.",
+              "zh": "因为 AR 对狮子做出了错误的预测。"
+            },
+            {
+              "en": "Because AR is a meaningless sentence.",
+              "zh": "因为 AR 是一句没有意义的话。"
+            },
+            {
+              "en": "Because anti-Realists have never offered any arguments.",
+              "zh": "因为反实在论者从来没有给出任何论证。"
+            },
+            {
+              "en": "Because there is no knockdown argument for AR, and most philosophers do not find its arguments stronger than the arguments against it.",
+              "zh": "因为没有支持 AR 的决定性论证，大多数哲学家也不认为支持它的论证强过反对它的论证。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 12 页）。A 错：AR 根本不对经验做预测；B 错：范·因瓦根没说 AR 无意义；C 错：他说有支持 AR 的论证，只是它们不是决定性的，也没有让大多数哲学家信服。",
+            "en": "D. AR makes no predictions at all (A), van Inwagen never calls it meaningless (B), and there are arguments for it, just none that is a knockdown (C)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-vaninwagen-disagreement-self-refutation",
+      "title": {
+        "zh": "范·因瓦根：分歧、自我反驳与《一九八四》",
+        "en": "van Inwagen: Disagreement, Self-Refutation and 1984"
+      },
+      "slides": "12-15",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "既然 AR（客观的真和假不存在）没法清楚地“符合我们的经验”，假设反实在论者（**anti-Realist**：否认有客观真理的人）Andrew 退一步：从“我们”退到“我”。他说：我给“狮子吃肉”和 AR 的那个“好”特征，就是“符合我的经验”（第 12 页）。下面看实在论者（**Realist**：承认有客观真理的人）Rachel 怎么回答，再看范·因瓦根为什么说反实在论自我反驳（**self-refuting**：按自己的标准就不该被接受）。论证（**argument**：用前提支持结论）照样写成标准形式（**standard form**：P1、P2……加结论 C）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "Andrew 和 Rachel 的对话（意译，第 12–13 页）",
+            "en": "The Andrew-Rachel dialogue, paraphrased (pp. 12-13)"
+          },
+          "steps": [
+            {
+              "zh": "Andrew：客观的真和假不存在。",
+              "en": "Andrew asserts AR: objective truth and falsity do not exist."
+            },
+            {
+              "zh": "Rachel：按你的理论，你说这句话时，只是声称它符合你自己的经验。你考虑支持 AR 的论证时觉得它们有说服力，这个经验我不怀疑；你也不会怀疑我考虑反对 AR 的论证时觉得它们有说服力。那你就不能反对我说：客观的真和假存在。",
+              "en": "Rachel: on your theory you only claim that AR fits your experience; I don't doubt your experience of finding its arguments compelling, and surely you wouldn't doubt mine of finding the opposing arguments compelling, so you cannot object when I say objective truth and falsity exist."
+            },
+            {
+              "zh": "Andrew：可是你那句话违背我的经验。",
+              "en": "Andrew: but your statement goes against my experience."
+            },
+            {
+              "zh": "Rachel：按你的理论，如果是你自己说那句话，这才是反对的理由；我说它时，为什么也算理由？除非你认为我在撒谎。实在论至少让分歧讲得通：两人对一个陈述有分歧，就是一个说它客观为真，另一个说它不是。按你的理论，我们两句话都有你承认的唯一“好”特征：各自符合说话人的经验。",
+              "en": "Rachel: that would only count against it if you said it, unless you think I am lying. Realism makes disagreement intelligible; on your view both our statements have the only good feature you admit, fitting the speaker's experience."
+            },
+            {
+              "zh": "Rachel 最后说：如果你的意思是，不管谁说话，“好”特征都只有一个，就是符合你 Andrew 的经验，那你的理论恐怕除了你自己，赢不到多少支持者。",
+              "en": "And if you mean that the only good feature is fitting Andrew's experience, your theory is unlikely to win many followers besides you."
+            }
+          ],
+          "answer": {
+            "zh": "私人的真理替代品让 Andrew 和 Rachel 根本没有分歧，而他们显然有分歧。",
+            "en": "A private substitute for truth leaves Andrew and Rachel with no disagreement, yet they clearly disagree."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：私人替代品让分歧消失（Rachel 的论证加上范·因瓦根的补充，第 12–13 页）",
+            "en": "Standard form: a private substitute makes disagreement vanish (Rachel's argument with van Inwagen's comment, pp. 12-13)"
+          },
+          "items": [
+            {
+              "en": "P1: Suppose the only 'good' status a statement can have is fitting in with the speaker's own experience.",
+              "zh": "P1：假设一个陈述唯一的“好”状态，就是符合说话人自己的经验。"
+            },
+            {
+              "en": "P2: Andrew's statement that there is no objective truth fits in with Andrew's experience, and Rachel's statement that there is objective truth fits in with Rachel's experience.",
+              "zh": "P2：Andrew 说“没有客观真理”，符合 Andrew 的经验；Rachel 说“有客观真理”，符合 Rachel 的经验。"
+            },
+            {
+              "en": "P3: Then both statements have the only good status there is, so Andrew and Rachel do not disagree.",
+              "zh": "P3：那两句话都有唯一的“好”状态，所以 Andrew 和 Rachel 没有分歧。"
+            },
+            {
+              "en": "P4: But they do disagree: we count one person asserting a sentence and another asserting its negation as a disagreement only because we assume the two differ in truth-value.",
+              "zh": "P4：可他们明明有分歧：我们之所以把“一人说一句话、另一人说它的否定”叫分歧，正是因为假定这两句话真值不同（否定＝同一句话加上“不”；真值＝是真还是假）。"
+            },
+            {
+              "en": "C: So the private substitute leads to an absurd result, and anti-Realism needs a single substitute for truth that is the same for everyone.",
+              "zh": "C：所以私人替代品导致荒谬的结果；反实在论需要一个对所有人都一样的真理替代品。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "荷马和伊壁鸠鲁：分歧预设了真和假（第 13 页）",
+            "en": "Homer and Epicurus: disagreement presupposes truth and falsity (p. 13)"
+          },
+          "steps": [
+            {
+              "zh": "荷马（**Homer**）说 Zeus and Athena exist（宙斯和雅典娜存在）；伊壁鸠鲁（**Epicurus**）说 Zeus and Athena do not exist。",
+              "en": "Homer says that Zeus and Athena exist; Epicurus says that they do not."
+            },
+            {
+              "zh": "我们会说两人有分歧，因为两句话一模一样，只差一个否定词 do not：后一句是前一句的否定（**negation**）。",
+              "en": "We say they disagree because the sentences differ only by 'do not': the second is the negation of the first."
+            },
+            {
+              "zh": "但我们之所以把“一个人说一句话、另一个人说它的否定”叫作分歧，是因为我们假定这两句话表达的东西真值（**truth-value**：是真还是假）不同：一个必须真，另一个必须假。",
+              "en": "But we call such an exchange a disagreement only because we assume the two differ in truth-value: one must be true and the other false."
+            }
+          ],
+          "answer": {
+            "zh": "分歧这个概念本身就预设了真和假。如果只剩“各自符合自己的经验”，分歧就消失了，这是荒谬的。",
+            "en": "The very idea of disagreement presupposes truth and falsity; with only 'fits my experience', disagreement disappears, which is absurd."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：反实在论自我反驳（第 13–14 页）",
+            "en": "Standard form: anti-Realism refutes itself (pp. 13-14)"
+          },
+          "items": [
+            {
+              "en": "P1: Anti-Realists must offer one public substitute for truth: a 'good' feature that clearly good statements such as 'Lions are carnivorous' have and clearly bad ones such as 'Snails are aquatic mammals' lack.",
+              "zh": "P1：反实在论者必须提出一个公共的真理替代品：一个“好”特征，明显的好陈述（狮子吃肉）有，明显的坏陈述（蜗牛是水生哺乳动物）没有。"
+            },
+            {
+              "en": "P2: A convincing substitute must meet two conditions: (a) all uncontroversially good statements have it and all uncontroversially bad ones lack it, and (b) anti-Realism itself has it.",
+              "zh": "P2：一个有说服力的替代品必须满足两个条件：（a）所有公认的好陈述都有它，所有公认的坏陈述都没有；（b）反实在论自己也有它。"
+            },
+            {
+              "en": "P3: Every substitute that anti-Realists have offered seems to fail condition (b): anti-Realism itself lacks it.",
+              "zh": "P3：反实在论者提出过的每个替代品，好像都满足不了条件（b）：反实在论自己没有它。"
+            },
+            {
+              "en": "C: So anti-Realism seems to advise against accepting anti-Realism: it is self-refuting, while Realism has no such problem.",
+              "zh": "C：所以反实在论好像在告诉我们不要接受反实在论：它是自我反驳的；实在论没有这个问题。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "自我反驳（**self-refuting**）＝一个观点按它自己的标准，就不该被接受。条件（a）保证替代品像“真”一样能分开好坏陈述；条件（b）保证反实在论自己也算“好”的。上一节的“符合我们的经验”满足不了（b）。实在论没有这个问题：它说实在论客观为真、反实在论客观为假，它从不说自己不该被接受（第 14 页）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "“同行放过”的标准（第 14 页）",
+            "en": "The peer-approval proposal (p. 14)"
+          },
+          "steps": [
+            {
+              "zh": "一位有名（或者说臭名昭著）的反实在论者提出过另一个替代品：一个陈述是“好”的，如果你的同行（**peers**：同领域的人）让你这么说而不追究（**let you get away with it**）。",
+              "en": "A famous, or notorious, anti-Realist proposed that a statement is good if one's peers let one get away with making it."
+            },
+            {
+              "zh": "他的大多数同行对这个提议的反应是愤怒或嘲笑，看各人的脾气。",
+              "en": "Most of his peers responded with outrage or derision, depending on their temperaments."
+            },
+            {
+              "zh": "这恰好是“不让他蒙混过关”的清楚例子。",
+              "en": "That looks like a clear case of not letting him get away with it."
+            }
+          ],
+          "answer": {
+            "zh": "所以按这个替代品自己的标准，这个提议本身就不是“好”的：它满足不了条件（b）。读物没有点名这位哲学家。",
+            "en": "By its own standard the proposal is not a good statement, so it fails condition (b). The reading does not name this philosopher."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：范·因瓦根的结论（第 14 页）",
+            "en": "Exam sentences: van Inwagen's conclusion (p. 14)"
+          },
+          "items": [
+            {
+              "en": "Van Inwagen's conclusion: because the geological argument for Realism is very plausible and anti-Realism seems to refute itself, we should be Realists.",
+              "zh": "范·因瓦根的结论：支持实在论的地质论证非常可信，反实在论又显得自我反驳，所以我们应该做（大写的）实在论者。"
+            },
+            {
+              "en": "He points out that, according to anti-Realism, the idea of an ultimate reality that does not depend on context is incoherent; and if such a reality did exist, the statements that describe it correctly would be objectively true.",
+              "zh": "他指出：按反实在论，表象与实在的区分只能在有限的语境里用，所以不依赖任何语境的终极实在（**ultimate reality**）这个概念不融贯；如果真有终极实在，正确描述它的陈述就客观为真。他说这和他书第 1 章（课程没发）的论证相似。"
+            },
+            {
+              "en": "So anti-Realism is not a rival metaphysic like idealism; it denies that metaphysics, the attempt to find out what ultimate reality is like, is possible at all.",
+              "zh": "所以反实在论不是像唯心论那样的一种形而上学，而是否认形而上学（**metaphysics**：试图发现终极实在本性的学问）有可能。"
+            },
+            {
+              "en": "Realism counts as a metaphysic only because every metaphysical theory includes it.",
+              "zh": "实在论只在“它是所有形而上学理论共有的论题”这个意义上算一种形而上学。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "奥威尔的《一九八四》（第 14–15 页）",
+            "en": "Orwell's 1984 (pp. 14-15)"
+          },
+          "steps": [
+            {
+              "zh": "范·因瓦根说，对反实在论最伟大的攻击，是奥威尔（**George Orwell**）的小说 **1984**（《一九八四》）；关心这场争论的人都应该吃透这本书。",
+              "en": "Van Inwagen calls Orwell's novel 1984 the greatest attack ever made on anti-Realism."
+            },
+            {
+              "zh": "他请读者特别看小说的高潮：实在论者 **Winston Smith** 和反实在论者 **O'Brien** 的辩论。",
+              "en": "He points to the novel's climax, where Winston Smith, the Realist, argues with O'Brien, the anti-Realist."
+            },
+            {
+              "zh": "他说，最后只剩一个问题可以问反实在论者：“How does your position differ from O'Brien's?”（你的立场和 O'Brien 的有什么不同？第 14 页）",
+              "en": "In the end, he says, one question is left for anti-Realists: \"How does your position differ from O'Brien's?\" (p. 14)"
+            },
+            {
+              "zh": "注释 1 把问题说得更准确：问的是“就 O'Brien 是反实在论者而言”有什么不同。因为 O'Brien 不是一贯的反实在论者：他既认为客观真理不存在，又认为党（**the Party**）是客观真理绝不会错的来源。他知道这两点矛盾，却能靠双重思想（**doublethink**：同时持有两个互相矛盾的信念并都接受）同时持有（第 15 页）。",
+              "en": "Note 1 sharpens the question: how does the position differ from O'Brien's anti-Realist side? O'Brien is not a consistent anti-Realist, because through doublethink he also treats the Party as a source of objective truth that cannot be wrong."
+            }
+          ],
+          "answer": {
+            "zh": "挑战是：反实在论者要说明，自己否认客观真理，和 O'Brien 否认客观真理，到底有什么不同。",
+            "en": "The challenge: anti-Realists must explain how their denial of objective truth differs from O'Brien's."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：在小说里，O'Brien 审讯并折磨 Winston，要他相信党说什么就是什么，比如举起四根手指，却要 Winston 真心看到五根；O'Brien 说实在只存在于人的心灵里，存在于党的集体心灵里。Winston 早先在日记里写过：自由就是可以说二加二等于四的自由。一种常见的理解是：否认客观真理，就失去了反抗这种控制的立足点。这是对范·因瓦根用意的解读，读物本身只说了“比一比 O'Brien”。",
+          "en": "Outside the reading: in the novel O'Brien tortures Winston until he will see five fingers when four are held up, and says that reality exists only in the mind of the Party. Reading van Inwagen's point as 'without objective truth there is nothing to resist this with' is an interpretation."
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is van Inwagen's self-refutation argument convincing? Give one objection and a possible reply.",
+            "zh": "范·因瓦根的自我反驳论证有说服力吗？给出一个反驳（**objection**：对论证的质疑）和一个可能的回应（**reply**：对质疑的答复）。"
+          },
+          "answer": {
+            "en": "One objection is that AR is a crude target: a careful anti-Realist might not present the view as a claim about all statements, or might exempt philosophical theses from it. A possible reply is that anti-Realists still want us to accept their view, so they need some good status for it, and every substitute for truth they have offered seems to be one that anti-Realism itself lacks. Still, van Inwagen admits that he does not fully understand anti-Realism, so his argument shows at most that anti-Realism seems self-refuting.",
+            "zh": "评价题的结构：①反驳：AR 可能是一个过于粗糙的靶子（反实在论者也许不把它当成关于所有陈述的主张，或者把哲学论题排除在外）；②回应：只要反实在论者想说服我们，就需要某种“好”的状态，而他们提出的每个替代品，反实在论自己好像都没有；他也说选哪个简短表述没有真正区别（第 10 页）；③评价：范·因瓦根自己承认不完全理解反实在论（第 4–5、10 页），他的用词也是“好像”（**seems**）自我反驳。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "自我反驳不是“反实在论不受欢迎”，而是按反实在论自己提出的替代品标准，反实在论本身就不合格。",
+              "en": "Self-refuting means failing one's own standard, not being unpopular."
+            },
+            {
+              "zh": "两条路都走不通：私人替代品让分歧消失；公共替代品又满足不了条件（b）。",
+              "en": "A private substitute removes disagreement; a public one fails condition (b)."
+            },
+            {
+              "zh": "O'Brien 不是一贯的反实在论者（注释 1），他靠双重思想同时持有矛盾的信念。",
+              "en": "O'Brien is not a consistent anti-Realist (note 1)."
+            },
+            {
+              "zh": "提出“同行放过”标准的那位反实在论者，读物没有点名；考试中别随便安上名字。",
+              "en": "The peer-approval anti-Realist is not named in the reading."
+            },
+            {
+              "zh": "第 15 页提到的随时间持续存在（**persistence through time**：同一个东西能否在不同时间存在）只是预告，要到书的第 11 章才讨论，课程没发那一章。",
+              "en": "Persistence through time (p. 15) is only flagged for a later chapter."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to van Inwagen, which two conditions must an anti-Realist substitute for truth satisfy?",
+            "zh": "按范·因瓦根的说法，反实在论者的真理替代品必须满足哪两个条件？"
+          },
+          "options": [
+            {
+              "en": "It must be private to each speaker, and it must be popular.",
+              "zh": "它必须是每个说话人私人的，而且必须受欢迎。"
+            },
+            {
+              "en": "It must make predictions about experience, and peers must approve of it.",
+              "zh": "它必须对经验做出预测，而且必须得到同行认可。"
+            },
+            {
+              "en": "All uncontroversially good statements have it and all uncontroversially bad ones lack it, and anti-Realism itself has it.",
+              "zh": "所有公认的好陈述都有它、所有公认的坏陈述都没有它，而且反实在论自己也有它。"
+            },
+            {
+              "en": "It must fit the speaker's experience, and O'Brien must accept it.",
+              "zh": "它必须符合说话人的经验，而且 O'Brien 必须接受它。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 14 页）：条件（a）是好坏分得清，条件（b）是反实在论自己也有。A 错：私人替代品会让分歧消失；B 把别处的说法拼在一起，不是这两个条件；D 是编出来的。",
+            "en": "C. A private substitute (A) makes disagreement vanish, B mixes in other ideas, and D is invented."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Rachel's reply to Andrew, why is a private substitute for truth ('fits in with my experience') absurd?",
+            "zh": "在 Rachel 对 Andrew 的回答里，为什么私人的真理替代品（“符合我的经验”）是荒谬的？"
+          },
+          "options": [
+            {
+              "en": "Because it would mean that Andrew and Rachel do not really disagree, although they clearly do.",
+              "zh": "因为那样 Andrew 和 Rachel 就没有真正的分歧，而他们明明有分歧。"
+            },
+            {
+              "en": "Because private experiences are always misleading.",
+              "zh": "因为私人经验总是误导人的。"
+            },
+            {
+              "en": "Because Rachel thinks Andrew is lying about his experience.",
+              "zh": "因为 Rachel 认为 Andrew 在经验上撒谎。"
+            },
+            {
+              "en": "Because Homer and Epicurus agreed about Zeus and Athena.",
+              "zh": "因为荷马和伊壁鸠鲁对宙斯和雅典娜的看法一致。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 13 页）：两句相反的话都“符合说话人的经验”，于是没有分歧，这很荒谬。B 读物没说；C 正相反，Rachel 说她不怀疑 Andrew 的经验；D 弄反了，荷马和伊壁鸠鲁是“有分歧”的例子。",
+            "en": "A. The reading never says B, Rachel explicitly does not doubt Andrew's experience (C), and Homer and Epicurus are an example of disagreement (D)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-compare-two-realism-debates",
+      "title": {
+        "zh": "比较：两种“实在论”之争",
+        "en": "Comparison: Two Debates About 'Realism'"
+      },
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节比较两篇读物，没有单独的页码：用到罗素第 3–5、8–9 页和范·因瓦根第 1–2、4–6、14 页。两位作者没有互相讨论，下面的对照和归纳是本站做的，答题时要说明是你的比较。课程大纲里有两个词：认识论（**epistemology**：研究我们能知道什么、怎样知道的学问）和形而上学（**metaphysics**：研究世界最根本是什么样的学问）。按本站的归纳，罗素的问题带着很强的认识论色彩：我们凭什么相信有物质？范·因瓦根的问题是形而上学的：真假由什么决定，世界的样子依不依赖心灵。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "argument / standard form",
+              "zh": "论证 / 标准形式",
+              "hint": "论证＝用前提支持结论；标准形式＝前提 P1、P2……逐条列出，最后写结论 C。"
+            },
+            {
+              "en": "realism (lowercase) / idealism",
+              "zh": "实在论（小写）/ 唯心论",
+              "hint": "唯心论＝一切存在的东西都是心灵或心灵的状态；小写的实在论＝否认这一点。"
+            },
+            {
+              "en": "Realism / anti-Realism",
+              "zh": "大写的实在论 / 反实在论",
+              "hint": "大写的实在论＝有客观真理；反实在论＝没有客观真理，世界的样子依赖心灵。"
+            },
+            {
+              "en": "sceptical worry",
+              "zh": "怀疑论式的担忧",
+              "hint": "担心我们根本没法知道某件事，比如外部世界是否存在。"
+            },
+            {
+              "en": "hypothesis",
+              "zh": "假说",
+              "hint": "用来解释一些事实的猜想，可能对也可能错。"
+            },
+            {
+              "en": "presuppose",
+              "zh": "预设",
+              "hint": "事先当作成立、没有另外证明的东西。"
+            },
+            {
+              "en": "objection / reply",
+              "zh": "反驳 / 回应",
+              "hint": "反驳＝对论证的质疑；回应＝对质疑的答复。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "",
+            "罗素 Russell（第 1–2 章）",
+            "范·因瓦根 van Inwagen（'Objectivity'）"
+          ],
+          "rows": [
+            [
+              "核心问题",
+              "有没有独立于我们感知的真实桌子（物质）？如果有，它是什么样的？我们能知道它存在吗？",
+              "有没有客观真理？世界是什么样，依不依赖心灵？"
+            ],
+            [
+              "按范·因瓦根的术语属于",
+              "小写 realism 对 idealism（再加上对外部世界的怀疑）",
+              "大写 Realism 对 anti-Realism"
+            ],
+            [
+              "侧重",
+              "知识：我们能不能证明、凭什么相信外部世界存在",
+              "真理与实在：真假由什么决定；谁能知道是另一回事"
+            ],
+            [
+              "结论",
+              "外部世界真的存在，但要带一点来自梦的怀疑；哲学的任务是整理本能信念",
+              "应该做大写的实在论者"
+            ],
+            [
+              "主要论证",
+              "简单性论证（猫、别人说话）＋本能信念",
+              "地质论证＋反实在论自我反驳"
+            ],
+            [
+              "贝克莱的位置",
+              "唯心论者：真实的桌子是上帝心中的观念",
+              "可以是唯心论者兼大写的 Realist；他的“想象不出没人观察的东西”的论证可能被反实在论者借用"
+            ]
+          ],
+          "caption": {
+            "zh": "两篇都用到“实在论”和贝克莱，但问的不是同一个问题。",
+            "en": "Both readings talk about 'realism' and Berkeley, but they ask different questions."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "考试这样写：比较两篇读物",
+            "en": "Exam sentences: comparing the two readings"
+          },
+          "items": [
+            {
+              "en": "Russell's question, whether there is a real table that exists independently of our perception and what it is like, belongs to the debate between realism and idealism, together with the sceptical worry about the external world.",
+              "zh": "罗素的问题（有没有独立于感知的真实桌子、它是什么样的）属于实在论对唯心论的争论，外加对外部世界的怀疑。"
+            },
+            {
+              "en": "Van Inwagen's question, whether there is objective truth, belongs to a different debate: Realism versus anti-Realism.",
+              "zh": "范·因瓦根的问题（有没有客观真理）属于另一场争论：大写的实在论对反实在论。"
+            },
+            {
+              "en": "Berkeley is an idealist in Russell's account, but on van Inwagen's terms he can still be a Realist, because, on van Inwagen's account, an idealist holds that the way the World is does not depend on any mind.",
+              "zh": "在罗素那里贝克莱是唯心论者；按范·因瓦根的术语，他仍可以是大写的实在论者，因为范·因瓦根说，唯心论者认为世界的样子不依赖任何心灵（连上帝的心灵也不例外）。"
+            },
+            {
+              "en": "Both authors argue from explanation: Russell says independent objects explain our experience more simply, and van Inwagen says that geologists' explanations presuppose processes that no one observed.",
+              "zh": "两人都从解释出发论证：罗素说独立的对象能更简单地解释我们的经验；范·因瓦根说地质学家的解释预设了没人观察到的过程。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "贝克莱（**George Berkeley**）是两篇读物的交汇点。罗素那里：他的真实桌子是上帝心中的观念，不依赖“我们”看，但依赖上帝的心灵（罗素第 4 页）。范·因瓦根那里：他的信念“没有东西独立于心灵存在”本身也客观地为真或为假（第 1–2 页）；唯心论者说一切都是心灵的，但世界的一般样子不由心灵决定（第 4–5 页）；唯心论者不是反实在论的朋友，不过反实在论者可能借用贝克莱“想象不出没人观察的东西”的论证（第 6 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "知识和真理要分开。罗素在第 2 章问的是：我们能不能证明外部世界存在？他承认不能严格证明，只能凭简单性和本能信念接受。范·因瓦根把“有没有真相”和“谁能知道真相”分开（Mary 和外星智慧生命，第 2 页）：即使没人知道，一个陈述也有客观的真假。所以罗素的怀疑（我们可能无法证明桌子存在）并不支持反实在论：“有没有桌子”本身仍然可以有客观的答案。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "两个“从解释出发”的论证放在一起看",
+            "en": "Two arguments from explanation, side by side"
+          },
+          "steps": [
+            {
+              "zh": "罗素：假定有独立存在的猫，就能解释它怎样从房间这头到那头、怎样在两顿饭之间饿起来（罗素第 9 页）。",
+              "en": "Russell: an independently existing cat explains how it moves across the room and gets hungry between meals (p. 9)."
+            },
+            {
+              "zh": "范·因瓦根：假定没人观察时地质过程照样进行，地质学家才能解释今天地球的样子（第 5–6 页）。",
+              "en": "Van Inwagen: geologists can explain the present earth only by assuming that geological processes went on with no one observing them (pp. 5-6)."
+            },
+            {
+              "zh": "共同点：都从“什么能解释我们的经验或科学”出发，推到“有不依赖心灵的东西或事实”。",
+              "en": "Common ground: both start from what explains our experience or our science, and conclude that there are things or facts that do not depend on minds."
+            },
+            {
+              "zh": "不同点：罗素明说这不是证明，结论要带一点怀疑；范·因瓦根说地质论证非常可信，再加上反实在论自我反驳，就足以让我们做实在论者（第 14 页）。",
+              "en": "Difference: Russell says this is no proof and keeps a slight doubt; van Inwagen calls the geological argument very plausible and adds the self-refutation argument (p. 14)."
+            },
+            {
+              "zh": "各自的预设：罗素预设“更简单的假说更值得相信”；范·因瓦根的地质论证预设唯心论是假的（第 6 页）。",
+              "en": "Each has a presupposition: Russell assumes the simpler hypothesis deserves belief; van Inwagen's argument assumes that idealism is false."
+            }
+          ],
+          "answer": {
+            "zh": "写比较题时可以把两个论证并排：一个回答“外部世界存在吗”，一个回答“关于世界的事实依赖心灵吗”。",
+            "en": "In a comparison essay, set the two side by side: one answers whether the external world exists, the other whether facts about it depend on minds."
+          }
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "比较题小论文的写法",
+            "en": "How to plan a comparison essay"
+          },
+          "items": [
+            {
+              "en": "Thesis: state each author's question and answer in one sentence each.",
+              "zh": "论点：用一句话各写出两位作者的问题和答案。"
+            },
+            {
+              "en": "Distinguish the debates: realism versus idealism for Russell, Realism versus anti-Realism for van Inwagen.",
+              "zh": "区分两场争论：罗素属于小写 realism 对 idealism，范·因瓦根属于大写 Realism 对 anti-Realism。"
+            },
+            {
+              "en": "Argument 1: Russell's argument from simplicity (the cat) and instinctive belief, in standard form.",
+              "zh": "论证 1：用标准形式写罗素的简单性论证（猫）和本能信念。"
+            },
+            {
+              "en": "Argument 2: van Inwagen's geological argument and his self-refutation argument.",
+              "zh": "论证 2：写范·因瓦根的地质论证和自我反驳论证。"
+            },
+            {
+              "en": "Connect them: Berkeley's place in both, arguing from explanation, and truth versus knowledge.",
+              "zh": "连接：贝克莱在两边的位置、都从解释出发、真理和知识要分开。"
+            },
+            {
+              "en": "Assess: one objection to each (simplicity is not proof; AR may be a crude target) and a reply.",
+              "zh": "评价：各给一个反驳（简单性不是证明；AR 可能是粗糙的靶子）和一个回应。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Russell asks whether matter exists; van Inwagen asks whether there is objective truth. Using van Inwagen's distinction between realism and Realism, explain how the two questions differ, and say whether Berkeley, as Russell describes him, is an anti-Realist.",
+            "zh": "罗素问物质是否存在；范·因瓦根问有没有客观真理。用范·因瓦根对小写 realism 和大写 Realism 的区分，说明两个问题有什么不同，并判断罗素描述的贝克莱是不是反实在论者。"
+          },
+          "answer": {
+            "en": "Russell's question belongs to realism versus idealism: is there a real table independent of our perception, and is it mental or not? Van Inwagen's question belongs to Realism versus anti-Realism: does the way the World is depend on minds, so that there is no objective truth? Berkeley, as Russell describes him, is an idealist, since the real table is an idea in God's mind. But he is not an anti-Realist: on van Inwagen's account an idealist still holds that the way the World is does not depend on minds, and Berkeley's own belief that nothing exists independently of the mind is objectively true or false. So on van Inwagen's terms Berkeley is an idealist and a Realist.",
+            "zh": "得分点：①罗素属于小写 realism 对 idealism（罗素第 3–5 页）；②范·因瓦根属于大写 Realism 对 anti-Realism（第 4–5 页）；③贝克莱是唯心论者（桌子是上帝心中的观念），但不是反实在论者：按范·因瓦根的说法，唯心论者仍认为世界的一般样子不依赖心灵，贝克莱自己的信念也客观地为真或为假（第 1–2 页），而且唯心论者不是反实在论的朋友（第 6 页）。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Does Russell's admission that we cannot prove the external world exists support anti-Realism?",
+            "zh": "罗素承认无法证明外部世界存在，这是否支持反实在论？"
+          },
+          "answer": {
+            "en": "No. Russell's admission is about knowledge: we cannot strictly prove that independent objects exist. Anti-Realism is a claim about truth: that there is no objective truth at all. Van Inwagen keeps these apart, since a statement can be objectively true or false even if no one can know which, as with intelligent life on other planets. So whether the table exists can have an objective answer even if we cannot prove it.",
+            "zh": "关键是区分知识（能不能证明）和真理（有没有客观答案）。罗素的让步是认识论上的；反实在论是关于真理的主张。范·因瓦根的外星智慧生命例子（第 2 页）正好说明：不知道答案不等于没有答案。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "罗素不是在回答“有没有客观真理”；范·因瓦根也不是在回答“桌子是不是心灵的东西”。",
+              "en": "Russell does not ask whether there is objective truth; van Inwagen does not ask whether the table is mental."
+            },
+            {
+              "zh": "“实在论”在两篇里意思不同：小写对唯心论，大写对反实在论。写作时要说清你用的是哪一种。",
+              "en": "Say which 'realism' you mean: lowercase (against idealism) or capital R (against anti-Realism)."
+            },
+            {
+              "zh": "罗素承认不能证明外部世界，不等于他是反实在论者：他问“到底有没有真实的桌子”，看起来就假定这个问题有一个答案。",
+              "en": "Admitting that the external world cannot be proved does not make Russell an anti-Realist."
+            },
+            {
+              "zh": "范·因瓦根这一章没有提到罗素；两篇的连接是你在比较时自己做的（他只说书的前面讨论过外部世界，第 4 页）。",
+              "en": "Van Inwagen does not mention Russell; the comparison is yours to make."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement correctly compares the two readings?",
+            "zh": "哪一项正确地比较了两篇读物？"
+          },
+          "options": [
+            {
+              "en": "Both Russell and van Inwagen are mainly asking whether there is objective truth.",
+              "zh": "罗素和范·因瓦根主要都在问有没有客观真理。"
+            },
+            {
+              "en": "Russell argues that the external world can be strictly proved, while van Inwagen says that truth can never be known.",
+              "zh": "罗素论证外部世界可以被严格证明，范·因瓦根说真理永远不可知。"
+            },
+            {
+              "en": "Van Inwagen classifies Berkeley's idealism as a form of anti-Realism.",
+              "zh": "范·因瓦根把贝克莱的唯心论归为一种反实在论。"
+            },
+            {
+              "en": "Russell's question belongs to realism versus idealism, while van Inwagen's belongs to Realism versus anti-Realism.",
+              "zh": "罗素的问题属于小写 realism 对 idealism，范·因瓦根的问题属于大写 Realism 对 anti-Realism。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D。A 错：罗素问的是物质是否存在、我们能否知道；B 两半都错：罗素说不能严格证明，范·因瓦根只说有的真理现在没人知道；C 错：范·因瓦根正是要把唯心论和反实在论分开。",
+            "en": "D. Russell asks about matter and our knowledge of it (A); he says the external world cannot be strictly proved, and van Inwagen says only that some truths are unknown (B); van Inwagen separates idealism from anti-Realism (C)."
+          }
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "A student writes: 'Since Russell admits that we cannot prove the external world exists, he must agree that there is no objective truth about it.' What is the mistake?",
+            "zh": "一个学生写：“既然罗素承认无法证明外部世界存在，他就一定同意关于外部世界没有客观真理。”错在哪里？"
+          },
+          "options": [
+            {
+              "en": "Russell does in fact prove that the external world exists.",
+              "zh": "罗素其实证明了外部世界存在。"
+            },
+            {
+              "en": "The student confuses knowledge (can we prove it?) with truth (is there a fact of the matter?), which van Inwagen keeps apart.",
+              "zh": "这个学生把知识（能不能证明）和真理（有没有客观答案）混在了一起，而范·因瓦根把两者分开。"
+            },
+            {
+              "en": "Russell is an idealist, so he denies the external world.",
+              "zh": "罗素是唯心论者，所以否认外部世界。"
+            },
+            {
+              "en": "Van Inwagen denies that the external world exists.",
+              "zh": "范·因瓦根否认外部世界存在。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B。A 错：罗素明说不能严格证明（第 8 页）；C 错两处：罗素没有把唯心论当成自己的观点，他说唯心论的一般论证是谬误的（第 4 页），而且唯心论者也不否认有真实的桌子（第 5 页）；D 错：范·因瓦根是实在论者，地质论证正是支持不依赖心灵的事实。",
+            "en": "B. Russell says no strict proof is possible (A); C is wrong twice, since Russell never presents idealism as his own view and idealists do not deny the real table; and van Inwagen defends mind-independent facts (D)."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "Russell argues that the table's colour, texture and shape change with the observer and the conditions, so no single appearance has a better claim than the others to be the real one.",
+      "zh": "罗素论证：桌子的颜色、质地、形状随观察者和条件而变，没有哪一种表象比别的更有资格算真的。"
+    },
+    {
+      "en": "Russell concludes that we do not know the real table (if it exists) directly through sight, touch or hearing; we can only infer it from what we know directly.",
+      "zh": "罗素的结论：真实的桌子（如果有）不能通过视觉、触觉、听觉直接知道，只能从直接知道的东西推出来。"
+    },
+    {
+      "en": "Sense-data are what we are directly aware of, such as colours and hardnesses; a sensation is the awareness of them; a physical object is the real table; matter is the collection of all physical objects.",
+      "zh": "感觉材料是直接觉察到的东西（颜色、硬度等）；感觉是对它们的觉察；物理对象是真实的桌子；物质是所有物理对象的总和。"
+    },
+    {
+      "en": "The idealists Berkeley and Leibniz agree that there is a real table, but say it is mental: ideas in the mind of God for Berkeley, a colony of souls for Leibniz.",
+      "zh": "唯心论者贝克莱和莱布尼茨都承认有真实的桌子，但说它是心灵的东西：贝克莱说是上帝心中的观念，莱布尼茨说是一群灵魂。"
+    },
+    {
+      "en": "Russell says that Descartes' 'I think, therefore I am' claims too much: what is certain is only that \"a brown colour is being seen\" (p. 7), not that a lasting self sees it.",
+      "zh": "罗素说笛卡尔的“我思故我在”说多了：确定的只是“有一块棕色正在被看见”，不是“有一个持续的我在看”。"
+    },
+    {
+      "en": "The argument that a public table exists because other people have similar sense-data begs the question, because other people are known to me only through my own sense-data.",
+      "zh": "“别人的感觉材料相似，所以有公共的桌子”这个论证窃取了论题，因为别人对我来说也只是我的感觉材料。"
+    },
+    {
+      "en": "Russell admits that the dream hypothesis is logically possible, but argues that independent physical objects explain our experience more simply, as the example of the cat shows.",
+      "zh": "罗素承认梦境假说逻辑上可能，但论证独立的物理对象能更简单地解释我们的经验，猫的例子就说明了这一点。"
+    },
+    {
+      "en": "Russell accepts the external world as an instinctive belief that clashes with no other belief, with a slight doubt that comes from dreams; philosophy should organize our instinctive beliefs into a harmonious system.",
+      "zh": "罗素把外部世界当作不和其他信念冲突的本能信念来接受，只保留一点来自梦的怀疑；哲学的任务是把本能信念整理成和谐的体系。"
+    },
+    {
+      "en": "Van Inwagen says there is objective truth: each belief says that the World is a certain way, and the World is largely independent of our beliefs, so truth and falsity come from the things our beliefs are about.",
+      "zh": "范·因瓦根说有客观真理：每个信念把世界表示成某个样子，而世界在很大程度上独立于我们的信念，所以真假来自信念所关于的东西。"
+    },
+    {
+      "en": "Believing in objective truth is not dogmatism: it does not mean that anyone has the authority to settle what is true; and truth is one, so 'true for me' only means 'what I think'.",
+      "zh": "相信客观真理不等于独断：它不表示任何人能对真假下定论；而且真理只有一个，“对我为真”只是“我这么想”。"
+    },
+    {
+      "en": "Van Inwagen separates realism versus idealism (is everything mental?) from Realism versus anti-Realism (is there objective truth?), so an idealist can be a Realist.",
+      "zh": "范·因瓦根把“实在论对唯心论”（是否一切都是心灵的）和“大写实在论对反实在论”（有没有客观真理）分开，所以唯心论者也可以是大写的实在论者。"
+    },
+    {
+      "en": "The geological argument says that Mount Everest would have the same size and shape even in a world that never contained minds, so the fact that it is 8,849 meters high does not depend on human minds.",
+      "zh": "地质论证：即使从来没有任何心灵，珠峰的大小和形状也一样，所以“珠峰高 8,849 米”不依赖人类心灵。"
+    },
+    {
+      "en": "Van Inwagen replies to the social-construct argument that conventions fix what our words mean and name, not the heights of the things named; this is the point of 'schmeight'.",
+      "zh": "范·因瓦根回应“社会建构”论证：约定决定的是词的意思和名字指什么，不决定被指的东西有多高；schmeight 的例子就是要说明这一点。"
+    },
+    {
+      "en": "Van Inwagen argues that anti-Realism is self-refuting, because anti-Realism itself seems to lack every substitute for truth that anti-Realists propose; so we should be Realists.",
+      "zh": "范·因瓦根论证反实在论自我反驳：反实在论者提出的每一种真理替代品，反实在论自己好像都不具备；所以我们应该做实在论者。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "The argument from colour in standard form, the 'no favouritism' step, the painter, the microscope and perspective; why the real table must be inferred.",
+      "zh": "颜色论证的标准形式和“不偏心”这一步，画家、显微镜和透视的例子；为什么真实的桌子只能推出来。选择题和简答题都可能考到。",
+      "sectionId": "s01-russell-appearance-and-reality"
+    },
+    {
+      "en": "Define sense-data, sensation, physical object and matter, and classify examples (the colour versus the awareness of it).",
+      "zh": "四个术语的定义和分类题：颜色是感觉材料，对颜色的觉察是感觉，这是最容易混的地方。",
+      "sectionId": "s02-russell-sense-data-and-matter"
+    },
+    {
+      "en": "How Berkeley and Leibniz answer Russell's two questions; the two senses of 'matter'; Russell's verdict on the general idealist argument.",
+      "zh": "唯心论者对问题（1）回答“有”，只在问题（2）上与常识不同；罗素说唯心论的一般论证是谬误的。",
+      "sectionId": "s03-russell-idealism-berkeley-leibniz"
+    },
+    {
+      "en": "Descartes' method of doubt and the cogito as Russell reports them, and Russell's correction: \"a brown colour is being seen\" (p. 7).",
+      "zh": "笛卡尔的系统怀疑法、恶魔和“我思故我在”，以及罗素的修正。很适合出选择题：哪句话才是“立刻确定的”？",
+      "sectionId": "s04-russell-certainty-and-descartes"
+    },
+    {
+      "en": "The tablecloth and the ten diners; why the argument from other people's similar sense-data begs the question.",
+      "zh": "常识想要公共对象的理由，以及“窃取论题”的意思。简答题可能要你解释罗素为什么只能用私人经验找证据。",
+      "sectionId": "s05-russell-public-objects-question-begging"
+    },
+    {
+      "en": "The dream hypothesis (logically possible, no reason to believe it), the banging door, and the simplicity argument with the cat and human speech.",
+      "zh": "梦境假说和简单性论证是第 2 章的核心，很适合出小论文：写出标准形式，再评价“简单性能不能指向真”。",
+      "sectionId": "s06-russell-dream-hypothesis-simplicity"
+    },
+    {
+      "en": "Instinctive belief, the only reason for rejecting one, the slight doubt, and philosophy's modest job.",
+      "zh": "本能信念的定义、“只有和别的信念冲突才抛弃”的原则、哲学的任务。",
+      "sectionId": "s07-russell-instinctive-beliefs"
+    },
+    {
+      "en": "The two components of objective truth; truth is one ('true for me'); objective truth is not dogmatism (Mary, other planets); meaningless and vague sentences.",
+      "zh": "客观真理的定义和两个误解（独断、“对我为真”），以及两个限定（无意义、模糊导致不确定）。",
+      "sectionId": "s08-vaninwagen-objective-truth"
+    },
+    {
+      "en": "realism versus idealism and Realism versus anti-Realism; the two senses of 'mind-independent'.",
+      "zh": "大小写的两个“实在论”和“独立于心灵”的两种意思很容易混淆，适合出选择题。",
+      "sectionId": "s09-vaninwagen-realism-idealism-anti-realism"
+    },
+    {
+      "en": "The geological argument for the mind-independence of fact F, and the replies to the Berkeleyan 'cannot imagine the unobserved' objection.",
+      "zh": "地质论证的标准形式；葬礼与画像两个例子各属于哪一方。",
+      "sectionId": "s10-vaninwagen-everest-geological-argument"
+    },
+    {
+      "en": "The anti-Realist social-construct argument and van Inwagen's two replies (objects x and y; schmeight).",
+      "zh": "社会建构论证和两个回应，适合简答和小论文：先写反方论证，再写回应，最后评价。",
+      "sectionId": "s11-vaninwagen-social-construct"
+    },
+    {
+      "en": "AR applied to itself; fitting in with our experience; why AR lacks that status (Andrew and Rachel, no predictions, no knockdown arguments).",
+      "zh": "AR 用到自己身上会怎样，“符合我们的经验”的强意义和宽意义。",
+      "sectionId": "s12-vaninwagen-ar-and-experience"
+    },
+    {
+      "en": "Rachel's disagreement argument, conditions (a) and (b), self-refutation, the peer-approval proposal and 1984.",
+      "zh": "自我反驳论证的完整步骤：私人替代品让分歧消失，公共替代品又不满足条件（b）。",
+      "sectionId": "s13-vaninwagen-disagreement-self-refutation"
+    },
+    {
+      "en": "Compare the two readings: knowledge versus truth, the two 'realism' debates, Berkeley on van Inwagen's terms, and arguing from explanation.",
+      "zh": "比较题的四个连接点：问题不同、两种实在论、贝克莱的定位、都从解释出发论证（这些连接是本站做的比较）。",
+      "sectionId": "s14-compare-two-realism-debates"
+    }
+  ]
+}

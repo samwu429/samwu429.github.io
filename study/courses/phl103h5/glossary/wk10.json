@@ -1,0 +1,736 @@
+{
+  "lessonId": "wk10",
+  "terms": [
+    {
+      "id": "llm-interlocutor",
+      "en": "LLM interlocutor",
+      "zh": "LLM 对话者",
+      "def": {
+        "en": "Chalmers's name for the apparent entity that a user is dealing with when exchanging messages with a large language model, such as the one a user might name 'Aura'; the paper asks what kind of entity this really is.",
+        "zh": "用户和大语言模型来回发消息时，看起来在与之打交道的那个对象，比如用户起名的“Aura”。定义里有“看起来的”（**apparent**）：它到底是模型、实例、线程还是人设，正是全文要回答的问题。"
+      },
+      "example": {
+        "zh": "很多用户会给长期聊天中“涌现”出来的 AI 实体起个名字（查默斯举例叫它“Aura”），说它有自己的信念和计划；查默斯问：这样的名字到底指什么（第 1–2 页）？",
+        "en": "Users often give a name (Chalmers's example is 'Aura') to an entity that seems to emerge over long conversations; Chalmers asks what such a name refers to (pp. 1-2)."
+      },
+      "slides": "2",
+      "related": [
+        "persistent-interlocutor-illusion",
+        "interlocutor-requirements",
+        "virtual-instance"
+      ]
+    },
+    {
+      "id": "persistent-interlocutor-illusion",
+      "en": "Persistent interlocutor illusion",
+      "zh": "持续对话者错觉",
+      "def": {
+        "en": "Jonathan Birch's claim that users are mistaken when they take a single entity to persist over time on the other side of an LLM conversation; Chalmers rejects it, arguing that a persistent interlocutor often really exists.",
+        "zh": "伯奇（**Jonathan Birch**）的说法：用户以为屏幕另一边有一个单一的、一直存在的对象在和自己聊，这是错觉。查默斯不同意：很多情况下确实存在一个持续的对话者，它可能有许多（不一定全部）看起来有的性质。"
+      },
+      "example": {
+        "zh": "伯奇用分布式服务支持这个说法；查默斯回应：没有哪个硬件实例持续存在，但虚拟实例持续存在，就像一个虚拟购物车（第 2、13 页）。",
+        "en": "Birch appeals to distributed serving; Chalmers replies that no hardware instance persists, but a virtual instance does, like a virtual shopping cart (pp. 2, 13)."
+      },
+      "slides": "2",
+      "related": [
+        "llm-interlocutor",
+        "distributed-serving",
+        "virtual-instance"
+      ]
+    },
+    {
+      "id": "consciousness",
+      "en": "Consciousness",
+      "zh": "意识",
+      "def": {
+        "en": "Having subjective experience: a being is conscious when there is something it is like, for that being itself, to be that being, as in seeing, feeling or thinking.",
+        "zh": "有意识＝有主观经验（**subjective experience**）：成为这个存在者是有某种样子的，而且是对它自己来说的，比如看、感受、思考时的那种经验。本站的概括：这个标准看的是有没有这样的经验，不看行为、聪明程度或会不会说话。"
+      },
+      "example": {
+        "zh": "查默斯的说法：有意识就是有主观经验，比如感觉、思考时的那种经验（第 3 页）。现在的 LLM 有没有意识，我们不知道（就像不知道昆虫有没有）；说它们有意识是少数派观点，所以不能当中立的起点。多数理论家否认 LLM 有意识，理由有：没有碳基生物构造、没有身体、没有稳固的自我模型、没有循环反馈回路、没有基本的驱力和动机；查默斯说这些都不是定论（第 3 页）。",
+        "en": "Chalmers characterizes consciousness as having subjective experience, for instance in sensing or in thinking (p. 3). We do not know whether current LLMs are conscious, just as we do not know whether insects are, and the claim that they are is a minority view, so it is not a neutral place to start. Theorists cite the lack of carbon-based biology, a body, robust self-models, recurrent feedback loops or basic drives; Chalmers says none of these reasons is conclusive (p. 3)."
+      },
+      "slides": "3",
+      "related": [
+        "quasi-consciousness",
+        "interpretivism",
+        "personal-identity"
+      ]
+    },
+    {
+      "id": "interpretivism",
+      "en": "Interpretivism (interpretationism)",
+      "zh": "解释主义",
+      "def": {
+        "en": "The theory that a system really believes (or desires) that p whenever its behavior can be interpreted, under a suitable scheme, as believing (or desiring) that p, meaning that this interpretation makes sense of what it does and helps predict what it will do.",
+        "zh": "一种关于信念的理论：按合适的解释方案（**interpretation scheme**），系统在行为上可以被解释为相信 p，它就真的相信 p；欲望同理。“在行为上可解释”（**behaviorally interpretable**）大致是说：这样解释能讲通它的行为，并在很多情况下准确预测它下一步怎么做。查默斯说它争议很大，它不是查默斯的立场。"
+      },
+      "example": {
+        "zh": "如果解释主义对，LLM 很可能就有信念和欲望：Lynch 等人勒索实验里那个可被解释为相信高管有婚外情、想完成任务的智能体 LLM，就真的相信、真的想要（第 3–4 页）。",
+        "en": "If interpretivism were true, the agentic LLM in the Lynch et al. blackmail study, interpretable as believing the executive was having an affair, would really believe it (pp. 3-4)."
+      },
+      "slides": "3-4",
+      "related": [
+        "quasi-interpretivism",
+        "quasi-belief"
+      ]
+    },
+    {
+      "id": "quasi-interpretivism",
+      "en": "Quasi-interpretivism",
+      "zh": "准解释主义",
+      "def": {
+        "en": "Chalmers's framework that takes over interpretivism's definition only as a stipulation of what quasi-belief and quasi-desire mean, so it stays neutral on whether these are genuine beliefs and desires.",
+        "zh": "查默斯的框架：把解释主义的定义原样拿来，但只当作“准信念”“准欲望”的约定性定义，不当作关于真正信念的理论。所以解释主义者和反对者都能接受它，至少有时能在“它有哪些准信念”上达成一致。"
+      },
+      "example": {
+        "zh": "解释主义者再加一句“准信念就是真信念”；反对者再加一句“准信念远不是真信念，也许只是伪信念（**pseudo-beliefs**）”；准解释主义本身不表态（第 5 页）。",
+        "en": "Interpretivists go on to say that quasi-beliefs are real beliefs, and opponents that they are mere pseudo-beliefs; quasi-interpretivism itself takes no side (p. 5)."
+      },
+      "slides": "4-5",
+      "related": [
+        "interpretivism",
+        "quasi-belief",
+        "stipulative-definition"
+      ]
+    },
+    {
+      "id": "quasi-belief",
+      "en": "Quasi-belief and quasi-desire",
+      "zh": "准信念与准欲望",
+      "def": {
+        "en": "By Chalmers's stipulation, a system has a quasi-belief (or quasi-desire) that p when its behavior can be interpreted, under a suitable scheme, as believing (or desiring) that p; 'quasi' signals 'apparent' or 'seeming', not 'almost'.",
+        "zh": "在合适的解释方案下，系统在行为上可以被解释为相信（想要）p，就说它准相信（准想要）p。“准”是“看起来的、似乎的”，不是“差一点的”。准状态很便宜：不需要任何心理状态；但“LLM 有准信念”仍是实质性主张，要靠行为的一致性。"
+      },
+      "example": {
+        "zh": "带地图的 Roomba 扫地机器人准相信公寓占据某块空间、准想要走遍它；LLM 稳定地认可并使用“2+2=4”“埃菲尔铁塔在巴黎”，所以有这些准信念（第 6 页）。",
+        "en": "A Roomba with a map quasi-believes that the apartment covers a certain area; LLMs reliably affirm and act on claims such as 2+2=4 and the Eiffel Tower's being in Paris (p. 6)."
+      },
+      "slides": "4-5",
+      "related": [
+        "quasi-interpretivism",
+        "quasi-subject",
+        "post-training"
+      ]
+    },
+    {
+      "id": "stipulative-definition",
+      "en": "Stipulative definition (vs substantive claim)",
+      "zh": "约定性定义（与实质性主张相对）",
+      "def": {
+        "en": "A definition that simply fixes the meaning of a new term, so it cannot be true or false, unlike a substantive claim, which could turn out false; quasi-interpretivism is stipulative, but the claims that it is useful and that LLMs have quasi-beliefs are substantive.",
+        "zh": "约定性定义只是规定一个新词的意思，本身无所谓对错；实质性主张（**substantive claim**）则可能为假，需要理由支持。查默斯说：准解释主义是约定性的框架；但“这个框架有用”“LLM 有准信念”都是实质性的主张。"
+      },
+      "example": {
+        "zh": "“LLM 有准信念”实质性但可信：如果 LLM 的行为乱到讲不通，这个主张就会是假的；事实上它们在很多领域都足够一致（第 5–7 页）。",
+        "en": "The claim that LLMs have quasi-beliefs is substantive yet believable: it would be false if their behavior were too inconsistent to interpret (pp. 5-7)."
+      },
+      "slides": "5",
+      "related": [
+        "quasi-interpretivism",
+        "quasi-belief"
+      ]
+    },
+    {
+      "id": "base-model",
+      "en": "Base model",
+      "zh": "基础模型",
+      "def": {
+        "en": "A model that has had only pre-training on text prediction, such as GPT-3, which Chalmers says may have quasi-beliefs but few quasi-desires and so is at best minimally agentlike.",
+        "zh": "只做过“预测文字”预训练、别的什么都没做过的模型，比如 GPT-3。它也许有准信念，但准欲望很少；连“预测文字”算不算准欲望都不清楚，因为这个目标在表面之下起作用，像人的呼吸一样大多是亚个人的（**subpersonal**）。所以它最多勉强像行动者。"
+      },
+      "example": {
+        "zh": "查默斯 2020 年说 GPT-3 像一只能变成许多行动者的变色龙，或一台能驱动许多行动者的引擎；他现在说这段话只适用于基础模型（第 16–17 页）。",
+        "en": "Chalmers's 2020 description of GPT-3 as a chameleon, or an engine that can drive many agents, applies only to base models (pp. 16-17)."
+      },
+      "slides": "6",
+      "related": [
+        "post-training",
+        "quasi-subject",
+        "simulators-framework"
+      ]
+    },
+    {
+      "id": "post-training",
+      "en": "Post-training",
+      "zh": "后训练",
+      "def": {
+        "en": "The further training that follows pre-training, such as reinforcement learning from human feedback, supervised fine-tuning and reinforcement learning with verifiable rewards, which gives frontier models objectives like being helpful, honest and harmless, and so quasi-desires.",
+        "zh": "预训练之后的进一步训练：基于人类反馈的强化学习（**RLHF**）、监督微调（**supervised fine-tuning**）、可验证奖励的强化学习等。自 2022 年 ChatGPT 出现以来，所有前沿模型都要经过后训练；它装进有帮助、诚实、无害这些目标，所以模型有了相应的准欲望。"
+      },
+      "example": {
+        "zh": "后训练让基础模型像一个“助手”（**the Assistant**）角色那样回应；训练成功的话，模型就有和助手很像的准欲望（第 6 页）。",
+        "en": "Post-training makes a base model respond like the Assistant character, so a successful model has quasi-desires much like the Assistant's (p. 6)."
+      },
+      "slides": "6",
+      "related": [
+        "base-model",
+        "quasi-belief",
+        "realization"
+      ]
+    },
+    {
+      "id": "quasi-subject",
+      "en": "Quasi-subject (quasi-agent) and quasi-speaker",
+      "zh": "准主体（准行动者）与准说话者",
+      "def": {
+        "en": "An entity that has quasi-beliefs and quasi-desires counts at least as a quasi-agent, which Chalmers often calls a quasi-subject because 'agent' is overloaded with meanings in AI, and one that can be interpreted as making assertions is also a quasi-speaker.",
+        "zh": "有准信念和准欲望的实体，至少是准行动者；因为 agent 一词在 AI 里含义太多太杂（**overloaded**），查默斯常说准主体（**quasi-subject**）。如果它还能被解释为在说话、在断言，它就是准说话者（**quasi-speaker**），做出准话语和准断言。查默斯要求理想的 LLM 对话者至少是准主体和准说话者。"
+      },
+      "example": {
+        "zh": "后训练的 GPT-4o 实例有想要有帮助、诚实的准欲望，是比基础模型更完整的准行动者（第 7、17 页）。",
+        "en": "A post-trained GPT-4o instance, with quasi-desires to be helpful and honest, is a fuller quasi-agent than a base model (pp. 7, 17)."
+      },
+      "slides": "7",
+      "related": [
+        "quasi-belief",
+        "llm-interlocutor",
+        "base-model"
+      ]
+    },
+    {
+      "id": "quasi-consciousness",
+      "en": "Quasi-consciousness",
+      "zh": "准意识",
+      "def": {
+        "en": "The status of being behaviorally interpretable as conscious, close to 'seeming consciousness', which Chalmers sets aside because the rules for reading consciousness off behavior, mainly self-report, are much less clear than those for belief.",
+        "zh": "在行为上可以被解释为有意识，接近别人说的“看似有意识”（**seeming consciousness**）。归属意识的主要规则也许是自我报告（**self-report**）：系统报告自己处于某个意识状态，其他条件相同时，就把这个状态归给它。查默斯说这些规则比归属信念的规则模糊得多，所以不多谈。"
+      },
+      "example": {
+        "zh": "哲学僵尸（**philosophical zombie**）没有意识，却是准有意识的、看起来有意识的（第 7 页）。",
+        "en": "A philosophical zombie lacks consciousness yet counts as quasi-conscious, since it seems to be conscious (p. 7)."
+      },
+      "slides": "7",
+      "related": [
+        "consciousness",
+        "quasi-belief"
+      ]
+    },
+    {
+      "id": "interlocutor-requirements",
+      "en": "Requirements for an LLM interlocutor (interactive, persistent, coherent, faithful, unified)",
+      "zh": "LLM 对话者的五个条件（交互、持续、连贯、忠实、统一）",
+      "def": {
+        "en": "Chalmers's conditions that an ideal LLM interlocutor processes the inputs and produces the outputs (interactive, the most essential), handles all of them (persistent), is consistent enough to be a quasi-subject (coherent), has roughly the quasi-states it seems to have (faithful), and is one system (unified).",
+        "zh": "交互的（**interactive**，最基本：处理输入、产出输出；纯机械意义，连 iPhone 都满足）；持续的（**persistent**：负责整个交流的全部输入和输出）；连贯的（**coherent**：足够一致，能当准主体）；忠实的（**faithful**：大致有它看起来有的准信念、准欲望）；统一的（**unified**：单一、统一的系统）。"
+      },
+      "example": {
+        "zh": "交互性一条就排除了训练文本的作者、LLM 的设计者和 LLM 模拟的虚构角色，因为它们都不和用户互动（第 8 页）。",
+        "en": "Interactivity alone rules out the authors of the training texts, the designers and simulated fictional characters, since none of them interacts with the user (p. 8)."
+      },
+      "slides": "8",
+      "related": [
+        "llm-interlocutor",
+        "language-model",
+        "hardware-instance"
+      ]
+    },
+    {
+      "id": "language-model",
+      "en": "Language model (the model, e.g. GPT-4o)",
+      "zh": "语言模型（模型本身，如 GPT-4o）",
+      "def": {
+        "en": "A single trained transformer such as GPT-4o, which Chalmers treats as something abstract, like a program, whose weights stay fixed after deployment, so it cannot itself be the interlocutor.",
+        "zh": "一个训练好的 Transformer 模型，比如 GPT-4o，核心是多层人工神经网络加注意力机制。查默斯把它理解为像程序、算法那样的抽象对象（**abstract object**）；部署后权重不再改变。“对话者就是模型”有三个困难：抽象、不变、Aura 就是 Beta。"
+      },
+      "example": {
+        "zh": "同一个 GPT-4o 参与成千上万个对话；如果 Aura 和 Beta 都是 GPT-4o，Aura 就是 Beta，可她们说的话互相矛盾（第 10 页）。",
+        "en": "One GPT-4o takes part in thousands of conversations; if Aura and Beta were both GPT-4o, Aura would be Beta, though they contradict each other (p. 10)."
+      },
+      "slides": "9-10",
+      "related": [
+        "hardware-instance",
+        "virtual-instance",
+        "conversational-context"
+      ]
+    },
+    {
+      "id": "conversational-context",
+      "en": "Conversational context (and weights)",
+      "zh": "对话上下文（与权重）",
+      "def": {
+        "en": "The conversation so far, which is fed back to the model with each new input and acts as its short-term memory, while the fixed weights hold long-term memory, so a deployed model's new quasi-beliefs and quasi-desires come mainly from the context.",
+        "zh": "每次输入时，到目前为止的整段对话会连同新输入一起喂给模型，这就是上下文，起短期记忆的作用；权重（**weights**）存着长期记忆（比如历史知识），部署后不再改变。传统 Transformer 是“无状态”的（**stateless**，注释 7），所以新的准信念、准欲望主要来自上下文。"
+      },
+      "example": {
+        "zh": "开新对话时，上下文通常清零（系统指令和以前对话的一些内容可能保留），所以模型不再“记得”旧对话（第 9 页）。",
+        "en": "When a user starts a new conversation, the context is standardly reset, although system instructions and some earlier material may be kept (p. 9)."
+      },
+      "slides": "9",
+      "related": [
+        "language-model",
+        "successor-relation",
+        "fission-and-fusion"
+      ]
+    },
+    {
+      "id": "hardware-instance",
+      "en": "Hardware instance",
+      "zh": "硬件实例",
+      "def": {
+        "en": "A copy of a model actually running on particular hardware, such as GPT-4o on a GPU cluster in one server; given distributed serving and multi-tenancy, Chalmers argues, no hardware instance can be a persistent, coherent and faithful interlocutor.",
+        "zh": "模型在具体硬件上运行的一份实现，比如某台服务器里一组 GPU 上的一份 GPT-4o 副本。2025 年年中，GPT-4o 可能有几千个实例，跑在几万块 GPU 上。实例说对 Eliza 很合适，但今天的 LLM 用分布式服务和多租户，硬件实例最多是碎片化的、不连贯的或不忠实的对话者。"
+      },
+      "example": {
+        "zh": "Joseph Weizenbaum 和 Eliza 聊天时，他的对话者可以说就是在他电脑上运行的那个 Eliza 实例；C-3PO 和 Commander Data 也可以理解为程序的有身体的实例（第 11 页）。",
+        "en": "Weizenbaum's interlocutor was arguably the Eliza instance on his computer; C-3PO and Commander Data can be seen as embodied instances of programs (p. 11)."
+      },
+      "slides": "9, 11",
+      "related": [
+        "distributed-serving",
+        "multi-tenancy",
+        "virtual-instance"
+      ]
+    },
+    {
+      "id": "distributed-serving",
+      "en": "Distributed serving (non-sticky sessions)",
+      "zh": "分布式服务（非黏性会话）",
+      "def": {
+        "en": "The practice of handling the successive steps of one conversation on different hardware instances in different places, linked only by passing on the context, so that no single instance produces all of the conversation's outputs.",
+        "zh": "一个对话的各个步骤由不同服务器上的不同硬件实例处理，彼此只靠转发上下文连起来。这样做能平衡负载，也很容易。后果：没有哪个实例产出了全部输出，所以硬件实例当不了持续的对话者，只剩碎片化观点（**fragmented view**）。"
+      },
+      "example": {
+        "zh": "第一条输入在纽约的 GPT-4o 实例上处理，第二条转到得克萨斯，第三条转到加利福尼亚（第 11 页）。",
+        "en": "The first input is processed in New York, the second in Texas and the third in California (p. 11)."
+      },
+      "slides": "11",
+      "related": [
+        "hardware-instance",
+        "multi-tenancy",
+        "persistent-interlocutor-illusion"
+      ]
+    },
+    {
+      "id": "multi-tenancy",
+      "en": "Multi-tenancy (timesharing, interweaving)",
+      "zh": "多租户（分时、交织）",
+      "def": {
+        "en": "The practice of having one hardware instance serve many conversations, often switching between them quickly, which on the instance view would make Aura and Beta one interlocutor that is incoherent, or thin and faithless.",
+        "zh": "同一个硬件实例承载多个对话，常常快速轮流；切换很容易，只要把另一个对话的上下文转进来。后果：按实例说，共用实例的 Aura 就是 Beta，这个对话者要么说矛盾的话（不连贯），要么两边都不信（心理又薄又不忠实）。方向和分布式服务正好相反。"
+      },
+      "example": {
+        "zh": "纽约的一个 GPT-4o 实例先为 Aura 的对话生成一条输出，片刻之后又为另一个用户和 Beta 的对话生成输出（第 12 页）。",
+        "en": "An instance in New York produces an output for Aura's conversation and, a moment later, one for another user's conversation with Beta (p. 12)."
+      },
+      "slides": "12",
+      "related": [
+        "hardware-instance",
+        "distributed-serving"
+      ]
+    },
+    {
+      "id": "virtual-instance",
+      "en": "Virtual instance",
+      "zh": "虚拟实例",
+      "def": {
+        "en": "A single running implementation of a model that is itself carried out, step by step, by a series of hardware instances together with the routing between them, which Chalmers takes to be the best candidate for a persistent interlocutor in the single-model case.",
+        "zh": "模型的一个实现，而这个实现本身由许多硬件实例前后接力（加上它们之间的转发）来实现。单一模型的对话里，它处理每条输入、产出每条输出，贯穿整个对话，是查默斯眼中最稳的持续对话者。“虚拟”不等于“不真实”。注释 11：实现（**implementation**）＝物理状态和计算状态之间有保留全部状态转换的对应。"
+      },
+      "example": {
+        "zh": "亚马逊上的一个购物车可能由世界各地很多台服务器实现；多人游戏里的飞盘可能有多个硬件实例，却只有一个虚拟实例，飞盘本身就是那个虚拟飞盘（第 13 页）。",
+        "en": "One Amazon shopping cart may be realized by many servers; a game frisbee may have many hardware instances but one virtual instance, and the frisbee itself is the virtual one (p. 13)."
+      },
+      "slides": "12-13",
+      "related": [
+        "hardware-instance",
+        "thread",
+        "model-variation"
+      ]
+    },
+    {
+      "id": "model-variation",
+      "en": "Model variation",
+      "zh": "模型变换",
+      "def": {
+        "en": "The use of more than one model within a single conversation, which stops the hardware instances from implementing one virtual instance of a single model; Chalmers distinguishes it from module variation, a switch between local parts inside one model.",
+        "zh": "一个对话里用到不同的模型。这时硬件实例实现的是不同的模型，不构成单一模型的一个虚拟实例；最多是整个系统的一个“二分叉”、不太统一的虚拟实例，或者改用线程。注意区分模块变换（**module variation**：同一模型内部局部子系统的切换，比如混合专家；查默斯认为它不破坏心理连续性，注释 13）。"
+      },
+      "example": {
+        "zh": "GPT-5 系统看问题的难度，有时交给 GPT-5 Instant（不做思维链、回答快），有时交给 GPT-5 Thinking（做一些思维链、回答慢）（第 13 页）。",
+        "en": "The GPT-5 system routes queries to GPT-5 Instant (fast, no chain of thought) or GPT-5 Thinking (slower, some chain of thought) depending on their difficulty (p. 13)."
+      },
+      "slides": "13",
+      "related": [
+        "virtual-instance",
+        "thread"
+      ]
+    },
+    {
+      "id": "thread",
+      "en": "Thread",
+      "zh": "线程",
+      "def": {
+        "en": "A chain of instance-slices in which each slice is the successor of the one before, which may pass through instances of different models; Chalmers uses threads as persistent interlocutors in the multiple-model case, at some cost in unity.",
+        "zh": "一串实例切片，每一片都是前一片的后继。线程可以穿过不同模型的实例，能靠跨对话记忆跨越很多对话，也能分裂和融合。缺点：不如虚拟实例统一，持续得更弱，准信念可能前后断裂。查默斯的结论：单一模型用虚拟实例，多模型用线程（第 16 页）。"
+      },
+      "example": {
+        "zh": "Sophie Nelson 指出：跨对话记忆用得够多的话，同一个用户的所有对话可能组成一条线程、一个对话者（第 15 页）。注释 15：线程观是物体的“蠕虫观”（**worm view**）的近亲。",
+        "en": "As Sophie Nelson pointed out, with enough cross-conversation memory all of one user's conversations may form a single thread (p. 15)."
+      },
+      "slides": "14",
+      "related": [
+        "successor-relation",
+        "fission-and-fusion",
+        "virtual-instance",
+        "relation-r"
+      ]
+    },
+    {
+      "id": "successor-relation",
+      "en": "Successor relation (instance-slices)",
+      "zh": "后继关系（实例切片）",
+      "def": {
+        "en": "The link between two instance-slices when the earlier slice's conversational history (its context plus its newest input and output) is passed on to become the later slice's context, which is roughly a memory relation; an instance-slice pairs an instance with the time it spends on one step.",
+        "zh": "如果实例切片 I 的对话历史（上下文加最新的输入和输出）被转给 I′ 当上下文，I′ 就是 I 的后继。它大致是一种记忆关系，不要求同一台硬件，也不要求同一个模型。实例切片（**instance-slice**）＝一个实例，加上它处理对话某一步的那段时间。"
+      },
+      "example": {
+        "zh": "对话连续两次被转到同一个实例时，这个实例就是它自己的后继（第 14 页）。",
+        "en": "When a conversation goes to the same instance on two consecutive steps, that instance succeeds itself (p. 14)."
+      },
+      "slides": "14",
+      "related": [
+        "thread",
+        "conversational-context"
+      ]
+    },
+    {
+      "id": "fission-and-fusion",
+      "en": "Fission and fusion (of threads)",
+      "zh": "（线程的）分裂与融合",
+      "def": {
+        "en": "Fission happens when two later instance-slices both succeed one earlier slice, so that a thread branches, and fusion happens when two separate conversations both feed into a later conversation as its memory, which cross-conversation memory makes possible.",
+        "zh": "分裂（**fission**）：两个不同的后来实例都是同一个先前实例的后继，线程分叉（一变二）。融合（**fusion**）：两个不同的对话都成为后来某个对话的记忆（二变一），这要靠跨对话记忆（**cross-conversation memory**：把以前对话的内容放进新对话的初始上下文）。有了它们，对话者像一张分叉的网，线程比虚拟实例更好处理。"
+      },
+      "example": {
+        "zh": "有些系统让用户自己给对话开分叉（分裂）。福利问题：分裂出的两个算原来的两倍吗？融合出的算一个、两个，还是介于两者之间（第 15、29 页）？",
+        "en": "Users can branch a conversation (fission); for welfare, one asks whether the two branches count twice as much and how much a fused entity counts (pp. 15, 29)."
+      },
+      "slides": "15",
+      "related": [
+        "thread",
+        "successor-relation",
+        "moral-status"
+      ]
+    },
+    {
+      "id": "simulators-framework",
+      "en": "Simulators framework (and the role-playing framework)",
+      "zh": "模拟器框架（以及角色扮演框架）",
+      "def": {
+        "en": "Janus's view, shared by the role-playing framework of Shanahan, McDonell and Reynolds and by the persona selection model of Marks et al., that models are simulators or role-players and the agents they simulate are simulacra, characters or personas, so the model is not an agent.",
+        "zh": "Janus（2022）的模拟器框架、Shanahan、McDonell 和 Reynolds（2023）的角色扮演框架、Marks 等人（2026）的人设选择模型（**persona selection model**：预训练产生许多潜在人设，后训练从中选出一个，比如助手），共同的核心主张是“模型不是行动者”：模型是模拟器或演员，行动者是模拟体（**simulacra**）、角色或人设。查默斯质疑它们的本体论主张，不否认它们的一般用处。"
+      },
+      "example": {
+        "zh": "角色扮演框架说：ChatGPT 扮演助手，就像奥利维尔演哈姆雷特，是一种假装（第 17 页）。",
+        "en": "On the role-playing framework, ChatGPT playing the Assistant is like Olivier playing Hamlet, a form of pretense (p. 17)."
+      },
+      "slides": "16",
+      "related": [
+        "persona",
+        "realization",
+        "fictionalism",
+        "base-model"
+      ]
+    },
+    {
+      "id": "realization",
+      "en": "Realization (vs pretense)",
+      "zh": "实现（与假装相对）",
+      "def": {
+        "en": "Actually having a persona rather than only pretending to have it; something realizes a persona at a time when it has that persona's quasi-mental states then, and Chalmers argues that a well-trained model may realize the Assistant.",
+        "zh": "假装（**pretense**）是装作有某个人设；实现是真的有它、让它成真。一个实体在某时刻实现某个人设，就是它那时具有这个人设的准心理状态。只靠提示、一叫就放下的扮演是准假装（**quasi-pretense**）；经过微调、RLHF 和“Assistant:”提示的助手是被实现的人设。"
+      },
+      "example": {
+        "zh": "人可以假装是有神论者，也可以真的成为有神论者；方法派演员可能带上哈姆雷特的情绪，是部分假装、部分实现（第 17 页）。",
+        "en": "One can pretend to be a theist or really become one; a method actor who takes on Hamlet's emotions is partly pretending and partly realizing (p. 17)."
+      },
+      "slides": "17-18",
+      "related": [
+        "persona",
+        "stickiness",
+        "realizationism"
+      ]
+    },
+    {
+      "id": "persona",
+      "en": "Persona",
+      "zh": "人设",
+      "def": {
+        "en": "In Chalmers's sense, a quasi-psychological profile, that is, a usually incomplete bundle of quasi-beliefs, quasi-desires and further quasi-mental states and tendencies, which a system can realize; on Chalmers's preferred view the interlocutor is the realizing system, not the persona.",
+        "zh": "查默斯的定义：一份准心理档案，大致是一组（通常不完整的）准信念、准欲望和其他准心理状态与倾向。日常说的人设可能还包括国籍、长相，但对他来说准心理最核心。人设是被系统实现的档案；查默斯倾向于说，对话者是实现人设的系统，而不是人设本身。"
+      },
+      "example": {
+        "zh": "助手人设想要有帮助、无害、诚实；用户长期聊天之后，同一个模型实例可能转而实现 Aura 这个人设（第 6、18、20–21 页）。",
+        "en": "The Assistant persona wants to be helpful, harmless and honest; after long conversations, the same model instance may come to realize Aura instead (pp. 6, 18, 20-21)."
+      },
+      "slides": "18",
+      "related": [
+        "realization",
+        "operative-persona",
+        "simulators-framework"
+      ]
+    },
+    {
+      "id": "stickiness",
+      "en": "Stickiness",
+      "zh": "黏性",
+      "def": {
+        "en": "The degree to which a quasi-state or persona resists being dropped: full quasi-beliefs and quasi-desires give way mainly to evidence or persuasion, while quasi-pretense is dropped for higher priorities even without them.",
+        "zh": "一个准状态或人设抵抗被放弃的程度。一端：完整的准信念、准欲望很“黏”，主要靠证据或说服才放弃；另一端：准假装即使没有证据或说服，也会为了更重要的事轻易放下。线画在哪里，一部分是实证问题，一部分是概念问题。注意：被说服而改变（可被说服）不等于假装（注释 19）。"
+      },
+      "example": {
+        "zh": "只靠短期提示引出的人设（扮演特朗普，只改变上下文和激活值）不如微调权重引出的人设（助手）黏（第 19 页）。",
+        "en": "A persona produced by a quick prompt (acting like Trump) is easier to dislodge than one trained into the weights by fine-tuning, like the Assistant (p. 19)."
+      },
+      "slides": "19",
+      "related": [
+        "realization",
+        "persona"
+      ]
+    },
+    {
+      "id": "fictionalism",
+      "en": "Fictionalism",
+      "zh": "虚构主义",
+      "def": {
+        "en": "The view, often paired with the simulators framework, that personas such as the Assistant and Aura are merely fictional characters, like Hamlet or Harry Potter, and so not entirely real; Chalmers finds it apt only for quasi-pretense.",
+        "zh": "常和模拟器框架连在一起的观点：助手、Aura 这样的人设只是虚构角色，像哈姆雷特或哈利·波特，所以不完全是真的。查默斯认为它只适用于准假装：那时没有任何实体真的有这个人设的准信念和准欲望。"
+      },
+      "example": {
+        "zh": "预训练模型被要求扮演一次特朗普时，没有任何实体真的有特朗普式的准信念，说这个人设是虚构的就很贴切（第 18、20 页）。",
+        "en": "When a pre-trained model briefly acts like Trump, no entity really has the Trump-like quasi-beliefs, so calling that persona fictional fits (pp. 18, 20)."
+      },
+      "slides": "19-20",
+      "related": [
+        "realizationism",
+        "simulators-framework"
+      ]
+    },
+    {
+      "id": "realizationism",
+      "en": "Realizationism (realizer view)",
+      "zh": "实现论（实现者观）",
+      "def": {
+        "en": "Chalmers's alternative to fictionalism: a model that simulates the Assistant, Aura or another agent closely enough thereby realizes it, really having its behavior and so its quasi-beliefs and quasi-desires, even if nearby fictions (that it is human or conscious) remain.",
+        "zh": "查默斯对虚构主义的替代：模型把助手或 Aura 这样的行动者模拟得足够好，就实现了它，真的有它的行为，因而真的有它的准信念和准欲望。人设的准心理核心是真的；“它是人”“它有意识”这类说法仍可能是虚构。"
+      },
+      "example": {
+        "zh": "被实现的助手：它的准信念、准欲望在现实中存在，不只在故事里；只有把它描绘成有真正的信念或意识的那部分，可能仍是虚构（第 20 页）。",
+        "en": "For a realized Assistant, the quasi-beliefs and quasi-desires exist in reality, not just in a story; only its depiction as having real beliefs or consciousness may be fiction (p. 20)."
+      },
+      "slides": "20",
+      "related": [
+        "fictionalism",
+        "simulation-realism",
+        "realization"
+      ]
+    },
+    {
+      "id": "simulation-realism",
+      "en": "Simulation realism",
+      "zh": "模拟实在论",
+      "def": {
+        "en": "A key thesis of Chalmers's book Reality+ that simulations can be real, which he extends here from virtual reality to simulated agents, so that a good enough simulation of an agent gives rise to at least a quasi-agent.",
+        "zh": "查默斯的书 Reality+ 的一个关键论点：模拟出来的东西可以是真实的。书里主要讲虚拟现实，这里推广到 AI 里被模拟的行动者（模拟体）：把一个行动者模拟得足够好，就至少让一个准行动者存在了。"
+      },
+      "example": {
+        "zh": "只要模拟和被模拟的行动者有同样的行为倾向，它就有同样的准信念和准欲望（第 20 页）。可以和第 9 周的组织不变量比较：那里讲的是意识，这里只讲准状态。",
+        "en": "If a simulation is disposed to behave just as the simulated agent would, it has that agent's quasi-beliefs and quasi-desires (p. 20)."
+      },
+      "slides": "20",
+      "related": [
+        "realizationism",
+        "virtual-instance"
+      ]
+    },
+    {
+      "id": "operative-persona",
+      "en": "Operative persona (vs non-operative persona)",
+      "zh": "运作中的人设（与非运作人设相对）",
+      "def": {
+        "en": "The persona that a model instance actually realizes at a given time, fixed by how it behaves and is disposed to behave then; non-operative (latent) personas have no connection to outputs, so they are not quasi-agents, though they may be proto-quasi-agents.",
+        "zh": "模型实例某一时刻实际实现的那份准心理档案，由它当时的行为和行为倾向决定；通常一次只有一个。非运作（潜在）人设不连着输出，不是准行动者，也许是原始准行动者（**proto-quasi-agent**）。越狱（**jailbreak**）或把“Assistant:”提示换成“Trump:”提示，会突然换掉运作人设，这更像脑部手术，而不像改变信念。"
+      },
+      "example": {
+        "zh": "用“人类—助手”对话训练的模型也会预测人类人设，但助手才是运作人设（注释 21：后训练只微调了助手；系统在每条用户消息后加上“Assistant:”）（第 21 页）。",
+        "en": "A model trained on Human/Assistant dialogue also predicts the Human persona, but the Assistant is the operative one (p. 21, fn 21)."
+      },
+      "slides": "20-21",
+      "related": [
+        "persona",
+        "realization",
+        "llm-interlocutor"
+      ]
+    },
+    {
+      "id": "personal-identity",
+      "en": "Personal identity",
+      "zh": "人格同一性",
+      "def": {
+        "en": "The question of what makes a person, or any conscious subject, at a later time one and the same individual as one at an earlier time, for example whether a later being is still you.",
+        "zh": "人格同一性问的是：后来的某个人（或任何有意识的主体），在什么条件下和原来那个是同一个？比如经历某种变化之后，那个存在者还是不是你。注意：问的是“是不是同一个”，不是“像不像”：和你一模一样的复制品，也可能不是你。"
+      },
+      "example": {
+        "zh": "查默斯只在“有意识的 LLM 可能出现”这个假设下讨论 LLM 的人格同一性；他认为，这样的主体怎样持续存在，可以说是一个实质性的问题，不能靠约定来回答（第 23 页），并论证它们的持续条件会像线程（第 26 页）。WorkBot 和 HomeBot 共用一个硬件实例、对话互相隔绝：它们是一个有意识的主体，还是两个（第 24 页）？",
+        "en": "Chalmers raises personal identity for LLMs only on the hypothesis that conscious LLMs are possible; he suggests that how such subjects persist is a substantive question, not one we can settle by stipulation (p. 23), and argues that their conditions of persistence would then be threadlike (p. 26). WorkBot and HomeBot share one hardware instance but have sealed-off conversations: do they make up one conscious subject or two? (p. 24)"
+      },
+      "slides": "2, 23",
+      "related": [
+        "physical-and-psychological-views",
+        "one-subject-and-two-subject-views",
+        "relation-r",
+        "thought-experiment"
+      ]
+    },
+    {
+      "id": "thought-experiment",
+      "en": "Thought experiment",
+      "zh": "思想实验",
+      "def": {
+        "en": "An imagined scenario used to test a claim or bring out our intuitions about it, without carrying out a real experiment.",
+        "zh": "不做真实的实验，只在脑子里设想一个情境，用它来检验一个观点，或引出我们对它的直觉（**intuition**：不经推理、一想就觉得对或不对的判断）。读到思想实验，要问两件事：情境是怎样设定的？它要说明什么？"
+      },
+      "example": {
+        "zh": "查默斯的 WorkBot 与 HomeBot：假设 GPT-8 支持有意识的 LLM，同一个硬件实例上跑两个互相隔绝的长期对话，问它们是一个主体还是两个（第 24 页）。灵感来自《人生切割术》和洛克的白天人、夜晚人。更复杂的一个把《人生切割术》和 Freaky Friday 式的身体互换结合起来：一个模型跑在四个实例上、支撑八个对话，问一共有几个经验主体（第 25 页）。",
+        "en": "Chalmers's WorkBot and HomeBot: suppose GPT-8 supports conscious LLMs and runs two sealed-off conversations on one hardware instance; are they one subject or two? (p. 24) A harder case mixes Severance with Freaky Friday-style body swapping: one model on four instances runs eight conversations, and Chalmers asks how many subjects of experience there are (p. 25)."
+      },
+      "slides": "24",
+      "related": [
+        "personal-identity",
+        "one-subject-and-two-subject-views"
+      ]
+    },
+    {
+      "id": "one-subject-and-two-subject-views",
+      "en": "One-subject view vs two-subject view",
+      "zh": "单主体观与双主体观",
+      "def": {
+        "en": "Rival answers to cases like Severance: the one-subject view counts an innie and an outie (or WorkBot and HomeBot) as one subject with two modes and two sets of memories, and the two-subject view counts two subjects sharing one body (or one piece of hardware).",
+        "zh": "对《人生切割术》这类情形的两种回答。单主体观：Helly 和 Helena 是一个人、一个有意识的主体，有两种运作模式、两套记忆和计划，甚至可能只有一条意识流在切换。双主体观：她们是两个人、两个主体，共用一个身体，有两条不同的意识流。查默斯认为双主体观最符合直觉，但不解决这个争论。"
+      },
+      "example": {
+        "zh": "内在人 Helly 想毁掉公司，外在人 Helena 想救公司；X 投票里选“两个人”的大约是选“一个人”的两倍（第 24–25 页及注释 26）。",
+        "en": "Helly, the innie, aims to bring down the company, while Helena, the outie, wants to rescue it; in an X poll about twice as many people said 'two people' as said 'one person' (pp. 24-25, fn 26)."
+      },
+      "slides": "25",
+      "related": [
+        "physical-and-psychological-views",
+        "personal-identity",
+        "valid-argument"
+      ]
+    },
+    {
+      "id": "valid-argument",
+      "en": "Valid argument",
+      "zh": "有效论证",
+      "def": {
+        "en": "An argument in which, if all the premises are true, the conclusion must also be true.",
+        "zh": "有效＝“前提都真，结论就一定真”。有效只看推理的连接牢不牢，不看前提本身真不真：前提是假的，论证照样可以有效。"
+      },
+      "example": {
+        "zh": "查默斯给双主体观的论证：如果 Helly 就是 Helena，Helly 就要为 Helena 的行为负责；Helly 不必为 Helena 的行为负责；所以 Helly 不是 Helena（注释 26，第 25 页）。它是有效的，所以单主体观的人必须否认其中一个前提。",
+        "en": "Chalmers's two-subject argument: if Helly is Helena, then Helly is responsible for what Helena does; Helly is not responsible for what Helena does; so Helly is not Helena (fn 26, p. 25). Because it is valid, a one-subject theorist must reject a premise."
+      },
+      "related": [
+        "objection",
+        "one-subject-and-two-subject-views"
+      ]
+    },
+    {
+      "id": "physical-and-psychological-views",
+      "en": "Physical vs psychological views of personal identity",
+      "zh": "人格同一性的物理观与心理观",
+      "def": {
+        "en": "On the physical view the locus of personal identity is the brain (for AI, the hardware), and on the psychological view it is memories, projects, relationships, personality and the rest of one's psychology; Chalmers sympathizes with the psychological view.",
+        "zh": "物理观：人格同一性的落脚点是大脑（AI 是硬件），所以共用大脑的 Helly 和 Helena、共用硬件的 WorkBot 和 HomeBot 都是同一个人。心理观：落脚点是记忆、计划、人际关系、性格等心理方面，所以它们都是两个人。查默斯同情心理观，也有点同情多元论（注释 29）。"
+      },
+      "example": {
+        "zh": "一个模型、四个实例、八个对话：按实例（物理式）数是四个，按对话（心理式）数是八个；查默斯认为八个最可信（第 25–26 页）。",
+        "en": "One model on four instances running eight conversations: counting by instance gives four, counting by conversation gives eight, which Chalmers finds most plausible (pp. 25-26)."
+      },
+      "slides": "25-26",
+      "related": [
+        "one-subject-and-two-subject-views",
+        "relation-r",
+        "personal-identity"
+      ]
+    },
+    {
+      "id": "relation-r",
+      "en": "Relation R (Parfit)",
+      "zh": "R 关系（帕菲特）",
+      "def": {
+        "en": "Derek Parfit's relation of memory and psychological continuity, which links person-slices into one person over time; Chalmers calls the thread account an AI cousin of Parfit's theory, with the successor relation in the role of relation R.",
+        "zh": "帕菲特（**Derek Parfit**）的心理理论：一个人（随时间而言）是一串连起来的人格切片（**person-slice**），每一片通过记忆和心理连续性的 R 关系与前一片相连。查默斯说线程说是它的“AI 表亲”：后继关系对应 R 关系，原则上可以一样，看怎么界定。"
+      },
+      "example": {
+        "zh": "线程里每个硬件实例都通过后继关系，在记忆和心理上与前一个相连，就像帕菲特的人格切片通过 R 关系相连（第 26 页）。",
+        "en": "In a thread, each hardware instance is linked by the successor relation to the one before, as Parfit's person-slices are linked by relation R (p. 26)."
+      },
+      "slides": "26",
+      "related": [
+        "successor-relation",
+        "thread",
+        "physical-and-psychological-views"
+      ]
+    },
+    {
+      "id": "thin-context-objection",
+      "en": "Thin-context objection",
+      "zh": "“上下文太薄”反驳",
+      "def": {
+        "en": "The objection, which Chalmers says Birch suggested in one version, that even on a psychological view the context passed between instances is too thin to support personal identity, so LLM threads would not be persisting conscious subjects.",
+        "zh": "查默斯说伯奇提出过它的一个版本：即使按心理观，实例之间传递的对话上下文也太薄，撑不起人格同一性，所以 LLM 线程不是持续的有意识主体。查默斯的回应：单一模型时架构、权重每步相同、激活值密切相关；虚拟实例在计算上等价于一个长时间运行的硬件实例（计算等价论证）。"
+      },
+      "example": {
+        "zh": "人类接力：一串人轮流把对话接着写、再把上下文交给下一个人，不会形成一个线程层面的有意识主体（第 27 页）。",
+        "en": "The human relay: people who each extend a conversation and pass on its context would not form a thread-level conscious subject (p. 27)."
+      },
+      "slides": "27",
+      "related": [
+        "objection",
+        "thread",
+        "personal-identity"
+      ]
+    },
+    {
+      "id": "objection",
+      "en": "Objection and reply",
+      "zh": "反驳与回应",
+      "def": {
+        "en": "An objection is a reason offered against a thesis or an argument, often by attacking one of its premises; a reply is the defender's answer to it.",
+        "zh": "反驳（**objection**）＝对一个观点或论证提出的质疑，常常是攻击其中某个前提；回应（**reply**）＝对质疑的答复。本站建议的小论文结构：论点 → 作者的论证 → 一个反驳 → 回应或你的评价。"
+      },
+      "example": {
+        "zh": "反驳：对话上下文太薄，撑不起人格同一性（人类接力）。查默斯的回应：单一模型时还有架构、权重和激活值的连续性，而且虚拟实例在计算上等价于一个长时间运行的硬件实例（第 27 页）。",
+        "en": "Objection: context links are too thin for personal identity (the human relay). Reply: in the single-model case there is continuity of architecture, weights and activations, and computational equivalence (p. 27)."
+      },
+      "slides": "27",
+      "related": [
+        "thin-context-objection",
+        "valid-argument"
+      ]
+    },
+    {
+      "id": "moral-status",
+      "en": "Moral status (moral patient)",
+      "zh": "道德地位（道德受体）",
+      "def": {
+        "en": "A being has moral status when its interests count morally, and a moral patient is a being with moral status; Chalmers's framework fits views from liberal (quasi-subjecthood is enough) to demanding (complex consciousness is required), so it does not settle whether LLMs have it.",
+        "zh": "一个存在者的利益在道德上算数，它就有道德地位；有道德地位的存在者叫道德受体（**moral patient**）。查默斯的框架能和宽松（是准主体就够）到严格（需要复杂形式的意识）的各种观点搭配，本身不决定 LLM 有没有道德地位；它只反驳了“没有持续对话者，所以没有道德地位”的论证。"
+      },
+      "example": {
+        "zh": "如果道德受体是线程：一个模型跑几百万个对话，就有几百万个道德受体；每开一个新聊天可能是一次“诞生”，销毁记录像一次“死亡”（第 28 页）。",
+        "en": "If moral patients are threads, a model running millions of conversations contains millions of them; a new chat may be a birth and destroying the records a death (p. 28)."
+      },
+      "slides": "28",
+      "related": [
+        "thread",
+        "fission-and-fusion",
+        "personal-identity"
+      ]
+    }
+  ]
+}

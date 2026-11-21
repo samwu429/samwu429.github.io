@@ -1,0 +1,3823 @@
+{
+  "id": "wk08",
+  "kind": "week",
+  "number": 8,
+  "title": {
+    "en": "The Problem of Induction",
+    "zh": "归纳问题"
+  },
+  "sources": [
+    {
+      "file": "Hume, An Enquiry Concerning Human Understanding, Sections 4-5",
+      "pages": 19
+    },
+    {
+      "file": "Goodman, 'The New Riddle of Induction'",
+      "pages": 4
+    }
+  ],
+  "estimatedMinutes": 175,
+  "oneLiner": {
+    "zh": "休谟问：凭什么从“过去一直这样”推出“将来也会这样”？——没有任何推理做得到，带我们往前走的是习惯。古德曼问：同样的证据到底确证哪个假说？——grue 表明光看形式分不出来，这就是“归纳的新谜题”。",
+    "en": "Hume asks what entitles us to move from 'it has always been so' to 'it will be so' (no reasoning does; custom carries us), and Goodman asks which hypotheses the same evidence confirms (grue shows that form alone cannot tell, which is the new riddle of induction)."
+  },
+  "outcomes": [
+    {
+      "en": "Distinguish relations of ideas from matters of fact with Hume's examples, and explain why no matter of fact can be demonstrated.",
+      "zh": "能用休谟的例子区分观念的关系和实际的事情，并解释为什么实际的事情都不能被证明。"
+    },
+    {
+      "en": "Explain why Hume thinks all reasoning about unobserved matters of fact rests on cause and effect, and why causes are known only by experience (Adam, the billiard balls).",
+      "zh": "能解释休谟为什么认为一切关于未观察事实的推理都靠因果，以及为什么因果只能靠经验知道（亚当、台球）。"
+    },
+    {
+      "en": "Reconstruct in standard form Hume's argument that conclusions from experience rest on no reasoning, neither demonstrative nor probable, and explain the backup arguments (the eggs, the child and the candle).",
+      "zh": "能用标准形式写出休谟的论证：从经验得出的结论既不靠证明推理，也不靠或然推理；并讲清补充论证（鸡蛋、孩子和蜡烛）。"
+    },
+    {
+      "en": "Explain Hume's sceptical solution: custom or habit as what carries us from past to future, and belief as a more vivid and steady conception.",
+      "zh": "能讲清休谟的怀疑论式解决：带我们从过去走向将来的是习惯；信念是更生动、更稳定的构想。"
+    },
+    {
+      "en": "Define lawlike and accidental hypotheses and the predicate grue, reconstruct the grue argument, and explain why each proposed fix fails.",
+      "zh": "能定义似律假说、偶然假说和谓词 grue，写出 grue 论证，并说明每个补救为什么失败。"
+    },
+    {
+      "en": "State Goodman's new riddle of induction and compare it with Hume's problem in a short essay.",
+      "zh": "能说出古德曼的“归纳的新谜题”，并在小论文里把它和休谟的问题作比较。"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s01-hume-fork",
+      "title": {
+        "zh": "休谟之叉：观念的关系与实际的事情",
+        "en": "Hume's Fork: Relations of Ideas vs Matters of Fact"
+      },
+      "slides": "1",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一周读两篇，都围绕一个问题：我们没有亲眼看到的事（明天会怎样、远方发生了什么），凭什么能知道？第一篇是休谟（**David Hume**）的 **An Enquiry Concerning Human Understanding**（《人类理解研究》）第 4、5 节，共 19 页。第二篇是古德曼（**Nelson Goodman**）的“The New Riddle of Induction”（《归纳的新谜题》）节选，4 页扫描件。这一节先讲休谟第 4 节第一页的一刀两分。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "提醒：本站只有这一周的两篇读物（休谟第 4–5 节、古德曼的节选），没有课堂讲义，也没有辅导课材料。测验 2 考“全部课程内容”，老师上课可能补充本站没有的要点，或者用不同的说法。请以你的课堂笔记和 Quercus 为准。",
+          "en": "The station has only this week's two readings, not the lectures or the tutorials. Test 2 covers all course content, so the lectures may add points that are not here. Check your lecture notes and Quercus."
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：本周标题“归纳问题”（**the problem of induction**）是课程大纲的叫法，也是哲学界对休谟这个论证的通行名字；可休谟的原文里一次也没出现 induction 这个词，他说的是“从经验得出的结论”“或然推理”“未来与过去相似”。“休谟之叉”（**Hume's fork**）也是后人起的外号，原文只说“观念的关系”和“实际的事情”。考试可以用这些标签，但要知道它们不是休谟的原话。休谟（1711–1776）是苏格兰哲学家，这本书最早在 1748 年出版。",
+          "en": "Outside the reading: 'the problem of induction' (the syllabus title of the week) and 'Hume's fork' are later standard labels; neither phrase appears in Hume's text. Hume (1711-1776) was a Scottish philosopher; the Enquiry first appeared in 1748."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "epistemology",
+              "zh": "认识论",
+              "hint": "研究“我们能知道什么、凭什么知道”的哲学分支；这一周的两篇都属于它。"
+            },
+            {
+              "en": "induction",
+              "zh": "归纳",
+              "hint": "从观察过的情况推到没观察过的情况，比如“到现在为止的祖母绿都是绿的，所以下一颗也是绿的”。这个词出自课程大纲的本周标题和古德曼的文章标题，休谟原文里没有（见上面的补充说明）。"
+            },
+            {
+              "en": "argument / premise / conclusion",
+              "zh": "论证 / 前提 / 结论",
+              "hint": "论证＝用理由（前提）去支持一个观点（结论）。"
+            },
+            {
+              "en": "standard form",
+              "zh": "标准形式",
+              "hint": "把前提编号写成 P1、P2……，最后写结论 C，方便一步步检查。"
+            },
+            {
+              "en": "proposition",
+              "zh": "命题",
+              "hint": "一句有真假可言的话，比如“3 × 5 = 15”“明天太阳会升起”。"
+            },
+            {
+              "en": "contradiction",
+              "zh": "矛盾",
+              "hint": "一句话同时说“是”又说“不是”，不可能为真，比如“这个三角形有四条边”。"
+            },
+            {
+              "en": "conceive / conceivable",
+              "zh": "设想 / 可设想的",
+              "hint": "能在脑子里清楚地想出来，而且不自相矛盾。"
+            },
+            {
+              "en": "intuitively certain",
+              "zh": "直观上确定的",
+              "hint": "一眼就看出是真的，不需要中间步骤。"
+            },
+            {
+              "en": "demonstratively certain (demonstration)",
+              "zh": "可证明地确定的（证明）",
+              "hint": "要一步步证明才知道，但每一步都不可能错，比如几何定理；否定结论就会矛盾。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "休谟说：人类理性（**reason**：思考、推理的能力）研究的一切对象，可以自然地分成两类，一类是观念的关系（**relations of ideas**），一类是实际的事情（**matters of fact**）（第 1 页）。这一刀切下去，后面整个论证都要用，所以后人叫它“休谟之叉”：像叉子一样分成两股，任何命题都只能落在其中一股。"
+        },
+        {
+          "type": "analogy",
+          "zh": "刷数学题：“3 × 5 是不是 30 的一半”，关上窗、不看手机也能算出来，而且答案不可能是别的。查天气：“明天下不下雨”，坐在宿舍里光靠想是想不出来的，“明天下雨”和“明天不下雨”两种情况都想得通。前一种像观念的关系，后一种像实际的事情。",
+          "limit": "天气只是用来说明“要去看世界”。休谟分类的标准不是“难不难知道”，而是“否定它会不会矛盾”。“明天太阳会升起”我们几乎百分之百有把握，它照样是实际的事情。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "两类对象的定义（第 1 页）",
+            "en": "The two kinds of objects of reason (p. 1)"
+          },
+          "items": [
+            {
+              "en": "Relations of ideas are propositions, like those of geometry, algebra and arithmetic, that are intuitively or demonstratively certain and can be discovered by thought alone, whatever exists in the world.",
+              "zh": "观念的关系：像几何、代数、算术里的命题，直观上或通过证明就能确定，单凭思考就能发现，不管世界上存在什么。"
+            },
+            {
+              "en": "Matters of fact are propositions about what exists. The contrary (the opposite) of any matter of fact is always possible: denying it involves no contradiction, and the denial can be conceived just as clearly.",
+              "zh": "实际的事情：关于世界上存在什么的命题。它的反面永远是可能的，因为反面不包含矛盾，而且能被同样清楚地设想出来。"
+            },
+            {
+              "en": "Hume's test: if denying a proposition implies a contradiction, it is a relation of ideas; if its denial can be clearly conceived, it is a matter of fact.",
+              "zh": "休谟的检验办法：否定它会矛盾，就是观念的关系；否定它也能清楚地想出来，就是实际的事情。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "休谟自己的四个例子（第 1 页）",
+            "en": "Hume's own examples (p. 1)"
+          },
+          "steps": [
+            {
+              "zh": "勾股定理：直角三角形斜边的平方，等于另外两条边的平方和。这说的是图形之间的关系，不用去量真实的三角形。",
+              "en": "The square of the hypotenuse equals the sum of the squares of the other two sides: a relation between figures."
+            },
+            {
+              "zh": "3 × 5 等于 30 的一半：左边 3 × 5 = 15，右边 30 ÷ 2 = 15，两边相等。说“3 × 5 不等于 30 的一半”就是矛盾。",
+              "en": "Three times five equals half of thirty: 3 x 5 = 15 and 30 / 2 = 15, a relation between numbers."
+            },
+            {
+              "zh": "就算自然界里从来没有过一个圆或三角形，欧几里得（**Euclid**）证明的几何真理也照样确定。所以观念的关系不依赖世界上存在什么。",
+              "en": "Even if no circle or triangle had ever existed in nature, Euclid's truths would keep their certainty."
+            },
+            {
+              "zh": "“明天太阳不会升起”：这句话和“明天太阳会升起”一样好懂，也不包含矛盾。所以想用证明去证明它是假的，是白费力气。",
+              "en": "'The sun will not rise tomorrow' is as intelligible as 'it will rise' and implies no contradiction, so no demonstration can prove it false."
+            }
+          ],
+          "answer": {
+            "zh": "数学真理否定了就矛盾，靠思考就能确定；关于世界的事实，反面永远想得出来，所以不能靠证明来确定。",
+            "en": "Mathematical truths cannot be denied without contradiction; the contrary of any matter of fact can be conceived, so no matter of fact can be demonstrated."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：实际的事情不能被证明（第 1 页）",
+            "en": "Standard form: matters of fact cannot be demonstrated (p. 1)"
+          },
+          "items": [
+            {
+              "en": "P1: All objects of human reason are either relations of ideas or matters of fact.",
+              "zh": "P1：人类理性的一切对象，要么是观念的关系，要么是实际的事情。"
+            },
+            {
+              "en": "P2: A proposition that can be proved false by demonstration contains a contradiction, so it cannot be clearly conceived.",
+              "zh": "P2：能被证明为假的命题，本身一定包含矛盾，所以不可能被清楚地设想。"
+            },
+            {
+              "en": "P3: The contrary of any matter of fact contains no contradiction and can be conceived as clearly as the fact itself, for example 'the sun will not rise tomorrow'.",
+              "zh": "P3：任何实际的事情，它的反面都不矛盾，能被和原命题一样清楚地设想，比如“明天太阳不会升起”。"
+            },
+            {
+              "en": "C: So no matter of fact can be demonstrated; our evidence for matters of fact must be of a different kind from mathematical proof.",
+              "zh": "C：所以实际的事情都不能被证明；我们相信它们的证据，一定和数学证明不是一类。"
+            }
+          ]
+        },
+        {
+          "type": "widget",
+          "name": "concept-sorter",
+          "config": {
+            "title": {
+              "zh": "休谟之叉：观念的关系还是实际的事情？",
+              "en": "Hume's fork: relation of ideas or matter of fact?"
+            },
+            "prompt": {
+              "zh": "问自己：否定这句话会不会自相矛盾？会，就是观念的关系；不会（反面想得出来），就是实际的事情。",
+              "en": "Ask: would denying this sentence be a contradiction? If yes, it is a relation of ideas; if its denial can be clearly conceived, it is a matter of fact."
+            },
+            "categories": [
+              {
+                "id": "relations-of-ideas",
+                "label": {
+                  "zh": "观念的关系",
+                  "en": "Relation of ideas"
+                }
+              },
+              {
+                "id": "matters-of-fact",
+                "label": {
+                  "zh": "实际的事情",
+                  "en": "Matter of fact"
+                }
+              }
+            ],
+            "items": [
+              {
+                "text": {
+                  "en": "Three times five is equal to half of thirty.",
+                  "zh": "3 乘 5 等于 30 的一半。"
+                },
+                "answer": "relations-of-ideas",
+                "why": {
+                  "zh": "休谟自己的例子（第 1 页）。3 × 5 = 15，30 ÷ 2 = 15；否定它就是矛盾，单凭计算就能确定。",
+                  "en": "Hume's own example (p. 1): denying it is a contradiction."
+                }
+              },
+              {
+                "text": {
+                  "en": "The sun will rise tomorrow.",
+                  "zh": "明天太阳会升起。"
+                },
+                "answer": "matters-of-fact",
+                "why": {
+                  "zh": "休谟的例子（第 1 页）。“明天太阳不会升起”一样想得通、不矛盾，所以它是实际的事情，哪怕我们几乎完全有把握。",
+                  "en": "Hume's own example (p. 1): its denial is conceivable, however sure we are."
+                }
+              },
+              {
+                "text": {
+                  "en": "The square of the hypotenuse is equal to the sum of the squares of the other two sides.",
+                  "zh": "斜边的平方等于另外两边的平方和。"
+                },
+                "answer": "relations-of-ideas",
+                "why": {
+                  "zh": "休谟自己的例子（第 1 页）：几何图形之间的关系，靠证明就能确定，不用去量真实的三角形。",
+                  "en": "Hume's own example (p. 1): a relation between figures, known by demonstration."
+                }
+              },
+              {
+                "text": {
+                  "en": "My friend is now in France.",
+                  "zh": "我的朋友现在在法国。"
+                },
+                "answer": "matters-of-fact",
+                "why": {
+                  "zh": "第 2 页的例子。朋友不在法国也完全想得通；我们是靠信件这类别的事实推出来的。",
+                  "en": "Hume's example (p. 2): its denial is conceivable; we infer it from other facts such as a letter."
+                }
+              },
+              {
+                "text": {
+                  "en": "A square has four sides.",
+                  "zh": "正方形有四条边。"
+                },
+                "answer": "relations-of-ideas",
+                "why": {
+                  "zh": "几何里的命题。说“有个正方形只有三条边”自相矛盾，所以靠思考就能确定。",
+                  "en": "Denying it is a contradiction."
+                }
+              },
+              {
+                "text": {
+                  "en": "Bread nourishes human beings.",
+                  "zh": "面包能给人提供营养。"
+                },
+                "answer": "matters-of-fact",
+                "why": {
+                  "zh": "休谟说，面包能养人、却不能养狮子，这只能从经验知道，谁也说不出最终的理由（第 3 页）。“面包不能养人”不矛盾。",
+                  "en": "Known only by experience (p. 3); its denial implies no contradiction."
+                }
+              },
+              {
+                "text": {
+                  "en": "A perfect circle exists somewhere in nature.",
+                  "zh": "自然界某处存在一个完美的圆。"
+                },
+                "answer": "matters-of-fact",
+                "why": {
+                  "zh": "这是在说世界上“有没有”某个东西。休谟说，就算自然界从来没有圆，欧几里得关于圆的定理照样确定（第 1 页）：圆的定理是观念的关系，圆存不存在是实际的事情。",
+                  "en": "Whether a circle exists is a matter of fact; the theorems about circles are relations of ideas (p. 1)."
+                }
+              },
+              {
+                "text": {
+                  "en": "2 + 2 = 4.",
+                  "zh": "2 加 2 等于 4。"
+                },
+                "answer": "relations-of-ideas",
+                "why": {
+                  "zh": "算术属于观念的关系。否定它（说 2 + 2 = 5）就是矛盾。",
+                  "en": "Arithmetic: denying it is a contradiction."
+                }
+              },
+              {
+                "text": {
+                  "en": "A piece of dry wood thrown into a fire will make the flame bigger, not put it out.",
+                  "zh": "把一块干木头扔进火里，火会更旺，而不是被压灭。"
+                },
+                "answer": "matters-of-fact",
+                "why": {
+                  "zh": "因果预测都是实际的事情。“木头扔进去火反而灭了”想得出来、不矛盾（干木头的例子在第 17 页）。",
+                  "en": "A causal prediction (Hume's example, p. 17): its denial is conceivable."
+                }
+              },
+              {
+                "text": {
+                  "en": "Snow that falls next winter will feel cold.",
+                  "zh": "明年冬天下的雪摸起来会是冷的。"
+                },
+                "answer": "matters-of-fact",
+                "why": {
+                  "zh": "休谟在第 7 页说，一个样样像雪、摸起来却像火的东西，是可以清楚设想的。所以这是实际的事情。",
+                  "en": "Hume says a snow-like body that feels like fire is clearly conceivable (p. 7)."
+                }
+              }
+            ]
+          },
+          "caption": {
+            "zh": "一句一句分类。判断标准只有一个：否定它会不会矛盾，而不是“有没有把握”。",
+            "en": "Sort each sentence. The only test is whether its denial is a contradiction, not how sure we are."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "既然实际的事情不能被证明，休谟就提出这一周的核心问题：对于超出当下感官（**senses**）和记忆（**memory**）的事实，比如明天会怎样、远方发生了什么，我们的证据到底是什么性质的（第 1 页）？他说前人很少认真研究过这个问题。在这里犯点错也有好处：怀疑能激起好奇心，打破那种不加检查的盲目自信，而这种盲目自信正是一切推理和自由探究的大敌。",
+          "en": "Hume's guiding question: what is the nature of the evidence that assures us of matters of fact beyond what our senses now show us and what we remember? Doubt is useful because it breaks unexamined, blind confidence."
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "联系测验 1 读过的笛卡尔（**René Descartes**）：笛卡尔在第一沉思里说，不管醒着还是在做梦，2 + 3 = 5、正方形不超过四条边，好像都是确定的；接着他又设想可能有一个全能者让他每次算 2 + 3 都出错，连这些也拿来怀疑。休谟则把数学这类观念的关系当作确定的，把怀疑对准实际的事情。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "观念的关系不是“我脑子里想法之间的关系”这种心理事实，而是像数学那样、单凭思考就能确定的真理。",
+              "en": "Relations of ideas are truths like those of mathematics, not facts about what is in someone's head."
+            },
+            {
+              "zh": "实际的事情不等于“没把握的事情”。休谟说它的证据可以很强，只是证据的种类和数学证明不同。",
+              "en": "Matters of fact can be very well supported; the evidence is just of a different kind."
+            },
+            {
+              "zh": "“明天太阳不会升起”是用来说明“反面可以设想”的例子。休谟并不怀疑太阳明天会升起。",
+              "en": "Hume uses the sun example to show that the contrary is conceivable; he does not doubt that the sun will rise."
+            },
+            {
+              "zh": "分类的标准是“否定它会不会矛盾”，不是“是不是常识”，也不是“是不是很确定”。",
+              "en": "The test is whether the denial is a contradiction, not whether the claim is common sense or very certain."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why, according to Hume, can no matter of fact be demonstrated?",
+            "zh": "按休谟的说法，为什么任何实际的事情都不能被证明？"
+          },
+          "options": [
+            {
+              "en": "Because our senses often deceive us.",
+              "zh": "因为感官经常欺骗我们。"
+            },
+            {
+              "en": "Because only geometry studies things that really exist.",
+              "zh": "因为只有几何研究真实存在的东西。"
+            },
+            {
+              "en": "Because matters of fact are usually false.",
+              "zh": "因为实际的事情通常是假的。"
+            },
+            {
+              "en": "Because the contrary of any matter of fact contains no contradiction and can be clearly conceived.",
+              "zh": "因为任何实际的事情，它的反面都不矛盾，能被清楚地设想。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 1 页）：能被证明为假的东西必定包含矛盾、无法清楚设想；而实际的事情的反面总能清楚设想，所以证明不了。A 不是休谟这里的理由（感官欺骗是笛卡尔式的怀疑）。C 错：实际的事情可以有很强的证据。B 正好说反了：几何的真理不依赖任何东西存在。",
+            "en": "D (p. 1). A is not Hume's reason here; C is false, since matters of fact can be well supported; B reverses Hume's point that geometry does not depend on what exists."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s02-cause-and-effect",
+      "title": {
+        "zh": "休谟：一切事实推理都依赖因果关系",
+        "en": "Hume: All Factual Inference Rests on Cause and Effect"
+      },
+      "slides": "2",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "上一节说，实际的事情（**matters of fact**：关于世界上存在什么、反面也想得通的命题）不能被证明。那我们是怎么相信那些没看见的事实的？休谟的第一步回答：一切关于实际的事情的推理（**reasoning**），似乎都建立在因果关系（**cause and effect**）上；只有靠这种关系，我们才能走出记忆和感官的范围（第 2 页）。这一节讲这个论点和它的四个例子。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "cause and effect",
+              "zh": "因果关系",
+              "hint": "一件事（原因 cause）引起另一件事（结果 effect），比如火引起热。"
+            },
+            {
+              "en": "infer / inference",
+              "zh": "推出 / 推论",
+              "hint": "从已知的事实走到另一个没有直接看到的事实。"
+            },
+            {
+              "en": "absent matter of fact",
+              "zh": "不在眼前的事实",
+              "hint": "现在感官感觉不到、记忆里也没有的事实，比如“朋友现在在法国”。"
+            },
+            {
+              "en": "collateral effects",
+              "zh": "并列结果",
+              "hint": "同一个原因产生的两个结果，比如火的光和火的热；可以从一个推出另一个。"
+            },
+            {
+              "en": "evidence",
+              "zh": "证据",
+              "hint": "用来支持一个看法的事实。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "你在宿舍听到手机“叮”一声，弹出“您的外卖已送达”，你就相信外卖已经在门口了，虽然你没看到。你靠的是一个联系：骑手放下外卖、点了“送达”，才会有这条通知；通知是这件事的结果。没有这个联系，一条通知什么也说明不了。",
+          "limit": "这个例子里我们知道外卖系统怎么运作。休谟下一步要追问的正是：这种“原因带来结果”的知识本身又是从哪来的？另外，通知也会出错；休谟这里没说因果推论一定可靠，只说这类推论都靠因果关系。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：事实推理靠因果（第 2 页）",
+            "en": "Standard form: factual inference rests on cause and effect (p. 2)"
+          },
+          "items": [
+            {
+              "en": "P1: When we believe in a matter of fact that is absent, beyond our present senses and memory, the reason we give is always some other fact.",
+              "zh": "P1：我们相信一件不在眼前的事实时，给出的理由总是另一件事实。"
+            },
+            {
+              "en": "P2: Such an inference assumes a connection between the present fact and the inferred one; without a connection, the inference would be completely unreliable.",
+              "zh": "P2：这种推论预设眼前的事实和推出的事实之间有联系；没有联系，推论就完全靠不住。"
+            },
+            {
+              "en": "P3: When we analyse all such inferences, the connection always turns out to be cause and effect, whether near or remote, direct or collateral.",
+              "zh": "P3：把这类推论一个个拆开看，联系都是因果关系，不管是近的还是远的、直接的还是并列的。"
+            },
+            {
+              "en": "C: So all reasoning about matters of fact beyond memory and the senses rests on cause and effect. To understand our evidence for such facts, we must ask how we come to know causes and effects.",
+              "zh": "C：所以一切超出记忆和感官的事实推理都建立在因果关系上。想弄清我们的证据，就得追问：因果关系是怎么知道的？"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "休谟的四个例子（第 2 页）",
+            "en": "Hume's four examples (p. 2)"
+          },
+          "steps": [
+            {
+              "zh": "朋友在法国：问一个人为什么相信朋友现在在乡下或在法国，他会给出另一件事实：收到了朋友的信，或者知道朋友之前的打算和承诺。信是朋友写的，是朋友那边的事情带来的结果。",
+              "en": "A man believes his friend is in France because of another fact: a letter from him, or the friend's earlier plans and promises."
+            },
+            {
+              "zh": "荒岛上的表：在一座荒岛上捡到一块表或别的机器，人会推断这座岛上曾经有过人。表是人做的，是人的结果。",
+              "en": "Finding a watch or another machine on a desert island, a man concludes that people were once there."
+            },
+            {
+              "zh": "黑暗中的声音：在黑暗里听到清楚的说话声，而且说得有条有理，我们就确信旁边有个人。因为这种声音是人的身体构造产生的结果。",
+              "en": "Hearing clear, sensible speech in the dark, we are sure a person is there, because such sounds are produced by human beings."
+            },
+            {
+              "zh": "火的光和热：光和热是火的两个并列结果（**collateral effects**）。看到火光，就能推出那里有热，因为两者来自同一个原因。",
+              "en": "Fire produces both heat and light, two collateral effects of one cause, so we may infer one from the other."
+            }
+          ],
+          "answer": {
+            "zh": "共同点：都是从眼前的事实推出不在眼前的事实，中间靠因果关系连着：要么从结果推原因（信、表、声音），要么从一个结果推同一原因的另一个结果（光和热）。",
+            "en": "In every case the link is cause and effect: from an effect to its cause, or from one effect to a collateral effect of the same cause."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "P2 是这一步的关键。休谟说，这类推论都默认眼前的事实和推出的事实之间有一种联系（**connexion**，这是休谟那个年代的拼法，就是 connection）。如果没有任何东西把两者绑在一起，推论就完全靠不住（第 2 页）。比如：信如果和写信人在哪里毫无关系，收到信就推不出朋友在法国。"
+        },
+        {
+          "type": "text",
+          "zh": "P3 是休谟“解剖”各种例子后得出的概括：这种联系都是因果关系。它有近有远（中间隔一步或好几步），有直接的（两件事本身就是原因和结果，比如信和写信的朋友），也有并列的（两件事是同一个原因的两个结果，比如火的光和热）。注意：P3 是靠看例子总结出来的，休谟没有严格证明它。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "休谟一路追问的链条",
+            "en": "The chain of Hume's questions"
+          },
+          "items": [
+            {
+              "en": "Reasoning about absent matters of fact rests on cause and effect (p. 2, this section).",
+              "zh": "超出感官和记忆的事实推理，靠的是因果关系（第 2 页，本节）。"
+            },
+            {
+              "en": "Knowledge of cause and effect comes entirely from experience, never a priori (pp. 2-5).",
+              "zh": "因果知识完全来自经验，不能先验（不靠经验、单凭思考）得到（第 2–5 页）。"
+            },
+            {
+              "en": "All conclusions from experience assume that the future will be like the past (pp. 7, 9).",
+              "zh": "一切从经验得出的结论，都预设了未来会像过去（第 7、9 页）。"
+            },
+            {
+              "en": "So a probable argument for that assumption would be circular (p. 7): this section's premise comes back as the first link.",
+              "zh": "所以想用或然论证（关于事实、只讲可能性的论证）去证明这个预设，就是循环论证（把要证明的结论当成了前提）（第 7 页）：本节的前提就是那里的第一环。"
+            }
+          ]
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'Not every belief about an absent fact is causal. I believe my friend is in France just because his letter says so. That is testimony, not cause and effect.' How would Hume answer?",
+            "zh": "反驳：“不是每个关于不在眼前的事实的信念都靠因果。我相信朋友在法国，只是因为信上这么写；这是别人的证词，不是因果。”休谟会怎么回答？"
+          },
+          "answer": {
+            "en": "Hume would say that testimony is itself a causal inference. The letter is an effect of my friend writing it, so I reason from an effect to its cause. If there were no connection between the letter and the fact, the inference would be completely unreliable (p. 2). So the letter is one of Hume's own examples, not a counterexample.",
+            "zh": "休谟会说，证词本身就是因果推论：信是朋友写信这件事的结果，我们是从结果推原因。要是信和事实之间没有这种联系，推论就完全靠不住（第 2 页）。所以信件恰恰是休谟自己举的例子，不是反例。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "休谟说的是：关于实际的事情、而且超出感官和记忆的推理靠因果。他没说“一切知识”都靠因果；观念的关系（数学）就不靠。",
+              "en": "Only reasoning about matters of fact beyond the senses and memory rests on cause and effect, not all knowledge."
+            },
+            {
+              "zh": "“并列结果”（collateral）不是“偶然的结果”，而是“同一个原因的另一个结果”，比如火的光和热。",
+              "en": "Collateral effects are two effects of one cause, not accidental effects."
+            },
+            {
+              "zh": "证词（信件）和人造物（表）也算因果推论：从结果推原因。",
+              "en": "Testimony and artefacts are causal inferences too: from effect to cause."
+            },
+            {
+              "zh": "这一节只说事实推理靠因果，还没说因果知识从哪来；那是下一节的事。",
+              "en": "This section does not yet say where causal knowledge comes from; the next section does."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "In Hume's example, a man finds a watch on a desert island and concludes that people were once there. What kind of inference is this?",
+            "zh": "休谟的例子：一个人在荒岛上捡到一块表，推断岛上曾经有过人。这是哪种推论？"
+          },
+          "options": [
+            {
+              "en": "A demonstration based on relations of ideas.",
+              "zh": "基于观念的关系的证明。"
+            },
+            {
+              "en": "An inference from one collateral effect to another.",
+              "zh": "从一个并列结果推另一个并列结果。"
+            },
+            {
+              "en": "An inference from an effect to its cause.",
+              "zh": "从结果推原因的推论。"
+            },
+            {
+              "en": "A memory of having seen people on the island.",
+              "zh": "对见过岛上有人的回忆。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 2 页）：表是人做的，是人的结果，从结果推出原因（曾经有人）。A 错：这是实际的事情，不是数学证明。B 说的是火的光和热那种情况，同一原因的两个结果。D 错：他没看到人，正是要超出记忆和感官去推。",
+            "en": "C (p. 2): the watch is an effect of human makers. A is wrong because this is a matter of fact; B describes heat and light from fire; D is wrong because the man saw no people."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s03-not-a-priori",
+      "title": {
+        "zh": "休谟：因果知识不是先验的：亚当与台球",
+        "en": "Hume: Causes Are Known Only by Experience: Adam and the Billiard Balls"
+      },
+      "slides": "2-5",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "知道了事实推理靠因果，下一个问题就是：因果关系是怎么知道的？休谟给出一个总论点，并说它没有任何例外：因果知识从来不是先验（**a priori**：不靠经验、单凭思考）得到的，而完全来自经验（**experience**）。我们发现某两类东西总是一起出现，也就是恒常结合（**constant conjunction**），才知道它们是因果（第 2 页）。",
+          "en": "Hume's thesis: knowledge of cause and effect is never reached a priori; it comes only from experience: we learn it when we find objects constantly conjoined (p. 2)."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "a priori",
+              "zh": "先验的",
+              "hint": "不靠观察和经验、单凭思考就能知道。"
+            },
+            {
+              "en": "experience",
+              "zh": "经验",
+              "hint": "过去观察到的具体事情和它们怎样一起出现。"
+            },
+            {
+              "en": "constant conjunction",
+              "zh": "恒常结合",
+              "hint": "两类东西每次都一起出现，比如火和热。休谟说因果知识就来自对它的经验。"
+            },
+            {
+              "en": "sensible qualities",
+              "zh": "可感性质",
+              "hint": "感官能感觉到的性质，比如水的流动、透明，火的光和暖。"
+            },
+            {
+              "en": "ultimate causes",
+              "zh": "终极原因",
+              "hint": "自然现象最终的原因。休谟说，科学最多追到弹性、重力这类少数一般原理；这些原理本身的原因，人类找不到。"
+            },
+            {
+              "en": "mixed mathematics",
+              "zh": "混合数学",
+              "hint": "用在自然上的数学，比如计算机器的力；它只能帮经验发现规律、计算规律的效果，不能代替经验。"
+            },
+            {
+              "en": "custom",
+              "zh": "习惯",
+              "hint": "重复多了形成的心理倾向。第 5 节会详细讲，这里先出场。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "打游戏时第一次捡到一瓶没见过的药水：紫色、冒泡、闻着有点甜。光看外观，你能知道它是加血、加速还是有毒吗？不能。只有喝过一次，或者看别人喝过，你才知道它的效果。休谟说，自然界里的每样东西，对一个毫无经验的人来说，都像这瓶新药水。",
+          "limit": "游戏里药水的效果写在设计师的代码里，查攻略就能知道“为什么”。休谟说，自然界的终极原因对谁都是隐藏的；而且攻略本身也来自别人的经验。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证一的标准形式（P＝前提，C＝结论；本站重构，P1 是隐含前提）：亚当（第 2–3 页）",
+            "en": "Standard form, argument 1 (our reconstruction; P1 is implied): Adam (pp. 2-3)"
+          },
+          "items": [
+            {
+              "en": "P1: If causes and effects could be known a priori, a person with perfect reason could work out the effects of an object that is entirely new to him just by examining its sensible qualities.",
+              "zh": "P1：如果因果能先验地知道，那么一个理性完美的人，只要检查一个全新东西的可感性质，就能推出它的效果。"
+            },
+            {
+              "en": "P2: No one can do this. Adam, with perfect reason from the start, could not have known just by looking at water's fluidity and transparency that water could suffocate him, or from fire's light and warmth that fire could burn him.",
+              "zh": "P2：没有人做得到。亚当一开始理性就完美，却不能从水的流动、透明看出水能让他窒息，也不能从火的光和暖看出火能把他烧掉。"
+            },
+            {
+              "en": "P3: Everyone also admits that we learn only by experience the effects of unfamiliar objects, of unusual events and of things with a hidden inner structure.",
+              "zh": "P3：大家也都承认，陌生的东西、不寻常的事件、内部结构看不见的东西，它们的效果只能靠经验知道。"
+            },
+            {
+              "en": "C: So knowledge of cause and effect is never a priori. It comes only from experience, when we observe that objects are constantly conjoined.",
+              "zh": "C：所以因果知识从来不是先验的，完全来自经验：我们发现东西恒常结合，才知道它们是因果。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "人人都承认要靠经验的情况（第 2–3 页）",
+            "en": "Cases everyone admits are known by experience (pp. 2-3)"
+          },
+          "steps": [
+            {
+              "zh": "亚当（**Adam**）：假设他一来到世上理性就完美。他看着水：会流、透明，可单凭这些看不出水能让他窒息；看着火：发光、温暖，也看不出火会把他烧掉。",
+              "en": "Adam, with perfect reason, could not tell from water's appearance that it could suffocate him, or from fire's appearance that it could burn him."
+            },
+            {
+              "zh": "两块光滑的大理石：给一个不懂自然科学的人看，他想不到这两块石头贴在一起后，沿直线拉开要很大的力，横着推却很容易错开。",
+              "en": "Two smooth pieces of marble stick together: hard to pull straight apart, easy to slide sideways. No one could foresee this without experience."
+            },
+            {
+              "zh": "火药爆炸、磁石（**loadstone**，天然磁铁）吸铁：这些事和平常的自然现象很不一样，谁也不会以为能先验地发现它们。",
+              "en": "The explosion of gunpowder and the attraction of a loadstone (a natural magnet) are obviously learned by experience."
+            },
+            {
+              "zh": "面包和牛奶：谁能说出它们为什么能养活人，却养不活狮子或老虎？这类效果取决于看不见的内部结构，大家都承认只能靠经验知道。",
+              "en": "No one can give the ultimate reason why bread or milk feeds a man but not a lion or a tiger; effects of hidden structure are learned by experience."
+            }
+          ],
+          "answer": {
+            "zh": "这几类情况大家都同意要靠经验。休谟要说的是：所有情况其实都一样，只是熟悉的情况让我们误以为能先验知道。",
+            "en": "Everyone admits that experience is needed in these cases; Hume argues that it is needed in every case."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "可是对从小就熟悉的事，我们很容易以为光靠理性就能知道。比如一个台球（**billiard ball**）撞上另一个，第二个会动：我们以为自己就算突然被带到这个世界上，也能一下子推出来（第 3 页）。休谟说，这是习惯（**custom**）在起作用：习惯最强的地方，不但掩盖了我们本来的无知，连它自己也藏起来了，让人感觉不到它的存在。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证二的标准形式：结果和原因是两件事（第 3–4 页）",
+            "en": "Standard form, argument 2: the effect is a distinct event (pp. 3-4)"
+          },
+          "items": [
+            {
+              "en": "P1: To predict an effect without consulting past observation, the mind would have to invent some event and assign it to the object as its effect.",
+              "zh": "P1：不看过去的观察去预测结果，心灵只能自己编一个事件，把它算作这个东西的结果。"
+            },
+            {
+              "en": "P2: The effect is a completely different event from the cause, so no examination of the cause can find the effect inside it.",
+              "zh": "P2：结果和原因是完全不同的两件事，所以怎么检查原因，也在里面找不到结果。"
+            },
+            {
+              "en": "P3: So any effect invented a priori is arbitrary, and even after the right effect is suggested, many other effects seem just as consistent and conceivable.",
+              "zh": "P3：所以先验编出来的结果是任意的；就算有人提出了正确的结果，别的结果也显得一样不矛盾、一样想得通。"
+            },
+            {
+              "en": "P4: A priori reasoning gives no ground for preferring one equally conceivable outcome to the others.",
+              "zh": "P4：先验推理找不到任何理由，在同样想得通的几个结果里偏向其中一个。"
+            },
+            {
+              "en": "C: So without observation and experience we cannot infer any cause or effect, not even in familiar cases such as billiard balls.",
+              "zh": "C：所以离开观察和经验，我们推不出任何原因或结果，连台球这种熟悉的情况也一样。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "台球和石头（第 3–4 页）",
+            "en": "The billiard balls and the stone (pp. 3-4)"
+          },
+          "steps": [
+            {
+              "zh": "假设你从没见过任何东西互相碰撞，现在要你不靠经验，预测一个台球撞上另一个会怎样。你只能自己“编”一个结果出来。",
+              "en": "Without experience, the mind can only invent some effect for the cause."
+            },
+            {
+              "zh": "第二个球动，和第一个球动，是两件不同的事。仔细检查第一个球的运动，里面找不到“第二个球会动”的任何线索。",
+              "en": "The second ball's motion is a separate event from the first ball's motion; nothing in the first hints at the second."
+            },
+            {
+              "zh": "石头：把一块石头或金属举到空中再松手，它马上往下掉。可如果先验地看，这个情况里没有任何东西让人想到“向下”，而不是“向上”或别的方向。",
+              "en": "A stone released in the air falls at once, but a priori nothing in the situation suggests downward rather than upward motion."
+            },
+            {
+              "zh": "就算有人碰巧想到“第二个球会动”，别的结果也一样想得通：两个球都停住不动；第一个球沿直线弹回来；第一个球从第二个球上往任意方向弹开。",
+              "en": "Even if motion in the second ball is suggested, other outcomes are just as conceivable: both balls at rest, the first ball rebounding, or flying off in any direction."
+            },
+            {
+              "zh": "这些设想都不矛盾、都想得通，先验推理找不到理由偏向其中一个。所以在理性看来，连原因和结果之间的联系本身也是任意的。",
+              "en": "All of these are consistent and conceivable, so a priori reasoning cannot prefer one; even the connection itself looks arbitrary."
+            }
+          ],
+          "answer": {
+            "zh": "结果和原因是两件不同的事，所以不能在原因里“看出”结果；要知道哪个结果会发生，只能靠观察和经验。",
+            "en": "Since an effect is a different event from its cause, only observation and experience can tell us which effect will follow."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "所以休谟说，理性又谦虚的哲学家，从不声称找到了任何自然现象的终极原因（**ultimate cause**）（第 4 页）。人类理性最多能把许多具体现象归到少数几个一般原因下面；弹性、重力、物体各部分的凝聚力、碰撞传递运动，大概就是我们在自然中能找到的最后的原理。这些一般原因本身的原因，人类永远找不到。他还说，最完美的自然哲学（**natural philosophy**，大致就是今天说的自然科学）也只是把我们的无知往后推一点。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "数学也帮不上忙：混合数学（第 4–5 页）",
+            "en": "Mathematics cannot help: mixed mathematics (pp. 4-5)"
+          },
+          "steps": [
+            {
+              "zh": "混合数学（**mixed mathematics**）就是用在自然上的数学。它总是先假定自然已经有某些规律。",
+              "en": "Mixed mathematics always assumes that nature has certain laws."
+            },
+            {
+              "zh": "数学的作用只有两种：帮经验去发现这些规律；或者在涉及精确的距离和数量时，算出规律在具体情况下的效果。",
+              "en": "Abstract reasoning only helps experience find these laws, or calculates their effects where exact distance and quantity matter."
+            },
+            {
+              "zh": "例子：有一条运动定律，说运动物体的力取决于它的物质的量和它的速度。所以只要用机器把速度提上去，很小的力也能推动很大的障碍。几何帮我们算出机器各部分该多大。",
+              "en": "A law of motion says that a moving body's force depends on its quantity of matter and its velocity, so a small force made fast enough can move a great weight; geometry helps size the parts of the machine."
+            },
+            {
+              "zh": "可这条定律本身是经验发现的，世上所有抽象推理加起来也推不出它。",
+              "en": "But the law itself was discovered by experience."
+            },
+            {
+              "zh": "同样，一个人如果事先不了解热和冷的作用，单靠推理想不到晶体是热的结果、冰是冷的结果。",
+              "en": "No one could reason out that crystal is an effect of heat and ice an effect of cold without first knowing how these qualities work."
+            }
+          ],
+          "answer": {
+            "zh": "数学只能帮经验发现因果规律、计算规律在具体情况下的效果，不能代替经验去发现它们。",
+            "en": "Mathematics can only help experience find causal laws and work out their effects; it cannot discover them on its own."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'A clever enough person who knows the laws of physics could predict a priori that the second billiard ball will move.' How would Hume reply?",
+            "zh": "反驳：“一个足够聪明、懂物理定律的人，可以先验地预测第二个台球会动。”休谟会怎么回答？"
+          },
+          "answer": {
+            "en": "Hume would reply that the laws of physics were themselves discovered by experience; mathematics only helps experience find them and apply them (pp. 4-5). Without any past observation, the motion of the second ball is a distinct event that cannot be found in the motion of the first, and other outcomes, such as both balls stopping, are just as conceivable (pp. 3-4). The case only seems a priori because custom is so strong that it hides itself (p. 3).",
+            "zh": "休谟会说：物理定律本身就是经验发现的，数学只是帮经验发现、应用它们（第 4–5 页）。如果真的没有任何过去的观察，第二个球的运动是另一件事，从第一个球的运动里找不出来；两个球都停住之类的结果也一样想得通（第 3–4 页）。我们觉得能先验知道，只是因为习惯太强，把自己藏起来了（第 3 页）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "休谟没说台球不会互相推动，也没说因果不存在。他说的是：单靠理性发现不了因果，只能靠经验。",
+              "en": "Hume does not deny that causes exist; he denies that reason alone can discover them."
+            },
+            {
+              "zh": "a priori 的意思是“不靠经验、单凭思考”，不要理解成“时间上更早”或“很早就知道”。",
+              "en": "A priori means independent of experience, not earlier in time."
+            },
+            {
+              "zh": "亚当的例子说的是“完美的理性 + 零经验”，不是说亚当笨。",
+              "en": "Adam has perfect reason but no experience; the point is not that he is stupid."
+            },
+            {
+              "zh": "第 4 页说终极原因找不到，不是说科学没用：科学仍然能把许多现象归到少数一般原因下面。",
+              "en": "Ultimate causes are hidden, but science can still reduce many effects to a few general causes."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does Hume's example of Adam show?",
+            "zh": "休谟举亚当的例子，是想说明什么？"
+          },
+          "options": [
+            {
+              "en": "That perfect reason can discover the effects of water and fire without experience.",
+              "zh": "完美的理性不靠经验也能发现水和火的效果。"
+            },
+            {
+              "en": "That water and fire have no causal powers.",
+              "zh": "水和火没有任何因果力量。"
+            },
+            {
+              "en": "That Adam's senses were unreliable.",
+              "zh": "亚当的感官不可靠。"
+            },
+            {
+              "en": "That even perfect reason, without experience, cannot discover an object's effects from its sensible qualities.",
+              "zh": "就算理性完美，没有经验也不能从可感性质看出一个东西的效果。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 2 页）：亚当一开始理性就完美，却仍然不能从水的流动、透明推出它能让人窒息，也不能从火的光和暖推出它会烧人。A 正好说反了。C 错：问题不在感官，而在可感性质里看不出结果。B 错：休谟不否认水和火有效果，只说要靠经验才知道。",
+            "en": "D (p. 2). A reverses the point; C is wrong because the problem is not the senses; B is wrong because Hume does not deny that water and fire have effects."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s04-the-missing-medium",
+      "title": {
+        "zh": "休谟：第二部分的问题：从“一直如此”到“将会如此”",
+        "en": "Hume: Part II's Question: From 'Has Been' to 'Will Be'"
+      },
+      "slides": "5-7",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 4 节第二部分（**Part II**）一开头，休谟像剥洋葱一样连问三层（第 5 页）：每答完一层，又冒出一个同样难的新问题。他说，爱摆架子的哲学家最怕被好奇的人一路追问，最后被逼进两难（**dilemma**：两条路都走不通的处境）。最好的办法是谦虚：自己先把困难说出来，不等别人来驳。这样，连我们的无知也能变成一种优点。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "三层追问（第 5 页）",
+            "en": "Three questions, one inside another (p. 5)"
+          },
+          "items": [
+            {
+              "en": "What kind of thing is our reasoning about matters of fact? It rests on cause and effect.",
+              "zh": "关于实际的事情的推理，本质是什么？靠因果关系。"
+            },
+            {
+              "en": "What does our reasoning about cause and effect rest on? In one word, experience.",
+              "zh": "关于因果的推理，基础是什么？一个词：经验。"
+            },
+            {
+              "en": "And what do our conclusions from experience rest on? This new question may be harder still.",
+              "zh": "从经验得出的结论，基础又是什么？这个新问题可能更难。"
+            },
+            {
+              "en": "Hume's answer is negative: these conclusions do not rest on any reasoning or any work of the understanding.",
+              "zh": "休谟的回答是否定的：这些结论不靠任何推理，也不靠任何知性活动。"
+            }
+          ]
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "understanding",
+              "zh": "知性",
+              "hint": "人思考、推理的能力；“知性的活动”就是推理。"
+            },
+            {
+              "en": "sensible qualities",
+              "zh": "可感性质",
+              "hint": "感官能感觉到的性质：颜色、重量、软硬。"
+            },
+            {
+              "en": "secret powers",
+              "zh": "隐秘力量",
+              "hint": "东西产生效果所靠的、看不见的力量，比如面包能养人的能力。"
+            },
+            {
+              "en": "intuitive",
+              "zh": "直观的",
+              "hint": "一眼就看出来，不需要中间步骤。"
+            },
+            {
+              "en": "medium",
+              "zh": "中介",
+              "hint": "把两个命题连起来的中间一步（中间命题）；有了它，一个推论才算推理。"
+            },
+            {
+              "en": "burden of proof",
+              "zh": "举证责任",
+              "hint": "谁提出主张，谁负责拿出证据。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "休谟说，他在这一节只做一件“容易”的事：给一个否定的回答。他的论点是：就算我们已经有了因果的经验，从这些经验得出的结论，也不是靠推理（**reasoning**）或任何知性（**understanding**）活动得出的（第 5–6 页）。注意：他没说这些结论是错的，只说它们不是推理推出来的。"
+        },
+        {
+          "type": "analogy",
+          "zh": "你在同一家奶茶店买了 50 次同一款奶茶，每次都好喝。今天这杯看起来一模一样：同样的杯子、颜色、logo。你毫不犹豫地相信它也好喝。可你看到的只是外表，看不到配方和原料；你的 50 次经验，也只关于那 50 杯、那 50 天。凭什么把它推到今天这一杯？",
+          "limit": "奶茶的配方原则上可以去查；休谟说自然界的隐秘力量谁也看不到。而且“查配方”本身也要靠经验，问题只是往后推了一步。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "面包：看得见的性质，看不见的力量（第 6 页）",
+            "en": "Bread: sensible qualities and secret powers (p. 6)"
+          },
+          "steps": [
+            {
+              "zh": "感官告诉我们面包的颜色、重量和软硬，这是可感性质（**sensible qualities**）。",
+              "en": "Our senses tell us bread's colour, weight and consistence: its sensible qualities."
+            },
+            {
+              "zh": "可是让面包能养活人的那种性质，感官和理性都告诉不了我们，这是隐秘力量（**secret powers**）。同样，我们看得到物体在运动，却完全想象不出让它一直动下去的那种力。",
+              "en": "Neither sense nor reason shows us what makes bread nourishing: its secret powers. Likewise we see bodies move but cannot conceive the force that keeps them moving."
+            },
+            {
+              "zh": "尽管如此，我们看到相似的可感性质，总会假定它们有相似的隐秘力量。一块颜色、软硬都像面包的东西摆在面前，我们毫不犹豫地吃下去，并且确信会得到同样的营养。",
+              "en": "Yet we always presume that like sensible qualities have like secret powers, and we confidently expect bread-like food to nourish us."
+            },
+            {
+              "zh": "大家都承认，可感性质和隐秘力量之间没有任何已知的联系。",
+              "en": "Everyone admits that there is no known connection between sensible qualities and secret powers."
+            },
+            {
+              "zh": "而过去的经验只能直接、确定地告诉我们：被观察过的那些东西、在被观察的那段时间里是怎样的。凭什么把它推广到将来，推广到别的只是看起来相似的东西上？休谟说，这正是他要追问的主要问题。",
+              "en": "Past experience informs us directly only about the objects and the times it observed. Why should it be extended to future times and other objects? This is Hume's main question."
+            }
+          ],
+          "answer": {
+            "zh": "“以前吃的面包养了我”推不出“别的面包将来也会养我”。这中间有一步，需要解释。",
+            "en": "'The bread I ate nourished me' does not by itself give 'other bread will nourish me'; there is a step here that needs explaining."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "两个不同的命题（第 6 页，意译）",
+            "en": "Two different propositions (p. 6, paraphrased)"
+          },
+          "items": [
+            {
+              "en": "Proposition 1 (the past): Objects of this kind have always been followed by this effect.",
+              "zh": "命题 1（过去）：这类东西过去一直伴随着这种结果。"
+            },
+            {
+              "en": "Proposition 2 (the future): Other objects that look similar will be followed by similar effects.",
+              "zh": "命题 2（将来）：看起来相似的其他东西，将来也会伴随相似的结果。"
+            },
+            {
+              "en": "Hume grants that we always infer the second from the first, but the two propositions are not the same, and the step between them is not intuitive.",
+              "zh": "休谟承认我们总是从命题 1 推出命题 2，但两者不是一回事，中间这一步也不是直观的。"
+            },
+            {
+              "en": "If the step is reasoning, it needs a medium, a connecting proposition, and whoever claims that this medium exists must produce it.",
+              "zh": "如果这一步是推理，就需要一个中介（中间命题）；谁说有这个中介，谁就得把它拿出来。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：缺少中介（第 6–7 页）",
+            "en": "Standard form: the missing medium (pp. 6-7)"
+          },
+          "items": [
+            {
+              "en": "P1: Our senses show us only sensible qualities, such as bread's colour, weight and consistence, never the secret powers on which its effects depend.",
+              "zh": "P1：感官只告诉我们可感性质（面包的颜色、重量、软硬），从不告诉我们产生效果的隐秘力量。"
+            },
+            {
+              "en": "P2: There is no known connection between sensible qualities and secret powers.",
+              "zh": "P2：可感性质和隐秘力量之间没有已知的联系。"
+            },
+            {
+              "en": "P3: Past experience directly informs us only about the particular objects and times we observed.",
+              "zh": "P3：过去的经验只直接告诉我们被观察过的那些东西、那段时间。"
+            },
+            {
+              "en": "P4: Yet we always move from 'objects like this have always had this effect' to 'similar-looking objects will have similar effects'.",
+              "zh": "P4：可我们总是从“这类东西一直有这种结果”走到“看起来相似的东西将来也会有相似的结果”。"
+            },
+            {
+              "en": "P5: These two propositions are different, and the step between them is not intuitive; if it is reasoning, it needs a connecting medium.",
+              "zh": "P5：这两个命题不同，中间一步也不直观；如果它是推理，就需要一个中介。"
+            },
+            {
+              "en": "C: So whoever says that this step is a piece of reasoning must produce the medium, and Hume cannot find one.",
+              "zh": "C：所以谁说这一步是推理，谁就得拿出中介；休谟自己找不到。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "看清休谟让了哪些步：他说，如果你愿意，可以承认命题 2 能正当地从命题 1 推出来；他也知道事实上大家总是这样推（第 6 页）。他追问的只是：如果你坚持说这是一连串推理得出的，请把那个推理拿出来。中介是什么，他说自己想不出来；证明它存在的举证责任（**burden of proof**），在说它存在的人身上（第 7 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "休谟也知道，“我找不到”不等于“不存在”。他说，如果许多聪明的哲学家都去找，始终没人找到中间那一步，这个否定的论证最后会很有说服力；可问题还新，读者未必信得过自己的眼力（第 7 页）。所以他决定做一件更难的事：把人类知识的所有分支列出来，逐一说明哪一种都提供不了这个论证。这就是下一节的“核心两难”。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is Hume saying that we should stop expecting bread to nourish us? Explain what his question in Part II really is.",
+            "zh": "休谟是在说我们不该再相信面包能养人吗？说清楚他在第二部分真正问的是什么。"
+          },
+          "answer": {
+            "en": "No. Hume grants that we always make this inference, and he even allows that it may be justly drawn (p. 6). His question is about its foundation: if the step from past cases to future cases is a piece of reasoning, someone must show the connecting medium. He thinks no one can, so the step must have some other source.",
+            "zh": "不是。休谟承认我们总在这样推，甚至愿意承认这个推论可以是正当的（第 6 页）。他问的是它的基础：如果从过去的情况到将来的情况这一步是推理，就得有人拿出中间那一步。他认为谁也拿不出来，所以这一步一定另有来源（第 5 节会说是习惯）。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "休谟的否定回答是：从经验得出的结论不是推理得出的。不是说结论是假的，也不是说我们不该这样推。",
+              "en": "The negative answer says these conclusions are not produced by reasoning, not that they are false."
+            },
+            {
+              "zh": "“中介”（medium）指缺失的中间命题，不是什么物质的东西，也不是“中间人”。",
+              "en": "The medium is a missing connecting proposition, not a physical thing."
+            },
+            {
+              "zh": "颜色、重量、软硬是可感性质；“能养人”是看不到的隐秘力量。别把“能养人”当成可感性质。",
+              "en": "Nourishing power is a secret power, not a sensible quality."
+            },
+            {
+              "zh": "经验只覆盖看过的那些东西和那段时间；难题在于把它推广到将来和别的东西上。",
+              "en": "The problem is extending experience beyond the objects and times observed."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does Hume mean when he says that a 'medium' is required?",
+            "zh": "休谟说需要一个“medium”，是什么意思？"
+          },
+          "options": [
+            {
+              "en": "A connecting proposition that would turn the step from past to future into a piece of reasoning.",
+              "zh": "一个中间命题，有了它，从过去到将来这一步才算推理。"
+            },
+            {
+              "en": "A person who reports to us what happened in the past.",
+              "zh": "一个向我们转述过去发生了什么的人。"
+            },
+            {
+              "en": "A physical substance through which causes act on their effects.",
+              "zh": "原因借以作用于结果的某种物质介质。"
+            },
+            {
+              "en": "A middle position between scepticism and dogmatism.",
+              "zh": "怀疑论和独断论之间的中间立场。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 6–7 页）：从“过去一直这样”到“将来也会这样”不是直观的；要算推理，就得有一个中间命题把两者连起来。B 把 medium 理解成“中间人”，C 理解成物理介质，D 是望文生义。休谟说他找不到这个中介，谁说它存在谁就得拿出来。",
+            "en": "A (pp. 6-7). B, C and D misread the word; Hume means a connecting proposition that he cannot find."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s05-demonstrative-or-probable",
+      "title": {
+        "zh": "休谟：核心两难：既非证明推理，也非或然推理",
+        "en": "Hume: The Core Dilemma: Neither Demonstrative nor Probable"
+      },
+      "slides": "7, 9",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节是休谟论证的核心，要重点掌握。休谟把一切推理分成两种（第 7 页）：证明性推理（**demonstrative reasoning**），关于观念的关系；道德推理（**moral reasoning**），关于实际的事情和存在。这里的 moral 不是“道德伦理”，而是“或然的”（**probable**）：不能百分之百确定、只讲可能性的推理。这正好对应第一节的“休谟之叉”。",
+          "en": "Hume divides all reasoning into demonstrative reasoning, about relations of ideas, and moral or probable reasoning, about matters of fact and existence (p. 7)."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "relations of ideas / matters of fact",
+              "zh": "观念的关系 / 实际的事情",
+              "hint": "前者否定了就矛盾（如数学）；后者的反面总想得通（如“明天太阳会升起”）。见第一节。"
+            },
+            {
+              "en": "demonstrative reasoning",
+              "zh": "证明性推理",
+              "hint": "关于观念的关系的推理；结论被否定就会矛盾，比如几何证明。"
+            },
+            {
+              "en": "moral (probable) reasoning",
+              "zh": "道德推理（或然推理）",
+              "hint": "关于实际的事情的推理，靠因果和经验；moral 在这里不是伦理的意思。"
+            },
+            {
+              "en": "a priori / conceivable",
+              "zh": "先验的 / 可设想的",
+              "hint": "先验＝不靠经验、单凭思考；可设想＝能清楚地想出来、不自相矛盾。"
+            },
+            {
+              "en": "dilemma",
+              "zh": "两难论证",
+              "hint": "先说“只有 A、B 两种可能”，再说明两种都不行。"
+            },
+            {
+              "en": "exhaustive",
+              "zh": "穷尽的",
+              "hint": "列出的选项包括了全部可能，没有第三种。"
+            },
+            {
+              "en": "course of nature",
+              "zh": "自然进程",
+              "hint": "自然界的事情一贯发生的方式。"
+            },
+            {
+              "en": "begging the question / arguing in a circle",
+              "zh": "窃取论题 / 循环论证",
+              "hint": "把要证明的结论偷偷当作前提来用。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：核心两难（第 7、9 页）",
+            "en": "Standard form: the core dilemma (pp. 7, 9)"
+          },
+          "items": [
+            {
+              "en": "P1: All reasoning is either demonstrative, concerning relations of ideas, or moral (probable), concerning matters of fact and existence.",
+              "zh": "P1：一切推理要么是证明性的（关于观念的关系），要么是道德的、或然的（关于实际的事情和存在）。"
+            },
+            {
+              "en": "P2: No demonstrative argument can prove that the future will resemble the past, because a change in the course of nature involves no contradiction, and nothing that can be clearly conceived can be proved false a priori.",
+              "zh": "P2：证明推理证明不了“未来会像过去”，因为自然进程改变不包含矛盾，而能清楚设想的东西都不能先验地证明为假。"
+            },
+            {
+              "en": "P3: Every probable argument rests on cause and effect; knowledge of cause and effect comes only from experience; and every conclusion from experience assumes that the future will be like the past.",
+              "zh": "P3：或然论证都靠因果；因果知识只来自经验；而一切从经验得出的结论都预设了未来会像过去。"
+            },
+            {
+              "en": "P4: So a probable argument for that assumption would go in a circle: it would take for granted the very point in question.",
+              "zh": "P4：所以用或然论证去证明这个预设，就是兜圈子：把要证明的东西当成了已知。"
+            },
+            {
+              "en": "C: So no reasoning of either kind can show that the future will resemble the past; our conclusions from experience are not founded on reasoning.",
+              "zh": "C：所以两种推理都证明不了未来会像过去；我们从经验得出的结论不是建立在推理上的。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "第一角：证明推理不行（第 7 页）",
+            "en": "Horn 1: demonstration fails (p. 7)"
+          },
+          "steps": [
+            {
+              "zh": "要用证明推理证明“未来会像过去”，就得说明“自然进程改变”包含矛盾。",
+              "en": "To demonstrate that the future will be like the past, we would have to show that a change in nature's course is a contradiction."
+            },
+            {
+              "zh": "可休谟问：我难道不能清楚地设想，从云里落下一种东西，各方面都像雪，尝起来却是咸的，摸起来像火一样烫？",
+              "en": "But we can clearly conceive a body falling from the clouds that is like snow in every other way, yet tastes of salt or feels like fire."
+            },
+            {
+              "zh": "再如：所有的树在十二月、一月繁茂开花，到五月、六月反而凋零。这句话也完全好懂。",
+              "en": "We can also fully understand the claim that all trees might bloom in midwinter (December, January) and wither in early summer (May, June)."
+            },
+            {
+              "zh": "凡是能被理解、能被清楚设想的，都不包含矛盾，所以任何证明、任何先验的抽象推理都不能证明它是假的。",
+              "en": "Whatever is intelligible and clearly conceivable contains no contradiction, so no demonstration and no a priori reasoning can ever prove it false."
+            }
+          ],
+          "answer": {
+            "zh": "自然改变是可以设想的，所以“未来像过去”不能被证明。注意：这一角失败的原因是“反面可设想”，不是循环。",
+            "en": "A change in nature is conceivable, so the resemblance of the future to the past cannot be demonstrated. This horn fails because the contrary is conceivable, not because of circularity."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "第二角：或然推理也不行（第 7 页）。如果有论证让我们信任过去的经验、把它当作判断未来的标准，这种论证只能是或然的。可休谟前面已经说过三件事：一切关于存在的论证都靠因果（第 2 页）；因果知识完全来自经验（第 2–5 页）；而一切从经验得出的结论，都以“未来会和过去一致”为前提。所以用或然论证去证明这个前提，就是在兜圈子。"
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "第二角为什么是循环（第 7 页）",
+            "en": "Why horn 2 is circular (p. 7)"
+          },
+          "items": [
+            {
+              "en": "We want to prove that the future will resemble the past.",
+              "zh": "要证明的：未来会像过去。"
+            },
+            {
+              "en": "A probable argument rests on cause and effect.",
+              "zh": "或然论证靠的是因果关系。"
+            },
+            {
+              "en": "Cause and effect is known only from experience.",
+              "zh": "因果关系只能从经验知道。"
+            },
+            {
+              "en": "Every conclusion from experience already assumes that the future will resemble the past.",
+              "zh": "而从经验得出的任何结论，本身就预设了未来会像过去。"
+            },
+            {
+              "en": "So the argument assumes what it was supposed to prove: it goes in a circle.",
+              "zh": "所以这个论证预设了它要证明的东西：兜了一个圈。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "第 9 页休谟换个说法又讲了一遍：说这个推论是“经验的”（**experimental**），就是窃取论题，因为“all inferences from experience suppose, as their foundation, that the future will resemble the past”（第 9 页）。只要怀疑自然进程可能改变、过去可能不再是将来的规则，一切经验就都没用了。所以事情过去再有规律，单凭这一点、不加新的论证，也证明不了将来还会这样。",
+          "en": "Restated on p. 9: calling the inference 'experimental' begs the question, because \"all inferences from experience suppose, as their foundation, that the future will resemble the past\" (p. 9). However regular the past has been, that alone does not prove that the future will be the same."
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：后来的哲学家把“未来会像过去”“自然进程不会改变”这个预设叫作自然齐一性原则（**the principle of the uniformity of nature**），把这一节的两难论证叫作“归纳问题”。这两个说法休谟原文里都没有。考试可以用，但最好同时写出休谟自己的说法：the future will resemble the past。",
+          "en": "Outside the reading: later philosophers call this assumption the principle of the uniformity of nature, and this dilemma the problem of induction. Neither phrase is in Hume's text."
+        },
+        {
+          "type": "analogy",
+          "zh": "网购时你担心店里的好评是刷的。客服说：“放心，我们的好评都是真的。不信你看，好评里好多人都说‘这家好评是真的’。”这就是循环：用好评去证明好评可信。休谟说，用经验去证明“经验可以指导未来”，就是这样兜圈子。",
+          "limit": "刷好评的例子里，你还能去别处查证（问朋友、看第三方评测）。休谟的难题更彻底：任何“去别处查证”的办法本身也从经验出发，又要用到同一个预设。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "A student says: 'Reasoning from experience has always worked in the past, so it will probably keep working in the future.' Does this answer Hume?",
+            "zh": "有同学说：“从经验推理在过去一直管用，所以将来很可能也管用。”这能回答休谟吗？"
+          },
+          "answer": {
+            "en": "No. This is itself a probable argument from past experience to the future. It works only if we already assume that the future will resemble the past, which is exactly what it tries to prove, so it goes in a circle (p. 7). Adding 'probably' does not help, because probable reasoning is the second horn of Hume's dilemma.",
+            "zh": "不能。这句话本身就是一个从过去经验推到将来的或然论证。它要成立，就得先假定“未来会像过去”，而这正是它想证明的东西，所以是循环（第 7 页）。加上“很可能”也没用：或然推理正是休谟两难的第二角，已经被排除了。"
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "How could a critic attack Hume's dilemma? Name one premise to question and say how Hume might defend it.",
+            "zh": "批评者可以怎样攻击休谟的两难？挑一个前提来质疑，并说说休谟可能怎么辩护。"
+          },
+          "answer": {
+            "en": "A critic could question P1, the claim that demonstrative and probable reasoning are the only kinds; perhaps there is a third kind of support. Or a critic could question the step in P2 from 'conceivable' to 'not provably false': perhaps salty snow is conceivable but impossible, given the laws of chemistry. Hume could reply that we know such laws only through experience, so appealing to them uses the very inference in question.",
+            "zh": "可以质疑 P1：真的只有证明推理和或然推理两种吗？也许还有第三种支持方式。也可以质疑 P2：咸的雪也许想得出来，但按化学规律其实不可能。休谟可以回答：化学规律本身也是靠经验知道的，诉诸它又用到了被质疑的那种推论。考试时要写清你攻击的是哪个前提。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "循环指的是“用或然论证去证明‘未来像过去’”这一步，不是说每一次从经验推论本身都是循环。",
+              "en": "The circle is in any probable argument for the resemblance principle, not in every inference from experience."
+            },
+            {
+              "zh": "第一角失败是因为自然改变可以设想、不矛盾；第二角失败才是因为循环。别把两角的理由弄混。",
+              "en": "Horn 1 fails because the contrary is conceivable; only horn 2 fails by circularity."
+            },
+            {
+              "zh": "moral reasoning 不是关于道德的推理；probable 也不是现代统计学里的概率计算。",
+              "en": "Moral reasoning is not ethics, and probable is not modern statistics."
+            },
+            {
+              "zh": "休谟没说未来不会像过去，只说这一点没法用推理证明。",
+              "en": "Hume does not say the future will differ from the past; he says reasoning cannot prove that it won't."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why, according to Hume, can no probable argument prove that the future will resemble the past?",
+            "zh": "按休谟的说法，为什么任何或然论证都证明不了“未来会像过去”？"
+          },
+          "options": [
+            {
+              "en": "Because a change in the course of nature implies a contradiction.",
+              "zh": "因为自然进程改变包含矛盾。"
+            },
+            {
+              "en": "Because every probable argument already assumes that the future will resemble the past, so the proof would be circular.",
+              "zh": "因为任何或然论证都已经预设了未来会像过去，所以这种证明是循环的。"
+            },
+            {
+              "en": "Because probable arguments are about relations of ideas.",
+              "zh": "因为或然论证是关于观念的关系的。"
+            },
+            {
+              "en": "Because the senses cannot be trusted.",
+              "zh": "因为感官不可信。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 7、9 页）：或然论证靠因果，因果靠经验，经验又预设未来像过去，拿它来证明这个预设就是循环。A 说反了：休谟说自然改变不包含矛盾，而且那是第一角（证明推理）的事。C 错：或然推理关于实际的事情，证明推理才关于观念的关系。D 不是休谟这里的理由。",
+            "en": "B (pp. 7, 9). A reverses Hume's claim and belongs to horn 1; C mixes up the two kinds of reasoning; D is not Hume's reason here."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s06-backup-arguments",
+      "title": {
+        "zh": "休谟：补充论证：鸡蛋、隐秘力量、婴儿与蜡烛",
+        "en": "Hume: Backup Arguments: Eggs, Secret Powers, the Child and the Candle"
+      },
+      "slides": "7-10",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "两难论证之后，休谟又补了几个论证，从不同角度说明同一件事（第 7–10 页）。先是一个铺垫：一切从经验来的论证，都建立在自然物之间的相似性上：原因看起来相似，我们就期待结果也相似。休谟说，只有傻子或疯子才会否认经验的权威；但哲学家总可以好奇地问：给了经验这么大权威的，到底是人性里的什么原则（第 8 页）？"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "instance",
+              "zh": "实例",
+              "hint": "一个具体的事例，比如吃过的某一个鸡蛋。"
+            },
+            {
+              "en": "uniform experience",
+              "zh": "一贯的经验",
+              "hint": "一次又一次、结果都一样的经验。"
+            },
+            {
+              "en": "tautology",
+              "zh": "同义反复",
+              "hint": "两句话说的完全是同一件事，从一句推出另一句不需要任何新东西。"
+            },
+            {
+              "en": "agent / philosopher",
+              "zh": "行动者 / 哲学家",
+              "hint": "行动者＝过日子、做事的人；哲学家＝追问根据的人。休谟两种身份都有。"
+            },
+            {
+              "en": "sceptic / scepticism",
+              "zh": "怀疑论者 / 怀疑论",
+              "hint": "怀疑我们能否真正知道某些事的立场；休谟用英式拼法 sceptic。"
+            },
+            {
+              "en": "argument / ratiocination",
+              "zh": "论证 / 推理",
+              "hint": "ratiocination 是一个老式的词，意思就是一步步推理。"
+            },
+            {
+              "en": "sensible qualities / secret powers",
+              "zh": "可感性质 / 隐秘力量",
+              "hint": "前者是看得见摸得着的性质（面包的颜色）；后者是产生效果的、看不见的力量（面包养人的能力）。"
+            },
+            {
+              "en": "begging the question",
+              "zh": "窃取论题",
+              "hint": "把要证明的结论偷偷当作前提来用，也就是循环论证。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "鸡蛋：一次和一百次（第 8 页）",
+            "en": "Eggs: one instance versus a hundred (p. 8)"
+          },
+          "steps": [
+            {
+              "zh": "如果“相似的原因带来相似的结果”这个结论是理性推出来的，那么只有一个例子的时候，它就应该和有了长期经验之后一样完美。",
+              "en": "If reason produced the conclusion 'similar causes, similar effects', it would be as strong after one instance as after long experience."
+            },
+            {
+              "zh": "可事实不是这样。没有什么东西比鸡蛋更相像了，可没有人只因为它们看起来一样，就期待所有鸡蛋味道都一样。",
+              "en": "But although nothing looks more alike than eggs, no one expects all eggs to taste the same just because they look alike."
+            },
+            {
+              "zh": "只有经过长期、一贯的经验，我们对某件事才会有稳固的信赖。",
+              "en": "Only after a long run of uniform experience do we firmly rely on a particular outcome."
+            },
+            {
+              "zh": "休谟问：哪一种推理能从一个例子得出一个结论，又从一百个和它毫无不同的例子得出另一个很不同的结论？他说他找不到，也想象不出这种推理，但愿意听别人指教。",
+              "en": "What reasoning draws one conclusion from one case and a very different one from a hundred cases just like it? Hume says he cannot find or imagine any, but stays open to instruction."
+            }
+          ],
+          "answer": {
+            "zh": "如果是理性在推，一次和一百次应该没差别；可我们的信心随次数增长。所以背后起作用的不是推理。（第 5 节第 12 页会说：是习惯。）",
+            "en": "If reason were at work, one instance and a hundred identical ones would give the same result; our confidence grows with repetition, so reasoning is not what produces it."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论；本站重构）：一次与多次（第 8 页；结论在第 12 页明说）",
+            "en": "Standard form (our reconstruction): one instance versus many (p. 8; the conclusion is stated on p. 12)"
+          },
+          "items": [
+            {
+              "en": "P1: If our expectations from experience were produced by reasoning, one instance would support them as strongly as a hundred instances exactly like it.",
+              "zh": "P1：如果我们从经验得来的期待是推理产生的，一个例子给的支持就应该和一百个一模一样的例子一样强。"
+            },
+            {
+              "en": "P2: In fact we come to rely firmly on an outcome only after many uniform experiences: eggs look exactly alike, yet their look alone does not make us expect them all to taste the same.",
+              "zh": "P2：事实上，只有经过长期一贯的经验才会有稳固的信赖：鸡蛋看起来一模一样，可光凭外表，我们并不期待它们味道都一样。"
+            },
+            {
+              "en": "P3: No process of reasoning draws a different conclusion from one case than from a hundred cases that do not differ from it.",
+              "zh": "P3：没有任何推理会从一个例子和从一百个毫无差别的例子得出不同的结论。"
+            },
+            {
+              "en": "C: So our expectations from experience are not produced by reasoning.",
+              "zh": "C：所以我们从经验得来的期待不是推理产生的。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "有人会说：经过许多一贯的经验，我们就推出了可感性质和隐秘力量之间的联系（第 8 页）。休谟说，这只是把同一个难题换了个说法。“过去所有情况里，这种可感性质都伴随着这种隐秘力量”和“相似的可感性质将来总会伴随相似的隐秘力量”，不是同义反复（**tautology**），两句话一点也不一样。中间这一步既不直观，也不是证明；说它是“经验的”，又是窃取论题（第 8–9 页）。"
+        },
+        {
+          "type": "text",
+          "zh": "休谟还补了一句很有力的话：东西的隐秘本性，连同它的一切效果，可能改变，而它的可感性质一点不变（第 9 页）。这种事对某些东西、有时候确实会发生；那凭什么说它不会对所有东西、一直发生？什么逻辑、什么论证能排除这种可能？"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'You still eat bread every day, so your own practice refutes your doubts.' How does Hume answer?",
+            "zh": "反驳：“你自己每天照样吃面包，你的行动就驳倒了你的怀疑。”休谟怎么回答？"
+          },
+          "answer": {
+            "en": "Hume says that this objection mistakes his question (p. 9). As an agent who acts in daily life, he is quite satisfied and keeps relying on experience. As a philosopher with some curiosity, he wants to know the foundation of the inference. His practice shows that he makes the inference, not that it rests on reasoning.",
+            "zh": "休谟说，这个反驳没弄懂他的问题（第 9 页）。作为行动者（过日子的人），他完全满意，照样依靠经验；作为有好奇心的哲学家，他想知道这个推论的根据。他的行动只说明他在这样推，并不说明这个推论建立在推理上。他还特意说，推动他的是好奇心，他不愿把这叫作怀疑论。"
+          }
+        },
+        {
+          "type": "text",
+          "zh": "休谟也承认一个弱点：一个论证自己没找到，就断定它不存在，是不可原谅的傲慢；哪怕许多学者找了几百年都没找到，也不能轻易下结论（第 9 页）。可他说，在这个问题上，有些考虑可以洗清“傲慢”的指控，他接着给出的考虑是：看看婴儿。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "孩子和蜡烛（第 9–10 页）",
+            "en": "The child and the candle (pp. 9-10)"
+          },
+          "steps": [
+            {
+              "zh": "最无知的农民、婴儿，甚至动物，都会从经验中进步：他们观察东西产生的效果，学会了自然物的性质。",
+              "en": "Ignorant peasants, infants and even animals learn from experience by observing what objects do."
+            },
+            {
+              "zh": "一个孩子摸蜡烛的火焰被烫痛过，以后就不会把手靠近任何蜡烛；看到外表相似的原因，他就预期相似的结果。",
+              "en": "A child burnt by a candle flame keeps his hand away from any candle, expecting a similar effect from a similar-looking cause."
+            },
+            {
+              "zh": "如果你说孩子是靠论证（**argument**）得出这个结论的，休谟就有权要你把这个论证拿出来。你不能推说它太深奥、一时找不到，因为你自己承认，连婴儿都能想到它。",
+              "en": "If you say the child reasons, you must produce the argument, and you cannot say it is too hard to find, since an infant supposedly grasps it."
+            },
+            {
+              "zh": "所以只要你犹豫一下，或者拿出一个复杂深奥的论证，你就等于认输：让我们假定过去和将来相似的，不是推理。",
+              "en": "If you hesitate, or offer a complicated argument, you concede that it is not reasoning that makes us expect the past to resemble the future."
+            },
+            {
+              "zh": "休谟最后自嘲：如果他错了，他就是个很迟钝的学生，因为他现在找不到一个据说他还在摇篮里时就熟悉的论证（第 10 页）。",
+              "en": "Hume jokes that if he is wrong, he is a very slow learner, unable to find an argument he supposedly knew before he left the cradle (p. 10)."
+            }
+          ],
+          "answer": {
+            "zh": "婴儿和动物也会从经验学习，所以背后要么是连婴儿都会的简单论证，要么根本不是论证；既然没人拿得出这样的简单论证，它就不是推理。",
+            "en": "Since infants and animals make the inference, any argument behind it would have to be obvious; no one can produce one, so the inference is not reasoning."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式：婴儿与动物（第 9–10 页）",
+            "en": "Standard form: infants and animals (pp. 9-10)"
+          },
+          "items": [
+            {
+              "en": "P1: Ignorant peasants, infants and even animals learn from experience; a child burnt by a candle flame expects similar effects from similar-looking candles.",
+              "zh": "P1：无知的农民、婴儿甚至动物都会从经验学习；被蜡烛烫过的孩子，会对看起来相似的蜡烛预期相似的结果。"
+            },
+            {
+              "en": "P2: If this expectation came from an argument, the argument would have to be simple enough for an infant, so anyone could state it at once.",
+              "zh": "P2：如果这种期待来自论证，这个论证就得简单到婴儿都懂，那谁都应该能马上说出来。"
+            },
+            {
+              "en": "P3: No one can state such an argument, and anyone who hesitates or offers a complicated argument gives up the point.",
+              "zh": "P3：可没人说得出这样的论证；谁犹豫，或者拿出复杂的论证，谁就等于认输。"
+            },
+            {
+              "en": "C: So it is not reasoning that makes us expect the future to resemble the past.",
+              "zh": "C：所以让我们期待将来像过去的，不是推理。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "你家的猫一听到开罐头的声音，就从房间另一头跑过来。它没学过逻辑，也不会写 P1、P2、C，却照样从“过去每次这个声音之后都有吃的”走到“这次也会有吃的”。休谟说，人在这件事上和猫一样：靠的不是论证。",
+          "limit": "猫的例子只说明“不需要论证也能做到”。有人会反驳：说不定婴儿和动物在无意识地推理。按休谟的思路可以这样回应（本站的引申）：那这个推理也应该简单到谁都能说出来，可没人说得出来。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Is there a tension between the child and the candle (p. 9) and the eggs (p. 8)? How might it be answered?",
+            "zh": "孩子和蜡烛（第 9 页）与鸡蛋（第 8 页）之间是不是有矛盾？可以怎么回答？"
+          },
+          "answer": {
+            "en": "There seems to be one: the eggs passage says that firm expectation comes only after many uniform experiences, but the child seems to learn from a single burn. One reply is that the two examples make the same point in different ways: in both, the expectation is not produced by reasoning. The reading does not explain how one painful experience can be enough, so a good answer notes the tension and says that it does not touch Hume's main conclusion.",
+            "zh": "看起来有：鸡蛋那里说，稳固的期待要靠长期一贯的经验；孩子却好像被烫一次就学会了。一个回答是：两个例子从不同角度说明同一点：期待都不是推理产生的。至于为什么一次痛苦的经验就够了，读物没有解释。好的答案可以指出这个张力，同时说明它不影响休谟的主要结论。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "休谟没说“不要相信经验”。他说只有傻子或疯子才否认经验的权威；他要问的是经验的根据。",
+              "en": "Hume does not tell us to distrust experience; he asks what its authority rests on."
+            },
+            {
+              "zh": "鸡蛋例子的重点不是“鸡蛋味道不一样”，而是“信心随次数增长，而理性不会因为次数不同就得出不同结论”。",
+              "en": "The eggs point is that confidence grows with repetition, which reasoning cannot explain."
+            },
+            {
+              "zh": "婴儿论证说的是这种推论“实际上是怎么产生的”：不是推理让我们这样推（第 10 页）。它不只是说“这个推论缺少理由”。",
+              "en": "The infant argument is about what actually produces the inference, not only about its justification."
+            },
+            {
+              "zh": "行动者和哲学家：休谟作为行动者完全满意，作为哲学家才追问根据。别把他写成“生活中也什么都不信”。",
+              "en": "As an agent Hume is satisfied; only as a philosopher does he ask for the foundation."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What is the point of Hume's example of the child and the candle?",
+            "zh": "休谟举孩子和蜡烛的例子，要说明什么？"
+          },
+          "options": [
+            {
+              "en": "Even infants learn from experience, so any argument behind the inference would have to be obvious; since no one can produce one, the inference is not based on reasoning.",
+              "zh": "连婴儿都会从经验学习，所以这个推论背后的论证必须一目了然；既然没人拿得出来，这个推论就不是基于推理。"
+            },
+            {
+              "en": "Children reason more carefully than adults do.",
+              "zh": "孩子比大人推理得更仔细。"
+            },
+            {
+              "en": "Pain is the only reliable source of knowledge.",
+              "zh": "痛苦是唯一可靠的知识来源。"
+            },
+            {
+              "en": "We should doubt everything we learned as children.",
+              "zh": "我们应该怀疑小时候学到的一切。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 9–10 页）。B 正好相反：休谟的意思是婴儿做不了复杂推理，却照样会推。C、D 都不是读物的说法；休谟不叫我们怀疑一切，只是说这种推论不靠推理。",
+            "en": "A (pp. 9-10). B reverses the point; C and D are not Hume's claims."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s07-custom-sceptical-solution",
+      "title": {
+        "zh": "休谟：怀疑论的解决：习惯是人生的伟大向导",
+        "en": "Hume: The Sceptical Solution: Custom, the Great Guide of Life"
+      },
+      "slides": "10-13",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第 5 节的标题是 Sceptical Solution of these Doubts（对这些怀疑的怀疑论式解决）。第 4 节提出了怀疑，第 5 节要说明：既然不是推理，那到底是什么把我们从过去带到将来。休谟先讲一个现象：研究哲学本想改掉坏毛病，却可能反过来助长本来就有的偏向（第 10 页）。比如想做一个意志坚定的哲人、把快乐完全限制在自己心里，最后可能像爱比克泰德（**Epictetus**）和别的斯多葛派（**Stoics**）一样，只学成一套更精致的自私；整天琢磨人生虚无、财富和荣誉都是空的，可能只是在给懒惰找借口。"
+        },
+        {
+          "type": "text",
+          "zh": "只有一种哲学不太会这样：学园派或怀疑论哲学（**Academic or Sceptical philosophy**）。它总讲怀疑和暂停判断，提醒人别仓促下结论，把探究限制在很窄的范围内，不碰超出日常生活和实践的玄想（第 10 页）。它压制一切激情，只有对真理的爱除外，而这种爱永远不会过分。可它反而招人恨，被骂成放荡、亵渎、不信神，因为它不讨好任何坏毛病，却反对很多（第 11 页）。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "sceptical / sceptic",
+              "zh": "怀疑论的 / 怀疑论者",
+              "hint": "怀疑我们能否真正知道某些事的立场；休谟用英式拼法 sceptic。"
+            },
+            {
+              "en": "Academic or Sceptical philosophy",
+              "zh": "学园派或怀疑论哲学",
+              "hint": "讲怀疑、暂停判断、只在日常生活范围内探究的哲学。"
+            },
+            {
+              "en": "suspense of judgment",
+              "zh": "暂停判断",
+              "hint": "证据不够时先不下结论。"
+            },
+            {
+              "en": "sceptical solution",
+              "zh": "怀疑论式的解决",
+              "hint": "不去驳倒怀疑，而是用人性中的另一个原则（习惯）解释我们为什么照样推论。"
+            },
+            {
+              "en": "custom or habit",
+              "zh": "习惯",
+              "hint": "重复做一件事，产生了不经推理就再做的倾向。"
+            },
+            {
+              "en": "propensity",
+              "zh": "倾向",
+              "hint": "容易、想要去做某件事的趋势。"
+            },
+            {
+              "en": "natural instinct",
+              "zh": "自然本能",
+              "hint": "天生的心理活动，推理既产生不了它，也阻止不了它。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "那这种怀疑会不会毁掉日常生活，让人什么都不敢做？休谟说不会：自然总会维护自己的权利，最后总能压倒任何抽象推理（第 11 页）。就算我们得出结论说，从经验推论时心灵走了一步没有论证支持的路，这些推论也不会受影响。既然不是论证让心灵走这一步，就一定有另一个同样有分量的原则在推动它；只要人性不变，这个原则就会一直起作用。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "突然来到世界上的人（第 11–12 页）",
+            "en": "A person suddenly brought into the world (pp. 11-12)"
+          },
+          "steps": [
+            {
+              "zh": "第一阶段：设想一个理性和思考能力都极强的人，突然被带到这个世界上。他马上会看到一连串的事物，一件事接着一件事发生。",
+              "en": "Stage 1: a person with the strongest reason, suddenly brought into the world, sees one event following another."
+            },
+            {
+              "zh": "但他发现不了更多的东西。产生效果的力量从不出现在感官面前；只看到一次 A 在 B 之前，也没理由说 A 是 B 的原因，它们一起出现可能纯属偶然。所以他推不出任何超出眼前记忆和感官的事实。",
+              "en": "But he discovers nothing more: the powers never appear to the senses, and one event preceding another once does not show that it is the cause, since the conjunction may be accidental."
+            },
+            {
+              "zh": "第二阶段：他在世上住久了，观察到相似的东西或事件总是一起出现（恒常结合）。现在他一看到一个，马上就推出另一个存在。",
+              "en": "Stage 2: after long experience of similar events constantly conjoined, as soon as he sees one he infers the other."
+            },
+            {
+              "zh": "可他并没有因此获得隐秘力量（让一个东西产生另一个东西的那种看不见的力量）的观念，也不是靠推理走这一步的。他只是发现自己被决定要这样推；就算他确信知性（推理能力）在这里毫无作用，他也照样会这样想。",
+              "en": "Yet he has gained no idea of the secret power and uses no reasoning; he simply finds himself determined to infer, and would go on even if convinced that his understanding plays no part."
+            }
+          ],
+          "answer": {
+            "zh": "从第一阶段到第二阶段，变化的只是重复的经验，不是推理。所以一定有某个别的原则在起作用：休谟说，这就是习惯。",
+            "en": "Between the two stages only repeated experience has changed, not reasoning, so some other principle must be at work: custom."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "习惯的定义和地位（第 12 页）",
+            "en": "Custom: definition and role (p. 12)"
+          },
+          "items": [
+            {
+              "en": "Hume says the principle is custom or habit: when repeating an act produces a tendency to repeat it without any reasoning, we call that tendency the effect of custom.",
+              "zh": "休谟说，这个原则就是习惯：重复做某件事，产生了不经推理就再做的倾向，我们就说这种倾向是习惯的结果。"
+            },
+            {
+              "en": "By naming custom, Hume does not claim to give its ultimate cause; custom is a principle of human nature that everyone knows by its effects.",
+              "zh": "说出“习惯”这个词，休谟并不声称给出了它的终极原因；习惯是人性中的一个原则，大家都从它的效果认识它。"
+            },
+            {
+              "en": "\"Custom, then, is the great guide of human life.\" (p. 12) Without custom we would know no matter of fact beyond what is present to memory and the senses, and we could never fit means to ends.",
+              "zh": "“习惯是人生的伟大向导。”（第 12 页）没有习惯，我们除了眼前的记忆和感官之外什么事实都不知道，也永远不会为了目的去选择手段。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：习惯是从经验推论的来源（第 11–12 页）",
+            "en": "Standard form: custom is the source of inferences from experience (pp. 11-12)"
+          },
+          "items": [
+            {
+              "en": "P1: Section 4 showed that in every inference from experience the mind takes a step that no argument supports.",
+              "zh": "P1：第 4 节表明，每一次从经验推论，心灵都走了一步没有论证支持的路。"
+            },
+            {
+              "en": "P2: Yet we always take this step, and we would keep taking it even if we were convinced that reasoning plays no part in it.",
+              "zh": "P2：可我们总在走这一步；就算确信推理在其中毫无作用，我们也会继续走。"
+            },
+            {
+              "en": "P3: If argument does not lead the mind to take the step, something else must: a principle just as strong and authoritative.",
+              "zh": "P3：如果不是论证让心灵走这一步，就一定有别的东西：一个同样有力、同样有权威的原则。"
+            },
+            {
+              "en": "P4: When repetition produces a tendency to renew an act without any reasoning, we call that tendency custom.",
+              "zh": "P4：重复产生了不经推理就再做的倾向，我们把这种倾向叫作习惯。"
+            },
+            {
+              "en": "P5: Custom seems to be the only hypothesis that explains why a thousand instances give us an inference that one identical instance does not; reason draws the same conclusions from one circle as from all circles.",
+              "zh": "P5：似乎只有习惯这个假说能解释：为什么一千个例子能给我们的推论，一个毫无差别的例子给不了；而理性从一个圆和从所有的圆得出的结论都一样。"
+            },
+            {
+              "en": "C: So every inference we draw from experience is produced by custom, not by reasoning.",
+              "zh": "C：所以我们从经验做出的每一个推论，都是习惯产生的，不是推理产生的。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "微信提示音：你听过几百次“叮”之后紧跟着有新消息，现在一听到这个声音，不用想就伸手去拿手机，心里已经“知道”有消息了。你没有在脑子里写一个论证，是重复把你训练成这样的。休谟说的习惯就是这种东西。",
+          "limit": "这里的习惯是心理上的倾向，不是社会风俗（比如过年吃饺子）。另外提示音有时也会骗人（比如是别人的手机在响）：习惯不保证预期一定对，休谟也没说它保证。"
+        },
+        {
+          "type": "text",
+          "zh": "休谟举例：火焰和热、重量和坚实（**solidity**）一直一起出现，之后单凭习惯，我们看到一个就期待另一个（第 12 页）。为什么说似乎只有习惯能解释？因为一千个例子能推出的结论，一个毫无差别的例子推不出来；理性却不会这样变：考察一个圆得出的几何结论，和看遍宇宙所有的圆得出的一样。只见过一次物体被撞后移动，谁也推不出别的物体被撞后都会动。这正是鸡蛋论证（第 8 页）的另一面。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "推论总得从眼前的事实出发（第 12–13 页）",
+            "en": "Inference must start from a present fact (pp. 12-13)"
+          },
+          "steps": [
+            {
+              "zh": "一个人在荒漠里看到宏伟建筑的废墟，会推断这里古时候住过文明的居民；如果眼前什么也没有，他就推不出来。",
+              "en": "A man who finds the ruins of grand buildings in a desert concludes that civilized people once lived there; with nothing in front of him, he could infer nothing."
+            },
+            {
+              "zh": "历史也一样：我们读史书，从一份证词推到另一份证词，最后一直追到亲眼看到那些事的目击者。",
+              "en": "We learn history by reading books and tracing the testimony back, step by step, to eyewitnesses."
+            },
+            {
+              "zh": "如果不从记忆或感官中某个当下的事实出发，推理链就只是假设，一环扣一环也没有东西撑着。理由不能无穷地往前推（休谟用的是拉丁语 **in infinitum**，意思是“无穷地”），最后必须停在一个眼前的事实上，否则信念就毫无根据。",
+              "en": "Without some fact present to memory or the senses, the chain is merely hypothetical; reasons cannot go back forever, so they must end in a present fact, or the belief has no foundation."
+            },
+            {
+              "zh": "结论：一切关于实际的事情的信念，都来自两样东西：一个呈现给记忆或感官的对象，加上它和另一个对象之间的习惯性联结。比如火焰和热、雪和冷一直一起出现，再看到火焰或雪，心灵就被习惯带着去期待热或冷，并相信它们存在（第 13 页）。",
+              "en": "Conclusion: all belief about matters of fact comes from an object present to memory or the senses plus a customary conjunction with another object, as with flame and heat, or snow and cold (p. 13)."
+            },
+            {
+              "zh": "这种信念是心灵处在那种情况下的必然结果，就像受了恩惠会感到爱、受了伤害会感到恨一样躲不开。它们都是自然本能（**natural instincts**），推理既产生不了，也阻止不了。",
+              "en": "Such belief is as unavoidable as feeling love towards someone who helps us, or hatred towards someone who harms us: a kind of natural instinct that no reasoning can produce or prevent."
+            }
+          ],
+          "answer": {
+            "zh": "信念＝眼前的对象＋习惯性联结。它是一种自然本能，不是推理的产物。",
+            "en": "Belief = a present object + a customary conjunction. It is a natural instinct, not a product of reasoning."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Why does Hume call his solution 'sceptical'? Is it a real solution or a change of subject?",
+            "zh": "休谟为什么把他的解决叫作“怀疑论式的”？它是真正的解决，还是换了话题？"
+          },
+          "answer": {
+            "en": "On a natural reading (Hume does not explain the name), it is sceptical because Hume accepts the doubts of Section 4: no reasoning shows that the future will resemble the past, and he cannot even give the cause of custom (p. 12). Instead of justifying our inferences, he explains them by a principle of human nature. A critic can say that this changes the subject from whether we are entitled to infer to why we do infer. Hume could reply that the demand for a rational foundation cannot be met but does no harm, because nature and custom keep us acting (pp. 11-12).",
+            "zh": "一种自然的理解（本站的理解，休谟没有解释这个名字）：说它是怀疑论式的，是因为休谟接受了第 4 节的怀疑：没有推理能证明未来像过去，他连习惯本身的原因都给不出（第 12 页）。他不是去证明推论有理，而是用人性中的一个原则来解释我们为什么会推。批评者可以说：这把问题从“我们有没有权利这样推”换成了“我们为什么会这样推”。休谟可以回答：理性根据这个要求满足不了，但也没有坏处，因为自然和习惯会让我们照样生活（第 11–12 页）。"
+          }
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "联系第 7 周的罗素：罗素把相信外部世界叫作本能信念（**instinctive belief**），说只有和别的本能信念冲突时才应放弃（罗素第 9–10 页）。休谟把因果信念叫作一种自然本能，由习惯产生，不由论证产生（第 13 页）。两人都承认论证证明不了这些信念，但我们照样靠它们生活。"
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "这里的 custom（习惯）是心理上的倾向，不是社会风俗或传统。",
+              "en": "Custom means a psychological habit, not a social custom or tradition."
+            },
+            {
+              "zh": "怀疑论式的解决没有驳倒第 4 节的怀疑；它接受这些怀疑，再用习惯来解释我们的推论。",
+              "en": "The sceptical solution accepts the doubts and explains our inferences; it does not refute the doubts."
+            },
+            {
+              "zh": "学园派怀疑论不是“什么都不信、什么都不做”，而是谨慎、不仓促下判断、把探究限制在日常生活范围内。",
+              "en": "Academic scepticism is caution kept within common life, not doubting everything and doing nothing."
+            },
+            {
+              "zh": "第 8 页把经验叫作人生的伟大向导，第 12 页把习惯叫作人生的伟大向导，并不矛盾：是习惯让经验对我们有用。",
+              "en": "Experience (p. 8) and custom (p. 12) are both called the great guide of life; custom is what makes experience useful."
+            },
+            {
+              "zh": "休谟没有给出习惯的终极原因；“习惯”只是给这个原则起了名字，不是解释到底。",
+              "en": "Naming custom does not give its ultimate cause."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Hume think that custom, not reason, explains our inferences from experience?",
+            "zh": "休谟为什么认为解释我们从经验推论的是习惯，而不是理性？"
+          },
+          "options": [
+            {
+              "en": "Because custom gives us knowledge of the secret powers of objects.",
+              "zh": "因为习惯让我们认识了东西的隐秘力量。"
+            },
+            {
+              "en": "Because custom is a kind of demonstrative reasoning.",
+              "zh": "因为习惯是一种证明性推理。"
+            },
+            {
+              "en": "Because a thousand instances lead us to an inference that one identical instance does not, and reason does not vary like that.",
+              "zh": "因为我们能从一千个例子推出、却不能从一个毫无差别的例子推出某个结论，而理性不会这样变化。"
+            },
+            {
+              "en": "Because reason is always wrong about matters of fact.",
+              "zh": "因为理性在实际的事情上总是出错。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 12 页）：理性从一个圆和从所有的圆得出的结论一样，不会因次数而变；我们的推论却随重复而来，只有习惯能解释。A 错：休谟说有了经验之后，我们仍然没有隐秘力量的观念（第 11 页）。B 错：习惯根本不是推理。D 说过头了：休谟没说理性总是错，只说这一步不是理性走的。",
+            "en": "C (p. 12). A is wrong because experience gives no idea of secret powers (p. 11); B is wrong because custom is not reasoning; D overstates Hume's claim."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s08-belief-as-feeling",
+      "title": {
+        "zh": "休谟：信念是一种感受：比想象更生动的观念",
+        "en": "Hume: Belief as a Feeling: Vivid Conception and Association"
+      },
+      "slides": "14-19",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "note",
+          "tone": "tip",
+          "zh": "先说清范围：休谟在第 13 页说，第 5 节剩下的部分（第二部分，第 14–19 页）是写给喜欢抽象科学的读者的，别的读者跳过也不影响理解后面的内容。但测验考“全部课程内容”，而“信念是一种感受”和“三条联想原则”都很适合出选择题。建议优先掌握第 14–15 页（信念和想象的区别），第 15–19 页的联想例子知道大意即可。",
+          "en": "Hume says that Part II (pp. 14-19) is meant for readers who enjoy abstract science and may be skipped (p. 13). For the test, focus on pp. 14-15 (belief versus imagination) and know the gist of the association examples."
+        },
+        {
+          "type": "text",
+          "zh": "第二部分问一个新问题：相信一件事和只是想象一件事，区别在哪里？休谟先说，人的想象（**imagination**）最自由：它不能超出感官给的原始观念，却能把这些观念随意混合、组合、拆开，编出各种虚构（**fiction**），还能给它们配上时间、地点，想得跟真的一样（第 14 页）。我们能想象人头配马身，却没法相信真有过这种动物。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "conception",
+              "zh": "构想",
+              "hint": "在心里想到一个对象；可以相信它，也可以只是想象它。"
+            },
+            {
+              "en": "custom",
+              "zh": "习惯",
+              "hint": "重复形成的、不经推理的心理倾向（上一节讲过）。"
+            },
+            {
+              "en": "imagination",
+              "zh": "想象",
+              "hint": "把观念随意组合、拆开的能力，能编出不存在的东西。"
+            },
+            {
+              "en": "fiction",
+              "zh": "虚构",
+              "hint": "想象编出来、我们并不相信的东西。"
+            },
+            {
+              "en": "belief",
+              "zh": "信念",
+              "hint": "相信某事为真的心理状态；休谟说它是一种感受。"
+            },
+            {
+              "en": "sentiment / feeling",
+              "zh": "情感 / 感受",
+              "hint": "心里感觉到的东西，不能靠意志随意产生。"
+            },
+            {
+              "en": "idea / impression",
+              "zh": "观念 / 印象",
+              "hint": "观念＝心里想到的东西；印象＝此刻感官得到的感觉，比如正听到的声音。"
+            },
+            {
+              "en": "vivacity",
+              "zh": "生动性",
+              "hint": "一个观念在心里的鲜活程度和力量。"
+            },
+            {
+              "en": "association of ideas",
+              "zh": "观念联想",
+              "hint": "一个观念自然地把心灵带到另一个相关的观念。"
+            },
+            {
+              "en": "final causes",
+              "zh": "目的因",
+              "hint": "自然中的目的和设计。休谟说，喜欢研究目的因的人，在习惯带来的这种和谐里大有可赞叹之处（第 18 页）。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：信念是一种感受（第 14–15 页）",
+            "en": "Standard form: belief is a feeling (pp. 14-15)"
+          },
+          "items": [
+            {
+              "en": "P1: The imagination can freely combine ideas and picture a fiction with every detail of a real fact.",
+              "zh": "P1：想象能自由地组合观念，把一个虚构想得和真事一样详细。"
+            },
+            {
+              "en": "P2: If belief were an extra idea added to a conception, the mind, which controls all its ideas, could add it to any fiction and believe whatever it liked.",
+              "zh": "P2：如果信念是加在构想上的一个额外观念，那么能支配一切观念的心灵就能把它加到任何虚构上，想信什么就信什么。"
+            },
+            {
+              "en": "P3: But we cannot believe at will: we can imagine a man's head on a horse's body, but we cannot believe that such an animal ever existed.",
+              "zh": "P3：可我们不能想信就信：能想象人头配马身，却没法相信真有过这种动物。"
+            },
+            {
+              "en": "P4: We can also conceive the contrary of anything we believe, such as a billiard ball stopping on contact, so the content of an idea cannot be what makes the difference.",
+              "zh": "P4：我们相信的任何事，它的反面也都想得出来（比如台球碰上就停住），所以区别不可能在观念的内容里。"
+            },
+            {
+              "en": "C: So belief is a feeling that the will does not control. Hume describes it as a \"more vivid, lively, forcible, firm, steady\" conception than imagination alone can reach (p. 15).",
+              "zh": "C：所以信念是一种不受意志控制的感受。休谟把它描述为比单纯想象更生动、更鲜活、更有力、更牢固、更稳定的构想（第 15 页）。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "三个例子：台球、冷和愤怒、隔壁的声音（第 14–15 页）",
+            "en": "Three examples: the billiard ball, cold and anger, the voice next door (pp. 14-15)"
+          },
+          "steps": [
+            {
+              "zh": "台球：看到一个台球在光滑的桌面上滚向另一个，我很容易设想它碰上后就停住。这不矛盾，可它给人的感受，和我设想“撞击、把运动传给另一个球”时完全不同。",
+              "en": "I can easily conceive a billiard ball stopping on contact; this is no contradiction, but it feels very different from conceiving the impact passing motion to the other ball."
+            },
+            {
+              "zh": "冷和愤怒：要给这种感受下定义，就像要向一个从没感觉过冷、从没生过气的生物定义“冷”和“愤怒”，很难甚至不可能。可“信念”这个词谁都懂，因为人人每时每刻都在体验它。",
+              "en": "Defining this feeling is like defining cold or anger to a creature that has never felt them, yet everyone understands the word 'belief'."
+            },
+            {
+              "zh": "隔壁的声音：我听到一个熟人的声音，好像从隔壁房间传来。这个感官印象马上让我想到这个人和他周围的东西，好像它们此刻就在那里。",
+              "en": "I hear a familiar person's voice from the next room, and at once I picture the person and the surroundings as present now."
+            },
+            {
+              "zh": "这些观念比“一座被施了魔法的城堡”的观念抓得牢得多，感觉完全不同，对我的快乐和痛苦、喜悦和悲伤影响也大得多。",
+              "en": "These ideas grip my mind far more firmly than the idea of an enchanted castle, and they affect my pleasure and pain, joy and sorrow far more."
+            }
+          ],
+          "answer": {
+            "zh": "信念和想象的区别不在“想的是什么”，而在“怎么想”：信念的观念更有力、更稳定，对感情和行动的影响更大。",
+            "en": "Belief differs from imagination not in what we conceive but in how we conceive it: more forcefully and steadily, with more influence on feeling and action."
+          }
+        },
+        {
+          "type": "analogy",
+          "zh": "你在宿舍看一部写龙和魔法的小说，画面能想得很清楚，可你不会因此去查龙在哪。忽然听到门外室友说“我回来了”，你马上相信他就在门口，起身去开门。两件事都在你脑子里出现了画面，区别在于后者“抓住”了你、指挥了你的行动。休谟说，信念就是这种感受上的不同。",
+          "limit": "看恐怖片时画面也很“生动”，会让人害怕，可我们并不相信鬼真的在屋里。这正是休谟这个说法的一个难点，见下面的讨论。"
+        },
+        {
+          "type": "text",
+          "zh": "所以休谟说：信念不在观念本身的性质或排列里，而在构想的方式（**manner of conception**）和它给心灵的感受里（第 15 页）。他承认这种感受没法完全说清，那串形容词也不太像哲学用语；意思是：信念让真实的东西比虚构更“在场”，在思考里分量更重，对激情和想象影响更大，成为指挥行动的原则。而这种构想方式，来自对象和眼前记忆或感官里某个东西之间的习惯性联结。"
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "三条联想原则：每个例子都要“关系＋当下印象”（第 15–17 页）",
+            "en": "The three principles of association: each case needs a relation plus a present impression (pp. 15-17)"
+          },
+          "headers": [
+            "原则 Principle",
+            "休谟的例子 Hume's example",
+            "说明了什么 What it shows"
+          ],
+          "rows": [
+            [
+              "相似 Resemblance",
+              "看到不在身边的朋友的画像，对他的观念更鲜活（第 16 页）",
+              "画像不像他，就想不到他；画像也不在眼前时，观念反而变弱"
+            ],
+            [
+              "相似 Resemblance",
+              "天主教徒说，仪式中的动作、姿势和圣像让他们的虔诚更强烈（第 16 页）",
+              "看得见的东西把力量传给和它相似的观念"
+            ],
+            [
+              "接近 Contiguity",
+              "离家几英里时，家里的事比离家两百里格时更触动我（第 17 页）",
+              "只有观念、没有当下印象时，联想本身不能让观念更鲜活"
+            ],
+            [
+              "因果 Causation",
+              "信徒喜欢圣人的遗物，比如他亲手做的东西、用过的衣物（第 17 页）",
+              "遗物是圣人留下的“结果”，把观念带回到他身上"
+            ],
+            [
+              "因果 Causation",
+              "见到一位已故或远行的朋友的儿子，往日的情谊一下子鲜活起来（第 17 页）",
+              "儿子和朋友有因果关系，唤起相关的观念"
+            ]
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "因果信念也是这样（第 17–18 页）",
+            "en": "Causal belief works the same way (pp. 17-18)"
+          },
+          "steps": [
+            {
+              "zh": "上面这些例子里，我们都已经相信相关的对象存在：画像起作用，是因为我们相信朋友存在过；离家近会想家，是因为我们相信家真的存在。",
+              "en": "In these cases we already believe in the related object: the picture works because we believe the friend existed."
+            },
+            {
+              "zh": "休谟说，超出记忆和感官的信念，性质和来源都一样：一个当下的印象，加上一个顺畅的思想过渡，让相关的观念变得鲜活。",
+              "en": "Belief beyond memory and the senses has the same nature and causes: a present impression plus an easy transition that enlivens the related idea."
+            },
+            {
+              "zh": "干木头：我把一块干木头扔进火里，心灵马上想到火会更旺，而不是被压灭。这个过渡不是来自理性，而是来自习惯和经验；因为它从感官里的对象出发，“火更旺”的观念比空想更强。",
+              "en": "When I throw dry wood into a fire, I at once expect the flame to grow, not die. The transition comes from custom and experience, not reason, and starting from a present object makes the idea strong."
+            },
+            {
+              "zh": "剑和酒：一把剑指着我的胸口，比一杯葡萄酒摆在面前，更能让我强烈地想到伤口和疼痛，哪怕看到酒时我碰巧也想到了伤口。",
+              "en": "A sword pointed at my chest makes the idea of a wound strike me far more strongly than a glass of wine does, even if the idea happens to occur to me then too."
+            }
+          ],
+          "answer": {
+            "zh": "信念的全部机制：一个当下的对象，加上通往另一个对象的习惯性过渡。",
+            "en": "The whole mechanism of belief: an object present to the senses plus a habit-made transition to the idea of a related object."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "最后休谟说，自然的进程和我们观念的顺序之间有一种预定和谐（**pre-established harmony**）：自然靠什么力量运行我们完全不知道，可我们的思想一直和自然同步前进，做到这一点的就是习惯（第 18 页）。这么要紧的事，自然不太可能交给缓慢、婴儿时还没出现、又容易出错的推理，更可能交给一种本能（**instinct**）；就像自然教会我们用四肢，却没让我们懂肌肉和神经（第 18–19 页）。"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：“预定和谐”原本是哲学家莱布尼茨（**Leibniz**）的术语，在他那里和上帝预先的安排有关。休谟在这里借用这个词，指的是习惯带来的对应（第 18 页）。",
+          "en": "Outside the reading: 'pre-established harmony' is originally Leibniz's term. Hume borrows it for the correspondence that custom produces (p. 18)."
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: vividness is a poor mark of belief. A horror film can be vivid without being believed, and some firm beliefs, such as facts of ancient history, do not feel vivid at all. How might Hume respond?",
+            "zh": "反驳：用“生动”来区分信念并不好。恐怖片很生动，我们却不相信；有些很确定的信念（比如古代史的事实）一点也不生动。休谟可能怎么回应？"
+          },
+          "answer": {
+            "en": "Hume admits that his words are imperfect and that the feeling cannot be fully defined (pp. 14-15). By 'vivid' he means a manner of conception that gives an idea more weight in thought and more influence on our passions and actions, not just a bright mental picture. Still, the objection shows that his description may not cleanly separate belief from vivid imagination, so a fair verdict is that his account is suggestive but incomplete.",
+            "zh": "休谟承认这些词不完美，这种感受也没法完全定义（第 14–15 页）。他说的“生动”是一种构想方式：让观念在思考中分量更重、对激情和行动影响更大，而不只是画面鲜艳。不过这个反驳确实说明，他的描述可能没把信念和生动的想象完全分开。考试时可以评价说：他的说法有启发，但不完整。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "休谟说信念不是给构想“加上一个额外的观念”，否则我们就能想信什么就信什么。",
+              "en": "Belief is not an extra idea; otherwise we could believe anything at will."
+            },
+            {
+              "zh": "信念和虚构的区别在构想的方式（感受），不在内容。同一个内容，可以被相信，也可以只被想象。",
+              "en": "Belief differs from fiction in the manner of conception, not in content."
+            },
+            {
+              "zh": "三条联想原则是：相似、接近、因果（**Resemblance, Contiguity, Causation**）。别记成“相似、对比、因果”。",
+              "en": "The three principles are resemblance, contiguity and causation."
+            },
+            {
+              "zh": "每个联想例子都要“关系＋当下印象”两样；只有关系、没有当下印象（比如画像也不在眼前），观念反而会变弱。",
+              "en": "Each case needs a relation and a present impression; without the impression the idea is weakened."
+            },
+            {
+              "zh": "休谟说这种和谐是由习惯实现的；不要写成“休谟主张上帝预先安排好了一切”。",
+              "en": "Hume says custom produces the harmony; do not write that he argues for divine pre-arrangement."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Hume, what distinguishes belief from mere imagination?",
+            "zh": "按休谟的说法，信念和单纯的想象有什么区别？"
+          },
+          "options": [
+            {
+              "en": "Belief adds an extra idea of existence to the conception.",
+              "zh": "信念给构想加上了一个额外的“存在”观念。"
+            },
+            {
+              "en": "Belief is a free choice of the will.",
+              "zh": "信念是意志的自由选择。"
+            },
+            {
+              "en": "Belief is a feeling: a more vivid, lively, firm and steady way of conceiving an object.",
+              "zh": "信念是一种感受：一种更生动、更鲜活、更牢固、更稳定地构想对象的方式。"
+            },
+            {
+              "en": "Belief has a different logical form from fiction.",
+              "zh": "信念和虚构的逻辑形式不同。"
+            }
+          ],
+          "answer": 2,
+          "explain": {
+            "zh": "选 C（第 14–15 页）。A 错：如果信念是额外的观念，我们就能随意把它加到任何虚构上，想信什么就信什么。B 错：信念不受意志控制，我们没法相信人头马真的存在过。D 错：区别在构想的方式，不在内容或形式。",
+            "en": "C (pp. 14-15). A and B would let us believe anything at will; D is wrong because the difference lies in the manner of conception."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s09-lawlike-vs-accidental",
+      "title": {
+        "zh": "古德曼：似律陈述与偶然概括：铜与第三子",
+        "en": "Goodman: Lawlike vs Accidental: Copper and Third Sons"
+      },
+      "slides": "1",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "第二篇读物换了作者：古德曼（**Nelson Goodman**）的“The New Riddle of Induction”。它是一本书里的一小段，扫描件第 1–4 页（扫描件上印的是选集的页码 309–312），本站引用都按扫描件的页码。古德曼问的不是“经验能不能指导未来”，而是一个更具体的问题：一个实例什么时候能支持一个一般的说法，什么时候不能？"
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：古德曼（1906–1998）是美国哲学家。这篇节选出自他的书 **Fact, Fiction, and Forecast**（第 1 页底部的版权说明写的是 1965 年的版本）。第 1 页最上面那几行带 c* 的公式和第 28、29 条脚注，是选集里前一篇文章的结尾，不是古德曼写的。文中反复说的“我们的确证定义”（**our definition of confirmation**）在书的前面部分，节选没有给出；从节选的用法看，它大致是按形式判断：一个“所有 F 都是 G”的假说，被每一条“这个 F 是 G”的证据确证。",
+          "en": "Outside the reading: Goodman (1906-1998) was an American philosopher; the excerpt comes from Fact, Fiction, and Forecast. The formulas and footnotes at the top of p. 1 belong to the previous selection. The definition of confirmation he calls 'ours' is not reproduced in the excerpt."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "hypothesis",
+              "zh": "假说",
+              "hint": "一个还待检验的一般说法，比如“所有铜都导电”。"
+            },
+            {
+              "en": "generalization",
+              "zh": "概括",
+              "hint": "从个别情况推到“所有……都……”的说法。"
+            },
+            {
+              "en": "instance (positive instance)",
+              "zh": "实例（正面实例）",
+              "hint": "符合假说的一个具体例子，比如一块导电的铜。"
+            },
+            {
+              "en": "evidence statement",
+              "zh": "证据陈述",
+              "hint": "报告一个观察结果的句子，比如“这块铜导电”。"
+            },
+            {
+              "en": "confirmation / confirm",
+              "zh": "确证",
+              "hint": "证据让假说（和关于其他实例的说法）更可信；不等于“证明为真”。"
+            },
+            {
+              "en": "syntactical form",
+              "zh": "句法形式",
+              "hint": "句子的逻辑形状，比如“所有 F 都是 G”，不管 F、G 具体是什么词。"
+            },
+            {
+              "en": "lawlike",
+              "zh": "似律的",
+              "hint": "能被自己的实例确证的，不管它真不真、重不重要。"
+            },
+            {
+              "en": "accidental (contingent) generality",
+              "zh": "偶然概括",
+              "hint": "碰巧成立或不成立的概括；它的实例不能确证它。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "你在宿舍测试了一根某型号的充电线，它能给你的手机快充。你会更相信同型号的其他充电线也能快充：这像“似律”的那一类。可今天你在食堂碰到的第一个人是上海人，你不会因此更相信此刻食堂里的人都是上海人：这像“偶然”的那一类。两句话形式一样（“所有……都……”），一个例子对它们的支持却完全不同。",
+          "limit": "这个类比靠的是我们的直觉。古德曼的问题恰恰是：怎样用一个清楚的标准，而不是直觉，把这两类分开？光看句子的形式分不出来。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "铜和第三子（第 1 页）",
+            "en": "Copper and third sons (p. 1)"
+          },
+          "steps": [
+            {
+              "zh": "一块铜导电。这个事实让“其他铜块也导电”更可信，所以它确证了假说“所有铜都导电”。",
+              "en": "A piece of copper conducts electricity. This makes it more credible that other pieces of copper conduct, so it confirms 'All copper conducts electricity'."
+            },
+            {
+              "zh": "此刻这个房间里有一个男人是家里的第三个儿子（**third son**）。这个事实并不让“房间里其他男人也是第三子”更可信，所以它不确证假说“此刻这个房间里所有男人都是第三子”。",
+              "en": "One man here in this room happens to be a third son. This does not make it more credible that the other men here are third sons, so it does not confirm 'All men now in this room are third sons'."
+            },
+            {
+              "zh": "可两个假说的形式一样：都是把证据陈述概括成“所有……都……”。",
+              "en": "Yet in both cases the hypothesis generalizes the evidence statement in the same way."
+            },
+            {
+              "zh": "古德曼说，区别在于：前者是似律陈述（**lawlike statement**），后者只是偶然的概括（**accidental generality**）。",
+              "en": "The difference is that the first hypothesis is lawlike, while the second is merely an accidental generality."
+            }
+          ],
+          "answer": {
+            "zh": "一个实例能不能确证一个假说，不只看句法形式，还要看假说是不是似律的。",
+            "en": "Whether an instance confirms a hypothesis depends on more than syntactical form: it depends on whether the hypothesis is lawlike."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：确证不只看形式（第 1 页）",
+            "en": "Standard form: confirmation depends on more than form (p. 1)"
+          },
+          "items": [
+            {
+              "en": "P1: A piece of copper that conducts electricity makes it more credible that other pieces of copper conduct, so it confirms 'All copper conducts electricity'.",
+              "zh": "P1：一块导电的铜让“其他铜也导电”更可信，所以它确证“所有铜都导电”。"
+            },
+            {
+              "en": "P2: A man in this room who is a third son does not make it more credible that the other men here are third sons, so it does not confirm 'All men now in this room are third sons'.",
+              "zh": "P2：房间里一个男人是第三子，并不让“其他男人也是第三子”更可信，所以它不确证“此刻房间里所有男人都是第三子”。"
+            },
+            {
+              "en": "P3: Both hypotheses have the same syntactical form: each generalizes its evidence statement.",
+              "zh": "P3：两个假说的句法形式相同：都是对证据陈述的概括。"
+            },
+            {
+              "en": "C: So confirmation by an instance depends on more than syntactical form. Only lawlike statements can be confirmed by their instances, so we need a way to tell lawlike statements from accidental ones.",
+              "zh": "C：所以实例确证假说，不只取决于句法形式。只有似律陈述能被实例确证，所以我们需要一个办法区分似律陈述和偶然陈述。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "拆开“似律”（**lawlike**）这个词：它不等于“是真的定律”。古德曼说，一个陈述能不能被自己的实例确证，和它真不真、在科学上重不重要都没关系（第 1 页）。“所有铜都导电”就算是假的，也仍然是似律的；“房间里所有男人都是第三子”就算碰巧是真的，也仍然是偶然的。所以：似律＝能被实例确证（**confirmable**）；偶然＝不能被实例确证。"
+        },
+        {
+          "type": "text",
+          "zh": "注意说话的是谁：古德曼说的“我们的定义”，是他正在检查、批评的那个确证定义，不是他要捍卫的观点。一开始问题好像不大：只要找个办法，把定义不小心放进来的几个古怪例子排除掉；定义有点小毛病很正常，慢慢一个个修就是（第 1 页）。可他说，下面的例子会表明，这个困难严重得多。下一节就是那个例子：grue。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Someone says: 'The copper hypothesis is confirmed and the third-sons hypothesis is not, simply because the first is true and the second is false.' What would Goodman say?",
+            "zh": "有人说：“铜的假说被确证、第三子的假说不被确证，只是因为前者是真的、后者是假的。”古德曼会怎么说？"
+          },
+          "answer": {
+            "en": "Goodman would say that this is not the difference. He says that whether a statement is lawlike does not depend on its truth or falsity, or on its scientific importance (p. 1). Even if every man in the room happened to be a third son, one man's being a third son would not make it more credible that the others are. And 'All copper conducts electricity' would still be lawlike even if it turned out to be false.",
+            "zh": "古德曼会说，区别不在这里。他说一个陈述是不是似律的，和它真不真、科学上重不重要无关（第 1 页）。就算房间里的男人碰巧全是第三子，一个人是第三子也不会让“其他人也是”更可信。而“所有铜都导电”就算后来被发现是假的，也仍然是似律的。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "似律不等于真，偶然也不等于假。区别在于实例能不能确证它。",
+              "en": "Lawlike does not mean true, and accidental does not mean false."
+            },
+            {
+              "zh": "确证（confirm）不等于证明（prove）：确证只是让假说更可信。",
+              "en": "To confirm is to make more credible, not to prove."
+            },
+            {
+              "zh": "“我们的定义”是古德曼批评的对象，不是他赞成的观点。",
+              "en": "'Our definition' is the one Goodman is criticizing, not his own view."
+            },
+            {
+              "zh": "两个假说形式相同，区别从句子形式上看不出来，这正是问题所在。",
+              "en": "The two hypotheses have the same form; that is exactly the problem."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "According to Goodman, why does the copper hypothesis receive confirmation from its instance while the third-sons hypothesis does not?",
+            "zh": "按古德曼的说法，为什么铜的假说能被它的实例确证，第三子的假说却不能？"
+          },
+          "options": [
+            {
+              "en": "Because the copper hypothesis is true and the third-sons hypothesis is false.",
+              "zh": "因为铜的假说是真的，第三子的假说是假的。"
+            },
+            {
+              "en": "Because the copper was examined before time t.",
+              "zh": "因为那块铜是在时刻 t 之前被检查的。"
+            },
+            {
+              "en": "Because the two hypotheses have different syntactical forms.",
+              "zh": "因为两个假说的句法形式不同。"
+            },
+            {
+              "en": "Because the copper hypothesis is lawlike, while the third-sons hypothesis is an accidental generality.",
+              "zh": "因为铜的假说是似律的，第三子的假说是偶然概括。"
+            }
+          ],
+          "answer": 3,
+          "explain": {
+            "zh": "选 D（第 1 页）。A 错：古德曼说似律与否和真假无关。C 正好相反：两个假说形式一样，所以才说确证不只看形式。B 把下一节 grue 里的时刻 t 拉了进来，和这里无关。",
+            "en": "D (p. 1). A is wrong because lawlikeness does not depend on truth; C reverses the point, since the forms are the same; B brings in grue's time t, which is irrelevant here."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s10-grue",
+      "title": {
+        "zh": "古德曼：grue 论证：同样证据确证相互矛盾的预测",
+        "en": "Goodman: The Grue Argument"
+      },
+      "slides": "1-2",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "设想有一个固定的时刻 t。到 t 为止，所有被检查过的祖母绿（**emerald**，一种绿色宝石）都是绿的。那么在时刻 t，我们的观察支持假说“所有祖母绿都是绿的”，这也符合那个确证定义：证据陈述“祖母绿 a 是绿的”“祖母绿 b 是绿的”……每一条都确证“所有祖母绿都是绿的”（第 1 页）。到这里一切顺利。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "hypothesis / confirm",
+              "zh": "假说 / 确证",
+              "hint": "假说＝待检验的一般说法；确证＝证据让它更可信（不等于证明为真）。"
+            },
+            {
+              "en": "lawlike",
+              "zh": "似律的",
+              "hint": "能被自己的实例确证的（不管真假）；上一节讲过。"
+            },
+            {
+              "en": "predicate",
+              "zh": "谓词",
+              "hint": "句子里说对象“是怎样”的部分，比如“是绿的”“导电”。"
+            },
+            {
+              "en": "grue",
+              "zh": "grue（常见中译“绿蓝”）",
+              "hint": "古德曼自造的谓词；本站直接用英文 grue。"
+            },
+            {
+              "en": "time t",
+              "zh": "时刻 t",
+              "hint": "一个固定的时刻：证据都来自 t 之前检查过的祖母绿，要预测的是 t 之后才检查的祖母绿。"
+            },
+            {
+              "en": "examined",
+              "zh": "被检查过",
+              "hint": "被人观察、检验过。"
+            },
+            {
+              "en": "prediction",
+              "zh": "预测",
+              "hint": "关于还没观察到的情况的说法。"
+            },
+            {
+              "en": "incompatible",
+              "zh": "不相容的",
+              "hint": "不可能同时为真。"
+            },
+            {
+              "en": "criterion",
+              "zh": "标准",
+              "hint": "用来判断、区分的依据。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "grue 的定义（第 1 页，用自己的话写）",
+            "en": "The definition of grue (p. 1, in your own words)"
+          },
+          "items": [
+            {
+              "en": "An object is grue if and only if either it is examined before time t and is green, or it is not examined before t and is blue.",
+              "zh": "一个东西是 grue 的，当且仅当：要么它在时刻 t 之前被检查过并且是绿的，要么它没有在 t 之前被检查过并且是蓝的。"
+            },
+            {
+              "en": "So every emerald examined before t is both green and grue, and an emerald first examined after t is grue only if it is blue.",
+              "zh": "所以 t 之前检查过的每颗祖母绿，既是绿的又是 grue 的；t 之后才第一次被检查的祖母绿，只有是蓝的才算 grue。"
+            },
+            {
+              "en": "Grue involves no change of colour: whether a thing is grue depends on its colour and on when it is examined.",
+              "zh": "grue 不涉及任何变色：一个东西是不是 grue，取决于它的颜色和它什么时候被检查。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "练习：哪些东西是 grue？（t 是一个固定的时刻）",
+            "en": "Practice: which things are grue? (t is a fixed time)"
+          },
+          "headers": [
+            "对象 Object",
+            "t 之前被检查过？ Examined before t?",
+            "颜色 Colour",
+            "grue？"
+          ],
+          "rows": [
+            [
+              "t 之前检查过的一颗绿色祖母绿",
+              "是 Yes",
+              "绿 green",
+              "是 grue"
+            ],
+            [
+              "t 之前检查过的一颗蓝宝石",
+              "是 Yes",
+              "蓝 blue",
+              "不是 not grue"
+            ],
+            [
+              "t 之后才第一次被检查的一颗绿色祖母绿",
+              "否 No",
+              "绿 green",
+              "不是 not grue"
+            ],
+            [
+              "t 之后才第一次被检查的一颗蓝色祖母绿（如果有的话）",
+              "否 No",
+              "蓝 blue",
+              "是 grue"
+            ],
+            [
+              "从来没被检查过的一颗蓝宝石",
+              "否 No",
+              "蓝 blue",
+              "是 grue"
+            ]
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "刷题时常见的“找规律”：2，4，8，下一个是什么？“每次乘 2”给出 16；“每次加的数递增（+2，+4，+6）”给出 14。前三个数两条规则都完全符合，可它们对下一个数的预测不一样。祖母绿的观察对 green 和 grue 也是这样：过去的数据都符合，预测却打架。",
+          "limit": "找规律题里我们默认“更简单”的规则是答案。按古德曼的思路可以追问（本站的引申，节选没有讨论“简单”）：凭什么说 green 比 grue 更简单、更自然？后面讲 bleen 和对称性的那一节有相关的论证。另外，祖母绿的例子比的不是数字规律，而是两个谓词。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：grue 论证（第 1–2 页）",
+            "en": "Standard form: the grue argument (pp. 1-2)"
+          },
+          "items": [
+            {
+              "en": "P1: Suppose every emerald examined before time t has been green. By the definition of confirmation, each report such as 'emerald a is green' confirms 'All emeralds are green'.",
+              "zh": "P1：设 t 之前检查过的祖母绿都是绿的。按确证定义，每条“祖母绿 a 是绿的”这样的报告都确证“所有祖母绿都是绿的”。"
+            },
+            {
+              "en": "P2: Define 'grue': an object is grue if it is examined before t and is green, or if it is not examined before t and is blue.",
+              "zh": "P2：定义 grue：在 t 之前被检查过并且是绿的，或者没在 t 之前被检查过并且是蓝的。"
+            },
+            {
+              "en": "P3: Then every emerald examined so far is also grue, and by the same definition the parallel reports ('emerald a is grue', and so on) confirm 'All emeralds are grue'.",
+              "zh": "P3：那么目前检查过的每颗祖母绿也都是 grue 的；按同一个定义，对应的报告（“祖母绿 a 是 grue 的”等等）确证“所有祖母绿都是 grue 的”。"
+            },
+            {
+              "en": "P4: The two hypotheses make incompatible predictions about emeralds examined after t: one predicts green, the other blue, since a grue emerald examined later is blue and so not green.",
+              "zh": "P4：两个假说对 t 之后检查的祖母绿做出不相容的预测：一个说绿，一个说蓝，因为 t 之后检查的 grue 祖母绿是蓝的，所以不是绿的。"
+            },
+            {
+              "en": "P5: Yet we know that only the green prediction is genuinely confirmed.",
+              "zh": "P5：可我们知道，真正被确证的只有“绿”的预测。"
+            },
+            {
+              "en": "C: So a definition of confirmation that looks only at form gives equal support to incompatible predictions; without a criterion of lawlikeness it cannot work.",
+              "zh": "C：所以只看形式的确证定义，会同等地支持互相冲突的预测；没有判断似律的标准，它就不能用。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "一步步走 grue 论证（第 1–2 页）",
+            "en": "The grue argument step by step (pp. 1-2)"
+          },
+          "steps": [
+            {
+              "zh": "第 1 步：到时刻 t 为止，我们检查过的祖母绿 a、b、c……全是绿的。",
+              "en": "Every emerald examined up to time t (a, b, c, ...) is green."
+            },
+            {
+              "zh": "第 2 步：它们都是在 t 之前被检查的，又都是绿的，所以按定义它们也都是 grue 的。每一条“a 是绿的”都对应一条同样真的“a 是 grue 的”。",
+              "en": "Each was examined before t and is green, so each is also grue; every green report has a parallel, equally true grue report."
+            },
+            {
+              "zh": "第 3 步：按确证定义，绿的报告确证“所有祖母绿都是绿的”，grue 的报告同样确证“所有祖母绿都是 grue 的”。",
+              "en": "By the definition, the green reports confirm 'All emeralds are green', and the grue reports equally confirm 'All emeralds are grue'."
+            },
+            {
+              "zh": "第 4 步：看对 t 之后才检查的祖母绿的预测。第一个假说说：会是绿的。第二个假说说：会是 grue 的，而 t 之后才检查的东西要算 grue，就必须是蓝的。两个预测不可能都对。",
+              "en": "For emeralds examined after t, the first hypothesis predicts green; the second predicts grue, which for them means blue. Both cannot be right."
+            },
+            {
+              "zh": "第 5 步：我们心里很清楚，真正被确证的是“绿”的预测；可按这个定义，两者被同样好地确证了。",
+              "en": "We know that the green prediction is the one genuinely confirmed, yet by the definition both are equally well confirmed."
+            }
+          ],
+          "answer": {
+            "zh": "同样的观察，同等地“确证”了两个互相冲突的预测。所以光看形式的确证定义出了大问题。",
+            "en": "The same observations equally 'confirm' two conflicting predictions, so a purely formal definition of confirmation is in serious trouble."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "古德曼接着把问题推到底：只要挑一个合适的谓词，同样这些观察就能同等地确证关于其他祖母绿、甚至关于任何东西的任何预测（第 2 页）。真正被确证的只是似律假说下的预测，可我们还没有判断似律的标准（**criterion**）。没有它，这个定义就不只是放进了几个古怪的例子，而是几乎什么都排除不了，结果就是“anything confirms anything”（第 2 页）。他说，这不是以后再慢慢处理的小细节：定义要能用，必须先解决它。",
+          "en": "With a suitable predicate, the same observations would equally confirm any prediction whatever, so without a criterion of lawlikeness the definition excludes almost nothing: \"anything confirms anything\" (p. 2)."
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "自己造一个词试试（演示用，读物里没有这个词）",
+            "en": "Try it yourself (an illustration; the word is not in the reading)"
+          },
+          "steps": [
+            {
+              "zh": "仿照 grue 造一个谓词 gred：一个东西是 gred 的，当且仅当它在 t 之前被检查过并且是绿的，或者没有在 t 之前被检查过并且是红的。",
+              "en": "Define 'gred': examined before t and green, or not examined before t and red."
+            },
+            {
+              "zh": "t 之前检查过的祖母绿全是绿的，所以它们也全是 gred 的。",
+              "en": "Every emerald examined before t is green, so every one is also gred."
+            },
+            {
+              "zh": "按同一个定义，这些观察也确证“所有祖母绿都是 gred 的”，也就是预测 t 之后检查的祖母绿是红的。",
+              "en": "By the same definition, the observations confirm 'All emeralds are gred', which predicts red emeralds after t."
+            },
+            {
+              "zh": "换成任何颜色、任何性质都行。这就是古德曼说的：只要挑合适的谓词，同样的证据可以“确证”任何预测。",
+              "en": "Any colour or property would do: with a suitable predicate, the same evidence 'confirms' any prediction."
+            }
+          ],
+          "answer": {
+            "zh": "所以问题不在 grue 这一个怪词，而在于这个确证定义几乎什么都挡不住。",
+            "en": "The problem is not one odd word; the definition excludes almost nothing."
+          }
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Objection: 'Our evidence favours green, because we have actually seen green emeralds; nobody has ever seen a grue one.' Is this right?",
+            "zh": "反驳：“证据当然支持绿，因为我们真看到的是绿的祖母绿；谁也没见过 grue 的祖母绿。”对吗？"
+          },
+          "answer": {
+            "en": "No. Every emerald we have seen was examined before t and was green, so by definition every one of them was also grue (p. 1). The same observations can be reported as 'this emerald is green' or as 'this emerald is grue', and both reports are true. So the evidence by itself cannot favour one hypothesis, which is why Goodman says we need a criterion of lawlikeness.",
+            "zh": "不对。我们看到的每颗祖母绿都是在 t 之前被检查的、又是绿的，所以按定义每一颗也都是 grue 的（第 1 页）。同样的观察，既可以报告成“这颗是绿的”，也可以报告成“这颗是 grue 的”，两种报告都真。所以光看证据分不出哪个假说更好，这正是古德曼说需要一个似律标准的原因。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "grue 不是“到了时刻 t 会变色”。没有任何东西变色；算不算 grue，看的是颜色加上它是不是在 t 之前被检查。",
+              "en": "Nothing changes colour at t; grue depends on colour plus time of examination."
+            },
+            {
+              "zh": "grue 的定义适用于一切东西，不只是祖母绿（第 1 页）。从来没被检查过的东西，也算“没有在 t 之前被检查”。",
+              "en": "Grue is defined for all things, and never-examined things count as not examined before t."
+            },
+            {
+              "zh": "古德曼同意真正被确证的是“绿”的预测；他说的是那个定义分不出来，不是说我们应该预测蓝。",
+              "en": "Goodman agrees that green is genuinely confirmed; the definition cannot tell the difference."
+            },
+            {
+              "zh": "“anything confirms anything”不是说任意两句话都互相确证，而是说：挑合适的谓词，同样的证据可以同等地确证任何预测。",
+              "en": "'Anything confirms anything' means that with a suitable predicate the same evidence confirms any prediction."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Let t be a fixed time. Which of the following objects is grue?",
+            "zh": "设 t 是一个固定的时刻。下面哪个东西是 grue 的？"
+          },
+          "options": [
+            {
+              "en": "A green emerald examined before t.",
+              "zh": "一颗在 t 之前被检查过的绿色祖母绿。"
+            },
+            {
+              "en": "A blue sapphire examined before t.",
+              "zh": "一颗在 t 之前被检查过的蓝宝石。"
+            },
+            {
+              "en": "A green emerald first examined after t.",
+              "zh": "一颗 t 之后才第一次被检查的绿色祖母绿。"
+            },
+            {
+              "en": "A red ruby that has never been examined.",
+              "zh": "一颗从来没被检查过的红宝石。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A：在 t 之前被检查、而且是绿的，符合定义的第一种情况。B 在 t 之前被检查却是蓝的，不是 grue。C 没有在 t 之前被检查，要算 grue 必须是蓝的，它是绿的，所以不是。D 从来没被检查过，也算“没有在 t 之前被检查”，要算 grue 也必须是蓝的，它是红的，所以不是。另外记住：grue 的定义里根本没有颜色变化。",
+            "en": "A fits the first clause. B was examined before t but is blue; C was not examined before t and is green, not blue; D was never examined, so it would have to be blue to be grue, but it is red. Grue involves no change of colour."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s11-smuggled-info-and-h-k",
+      "title": {
+        "zh": "古德曼：两种失败的补救：偷运信息与间接支持（H 与 K）",
+        "en": "Goodman: Two Failed Fixes: Smuggled Information and Indirect Support (H vs K)"
+      },
+      "slides": "2-3",
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "古德曼说，这个困难常常被轻视，因为表面上似乎有很容易的解决办法（第 2 页）。他把这些办法一个个拿出来检验，每个都失败了。这一节讲前两个：一是“偷运了背景信息”的说法，二是“通过相关假说间接支持”的说法。另外两个在下一节。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "lawlike / accidental",
+              "zh": "似律的 / 偶然的",
+              "hint": "能 / 不能被自己的实例确证（第 1 页）。"
+            },
+            {
+              "en": "background information",
+              "zh": "背景信息",
+              "hint": "证据之外、我们本来就知道的情况。"
+            },
+            {
+              "en": "smuggled / tacit use",
+              "zh": "偷运 / 默默使用",
+              "hint": "没有明说，却在判断时偷偷用上了。"
+            },
+            {
+              "en": "paradox of the ravens",
+              "zh": "乌鸦悖论",
+              "hint": "另一个关于确证的难题；节选只提了名字。"
+            },
+            {
+              "en": "confirm / disconfirm",
+              "zh": "确证 / 否证",
+              "hint": "证据让一个假说更可信 / 更不可信。"
+            },
+            {
+              "en": "amenability to confirmation",
+              "zh": "可被确证性",
+              "hint": "一旦找到直接的正面实例，就能被它们确证；古德曼用它来说明什么是似律性。"
+            },
+            {
+              "en": "uniform in conductivity",
+              "zh": "导电性一致",
+              "hint": "一类东西要么都导电，要么都不导电。"
+            },
+            {
+              "en": "circular",
+              "zh": "循环的",
+              "hint": "用要解释的东西来解释它自己。"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：乌鸦悖论（**paradox of the ravens**）是哲学家亨佩尔（Carl Hempel）提出的确证难题：按某些确证规则，一只白鞋似乎也能确证“所有乌鸦都是黑的”。一种常见的解释是：我们觉得奇怪，是因为偷偷用了背景知识；把这些知识明说出来，问题就消失了。节选只提到它的名字和这一点，本站不展开。",
+          "en": "Outside the reading: the paradox of the ravens is Hempel's puzzle in which a white shoe seems to confirm 'All ravens are black'. The excerpt only mentions it."
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "补救一（P＝前提，C＝结论）：“偷运了背景信息”及古德曼的回应（第 2 页）",
+            "en": "Fix 1: 'smuggled information' and Goodman's reply (p. 2)"
+          },
+          "items": [
+            {
+              "en": "Proposal: as in the paradox of the ravens, we tacitly use information outside the stated evidence: that pieces of the same material tend to agree in conductivity, and that the men in one audience tend to differ in their number of older brothers.",
+              "zh": "提议：就像乌鸦悖论那样，我们偷偷用了证据之外的信息：同一种材料的样本通常导电性相同；同一场讲座的听众，哥哥的数量通常各不相同。"
+            },
+            {
+              "en": "P1: In the ravens case, once the smuggled information is stated openly, the definition of confirmation registers its effect properly.",
+              "zh": "P1：在乌鸦悖论里，把偷运的信息明说出来，确证定义就能正确地反映它的作用。"
+            },
+            {
+              "en": "P2: Here, adding statements about the conductivity of other materials, or about the older brothers of other audiences, makes no difference at all to what the definition says about the copper hypothesis or the audience hypothesis.",
+              "zh": "P2：可在这里，加上关于其他材料导电性、关于其他听众有几个哥哥的陈述，定义对铜的假说、对听众的假说的判断一点都不变。"
+            },
+            {
+              "en": "C: So the definition is blind to such evidence even when it is fully declared; the problem cannot be explained away as smuggled information.",
+              "zh": "C：所以就算把证据全都摆明，这个定义也看不到它们的作用；不能用“偷运信息”把问题解释掉。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "关键在于：古德曼承认信息确实被偷运了，他没有否认这一点（第 2 页）。问题是，按古德曼的说法，这个定义对这类相关证据的作用不敏感，就算把证据全都摆明也一样。为什么会这样？本站的理解：别的材料怎样、别的听众怎样，都不是这个假说自己的实例（比如“这块铜导电”），而这个定义只看实例，所以对它们视而不见。所以“把背景信息明说出来”这一招，在乌鸦悖论里管用，在这里不管用。"
+        },
+        {
+          "type": "text",
+          "zh": "第二个办法古德曼认为更有希望（第 2 页）：别的证据不直接作用于这个假说，而是借道其他假说。关于其他材料的信息，确证了“所有铁都导电”“没有橡胶导电”这类假说；据说这些假说把似律性（**lawlikeness**：一旦找到正面实例就能被确证的性质）传给了“所有铜都导电”。关于其他听众的信息，则否证了“某场听众全是第三子”这类假说，从而去掉了“这场听众全是第三子”的似律性。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "铁、锆和我桌上的东西：H 与 K（第 2–3 页）",
+            "en": "Iron, zirconium and the things on my desk: H and K (pp. 2-3)"
+          },
+          "steps": [
+            {
+              "zh": "要走这条路，就得精确说出：假说之间要怎样“相似”，才能传递似律性。",
+              "en": "On this route we must say precisely how hypotheses must be alike to pass on lawlikeness."
+            },
+            {
+              "zh": "支持“所有铁都导电”的证据，会提高“所有锆（**zirconium**）都导电”的似律性，却不会提高“我桌上所有东西都导电”的似律性。为什么？",
+              "en": "Evidence for 'All iron conducts electricity' raises the lawlikeness of 'All zirconium conducts electricity' but not of 'All the objects on my desk conduct electricity'. Why?"
+            },
+            {
+              "zh": "铁和锆这两个假说，都属于一个更大的假说 H：同一种材料构成的每一类东西，导电性都一致。",
+              "en": "The iron and zirconium hypotheses both fall under H: every group of same-material things is uniform in conductivity."
+            },
+            {
+              "zh": "铁和桌上东西这两个假说，只属于像 K 这样的假说：每一类“要么全由同一种材料构成、要么全在一张桌子上”的东西，导电性都一致。",
+              "en": "The iron and desk hypotheses fall only under something like K: every group of things that either share one material or sit on one desk is uniform in conductivity."
+            },
+            {
+              "zh": "区别在于：H 涵盖的某一类有某种性质的证据，会提高 H 涵盖的另一类也有这种性质的可信度；K 却不是这样。",
+              "en": "The difference: evidence that one class covered by H has the property makes it more credible that another such class has it; nothing like this holds for K."
+            },
+            {
+              "zh": "可这只是在说“H 是似律的，K 不是”。我们又回到了要解决的那个问题：怎样区分似律假说和偶然假说。",
+              "en": "But this only amounts to calling H lawlike and K not, and we are back to the very problem we set out to solve."
+            }
+          ],
+          "answer": {
+            "zh": "这个办法要用“似律”去解释“似律”，是循环的。",
+            "en": "The proposal uses lawlikeness to explain lawlikeness, so it is circular."
+          }
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "补救二：间接支持及古德曼的回应（第 2–3 页）",
+            "en": "Fix 2: indirect support and Goodman's reply (pp. 2-3)"
+          },
+          "items": [
+            {
+              "en": "Proposal: evidence about other materials confirms related hypotheses (all iron conducts electricity; no rubber does), and these make 'All copper conducts electricity' lawlike, where lawlikeness means being confirmable by positive instances once they are found (amenability to confirmation).",
+              "zh": "提议：关于其他材料的证据确证了相关的假说（铁都导电、橡胶都不导电），这些假说再把似律性，也就是能被正面实例确证的性质，传给“所有铜都导电”。"
+            },
+            {
+              "en": "P1: Then we must say precisely how hypotheses must be related for lawlikeness to pass between them.",
+              "zh": "P1：那就必须精确说明，假说之间要有什么关系，似律性才能传过去。"
+            },
+            {
+              "en": "P2: Evidence for the iron hypothesis supports the zirconium hypothesis but not the hypothesis about the objects on my desk.",
+              "zh": "P2：支持铁的假说的证据，支持锆的假说，却不支持关于我桌上东西的假说。"
+            },
+            {
+              "en": "P3: The important difference is that evidence about one class covered by H raises the credibility of claims about other such classes, while this does not hold for K.",
+              "zh": "P3：关键的区别是：H 涵盖的某一类的证据，能提高关于 H 涵盖的其他类的说法的可信度，K 却不能。"
+            },
+            {
+              "en": "P4: But this amounts to no more than calling H lawlike and K not lawlike.",
+              "zh": "P4：可这只是在说 H 是似律的、K 不是。"
+            },
+            {
+              "en": "C: So the proposal assumes the lawlike/accidental distinction that it was supposed to explain: it is circular.",
+              "zh": "C：所以这个提议预设了它本来要解释的“似律／偶然”区分，是循环的。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "同学问：“什么样的人算学霸？”你说：“成绩好的人。”“那他们为什么成绩好？”“因为他们是学霸。”绕了一圈，什么也没解释。古德曼说，H/K 这个办法也是这样：要说清哪些假说“相关”，最后只能说“H 是似律的”，又用上了要解释的东西。",
+          "limit": "学霸的循环一眼就能看出来；古德曼指出的循环藏得更深：提议表面上谈的是“假说之间的关系”，只有追问“到底是哪种关系”时才露出来。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Goodman treats the indirect-support proposal as more promising than the smuggled-information proposal. Why is it more promising, and why does it still fail?",
+            "zh": "古德曼认为“间接支持”比“偷运信息”更有希望。为什么更有希望？为什么还是失败？"
+          },
+          "answer": {
+            "en": "One reason it seems more promising (an interpretation, since Goodman simply calls it more promising) is that it explains why the extra evidence matters: it works through related hypotheses that the definition does confirm (p. 2). But it needs a precise account of which hypotheses are relevantly alike. Evidence about iron supports zirconium but not the objects on my desk, and the important difference Goodman finds between H and K comes down to calling H lawlike and K not (p. 3). So the proposal presupposes the very distinction it was meant to explain.",
+            "zh": "它看起来更有希望，一个原因是（本站的理解，古德曼只说它更有希望，没说理由）：它说明了额外的证据为什么重要，因为证据通过定义确实能确证的相关假说起作用（第 2 页）。可它需要精确说明哪些假说是“相关地相似”的。铁的证据支持锆，却不支持桌上的东西；古德曼找到的 H 和 K 的关键区别，说到底只是在说 H 是似律的、K 不是（第 3 页）。所以这个提议预设了它本来要解释的区分。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "古德曼承认背景信息确实被偷运了；他反对的是“这样就解决了问题”。",
+              "en": "Goodman grants that information is smuggled in; he denies that this solves the problem."
+            },
+            {
+              "zh": "乌鸦悖论里，把信息明说出来就能解决；这里明说了也没用。别把两者说成一样。",
+              "en": "Declaring the information helps in the ravens case but not here."
+            },
+            {
+              "zh": "H 和 K 都是一般的假说；差别不在句子形式上，而在于一类的证据能不能支持其他类。",
+              "en": "H and K differ not in form but in whether evidence about one class supports claims about others."
+            },
+            {
+              "zh": "间接支持的提议失败，是因为循环，不是因为“铁和锆不相似”。",
+              "en": "The indirect-support proposal fails because it is circular."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Why does Goodman reject the proposal that lawlikeness is passed on indirectly by related hypotheses (H versus K)?",
+            "zh": "古德曼为什么否定“似律性通过相关假说间接传递”这个提议（H 与 K）？"
+          },
+          "options": [
+            {
+              "en": "Because iron and zirconium do not really conduct electricity.",
+              "zh": "因为铁和锆其实不导电。"
+            },
+            {
+              "en": "Because the relevant difference between H and K comes down to calling H lawlike and K not, so the proposal is circular.",
+              "zh": "因为 H 和 K 之间的关键区别，说到底只是在说 H 是似律的、K 不是，所以这个提议是循环的。"
+            },
+            {
+              "en": "Because the proposal relies on the paradox of the ravens.",
+              "zh": "因为这个提议依赖乌鸦悖论。"
+            },
+            {
+              "en": "Because the objects on a desk are always made of the same material.",
+              "zh": "因为桌上的东西总是由同一种材料做的。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 3 页）：要说明哪些假说“相关”，最后只能说 H 是似律的、K 不是，于是又回到了要解决的问题。A 不是古德曼的理由，他没有怀疑铁和锆导电。C 混淆了两个补救：乌鸦悖论属于第一个补救。D 与读物和常识都不符。",
+            "en": "B (p. 3). A is not Goodman's reason; C confuses the two fixes; D is false and not in the reading."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s12-generality-and-qualitative-predicates",
+      "title": {
+        "zh": "古德曼：完全普遍性与纯质谓词为何失败：bleen 与对称性",
+        "en": "Goodman: Why Generality and Qualitative Predicates Fail: Bleen and Symmetry"
+      },
+      "slides": "3-4",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "古德曼说，第三个办法是最流行的（第 3 页）：偶然假说好像通常带着空间或时间上的限制，或者提到某个特定的个体，比如“这个房间里的人”“某人桌上的东西”；似律假说谈的则是“所有乌鸦”“所有铜”。于是很多人认为：完全普遍性（**complete generality**）就足以保证一个假说是似律的。古德曼说，问题是“完全普遍”很难定义。"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "lawlike / accidental",
+              "zh": "似律的 / 偶然的",
+              "hint": "能 / 不能被自己的实例确证。"
+            },
+            {
+              "en": "predicate",
+              "zh": "谓词",
+              "hint": "句子里说对象“是怎样”的部分，比如“是绿的”。"
+            },
+            {
+              "en": "complete generality",
+              "zh": "完全普遍性",
+              "hint": "不受任何空间、时间限制，也不提到任何特定个体。"
+            },
+            {
+              "en": "sufficient condition",
+              "zh": "充分条件",
+              "hint": "只要满足它，结论就一定成立。"
+            },
+            {
+              "en": "terms for specific individuals",
+              "zh": "指称特定个体的词",
+              "hint": "点名、描述或指向某个特定东西或地点的词，比如“这个房间”“伦敦”。"
+            },
+            {
+              "en": "equivalent",
+              "zh": "等价的",
+              "hint": "说法不同，意思完全一样，必然同真同假。"
+            },
+            {
+              "en": "syntactically universal hypothesis",
+              "zh": "句法上全称的假说",
+              "hint": "形如“所有 F 都是 G”的假说。"
+            },
+            {
+              "en": "purely qualitative / nonpositional predicate",
+              "zh": "纯质的 / 非位置性的谓词",
+              "hint": "意思里不涉及任何特定时间、地点或个体的谓词。"
+            },
+            {
+              "en": "positional predicate",
+              "zh": "位置性谓词",
+              "hint": "意思里涉及特定时间、地点或个体的谓词。"
+            },
+            {
+              "en": "well-behaved / ill-behaved",
+              "zh": "表现良好 / 表现不良",
+              "hint": "用这个谓词写成的简单全称假说是 / 不是似律的。"
+            },
+            {
+              "en": "bleen",
+              "zh": "bleen（常见中译“蓝绿”）",
+              "hint": "和 grue（t 之前被检查且是绿的，或没在 t 之前被检查且是蓝的）配对的另一个自造谓词，定义见下。"
+            },
+            {
+              "en": "begging the question",
+              "zh": "窃取论题",
+              "hint": "把要说明的东西偷偷当作前提来用。"
+            },
+            {
+              "en": "dichotomy",
+              "zh": "二分",
+              "hint": "把东西分成截然不同的两类。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "补救三（P＝前提，C＝结论；本站重构，第一角的读法见下面的提醒）：完全普遍性及古德曼的回应（第 3 页）",
+            "en": "Fix 3: complete generality and Goodman's reply (p. 3; our reconstruction, see the note below on the first horn)"
+          },
+          "items": [
+            {
+              "en": "Proposal: accidental hypotheses mention particular places, times or individuals (this room, my desk), while lawlike ones are completely general (all ravens, all copper), so complete generality is enough for lawlikeness.",
+              "zh": "提议：偶然假说提到特定的地点、时间或个体（这个房间、我的桌子），似律假说是完全普遍的（所有乌鸦、所有铜），所以完全普遍就足以保证似律。"
+            },
+            {
+              "en": "P1: Banning words that name, describe or point to a particular thing or place is not enough. 'All emeralds are grue' contains no such word, and any such word (as in 'men in this room') can be replaced by a predicate true of exactly the same things.",
+              "zh": "P1：只禁止点名、描述或指向特定东西、地点的词还不够。“所有祖母绿都是 grue 的”里根本没有这种词；有这种词的地方（比如“这个房间里的人”），也总能换成一个只适用于完全相同那些东西的谓词。"
+            },
+            {
+              "en": "P2: So we might also ban hypotheses equivalent to ones that contain such words. But banning only hypotheses that cannot be stated without such words bans nothing, since such words can always be replaced.",
+              "zh": "P2：于是也许要连“等价于含这种词的假说”的假说一起禁止。可如果只禁止离不开这种词的假说，就什么也禁止不了，因为这种词总能换掉。"
+            },
+            {
+              "en": "P3: And banning every hypothesis that has some equivalent containing such a word bans everything: even 'All grass is green' is equivalent to 'All grass in London or elsewhere is green'.",
+              "zh": "P3：如果禁止一切“有某个等价说法含这种词”的假说，就什么都禁止了：连“所有草都是绿的”都等价于“伦敦或别处的所有草都是绿的”。"
+            },
+            {
+              "en": "C: So complete generality, understood as the absence of terms for particular individuals, cannot mark off the lawlike hypotheses.",
+              "zh": "C：所以把完全普遍性理解为“不含指称特定个体的词”，划不出似律假说。"
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "“等价”带来的两难（第 3 页）",
+            "en": "The dilemma about equivalents (p. 3)"
+          },
+          "steps": [
+            {
+              "zh": "先看为什么只禁个体词不够：“这个房间里的人”可以换成一个新造的谓词，比如“房间人”（演示用，指此刻在这个房间里的那几个人）。换完以后，假说里没有个体词了，可它还是那个偶然假说。",
+              "en": "An individual term such as 'in this room' can be replaced by a coined predicate true of exactly the same people; the hypothesis is still accidental but has no individual term."
+            },
+            {
+              "zh": "所以有人想：凡是和“含个体词的假说”等价的假说，也一律排除。可这句话有两种读法。",
+              "en": "So one might also exclude hypotheses equivalent to ones with individual terms. This can be read in two ways."
+            },
+            {
+              "zh": "读法一（本站按上下文逻辑的理解；第 3 页印的字句见下面的提醒）：只排除那些怎么说都离不开个体词的假说（它的所有等价说法都含个体词）。可个体词总能换成谓词，这样的假说根本不存在，于是什么也排除不了。",
+              "en": "Reading 1 (our reading of the logic; see the note below on the printed wording): exclude only hypotheses all of whose equivalents contain individual terms. Since such terms can always be replaced, there are none, so nothing is excluded."
+            },
+            {
+              "zh": "读法二：排除一切“有某个等价说法含个体词”的假说。可任何假说都有这样的等价说法：“所有草都是绿的”等价于“伦敦或别处的所有草都是绿的”，后者提到了伦敦。于是什么都被排除了，连最好的似律假说也不剩。",
+              "en": "Reading 2: exclude every hypothesis that has some equivalent with an individual term. Every hypothesis has one ('All grass is green' / 'All grass in London or elsewhere is green'), so everything is excluded."
+            }
+          ],
+          "answer": {
+            "zh": "要么什么都排除不了，要么什么都排除了。完全普遍性这条路走不通。",
+            "en": "The proposal excludes either nothing or everything, so complete generality cannot be the criterion."
+          }
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "zh": "留意第 3 页右栏第一角的印刷字句。书上印的意思是：只排除“所有等价说法都不含个体词”的假说，等于什么也没排除。这句话有两种理解，结论相同。（1）照字面读也说得通：任何假说都有一个含个体词的等价说法（比如“伦敦或别处的所有草都是绿的”），所以“所有等价说法都不含个体词”的假说一个也没有，只排除它们，当然什么也没排除。（2）也可能是印刷错误，原意是“所有等价说法都含个体词”：个体词总能换成谓词，这样的假说同样一个也没有，所以也什么都没排除。本站无法确定是哪一种，上面的读法一用的是（2）。考试时不必纠结这句字句，写清两角的结论和理由即可：窄的禁令什么也排除不了；宽的禁令（只要有某个含个体词的等价说法就排除）把一切都排除了。",
+          "en": "The printed first horn on p. 3 speaks of excluding only hypotheses whose equivalents are all free of individual terms. Read literally, this works: every hypothesis has some equivalent with an individual term (the grass example), so there are no such hypotheses and nothing is excluded. It may also be a misprint for hypotheses all of whose equivalents contain such terms; since such terms can always be replaced, there are none of those either. Either way this horn excludes nothing, and we cannot tell which reading is meant."
+        },
+        {
+          "type": "text",
+          "zh": "第四个办法：限制谓词的种类（第 3 页）。提议说：一个句法上全称的假说，只要它的谓词是纯质的（**purely qualitative**），也就是非位置性的（**nonpositional**），它就是似律的。古德曼说，如果“纯质”又用“等价说法里含不含个体词”来定义，只会把上面的困难再搬回来。所以提议者真正的意思是：至少对简单的谓词，看一眼它的意思，就能判断它是不是纯质的。"
+        },
+        {
+          "type": "text",
+          "zh": "古德曼说，先不管“一个谓词的意思”这个说法本身就很含糊，这个主张在他看来也是错的：他根本不知道怎样判断一个谓词是纯质的还是位置性的，除非完全窃取论题（**begging the question**），也就是去问这个谓词是不是表现良好（**well-behaved**）：用它写成的简单全称假说是不是似律的（第 3 页）。这样一来，“纯质”只是“表现良好”的另一个名字，什么也没解释。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "补救四：纯质谓词、bleen 与对称性（第 3–4 页）",
+            "en": "Fix 4: qualitative predicates, bleen and symmetry (pp. 3-4)"
+          },
+          "items": [
+            {
+              "en": "Definition: an emerald is bleen if and only if either it is examined before t and is blue, or it is not examined before t and is green.",
+              "zh": "定义：一颗祖母绿是 bleen 的，当且仅当：要么在 t 之前被检查过并且是蓝的，要么没在 t 之前被检查过并且是绿的。"
+            },
+            {
+              "en": "Protest: 'blue' and 'green' are purely qualitative, while 'grue' and 'bleen' are not, because their meaning refers to a particular time t.",
+              "zh": "抗议：blue 和 green 是纯质的，grue 和 bleen 不是，因为它们的意思里提到了特定的时刻 t。"
+            },
+            {
+              "en": "Goodman's reply: if we start from blue and green, grue and bleen are defined with blue, green and a temporal term; but if we start from grue and bleen, blue and green are defined with grue, bleen and a temporal term.",
+              "zh": "古德曼的回应：从 blue 和 green 出发，grue 和 bleen 要用 blue、green 加一个时间词来定义；可从 grue 和 bleen 出发，blue 和 green 同样要用 grue、bleen 加一个时间词来定义。"
+            },
+            {
+              "en": "For example, an emerald is green if and only if either it is examined before t and is grue, or it is not examined before t and is bleen.",
+              "zh": "例如：一颗祖母绿是 green 的，当且仅当：要么在 t 之前被检查过并且是 grue 的，要么没在 t 之前被检查过并且是 bleen 的。"
+            },
+            {
+              "en": "C: So qualitativeness is entirely relative to the predicates we start from; it does not divide predicates into two kinds and cannot be the criterion of good behaviour.",
+              "zh": "C：所以“纯质”完全取决于我们从哪些谓词出发，是相对的；它分不出两类谓词，不能当作“表现良好”的标准。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "对称性：谁需要时间词，取决于从哪里出发（第 4 页；读物只写了 green 一行，blue 一行按同样方法推出）",
+            "en": "Symmetry: which predicates need a temporal term depends on where you start (p. 4; the reading gives the green row, and the blue row is worked out the same way)"
+          },
+          "headers": [
+            "出发点 Starting point",
+            "要定义的词 Defined word",
+            "定义（对祖母绿） Definition (for emeralds)"
+          ],
+          "rows": [
+            [
+              "blue, green",
+              "grue",
+              "t 之前被检查且 green，或者没在 t 之前被检查且 blue"
+            ],
+            [
+              "blue, green",
+              "bleen",
+              "t 之前被检查且 blue，或者没在 t 之前被检查且 green"
+            ],
+            [
+              "grue, bleen",
+              "green",
+              "t 之前被检查且 grue，或者没在 t 之前被检查且 bleen"
+            ],
+            [
+              "grue, bleen",
+              "blue",
+              "t 之前被检查且 bleen，或者没在 t 之前被检查且 grue"
+            ]
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "你的母语是中文：英文单词要靠中文来解释，你会觉得英文是“需要翻译的那一边”。可对一个英国同学来说正好反过来：中文才需要用英文解释。哪边“需要解释”，取决于你从哪种语言出发。古德曼说，green 和 grue 也是这样：哪个“提到了时间”，取决于你从哪组词出发。",
+          "limit": "中英文互译时不会多出一个时间词；古德曼的点更具体：两边的定义都必须用到时刻 t。另外，古德曼仍然承认 green 表现良好、grue 表现不良；他只是说“纯质”解释不了为什么。"
+        },
+        {
+          "type": "text",
+          "zh": "别误会古德曼的立场：他明确说，他也认为 blue、green 是表现良好、可以放进似律假说的谓词，grue、bleen 是表现不良的（第 4 页）。他反对的是“前者纯质、后者不纯质”这个论证（他说这个论证站不住脚），以及拿“纯质”当“表现良好”标准的做法。纯质与否是相对的，它本身不能把谓词分成两类（**dichotomy**）；把“纯质”当作“表现良好”标准的人，完全忽略了这种相对性。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "A student objects: 'We can tell that an emerald is green just by looking, without knowing the date; but to tell whether a new emerald is grue, we must know whether it was examined before t. So green really is the more basic predicate.' Does the excerpt answer this?",
+            "zh": "有同学反驳：“看一眼就知道祖母绿是不是绿的，不用知道日期；可要判断一颗新祖母绿是不是 grue，就得知道它是不是在 t 之前被检查的。所以 green 才是更基本的谓词。”节选回答了这个反驳吗？"
+          },
+          "answer": {
+            "en": "Not directly. Goodman's symmetry argument is about definitions: whichever pair of predicates we start from, the other pair needs a temporal term (p. 4). The student's point is about observation, which the excerpt does not discuss. A defender of Goodman might say that a speaker who started from grue and bleen would need to know the time to apply 'green', but this goes beyond the text, so it is best treated as an open question.",
+            "zh": "没有直接回答。古德曼的对称性论证讲的是定义：不管从哪一对谓词出发，另一对都要用到时间词（第 4 页）。这位同学讲的是观察，节选没有讨论。替古德曼辩护的人也许会说：一个从 grue、bleen 出发的人，要用 green 时同样得知道时间；但这已经超出了读物，考试时最好当作开放问题来写。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "对称性论证不是说 grue 的通常定义里没有时间词，而是说：从 grue、bleen 出发时，green 的定义里也有时间词。",
+              "en": "Symmetry does not deny that grue's usual definition mentions t; it says green's definition does too when grue and bleen are basic."
+            },
+            {
+              "zh": "古德曼同意 grue、bleen 表现不良；他否认的是“纯质”能解释这一点。",
+              "en": "Goodman agrees that grue is ill-behaved; he denies that qualitativeness explains why."
+            },
+            {
+              "zh": "读物里 bleen 只对祖母绿定义（第 3 页），grue 是对一切东西定义的。",
+              "en": "In the excerpt bleen is defined only for emeralds; grue is defined for all things."
+            },
+            {
+              "zh": "完全普遍性的两难：一边是什么都排除不了，一边是什么都排除了。别把两边弄反，并留意第 3 页第一角的印刷字句（见上面的提醒）。",
+              "en": "The generality dilemma: nothing excluded on one reading, everything on the other."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "How does Goodman reply to the claim that 'green' is purely qualitative while 'grue' is not, because 'grue' refers to a time t?",
+            "zh": "有人说 green 是纯质的、grue 不是，因为 grue 提到了时刻 t。古德曼怎么回应？"
+          },
+          "options": [
+            {
+              "en": "He agrees, and concludes that only 'green' can appear in lawlike hypotheses because it is qualitative.",
+              "zh": "他同意，并得出结论：只有 green 能出现在似律假说里，因为它是纯质的。"
+            },
+            {
+              "en": "He argues that if we start from 'grue' and 'bleen', then 'green' must be defined with them plus a temporal term, so qualitativeness is relative.",
+              "zh": "他论证：如果从 grue 和 bleen 出发，green 就要用它们加一个时间词来定义，所以纯质与否是相对的。"
+            },
+            {
+              "en": "He argues that 'grue' does not refer to any time.",
+              "zh": "他论证 grue 根本没有提到任何时间。"
+            },
+            {
+              "en": "He argues that scientists actually use 'grue' in their predictions.",
+              "zh": "他论证科学家在预测中真的会用 grue。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B（第 4 页）：从 grue、bleen 出发，green 就是“t 之前被检查且 grue，或者没在 t 之前被检查且 bleen”，同样带时间词，所以纯质与否是相对的。A 错：古德曼确实认为 green 表现良好，但他否认“纯质”是理由。C 错：他承认 grue 的通常定义有时间词。D 错：他承认我们不太会用 grue 做预测（第 4 页）。",
+            "en": "B (p. 4). A gives the wrong reason; C is false; D contradicts p. 4."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s13-new-riddle-named",
+      "title": {
+        "zh": "古德曼：为什么要在乎 grue？归纳的新谜题",
+        "en": "Goodman: Why Worry About Grue? The New Riddle Named"
+      },
+      "slides": "4",
+      "level": "core",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "讲完四个失败的办法，古德曼面对一个很自然的反驳（第 4 页）：grue 这种怪谓词（谓词：说对象“是怎样”的词），还有偶然假说，我们做预测时不太会用，何必操心？只要定义对平常用的假说管用，不就够了吗？"
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "anomaly",
+              "zh": "反常结果",
+              "hint": "理论给出的、明显不对的结果。"
+            },
+            {
+              "en": "theory of induction",
+              "zh": "归纳理论",
+              "hint": "说明证据怎样支持关于未观察情况的结论的理论。"
+            },
+            {
+              "en": "philosophy of knowledge (epistemology)",
+              "zh": "知识哲学（认识论）",
+              "hint": "研究知识和证据的哲学分支。"
+            },
+            {
+              "en": "confirmable / nonconfirmable",
+              "zh": "可确证的 / 不可确证的",
+              "hint": "古德曼在这里把“似律”等同于“可确证”，把“偶然”等同于“不可确证”。"
+            },
+            {
+              "en": "riddle",
+              "zh": "谜题",
+              "hint": "让人困惑、还没有答案的问题。"
+            },
+            {
+              "en": "new riddle of induction",
+              "zh": "归纳的新谜题",
+              "hint": "区分似律假说和偶然假说的标准是什么？这个还没解决的问题。"
+            }
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "论证的标准形式（P＝前提，C＝结论）：为什么要在乎 grue（第 4 页）",
+            "en": "Standard form: why grue matters (p. 4)"
+          },
+          "items": [
+            {
+              "en": "Objection: we are unlikely ever to use predicates like 'grue', or accidental hypotheses, when we make predictions, so a definition that works for the hypotheses we normally use is enough.",
+              "zh": "反驳：我们做预测时不太会用 grue 这类谓词或偶然假说，所以定义对平常用的假说管用就够了。"
+            },
+            {
+              "en": "P1: That is true only in the sense in which we could also do without any definition, any theory of induction and any philosophy of knowledge, since daily life and science manage without them.",
+              "zh": "P1：这话只在一种意义上对：照这么说，我们也根本不需要定义、归纳理论和知识哲学，因为日常生活和科学研究没有它们也过得去。"
+            },
+            {
+              "en": "P2: If we want a theory at all, we cannot defend its glaring failures by pointing out that we steer clear of them in practice.",
+              "zh": "P2：只要我们想要一个理论，就不能用“实际中能避开”来为它的严重反常开脱。"
+            },
+            {
+              "en": "P3: The odd cases are like textbook cases of a disease: rarely met in practice, but they show most clearly the signs of a serious illness that runs through the whole theory.",
+              "zh": "P3：这些怪例子像教科书里的典型病例：实际中很少见，却最清楚地显示出整个理论里普遍存在的严重毛病。"
+            },
+            {
+              "en": "C: So grue reveals a serious defect in the theory of confirmation, not a curiosity that can be ignored.",
+              "zh": "C：所以 grue 暴露的是确证理论的严重缺陷，不是可以不管的小怪事。"
+            }
+          ]
+        },
+        {
+          "type": "analogy",
+          "zh": "写程序时，有一种 bug 只在极少见的输入下才出现，比如用户输入一个超长的名字，app 就崩溃。你不能说“用户很少这样做，所以程序没问题”：这个 bug 说明代码的逻辑本身有漏洞，平常没出事只是因为没碰上。古德曼说，grue 就是确证理论的这种 bug。",
+          "limit": "程序的 bug 通常能找到原因，打个补丁就好；古德曼说，这个“bug”到现在既没有答案，也没有找答案的线索。"
+        },
+        {
+          "type": "text",
+          "zh": "古德曼用了一个医学比喻：这些怪例子是“clinically pure cases”（第 4 页），就像教科书里最典型的病例：在实际中很少碰到，却把一种普遍而严重的病的症状显示得最清楚。本站的理解：平常不出事，是因为我们心里知道哪个预测真正被确证（第 2 页）；可理论本身说不出凭什么。"
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "归纳的新谜题（第 4 页）",
+            "en": "The new riddle of induction (p. 4)"
+          },
+          "items": [
+            {
+              "en": "Goodman concludes that so far there is no answer, and not even a promising hint of one, to the question of what separates lawlike (confirmable) hypotheses from accidental (nonconfirmable) ones.",
+              "zh": "古德曼的结论：是什么把似律的（可确证的）假说和偶然的（不可确证的）假说区分开？到目前为止既没有答案，连有希望的线索都没有。"
+            },
+            {
+              "en": "A problem that seemed at first to be a small technical flaw now blocks the way to any adequate theory of confirmation.",
+              "zh": "起初看起来只是一个小小的技术毛病，现在挡住了建立合格的确证理论的路。"
+            },
+            {
+              "en": "Goodman calls this problem the new riddle of induction: the problem of saying what distinguishes lawlike, confirmable hypotheses from accidental, nonconfirmable ones.",
+              "zh": "古德曼把这个问题叫作归纳的新谜题（**the new riddle of induction**）：说清是什么区分了似律（可确证）假说和偶然（不可确证）假说。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "四个失败的补救，一张表复习（第 2–4 页）",
+            "en": "The four failed fixes at a glance (pp. 2-4)"
+          },
+          "headers": [
+            "补救 Fix",
+            "想法 Idea",
+            "古德曼的回应 Goodman's reply",
+            "关键例子 Key example"
+          ],
+          "rows": [
+            [
+              "1 偷运信息 Smuggled information",
+              "我们偷偷用了背景信息，像乌鸦悖论那样",
+              "把信息明说出来，定义的判断也不变",
+              "其他材料的导电性；其他听众有几个哥哥"
+            ],
+            [
+              "2 间接支持 Indirect support",
+              "相关假说被确证后，把似律性传给这个假说",
+              "要说清哪些假说相关，只能说 H 是似律的：循环",
+              "铁、锆、我桌上的东西；H 与 K"
+            ],
+            [
+              "3 完全普遍性 Complete generality",
+              "似律假说不提特定的地点、时间、个体",
+              "grue 不含个体词；个体词总能换掉；排除等价说法时，要么一个也排除不了，要么全排除",
+              "所有草都是绿的 / 伦敦或别处的所有草都是绿的"
+            ],
+            [
+              "4 纯质谓词 Qualitative predicates",
+              "似律假说只用纯质（非位置性）谓词",
+              "判断纯质要窃取论题；纯质是相对的（对称性）",
+              "grue 与 bleen；用 grue 和 bleen 定义 green"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：在这本书后面的部分，古德曼提出了他自己的回答，用到“可投射性”（**projectibility**）和“牢固度”（**entrenchment**，大致指一个谓词过去被用来做预测的历史）这些概念。节选里没有这些词，也没有给出任何解决办法。考试时按节选写：到这里为止，问题没有答案，也没有线索。",
+          "en": "Outside the reading: later in the same book Goodman proposes his own answer in terms of projectibility and entrenchment. The excerpt uses neither word and offers no solution."
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Does Goodman's new riddle show that we should stop making predictions, or that 'All emeralds are green' is not really confirmed?",
+            "zh": "古德曼的新谜题是不是说明，我们应该停止做预测，或者“所有祖母绿都是绿的”其实没有被确证？"
+          },
+          "answer": {
+            "en": "No. Goodman agrees that we know which of the two predictions is genuinely confirmed, and that daily life and science get along well without a theory (pp. 2, 4). His point is theoretical: no proposed definition or criterion explains why the green hypothesis is confirmable and the grue hypothesis is not. The riddle is a problem for the theory of confirmation, not a reason to give up predicting.",
+            "zh": "不是。古德曼同意我们清楚哪个预测真正被确证，也承认日常生活和科学研究没有理论也过得不错（第 2、4 页）。他的问题是理论上的：没有任何一个定义或标准能说明，为什么 green 的假说可确证、grue 的假说不可确证。新谜题是确证理论的难题，不是叫我们别再预测。"
+          }
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "新谜题不是把休谟的问题换个说法：休谟问从经验推论有什么根据，古德曼问哪些假说能被实例确证。节选里根本没提到休谟。",
+              "en": "The new riddle is not Hume's problem restated, and the excerpt never mentions Hume."
+            },
+            {
+              "zh": "节选没有给出解决办法；别把课外看到的答案（比如“牢固度”）当成这篇读物的观点。",
+              "en": "The excerpt offers no solution."
+            },
+            {
+              "zh": "古德曼把“似律”和“可确证”、“偶然”和“不可确证”当同义词用（第 4 页）。",
+              "en": "Goodman uses lawlike = confirmable and accidental = nonconfirmable (p. 4)."
+            },
+            {
+              "zh": "古德曼没说 grue 在实践中常惹麻烦；他说的是：罕见的怪例子暴露了理论的毛病。",
+              "en": "Goodman's point is not that grue causes practical trouble, but that rare cases reveal a flaw in the theory."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "What does Goodman call 'the new riddle of induction'?",
+            "zh": "古德曼说的“归纳的新谜题”是什么？"
+          },
+          "options": [
+            {
+              "en": "The problem of saying what distinguishes lawlike (confirmable) hypotheses from accidental (nonconfirmable) ones.",
+              "zh": "说清是什么区分了似律（可确证）假说和偶然（不可确证）假说的问题。"
+            },
+            {
+              "en": "The problem of proving that the future will resemble the past.",
+              "zh": "怎样证明未来会像过去的问题。"
+            },
+            {
+              "en": "The puzzle of why emeralds change colour at time t.",
+              "zh": "祖母绿为什么会在时刻 t 变色的谜。"
+            },
+            {
+              "en": "The paradox of the ravens.",
+              "zh": "乌鸦悖论。"
+            }
+          ],
+          "answer": 0,
+          "explain": {
+            "zh": "选 A（第 4 页）。B 是休谟第 4 节的问题，这篇节选没有讨论。C 误解了 grue：没有任何东西变色。D 乌鸦悖论只是第一个补救里提到的类比。",
+            "en": "A (p. 4). B is Hume's problem, which the excerpt does not discuss; C misreads grue; D is only mentioned in the first fix."
+          }
+        }
+      ]
+    },
+    {
+      "id": "s14-hume-vs-goodman",
+      "title": {
+        "zh": "比较：休谟的旧问题与古德曼的新谜题",
+        "en": "Comparison: Hume's Problem and Goodman's Riddle"
+      },
+      "level": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "zh": "这一节没有单独对应的读物页，而是把两篇放在一起比较，用到休谟第 7–9、12 页和古德曼第 1–4 页。复习时值得练一道比较题，比如“比较休谟的问题和古德曼的新谜题”。先记住一句话：两个问题都关于从观察过的情况推到没观察过的情况，问的却不是同一件事。",
+          "en": "This section compares the two readings, drawing on Hume pp. 7-9 and 12 and Goodman pp. 1-4."
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "zh": "补充（读物外）：在同一本书里、这篇节选之前，古德曼专门讨论过休谟的问题，称之为“旧的归纳问题”（**the old problem of induction**），所以才把自己的问题叫“新谜题”。但节选本身一句也没提休谟。下面“grue 怎样给休谟出难题”的分析，是本站为了帮助理解做的综合，不是古德曼文中的话；考试用的时候要说明这是你自己的比较。",
+          "en": "Outside the reading: earlier in the same book Goodman discusses Hume's problem as the old problem of induction, but the excerpt never mentions Hume. The link drawn below is a teaching synthesis."
+        },
+        {
+          "type": "terms",
+          "items": [
+            {
+              "en": "induction / problem of induction",
+              "zh": "归纳 / 归纳问题",
+              "hint": "归纳＝从观察过的情况推到没观察过的情况；“归纳问题”是课程大纲给本周起的标题，也是后人给休谟论证起的名字，休谟原文里没有这两个词（见第一节和第五节的补充说明）。"
+            },
+            {
+              "en": "new riddle of induction",
+              "zh": "归纳的新谜题",
+              "hint": "古德曼的问题：似律（可确证）假说和偶然假说靠什么区分？"
+            },
+            {
+              "en": "custom / constant conjunction",
+              "zh": "习惯 / 恒常结合",
+              "hint": "休谟：两类东西一直一起出现（恒常结合），重复就让心灵不经推理地由一个想到另一个（习惯）。"
+            },
+            {
+              "en": "grue / lawlike",
+              "zh": "grue / 似律的",
+              "hint": "grue＝t 之前被检查且绿，或没在 t 之前被检查且蓝；似律＝能被自己的实例确证。"
+            },
+            {
+              "en": "symmetry argument",
+              "zh": "对称性论证",
+              "hint": "古德曼：从 grue、bleen 出发，green 也要用时间词来定义，所以“纯质”是相对的。"
+            },
+            {
+              "en": "synthesis",
+              "zh": "综合",
+              "hint": "把两篇读物自己连起来的分析；要说明这是你的比较，不是作者的原话。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "caption": {
+            "zh": "休谟和古德曼：一张表对比",
+            "en": "Hume and Goodman compared"
+          },
+          "headers": [
+            "比较项 Point",
+            "休谟 Hume",
+            "古德曼 Goodman"
+          ],
+          "rows": [
+            [
+              "核心问题 Question",
+              "从过去推到将来有什么根据？凭什么相信经验？",
+              "哪些假说能被它们的实例确证？似律和偶然怎么分？"
+            ],
+            [
+              "关键例子 Key examples",
+              "面包、台球、雪、鸡蛋、孩子和蜡烛",
+              "铜和第三子、祖母绿和 grue、H 与 K、bleen"
+            ],
+            [
+              "方法 Method",
+              "列出所有种类的推理（证明的、或然的），说明哪种都不行",
+              "逐个检验别人提出的标准（四个补救），说明哪个都不行"
+            ],
+            [
+              "结果 Result",
+              "这一步不靠推理，靠习惯（怀疑论式的解决）",
+              "没有答案、没有线索：留下一个新谜题"
+            ],
+            [
+              "给了解决办法吗？ A solution?",
+              "给了一种解释（习惯），但不是理性的证明",
+              "节选里没有"
+            ],
+            [
+              "拒绝什么 What each rejects",
+              "用证明（纯逻辑）来保证未来像过去",
+              "只看句法形式的确证定义"
+            ]
+          ]
+        },
+        {
+          "type": "exam",
+          "label": {
+            "zh": "比较题可以这样写",
+            "en": "Sentences for a comparison answer"
+          },
+          "items": [
+            {
+              "en": "Hume asks what grounds any inference from past experience to the future; Goodman asks which hypotheses are confirmed by their instances.",
+              "zh": "休谟问：从过去经验推到将来，根据是什么？古德曼问：哪些假说能被它们的实例确证？"
+            },
+            {
+              "en": "Hume argues that no reasoning, demonstrative or probable, supports the step from past to future, and that custom produces it instead.",
+              "zh": "休谟论证：证明推理和或然推理都支持不了从过去到将来这一步，推动它的是习惯。"
+            },
+            {
+              "en": "Goodman argues that a definition of confirmation based on form alone cannot separate lawlike from accidental hypotheses, as grue shows, and that every proposed criterion fails.",
+              "zh": "古德曼论证：只看形式的确证定义分不出似律假说和偶然假说，grue 就是证明；别人提出的标准也都失败了。"
+            },
+            {
+              "en": "In my comparison, both reject purely logical or formal answers, but Hume ends with an account of human nature, while Goodman's excerpt ends with an unsolved riddle.",
+              "zh": "按我的比较，两人都拒绝纯逻辑、纯形式的答案；但休谟最后给出了一种关于人性的说明，古德曼的节选最后留下一个没解决的谜题。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "zh": "两篇怎么连起来？一种思路是（本站的综合）：休谟说，一切从经验来的推论，都假定未来会像过去、相似的可感性质会伴随相似的力量（休谟第 9 页）。可是“像过去”是在哪方面像？t 之前检查过的祖母绿，一贯是绿的，也一贯是 grue 的。所以就算接受休谟的这个原则，它也没告诉我们该预测“绿”还是“grue”（也就是 t 之后检查的是蓝的）。"
+        },
+        {
+          "type": "example",
+          "title": {
+            "zh": "用祖母绿试一试休谟的原则（本站的综合，不是古德曼文中的话）",
+            "en": "Testing Hume's principle on emeralds (a synthesis, not in Goodman's text)"
+          },
+          "steps": [
+            {
+              "zh": "休谟的原则：未来会像过去（休谟第 9 页）。",
+              "en": "Hume's principle: the future will resemble the past (Hume p. 9)."
+            },
+            {
+              "zh": "过去：t 之前检查过的祖母绿全是绿的，也全是 grue 的（古德曼第 1 页）。",
+              "en": "The past: every emerald examined before t was green, and also grue (Goodman p. 1)."
+            },
+            {
+              "zh": "预测一：未来在“绿”这一点上像过去，所以 t 之后检查的祖母绿是绿的。",
+              "en": "Prediction 1: the future resembles the past in being green, so later emeralds will be green."
+            },
+            {
+              "zh": "预测二：未来在“grue”这一点上像过去，所以 t 之后检查的祖母绿是 grue 的，也就是蓝的。",
+              "en": "Prediction 2: the future resembles the past in being grue, so later emeralds will be grue, that is, blue."
+            },
+            {
+              "zh": "两个预测都说“未来像过去”，却互相冲突。所以光有休谟的原则还不够，还要说明“在哪方面像”，这正是古德曼的新谜题。",
+              "en": "Both predictions say the future will resemble the past, yet they conflict. The principle alone is not enough; we need to know in which respect, which is Goodman's riddle."
+            }
+          ],
+          "answer": {
+            "zh": "休谟的原则没说在哪方面相似；grue 说明，这个问题不解决，“未来像过去”本身给不出确定的预测。",
+            "en": "Hume's principle does not say in which respect the future resembles the past; grue shows that without an answer it yields no definite prediction."
+          }
+        },
+        {
+          "type": "text",
+          "zh": "习惯也是一样（仍是本站的综合）：休谟说，习惯来自恒常结合（休谟第 12 页）。可观察到的祖母绿，既一直和“绿”结合在一起，也一直和“grue”结合在一起。习惯为什么让我们期待绿而不是 grue？有人会说“因为绿是纯质的、grue 提到了时间”，可古德曼的对称性论证（古德曼第 4 页）正好堵住了这条路。两人还有一个共同点：都不接受纯逻辑、纯形式的解决。"
+        },
+        {
+          "type": "discuss",
+          "prompt": {
+            "en": "Short essay: Does Goodman's grue example show that, even if we grant Hume's assumption that the future will resemble the past, we still lack an account of which predictions experience supports?",
+            "zh": "小论文题：古德曼的 grue 例子是否表明，就算我们承认休谟“未来会像过去”的预设，仍然说不清经验支持哪些预测？"
+          },
+          "answer": {
+            "en": "Yes, in an important sense. Hume shows that the step from past to future rests on no reasoning, only on the assumption that the future will resemble the past and on custom (Hume pp. 7-9, 12). Goodman shows that past emeralds are uniformly green and uniformly grue, so resemblance to the past does not settle whether to predict green or blue (Goodman pp. 1-2). Since his symmetry argument blocks the reply that green is the qualitative predicate (p. 4), we still need an account of which hypotheses experience confirms. This link is my own synthesis, because Goodman's excerpt never mentions Hume.",
+            "zh": "可以答“是”。休谟说明从过去到将来这一步不靠推理，只靠“未来像过去”的预设和习惯（休谟第 7–9、12 页）。古德曼说明，过去的祖母绿一贯是绿的，也一贯是 grue 的，所以“像过去”决定不了该预测绿还是蓝（古德曼第 1–2 页）。对称性论证又堵住了“绿才是纯质的”这条退路（第 4 页），所以我们仍然需要说明经验确证的是哪些假说。最后注明：这个联系是你自己的比较，古德曼的节选没有提到休谟。"
+          }
+        },
+        {
+          "type": "flow",
+          "title": {
+            "zh": "比较型小论文的写法",
+            "en": "How to plan a comparison essay"
+          },
+          "items": [
+            {
+              "en": "Thesis: state in one sentence how the two problems differ and how they connect.",
+              "zh": "论点：一句话说清两个问题有什么不同、怎样相连。"
+            },
+            {
+              "en": "Hume: give his dilemma in standard form (demonstrative versus probable) and his answer (custom).",
+              "zh": "休谟：用标准形式写出两难（证明的 vs 或然的）和他的回答（习惯）。"
+            },
+            {
+              "en": "Goodman: define grue, give the grue argument, and state the new riddle.",
+              "zh": "古德曼：定义 grue，写出 grue 论证，说出新谜题。"
+            },
+            {
+              "en": "Connection: Hume's resemblance principle does not say in which respect; past emeralds are both green and grue.",
+              "zh": "联系：休谟的相似原则没说在哪方面相似；过去的祖母绿既是绿的，又是 grue 的。"
+            },
+            {
+              "en": "Objection and reply: for example, 'green is qualitative', answered by Goodman's symmetry argument.",
+              "zh": "反驳与回应：比如“green 是纯质的”，用古德曼的对称性论证回应。"
+            },
+            {
+              "en": "Conclusion: restate the thesis and say that the link is your own synthesis.",
+              "zh": "结论：重申论点，并说明这个联系是你自己的综合。"
+            }
+          ]
+        },
+        {
+          "type": "pitfall",
+          "items": [
+            {
+              "zh": "别把两个问题混成一个：休谟问凭什么从经验推论，古德曼问哪些假说被实例确证。",
+              "en": "Hume asks what grounds inference from experience; Goodman asks which hypotheses their instances confirm."
+            },
+            {
+              "zh": "别写“古德曼解决了休谟的问题”或“古德曼在回应休谟”：节选里没有提到休谟，也没有给出解决办法。",
+              "en": "Goodman's excerpt neither mentions nor solves Hume's problem."
+            },
+            {
+              "zh": "别写“休谟证明了未来不会像过去”：他只说这一点不能靠推理证明。",
+              "en": "Hume does not prove that the future will differ from the past."
+            },
+            {
+              "zh": "休谟的结论有积极的一面（习惯在起作用）；古德曼的节选以“没有答案”结束。",
+              "en": "Hume ends with custom; Goodman's excerpt ends with an open riddle."
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "question": {
+            "en": "Which statement best contrasts Hume's problem with Goodman's new riddle?",
+            "zh": "下面哪一句最准确地对比了休谟的问题和古德曼的新谜题？"
+          },
+          "options": [
+            {
+              "en": "Hume asks which hypotheses their instances confirm; Goodman asks whether any inference from the past to the future is justified.",
+              "zh": "休谟问哪些假说被实例确证；古德曼问从过去到将来的推论是否有根据。"
+            },
+            {
+              "en": "Hume asks what grounds any inference from past to future; Goodman asks what distinguishes hypotheses that their instances confirm from those they do not.",
+              "zh": "休谟问从过去到将来的推论有什么根据；古德曼问能被实例确证的假说和不能被确证的假说有什么区别。"
+            },
+            {
+              "en": "Both ask exactly the same question, but Goodman uses emeralds instead of bread.",
+              "zh": "两人问的是完全同一个问题，只是古德曼用祖母绿代替了面包。"
+            },
+            {
+              "en": "Hume solves the problem with grue, and Goodman solves it with custom.",
+              "zh": "休谟用 grue 解决了问题，古德曼用习惯解决了问题。"
+            }
+          ],
+          "answer": 1,
+          "explain": {
+            "zh": "选 B。A 把两人对调了。C 错：两个问题不同，例子不同只是表面。D 完全弄反了：习惯是休谟的说法，grue 是古德曼的例子，而且古德曼的节选没有给出解决办法。",
+            "en": "B. A swaps the two authors; C wrongly treats them as one question; D reverses who says what, and Goodman's excerpt gives no solution."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "en": "Hume divides all objects of reason into relations of ideas, which are certain and known by thought alone, and matters of fact, whose contrary can always be conceived without contradiction.",
+      "zh": "休谟把理性的一切对象分为观念的关系（确定、单凭思考就能知道）和实际的事情（它的反面总能设想而不矛盾）。"
+    },
+    {
+      "en": "Since the contrary of any matter of fact can be clearly conceived, no matter of fact can be demonstrated; Hume's example is the proposition that the sun will not rise tomorrow.",
+      "zh": "实际的事情的反面总能清楚设想，所以它不能被证明；休谟的例子是“明天太阳不会升起”。"
+    },
+    {
+      "en": "All reasoning about matters of fact beyond the senses and memory rests on cause and effect, as when we infer a friend's whereabouts from his letter, or past inhabitants from a watch on a desert island.",
+      "zh": "一切超出感官和记忆的事实推理都靠因果，比如从信推出朋友在哪里、从荒岛上的表推出曾经有人。"
+    },
+    {
+      "en": "Hume argues that causes and effects are never known a priori but only from experience of constant conjunction: Adam could not tell from water's appearance that it could suffocate him.",
+      "zh": "休谟论证因果从来不能先验地知道，只能从恒常结合的经验得知：亚当不能从水的样子看出它会让他窒息。"
+    },
+    {
+      "en": "Because an effect is a separate event from its cause, any a priori prediction is arbitrary: the billiard balls could just as conceivably both stop or the first could bounce back.",
+      "zh": "因为结果和原因是两件不同的事，任何先验预测都是任意的：两个台球都停住、或者第一个弹回来，也一样想得通。"
+    },
+    {
+      "en": "Our senses show us only sensible qualities, such as the colour and weight of bread, never the secret powers behind them, and past experience covers only the cases observed, so the step from past cases to future cases needs explaining.",
+      "zh": "感官只给我们可感性质（比如面包的颜色和重量），从不给隐秘力量；过去的经验也只涉及观察过的那些情况，所以从过去的情况到将来的情况这一步需要解释。"
+    },
+    {
+      "en": "Hume's dilemma: demonstrative reasoning cannot show that the future will resemble the past, because a change in the course of nature is conceivable, and probable reasoning cannot show it without arguing in a circle.",
+      "zh": "休谟的两难：证明推理证明不了未来像过去，因为自然改变可以设想；或然推理要证明它，就会循环论证。"
+    },
+    {
+      "en": "Firm expectations come only after many uniform experiences, as the eggs show, but reason would draw the same conclusion from one instance as from a hundred, so the inference is not reasoning.",
+      "zh": "稳固的期待要靠多次一贯的经验（鸡蛋），可理性从一个例子和从一百个例子得出的结论一样，所以这个推论不是推理。"
+    },
+    {
+      "en": "Infants and animals also learn from experience, like the child who avoids candles after being burnt, so any argument behind the inference would have to be obvious, and no one can produce one.",
+      "zh": "婴儿和动物也会从经验学习（被烫过就躲开蜡烛的孩子），所以背后的论证必须一目了然，可谁也拿不出来。"
+    },
+    {
+      "en": "Hume's sceptical solution is that custom or habit, not reasoning, carries us from past to future; custom is the principle that makes experience useful to us.",
+      "zh": "休谟的怀疑论式解决：带我们从过去走向将来的是习惯，不是推理；是习惯让经验对我们有用。"
+    },
+    {
+      "en": "For Hume, belief differs from imagination not in its content but in how it feels: it is a more vivid, firm and steady conception, produced by a present impression together with custom.",
+      "zh": "在休谟看来，信念和想象的区别不在内容，而在感受：它是更生动、更牢固、更稳定的构想，由当下的印象加上习惯产生。"
+    },
+    {
+      "en": "Goodman argues that confirmation depends on more than syntactical form: a conducting piece of copper confirms 'All copper conducts electricity', but a third son in this room does not confirm 'All men now in this room are third sons'.",
+      "zh": "古德曼论证确证不只看句法形式：导电的铜确证“所有铜都导电”，房间里的一个第三子却不确证“房间里所有男人都是第三子”。"
+    },
+    {
+      "en": "A lawlike hypothesis can be confirmed by its instances whether or not it is true; an accidental generality cannot.",
+      "zh": "似律假说无论真假都能被实例确证；偶然概括不能。"
+    },
+    {
+      "en": "An object is grue if it is examined before t and green, or not examined before t and blue; the same evidence then equally confirms 'All emeralds are green' and 'All emeralds are grue', which conflict about emeralds examined later.",
+      "zh": "一个东西是 grue 的：在 t 之前被检查且是绿的，或者没在 t 之前被检查且是蓝的。于是同样的证据同等地确证“所有祖母绿都是绿的”和“所有祖母绿都是 grue 的”，两者对以后检查的祖母绿预测冲突。"
+    },
+    {
+      "en": "Goodman rejects four fixes: declaring smuggled information changes nothing, indirect support is circular, complete generality excludes nothing or everything, and qualitativeness is relative.",
+      "zh": "古德曼否定了四个补救：把偷运的信息明说出来也不改变什么；间接支持是循环的；完全普遍性要么什么也排除不了，要么全排除；纯质是相对的。"
+    },
+    {
+      "en": "Goodman calls the unsolved problem of what distinguishes lawlike from accidental hypotheses the new riddle of induction, which differs from Hume's question of what grounds inference from experience.",
+      "zh": "古德曼把“似律假说和偶然假说靠什么区分”这个没解决的问题叫作归纳的新谜题；它和休谟“从经验推论有什么根据”的问题不同。"
+    }
+  ],
+  "examFocus": [
+    {
+      "en": "Classify statements as relations of ideas or matters of fact, and explain the contradiction test.",
+      "zh": "很适合出选择题：判断一句话是观念的关系还是实际的事情；标准是否定它会不会矛盾。",
+      "sectionId": "s01-hume-fork"
+    },
+    {
+      "en": "Explain why causal knowledge is not a priori, using Adam and the billiard balls.",
+      "zh": "适合出简答题：用亚当和台球说明因果知识不是先验的。",
+      "sectionId": "s03-not-a-priori"
+    },
+    {
+      "en": "Explain sensible qualities versus secret powers (bread) and the missing medium between 'has been' and 'will be'.",
+      "zh": "可感性质和隐秘力量（面包）；“一直如此”和“将会如此”之间缺少的中介。",
+      "sectionId": "s04-the-missing-medium"
+    },
+    {
+      "en": "Reconstruct Hume's dilemma in standard form and say which horn fails by circularity and which fails because the contrary is conceivable.",
+      "zh": "适合出论述题：用标准形式写出两难，说清哪一角失败是因为循环、哪一角是因为反面可设想。",
+      "sectionId": "s05-demonstrative-or-probable"
+    },
+    {
+      "en": "Explain what the eggs and the child and the candle show, and Hume's agent-versus-philosopher reply.",
+      "zh": "鸡蛋、孩子和蜡烛各说明什么；行动者和哲学家的区分。",
+      "sectionId": "s06-backup-arguments"
+    },
+    {
+      "en": "Define custom or habit and explain why Hume calls his solution sceptical.",
+      "zh": "习惯的定义；为什么叫“怀疑论式的解决”；它是解决还是换了话题。",
+      "sectionId": "s07-custom-sceptical-solution"
+    },
+    {
+      "en": "Explain how belief differs from imagination, and name the three principles of association.",
+      "zh": "信念和想象的区别（在感受，不在内容）；三条联想原则：相似、接近、因果。",
+      "sectionId": "s08-belief-as-feeling"
+    },
+    {
+      "en": "Distinguish lawlike from accidental hypotheses with copper and third sons.",
+      "zh": "用铜和第三子区分似律和偶然；似律不等于真。",
+      "sectionId": "s09-lawlike-vs-accidental"
+    },
+    {
+      "en": "Define grue, decide whether sample objects are grue, and explain why the same evidence confirms incompatible predictions.",
+      "zh": "定义 grue，判断某个东西是不是 grue，并解释同样的证据为什么确证相互冲突的预测。",
+      "sectionId": "s10-grue"
+    },
+    {
+      "en": "Explain why the smuggled-information fix and the indirect-support fix (H and K) fail.",
+      "zh": "偷运信息和间接支持（H 与 K）为什么失败：后者是循环。",
+      "sectionId": "s11-smuggled-info-and-h-k"
+    },
+    {
+      "en": "Explain Goodman's symmetry argument with bleen and why qualitativeness is relative.",
+      "zh": "用 bleen 讲清对称性论证：纯质是相对的。",
+      "sectionId": "s12-generality-and-qualitative-predicates"
+    },
+    {
+      "en": "State the new riddle of induction and Goodman's reply to 'why worry about grue?'.",
+      "zh": "说出新谜题的定义，以及古德曼对“为什么要在乎 grue”的回应。",
+      "sectionId": "s13-new-riddle-named"
+    },
+    {
+      "en": "Compare Hume's problem with Goodman's riddle in a short essay, saying that the link between them is your own synthesis.",
+      "zh": "小论文：比较休谟的问题和古德曼的新谜题；说明两者的联系是你自己的综合。",
+      "sectionId": "s14-hume-vs-goodman"
+    }
+  ]
+}

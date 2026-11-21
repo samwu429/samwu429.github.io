@@ -53,7 +53,7 @@ A "Bi" value below is an object `{"zh": "...", "en": "..."}`. Unless stated othe
 
 ## 4. File formats
 
-### 4.1 Lesson file (`lessons/<id>.json`) — one per unit (lecture, lab, module, textbook chapter, tutorial or workshop)
+### 4.1 Lesson file (`lessons/<id>.json`) — one per unit (lecture, lab, module, textbook chapter, syllabus week, tutorial or workshop)
 
 ```json
 {
@@ -79,9 +79,9 @@ A "Bi" value below is an object `{"zh": "...", "en": "..."}`. Unless stated othe
 }
 ```
 
-- `kind`: `"lecture"`, `"lab"`, `"module"`, `"chapter"` (a textbook chapter), `"tutorial"` or `"workshop"`; the course brief says which kinds and ids the course uses. Labs and other hands-on units use the same structure; the brief describes their section order.
+- `kind`: `"lecture"`, `"lab"`, `"module"`, `"chapter"` (a textbook chapter), `"week"` (a syllabus week and its assigned readings), `"tutorial"` or `"workshop"`; the course brief says which kinds and ids the course uses. Labs and other hands-on units use the same structure; the brief describes their section order.
 - Section `id`: `sNN-kebab-case` (NN = 01, 02…), unique in the file.
-- `slides`: page range(s) in the PDF, e.g. `"17-22"` or `"9, 12-14"`. For handouts use the handout page numbers; for textbook chapters use the printed book page numbers (the lesson page then labels them "教材 Textbook" instead of "课件 Slides"). Leave it out only for a section that has no slide source at all (for example a topic taught only from official solutions); then say in the section's first text block where the content comes from.
+- `slides`: page range(s) in the PDF, e.g. `"17-22"` or `"9, 12-14"`. For handouts use the handout page numbers; for textbook chapters use the printed book page numbers (the lesson page then labels them "教材 Textbook" instead of "课件 Slides"); for weeks use the page numbers of the reading the section teaches (labelled "读物 Reading"), and name that reading in the section title. Leave it out only for a section that has no slide source at all (for example a topic taught only from official solutions); then say in the section's first text block where the content comes from.
 - `level`: `"core"` (must know), `"exam"` (high-probability exam point — use for the most testable sections only), `"extra"` (background/context, lower priority; e.g. course logistics).
 - Size: see the course brief; each section has 4–14 blocks.
 

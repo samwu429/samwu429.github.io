@@ -183,7 +183,10 @@ function typeFilter(bank, onChange) {
     }
   };
 
-  const chips = QUESTION_TYPES.map((type) => {
+  // Types the course has no questions of get no chip, so a course without calculations shows no empty one.
+  // 课程里一道都没有的题型不显示标签，比如没有计算题的课程就不会出现空的“计算”。
+  const shown = QUESTION_TYPES.filter((type) => counts[type] > 0);
+  const chips = (shown.length ? shown : QUESTION_TYPES).map((type) => {
     const input = h('input', {
       type: 'checkbox',
       class: 'practice-hub__chip-input',

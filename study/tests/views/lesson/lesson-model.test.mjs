@@ -132,6 +132,7 @@ test('minutes and slide labels ignore missing or invalid values', () => {
 
 test('chapter pages point at the textbook, every other kind at the slides', () => {
   assert.deepEqual(pageSourceWords('chapter'), { badge: '教材 Textbook', title: '教材页码 Textbook pages', sources: '资料 Sources: ' });
+  assert.deepEqual(pageSourceWords('week'), { badge: '读物 Reading', title: '读物页码 Reading pages', sources: '读物 Readings: ' });
   for (const kind of ['lecture', 'module', 'lab', undefined]) {
     assert.deepEqual(pageSourceWords(kind), { badge: '课件 Slides', title: '课件页码 Slide pages', sources: '课件 Slides: ' }, String(kind));
   }

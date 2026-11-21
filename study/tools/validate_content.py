@@ -21,7 +21,7 @@ from pathlib import Path
 FOLDERS = {"lesson": "lessons", "questions": "practice", "glossary": "glossary", "review": "review"}
 # Unit kinds the engine names (engine/core/text/unit-labels.js).
 # 引擎能够命名的单元类型（见 engine/core/text/unit-labels.js）。
-UNIT_KINDS = ("lecture", "lab", "module", "chapter", "tutorial", "workshop")
+UNIT_KINDS = ("lecture", "lab", "module", "chapter", "week", "tutorial", "workshop")
 
 CJK = re.compile(r"[一-鿿]")
 HTML_TAG = re.compile(r"<\s*/?\s*[a-zA-Z][^>]*>")
